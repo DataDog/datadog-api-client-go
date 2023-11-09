@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringRuleCreatePayload - Create a new rule.
@@ -38,10 +38,10 @@ func (obj *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(data []byte) error
 	var err error
 	match := 0
 	// try to unmarshal data into SecurityMonitoringStandardRuleCreatePayload
-	err = json.Unmarshal(data, &obj.SecurityMonitoringStandardRuleCreatePayload)
+	err = datadog.Unmarshal(data, &obj.SecurityMonitoringStandardRuleCreatePayload)
 	if err == nil {
 		if obj.SecurityMonitoringStandardRuleCreatePayload != nil && obj.SecurityMonitoringStandardRuleCreatePayload.UnparsedObject == nil {
-			jsonSecurityMonitoringStandardRuleCreatePayload, _ := json.Marshal(obj.SecurityMonitoringStandardRuleCreatePayload)
+			jsonSecurityMonitoringStandardRuleCreatePayload, _ := datadog.Marshal(obj.SecurityMonitoringStandardRuleCreatePayload)
 			if string(jsonSecurityMonitoringStandardRuleCreatePayload) == "{}" { // empty struct
 				obj.SecurityMonitoringStandardRuleCreatePayload = nil
 			} else {
@@ -55,10 +55,10 @@ func (obj *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(data []byte) error
 	}
 
 	// try to unmarshal data into SecurityMonitoringSignalRuleCreatePayload
-	err = json.Unmarshal(data, &obj.SecurityMonitoringSignalRuleCreatePayload)
+	err = datadog.Unmarshal(data, &obj.SecurityMonitoringSignalRuleCreatePayload)
 	if err == nil {
 		if obj.SecurityMonitoringSignalRuleCreatePayload != nil && obj.SecurityMonitoringSignalRuleCreatePayload.UnparsedObject == nil {
-			jsonSecurityMonitoringSignalRuleCreatePayload, _ := json.Marshal(obj.SecurityMonitoringSignalRuleCreatePayload)
+			jsonSecurityMonitoringSignalRuleCreatePayload, _ := datadog.Marshal(obj.SecurityMonitoringSignalRuleCreatePayload)
 			if string(jsonSecurityMonitoringSignalRuleCreatePayload) == "{}" { // empty struct
 				obj.SecurityMonitoringSignalRuleCreatePayload = nil
 			} else {
@@ -72,10 +72,10 @@ func (obj *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(data []byte) error
 	}
 
 	// try to unmarshal data into CloudConfigurationRuleCreatePayload
-	err = json.Unmarshal(data, &obj.CloudConfigurationRuleCreatePayload)
+	err = datadog.Unmarshal(data, &obj.CloudConfigurationRuleCreatePayload)
 	if err == nil {
 		if obj.CloudConfigurationRuleCreatePayload != nil && obj.CloudConfigurationRuleCreatePayload.UnparsedObject == nil {
-			jsonCloudConfigurationRuleCreatePayload, _ := json.Marshal(obj.CloudConfigurationRuleCreatePayload)
+			jsonCloudConfigurationRuleCreatePayload, _ := datadog.Marshal(obj.CloudConfigurationRuleCreatePayload)
 			if string(jsonCloudConfigurationRuleCreatePayload) == "{}" { // empty struct
 				obj.CloudConfigurationRuleCreatePayload = nil
 			} else {
@@ -93,7 +93,7 @@ func (obj *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(data []byte) error
 		obj.SecurityMonitoringStandardRuleCreatePayload = nil
 		obj.SecurityMonitoringSignalRuleCreatePayload = nil
 		obj.CloudConfigurationRuleCreatePayload = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -101,19 +101,19 @@ func (obj *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(data []byte) error
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj SecurityMonitoringRuleCreatePayload) MarshalJSON() ([]byte, error) {
 	if obj.SecurityMonitoringStandardRuleCreatePayload != nil {
-		return json.Marshal(&obj.SecurityMonitoringStandardRuleCreatePayload)
+		return datadog.Marshal(&obj.SecurityMonitoringStandardRuleCreatePayload)
 	}
 
 	if obj.SecurityMonitoringSignalRuleCreatePayload != nil {
-		return json.Marshal(&obj.SecurityMonitoringSignalRuleCreatePayload)
+		return datadog.Marshal(&obj.SecurityMonitoringSignalRuleCreatePayload)
 	}
 
 	if obj.CloudConfigurationRuleCreatePayload != nil {
-		return json.Marshal(&obj.CloudConfigurationRuleCreatePayload)
+		return datadog.Marshal(&obj.CloudConfigurationRuleCreatePayload)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

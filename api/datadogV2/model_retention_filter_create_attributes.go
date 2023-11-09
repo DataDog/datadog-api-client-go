@@ -7,8 +7,6 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -173,7 +171,7 @@ func (o *RetentionFilterCreateAttributes) SetRate(v float64) {
 func (o RetentionFilterCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["enabled"] = o.Enabled
 	toSerialize["filter"] = o.Filter
@@ -184,7 +182,7 @@ func (o RetentionFilterCreateAttributes) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -196,8 +194,8 @@ func (o *RetentionFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error
 		Name       *string              `json:"name"`
 		Rate       *float64             `json:"rate"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Enabled == nil {
 		return fmt.Errorf("required field enabled missing")
@@ -215,7 +213,7 @@ func (o *RetentionFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error
 		return fmt.Errorf("required field rate missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "filter", "filter_type", "name", "rate"})
 	} else {
 		return err
@@ -240,7 +238,7 @@ func (o *RetentionFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

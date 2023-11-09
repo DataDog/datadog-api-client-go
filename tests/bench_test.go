@@ -2,9 +2,10 @@ package tests
 
 import (
 	"os"
-	"encoding/json"
 	"testing"
-	datadog "github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 )
 
 func BenchmarkDatadogModels(b *testing.B) {
@@ -14,8 +15,8 @@ func BenchmarkDatadogModels(b *testing.B) {
 		b.Fatal(err.Error())
 	}
 	for i := 0; i < b.N; i++ {
-		var db datadog.Dashboard
-		err := json.Unmarshal(jb, &db)
+		var db datadogV1.Dashboard
+		err := datadog.Unmarshal(jb, &db)
 		if err != nil {
 			b.Fatal(err.Error())
 		}
@@ -30,7 +31,7 @@ func BenchmarkJSONParsing(b *testing.B) {
 	}
 	for i := 0; i < b.N; i++ {
 		var db map[string]any
-		err := json.Unmarshal(jb, &db)
+		err := datadog.Unmarshal(jb, &db)
 		if err != nil {
 			b.Fatal(err.Error())
 		}

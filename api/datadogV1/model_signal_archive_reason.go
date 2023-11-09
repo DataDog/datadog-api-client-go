@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SignalArchiveReason Reason why a signal has been archived.
@@ -38,7 +38,7 @@ func (v *SignalArchiveReason) GetAllowedValues() []SignalArchiveReason {
 // UnmarshalJSON deserializes the given payload.
 func (v *SignalArchiveReason) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

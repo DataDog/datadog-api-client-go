@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -102,7 +100,7 @@ func (o *MonitorConfigPolicyAttributeResponse) SetPolicyType(v MonitorConfigPoli
 func (o MonitorConfigPolicyAttributeResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Policy != nil {
 		toSerialize["policy"] = o.Policy
@@ -114,7 +112,7 @@ func (o MonitorConfigPolicyAttributeResponse) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -123,11 +121,11 @@ func (o *MonitorConfigPolicyAttributeResponse) UnmarshalJSON(bytes []byte) (err 
 		Policy     *MonitorConfigPolicyPolicy `json:"policy,omitempty"`
 		PolicyType *MonitorConfigPolicyType   `json:"policy_type,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"policy", "policy_type"})
 	} else {
 		return err
@@ -146,7 +144,7 @@ func (o *MonitorConfigPolicyAttributeResponse) UnmarshalJSON(bytes []byte) (err 
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

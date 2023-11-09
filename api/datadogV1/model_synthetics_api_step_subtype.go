@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsAPIStepSubtype The subtype of the Synthetic multistep API test step, currently only supporting `http`.
@@ -30,7 +30,7 @@ func (v *SyntheticsAPIStepSubtype) GetAllowedValues() []SyntheticsAPIStepSubtype
 // UnmarshalJSON deserializes the given payload.
 func (v *SyntheticsAPIStepSubtype) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

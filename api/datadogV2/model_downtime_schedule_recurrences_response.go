@@ -7,8 +7,6 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -133,7 +131,7 @@ func (o *DowntimeScheduleRecurrencesResponse) SetTimezone(v string) {
 func (o DowntimeScheduleRecurrencesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.CurrentDowntime != nil {
 		toSerialize["current_downtime"] = o.CurrentDowntime
@@ -146,7 +144,7 @@ func (o DowntimeScheduleRecurrencesResponse) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -156,14 +154,14 @@ func (o *DowntimeScheduleRecurrencesResponse) UnmarshalJSON(bytes []byte) (err e
 		Recurrences     *[]DowntimeScheduleRecurrenceResponse    `json:"recurrences"`
 		Timezone        *string                                  `json:"timezone,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Recurrences == nil {
 		return fmt.Errorf("required field recurrences missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"current_downtime", "recurrences", "timezone"})
 	} else {
 		return err
@@ -182,7 +180,7 @@ func (o *DowntimeScheduleRecurrencesResponse) UnmarshalJSON(bytes []byte) (err e
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

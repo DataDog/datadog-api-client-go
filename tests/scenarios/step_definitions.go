@@ -18,7 +18,6 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
 	"github.com/go-bdd/gobdd"
-	"github.com/goccy/go-json"
 	is "gotest.tools/assert/cmp"
 )
 
@@ -134,11 +133,11 @@ func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path str
 	}
 
 	if varType.IsValid() {
-		data, err := json.Marshal(value.Interface())
+		data, err := datadog.Marshal(value.Interface())
 		if err != nil {
 			t.Error(err)
 		}
-		json.Unmarshal(data, varType.Interface())
+		datadog.Unmarshal(data, varType.Interface())
 		GetRequestParameters(ctx)[name] = varType.Elem()
 		ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), varType.Elem()))
 	} else {
@@ -172,7 +171,7 @@ func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string,
 	}
 
 	if varType.IsValid() {
-		json.Unmarshal([]byte(templatedValue), varType.Interface())
+		datadog.Unmarshal([]byte(templatedValue), varType.Interface())
 		GetRequestParameters(ctx)[param] = varType.Elem()
 		ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), varType.Elem()))
 	} else {
@@ -235,7 +234,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 		var responseJSON interface{}
 		if err != nil {
 			err := err.(datadog.GenericOpenAPIError)
-			if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
+			if newErr := datadog.Unmarshal(err.Body(), &responseJSON); newErr != nil {
 				responseJSON = string(err.Body())
 			}
 		} else if len(result) == 3 {
@@ -287,7 +286,7 @@ func requestWithPaginationIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	var responseJSON interface{}
 	if err != nil {
 		err := err.(datadog.GenericOpenAPIError)
-		if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
+		if newErr := datadog.Unmarshal(err.Body(), &responseJSON); newErr != nil {
 			responseJSON = string(err.Body())
 		}
 	} else {
@@ -297,10 +296,10 @@ func requestWithPaginationIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 			t.Errorf("Unable to read response channel: %v", err)
 		}
 		buf := &bytes.Buffer{}
-		if err := json.NewEncoder(buf).Encode(items); err != nil {
+		if err := datadog.NewEncoder(buf).Encode(items); err != nil {
 			t.Errorf("Unable to decode response object to JSON: %v", err)
 		}
-		if err := json.Unmarshal(buf.Bytes(), &responseJSON); err != nil {
+		if err := datadog.Unmarshal(buf.Bytes(), &responseJSON); err != nil {
 			t.Errorf("Unable to decode response object to JSON: %v", err)
 		}
 

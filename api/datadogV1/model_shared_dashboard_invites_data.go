@@ -5,7 +5,7 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SharedDashboardInvitesData - An object or list of objects containing the information for an invitation to a shared dashboard.
@@ -32,10 +32,10 @@ func (obj *SharedDashboardInvitesData) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into SharedDashboardInvitesDataObject
-	err = json.Unmarshal(data, &obj.SharedDashboardInvitesDataObject)
+	err = datadog.Unmarshal(data, &obj.SharedDashboardInvitesDataObject)
 	if err == nil {
 		if obj.SharedDashboardInvitesDataObject != nil && obj.SharedDashboardInvitesDataObject.UnparsedObject == nil {
-			jsonSharedDashboardInvitesDataObject, _ := json.Marshal(obj.SharedDashboardInvitesDataObject)
+			jsonSharedDashboardInvitesDataObject, _ := datadog.Marshal(obj.SharedDashboardInvitesDataObject)
 			if string(jsonSharedDashboardInvitesDataObject) == "{}" { // empty struct
 				obj.SharedDashboardInvitesDataObject = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *SharedDashboardInvitesData) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SharedDashboardInvitesDataList
-	err = json.Unmarshal(data, &obj.SharedDashboardInvitesDataList)
+	err = datadog.Unmarshal(data, &obj.SharedDashboardInvitesDataList)
 	if err == nil {
 		if obj.SharedDashboardInvitesDataList != nil {
-			jsonSharedDashboardInvitesDataList, _ := json.Marshal(obj.SharedDashboardInvitesDataList)
+			jsonSharedDashboardInvitesDataList, _ := datadog.Marshal(obj.SharedDashboardInvitesDataList)
 			if string(jsonSharedDashboardInvitesDataList) == "{}" { // empty struct
 				obj.SharedDashboardInvitesDataList = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *SharedDashboardInvitesData) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.SharedDashboardInvitesDataObject = nil
 		obj.SharedDashboardInvitesDataList = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *SharedDashboardInvitesData) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj SharedDashboardInvitesData) MarshalJSON() ([]byte, error) {
 	if obj.SharedDashboardInvitesDataObject != nil {
-		return json.Marshal(&obj.SharedDashboardInvitesDataObject)
+		return datadog.Marshal(&obj.SharedDashboardInvitesDataObject)
 	}
 
 	if obj.SharedDashboardInvitesDataList != nil {
-		return json.Marshal(&obj.SharedDashboardInvitesDataList)
+		return datadog.Marshal(&obj.SharedDashboardInvitesDataList)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

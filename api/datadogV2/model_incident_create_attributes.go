@@ -7,8 +7,6 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -212,7 +210,7 @@ func (o *IncidentCreateAttributes) SetTitle(v string) {
 func (o IncidentCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.CustomerImpactScope != nil {
 		toSerialize["customer_impact_scope"] = o.CustomerImpactScope
@@ -232,7 +230,7 @@ func (o IncidentCreateAttributes) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -245,8 +243,8 @@ func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		NotificationHandles []IncidentNotificationHandle           `json:"notification_handles,omitempty"`
 		Title               *string                                `json:"title"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.CustomerImpacted == nil {
 		return fmt.Errorf("required field customer_impacted missing")
@@ -255,7 +253,7 @@ func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field title missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"customer_impact_scope", "customer_impacted", "fields", "initial_cells", "notification_handles", "title"})
 	} else {
 		return err

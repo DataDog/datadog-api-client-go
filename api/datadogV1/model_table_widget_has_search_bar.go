@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // TableWidgetHasSearchBar Controls the display of the search bar.
@@ -34,7 +34,7 @@ func (v *TableWidgetHasSearchBar) GetAllowedValues() []TableWidgetHasSearchBar {
 // UnmarshalJSON deserializes the given payload.
 func (v *TableWidgetHasSearchBar) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

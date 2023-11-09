@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringRuleMaxSignalDuration A signal will “close” regardless of the query being matched once the time exceeds the maximum duration.
@@ -53,7 +53,7 @@ func (v *SecurityMonitoringRuleMaxSignalDuration) GetAllowedValues() []SecurityM
 // UnmarshalJSON deserializes the given payload.
 func (v *SecurityMonitoringRuleMaxSignalDuration) UnmarshalJSON(src []byte) error {
 	var value int32
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

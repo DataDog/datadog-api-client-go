@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MonitorConfigPolicyPolicy - Configuration for the policy.
@@ -26,10 +26,10 @@ func (obj *MonitorConfigPolicyPolicy) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into MonitorConfigPolicyTagPolicy
-	err = json.Unmarshal(data, &obj.MonitorConfigPolicyTagPolicy)
+	err = datadog.Unmarshal(data, &obj.MonitorConfigPolicyTagPolicy)
 	if err == nil {
 		if obj.MonitorConfigPolicyTagPolicy != nil && obj.MonitorConfigPolicyTagPolicy.UnparsedObject == nil {
-			jsonMonitorConfigPolicyTagPolicy, _ := json.Marshal(obj.MonitorConfigPolicyTagPolicy)
+			jsonMonitorConfigPolicyTagPolicy, _ := datadog.Marshal(obj.MonitorConfigPolicyTagPolicy)
 			if string(jsonMonitorConfigPolicyTagPolicy) == "{}" { // empty struct
 				obj.MonitorConfigPolicyTagPolicy = nil
 			} else {
@@ -45,7 +45,7 @@ func (obj *MonitorConfigPolicyPolicy) UnmarshalJSON(data []byte) error {
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.MonitorConfigPolicyTagPolicy = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -53,11 +53,11 @@ func (obj *MonitorConfigPolicyPolicy) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj MonitorConfigPolicyPolicy) MarshalJSON() ([]byte, error) {
 	if obj.MonitorConfigPolicyTagPolicy != nil {
-		return json.Marshal(&obj.MonitorConfigPolicyTagPolicy)
+		return datadog.Marshal(&obj.MonitorConfigPolicyTagPolicy)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -248,7 +246,7 @@ func (o *ServiceDefinitionMeta) SetWarnings(v []ServiceDefinitionMetaWarnings) {
 func (o ServiceDefinitionMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.GithubHtmlUrl != nil {
 		toSerialize["github-html-url"] = o.GithubHtmlUrl
@@ -275,7 +273,7 @@ func (o ServiceDefinitionMeta) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -289,11 +287,11 @@ func (o *ServiceDefinitionMeta) UnmarshalJSON(bytes []byte) (err error) {
 		OriginDetail          *string                         `json:"origin-detail,omitempty"`
 		Warnings              []ServiceDefinitionMetaWarnings `json:"warnings,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"github-html-url", "ingested-schema-version", "ingestion-source", "last-modified-time", "origin", "origin-detail", "warnings"})
 	} else {
 		return err

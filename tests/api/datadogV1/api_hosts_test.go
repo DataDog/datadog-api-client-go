@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -127,7 +126,7 @@ func TestHostTotalsMocked(t *testing.T) {
 		JSON(data)
 
 	var expected datadogV1.HostTotals
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.GetHostTotals(ctx, *datadogV1.NewGetHostTotalsOptionalParameters().WithFrom(123))
@@ -167,7 +166,7 @@ func TestHostsSearchMocked(t *testing.T) {
 		JSON(data)
 
 	var expected datadogV1.HostListResponse
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.ListHosts(ctx, *datadogV1.NewListHostsOptionalParameters().
@@ -344,7 +343,7 @@ func TestHostsSearchMockedIncludeMutedHostsDataFalse(t *testing.T) {
 		JSON(data)
 
 	var expected datadogV1.HostListResponse
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.ListHosts(ctx, *datadogV1.NewListHostsOptionalParameters().
@@ -391,7 +390,7 @@ func TestHostsSearchMockedIncludeMutedHostsDataTrue(t *testing.T) {
 		JSON(data)
 
 	var expected datadogV1.HostListResponse
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.ListHosts(ctx, *datadogV1.NewListHostsOptionalParameters().
@@ -438,7 +437,7 @@ func TestHostsSearchMockedIncludeMutedHostsDataDefault(t *testing.T) {
 		JSON(data)
 
 	var expected datadogV1.HostListResponse
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.ListHosts(ctx, *datadogV1.NewListHostsOptionalParameters().
@@ -485,7 +484,7 @@ func TestHostsSearchMockedIncludeHostsMetadataFalse(t *testing.T) {
 		JSON(data)
 
 	var expected datadogV1.HostListResponse
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.ListHosts(ctx, *datadogV1.NewListHostsOptionalParameters().
@@ -533,7 +532,7 @@ func TestHostsSearchMockedIncludeHostsMetadataTrue(t *testing.T) {
 		JSON(data)
 
 	var expected datadogV1.HostListResponse
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.ListHosts(ctx, *datadogV1.NewListHostsOptionalParameters().
@@ -580,7 +579,7 @@ func TestHostsSearchMockedIncludeHostsMetadataDefault(t *testing.T) {
 		JSON(data)
 
 	var expected datadogV1.HostListResponse
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewHostsApi(Client(ctx))
 	hostListResp, httpresp, err := api.ListHosts(ctx, *datadogV1.NewListHostsOptionalParameters().

@@ -8,8 +8,6 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -605,7 +603,7 @@ func (o *IncidentResponseAttributes) SetTitle(v string) {
 func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Created != nil {
 		if o.Created.Nanosecond() == 0 {
@@ -668,7 +666,7 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -692,14 +690,14 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		TimeToResolve          *int64                             `json:"time_to_resolve,omitempty"`
 		Title                  *string                            `json:"title"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Title == nil {
 		return fmt.Errorf("required field title missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"created", "customer_impact_duration", "customer_impact_end", "customer_impact_scope", "customer_impact_start", "customer_impacted", "detected", "fields", "modified", "notification_handles", "public_id", "resolved", "time_to_detect", "time_to_internal_response", "time_to_repair", "time_to_resolve", "title"})
 	} else {
 		return err

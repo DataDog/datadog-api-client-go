@@ -7,8 +7,6 @@ package datadogV1
 import (
 	"time"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -250,7 +248,7 @@ func (o *UsageBillableSummaryBody) SetUsageUnit(v string) {
 func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.AccountBillableUsage != nil {
 		toSerialize["account_billable_usage"] = o.AccountBillableUsage
@@ -285,7 +283,7 @@ func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -299,11 +297,11 @@ func (o *UsageBillableSummaryBody) UnmarshalJSON(bytes []byte) (err error) {
 		PercentageInAccount    *float64   `json:"percentage_in_account,omitempty"`
 		UsageUnit              *string    `json:"usage_unit,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"account_billable_usage", "elapsed_usage_hours", "first_billable_usage_hour", "last_billable_usage_hour", "org_billable_usage", "percentage_in_account", "usage_unit"})
 	} else {
 		return err

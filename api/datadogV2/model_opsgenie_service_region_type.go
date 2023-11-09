@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // OpsgenieServiceRegionType The region for the Opsgenie service.
@@ -34,7 +34,7 @@ func (v *OpsgenieServiceRegionType) GetAllowedValues() []OpsgenieServiceRegionTy
 // UnmarshalJSON deserializes the given payload.
 func (v *OpsgenieServiceRegionType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

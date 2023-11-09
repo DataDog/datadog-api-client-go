@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // WidgetLineType Type of lines displayed.
@@ -34,7 +34,7 @@ func (v *WidgetLineType) GetAllowedValues() []WidgetLineType {
 // UnmarshalJSON deserializes the given payload.
 func (v *WidgetLineType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CIAppAggregateBucketValue - A bucket value, can either be a timeseries or a single value.
@@ -38,10 +38,10 @@ func (obj *CIAppAggregateBucketValue) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into CIAppAggregateBucketValueSingleString
-	err = json.Unmarshal(data, &obj.CIAppAggregateBucketValueSingleString)
+	err = datadog.Unmarshal(data, &obj.CIAppAggregateBucketValueSingleString)
 	if err == nil {
 		if obj.CIAppAggregateBucketValueSingleString != nil {
-			jsonCIAppAggregateBucketValueSingleString, _ := json.Marshal(obj.CIAppAggregateBucketValueSingleString)
+			jsonCIAppAggregateBucketValueSingleString, _ := datadog.Marshal(obj.CIAppAggregateBucketValueSingleString)
 			if string(jsonCIAppAggregateBucketValueSingleString) == "{}" { // empty struct
 				obj.CIAppAggregateBucketValueSingleString = nil
 			} else {
@@ -55,10 +55,10 @@ func (obj *CIAppAggregateBucketValue) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into CIAppAggregateBucketValueSingleNumber
-	err = json.Unmarshal(data, &obj.CIAppAggregateBucketValueSingleNumber)
+	err = datadog.Unmarshal(data, &obj.CIAppAggregateBucketValueSingleNumber)
 	if err == nil {
 		if obj.CIAppAggregateBucketValueSingleNumber != nil {
-			jsonCIAppAggregateBucketValueSingleNumber, _ := json.Marshal(obj.CIAppAggregateBucketValueSingleNumber)
+			jsonCIAppAggregateBucketValueSingleNumber, _ := datadog.Marshal(obj.CIAppAggregateBucketValueSingleNumber)
 			if string(jsonCIAppAggregateBucketValueSingleNumber) == "{}" { // empty struct
 				obj.CIAppAggregateBucketValueSingleNumber = nil
 			} else {
@@ -72,10 +72,10 @@ func (obj *CIAppAggregateBucketValue) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into CIAppAggregateBucketValueTimeseries
-	err = json.Unmarshal(data, &obj.CIAppAggregateBucketValueTimeseries)
+	err = datadog.Unmarshal(data, &obj.CIAppAggregateBucketValueTimeseries)
 	if err == nil {
 		if obj.CIAppAggregateBucketValueTimeseries != nil {
-			jsonCIAppAggregateBucketValueTimeseries, _ := json.Marshal(obj.CIAppAggregateBucketValueTimeseries)
+			jsonCIAppAggregateBucketValueTimeseries, _ := datadog.Marshal(obj.CIAppAggregateBucketValueTimeseries)
 			if string(jsonCIAppAggregateBucketValueTimeseries) == "{}" { // empty struct
 				obj.CIAppAggregateBucketValueTimeseries = nil
 			} else {
@@ -93,7 +93,7 @@ func (obj *CIAppAggregateBucketValue) UnmarshalJSON(data []byte) error {
 		obj.CIAppAggregateBucketValueSingleString = nil
 		obj.CIAppAggregateBucketValueSingleNumber = nil
 		obj.CIAppAggregateBucketValueTimeseries = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -101,19 +101,19 @@ func (obj *CIAppAggregateBucketValue) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj CIAppAggregateBucketValue) MarshalJSON() ([]byte, error) {
 	if obj.CIAppAggregateBucketValueSingleString != nil {
-		return json.Marshal(&obj.CIAppAggregateBucketValueSingleString)
+		return datadog.Marshal(&obj.CIAppAggregateBucketValueSingleString)
 	}
 
 	if obj.CIAppAggregateBucketValueSingleNumber != nil {
-		return json.Marshal(&obj.CIAppAggregateBucketValueSingleNumber)
+		return datadog.Marshal(&obj.CIAppAggregateBucketValueSingleNumber)
 	}
 
 	if obj.CIAppAggregateBucketValueTimeseries != nil {
-		return json.Marshal(&obj.CIAppAggregateBucketValueTimeseries)
+		return datadog.Marshal(&obj.CIAppAggregateBucketValueTimeseries)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

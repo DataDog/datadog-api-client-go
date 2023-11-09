@@ -7,8 +7,6 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -268,7 +266,7 @@ func (o *SyntheticsBasicAuthOauthClient) SetType(v SyntheticsBasicAuthOauthClien
 func (o SyntheticsBasicAuthOauthClient) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["accessTokenUrl"] = o.AccessTokenUrl
 	if o.Audience != nil {
@@ -290,7 +288,7 @@ func (o SyntheticsBasicAuthOauthClient) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -305,8 +303,8 @@ func (o *SyntheticsBasicAuthOauthClient) UnmarshalJSON(bytes []byte) (err error)
 		TokenApiAuthentication *SyntheticsBasicAuthOauthTokenApiAuthentication `json:"tokenApiAuthentication"`
 		Type                   *SyntheticsBasicAuthOauthClientType             `json:"type,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.AccessTokenUrl == nil {
 		return fmt.Errorf("required field accessTokenUrl missing")
@@ -321,7 +319,7 @@ func (o *SyntheticsBasicAuthOauthClient) UnmarshalJSON(bytes []byte) (err error)
 		return fmt.Errorf("required field tokenApiAuthentication missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"accessTokenUrl", "audience", "clientId", "clientSecret", "resource", "scope", "tokenApiAuthentication", "type"})
 	} else {
 		return err
@@ -350,7 +348,7 @@ func (o *SyntheticsBasicAuthOauthClient) UnmarshalJSON(bytes []byte) (err error)
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

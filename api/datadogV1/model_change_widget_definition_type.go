@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ChangeWidgetDefinitionType Type of the change widget.
@@ -30,7 +30,7 @@ func (v *ChangeWidgetDefinitionType) GetAllowedValues() []ChangeWidgetDefinition
 // UnmarshalJSON deserializes the given payload.
 func (v *ChangeWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

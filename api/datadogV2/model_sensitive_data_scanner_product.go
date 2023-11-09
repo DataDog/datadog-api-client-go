@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SensitiveDataScannerProduct Datadog product onto which Sensitive Data Scanner can be activated.
@@ -36,7 +36,7 @@ func (v *SensitiveDataScannerProduct) GetAllowedValues() []SensitiveDataScannerP
 // UnmarshalJSON deserializes the given payload.
 func (v *SensitiveDataScannerProduct) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

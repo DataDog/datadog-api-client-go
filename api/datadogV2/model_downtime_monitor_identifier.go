@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // DowntimeMonitorIdentifier - Monitor identifier for the downtime.
@@ -32,10 +32,10 @@ func (obj *DowntimeMonitorIdentifier) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into DowntimeMonitorIdentifierId
-	err = json.Unmarshal(data, &obj.DowntimeMonitorIdentifierId)
+	err = datadog.Unmarshal(data, &obj.DowntimeMonitorIdentifierId)
 	if err == nil {
 		if obj.DowntimeMonitorIdentifierId != nil && obj.DowntimeMonitorIdentifierId.UnparsedObject == nil {
-			jsonDowntimeMonitorIdentifierId, _ := json.Marshal(obj.DowntimeMonitorIdentifierId)
+			jsonDowntimeMonitorIdentifierId, _ := datadog.Marshal(obj.DowntimeMonitorIdentifierId)
 			if string(jsonDowntimeMonitorIdentifierId) == "{}" { // empty struct
 				obj.DowntimeMonitorIdentifierId = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *DowntimeMonitorIdentifier) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into DowntimeMonitorIdentifierTags
-	err = json.Unmarshal(data, &obj.DowntimeMonitorIdentifierTags)
+	err = datadog.Unmarshal(data, &obj.DowntimeMonitorIdentifierTags)
 	if err == nil {
 		if obj.DowntimeMonitorIdentifierTags != nil && obj.DowntimeMonitorIdentifierTags.UnparsedObject == nil {
-			jsonDowntimeMonitorIdentifierTags, _ := json.Marshal(obj.DowntimeMonitorIdentifierTags)
+			jsonDowntimeMonitorIdentifierTags, _ := datadog.Marshal(obj.DowntimeMonitorIdentifierTags)
 			if string(jsonDowntimeMonitorIdentifierTags) == "{}" { // empty struct
 				obj.DowntimeMonitorIdentifierTags = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *DowntimeMonitorIdentifier) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.DowntimeMonitorIdentifierId = nil
 		obj.DowntimeMonitorIdentifierTags = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *DowntimeMonitorIdentifier) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj DowntimeMonitorIdentifier) MarshalJSON() ([]byte, error) {
 	if obj.DowntimeMonitorIdentifierId != nil {
-		return json.Marshal(&obj.DowntimeMonitorIdentifierId)
+		return datadog.Marshal(&obj.DowntimeMonitorIdentifierId)
 	}
 
 	if obj.DowntimeMonitorIdentifierTags != nil {
-		return json.Marshal(&obj.DowntimeMonitorIdentifierTags)
+		return datadog.Marshal(&obj.DowntimeMonitorIdentifierTags)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

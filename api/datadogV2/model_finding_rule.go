@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // FindingRule The rule that triggered this finding.
@@ -95,7 +95,7 @@ func (o *FindingRule) SetName(v string) {
 func (o FindingRule) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
@@ -103,7 +103,7 @@ func (o FindingRule) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -112,8 +112,8 @@ func (o *FindingRule) UnmarshalJSON(bytes []byte) (err error) {
 		Id   *string `json:"id,omitempty"`
 		Name *string `json:"name,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	o.Id = all.Id
 	o.Name = all.Name

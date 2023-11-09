@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // EventPriority The priority of the event. For example, `normal` or `low`.
@@ -32,7 +32,7 @@ func (v *EventPriority) GetAllowedValues() []EventPriority {
 // UnmarshalJSON deserializes the given payload.
 func (v *EventPriority) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
@@ -100,11 +100,11 @@ func NewNullableEventPriority(val *EventPriority) *NullableEventPriority {
 
 // MarshalJSON serializes the associated value.
 func (v NullableEventPriority) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
+	return datadog.Marshal(v.value)
 }
 
 // UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableEventPriority) UnmarshalJSON(src []byte) error {
 	v.isSet = true
-	return json.Unmarshal(src, &v.value)
+	return datadog.Unmarshal(src, &v.value)
 }

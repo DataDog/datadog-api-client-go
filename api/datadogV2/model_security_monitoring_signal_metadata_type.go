@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringSignalMetadataType The type of event.
@@ -30,7 +30,7 @@ func (v *SecurityMonitoringSignalMetadataType) GetAllowedValues() []SecurityMoni
 // UnmarshalJSON deserializes the given payload.
 func (v *SecurityMonitoringSignalMetadataType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsMetricType The type of the resource. The value should always be logs_metrics.
@@ -30,7 +30,7 @@ func (v *LogsMetricType) GetAllowedValues() []LogsMetricType {
 // UnmarshalJSON deserializes the given payload.
 func (v *LogsMetricType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

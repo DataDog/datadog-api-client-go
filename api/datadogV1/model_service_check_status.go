@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ServiceCheckStatus The status of a service check. Set to `0` for OK, `1` for warning, `2` for critical, and `3` for unknown.
@@ -36,7 +36,7 @@ func (v *ServiceCheckStatus) GetAllowedValues() []ServiceCheckStatus {
 // UnmarshalJSON deserializes the given payload.
 func (v *ServiceCheckStatus) UnmarshalJSON(src []byte) error {
 	var value int32
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

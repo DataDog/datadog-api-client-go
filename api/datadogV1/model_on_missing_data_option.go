@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // OnMissingDataOption Controls how groups or monitors are treated if an evaluation does not return any data points.
@@ -40,7 +40,7 @@ func (v *OnMissingDataOption) GetAllowedValues() []OnMissingDataOption {
 // UnmarshalJSON deserializes the given payload.
 func (v *OnMissingDataOption) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

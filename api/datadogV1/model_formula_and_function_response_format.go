@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // FormulaAndFunctionResponseFormat Timeseries, scalar, or event list response. Event list response formats are supported by Geomap widgets.
@@ -34,7 +34,7 @@ func (v *FormulaAndFunctionResponseFormat) GetAllowedValues() []FormulaAndFuncti
 // UnmarshalJSON deserializes the given payload.
 func (v *FormulaAndFunctionResponseFormat) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

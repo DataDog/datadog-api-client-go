@@ -7,8 +7,6 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -488,7 +486,7 @@ func (o *CIAppGitInfo) UnsetTag() {
 func (o CIAppGitInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["author_email"] = o.AuthorEmail
 	if o.AuthorName.IsSet() {
@@ -524,7 +522,7 @@ func (o CIAppGitInfo) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -543,8 +541,8 @@ func (o *CIAppGitInfo) UnmarshalJSON(bytes []byte) (err error) {
 		Sha            *string                `json:"sha"`
 		Tag            datadog.NullableString `json:"tag,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.AuthorEmail == nil {
 		return fmt.Errorf("required field author_email missing")
@@ -556,7 +554,7 @@ func (o *CIAppGitInfo) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field sha missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"author_email", "author_name", "author_time", "branch", "commit_time", "committer_email", "committer_name", "default_branch", "message", "repository_url", "sha", "tag"})
 	} else {
 		return err
@@ -616,7 +614,7 @@ func NewNullableCIAppGitInfo(val *CIAppGitInfo) *NullableCIAppGitInfo {
 
 // MarshalJSON serializes the associated value.
 func (v NullableCIAppGitInfo) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
+	return datadog.Marshal(v.value)
 }
 
 // UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
@@ -628,5 +626,5 @@ func (v *NullableCIAppGitInfo) UnmarshalJSON(src []byte) error {
 		return nil
 	}
 
-	return json.Unmarshal(src, &v.value)
+	return datadog.Unmarshal(src, &v.value)
 }

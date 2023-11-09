@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ScalarColumn - A single column in a scalar query response.
@@ -32,10 +32,10 @@ func (obj *ScalarColumn) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into GroupScalarColumn
-	err = json.Unmarshal(data, &obj.GroupScalarColumn)
+	err = datadog.Unmarshal(data, &obj.GroupScalarColumn)
 	if err == nil {
 		if obj.GroupScalarColumn != nil && obj.GroupScalarColumn.UnparsedObject == nil {
-			jsonGroupScalarColumn, _ := json.Marshal(obj.GroupScalarColumn)
+			jsonGroupScalarColumn, _ := datadog.Marshal(obj.GroupScalarColumn)
 			if string(jsonGroupScalarColumn) == "{}" { // empty struct
 				obj.GroupScalarColumn = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *ScalarColumn) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into DataScalarColumn
-	err = json.Unmarshal(data, &obj.DataScalarColumn)
+	err = datadog.Unmarshal(data, &obj.DataScalarColumn)
 	if err == nil {
 		if obj.DataScalarColumn != nil && obj.DataScalarColumn.UnparsedObject == nil {
-			jsonDataScalarColumn, _ := json.Marshal(obj.DataScalarColumn)
+			jsonDataScalarColumn, _ := datadog.Marshal(obj.DataScalarColumn)
 			if string(jsonDataScalarColumn) == "{}" { // empty struct
 				obj.DataScalarColumn = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *ScalarColumn) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.GroupScalarColumn = nil
 		obj.DataScalarColumn = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *ScalarColumn) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj ScalarColumn) MarshalJSON() ([]byte, error) {
 	if obj.GroupScalarColumn != nil {
-		return json.Marshal(&obj.GroupScalarColumn)
+		return datadog.Marshal(&obj.GroupScalarColumn)
 	}
 
 	if obj.DataScalarColumn != nil {
-		return json.Marshal(&obj.DataScalarColumn)
+		return datadog.Marshal(&obj.DataScalarColumn)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // TimeseriesQuery - An individual timeseries query to one of the basic Datadog data sources.
@@ -32,10 +32,10 @@ func (obj *TimeseriesQuery) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into MetricsTimeseriesQuery
-	err = json.Unmarshal(data, &obj.MetricsTimeseriesQuery)
+	err = datadog.Unmarshal(data, &obj.MetricsTimeseriesQuery)
 	if err == nil {
 		if obj.MetricsTimeseriesQuery != nil && obj.MetricsTimeseriesQuery.UnparsedObject == nil {
-			jsonMetricsTimeseriesQuery, _ := json.Marshal(obj.MetricsTimeseriesQuery)
+			jsonMetricsTimeseriesQuery, _ := datadog.Marshal(obj.MetricsTimeseriesQuery)
 			if string(jsonMetricsTimeseriesQuery) == "{}" { // empty struct
 				obj.MetricsTimeseriesQuery = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *TimeseriesQuery) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into EventsTimeseriesQuery
-	err = json.Unmarshal(data, &obj.EventsTimeseriesQuery)
+	err = datadog.Unmarshal(data, &obj.EventsTimeseriesQuery)
 	if err == nil {
 		if obj.EventsTimeseriesQuery != nil && obj.EventsTimeseriesQuery.UnparsedObject == nil {
-			jsonEventsTimeseriesQuery, _ := json.Marshal(obj.EventsTimeseriesQuery)
+			jsonEventsTimeseriesQuery, _ := datadog.Marshal(obj.EventsTimeseriesQuery)
 			if string(jsonEventsTimeseriesQuery) == "{}" { // empty struct
 				obj.EventsTimeseriesQuery = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *TimeseriesQuery) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.MetricsTimeseriesQuery = nil
 		obj.EventsTimeseriesQuery = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *TimeseriesQuery) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj TimeseriesQuery) MarshalJSON() ([]byte, error) {
 	if obj.MetricsTimeseriesQuery != nil {
-		return json.Marshal(&obj.MetricsTimeseriesQuery)
+		return datadog.Marshal(&obj.MetricsTimeseriesQuery)
 	}
 
 	if obj.EventsTimeseriesQuery != nil {
-		return json.Marshal(&obj.EventsTimeseriesQuery)
+		return datadog.Marshal(&obj.EventsTimeseriesQuery)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MetricsAggregator The type of aggregation that can be performed on metrics-based queries.
@@ -46,7 +46,7 @@ func (v *MetricsAggregator) GetAllowedValues() []MetricsAggregator {
 // UnmarshalJSON deserializes the given payload.
 func (v *MetricsAggregator) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

@@ -7,8 +7,6 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -298,7 +296,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) SetStateUpdateUser(v Security
 func (o SecurityMonitoringSignalTriageAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.ArchiveComment != nil {
 		toSerialize["archive_comment"] = o.ArchiveComment
@@ -325,7 +323,7 @@ func (o SecurityMonitoringSignalTriageAttributes) MarshalJSON() ([]byte, error) 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -341,8 +339,8 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 		StateUpdateTimestamp    *int64                                 `json:"state_update_timestamp,omitempty"`
 		StateUpdateUser         *SecurityMonitoringTriageUser          `json:"state_update_user,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Assignee == nil {
 		return fmt.Errorf("required field assignee missing")
@@ -354,7 +352,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 		return fmt.Errorf("required field state missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"archive_comment", "archive_comment_timestamp", "archive_comment_user", "archive_reason", "assignee", "incident_ids", "state", "state_update_timestamp", "state_update_user"})
 	} else {
 		return err
@@ -393,7 +391,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -16,7 +16,6 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	ddtesting "github.com/DataDog/dd-sdk-go-testing"
 	msgs "github.com/cucumber/messages-go/v12"
-	"github.com/goccy/go-json"
 	"github.com/go-bdd/gobdd"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
@@ -75,7 +74,7 @@ func TestScenarios(t *testing.T) {
 							codeowners = append(codeowners, fmt.Sprintf("@%s", t[len(prefix):]))
 						}
 					}
-					testCodeowners, _ := json.Marshal(codeowners)
+					testCodeowners, _ := datadog.Marshal(codeowners)
 
 					cctx, closeSpan := ddtesting.StartTestWithContext(
 						datadog.NewDefaultContext(context.Background()),

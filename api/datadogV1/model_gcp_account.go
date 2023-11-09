@@ -5,8 +5,6 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -464,7 +462,7 @@ func (o *GCPAccount) SetType(v string) {
 func (o GCPAccount) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.AuthProviderX509CertUrl != nil {
 		toSerialize["auth_provider_x509_cert_url"] = o.AuthProviderX509CertUrl
@@ -512,7 +510,7 @@ func (o GCPAccount) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -533,11 +531,11 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 		TokenUri                *string  `json:"token_uri,omitempty"`
 		Type                    *string  `json:"type,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"auth_provider_x509_cert_url", "auth_uri", "automute", "client_email", "client_id", "client_x509_cert_url", "errors", "host_filters", "is_cspm_enabled", "private_key", "private_key_id", "project_id", "token_uri", "type"})
 	} else {
 		return err

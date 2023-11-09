@@ -7,8 +7,6 @@ package datadogV1
 import (
 	"time"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -101,7 +99,7 @@ func (o *SyntheticsDeletedTest) SetPublicId(v string) {
 func (o SyntheticsDeletedTest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.DeletedAt != nil {
 		if o.DeletedAt.Nanosecond() == 0 {
@@ -117,7 +115,7 @@ func (o SyntheticsDeletedTest) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -126,11 +124,11 @@ func (o *SyntheticsDeletedTest) UnmarshalJSON(bytes []byte) (err error) {
 		DeletedAt *time.Time `json:"deleted_at,omitempty"`
 		PublicId  *string    `json:"public_id,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"deleted_at", "public_id"})
 	} else {
 		return err

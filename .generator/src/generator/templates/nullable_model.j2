@@ -33,7 +33,7 @@ func NewNullable{{ name }}(val *{{ name }}) *Nullable{{ name }} {
 
 // MarshalJSON serializes the associated value.
 func (v Nullable{{ name }}) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
+	return datadog.Marshal(v.value)
 }
 
 // UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
@@ -45,5 +45,5 @@ func (v *Nullable{{ name }}) UnmarshalJSON(src []byte) error {
 		return nil
 	}
 
-	return json.Unmarshal(src, &v.value)
+	return datadog.Unmarshal(src, &v.value)
 }

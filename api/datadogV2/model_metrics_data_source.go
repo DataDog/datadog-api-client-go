@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MetricsDataSource A data source that is powered by the Metrics platform.
@@ -32,7 +32,7 @@ func (v *MetricsDataSource) GetAllowedValues() []MetricsDataSource {
 // UnmarshalJSON deserializes the given payload.
 func (v *MetricsDataSource) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

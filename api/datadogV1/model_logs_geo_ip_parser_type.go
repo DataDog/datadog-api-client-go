@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsGeoIPParserType Type of GeoIP parser.
@@ -30,7 +30,7 @@ func (v *LogsGeoIPParserType) GetAllowedValues() []LogsGeoIPParserType {
 // UnmarshalJSON deserializes the given payload.
 func (v *LogsGeoIPParserType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

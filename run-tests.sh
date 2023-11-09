@@ -39,9 +39,9 @@ go mod tidy
 go clean -testcache
 
 if [ "$RECORD" == "none" ]; then
-    gotestsum --rerun-fails=1 --format short-verbose --packages ./... -- -timeout=20m
+    gotestsum --rerun-fails=1 --format short-verbose --packages ./... -- -timeout=20m $TESTARGS
 else
-    gotestsum --format short-verbose --packages ./...
+    gotestsum --format short-verbose --packages ./... -- $TESTARGS
 fi
 
 cd ..
