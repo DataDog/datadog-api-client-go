@@ -5,9 +5,8 @@
 package datadogV1
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // NoteWidgetDefinitionType Type of the note widget.

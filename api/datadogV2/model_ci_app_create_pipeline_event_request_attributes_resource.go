@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // CIAppCreatePipelineEventRequestAttributesResource - Details of the CI pipeline event.

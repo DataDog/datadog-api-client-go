@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // RUMAggregateBucketValue - A bucket value, can be either a timeseries or a single value.

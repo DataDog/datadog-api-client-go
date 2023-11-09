@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // ServiceDefinitionSchema - Service definition schema.

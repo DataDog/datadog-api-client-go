@@ -5,9 +5,8 @@
 package datadogV2
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // ServiceDefinitionV2Dot1Version Schema version being used.

@@ -5,9 +5,8 @@
 package datadogV1
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // MonitorOptionsNotificationPresets Toggles the display of additional content sent in the monitor notification.

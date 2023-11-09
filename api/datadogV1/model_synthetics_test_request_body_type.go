@@ -5,9 +5,8 @@
 package datadogV1
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // SyntheticsTestRequestBodyType Type of the request body.

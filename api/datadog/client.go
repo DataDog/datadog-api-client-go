@@ -9,6 +9,7 @@ import (
 	"compress/gzip"
 	"compress/zlib"
 	"context"
+	"encoding/json"
 	"encoding/xml"
 	"errors"
 	"fmt"
@@ -27,7 +28,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/goccy/go-json"
 	"golang.org/x/oauth2"
 )
 

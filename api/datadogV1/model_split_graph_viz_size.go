@@ -5,9 +5,8 @@
 package datadogV1
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // SplitGraphVizSize Size of the individual graphs in the split.

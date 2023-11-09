@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // ScalarQuery - An individual scalar query to one of the basic Datadog data sources.

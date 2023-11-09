@@ -5,9 +5,8 @@
 package datadogV2
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // MetricsDataSource A data source that is powered by the Metrics platform.

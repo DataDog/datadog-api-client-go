@@ -5,9 +5,8 @@
 package datadogV1
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // SunburstWidgetLegendInlineAutomaticType Whether to show the legend inline or let it be automatically generated.

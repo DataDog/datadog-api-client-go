@@ -5,7 +5,7 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // MonitorFormulaAndFunctionQueryDefinition - A formula and function query.

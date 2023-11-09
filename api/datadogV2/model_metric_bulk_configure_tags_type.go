@@ -5,9 +5,8 @@
 package datadogV2
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // MetricBulkConfigureTagsType The metric bulk configure tags resource.

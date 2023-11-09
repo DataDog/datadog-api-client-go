@@ -5,9 +5,8 @@
 package datadogV2
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // MetricIntakeType The type of metric. The available types are `0` (unspecified), `1` (count), `2` (rate), and `3` (gauge).

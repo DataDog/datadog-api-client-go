@@ -5,9 +5,8 @@
 package datadogV2
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // ScalarFormulaRequestType The type of the resource. The value should always be scalar_request.

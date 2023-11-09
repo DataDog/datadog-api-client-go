@@ -5,9 +5,8 @@
 package datadogV1
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // SyntheticsBasicAuthOauthROPType The type of basic authentication to use when performing the test.

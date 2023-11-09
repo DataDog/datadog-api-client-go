@@ -5,7 +5,7 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // WidgetDefinition - [Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).

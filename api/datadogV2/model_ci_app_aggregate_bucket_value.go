@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // CIAppAggregateBucketValue - A bucket value, can either be a timeseries or a single value.

@@ -5,9 +5,8 @@
 package datadogV2
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // SecurityMonitoringRuleNewValueOptionsLearningMethod The learning method used to determine when signals should be generated for values that weren't learned.

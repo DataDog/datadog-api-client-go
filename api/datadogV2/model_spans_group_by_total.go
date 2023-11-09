@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // SpansGroupByTotal - A resulting object to put the given computes in over all the matching records.

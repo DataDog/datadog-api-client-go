@@ -5,9 +5,8 @@
 package datadogV2
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // CIAppPipelineEventStepLevel Used to distinguish between pipelines, stages, jobs and steps.

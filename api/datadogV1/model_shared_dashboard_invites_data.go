@@ -5,7 +5,7 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // SharedDashboardInvitesData - An object or list of objects containing the information for an invitation to a shared dashboard.

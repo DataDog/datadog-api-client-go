@@ -5,9 +5,8 @@
 package datadogV2
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // RetentionFilterType The type of retention filter. The value should always be spans-sampling-processor.

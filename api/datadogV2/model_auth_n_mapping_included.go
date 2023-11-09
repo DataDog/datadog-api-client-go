@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // AuthNMappingIncluded - Included data in the AuthN Mapping response.

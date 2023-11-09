@@ -11,6 +11,7 @@ import (
 	"context"
 	"crypto/sha256"
 	"errors"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"reflect"
@@ -21,7 +22,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/goccy/go-json"
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
 	"github.com/go-bdd/gobdd"
 )

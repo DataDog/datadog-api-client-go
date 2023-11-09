@@ -5,7 +5,7 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // SyntheticsAssertion - Object describing the assertions type, their associated operator,

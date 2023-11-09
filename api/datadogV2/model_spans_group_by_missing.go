@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // SpansGroupByMissing - The value to use for spans that don't have the facet used to group by.

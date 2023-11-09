@@ -5,9 +5,8 @@
 package datadogV1
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // TreeMapSizeBy (deprecated) The attribute formerly used to determine size in the widget.

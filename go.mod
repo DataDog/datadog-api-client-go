@@ -11,11 +11,8 @@ retract (
 
 require (
 	github.com/DataDog/zstd v1.5.2
-	github.com/goccy/go-json v0.10.2
 	golang.org/x/oauth2 v0.10.0
 )
-
-require github.com/google/uuid v1.3.1 // indirect
 
 require (
 	github.com/golang/protobuf v1.5.3 // indirect

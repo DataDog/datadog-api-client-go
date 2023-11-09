@@ -5,9 +5,8 @@
 package datadogV2
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // CloudflareAccountType The JSON:API type for this API. Should always be `cloudflare-accounts`.

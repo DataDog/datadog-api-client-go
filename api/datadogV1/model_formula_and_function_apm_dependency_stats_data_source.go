@@ -5,9 +5,8 @@
 package datadogV1
 
 import (
+	"encoding/json"
 	"fmt"
-
-	"github.com/goccy/go-json"
 )
 
 // FormulaAndFunctionApmDependencyStatsDataSource Data source for APM dependency stats queries.

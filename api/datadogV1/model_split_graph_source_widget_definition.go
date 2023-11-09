@@ -5,7 +5,7 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
+	"encoding/json"
 )
 
 // SplitGraphSourceWidgetDefinition - The original widget we are splitting on.
