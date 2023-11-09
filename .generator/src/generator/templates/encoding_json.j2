@@ -16,6 +16,10 @@ func Unmarshal(data []byte, v interface{}) error {
 	return json.Unmarshal(data, v)
 }
 
-func newEncoder(w io.Writer) *json.Encoder {
+func NewEncoder(w io.Writer) *json.Encoder {
 	return json.NewEncoder(w)
+}
+
+func NewDecoder(r io.Reader) *json.Decoder {
+	return json.NewDecoder(r)
 }

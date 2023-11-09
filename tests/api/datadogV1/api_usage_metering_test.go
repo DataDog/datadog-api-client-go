@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"encoding/json"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -417,7 +416,7 @@ func TestUsageBillableSummary(t *testing.T) {
 	defer gock.Off()
 
 	var expected datadogV1.UsageBillableSummaryResponse
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewUsageMeteringApi(Client(ctx))
 	usage, httpresp, err := api.GetUsageBillableSummary(ctx)
@@ -572,7 +571,7 @@ func TestUsageSummary(t *testing.T) {
 	defer gock.Off()
 
 	var expected datadogV1.UsageSummaryResponse
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewUsageMeteringApi(Client(ctx))
 	usage, httpresp, err := api.GetUsageSummary(ctx, startMonth, *datadogV1.NewGetUsageSummaryOptionalParameters().WithEndMonth(endMonth).WithIncludeOrgDetails(includeOrgDetails))

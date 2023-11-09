@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"strings"
 	"testing"
@@ -155,7 +154,7 @@ func TestMetricListActive(t *testing.T) {
 	defer gock.Off()
 
 	var expected datadogV1.MetricsListResponse
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewMetricsApi(Client(ctx))
 

@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 	"testing"
@@ -31,7 +30,7 @@ func TestListOrgs(t *testing.T) {
 
 	// Setup fixture data
 	var orgsFixture datadogV1.OrganizationListResponse
-	json.Unmarshal(setupGock(ctx, t, "orgs/org_list.json", "get", "/org"), &orgsFixture)
+	datadog.Unmarshal(setupGock(ctx, t, "orgs/org_list.json", "get", "/org"), &orgsFixture)
 	orgFixture := orgsFixture.GetOrgs()[0]
 
 	// Get mocked request data
@@ -66,7 +65,7 @@ func TestCreateOrg(t *testing.T) {
 
 	// Setup fixture data
 	var orgsFixture datadogV1.OrganizationCreateResponse
-	json.Unmarshal(setupGock(ctx, t, "orgs/org_create.json", "post", "/org"), &orgsFixture)
+	datadog.Unmarshal(setupGock(ctx, t, "orgs/org_create.json", "post", "/org"), &orgsFixture)
 	orgCreateBody := orgsFixture.GetOrg()
 
 	// Get mocked request data
@@ -127,7 +126,7 @@ func TestUpdateOrg(t *testing.T) {
 
 	// Setup fixture data
 	var orgsFixture datadogV1.OrganizationResponse
-	json.Unmarshal(setupGock(ctx, t, "orgs/org_update.json", "put", "/org"), &orgsFixture)
+	datadog.Unmarshal(setupGock(ctx, t, "orgs/org_update.json", "put", "/org"), &orgsFixture)
 
 	// Get mocked request data
 	updateOrgResp, _, err := api.UpdateOrg(ctx, *orgsFixture.GetOrg().PublicId, datadogV1.Organization{Settings: orgsFixture.GetOrg().Settings})
@@ -178,7 +177,7 @@ func TestGetOrg(t *testing.T) {
 
 	// Setup fixture data
 	var orgsFixture datadogV1.OrganizationResponse
-	json.Unmarshal(setupGock(ctx, t, "orgs/org_get.json", "get", "/org"), &orgsFixture)
+	datadog.Unmarshal(setupGock(ctx, t, "orgs/org_get.json", "get", "/org"), &orgsFixture)
 
 	// Get mocked request data
 	getOrgResp, _, err := api.GetOrg(ctx, *orgsFixture.GetOrg().PublicId)
@@ -230,7 +229,7 @@ func TestUploadOrgIdpMeta(t *testing.T) {
 	// Setup fixture data
 	orgPubID := "12345"
 	var idpResponseFixture datadogV1.IdpResponse
-	json.Unmarshal(setupGock(ctx, t, "orgs/org_idp_upload.json", "post", fmt.Sprintf("/org/%s/idp_metadata", orgPubID)), &idpResponseFixture)
+	datadog.Unmarshal(setupGock(ctx, t, "orgs/org_idp_upload.json", "post", fmt.Sprintf("/org/%s/idp_metadata", orgPubID)), &idpResponseFixture)
 
 	// Get empty file object. This fixture doesn't exist since we don't need it to.
 	file, _ := os.Open("test_go/idp_data.xml")

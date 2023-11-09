@@ -2,7 +2,6 @@ package test
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -45,7 +44,7 @@ func TestSlackIntegrationGetAllChannelsMocked(t *testing.T) {
 		JSON(data)
 
 	var expected []datadogV1.SlackIntegrationChannel
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewSlackIntegrationApi(Client(ctx))
 	slackChannelsResp, httpResp, err := api.GetSlackIntegrationChannels(ctx, staticAccountName)
@@ -110,7 +109,7 @@ func TestSlackIntegrationCreateChannelMocked(t *testing.T) {
 		JSON(data)
 
 	var expected datadogV1.SlackIntegrationChannel
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewSlackIntegrationApi(Client(ctx))
 
@@ -211,7 +210,7 @@ func TestSlackIntegrationGetChannelMocked(t *testing.T) {
 		JSON(data)
 
 	var expected datadogV1.SlackIntegrationChannel
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewSlackIntegrationApi(Client(ctx))
 	slackChannelsResp, httpResp, err := api.GetSlackIntegrationChannel(ctx, staticAccountName, staticChannelName)
@@ -302,7 +301,7 @@ func TestSlackIntegrationUpdateChannelMocked(t *testing.T) {
 		JSON(data)
 
 	var expected datadogV1.SlackIntegrationChannel
-	json.Unmarshal([]byte(data), &expected)
+	datadog.Unmarshal([]byte(data), &expected)
 
 	api := datadogV1.NewSlackIntegrationApi(Client(ctx))
 	channelPayload := datadogV1.NewSlackIntegrationChannel()

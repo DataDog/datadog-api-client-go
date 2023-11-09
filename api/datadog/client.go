@@ -479,7 +479,7 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 	} else if s, ok := body.(*string); ok {
 		_, err = bodyBuf.WriteString(*s)
 	} else if jsonCheck.MatchString(contentType) {
-		err = newEncoder(bodyBuf).Encode(body)
+		err = NewEncoder(bodyBuf).Encode(body)
 	} else if xmlCheck.MatchString(contentType) {
 		err = xml.NewEncoder(bodyBuf).Encode(body)
 	}
