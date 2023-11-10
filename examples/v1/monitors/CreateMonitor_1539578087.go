@@ -22,9 +22,8 @@ func main() {
 			Thresholds: &datadogV1.MonitorThresholds{
 				Critical: datadog.PtrFloat64(0.5),
 			},
-			NotifyAudit:   datadog.PtrBool(false),
-			OnMissingData: datadogV1.ONMISSINGDATAOPTION_DEFAULT.Ptr(),
-			IncludeTags:   datadog.PtrBool(false),
+			NotifyAudit: datadog.PtrBool(false),
+			IncludeTags: datadog.PtrBool(false),
 			SchedulingOptions: &datadogV1.MonitorOptionsSchedulingOptions{
 				EvaluationWindow: &datadogV1.MonitorOptionsSchedulingOptionsEvaluationWindow{
 					DayStarts:   datadog.PtrString("04:00"),
