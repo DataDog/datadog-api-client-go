@@ -7,8 +7,6 @@ package datadogV1
 import (
 	"time"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -458,7 +456,7 @@ func (o *UsageLogsHour) SetPublicId(v string) {
 func (o UsageLogsHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.BillableIngestedBytes.IsSet() {
 		toSerialize["billable_ingested_bytes"] = o.BillableIngestedBytes.Get()
@@ -501,7 +499,7 @@ func (o UsageLogsHour) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -519,11 +517,11 @@ func (o *UsageLogsHour) UnmarshalJSON(bytes []byte) (err error) {
 		OrgName                     *string               `json:"org_name,omitempty"`
 		PublicId                    *string               `json:"public_id,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"billable_ingested_bytes", "hour", "indexed_events_count", "ingested_events_bytes", "logs_forwarding_events_bytes", "logs_live_indexed_count", "logs_live_ingested_bytes", "logs_rehydrated_indexed_count", "logs_rehydrated_ingested_bytes", "org_name", "public_id"})
 	} else {
 		return err

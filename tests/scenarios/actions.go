@@ -21,7 +21,6 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
 	testsV1 "github.com/DataDog/datadog-api-client-go/v2/tests/api/datadogV1"
 	testsV2 "github.com/DataDog/datadog-api-client-go/v2/tests/api/datadogV2"
-	"github.com/goccy/go-json"
 
 	"github.com/go-bdd/gobdd"
 )
@@ -52,7 +51,7 @@ func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp refl
 	if p.Value != nil {
 		tpl := Templated(t, GetData(ctx), *p.Value)
 		v := reflect.New(tp)
-		err := json.Unmarshal([]byte(tpl), v.Interface())
+		err := datadog.Unmarshal([]byte(tpl), v.Interface())
 		if err != nil {
 			t.Fatalf("can't unmarshal parameter value for %s: %v", p.Name, err)
 		}
@@ -83,7 +82,7 @@ func LoadRequestsUndo(file string) (map[string]UndoAction, error) {
 	byteValue, _ := io.ReadAll(f)
 
 	var value map[string]UndoAction
-	json.Unmarshal(byteValue, &value)
+	datadog.Unmarshal(byteValue, &value)
 	return value, nil
 }
 
@@ -97,7 +96,7 @@ func LoadGivenSteps(file string) ([]GivenStep, error) {
 
 	var value []GivenStep
 	byteValue, _ := io.ReadAll(f)
-	err = json.Unmarshal(byteValue, &value)
+	err = datadog.Unmarshal(byteValue, &value)
 	return value, err
 }
 
@@ -330,7 +329,7 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 				if undo.Undo.Parameters[i-1].Template != nil {
 					data := Templated(t, sourceJSONData.(map[string]interface{}), *undo.Undo.Parameters[i-1].Template)
 					object := reflect.New(undoOperation.Type().In(i))
-					err := json.Unmarshal([]byte(data), object.Interface())
+					err := datadog.Unmarshal([]byte(data), object.Interface())
 					if err != nil {
 						t.Fatalf("%v", err)
 					}
@@ -340,12 +339,12 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 					if err != nil {
 						t.Fatalf("%v", err)
 					}
-					sourceJSON, err := json.Marshal(source.Interface())
+					sourceJSON, err := datadog.Marshal(source.Interface())
 					if err != nil {
 						t.Fatalf("%v", err)
 					}
 					object := reflect.New(undoOperation.Type().In(i))
-					err = json.Unmarshal(sourceJSON, object.Interface())
+					err = datadog.Unmarshal(sourceJSON, object.Interface())
 					if err != nil {
 						t.Fatalf("%v", err)
 					}

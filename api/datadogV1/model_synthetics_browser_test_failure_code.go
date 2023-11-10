@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsBrowserTestFailureCode Error code that can be returned by a Synthetic test.
@@ -94,7 +94,7 @@ func (v *SyntheticsBrowserTestFailureCode) GetAllowedValues() []SyntheticsBrowse
 // UnmarshalJSON deserializes the given payload.
 func (v *SyntheticsBrowserTestFailureCode) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

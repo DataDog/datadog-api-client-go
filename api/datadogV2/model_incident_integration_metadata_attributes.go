@@ -7,8 +7,6 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -155,7 +153,7 @@ func (o *IncidentIntegrationMetadataAttributes) SetStatus(v int32) {
 func (o IncidentIntegrationMetadataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.IncidentId != nil {
 		toSerialize["incident_id"] = o.IncidentId
@@ -169,7 +167,7 @@ func (o IncidentIntegrationMetadataAttributes) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -180,8 +178,8 @@ func (o *IncidentIntegrationMetadataAttributes) UnmarshalJSON(bytes []byte) (err
 		Metadata        *IncidentIntegrationMetadataMetadata `json:"metadata"`
 		Status          *int32                               `json:"status,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.IntegrationType == nil {
 		return fmt.Errorf("required field integration_type missing")
@@ -190,7 +188,7 @@ func (o *IncidentIntegrationMetadataAttributes) UnmarshalJSON(bytes []byte) (err
 		return fmt.Errorf("required field metadata missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"incident_id", "integration_type", "metadata", "status"})
 	} else {
 		return err

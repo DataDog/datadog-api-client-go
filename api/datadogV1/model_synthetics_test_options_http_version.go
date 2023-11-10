@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsTestOptionsHTTPVersion HTTP version to use for a Synthetic test.
@@ -34,7 +34,7 @@ func (v *SyntheticsTestOptionsHTTPVersion) GetAllowedValues() []SyntheticsTestOp
 // UnmarshalJSON deserializes the given payload.
 func (v *SyntheticsTestOptionsHTTPVersion) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

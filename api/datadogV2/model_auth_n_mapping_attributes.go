@@ -7,8 +7,6 @@ package datadogV2
 import (
 	"time"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -190,7 +188,7 @@ func (o *AuthNMappingAttributes) SetSamlAssertionAttributeId(v string) {
 func (o AuthNMappingAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.AttributeKey != nil {
 		toSerialize["attribute_key"] = o.AttributeKey
@@ -219,7 +217,7 @@ func (o AuthNMappingAttributes) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -231,11 +229,11 @@ func (o *AuthNMappingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		ModifiedAt               *time.Time `json:"modified_at,omitempty"`
 		SamlAssertionAttributeId *string    `json:"saml_assertion_attribute_id,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"attribute_key", "attribute_value", "created_at", "modified_at", "saml_assertion_attribute_id"})
 	} else {
 		return err

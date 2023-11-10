@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentAttachmentsResponseIncludedItem - An object related to an attachment that is included in the response.
@@ -26,10 +26,10 @@ func (obj *IncidentAttachmentsResponseIncludedItem) UnmarshalJSON(data []byte) e
 	var err error
 	match := 0
 	// try to unmarshal data into User
-	err = json.Unmarshal(data, &obj.User)
+	err = datadog.Unmarshal(data, &obj.User)
 	if err == nil {
 		if obj.User != nil && obj.User.UnparsedObject == nil {
-			jsonUser, _ := json.Marshal(obj.User)
+			jsonUser, _ := datadog.Marshal(obj.User)
 			if string(jsonUser) == "{}" { // empty struct
 				obj.User = nil
 			} else {
@@ -45,7 +45,7 @@ func (obj *IncidentAttachmentsResponseIncludedItem) UnmarshalJSON(data []byte) e
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.User = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -53,11 +53,11 @@ func (obj *IncidentAttachmentsResponseIncludedItem) UnmarshalJSON(data []byte) e
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj IncidentAttachmentsResponseIncludedItem) MarshalJSON() ([]byte, error) {
 	if obj.User != nil {
-		return json.Marshal(&obj.User)
+		return datadog.Marshal(&obj.User)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

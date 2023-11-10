@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // DowntimeScheduleResponse - The schedule that defines when the monitor starts, stops, and recurs. There are two types of schedules:
@@ -34,10 +34,10 @@ func (obj *DowntimeScheduleResponse) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into DowntimeScheduleRecurrencesResponse
-	err = json.Unmarshal(data, &obj.DowntimeScheduleRecurrencesResponse)
+	err = datadog.Unmarshal(data, &obj.DowntimeScheduleRecurrencesResponse)
 	if err == nil {
 		if obj.DowntimeScheduleRecurrencesResponse != nil && obj.DowntimeScheduleRecurrencesResponse.UnparsedObject == nil {
-			jsonDowntimeScheduleRecurrencesResponse, _ := json.Marshal(obj.DowntimeScheduleRecurrencesResponse)
+			jsonDowntimeScheduleRecurrencesResponse, _ := datadog.Marshal(obj.DowntimeScheduleRecurrencesResponse)
 			if string(jsonDowntimeScheduleRecurrencesResponse) == "{}" { // empty struct
 				obj.DowntimeScheduleRecurrencesResponse = nil
 			} else {
@@ -51,10 +51,10 @@ func (obj *DowntimeScheduleResponse) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into DowntimeScheduleOneTimeResponse
-	err = json.Unmarshal(data, &obj.DowntimeScheduleOneTimeResponse)
+	err = datadog.Unmarshal(data, &obj.DowntimeScheduleOneTimeResponse)
 	if err == nil {
 		if obj.DowntimeScheduleOneTimeResponse != nil && obj.DowntimeScheduleOneTimeResponse.UnparsedObject == nil {
-			jsonDowntimeScheduleOneTimeResponse, _ := json.Marshal(obj.DowntimeScheduleOneTimeResponse)
+			jsonDowntimeScheduleOneTimeResponse, _ := datadog.Marshal(obj.DowntimeScheduleOneTimeResponse)
 			if string(jsonDowntimeScheduleOneTimeResponse) == "{}" { // empty struct
 				obj.DowntimeScheduleOneTimeResponse = nil
 			} else {
@@ -71,7 +71,7 @@ func (obj *DowntimeScheduleResponse) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.DowntimeScheduleRecurrencesResponse = nil
 		obj.DowntimeScheduleOneTimeResponse = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -79,15 +79,15 @@ func (obj *DowntimeScheduleResponse) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj DowntimeScheduleResponse) MarshalJSON() ([]byte, error) {
 	if obj.DowntimeScheduleRecurrencesResponse != nil {
-		return json.Marshal(&obj.DowntimeScheduleRecurrencesResponse)
+		return datadog.Marshal(&obj.DowntimeScheduleRecurrencesResponse)
 	}
 
 	if obj.DowntimeScheduleOneTimeResponse != nil {
-		return json.Marshal(&obj.DowntimeScheduleOneTimeResponse)
+		return datadog.Marshal(&obj.DowntimeScheduleOneTimeResponse)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MonitorSummaryWidgetDefinitionType Type of the monitor summary widget.
@@ -30,7 +30,7 @@ func (v *MonitorSummaryWidgetDefinitionType) GetAllowedValues() []MonitorSummary
 // UnmarshalJSON deserializes the given payload.
 func (v *MonitorSummaryWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // AWSNamespace The namespace associated with the tag filter entry.
@@ -42,7 +42,7 @@ func (v *AWSNamespace) GetAllowedValues() []AWSNamespace {
 // UnmarshalJSON deserializes the given payload.
 func (v *AWSNamespace) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SpansMetricComputeAggregationType The type of aggregation to use.
@@ -32,7 +32,7 @@ func (v *SpansMetricComputeAggregationType) GetAllowedValues() []SpansMetricComp
 // UnmarshalJSON deserializes the given payload.
 func (v *SpansMetricComputeAggregationType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

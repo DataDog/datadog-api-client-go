@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // DowntimeScheduleCreateRequest - Schedule for the downtime.
@@ -32,10 +32,10 @@ func (obj *DowntimeScheduleCreateRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into DowntimeScheduleRecurrencesCreateRequest
-	err = json.Unmarshal(data, &obj.DowntimeScheduleRecurrencesCreateRequest)
+	err = datadog.Unmarshal(data, &obj.DowntimeScheduleRecurrencesCreateRequest)
 	if err == nil {
 		if obj.DowntimeScheduleRecurrencesCreateRequest != nil && obj.DowntimeScheduleRecurrencesCreateRequest.UnparsedObject == nil {
-			jsonDowntimeScheduleRecurrencesCreateRequest, _ := json.Marshal(obj.DowntimeScheduleRecurrencesCreateRequest)
+			jsonDowntimeScheduleRecurrencesCreateRequest, _ := datadog.Marshal(obj.DowntimeScheduleRecurrencesCreateRequest)
 			if string(jsonDowntimeScheduleRecurrencesCreateRequest) == "{}" { // empty struct
 				obj.DowntimeScheduleRecurrencesCreateRequest = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *DowntimeScheduleCreateRequest) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into DowntimeScheduleOneTimeCreateUpdateRequest
-	err = json.Unmarshal(data, &obj.DowntimeScheduleOneTimeCreateUpdateRequest)
+	err = datadog.Unmarshal(data, &obj.DowntimeScheduleOneTimeCreateUpdateRequest)
 	if err == nil {
 		if obj.DowntimeScheduleOneTimeCreateUpdateRequest != nil && obj.DowntimeScheduleOneTimeCreateUpdateRequest.UnparsedObject == nil {
-			jsonDowntimeScheduleOneTimeCreateUpdateRequest, _ := json.Marshal(obj.DowntimeScheduleOneTimeCreateUpdateRequest)
+			jsonDowntimeScheduleOneTimeCreateUpdateRequest, _ := datadog.Marshal(obj.DowntimeScheduleOneTimeCreateUpdateRequest)
 			if string(jsonDowntimeScheduleOneTimeCreateUpdateRequest) == "{}" { // empty struct
 				obj.DowntimeScheduleOneTimeCreateUpdateRequest = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *DowntimeScheduleCreateRequest) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.DowntimeScheduleRecurrencesCreateRequest = nil
 		obj.DowntimeScheduleOneTimeCreateUpdateRequest = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *DowntimeScheduleCreateRequest) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj DowntimeScheduleCreateRequest) MarshalJSON() ([]byte, error) {
 	if obj.DowntimeScheduleRecurrencesCreateRequest != nil {
-		return json.Marshal(&obj.DowntimeScheduleRecurrencesCreateRequest)
+		return datadog.Marshal(&obj.DowntimeScheduleRecurrencesCreateRequest)
 	}
 
 	if obj.DowntimeScheduleOneTimeCreateUpdateRequest != nil {
-		return json.Marshal(&obj.DowntimeScheduleOneTimeCreateUpdateRequest)
+		return datadog.Marshal(&obj.DowntimeScheduleOneTimeCreateUpdateRequest)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

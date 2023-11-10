@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SLOTypeNumeric A numeric representation of the type of the service level objective (`0` for
@@ -34,7 +34,7 @@ func (v *SLOTypeNumeric) GetAllowedValues() []SLOTypeNumeric {
 // UnmarshalJSON deserializes the given payload.
 func (v *SLOTypeNumeric) UnmarshalJSON(src []byte) error {
 	var value int32
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

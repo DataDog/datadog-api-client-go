@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ServiceDefinitionV2Contact - Service owner's contacts information.
@@ -38,10 +38,10 @@ func (obj *ServiceDefinitionV2Contact) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into ServiceDefinitionV2Email
-	err = json.Unmarshal(data, &obj.ServiceDefinitionV2Email)
+	err = datadog.Unmarshal(data, &obj.ServiceDefinitionV2Email)
 	if err == nil {
 		if obj.ServiceDefinitionV2Email != nil && obj.ServiceDefinitionV2Email.UnparsedObject == nil {
-			jsonServiceDefinitionV2Email, _ := json.Marshal(obj.ServiceDefinitionV2Email)
+			jsonServiceDefinitionV2Email, _ := datadog.Marshal(obj.ServiceDefinitionV2Email)
 			if string(jsonServiceDefinitionV2Email) == "{}" { // empty struct
 				obj.ServiceDefinitionV2Email = nil
 			} else {
@@ -55,10 +55,10 @@ func (obj *ServiceDefinitionV2Contact) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into ServiceDefinitionV2Slack
-	err = json.Unmarshal(data, &obj.ServiceDefinitionV2Slack)
+	err = datadog.Unmarshal(data, &obj.ServiceDefinitionV2Slack)
 	if err == nil {
 		if obj.ServiceDefinitionV2Slack != nil && obj.ServiceDefinitionV2Slack.UnparsedObject == nil {
-			jsonServiceDefinitionV2Slack, _ := json.Marshal(obj.ServiceDefinitionV2Slack)
+			jsonServiceDefinitionV2Slack, _ := datadog.Marshal(obj.ServiceDefinitionV2Slack)
 			if string(jsonServiceDefinitionV2Slack) == "{}" { // empty struct
 				obj.ServiceDefinitionV2Slack = nil
 			} else {
@@ -72,10 +72,10 @@ func (obj *ServiceDefinitionV2Contact) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into ServiceDefinitionV2MSTeams
-	err = json.Unmarshal(data, &obj.ServiceDefinitionV2MSTeams)
+	err = datadog.Unmarshal(data, &obj.ServiceDefinitionV2MSTeams)
 	if err == nil {
 		if obj.ServiceDefinitionV2MSTeams != nil && obj.ServiceDefinitionV2MSTeams.UnparsedObject == nil {
-			jsonServiceDefinitionV2MSTeams, _ := json.Marshal(obj.ServiceDefinitionV2MSTeams)
+			jsonServiceDefinitionV2MSTeams, _ := datadog.Marshal(obj.ServiceDefinitionV2MSTeams)
 			if string(jsonServiceDefinitionV2MSTeams) == "{}" { // empty struct
 				obj.ServiceDefinitionV2MSTeams = nil
 			} else {
@@ -93,7 +93,7 @@ func (obj *ServiceDefinitionV2Contact) UnmarshalJSON(data []byte) error {
 		obj.ServiceDefinitionV2Email = nil
 		obj.ServiceDefinitionV2Slack = nil
 		obj.ServiceDefinitionV2MSTeams = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -101,19 +101,19 @@ func (obj *ServiceDefinitionV2Contact) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj ServiceDefinitionV2Contact) MarshalJSON() ([]byte, error) {
 	if obj.ServiceDefinitionV2Email != nil {
-		return json.Marshal(&obj.ServiceDefinitionV2Email)
+		return datadog.Marshal(&obj.ServiceDefinitionV2Email)
 	}
 
 	if obj.ServiceDefinitionV2Slack != nil {
-		return json.Marshal(&obj.ServiceDefinitionV2Slack)
+		return datadog.Marshal(&obj.ServiceDefinitionV2Slack)
 	}
 
 	if obj.ServiceDefinitionV2MSTeams != nil {
-		return json.Marshal(&obj.ServiceDefinitionV2MSTeams)
+		return datadog.Marshal(&obj.ServiceDefinitionV2MSTeams)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

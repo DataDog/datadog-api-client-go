@@ -7,8 +7,6 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -130,7 +128,7 @@ func (o *ConfluentResourceRequestAttributes) SetTags(v []string) {
 func (o ConfluentResourceRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.EnableCustomMetrics != nil {
 		toSerialize["enable_custom_metrics"] = o.EnableCustomMetrics
@@ -143,7 +141,7 @@ func (o ConfluentResourceRequestAttributes) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -153,14 +151,14 @@ func (o *ConfluentResourceRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 		ResourceType        *string  `json:"resource_type"`
 		Tags                []string `json:"tags,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.ResourceType == nil {
 		return fmt.Errorf("required field resource_type missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"enable_custom_metrics", "resource_type", "tags"})
 	} else {
 		return err

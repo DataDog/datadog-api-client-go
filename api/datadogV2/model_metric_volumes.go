@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MetricVolumes - Possible response objects for a metric's volume.
@@ -32,10 +32,10 @@ func (obj *MetricVolumes) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into MetricDistinctVolume
-	err = json.Unmarshal(data, &obj.MetricDistinctVolume)
+	err = datadog.Unmarshal(data, &obj.MetricDistinctVolume)
 	if err == nil {
 		if obj.MetricDistinctVolume != nil && obj.MetricDistinctVolume.UnparsedObject == nil {
-			jsonMetricDistinctVolume, _ := json.Marshal(obj.MetricDistinctVolume)
+			jsonMetricDistinctVolume, _ := datadog.Marshal(obj.MetricDistinctVolume)
 			if string(jsonMetricDistinctVolume) == "{}" { // empty struct
 				obj.MetricDistinctVolume = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *MetricVolumes) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into MetricIngestedIndexedVolume
-	err = json.Unmarshal(data, &obj.MetricIngestedIndexedVolume)
+	err = datadog.Unmarshal(data, &obj.MetricIngestedIndexedVolume)
 	if err == nil {
 		if obj.MetricIngestedIndexedVolume != nil && obj.MetricIngestedIndexedVolume.UnparsedObject == nil {
-			jsonMetricIngestedIndexedVolume, _ := json.Marshal(obj.MetricIngestedIndexedVolume)
+			jsonMetricIngestedIndexedVolume, _ := datadog.Marshal(obj.MetricIngestedIndexedVolume)
 			if string(jsonMetricIngestedIndexedVolume) == "{}" { // empty struct
 				obj.MetricIngestedIndexedVolume = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *MetricVolumes) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.MetricDistinctVolume = nil
 		obj.MetricIngestedIndexedVolume = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *MetricVolumes) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj MetricVolumes) MarshalJSON() ([]byte, error) {
 	if obj.MetricDistinctVolume != nil {
-		return json.Marshal(&obj.MetricDistinctVolume)
+		return datadog.Marshal(&obj.MetricDistinctVolume)
 	}
 
 	if obj.MetricIngestedIndexedVolume != nil {
-		return json.Marshal(&obj.MetricIngestedIndexedVolume)
+		return datadog.Marshal(&obj.MetricIngestedIndexedVolume)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

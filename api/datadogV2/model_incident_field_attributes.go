@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentFieldAttributes - Dynamic fields for which selections can be made, with field names as keys.
@@ -32,10 +32,10 @@ func (obj *IncidentFieldAttributes) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into IncidentFieldAttributesSingleValue
-	err = json.Unmarshal(data, &obj.IncidentFieldAttributesSingleValue)
+	err = datadog.Unmarshal(data, &obj.IncidentFieldAttributesSingleValue)
 	if err == nil {
 		if obj.IncidentFieldAttributesSingleValue != nil && obj.IncidentFieldAttributesSingleValue.UnparsedObject == nil {
-			jsonIncidentFieldAttributesSingleValue, _ := json.Marshal(obj.IncidentFieldAttributesSingleValue)
+			jsonIncidentFieldAttributesSingleValue, _ := datadog.Marshal(obj.IncidentFieldAttributesSingleValue)
 			if string(jsonIncidentFieldAttributesSingleValue) == "{}" { // empty struct
 				obj.IncidentFieldAttributesSingleValue = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *IncidentFieldAttributes) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into IncidentFieldAttributesMultipleValue
-	err = json.Unmarshal(data, &obj.IncidentFieldAttributesMultipleValue)
+	err = datadog.Unmarshal(data, &obj.IncidentFieldAttributesMultipleValue)
 	if err == nil {
 		if obj.IncidentFieldAttributesMultipleValue != nil && obj.IncidentFieldAttributesMultipleValue.UnparsedObject == nil {
-			jsonIncidentFieldAttributesMultipleValue, _ := json.Marshal(obj.IncidentFieldAttributesMultipleValue)
+			jsonIncidentFieldAttributesMultipleValue, _ := datadog.Marshal(obj.IncidentFieldAttributesMultipleValue)
 			if string(jsonIncidentFieldAttributesMultipleValue) == "{}" { // empty struct
 				obj.IncidentFieldAttributesMultipleValue = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *IncidentFieldAttributes) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.IncidentFieldAttributesSingleValue = nil
 		obj.IncidentFieldAttributesMultipleValue = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *IncidentFieldAttributes) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj IncidentFieldAttributes) MarshalJSON() ([]byte, error) {
 	if obj.IncidentFieldAttributesSingleValue != nil {
-		return json.Marshal(&obj.IncidentFieldAttributesSingleValue)
+		return datadog.Marshal(&obj.IncidentFieldAttributesSingleValue)
 	}
 
 	if obj.IncidentFieldAttributesMultipleValue != nil {
-		return json.Marshal(&obj.IncidentFieldAttributesMultipleValue)
+		return datadog.Marshal(&obj.IncidentFieldAttributesMultipleValue)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

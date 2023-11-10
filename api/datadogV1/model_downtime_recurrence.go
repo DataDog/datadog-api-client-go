@@ -5,8 +5,6 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -260,7 +258,7 @@ func (o *DowntimeRecurrence) UnsetWeekDays() {
 func (o DowntimeRecurrence) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Period != nil {
 		toSerialize["period"] = o.Period
@@ -284,7 +282,7 @@ func (o DowntimeRecurrence) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -297,11 +295,11 @@ func (o *DowntimeRecurrence) UnmarshalJSON(bytes []byte) (err error) {
 		UntilOccurrences datadog.NullableInt32        `json:"until_occurrences,omitempty"`
 		WeekDays         datadog.NullableList[string] `json:"week_days,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"period", "rrule", "type", "until_date", "until_occurrences", "week_days"})
 	} else {
 		return err
@@ -355,7 +353,7 @@ func NewNullableDowntimeRecurrence(val *DowntimeRecurrence) *NullableDowntimeRec
 
 // MarshalJSON serializes the associated value.
 func (v NullableDowntimeRecurrence) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
+	return datadog.Marshal(v.value)
 }
 
 // UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
@@ -367,5 +365,5 @@ func (v *NullableDowntimeRecurrence) UnmarshalJSON(src []byte) error {
 		return nil
 	}
 
-	return json.Unmarshal(src, &v.value)
+	return datadog.Unmarshal(src, &v.value)
 }

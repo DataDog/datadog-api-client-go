@@ -7,8 +7,6 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -122,7 +120,7 @@ func (o *PowerpackTemplateVariableContents) SetValues(v []string) {
 func (o PowerpackTemplateVariableContents) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["name"] = o.Name
 	if o.Prefix != nil {
@@ -133,7 +131,7 @@ func (o PowerpackTemplateVariableContents) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -143,8 +141,8 @@ func (o *PowerpackTemplateVariableContents) UnmarshalJSON(bytes []byte) (err err
 		Prefix *string   `json:"prefix,omitempty"`
 		Values *[]string `json:"values"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
@@ -153,7 +151,7 @@ func (o *PowerpackTemplateVariableContents) UnmarshalJSON(bytes []byte) (err err
 		return fmt.Errorf("required field values missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"name", "prefix", "values"})
 	} else {
 		return err

@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -102,7 +100,7 @@ func (o *DowntimeRelationshipsMonitorData) SetType(v DowntimeIncludedMonitorType
 func (o DowntimeRelationshipsMonitorData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
@@ -114,7 +112,7 @@ func (o DowntimeRelationshipsMonitorData) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -123,11 +121,11 @@ func (o *DowntimeRelationshipsMonitorData) UnmarshalJSON(bytes []byte) (err erro
 		Id   *string                      `json:"id,omitempty"`
 		Type *DowntimeIncludedMonitorType `json:"type,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
 	} else {
 		return err
@@ -146,7 +144,7 @@ func (o *DowntimeRelationshipsMonitorData) UnmarshalJSON(bytes []byte) (err erro
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
@@ -187,7 +185,7 @@ func NewNullableDowntimeRelationshipsMonitorData(val *DowntimeRelationshipsMonit
 
 // MarshalJSON serializes the associated value.
 func (v NullableDowntimeRelationshipsMonitorData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
+	return datadog.Marshal(v.value)
 }
 
 // UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
@@ -199,5 +197,5 @@ func (v *NullableDowntimeRelationshipsMonitorData) UnmarshalJSON(src []byte) err
 		return nil
 	}
 
-	return json.Unmarshal(src, &v.value)
+	return datadog.Unmarshal(src, &v.value)
 }

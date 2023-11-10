@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MonitorConfigPolicyPolicyCreateRequest - Configuration for the policy.
@@ -26,10 +26,10 @@ func (obj *MonitorConfigPolicyPolicyCreateRequest) UnmarshalJSON(data []byte) er
 	var err error
 	match := 0
 	// try to unmarshal data into MonitorConfigPolicyTagPolicyCreateRequest
-	err = json.Unmarshal(data, &obj.MonitorConfigPolicyTagPolicyCreateRequest)
+	err = datadog.Unmarshal(data, &obj.MonitorConfigPolicyTagPolicyCreateRequest)
 	if err == nil {
 		if obj.MonitorConfigPolicyTagPolicyCreateRequest != nil && obj.MonitorConfigPolicyTagPolicyCreateRequest.UnparsedObject == nil {
-			jsonMonitorConfigPolicyTagPolicyCreateRequest, _ := json.Marshal(obj.MonitorConfigPolicyTagPolicyCreateRequest)
+			jsonMonitorConfigPolicyTagPolicyCreateRequest, _ := datadog.Marshal(obj.MonitorConfigPolicyTagPolicyCreateRequest)
 			if string(jsonMonitorConfigPolicyTagPolicyCreateRequest) == "{}" { // empty struct
 				obj.MonitorConfigPolicyTagPolicyCreateRequest = nil
 			} else {
@@ -45,7 +45,7 @@ func (obj *MonitorConfigPolicyPolicyCreateRequest) UnmarshalJSON(data []byte) er
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.MonitorConfigPolicyTagPolicyCreateRequest = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -53,11 +53,11 @@ func (obj *MonitorConfigPolicyPolicyCreateRequest) UnmarshalJSON(data []byte) er
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj MonitorConfigPolicyPolicyCreateRequest) MarshalJSON() ([]byte, error) {
 	if obj.MonitorConfigPolicyTagPolicyCreateRequest != nil {
-		return json.Marshal(&obj.MonitorConfigPolicyTagPolicyCreateRequest)
+		return datadog.Marshal(&obj.MonitorConfigPolicyTagPolicyCreateRequest)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

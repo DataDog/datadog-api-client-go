@@ -21,9 +21,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
 	"github.com/go-bdd/gobdd"
-	"github.com/goccy/go-json"
 )
 
 var templateFunctions = map[string]func(map[string]interface{}, string) string{
@@ -398,12 +398,12 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, []reflect.Value, error
 				case reflect.Value:
 					at.Elem().Set(t)
 				case interface{}:
-					json.Unmarshal([]byte(t.(string)), at.Interface())
+					datadog.Unmarshal([]byte(t.(string)), at.Interface())
 				}
 				optionalParams = method.Call([]reflect.Value{at.Elem()})[0]
 			} else if k == "body" {
 				a := reflect.New(f.Type().In(numArgs - 2))
-				json.Unmarshal([]byte(v.(string)), a.Interface())
+				datadog.Unmarshal([]byte(v.(string)), a.Interface())
 				in[numArgs-2] = a.Elem()
 			}
 		}
@@ -418,7 +418,7 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, []reflect.Value, error
 		// Append body to args if it exists
 		if val, ok := requestParams["body"]; ok {
 			a := reflect.New(f.Type().In(numArgs - 1))
-			json.Unmarshal([]byte(val.(string)), a.Interface())
+			datadog.Unmarshal([]byte(val.(string)), a.Interface())
 			in[numArgs-1] = a.Elem()
 		}
 	}
@@ -429,10 +429,10 @@ func getRequestBuilder(ctx gobdd.Context) (reflect.Value, []reflect.Value, error
 func toJSON(o reflect.Value) (interface{}, error) {
 	var jsonResult interface{}
 	buf := &bytes.Buffer{}
-	if err := json.NewEncoder(buf).Encode(o.Interface()); err != nil {
+	if err := datadog.NewEncoder(buf).Encode(o.Interface()); err != nil {
 		return nil, err
 	}
-	if err := json.Unmarshal(buf.Bytes(), &jsonResult); err != nil {
+	if err := datadog.Unmarshal(buf.Bytes(), &jsonResult); err != nil {
 		return nil, err
 	}
 	return jsonResult, nil
@@ -452,13 +452,13 @@ func stringToType(s string, t interface{}) (interface{}, error) {
 		return strconv.ParseBool(s)
 	case []interface{}:
 		var res []interface{}
-		if err := json.Unmarshal([]byte(s), &res); err != nil {
+		if err := datadog.Unmarshal([]byte(s), &res); err != nil {
 			return nil, fmt.Errorf("error converting %s to %T: %v", s, t, err)
 		}
 		return res, nil
 	case map[string]interface{}:
 		var res map[string]interface{}
-		if err := json.Unmarshal([]byte(s), &res); err != nil {
+		if err := datadog.Unmarshal([]byte(s), &res); err != nil {
 			return nil, fmt.Errorf("error converting %s to %T: %v", s, t, err)
 		}
 		return res, nil

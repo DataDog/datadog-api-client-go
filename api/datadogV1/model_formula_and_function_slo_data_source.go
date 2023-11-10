@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // FormulaAndFunctionSLODataSource Data source for SLO measures queries.
@@ -30,7 +30,7 @@ func (v *FormulaAndFunctionSLODataSource) GetAllowedValues() []FormulaAndFunctio
 // UnmarshalJSON deserializes the given payload.
 func (v *FormulaAndFunctionSLODataSource) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

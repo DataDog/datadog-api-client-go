@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentResponseIncludedItem - An object related to an incident that is included in the response.
@@ -32,10 +32,10 @@ func (obj *IncidentResponseIncludedItem) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into User
-	err = json.Unmarshal(data, &obj.User)
+	err = datadog.Unmarshal(data, &obj.User)
 	if err == nil {
 		if obj.User != nil && obj.User.UnparsedObject == nil {
-			jsonUser, _ := json.Marshal(obj.User)
+			jsonUser, _ := datadog.Marshal(obj.User)
 			if string(jsonUser) == "{}" { // empty struct
 				obj.User = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *IncidentResponseIncludedItem) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into IncidentAttachmentData
-	err = json.Unmarshal(data, &obj.IncidentAttachmentData)
+	err = datadog.Unmarshal(data, &obj.IncidentAttachmentData)
 	if err == nil {
 		if obj.IncidentAttachmentData != nil && obj.IncidentAttachmentData.UnparsedObject == nil {
-			jsonIncidentAttachmentData, _ := json.Marshal(obj.IncidentAttachmentData)
+			jsonIncidentAttachmentData, _ := datadog.Marshal(obj.IncidentAttachmentData)
 			if string(jsonIncidentAttachmentData) == "{}" { // empty struct
 				obj.IncidentAttachmentData = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *IncidentResponseIncludedItem) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.User = nil
 		obj.IncidentAttachmentData = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *IncidentResponseIncludedItem) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj IncidentResponseIncludedItem) MarshalJSON() ([]byte, error) {
 	if obj.User != nil {
-		return json.Marshal(&obj.User)
+		return datadog.Marshal(&obj.User)
 	}
 
 	if obj.IncidentAttachmentData != nil {
-		return json.Marshal(&obj.IncidentAttachmentData)
+		return datadog.Marshal(&obj.IncidentAttachmentData)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

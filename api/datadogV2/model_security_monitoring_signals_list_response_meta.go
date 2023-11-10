@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -68,7 +66,7 @@ func (o *SecurityMonitoringSignalsListResponseMeta) SetPage(v SecurityMonitoring
 func (o SecurityMonitoringSignalsListResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Page != nil {
 		toSerialize["page"] = o.Page
@@ -77,7 +75,7 @@ func (o SecurityMonitoringSignalsListResponseMeta) MarshalJSON() ([]byte, error)
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -85,11 +83,11 @@ func (o *SecurityMonitoringSignalsListResponseMeta) UnmarshalJSON(bytes []byte) 
 	all := struct {
 		Page *SecurityMonitoringSignalsListResponseMetaPage `json:"page,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"page"})
 	} else {
 		return err
@@ -106,7 +104,7 @@ func (o *SecurityMonitoringSignalsListResponseMeta) UnmarshalJSON(bytes []byte) 
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

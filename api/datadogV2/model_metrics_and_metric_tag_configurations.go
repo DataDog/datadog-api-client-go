@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // MetricsAndMetricTagConfigurations - Object for a metrics and metric tag configurations.
@@ -32,10 +32,10 @@ func (obj *MetricsAndMetricTagConfigurations) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into Metric
-	err = json.Unmarshal(data, &obj.Metric)
+	err = datadog.Unmarshal(data, &obj.Metric)
 	if err == nil {
 		if obj.Metric != nil && obj.Metric.UnparsedObject == nil {
-			jsonMetric, _ := json.Marshal(obj.Metric)
+			jsonMetric, _ := datadog.Marshal(obj.Metric)
 			if string(jsonMetric) == "{}" { // empty struct
 				obj.Metric = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *MetricsAndMetricTagConfigurations) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into MetricTagConfiguration
-	err = json.Unmarshal(data, &obj.MetricTagConfiguration)
+	err = datadog.Unmarshal(data, &obj.MetricTagConfiguration)
 	if err == nil {
 		if obj.MetricTagConfiguration != nil && obj.MetricTagConfiguration.UnparsedObject == nil {
-			jsonMetricTagConfiguration, _ := json.Marshal(obj.MetricTagConfiguration)
+			jsonMetricTagConfiguration, _ := datadog.Marshal(obj.MetricTagConfiguration)
 			if string(jsonMetricTagConfiguration) == "{}" { // empty struct
 				obj.MetricTagConfiguration = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *MetricsAndMetricTagConfigurations) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.Metric = nil
 		obj.MetricTagConfiguration = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *MetricsAndMetricTagConfigurations) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj MetricsAndMetricTagConfigurations) MarshalJSON() ([]byte, error) {
 	if obj.Metric != nil {
-		return json.Marshal(&obj.Metric)
+		return datadog.Marshal(&obj.Metric)
 	}
 
 	if obj.MetricTagConfiguration != nil {
-		return json.Marshal(&obj.MetricTagConfiguration)
+		return datadog.Marshal(&obj.MetricTagConfiguration)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

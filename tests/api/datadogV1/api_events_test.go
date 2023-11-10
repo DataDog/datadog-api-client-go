@@ -8,7 +8,6 @@ package test
 
 import (
 	"context"
-	"encoding/json"
 	"testing"
 	"time"
 
@@ -40,14 +39,14 @@ func TestEventLifecycle(t *testing.T) {
 	api := datadogV1.NewEventsApi(Client(ctx))
 
 	// Create event
-	marshalledEvent, _ := json.Marshal(testEvent)
+	marshalledEvent, _ := datadog.Marshal(testEvent)
 	httpresp, respBody, err := SendRequest(ctx, "POST", "/api/v1/events", marshalledEvent)
 	if err != nil {
 		t.Fatalf("Error creating Event %v: Response %s: %v", testEvent, string(respBody), err)
 	}
 	assert.Equal(202, httpresp.StatusCode)
 	var unmarshaledBody createEventResponse
-	err = json.Unmarshal(respBody, &unmarshaledBody)
+	err = datadog.Unmarshal(respBody, &unmarshaledBody)
 	if err != nil {
 		t.Fatalf("Failed unmarshalling event from response: %s", err)
 	}

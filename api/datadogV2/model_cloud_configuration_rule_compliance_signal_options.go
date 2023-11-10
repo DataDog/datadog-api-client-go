@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -202,7 +200,7 @@ func (o *CloudConfigurationRuleComplianceSignalOptions) UnsetUserGroupByFields()
 func (o CloudConfigurationRuleComplianceSignalOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.DefaultActivationStatus.IsSet() {
 		toSerialize["defaultActivationStatus"] = o.DefaultActivationStatus.Get()
@@ -220,7 +218,7 @@ func (o CloudConfigurationRuleComplianceSignalOptions) MarshalJSON() ([]byte, er
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -231,11 +229,11 @@ func (o *CloudConfigurationRuleComplianceSignalOptions) UnmarshalJSON(bytes []by
 		UserActivationStatus    datadog.NullableBool         `json:"userActivationStatus,omitempty"`
 		UserGroupByFields       datadog.NullableList[string] `json:"userGroupByFields,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"defaultActivationStatus", "defaultGroupByFields", "userActivationStatus", "userGroupByFields"})
 	} else {
 		return err

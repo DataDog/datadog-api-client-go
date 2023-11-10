@@ -5,8 +5,6 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -389,7 +387,7 @@ func (o *AWSAccount) SetSecretAccessKey(v string) {
 func (o AWSAccount) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.AccessKeyId != nil {
 		toSerialize["access_key_id"] = o.AccessKeyId
@@ -428,7 +426,7 @@ func (o AWSAccount) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -446,11 +444,11 @@ func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
 		RoleName                      *string         `json:"role_name,omitempty"`
 		SecretAccessKey               *string         `json:"secret_access_key,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"access_key_id", "account_id", "account_specific_namespace_rules", "cspm_resource_collection_enabled", "excluded_regions", "filter_tags", "host_tags", "metrics_collection_enabled", "resource_collection_enabled", "role_name", "secret_access_key"})
 	} else {
 		return err

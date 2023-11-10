@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsStatus Determines whether or not the batch has passed, failed, or is in progress.
@@ -34,7 +34,7 @@ func (v *SyntheticsStatus) GetAllowedValues() []SyntheticsStatus {
 // UnmarshalJSON deserializes the given payload.
 func (v *SyntheticsStatus) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

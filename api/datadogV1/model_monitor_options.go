@@ -5,8 +5,6 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -1163,7 +1161,7 @@ func (o *MonitorOptions) SetVariables(v []MonitorFormulaAndFunctionQueryDefiniti
 func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Aggregation != nil {
 		toSerialize["aggregation"] = o.Aggregation
@@ -1262,7 +1260,7 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -1300,11 +1298,11 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 		TimeoutH               datadog.NullableInt64                      `json:"timeout_h,omitempty"`
 		Variables              []MonitorFormulaAndFunctionQueryDefinition `json:"variables,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "device_ids", "enable_logs_sample", "enable_samples", "escalation_message", "evaluation_delay", "group_retention_duration", "groupby_simple_monitor", "include_tags", "locked", "min_failure_duration", "min_location_failed", "new_group_delay", "new_host_delay", "no_data_timeframe", "notification_preset_name", "notify_audit", "notify_by", "notify_no_data", "on_missing_data", "renotify_interval", "renotify_occurrences", "renotify_statuses", "require_full_window", "scheduling_options", "silenced", "synthetics_check_id", "threshold_windows", "thresholds", "timeout_h", "variables"})
 	} else {
 		return err
@@ -1368,7 +1366,7 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

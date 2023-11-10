@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // FindingMute Information about the mute status of this finding.
@@ -215,7 +215,7 @@ func (o *FindingMute) SetUuid(v string) {
 func (o FindingMute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
@@ -235,7 +235,7 @@ func (o FindingMute) MarshalJSON() ([]byte, error) {
 	if o.Uuid != nil {
 		toSerialize["uuid"] = o.Uuid
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -248,8 +248,8 @@ func (o *FindingMute) UnmarshalJSON(bytes []byte) (err error) {
 		StartDate      *int64             `json:"start_date,omitempty"`
 		Uuid           *string            `json:"uuid,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	hasInvalidField := false
@@ -265,7 +265,7 @@ func (o *FindingMute) UnmarshalJSON(bytes []byte) (err error) {
 	o.Uuid = all.Uuid
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

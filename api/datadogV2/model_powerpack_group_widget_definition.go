@@ -7,8 +7,6 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -178,7 +176,7 @@ func (o *PowerpackGroupWidgetDefinition) SetWidgets(v []PowerpackInnerWidgets) {
 func (o PowerpackGroupWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["layout_type"] = o.LayoutType
 	if o.ShowTitle != nil {
@@ -193,7 +191,7 @@ func (o PowerpackGroupWidgetDefinition) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -205,8 +203,8 @@ func (o *PowerpackGroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		Type       *string                  `json:"type"`
 		Widgets    *[]PowerpackInnerWidgets `json:"widgets"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.LayoutType == nil {
 		return fmt.Errorf("required field layout_type missing")
@@ -218,7 +216,7 @@ func (o *PowerpackGroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		return fmt.Errorf("required field widgets missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"layout_type", "show_title", "title", "type", "widgets"})
 	} else {
 		return err

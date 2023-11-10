@@ -7,8 +7,6 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -181,7 +179,7 @@ func (o *TimeseriesFormulaRequestAttributes) SetTo(v int64) {
 func (o TimeseriesFormulaRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Formulas != nil {
 		toSerialize["formulas"] = o.Formulas
@@ -196,7 +194,7 @@ func (o TimeseriesFormulaRequestAttributes) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -208,8 +206,8 @@ func (o *TimeseriesFormulaRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 		Queries  *[]TimeseriesQuery `json:"queries"`
 		To       *int64             `json:"to"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.From == nil {
 		return fmt.Errorf("required field from missing")
@@ -221,7 +219,7 @@ func (o *TimeseriesFormulaRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 		return fmt.Errorf("required field to missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"formulas", "from", "interval", "queries", "to"})
 	} else {
 		return err

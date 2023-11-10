@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsTestPauseStatus Define whether you want to start (`live`) or pause (`paused`) a
@@ -33,7 +33,7 @@ func (v *SyntheticsTestPauseStatus) GetAllowedValues() []SyntheticsTestPauseStat
 // UnmarshalJSON deserializes the given payload.
 func (v *SyntheticsTestPauseStatus) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // LogsArchiveCreateRequestDestination - An archive's destination.
@@ -38,10 +38,10 @@ func (obj *LogsArchiveCreateRequestDestination) UnmarshalJSON(data []byte) error
 	var err error
 	match := 0
 	// try to unmarshal data into LogsArchiveDestinationAzure
-	err = json.Unmarshal(data, &obj.LogsArchiveDestinationAzure)
+	err = datadog.Unmarshal(data, &obj.LogsArchiveDestinationAzure)
 	if err == nil {
 		if obj.LogsArchiveDestinationAzure != nil && obj.LogsArchiveDestinationAzure.UnparsedObject == nil {
-			jsonLogsArchiveDestinationAzure, _ := json.Marshal(obj.LogsArchiveDestinationAzure)
+			jsonLogsArchiveDestinationAzure, _ := datadog.Marshal(obj.LogsArchiveDestinationAzure)
 			if string(jsonLogsArchiveDestinationAzure) == "{}" { // empty struct
 				obj.LogsArchiveDestinationAzure = nil
 			} else {
@@ -55,10 +55,10 @@ func (obj *LogsArchiveCreateRequestDestination) UnmarshalJSON(data []byte) error
 	}
 
 	// try to unmarshal data into LogsArchiveDestinationGCS
-	err = json.Unmarshal(data, &obj.LogsArchiveDestinationGCS)
+	err = datadog.Unmarshal(data, &obj.LogsArchiveDestinationGCS)
 	if err == nil {
 		if obj.LogsArchiveDestinationGCS != nil && obj.LogsArchiveDestinationGCS.UnparsedObject == nil {
-			jsonLogsArchiveDestinationGCS, _ := json.Marshal(obj.LogsArchiveDestinationGCS)
+			jsonLogsArchiveDestinationGCS, _ := datadog.Marshal(obj.LogsArchiveDestinationGCS)
 			if string(jsonLogsArchiveDestinationGCS) == "{}" { // empty struct
 				obj.LogsArchiveDestinationGCS = nil
 			} else {
@@ -72,10 +72,10 @@ func (obj *LogsArchiveCreateRequestDestination) UnmarshalJSON(data []byte) error
 	}
 
 	// try to unmarshal data into LogsArchiveDestinationS3
-	err = json.Unmarshal(data, &obj.LogsArchiveDestinationS3)
+	err = datadog.Unmarshal(data, &obj.LogsArchiveDestinationS3)
 	if err == nil {
 		if obj.LogsArchiveDestinationS3 != nil && obj.LogsArchiveDestinationS3.UnparsedObject == nil {
-			jsonLogsArchiveDestinationS3, _ := json.Marshal(obj.LogsArchiveDestinationS3)
+			jsonLogsArchiveDestinationS3, _ := datadog.Marshal(obj.LogsArchiveDestinationS3)
 			if string(jsonLogsArchiveDestinationS3) == "{}" { // empty struct
 				obj.LogsArchiveDestinationS3 = nil
 			} else {
@@ -93,7 +93,7 @@ func (obj *LogsArchiveCreateRequestDestination) UnmarshalJSON(data []byte) error
 		obj.LogsArchiveDestinationAzure = nil
 		obj.LogsArchiveDestinationGCS = nil
 		obj.LogsArchiveDestinationS3 = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -101,19 +101,19 @@ func (obj *LogsArchiveCreateRequestDestination) UnmarshalJSON(data []byte) error
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj LogsArchiveCreateRequestDestination) MarshalJSON() ([]byte, error) {
 	if obj.LogsArchiveDestinationAzure != nil {
-		return json.Marshal(&obj.LogsArchiveDestinationAzure)
+		return datadog.Marshal(&obj.LogsArchiveDestinationAzure)
 	}
 
 	if obj.LogsArchiveDestinationGCS != nil {
-		return json.Marshal(&obj.LogsArchiveDestinationGCS)
+		return datadog.Marshal(&obj.LogsArchiveDestinationGCS)
 	}
 
 	if obj.LogsArchiveDestinationS3 != nil {
-		return json.Marshal(&obj.LogsArchiveDestinationS3)
+		return datadog.Marshal(&obj.LogsArchiveDestinationS3)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

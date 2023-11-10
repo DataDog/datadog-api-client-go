@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // CIAppCIErrorDomain Error category used to differentiate between issues related to the developer or provider environments.
@@ -34,7 +34,7 @@ func (v *CIAppCIErrorDomain) GetAllowedValues() []CIAppCIErrorDomain {
 // UnmarshalJSON deserializes the given payload.
 func (v *CIAppCIErrorDomain) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

@@ -7,8 +7,6 @@ package datadogV1
 import (
 	"time"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -724,7 +722,7 @@ func (o *UsageHostHour) UnsetVsphereHostCount() {
 func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.AgentHostCount.IsSet() {
 		toSerialize["agent_host_count"] = o.AgentHostCount.Get()
@@ -781,7 +779,7 @@ func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -805,11 +803,11 @@ func (o *UsageHostHour) UnmarshalJSON(bytes []byte) (err error) {
 		PublicId                    *string               `json:"public_id,omitempty"`
 		VsphereHostCount            datadog.NullableInt64 `json:"vsphere_host_count,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_count", "alibaba_host_count", "apm_azure_app_service_host_count", "apm_host_count", "aws_host_count", "azure_host_count", "container_count", "gcp_host_count", "heroku_host_count", "host_count", "hour", "infra_azure_app_service", "opentelemetry_apm_host_count", "opentelemetry_host_count", "org_name", "public_id", "vsphere_host_count"})
 	} else {
 		return err

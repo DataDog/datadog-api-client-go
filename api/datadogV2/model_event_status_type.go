@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // EventStatusType If an alert event is enabled, its status is one of the following:
@@ -46,7 +46,7 @@ func (v *EventStatusType) GetAllowedValues() []EventStatusType {
 // UnmarshalJSON deserializes the given payload.
 func (v *EventStatusType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

@@ -5,7 +5,7 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // FormulaAndFunctionQueryDefinition - A formula and function query.
@@ -62,10 +62,10 @@ func (obj *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into FormulaAndFunctionMetricQueryDefinition
-	err = json.Unmarshal(data, &obj.FormulaAndFunctionMetricQueryDefinition)
+	err = datadog.Unmarshal(data, &obj.FormulaAndFunctionMetricQueryDefinition)
 	if err == nil {
 		if obj.FormulaAndFunctionMetricQueryDefinition != nil && obj.FormulaAndFunctionMetricQueryDefinition.UnparsedObject == nil {
-			jsonFormulaAndFunctionMetricQueryDefinition, _ := json.Marshal(obj.FormulaAndFunctionMetricQueryDefinition)
+			jsonFormulaAndFunctionMetricQueryDefinition, _ := datadog.Marshal(obj.FormulaAndFunctionMetricQueryDefinition)
 			if string(jsonFormulaAndFunctionMetricQueryDefinition) == "{}" { // empty struct
 				obj.FormulaAndFunctionMetricQueryDefinition = nil
 			} else {
@@ -79,10 +79,10 @@ func (obj *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into FormulaAndFunctionEventQueryDefinition
-	err = json.Unmarshal(data, &obj.FormulaAndFunctionEventQueryDefinition)
+	err = datadog.Unmarshal(data, &obj.FormulaAndFunctionEventQueryDefinition)
 	if err == nil {
 		if obj.FormulaAndFunctionEventQueryDefinition != nil && obj.FormulaAndFunctionEventQueryDefinition.UnparsedObject == nil {
-			jsonFormulaAndFunctionEventQueryDefinition, _ := json.Marshal(obj.FormulaAndFunctionEventQueryDefinition)
+			jsonFormulaAndFunctionEventQueryDefinition, _ := datadog.Marshal(obj.FormulaAndFunctionEventQueryDefinition)
 			if string(jsonFormulaAndFunctionEventQueryDefinition) == "{}" { // empty struct
 				obj.FormulaAndFunctionEventQueryDefinition = nil
 			} else {
@@ -96,10 +96,10 @@ func (obj *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into FormulaAndFunctionProcessQueryDefinition
-	err = json.Unmarshal(data, &obj.FormulaAndFunctionProcessQueryDefinition)
+	err = datadog.Unmarshal(data, &obj.FormulaAndFunctionProcessQueryDefinition)
 	if err == nil {
 		if obj.FormulaAndFunctionProcessQueryDefinition != nil && obj.FormulaAndFunctionProcessQueryDefinition.UnparsedObject == nil {
-			jsonFormulaAndFunctionProcessQueryDefinition, _ := json.Marshal(obj.FormulaAndFunctionProcessQueryDefinition)
+			jsonFormulaAndFunctionProcessQueryDefinition, _ := datadog.Marshal(obj.FormulaAndFunctionProcessQueryDefinition)
 			if string(jsonFormulaAndFunctionProcessQueryDefinition) == "{}" { // empty struct
 				obj.FormulaAndFunctionProcessQueryDefinition = nil
 			} else {
@@ -113,10 +113,10 @@ func (obj *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into FormulaAndFunctionApmDependencyStatsQueryDefinition
-	err = json.Unmarshal(data, &obj.FormulaAndFunctionApmDependencyStatsQueryDefinition)
+	err = datadog.Unmarshal(data, &obj.FormulaAndFunctionApmDependencyStatsQueryDefinition)
 	if err == nil {
 		if obj.FormulaAndFunctionApmDependencyStatsQueryDefinition != nil && obj.FormulaAndFunctionApmDependencyStatsQueryDefinition.UnparsedObject == nil {
-			jsonFormulaAndFunctionApmDependencyStatsQueryDefinition, _ := json.Marshal(obj.FormulaAndFunctionApmDependencyStatsQueryDefinition)
+			jsonFormulaAndFunctionApmDependencyStatsQueryDefinition, _ := datadog.Marshal(obj.FormulaAndFunctionApmDependencyStatsQueryDefinition)
 			if string(jsonFormulaAndFunctionApmDependencyStatsQueryDefinition) == "{}" { // empty struct
 				obj.FormulaAndFunctionApmDependencyStatsQueryDefinition = nil
 			} else {
@@ -130,10 +130,10 @@ func (obj *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into FormulaAndFunctionApmResourceStatsQueryDefinition
-	err = json.Unmarshal(data, &obj.FormulaAndFunctionApmResourceStatsQueryDefinition)
+	err = datadog.Unmarshal(data, &obj.FormulaAndFunctionApmResourceStatsQueryDefinition)
 	if err == nil {
 		if obj.FormulaAndFunctionApmResourceStatsQueryDefinition != nil && obj.FormulaAndFunctionApmResourceStatsQueryDefinition.UnparsedObject == nil {
-			jsonFormulaAndFunctionApmResourceStatsQueryDefinition, _ := json.Marshal(obj.FormulaAndFunctionApmResourceStatsQueryDefinition)
+			jsonFormulaAndFunctionApmResourceStatsQueryDefinition, _ := datadog.Marshal(obj.FormulaAndFunctionApmResourceStatsQueryDefinition)
 			if string(jsonFormulaAndFunctionApmResourceStatsQueryDefinition) == "{}" { // empty struct
 				obj.FormulaAndFunctionApmResourceStatsQueryDefinition = nil
 			} else {
@@ -147,10 +147,10 @@ func (obj *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into FormulaAndFunctionSLOQueryDefinition
-	err = json.Unmarshal(data, &obj.FormulaAndFunctionSLOQueryDefinition)
+	err = datadog.Unmarshal(data, &obj.FormulaAndFunctionSLOQueryDefinition)
 	if err == nil {
 		if obj.FormulaAndFunctionSLOQueryDefinition != nil && obj.FormulaAndFunctionSLOQueryDefinition.UnparsedObject == nil {
-			jsonFormulaAndFunctionSLOQueryDefinition, _ := json.Marshal(obj.FormulaAndFunctionSLOQueryDefinition)
+			jsonFormulaAndFunctionSLOQueryDefinition, _ := datadog.Marshal(obj.FormulaAndFunctionSLOQueryDefinition)
 			if string(jsonFormulaAndFunctionSLOQueryDefinition) == "{}" { // empty struct
 				obj.FormulaAndFunctionSLOQueryDefinition = nil
 			} else {
@@ -164,10 +164,10 @@ func (obj *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into FormulaAndFunctionCloudCostQueryDefinition
-	err = json.Unmarshal(data, &obj.FormulaAndFunctionCloudCostQueryDefinition)
+	err = datadog.Unmarshal(data, &obj.FormulaAndFunctionCloudCostQueryDefinition)
 	if err == nil {
 		if obj.FormulaAndFunctionCloudCostQueryDefinition != nil && obj.FormulaAndFunctionCloudCostQueryDefinition.UnparsedObject == nil {
-			jsonFormulaAndFunctionCloudCostQueryDefinition, _ := json.Marshal(obj.FormulaAndFunctionCloudCostQueryDefinition)
+			jsonFormulaAndFunctionCloudCostQueryDefinition, _ := datadog.Marshal(obj.FormulaAndFunctionCloudCostQueryDefinition)
 			if string(jsonFormulaAndFunctionCloudCostQueryDefinition) == "{}" { // empty struct
 				obj.FormulaAndFunctionCloudCostQueryDefinition = nil
 			} else {
@@ -189,7 +189,7 @@ func (obj *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 		obj.FormulaAndFunctionApmResourceStatsQueryDefinition = nil
 		obj.FormulaAndFunctionSLOQueryDefinition = nil
 		obj.FormulaAndFunctionCloudCostQueryDefinition = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -197,35 +197,35 @@ func (obj *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj FormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error) {
 	if obj.FormulaAndFunctionMetricQueryDefinition != nil {
-		return json.Marshal(&obj.FormulaAndFunctionMetricQueryDefinition)
+		return datadog.Marshal(&obj.FormulaAndFunctionMetricQueryDefinition)
 	}
 
 	if obj.FormulaAndFunctionEventQueryDefinition != nil {
-		return json.Marshal(&obj.FormulaAndFunctionEventQueryDefinition)
+		return datadog.Marshal(&obj.FormulaAndFunctionEventQueryDefinition)
 	}
 
 	if obj.FormulaAndFunctionProcessQueryDefinition != nil {
-		return json.Marshal(&obj.FormulaAndFunctionProcessQueryDefinition)
+		return datadog.Marshal(&obj.FormulaAndFunctionProcessQueryDefinition)
 	}
 
 	if obj.FormulaAndFunctionApmDependencyStatsQueryDefinition != nil {
-		return json.Marshal(&obj.FormulaAndFunctionApmDependencyStatsQueryDefinition)
+		return datadog.Marshal(&obj.FormulaAndFunctionApmDependencyStatsQueryDefinition)
 	}
 
 	if obj.FormulaAndFunctionApmResourceStatsQueryDefinition != nil {
-		return json.Marshal(&obj.FormulaAndFunctionApmResourceStatsQueryDefinition)
+		return datadog.Marshal(&obj.FormulaAndFunctionApmResourceStatsQueryDefinition)
 	}
 
 	if obj.FormulaAndFunctionSLOQueryDefinition != nil {
-		return json.Marshal(&obj.FormulaAndFunctionSLOQueryDefinition)
+		return datadog.Marshal(&obj.FormulaAndFunctionSLOQueryDefinition)
 	}
 
 	if obj.FormulaAndFunctionCloudCostQueryDefinition != nil {
-		return json.Marshal(&obj.FormulaAndFunctionCloudCostQueryDefinition)
+		return datadog.Marshal(&obj.FormulaAndFunctionCloudCostQueryDefinition)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

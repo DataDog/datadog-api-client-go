@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SpansGroupByMissing - The value to use for spans that don't have the facet used to group by.
@@ -32,10 +32,10 @@ func (obj *SpansGroupByMissing) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into SpansGroupByMissingString
-	err = json.Unmarshal(data, &obj.SpansGroupByMissingString)
+	err = datadog.Unmarshal(data, &obj.SpansGroupByMissingString)
 	if err == nil {
 		if obj.SpansGroupByMissingString != nil {
-			jsonSpansGroupByMissingString, _ := json.Marshal(obj.SpansGroupByMissingString)
+			jsonSpansGroupByMissingString, _ := datadog.Marshal(obj.SpansGroupByMissingString)
 			if string(jsonSpansGroupByMissingString) == "{}" { // empty struct
 				obj.SpansGroupByMissingString = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *SpansGroupByMissing) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SpansGroupByMissingNumber
-	err = json.Unmarshal(data, &obj.SpansGroupByMissingNumber)
+	err = datadog.Unmarshal(data, &obj.SpansGroupByMissingNumber)
 	if err == nil {
 		if obj.SpansGroupByMissingNumber != nil {
-			jsonSpansGroupByMissingNumber, _ := json.Marshal(obj.SpansGroupByMissingNumber)
+			jsonSpansGroupByMissingNumber, _ := datadog.Marshal(obj.SpansGroupByMissingNumber)
 			if string(jsonSpansGroupByMissingNumber) == "{}" { // empty struct
 				obj.SpansGroupByMissingNumber = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *SpansGroupByMissing) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.SpansGroupByMissingString = nil
 		obj.SpansGroupByMissingNumber = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *SpansGroupByMissing) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj SpansGroupByMissing) MarshalJSON() ([]byte, error) {
 	if obj.SpansGroupByMissingString != nil {
-		return json.Marshal(&obj.SpansGroupByMissingString)
+		return datadog.Marshal(&obj.SpansGroupByMissingString)
 	}
 
 	if obj.SpansGroupByMissingNumber != nil {
-		return json.Marshal(&obj.SpansGroupByMissingNumber)
+		return datadog.Marshal(&obj.SpansGroupByMissingNumber)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

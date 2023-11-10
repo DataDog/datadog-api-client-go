@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SecurityMonitoringRuleKeepAlive Once a signal is generated, the signal will remain “open” if a case is matched at least once within
@@ -49,7 +49,7 @@ func (v *SecurityMonitoringRuleKeepAlive) GetAllowedValues() []SecurityMonitorin
 // UnmarshalJSON deserializes the given payload.
 func (v *SecurityMonitoringRuleKeepAlive) UnmarshalJSON(src []byte) error {
 	var value int32
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

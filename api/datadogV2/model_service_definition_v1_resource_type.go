@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ServiceDefinitionV1ResourceType Link type.
@@ -46,7 +46,7 @@ func (v *ServiceDefinitionV1ResourceType) GetAllowedValues() []ServiceDefinition
 // UnmarshalJSON deserializes the given payload.
 func (v *ServiceDefinitionV1ResourceType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

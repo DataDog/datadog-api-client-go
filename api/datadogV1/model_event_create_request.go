@@ -7,8 +7,6 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -381,7 +379,7 @@ func (o *EventCreateRequest) SetTitle(v string) {
 func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.AggregationKey != nil {
 		toSerialize["aggregation_key"] = o.AggregationKey
@@ -416,7 +414,7 @@ func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -434,8 +432,8 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Text           *string               `json:"text"`
 		Title          *string               `json:"title"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Text == nil {
 		return fmt.Errorf("required field text missing")
@@ -444,7 +442,7 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field title missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation_key", "alert_type", "date_happened", "device_name", "host", "priority", "related_event_id", "source_type_name", "tags", "text", "title"})
 	} else {
 		return err
@@ -476,7 +474,7 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

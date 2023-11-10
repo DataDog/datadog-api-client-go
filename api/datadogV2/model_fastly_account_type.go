@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // FastlyAccountType The JSON:API type for this API. Should always be `fastly-accounts`.
@@ -30,7 +30,7 @@ func (v *FastlyAccountType) GetAllowedValues() []FastlyAccountType {
 // UnmarshalJSON deserializes the given payload.
 func (v *FastlyAccountType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

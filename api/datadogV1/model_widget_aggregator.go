@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // WidgetAggregator Aggregator used for the request.
@@ -40,7 +40,7 @@ func (v *WidgetAggregator) GetAllowedValues() []WidgetAggregator {
 // UnmarshalJSON deserializes the given payload.
 func (v *WidgetAggregator) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

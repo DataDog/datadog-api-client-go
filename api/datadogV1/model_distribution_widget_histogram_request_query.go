@@ -5,7 +5,7 @@
 package datadogV1
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // DistributionWidgetHistogramRequestQuery - Query definition for Distribution Widget Histogram Request
@@ -38,10 +38,10 @@ func (obj *DistributionWidgetHistogramRequestQuery) UnmarshalJSON(data []byte) e
 	var err error
 	match := 0
 	// try to unmarshal data into FormulaAndFunctionMetricQueryDefinition
-	err = json.Unmarshal(data, &obj.FormulaAndFunctionMetricQueryDefinition)
+	err = datadog.Unmarshal(data, &obj.FormulaAndFunctionMetricQueryDefinition)
 	if err == nil {
 		if obj.FormulaAndFunctionMetricQueryDefinition != nil && obj.FormulaAndFunctionMetricQueryDefinition.UnparsedObject == nil {
-			jsonFormulaAndFunctionMetricQueryDefinition, _ := json.Marshal(obj.FormulaAndFunctionMetricQueryDefinition)
+			jsonFormulaAndFunctionMetricQueryDefinition, _ := datadog.Marshal(obj.FormulaAndFunctionMetricQueryDefinition)
 			if string(jsonFormulaAndFunctionMetricQueryDefinition) == "{}" { // empty struct
 				obj.FormulaAndFunctionMetricQueryDefinition = nil
 			} else {
@@ -55,10 +55,10 @@ func (obj *DistributionWidgetHistogramRequestQuery) UnmarshalJSON(data []byte) e
 	}
 
 	// try to unmarshal data into FormulaAndFunctionEventQueryDefinition
-	err = json.Unmarshal(data, &obj.FormulaAndFunctionEventQueryDefinition)
+	err = datadog.Unmarshal(data, &obj.FormulaAndFunctionEventQueryDefinition)
 	if err == nil {
 		if obj.FormulaAndFunctionEventQueryDefinition != nil && obj.FormulaAndFunctionEventQueryDefinition.UnparsedObject == nil {
-			jsonFormulaAndFunctionEventQueryDefinition, _ := json.Marshal(obj.FormulaAndFunctionEventQueryDefinition)
+			jsonFormulaAndFunctionEventQueryDefinition, _ := datadog.Marshal(obj.FormulaAndFunctionEventQueryDefinition)
 			if string(jsonFormulaAndFunctionEventQueryDefinition) == "{}" { // empty struct
 				obj.FormulaAndFunctionEventQueryDefinition = nil
 			} else {
@@ -72,10 +72,10 @@ func (obj *DistributionWidgetHistogramRequestQuery) UnmarshalJSON(data []byte) e
 	}
 
 	// try to unmarshal data into FormulaAndFunctionApmResourceStatsQueryDefinition
-	err = json.Unmarshal(data, &obj.FormulaAndFunctionApmResourceStatsQueryDefinition)
+	err = datadog.Unmarshal(data, &obj.FormulaAndFunctionApmResourceStatsQueryDefinition)
 	if err == nil {
 		if obj.FormulaAndFunctionApmResourceStatsQueryDefinition != nil && obj.FormulaAndFunctionApmResourceStatsQueryDefinition.UnparsedObject == nil {
-			jsonFormulaAndFunctionApmResourceStatsQueryDefinition, _ := json.Marshal(obj.FormulaAndFunctionApmResourceStatsQueryDefinition)
+			jsonFormulaAndFunctionApmResourceStatsQueryDefinition, _ := datadog.Marshal(obj.FormulaAndFunctionApmResourceStatsQueryDefinition)
 			if string(jsonFormulaAndFunctionApmResourceStatsQueryDefinition) == "{}" { // empty struct
 				obj.FormulaAndFunctionApmResourceStatsQueryDefinition = nil
 			} else {
@@ -93,7 +93,7 @@ func (obj *DistributionWidgetHistogramRequestQuery) UnmarshalJSON(data []byte) e
 		obj.FormulaAndFunctionMetricQueryDefinition = nil
 		obj.FormulaAndFunctionEventQueryDefinition = nil
 		obj.FormulaAndFunctionApmResourceStatsQueryDefinition = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -101,19 +101,19 @@ func (obj *DistributionWidgetHistogramRequestQuery) UnmarshalJSON(data []byte) e
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj DistributionWidgetHistogramRequestQuery) MarshalJSON() ([]byte, error) {
 	if obj.FormulaAndFunctionMetricQueryDefinition != nil {
-		return json.Marshal(&obj.FormulaAndFunctionMetricQueryDefinition)
+		return datadog.Marshal(&obj.FormulaAndFunctionMetricQueryDefinition)
 	}
 
 	if obj.FormulaAndFunctionEventQueryDefinition != nil {
-		return json.Marshal(&obj.FormulaAndFunctionEventQueryDefinition)
+		return datadog.Marshal(&obj.FormulaAndFunctionEventQueryDefinition)
 	}
 
 	if obj.FormulaAndFunctionApmResourceStatsQueryDefinition != nil {
-		return json.Marshal(&obj.FormulaAndFunctionApmResourceStatsQueryDefinition)
+		return datadog.Marshal(&obj.FormulaAndFunctionApmResourceStatsQueryDefinition)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

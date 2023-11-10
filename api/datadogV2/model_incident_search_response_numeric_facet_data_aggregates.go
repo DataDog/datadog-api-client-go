@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -120,7 +118,7 @@ func (o *IncidentSearchResponseNumericFacetDataAggregates) UnsetMin() {
 func (o IncidentSearchResponseNumericFacetDataAggregates) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Max.IsSet() {
 		toSerialize["max"] = o.Max.Get()
@@ -132,7 +130,7 @@ func (o IncidentSearchResponseNumericFacetDataAggregates) MarshalJSON() ([]byte,
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -141,11 +139,11 @@ func (o *IncidentSearchResponseNumericFacetDataAggregates) UnmarshalJSON(bytes [
 		Max datadog.NullableFloat64 `json:"max,omitempty"`
 		Min datadog.NullableFloat64 `json:"min,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"max", "min"})
 	} else {
 		return err

@@ -23,11 +23,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	ddtesting "github.com/DataDog/dd-sdk-go-testing"
 	"github.com/dnaeon/go-vcr/cassette"
 	"github.com/dnaeon/go-vcr/recorder"
 	"github.com/jonboulle/clockwork"
-	"github.com/goccy/go-json"
 	"github.com/stretchr/testify/require"
 	ddhttp "gopkg.in/DataDog/dd-trace-go.v1/contrib/net/http"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace"
@@ -346,11 +346,11 @@ func removeURLSecrets(u *url.URL) string {
 // CompareAsJSON returns true if JSON strings serialize into same values.
 func CompareAsJSON(first, second io.Reader) (bool, error) {
 	var f, s interface{}
-	d := json.NewDecoder(first)
+	d := datadog.NewDecoder(first)
 	if err := d.Decode(&f); err != nil {
 		return false, err
 	}
-	d = json.NewDecoder(second)
+	d = datadog.NewDecoder(second)
 	if err := d.Decode(&s); err != nil {
 		return false, err
 	}

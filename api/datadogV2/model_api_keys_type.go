@@ -7,7 +7,7 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // APIKeysType API Keys resource type.
@@ -30,7 +30,7 @@ func (v *APIKeysType) GetAllowedValues() []APIKeysType {
 // UnmarshalJSON deserializes the given payload.
 func (v *APIKeysType) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

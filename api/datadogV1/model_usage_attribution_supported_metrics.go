@@ -7,7 +7,7 @@ package datadogV1
 import (
 	"fmt"
 
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // UsageAttributionSupportedMetrics Supported fields for usage attribution requests (valid requests contain one or more metrics, or `*` for all).
@@ -122,7 +122,7 @@ func (v *UsageAttributionSupportedMetrics) GetAllowedValues() []UsageAttribution
 // UnmarshalJSON deserializes the given payload.
 func (v *UsageAttributionSupportedMetrics) UnmarshalJSON(src []byte) error {
 	var value string
-	err := json.Unmarshal(src, &value)
+	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}

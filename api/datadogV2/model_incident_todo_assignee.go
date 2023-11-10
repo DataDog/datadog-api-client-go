@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"github.com/goccy/go-json"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // IncidentTodoAssignee - A todo assignee.
@@ -32,10 +32,10 @@ func (obj *IncidentTodoAssignee) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into IncidentTodoAssigneeHandle
-	err = json.Unmarshal(data, &obj.IncidentTodoAssigneeHandle)
+	err = datadog.Unmarshal(data, &obj.IncidentTodoAssigneeHandle)
 	if err == nil {
 		if obj.IncidentTodoAssigneeHandle != nil {
-			jsonIncidentTodoAssigneeHandle, _ := json.Marshal(obj.IncidentTodoAssigneeHandle)
+			jsonIncidentTodoAssigneeHandle, _ := datadog.Marshal(obj.IncidentTodoAssigneeHandle)
 			if string(jsonIncidentTodoAssigneeHandle) == "{}" { // empty struct
 				obj.IncidentTodoAssigneeHandle = nil
 			} else {
@@ -49,10 +49,10 @@ func (obj *IncidentTodoAssignee) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into IncidentTodoAnonymousAssignee
-	err = json.Unmarshal(data, &obj.IncidentTodoAnonymousAssignee)
+	err = datadog.Unmarshal(data, &obj.IncidentTodoAnonymousAssignee)
 	if err == nil {
 		if obj.IncidentTodoAnonymousAssignee != nil && obj.IncidentTodoAnonymousAssignee.UnparsedObject == nil {
-			jsonIncidentTodoAnonymousAssignee, _ := json.Marshal(obj.IncidentTodoAnonymousAssignee)
+			jsonIncidentTodoAnonymousAssignee, _ := datadog.Marshal(obj.IncidentTodoAnonymousAssignee)
 			if string(jsonIncidentTodoAnonymousAssignee) == "{}" { // empty struct
 				obj.IncidentTodoAnonymousAssignee = nil
 			} else {
@@ -69,7 +69,7 @@ func (obj *IncidentTodoAssignee) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.IncidentTodoAssigneeHandle = nil
 		obj.IncidentTodoAnonymousAssignee = nil
-		return json.Unmarshal(data, &obj.UnparsedObject)
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
 }
@@ -77,15 +77,15 @@ func (obj *IncidentTodoAssignee) UnmarshalJSON(data []byte) error {
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj IncidentTodoAssignee) MarshalJSON() ([]byte, error) {
 	if obj.IncidentTodoAssigneeHandle != nil {
-		return json.Marshal(&obj.IncidentTodoAssigneeHandle)
+		return datadog.Marshal(&obj.IncidentTodoAssigneeHandle)
 	}
 
 	if obj.IncidentTodoAnonymousAssignee != nil {
-		return json.Marshal(&obj.IncidentTodoAnonymousAssignee)
+		return datadog.Marshal(&obj.IncidentTodoAnonymousAssignee)
 	}
 
 	if obj.UnparsedObject != nil {
-		return json.Marshal(obj.UnparsedObject)
+		return datadog.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }

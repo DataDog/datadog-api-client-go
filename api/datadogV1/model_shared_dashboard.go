@@ -8,8 +8,6 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/goccy/go-json"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -397,7 +395,7 @@ func (o *SharedDashboard) SetToken(v string) {
 func (o SharedDashboard) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
+		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Author != nil {
 		toSerialize["author"] = o.Author
@@ -436,7 +434,7 @@ func (o SharedDashboard) MarshalJSON() ([]byte, error) {
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
-	return json.Marshal(toSerialize)
+	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -454,8 +452,8 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 		ShareType                   NullableDashboardShareType        `json:"share_type,omitempty"`
 		Token                       *string                           `json:"token,omitempty"`
 	}{}
-	if err = json.Unmarshal(bytes, &all); err != nil {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.DashboardId == nil {
 		return fmt.Errorf("required field dashboard_id missing")
@@ -464,7 +462,7 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field dashboard_type missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"author", "created_at", "dashboard_id", "dashboard_type", "global_time", "global_time_selectable_enabled", "public_url", "selectable_template_vars", "share_list", "share_type", "token"})
 	} else {
 		return err
@@ -502,7 +500,7 @@ func (o *SharedDashboard) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	if hasInvalidField {
-		return json.Unmarshal(bytes, &o.UnparsedObject)
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
