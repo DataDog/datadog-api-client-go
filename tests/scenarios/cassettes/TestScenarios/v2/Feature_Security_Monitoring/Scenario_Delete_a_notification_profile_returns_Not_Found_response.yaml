@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/notification_profiles/ThisRuleIdProbablyDoesntExist
+  response:
+    body: '{"errors":["not_found(Notification profile with id ''ThisRuleIdProbablyDoesntExist''
+      not found)"]}
+
+      '
+    code: 404
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 1
