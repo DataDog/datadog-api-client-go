@@ -1,4 +1,4 @@
-// List security filters returns "OK" response
+// List notification rules returns "OK" response
 
 package main
 
@@ -17,13 +17,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.ListSecurityFilters(ctx)
+	resp, r, err := api.ListSecurityMonitoringNotificationRules(ctx)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityFilters`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityMonitoringNotificationRules`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.ListSecurityFilters`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.ListSecurityMonitoringNotificationRules`:\n%s\n", responseContent)
 }

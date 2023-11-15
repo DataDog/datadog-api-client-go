@@ -1,4 +1,4 @@
-// List security filters returns "OK" response
+// Get notification rule by ID returns "OK" response
 
 package main
 
@@ -13,17 +13,20 @@ import (
 )
 
 func main() {
+	// there is a valid "notification_rule" in the system
+	NotificationRuleDataID := os.Getenv("NOTIFICATION_RULE_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.ListSecurityFilters(ctx)
+	resp, r, err := api.GetSecurityMonitoringNotificationRule(ctx, NotificationRuleDataID)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityFilters`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.GetSecurityMonitoringNotificationRule`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.ListSecurityFilters`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.GetSecurityMonitoringNotificationRule`:\n%s\n", responseContent)
 }
