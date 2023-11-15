@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## 2.19.0 / 2023-11-15
+
+### Fixed
+* Remove notify_no_data default by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2242
+* Fix SecurityMonitoringSignalAttribute field name by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2249
+* Fix typo in service definition field by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2266
+### Added
+* Update documentation for Cloud SIEM by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2234
+* Add containers API spec by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2235
+* Add serverless apm to usage attribution api by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2240
+* Document missing parameters by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2198
+* Powerpack Live Span Support by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2247
+* Add Amazon EventBridge endpoints to AWS Integration API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2236
+* Add Container App filters to Azure API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2217
+* Add UUID format support by @HantingZhang2 in https://github.com/DataDog/datadog-api-client-go/pull/2253
+* Add new UA products to usage metering docs by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2251
+* Cleanup linter warnings by @skarimo in https://github.com/DataDog/datadog-api-client-go/pull/2258
+* Add scorecards endpoints  by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2259
+* Document top list widget style by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2243
+* Add optional group-bys support to security signals by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2260
+### Changed
+* Add Beta Banner to Send Pipeline Events Endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2248
+* Remove endpoint for mute or unmute a finding and add support for bulk mute findings endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2244
+* Place `goccy/go-json` behind built tags and revert default encoder to `encoder/json` package by @skarimo in https://github.com/DataDog/datadog-api-client-go/pull/2270
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.18.0...v2.19.0
+
 ## 2.18.0 / 2023-10-16
 
 ### Fixed
