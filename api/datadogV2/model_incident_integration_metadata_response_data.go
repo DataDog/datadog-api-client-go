@@ -16,6 +16,8 @@ type IncidentIntegrationMetadataResponseData struct {
 	Attributes *IncidentIntegrationMetadataAttributes `json:"attributes,omitempty"`
 	// The incident integration metadata's ID.
 	Id string `json:"id"`
+	// The incident's integration relationships from a response.
+	Relationships *IncidentIntegrationRelationships `json:"relationships,omitempty"`
 	// Integration metadata resource type.
 	Type IncidentIntegrationMetadataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -95,6 +97,34 @@ func (o *IncidentIntegrationMetadataResponseData) SetId(v string) {
 	o.Id = v
 }
 
+// GetRelationships returns the Relationships field value if set, zero value otherwise.
+func (o *IncidentIntegrationMetadataResponseData) GetRelationships() IncidentIntegrationRelationships {
+	if o == nil || o.Relationships == nil {
+		var ret IncidentIntegrationRelationships
+		return ret
+	}
+	return *o.Relationships
+}
+
+// GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IncidentIntegrationMetadataResponseData) GetRelationshipsOk() (*IncidentIntegrationRelationships, bool) {
+	if o == nil || o.Relationships == nil {
+		return nil, false
+	}
+	return o.Relationships, true
+}
+
+// HasRelationships returns a boolean if a field has been set.
+func (o *IncidentIntegrationMetadataResponseData) HasRelationships() bool {
+	return o != nil && o.Relationships != nil
+}
+
+// SetRelationships gets a reference to the given IncidentIntegrationRelationships and assigns it to the Relationships field.
+func (o *IncidentIntegrationMetadataResponseData) SetRelationships(v IncidentIntegrationRelationships) {
+	o.Relationships = &v
+}
+
 // GetType returns the Type field value.
 func (o *IncidentIntegrationMetadataResponseData) GetType() IncidentIntegrationMetadataType {
 	if o == nil {
@@ -128,6 +158,9 @@ func (o IncidentIntegrationMetadataResponseData) MarshalJSON() ([]byte, error) {
 		toSerialize["attributes"] = o.Attributes
 	}
 	toSerialize["id"] = o.Id
+	if o.Relationships != nil {
+		toSerialize["relationships"] = o.Relationships
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -139,9 +172,10 @@ func (o IncidentIntegrationMetadataResponseData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentIntegrationMetadataResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *IncidentIntegrationMetadataAttributes `json:"attributes,omitempty"`
-		Id         *string                                `json:"id"`
-		Type       *IncidentIntegrationMetadataType       `json:"type"`
+		Attributes    *IncidentIntegrationMetadataAttributes `json:"attributes,omitempty"`
+		Id            *string                                `json:"id"`
+		Relationships *IncidentIntegrationRelationships      `json:"relationships,omitempty"`
+		Type          *IncidentIntegrationMetadataType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -154,7 +188,7 @@ func (o *IncidentIntegrationMetadataResponseData) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
 	} else {
 		return err
 	}
@@ -165,6 +199,10 @@ func (o *IncidentIntegrationMetadataResponseData) UnmarshalJSON(bytes []byte) (e
 	}
 	o.Attributes = all.Attributes
 	o.Id = *all.Id
+	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Relationships = all.Relationships
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
