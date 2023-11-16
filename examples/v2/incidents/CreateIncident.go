@@ -31,12 +31,12 @@ func main() {
 				},
 			},
 			Relationships: &datadogV2.IncidentCreateRelationships{
-				CommanderUser: datadogV2.NullableRelationshipToUser{
+				CommanderUser: *datadogV2.NewNullableNullableRelationshipToUser(&datadogV2.NullableRelationshipToUser{
 					Data: *datadogV2.NewNullableNullableRelationshipToUserData(&datadogV2.NullableRelationshipToUserData{
 						Type: datadogV2.USERSTYPE_USERS,
 						Id:   UserDataID,
 					}),
-				},
+				}),
 			},
 		},
 	}

@@ -11,7 +11,7 @@ import (
 // IncidentUpdateRelationships The incident's relationships for an update request.
 type IncidentUpdateRelationships struct {
 	// Relationship to user.
-	CommanderUser *NullableRelationshipToUser `json:"commander_user,omitempty"`
+	CommanderUser NullableNullableRelationshipToUser `json:"commander_user,omitempty"`
 	// A relationship reference for multiple integration metadata objects.
 	Integrations *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
 	// A relationship reference for postmortems.
@@ -38,32 +38,43 @@ func NewIncidentUpdateRelationshipsWithDefaults() *IncidentUpdateRelationships {
 	return &this
 }
 
-// GetCommanderUser returns the CommanderUser field value if set, zero value otherwise.
+// GetCommanderUser returns the CommanderUser field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentUpdateRelationships) GetCommanderUser() NullableRelationshipToUser {
-	if o == nil || o.CommanderUser == nil {
+	if o == nil || o.CommanderUser.Get() == nil {
 		var ret NullableRelationshipToUser
 		return ret
 	}
-	return *o.CommanderUser
+	return *o.CommanderUser.Get()
 }
 
 // GetCommanderUserOk returns a tuple with the CommanderUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentUpdateRelationships) GetCommanderUserOk() (*NullableRelationshipToUser, bool) {
-	if o == nil || o.CommanderUser == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.CommanderUser, true
+	return o.CommanderUser.Get(), o.CommanderUser.IsSet()
 }
 
 // HasCommanderUser returns a boolean if a field has been set.
 func (o *IncidentUpdateRelationships) HasCommanderUser() bool {
-	return o != nil && o.CommanderUser != nil
+	return o != nil && o.CommanderUser.IsSet()
 }
 
-// SetCommanderUser gets a reference to the given NullableRelationshipToUser and assigns it to the CommanderUser field.
+// SetCommanderUser gets a reference to the given NullableNullableRelationshipToUser and assigns it to the CommanderUser field.
 func (o *IncidentUpdateRelationships) SetCommanderUser(v NullableRelationshipToUser) {
-	o.CommanderUser = &v
+	o.CommanderUser.Set(&v)
+}
+
+// SetCommanderUserNil sets the value for CommanderUser to be an explicit nil.
+func (o *IncidentUpdateRelationships) SetCommanderUserNil() {
+	o.CommanderUser.Set(nil)
+}
+
+// UnsetCommanderUser ensures that no value is present for CommanderUser, not even an explicit nil.
+func (o *IncidentUpdateRelationships) UnsetCommanderUser() {
+	o.CommanderUser.Unset()
 }
 
 // GetIntegrations returns the Integrations field value if set, zero value otherwise.
@@ -128,8 +139,8 @@ func (o IncidentUpdateRelationships) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.CommanderUser != nil {
-		toSerialize["commander_user"] = o.CommanderUser
+	if o.CommanderUser.IsSet() {
+		toSerialize["commander_user"] = o.CommanderUser.Get()
 	}
 	if o.Integrations != nil {
 		toSerialize["integrations"] = o.Integrations
@@ -147,7 +158,7 @@ func (o IncidentUpdateRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentUpdateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CommanderUser *NullableRelationshipToUser                 `json:"commander_user,omitempty"`
+		CommanderUser NullableNullableRelationshipToUser          `json:"commander_user,omitempty"`
 		Integrations  *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
 		Postmortem    *RelationshipToIncidentPostmortem           `json:"postmortem,omitempty"`
 	}{}
@@ -162,9 +173,6 @@ func (o *IncidentUpdateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if all.CommanderUser != nil && all.CommanderUser.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.CommanderUser = all.CommanderUser
 	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
