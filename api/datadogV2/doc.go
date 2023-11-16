@@ -266,6 +266,7 @@
 //   - [UsageMeteringApi.GetEstimatedCostByOrg]
 //   - [UsageMeteringApi.GetHistoricalCostByOrg]
 //   - [UsageMeteringApi.GetHourlyUsage]
+//   - [UsageMeteringApi.GetProjectedCost]
 //   - [UsageMeteringApi.GetUsageApplicationSecurityMonitoring]
 //   - [UsageMeteringApi.GetUsageLambdaTracedInvocations]
 //   - [UsageMeteringApi.GetUsageObservabilityPipelines]
