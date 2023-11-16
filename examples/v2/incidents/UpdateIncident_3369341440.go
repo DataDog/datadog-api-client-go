@@ -24,12 +24,12 @@ func main() {
 			Id:   IncidentDataID,
 			Type: datadogV2.INCIDENTTYPE_INCIDENTS,
 			Relationships: &datadogV2.IncidentUpdateRelationships{
-				CommanderUser: &datadogV2.NullableRelationshipToUser{
+				CommanderUser: *datadogV2.NewNullableNullableRelationshipToUser(&datadogV2.NullableRelationshipToUser{
 					Data: *datadogV2.NewNullableNullableRelationshipToUserData(&datadogV2.NullableRelationshipToUserData{
 						Id:   UserDataID,
 						Type: datadogV2.USERSTYPE_USERS,
 					}),
-				},
+				}),
 			},
 		},
 	}
