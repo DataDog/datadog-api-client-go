@@ -262,6 +262,7 @@
 //   - [TeamsApi.UpdateTeamLink]
 //   - [TeamsApi.UpdateTeamMembership]
 //   - [TeamsApi.UpdateTeamPermissionSetting]
+//   - [UsageMeteringApi.GetActiveBillingDimensions]
 //   - [UsageMeteringApi.GetCostByOrg]
 //   - [UsageMeteringApi.GetEstimatedCostByOrg]
 //   - [UsageMeteringApi.GetHistoricalCostByOrg]
