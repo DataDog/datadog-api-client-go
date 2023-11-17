@@ -328,6 +328,8 @@ func NewConfiguration() *Configuration {
 			"v2.ListContainers":               false,
 			"v2.GetActiveBillingDimensions":   false,
 			"v2.GetMonthlyCostAttribution":    false,
+			"v2.CreateDORADeployment":         false,
+			"v2.CreateDORAIncident":           false,
 			"v2.ListEvents":                   false,
 			"v2.SearchEvents":                 false,
 			"v2.CreateIncident":               false,
