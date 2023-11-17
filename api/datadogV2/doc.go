@@ -46,6 +46,8 @@
 //   - [ConfluentCloudApi.UpdateConfluentResource]
 //   - [ContainerImagesApi.ListContainerImages]
 //   - [ContainersApi.ListContainers]
+//   - [DORAMetricsApi.CreateDORADeployment]
+//   - [DORAMetricsApi.CreateDORAIncident]
 //   - [DashboardListsApi.CreateDashboardListItems]
 //   - [DashboardListsApi.DeleteDashboardListItems]
 //   - [DashboardListsApi.GetDashboardListItems]
