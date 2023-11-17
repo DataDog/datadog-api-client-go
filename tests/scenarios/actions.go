@@ -8,7 +8,6 @@ package scenarios
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -317,12 +316,11 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 					requestJSON := make(map[string]interface{})
 					if requestParams["body"] != nil {
 						requestData := requestParams["body"].(string)
-						if err := json.Unmarshal([]byte(requestData), &requestJSON); err != nil {
-							fmt.Println("Error unmarshalling request:", err)
+						if err := datadog.Unmarshal([]byte(requestData), &requestJSON); err != nil {
+							t.Fatalf("Error unmarshalling request: %v", err)
 							return
 						}
 					}
-					fmt.Println("requestJSON:", requestJSON)
 					sourceJSONData = requestJSON
 				} else if *undo.Undo.Parameters[i-1].Origin == "response" {
 					sourceJSONData = responseJSON
