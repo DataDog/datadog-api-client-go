@@ -170,6 +170,7 @@
 //   - [SyntheticsApi.ListGlobalVariables]
 //   - [SyntheticsApi.ListLocations]
 //   - [SyntheticsApi.ListTests]
+//   - [SyntheticsApi.PatchTest]
 //   - [SyntheticsApi.TriggerCITests]
 //   - [SyntheticsApi.TriggerTests]
 //   - [SyntheticsApi.UpdateAPITest]
