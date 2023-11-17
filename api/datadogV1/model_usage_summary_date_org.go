@@ -101,6 +101,10 @@ type UsageSummaryDateOrg struct {
 	CspmGcpHostTop99p *int64 `json:"cspm_gcp_host_top99p,omitempty"`
 	// Shows the 99th percentile of all Cloud Security Management Pro hosts over all hours in the current date for the given org.
 	CspmHostTop99p *int64 `json:"cspm_host_top99p,omitempty"`
+	// Shows the average number of distinct historical custom metrics over all hours in the current date for the given org.
+	CustomHistoricalTsAvg *int64 `json:"custom_historical_ts_avg,omitempty"`
+	// Shows the average number of distinct live custom metrics over all hours in the current date for the given org.
+	CustomLiveTsAvg *int64 `json:"custom_live_ts_avg,omitempty"`
 	// Shows the average number of distinct custom metrics over all hours in the current date for the given org.
 	CustomTsAvg *int64 `json:"custom_ts_avg,omitempty"`
 	// Shows the average of all distinct Cloud Workload Security containers over all hours in the current date for the given org.
@@ -1502,6 +1506,62 @@ func (o *UsageSummaryDateOrg) HasCspmHostTop99p() bool {
 // SetCspmHostTop99p gets a reference to the given int64 and assigns it to the CspmHostTop99p field.
 func (o *UsageSummaryDateOrg) SetCspmHostTop99p(v int64) {
 	o.CspmHostTop99p = &v
+}
+
+// GetCustomHistoricalTsAvg returns the CustomHistoricalTsAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetCustomHistoricalTsAvg() int64 {
+	if o == nil || o.CustomHistoricalTsAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CustomHistoricalTsAvg
+}
+
+// GetCustomHistoricalTsAvgOk returns a tuple with the CustomHistoricalTsAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetCustomHistoricalTsAvgOk() (*int64, bool) {
+	if o == nil || o.CustomHistoricalTsAvg == nil {
+		return nil, false
+	}
+	return o.CustomHistoricalTsAvg, true
+}
+
+// HasCustomHistoricalTsAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasCustomHistoricalTsAvg() bool {
+	return o != nil && o.CustomHistoricalTsAvg != nil
+}
+
+// SetCustomHistoricalTsAvg gets a reference to the given int64 and assigns it to the CustomHistoricalTsAvg field.
+func (o *UsageSummaryDateOrg) SetCustomHistoricalTsAvg(v int64) {
+	o.CustomHistoricalTsAvg = &v
+}
+
+// GetCustomLiveTsAvg returns the CustomLiveTsAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetCustomLiveTsAvg() int64 {
+	if o == nil || o.CustomLiveTsAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CustomLiveTsAvg
+}
+
+// GetCustomLiveTsAvgOk returns a tuple with the CustomLiveTsAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetCustomLiveTsAvgOk() (*int64, bool) {
+	if o == nil || o.CustomLiveTsAvg == nil {
+		return nil, false
+	}
+	return o.CustomLiveTsAvg, true
+}
+
+// HasCustomLiveTsAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasCustomLiveTsAvg() bool {
+	return o != nil && o.CustomLiveTsAvg != nil
+}
+
+// SetCustomLiveTsAvg gets a reference to the given int64 and assigns it to the CustomLiveTsAvg field.
+func (o *UsageSummaryDateOrg) SetCustomLiveTsAvg(v int64) {
+	o.CustomLiveTsAvg = &v
 }
 
 // GetCustomTsAvg returns the CustomTsAvg field value if set, zero value otherwise.
@@ -3297,6 +3357,12 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.CspmHostTop99p != nil {
 		toSerialize["cspm_host_top99p"] = o.CspmHostTop99p
 	}
+	if o.CustomHistoricalTsAvg != nil {
+		toSerialize["custom_historical_ts_avg"] = o.CustomHistoricalTsAvg
+	}
+	if o.CustomLiveTsAvg != nil {
+		toSerialize["custom_live_ts_avg"] = o.CustomLiveTsAvg
+	}
 	if o.CustomTsAvg != nil {
 		toSerialize["custom_ts_avg"] = o.CustomTsAvg
 	}
@@ -3529,6 +3595,8 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		CspmContainerHwm                           *int64  `json:"cspm_container_hwm,omitempty"`
 		CspmGcpHostTop99p                          *int64  `json:"cspm_gcp_host_top99p,omitempty"`
 		CspmHostTop99p                             *int64  `json:"cspm_host_top99p,omitempty"`
+		CustomHistoricalTsAvg                      *int64  `json:"custom_historical_ts_avg,omitempty"`
+		CustomLiveTsAvg                            *int64  `json:"custom_live_ts_avg,omitempty"`
 		CustomTsAvg                                *int64  `json:"custom_ts_avg,omitempty"`
 		CwsContainerCountAvg                       *int64  `json:"cws_container_count_avg,omitempty"`
 		CwsHostTop99p                              *int64  `json:"cws_host_top99p,omitempty"`
@@ -3594,7 +3662,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p", "apm_azure_app_service_host_top99p", "apm_fargate_count_avg", "apm_host_top99p", "appsec_fargate_count_avg", "audit_logs_lines_indexed_sum", "audit_trail_enabled_hwm", "avg_profiled_fargate_tasks", "aws_host_top99p", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p", "billable_ingested_bytes_sum", "browser_rum_lite_session_count_sum", "browser_rum_replay_session_count_sum", "browser_rum_units_sum", "ci_pipeline_indexed_spans_sum", "ci_test_indexed_spans_sum", "ci_visibility_itr_committers_hwm", "ci_visibility_pipeline_committers_hwm", "ci_visibility_test_committers_hwm", "cloud_cost_management_aws_host_count_avg", "cloud_cost_management_azure_host_count_avg", "cloud_cost_management_host_count_avg", "cloud_siem_events_sum", "container_avg", "container_excl_agent_avg", "container_hwm", "csm_container_enterprise_compliance_count_sum", "csm_container_enterprise_cws_count_sum", "csm_container_enterprise_total_count_sum", "csm_host_enterprise_aas_host_count_top99p", "csm_host_enterprise_aws_host_count_top99p", "csm_host_enterprise_azure_host_count_top99p", "csm_host_enterprise_compliance_host_count_top99p", "csm_host_enterprise_cws_host_count_top99p", "csm_host_enterprise_gcp_host_count_top99p", "csm_host_enterprise_total_host_count_top99p", "cspm_aas_host_top99p", "cspm_aws_host_top99p", "cspm_azure_host_top99p", "cspm_container_avg", "cspm_container_hwm", "cspm_gcp_host_top99p", "cspm_host_top99p", "custom_ts_avg", "cws_container_count_avg", "cws_host_top99p", "dbm_host_top99p_sum", "dbm_queries_avg_sum", "fargate_tasks_count_avg", "fargate_tasks_count_hwm", "forwarding_events_bytes_sum", "gcp_host_top99p", "heroku_host_top99p", "id", "incident_management_monthly_active_users_hwm", "indexed_events_count_sum", "infra_host_top99p", "ingested_events_bytes_sum", "iot_device_agg_sum", "iot_device_top99p_sum", "mobile_rum_lite_session_count_sum", "mobile_rum_session_count_android_sum", "mobile_rum_session_count_flutter_sum", "mobile_rum_session_count_ios_sum", "mobile_rum_session_count_reactnative_sum", "mobile_rum_session_count_roku_sum", "mobile_rum_session_count_sum", "mobile_rum_units_sum", "name", "ndm_netflow_events_sum", "netflow_indexed_events_count_sum", "npm_host_top99p", "observability_pipelines_bytes_processed_sum", "online_archive_events_count_sum", "opentelemetry_apm_host_top99p", "opentelemetry_host_top99p", "profiling_aas_count_top99p", "profiling_host_top99p", "public_id", "region", "rum_browser_and_mobile_session_count", "rum_session_count_sum", "rum_total_session_count_sum", "rum_units_sum", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_azure_count_avg", "serverless_apps_google_count_avg", "serverless_apps_total_count_avg", "synthetics_browser_check_calls_count_sum", "synthetics_check_calls_count_sum", "synthetics_mobile_test_runs_sum", "synthetics_parallel_testing_max_slots_hwm", "trace_search_indexed_events_count_sum", "twol_ingested_events_bytes_sum", "universal_service_monitoring_host_top99p", "vsphere_host_top99p", "vuln_management_host_count_top99p", "workflow_executions_usage_sum"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p", "apm_azure_app_service_host_top99p", "apm_fargate_count_avg", "apm_host_top99p", "appsec_fargate_count_avg", "audit_logs_lines_indexed_sum", "audit_trail_enabled_hwm", "avg_profiled_fargate_tasks", "aws_host_top99p", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p", "billable_ingested_bytes_sum", "browser_rum_lite_session_count_sum", "browser_rum_replay_session_count_sum", "browser_rum_units_sum", "ci_pipeline_indexed_spans_sum", "ci_test_indexed_spans_sum", "ci_visibility_itr_committers_hwm", "ci_visibility_pipeline_committers_hwm", "ci_visibility_test_committers_hwm", "cloud_cost_management_aws_host_count_avg", "cloud_cost_management_azure_host_count_avg", "cloud_cost_management_host_count_avg", "cloud_siem_events_sum", "container_avg", "container_excl_agent_avg", "container_hwm", "csm_container_enterprise_compliance_count_sum", "csm_container_enterprise_cws_count_sum", "csm_container_enterprise_total_count_sum", "csm_host_enterprise_aas_host_count_top99p", "csm_host_enterprise_aws_host_count_top99p", "csm_host_enterprise_azure_host_count_top99p", "csm_host_enterprise_compliance_host_count_top99p", "csm_host_enterprise_cws_host_count_top99p", "csm_host_enterprise_gcp_host_count_top99p", "csm_host_enterprise_total_host_count_top99p", "cspm_aas_host_top99p", "cspm_aws_host_top99p", "cspm_azure_host_top99p", "cspm_container_avg", "cspm_container_hwm", "cspm_gcp_host_top99p", "cspm_host_top99p", "custom_historical_ts_avg", "custom_live_ts_avg", "custom_ts_avg", "cws_container_count_avg", "cws_host_top99p", "dbm_host_top99p_sum", "dbm_queries_avg_sum", "fargate_tasks_count_avg", "fargate_tasks_count_hwm", "forwarding_events_bytes_sum", "gcp_host_top99p", "heroku_host_top99p", "id", "incident_management_monthly_active_users_hwm", "indexed_events_count_sum", "infra_host_top99p", "ingested_events_bytes_sum", "iot_device_agg_sum", "iot_device_top99p_sum", "mobile_rum_lite_session_count_sum", "mobile_rum_session_count_android_sum", "mobile_rum_session_count_flutter_sum", "mobile_rum_session_count_ios_sum", "mobile_rum_session_count_reactnative_sum", "mobile_rum_session_count_roku_sum", "mobile_rum_session_count_sum", "mobile_rum_units_sum", "name", "ndm_netflow_events_sum", "netflow_indexed_events_count_sum", "npm_host_top99p", "observability_pipelines_bytes_processed_sum", "online_archive_events_count_sum", "opentelemetry_apm_host_top99p", "opentelemetry_host_top99p", "profiling_aas_count_top99p", "profiling_host_top99p", "public_id", "region", "rum_browser_and_mobile_session_count", "rum_session_count_sum", "rum_total_session_count_sum", "rum_units_sum", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_azure_count_avg", "serverless_apps_google_count_avg", "serverless_apps_total_count_avg", "synthetics_browser_check_calls_count_sum", "synthetics_check_calls_count_sum", "synthetics_mobile_test_runs_sum", "synthetics_parallel_testing_max_slots_hwm", "trace_search_indexed_events_count_sum", "twol_ingested_events_bytes_sum", "universal_service_monitoring_host_top99p", "vsphere_host_top99p", "vuln_management_host_count_top99p", "workflow_executions_usage_sum"})
 	} else {
 		return err
 	}
@@ -3643,6 +3711,8 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.CspmContainerHwm = all.CspmContainerHwm
 	o.CspmGcpHostTop99p = all.CspmGcpHostTop99p
 	o.CspmHostTop99p = all.CspmHostTop99p
+	o.CustomHistoricalTsAvg = all.CustomHistoricalTsAvg
+	o.CustomLiveTsAvg = all.CustomLiveTsAvg
 	o.CustomTsAvg = all.CustomTsAvg
 	o.CwsContainerCountAvg = all.CwsContainerCountAvg
 	o.CwsHostTop99p = all.CwsHostTop99p
