@@ -53,7 +53,9 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "CIVisibilityTestsApi": reflect.ValueOf(datadogV2.NewCIVisibilityTestsApi),
 	    "ContainerImagesApi": reflect.ValueOf(datadogV2.NewContainerImagesApi),
 	    "ContainersApi": reflect.ValueOf(datadogV2.NewContainersApi),
+	    "UsageMeteringApi": reflect.ValueOf(datadogV2.NewUsageMeteringApi),
 	    "DashboardListsApi": reflect.ValueOf(datadogV2.NewDashboardListsApi),
+	    "DORAMetricsApi": reflect.ValueOf(datadogV2.NewDORAMetricsApi),
 	    "DowntimesApi": reflect.ValueOf(datadogV2.NewDowntimesApi),
 	    "EventsApi": reflect.ValueOf(datadogV2.NewEventsApi),
 	    "IncidentsApi": reflect.ValueOf(datadogV2.NewIncidentsApi),
@@ -85,7 +87,6 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "SyntheticsApi": reflect.ValueOf(datadogV2.NewSyntheticsApi),
 	    "TeamsApi": reflect.ValueOf(datadogV2.NewTeamsApi),
 	    "IncidentTeamsApi": reflect.ValueOf(datadogV2.NewIncidentTeamsApi),
-	    "UsageMeteringApi": reflect.ValueOf(datadogV2.NewUsageMeteringApi),
 	    "UsersApi": reflect.ValueOf(datadogV2.NewUsersApi),
 	},
 }
