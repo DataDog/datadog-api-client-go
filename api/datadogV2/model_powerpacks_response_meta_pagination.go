@@ -13,7 +13,7 @@ type PowerpacksResponseMetaPagination struct {
 	// The first offset.
 	FirstOffset *int64 `json:"first_offset,omitempty"`
 	// The last offset.
-	LastOffset *int64 `json:"last_offset,omitempty"`
+	LastOffset datadog.NullableInt64 `json:"last_offset,omitempty"`
 	// Pagination limit.
 	Limit *int64 `json:"limit,omitempty"`
 	// The next offset.
@@ -76,32 +76,43 @@ func (o *PowerpacksResponseMetaPagination) SetFirstOffset(v int64) {
 	o.FirstOffset = &v
 }
 
-// GetLastOffset returns the LastOffset field value if set, zero value otherwise.
+// GetLastOffset returns the LastOffset field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PowerpacksResponseMetaPagination) GetLastOffset() int64 {
-	if o == nil || o.LastOffset == nil {
+	if o == nil || o.LastOffset.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.LastOffset
+	return *o.LastOffset.Get()
 }
 
 // GetLastOffsetOk returns a tuple with the LastOffset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *PowerpacksResponseMetaPagination) GetLastOffsetOk() (*int64, bool) {
-	if o == nil || o.LastOffset == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.LastOffset, true
+	return o.LastOffset.Get(), o.LastOffset.IsSet()
 }
 
 // HasLastOffset returns a boolean if a field has been set.
 func (o *PowerpacksResponseMetaPagination) HasLastOffset() bool {
-	return o != nil && o.LastOffset != nil
+	return o != nil && o.LastOffset.IsSet()
 }
 
-// SetLastOffset gets a reference to the given int64 and assigns it to the LastOffset field.
+// SetLastOffset gets a reference to the given datadog.NullableInt64 and assigns it to the LastOffset field.
 func (o *PowerpacksResponseMetaPagination) SetLastOffset(v int64) {
-	o.LastOffset = &v
+	o.LastOffset.Set(&v)
+}
+
+// SetLastOffsetNil sets the value for LastOffset to be an explicit nil.
+func (o *PowerpacksResponseMetaPagination) SetLastOffsetNil() {
+	o.LastOffset.Set(nil)
+}
+
+// UnsetLastOffset ensures that no value is present for LastOffset, not even an explicit nil.
+func (o *PowerpacksResponseMetaPagination) UnsetLastOffset() {
+	o.LastOffset.Unset()
 }
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
@@ -281,8 +292,8 @@ func (o PowerpacksResponseMetaPagination) MarshalJSON() ([]byte, error) {
 	if o.FirstOffset != nil {
 		toSerialize["first_offset"] = o.FirstOffset
 	}
-	if o.LastOffset != nil {
-		toSerialize["last_offset"] = o.LastOffset
+	if o.LastOffset.IsSet() {
+		toSerialize["last_offset"] = o.LastOffset.Get()
 	}
 	if o.Limit != nil {
 		toSerialize["limit"] = o.Limit
@@ -312,14 +323,14 @@ func (o PowerpacksResponseMetaPagination) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PowerpacksResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FirstOffset *int64  `json:"first_offset,omitempty"`
-		LastOffset  *int64  `json:"last_offset,omitempty"`
-		Limit       *int64  `json:"limit,omitempty"`
-		NextOffset  *int64  `json:"next_offset,omitempty"`
-		Offset      *int64  `json:"offset,omitempty"`
-		PrevOffset  *int64  `json:"prev_offset,omitempty"`
-		Total       *int64  `json:"total,omitempty"`
-		Type        *string `json:"type,omitempty"`
+		FirstOffset *int64                `json:"first_offset,omitempty"`
+		LastOffset  datadog.NullableInt64 `json:"last_offset,omitempty"`
+		Limit       *int64                `json:"limit,omitempty"`
+		NextOffset  *int64                `json:"next_offset,omitempty"`
+		Offset      *int64                `json:"offset,omitempty"`
+		PrevOffset  *int64                `json:"prev_offset,omitempty"`
+		Total       *int64                `json:"total,omitempty"`
+		Type        *string               `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
