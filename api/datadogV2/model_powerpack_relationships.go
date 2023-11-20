@@ -10,8 +10,8 @@ import (
 
 // PowerpackRelationships Powerpack relationship object.
 type PowerpackRelationships struct {
-	// Creator of the object.
-	Author *Creator `json:"author,omitempty"`
+	// Relationship to user.
+	Author *RelationshipToUser `json:"author,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -35,9 +35,9 @@ func NewPowerpackRelationshipsWithDefaults() *PowerpackRelationships {
 }
 
 // GetAuthor returns the Author field value if set, zero value otherwise.
-func (o *PowerpackRelationships) GetAuthor() Creator {
+func (o *PowerpackRelationships) GetAuthor() RelationshipToUser {
 	if o == nil || o.Author == nil {
-		var ret Creator
+		var ret RelationshipToUser
 		return ret
 	}
 	return *o.Author
@@ -45,7 +45,7 @@ func (o *PowerpackRelationships) GetAuthor() Creator {
 
 // GetAuthorOk returns a tuple with the Author field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PowerpackRelationships) GetAuthorOk() (*Creator, bool) {
+func (o *PowerpackRelationships) GetAuthorOk() (*RelationshipToUser, bool) {
 	if o == nil || o.Author == nil {
 		return nil, false
 	}
@@ -57,8 +57,8 @@ func (o *PowerpackRelationships) HasAuthor() bool {
 	return o != nil && o.Author != nil
 }
 
-// SetAuthor gets a reference to the given Creator and assigns it to the Author field.
-func (o *PowerpackRelationships) SetAuthor(v Creator) {
+// SetAuthor gets a reference to the given RelationshipToUser and assigns it to the Author field.
+func (o *PowerpackRelationships) SetAuthor(v RelationshipToUser) {
 	o.Author = &v
 }
 
@@ -81,7 +81,7 @@ func (o PowerpackRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PowerpackRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Author *Creator `json:"author,omitempty"`
+		Author *RelationshipToUser `json:"author,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
