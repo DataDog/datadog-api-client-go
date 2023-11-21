@@ -12,6 +12,8 @@ import (
 type SensitiveDataScannerStandardPatternAttributes struct {
 	// Description of the standard pattern.
 	Description *string `json:"description,omitempty"`
+	// List of included keywords.
+	IncludedKeywords []string `json:"included_keywords,omitempty"`
 	// Name of the standard pattern.
 	Name *string `json:"name,omitempty"`
 	// Regex to match.
@@ -66,6 +68,34 @@ func (o *SensitiveDataScannerStandardPatternAttributes) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *SensitiveDataScannerStandardPatternAttributes) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetIncludedKeywords returns the IncludedKeywords field value if set, zero value otherwise.
+func (o *SensitiveDataScannerStandardPatternAttributes) GetIncludedKeywords() []string {
+	if o == nil || o.IncludedKeywords == nil {
+		var ret []string
+		return ret
+	}
+	return o.IncludedKeywords
+}
+
+// GetIncludedKeywordsOk returns a tuple with the IncludedKeywords field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SensitiveDataScannerStandardPatternAttributes) GetIncludedKeywordsOk() (*[]string, bool) {
+	if o == nil || o.IncludedKeywords == nil {
+		return nil, false
+	}
+	return &o.IncludedKeywords, true
+}
+
+// HasIncludedKeywords returns a boolean if a field has been set.
+func (o *SensitiveDataScannerStandardPatternAttributes) HasIncludedKeywords() bool {
+	return o != nil && o.IncludedKeywords != nil
+}
+
+// SetIncludedKeywords gets a reference to the given []string and assigns it to the IncludedKeywords field.
+func (o *SensitiveDataScannerStandardPatternAttributes) SetIncludedKeywords(v []string) {
+	o.IncludedKeywords = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -161,6 +191,9 @@ func (o SensitiveDataScannerStandardPatternAttributes) MarshalJSON() ([]byte, er
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
+	if o.IncludedKeywords != nil {
+		toSerialize["included_keywords"] = o.IncludedKeywords
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
@@ -180,21 +213,23 @@ func (o SensitiveDataScannerStandardPatternAttributes) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerStandardPatternAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description *string  `json:"description,omitempty"`
-		Name        *string  `json:"name,omitempty"`
-		Pattern     *string  `json:"pattern,omitempty"`
-		Tags        []string `json:"tags,omitempty"`
+		Description      *string  `json:"description,omitempty"`
+		IncludedKeywords []string `json:"included_keywords,omitempty"`
+		Name             *string  `json:"name,omitempty"`
+		Pattern          *string  `json:"pattern,omitempty"`
+		Tags             []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "name", "pattern", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "included_keywords", "name", "pattern", "tags"})
 	} else {
 		return err
 	}
 	o.Description = all.Description
+	o.IncludedKeywords = all.IncludedKeywords
 	o.Name = all.Name
 	o.Pattern = all.Pattern
 	o.Tags = all.Tags
