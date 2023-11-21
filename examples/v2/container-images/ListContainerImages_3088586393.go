@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListContainerImages", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewContainerImagesApi(apiClient)
 	resp, _ := api.ListContainerImagesWithPagination(ctx, *datadogV2.NewListContainerImagesOptionalParameters().WithPageSize(2))
