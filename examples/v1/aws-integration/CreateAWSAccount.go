@@ -14,10 +14,9 @@ import (
 
 func main() {
 	body := datadogV1.AWSAccount{
-		AccountId: datadog.PtrString("123456789012"),
+		AccountId: datadog.PtrString("163662907100"),
 		AccountSpecificNamespaceRules: map[string]bool{
 			"auto_scaling": false,
-			"opswork":      false,
 		},
 		CspmResourceCollectionEnabled: datadog.PtrBool(true),
 		ExcludedRegions: []string{
