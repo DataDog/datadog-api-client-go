@@ -5,7 +5,7 @@ repos:
     name: Generate
     language: node
     entry: bash -c "./generate.sh"
-    files: '^(\.generator/.*|\.pre-commit-config\.yaml|Makefile|\tests/scenarios/features/.*)'
+    files: '^(\.generator/.*|\.pre-commit-config\.yaml|Makefile|\tests/scenarios/features/.*|api/.*)'
     pass_filenames: false
   - id: lint
     name: Lint
