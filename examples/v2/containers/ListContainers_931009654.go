@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListContainers", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewContainersApi(apiClient)
 	resp, _ := api.ListContainersWithPagination(ctx, *datadogV2.NewListContainersOptionalParameters().WithPageSize(2))
