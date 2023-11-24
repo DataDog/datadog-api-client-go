@@ -11,7 +11,7 @@ import (
 // ScalarResponse A message containing the response to a scalar query.
 type ScalarResponse struct {
 	// The object describing a scalar response.
-	Attributes *ScalarFormulaResponseAtrributes `json:"attributes,omitempty"`
+	Attributes *ScalarFormulaResponseAttributes `json:"attributes,omitempty"`
 	// The type of the resource. The value should always be scalar_response.
 	Type *ScalarFormulaResponseType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -41,9 +41,9 @@ func NewScalarResponseWithDefaults() *ScalarResponse {
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *ScalarResponse) GetAttributes() ScalarFormulaResponseAtrributes {
+func (o *ScalarResponse) GetAttributes() ScalarFormulaResponseAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret ScalarFormulaResponseAtrributes
+		var ret ScalarFormulaResponseAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -51,7 +51,7 @@ func (o *ScalarResponse) GetAttributes() ScalarFormulaResponseAtrributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScalarResponse) GetAttributesOk() (*ScalarFormulaResponseAtrributes, bool) {
+func (o *ScalarResponse) GetAttributesOk() (*ScalarFormulaResponseAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -63,8 +63,8 @@ func (o *ScalarResponse) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
-// SetAttributes gets a reference to the given ScalarFormulaResponseAtrributes and assigns it to the Attributes field.
-func (o *ScalarResponse) SetAttributes(v ScalarFormulaResponseAtrributes) {
+// SetAttributes gets a reference to the given ScalarFormulaResponseAttributes and assigns it to the Attributes field.
+func (o *ScalarResponse) SetAttributes(v ScalarFormulaResponseAttributes) {
 	o.Attributes = &v
 }
 
@@ -118,7 +118,7 @@ func (o ScalarResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScalarResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *ScalarFormulaResponseAtrributes `json:"attributes,omitempty"`
+		Attributes *ScalarFormulaResponseAttributes `json:"attributes,omitempty"`
 		Type       *ScalarFormulaResponseType       `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {

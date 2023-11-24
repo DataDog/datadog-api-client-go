@@ -14,10 +14,20 @@ import (
 type FormulaAndFunctionEventQueryDefinitionCompute struct {
 	// Aggregation methods for event platform queries.
 	Aggregation FormulaAndFunctionEventAggregation `json:"aggregation"`
-	// A time interval in milliseconds.
+	// Fixed numeric interval for compute (in milliseconds).
+	// Fields `interval` (numeric interval) and `rollup` (calendar interval) are mutually exclusive.
 	Interval *int64 `json:"interval,omitempty"`
 	// Measurable attribute to compute.
 	Metric *string `json:"metric,omitempty"`
+	// Calendar interval options for compute.
+	// Fields `interval` (numeric interval) and `rollup` (calendar interval) are mutually exclusive.
+	//
+	// For instance:
+	// - { type: 'day', alignment: '1pm', timezone: 'Europe/Paris' }
+	// - { type: 'week', alignment: 'tuesday', quantity: 2 }
+	// - { type: 'month', alignment: '15th' }
+	// - { type: 'year', alignment: 'april' }
+	Rollup *CalendarInterval `json:"rollup,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -120,6 +130,34 @@ func (o *FormulaAndFunctionEventQueryDefinitionCompute) SetMetric(v string) {
 	o.Metric = &v
 }
 
+// GetRollup returns the Rollup field value if set, zero value otherwise.
+func (o *FormulaAndFunctionEventQueryDefinitionCompute) GetRollup() CalendarInterval {
+	if o == nil || o.Rollup == nil {
+		var ret CalendarInterval
+		return ret
+	}
+	return *o.Rollup
+}
+
+// GetRollupOk returns a tuple with the Rollup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FormulaAndFunctionEventQueryDefinitionCompute) GetRollupOk() (*CalendarInterval, bool) {
+	if o == nil || o.Rollup == nil {
+		return nil, false
+	}
+	return o.Rollup, true
+}
+
+// HasRollup returns a boolean if a field has been set.
+func (o *FormulaAndFunctionEventQueryDefinitionCompute) HasRollup() bool {
+	return o != nil && o.Rollup != nil
+}
+
+// SetRollup gets a reference to the given CalendarInterval and assigns it to the Rollup field.
+func (o *FormulaAndFunctionEventQueryDefinitionCompute) SetRollup(v CalendarInterval) {
+	o.Rollup = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FormulaAndFunctionEventQueryDefinitionCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -132,6 +170,9 @@ func (o FormulaAndFunctionEventQueryDefinitionCompute) MarshalJSON() ([]byte, er
 	}
 	if o.Metric != nil {
 		toSerialize["metric"] = o.Metric
+	}
+	if o.Rollup != nil {
+		toSerialize["rollup"] = o.Rollup
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -146,6 +187,7 @@ func (o *FormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(bytes []by
 		Aggregation *FormulaAndFunctionEventAggregation `json:"aggregation"`
 		Interval    *int64                              `json:"interval,omitempty"`
 		Metric      *string                             `json:"metric,omitempty"`
+		Rollup      *CalendarInterval                   `json:"rollup,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,7 +197,7 @@ func (o *FormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "interval", "metric"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "interval", "metric", "rollup"})
 	} else {
 		return err
 	}
@@ -168,6 +210,10 @@ func (o *FormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(bytes []by
 	}
 	o.Interval = all.Interval
 	o.Metric = all.Metric
+	if all.Rollup != nil && all.Rollup.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Rollup = all.Rollup
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -16,8 +16,18 @@ type LogsQueryCompute struct {
 	Aggregation string `json:"aggregation"`
 	// Facet name.
 	Facet *string `json:"facet,omitempty"`
-	// Define a time interval in seconds.
+	// Fixed numeric interval for compute (in milliseconds).
+	// Fields `interval` (numeric interval) and `rollup` (calendar interval) are mutually exclusive.
 	Interval *int64 `json:"interval,omitempty"`
+	// Calendar interval options for compute.
+	// Fields `interval` (numeric interval) and `rollup` (calendar interval) are mutually exclusive.
+	//
+	// For instance:
+	// - { type: 'day', alignment: '1pm', timezone: 'Europe/Paris' }
+	// - { type: 'week', alignment: 'tuesday', quantity: 2 }
+	// - { type: 'month', alignment: '15th' }
+	// - { type: 'year', alignment: 'april' }
+	Rollup *CalendarInterval `json:"rollup,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -120,6 +130,34 @@ func (o *LogsQueryCompute) SetInterval(v int64) {
 	o.Interval = &v
 }
 
+// GetRollup returns the Rollup field value if set, zero value otherwise.
+func (o *LogsQueryCompute) GetRollup() CalendarInterval {
+	if o == nil || o.Rollup == nil {
+		var ret CalendarInterval
+		return ret
+	}
+	return *o.Rollup
+}
+
+// GetRollupOk returns a tuple with the Rollup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogsQueryCompute) GetRollupOk() (*CalendarInterval, bool) {
+	if o == nil || o.Rollup == nil {
+		return nil, false
+	}
+	return o.Rollup, true
+}
+
+// HasRollup returns a boolean if a field has been set.
+func (o *LogsQueryCompute) HasRollup() bool {
+	return o != nil && o.Rollup != nil
+}
+
+// SetRollup gets a reference to the given CalendarInterval and assigns it to the Rollup field.
+func (o *LogsQueryCompute) SetRollup(v CalendarInterval) {
+	o.Rollup = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsQueryCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -133,6 +171,9 @@ func (o LogsQueryCompute) MarshalJSON() ([]byte, error) {
 	if o.Interval != nil {
 		toSerialize["interval"] = o.Interval
 	}
+	if o.Rollup != nil {
+		toSerialize["rollup"] = o.Rollup
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -143,9 +184,10 @@ func (o LogsQueryCompute) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsQueryCompute) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aggregation *string `json:"aggregation"`
-		Facet       *string `json:"facet,omitempty"`
-		Interval    *int64  `json:"interval,omitempty"`
+		Aggregation *string           `json:"aggregation"`
+		Facet       *string           `json:"facet,omitempty"`
+		Interval    *int64            `json:"interval,omitempty"`
+		Rollup      *CalendarInterval `json:"rollup,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,16 +197,26 @@ func (o *LogsQueryCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "facet", "interval"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "facet", "interval", "rollup"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Aggregation = *all.Aggregation
 	o.Facet = all.Facet
 	o.Interval = all.Interval
+	if all.Rollup != nil && all.Rollup.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Rollup = all.Rollup
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
