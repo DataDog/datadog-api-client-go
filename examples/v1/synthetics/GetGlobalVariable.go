@@ -13,11 +13,14 @@ import (
 )
 
 func main() {
+	// there is a valid "synthetics_global_variable" in the system
+	SyntheticsGlobalVariableID := os.Getenv("SYNTHETICS_GLOBAL_VARIABLE_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewSyntheticsApi(apiClient)
-	resp, r, err := api.GetGlobalVariable(ctx, "variable_id")
+	resp, r, err := api.GetGlobalVariable(ctx, SyntheticsGlobalVariableID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetGlobalVariable`: %v\n", err)

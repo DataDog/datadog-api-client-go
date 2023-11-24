@@ -13,11 +13,14 @@ import (
 )
 
 func main() {
+	// there is a valid "synthetics_api_test" in the system
+	SyntheticsAPITestPublicID := os.Getenv("SYNTHETICS_API_TEST_PUBLIC_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewSyntheticsApi(apiClient)
-	resp, r, err := api.GetAPITest(ctx, "public_id")
+	resp, r, err := api.GetAPITest(ctx, SyntheticsAPITestPublicID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetAPITest`: %v\n", err)

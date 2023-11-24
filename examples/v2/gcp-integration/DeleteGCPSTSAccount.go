@@ -12,11 +12,14 @@ import (
 )
 
 func main() {
+	// there is a valid "gcp_sts_account" in the system
+	GcpStsAccountDataID := os.Getenv("GCP_STS_ACCOUNT_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewGCPIntegrationApi(apiClient)
-	r, err := api.DeleteGCPSTSAccount(ctx, "account_id")
+	r, err := api.DeleteGCPSTSAccount(ctx, GcpStsAccountDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.DeleteGCPSTSAccount`: %v\n", err)
