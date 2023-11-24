@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ScalarFormulaResponseAtrributes The object describing a scalar response.
-type ScalarFormulaResponseAtrributes struct {
+// ScalarFormulaResponseAttributes The object describing a scalar response.
+type ScalarFormulaResponseAttributes struct {
 	// List of response columns, each corresponding to an individual formula or query in the request and with values in parallel arrays matching the series list.
 	Columns []ScalarColumn `json:"columns,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -17,25 +17,25 @@ type ScalarFormulaResponseAtrributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewScalarFormulaResponseAtrributes instantiates a new ScalarFormulaResponseAtrributes object.
+// NewScalarFormulaResponseAttributes instantiates a new ScalarFormulaResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewScalarFormulaResponseAtrributes() *ScalarFormulaResponseAtrributes {
-	this := ScalarFormulaResponseAtrributes{}
+func NewScalarFormulaResponseAttributes() *ScalarFormulaResponseAttributes {
+	this := ScalarFormulaResponseAttributes{}
 	return &this
 }
 
-// NewScalarFormulaResponseAtrributesWithDefaults instantiates a new ScalarFormulaResponseAtrributes object.
+// NewScalarFormulaResponseAttributesWithDefaults instantiates a new ScalarFormulaResponseAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewScalarFormulaResponseAtrributesWithDefaults() *ScalarFormulaResponseAtrributes {
-	this := ScalarFormulaResponseAtrributes{}
+func NewScalarFormulaResponseAttributesWithDefaults() *ScalarFormulaResponseAttributes {
+	this := ScalarFormulaResponseAttributes{}
 	return &this
 }
 
 // GetColumns returns the Columns field value if set, zero value otherwise.
-func (o *ScalarFormulaResponseAtrributes) GetColumns() []ScalarColumn {
+func (o *ScalarFormulaResponseAttributes) GetColumns() []ScalarColumn {
 	if o == nil || o.Columns == nil {
 		var ret []ScalarColumn
 		return ret
@@ -45,7 +45,7 @@ func (o *ScalarFormulaResponseAtrributes) GetColumns() []ScalarColumn {
 
 // GetColumnsOk returns a tuple with the Columns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScalarFormulaResponseAtrributes) GetColumnsOk() (*[]ScalarColumn, bool) {
+func (o *ScalarFormulaResponseAttributes) GetColumnsOk() (*[]ScalarColumn, bool) {
 	if o == nil || o.Columns == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *ScalarFormulaResponseAtrributes) GetColumnsOk() (*[]ScalarColumn, bool)
 }
 
 // HasColumns returns a boolean if a field has been set.
-func (o *ScalarFormulaResponseAtrributes) HasColumns() bool {
+func (o *ScalarFormulaResponseAttributes) HasColumns() bool {
 	return o != nil && o.Columns != nil
 }
 
 // SetColumns gets a reference to the given []ScalarColumn and assigns it to the Columns field.
-func (o *ScalarFormulaResponseAtrributes) SetColumns(v []ScalarColumn) {
+func (o *ScalarFormulaResponseAttributes) SetColumns(v []ScalarColumn) {
 	o.Columns = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ScalarFormulaResponseAtrributes) MarshalJSON() ([]byte, error) {
+func (o ScalarFormulaResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,7 +79,7 @@ func (o ScalarFormulaResponseAtrributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ScalarFormulaResponseAtrributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ScalarFormulaResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Columns []ScalarColumn `json:"columns,omitempty"`
 	}{}
