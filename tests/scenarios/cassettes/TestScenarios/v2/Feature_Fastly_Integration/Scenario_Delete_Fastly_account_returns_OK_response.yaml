@@ -1,0 +1,55 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"api_key":"TestDeleteFastlyaccountreturnsOKresponse1700834079","name":"Test-Delete_Fastly_account_returns_OK_response-1700834079","services":[]},"type":"fastly-accounts"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/integrations/fastly/accounts
+  response:
+    body: '{"data":{"type":"fastly-accounts","attributes":{"name":"Test-Delete_Fastly_account_returns_OK_response-1700834079","services":[]},"id":"c161584cae34e5249aeb16f9b7d46244"}}
+
+      '
+    code: 201
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/integrations/fastly/accounts/c161584cae34e5249aeb16f9b7d46244
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/integrations/fastly/accounts/c161584cae34e5249aeb16f9b7d46244
+  response:
+    body: '{"errors":["Account not found not found"]}'
+    code: 404
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 1

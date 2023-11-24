@@ -13,11 +13,14 @@ import (
 )
 
 func main() {
+	// there is a valid "shared_dashboard" in the system
+	SharedDashboardToken := os.Getenv("SHARED_DASHBOARD_TOKEN")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewDashboardsApi(apiClient)
-	resp, r, err := api.DeletePublicDashboard(ctx, "token")
+	resp, r, err := api.DeletePublicDashboard(ctx, SharedDashboardToken)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.DeletePublicDashboard`: %v\n", err)

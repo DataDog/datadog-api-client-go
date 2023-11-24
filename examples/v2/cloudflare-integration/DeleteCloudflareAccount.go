@@ -12,11 +12,14 @@ import (
 )
 
 func main() {
+	// there is a valid "cloudflare_account" in the system
+	CloudflareAccountDataID := os.Getenv("CLOUDFLARE_ACCOUNT_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudflareIntegrationApi(apiClient)
-	r, err := api.DeleteCloudflareAccount(ctx, "account_id")
+	r, err := api.DeleteCloudflareAccount(ctx, CloudflareAccountDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudflareIntegrationApi.DeleteCloudflareAccount`: %v\n", err)

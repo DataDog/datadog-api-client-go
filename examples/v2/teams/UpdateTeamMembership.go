@@ -13,10 +13,16 @@ import (
 )
 
 func main() {
+	// there is a valid "dd_team" in the system
+	DdTeamDataID := os.Getenv("DD_TEAM_DATA_ID")
+
+	// there is a valid "user" in the system
+	UserDataID := os.Getenv("USER_DATA_ID")
+
 	body := datadogV2.UserTeamUpdateRequest{
 		Data: datadogV2.UserTeamUpdate{
 			Attributes: &datadogV2.UserTeamAttributes{
-				Role: *datadogV2.NewNullableUserTeamRole(datadogV2.USERTEAMROLE_ADMIN.Ptr()),
+				Role: *datadogV2.NewNullableUserTeamRole(nil),
 			},
 			Type: datadogV2.USERTEAMTYPE_TEAM_MEMBERSHIPS,
 		},
@@ -25,7 +31,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewTeamsApi(apiClient)
-	resp, r, err := api.UpdateTeamMembership(ctx, "team_id", "user_id", body)
+	resp, r, err := api.UpdateTeamMembership(ctx, DdTeamDataID, UserDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.UpdateTeamMembership`: %v\n", err)
