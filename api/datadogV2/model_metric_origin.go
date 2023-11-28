@@ -10,11 +10,13 @@ import (
 
 // MetricOrigin Metric origin information.
 type MetricOrigin struct {
-	// The origin metric type code
+	// The origin metric type code.
 	MetricType *int32 `json:"metric_type,omitempty"`
-	// The origin product code
+	// The origin product code.
+	OriginProduct *int32 `json:"origin_product,omitempty"`
+	// The product code.
 	Product *int32 `json:"product,omitempty"`
-	// The origin service code
+	// The service code.
 	Service *int32 `json:"service,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -29,6 +31,8 @@ func NewMetricOrigin() *MetricOrigin {
 	this := MetricOrigin{}
 	var metricType int32 = 0
 	this.MetricType = &metricType
+	var originProduct int32 = 0
+	this.OriginProduct = &originProduct
 	var product int32 = 0
 	this.Product = &product
 	var service int32 = 0
@@ -43,6 +47,8 @@ func NewMetricOriginWithDefaults() *MetricOrigin {
 	this := MetricOrigin{}
 	var metricType int32 = 0
 	this.MetricType = &metricType
+	var originProduct int32 = 0
+	this.OriginProduct = &originProduct
 	var product int32 = 0
 	this.Product = &product
 	var service int32 = 0
@@ -76,6 +82,34 @@ func (o *MetricOrigin) HasMetricType() bool {
 // SetMetricType gets a reference to the given int32 and assigns it to the MetricType field.
 func (o *MetricOrigin) SetMetricType(v int32) {
 	o.MetricType = &v
+}
+
+// GetOriginProduct returns the OriginProduct field value if set, zero value otherwise.
+func (o *MetricOrigin) GetOriginProduct() int32 {
+	if o == nil || o.OriginProduct == nil {
+		var ret int32
+		return ret
+	}
+	return *o.OriginProduct
+}
+
+// GetOriginProductOk returns a tuple with the OriginProduct field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MetricOrigin) GetOriginProductOk() (*int32, bool) {
+	if o == nil || o.OriginProduct == nil {
+		return nil, false
+	}
+	return o.OriginProduct, true
+}
+
+// HasOriginProduct returns a boolean if a field has been set.
+func (o *MetricOrigin) HasOriginProduct() bool {
+	return o != nil && o.OriginProduct != nil
+}
+
+// SetOriginProduct gets a reference to the given int32 and assigns it to the OriginProduct field.
+func (o *MetricOrigin) SetOriginProduct(v int32) {
+	o.OriginProduct = &v
 }
 
 // GetProduct returns the Product field value if set, zero value otherwise.
@@ -143,6 +177,9 @@ func (o MetricOrigin) MarshalJSON() ([]byte, error) {
 	if o.MetricType != nil {
 		toSerialize["metric_type"] = o.MetricType
 	}
+	if o.OriginProduct != nil {
+		toSerialize["origin_product"] = o.OriginProduct
+	}
 	if o.Product != nil {
 		toSerialize["product"] = o.Product
 	}
@@ -159,20 +196,22 @@ func (o MetricOrigin) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricOrigin) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		MetricType *int32 `json:"metric_type,omitempty"`
-		Product    *int32 `json:"product,omitempty"`
-		Service    *int32 `json:"service,omitempty"`
+		MetricType    *int32 `json:"metric_type,omitempty"`
+		OriginProduct *int32 `json:"origin_product,omitempty"`
+		Product       *int32 `json:"product,omitempty"`
+		Service       *int32 `json:"service,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"metric_type", "product", "service"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"metric_type", "origin_product", "product", "service"})
 	} else {
 		return err
 	}
 	o.MetricType = all.MetricType
+	o.OriginProduct = all.OriginProduct
 	o.Product = all.Product
 	o.Service = all.Service
 
