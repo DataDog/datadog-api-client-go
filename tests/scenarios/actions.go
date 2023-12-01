@@ -45,6 +45,7 @@ type operationParameter struct {
 	Name   string  `json:"name"`
 	Source *string `json:"source"`
 	Value  *string `json:"value"`
+	Origin *string `json:"origin"`
 }
 
 func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp reflect.Type) reflect.Value {
