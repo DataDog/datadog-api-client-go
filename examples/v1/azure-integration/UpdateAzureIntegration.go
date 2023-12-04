@@ -24,10 +24,11 @@ func main() {
 		Errors: []string{
 			"*",
 		},
-		HostFilters:   datadog.PtrString("key:value,filter:example"),
-		NewClientId:   datadog.PtrString("new1c7f6-1234-5678-9101-3fcbf464test"),
-		NewTenantName: datadog.PtrString("new1c44-1234-5678-9101-cc00736ftest"),
-		TenantName:    datadog.PtrString("testc44-1234-5678-9101-cc00736ftest"),
+		HostFilters:               datadog.PtrString("key:value,filter:example"),
+		NewClientId:               datadog.PtrString("new1c7f6-1234-5678-9101-3fcbf464test"),
+		NewTenantName:             datadog.PtrString("new1c44-1234-5678-9101-cc00736ftest"),
+		ResourceCollectionEnabled: datadog.PtrBool(true),
+		TenantName:                datadog.PtrString("testc44-1234-5678-9101-cc00736ftest"),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
