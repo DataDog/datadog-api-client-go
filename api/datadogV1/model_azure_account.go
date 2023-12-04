@@ -22,7 +22,8 @@ type AzureAccount struct {
 	// Limit the Azure container apps that are pulled into Datadog using tags.
 	// Only container apps that match one of the defined tags are imported into Datadog.
 	ContainerAppFilters *string `json:"container_app_filters,omitempty"`
-	// Enable Cloud Security Management Misconfigurations for your organization.
+	// When enabled, Datadog’s Cloud Security Management product will scan resource configurations monitored by this app registration.
+	// Note: This requires resource_collection_enabled to be set to true.
 	CspmEnabled *bool `json:"cspm_enabled,omitempty"`
 	// Enable custom metrics for your organization.
 	CustomMetricsEnabled *bool `json:"custom_metrics_enabled,omitempty"`
@@ -35,6 +36,8 @@ type AzureAccount struct {
 	NewClientId *string `json:"new_client_id,omitempty"`
 	// Your New Azure Active Directory ID.
 	NewTenantName *string `json:"new_tenant_name,omitempty"`
+	// When enabled, Datadog collects metadata and configuration info from cloud resources (compute instances, databases, load balancers, etc.) monitored by this app registration.
+	ResourceCollectionEnabled *bool `json:"resource_collection_enabled,omitempty"`
 	// Your Azure Active Directory ID.
 	TenantName *string `json:"tenant_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -367,6 +370,34 @@ func (o *AzureAccount) SetNewTenantName(v string) {
 	o.NewTenantName = &v
 }
 
+// GetResourceCollectionEnabled returns the ResourceCollectionEnabled field value if set, zero value otherwise.
+func (o *AzureAccount) GetResourceCollectionEnabled() bool {
+	if o == nil || o.ResourceCollectionEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ResourceCollectionEnabled
+}
+
+// GetResourceCollectionEnabledOk returns a tuple with the ResourceCollectionEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AzureAccount) GetResourceCollectionEnabledOk() (*bool, bool) {
+	if o == nil || o.ResourceCollectionEnabled == nil {
+		return nil, false
+	}
+	return o.ResourceCollectionEnabled, true
+}
+
+// HasResourceCollectionEnabled returns a boolean if a field has been set.
+func (o *AzureAccount) HasResourceCollectionEnabled() bool {
+	return o != nil && o.ResourceCollectionEnabled != nil
+}
+
+// SetResourceCollectionEnabled gets a reference to the given bool and assigns it to the ResourceCollectionEnabled field.
+func (o *AzureAccount) SetResourceCollectionEnabled(v bool) {
+	o.ResourceCollectionEnabled = &v
+}
+
 // GetTenantName returns the TenantName field value if set, zero value otherwise.
 func (o *AzureAccount) GetTenantName() string {
 	if o == nil || o.TenantName == nil {
@@ -434,6 +465,9 @@ func (o AzureAccount) MarshalJSON() ([]byte, error) {
 	if o.NewTenantName != nil {
 		toSerialize["new_tenant_name"] = o.NewTenantName
 	}
+	if o.ResourceCollectionEnabled != nil {
+		toSerialize["resource_collection_enabled"] = o.ResourceCollectionEnabled
+	}
 	if o.TenantName != nil {
 		toSerialize["tenant_name"] = o.TenantName
 	}
@@ -447,25 +481,26 @@ func (o AzureAccount) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AppServicePlanFilters *string  `json:"app_service_plan_filters,omitempty"`
-		Automute              *bool    `json:"automute,omitempty"`
-		ClientId              *string  `json:"client_id,omitempty"`
-		ClientSecret          *string  `json:"client_secret,omitempty"`
-		ContainerAppFilters   *string  `json:"container_app_filters,omitempty"`
-		CspmEnabled           *bool    `json:"cspm_enabled,omitempty"`
-		CustomMetricsEnabled  *bool    `json:"custom_metrics_enabled,omitempty"`
-		Errors                []string `json:"errors,omitempty"`
-		HostFilters           *string  `json:"host_filters,omitempty"`
-		NewClientId           *string  `json:"new_client_id,omitempty"`
-		NewTenantName         *string  `json:"new_tenant_name,omitempty"`
-		TenantName            *string  `json:"tenant_name,omitempty"`
+		AppServicePlanFilters     *string  `json:"app_service_plan_filters,omitempty"`
+		Automute                  *bool    `json:"automute,omitempty"`
+		ClientId                  *string  `json:"client_id,omitempty"`
+		ClientSecret              *string  `json:"client_secret,omitempty"`
+		ContainerAppFilters       *string  `json:"container_app_filters,omitempty"`
+		CspmEnabled               *bool    `json:"cspm_enabled,omitempty"`
+		CustomMetricsEnabled      *bool    `json:"custom_metrics_enabled,omitempty"`
+		Errors                    []string `json:"errors,omitempty"`
+		HostFilters               *string  `json:"host_filters,omitempty"`
+		NewClientId               *string  `json:"new_client_id,omitempty"`
+		NewTenantName             *string  `json:"new_tenant_name,omitempty"`
+		ResourceCollectionEnabled *bool    `json:"resource_collection_enabled,omitempty"`
+		TenantName                *string  `json:"tenant_name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"app_service_plan_filters", "automute", "client_id", "client_secret", "container_app_filters", "cspm_enabled", "custom_metrics_enabled", "errors", "host_filters", "new_client_id", "new_tenant_name", "tenant_name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"app_service_plan_filters", "automute", "client_id", "client_secret", "container_app_filters", "cspm_enabled", "custom_metrics_enabled", "errors", "host_filters", "new_client_id", "new_tenant_name", "resource_collection_enabled", "tenant_name"})
 	} else {
 		return err
 	}
@@ -480,6 +515,7 @@ func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.HostFilters = all.HostFilters
 	o.NewClientId = all.NewClientId
 	o.NewTenantName = all.NewTenantName
+	o.ResourceCollectionEnabled = all.ResourceCollectionEnabled
 	o.TenantName = all.TenantName
 
 	if len(additionalProperties) > 0 {

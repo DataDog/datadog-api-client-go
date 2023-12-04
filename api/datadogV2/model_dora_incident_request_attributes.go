@@ -12,7 +12,7 @@ import (
 
 // DORAIncidentRequestAttributes Attributes to create a DORA incident event.
 type DORAIncidentRequestAttributes struct {
-	// Unix timestamp in nanoseconds when the deployment finished. It should not be older than 3 hours.
+	// Unix timestamp in nanoseconds when the incident finished. It should not be older than 3 hours.
 	FinishedAt *int64 `json:"finished_at,omitempty"`
 	// Git info for DORA Metrics events.
 	Git *DORAGitInfo `json:"git,omitempty"`
@@ -24,7 +24,7 @@ type DORAIncidentRequestAttributes struct {
 	Service string `json:"service"`
 	// Incident severity.
 	Severity *string `json:"severity,omitempty"`
-	// Unix timestamp in nanoseconds when the deployment started.
+	// Unix timestamp in nanoseconds when the incident started.
 	StartedAt int64 `json:"started_at"`
 	// Version to correlate with [APM Deployment Tracking](https://docs.datadoghq.com/tracing/services/deployment_tracking/).
 	Version *string `json:"version,omitempty"`
