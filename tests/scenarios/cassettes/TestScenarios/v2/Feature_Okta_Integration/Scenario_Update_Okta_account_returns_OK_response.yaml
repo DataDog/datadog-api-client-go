@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"auth_method":"oauth","client_id":"fakeclientid","client_secret":"fakeclientsecret","domain":"https://dev-test.okta.com/","name":"testupdateoktaaccountreturnsokresponse1700585987"},"type":"okta-accounts"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/integrations/okta/accounts
+  response:
+    body: '{"data":{"type":"okta-accounts","attributes":{"domain":"https://dev-test.okta.com/","auth_method":"oauth","client_id":"fakeclientid","name":"testupdateoktaaccountreturnsokresponse1700585987"},"id":"c847a349-9687-4b80-8b0f-996e0e75f73e"}}
+
+      '
+    code: 201
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"auth_method":"oauth","client_id":"client_id","client_secret":"client_secret","domain":"https://example.okta.com/"},"type":"okta-accounts"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/integrations/okta/accounts/c847a349-9687-4b80-8b0f-996e0e75f73e
+  response:
+    body: '{"data":{"type":"okta-accounts","id":"7343985f-6e86-4327-8792-538b4c9b38e9","attributes":{"auth_method":"oauth","client_id":"client_id","domain":"https://example.okta.com/","name":"testupdateoktaaccountreturnsokresponse1700585987"}}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/integrations/okta/accounts/c847a349-9687-4b80-8b0f-996e0e75f73e
+  response:
+    body: '{"errors":["Unknown error occurred: "]}'
+    code: 400
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 1

@@ -1,0 +1,57 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"auth_method":"oauth","client_id":"fakeclientid","client_secret":"fakeclientsecret","domain":"https://dev-test.okta.com/","name":"testlistoktaaccountsreturnsokresponse1700585986"},"type":"okta-accounts"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/integrations/okta/accounts
+  response:
+    body: '{"data":{"type":"okta-accounts","attributes":{"client_id":"fakeclientid","name":"testlistoktaaccountsreturnsokresponse1700585986","auth_method":"oauth","domain":"https://dev-test.okta.com/"},"id":"a5e9a04b-ac5b-4a5c-a4d5-c697deb232aa"}}
+
+      '
+    code: 201
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: GET
+    url: https://api.datadoghq.com/api/v2/integrations/okta/accounts
+  response:
+    body: '{"data":[{"type":"okta-accounts","attributes":{"name":"testoktapublicupdateaccountreturnsokresponse1699978854","auth_method":"oauth","domain":"https://example.okta.com/","client_id":"client_id"},"id":"9637ddf0-4f5e-4adb-89b0-72b7c843116f"},{"type":"okta-accounts","attributes":{"name":"testoktapublicupdateaccountreturnsokresponse1699978979","auth_method":"oauth","domain":"https://example.okta.com/","client_id":"client_id"},"id":"199e06bf-6805-403c-8b97-34c10f526485"},{"type":"okta-accounts","attributes":{"name":"testoktapublicupdateaccountreturnsokresponse1699989540","auth_method":"oauth","domain":"https://example.okta.com/","client_id":"client_id"},"id":"2770caff-0eb2-4edf-b3dd-63b42d706c79"},{"type":"okta-accounts","attributes":{"name":"testoktapublicupdateaccountreturnsokresponse1699990165","auth_method":"oauth","domain":"https://example.okta.com/","client_id":"client_id"},"id":"ee163be4-1a6d-466e-ba9d-539e5c505645"},{"type":"okta-accounts","attributes":{"name":"testupdateoktaaccountreturnsokresponse1700585947","auth_method":"oauth","domain":"https://example.okta.com/","client_id":"client_id"},"id":"474f2d62-fb47-40fc-a201-f0c59c90d3e3"},{"type":"okta-accounts","attributes":{"name":"testlistoktaaccountsreturnsokresponse1700585986","auth_method":"oauth","domain":"https://dev-test.okta.com/","client_id":"fakeclientid"},"id":"a5e9a04b-ac5b-4a5c-a4d5-c697deb232aa"}]}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/integrations/okta/accounts/a5e9a04b-ac5b-4a5c-a4d5-c697deb232aa
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+    status: 204 No Content
+version: 1
