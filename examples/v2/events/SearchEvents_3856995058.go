@@ -28,7 +28,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.SearchEvents", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewEventsApi(apiClient)
 	resp, _ := api.SearchEventsWithPagination(ctx, *datadogV2.NewSearchEventsOptionalParameters().WithBody(body))

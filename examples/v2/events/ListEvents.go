@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListEvents", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewEventsApi(apiClient)
 	resp, r, err := api.ListEvents(ctx, *datadogV2.NewListEventsOptionalParameters())
