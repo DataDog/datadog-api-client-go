@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListEvents", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewEventsApi(apiClient)
 	resp, r, err := api.ListEvents(ctx, *datadogV2.NewListEventsOptionalParameters().WithFilterQuery("datadog-agent").WithFilterFrom("2020-09-17T11:48:36+01:00").WithFilterTo("2020-09-17T12:48:36+01:00").WithPageLimit(5))
