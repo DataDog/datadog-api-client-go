@@ -10,6 +10,8 @@ import (
 
 // Pagination Pagination object.
 type Pagination struct {
+	// The maximum element count allowed per page.
+	MaxPageSize *int64 `json:"max_page_size,omitempty"`
 	// Total count.
 	TotalCount *int64 `json:"total_count,omitempty"`
 	// Total count of elements matched by the filter.
@@ -34,6 +36,34 @@ func NewPagination() *Pagination {
 func NewPaginationWithDefaults() *Pagination {
 	this := Pagination{}
 	return &this
+}
+
+// GetMaxPageSize returns the MaxPageSize field value if set, zero value otherwise.
+func (o *Pagination) GetMaxPageSize() int64 {
+	if o == nil || o.MaxPageSize == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MaxPageSize
+}
+
+// GetMaxPageSizeOk returns a tuple with the MaxPageSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Pagination) GetMaxPageSizeOk() (*int64, bool) {
+	if o == nil || o.MaxPageSize == nil {
+		return nil, false
+	}
+	return o.MaxPageSize, true
+}
+
+// HasMaxPageSize returns a boolean if a field has been set.
+func (o *Pagination) HasMaxPageSize() bool {
+	return o != nil && o.MaxPageSize != nil
+}
+
+// SetMaxPageSize gets a reference to the given int64 and assigns it to the MaxPageSize field.
+func (o *Pagination) SetMaxPageSize(v int64) {
+	o.MaxPageSize = &v
 }
 
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
@@ -98,6 +128,9 @@ func (o Pagination) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.MaxPageSize != nil {
+		toSerialize["max_page_size"] = o.MaxPageSize
+	}
 	if o.TotalCount != nil {
 		toSerialize["total_count"] = o.TotalCount
 	}
@@ -114,6 +147,7 @@ func (o Pagination) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Pagination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		MaxPageSize        *int64 `json:"max_page_size,omitempty"`
 		TotalCount         *int64 `json:"total_count,omitempty"`
 		TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
 	}{}
@@ -122,10 +156,11 @@ func (o *Pagination) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"total_count", "total_filtered_count"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"max_page_size", "total_count", "total_filtered_count"})
 	} else {
 		return err
 	}
+	o.MaxPageSize = all.MaxPageSize
 	o.TotalCount = all.TotalCount
 	o.TotalFilteredCount = all.TotalFilteredCount
 
