@@ -22,7 +22,7 @@ type AzureAccount struct {
 	// Limit the Azure container apps that are pulled into Datadog using tags.
 	// Only container apps that match one of the defined tags are imported into Datadog.
 	ContainerAppFilters *string `json:"container_app_filters,omitempty"`
-	// When enabled, Datadog’s Cloud Security Management product will scan resource configurations monitored by this app registration.
+	// When enabled, Datadog’s Cloud Security Management product scans resource configurations monitored by this app registration.
 	// Note: This requires resource_collection_enabled to be set to true.
 	CspmEnabled *bool `json:"cspm_enabled,omitempty"`
 	// Enable custom metrics for your organization.
