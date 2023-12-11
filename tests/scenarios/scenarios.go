@@ -33,14 +33,8 @@ var templateFunctions = map[string]func(map[string]interface{}, string) string{
 }
 
 func generateUuid() func(map[string]interface{}, string) string {
-	return func(data map[string]interface{}, arg string) string {
-		arg = "10"
-		arg_time, err := strconv.Atoi(arg)
-		if err != nil {
-			fmt.Println("Error: ", err)
-			return "Wrong param format"
-		}
-		timeString := strconv.FormatInt(data["now"].(time.Time).Unix(), arg_time)
+	return func(data map[string]interface{}, _ string) string {
+		timeString := strconv.FormatInt(data["now"].(time.Time).Unix(), 10)
 		return timeString[:8] + "-0000-0000-0000-" + timeString + "00"
 	}
 }
