@@ -16,10 +16,10 @@ Feature: Azure Integration
     When the request is sent
     Then the response status is 400 Bad Request
 
-  @generated @skip @team:DataDog/azure-integrations
+  @team:DataDog/azure-integrations
   Scenario: Create an Azure integration returns "OK" response
     Given new "CreateAzureIntegration" request
-    And body with value {"app_service_plan_filters": "key:value,filter:example", "automute": true, "client_id": "testc7f6-1234-5678-9101-3fcbf464test", "client_secret": "testingx./Sw*g/Y33t..R1cH+hScMDt", "container_app_filters": "key:value,filter:example", "cspm_enabled": true, "custom_metrics_enabled": true, "errors": ["*"], "host_filters": "key:value,filter:example", "new_client_id": "new1c7f6-1234-5678-9101-3fcbf464test", "new_tenant_name": "new1c44-1234-5678-9101-cc00736ftest", "resource_collection_enabled": true, "tenant_name": "testc44-1234-5678-9101-cc00736ftest"}
+    And body with value {"app_service_plan_filters": "key:value,filter:example", "automute": true, "client_id": "{{ unique_id() }}", "client_secret": "testingx./Sw*g/Y33t..R1cH+hScMDt", "container_app_filters": "key:value,filter:example", "cspm_enabled": true, "custom_metrics_enabled": true, "errors": ["*"], "host_filters": "key:value,filter:example", "new_client_id": "{{ unique_id() }}", "new_tenant_name": "{{ unique_id() }}", "resource_collection_enabled": true, "tenant_name": "{{ unique_id() }}"}
     When the request is sent
     Then the response status is 200 OK
 
