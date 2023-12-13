@@ -36,6 +36,7 @@ func main() {
 					"sensitive_data:true",
 				},
 				IsEnabled: datadog.PtrBool(true),
+				Priority:  datadog.PtrInt64(1),
 			},
 			Relationships: datadogV2.SensitiveDataScannerRuleRelationships{
 				Group: &datadogV2.SensitiveDataScannerGroupData{
