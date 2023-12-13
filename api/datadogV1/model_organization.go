@@ -17,7 +17,7 @@ type Organization struct {
 	Created *string `json:"created,omitempty"`
 	// Description of the organization.
 	Description *string `json:"description,omitempty"`
-	// The name of the new child-organization, limited to 32 characters.
+	// The name of the child organization, limited to 32 characters.
 	Name *string `json:"name,omitempty"`
 	// The `public_id` of the organization you are operating within.
 	PublicId *string `json:"public_id,omitempty"`
