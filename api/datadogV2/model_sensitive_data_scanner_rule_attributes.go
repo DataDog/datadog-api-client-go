@@ -23,6 +23,8 @@ type SensitiveDataScannerRuleAttributes struct {
 	Namespaces []string `json:"namespaces,omitempty"`
 	// Not included if there is a relationship to a standard pattern.
 	Pattern *string `json:"pattern,omitempty"`
+	// Integer from 1 (high) to 5 (low) indicating rule issue severity.
+	Priority *int64 `json:"priority,omitempty"`
 	// List of tags.
 	Tags []string `json:"tags,omitempty"`
 	// Object describing how the scanned event will be replaced.
@@ -217,6 +219,34 @@ func (o *SensitiveDataScannerRuleAttributes) SetPattern(v string) {
 	o.Pattern = &v
 }
 
+// GetPriority returns the Priority field value if set, zero value otherwise.
+func (o *SensitiveDataScannerRuleAttributes) GetPriority() int64 {
+	if o == nil || o.Priority == nil {
+		var ret int64
+		return ret
+	}
+	return *o.Priority
+}
+
+// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SensitiveDataScannerRuleAttributes) GetPriorityOk() (*int64, bool) {
+	if o == nil || o.Priority == nil {
+		return nil, false
+	}
+	return o.Priority, true
+}
+
+// HasPriority returns a boolean if a field has been set.
+func (o *SensitiveDataScannerRuleAttributes) HasPriority() bool {
+	return o != nil && o.Priority != nil
+}
+
+// SetPriority gets a reference to the given int64 and assigns it to the Priority field.
+func (o *SensitiveDataScannerRuleAttributes) SetPriority(v int64) {
+	o.Priority = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -297,6 +327,9 @@ func (o SensitiveDataScannerRuleAttributes) MarshalJSON() ([]byte, error) {
 	if o.Pattern != nil {
 		toSerialize["pattern"] = o.Pattern
 	}
+	if o.Priority != nil {
+		toSerialize["priority"] = o.Priority
+	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
@@ -319,6 +352,7 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 		Name               *string                              `json:"name,omitempty"`
 		Namespaces         []string                             `json:"namespaces,omitempty"`
 		Pattern            *string                              `json:"pattern,omitempty"`
+		Priority           *int64                               `json:"priority,omitempty"`
 		Tags               []string                             `json:"tags,omitempty"`
 		TextReplacement    *SensitiveDataScannerTextReplacement `json:"text_replacement,omitempty"`
 	}{}
@@ -327,7 +361,7 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "excluded_namespaces", "is_enabled", "name", "namespaces", "pattern", "tags", "text_replacement"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "excluded_namespaces", "is_enabled", "name", "namespaces", "pattern", "priority", "tags", "text_replacement"})
 	} else {
 		return err
 	}
@@ -339,6 +373,7 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.Name = all.Name
 	o.Namespaces = all.Namespaces
 	o.Pattern = all.Pattern
+	o.Priority = all.Priority
 	o.Tags = all.Tags
 	if all.TextReplacement != nil && all.TextReplacement.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
