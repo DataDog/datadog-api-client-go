@@ -29,14 +29,11 @@ import (
 var templateFunctions = map[string]func(map[string]interface{}, string) string{
 	"timeISO":   relativeTime(true),
 	"timestamp": relativeTime(false),
-	"unique_id": generateUuid(),
 }
 
-func generateUuid() func(map[string]interface{}, string) string {
-	return func(data map[string]interface{}, _ string) string {
-		timeString := strconv.FormatInt(data["now"].(time.Time).Unix(), 10)
-		return timeString[:8] + "-0000-0000-0000-" + timeString + "00"
-	}
+func generateUuid(uniqueTime time.Time) string {
+	timeString := strconv.FormatInt(uniqueTime.Unix(), 10)
+	return timeString[:8] + "-0000-0000-0000-" + timeString + "00"
 }
 
 func relativeTime(iso bool) func(map[string]interface{}, string) string {
@@ -270,6 +267,7 @@ func SetFixtureData(ctx gobdd.Context) {
 	data["unique_upper_alnum"] = strings.ToUpper(data["unique_alnum"].(string))
 	data["unique_hash"] = hash[:16]
 	data["now"] = tests.ClockFromContext(cctx).Now()
+	data["uuid"] = generateUuid(tests.ClockFromContext(cctx).Now())
 }
 
 // SetClient sets client reflection.
