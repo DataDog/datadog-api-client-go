@@ -18,6 +18,8 @@ type SensitiveDataScannerStandardPatternAttributes struct {
 	Name *string `json:"name,omitempty"`
 	// Regex to match.
 	Pattern *string `json:"pattern,omitempty"`
+	// Integer from 1 (high) to 5 (low) indicating standard pattern issue severity.
+	Priority *int64 `json:"priority,omitempty"`
 	// List of tags.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -154,6 +156,34 @@ func (o *SensitiveDataScannerStandardPatternAttributes) SetPattern(v string) {
 	o.Pattern = &v
 }
 
+// GetPriority returns the Priority field value if set, zero value otherwise.
+func (o *SensitiveDataScannerStandardPatternAttributes) GetPriority() int64 {
+	if o == nil || o.Priority == nil {
+		var ret int64
+		return ret
+	}
+	return *o.Priority
+}
+
+// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SensitiveDataScannerStandardPatternAttributes) GetPriorityOk() (*int64, bool) {
+	if o == nil || o.Priority == nil {
+		return nil, false
+	}
+	return o.Priority, true
+}
+
+// HasPriority returns a boolean if a field has been set.
+func (o *SensitiveDataScannerStandardPatternAttributes) HasPriority() bool {
+	return o != nil && o.Priority != nil
+}
+
+// SetPriority gets a reference to the given int64 and assigns it to the Priority field.
+func (o *SensitiveDataScannerStandardPatternAttributes) SetPriority(v int64) {
+	o.Priority = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SensitiveDataScannerStandardPatternAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -200,6 +230,9 @@ func (o SensitiveDataScannerStandardPatternAttributes) MarshalJSON() ([]byte, er
 	if o.Pattern != nil {
 		toSerialize["pattern"] = o.Pattern
 	}
+	if o.Priority != nil {
+		toSerialize["priority"] = o.Priority
+	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
@@ -217,6 +250,7 @@ func (o *SensitiveDataScannerStandardPatternAttributes) UnmarshalJSON(bytes []by
 		IncludedKeywords []string `json:"included_keywords,omitempty"`
 		Name             *string  `json:"name,omitempty"`
 		Pattern          *string  `json:"pattern,omitempty"`
+		Priority         *int64   `json:"priority,omitempty"`
 		Tags             []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -224,7 +258,7 @@ func (o *SensitiveDataScannerStandardPatternAttributes) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "included_keywords", "name", "pattern", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "included_keywords", "name", "pattern", "priority", "tags"})
 	} else {
 		return err
 	}
@@ -232,6 +266,7 @@ func (o *SensitiveDataScannerStandardPatternAttributes) UnmarshalJSON(bytes []by
 	o.IncludedKeywords = all.IncludedKeywords
 	o.Name = all.Name
 	o.Pattern = all.Pattern
+	o.Priority = all.Priority
 	o.Tags = all.Tags
 
 	if len(additionalProperties) > 0 {
