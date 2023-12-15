@@ -1,87 +1,44 @@
----
-version: 1
 interactions:
 - request:
     body: |
-      {"app_service_plan_filters":"key:value,filter:example","automute":true,"client_id":"17023112-0000-0000-0000-170231127500","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","container_app_filters":"key:value,filter:example","cspm_enabled":true,"custom_metrics_enabled":true,"errors":["*"],"host_filters":"key:value,filter:example","new_client_id":"17023112-0000-0000-0000-170231127500","new_tenant_name":"17023112-0000-0000-0000-170231127500","resource_collection_enabled":true,"tenant_name":"17023112-0000-0000-0000-170231127500"}
+      {"app_service_plan_filters":"key:value,filter:example","automute":true,"client_id":"17020496-0000-0000-0000-170204968300","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","container_app_filters":"key:value,filter:example","cspm_enabled":true,"custom_metrics_enabled":true,"errors":["*"],"host_filters":"key:value,filter:example","new_client_id":"17020496-0000-0000-0000-170204968300","new_tenant_name":"17020496-0000-0000-0000-170204968300","resource_collection_enabled":true,"tenant_name":"17020496-0000-0000-0000-170204968300"}
     form: {}
     headers:
       Accept:
       - application/json
-      Content-Length:
-      - "532"
       Content-Type:
       - application/json
-      User-Agent:
-      - datadog-api-client-go/2.19.1+dev (go go1.20; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "4902539297831811981"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "8634639557815053625"
-    url: https://api.datadoghq.com/api/v1/integration/azure
     method: POST
+    url: https://api.datadoghq.com/api/v1/integration/azure
   response:
-    body: |
-      {}
+    body: '{}
+
+      '
+    code: 200
+    duration: ''
     headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "3"
       Content-Type:
       - application/json
-      Date:
-      - Mon, 11 Dec 2023 16:14:33 GMT
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
-    code: 200
-    duration: ""
 - request:
     body: |
-      {"app_service_plan_filters":"key:value,filter:example","automute":true,"client_id":"17023112-0000-0000-0000-170231127500","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","container_app_filters":"key:value,filter:example","cspm_enabled":true,"custom_metrics_enabled":true,"errors":["*"],"host_filters":"key:value,filter:example","new_client_id":"17023112-0000-0000-0000-170231127500","new_tenant_name":"17023112-0000-0000-0000-170231127500","resource_collection_enabled":true,"tenant_name":"17023112-0000-0000-0000-170231127500"}
+      {"app_service_plan_filters":"key:value,filter:example","automute":true,"client_id":"17020496-0000-0000-0000-170204968300","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","container_app_filters":"key:value,filter:example","cspm_enabled":true,"custom_metrics_enabled":true,"errors":["*"],"host_filters":"key:value,filter:example","new_client_id":"17020496-0000-0000-0000-170204968300","new_tenant_name":"17020496-0000-0000-0000-170204968300","resource_collection_enabled":true,"tenant_name":"17020496-0000-0000-0000-170204968300"}
     form: {}
     headers:
       Accept:
       - application/json
-      Content-Length:
-      - "532"
       Content-Type:
       - application/json
-      User-Agent:
-      - datadog-api-client-go/2.19.1+dev (go go1.20; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6523507861826761131"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "8634639557815053625"
-    url: https://api.datadoghq.com/api/v1/integration/azure
     method: DELETE
+    url: https://api.datadoghq.com/api/v1/integration/azure
   response:
-    body: |
-      {}
+    body: '{}
+
+      '
+    code: 200
+    duration: ''
     headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "3"
       Content-Type:
       - application/json
-      Date:
-      - Mon, 11 Dec 2023 16:14:33 GMT
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
-    code: 200
-    duration: ""
+version: 1
