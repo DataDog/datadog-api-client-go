@@ -16,7 +16,7 @@ func main() {
 	body := datadogV1.AzureAccount{
 		AppServicePlanFilters: datadog.PtrString("key:value,filter:example"),
 		Automute:              datadog.PtrBool(true),
-		ClientId:              datadog.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
+		ClientId:              datadog.PtrString("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"),
 		ClientSecret:          datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
 		ContainerAppFilters:   datadog.PtrString("key:value,filter:example"),
 		CspmEnabled:           datadog.PtrBool(true),
@@ -25,10 +25,10 @@ func main() {
 			"*",
 		},
 		HostFilters:               datadog.PtrString("key:value,filter:example"),
-		NewClientId:               datadog.PtrString("new1c7f6-1234-5678-9101-3fcbf464test"),
-		NewTenantName:             datadog.PtrString("new1c44-1234-5678-9101-cc00736ftest"),
+		NewClientId:               datadog.PtrString("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"),
+		NewTenantName:             datadog.PtrString("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"),
 		ResourceCollectionEnabled: datadog.PtrBool(true),
-		TenantName:                datadog.PtrString("testc44-1234-5678-9101-cc00736ftest"),
+		TenantName:                datadog.PtrString("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
