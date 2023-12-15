@@ -31,6 +31,11 @@ var templateFunctions = map[string]func(map[string]interface{}, string) string{
 	"timestamp": relativeTime(false),
 }
 
+func generateUuid(uniqueTime time.Time) string {
+	timeString := strconv.FormatInt(uniqueTime.Unix(), 10)
+	return timeString[:8] + "-0000-0000-0000-" + timeString + "00"
+}
+
 func relativeTime(iso bool) func(map[string]interface{}, string) string {
 	timeRE := regexp.MustCompile(`now( *([+-]) *(\d+)([smhdMy]))?`)
 	unitToDur := map[string]time.Duration{
@@ -262,6 +267,7 @@ func SetFixtureData(ctx gobdd.Context) {
 	data["unique_upper_alnum"] = strings.ToUpper(data["unique_alnum"].(string))
 	data["unique_hash"] = hash[:16]
 	data["now"] = tests.ClockFromContext(cctx).Now()
+	data["uuid"] = generateUuid(tests.ClockFromContext(cctx).Now())
 }
 
 // SetClient sets client reflection.
