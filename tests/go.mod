@@ -6,12 +6,12 @@ require (
 	github.com/DataDog/datadog-api-client-go/v2 v2.14.0
 	github.com/DataDog/dd-sdk-go-testing v0.0.3
 	github.com/cucumber/messages-go/v12 v12.0.0
-	github.com/dnaeon/go-vcr v1.2.0
 	github.com/go-bdd/gobdd v1.1.4-0.20211209204431-ca566a78d075
 	github.com/jonboulle/clockwork v0.1.0
 	github.com/stretchr/testify v1.7.0
 	golang.org/x/net v0.17.0
 	gopkg.in/DataDog/dd-trace-go.v1 v1.33.0
+	gopkg.in/dnaeon/go-vcr.v3 v3.1.2
 	gopkg.in/h2non/gock.v1 v1.0.15
 	gotest.tools v2.2.0+incompatible
 )
@@ -43,8 +43,7 @@ require (
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
-	gopkg.in/yaml.v2 v2.2.8 // indirect
-	gopkg.in/yaml.v3 v3.0.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
 replace github.com/DataDog/datadog-api-client-go/v2 => ../
