@@ -10,15 +10,16 @@ import (
 
 // SplitGraphSourceWidgetDefinition - The original widget we are splitting on.
 type SplitGraphSourceWidgetDefinition struct {
-	ChangeWidgetDefinition      *ChangeWidgetDefinition
-	GeomapWidgetDefinition      *GeomapWidgetDefinition
-	QueryValueWidgetDefinition  *QueryValueWidgetDefinition
-	ScatterPlotWidgetDefinition *ScatterPlotWidgetDefinition
-	SunburstWidgetDefinition    *SunburstWidgetDefinition
-	TableWidgetDefinition       *TableWidgetDefinition
-	TimeseriesWidgetDefinition  *TimeseriesWidgetDefinition
-	ToplistWidgetDefinition     *ToplistWidgetDefinition
-	TreeMapWidgetDefinition     *TreeMapWidgetDefinition
+	ChangeWidgetDefinition       *ChangeWidgetDefinition
+	DistributionWidgetDefinition *DistributionWidgetDefinition
+	GeomapWidgetDefinition       *GeomapWidgetDefinition
+	QueryValueWidgetDefinition   *QueryValueWidgetDefinition
+	ScatterPlotWidgetDefinition  *ScatterPlotWidgetDefinition
+	SunburstWidgetDefinition     *SunburstWidgetDefinition
+	TableWidgetDefinition        *TableWidgetDefinition
+	TimeseriesWidgetDefinition   *TimeseriesWidgetDefinition
+	ToplistWidgetDefinition      *ToplistWidgetDefinition
+	TreeMapWidgetDefinition      *TreeMapWidgetDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -27,6 +28,11 @@ type SplitGraphSourceWidgetDefinition struct {
 // ChangeWidgetDefinitionAsSplitGraphSourceWidgetDefinition is a convenience function that returns ChangeWidgetDefinition wrapped in SplitGraphSourceWidgetDefinition.
 func ChangeWidgetDefinitionAsSplitGraphSourceWidgetDefinition(v *ChangeWidgetDefinition) SplitGraphSourceWidgetDefinition {
 	return SplitGraphSourceWidgetDefinition{ChangeWidgetDefinition: v}
+}
+
+// DistributionWidgetDefinitionAsSplitGraphSourceWidgetDefinition is a convenience function that returns DistributionWidgetDefinition wrapped in SplitGraphSourceWidgetDefinition.
+func DistributionWidgetDefinitionAsSplitGraphSourceWidgetDefinition(v *DistributionWidgetDefinition) SplitGraphSourceWidgetDefinition {
+	return SplitGraphSourceWidgetDefinition{DistributionWidgetDefinition: v}
 }
 
 // GeomapWidgetDefinitionAsSplitGraphSourceWidgetDefinition is a convenience function that returns GeomapWidgetDefinition wrapped in SplitGraphSourceWidgetDefinition.
@@ -88,6 +94,23 @@ func (obj *SplitGraphSourceWidgetDefinition) UnmarshalJSON(data []byte) error {
 		}
 	} else {
 		obj.ChangeWidgetDefinition = nil
+	}
+
+	// try to unmarshal data into DistributionWidgetDefinition
+	err = datadog.Unmarshal(data, &obj.DistributionWidgetDefinition)
+	if err == nil {
+		if obj.DistributionWidgetDefinition != nil && obj.DistributionWidgetDefinition.UnparsedObject == nil {
+			jsonDistributionWidgetDefinition, _ := datadog.Marshal(obj.DistributionWidgetDefinition)
+			if string(jsonDistributionWidgetDefinition) == "{}" { // empty struct
+				obj.DistributionWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.DistributionWidgetDefinition = nil
+		}
+	} else {
+		obj.DistributionWidgetDefinition = nil
 	}
 
 	// try to unmarshal data into GeomapWidgetDefinition
@@ -229,6 +252,7 @@ func (obj *SplitGraphSourceWidgetDefinition) UnmarshalJSON(data []byte) error {
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.ChangeWidgetDefinition = nil
+		obj.DistributionWidgetDefinition = nil
 		obj.GeomapWidgetDefinition = nil
 		obj.QueryValueWidgetDefinition = nil
 		obj.ScatterPlotWidgetDefinition = nil
@@ -246,6 +270,10 @@ func (obj *SplitGraphSourceWidgetDefinition) UnmarshalJSON(data []byte) error {
 func (obj SplitGraphSourceWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if obj.ChangeWidgetDefinition != nil {
 		return datadog.Marshal(&obj.ChangeWidgetDefinition)
+	}
+
+	if obj.DistributionWidgetDefinition != nil {
+		return datadog.Marshal(&obj.DistributionWidgetDefinition)
 	}
 
 	if obj.GeomapWidgetDefinition != nil {
@@ -290,6 +318,10 @@ func (obj SplitGraphSourceWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (obj *SplitGraphSourceWidgetDefinition) GetActualInstance() interface{} {
 	if obj.ChangeWidgetDefinition != nil {
 		return obj.ChangeWidgetDefinition
+	}
+
+	if obj.DistributionWidgetDefinition != nil {
+		return obj.DistributionWidgetDefinition
 	}
 
 	if obj.GeomapWidgetDefinition != nil {
