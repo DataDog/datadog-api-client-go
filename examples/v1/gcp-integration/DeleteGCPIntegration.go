@@ -14,23 +14,9 @@ import (
 
 func main() {
 	body := datadogV1.GCPAccount{
-		AuthProviderX509CertUrl: datadog.PtrString("https://www.googleapis.com/oauth2/v1/certs"),
-		AuthUri:                 datadog.PtrString("https://accounts.google.com/o/oauth2/auth"),
-		ClientEmail:             datadog.PtrString("api-dev@datadog-sandbox.iam.gserviceaccount.com"),
-		ClientId:                datadog.PtrString("123456712345671234567"),
-		ClientX509CertUrl:       datadog.PtrString("https://www.googleapis.com/robot/v1/metadata/x509/$CLIENT_EMAIL"),
-		Errors: []string{
-			"*",
-		},
-		HostFilters:                    datadog.PtrString("key:value,filter:example"),
-		IsCspmEnabled:                  datadog.PtrBool(true),
-		IsSecurityCommandCenterEnabled: datadog.PtrBool(true),
-		PrivateKey:                     datadog.PtrString("private_key"),
-		PrivateKeyId:                   datadog.PtrString("123456789abcdefghi123456789abcdefghijklm"),
-		ProjectId:                      datadog.PtrString("datadog-apitest"),
-		ResourceCollectionEnabled:      datadog.PtrBool(true),
-		TokenUri:                       datadog.PtrString("https://accounts.google.com/o/oauth2/token"),
-		Type:                           datadog.PtrString("service_account"),
+		ClientEmail: datadog.PtrString("252bf553ef04b351@example.com"),
+		ClientId:    datadog.PtrString("163662907116366290710"),
+		ProjectId:   datadog.PtrString("datadog-apitest"),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
