@@ -6,9 +6,9 @@ package datadogV2
 
 import (
 	_context "context"
+	_io "io"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"os"
 	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -155,11 +155,11 @@ func (a *CloudWorkloadSecurityApi) DeleteCloudWorkloadSecurityAgentRule(ctx _con
 // The download endpoint generates a Cloud Workload Security policy file from your currently active
 // Cloud Workload Security rules, and downloads them as a .policy file. This file can then be deployed to
 // your Agents to update the policy running in your environment.
-func (a *CloudWorkloadSecurityApi) DownloadCloudWorkloadPolicyFile(ctx _context.Context) (*os.File, *_nethttp.Response, error) {
+func (a *CloudWorkloadSecurityApi) DownloadCloudWorkloadPolicyFile(ctx _context.Context) (_io.Reader, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue *os.File
+		localVarReturnValue _io.Reader
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.DownloadCloudWorkloadPolicyFile")

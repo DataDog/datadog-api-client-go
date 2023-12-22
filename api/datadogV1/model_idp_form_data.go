@@ -6,7 +6,7 @@ package datadogV1
 
 import (
 	"fmt"
-	"os"
+	_io "io"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -14,7 +14,7 @@ import (
 // IdpFormData Object describing the IdP configuration.
 type IdpFormData struct {
 	// The path to the XML metadata file you wish to upload.
-	IdpFile *os.File `json:"idp_file"`
+	IdpFile _io.Reader `json:"idp_file"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -24,7 +24,7 @@ type IdpFormData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIdpFormData(idpFile *os.File) *IdpFormData {
+func NewIdpFormData(idpFile _io.Reader) *IdpFormData {
 	this := IdpFormData{}
 	this.IdpFile = idpFile
 	return &this
@@ -39,9 +39,9 @@ func NewIdpFormDataWithDefaults() *IdpFormData {
 }
 
 // GetIdpFile returns the IdpFile field value.
-func (o *IdpFormData) GetIdpFile() *os.File {
+func (o *IdpFormData) GetIdpFile() _io.Reader {
 	if o == nil {
-		var ret *os.File
+		var ret _io.Reader
 		return ret
 	}
 	return o.IdpFile
@@ -49,7 +49,7 @@ func (o *IdpFormData) GetIdpFile() *os.File {
 
 // GetIdpFileOk returns a tuple with the IdpFile field value
 // and a boolean to check if the value has been set.
-func (o *IdpFormData) GetIdpFileOk() (**os.File, bool) {
+func (o *IdpFormData) GetIdpFileOk() (*_io.Reader, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -57,7 +57,7 @@ func (o *IdpFormData) GetIdpFileOk() (**os.File, bool) {
 }
 
 // SetIdpFile sets field value.
-func (o *IdpFormData) SetIdpFile(v *os.File) {
+func (o *IdpFormData) SetIdpFile(v _io.Reader) {
 	o.IdpFile = v
 }
 
@@ -78,7 +78,7 @@ func (o IdpFormData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IdpFormData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IdpFile **os.File `json:"idp_file"`
+		IdpFile *_io.Reader `json:"idp_file"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

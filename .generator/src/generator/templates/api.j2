@@ -221,8 +221,6 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	if localVarFile != nil {
 		fbs, _ := _io.ReadAll(localVarFile)
 		formFile.FileBytes = fbs
-		formFile.FileName = localVarFile.Name()
-		localVarFile.Close()
 	}
 	{%- endif %}
 
