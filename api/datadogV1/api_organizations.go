@@ -9,7 +9,6 @@ import (
 	_io "io"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"os"
 	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -393,7 +392,7 @@ func (a *OrganizationsApi) UpdateOrg(ctx _context.Context, publicId string, body
 // * **Multipart Form-Data**: Post the IdP metadata file using a form post.
 //
 // * **XML Body:** Post the IdP metadata file as the body of the request.
-func (a *OrganizationsApi) UploadIdPForOrg(ctx _context.Context, publicId string, idpFile *os.File) (IdpResponse, *_nethttp.Response, error) {
+func (a *OrganizationsApi) UploadIdPForOrg(ctx _context.Context, publicId string, idpFile _io.Reader) (IdpResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -420,8 +419,6 @@ func (a *OrganizationsApi) UploadIdPForOrg(ctx _context.Context, publicId string
 	if localVarFile != nil {
 		fbs, _ := _io.ReadAll(localVarFile)
 		formFile.FileBytes = fbs
-		formFile.FileName = localVarFile.Name()
-		localVarFile.Close()
 	}
 	datadog.SetAuthKeys(
 		ctx,

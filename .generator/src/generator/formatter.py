@@ -153,7 +153,7 @@ def simple_type(schema, render_nullable=False, render_new=False):
             "date": "time.Time" if not nullable else f"{nullable_prefix}Time",
             "date-time": "time.Time" if not nullable else f"{nullable_prefix}Time",
             "email": "string" if not nullable else f"{nullable_prefix}String",
-            "binary": "*os.File",
+            "binary": "_io.Reader",
             "uuid": "uuid.UUID" if not nullable else f"{nullable_prefix}String",
             None: "string" if not nullable else f"{nullable_prefix}String",
         }[type_format]
@@ -454,7 +454,7 @@ def format_data_with_schema(
                 return f'uuid.MustParse("{x}")'
 
             def open_file(x):
-                return f"func() *os.File {{ fp, _ := os.Open({format_string(x)}); return fp }}()"
+                return f"func() io.Reader {{ fp, _ := os.Open({format_string(x)}); return fp }}()"
 
             formatter = {
                 "int32": str,

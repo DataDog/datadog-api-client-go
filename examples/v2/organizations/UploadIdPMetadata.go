@@ -5,6 +5,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"os"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -16,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewOrganizationsApi(apiClient)
-	r, err := api.UploadIdPMetadata(ctx, *datadogV2.NewUploadIdPMetadataOptionalParameters().WithIdpFile(func() *os.File {
+	r, err := api.UploadIdPMetadata(ctx, *datadogV2.NewUploadIdPMetadataOptionalParameters().WithIdpFile(func() io.Reader {
 		fp, _ := os.Open("fixtures/organizations/saml_configurations/valid_idp_metadata.xml")
 		return fp
 	}()))

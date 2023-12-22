@@ -9,7 +9,6 @@ import (
 	_io "io"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"os"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -19,7 +18,7 @@ type OrganizationsApi datadog.Service
 
 // UploadIdPMetadataOptionalParameters holds optional parameters for UploadIdPMetadata.
 type UploadIdPMetadataOptionalParameters struct {
-	IdpFile **os.File
+	IdpFile *_io.Reader
 }
 
 // NewUploadIdPMetadataOptionalParameters creates an empty struct for parameters.
@@ -29,7 +28,7 @@ func NewUploadIdPMetadataOptionalParameters() *UploadIdPMetadataOptionalParamete
 }
 
 // WithIdpFile sets the corresponding parameter name and returns the struct.
-func (r *UploadIdPMetadataOptionalParameters) WithIdpFile(idpFile *os.File) *UploadIdPMetadataOptionalParameters {
+func (r *UploadIdPMetadataOptionalParameters) WithIdpFile(idpFile _io.Reader) *UploadIdPMetadataOptionalParameters {
 	r.IdpFile = &idpFile
 	return r
 }
@@ -67,15 +66,13 @@ func (a *OrganizationsApi) UploadIdPMetadata(ctx _context.Context, o ...UploadId
 
 	formFile := datadog.FormFile{}
 	formFile.FormFileName = "idp_file"
-	var localVarFile *os.File
+	var localVarFile _io.Reader
 	if optionalParams.IdpFile != nil {
 		localVarFile = *optionalParams.IdpFile
 	}
 	if localVarFile != nil {
 		fbs, _ := _io.ReadAll(localVarFile)
 		formFile.FileBytes = fbs
-		formFile.FileName = localVarFile.Name()
-		localVarFile.Close()
 	}
 	datadog.SetAuthKeys(
 		ctx,
