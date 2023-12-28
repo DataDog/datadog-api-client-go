@@ -17,7 +17,9 @@ import (
 type DowntimesApi datadog.Service
 
 // CancelDowntime Cancel a downtime.
-// Cancel a downtime.
+// Cancel a downtime. **Note:** This endpoint has been deprecated. Please use v2 endpoints.
+//
+// Deprecated: This API is deprecated.
 func (a *DowntimesApi) CancelDowntime(ctx _context.Context, downtimeId int64) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -78,7 +80,9 @@ func (a *DowntimesApi) CancelDowntime(ctx _context.Context, downtimeId int64) (*
 }
 
 // CancelDowntimesByScope Cancel downtimes by scope.
-// Delete all downtimes that match the scope of `X`.
+// Delete all downtimes that match the scope of `X`. **Note:** This only interacts with Downtimes created using v1 endpoints. This endpoint has been deprecated and will not be replaced. Please use v2 endpoints to find and cancel downtimes.
+//
+// Deprecated: This API is deprecated.
 func (a *DowntimesApi) CancelDowntimesByScope(ctx _context.Context, body CancelDowntimesByScopeRequest) (CanceledDowntimesIds, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -151,7 +155,9 @@ func (a *DowntimesApi) CancelDowntimesByScope(ctx _context.Context, body CancelD
 }
 
 // CreateDowntime Schedule a downtime.
-// Schedule a downtime.
+// Schedule a downtime. **Note:** This endpoint has been deprecated. Please use v2 endpoints.
+//
+// Deprecated: This API is deprecated.
 func (a *DowntimesApi) CreateDowntime(ctx _context.Context, body Downtime) (Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -224,7 +230,9 @@ func (a *DowntimesApi) CreateDowntime(ctx _context.Context, body Downtime) (Down
 }
 
 // GetDowntime Get a downtime.
-// Get downtime detail by `downtime_id`.
+// Get downtime detail by `downtime_id`. **Note:** This endpoint has been deprecated. Please use v2 endpoints.
+//
+// Deprecated: This API is deprecated.
 func (a *DowntimesApi) GetDowntime(ctx _context.Context, downtimeId int64) (Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -319,7 +327,9 @@ func (r *ListDowntimesOptionalParameters) WithWithCreator(withCreator bool) *Lis
 }
 
 // ListDowntimes Get all downtimes.
-// Get all scheduled downtimes.
+// Get all scheduled downtimes. **Note:** This endpoint has been deprecated. Please use v2 endpoints.
+//
+// Deprecated: This API is deprecated.
 func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOptionalParameters) ([]Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -403,7 +413,9 @@ func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOpt
 }
 
 // ListMonitorDowntimes Get active downtimes for a monitor.
-// Get all active downtimes for the specified monitor.
+// Get all active v1 downtimes for the specified monitor. **Note:** This endpoint has been deprecated. Please use v2 endpoints.
+//
+// Deprecated: This API is deprecated.
 func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int64) ([]Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -474,7 +486,9 @@ func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int6
 }
 
 // UpdateDowntime Update a downtime.
-// Update a single downtime by `downtime_id`.
+// Update a single downtime by `downtime_id`. **Note:** This endpoint has been deprecated. Please use v2 endpoints.
+//
+// Deprecated: This API is deprecated.
 func (a *DowntimesApi) UpdateDowntime(ctx _context.Context, downtimeId int64, body Downtime) (Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
