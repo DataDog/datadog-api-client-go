@@ -427,14 +427,46 @@ func (a *DowntimesApi) ListDowntimesWithPagination(ctx _context.Context, o ...Li
 	return items, cancel
 }
 
+// ListMonitorDowntimesOptionalParameters holds optional parameters for ListMonitorDowntimes.
+type ListMonitorDowntimesOptionalParameters struct {
+	PageOffset *int64
+	PageLimit  *int64
+}
+
+// NewListMonitorDowntimesOptionalParameters creates an empty struct for parameters.
+func NewListMonitorDowntimesOptionalParameters() *ListMonitorDowntimesOptionalParameters {
+	this := ListMonitorDowntimesOptionalParameters{}
+	return &this
+}
+
+// WithPageOffset sets the corresponding parameter name and returns the struct.
+func (r *ListMonitorDowntimesOptionalParameters) WithPageOffset(pageOffset int64) *ListMonitorDowntimesOptionalParameters {
+	r.PageOffset = &pageOffset
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListMonitorDowntimesOptionalParameters) WithPageLimit(pageLimit int64) *ListMonitorDowntimesOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
 // ListMonitorDowntimes Get active downtimes for a monitor.
 // Get all active downtimes for the specified monitor.
-func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int64) (MonitorDowntimeMatchResponse, *_nethttp.Response, error) {
+func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int64, o ...ListMonitorDowntimesOptionalParameters) (MonitorDowntimeMatchResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MonitorDowntimeMatchResponse
+		optionalParams      ListMonitorDowntimesOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListMonitorDowntimesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DowntimesApi.ListMonitorDowntimes")
 	if err != nil {
@@ -447,6 +479,12 @@ func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int6
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.PageOffset != nil {
+		localVarQueryParams.Add("page[offset]", datadog.ParameterToString(*optionalParams.PageOffset, ""))
+	}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
@@ -496,6 +534,56 @@ func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int6
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListMonitorDowntimesWithPagination provides a paginated version of ListMonitorDowntimes returning a channel with all items.
+func (a *DowntimesApi) ListMonitorDowntimesWithPagination(ctx _context.Context, monitorId int64, o ...ListMonitorDowntimesOptionalParameters) (<-chan datadog.PaginationResult[MonitorDowntimeMatchResponseData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(30)
+	if len(o) == 0 {
+		o = append(o, ListMonitorDowntimesOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[MonitorDowntimeMatchResponseData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListMonitorDowntimes(ctx, monitorId, o...)
+			if err != nil {
+				var returnItem MonitorDowntimeMatchResponseData
+				items <- datadog.PaginationResult[MonitorDowntimeMatchResponseData]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[MonitorDowntimeMatchResponseData]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			if o[0].PageOffset == nil {
+				o[0].PageOffset = &pageSize_
+			} else {
+				pageOffset_ := *o[0].PageOffset + pageSize_
+				o[0].PageOffset = &pageOffset_
+			}
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // UpdateDowntime Update a downtime.
