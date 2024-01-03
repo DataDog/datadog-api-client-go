@@ -39,7 +39,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.CreateCIAppPipelineEvent", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCIVisibilityPipelinesApi(apiClient)
 	resp, r, err := api.CreateCIAppPipelineEvent(ctx, body)
