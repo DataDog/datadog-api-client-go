@@ -37,8 +37,6 @@ func NewGCPSTSServiceAccountAttributes() *GCPSTSServiceAccountAttributes {
 	this := GCPSTSServiceAccountAttributes{}
 	var isSecurityCommandCenterEnabled bool = false
 	this.IsSecurityCommandCenterEnabled = &isSecurityCommandCenterEnabled
-	var resourceCollectionEnabled bool = false
-	this.ResourceCollectionEnabled = &resourceCollectionEnabled
 	return &this
 }
 
@@ -49,8 +47,6 @@ func NewGCPSTSServiceAccountAttributesWithDefaults() *GCPSTSServiceAccountAttrib
 	this := GCPSTSServiceAccountAttributes{}
 	var isSecurityCommandCenterEnabled bool = false
 	this.IsSecurityCommandCenterEnabled = &isSecurityCommandCenterEnabled
-	var resourceCollectionEnabled bool = false
-	this.ResourceCollectionEnabled = &resourceCollectionEnabled
 	return &this
 }
 
