@@ -22,7 +22,7 @@ type AwsCURConfigAttributes struct {
 	CreatedAt *string `json:"created_at,omitempty"`
 	// The error messages for the AWS CUR config.
 	ErrorMessages []string `json:"error_messages,omitempty"`
-	// (deprecated) The number of months the report has been backfilled.
+	// The number of months the report has been backfilled.
 	// Deprecated
 	Months *int32 `json:"months,omitempty"`
 	// The name of the Cost and Usage Report.
