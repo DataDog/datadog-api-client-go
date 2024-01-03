@@ -55,12 +55,8 @@ type GCPAccount struct {
 // will change when the set of required properties is changed.
 func NewGCPAccount() *GCPAccount {
 	this := GCPAccount{}
-	var isCspmEnabled bool = false
-	this.IsCspmEnabled = &isCspmEnabled
 	var isSecurityCommandCenterEnabled bool = false
 	this.IsSecurityCommandCenterEnabled = &isSecurityCommandCenterEnabled
-	var resourceCollectionEnabled bool = false
-	this.ResourceCollectionEnabled = &resourceCollectionEnabled
 	return &this
 }
 
@@ -69,12 +65,8 @@ func NewGCPAccount() *GCPAccount {
 // but it doesn't guarantee that properties required by API are set.
 func NewGCPAccountWithDefaults() *GCPAccount {
 	this := GCPAccount{}
-	var isCspmEnabled bool = false
-	this.IsCspmEnabled = &isCspmEnabled
 	var isSecurityCommandCenterEnabled bool = false
 	this.IsSecurityCommandCenterEnabled = &isSecurityCommandCenterEnabled
-	var resourceCollectionEnabled bool = false
-	this.ResourceCollectionEnabled = &resourceCollectionEnabled
 	return &this
 }
 
