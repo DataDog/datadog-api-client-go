@@ -323,7 +323,6 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
-			"v2.CreateCIAppPipelineEvent":     false,
 			"v2.GetActiveBillingDimensions":   false,
 			"v2.GetMonthlyCostAttribution":    false,
 			"v2.CreateDORADeployment":         false,
