@@ -28,7 +28,7 @@ type AzureUCConfig struct {
 	ExportPath string `json:"export_path"`
 	// The ID of the Azure config.
 	Id *int64 `json:"id,omitempty"`
-	// (deprecated) The number of months the report has been backfilled.
+	// The number of months the report has been backfilled.
 	// Deprecated
 	Months *int32 `json:"months,omitempty"`
 	// The scope of your observed subscription.
