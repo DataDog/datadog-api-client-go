@@ -35,6 +35,8 @@ type SecurityMonitoringRuleOptions struct {
 	MaxSignalDuration *SecurityMonitoringRuleMaxSignalDuration `json:"maxSignalDuration,omitempty"`
 	// Options on new value rules.
 	NewValueOptions *SecurityMonitoringRuleNewValueOptions `json:"newValueOptions,omitempty"`
+	// Options on third party rules.
+	ThirdPartyRuleOptions *SecurityMonitoringRuleThirdPartyOptions `json:"thirdPartyRuleOptions,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -309,6 +311,34 @@ func (o *SecurityMonitoringRuleOptions) SetNewValueOptions(v SecurityMonitoringR
 	o.NewValueOptions = &v
 }
 
+// GetThirdPartyRuleOptions returns the ThirdPartyRuleOptions field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleOptions) GetThirdPartyRuleOptions() SecurityMonitoringRuleThirdPartyOptions {
+	if o == nil || o.ThirdPartyRuleOptions == nil {
+		var ret SecurityMonitoringRuleThirdPartyOptions
+		return ret
+	}
+	return *o.ThirdPartyRuleOptions
+}
+
+// GetThirdPartyRuleOptionsOk returns a tuple with the ThirdPartyRuleOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleOptions) GetThirdPartyRuleOptionsOk() (*SecurityMonitoringRuleThirdPartyOptions, bool) {
+	if o == nil || o.ThirdPartyRuleOptions == nil {
+		return nil, false
+	}
+	return o.ThirdPartyRuleOptions, true
+}
+
+// HasThirdPartyRuleOptions returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleOptions) HasThirdPartyRuleOptions() bool {
+	return o != nil && o.ThirdPartyRuleOptions != nil
+}
+
+// SetThirdPartyRuleOptions gets a reference to the given SecurityMonitoringRuleThirdPartyOptions and assigns it to the ThirdPartyRuleOptions field.
+func (o *SecurityMonitoringRuleOptions) SetThirdPartyRuleOptions(v SecurityMonitoringRuleThirdPartyOptions) {
+	o.ThirdPartyRuleOptions = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -342,6 +372,9 @@ func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 	if o.NewValueOptions != nil {
 		toSerialize["newValueOptions"] = o.NewValueOptions
 	}
+	if o.ThirdPartyRuleOptions != nil {
+		toSerialize["thirdPartyRuleOptions"] = o.ThirdPartyRuleOptions
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -361,13 +394,14 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 		KeepAlive                     *SecurityMonitoringRuleKeepAlive               `json:"keepAlive,omitempty"`
 		MaxSignalDuration             *SecurityMonitoringRuleMaxSignalDuration       `json:"maxSignalDuration,omitempty"`
 		NewValueOptions               *SecurityMonitoringRuleNewValueOptions         `json:"newValueOptions,omitempty"`
+		ThirdPartyRuleOptions         *SecurityMonitoringRuleThirdPartyOptions       `json:"thirdPartyRuleOptions,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"complianceRuleOptions", "decreaseCriticalityBasedOnEnv", "detectionMethod", "evaluationWindow", "hardcodedEvaluatorType", "impossibleTravelOptions", "keepAlive", "maxSignalDuration", "newValueOptions"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"complianceRuleOptions", "decreaseCriticalityBasedOnEnv", "detectionMethod", "evaluationWindow", "hardcodedEvaluatorType", "impossibleTravelOptions", "keepAlive", "maxSignalDuration", "newValueOptions", "thirdPartyRuleOptions"})
 	} else {
 		return err
 	}
@@ -411,6 +445,10 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 		hasInvalidField = true
 	}
 	o.NewValueOptions = all.NewValueOptions
+	if all.ThirdPartyRuleOptions != nil && all.ThirdPartyRuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.ThirdPartyRuleOptions = all.ThirdPartyRuleOptions
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
