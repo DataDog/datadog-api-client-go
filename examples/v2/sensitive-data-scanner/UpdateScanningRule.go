@@ -16,9 +16,6 @@ func main() {
 	// the "scanning_group" has a "scanning_rule"
 	RuleDataID := os.Getenv("RULE_DATA_ID")
 
-	// there is a valid "scanning_group" in the system
-	GroupDataID := os.Getenv("GROUP_DATA_ID")
-
 	body := datadogV2.SensitiveDataScannerRuleUpdateRequest{
 		Meta: datadogV2.SensitiveDataScannerMetaVersionOnly{},
 		Data: datadogV2.SensitiveDataScannerRuleUpdate{
@@ -35,13 +32,12 @@ func main() {
 				},
 				IsEnabled: datadog.PtrBool(true),
 				Priority:  datadog.PtrInt64(5),
-			},
-			Relationships: &datadogV2.SensitiveDataScannerRuleRelationships{
-				Group: &datadogV2.SensitiveDataScannerGroupData{
-					Data: &datadogV2.SensitiveDataScannerGroup{
-						Type: datadogV2.SENSITIVEDATASCANNERGROUPTYPE_SENSITIVE_DATA_SCANNER_GROUP.Ptr(),
-						Id:   datadog.PtrString(GroupDataID),
+				IncludedKeywordConfiguration: &datadogV2.SensitiveDataScannerIncludedKeywordConfiguration{
+					Keywords: []string{
+						"credit card",
+						"cc",
 					},
+					CharacterCount: 35,
 				},
 			},
 		},
