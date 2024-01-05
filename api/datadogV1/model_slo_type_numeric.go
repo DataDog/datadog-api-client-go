@@ -17,13 +17,15 @@ type SLOTypeNumeric int32
 
 // List of SLOTypeNumeric.
 const (
-	SLOTYPENUMERIC_MONITOR SLOTypeNumeric = 0
-	SLOTYPENUMERIC_METRIC  SLOTypeNumeric = 1
+	SLOTYPENUMERIC_MONITOR    SLOTypeNumeric = 0
+	SLOTYPENUMERIC_METRIC     SLOTypeNumeric = 1
+	SLOTYPENUMERIC_TIME_SLICE SLOTypeNumeric = 2
 )
 
 var allowedSLOTypeNumericEnumValues = []SLOTypeNumeric{
 	SLOTYPENUMERIC_MONITOR,
 	SLOTYPENUMERIC_METRIC,
+	SLOTYPENUMERIC_TIME_SLICE,
 }
 
 // GetAllowedValues reeturns the list of possible values.

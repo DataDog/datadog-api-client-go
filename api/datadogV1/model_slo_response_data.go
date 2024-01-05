@@ -54,6 +54,8 @@ type SLOResponseData struct {
 	// to be used because this will sum up all request counts instead of averaging them, or taking the max or
 	// min of all of those requests.
 	Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`
+	// A generic SLI specification. This is currently used for time-slice SLOs only.
+	SliSpecification *SLOSliSpec `json:"sli_specification,omitempty"`
 	// A list of tags associated with this service level objective.
 	// Always included in service level objective responses (but may be empty).
 	// Optional in create/update requests.
@@ -414,6 +416,34 @@ func (o *SLOResponseData) SetQuery(v ServiceLevelObjectiveQuery) {
 	o.Query = &v
 }
 
+// GetSliSpecification returns the SliSpecification field value if set, zero value otherwise.
+func (o *SLOResponseData) GetSliSpecification() SLOSliSpec {
+	if o == nil || o.SliSpecification == nil {
+		var ret SLOSliSpec
+		return ret
+	}
+	return *o.SliSpecification
+}
+
+// GetSliSpecificationOk returns a tuple with the SliSpecification field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SLOResponseData) GetSliSpecificationOk() (*SLOSliSpec, bool) {
+	if o == nil || o.SliSpecification == nil {
+		return nil, false
+	}
+	return o.SliSpecification, true
+}
+
+// HasSliSpecification returns a boolean if a field has been set.
+func (o *SLOResponseData) HasSliSpecification() bool {
+	return o != nil && o.SliSpecification != nil
+}
+
+// SetSliSpecification gets a reference to the given SLOSliSpec and assigns it to the SliSpecification field.
+func (o *SLOResponseData) SetSliSpecification(v SLOSliSpec) {
+	o.SliSpecification = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SLOResponseData) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -621,6 +651,9 @@ func (o SLOResponseData) MarshalJSON() ([]byte, error) {
 	if o.Query != nil {
 		toSerialize["query"] = o.Query
 	}
+	if o.SliSpecification != nil {
+		toSerialize["sli_specification"] = o.SliSpecification
+	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
@@ -660,6 +693,7 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		MonitorTags        []string                    `json:"monitor_tags,omitempty"`
 		Name               *string                     `json:"name,omitempty"`
 		Query              *ServiceLevelObjectiveQuery `json:"query,omitempty"`
+		SliSpecification   *SLOSliSpec                 `json:"sli_specification,omitempty"`
 		Tags               []string                    `json:"tags,omitempty"`
 		TargetThreshold    *float64                    `json:"target_threshold,omitempty"`
 		Thresholds         []SLOThreshold              `json:"thresholds,omitempty"`
@@ -672,7 +706,7 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"configured_alert_ids", "created_at", "creator", "description", "groups", "id", "modified_at", "monitor_ids", "monitor_tags", "name", "query", "tags", "target_threshold", "thresholds", "timeframe", "type", "warning_threshold"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"configured_alert_ids", "created_at", "creator", "description", "groups", "id", "modified_at", "monitor_ids", "monitor_tags", "name", "query", "sli_specification", "tags", "target_threshold", "thresholds", "timeframe", "type", "warning_threshold"})
 	} else {
 		return err
 	}
@@ -695,6 +729,7 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Query = all.Query
+	o.SliSpecification = all.SliSpecification
 	o.Tags = all.Tags
 	o.TargetThreshold = all.TargetThreshold
 	o.Thresholds = all.Thresholds

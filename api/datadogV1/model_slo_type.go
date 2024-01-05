@@ -15,13 +15,15 @@ type SLOType string
 
 // List of SLOType.
 const (
-	SLOTYPE_METRIC  SLOType = "metric"
-	SLOTYPE_MONITOR SLOType = "monitor"
+	SLOTYPE_METRIC     SLOType = "metric"
+	SLOTYPE_MONITOR    SLOType = "monitor"
+	SLOTYPE_TIME_SLICE SLOType = "time_slice"
 )
 
 var allowedSLOTypeEnumValues = []SLOType{
 	SLOTYPE_METRIC,
 	SLOTYPE_MONITOR,
+	SLOTYPE_TIME_SLICE,
 }
 
 // GetAllowedValues reeturns the list of possible values.
