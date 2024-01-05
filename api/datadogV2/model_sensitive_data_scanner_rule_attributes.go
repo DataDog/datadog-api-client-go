@@ -14,6 +14,11 @@ type SensitiveDataScannerRuleAttributes struct {
 	Description *string `json:"description,omitempty"`
 	// Attributes excluded from the scan. If namespaces is provided, it has to be a sub-path of the namespaces array.
 	ExcludedNamespaces []string `json:"excluded_namespaces,omitempty"`
+	// Object defining a set of keywords and a number of characters that help reduce noise.
+	// You can provide a list of keywords you would like to check within a defined proximity of the matching pattern.
+	// If any of the keywords are found within the proximity check, the match is kept.
+	// If none are found, the match is discarded.
+	IncludedKeywordConfiguration *SensitiveDataScannerIncludedKeywordConfiguration `json:"included_keyword_configuration,omitempty"`
 	// Whether or not the rule is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
 	// Name of the rule.
@@ -105,6 +110,34 @@ func (o *SensitiveDataScannerRuleAttributes) HasExcludedNamespaces() bool {
 // SetExcludedNamespaces gets a reference to the given []string and assigns it to the ExcludedNamespaces field.
 func (o *SensitiveDataScannerRuleAttributes) SetExcludedNamespaces(v []string) {
 	o.ExcludedNamespaces = v
+}
+
+// GetIncludedKeywordConfiguration returns the IncludedKeywordConfiguration field value if set, zero value otherwise.
+func (o *SensitiveDataScannerRuleAttributes) GetIncludedKeywordConfiguration() SensitiveDataScannerIncludedKeywordConfiguration {
+	if o == nil || o.IncludedKeywordConfiguration == nil {
+		var ret SensitiveDataScannerIncludedKeywordConfiguration
+		return ret
+	}
+	return *o.IncludedKeywordConfiguration
+}
+
+// GetIncludedKeywordConfigurationOk returns a tuple with the IncludedKeywordConfiguration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SensitiveDataScannerRuleAttributes) GetIncludedKeywordConfigurationOk() (*SensitiveDataScannerIncludedKeywordConfiguration, bool) {
+	if o == nil || o.IncludedKeywordConfiguration == nil {
+		return nil, false
+	}
+	return o.IncludedKeywordConfiguration, true
+}
+
+// HasIncludedKeywordConfiguration returns a boolean if a field has been set.
+func (o *SensitiveDataScannerRuleAttributes) HasIncludedKeywordConfiguration() bool {
+	return o != nil && o.IncludedKeywordConfiguration != nil
+}
+
+// SetIncludedKeywordConfiguration gets a reference to the given SensitiveDataScannerIncludedKeywordConfiguration and assigns it to the IncludedKeywordConfiguration field.
+func (o *SensitiveDataScannerRuleAttributes) SetIncludedKeywordConfiguration(v SensitiveDataScannerIncludedKeywordConfiguration) {
+	o.IncludedKeywordConfiguration = &v
 }
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
@@ -315,6 +348,9 @@ func (o SensitiveDataScannerRuleAttributes) MarshalJSON() ([]byte, error) {
 	if o.ExcludedNamespaces != nil {
 		toSerialize["excluded_namespaces"] = o.ExcludedNamespaces
 	}
+	if o.IncludedKeywordConfiguration != nil {
+		toSerialize["included_keyword_configuration"] = o.IncludedKeywordConfiguration
+	}
 	if o.IsEnabled != nil {
 		toSerialize["is_enabled"] = o.IsEnabled
 	}
@@ -346,22 +382,23 @@ func (o SensitiveDataScannerRuleAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description        *string                              `json:"description,omitempty"`
-		ExcludedNamespaces []string                             `json:"excluded_namespaces,omitempty"`
-		IsEnabled          *bool                                `json:"is_enabled,omitempty"`
-		Name               *string                              `json:"name,omitempty"`
-		Namespaces         []string                             `json:"namespaces,omitempty"`
-		Pattern            *string                              `json:"pattern,omitempty"`
-		Priority           *int64                               `json:"priority,omitempty"`
-		Tags               []string                             `json:"tags,omitempty"`
-		TextReplacement    *SensitiveDataScannerTextReplacement `json:"text_replacement,omitempty"`
+		Description                  *string                                           `json:"description,omitempty"`
+		ExcludedNamespaces           []string                                          `json:"excluded_namespaces,omitempty"`
+		IncludedKeywordConfiguration *SensitiveDataScannerIncludedKeywordConfiguration `json:"included_keyword_configuration,omitempty"`
+		IsEnabled                    *bool                                             `json:"is_enabled,omitempty"`
+		Name                         *string                                           `json:"name,omitempty"`
+		Namespaces                   []string                                          `json:"namespaces,omitempty"`
+		Pattern                      *string                                           `json:"pattern,omitempty"`
+		Priority                     *int64                                            `json:"priority,omitempty"`
+		Tags                         []string                                          `json:"tags,omitempty"`
+		TextReplacement              *SensitiveDataScannerTextReplacement              `json:"text_replacement,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "excluded_namespaces", "is_enabled", "name", "namespaces", "pattern", "priority", "tags", "text_replacement"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "excluded_namespaces", "included_keyword_configuration", "is_enabled", "name", "namespaces", "pattern", "priority", "tags", "text_replacement"})
 	} else {
 		return err
 	}
@@ -369,6 +406,10 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 	hasInvalidField := false
 	o.Description = all.Description
 	o.ExcludedNamespaces = all.ExcludedNamespaces
+	if all.IncludedKeywordConfiguration != nil && all.IncludedKeywordConfiguration.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.IncludedKeywordConfiguration = all.IncludedKeywordConfiguration
 	o.IsEnabled = all.IsEnabled
 	o.Name = all.Name
 	o.Namespaces = all.Namespaces

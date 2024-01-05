@@ -37,6 +37,12 @@ func main() {
 				},
 				IsEnabled: datadog.PtrBool(true),
 				Priority:  datadog.PtrInt64(1),
+				IncludedKeywordConfiguration: &datadogV2.SensitiveDataScannerIncludedKeywordConfiguration{
+					Keywords: []string{
+						"credit card",
+					},
+					CharacterCount: 35,
+				},
 			},
 			Relationships: datadogV2.SensitiveDataScannerRuleRelationships{
 				Group: &datadogV2.SensitiveDataScannerGroupData{
