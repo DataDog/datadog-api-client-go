@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"api_key":"fakekey","email":"dev@datadog.com","name":"testgetcloudflareaccountreturnsokresponse1674810021"},"type":"cloudflare-accounts"}}
+      {"data":{"attributes":{"api_key":"fakekey","email":"dev@datadog.com","name":"testgetcloudflareaccountreturnsokresponse1704393642","resources":["web","dns"],"zones":["zone-id-1","zone-id-2"]},"type":"cloudflare-accounts"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts
   response:
-    body: '{"data":{"attributes":{"email":"dev@datadog.com","name":"testgetcloudflareaccountreturnsokresponse1674810021"},"type":"cloudflare-accounts","id":"ec582035efa21742f8f4ef4393ded49c"}}
+    body: '{"data":{"type":"cloudflare-accounts","attributes":{"name":"testgetcloudflareaccountreturnsokresponse1704393642","email":"dev@datadog.com","zones":["zone-id-1","zone-id-2"],"resources":["web","dns"]},"id":"88d65a60026254bfaf976a427606c061"}}
 
       '
     code: 201
@@ -27,9 +27,9 @@ interactions:
       Accept:
       - application/json
     method: GET
-    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/ec582035efa21742f8f4ef4393ded49c
+    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/88d65a60026254bfaf976a427606c061
   response:
-    body: '{"data":{"attributes":{"email":"dev@datadog.com","name":"testgetcloudflareaccountreturnsokresponse1674810021"},"type":"cloudflare-accounts","id":"ec582035efa21742f8f4ef4393ded49c"}}
+    body: '{"data":{"type":"cloudflare-accounts","attributes":{"zones":["zone-id-1","zone-id-2"],"email":"dev@datadog.com","name":"testgetcloudflareaccountreturnsokresponse1704393642","resources":["web","dns"]},"id":"88d65a60026254bfaf976a427606c061"}}
 
       '
     code: 200
@@ -45,7 +45,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/ec582035efa21742f8f4ef4393ded49c
+    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/88d65a60026254bfaf976a427606c061
   response:
     body: ''
     code: 204

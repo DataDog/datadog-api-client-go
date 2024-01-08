@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"api_key":"test-api-key","name":"testaddcloudflareaccountreturnsbadrequestresponseduetomissingemail1674730504"},"type":"cloudflare-accounts"}}
+      {"data":{"attributes":{"api_key":"fakekey","name":"testaddcloudflareaccountreturnsbadrequestresponseduetomissingemail1704393640"},"type":"cloudflare-accounts"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts
   response:
-    body: '{"errors":["{u''_schema'': [''Email address is required if providing an
+    body: '{"errors":["{''_schema'': [''Email address is required if providing an
       api key and not an api token.'']}"]}'
     code: 400
     duration: ''

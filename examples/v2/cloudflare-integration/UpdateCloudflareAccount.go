@@ -20,7 +20,10 @@ func main() {
 		Data: datadogV2.CloudflareAccountUpdateRequestData{
 			Attributes: &datadogV2.CloudflareAccountUpdateRequestAttributes{
 				ApiKey: "fakekey",
-				Email:  datadog.PtrString("new@email"),
+				Email:  datadog.PtrString("dev@datadoghq.com"),
+				Zones: []string{
+					"zone-id-3",
+				},
 			},
 			Type: datadogV2.CLOUDFLAREACCOUNTTYPE_CLOUDFLARE_ACCOUNTS.Ptr(),
 		},

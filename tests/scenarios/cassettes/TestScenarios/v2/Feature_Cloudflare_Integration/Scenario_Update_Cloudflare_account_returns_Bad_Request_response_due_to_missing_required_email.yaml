@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"api_key":"fakekey","email":"dev@datadog.com","name":"testupdatecloudflareaccountreturnsbadrequestresponseduetomissingrequiredemail1674809954"},"type":"cloudflare-accounts"}}
+      {"data":{"attributes":{"api_key":"fakekey","email":"dev@datadog.com","name":"testupdatecloudflareaccountreturnsbadrequestresponseduetomissingrequiredemail1704393646","resources":["web","dns"],"zones":["zone-id-1","zone-id-2"]},"type":"cloudflare-accounts"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts
   response:
-    body: '{"data":{"attributes":{"email":"dev@datadog.com","name":"testupdatecloudflareaccountreturnsbadrequestresponseduetomissingrequiredemail1674809954"},"type":"cloudflare-accounts","id":"c588ce074fe908f56db516f007afd3fd"}}
+    body: '{"data":{"type":"cloudflare-accounts","attributes":{"zones":["zone-id-1","zone-id-2"],"resources":["web","dns"],"name":"testupdatecloudflareaccountreturnsbadrequestresponseduetomissingrequiredemail1704393646","email":"dev@datadog.com"},"id":"f1d4f10fbad4add4962f2bc1fcb18c36"}}
 
       '
     code: 201
@@ -22,7 +22,7 @@ interactions:
     status: 201 Created
 - request:
     body: |
-      {"data":{"attributes":{"api_key":"abcdefghijklmnopqrstuvwxyz"},"type":"cloudflare-accounts"}}
+      {"data":{"attributes":{"api_key":"fakekey"},"type":"cloudflare-accounts"}}
     form: {}
     headers:
       Accept:
@@ -30,9 +30,9 @@ interactions:
       Content-Type:
       - application/json
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/c588ce074fe908f56db516f007afd3fd
+    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/f1d4f10fbad4add4962f2bc1fcb18c36
   response:
-    body: '{"errors":["{u''_schema'': [''Email address is required if providing an
+    body: '{"errors":["{''_schema'': [''Email address is required if providing an
       api key and not an api token.'']}"]}'
     code: 400
     duration: ''
@@ -47,7 +47,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/c588ce074fe908f56db516f007afd3fd
+    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/f1d4f10fbad4add4962f2bc1fcb18c36
   response:
     body: ''
     code: 204
