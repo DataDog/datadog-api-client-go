@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"api_key":"fakekey","email":"dev@datadog.com","name":"testupdatecloudflareaccountreturnsokresponse1674809929"},"type":"cloudflare-accounts"}}
+      {"data":{"attributes":{"api_key":"fakekey","email":"dev@datadog.com","name":"testupdatecloudflareaccountreturnsokresponse1704393647","resources":["web","dns"],"zones":["zone-id-1","zone-id-2"]},"type":"cloudflare-accounts"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts
   response:
-    body: '{"data":{"attributes":{"email":"dev@datadog.com","name":"testupdatecloudflareaccountreturnsokresponse1674809929"},"type":"cloudflare-accounts","id":"4d22579092049210a1db06b632485219"}}
+    body: '{"data":{"type":"cloudflare-accounts","attributes":{"zones":["zone-id-1","zone-id-2"],"resources":["web","dns"],"name":"testupdatecloudflareaccountreturnsokresponse1704393647","email":"dev@datadog.com"},"id":"6956534375b31b062c809696f3c34ee8"}}
 
       '
     code: 201
@@ -22,7 +22,7 @@ interactions:
     status: 201 Created
 - request:
     body: |
-      {"data":{"attributes":{"api_key":"fakekey","email":"new@email"},"type":"cloudflare-accounts"}}
+      {"data":{"attributes":{"api_key":"fakekey","email":"dev@datadoghq.com","zones":["zone-id-3"]},"type":"cloudflare-accounts"}}
     form: {}
     headers:
       Accept:
@@ -30,9 +30,9 @@ interactions:
       Content-Type:
       - application/json
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/4d22579092049210a1db06b632485219
+    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/6956534375b31b062c809696f3c34ee8
   response:
-    body: '{"data":{"attributes":{"email":"new@email","name":"testupdatecloudflareaccountreturnsokresponse1674809929"},"type":"cloudflare-accounts","id":"4d22579092049210a1db06b632485219"}}
+    body: '{"data":{"type":"cloudflare-accounts","attributes":{"resources":[],"email":"dev@datadoghq.com","zones":["zone-id-3"],"name":"testupdatecloudflareaccountreturnsokresponse1704393647"},"id":"6956534375b31b062c809696f3c34ee8"}}
 
       '
     code: 200
@@ -48,7 +48,7 @@ interactions:
       Accept:
       - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/4d22579092049210a1db06b632485219
+    url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/6956534375b31b062c809696f3c34ee8
   response:
     body: ''
     code: 204

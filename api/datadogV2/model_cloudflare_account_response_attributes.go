@@ -16,6 +16,10 @@ type CloudflareAccountResponseAttributes struct {
 	Email *string `json:"email,omitempty"`
 	// The name of the Cloudflare account.
 	Name string `json:"name"`
+	// An allowlist of resources to restrict pulling metrics for.
+	Resources []string `json:"resources,omitempty"`
+	// An allowlist of zones to restrict pulling metrics for.
+	Zones []string `json:"zones,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -90,6 +94,62 @@ func (o *CloudflareAccountResponseAttributes) SetName(v string) {
 	o.Name = v
 }
 
+// GetResources returns the Resources field value if set, zero value otherwise.
+func (o *CloudflareAccountResponseAttributes) GetResources() []string {
+	if o == nil || o.Resources == nil {
+		var ret []string
+		return ret
+	}
+	return o.Resources
+}
+
+// GetResourcesOk returns a tuple with the Resources field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudflareAccountResponseAttributes) GetResourcesOk() (*[]string, bool) {
+	if o == nil || o.Resources == nil {
+		return nil, false
+	}
+	return &o.Resources, true
+}
+
+// HasResources returns a boolean if a field has been set.
+func (o *CloudflareAccountResponseAttributes) HasResources() bool {
+	return o != nil && o.Resources != nil
+}
+
+// SetResources gets a reference to the given []string and assigns it to the Resources field.
+func (o *CloudflareAccountResponseAttributes) SetResources(v []string) {
+	o.Resources = v
+}
+
+// GetZones returns the Zones field value if set, zero value otherwise.
+func (o *CloudflareAccountResponseAttributes) GetZones() []string {
+	if o == nil || o.Zones == nil {
+		var ret []string
+		return ret
+	}
+	return o.Zones
+}
+
+// GetZonesOk returns a tuple with the Zones field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudflareAccountResponseAttributes) GetZonesOk() (*[]string, bool) {
+	if o == nil || o.Zones == nil {
+		return nil, false
+	}
+	return &o.Zones, true
+}
+
+// HasZones returns a boolean if a field has been set.
+func (o *CloudflareAccountResponseAttributes) HasZones() bool {
+	return o != nil && o.Zones != nil
+}
+
+// SetZones gets a reference to the given []string and assigns it to the Zones field.
+func (o *CloudflareAccountResponseAttributes) SetZones(v []string) {
+	o.Zones = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudflareAccountResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -100,6 +160,12 @@ func (o CloudflareAccountResponseAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["email"] = o.Email
 	}
 	toSerialize["name"] = o.Name
+	if o.Resources != nil {
+		toSerialize["resources"] = o.Resources
+	}
+	if o.Zones != nil {
+		toSerialize["zones"] = o.Zones
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -110,8 +176,10 @@ func (o CloudflareAccountResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudflareAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Email *string `json:"email,omitempty"`
-		Name  *string `json:"name"`
+		Email     *string  `json:"email,omitempty"`
+		Name      *string  `json:"name"`
+		Resources []string `json:"resources,omitempty"`
+		Zones     []string `json:"zones,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,12 +189,14 @@ func (o *CloudflareAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"email", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"email", "name", "resources", "zones"})
 	} else {
 		return err
 	}
 	o.Email = all.Email
 	o.Name = *all.Name
+	o.Resources = all.Resources
+	o.Zones = all.Zones
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
