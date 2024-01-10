@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 2.21.0 / 2024-01-10
+
+### Added
+* Add priority field to SDS rule and standard-pattern by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2317
+* Document new `resource_collection` and `is_security_command_center_enabled` fields in GCP APIs by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2318
+* Add SAML attributes by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2311
+* Security Monitoring - Support custom third party rules by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2337
+* Add public API support for time-slice SLOs by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2328
+* Add included_keyword_configuration field to SDS rule by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2340
+* Update Documentation for APM DevSecOps by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2341
+### Changed
+* Change binary to use io.Reader by @therve in https://github.com/DataDog/datadog-api-client-go/pull/2329
+* Mark v1 downtime endpoints as deprecated by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2334
+* Adding Cloud Cost Management API Documentation by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2326
+* Add support for Cloudflare API `zone` and `resource` fields by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2339
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.20.0...v2.21.0
+
 ## 2.20.0 / 2023-12-12
 
 ### Fixed
