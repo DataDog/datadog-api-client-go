@@ -1,46 +1,60 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "1985015659930833847"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "3461883444502596516"
-    url: https://api.datadoghq.com/api/v1/integration/aws/logs/services
-    method: GET
-  response:
-    body: '[{"id":"s3","label":"S3 Access Logs"},{"id":"elb","label":"Classic ELB
-      Access Logs"},{"id":"elbv2","label":"Application ELB Access Logs"},{"id":"cloudfront","label":"CloudFront
-      Access Logs"},{"id":"redshift","label":"Redshift Logs"},{"id":"lambda","label":"Lambda
-      Cloudwatch Logs"}]'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 13 Jul 2021 17:10:22 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
+            X-Datadog-Parent-Id:
+                - "1985015659930833847"
+            X-Datadog-Sampling-Priority:
+                - "1"
+            X-Datadog-Trace-Id:
+                - "3461883444502596516"
+        url: https://api.datadoghq.com/api/v1/integration/aws/logs/services
+        method: GET
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '[{"id":"s3","label":"S3 Access Logs"},{"id":"elb","label":"Classic ELB Access Logs"},{"id":"elbv2","label":"Application ELB Access Logs"},{"id":"cloudfront","label":"CloudFront Access Logs"},{"id":"redshift","label":"Redshift Logs"},{"id":"lambda","label":"Lambda Cloudwatch Logs"}]'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Tue, 13 Jul 2021 17:10:22 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s

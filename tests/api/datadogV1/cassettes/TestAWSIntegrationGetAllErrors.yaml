@@ -1,5 +1,4 @@
----
-version: 1
+version: 2
 interactions:
 - request:
     body: ""
@@ -11,9 +10,9 @@ interactions:
       - DataDog/0.1.0/go-experimental
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: GET
+    id: 0
   response:
-    body: '{"errors": ["AWS Integration not yet installed. Please manually install
-      it to add AWS accounts."]}'
+    body: '{"errors": ["AWS Integration not yet installed. Please manually install it to add AWS accounts."]}'
     headers:
       Cache-Control:
       - no-cache
@@ -39,7 +38,7 @@ interactions:
       - SAMEORIGIN
     status: 400 Bad Request
     code: 400
-    duration: ""
+    duration: "0ms"
 - request:
     body: ""
     form: {}
@@ -50,6 +49,7 @@ interactions:
       - DataDog/0.1.0/go-experimental
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: GET
+    id: 1
   response:
     body: '{"errors": ["API key required"]}'
     headers:
@@ -77,4 +77,4 @@ interactions:
       - SAMEORIGIN
     status: 403 Forbidden
     code: 403
-    duration: ""
+    duration: "0ms"

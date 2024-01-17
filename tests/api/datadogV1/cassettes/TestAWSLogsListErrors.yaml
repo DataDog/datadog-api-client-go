@@ -1,5 +1,4 @@
----
-version: 1
+version: 2
 interactions:
 - request:
     body: ""
@@ -11,6 +10,7 @@ interactions:
       - DataDog/0.1.0/go-experimental
     url: https://api.datadoghq.com/api/v1/integration/aws/logs
     method: GET
+    id: 0
   response:
     body: '[]'
     headers:
@@ -31,8 +31,7 @@ interactions:
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 09-Apr-2020 17:46:05 GMT;
-        secure; HttpOnly
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Thu, 09-Apr-2020 17:46:05 GMT; secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
@@ -45,4 +44,4 @@ interactions:
       - SAMEORIGIN
     status: 200 OK
     code: 200
-    duration: ""
+    duration: "0ms"

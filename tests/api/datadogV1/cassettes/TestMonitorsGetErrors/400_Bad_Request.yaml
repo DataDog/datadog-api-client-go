@@ -1,53 +1,70 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "896676898730314185"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "3638068972914300560"
-    url: https://api.datadoghq.com/api/v1/monitor/74567206?group_states=notagroupstate
-    method: GET
-  response:
-    body: '{"errors": ["Invalid group_state filters."]}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 21 Jun 2022 13:04:30 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "3000"
-      X-Ratelimit-Name:
-      - get_monitors
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "2999"
-      X-Ratelimit-Reset:
-      - "10"
-    status: 400 Bad Request
-    code: 400
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
+            X-Datadog-Parent-Id:
+                - "896676898730314185"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "3638068972914300560"
+        url: https://api.datadoghq.com/api/v1/monitor/74567206?group_states=notagroupstate
+        method: GET
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"errors": ["Invalid group_state filters."]}'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Tue, 21 Jun 2022 13:04:30 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "3000"
+            X-Ratelimit-Name:
+                - get_monitors
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "2999"
+            X-Ratelimit-Reset:
+                - "10"
+        status: 400 Bad Request
+        code: 400
+        duration: 0s

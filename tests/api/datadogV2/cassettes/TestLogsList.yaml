@@ -1,435 +1,584 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: '{"ddsource": "go-client-test-Test-TestLogsList-1666706629", "ddtags": "go,test,list",
-      "hostname": "Test-TestLogsList-1666706629", "message": "{\"timestamp\": 1666705629000,
-      \"message\": \"test-log-list-1 Test-TestLogsList-1666706629\"}"}'
-    form: {}
-    headers:
-      Content-Type:
-      - application/json
-      X-Datadog-Parent-Id:
-      - "3374804911305108027"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "3374804911305108027"
-    url: https://http-intake.logs.datadoghq.com/v1/input
-    method: POST
-  response:
-    body: '{}'
-    headers:
-      Content-Length:
-      - "2"
-      Content-Type:
-      - application/json
-      Cross-Origin-Resource-Policy:
-      - cross-origin
-      Date:
-      - Tue, 25 Oct 2022 14:03:50 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: '{"ddsource": "go-client-test-Test-TestLogsList-1666706629", "ddtags": "go,test,list",
-      "hostname": "Test-TestLogsList-1666706629", "message": "{\"timestamp\": 1666706628000,
-      \"message\": \"test-log-list-2 Test-TestLogsList-1666706629\"}"}'
-    form: {}
-    headers:
-      Content-Type:
-      - application/json
-      X-Datadog-Parent-Id:
-      - "5891722336553652844"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "5891722336553652844"
-    url: https://http-intake.logs.datadoghq.com/v1/input
-    method: POST
-  response:
-    body: '{}'
-    headers:
-      Content-Length:
-      - "2"
-      Content-Type:
-      - application/json
-      Cross-Origin-Resource-Policy:
-      - cross-origin
-      Date:
-      - Tue, 25 Oct 2022 14:03:50 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"filter":{"from":"now-2h","query":"Test-TestLogsList-1666706629","storage_tier":"indexes","to":"now+2h"}}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "107"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.4.1+dev (go go1.19; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "2835794213146510440"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "832206027121498501"
-    url: https://api.datadoghq.com/api/v2/logs/events/search
-    method: POST
-  response:
-    body: |
-      {"data":[]}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "12"
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 25 Oct 2022 14:03:50 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "10"
-      X-Ratelimit-Name:
-      - logs_public_search_api
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "9"
-      X-Ratelimit-Reset:
-      - "10"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"filter":{"from":"now-2h","query":"Test-TestLogsList-1666706629","storage_tier":"indexes","to":"now+2h"}}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "107"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.4.1+dev (go go1.19; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "1200179569192158076"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "832206027121498501"
-    url: https://api.datadoghq.com/api/v2/logs/events/search
-    method: POST
-  response:
-    body: |
-      {"data":[]}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "12"
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 25 Oct 2022 14:04:05 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "10"
-      X-Ratelimit-Name:
-      - logs_public_search_api
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "9"
-      X-Ratelimit-Reset:
-      - "5"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"filter":{"from":"now-2h","query":"Test-TestLogsList-1666706629","storage_tier":"indexes","to":"now+2h"}}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "107"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.4.1+dev (go go1.19; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "3105936205673890726"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "832206027121498501"
-    url: https://api.datadoghq.com/api/v2/logs/events/search
-    method: POST
-  response:
-    body: |
-      {"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWVFQWlo5SVVCLXJBUUFBQUFCQldWRlFaRTlZVUVGQlFUZGpPR1UyVjNGNExURlJRVUUifQ"}},"data":[{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T14:03:48.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666706628000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-2 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPdN2gTuv3EwAAAABBWVFQZE9YNUFBQndJeHBhYmtJLU9BQUE"},{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T13:47:09.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666705629000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-1 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPZZ9IUB-rAQAAAABBWVFQZE9YUEFBQTdjOGU2V3F4LTFRQUE"}],"links":{"next":"https://api.datadoghq.com/api/v2/logs/events?filter%5Bfrom%5D=now-2h&filter%5Bquery%5D=Test-TestLogsList-1666706629&filter%5Bto%5D=now%2B2h&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWVFQWlo5SVVCLXJBUUFBQUFCQldWRlFaRTlZVUVGQlFUZGpPR1UyVjNGNExURlJRVUUifQ"}}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 25 Oct 2022 14:04:20 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "10"
-      X-Ratelimit-Name:
-      - logs_public_search_api
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "9"
-      X-Ratelimit-Reset:
-      - "10"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"filter":{"from":"now-2h","query":"Test-TestLogsList-1666706629","storage_tier":"indexes","to":"now+2h"},"sort":"timestamp"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "126"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.4.1+dev (go go1.19; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "7483052041735367862"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "832206027121498501"
-    url: https://api.datadoghq.com/api/v2/logs/events/search
-    method: POST
-  response:
-    body: |
-      {"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWVFQZE4yZ1R1djNFd0FBQUFCQldWRlFaRTlZTlVGQlFuZEplSEJoWW10SkxVOUJRVUUifQ"}},"data":[{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T13:47:09.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666705629000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-1 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPZZ9IUB-rAQAAAABBWVFQZE9YUEFBQTdjOGU2V3F4LTFRQUE"},{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T14:03:48.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666706628000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-2 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPdN2gTuv3EwAAAABBWVFQZE9YNUFBQndJeHBhYmtJLU9BQUE"}],"links":{"next":"https://api.datadoghq.com/api/v2/logs/events?filter%5Bfrom%5D=now-2h&filter%5Bquery%5D=Test-TestLogsList-1666706629&filter%5Bto%5D=now%2B2h&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWVFQZE4yZ1R1djNFd0FBQUFCQldWRlFaRTlZTlVGQlFuZEplSEJoWW10SkxVOUJRVUUifQ&sort=timestamp"}}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 25 Oct 2022 14:04:20 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "10"
-      X-Ratelimit-Name:
-      - logs_public_search_api
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "8"
-      X-Ratelimit-Reset:
-      - "10"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"filter":{"from":"now-2h","query":"Test-TestLogsList-1666706629","storage_tier":"indexes","to":"now+2h"},"sort":"-timestamp"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "127"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.4.1+dev (go go1.19; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "6443930397383865250"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "832206027121498501"
-    url: https://api.datadoghq.com/api/v2/logs/events/search
-    method: POST
-  response:
-    body: |
-      {"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWVFQWlo5SVVCLXJBUUFBQUFCQldWRlFaRTlZVUVGQlFUZGpPR1UyVjNGNExURlJRVUUifQ"}},"data":[{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T14:03:48.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666706628000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-2 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPdN2gTuv3EwAAAABBWVFQZE9YNUFBQndJeHBhYmtJLU9BQUE"},{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T13:47:09.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666705629000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-1 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPZZ9IUB-rAQAAAABBWVFQZE9YUEFBQTdjOGU2V3F4LTFRQUE"}],"links":{"next":"https://api.datadoghq.com/api/v2/logs/events?filter%5Bfrom%5D=now-2h&filter%5Bquery%5D=Test-TestLogsList-1666706629&filter%5Bto%5D=now%2B2h&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWVFQWlo5SVVCLXJBUUFBQUFCQldWRlFaRTlZVUVGQlFUZGpPR1UyVjNGNExURlJRVUUifQ&sort=-timestamp"}}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 25 Oct 2022 14:04:20 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "10"
-      X-Ratelimit-Name:
-      - logs_public_search_api
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "7"
-      X-Ratelimit-Reset:
-      - "10"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"filter":{"from":"now-2h","query":"Test-TestLogsList-1666706629","storage_tier":"indexes","to":"now+2h"},"page":{"limit":1},"sort":"-timestamp"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "146"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.4.1+dev (go go1.19; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "7879085161349347221"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "832206027121498501"
-    url: https://api.datadoghq.com/api/v2/logs/events/search
-    method: POST
-  response:
-    body: |
-      {"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWVFQZE4yZ1R1djNFd0FBQUFCQldWRlFaRTlZTlVGQlFuZEplSEJoWW10SkxVOUJRVUUifQ"}},"data":[{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T14:03:48.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666706628000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-2 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPdN2gTuv3EwAAAABBWVFQZE9YNUFBQndJeHBhYmtJLU9BQUE"}],"links":{"next":"https://api.datadoghq.com/api/v2/logs/events?filter%5Bfrom%5D=now-2h&filter%5Bquery%5D=Test-TestLogsList-1666706629&filter%5Bto%5D=now%2B2h&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWVFQZE4yZ1R1djNFd0FBQUFCQldWRlFaRTlZTlVGQlFuZEplSEJoWW10SkxVOUJRVUUifQ&page%5Blimit%5D=1&sort=-timestamp"}}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 25 Oct 2022 14:04:21 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "10"
-      X-Ratelimit-Name:
-      - logs_public_search_api
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "5"
-      X-Ratelimit-Reset:
-      - "9"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"filter":{"from":"now-2h","query":"Test-TestLogsList-1666706629","storage_tier":"indexes","to":"now+2h"},"page":{"cursor":"eyJhZnRlciI6IkFRQUFBWVFQZE4yZ1R1djNFd0FBQUFCQldWRlFaRTlZTlVGQlFuZEplSEJoWW10SkxVOUJRVUUifQ","limit":1},"sort":"-timestamp"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "248"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.4.1+dev (go go1.19; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "102046589259525439"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "832206027121498501"
-    url: https://api.datadoghq.com/api/v2/logs/events/search
-    method: POST
-  response:
-    body: |
-      {"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWVFQWlo5SVVCLXJBUUFBQUFCQldWRlFaRTlZVUVGQlFUZGpPR1UyVjNGNExURlJRVUUifQ"}},"data":[{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T13:47:09.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666705629000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-1 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPZZ9IUB-rAQAAAABBWVFQZE9YUEFBQTdjOGU2V3F4LTFRQUE"}],"links":{"next":"https://api.datadoghq.com/api/v2/logs/events?filter%5Bfrom%5D=now-2h&filter%5Bquery%5D=Test-TestLogsList-1666706629&filter%5Bto%5D=now%2B2h&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWVFQWlo5SVVCLXJBUUFBQUFCQldWRlFaRTlZVUVGQlFUZGpPR1UyVjNGNExURlJRVUUifQ&page%5Blimit%5D=1&sort=-timestamp"}}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 25 Oct 2022 14:04:21 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "10"
-      X-Ratelimit-Name:
-      - logs_public_search_api
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "3"
-      X-Ratelimit-Reset:
-      - "9"
-    status: 200 OK
-    code: 200
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: '{"ddsource": "go-client-test-Test-TestLogsList-1666706629", "ddtags": "go,test,list", "hostname": "Test-TestLogsList-1666706629", "message": "{\"timestamp\": 1666705629000, \"message\": \"test-log-list-1 Test-TestLogsList-1666706629\"}"}'
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            X-Datadog-Parent-Id:
+                - "3374804911305108027"
+            X-Datadog-Sampling-Priority:
+                - "1"
+            X-Datadog-Trace-Id:
+                - "3374804911305108027"
+        url: https://http-intake.logs.datadoghq.com/v1/input
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{}'
+        headers:
+            Content-Length:
+                - "2"
+            Content-Type:
+                - application/json
+            Cross-Origin-Resource-Policy:
+                - cross-origin
+            Date:
+                - Tue, 25 Oct 2022 14:03:50 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            X-Content-Type-Options:
+                - nosniff
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 1
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: '{"ddsource": "go-client-test-Test-TestLogsList-1666706629", "ddtags": "go,test,list", "hostname": "Test-TestLogsList-1666706629", "message": "{\"timestamp\": 1666706628000, \"message\": \"test-log-list-2 Test-TestLogsList-1666706629\"}"}'
+        form: {}
+        headers:
+            Content-Type:
+                - application/json
+            X-Datadog-Parent-Id:
+                - "5891722336553652844"
+            X-Datadog-Sampling-Priority:
+                - "1"
+            X-Datadog-Trace-Id:
+                - "5891722336553652844"
+        url: https://http-intake.logs.datadoghq.com/v1/input
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{}'
+        headers:
+            Content-Length:
+                - "2"
+            Content-Type:
+                - application/json
+            Cross-Origin-Resource-Policy:
+                - cross-origin
+            Date:
+                - Tue, 25 Oct 2022 14:03:50 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            X-Content-Type-Options:
+                - nosniff
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 2
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"filter":{"from":"now-2h","query":"Test-TestLogsList-1666706629","storage_tier":"indexes","to":"now+2h"}}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "107"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.4.1+dev (go go1.19; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "2835794213146510440"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "832206027121498501"
+        url: https://api.datadoghq.com/api/v2/logs/events/search
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"data":[]}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "12"
+            Content-Type:
+                - application/json
+            Date:
+                - Tue, 25 Oct 2022 14:03:50 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "10"
+            X-Ratelimit-Name:
+                - logs_public_search_api
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "9"
+            X-Ratelimit-Reset:
+                - "10"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 3
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"filter":{"from":"now-2h","query":"Test-TestLogsList-1666706629","storage_tier":"indexes","to":"now+2h"}}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "107"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.4.1+dev (go go1.19; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "1200179569192158076"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "832206027121498501"
+        url: https://api.datadoghq.com/api/v2/logs/events/search
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"data":[]}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "12"
+            Content-Type:
+                - application/json
+            Date:
+                - Tue, 25 Oct 2022 14:04:05 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "10"
+            X-Ratelimit-Name:
+                - logs_public_search_api
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "9"
+            X-Ratelimit-Reset:
+                - "5"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 4
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"filter":{"from":"now-2h","query":"Test-TestLogsList-1666706629","storage_tier":"indexes","to":"now+2h"}}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "107"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.4.1+dev (go go1.19; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "3105936205673890726"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "832206027121498501"
+        url: https://api.datadoghq.com/api/v2/logs/events/search
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWVFQWlo5SVVCLXJBUUFBQUFCQldWRlFaRTlZVUVGQlFUZGpPR1UyVjNGNExURlJRVUUifQ"}},"data":[{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T14:03:48.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666706628000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-2 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPdN2gTuv3EwAAAABBWVFQZE9YNUFBQndJeHBhYmtJLU9BQUE"},{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T13:47:09.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666705629000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-1 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPZZ9IUB-rAQAAAABBWVFQZE9YUEFBQTdjOGU2V3F4LTFRQUE"}],"links":{"next":"https://api.datadoghq.com/api/v2/logs/events?filter%5Bfrom%5D=now-2h&filter%5Bquery%5D=Test-TestLogsList-1666706629&filter%5Bto%5D=now%2B2h&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWVFQWlo5SVVCLXJBUUFBQUFCQldWRlFaRTlZVUVGQlFUZGpPR1UyVjNGNExURlJRVUUifQ"}}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Tue, 25 Oct 2022 14:04:20 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "10"
+            X-Ratelimit-Name:
+                - logs_public_search_api
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "9"
+            X-Ratelimit-Reset:
+                - "10"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 5
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"filter":{"from":"now-2h","query":"Test-TestLogsList-1666706629","storage_tier":"indexes","to":"now+2h"},"sort":"timestamp"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "126"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.4.1+dev (go go1.19; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "7483052041735367862"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "832206027121498501"
+        url: https://api.datadoghq.com/api/v2/logs/events/search
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWVFQZE4yZ1R1djNFd0FBQUFCQldWRlFaRTlZTlVGQlFuZEplSEJoWW10SkxVOUJRVUUifQ"}},"data":[{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T13:47:09.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666705629000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-1 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPZZ9IUB-rAQAAAABBWVFQZE9YUEFBQTdjOGU2V3F4LTFRQUE"},{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T14:03:48.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666706628000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-2 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPdN2gTuv3EwAAAABBWVFQZE9YNUFBQndJeHBhYmtJLU9BQUE"}],"links":{"next":"https://api.datadoghq.com/api/v2/logs/events?filter%5Bfrom%5D=now-2h&filter%5Bquery%5D=Test-TestLogsList-1666706629&filter%5Bto%5D=now%2B2h&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWVFQZE4yZ1R1djNFd0FBQUFCQldWRlFaRTlZTlVGQlFuZEplSEJoWW10SkxVOUJRVUUifQ&sort=timestamp"}}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Tue, 25 Oct 2022 14:04:20 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "10"
+            X-Ratelimit-Name:
+                - logs_public_search_api
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "8"
+            X-Ratelimit-Reset:
+                - "10"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 6
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"filter":{"from":"now-2h","query":"Test-TestLogsList-1666706629","storage_tier":"indexes","to":"now+2h"},"sort":"-timestamp"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "127"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.4.1+dev (go go1.19; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "6443930397383865250"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "832206027121498501"
+        url: https://api.datadoghq.com/api/v2/logs/events/search
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWVFQWlo5SVVCLXJBUUFBQUFCQldWRlFaRTlZVUVGQlFUZGpPR1UyVjNGNExURlJRVUUifQ"}},"data":[{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T14:03:48.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666706628000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-2 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPdN2gTuv3EwAAAABBWVFQZE9YNUFBQndJeHBhYmtJLU9BQUE"},{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T13:47:09.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666705629000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-1 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPZZ9IUB-rAQAAAABBWVFQZE9YUEFBQTdjOGU2V3F4LTFRQUE"}],"links":{"next":"https://api.datadoghq.com/api/v2/logs/events?filter%5Bfrom%5D=now-2h&filter%5Bquery%5D=Test-TestLogsList-1666706629&filter%5Bto%5D=now%2B2h&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWVFQWlo5SVVCLXJBUUFBQUFCQldWRlFaRTlZVUVGQlFUZGpPR1UyVjNGNExURlJRVUUifQ&sort=-timestamp"}}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Tue, 25 Oct 2022 14:04:20 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "10"
+            X-Ratelimit-Name:
+                - logs_public_search_api
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "7"
+            X-Ratelimit-Reset:
+                - "10"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 7
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"filter":{"from":"now-2h","query":"Test-TestLogsList-1666706629","storage_tier":"indexes","to":"now+2h"},"page":{"limit":1},"sort":"-timestamp"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "146"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.4.1+dev (go go1.19; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "7879085161349347221"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "832206027121498501"
+        url: https://api.datadoghq.com/api/v2/logs/events/search
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWVFQZE4yZ1R1djNFd0FBQUFCQldWRlFaRTlZTlVGQlFuZEplSEJoWW10SkxVOUJRVUUifQ"}},"data":[{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T14:03:48.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666706628000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-2 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPdN2gTuv3EwAAAABBWVFQZE9YNUFBQndJeHBhYmtJLU9BQUE"}],"links":{"next":"https://api.datadoghq.com/api/v2/logs/events?filter%5Bfrom%5D=now-2h&filter%5Bquery%5D=Test-TestLogsList-1666706629&filter%5Bto%5D=now%2B2h&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWVFQZE4yZ1R1djNFd0FBQUFCQldWRlFaRTlZTlVGQlFuZEplSEJoWW10SkxVOUJRVUUifQ&page%5Blimit%5D=1&sort=-timestamp"}}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Tue, 25 Oct 2022 14:04:21 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "10"
+            X-Ratelimit-Name:
+                - logs_public_search_api
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "5"
+            X-Ratelimit-Reset:
+                - "9"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 8
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"filter":{"from":"now-2h","query":"Test-TestLogsList-1666706629","storage_tier":"indexes","to":"now+2h"},"page":{"cursor":"eyJhZnRlciI6IkFRQUFBWVFQZE4yZ1R1djNFd0FBQUFCQldWRlFaRTlZTlVGQlFuZEplSEJoWW10SkxVOUJRVUUifQ","limit":1},"sort":"-timestamp"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "248"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.4.1+dev (go go1.19; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "102046589259525439"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "832206027121498501"
+        url: https://api.datadoghq.com/api/v2/logs/events/search
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"meta":{"page":{"after":"eyJhZnRlciI6IkFRQUFBWVFQWlo5SVVCLXJBUUFBQUFCQldWRlFaRTlZVUVGQlFUZGpPR1UyVjNGNExURlJRVUUifQ"}},"data":[{"attributes":{"status":"info","tags":["source:go-client-test-test-testlogslist-1666706629","test","go","list","source:go-client-test-test-testlogslist-1666706629"],"timestamp":"2022-10-25T13:47:09.000Z","host":"Test-TestLogsList-1666706629","attributes":{"timestamp":1666705629000,"hostname":"Test-TestLogsList-1666706629"},"message":"test-log-list-1 Test-TestLogsList-1666706629"},"type":"log","id":"AQAAAYQPZZ9IUB-rAQAAAABBWVFQZE9YUEFBQTdjOGU2V3F4LTFRQUE"}],"links":{"next":"https://api.datadoghq.com/api/v2/logs/events?filter%5Bfrom%5D=now-2h&filter%5Bquery%5D=Test-TestLogsList-1666706629&filter%5Bto%5D=now%2B2h&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWVFQWlo5SVVCLXJBUUFBQUFCQldWRlFaRTlZVUVGQlFUZGpPR1UyVjNGNExURlJRVUUifQ&page%5Blimit%5D=1&sort=-timestamp"}}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Tue, 25 Oct 2022 14:04:21 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "10"
+            X-Ratelimit-Name:
+                - logs_public_search_api
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "3"
+            X-Ratelimit-Reset:
+                - "9"
+        status: 200 OK
+        code: 200
+        duration: 0s

@@ -1,212 +1,279 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: |
-      {"filter":{"from":"now-2h","query":"Test-TestLogsListWithRetry-1677770446","storage_tier":"indexes","to":"now+2h"},"sort":"timestamp"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "135"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.9.1+dev (go go1.20; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6070483289402143834"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5966052017226904293"
-    url: https://api.datadoghq.com/api/v2/logs/events/search
-    method: POST
-  response:
-    body: |
-      {"data":[]}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "12"
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 02 Mar 2023 15:20:47 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "10"
-      X-Ratelimit-Name:
-      - logs_public_search_api
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "0"
-      X-Ratelimit-Reset:
-      - "1"
-    status: 429 Too Many Requests
-    code: 429
-    duration: ""
-
-- request:
-    body: |
-      {"filter":{"from":"now-2h","query":"Test-TestLogsListWithRetry-1677770446","storage_tier":"indexes","to":"now+2h"},"sort":"timestamp"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "135"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.9.1+dev (go go1.20; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6070483289402143834"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5966052017226904293"
-    url: https://api.datadoghq.com/api/v2/logs/events/search
-    method: POST
-  response:
-    body: |
-      {"data":[]}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "12"
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 02 Mar 2023 15:20:47 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "10"
-      X-Ratelimit-Name:
-      - logs_public_search_api
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "0"
-      X-Ratelimit-Reset:
-      - "1"
-    status: 429 Too Many Requests
-    code: 429
-    duration: ""
-- request:
-    body: |
-      {"filter":{"from":"now-2h","query":"Test-TestLogsListWithRetry-1677770446","storage_tier":"indexes","to":"now+2h"},"sort":"timestamp"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "135"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.9.1+dev (go go1.20; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6070483289402143834"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5966052017226904293"
-    url: https://api.datadoghq.com/api/v2/logs/events/search
-    method: POST
-  response:
-    body: |
-      {"data":[]}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "12"
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 02 Mar 2023 15:20:47 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "10"
-      X-Ratelimit-Name:
-      - logs_public_search_api
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "0"
-      X-Ratelimit-Reset:
-      - "1"
-    status: 429 Too Many Requests
-    code: 429
-    duration: ""
-- request:
-    body: |
-      {"filter":{"from":"now-2h","query":"Test-TestLogsListWithRetry-1677770446","storage_tier":"indexes","to":"now+2h"},"sort":"timestamp"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "135"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.9.1+dev (go go1.20; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6070483289402143834"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5966052017226904293"
-    url: https://api.datadoghq.com/api/v2/logs/events/search
-    method: POST
-  response:
-    body: |
-      {"data":[]}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "12"
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 02 Mar 2023 15:20:47 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "10"
-      X-Ratelimit-Name:
-      - logs_public_search_api
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "9"
-      X-Ratelimit-Reset:
-      - "1"
-    status: 200 OK
-    code: 200
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"filter":{"from":"now-2h","query":"Test-TestLogsListWithRetry-1677770446","storage_tier":"indexes","to":"now+2h"},"sort":"timestamp"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "135"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.9.1+dev (go go1.20; os darwin; arch amd64)
+            X-Datadog-Parent-Id:
+                - "6070483289402143834"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5966052017226904293"
+        url: https://api.datadoghq.com/api/v2/logs/events/search
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"data":[]}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "12"
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 02 Mar 2023 15:20:47 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "10"
+            X-Ratelimit-Name:
+                - logs_public_search_api
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "0"
+            X-Ratelimit-Reset:
+                - "1"
+        status: 429 Too Many Requests
+        code: 429
+        duration: 0s
+    - id: 1
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"filter":{"from":"now-2h","query":"Test-TestLogsListWithRetry-1677770446","storage_tier":"indexes","to":"now+2h"},"sort":"timestamp"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "135"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.9.1+dev (go go1.20; os darwin; arch amd64)
+            X-Datadog-Parent-Id:
+                - "6070483289402143834"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5966052017226904293"
+        url: https://api.datadoghq.com/api/v2/logs/events/search
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"data":[]}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "12"
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 02 Mar 2023 15:20:47 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "10"
+            X-Ratelimit-Name:
+                - logs_public_search_api
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "0"
+            X-Ratelimit-Reset:
+                - "1"
+        status: 429 Too Many Requests
+        code: 429
+        duration: 0s
+    - id: 2
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"filter":{"from":"now-2h","query":"Test-TestLogsListWithRetry-1677770446","storage_tier":"indexes","to":"now+2h"},"sort":"timestamp"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "135"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.9.1+dev (go go1.20; os darwin; arch amd64)
+            X-Datadog-Parent-Id:
+                - "6070483289402143834"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5966052017226904293"
+        url: https://api.datadoghq.com/api/v2/logs/events/search
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"data":[]}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "12"
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 02 Mar 2023 15:20:47 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "10"
+            X-Ratelimit-Name:
+                - logs_public_search_api
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "0"
+            X-Ratelimit-Reset:
+                - "1"
+        status: 429 Too Many Requests
+        code: 429
+        duration: 0s
+    - id: 3
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"filter":{"from":"now-2h","query":"Test-TestLogsListWithRetry-1677770446","storage_tier":"indexes","to":"now+2h"},"sort":"timestamp"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "135"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.9.1+dev (go go1.20; os darwin; arch amd64)
+            X-Datadog-Parent-Id:
+                - "6070483289402143834"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5966052017226904293"
+        url: https://api.datadoghq.com/api/v2/logs/events/search
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"data":[]}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "12"
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 02 Mar 2023 15:20:47 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "10"
+            X-Ratelimit-Name:
+                - logs_public_search_api
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "9"
+            X-Ratelimit-Reset:
+                - "1"
+        status: 200 OK
+        code: 200
+        duration: 0s

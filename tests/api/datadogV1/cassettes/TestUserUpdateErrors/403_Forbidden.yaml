@@ -1,43 +1,60 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: |
-      {"email":"notanemail"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "23"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.14.1+dev (go go1.19.9; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "5570086195809054790"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5172472303537009867"
-    url: https://api.datadoghq.com/api/v1/user/notahandle
-    method: PUT
-  response:
-    body: |
-      {"status":"error","code":403,"errors":["Forbidden"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "170"
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 10 Jul 2023 18:38:55 GMT
-      Via:
-      - haproxy
-    status: 403 Forbidden
-    code: 403
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"email":"notanemail"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "23"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.14.1+dev (go go1.19.9; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "5570086195809054790"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5172472303537009867"
+        url: https://api.datadoghq.com/api/v1/user/notahandle
+        method: PUT
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"status":"error","code":403,"errors":["Forbidden"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "170"
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 10 Jul 2023 18:38:55 GMT
+            Via:
+                - haproxy
+        status: 403 Forbidden
+        code: 403
+        duration: 0s

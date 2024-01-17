@@ -1,53 +1,68 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "7148075687396184827"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "8338263538961228440"
-    url: https://api.datadoghq.com/api/v1/monitor/can_delete?monitor_ids=49714524
-    method: GET
-  response:
-    body: '{"errors":{"49714524":["monitor [49714524,**system.net.bytes_rcvd** over
-      **host:host0** was **> 100.0** on average during the **last 5m**.] is referenced
-      in composite monitors: [49714528,49714524]"]},"data":{"ok":[]}}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "217"
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 14 Oct 2021 14:10:26 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "12000"
-      X-Ratelimit-Period:
-      - "60"
-      X-Ratelimit-Remaining:
-      - "11999"
-      X-Ratelimit-Reset:
-      - "34"
-    status: 409 Conflict
-    code: 409
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
+            X-Datadog-Parent-Id:
+                - "7148075687396184827"
+            X-Datadog-Sampling-Priority:
+                - "1"
+            X-Datadog-Trace-Id:
+                - "8338263538961228440"
+        url: https://api.datadoghq.com/api/v1/monitor/can_delete?monitor_ids=49714524
+        method: GET
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"errors":{"49714524":["monitor [49714524,**system.net.bytes_rcvd** over **host:host0** was **> 100.0** on average during the **last 5m**.] is referenced in composite monitors: [49714528,49714524]"]},"data":{"ok":[]}}'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "217"
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 14 Oct 2021 14:10:26 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "12000"
+            X-Ratelimit-Period:
+                - "60"
+            X-Ratelimit-Remaining:
+                - "11999"
+            X-Ratelimit-Reset:
+                - "34"
+        status: 409 Conflict
+        code: 409
+        duration: 0s
