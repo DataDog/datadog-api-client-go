@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/yaml, application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/security/cloud_workload/policy/download
   response:
@@ -803,9 +804,9 @@ interactions:
       \ Created Interactively\n  expression: exec.file.name in [\"useradd\", \"newusers\"\
       ] && exec.tty_name !=\"\"\n"
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/yaml
     status: 200 OK
-version: 1
+version: 2

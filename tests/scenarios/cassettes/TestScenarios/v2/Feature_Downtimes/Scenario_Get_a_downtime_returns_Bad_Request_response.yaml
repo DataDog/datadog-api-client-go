@@ -5,14 +5,15 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/downtime/INVALID_UUID_LENGTH
   response:
     body: '{"errors":["Invalid URL param: downtime_id must be an uuid"]}'
     code: 400
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

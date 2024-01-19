@@ -1,193 +1,257 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: |
-      {"query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0} \u003e 100","type":"query alert"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "95"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "8923011137633321736"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "8338263538961228440"
-    url: https://api.datadoghq.com/api/v1/monitor
-    method: POST
-  response:
-    body: '{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0}
-      > 100","message":"","id":49714524,"multi":false,"name":"**system.net.bytes_rcvd**
-      over **host:host0** was **> 100.0** on average during the **last 5m**.","created":"2021-10-14T14:10:25.516882+00:00","created_at":1634220625000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2021-10-14T14:10:25.516882+00:00","priority":null,"overall_state_modified":null,"overall_state":"No
-      Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 14 Oct 2021 14:10:25 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "500"
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "499"
-      X-Ratelimit-Reset:
-      - "5"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"query":"49714524","type":"composite"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "40"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "4434791166993000381"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "8338263538961228440"
-    url: https://api.datadoghq.com/api/v1/monitor
-    method: POST
-  response:
-    body: '{"restricted_roles":null,"tags":[],"deleted":null,"query":"49714524","message":"","id":49714528,"multi":false,"name":"49714524","created":"2021-10-14T14:10:25.847032+00:00","created_at":1634220625000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2021-10-14T14:10:25.847032+00:00","priority":null,"overall_state_modified":null,"overall_state":"No
-      Data","type":"composite","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 14 Oct 2021 14:10:25 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "500"
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "498"
-      X-Ratelimit-Reset:
-      - "5"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "8442216983998537724"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "8338263538961228440"
-    url: https://api.datadoghq.com/api/v1/monitor/49714528
-    method: DELETE
-  response:
-    body: '{"deleted_monitor_id":49714528}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 14 Oct 2021 14:10:26 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "2629498394693688486"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "8338263538961228440"
-    url: https://api.datadoghq.com/api/v1/monitor/49714524
-    method: DELETE
-  response:
-    body: '{"deleted_monitor_id":49714524}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 14 Oct 2021 14:10:27 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0} \u003e 100","type":"query alert"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "95"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
+            X-Datadog-Parent-Id:
+                - "8923011137633321736"
+            X-Datadog-Sampling-Priority:
+                - "1"
+            X-Datadog-Trace-Id:
+                - "8338263538961228440"
+        url: https://api.datadoghq.com/api/v1/monitor
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"restricted_roles":null,"tags":[],"deleted":null,"query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100","message":"","id":49714524,"multi":false,"name":"**system.net.bytes_rcvd** over **host:host0** was **> 100.0** on average during the **last 5m**.","created":"2021-10-14T14:10:25.516882+00:00","created_at":1634220625000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2021-10-14T14:10:25.516882+00:00","priority":null,"overall_state_modified":null,"overall_state":"No Data","type":"query alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}}'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 14 Oct 2021 14:10:25 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "500"
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "499"
+            X-Ratelimit-Reset:
+                - "5"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 1
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"query":"49714524","type":"composite"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "40"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
+            X-Datadog-Parent-Id:
+                - "4434791166993000381"
+            X-Datadog-Sampling-Priority:
+                - "1"
+            X-Datadog-Trace-Id:
+                - "8338263538961228440"
+        url: https://api.datadoghq.com/api/v1/monitor
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"restricted_roles":null,"tags":[],"deleted":null,"query":"49714524","message":"","id":49714528,"multi":false,"name":"49714524","created":"2021-10-14T14:10:25.847032+00:00","created_at":1634220625000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2021-10-14T14:10:25.847032+00:00","priority":null,"overall_state_modified":null,"overall_state":"No Data","type":"composite","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false}}'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 14 Oct 2021 14:10:25 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "500"
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "498"
+            X-Ratelimit-Reset:
+                - "5"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 2
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
+            X-Datadog-Parent-Id:
+                - "8442216983998537724"
+            X-Datadog-Sampling-Priority:
+                - "1"
+            X-Datadog-Trace-Id:
+                - "8338263538961228440"
+        url: https://api.datadoghq.com/api/v1/monitor/49714528
+        method: DELETE
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"deleted_monitor_id":49714528}'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 14 Oct 2021 14:10:26 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 3
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
+            X-Datadog-Parent-Id:
+                - "2629498394693688486"
+            X-Datadog-Sampling-Priority:
+                - "1"
+            X-Datadog-Trace-Id:
+                - "8338263538961228440"
+        url: https://api.datadoghq.com/api/v1/monitor/49714524
+        method: DELETE
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"deleted_monitor_id":49714524}'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 14 Oct 2021 14:10:27 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s

@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/roles
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -29,6 +30,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v2/users
   response:
@@ -37,7 +39,7 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -51,6 +53,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 2
     method: POST
     url: https://api.datadoghq.com/api/v2/roles/b27c878a-aca5-11ed-bc84-da7ad0900002/users
   response:
@@ -59,7 +62,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -73,12 +76,13 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 3
     method: POST
     url: https://api.datadoghq.com/api/v2/restriction_policy/malformed
   response:
     body: '{"errors":["Invalid resource: ''malformed'' is not in a valid format"]}'
     code: 400
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -89,12 +93,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 4
     method: DELETE
     url: https://api.datadoghq.com/api/v2/users/b2ca0a63-aca5-11ed-ad1d-9ae79f61138a
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
 - request:
@@ -103,14 +108,15 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 5
     method: DELETE
     url: https://api.datadoghq.com/api/v2/roles/b27c878a-aca5-11ed-bc84-da7ad0900002
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-version: 1
+version: 2

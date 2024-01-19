@@ -8,14 +8,15 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/logs/analytics/aggregate
   response:
     body: '{"meta":{"status":"done","request_id":"pddv1ChZqNnEtQ2hTU1M5dTYxbWtrUGtBMGFBIi0KHVny0iHoClVAOb_xrSWcwl_hHz3QjhOb8cLTslhGEgz4EiXPOZ8kQFQe2Zw","elapsed":5},"data":{"buckets":[{"computes":{"c0":2},"by":{}}]}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

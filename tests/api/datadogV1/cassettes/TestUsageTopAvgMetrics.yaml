@@ -1,55 +1,72 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json;datetime-format=rfc3339
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.23+dev (go go1.16.5; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6573261468105339237"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "3792353277923506313"
-    url: https://api.datadoghq.com/api/v1/usage/top_avg_metrics?month=2021-06-07T08%3A08%3A43Z
-    method: GET
-  response:
-    body: '{"usage":[{"metric_category":"custom","metric_name":"java_metricsTests_local_1622607625","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622797677","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622727044","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Typescript_Create_a_log_based_metric_returns_OK_response_1613674902.961","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622560150","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622778697","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622798491","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622815077","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622798880","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622723142","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622797738","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1607014407.161855","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622647922","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622679594","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Typescript_Create_a_log_based_metric_returns_OK_response_1614896593.355","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622559099","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622620744","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622620694","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622746881","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622746841","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Typescript_Create_a_log_based_metric_returns_OK_response_1613675381.562","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622506921","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622620628","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Create_a_log_based_metric_returns_OK_response_1618831542","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622726982","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622864253","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1608595661.620162","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Typescript_Create_a_log_based_metric_returns_OK_response_1616149774.73","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622703710","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"ruby_Create_a_log_based_metric_returns_OK_response_1617976084","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622707447","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Typescript_Create_a_log_based_metric_returns_OK_response_1614072176.745","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1617014547.984513","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622852277","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622815144","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622619739","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622647905","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622766151","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622593290","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1617189622.037749","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622693454","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java.client.test.metric","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622703811","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"foo","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622619582","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Java_Create_a_log_based_metric_returns_OK_response_1618407299","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622723143","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622521374","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622620948","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622815190","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622707409","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1617190464.536072","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"go.client.test.metric","max_metric_hour":3,"avg_metric_hour":1}],"metadata":{"pagination":{"next_record_id":null,"limit":500,"total_number_of_records":null},"month":"2021-06-01T00:00:00+00:00"}}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 07 Jun 2021 08:08:43 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
-      X-Dd-Version:
-      - "35.4687073"
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "400"
-      X-Ratelimit-Period:
-      - "3600"
-      X-Ratelimit-Remaining:
-      - "399"
-      X-Ratelimit-Reset:
-      - "3077"
-    status: 200 OK
-    code: 200
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json;datetime-format=rfc3339
+            User-Agent:
+                - datadog-api-client-go/1.0.0-beta.23+dev (go go1.16.5; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "6573261468105339237"
+            X-Datadog-Sampling-Priority:
+                - "1"
+            X-Datadog-Trace-Id:
+                - "3792353277923506313"
+        url: https://api.datadoghq.com/api/v1/usage/top_avg_metrics?month=2021-06-07T08%3A08%3A43Z
+        method: GET
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"usage":[{"metric_category":"custom","metric_name":"java_metricsTests_local_1622607625","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622797677","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622727044","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Typescript_Create_a_log_based_metric_returns_OK_response_1613674902.961","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622560150","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622778697","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622798491","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622815077","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622798880","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622723142","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622797738","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1607014407.161855","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622647922","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622679594","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Typescript_Create_a_log_based_metric_returns_OK_response_1614896593.355","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622559099","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622620744","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622620694","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622746881","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622746841","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Typescript_Create_a_log_based_metric_returns_OK_response_1613675381.562","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622506921","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622620628","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Create_a_log_based_metric_returns_OK_response_1618831542","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622726982","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622864253","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1608595661.620162","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Typescript_Create_a_log_based_metric_returns_OK_response_1616149774.73","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622703710","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"ruby_Create_a_log_based_metric_returns_OK_response_1617976084","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622707447","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Typescript_Create_a_log_based_metric_returns_OK_response_1614072176.745","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1617014547.984513","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622852277","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622815144","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622619739","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622647905","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622766151","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622593290","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1617189622.037749","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622693454","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java.client.test.metric","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622703811","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"foo","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622619582","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Java_Create_a_log_based_metric_returns_OK_response_1618407299","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622723143","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622521374","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"Test_Go_TestMetrics_1622620948","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622815190","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"java_metricsTests_local_1622707409","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"datadog_api_client_python_test_create_a_logbased_metric_returns_ok_response_1617190464.536072","max_metric_hour":1,"avg_metric_hour":1},{"metric_category":"custom","metric_name":"go.client.test.metric","max_metric_hour":3,"avg_metric_hour":1}],"metadata":{"pagination":{"next_record_id":null,"limit":500,"total_number_of_records":null},"month":"2021-06-01T00:00:00+00:00"}}'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 07 Jun 2021 08:08:43 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Dd-Debug:
+                - S1wfaMZOKGT/IoMw6fqAwAwGWo2vQ44sjF3YzuETnQfxZO2T5eJbs0aX3UKb9Dwu
+            X-Dd-Version:
+                - "35.4687073"
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "400"
+            X-Ratelimit-Period:
+                - "3600"
+            X-Ratelimit-Remaining:
+                - "399"
+            X-Ratelimit-Reset:
+                - "3077"
+        status: 200 OK
+        code: 200
+        duration: 0s

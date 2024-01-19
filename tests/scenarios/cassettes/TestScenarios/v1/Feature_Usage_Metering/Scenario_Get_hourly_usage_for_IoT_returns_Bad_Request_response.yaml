@@ -5,14 +5,15 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v1/usage/iot?start_hr=2022-01-28T09%3A34%3A27.865Z&end_hr=2022-01-26T09%3A34%3A27.865Z
   response:
     body: '{"errors": ["start_hr [YYYY-MM-DDThh] must be before end_hr [YYYY-MM-DDThh]"]}'
     code: 400
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

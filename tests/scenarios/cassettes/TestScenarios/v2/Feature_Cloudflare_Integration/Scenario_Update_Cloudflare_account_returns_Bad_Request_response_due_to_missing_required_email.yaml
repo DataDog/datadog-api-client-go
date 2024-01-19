@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -29,13 +30,14 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: PATCH
     url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/f1d4f10fbad4add4962f2bc1fcb18c36
   response:
     body: '{"errors":["{''_schema'': [''Email address is required if providing an
       api key and not an api token.'']}"]}'
     code: 400
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -46,14 +48,15 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v2/integrations/cloudflare/accounts/f1d4f10fbad4add4962f2bc1fcb18c36
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-version: 1
+version: 2

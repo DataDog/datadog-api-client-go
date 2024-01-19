@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
@@ -16,7 +17,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -30,6 +31,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard/public
   response:
@@ -37,7 +39,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -48,6 +50,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/public/fasjyydbcgwwc2uc-078f138782b770a6d7512a925664fca3
   response:
@@ -55,7 +58,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -66,6 +69,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 3
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/ku9-p3f-2qu
   response:
@@ -73,9 +77,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/team
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -29,12 +30,13 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v2/team
   response:
     body: '{"errors":["Team name and handle must be unique"]}'
     code: 409
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -45,12 +47,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v2/team/2d8e0130-405b-11ee-869d-da7ad0900002
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
-version: 1
+version: 2

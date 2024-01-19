@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/metrics?filter%5Btags%5D=TestGetalistofmetricswithatagfilterreturnsSuccessresponse1662033550
   response:
@@ -12,9 +13,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

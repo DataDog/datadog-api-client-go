@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/incidents
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -29,6 +30,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v2/incidents/f703ecbc-fb3c-5ec1-b7a3-272149fddce7/relationships/integrations
   response:
@@ -36,7 +38,7 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -47,12 +49,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v2/incidents/f703ecbc-fb3c-5ec1-b7a3-272149fddce7/relationships/integrations/7361c4d9-1947-5ba5-9439-8cbf53a61e86
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -63,12 +66,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 3
     method: DELETE
     url: https://api.datadoghq.com/api/v2/incidents/f703ecbc-fb3c-5ec1-b7a3-272149fddce7/relationships/integrations/7361c4d9-1947-5ba5-9439-8cbf53a61e86
   response:
     body: '{"errors":["7361c4d9-1947-5ba5-9439-8cbf53a61e86 not found"]}'
     code: 404
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -79,14 +83,15 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 4
     method: DELETE
     url: https://api.datadoghq.com/api/v2/incidents/f703ecbc-fb3c-5ec1-b7a3-272149fddce7
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-version: 1
+version: 2

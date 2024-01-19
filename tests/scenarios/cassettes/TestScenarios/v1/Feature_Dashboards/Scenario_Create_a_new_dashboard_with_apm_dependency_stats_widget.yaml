@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
@@ -15,7 +16,7 @@ interactions:
       FROM monitor_history.monitor_state_change_history WHERE org_id = ? AND monitor_id
       IN ? AND group = ?","env":"ci","primary_tag_name":"datacenter","operation_name":"cassandra.query"}]}],"title_align":"left","title_size":"16","title":""},"layout":{"y":0,"width":4,"x":0,"height":4},"id":2344140518922967}],"layout_type":"ordered"}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -26,14 +27,15 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 1
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/z3x-s3a-d2f
   response:
     body: '{"deleted_dashboard_id":"z3x-s3a-d2f"}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

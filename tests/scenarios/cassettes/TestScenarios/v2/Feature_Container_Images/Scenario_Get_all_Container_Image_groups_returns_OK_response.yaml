@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/container_images?group_by=short_image
   response:
@@ -313,9 +314,9 @@ interactions:
       "links": {"self": "https://api.datadoghq.com/api/v2/container_images?group_by=short_image",
       "last": null, "next": null, "prev": null, "first": "https://api.datadoghq.com/api/v2/container_images?group_by=short_image&page[size]=100"}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

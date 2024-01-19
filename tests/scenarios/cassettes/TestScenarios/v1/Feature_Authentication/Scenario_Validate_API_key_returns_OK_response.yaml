@@ -5,14 +5,15 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v1/validate
   response:
     body: '{"valid":true}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/monitor
   response:
@@ -16,7 +17,7 @@ interactions:
       >= 1","message":"some message Notify: @hipchat-channel","id":59800609,"multi":true,"name":"Test-Create_a_ci_pipelines_monitor_returns_OK_response-1641430253","created":"2022-01-06T00:50:54.050585+00:00","created_at":1641430254000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2022-01-06T00:50:54.050585+00:00","priority":3,"overall_state_modified":null,"overall_state":"No
       Data","type":"ci-pipelines alert","options":{"notify_audit":false,"locked":false,"silenced":{},"include_tags":true,"thresholds":{"critical":1},"new_host_delay":300,"notify_no_data":false,"groupby_simple_monitor":false}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -27,14 +28,15 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 1
     method: DELETE
     url: https://api.datadoghq.com/api/v1/monitor/59800609
   response:
     body: '{"deleted_monitor_id":59800609}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

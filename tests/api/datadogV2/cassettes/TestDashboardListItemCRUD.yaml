@@ -1,324 +1,460 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: |
-      {"name":"Test-TestDashboardListItemCRUD-1665993822"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "53"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "7845106270240038134"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "7845106270240038134"
-    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual
-    method: POST
-  response:
-    body: |
-      {"is_favorite":false,"name":"Test-TestDashboardListItemCRUD-1665993822","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2022-10-17T08:03:42.627525+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2022-10-17T08:03:42.627533+00:00","id":334703}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Oct 2022 08:03:42 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"dashboards":[{"id":"1","type":"integration_timeboard"},{"id":"q5j-nti-fv6","type":"custom_timeboard"},{"id":"4n7-s4g-dqv","type":"custom_screenboard"}]}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "155"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "4303068265512388163"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "6182845000795546669"
-    url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/334703/dashboards
-    method: POST
-  response:
-    body: |
-      {"added_dashboards_to_list":[{"type":"custom_timeboard","id":"q5j-nti-fv6"},{"type":"custom_screenboard","id":"4n7-s4g-dqv"},{"type":"integration_timeboard","id":"1"}]}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Oct 2022 08:03:42 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"dashboards":[{"id":"1","type":"integration_timeboard"},{"id":"q5j-nti-fv6","type":"custom_timeboard"},{"id":"4n7-s4g-dqv","type":"custom_screenboard"}]}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "155"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6249494027600743979"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "6182845000795546669"
-    url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/334703/dashboards
-    method: DELETE
-  response:
-    body: |
-      {"deleted_dashboards_from_list":[{"type":"integration_timeboard","id":"1"},{"type":"custom_timeboard","id":"q5j-nti-fv6"},{"type":"custom_screenboard","id":"4n7-s4g-dqv"}]}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Oct 2022 08:03:43 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "757235033431085511"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "6182845000795546669"
-    url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/334703/dashboards
-    method: GET
-  response:
-    body: |
-      {"total":0,"dashboards":[]}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "28"
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Oct 2022 08:03:43 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"dashboards":[{"id":"1","type":"integration_timeboard"},{"id":"q5j-nti-fv6","type":"custom_timeboard"},{"id":"4n7-s4g-dqv","type":"custom_screenboard"}]}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "155"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "5041729191827393689"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "6182845000795546669"
-    url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/334703/dashboards
-    method: PUT
-  response:
-    body: |
-      {"dashboards":[{"type":"custom_timeboard","id":"q5j-nti-fv6"},{"type":"custom_screenboard","id":"4n7-s4g-dqv"},{"type":"integration_timeboard","id":"1"}]}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Oct 2022 08:03:43 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"dashboards":[{"id":"1","type":"integration_timeboard"},{"id":"q5j-nti-fv6","type":"custom_timeboard"}]}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "106"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "7861317453099172258"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "6182845000795546669"
-    url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/334703/dashboards
-    method: DELETE
-  response:
-    body: |
-      {"deleted_dashboards_from_list":[{"type":"integration_timeboard","id":"1"},{"type":"custom_timeboard","id":"q5j-nti-fv6"}]}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Oct 2022 08:03:43 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "3248855358381556303"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "6182845000795546669"
-    url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/334703/dashboards
-    method: GET
-  response:
-    body: |
-      {"total":1,"dashboards":[{"popularity":0,"title":"For dashboard list tests - DO NOT DELETE","is_favorite":false,"id":"4n7-s4g-dqv","icon":null,"integration_id":null,"is_shared":true,"author":{"handle":"hippolyte.henry@datadoghq.com","name":"Hippolyte Henry"},"url":"/dashboard/4n7-s4g-dqv/for-dashboard-list-tests---do-not-delete","created":"2020-02-11T13:49:29.555334+00:00","modified":"2020-04-08T17:54:25.574039+00:00","is_read_only":false,"type":"custom_screenboard"}]}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Oct 2022 08:03:43 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6550064735480832002"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "6550064735480832002"
-    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/334703
-    method: DELETE
-  response:
-    body: |
-      {"deleted_dashboard_list_id":334703}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Oct 2022 08:03:44 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"name":"Test-TestDashboardListItemCRUD-1665993822"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "53"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "7845106270240038134"
+            X-Datadog-Sampling-Priority:
+                - "1"
+            X-Datadog-Trace-Id:
+                - "7845106270240038134"
+        url: https://api.datadoghq.com/api/v1/dashboard/lists/manual
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"is_favorite":false,"name":"Test-TestDashboardListItemCRUD-1665993822","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2022-10-17T08:03:42.627525+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2022-10-17T08:03:42.627533+00:00","id":334703}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Oct 2022 08:03:42 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 1
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"dashboards":[{"id":"1","type":"integration_timeboard"},{"id":"q5j-nti-fv6","type":"custom_timeboard"},{"id":"4n7-s4g-dqv","type":"custom_screenboard"}]}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "155"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "4303068265512388163"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "6182845000795546669"
+        url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/334703/dashboards
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"added_dashboards_to_list":[{"type":"custom_timeboard","id":"q5j-nti-fv6"},{"type":"custom_screenboard","id":"4n7-s4g-dqv"},{"type":"integration_timeboard","id":"1"}]}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Oct 2022 08:03:42 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 2
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"dashboards":[{"id":"1","type":"integration_timeboard"},{"id":"q5j-nti-fv6","type":"custom_timeboard"},{"id":"4n7-s4g-dqv","type":"custom_screenboard"}]}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "155"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "6249494027600743979"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "6182845000795546669"
+        url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/334703/dashboards
+        method: DELETE
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"deleted_dashboards_from_list":[{"type":"integration_timeboard","id":"1"},{"type":"custom_timeboard","id":"q5j-nti-fv6"},{"type":"custom_screenboard","id":"4n7-s4g-dqv"}]}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Oct 2022 08:03:43 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 3
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "757235033431085511"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "6182845000795546669"
+        url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/334703/dashboards
+        method: GET
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"total":0,"dashboards":[]}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "28"
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Oct 2022 08:03:43 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 4
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"dashboards":[{"id":"1","type":"integration_timeboard"},{"id":"q5j-nti-fv6","type":"custom_timeboard"},{"id":"4n7-s4g-dqv","type":"custom_screenboard"}]}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "155"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "5041729191827393689"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "6182845000795546669"
+        url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/334703/dashboards
+        method: PUT
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"dashboards":[{"type":"custom_timeboard","id":"q5j-nti-fv6"},{"type":"custom_screenboard","id":"4n7-s4g-dqv"},{"type":"integration_timeboard","id":"1"}]}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Oct 2022 08:03:43 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 5
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"dashboards":[{"id":"1","type":"integration_timeboard"},{"id":"q5j-nti-fv6","type":"custom_timeboard"}]}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "106"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "7861317453099172258"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "6182845000795546669"
+        url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/334703/dashboards
+        method: DELETE
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"deleted_dashboards_from_list":[{"type":"integration_timeboard","id":"1"},{"type":"custom_timeboard","id":"q5j-nti-fv6"}]}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Oct 2022 08:03:43 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 6
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "3248855358381556303"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "6182845000795546669"
+        url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/334703/dashboards
+        method: GET
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"total":1,"dashboards":[{"popularity":0,"title":"For dashboard list tests - DO NOT DELETE","is_favorite":false,"id":"4n7-s4g-dqv","icon":null,"integration_id":null,"is_shared":true,"author":{"handle":"hippolyte.henry@datadoghq.com","name":"Hippolyte Henry"},"url":"/dashboard/4n7-s4g-dqv/for-dashboard-list-tests---do-not-delete","created":"2020-02-11T13:49:29.555334+00:00","modified":"2020-04-08T17:54:25.574039+00:00","is_read_only":false,"type":"custom_screenboard"}]}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Oct 2022 08:03:43 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 7
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.3.2+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "6550064735480832002"
+            X-Datadog-Sampling-Priority:
+                - "1"
+            X-Datadog-Trace-Id:
+                - "6550064735480832002"
+        url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/334703
+        method: DELETE
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"deleted_dashboard_list_id":334703}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Oct 2022 08:03:44 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s

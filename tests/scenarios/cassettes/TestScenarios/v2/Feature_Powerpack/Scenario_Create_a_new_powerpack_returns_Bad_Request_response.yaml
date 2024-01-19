@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/powerpacks
   response:
@@ -15,9 +16,9 @@ interactions:
       one of [''group'']\n\nFailed validating ''enum'' in schema[''properties''][''type'']:\n    {''enum'':
       [''group'']}\n\nOn instance[''type'']:\n    ''group1''."]}'
     code: 400
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v1/usage/timeseries?start_hr=2022-03-27T00%3A41%3A29.168Z&end_hr=2022-03-29T00%3A41%3A29.168Z
   response:
@@ -57,9 +58,9 @@ interactions:
       Integration Tests (321813)","num_standard_output_timeseries":77,"public_id":"fasjyydbcgwwc2uc","num_custom_input_timeseries":0,"hour":"2022-03-28T22:00:00+00:00","num_standard_timeseries":36073,"num_custom_output_timeseries":82,"num_custom_timeseries":93,"num_standard_input_timeseries":0},{"org_name":"DD
       Integration Tests (321813)","num_standard_output_timeseries":77,"public_id":"fasjyydbcgwwc2uc","num_custom_input_timeseries":0,"hour":"2022-03-28T23:00:00+00:00","num_standard_timeseries":36078,"num_custom_output_timeseries":82,"num_custom_timeseries":93,"num_standard_input_timeseries":0}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

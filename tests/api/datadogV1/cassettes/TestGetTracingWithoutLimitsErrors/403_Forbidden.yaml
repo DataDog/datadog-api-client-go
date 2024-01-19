@@ -1,5 +1,4 @@
----
-version: 1
+version: 2
 interactions:
 - request:
     body: ""
@@ -17,6 +16,7 @@ interactions:
       - "5940111695365216169"
     url: https://api.datadoghq.com/api/v1/usage/tracing-without-limits?start_hr=2020-10-01T09%3A41%3A23-04%3A00
     method: GET
+    id: 0
   response:
     body: |
       {"status":"error","code":403,"errors":["Forbidden"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
@@ -33,4 +33,4 @@ interactions:
       - 1.1 haproxy
     status: 403 Forbidden
     code: 403
-    duration: ""
+    duration: "0ms"

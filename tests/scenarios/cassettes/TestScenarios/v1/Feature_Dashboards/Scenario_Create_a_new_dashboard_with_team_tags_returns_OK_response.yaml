@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -26,6 +27,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 1
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/cvx-m2c-ntf
   response:
@@ -33,9 +35,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

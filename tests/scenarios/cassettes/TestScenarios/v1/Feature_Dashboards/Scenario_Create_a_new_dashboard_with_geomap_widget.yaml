@@ -8,12 +8,13 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
     body: '{"notify_list":[],"description":null,"restricted_roles":[],"author_name":null,"template_variables":[],"is_read_only":false,"id":"cqc-kbv-se3","title":"Test-Create_a_new_dashboard_with_geomap_widget-1641430233","url":"/dashboard/cqc-kbv-se3/test-createanewdashboardwithgeomapwidget-1641430233","created_at":"2022-01-06T00:50:33.554719+00:00","modified_at":"2022-01-06T00:50:33.554719+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"style":{"palette":"hostmap_blues","palette_flip":false},"title_size":"16","title":"","title_align":"left","time":{},"requests":[{"formulas":[{"formula":"query1","limit":{"count":250,"order":"desc"}}],"response_format":"scalar","queries":[{"search":{"query":""},"data_source":"rum","compute":{"aggregation":"count"},"name":"query1","indexes":["*"],"group_by":[{"facet":"@geo.country_iso_code","sort":{"aggregation":"count","order":"desc"},"limit":250}]}]}],"type":"geomap","view":{"focus":"WORLD"}},"layout":{"y":0,"width":47,"x":0,"height":30},"id":814328647870268}],"layout_type":"free"}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -24,14 +25,15 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 1
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/cqc-kbv-se3
   response:
     body: '{"deleted_dashboard_id":"cqc-kbv-se3"}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

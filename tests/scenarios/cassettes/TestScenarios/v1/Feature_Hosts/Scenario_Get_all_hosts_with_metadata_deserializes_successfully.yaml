@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v1/hosts?include_hosts_metadata=true
   response:
@@ -14,9 +15,9 @@ interactions:
       SMP Tue Jul 17 15:39:52 UTC 2018\",\"machine\":\"x86_64\",\"os\":\"GNU/Linux\",\"processor\":\"x86_64\",\"pythonV\":\"2.7.15rc1\"}}","network":null,"logs_agent":{"transport":""},"host_id":1036078308,"agent_version":"7.32.3","processor":"Intel(R)
       Core(TM) i7-8559U CPU @ 2.70GHz","socket-fqdn":"vagrant.vm.","agent_checks":[["ntp","ntp","ntp:d884b5186b651429","OK","",""]]},"host_name":"vagrant","id":1036078308,"aliases":["vagrant"]}],"total_matching":1}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

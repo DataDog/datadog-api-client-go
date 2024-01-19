@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/cost/azure_uc_config
   response:
@@ -45,9 +46,9 @@ interactions:
       "status_updated_at": "2023-11-09T20:20:35.956202", "storage_account": "test_storage_account",
       "months": 15, "export_path": "test_export_path"}]}}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

@@ -1,56 +1,73 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: |
-      {"account_id":"001664524053","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"Different-Role"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "234"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.3.2+dev (go go1.19; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "259498685369027219"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "8950770792045257138"
-    url: https://api.datadoghq.com/api/v1/integration/aws
-    method: POST
-  response:
-    body: '{"errors": ["This AWS account ID already exists."]}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Fri, 30 Sep 2022 07:47:34 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "12000"
-      X-Ratelimit-Period:
-      - "60"
-      X-Ratelimit-Remaining:
-      - "11995"
-      X-Ratelimit-Reset:
-      - "26"
-    status: 409 Conflict
-    code: 409
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"account_id":"001664524053","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"Different-Role"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "234"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.3.2+dev (go go1.19; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "259498685369027219"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "8950770792045257138"
+        url: https://api.datadoghq.com/api/v1/integration/aws
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"errors": ["This AWS account ID already exists."]}'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Fri, 30 Sep 2022 07:47:34 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "12000"
+            X-Ratelimit-Period:
+                - "60"
+            X-Ratelimit-Remaining:
+                - "11995"
+            X-Ratelimit-Reset:
+                - "26"
+        status: 409 Conflict
+        code: 409
+        duration: 0s

@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/apm/config/retention-filters
   response:
@@ -17,7 +18,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -28,6 +29,7 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 1
     method: DELETE
     url: https://api.datadoghq.com/api/v2/apm/config/retention-filters/ErO5dcpeRPmDWbmrryfpYQ
   response:
@@ -35,7 +37,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -46,14 +48,15 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v2/apm/config/retention-filters/ErO5dcpeRPmDWbmrryfpYQ
   response:
     body: '{"errors":["retention filter with id: ''ErO5dcpeRPmDWbmrryfpYQ'' not found"]}'
     code: 404
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

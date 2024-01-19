@@ -8,13 +8,14 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/users
   response:
     body: '{"data":{"type":"users","id":"6cf192b6-d1d9-11ec-ad3d-da7ad0900002","attributes":{"name":null,"handle":"test-send_invitation_emails_returns_ok_response-1652349230@datadoghq.com","created_at":"2022-05-12T09:53:50.750988+00:00","modified_at":"2022-05-12T09:53:50.825901+00:00","email":"test-send_invitation_emails_returns_ok_response-1652349230@datadoghq.com","icon":"https://secure.gravatar.com/avatar/08690384d51c4e0218825490e53c6f9a?s=48&d=retro","title":"user
       title","verified":false,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}}'
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -28,12 +29,13 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v2/user_invitations
   response:
     body: '{"data":[{"type":"user_invitations","id":"6d565dfe-d1d9-11ec-ad3d-da7ad0900002","attributes":{"uuid":"6d565dfe-d1d9-11ec-ad3d-da7ad0900002","login_method":null,"invite_type":"openid_invite","created_at":"2022-05-12T09:53:51.412532+00:00","expires_at":"2022-05-14T09:53:51.311613+00:00"},"relationships":{"user":{"data":{"type":"users","id":"6cf192b6-d1d9-11ec-ad3d-da7ad0900002"}}}}]}'
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -44,12 +46,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v2/users/6cf192b6-d1d9-11ec-ad3d-da7ad0900002
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
-version: 1
+version: 2

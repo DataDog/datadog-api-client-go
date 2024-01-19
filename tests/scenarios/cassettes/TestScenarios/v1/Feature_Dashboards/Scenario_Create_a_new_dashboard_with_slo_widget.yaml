@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/slo
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -29,6 +30,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
@@ -36,7 +38,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -47,6 +49,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/s2k-6ak-vwz
   response:
@@ -54,7 +57,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -65,6 +68,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 3
     method: DELETE
     url: https://api.datadoghq.com/api/v1/slo/91c07f67612e5483b52e566f81ef101c
   response:
@@ -72,9 +76,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/team
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -29,6 +30,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v2/team/3174aa4c-405b-11ee-9d78-da7ad0900002/links
   response:
@@ -36,7 +38,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -47,12 +49,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v2/team/3174aa4c-405b-11ee-9d78-da7ad0900002/links/3194a5c2-405b-11ee-b009-da7ad0900002
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
 - request:
@@ -61,12 +64,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 3
     method: DELETE
     url: https://api.datadoghq.com/api/v2/team/3174aa4c-405b-11ee-9d78-da7ad0900002/links/3194a5c2-405b-11ee-b009-da7ad0900002
   response:
     body: '{"errors":["Link for ID 3194a5c2-405b-11ee-b009-da7ad0900002 not found"]}'
     code: 404
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -77,12 +81,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 4
     method: DELETE
     url: https://api.datadoghq.com/api/v2/team/3174aa4c-405b-11ee-9d78-da7ad0900002
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
-version: 1
+version: 2

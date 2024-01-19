@@ -1,5 +1,4 @@
----
-version: 1
+version: 2
 interactions:
 - request:
     body: |
@@ -20,6 +19,7 @@ interactions:
       - "371399120257718458"
     url: https://api.datadoghq.com/api/v1/integration/slack/configuration/accounts/go-TestSlackIntegrationCreateChannelErrors-404_Not_Found-local-1613568563/channels
     method: POST
+    id: 0
   response:
     body: '{"errors": ["Account is not configured: go-TestSlackIntegrationCreateChannelErrors-404_Not_Found-local-1613568563"]}'
     headers:
@@ -45,4 +45,4 @@ interactions:
       - SAMEORIGIN
     status: 400 Bad Request
     code: 400
-    duration: ""
+    duration: "0ms"

@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/team
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -26,6 +27,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 1
     method: GET
     url: https://api.datadoghq.com/api/v2/team/302a1e60-405b-11ee-aa12-da7ad0900002/permission-settings
   response:
@@ -35,7 +37,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -46,12 +48,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v2/team/302a1e60-405b-11ee-aa12-da7ad0900002
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
-version: 1
+version: 2

@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v1/usage/cspm?start_hr=2023-09-17T21%3A11%3A12.476Z
   response:
@@ -36,9 +37,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

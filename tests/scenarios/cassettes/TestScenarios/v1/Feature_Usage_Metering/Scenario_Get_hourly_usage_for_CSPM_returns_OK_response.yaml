@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v1/usage/cspm?start_hr=2022-01-18T12%3A03%3A20.978Z
   response:
@@ -33,9 +34,9 @@ interactions:
       Integration Tests (321813)","container_count":null,"aas_host_count":null,"hour":"2022-01-19T10:00:00+00:00","compliance_host_count":null,"azure_host_count":null,"public_id":"fasjyydbcgwwc2uc"},{"host_count":null,"org_name":"DD
       Integration Tests (321813)","container_count":null,"aas_host_count":null,"hour":"2022-01-19T11:00:00+00:00","compliance_host_count":null,"azure_host_count":null,"public_id":"fasjyydbcgwwc2uc"}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

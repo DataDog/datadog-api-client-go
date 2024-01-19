@@ -8,14 +8,15 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: PATCH
     url: https://api.datadoghq.com/api/v2/powerpacks/made-up-id
   response:
     body: '{"errors":["Powerpack has invalid UUID made-up-id not found"]}'
     code: 404
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2
