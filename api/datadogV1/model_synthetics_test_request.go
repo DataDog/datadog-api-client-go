@@ -26,6 +26,8 @@ type SyntheticsTestRequest struct {
 	CertificateDomains []string `json:"certificateDomains,omitempty"`
 	// A protobuf JSON descriptor that needs to be gzipped first then base64 encoded.
 	CompressedJsonDescriptor *string `json:"compressedJsonDescriptor,omitempty"`
+	// A protobuf file that needs to be gzipped first then base64 encoded.
+	CompressedProtoFile *string `json:"compressedProtoFile,omitempty"`
 	// DNS server to use for DNS tests.
 	DnsServer *string `json:"dnsServer,omitempty"`
 	// DNS server port to use for DNS tests.
@@ -310,6 +312,34 @@ func (o *SyntheticsTestRequest) HasCompressedJsonDescriptor() bool {
 // SetCompressedJsonDescriptor gets a reference to the given string and assigns it to the CompressedJsonDescriptor field.
 func (o *SyntheticsTestRequest) SetCompressedJsonDescriptor(v string) {
 	o.CompressedJsonDescriptor = &v
+}
+
+// GetCompressedProtoFile returns the CompressedProtoFile field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetCompressedProtoFile() string {
+	if o == nil || o.CompressedProtoFile == nil {
+		var ret string
+		return ret
+	}
+	return *o.CompressedProtoFile
+}
+
+// GetCompressedProtoFileOk returns a tuple with the CompressedProtoFile field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetCompressedProtoFileOk() (*string, bool) {
+	if o == nil || o.CompressedProtoFile == nil {
+		return nil, false
+	}
+	return o.CompressedProtoFile, true
+}
+
+// HasCompressedProtoFile returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasCompressedProtoFile() bool {
+	return o != nil && o.CompressedProtoFile != nil
+}
+
+// SetCompressedProtoFile gets a reference to the given string and assigns it to the CompressedProtoFile field.
+func (o *SyntheticsTestRequest) SetCompressedProtoFile(v string) {
+	o.CompressedProtoFile = &v
 }
 
 // GetDnsServer returns the DnsServer field value if set, zero value otherwise.
@@ -874,6 +904,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.CompressedJsonDescriptor != nil {
 		toSerialize["compressedJsonDescriptor"] = o.CompressedJsonDescriptor
 	}
+	if o.CompressedProtoFile != nil {
+		toSerialize["compressedProtoFile"] = o.CompressedProtoFile
+	}
 	if o.DnsServer != nil {
 		toSerialize["dnsServer"] = o.DnsServer
 	}
@@ -949,6 +982,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Certificate              *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
 		CertificateDomains       []string                          `json:"certificateDomains,omitempty"`
 		CompressedJsonDescriptor *string                           `json:"compressedJsonDescriptor,omitempty"`
+		CompressedProtoFile      *string                           `json:"compressedProtoFile,omitempty"`
 		DnsServer                *string                           `json:"dnsServer,omitempty"`
 		DnsServerPort            *int32                            `json:"dnsServerPort,omitempty"`
 		FollowRedirects          *bool                             `json:"follow_redirects,omitempty"`
@@ -974,7 +1008,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allow_insecure", "basicAuth", "body", "bodyType", "callType", "certificate", "certificateDomains", "compressedJsonDescriptor", "dnsServer", "dnsServerPort", "follow_redirects", "headers", "host", "message", "metadata", "method", "noSavingResponseBody", "numberOfPackets", "persistCookies", "port", "proxy", "query", "servername", "service", "shouldTrackHops", "timeout", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"allow_insecure", "basicAuth", "body", "bodyType", "callType", "certificate", "certificateDomains", "compressedJsonDescriptor", "compressedProtoFile", "dnsServer", "dnsServerPort", "follow_redirects", "headers", "host", "message", "metadata", "method", "noSavingResponseBody", "numberOfPackets", "persistCookies", "port", "proxy", "query", "servername", "service", "shouldTrackHops", "timeout", "url"})
 	} else {
 		return err
 	}
@@ -999,6 +1033,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Certificate = all.Certificate
 	o.CertificateDomains = all.CertificateDomains
 	o.CompressedJsonDescriptor = all.CompressedJsonDescriptor
+	o.CompressedProtoFile = all.CompressedProtoFile
 	o.DnsServer = all.DnsServer
 	o.DnsServerPort = all.DnsServerPort
 	o.FollowRedirects = all.FollowRedirects
