@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/usage/application_security?start_hr=2022-04-29T16%3A40%3A49.302Z&end_hr=2022-04-27T16%3A40%3A49.302Z
   response:
@@ -12,9 +13,9 @@ interactions:
 
       '
     code: 400
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

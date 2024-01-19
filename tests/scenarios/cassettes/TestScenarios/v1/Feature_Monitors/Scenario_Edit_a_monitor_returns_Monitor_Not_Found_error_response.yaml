@@ -8,14 +8,15 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: PUT
     url: https://api.datadoghq.com/api/v1/monitor/0
   response:
     body: '{"errors":["Monitor not found"]}'
     code: 404
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

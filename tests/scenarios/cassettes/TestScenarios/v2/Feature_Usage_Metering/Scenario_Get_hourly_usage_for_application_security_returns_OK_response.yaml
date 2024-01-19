@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/usage/application_security?start_hr=2023-10-11T15%3A16%3A50.772Z&end_hr=2023-10-13T15%3A16%3A50.772Z
   response:
@@ -13,9 +14,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

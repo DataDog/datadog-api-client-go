@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v1/usage/rum_sessions?start_hr=2022-05-05T15%3A31%3A42.562Z&end_hr=2022-05-07T15%3A31%3A42.562Z&type=mobile
   response:
@@ -57,9 +58,9 @@ interactions:
       Integration Tests (321813)","public_id":"fasjyydbcgwwc2uc","hour":"2022-05-07T13:00:00+00:00","session_count_android":null,"session_count":null,"session_count_ios":null,"session_count_reactnative":null},{"org_name":"DD
       Integration Tests (321813)","public_id":"fasjyydbcgwwc2uc","hour":"2022-05-07T14:00:00+00:00","session_count_android":null,"session_count":null,"session_count_ios":null,"session_count_reactnative":null}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

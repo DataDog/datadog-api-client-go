@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks
   response:
@@ -16,7 +17,7 @@ interactions:
       \"title\": \"$EVENT_TITLE\", \"date\": \"$DATE\", \"org\": {\"id\": \"$ORG_ID\",
       \"name\": \"$ORG_NAME\"}, \"id\": \"$ID\"}"}'
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -27,14 +28,15 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 1
     method: DELETE
     url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/webhooks/Test-Create_a_webhooks_integration_returns_OK_response-1652349037
   response:
     body: '{}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

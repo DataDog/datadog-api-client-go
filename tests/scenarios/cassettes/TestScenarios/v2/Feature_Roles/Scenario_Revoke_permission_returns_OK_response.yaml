@@ -8,12 +8,13 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/roles
   response:
     body: '{"data":{"type":"roles","id":"4fc503c6-d1d9-11ec-ad3d-da7ad0900002","attributes":{"name":"Test-Revoke_permission_returns_OK_response-1652349181","created_at":"2022-05-12T09:53:01.806050+00:00","modified_at":"2022-05-12T09:53:01.871847+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"417ba636-2dce-11eb-84c0-6bce5b0d9de0"},{"type":"permissions","id":"12efc20e-d36c-11eb-a9b8-da7ad0900002"},{"type":"permissions","id":"97971c1c-e895-11eb-b13c-da7ad0900002"},{"type":"permissions","id":"7605ef24-f376-11eb-b90b-da7ad0900002"},{"type":"permissions","id":"b6bf9ac6-9a59-11ec-8480-da7ad0900002"}]}}}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -24,6 +25,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 1
     method: GET
     url: https://api.datadoghq.com/api/v2/permissions
   response:
@@ -202,7 +204,7 @@ interactions:
       Generate Metrics","description":"Create custom metrics from RUM events.","created":"2022-04-11T16:26:24.106645+00:00","group_name":"Real
       User Monitoring","display_type":"write","restricted":false}}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -216,6 +218,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 2
     method: POST
     url: https://api.datadoghq.com/api/v2/roles/4fc503c6-d1d9-11ec-ad3d-da7ad0900002/permissions
   response:
@@ -241,7 +244,7 @@ interactions:
       User Monitoring","display_type":"read","restricted":true}},{"type":"permissions","id":"b6bf9ac6-9a59-11ec-8480-da7ad0900002","attributes":{"name":"notebooks_read","display_name":"Notebooks
       Read","description":"View notebooks.","created":"2022-03-02T18:51:05.040950+00:00","group_name":"Notebooks","display_type":"read","restricted":true}}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -255,6 +258,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 3
     method: DELETE
     url: https://api.datadoghq.com/api/v2/roles/4fc503c6-d1d9-11ec-ad3d-da7ad0900002/permissions
   response:
@@ -277,7 +281,7 @@ interactions:
       User Monitoring","display_type":"read","restricted":true}},{"type":"permissions","id":"b6bf9ac6-9a59-11ec-8480-da7ad0900002","attributes":{"name":"notebooks_read","display_name":"Notebooks
       Read","description":"View notebooks.","created":"2022-03-02T18:51:05.040950+00:00","group_name":"Notebooks","display_type":"read","restricted":true}}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -288,12 +292,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 4
     method: DELETE
     url: https://api.datadoghq.com/api/v2/roles/4fc503c6-d1d9-11ec-ad3d-da7ad0900002
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
-version: 1
+version: 2

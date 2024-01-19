@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
@@ -15,7 +16,7 @@ interactions:
       by {service}"},{"aggregator":"avg","data_source":"metrics","name":"query2","query":"avg:system.mem.used{*}
       by {service}"}]}},"title_align":"left","title_size":"16","title":""},"layout":{"y":0,"width":4,"x":0,"height":2},"id":5346764334358972}],"layout_type":"ordered"}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -26,14 +27,15 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 1
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/zct-37r-af2
   response:
     body: '{"deleted_dashboard_id":"zct-37r-af2"}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

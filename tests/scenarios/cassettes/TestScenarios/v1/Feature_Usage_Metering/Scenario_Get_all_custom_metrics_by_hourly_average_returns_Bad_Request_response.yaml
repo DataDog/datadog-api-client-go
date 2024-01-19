@@ -5,14 +5,15 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v1/usage/top_avg_metrics
   response:
     body: '{"errors": ["The parameter ''month/day'' is required"]}'
     code: 400
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/cost/aws_cur_config
   response:
@@ -15,9 +16,9 @@ interactions:
       "status": "active", "status_updated_at": "2023-11-21T17:07:24.778386", "error_messages":
       []}}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

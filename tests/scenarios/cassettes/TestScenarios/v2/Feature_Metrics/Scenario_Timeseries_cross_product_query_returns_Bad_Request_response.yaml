@@ -8,14 +8,15 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/query/timeseries
   response:
     body: '{"errors":["API input validation failed: Invalid type. Expected \"timeseries_request\"."]}'
     code: 400
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

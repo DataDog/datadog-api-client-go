@@ -8,12 +8,13 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/api_keys
   response:
     body: '{"data":{"type":"api_keys","attributes":{"created_at":"2022-05-12T09:52:00.698721+00:00","key":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","last4":"xxxx","modified_at":"2022-05-12T09:52:00.698721+00:00","name":"Test-Create_an_API_key_returns_Created_response-1652349120"},"relationships":{"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"leak_information":{"data":null}},"id":"f625994a-4ee7-4967-b08c-7067d1f1cdac"}}'
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -24,12 +25,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 1
     method: DELETE
     url: https://api.datadoghq.com/api/v2/api_keys/f625994a-4ee7-4967-b08c-7067d1f1cdac
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
-version: 1
+version: 2

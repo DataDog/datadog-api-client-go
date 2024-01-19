@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v1/hosts?include_hosts_metadata=true
   response:
@@ -176,9 +177,9 @@ interactions:
       SMP Tue Jan 12 18:22:20 UTC 2021\",\"machine\":\"x86_64\",\"os\":\"GNU/Linux\",\"processor\":\"x86_64\",\"pythonV\":\"2.7.17\"}}","logs_agent":{"transport":"HTTP"},"host_id":6306937724,"pythonV":"n/a","processor":"Intel(R)
       Xeon(R) CPU @ 2.20GHz","socket-fqdn":"a2af6476-390b-4f1f-6b18-a9bf","network":null},"host_name":"a2af6476-390b-4f1f-6b18-a9bf","id":6306937724,"aliases":["a2af6476-390b-4f1f-6b18-a9bf"]}],"total_matching":41}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

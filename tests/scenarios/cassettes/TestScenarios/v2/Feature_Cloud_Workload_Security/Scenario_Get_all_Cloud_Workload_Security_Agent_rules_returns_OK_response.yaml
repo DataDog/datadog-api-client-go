@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules
   response:
@@ -15,7 +16,7 @@ interactions:
       Agent rule","enabled":true,"defaultRule":false,"version":1,"updater":{"handle":"frog@datadoghq.com","name":null},"updateDate":1652349084949,"creationDate":1652349084949,"expression":"exec.file.name
       == \"sh\""},"type":"agent_rule","id":"w3n-qy8-qud"}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json;charset=utf-8
@@ -26,6 +27,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 1
     method: GET
     url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules
   response:
@@ -791,7 +793,7 @@ interactions:
       Execution Detected","enabled":true,"defaultRule":true,"version":1,"updater":{"handle":"","name":""},"updateDate":1627913195813,"creationDate":1617722067554,"expression":"exec.file.path
       == \"/usr/bin/nmap\""},"type":"agent_rule","id":"yiy-mba-pny"}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json;charset=utf-8
@@ -802,14 +804,15 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/w3n-qy8-qud
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json;charset=utf-8
     status: 204 No Content
-version: 1
+version: 2

@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/events?filter%5Bquery%5D=datadog-agent&filter%5Bfrom%5D=2020-09-17T11%3A48%3A36%2B01%3A00&filter%5Bto%5D=2020-09-17T12%3A48%3A36%2B01%3A00&page%5Blimit%5D=5
   response:
@@ -12,9 +13,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

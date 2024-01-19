@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config
   response:
@@ -12,7 +13,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -26,6 +27,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/groups
   response:
@@ -33,7 +35,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -44,6 +46,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 2
     method: GET
     url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config
   response:
@@ -51,7 +54,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -65,6 +68,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 3
     method: DELETE
     url: https://api.datadoghq.com/api/v2/sensitive-data-scanner/config/groups/729biiqHSgOWuNyzZQLsbg
   response:
@@ -72,9 +76,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

@@ -8,14 +8,15 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: PATCH
     url: https://api.datadoghq.com/api/v2/posture_management/findings
   response:
     body: '{"data":{"id":"dbe5f567-192b-4404-b908-29b70e1c9f76","type":"finding"}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/vnd.api+json
     status: 200 OK
-version: 1
+version: 2

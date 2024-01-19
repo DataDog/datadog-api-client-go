@@ -8,14 +8,15 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/dora/incident
   response:
     body: '{"data":{"id":"2a47b5f25b160b8a","type":"dora_incident"}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/vnd.api+json
     status: 200 OK
-version: 1
+version: 2

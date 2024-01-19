@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/rum/applications
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -26,12 +27,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 1
     method: DELETE
     url: https://api.datadoghq.com/api/v2/rum/applications/cae2b3d1-9ea1-4321-8506-725cc4242f6f
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
 - request:
@@ -40,12 +42,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v2/rum/applications/cae2b3d1-9ea1-4321-8506-725cc4242f6f
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
-version: 1
+version: 2

@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/team?page%5Bsize%5D=2&page%5Bnumber%5D=0
   response:
@@ -13,7 +14,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -24,6 +25,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 1
     method: GET
     url: https://api.datadoghq.com/api/v2/team?page%5Bsize%5D=2&page%5Bnumber%5D=1
   response:
@@ -31,9 +33,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

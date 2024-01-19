@@ -8,14 +8,15 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: PATCH
     url: https://api.datadoghq.com/api/v2/users/00000000-dead-beef-dead-ffffffffffff
   response:
     body: '{"errors":["00000000-dead-beef-dead-ffffffffffff not found"]}'
     code: 404
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

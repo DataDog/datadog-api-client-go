@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/usage/lambda_traced_invocations?start_hr=2022-05-03T18%3A07%3A36.174Z&end_hr=2022-05-01T18%3A07%3A36.174Z
   response:
@@ -12,9 +13,9 @@ interactions:
 
       '
     code: 400
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

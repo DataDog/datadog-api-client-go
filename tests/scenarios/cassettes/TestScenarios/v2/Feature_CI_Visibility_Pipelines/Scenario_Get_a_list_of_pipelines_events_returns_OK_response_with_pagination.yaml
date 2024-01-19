@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/ci/pipelines/events?filter%5Bfrom%5D=2022-10-21T08%3A44%3A43.365Z&filter%5Bto%5D=2022-10-21T08%3A45%3A13.365Z&page%5Blimit%5D=2
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -26,6 +27,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 1
     method: GET
     url: https://api.datadoghq.com/api/v2/ci/pipelines/events?filter%5Bfrom%5D=2022-10-21T08%3A44%3A43.365Z&filter%5Bto%5D=2022-10-21T08%3A45%3A13.365Z&page%5Blimit%5D=2&page%5Bcursor%5D=eyJhZnRlciI6IkFnQUFBWVA1dDNkd0V5YkFCZ0FBQUFBQUFBQVlBQUFBQUVGWlVEVjBNMlIzUVVGQmJVTTNZbmR3V21SVFNuQlFXQUFBQUNRQUFBQUFNREU0TTJZNVlqY3ROMkkxT0MwMFlqUXdMV0ZtTmpFdE5qbGxZVFV3WWpBMVltSTMifQ
   response:
@@ -33,9 +35,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2
