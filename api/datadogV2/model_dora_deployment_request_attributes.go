@@ -12,6 +12,8 @@ import (
 
 // DORADeploymentRequestAttributes Attributes to create a DORA deployment event.
 type DORADeploymentRequestAttributes struct {
+	// Environment name to where the service was deployed.
+	Env *string `json:"env,omitempty"`
 	// Unix timestamp in nanoseconds when the deployment finished. It should not be older than 3 hours.
 	FinishedAt int64 `json:"finished_at"`
 	// Git info for DORA Metrics events.
@@ -47,6 +49,34 @@ func NewDORADeploymentRequestAttributes(finishedAt int64, service string, starte
 func NewDORADeploymentRequestAttributesWithDefaults() *DORADeploymentRequestAttributes {
 	this := DORADeploymentRequestAttributes{}
 	return &this
+}
+
+// GetEnv returns the Env field value if set, zero value otherwise.
+func (o *DORADeploymentRequestAttributes) GetEnv() string {
+	if o == nil || o.Env == nil {
+		var ret string
+		return ret
+	}
+	return *o.Env
+}
+
+// GetEnvOk returns a tuple with the Env field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DORADeploymentRequestAttributes) GetEnvOk() (*string, bool) {
+	if o == nil || o.Env == nil {
+		return nil, false
+	}
+	return o.Env, true
+}
+
+// HasEnv returns a boolean if a field has been set.
+func (o *DORADeploymentRequestAttributes) HasEnv() bool {
+	return o != nil && o.Env != nil
+}
+
+// SetEnv gets a reference to the given string and assigns it to the Env field.
+func (o *DORADeploymentRequestAttributes) SetEnv(v string) {
+	o.Env = &v
 }
 
 // GetFinishedAt returns the FinishedAt field value.
@@ -208,6 +238,9 @@ func (o DORADeploymentRequestAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Env != nil {
+		toSerialize["env"] = o.Env
+	}
 	toSerialize["finished_at"] = o.FinishedAt
 	if o.Git != nil {
 		toSerialize["git"] = o.Git
@@ -230,6 +263,7 @@ func (o DORADeploymentRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DORADeploymentRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Env        *string      `json:"env,omitempty"`
 		FinishedAt *int64       `json:"finished_at"`
 		Git        *DORAGitInfo `json:"git,omitempty"`
 		Id         *string      `json:"id,omitempty"`
@@ -251,12 +285,13 @@ func (o *DORADeploymentRequestAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"finished_at", "git", "id", "service", "started_at", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"env", "finished_at", "git", "id", "service", "started_at", "version"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Env = all.Env
 	o.FinishedAt = *all.FinishedAt
 	if all.Git != nil && all.Git.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
