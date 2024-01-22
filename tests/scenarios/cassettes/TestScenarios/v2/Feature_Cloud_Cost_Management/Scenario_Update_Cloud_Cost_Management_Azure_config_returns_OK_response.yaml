@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: PATCH
     url: https://api.datadoghq.com/api/v2/cost/azure_uc_config/100
   response:
@@ -24,9 +25,9 @@ interactions:
       "test_storage_account", "storage_container": "test_storage_container", "status_updated_at":
       "2023-12-13T13:29:24.462039", "months": 15}]}}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

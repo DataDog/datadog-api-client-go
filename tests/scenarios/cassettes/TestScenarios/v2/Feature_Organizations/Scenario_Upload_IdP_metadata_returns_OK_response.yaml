@@ -190,14 +190,15 @@ interactions:
       - '*/*'
       Content-Type:
       - multipart/form-data; boundary=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/saml_configurations/idp_metadata
   response:
     body: '{"data":{"type":"saml_configurations","id":"86ce4823-31da-445b-8cb1-3f535c8c3686","attributes":{"entity_id":"https://app.datadoghq.com/account/saml/metadata.xml","assertion_consumer_service":["https://frog.datadoghq.com/account/saml/assertion"],"created_at":"2022-03-21T13:04:08.689835+00:00","idp_initiated":false,"jit_domains":[],"sso_url":null,"modified_at":"2022-04-11T13:21:55.620272+00:00"}}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/scorecard/rules
   response:
@@ -15,7 +16,7 @@ interactions:
       Spec Test Best Practices","created_at":"2023-11-02T21:19:11.70524Z","custom":true,"enabled":true,"modified_at":"2023-11-02T21:19:11.70524Z","name":"Test-Create_outcomes_batch_returns_Bad_Request_response-1698959951","owner":"Datadog","scorecard_name":"OpenAPI
       Spec Test Best Practices"},"relationships":{"scorecard":{"data":{"id":"qsxpoYRhU_yz","type":"scorecard"}}}}}'
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/vnd.api+json
@@ -29,13 +30,14 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v2/scorecard/outcomes/batch
   response:
     body: '{"errors":[{"status":"400","title":"Bad Request","detail":"attribute \"service_name\"
       is required"}]}'
     code: 400
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/vnd.api+json
@@ -46,14 +48,15 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v2/scorecard/rules/0451feb1-fb1b-463f-ba02-4568feb2795b
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/vnd.api+json
     status: 204 No Content
-version: 1
+version: 2

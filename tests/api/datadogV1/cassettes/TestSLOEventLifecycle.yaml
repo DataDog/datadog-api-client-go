@@ -1,341 +1,460 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: |
-      {"description":"Make sure we don't have too many failed HTTP responses.","name":"Test-TestSLOEventLifecycle-1681746092","query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"tags":["app:httpd"],"thresholds":[{"target":95,"timeframe":"7d","warning":98}],"type":"metric"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "342"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.11.1+dev (go go1.19.8; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "1050403015725237183"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5315395570525944760"
-    url: https://api.datadoghq.com/api/v1/slo
-    method: POST
-  response:
-    body: |
-      {"data":[{"id":"e882156116eb52f787673821da28cb48","name":"Test-TestSLOEventLifecycle-1681746092","tags":["app:httpd"],"monitor_tags":[],"thresholds":[{"timeframe":"7d","target":95.0,"target_display":"95.","warning":98.0,"warning_display":"98."}],"type":"metric","type_id":1,"description":"Make sure we don't have too many failed HTTP responses.","timeframe":"7d","warning_threshold":98,"target_threshold":95,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"creator":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com"},"created_at":1681746092,"modified_at":1681746092}],"error":null}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Apr 2023 15:41:32 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "200"
-      X-Ratelimit-Name:
-      - slo_create
-      X-Ratelimit-Period:
-      - "60"
-      X-Ratelimit-Remaining:
-      - "198"
-      X-Ratelimit-Reset:
-      - "28"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"created_at":1681746092,"creator":{"email":"frog@datadoghq.com","handle":"frog@datadoghq.com","name":null},"description":"Updated description","id":"e882156116eb52f787673821da28cb48","modified_at":1681746092,"monitor_tags":[],"name":"Test-TestSLOEventLifecycle-1681746092","query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"tags":["app:httpd"],"target_threshold":95,"thresholds":[{"target":95,"target_display":"95.","timeframe":"7d","warning":98,"warning_display":"98."}],"timeframe":"7d","type":"metric","type_id":1,"warning_threshold":98}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "617"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.11.1+dev (go go1.19.8; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "7643825626555765444"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5315395570525944760"
-    url: https://api.datadoghq.com/api/v1/slo/e882156116eb52f787673821da28cb48
-    method: PUT
-  response:
-    body: |
-      {"data":[{"id":"e882156116eb52f787673821da28cb48","name":"Test-TestSLOEventLifecycle-1681746092","tags":["app:httpd"],"monitor_tags":[],"thresholds":[{"timeframe":"7d","target":95.0,"target_display":"95.","warning":98.0,"warning_display":"98."}],"type":"metric","type_id":1,"description":"Updated description","timeframe":"7d","warning_threshold":98,"target_threshold":95,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"creator":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com"},"created_at":1681746092,"modified_at":1681746092}],"error":null}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Apr 2023 15:41:32 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "200"
-      X-Ratelimit-Name:
-      - slo_update
-      X-Ratelimit-Period:
-      - "60"
-      X-Ratelimit-Remaining:
-      - "198"
-      X-Ratelimit-Reset:
-      - "28"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.11.1+dev (go go1.19.8; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "6050745611457894046"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5315395570525944760"
-    url: https://api.datadoghq.com/api/v1/slo/can_delete?ids=e882156116eb52f787673821da28cb48
-    method: GET
-  response:
-    body: |
-      {"data":{"ok":["e882156116eb52f787673821da28cb48"],"denied_ids":[]},"errors":null}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Apr 2023 15:41:32 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "100"
-      X-Ratelimit-Name:
-      - slo_check_can_delete
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "99"
-      X-Ratelimit-Reset:
-      - "8"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.11.1+dev (go go1.19.8; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "5386064004032717965"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5315395570525944760"
-    url: https://api.datadoghq.com/api/v1/slo/e882156116eb52f787673821da28cb48
-    method: GET
-  response:
-    body: |
-      {"data":{"id":"e882156116eb52f787673821da28cb48","name":"Test-TestSLOEventLifecycle-1681746092","tags":["app:httpd"],"monitor_tags":[],"thresholds":[{"timeframe":"7d","target":95.0,"target_display":"95.","warning":98.0,"warning_display":"98."}],"type":"metric","type_id":1,"description":"Updated description","timeframe":"7d","warning_threshold":98.0,"target_threshold":95.0,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"creator":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com"},"created_at":1681746092,"modified_at":1681746092},"error":null}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Apr 2023 15:41:33 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "3000"
-      X-Ratelimit-Name:
-      - slo_get
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "2999"
-      X-Ratelimit-Reset:
-      - "8"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.11.1+dev (go go1.19.8; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "8747173007378888397"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5315395570525944760"
-    url: https://api.datadoghq.com/api/v1/slo/e882156116eb52f787673821da28cb48/history?from_ts=1681746081&to_ts=1681746091
-    method: GET
-  response:
-    body: |
-      {"data":{"thresholds":{"7d":{"timeframe":"7d","target":95.0,"target_display":"95.","warning":98.0,"warning_display":"98."}},"from_ts":1681746081,"to_ts":1681746091,"type":"metric","type_id":1,"slo":{"id":"e882156116eb52f787673821da28cb48","name":"Test-TestSLOEventLifecycle-1681746092","tags":["app:httpd"],"monitor_tags":[],"thresholds":[{"timeframe":"7d","target":95.0,"target_display":"95.","warning":98.0,"warning_display":"98."}],"type":"metric","type_id":1,"description":"Updated description","timeframe":"7d","warning_threshold":98.0,"target_threshold":95.0,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"creator":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com"},"created_at":1681746092,"modified_at":1681746092},"group_by":[],"series":{"timing":"0.022604942321777344","res_type":"time_series","resp_version":2,"query":"default_zero(sum:httpservice.hits{code:2xx}.as_count()), default_zero(sum:httpservice.hits{!code:3xx}.as_count())","from_date":1681746081000,"to_date":1681746091000,"message":"","interval":7200,"times":[1681746000000.0],"numerator":{"values":[0.0],"metadata":{"unit":null,"query_index":0,"aggr":"sum","metric":"default_zero(httpservice.hits)","tag_set":[],"expression":"default_zero(sum:httpservice.hits{code:2xx}.as_count())","scope":"code:2xx"},"sum":0.0,"count":1},"denominator":{"values":[0.0],"metadata":{"unit":null,"query_index":1,"aggr":"sum","metric":"default_zero(httpservice.hits)","tag_set":[],"expression":"default_zero(sum:httpservice.hits{!code:3xx}.as_count())","scope":"!code:3xx"},"sum":0.0,"count":1},"numerator_query":"default_zero(sum:httpservice.hits{code:2xx}.as_count())","denominator_query":"default_zero(sum:httpservice.hits{!code:3xx}.as_count())","bad_series_query":"default_zero(sum:httpservice.hits{!code:3xx}.as_count()) - default_zero(sum:httpservice.hits{code:2xx}.as_count())","graph_query":"default_zero(sum:httpservice.hits{code:2xx}.as_count()), default_zero(sum:httpservice.hits{!code:3xx}.as_count()) - default_zero(sum:httpservice.hits{code:2xx}.as_count())"},"overall":{"errors":[{"error_message":"The denominator is zero valued","error_type":"ZERO_VALUED_DENOMINATOR"}],"sli_value":null,"span_precision":2,"precision":{"7d":0},"uptime":null,"corrections":[]}},"errors":null}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Apr 2023 15:41:33 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "150"
-      X-Ratelimit-Name:
-      - slo_history
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "149"
-      X-Ratelimit-Reset:
-      - "7"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.11.1+dev (go go1.19.8; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "6416077037344847282"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5315395570525944760"
-    url: https://api.datadoghq.com/api/v1/slo/e882156116eb52f787673821da28cb48
-    method: DELETE
-  response:
-    body: |
-      {"data":["e882156116eb52f787673821da28cb48"],"error":null}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Apr 2023 15:41:33 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "100"
-      X-Ratelimit-Name:
-      - slo_delete
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "99"
-      X-Ratelimit-Reset:
-      - "7"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.11.1+dev (go go1.19.8; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "7261650715380732537"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5315395570525944760"
-    url: https://api.datadoghq.com/api/v1/slo/e882156116eb52f787673821da28cb48
-    method: DELETE
-  response:
-    body: '{"errors":["SLO not found: e882156116eb52f787673821da28cb48 not found"]}'
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 17 Apr 2023 15:41:33 GMT
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "100"
-      X-Ratelimit-Name:
-      - slo_delete
-      X-Ratelimit-Period:
-      - "10"
-      X-Ratelimit-Remaining:
-      - "98"
-      X-Ratelimit-Reset:
-      - "7"
-    status: 404 Not Found
-    code: 404
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"description":"Make sure we don't have too many failed HTTP responses.","name":"Test-TestSLOEventLifecycle-1681746092","query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"tags":["app:httpd"],"thresholds":[{"target":95,"timeframe":"7d","warning":98}],"type":"metric"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "342"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.11.1+dev (go go1.19.8; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "1050403015725237183"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5315395570525944760"
+        url: https://api.datadoghq.com/api/v1/slo
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"data":[{"id":"e882156116eb52f787673821da28cb48","name":"Test-TestSLOEventLifecycle-1681746092","tags":["app:httpd"],"monitor_tags":[],"thresholds":[{"timeframe":"7d","target":95.0,"target_display":"95.","warning":98.0,"warning_display":"98."}],"type":"metric","type_id":1,"description":"Make sure we don't have too many failed HTTP responses.","timeframe":"7d","warning_threshold":98,"target_threshold":95,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"creator":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com"},"created_at":1681746092,"modified_at":1681746092}],"error":null}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Apr 2023 15:41:32 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "200"
+            X-Ratelimit-Name:
+                - slo_create
+            X-Ratelimit-Period:
+                - "60"
+            X-Ratelimit-Remaining:
+                - "198"
+            X-Ratelimit-Reset:
+                - "28"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 1
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"created_at":1681746092,"creator":{"email":"frog@datadoghq.com","handle":"frog@datadoghq.com","name":null},"description":"Updated description","id":"e882156116eb52f787673821da28cb48","modified_at":1681746092,"monitor_tags":[],"name":"Test-TestSLOEventLifecycle-1681746092","query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"tags":["app:httpd"],"target_threshold":95,"thresholds":[{"target":95,"target_display":"95.","timeframe":"7d","warning":98,"warning_display":"98."}],"timeframe":"7d","type":"metric","type_id":1,"warning_threshold":98}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "617"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.11.1+dev (go go1.19.8; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "7643825626555765444"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5315395570525944760"
+        url: https://api.datadoghq.com/api/v1/slo/e882156116eb52f787673821da28cb48
+        method: PUT
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"data":[{"id":"e882156116eb52f787673821da28cb48","name":"Test-TestSLOEventLifecycle-1681746092","tags":["app:httpd"],"monitor_tags":[],"thresholds":[{"timeframe":"7d","target":95.0,"target_display":"95.","warning":98.0,"warning_display":"98."}],"type":"metric","type_id":1,"description":"Updated description","timeframe":"7d","warning_threshold":98,"target_threshold":95,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"creator":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com"},"created_at":1681746092,"modified_at":1681746092}],"error":null}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Apr 2023 15:41:32 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "200"
+            X-Ratelimit-Name:
+                - slo_update
+            X-Ratelimit-Period:
+                - "60"
+            X-Ratelimit-Remaining:
+                - "198"
+            X-Ratelimit-Reset:
+                - "28"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 2
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.11.1+dev (go go1.19.8; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "6050745611457894046"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5315395570525944760"
+        url: https://api.datadoghq.com/api/v1/slo/can_delete?ids=e882156116eb52f787673821da28cb48
+        method: GET
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"data":{"ok":["e882156116eb52f787673821da28cb48"],"denied_ids":[]},"errors":null}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Apr 2023 15:41:32 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "100"
+            X-Ratelimit-Name:
+                - slo_check_can_delete
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "99"
+            X-Ratelimit-Reset:
+                - "8"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 3
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.11.1+dev (go go1.19.8; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "5386064004032717965"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5315395570525944760"
+        url: https://api.datadoghq.com/api/v1/slo/e882156116eb52f787673821da28cb48
+        method: GET
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"data":{"id":"e882156116eb52f787673821da28cb48","name":"Test-TestSLOEventLifecycle-1681746092","tags":["app:httpd"],"monitor_tags":[],"thresholds":[{"timeframe":"7d","target":95.0,"target_display":"95.","warning":98.0,"warning_display":"98."}],"type":"metric","type_id":1,"description":"Updated description","timeframe":"7d","warning_threshold":98.0,"target_threshold":95.0,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"creator":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com"},"created_at":1681746092,"modified_at":1681746092},"error":null}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Apr 2023 15:41:33 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "3000"
+            X-Ratelimit-Name:
+                - slo_get
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "2999"
+            X-Ratelimit-Reset:
+                - "8"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 4
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.11.1+dev (go go1.19.8; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "8747173007378888397"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5315395570525944760"
+        url: https://api.datadoghq.com/api/v1/slo/e882156116eb52f787673821da28cb48/history?from_ts=1681746081&to_ts=1681746091
+        method: GET
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"data":{"thresholds":{"7d":{"timeframe":"7d","target":95.0,"target_display":"95.","warning":98.0,"warning_display":"98."}},"from_ts":1681746081,"to_ts":1681746091,"type":"metric","type_id":1,"slo":{"id":"e882156116eb52f787673821da28cb48","name":"Test-TestSLOEventLifecycle-1681746092","tags":["app:httpd"],"monitor_tags":[],"thresholds":[{"timeframe":"7d","target":95.0,"target_display":"95.","warning":98.0,"warning_display":"98."}],"type":"metric","type_id":1,"description":"Updated description","timeframe":"7d","warning_threshold":98.0,"target_threshold":95.0,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"creator":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com"},"created_at":1681746092,"modified_at":1681746092},"group_by":[],"series":{"timing":"0.022604942321777344","res_type":"time_series","resp_version":2,"query":"default_zero(sum:httpservice.hits{code:2xx}.as_count()), default_zero(sum:httpservice.hits{!code:3xx}.as_count())","from_date":1681746081000,"to_date":1681746091000,"message":"","interval":7200,"times":[1681746000000.0],"numerator":{"values":[0.0],"metadata":{"unit":null,"query_index":0,"aggr":"sum","metric":"default_zero(httpservice.hits)","tag_set":[],"expression":"default_zero(sum:httpservice.hits{code:2xx}.as_count())","scope":"code:2xx"},"sum":0.0,"count":1},"denominator":{"values":[0.0],"metadata":{"unit":null,"query_index":1,"aggr":"sum","metric":"default_zero(httpservice.hits)","tag_set":[],"expression":"default_zero(sum:httpservice.hits{!code:3xx}.as_count())","scope":"!code:3xx"},"sum":0.0,"count":1},"numerator_query":"default_zero(sum:httpservice.hits{code:2xx}.as_count())","denominator_query":"default_zero(sum:httpservice.hits{!code:3xx}.as_count())","bad_series_query":"default_zero(sum:httpservice.hits{!code:3xx}.as_count()) - default_zero(sum:httpservice.hits{code:2xx}.as_count())","graph_query":"default_zero(sum:httpservice.hits{code:2xx}.as_count()), default_zero(sum:httpservice.hits{!code:3xx}.as_count()) - default_zero(sum:httpservice.hits{code:2xx}.as_count())"},"overall":{"errors":[{"error_message":"The denominator is zero valued","error_type":"ZERO_VALUED_DENOMINATOR"}],"sli_value":null,"span_precision":2,"precision":{"7d":0},"uptime":null,"corrections":[]}},"errors":null}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Apr 2023 15:41:33 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "150"
+            X-Ratelimit-Name:
+                - slo_history
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "149"
+            X-Ratelimit-Reset:
+                - "7"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 5
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.11.1+dev (go go1.19.8; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "6416077037344847282"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5315395570525944760"
+        url: https://api.datadoghq.com/api/v1/slo/e882156116eb52f787673821da28cb48
+        method: DELETE
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {"data":["e882156116eb52f787673821da28cb48"],"error":null}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Apr 2023 15:41:33 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "100"
+            X-Ratelimit-Name:
+                - slo_delete
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "99"
+            X-Ratelimit-Reset:
+                - "7"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 6
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.11.1+dev (go go1.19.8; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "7261650715380732537"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5315395570525944760"
+        url: https://api.datadoghq.com/api/v1/slo/e882156116eb52f787673821da28cb48
+        method: DELETE
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"errors":["SLO not found: e882156116eb52f787673821da28cb48 not found"]}'
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 17 Apr 2023 15:41:33 GMT
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "100"
+            X-Ratelimit-Name:
+                - slo_delete
+            X-Ratelimit-Period:
+                - "10"
+            X-Ratelimit-Remaining:
+                - "98"
+            X-Ratelimit-Reset:
+                - "7"
+        status: 404 Not Found
+        code: 404
+        duration: 0s

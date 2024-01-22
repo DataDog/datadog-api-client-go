@@ -8,13 +8,14 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/notebooks
   response:
     body: '{"data":{"type":"notebooks","id":2466032,"attributes":{"name":"Test-Delete_a_notebook_returns_OK_response-1652349007","cells":[{"attributes":{"definition":{"text":"#
       Test-Delete_a_notebook_returns_OK_response-1652349007 notebook text","type":"markdown"}},"type":"notebook_cells","id":"t6d9lkvx"}],"time":{"live_span":"1h"},"metadata":{"is_favorite":false,"is_template":false,"type":null,"take_snapshots":false},"template_variables":[],"status":"published","modified":"2022-05-12T09:50:07.586654+00:00","created":"2022-05-12T09:50:07.586654+00:00","author":{"name":null,"handle":"frog@datadoghq.com","email":"frog@datadoghq.com","icon":"https://secure.gravatar.com/avatar/28a16dfe36e73b60c1d55872cb0f1172?s=48&d=retro","title":null,"verified":true,"disabled":false,"status":"Active"}}}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -25,12 +26,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 1
     method: DELETE
     url: https://api.datadoghq.com/api/v1/notebooks/2466032
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
 - request:
@@ -39,14 +41,15 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v1/notebooks/2466032
   response:
     body: '{"errors": ["Notebook not found"]}'
     code: 404
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

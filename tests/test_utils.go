@@ -25,14 +25,14 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	ddtesting "github.com/DataDog/dd-sdk-go-testing"
-	"github.com/dnaeon/go-vcr/cassette"
-	"github.com/dnaeon/go-vcr/recorder"
 	"github.com/jonboulle/clockwork"
 	"github.com/stretchr/testify/require"
 	ddhttp "gopkg.in/DataDog/dd-trace-go.v1/contrib/net/http"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
+	"gopkg.in/dnaeon/go-vcr.v3/cassette"
+	"gopkg.in/dnaeon/go-vcr.v3/recorder"
 )
 
 // RecordingMode defines valid usage of cassette recorder
@@ -454,11 +454,11 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 
 // FilterInteraction removes secret arguments from the URL.
 func FilterInteraction(i *cassette.Interaction) error {
-	u, err := url.Parse(i.URL)
+	u, err := url.Parse(i.Request.URL)
 	if err != nil {
 		return err
 	}
-	i.URL = removeURLSecrets(u)
+	i.Request.URL = removeURLSecrets(u)
 	i.Request.Headers.Del("Dd-Api-Key")
 	i.Request.Headers.Del("Dd-Application-Key")
 	// Remove custom URL in report-uri from response
@@ -472,14 +472,21 @@ func Recorder(ctx context.Context, name string) (*recorder.Recorder, error) {
 	var mode recorder.Mode
 	switch GetRecording() {
 	case ModeReplaying:
-		mode = recorder.ModeReplaying
+		mode = recorder.ModeReplayOnly
 	case ModeIgnore:
-		mode = recorder.ModeDisabled
+		mode = recorder.ModePassthrough
 	default:
-		mode = recorder.ModeRecording
+		mode = recorder.ModeRecordOnly
 	}
 
-	r, err := recorder.NewAsMode(fmt.Sprintf("cassettes/%s", name), mode, nil)
+	opts := &recorder.Options{
+		CassetteName:       fmt.Sprintf("cassettes/%s", name),
+		Mode:               mode,
+		SkipRequestLatency: true,
+		RealTransport:      http.DefaultTransport,
+	}
+
+	rec, err := recorder.NewWithOptions(opts)
 	if err != nil {
 		return nil, err
 	}
@@ -488,10 +495,10 @@ func Recorder(ctx context.Context, name string) (*recorder.Recorder, error) {
 		span.SetTag("recorder.mode", mode)
 	}
 
-	r.SetMatcher(MatchInteraction)
-	r.AddFilter(FilterInteraction)
+	rec.SetMatcher(MatchInteraction)
+	rec.AddHook(FilterInteraction, recorder.AfterCaptureHook)
 
-	return r, nil
+	return rec, nil
 }
 
 // WrapRoundTripper includes tracing information.

@@ -1,5 +1,4 @@
----
-version: 1
+version: 2
 interactions:
 - request:
     body: ""
@@ -17,6 +16,7 @@ interactions:
       - "5940111695365216169"
     url: https://api.datadoghq.com/api/v1/usage/tracing-without-limits?start_hr=2020-10-01T09%3A41%3A22-04%3A00
     method: GET
+    id: 0
   response:
     body: '{"errors": ["start_hr cannot be in the future"]}'
     headers:
@@ -52,4 +52,4 @@ interactions:
       - "1117"
     status: 400 Bad Request
     code: 400
-    duration: ""
+    duration: "0ms"

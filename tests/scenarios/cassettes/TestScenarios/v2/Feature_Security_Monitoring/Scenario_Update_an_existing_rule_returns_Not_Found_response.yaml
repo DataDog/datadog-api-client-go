@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: PUT
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules/abcde-12345
   response:
@@ -15,9 +16,9 @@ interactions:
 
       '
     code: 404
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

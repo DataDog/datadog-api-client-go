@@ -8,14 +8,15 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://http-intake.logs.datadoghq.com/api/v2/logs
   response:
     body: '{}'
     code: 202
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 202 Accepted
-version: 1
+version: 2

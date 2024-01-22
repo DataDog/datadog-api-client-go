@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/events
   response:
@@ -15,9 +16,9 @@ interactions:
       very very very looooooooong looooooooooooong loooooooooooooooooooooong looooooooooooooooooooooooooong
       title with 100+ characters","text":"A text message.","date_happened":1641430252,"handle":null,"priority":null,"related_event_id":null,"tags":["test:TestPostaneventwithalongtitlereturnsOKresponse1641430251"],"url":"https://app.datadoghq.com/event/event?id=6327818704671039975"}}'
     code: 202
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 202 Accepted
-version: 1
+version: 2

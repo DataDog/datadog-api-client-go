@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/events?filter%5Bfrom%5D=now-15m&filter%5Bto%5D=now&page%5Blimit%5D=2
   response:
@@ -18,7 +19,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -29,6 +30,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 1
     method: GET
     url: https://api.datadoghq.com/api/v2/events?filter%5Bfrom%5D=now-15m&filter%5Bto%5D=now&page%5Blimit%5D=2&page%5Bcursor%5D=eyJhZnRlciI6IkFnQUFBWUdDRldoUV9BZHZQZ0FBQUFBQUFBQVlBQUFBQUVGWlIwTkdWMmhSUVVGQ1VIQk5UMjQxVURKZllVZzFTUUFBQUNRQUFBQUFNREU0TVRneU1UVXROekF5TUMwMFpXTTJMV0l3WVdJdFpEVTFZbU0zTlRZMlpUUTMifQ
   response:
@@ -39,9 +41,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

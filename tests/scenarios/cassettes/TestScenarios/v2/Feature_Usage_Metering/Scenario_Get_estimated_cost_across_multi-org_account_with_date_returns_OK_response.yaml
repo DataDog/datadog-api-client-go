@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/usage/estimated_cost_by_org?start_date=2022-04-20T17%3A07%3A01.561Z&end_date=2022-04-22T17%3A07%3A01.561Z
   response:
@@ -12,9 +13,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

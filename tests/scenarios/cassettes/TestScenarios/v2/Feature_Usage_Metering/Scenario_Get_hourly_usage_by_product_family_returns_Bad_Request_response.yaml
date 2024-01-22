@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/usage/hourly_usage?filter%5Btimestamp%5D%5Bstart%5D=2022-07-16T14%3A57%3A41.335Z&filter%5Btimestamp%5D%5Bend%5D=2022-07-14T14%3A57%3A41.335Z&filter%5Bproduct_families%5D=infra_hosts
   response:
@@ -12,9 +13,9 @@ interactions:
 
       '
     code: 400
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

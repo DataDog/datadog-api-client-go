@@ -5,14 +5,15 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 0
     method: DELETE
     url: https://api.datadoghq.com/api/v2/services/definitions/service-definition-test
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-version: 1
+version: 2

@@ -1,287 +1,405 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: |
-      {"client_id":"testc7f6-1234-5678-9101-tt1692864879","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ee"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "157"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "2073965302168388765"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5314406312315183787"
-    url: https://api.datadoghq.com/api/v1/integration/azure
-    method: POST
-  response:
-    body: |
-      {}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "3"
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 24 Aug 2023 08:14:41 GMT
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"client_id":"testc7f6-1234-5678-9101-tt1692864879","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","host_filters":"filter:foo,test:bar","new_client_id":"testc7f6-1234-5678-9101-uu1692864879","new_tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ff","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ee"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "306"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "5015234263437142127"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5314406312315183787"
-    url: https://api.datadoghq.com/api/v1/integration/azure
-    method: PUT
-  response:
-    body: |
-      {}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "3"
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 24 Aug 2023 08:14:43 GMT
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "2698718924767038726"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5314406312315183787"
-    url: https://api.datadoghq.com/api/v1/integration/azure
-    method: GET
-  response:
-    body: |
-      [{"tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ff","client_id":"testc7f6-1234-5678-9101-uu1692864879","host_filters":"filter:foo,test:bar","app_service_plan_filters":"","automute":true,"cspm_enabled":false,"custom_metrics_enabled":false,"errors":[],"warnings":[]}]
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 24 Aug 2023 08:14:43 GMT
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"client_id":"testc7f6-1234-5678-9101-uu1692864879","host_filters":"test:foo,test:bar","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ff"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "141"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "3345884798194997892"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5314406312315183787"
-    url: https://api.datadoghq.com/api/v1/integration/azure/host_filters
-    method: POST
-  response:
-    body: |
-      {}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "3"
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 24 Aug 2023 08:14:47 GMT
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6914329243246521628"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5314406312315183787"
-    url: https://api.datadoghq.com/api/v1/integration/azure
-    method: GET
-  response:
-    body: |
-      [{"tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ff","client_id":"testc7f6-1234-5678-9101-uu1692864879","host_filters":"test:foo,test:bar","app_service_plan_filters":"","automute":true,"cspm_enabled":false,"custom_metrics_enabled":false,"errors":[],"warnings":[]}]
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 24 Aug 2023 08:14:47 GMT
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"client_id":"testc7f6-1234-5678-9101-uu1692864879","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ff"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "106"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "8752205869309556587"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5314406312315183787"
-    url: https://api.datadoghq.com/api/v1/integration/azure
-    method: DELETE
-  response:
-    body: |
-      {}
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "3"
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 24 Aug 2023 08:14:50 GMT
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"client_id":"testc7f6-1234-5678-9101-tt1692864879","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ee"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "106"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6193718966383189715"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5314406312315183787"
-    url: https://api.datadoghq.com/api/v1/integration/azure
-    method: DELETE
-  response:
-    body: '{"errors":["Azure Integration not yet installed. Please install before
-      performing this action."]}'
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 24 Aug 2023 08:14:50 GMT
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 400 Bad Request
-    code: 400
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"client_id":"testc7f6-1234-5678-9101-tt1692864879","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ee"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "157"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "2073965302168388765"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5314406312315183787"
+        url: https://api.datadoghq.com/api/v1/integration/azure
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "3"
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 24 Aug 2023 08:14:41 GMT
+            Strict-Transport-Security:
+                - max-age=31536000; includeSubDomains; preload
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 1
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"client_id":"testc7f6-1234-5678-9101-tt1692864879","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","host_filters":"filter:foo,test:bar","new_client_id":"testc7f6-1234-5678-9101-uu1692864879","new_tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ff","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ee"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "306"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "5015234263437142127"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5314406312315183787"
+        url: https://api.datadoghq.com/api/v1/integration/azure
+        method: PUT
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "3"
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 24 Aug 2023 08:14:43 GMT
+            Strict-Transport-Security:
+                - max-age=31536000; includeSubDomains; preload
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 2
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "2698718924767038726"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5314406312315183787"
+        url: https://api.datadoghq.com/api/v1/integration/azure
+        method: GET
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            [{"tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ff","client_id":"testc7f6-1234-5678-9101-uu1692864879","host_filters":"filter:foo,test:bar","app_service_plan_filters":"","automute":true,"cspm_enabled":false,"custom_metrics_enabled":false,"errors":[],"warnings":[]}]
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 24 Aug 2023 08:14:43 GMT
+            Strict-Transport-Security:
+                - max-age=31536000; includeSubDomains; preload
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 3
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"client_id":"testc7f6-1234-5678-9101-uu1692864879","host_filters":"test:foo,test:bar","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ff"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "141"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "3345884798194997892"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5314406312315183787"
+        url: https://api.datadoghq.com/api/v1/integration/azure/host_filters
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "3"
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 24 Aug 2023 08:14:47 GMT
+            Strict-Transport-Security:
+                - max-age=31536000; includeSubDomains; preload
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 4
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "6914329243246521628"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5314406312315183787"
+        url: https://api.datadoghq.com/api/v1/integration/azure
+        method: GET
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            [{"tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ff","client_id":"testc7f6-1234-5678-9101-uu1692864879","host_filters":"test:foo,test:bar","app_service_plan_filters":"","automute":true,"cspm_enabled":false,"custom_metrics_enabled":false,"errors":[],"warnings":[]}]
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 24 Aug 2023 08:14:47 GMT
+            Strict-Transport-Security:
+                - max-age=31536000; includeSubDomains; preload
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 5
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"client_id":"testc7f6-1234-5678-9101-uu1692864879","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ff"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "106"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "8752205869309556587"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5314406312315183787"
+        url: https://api.datadoghq.com/api/v1/integration/azure
+        method: DELETE
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: |
+            {}
+        headers:
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "3"
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 24 Aug 2023 08:14:50 GMT
+            Strict-Transport-Security:
+                - max-age=31536000; includeSubDomains; preload
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 6
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"client_id":"testc7f6-1234-5678-9101-tt1692864879","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864879ee"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "106"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
+            X-Datadog-Parent-Id:
+                - "6193718966383189715"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5314406312315183787"
+        url: https://api.datadoghq.com/api/v1/integration/azure
+        method: DELETE
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"errors":["Azure Integration not yet installed. Please install before performing this action."]}'
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Thu, 24 Aug 2023 08:14:50 GMT
+            Strict-Transport-Security:
+                - max-age=31536000; includeSubDomains; preload
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 400 Bad Request
+        code: 400
+        duration: 0s

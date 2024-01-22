@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
@@ -16,7 +17,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -30,6 +31,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard/public
   response:
@@ -37,7 +39,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -51,6 +53,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 2
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard/public/fasjyydbcgwwc2uc-0aaf9e22dcfc91f4bf3857f95fbdd16e/invitation
   response:
@@ -58,7 +61,7 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -72,12 +75,13 @@ interactions:
       - '*/*'
       Content-Type:
       - application/json
+    id: 3
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/public/fasjyydbcgwwc2uc-0aaf9e22dcfc91f4bf3857f95fbdd16e/invitation
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -88,6 +92,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 4
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/public/fasjyydbcgwwc2uc-0aaf9e22dcfc91f4bf3857f95fbdd16e
   response:
@@ -95,7 +100,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -106,6 +111,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 5
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/raa-btt-uqs
   response:
@@ -113,9 +119,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

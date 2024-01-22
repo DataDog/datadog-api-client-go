@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/permissions
   response:
@@ -184,9 +185,9 @@ interactions:
       Pipelines","description":"The ability to add and change APM pipeline configurations.","created":"2021-12-06T14:51:35.049129+00:00","group_name":"APM","display_type":"write","restricted":false}},{"type":"permissions","id":"8e4d6b6e-5750-11ec-a9f4-da7ad0900002","attributes":{"name":"apm_pipelines_read","display_name":"Manage
       Pipelines","description":"The ability to view APM pipeline configurations.","created":"2021-12-07T11:26:43.807269+00:00","group_name":"APM","display_type":"read","restricted":false}}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

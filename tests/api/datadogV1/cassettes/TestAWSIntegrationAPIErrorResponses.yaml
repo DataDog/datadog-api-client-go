@@ -1,5 +1,4 @@
----
-version: 1
+version: 2
 interactions:
 - request:
     body: |
@@ -14,6 +13,7 @@ interactions:
       - DataDog/0.1.0/go-experimental
     url: https://api.datadoghq.com/api/v1/integration/aws/generate_new_external_id
     method: PUT
+    id: 0
   response:
     body: '{"errors": ["Required parameter ''account_id'' is missing"]}'
     headers:
@@ -43,7 +43,7 @@ interactions:
       - SAMEORIGIN
     status: 400 Bad Request
     code: 400
-    duration: ""
+    duration: "0ms"
 - request:
     body: |
       {}
@@ -57,6 +57,7 @@ interactions:
       - DataDog/0.1.0/go-experimental
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: POST
+    id: 1
   response:
     body: '{"errors": ["Required parameter ''account_id'' is missing"]}'
     headers:
@@ -86,4 +87,4 @@ interactions:
       - SAMEORIGIN
     status: 400 Bad Request
     code: 400
-    duration: ""
+    duration: "0ms"

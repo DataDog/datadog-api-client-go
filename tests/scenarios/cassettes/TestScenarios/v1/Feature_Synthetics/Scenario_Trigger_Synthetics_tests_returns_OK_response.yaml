@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/synthetics/tests/api
   response:
@@ -15,7 +16,7 @@ interactions:
       test payload: synthetics_api_http_test_payload.json","deleted_at":null,"name":"Test-Trigger_Synthetics_tests_returns_OK_response-1673476032","monitor_id":107572465,"type":"api","created_at":"2023-01-11T22:27:12.286447+00:00","modified_at":"2023-01-11T22:27:12.286447+00:00","subtype":"http","config":{"request":{"certificate":{"cert":{"filename":"cert-filename","updatedAt":"2020-10-16T09:23:24.857Z"},"key":{"filename":"key-filename","updatedAt":"2020-10-16T09:23:24.857Z"}},"url":"https://datadoghq.com","basicAuth":{"clientSecret":"client-secret","resource":"resource","accessTokenUrl":"https://datadog-token.com","audience":"audience","clientId":"client-id","scope":"yoyo","type":"oauth-client","tokenApiAuthentication":"header"},"headers":{"unique":"testtriggersyntheticstestsreturnsokresponse1673476032"},"proxy":{"url":"https://datadoghq.com","headers":{}},"timeout":10,"method":"GET"},"assertions":[{"operator":"is","property":"{{
       PROPERTY }}","type":"header","target":"text/html"},{"operator":"lessThan","type":"responseTime","target":2000},{"operator":"validatesJSONPath","type":"body","target":{"operator":"isNot","targetValue":"0","jsonPath":"topKey"}},{"operator":"validatesXPath","type":"body","target":{"operator":"contains","targetValue":"0","xPath":"target-xpath"}}],"configVariables":[{"pattern":"content-type","type":"text","example":"content-type","name":"PROPERTY"}]},"options":{"accept_self_signed":false,"retry":{"count":3,"interval":10},"min_location_failed":1,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"monitor_priority":5,"monitor_name":"Test-Trigger_Synthetics_tests_returns_OK_response-1673476032","tick_every":60,"httpVersion":"http2"}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -29,6 +30,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v1/synthetics/tests/trigger
   response:
@@ -37,7 +39,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -51,6 +53,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 2
     method: POST
     url: https://api.datadoghq.com/api/v1/synthetics/tests/delete
   response:
@@ -58,9 +61,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

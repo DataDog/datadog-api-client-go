@@ -8,14 +8,15 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/logs/analytics/aggregate
   response:
     body: '{"meta":{"status":"done","request_id":"pddv1ChZ0Y2dJQVlDMVJOYWlYcjNJcDZfSnNnIiwKHJISw_RInEtZkOv0RnvMfFE5pDSf1A5hU7Jf6FISDPKeDBOH5N-0CxRhGA","elapsed":3},"data":{"buckets":[{"computes":{"c0":[{"value":1,"time":"2022-01-06T00:40:00.000Z"},{"value":1,"time":"2022-01-06T00:50:00.000Z"}]},"by":{}}]}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

@@ -1,5 +1,4 @@
----
-version: 1
+version: 2
 interactions:
 - request:
     body: |
@@ -20,6 +19,7 @@ interactions:
       - "7134437175682633500"
     url: https://api.datadoghq.com/api/v1/application_key
     method: POST
+    id: 0
   response:
     body: '{"application_key":{"owner":"slavek.kabrda@datadoghq.com","org_id":321813,"hash":"83ce8d563850280472add857884a4e9c0e4dbef7","name":"go-TestAppKeysMgmtCreate409Error-local-1589290299","revoked":false}}'
     headers:
@@ -38,8 +38,7 @@ interactions:
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:39 GMT;
-        secure; HttpOnly
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:39 GMT; secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -54,7 +53,7 @@ interactions:
       - SAMEORIGIN
     status: 200 OK
     code: 200
-    duration: ""
+    duration: "0ms"
 - request:
     body: |
       {"name":"go-TestAppKeysMgmtCreate409Error-local-1589290299"}
@@ -74,9 +73,9 @@ interactions:
       - "7134437175682633500"
     url: https://api.datadoghq.com/api/v1/application_key
     method: POST
+    id: 1
   response:
-    body: '{"errors": ["An application key with the name go-TestAppKeysMgmtCreate409Error-local-1589290299
-      already exists"]}'
+    body: '{"errors": ["An application key with the name go-TestAppKeysMgmtCreate409Error-local-1589290299 already exists"]}'
     headers:
       Cache-Control:
       - no-cache
@@ -95,8 +94,7 @@ interactions:
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:39 GMT;
-        secure; HttpOnly
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:39 GMT; secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
@@ -107,7 +105,7 @@ interactions:
       - SAMEORIGIN
     status: 409 Conflict
     code: 409
-    duration: ""
+    duration: "0ms"
 - request:
     body: ""
     form: {}
@@ -124,6 +122,7 @@ interactions:
       - "7134437175682633500"
     url: https://api.datadoghq.com/api/v1/application_key/83ce8d563850280472add857884a4e9c0e4dbef7
     method: DELETE
+    id: 2
   response:
     body: '{"application_key":{"owner":"slavek.kabrda@datadoghq.com","org_id":321813,"hash":"83ce8d563850280472add857884a4e9c0e4dbef7","name":"go-TestAppKeysMgmtCreate409Error-local-1589290299","revoked":true}}'
     headers:
@@ -142,8 +141,7 @@ interactions:
       Pragma:
       - no-cache
       Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:39 GMT;
-        secure; HttpOnly
+      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:31:39 GMT; secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
@@ -158,4 +156,4 @@ interactions:
       - SAMEORIGIN
     status: 200 OK
     code: 200
-    duration: ""
+    duration: "0ms"

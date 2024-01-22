@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://ip-ranges.datadoghq.com/
   response:
@@ -94,9 +95,9 @@ interactions:
       ,\n            \"54.92.248.81/32\"\n        ],\n        \"prefixes_ipv6\": []\n\
       \    }\n}\n"
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

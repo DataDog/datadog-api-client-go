@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/slo
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -29,6 +30,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v1/slo/correction
   response:
@@ -37,7 +39,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -48,6 +50,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 2
     method: GET
     url: https://api.datadoghq.com/api/v1/slo/correction?offset=1&limit=1
   response:
@@ -56,7 +59,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -67,12 +70,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 3
     method: DELETE
     url: https://api.datadoghq.com/api/v1/slo/correction/3ecd96c6-6696-11ed-9c21-da7ad0902002
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -83,6 +87,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 4
     method: DELETE
     url: https://api.datadoghq.com/api/v1/slo/60569193a09054f6bc6fa6e87fb43031
   response:
@@ -90,9 +95,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

@@ -8,13 +8,14 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/users
   response:
     body: '{"data":{"type":"users","id":"657f03d8-d1d9-11ec-ad3d-da7ad0900002","attributes":{"name":null,"handle":"test-get_a_user_invitation_returns_ok_response-1652349217@datadoghq.com","created_at":"2022-05-12T09:53:38.255148+00:00","modified_at":"2022-05-12T09:53:38.307302+00:00","email":"test-get_a_user_invitation_returns_ok_response-1652349217@datadoghq.com","icon":"https://secure.gravatar.com/avatar/dab87213dd8f46847259f2c1bccca22f?s=48&d=retro","title":"user
       title","verified":false,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}}'
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -28,12 +29,13 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v2/user_invitations
   response:
     body: '{"data":[{"type":"user_invitations","id":"65ef03ae-d1d9-11ec-ad3d-da7ad0900002","attributes":{"uuid":"65ef03ae-d1d9-11ec-ad3d-da7ad0900002","login_method":null,"invite_type":"openid_invite","created_at":"2022-05-12T09:53:38.990217+00:00","expires_at":"2022-05-14T09:53:38.846030+00:00"},"relationships":{"user":{"data":{"type":"users","id":"657f03d8-d1d9-11ec-ad3d-da7ad0900002"}}}}]}'
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -44,12 +46,13 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 2
     method: GET
     url: https://api.datadoghq.com/api/v2/user_invitations/65ef03ae-d1d9-11ec-ad3d-da7ad0900002
   response:
     body: '{"data":{"type":"user_invitations","id":"65ef03ae-d1d9-11ec-ad3d-da7ad0900002","attributes":{"uuid":"65ef03ae-d1d9-11ec-ad3d-da7ad0900002","login_method":null,"invite_type":"openid_invite","created_at":"2022-05-12T09:53:38.990217+00:00","expires_at":"2022-05-14T09:53:38.846030+00:00"},"relationships":{"user":{"data":{"type":"users","id":"657f03d8-d1d9-11ec-ad3d-da7ad0900002"}}}}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -60,12 +63,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 3
     method: DELETE
     url: https://api.datadoghq.com/api/v2/users/657f03d8-d1d9-11ec-ad3d-da7ad0900002
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
-version: 1
+version: 2

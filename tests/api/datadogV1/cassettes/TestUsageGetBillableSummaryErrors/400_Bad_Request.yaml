@@ -1,5 +1,4 @@
----
-version: 1
+version: 2
 interactions:
 - request:
     body: ""
@@ -17,6 +16,7 @@ interactions:
       - "6547610753570398397"
     url: https://api.datadoghq.com/api/v1/usage/billable-summary?start_date=2020-08-01T20%3A02%3A54-03%3A00
     method: GET
+    id: 0
   response:
     body: |
       {"status":"error","code":403,"errors":["Forbidden"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
@@ -33,4 +33,4 @@ interactions:
       - 1.1 haproxy
     status: 403 Forbidden
     code: 403
-    duration: ""
+    duration: "0ms"

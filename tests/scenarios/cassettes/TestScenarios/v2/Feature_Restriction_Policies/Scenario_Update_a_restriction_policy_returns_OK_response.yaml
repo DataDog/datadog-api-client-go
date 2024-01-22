@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/roles
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -29,6 +30,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v2/users
   response:
@@ -37,7 +39,7 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -51,6 +53,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 2
     method: POST
     url: https://api.datadoghq.com/api/v2/roles/2186776c-bc4b-11ed-ac0f-da7ad0900002/users
   response:
@@ -59,7 +62,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -73,6 +76,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 3
     method: POST
     url: https://api.datadoghq.com/api/v2/restriction_policy/dashboard%3Atest-update
   response:
@@ -80,7 +84,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -91,12 +95,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 4
     method: DELETE
     url: https://api.datadoghq.com/api/v2/users/21b46718-bc4b-11ed-a2f5-764440ef0bc1
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
 - request:
@@ -105,14 +110,15 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 5
     method: DELETE
     url: https://api.datadoghq.com/api/v2/roles/2186776c-bc4b-11ed-ac0f-da7ad0900002
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-version: 1
+version: 2

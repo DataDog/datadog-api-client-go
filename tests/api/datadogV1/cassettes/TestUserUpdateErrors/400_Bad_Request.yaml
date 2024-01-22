@@ -1,44 +1,61 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: |
-      {"email":"notanemail"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "23"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.14.1+dev (go go1.19.9; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "4304453355121208690"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "5172472303537009867"
-    url: https://api.datadoghq.com/api/v1/user/test-testuserupdateerrors-1689014335@integration-tests-accnt-for-sdk-ci.com
-    method: PUT
-  response:
-    body: '{"errors":["Format of ''email'' should be email"]}'
-    headers:
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 10 Jul 2023 18:38:55 GMT
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 400 Bad Request
-    code: 400
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"email":"notanemail"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "23"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.14.1+dev (go go1.19.9; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "4304453355121208690"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "5172472303537009867"
+        url: https://api.datadoghq.com/api/v1/user/test-testuserupdateerrors-1689014335@integration-tests-accnt-for-sdk-ci.com
+        method: PUT
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"errors":["Format of ''email'' should be email"]}'
+        headers:
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 10 Jul 2023 18:38:55 GMT
+            Strict-Transport-Security:
+                - max-age=31536000; includeSubDomains; preload
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 400 Bad Request
+        code: 400
+        duration: 0s

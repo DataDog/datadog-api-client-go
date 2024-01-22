@@ -8,12 +8,13 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/roles
   response:
     body: '{"data":{"type":"roles","id":"61162af2-d1d8-11ec-ad3d-da7ad0900002","attributes":{"name":"Test-Create_a_monitor_returns_OK_response-1652348780","created_at":"2022-05-12T09:46:21.361812+00:00","modified_at":"2022-05-12T09:46:21.408035+00:00"},"relationships":{"permissions":{"data":[{"type":"permissions","id":"d90f6830-d3d8-11e9-a77a-b3404e5e9ee2"},{"type":"permissions","id":"4441648c-d8b1-11e9-a77a-1b899a04b304"},{"type":"permissions","id":"417ba636-2dce-11eb-84c0-6bce5b0d9de0"},{"type":"permissions","id":"12efc20e-d36c-11eb-a9b8-da7ad0900002"},{"type":"permissions","id":"97971c1c-e895-11eb-b13c-da7ad0900002"},{"type":"permissions","id":"7605ef24-f376-11eb-b90b-da7ad0900002"},{"type":"permissions","id":"b6bf9ac6-9a59-11ec-8480-da7ad0900002"}]}}}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -27,6 +28,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v1/monitor
   response:
@@ -35,7 +37,7 @@ interactions:
       > 2","message":"some message Notify: @hipchat-channel","id":71310040,"multi":true,"name":"Test-Create_a_monitor_returns_OK_response-1652348780","created":"2022-05-12T09:46:21.924878+00:00","created_at":1652348781000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2022-05-12T09:46:21.924878+00:00","priority":3,"overall_state_modified":null,"overall_state":"No
       Data","type":"log alert","options":{"notify_audit":false,"silenced":{},"include_tags":true,"new_host_delay":300,"notify_no_data":false,"groupby_simple_monitor":false}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -46,12 +48,13 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v1/monitor/71310040
   response:
     body: '{"deleted_monitor_id":71310040}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -62,12 +65,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 3
     method: DELETE
     url: https://api.datadoghq.com/api/v2/roles/61162af2-d1d8-11ec-ad3d-da7ad0900002
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
-version: 1
+version: 2

@@ -8,12 +8,13 @@ interactions:
       - text/json, application/json
       Content-Type:
       - text/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/series
   response:
     body: '{"status": "ok"}'
     code: 202
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - text/json
@@ -24,6 +25,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 1
     method: GET
     url: https://api.datadoghq.com/api/v2/metrics/static_test_metric_donotdelete/volumes
   response:
@@ -31,9 +33,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules
   response:
@@ -15,7 +16,7 @@ interactions:
       Agent rule","enabled":true,"defaultRule":false,"version":1,"updater":{"handle":"frog@datadoghq.com","name":null},"updateDate":1652349082186,"creationDate":1652349082186,"expression":"exec.file.name
       == \"sh\""},"type":"agent_rule","id":"hqy-ez4-nci"}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json;charset=utf-8
@@ -26,12 +27,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 1
     method: DELETE
     url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/hqy-ez4-nci
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json;charset=utf-8
@@ -42,14 +44,15 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/hqy-ez4-nci
   response:
     body: '{"errors":["not_found(Agent rule not found: agentRuleId=hqy-ez4-nci)"]}'
     code: 404
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2
