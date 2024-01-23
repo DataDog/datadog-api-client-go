@@ -50,7 +50,7 @@ type operationParameter struct {
 
 func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp reflect.Type) reflect.Value {
 	if p.Value != nil {
-		if tp.Kind() == reflect.Ptr {
+		if tp.Kind() == reflect.Slice {
 			field, ok := tp.Elem().FieldByName(SnakeToCamelCase(p.Name))
 			if ok && field.Type == reflect.TypeOf((*io.Reader)(nil)) {
 				version := GetVersion(ctx)
