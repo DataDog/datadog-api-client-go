@@ -36,7 +36,7 @@ type UndoAction struct {
 			Name     string  `json:"name"`
 			Source   *string `json:"source"`
 			Template *string `json:"template"`
-			Origin   *string `json:origin`
+			Origin   *string `json:"origin"`
 		} `json:"parameters"`
 	} `json:"undo"`
 }
@@ -50,13 +50,32 @@ type operationParameter struct {
 
 func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp reflect.Type) reflect.Value {
 	if p.Value != nil {
-		tpl := Templated(t, GetData(ctx), *p.Value)
-		v := reflect.New(tp)
-		err := datadog.Unmarshal([]byte(tpl), v.Interface())
-		if err != nil {
-			t.Fatalf("can't unmarshal parameter value for %s: %v", p.Name, err)
+		switch tp.Elem().Field(tp.Elem().NumField() - 1).Type.Elem() {
+		case reflect.TypeOf((*io.Reader)(nil)).Elem():
+			version := GetVersion(ctx)
+			var basePath string
+			tpl := Templated(t, GetData(ctx), *p.Value)
+			if err := datadog.Unmarshal([]byte(tpl), &basePath); err != nil {
+				t.Fatalf("can't unmarshal parameter value for %s: %v", p.Name, err)
+			}
+			filepath := fmt.Sprintf("./features/%s/%s", version, basePath)
+			fp, err := os.Open(filepath)
+			if err != nil {
+				t.Error(err)
+			}
+			reader := io.Reader(fp)
+			v := reflect.New(tp.Elem())
+			v.Elem().FieldByName(SnakeToCamelCase(p.Name)).Set(reflect.ValueOf(&reader))
+			return v.Elem()
+		default:
+			tpl := Templated(t, GetData(ctx), *p.Value)
+			v := reflect.New(tp)
+			err := datadog.Unmarshal([]byte(tpl), v.Interface())
+			if err != nil {
+				t.Fatalf("can't unmarshal parameter value for %s: %v", p.Name, err)
+			}
+			return v.Elem()
 		}
-		return v.Elem()
 	}
 	v, _ := tests.LookupStringI(GetData(ctx), *p.Source)
 	return v.Convert(tp)
