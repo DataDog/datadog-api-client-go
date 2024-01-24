@@ -2215,8 +2215,8 @@ func (r *GetUsageLambdaOptionalParameters) WithEndHr(endHr time.Time) *GetUsageL
 	return r
 }
 
-// GetUsageLambda Get hourly usage for lambda.
-// Get hourly usage for lambda.
+// GetUsageLambda Get hourly usage for Lambda.
+// Get hourly usage for Lambda.
 // **Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family). Refer to [Migrating from the V1 Hourly Usage APIs to V2](https://docs.datadoghq.com/account_management/guide/hourly-usage-migration/) for the associated migration guide.
 func (a *UsageMeteringApi) GetUsageLambda(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaOptionalParameters) (UsageLambdaResponse, *_nethttp.Response, error) {
 	var (

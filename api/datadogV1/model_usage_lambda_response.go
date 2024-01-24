@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UsageLambdaResponse Response containing the number of lambda functions and sum of the invocations of all lambda functions
+// UsageLambdaResponse Response containing the number of Lambda functions and sum of the invocations of all Lambda functions
 // for each hour for a given organization.
 type UsageLambdaResponse struct {
 	// Get hourly usage for Lambda.
