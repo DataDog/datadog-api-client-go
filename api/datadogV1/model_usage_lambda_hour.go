@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UsageLambdaHour Number of lambda functions and sum of the invocations of all lambda functions
+// UsageLambdaHour Number of Lambda functions and sum of the invocations of all Lambda functions
 // for each hour for a given organization.
 type UsageLambdaHour struct {
 	// Contains the number of different functions for each region and AWS account.
