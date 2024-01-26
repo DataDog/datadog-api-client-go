@@ -38,7 +38,7 @@ func main() {
 				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_BLOCKING.Ptr(),
 			},
 			DeviceIds: []datadogV1.SyntheticsDeviceID{
-				datadogV1.SYNTHETICSDEVICEID_LAPTOP_LARGE,
+				datadogV1.SYNTHETICSDEVICEID_CHROME_LAPTOP_LARGE,
 			},
 			HttpVersion:    datadogV1.SYNTHETICSTESTOPTIONSHTTPVERSION_HTTP1.Ptr(),
 			MonitorOptions: &datadogV1.SyntheticsTestOptionsMonitorOptions{},
