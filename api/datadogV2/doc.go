@@ -3,6 +3,10 @@
 // Copyright 2019-Present Datadog, Inc.
 
 // List of APIs:
+//   - [APIManagementApi.CreateOpenAPI]
+//   - [APIManagementApi.DeleteOpenAPI]
+//   - [APIManagementApi.GetOpenAPI]
+//   - [APIManagementApi.UpdateOpenAPI]
 //   - [APMRetentionFiltersApi.CreateApmRetentionFilter]
 //   - [APMRetentionFiltersApi.DeleteApmRetentionFilter]
 //   - [APMRetentionFiltersApi.GetApmRetentionFilter]
