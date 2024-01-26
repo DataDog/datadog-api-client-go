@@ -23,7 +23,7 @@ func main() {
 						Username: "my_username",
 					}},
 				DeviceIds: []datadogV1.SyntheticsDeviceID{
-					datadogV1.SYNTHETICSDEVICEID_LAPTOP_LARGE,
+					datadogV1.SYNTHETICSDEVICEID_CHROME_LAPTOP_LARGE,
 				},
 				Locations: []string{
 					"aws:eu-west-3",
