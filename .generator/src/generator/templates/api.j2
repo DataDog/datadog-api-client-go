@@ -261,15 +261,24 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	if err != nil || localVarHTTPResponse == nil {
 		return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, err
 	}
+	{%- if returnType != '_io.Reader' %}
 
 	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
 		return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, err
 	}
+	{%- endif %}
 	{%- for responseType, (response, responseCodes) in operation|responses_by_types %}
 	{%- if loop.first %}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
+		{%- if returnType == '_io.Reader' %}
+
+		localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+		if err != nil {
+			return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, err
+		}
+		{%- endif %}
 		newErr := {{ common_package_name }}.GenericOpenAPIError{
 			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
@@ -296,6 +305,7 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	{%- endif %}
 	{%- endfor %}
 	{%- if returnType %}
+	{%- if returnType != '_io.Reader' %}
 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
@@ -305,6 +315,9 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 		}
 		return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, newErr
 	}
+	{%- else %}
+	localVarReturnValue = localVarHTTPResponse.Body
+	{%- endif %}
 	{%- endif %}
 
 	return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, nil

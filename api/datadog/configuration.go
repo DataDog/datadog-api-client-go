@@ -323,6 +323,10 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
+			"v2.CreateOpenAPI":                false,
+			"v2.DeleteOpenAPI":                false,
+			"v2.GetOpenAPI":                   false,
+			"v2.UpdateOpenAPI":                false,
 			"v2.GetActiveBillingDimensions":   false,
 			"v2.GetMonthlyCostAttribution":    false,
 			"v2.CreateDORADeployment":         false,
