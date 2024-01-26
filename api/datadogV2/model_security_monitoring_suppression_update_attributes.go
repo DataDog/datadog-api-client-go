@@ -14,8 +14,8 @@ type SecurityMonitoringSuppressionUpdateAttributes struct {
 	Description *string `json:"description,omitempty"`
 	// Whether the suppression rule is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
-	// A Unix millisecond timestamp giving an expiration date for the suppression rule. After this date, it won't suppress signals anymore.
-	ExpirationDate *int64 `json:"expiration_date,omitempty"`
+	// A Unix millisecond timestamp giving an expiration date for the suppression rule. After this date, it won't suppress signals anymore. If unset, the expiration date of the suppression rule is left untouched. If set to `null`, the expiration date is removed.
+	ExpirationDate datadog.NullableInt64 `json:"expiration_date,omitempty"`
 	// The name of the suppression rule.
 	Name *string `json:"name,omitempty"`
 	// The rule query of the suppression rule, with the same syntax as the search bar for detection rules.
@@ -102,32 +102,43 @@ func (o *SecurityMonitoringSuppressionUpdateAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
+// GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SecurityMonitoringSuppressionUpdateAttributes) GetExpirationDate() int64 {
-	if o == nil || o.ExpirationDate == nil {
+	if o == nil || o.ExpirationDate.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.ExpirationDate
+	return *o.ExpirationDate.Get()
 }
 
 // GetExpirationDateOk returns a tuple with the ExpirationDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) GetExpirationDateOk() (*int64, bool) {
-	if o == nil || o.ExpirationDate == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.ExpirationDate, true
+	return o.ExpirationDate.Get(), o.ExpirationDate.IsSet()
 }
 
 // HasExpirationDate returns a boolean if a field has been set.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) HasExpirationDate() bool {
-	return o != nil && o.ExpirationDate != nil
+	return o != nil && o.ExpirationDate.IsSet()
 }
 
-// SetExpirationDate gets a reference to the given int64 and assigns it to the ExpirationDate field.
+// SetExpirationDate gets a reference to the given datadog.NullableInt64 and assigns it to the ExpirationDate field.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) SetExpirationDate(v int64) {
-	o.ExpirationDate = &v
+	o.ExpirationDate.Set(&v)
+}
+
+// SetExpirationDateNil sets the value for ExpirationDate to be an explicit nil.
+func (o *SecurityMonitoringSuppressionUpdateAttributes) SetExpirationDateNil() {
+	o.ExpirationDate.Set(nil)
+}
+
+// UnsetExpirationDate ensures that no value is present for ExpirationDate, not even an explicit nil.
+func (o *SecurityMonitoringSuppressionUpdateAttributes) UnsetExpirationDate() {
+	o.ExpirationDate.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -254,8 +265,8 @@ func (o SecurityMonitoringSuppressionUpdateAttributes) MarshalJSON() ([]byte, er
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
-	if o.ExpirationDate != nil {
-		toSerialize["expiration_date"] = o.ExpirationDate
+	if o.ExpirationDate.IsSet() {
+		toSerialize["expiration_date"] = o.ExpirationDate.Get()
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
@@ -279,13 +290,13 @@ func (o SecurityMonitoringSuppressionUpdateAttributes) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description      *string `json:"description,omitempty"`
-		Enabled          *bool   `json:"enabled,omitempty"`
-		ExpirationDate   *int64  `json:"expiration_date,omitempty"`
-		Name             *string `json:"name,omitempty"`
-		RuleQuery        *string `json:"rule_query,omitempty"`
-		SuppressionQuery *string `json:"suppression_query,omitempty"`
-		Version          *int32  `json:"version,omitempty"`
+		Description      *string               `json:"description,omitempty"`
+		Enabled          *bool                 `json:"enabled,omitempty"`
+		ExpirationDate   datadog.NullableInt64 `json:"expiration_date,omitempty"`
+		Name             *string               `json:"name,omitempty"`
+		RuleQuery        *string               `json:"rule_query,omitempty"`
+		SuppressionQuery *string               `json:"suppression_query,omitempty"`
+		Version          *int32                `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
