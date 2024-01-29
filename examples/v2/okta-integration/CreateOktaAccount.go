@@ -18,7 +18,7 @@ func main() {
 			Attributes: datadogV2.OktaAccountAttributes{
 				AuthMethod:   "oauth",
 				Domain:       "https://example.okta.com/",
-				Name:         "Okta_Prod",
+				Name:         "exampleoktaintegration",
 				ClientId:     datadog.PtrString("client_id"),
 				ClientSecret: datadog.PtrString("client_secret"),
 			},
