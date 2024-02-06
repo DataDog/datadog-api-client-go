@@ -12,7 +12,7 @@ import (
 
 // MetricsPayload The metrics' payload.
 type MetricsPayload struct {
-	// A list of time series to submit to Datadog.
+	// A list of timeseries to submit to Datadog.
 	Series []Series `json:"series"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
