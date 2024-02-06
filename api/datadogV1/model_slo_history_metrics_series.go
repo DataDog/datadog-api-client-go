@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SLOHistoryMetricsSeries A representation of `metric` based SLO time series for the provided queries.
+// SLOHistoryMetricsSeries A representation of `metric` based SLO timeseries for the provided queries.
 // This is the same response type from `batch_query` endpoint.
 type SLOHistoryMetricsSeries struct {
 	// Count of submitted metrics.
