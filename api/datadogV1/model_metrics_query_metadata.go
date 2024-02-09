@@ -24,7 +24,7 @@ type MetricsQueryMetadata struct {
 	Length *int64 `json:"length,omitempty"`
 	// Metric name.
 	Metric *string `json:"metric,omitempty"`
-	// List of points of the time series in milliseconds.
+	// List of points of the timeseries in milliseconds.
 	Pointlist [][]*float64 `json:"pointlist,omitempty"`
 	// The index of the series' query within the request.
 	QueryIndex *int64 `json:"query_index,omitempty"`

@@ -49,7 +49,7 @@ func main() {
 			AcceptSelfSigned: datadog.PtrBool(false),
 			AllowInsecure:    datadog.PtrBool(true),
 			DeviceIds: []datadogV1.SyntheticsDeviceID{
-				datadogV1.SYNTHETICSDEVICEID_TABLET,
+				datadogV1.SYNTHETICSDEVICEID_CHROME_LAPTOP_LARGE,
 			},
 			DisableCors:        datadog.PtrBool(true),
 			FollowRedirects:    datadog.PtrBool(true),

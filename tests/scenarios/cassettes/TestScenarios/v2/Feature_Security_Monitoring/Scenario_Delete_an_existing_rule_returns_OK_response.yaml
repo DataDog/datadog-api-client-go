@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
   response:
@@ -17,7 +18,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -28,12 +29,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 1
     method: DELETE
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules/fn5-38d-3q5
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
 - request:
@@ -42,6 +44,7 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules/fn5-38d-3q5
   response:
@@ -49,9 +52,9 @@ interactions:
 
       '
     code: 404
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

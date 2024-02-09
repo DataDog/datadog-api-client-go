@@ -1,48 +1,65 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: |
-      {"end":1634720427,"message":"Test-TestDowntimeRecurrence_until_occurences_and_until_date_are_mutually_exclusive-1634716827; until occurences and until date are mutually exclusive","recurrence":{"period":1,"type":"weeks","until_date":1636531227,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1634716827,"timezone":"Etc/UTC"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "366"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6601657881484935859"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "4390740353989189401"
-    url: https://api.datadoghq.com/api/v1/downtime
-    method: POST
-  response:
-    body: '{"errors": ["You must provide only provide one of (until_occurrences, until_date)"]}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "84"
-      Content-Type:
-      - application/json
-      Date:
-      - Wed, 20 Oct 2021 08:00:28 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-    status: 400 Bad Request
-    code: 400
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"end":1634720427,"message":"Test-TestDowntimeRecurrence_until_occurences_and_until_date_are_mutually_exclusive-1634716827; until occurences and until date are mutually exclusive","recurrence":{"period":1,"type":"weeks","until_date":1636531227,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1634716827,"timezone":"Etc/UTC"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "366"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
+            X-Datadog-Parent-Id:
+                - "6601657881484935859"
+            X-Datadog-Sampling-Priority:
+                - "1"
+            X-Datadog-Trace-Id:
+                - "4390740353989189401"
+        url: https://api.datadoghq.com/api/v1/downtime
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"errors": ["You must provide only provide one of (until_occurrences, until_date)"]}'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "84"
+            Content-Type:
+                - application/json
+            Date:
+                - Wed, 20 Oct 2021 08:00:28 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+        status: 400 Bad Request
+        code: 400
+        duration: 0s

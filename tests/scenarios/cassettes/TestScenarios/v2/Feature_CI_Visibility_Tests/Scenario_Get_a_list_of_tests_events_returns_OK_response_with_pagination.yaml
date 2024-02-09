@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/ci/tests/events?filter%5Bfrom%5D=2022-10-21T14%3A43%3A41.511Z&filter%5Bto%5D=2022-10-21T14%3A44%3A11.511Z&page%5Blimit%5D=2
   response:
@@ -19,7 +20,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -30,6 +31,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 1
     method: GET
     url: https://api.datadoghq.com/api/v2/ci/tests/events?filter%5Bfrom%5D=2022-10-21T14%3A43%3A41.511Z&filter%5Bto%5D=2022-10-21T14%3A44%3A11.511Z&page%5Blimit%5D=2&page%5Bcursor%5D=eyJhZnRlciI6IkFRQUFBWVA3QUdFNG83ci1YQUFBQUFCQldWQTNRVWRGTkVGQlEyMHdjM0JYTFdOWVVEQjVaMU0ifQ
   response:
@@ -37,9 +39,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

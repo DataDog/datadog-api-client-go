@@ -14,14 +14,14 @@ import (
 //
 // This is not included in responses for `monitor` based SLOs.
 type SLOHistoryMetrics struct {
-	// A representation of `metric` based SLO time series for the provided queries.
+	// A representation of `metric` based SLO timeseries for the provided queries.
 	// This is the same response type from `batch_query` endpoint.
 	Denominator SLOHistoryMetricsSeries `json:"denominator"`
 	// The aggregated query interval for the series data. It's implicit based on the query time window.
 	Interval int64 `json:"interval"`
 	// Optional message if there are specific query issues/warnings.
 	Message *string `json:"message,omitempty"`
-	// A representation of `metric` based SLO time series for the provided queries.
+	// A representation of `metric` based SLO timeseries for the provided queries.
 	// This is the same response type from `batch_query` endpoint.
 	Numerator SLOHistoryMetricsSeries `json:"numerator"`
 	// The combined numerator and denominator query CSV.

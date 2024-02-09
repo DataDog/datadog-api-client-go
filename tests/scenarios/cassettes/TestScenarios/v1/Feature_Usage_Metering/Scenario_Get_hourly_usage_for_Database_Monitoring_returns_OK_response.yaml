@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v1/usage/dbm?start_hr=2022-03-27T15%3A43%3A36.948Z&end_hr=2022-03-29T15%3A43%3A36.948Z
   response:
@@ -57,9 +58,9 @@ interactions:
       Integration Tests (321813)","dbm_host_count":null,"dbm_queries_count":null,"public_id":"fasjyydbcgwwc2uc","hour":"2022-03-29T13:00:00+00:00"},{"org_name":"DD
       Integration Tests (321813)","dbm_host_count":null,"dbm_queries_count":null,"public_id":"fasjyydbcgwwc2uc","hour":"2022-03-29T14:00:00+00:00"}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

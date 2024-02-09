@@ -5,14 +5,15 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/processes?search=process-agent&tags=testing%3Atrue&page%5Blimit%5D=2
   response:
     body: '{"meta":{"page":{"after":"","size":0}},"data":[]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

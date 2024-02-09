@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/usage/lambda_traced_invocations?start_hr=2024-01-21T20%3A56%3A23.911Z&end_hr=2024-01-19T20%3A56%3A23.911Z
+  response:
+    body: '{"errors":["start_hr [YYYY-MM-DDThh] must be before end_hr [YYYY-MM-DDThh]"]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 2

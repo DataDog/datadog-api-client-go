@@ -1,7 +1,8 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
+- id: 0
+  request:
     body: "--c64b1780807c2726b3824a38988ac60e600953b47b65ca857e59bccb810f\r\nContent-Disposition:
       form-data; name=\"idp_file\"; filename=\".\"\r\nContent-Type: application/octet-stream\r\n\r\n{\"errors\":
       [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--c64b1780807c2726b3824a38988ac60e600953b47b65ca857e59bccb810f--\r\n"
@@ -40,4 +41,4 @@ interactions:
       - nosniff
     status: 403 Forbidden
     code: 403
-    duration: ""
+    duration: 0s

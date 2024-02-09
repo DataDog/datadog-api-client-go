@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: PATCH
     url: https://api.datadoghq.com/api/v2/cost/aws_cur_config/100
   response:
@@ -18,9 +19,9 @@ interactions:
       "status": "active", "status_updated_at": "2023-11-08T22:47:55.372330", "error_messages":
       []}}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

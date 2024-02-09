@@ -8,15 +8,16 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/powerpacks
   response:
     body: '{"errors":["API input validation failed: {''group_widget'': [''Missing
       data for required field.'']}"]}'
     code: 400
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

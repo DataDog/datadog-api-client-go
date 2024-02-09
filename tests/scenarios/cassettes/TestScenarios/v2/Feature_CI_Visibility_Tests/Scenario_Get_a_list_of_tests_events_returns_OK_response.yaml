@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/ci/tests/events?filter%5Bquery%5D=%40test.service%3Aweb-ui-tests&filter%5Bfrom%5D=2022-10-21T14%3A58%3A51.171Z&filter%5Bto%5D=2022-10-21T14%3A59%3A21.171Z&page%5Blimit%5D=5
   response:
@@ -25,9 +26,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

@@ -5,14 +5,15 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/monitor/policy/12340000-0000-0000-0000-000000000000
   response:
     body: '{"errors":["Monitor configuration policy not found"]}'
     code: 404
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

@@ -767,6 +767,54 @@ func (a *TeamsApi) GetTeamMemberships(ctx _context.Context, teamId string, o ...
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetTeamMembershipsWithPagination provides a paginated version of GetTeamMemberships returning a channel with all items.
+func (a *TeamsApi) GetTeamMembershipsWithPagination(ctx _context.Context, teamId string, o ...GetTeamMembershipsOptionalParameters) (<-chan datadog.PaginationResult[UserTeam], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(10)
+	if len(o) == 0 {
+		o = append(o, GetTeamMembershipsOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
+	}
+	o[0].PageSize = &pageSize_
+	page_ := int64(0)
+	o[0].PageNumber = &page_
+
+	items := make(chan datadog.PaginationResult[UserTeam], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.GetTeamMemberships(ctx, teamId, o...)
+			if err != nil {
+				var returnItem UserTeam
+				items <- datadog.PaginationResult[UserTeam]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[UserTeam]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			pageOffset_ := *o[0].PageNumber + 1
+			o[0].PageNumber = &pageOffset_
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // GetTeamPermissionSettings Get permission settings for a team.
 // Get all permission settings for a given team.
 func (a *TeamsApi) GetTeamPermissionSettings(ctx _context.Context, teamId string) (TeamPermissionSettingsResponse, *_nethttp.Response, error) {

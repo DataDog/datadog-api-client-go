@@ -8,12 +8,13 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard/lists/manual
   response:
     body: '{"is_favorite":false,"name":"Test-Delete_custom_screenboard_dashboard_from_an_existing_dashboard_list_returns_OK_response-1647890206","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2022-03-21T19:16:46.302834+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2022-03-21T19:16:46.302842+00:00","id":284063}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -27,13 +28,14 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
     body: '{"notify_list":null,"description":null,"restricted_roles":[],"author_name":null,"template_variables":null,"is_read_only":false,"id":"dam-zij-6w8","title":"Test-Delete_custom_screenboard_dashboard_from_an_existing_dashboard_list_returns_OK_response-1647890206
       with Profile Metrics Query","url":"/dashboard/dam-zij-6w8/test-deletecustomscreenboarddashboardfromanexistingdashboardlistreturnsokrespons","created_at":"2022-03-21T19:16:46.609394+00:00","modified_at":"2022-03-21T19:16:46.609394+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"search":{"query":"runtime:jvm"},"group_by":[{"facet":"service","sort":{"facet":"@prof_core_cpu_cores","aggregation":"sum","order":"desc"},"limit":10}],"compute":{"facet":"@prof_core_cpu_cores","aggregation":"sum"}}}],"type":"timeseries"},"layout":{"y":10,"width":10,"x":10,"height":10},"id":8080377461258470}],"layout_type":"free"}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -47,12 +49,13 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 2
     method: POST
     url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/284063/dashboards
   response:
     body: '{"added_dashboards_to_list":[{"type":"custom_screenboard","id":"dam-zij-6w8"}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -66,12 +69,13 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 3
     method: DELETE
     url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/284063/dashboards
   response:
     body: '{"deleted_dashboards_from_list":[{"type":"custom_screenboard","id":"dam-zij-6w8"}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -82,12 +86,13 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 4
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/dam-zij-6w8
   response:
     body: '{"deleted_dashboard_id":"dam-zij-6w8"}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -98,14 +103,15 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 5
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/284063
   response:
     body: '{"deleted_dashboard_list_id":284063}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

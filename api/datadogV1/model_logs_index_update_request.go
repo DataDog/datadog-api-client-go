@@ -14,6 +14,10 @@ import (
 type LogsIndexUpdateRequest struct {
 	// The number of log events you can send in this index per day before you are rate-limited.
 	DailyLimit *int64 `json:"daily_limit,omitempty"`
+	// Object containing options to override the default daily limit reset time.
+	DailyLimitReset *LogsDailyLimitReset `json:"daily_limit_reset,omitempty"`
+	// A percentage threshold of the daily quota at which a Datadog warning event is generated.
+	DailyLimitWarningThresholdPercentage *float64 `json:"daily_limit_warning_threshold_percentage,omitempty"`
 	// If true, sets the `daily_limit` value to null and the index is not limited on a daily basis (any
 	// specified `daily_limit` value in the request is ignored). If false or omitted, the index's current
 	// `daily_limit` is maintained.
@@ -79,6 +83,62 @@ func (o *LogsIndexUpdateRequest) HasDailyLimit() bool {
 // SetDailyLimit gets a reference to the given int64 and assigns it to the DailyLimit field.
 func (o *LogsIndexUpdateRequest) SetDailyLimit(v int64) {
 	o.DailyLimit = &v
+}
+
+// GetDailyLimitReset returns the DailyLimitReset field value if set, zero value otherwise.
+func (o *LogsIndexUpdateRequest) GetDailyLimitReset() LogsDailyLimitReset {
+	if o == nil || o.DailyLimitReset == nil {
+		var ret LogsDailyLimitReset
+		return ret
+	}
+	return *o.DailyLimitReset
+}
+
+// GetDailyLimitResetOk returns a tuple with the DailyLimitReset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogsIndexUpdateRequest) GetDailyLimitResetOk() (*LogsDailyLimitReset, bool) {
+	if o == nil || o.DailyLimitReset == nil {
+		return nil, false
+	}
+	return o.DailyLimitReset, true
+}
+
+// HasDailyLimitReset returns a boolean if a field has been set.
+func (o *LogsIndexUpdateRequest) HasDailyLimitReset() bool {
+	return o != nil && o.DailyLimitReset != nil
+}
+
+// SetDailyLimitReset gets a reference to the given LogsDailyLimitReset and assigns it to the DailyLimitReset field.
+func (o *LogsIndexUpdateRequest) SetDailyLimitReset(v LogsDailyLimitReset) {
+	o.DailyLimitReset = &v
+}
+
+// GetDailyLimitWarningThresholdPercentage returns the DailyLimitWarningThresholdPercentage field value if set, zero value otherwise.
+func (o *LogsIndexUpdateRequest) GetDailyLimitWarningThresholdPercentage() float64 {
+	if o == nil || o.DailyLimitWarningThresholdPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.DailyLimitWarningThresholdPercentage
+}
+
+// GetDailyLimitWarningThresholdPercentageOk returns a tuple with the DailyLimitWarningThresholdPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogsIndexUpdateRequest) GetDailyLimitWarningThresholdPercentageOk() (*float64, bool) {
+	if o == nil || o.DailyLimitWarningThresholdPercentage == nil {
+		return nil, false
+	}
+	return o.DailyLimitWarningThresholdPercentage, true
+}
+
+// HasDailyLimitWarningThresholdPercentage returns a boolean if a field has been set.
+func (o *LogsIndexUpdateRequest) HasDailyLimitWarningThresholdPercentage() bool {
+	return o != nil && o.DailyLimitWarningThresholdPercentage != nil
+}
+
+// SetDailyLimitWarningThresholdPercentage gets a reference to the given float64 and assigns it to the DailyLimitWarningThresholdPercentage field.
+func (o *LogsIndexUpdateRequest) SetDailyLimitWarningThresholdPercentage(v float64) {
+	o.DailyLimitWarningThresholdPercentage = &v
 }
 
 // GetDisableDailyLimit returns the DisableDailyLimit field value if set, zero value otherwise.
@@ -197,6 +257,12 @@ func (o LogsIndexUpdateRequest) MarshalJSON() ([]byte, error) {
 	if o.DailyLimit != nil {
 		toSerialize["daily_limit"] = o.DailyLimit
 	}
+	if o.DailyLimitReset != nil {
+		toSerialize["daily_limit_reset"] = o.DailyLimitReset
+	}
+	if o.DailyLimitWarningThresholdPercentage != nil {
+		toSerialize["daily_limit_warning_threshold_percentage"] = o.DailyLimitWarningThresholdPercentage
+	}
 	if o.DisableDailyLimit != nil {
 		toSerialize["disable_daily_limit"] = o.DisableDailyLimit
 	}
@@ -217,11 +283,13 @@ func (o LogsIndexUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsIndexUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DailyLimit        *int64          `json:"daily_limit,omitempty"`
-		DisableDailyLimit *bool           `json:"disable_daily_limit,omitempty"`
-		ExclusionFilters  []LogsExclusion `json:"exclusion_filters,omitempty"`
-		Filter            *LogsFilter     `json:"filter"`
-		NumRetentionDays  *int64          `json:"num_retention_days,omitempty"`
+		DailyLimit                           *int64               `json:"daily_limit,omitempty"`
+		DailyLimitReset                      *LogsDailyLimitReset `json:"daily_limit_reset,omitempty"`
+		DailyLimitWarningThresholdPercentage *float64             `json:"daily_limit_warning_threshold_percentage,omitempty"`
+		DisableDailyLimit                    *bool                `json:"disable_daily_limit,omitempty"`
+		ExclusionFilters                     []LogsExclusion      `json:"exclusion_filters,omitempty"`
+		Filter                               *LogsFilter          `json:"filter"`
+		NumRetentionDays                     *int64               `json:"num_retention_days,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -231,13 +299,18 @@ func (o *LogsIndexUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"daily_limit", "disable_daily_limit", "exclusion_filters", "filter", "num_retention_days"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"daily_limit", "daily_limit_reset", "daily_limit_warning_threshold_percentage", "disable_daily_limit", "exclusion_filters", "filter", "num_retention_days"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.DailyLimit = all.DailyLimit
+	if all.DailyLimitReset != nil && all.DailyLimitReset.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.DailyLimitReset = all.DailyLimitReset
+	o.DailyLimitWarningThresholdPercentage = all.DailyLimitWarningThresholdPercentage
 	o.DisableDailyLimit = all.DisableDailyLimit
 	o.ExclusionFilters = all.ExclusionFilters
 	if all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {

@@ -1,108 +1,141 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "7235961375847576897"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "4809478908151858561"
-    url: https://api.datadoghq.com/api/v1/graph/snapshot?end=1618307639&event_query=successful+builds&metric_query=system.load.1%7B%2A%7D&start=1618221239
-    method: GET
-  response:
-    body: '{"graph_def":"{\"requests\": [{\"q\": \"system.load.1{*}\"}]}","snapshot_url":"https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_321813/2021-04-12/abccbf6cc508e00d6a0cd25cef261c5a7fc0050e.png","event_query":"successful
-      builds","metric_query":"system.load.1{*}"}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 12 Apr 2021 09:54:00 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - nLnnBNvlCFDECRnZvzDb0z4sAO35G+IMidcAs8vrCKyjvsKWE8Yd9S3n6OjZ1qRN
-      X-Dd-Version:
-      - "35.4287331"
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "60"
-      X-Ratelimit-Period:
-      - "3600"
-      X-Ratelimit-Remaining:
-      - "47"
-      X-Ratelimit-Reset:
-      - "360"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
-      X-Datadog-Parent-Id:
-      - "6610859754937110522"
-      X-Datadog-Sampling-Priority:
-      - "1"
-      X-Datadog-Trace-Id:
-      - "4809478908151858561"
-    url: https://api.datadoghq.com/api/v1/graph/snapshot?end=1618307639&graph_def=%7B%22requests%22%3A+%5B%7B%22q%22%3A+%22system.load.1%7B%2A%7D%22%7D%5D%7D&start=1618221239
-    method: GET
-  response:
-    body: '{"graph_def":"{\"requests\": [{\"q\": \"system.load.1{*}\"}]}","snapshot_url":"https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_321813/2021-04-12/a2e942150e6b7b0edf2ff5d558a87091eae4b26c.png"}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 12 Apr 2021 09:54:00 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
-      X-Dd-Version:
-      - "35.4287331"
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "60"
-      X-Ratelimit-Period:
-      - "3600"
-      X-Ratelimit-Remaining:
-      - "46"
-      X-Ratelimit-Reset:
-      - "360"
-    status: 200 OK
-    code: 200
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+            X-Datadog-Parent-Id:
+                - "7235961375847576897"
+            X-Datadog-Sampling-Priority:
+                - "1"
+            X-Datadog-Trace-Id:
+                - "4809478908151858561"
+        url: https://api.datadoghq.com/api/v1/graph/snapshot?end=1618307639&event_query=successful+builds&metric_query=system.load.1%7B%2A%7D&start=1618221239
+        method: GET
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"graph_def":"{\"requests\": [{\"q\": \"system.load.1{*}\"}]}","snapshot_url":"https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_321813/2021-04-12/abccbf6cc508e00d6a0cd25cef261c5a7fc0050e.png","event_query":"successful builds","metric_query":"system.load.1{*}"}'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 12 Apr 2021 09:54:00 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Dd-Debug:
+                - nLnnBNvlCFDECRnZvzDb0z4sAO35G+IMidcAs8vrCKyjvsKWE8Yd9S3n6OjZ1qRN
+            X-Dd-Version:
+                - "35.4287331"
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "60"
+            X-Ratelimit-Period:
+                - "3600"
+            X-Ratelimit-Remaining:
+                - "47"
+            X-Ratelimit-Reset:
+                - "360"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 1
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: ""
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+            X-Datadog-Parent-Id:
+                - "6610859754937110522"
+            X-Datadog-Sampling-Priority:
+                - "1"
+            X-Datadog-Trace-Id:
+                - "4809478908151858561"
+        url: https://api.datadoghq.com/api/v1/graph/snapshot?end=1618307639&graph_def=%7B%22requests%22%3A+%5B%7B%22q%22%3A+%22system.load.1%7B%2A%7D%22%7D%5D%7D&start=1618221239
+        method: GET
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"graph_def":"{\"requests\": [{\"q\": \"system.load.1{*}\"}]}","snapshot_url":"https://p.datadoghq.com/snapshot/view/dd-snapshots-prod/org_321813/2021-04-12/a2e942150e6b7b0edf2ff5d558a87091eae4b26c.png"}'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Mon, 12 Apr 2021 09:54:00 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Dd-Debug:
+                - l4HFlaRP3QwYSqoGKhzbYfv7zgkK63HIRR7YkyVYZspq0lGjjTBwoK8V/alf+XYt
+            X-Dd-Version:
+                - "35.4287331"
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "60"
+            X-Ratelimit-Period:
+                - "3600"
+            X-Ratelimit-Remaining:
+                - "46"
+            X-Ratelimit-Reset:
+                - "360"
+        status: 200 OK
+        code: 200
+        duration: 0s

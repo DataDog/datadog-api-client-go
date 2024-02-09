@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/rum/applications
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -29,13 +30,14 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: PATCH
     url: https://api.datadoghq.com/api/v2/rum/applications/fdf8b82d-d289-408c-9e57-561abf7cd7c4
   response:
     body: '{"errors":["The id attribute in the request body does not match the id
       in the URL"]}'
     code: 422
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -46,12 +48,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v2/rum/applications/fdf8b82d-d289-408c-9e57-561abf7cd7c4
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers: {}
     status: 204 No Content
-version: 1
+version: 2

@@ -8,14 +8,15 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: PUT
     url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/0
   response:
     body: '{"errors":["Manual Dashboard List with id 0 not found"]}'
     code: 404
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

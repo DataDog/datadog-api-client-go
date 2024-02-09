@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules
   response:
@@ -15,9 +16,9 @@ interactions:
       `testcreateacloudworkloadsecurityagentrulereturnsbadrequestresponse1641924695`
       definition error: syntax error: 1:18: unexpected token \"sh\" (expected \"~\"))"]}'
     code: 400
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

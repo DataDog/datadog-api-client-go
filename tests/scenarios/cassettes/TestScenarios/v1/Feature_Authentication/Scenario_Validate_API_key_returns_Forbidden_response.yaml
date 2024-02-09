@@ -5,14 +5,15 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v1/validate
   response:
     body: '{"errors":["API key required"]}'
     code: 403
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 403 Forbidden
-version: 1
+version: 2

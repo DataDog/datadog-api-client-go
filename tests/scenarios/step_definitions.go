@@ -9,6 +9,7 @@ package scenarios
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 	"reflect"
@@ -171,9 +172,23 @@ func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string,
 	}
 
 	if varType.IsValid() {
-		datadog.Unmarshal([]byte(templatedValue), varType.Interface())
-		GetRequestParameters(ctx)[param] = varType.Elem()
-		ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), varType.Elem()))
+		switch varType.Interface().(type) {
+		case *io.Reader: 
+			version := GetVersion(ctx)
+			var basePath string
+			datadog.Unmarshal([]byte(templatedValue), &basePath)
+			filepath := fmt.Sprintf("./features/%s/%s", version, basePath)
+			fp, err := os.Open(filepath)
+			if err != nil {
+				t.Error(err)
+			}
+			GetRequestParameters(ctx)[param] = reflect.ValueOf(fp)
+			ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), reflect.ValueOf(fp)))
+		default:
+			datadog.Unmarshal([]byte(templatedValue), varType.Interface())
+			GetRequestParameters(ctx)[param] = varType.Elem()
+			ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), varType.Elem()))
+		}
 	} else {
 		GetRequestParameters(ctx)[param] = reflect.ValueOf(templatedValue)
 		ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), reflect.ValueOf(templatedValue)))

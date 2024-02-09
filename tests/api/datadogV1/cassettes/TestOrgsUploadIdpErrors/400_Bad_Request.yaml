@@ -1,7 +1,8 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
+- id: 0
+  request:
     body: "--8d7a497f381cc1f9f9c0ddb59aba34ec3a25f1875e7930165eadae6e6632\r\nContent-Disposition:
       form-data; name=\"idp_file\"; filename=\".\"\r\nContent-Type: application/octet-stream\r\n\r\n{\"errors\":
       [\"Attempt to upload idp metadata with an unsupported Content-Type\"]}\n\r\n--8d7a497f381cc1f9f9c0ddb59aba34ec3a25f1875e7930165eadae6e6632--\r\n"
@@ -42,4 +43,4 @@ interactions:
       - SAMEORIGIN
     status: 400 Bad Request
     code: 400
-    duration: ""
+    duration: 0s

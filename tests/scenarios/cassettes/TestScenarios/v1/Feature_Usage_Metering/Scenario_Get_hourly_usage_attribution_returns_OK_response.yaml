@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v1/usage/hourly-attribution?start_hr=2022-05-20T08%3A46%3A26.291Z&usage_type=infra_host_usage
   response:
@@ -41,9 +42,9 @@ interactions:
       Integration Tests (321813)","public_id":"fasjyydbcgwwc2uc","hour":"2022-05-20T23:00:00+00:00","tag_config_source":"DD
       Integration Tests (321813):::project","tags":null,"total_usage_sum":18,"updated_at":"2022-05-21T10","usage_type":"infra_host_usage"}],"metadata":{"pagination":{"next_record_id":null}}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

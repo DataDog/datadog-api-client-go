@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"Test-Get_a_suppression_rule_returns_OK_response-1704967591","enabled":true,"name":"Test-Get_a_suppression_rule_returns_OK_response-1704967591","rule_query":"source:cloudtrail","suppression_query":"env:test"},"type":"suppressions"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions
+  response:
+    body: '{"data":{"id":"vac-d9u-mmr","attributes":{"name":"Test-Get_a_suppression_rule_returns_OK_response-1704967591","enabled":true,"description":"Test-Get_a_suppression_rule_returns_OK_response-1704967591","rule_query":"source:cloudtrail","suppression_query":"env:test","version":1,"creation_date":1704967592204,"update_date":1704967592204,"creator":{"name":null,"handle":"frog@datadoghq.com"},"updater":{"name":null,"handle":"frog@datadoghq.com"}},"type":"suppressions"}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 1
+    method: GET
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/vac-d9u-mmr
+  response:
+    body: '{"data":{"id":"vac-d9u-mmr","attributes":{"name":"Test-Get_a_suppression_rule_returns_OK_response-1704967591","enabled":true,"description":"Test-Get_a_suppression_rule_returns_OK_response-1704967591","rule_query":"source:cloudtrail","suppression_query":"env:test","version":1,"creation_date":1704967592204,"update_date":1704967592204,"creator":{"name":null,"handle":"frog@datadoghq.com"},"updater":{"name":null,"handle":"frog@datadoghq.com"}},"type":"suppressions"}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/vac-d9u-mmr
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+    status: 204 No Content
+version: 2

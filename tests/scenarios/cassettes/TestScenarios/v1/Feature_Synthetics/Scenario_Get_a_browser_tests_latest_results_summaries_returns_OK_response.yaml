@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v1/synthetics/tests/browser/2yy-sem-mjh/results
   response:
@@ -17,9 +18,9 @@ interactions:
       Large","height":1100,"width":1440,"userAgent":"Mozilla/5.0 (X11; Linux x86_64)
       Gecko/20100101 Firefox/98.0.2 DatadogSynthetics","id":"firefox.laptop_large","isMobile":false,"browser":"firefox"},"errorCount":0},"probe_dc":"aws:ca-central-1","result_id":"5020771801584744095","device_id":"firefox.laptop_large"}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

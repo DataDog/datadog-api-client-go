@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 0
     method: DELETE
     url: https://api.datadoghq.com/api/v2/services/definitions/not-a-service
   response:
@@ -12,9 +13,9 @@ interactions:
 
       '
     code: 404
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

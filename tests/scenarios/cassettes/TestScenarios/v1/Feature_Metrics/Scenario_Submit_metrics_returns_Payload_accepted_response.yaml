@@ -8,14 +8,15 @@ interactions:
       - text/json, application/json
       Content-Type:
       - text/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/series
   response:
     body: '{"status": "ok"}'
     code: 202
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - text/json
     status: 202 Accepted
-version: 1
+version: 2

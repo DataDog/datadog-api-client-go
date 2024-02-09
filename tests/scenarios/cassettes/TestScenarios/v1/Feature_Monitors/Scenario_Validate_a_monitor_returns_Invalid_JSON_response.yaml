@@ -8,15 +8,16 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/monitor/validate
   response:
     body: '{"errors":["The value provided for parameter ''query'' is invalid: invalid
       operator specified: "]}'
     code: 400
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
-version: 1
+version: 2

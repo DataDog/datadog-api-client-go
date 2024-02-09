@@ -21,6 +21,9 @@ type DashboardSummaryDefinition struct {
 	// Dashboard identifier.
 	Id *string `json:"id,omitempty"`
 	// Whether this dashboard is read-only. If True, only the author and admins can make changes to it.
+	//
+	// This property is deprecated; please use the [Restriction Policies API](https://docs.datadoghq.com/api/latest/restriction-policies/) instead to manage write authorization for individual dashboards.
+	// Deprecated
 	IsReadOnly *bool `json:"is_read_only,omitempty"`
 	// Layout type of the dashboard.
 	LayoutType *DashboardLayoutType `json:"layout_type,omitempty"`
@@ -176,6 +179,7 @@ func (o *DashboardSummaryDefinition) SetId(v string) {
 }
 
 // GetIsReadOnly returns the IsReadOnly field value if set, zero value otherwise.
+// Deprecated
 func (o *DashboardSummaryDefinition) GetIsReadOnly() bool {
 	if o == nil || o.IsReadOnly == nil {
 		var ret bool
@@ -186,6 +190,7 @@ func (o *DashboardSummaryDefinition) GetIsReadOnly() bool {
 
 // GetIsReadOnlyOk returns a tuple with the IsReadOnly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *DashboardSummaryDefinition) GetIsReadOnlyOk() (*bool, bool) {
 	if o == nil || o.IsReadOnly == nil {
 		return nil, false
@@ -199,6 +204,7 @@ func (o *DashboardSummaryDefinition) HasIsReadOnly() bool {
 }
 
 // SetIsReadOnly gets a reference to the given bool and assigns it to the IsReadOnly field.
+// Deprecated
 func (o *DashboardSummaryDefinition) SetIsReadOnly(v bool) {
 	o.IsReadOnly = &v
 }

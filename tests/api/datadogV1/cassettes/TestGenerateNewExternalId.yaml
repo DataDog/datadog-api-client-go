@@ -1,162 +1,213 @@
 ---
-version: 1
+version: 2
 interactions:
-- request:
-    body: |
-      {"account_id":"001664524062","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "245"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.3.2+dev (go go1.19; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "9049841677157257919"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "8915241812863070500"
-    url: https://api.datadoghq.com/api/v1/integration/aws
-    method: POST
-  response:
-    body: '{"external_id":"8360243a8575464da5c73aaafffff47b"}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Fri, 30 Sep 2022 07:47:43 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "12000"
-      X-Ratelimit-Period:
-      - "60"
-      X-Ratelimit-Remaining:
-      - "11993"
-      X-Ratelimit-Reset:
-      - "18"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"account_id":"001664524062","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "245"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.3.2+dev (go go1.19; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "6897432196196685966"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "8915241812863070500"
-    url: https://api.datadoghq.com/api/v1/integration/aws/generate_new_external_id
-    method: PUT
-  response:
-    body: '{"external_id":"d71656bcf0984f02848265fd12d01d97"}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Type:
-      - application/json
-      Date:
-      - Fri, 30 Sep 2022 07:47:43 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "12000"
-      X-Ratelimit-Period:
-      - "60"
-      X-Ratelimit-Remaining:
-      - "11992"
-      X-Ratelimit-Reset:
-      - "17"
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: |
-      {"account_id":"001664524062","role_name":"DatadogAWSIntegrationRole"}
-    form: {}
-    headers:
-      Accept:
-      - application/json
-      Content-Length:
-      - "70"
-      Content-Type:
-      - application/json
-      User-Agent:
-      - datadog-api-client-go/2.3.2+dev (go go1.19; os darwin; arch arm64)
-      X-Datadog-Parent-Id:
-      - "5526170128407208697"
-      X-Datadog-Sampling-Priority:
-      - "2"
-      X-Datadog-Trace-Id:
-      - "8915241812863070500"
-    url: https://api.datadoghq.com/api/v1/integration/aws
-    method: DELETE
-  response:
-    body: '{}'
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Length:
-      - "2"
-      Content-Type:
-      - application/json
-      Date:
-      - Fri, 30 Sep 2022 07:47:44 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - "12000"
-      X-Ratelimit-Period:
-      - "60"
-      X-Ratelimit-Remaining:
-      - "11991"
-      X-Ratelimit-Reset:
-      - "17"
-    status: 200 OK
-    code: 200
-    duration: ""
+    - id: 0
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"account_id":"001664524062","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "245"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.3.2+dev (go go1.19; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "9049841677157257919"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "8915241812863070500"
+        url: https://api.datadoghq.com/api/v1/integration/aws
+        method: POST
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"external_id":"8360243a8575464da5c73aaafffff47b"}'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Fri, 30 Sep 2022 07:47:43 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "12000"
+            X-Ratelimit-Period:
+                - "60"
+            X-Ratelimit-Remaining:
+                - "11993"
+            X-Ratelimit-Reset:
+                - "18"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 1
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"account_id":"001664524062","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "245"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.3.2+dev (go go1.19; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "6897432196196685966"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "8915241812863070500"
+        url: https://api.datadoghq.com/api/v1/integration/aws/generate_new_external_id
+        method: PUT
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{"external_id":"d71656bcf0984f02848265fd12d01d97"}'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Type:
+                - application/json
+            Date:
+                - Fri, 30 Sep 2022 07:47:43 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            Vary:
+                - Accept-Encoding
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "12000"
+            X-Ratelimit-Period:
+                - "60"
+            X-Ratelimit-Remaining:
+                - "11992"
+            X-Ratelimit-Reset:
+                - "17"
+        status: 200 OK
+        code: 200
+        duration: 0s
+    - id: 2
+      request:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        content_length: 0
+        transfer_encoding: []
+        trailer: {}
+        host: ""
+        remote_addr: ""
+        request_uri: ""
+        body: |
+            {"account_id":"001664524062","role_name":"DatadogAWSIntegrationRole"}
+        form: {}
+        headers:
+            Accept:
+                - application/json
+            Content-Length:
+                - "70"
+            Content-Type:
+                - application/json
+            User-Agent:
+                - datadog-api-client-go/2.3.2+dev (go go1.19; os darwin; arch arm64)
+            X-Datadog-Parent-Id:
+                - "5526170128407208697"
+            X-Datadog-Sampling-Priority:
+                - "2"
+            X-Datadog-Trace-Id:
+                - "8915241812863070500"
+        url: https://api.datadoghq.com/api/v1/integration/aws
+        method: DELETE
+      response:
+        proto: ""
+        proto_major: 0
+        proto_minor: 0
+        transfer_encoding: []
+        trailer: {}
+        content_length: 0
+        uncompressed: false
+        body: '{}'
+        headers:
+            Cache-Control:
+                - no-cache
+            Connection:
+                - keep-alive
+            Content-Length:
+                - "2"
+            Content-Type:
+                - application/json
+            Date:
+                - Fri, 30 Sep 2022 07:47:44 GMT
+            Pragma:
+                - no-cache
+            Strict-Transport-Security:
+                - max-age=15724800;
+            X-Content-Type-Options:
+                - nosniff
+            X-Frame-Options:
+                - SAMEORIGIN
+            X-Ratelimit-Limit:
+                - "12000"
+            X-Ratelimit-Period:
+                - "60"
+            X-Ratelimit-Remaining:
+                - "11991"
+            X-Ratelimit-Reset:
+                - "17"
+        status: 200 OK
+        code: 200
+        duration: 0s

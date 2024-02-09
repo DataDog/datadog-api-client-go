@@ -19,7 +19,7 @@ type SensitiveDataScannerIncludedKeywordConfiguration struct {
 	// `character_count` should be greater than the maximum length of a keyword defined for a rule.
 	CharacterCount int64 `json:"character_count"`
 	// Keyword list that will be checked during scanning in order to validate a match.
-	// The number of keywords in the list must be less than or equal to 20.
+	// The number of keywords in the list must be less than or equal to 30.
 	Keywords []string `json:"keywords"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

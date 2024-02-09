@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/incidents
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -29,6 +30,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v2/incidents/aac94de7-d203-5171-9c46-ac8e554f1442/relationships/todos
   response:
@@ -37,7 +39,7 @@ interactions:
 
       '
     code: 201
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -51,6 +53,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 2
     method: PATCH
     url: https://api.datadoghq.com/api/v2/incidents/aac94de7-d203-5171-9c46-ac8e554f1442/relationships/todos/b1fe8268-35cd-5656-b529-a17a34e75c8e
   response:
@@ -59,7 +62,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -70,12 +73,13 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 3
     method: DELETE
     url: https://api.datadoghq.com/api/v2/incidents/aac94de7-d203-5171-9c46-ac8e554f1442/relationships/todos/b1fe8268-35cd-5656-b529-a17a34e75c8e
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
@@ -86,14 +90,15 @@ interactions:
     headers:
       Accept:
       - '*/*'
+    id: 4
     method: DELETE
     url: https://api.datadoghq.com/api/v2/incidents/aac94de7-d203-5171-9c46-ac8e554f1442
   response:
     body: ''
     code: 204
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - text/html; charset=utf-8
     status: 204 No Content
-version: 1
+version: 2

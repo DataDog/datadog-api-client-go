@@ -5,15 +5,16 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: DELETE
     url: https://api.datadoghq.com/api/v1/slo/testdeleteansloreturnsnotfoundresponse1704322485
   response:
     body: '{"errors":["SLO not found: testdeleteansloreturnsnotfoundresponse1704322485
       not found"]}'
     code: 404
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 404 Not Found
-version: 1
+version: 2

@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/container_images
   response:
@@ -25,9 +26,9 @@ interactions:
       "last": null, "next": "https://api.datadoghq.com/api/v2/container_images?page[cursor]=bmFtZTowMTM5MTA3MzM1MTIuZGtyLmVjci51cy1lYXN0LTEuYW1hem9uYXdzLmNvbS9hcmdvfGlkOjAxMzkxMDczMzUxMi5ka3IuZWNyLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL2FyZ29Ac2hhMjU2OjNlYWJjNzMwY2RiOTBiMWQ1N2QwNTkyNzJkZWQ3OWQ5NzZkNzk1ZTk0NzM0M2Q0NWFjMjA5MGViZjVmY2I2MTk=",
       "prev": null, "first": "https://api.datadoghq.com/api/v2/container_images"}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

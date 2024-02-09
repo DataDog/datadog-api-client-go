@@ -8,12 +8,13 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard/lists/manual
   response:
     body: '{"is_favorite":false,"name":"Test-Get_items_of_a_Dashboard_List_returns_OK_response-1647890209","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2022-03-21T19:16:49.783939+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2022-03-21T19:16:49.783947+00:00","id":284065}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -27,13 +28,14 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 1
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
     body: '{"notify_list":null,"description":null,"restricted_roles":[],"author_name":null,"template_variables":null,"is_read_only":false,"id":"ayt-gzk-ffi","title":"Test-Get_items_of_a_Dashboard_List_returns_OK_response-1647890209
       with Profile Metrics Query","url":"/dashboard/ayt-gzk-ffi/test-getitemsofadashboardlistreturnsokresponse-1647890209-with-profile-metrics-q","created_at":"2022-03-21T19:16:50.088193+00:00","modified_at":"2022-03-21T19:16:50.088193+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"search":{"query":"runtime:jvm"},"group_by":[{"facet":"service","sort":{"facet":"@prof_core_cpu_cores","aggregation":"sum","order":"desc"},"limit":10}],"compute":{"facet":"@prof_core_cpu_cores","aggregation":"sum"}}}],"type":"timeseries"},"id":2463979356913479}],"layout_type":"ordered"}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -47,12 +49,13 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 2
     method: POST
     url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/284065/dashboards
   response:
     body: '{"added_dashboards_to_list":[{"type":"custom_timeboard","id":"ayt-gzk-ffi"}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -63,13 +66,14 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 3
     method: GET
     url: https://api.datadoghq.com/api/v2/dashboard/lists/manual/284065/dashboards
   response:
     body: '{"total":1,"dashboards":[{"popularity":0,"title":"Test-Get_items_of_a_Dashboard_List_returns_OK_response-1647890209
       with Profile Metrics Query","is_favorite":false,"id":"ayt-gzk-ffi","icon":null,"integration_id":null,"is_shared":false,"author":{"handle":"frog@datadoghq.com","name":null},"url":"/dashboard/ayt-gzk-ffi/test-getitemsofadashboardlistreturnsokresponse-1647890209-with-profile-metrics-q","created":"2022-03-21T19:16:50.088193+00:00","modified":"2022-03-21T19:16:50.088193+00:00","is_read_only":false,"type":"custom_timeboard"}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -80,12 +84,13 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 4
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/ayt-gzk-ffi
   response:
     body: '{"deleted_dashboard_id":"ayt-gzk-ffi"}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -96,14 +101,15 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 5
     method: DELETE
     url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/284065
   response:
     body: '{"deleted_dashboard_list_id":284065}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

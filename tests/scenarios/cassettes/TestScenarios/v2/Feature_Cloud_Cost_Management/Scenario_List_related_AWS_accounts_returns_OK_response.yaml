@@ -5,6 +5,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/cost/aws_related_accounts?filter%5Bmanagement_account_id%5D=123456789123
   response:
@@ -23,9 +24,9 @@ interactions:
       true}}, {"type": "aws_account", "id": "000000000000", "attributes": {"name":
       "test_name", "has_datadog_integration": false}}]}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

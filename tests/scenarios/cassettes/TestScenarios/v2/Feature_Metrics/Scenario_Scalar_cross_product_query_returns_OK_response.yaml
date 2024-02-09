@@ -8,14 +8,15 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/query/scalar
   response:
     body: '{"data":{"type":"scalar_response","attributes":{"columns":[{"name":"a","values":[5.173633659114822],"type":"number","meta":{"unit":[{"scale_factor":1.0,"id":17,"name":"percent","plural":"percent","family":"percentage","short_name":"%"},null]}}]}}}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

@@ -14,8 +14,13 @@ import (
 
 func main() {
 	body := datadogV1.LogsIndexUpdateRequest{
-		DailyLimit:        datadog.PtrInt64(300000000),
-		DisableDailyLimit: datadog.PtrBool(false),
+		DailyLimit: datadog.PtrInt64(300000000),
+		DailyLimitReset: &datadogV1.LogsDailyLimitReset{
+			ResetTime:      datadog.PtrString("14:00"),
+			ResetUtcOffset: datadog.PtrString("+02:00"),
+		},
+		DailyLimitWarningThresholdPercentage: datadog.PtrFloat64(70),
+		DisableDailyLimit:                    datadog.PtrBool(false),
 		ExclusionFilters: []datadogV1.LogsExclusion{
 			{
 				Filter: &datadogV1.LogsExclusionFilter{

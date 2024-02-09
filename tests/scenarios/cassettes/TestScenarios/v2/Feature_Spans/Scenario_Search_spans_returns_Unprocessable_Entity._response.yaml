@@ -8,15 +8,16 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v2/spans/events/search
   response:
     body: '{"errors":[{"title":"Generic Error","detail":"invalid_argument(Field ''filter.from,to''
       is invalid: ''from'' should be anterior to ''to'')"}]}'
     code: 422
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/vnd.api+json
     status: 422 Unprocessable Entity
-version: 1
+version: 2

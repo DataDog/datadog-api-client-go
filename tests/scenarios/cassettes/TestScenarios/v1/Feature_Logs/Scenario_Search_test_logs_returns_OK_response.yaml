@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/logs-queries/list
   response:
@@ -21,9 +22,9 @@ interactions:
       Test-Go-TestLogsListGet-1649774408","timestamp":"2022-04-12T14:23:28.000Z"},"id":"AQAAAYAeKG8Ao6McCAAAAABBWUFlTjdLZEFBRHFMTW9ZX2RTdzdnQUE"},{"content":{"attributes":{"timestamp":1649774194000,"hostname":"Test-Go-TestLogsList-1649774195"},"host":"Test-Go-TestLogsList-1649774195","tags":["source:go-client-test-test-go-testlogslist-1649774195","test","go","list","source:go-client-test-test-go-testlogslist-1649774195"],"message":"test-log-list-2
       Test-Go-TestLogsList-1649774195","timestamp":"2022-04-12T14:36:34.000Z"},"id":"AQAAAYAeNG1Q5fBvLwAAAABBWUFlTkhQakFBQmtWQk8zVXkwTXNnQUE"}],"requestId":"pddv1ChZ0T0JqMzFnX1FQaWdGd21BTU1hckl3IiwKHC8XTMg_fLTUGsRepyDllkNF3vCLTnkHA-t3jZYSDMSnnSl0VC9gKVQz5Q"}'
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2

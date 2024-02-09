@@ -8,6 +8,7 @@ interactions:
       - application/json
       Content-Type:
       - application/json
+    id: 0
     method: POST
     url: https://api.datadoghq.com/api/v1/slo
   response:
@@ -15,7 +16,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -26,6 +27,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 1
     method: GET
     url: https://api.datadoghq.com/api/v1/slo/search?page%5Bnumber%5D=0&page%5Bsize%5D=20&query=Test-Search_for_SLOs_returns_OK_response-1676410539
   response:
@@ -35,7 +37,7 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
@@ -46,6 +48,7 @@ interactions:
     headers:
       Accept:
       - application/json
+    id: 2
     method: DELETE
     url: https://api.datadoghq.com/api/v1/slo/34c97838f5c5578ebe812e5d068977a9
   response:
@@ -53,9 +56,9 @@ interactions:
 
       '
     code: 200
-    duration: ''
+    duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 200 OK
-version: 1
+version: 2
