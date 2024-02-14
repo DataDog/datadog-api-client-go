@@ -23,6 +23,7 @@ const (
 	FORMULAANDFUNCTIONMETRICAGGREGATION_AREA       FormulaAndFunctionMetricAggregation = "area"
 	FORMULAANDFUNCTIONMETRICAGGREGATION_L2NORM     FormulaAndFunctionMetricAggregation = "l2norm"
 	FORMULAANDFUNCTIONMETRICAGGREGATION_PERCENTILE FormulaAndFunctionMetricAggregation = "percentile"
+	FORMULAANDFUNCTIONMETRICAGGREGATION_STDDEV     FormulaAndFunctionMetricAggregation = "stddev"
 )
 
 var allowedFormulaAndFunctionMetricAggregationEnumValues = []FormulaAndFunctionMetricAggregation{
@@ -34,6 +35,7 @@ var allowedFormulaAndFunctionMetricAggregationEnumValues = []FormulaAndFunctionM
 	FORMULAANDFUNCTIONMETRICAGGREGATION_AREA,
 	FORMULAANDFUNCTIONMETRICAGGREGATION_L2NORM,
 	FORMULAANDFUNCTIONMETRICAGGREGATION_PERCENTILE,
+	FORMULAANDFUNCTIONMETRICAGGREGATION_STDDEV,
 }
 
 // GetAllowedValues reeturns the list of possible values.
