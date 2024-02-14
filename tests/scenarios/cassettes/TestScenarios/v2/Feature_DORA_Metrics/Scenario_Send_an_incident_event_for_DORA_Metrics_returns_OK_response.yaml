@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"finished_at":1693491984000000000,"git":{"commit_sha":"66adc9350f2cc9b250b69abddab733dd55e1a588","repository_url":"https://github.com/organization/example-repository"},"name":"Webserver is down failing all requests","service":"shopist","severity":"High","started_at":1693491974000000000,"version":"v1.12.07"}}}
+      {"data":{"attributes":{"finished_at":1707842944600000000,"git":{"commit_sha":"66adc9350f2cc9b250b69abddab733dd55e1a588","repository_url":"https://github.com/organization/example-repository"},"name":"Webserver is down failing all requests","services":["shopist"],"severity":"High","started_at":1707842944500000000,"team":"backend","version":"v1.12.07"}}}
     form: {}
     headers:
       Accept:
@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/dora/incident
   response:
-    body: '{"data":{"id":"2a47b5f25b160b8a","type":"dora_incident"}}'
+    body: '{"data":{"id":"2775a2d3-6c28-4934-ae60-0ef9ce3720ee","type":"dora_incident"}}'
     code: 200
     duration: 0ms
     headers:

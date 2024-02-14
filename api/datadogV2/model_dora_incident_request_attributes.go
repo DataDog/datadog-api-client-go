@@ -18,16 +18,18 @@ type DORAIncidentRequestAttributes struct {
 	FinishedAt *int64 `json:"finished_at,omitempty"`
 	// Git info for DORA Metrics events.
 	Git *DORAGitInfo `json:"git,omitempty"`
-	// Incident ID
+	// Incident ID. Required to update a previously sent incident.
 	Id *string `json:"id,omitempty"`
 	// Incident name.
 	Name *string `json:"name,omitempty"`
-	// Service name from a service available in the Service Catalog.
-	Service string `json:"service"`
+	// Service names impacted by the incident. If possible, use names registered in the Service Catalog. Required when the team field is not provided.
+	Services []string `json:"services,omitempty"`
 	// Incident severity.
 	Severity *string `json:"severity,omitempty"`
 	// Unix timestamp in nanoseconds when the incident started.
 	StartedAt int64 `json:"started_at"`
+	// Name of the team owning the services impacted. If possible, use team handles registered in Datadog. Required when the services field is not provided.
+	Team *string `json:"team,omitempty"`
 	// Version to correlate with [APM Deployment Tracking](https://docs.datadoghq.com/tracing/services/deployment_tracking/).
 	Version *string `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -39,9 +41,8 @@ type DORAIncidentRequestAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDORAIncidentRequestAttributes(service string, startedAt int64) *DORAIncidentRequestAttributes {
+func NewDORAIncidentRequestAttributes(startedAt int64) *DORAIncidentRequestAttributes {
 	this := DORAIncidentRequestAttributes{}
-	this.Service = service
 	this.StartedAt = startedAt
 	return &this
 }
@@ -194,27 +195,32 @@ func (o *DORAIncidentRequestAttributes) SetName(v string) {
 	o.Name = &v
 }
 
-// GetService returns the Service field value.
-func (o *DORAIncidentRequestAttributes) GetService() string {
-	if o == nil {
-		var ret string
+// GetServices returns the Services field value if set, zero value otherwise.
+func (o *DORAIncidentRequestAttributes) GetServices() []string {
+	if o == nil || o.Services == nil {
+		var ret []string
 		return ret
 	}
-	return o.Service
+	return o.Services
 }
 
-// GetServiceOk returns a tuple with the Service field value
+// GetServicesOk returns a tuple with the Services field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentRequestAttributes) GetServiceOk() (*string, bool) {
-	if o == nil {
+func (o *DORAIncidentRequestAttributes) GetServicesOk() (*[]string, bool) {
+	if o == nil || o.Services == nil {
 		return nil, false
 	}
-	return &o.Service, true
+	return &o.Services, true
 }
 
-// SetService sets field value.
-func (o *DORAIncidentRequestAttributes) SetService(v string) {
-	o.Service = v
+// HasServices returns a boolean if a field has been set.
+func (o *DORAIncidentRequestAttributes) HasServices() bool {
+	return o != nil && o.Services != nil
+}
+
+// SetServices gets a reference to the given []string and assigns it to the Services field.
+func (o *DORAIncidentRequestAttributes) SetServices(v []string) {
+	o.Services = v
 }
 
 // GetSeverity returns the Severity field value if set, zero value otherwise.
@@ -268,6 +274,34 @@ func (o *DORAIncidentRequestAttributes) SetStartedAt(v int64) {
 	o.StartedAt = v
 }
 
+// GetTeam returns the Team field value if set, zero value otherwise.
+func (o *DORAIncidentRequestAttributes) GetTeam() string {
+	if o == nil || o.Team == nil {
+		var ret string
+		return ret
+	}
+	return *o.Team
+}
+
+// GetTeamOk returns a tuple with the Team field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DORAIncidentRequestAttributes) GetTeamOk() (*string, bool) {
+	if o == nil || o.Team == nil {
+		return nil, false
+	}
+	return o.Team, true
+}
+
+// HasTeam returns a boolean if a field has been set.
+func (o *DORAIncidentRequestAttributes) HasTeam() bool {
+	return o != nil && o.Team != nil
+}
+
+// SetTeam gets a reference to the given string and assigns it to the Team field.
+func (o *DORAIncidentRequestAttributes) SetTeam(v string) {
+	o.Team = &v
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *DORAIncidentRequestAttributes) GetVersion() string {
 	if o == nil || o.Version == nil {
@@ -317,11 +351,16 @@ func (o DORAIncidentRequestAttributes) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	toSerialize["service"] = o.Service
+	if o.Services != nil {
+		toSerialize["services"] = o.Services
+	}
 	if o.Severity != nil {
 		toSerialize["severity"] = o.Severity
 	}
 	toSerialize["started_at"] = o.StartedAt
+	if o.Team != nil {
+		toSerialize["team"] = o.Team
+	}
 	if o.Version != nil {
 		toSerialize["version"] = o.Version
 	}
@@ -340,23 +379,21 @@ func (o *DORAIncidentRequestAttributes) UnmarshalJSON(bytes []byte) (err error) 
 		Git        *DORAGitInfo `json:"git,omitempty"`
 		Id         *string      `json:"id,omitempty"`
 		Name       *string      `json:"name,omitempty"`
-		Service    *string      `json:"service"`
+		Services   []string     `json:"services,omitempty"`
 		Severity   *string      `json:"severity,omitempty"`
 		StartedAt  *int64       `json:"started_at"`
+		Team       *string      `json:"team,omitempty"`
 		Version    *string      `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.Service == nil {
-		return fmt.Errorf("required field service missing")
 	}
 	if all.StartedAt == nil {
 		return fmt.Errorf("required field started_at missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"env", "finished_at", "git", "id", "name", "service", "severity", "started_at", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"env", "finished_at", "git", "id", "name", "services", "severity", "started_at", "team", "version"})
 	} else {
 		return err
 	}
@@ -370,9 +407,10 @@ func (o *DORAIncidentRequestAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	o.Git = all.Git
 	o.Id = all.Id
 	o.Name = all.Name
-	o.Service = *all.Service
+	o.Services = all.Services
 	o.Severity = all.Severity
 	o.StartedAt = *all.StartedAt
+	o.Team = all.Team
 	o.Version = all.Version
 
 	if len(additionalProperties) > 0 {
