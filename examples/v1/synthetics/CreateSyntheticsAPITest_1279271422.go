@@ -58,6 +58,35 @@ func main() {
 					},
 					Subtype: datadogV1.SYNTHETICSAPISTEPSUBTYPE_HTTP,
 				},
+				{
+					Name:            "GRPC CALL",
+					Subtype:         datadogV1.SYNTHETICSAPISTEPSUBTYPE_GRPC,
+					ExtractedValues: []datadogV1.SyntheticsParsingOptions{},
+					AllowFailure:    datadog.PtrBool(false),
+					IsCritical:      datadog.PtrBool(true),
+					Retry: &datadogV1.SyntheticsTestOptionsRetry{
+						Count:    datadog.PtrInt64(0),
+						Interval: datadog.PtrFloat64(300),
+					},
+					Assertions: []datadogV1.SyntheticsAssertion{
+						datadogV1.SyntheticsAssertion{
+							SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+								Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
+								Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+								Target:   1000,
+							}},
+					},
+					Request: datadogV1.SyntheticsTestRequest{
+						Host:                     datadog.PtrString("grpcbin.test.k6.io"),
+						Port:                     datadog.PtrInt64(9000),
+						Service:                  datadog.PtrString("grpcbin.GRPCBin"),
+						Method:                   datadog.PtrString("Index"),
+						Message:                  datadog.PtrString("{}"),
+						CompressedJsonDescriptor: datadog.PtrString("eJy1lU1z2yAQhv+Lzj74I3ETH506bQ7OZOSm1w4Wa4epBARQppqM/3v5koCJJdvtxCdW77vPssCO3zMKUgHOFu/ZXvBiS6hZho/f8qe7pftYgXphWJrlA8XwxywEvNba+6PhkC2yVcVVswYp0R6ykRYlZ1SCV21SDrxsssPIeS9FJKqGfK2rqnmmSBwhWa2XlKgtaQPiDcRGCUDVfwGD2sKUqKEtc1cSoOrsMlaMOec1sySYCCgUYRSVLv2zSva2u+FQkB0pVkIw8bFuIudOOn3pOaKYVT3Iy97Pd0AYhOx5QcMsnxvRHlnuLf8ETDd3CNtrv2nejkDpRnANCmGkkFn/hsYzpBKE7jVbufgnKnV9HRM9zRPDDKPttYT61n0TdWkAAjggk9AhuxIeaXd69CYTcsGw7cBTakLVbNpRzGEgyWjkSOpMbZXkhGL6oX30R49qt3GoHrap7i0XdD41WQ+2icCNm5p1hmFqnHNlcla0riKmDZ183crDxChjbnurtxHPRE784sVhWvDfGP+SsTKibU3o5NtWHuZFGZOxP6P5VXqIOvaOSec4eYohyd7NslHuJbd1bewds85xYrNxkr2d+5IhFWF3NvaO684xjE2S5ulY+tu64Pna0fCPJgzw6vF5/WucLcYjt5xoq19O3UDptOg/OamJQRaCcPPnMTQ2QDFn+uhPvUfnCrMc99upyQY4Ui9Dlc/YoG3R/v4Cs9YE+g=="),
+						Metadata:                 map[string]string{},
+						CallType:                 datadogV1.SYNTHETICSTESTCALLTYPE_UNARY.Ptr(),
+					},
+				},
 			},
 		},
 		Locations: []string{

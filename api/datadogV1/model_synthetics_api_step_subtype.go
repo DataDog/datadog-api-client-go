@@ -16,10 +16,12 @@ type SyntheticsAPIStepSubtype string
 // List of SyntheticsAPIStepSubtype.
 const (
 	SYNTHETICSAPISTEPSUBTYPE_HTTP SyntheticsAPIStepSubtype = "http"
+	SYNTHETICSAPISTEPSUBTYPE_GRPC SyntheticsAPIStepSubtype = "grpc"
 )
 
 var allowedSyntheticsAPIStepSubtypeEnumValues = []SyntheticsAPIStepSubtype{
 	SYNTHETICSAPISTEPSUBTYPE_HTTP,
+	SYNTHETICSAPISTEPSUBTYPE_GRPC,
 }
 
 // GetAllowedValues reeturns the list of possible values.
