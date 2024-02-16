@@ -16,6 +16,9 @@ type GCPSTSServiceAccountAttributes struct {
 	Automute *bool `json:"automute,omitempty"`
 	// Your service account email address.
 	ClientEmail *string `json:"client_email,omitempty"`
+	// List of filters to limit the Cloud Run revisions that are pulled into Datadog by using tags.
+	// Only Cloud Run revision resources that apply to specified filters are imported into Datadog.
+	CloudRunRevisionFilters []string `json:"cloud_run_revision_filters,omitempty"`
 	// Your Host Filters.
 	HostFilters []string `json:"host_filters,omitempty"`
 	// When enabled, Datadog will activate the Cloud Security Monitoring product for this service account. Note: This requires resource_collection_enabled to be set to true.
@@ -132,6 +135,34 @@ func (o *GCPSTSServiceAccountAttributes) HasClientEmail() bool {
 // SetClientEmail gets a reference to the given string and assigns it to the ClientEmail field.
 func (o *GCPSTSServiceAccountAttributes) SetClientEmail(v string) {
 	o.ClientEmail = &v
+}
+
+// GetCloudRunRevisionFilters returns the CloudRunRevisionFilters field value if set, zero value otherwise.
+func (o *GCPSTSServiceAccountAttributes) GetCloudRunRevisionFilters() []string {
+	if o == nil || o.CloudRunRevisionFilters == nil {
+		var ret []string
+		return ret
+	}
+	return o.CloudRunRevisionFilters
+}
+
+// GetCloudRunRevisionFiltersOk returns a tuple with the CloudRunRevisionFilters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GCPSTSServiceAccountAttributes) GetCloudRunRevisionFiltersOk() (*[]string, bool) {
+	if o == nil || o.CloudRunRevisionFilters == nil {
+		return nil, false
+	}
+	return &o.CloudRunRevisionFilters, true
+}
+
+// HasCloudRunRevisionFilters returns a boolean if a field has been set.
+func (o *GCPSTSServiceAccountAttributes) HasCloudRunRevisionFilters() bool {
+	return o != nil && o.CloudRunRevisionFilters != nil
+}
+
+// SetCloudRunRevisionFilters gets a reference to the given []string and assigns it to the CloudRunRevisionFilters field.
+func (o *GCPSTSServiceAccountAttributes) SetCloudRunRevisionFilters(v []string) {
+	o.CloudRunRevisionFilters = v
 }
 
 // GetHostFilters returns the HostFilters field value if set, zero value otherwise.
@@ -261,6 +292,9 @@ func (o GCPSTSServiceAccountAttributes) MarshalJSON() ([]byte, error) {
 	if o.ClientEmail != nil {
 		toSerialize["client_email"] = o.ClientEmail
 	}
+	if o.CloudRunRevisionFilters != nil {
+		toSerialize["cloud_run_revision_filters"] = o.CloudRunRevisionFilters
+	}
 	if o.HostFilters != nil {
 		toSerialize["host_filters"] = o.HostFilters
 	}
@@ -286,6 +320,7 @@ func (o *GCPSTSServiceAccountAttributes) UnmarshalJSON(bytes []byte) (err error)
 		AccountTags                    []string `json:"account_tags,omitempty"`
 		Automute                       *bool    `json:"automute,omitempty"`
 		ClientEmail                    *string  `json:"client_email,omitempty"`
+		CloudRunRevisionFilters        []string `json:"cloud_run_revision_filters,omitempty"`
 		HostFilters                    []string `json:"host_filters,omitempty"`
 		IsCspmEnabled                  *bool    `json:"is_cspm_enabled,omitempty"`
 		IsSecurityCommandCenterEnabled *bool    `json:"is_security_command_center_enabled,omitempty"`
@@ -296,13 +331,14 @@ func (o *GCPSTSServiceAccountAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_tags", "automute", "client_email", "host_filters", "is_cspm_enabled", "is_security_command_center_enabled", "resource_collection_enabled"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_tags", "automute", "client_email", "cloud_run_revision_filters", "host_filters", "is_cspm_enabled", "is_security_command_center_enabled", "resource_collection_enabled"})
 	} else {
 		return err
 	}
 	o.AccountTags = all.AccountTags
 	o.Automute = all.Automute
 	o.ClientEmail = all.ClientEmail
+	o.CloudRunRevisionFilters = all.CloudRunRevisionFilters
 	o.HostFilters = all.HostFilters
 	o.IsCspmEnabled = all.IsCspmEnabled
 	o.IsSecurityCommandCenterEnabled = all.IsSecurityCommandCenterEnabled

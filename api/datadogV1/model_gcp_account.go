@@ -23,6 +23,9 @@ type GCPAccount struct {
 	// Should be `https://www.googleapis.com/robot/v1/metadata/x509/$CLIENT_EMAIL`
 	// where `$CLIENT_EMAIL` is the email found in your JSON service account key.
 	ClientX509CertUrl *string `json:"client_x509_cert_url,omitempty"`
+	// Limit the Cloud Run revisions that are pulled into Datadog by using tags.
+	// Only Cloud Run revision resources that apply to specified filters are imported into Datadog.
+	CloudRunRevisionFilters []string `json:"cloud_run_revision_filters,omitempty"`
 	// An array of errors.
 	Errors []string `json:"errors,omitempty"`
 	// Limit the GCE instances that are pulled into Datadog by using tags.
@@ -236,6 +239,34 @@ func (o *GCPAccount) HasClientX509CertUrl() bool {
 // SetClientX509CertUrl gets a reference to the given string and assigns it to the ClientX509CertUrl field.
 func (o *GCPAccount) SetClientX509CertUrl(v string) {
 	o.ClientX509CertUrl = &v
+}
+
+// GetCloudRunRevisionFilters returns the CloudRunRevisionFilters field value if set, zero value otherwise.
+func (o *GCPAccount) GetCloudRunRevisionFilters() []string {
+	if o == nil || o.CloudRunRevisionFilters == nil {
+		var ret []string
+		return ret
+	}
+	return o.CloudRunRevisionFilters
+}
+
+// GetCloudRunRevisionFiltersOk returns a tuple with the CloudRunRevisionFilters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GCPAccount) GetCloudRunRevisionFiltersOk() (*[]string, bool) {
+	if o == nil || o.CloudRunRevisionFilters == nil {
+		return nil, false
+	}
+	return &o.CloudRunRevisionFilters, true
+}
+
+// HasCloudRunRevisionFilters returns a boolean if a field has been set.
+func (o *GCPAccount) HasCloudRunRevisionFilters() bool {
+	return o != nil && o.CloudRunRevisionFilters != nil
+}
+
+// SetCloudRunRevisionFilters gets a reference to the given []string and assigns it to the CloudRunRevisionFilters field.
+func (o *GCPAccount) SetCloudRunRevisionFilters(v []string) {
+	o.CloudRunRevisionFilters = v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -542,6 +573,9 @@ func (o GCPAccount) MarshalJSON() ([]byte, error) {
 	if o.ClientX509CertUrl != nil {
 		toSerialize["client_x509_cert_url"] = o.ClientX509CertUrl
 	}
+	if o.CloudRunRevisionFilters != nil {
+		toSerialize["cloud_run_revision_filters"] = o.CloudRunRevisionFilters
+	}
 	if o.Errors != nil {
 		toSerialize["errors"] = o.Errors
 	}
@@ -588,6 +622,7 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 		ClientEmail                    *string  `json:"client_email,omitempty"`
 		ClientId                       *string  `json:"client_id,omitempty"`
 		ClientX509CertUrl              *string  `json:"client_x509_cert_url,omitempty"`
+		CloudRunRevisionFilters        []string `json:"cloud_run_revision_filters,omitempty"`
 		Errors                         []string `json:"errors,omitempty"`
 		HostFilters                    *string  `json:"host_filters,omitempty"`
 		IsCspmEnabled                  *bool    `json:"is_cspm_enabled,omitempty"`
@@ -604,7 +639,7 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth_provider_x509_cert_url", "auth_uri", "automute", "client_email", "client_id", "client_x509_cert_url", "errors", "host_filters", "is_cspm_enabled", "is_security_command_center_enabled", "private_key", "private_key_id", "project_id", "resource_collection_enabled", "token_uri", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"auth_provider_x509_cert_url", "auth_uri", "automute", "client_email", "client_id", "client_x509_cert_url", "cloud_run_revision_filters", "errors", "host_filters", "is_cspm_enabled", "is_security_command_center_enabled", "private_key", "private_key_id", "project_id", "resource_collection_enabled", "token_uri", "type"})
 	} else {
 		return err
 	}
@@ -614,6 +649,7 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.ClientEmail = all.ClientEmail
 	o.ClientId = all.ClientId
 	o.ClientX509CertUrl = all.ClientX509CertUrl
+	o.CloudRunRevisionFilters = all.CloudRunRevisionFilters
 	o.Errors = all.Errors
 	o.HostFilters = all.HostFilters
 	o.IsCspmEnabled = all.IsCspmEnabled
