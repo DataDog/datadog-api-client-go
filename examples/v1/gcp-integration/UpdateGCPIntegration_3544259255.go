@@ -1,4 +1,4 @@
-// Create a GCP integration returns "OK" response
+// Update a GCP integration cloud run revision filters returns "OK" response
 
 package main
 
@@ -21,7 +21,7 @@ func main() {
 		ClientX509CertUrl:       datadog.PtrString("https://www.googleapis.com/robot/v1/metadata/x509/$CLIENT_EMAIL"),
 		HostFilters:             datadog.PtrString("key:value,filter:example"),
 		CloudRunRevisionFilters: []string{
-			"dr:dre",
+			"merp:derp",
 		},
 		IsCspmEnabled:                  datadog.PtrBool(true),
 		IsSecurityCommandCenterEnabled: datadog.PtrBool(true),
@@ -36,13 +36,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewGCPIntegrationApi(apiClient)
-	resp, r, err := api.CreateGCPIntegration(ctx, body)
+	resp, r, err := api.UpdateGCPIntegration(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.CreateGCPIntegration`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `GCPIntegrationApi.UpdateGCPIntegration`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `GCPIntegrationApi.CreateGCPIntegration`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `GCPIntegrationApi.UpdateGCPIntegration`:\n%s\n", responseContent)
 }
