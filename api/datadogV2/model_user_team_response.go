@@ -12,6 +12,8 @@ import (
 type UserTeamResponse struct {
 	// A user's relationship with a team
 	Data *UserTeam `json:"data,omitempty"`
+	// Resources related to the team memberships
+	Included []UserTeamIncluded `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -62,6 +64,34 @@ func (o *UserTeamResponse) SetData(v UserTeam) {
 	o.Data = &v
 }
 
+// GetIncluded returns the Included field value if set, zero value otherwise.
+func (o *UserTeamResponse) GetIncluded() []UserTeamIncluded {
+	if o == nil || o.Included == nil {
+		var ret []UserTeamIncluded
+		return ret
+	}
+	return o.Included
+}
+
+// GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserTeamResponse) GetIncludedOk() (*[]UserTeamIncluded, bool) {
+	if o == nil || o.Included == nil {
+		return nil, false
+	}
+	return &o.Included, true
+}
+
+// HasIncluded returns a boolean if a field has been set.
+func (o *UserTeamResponse) HasIncluded() bool {
+	return o != nil && o.Included != nil
+}
+
+// SetIncluded gets a reference to the given []UserTeamIncluded and assigns it to the Included field.
+func (o *UserTeamResponse) SetIncluded(v []UserTeamIncluded) {
+	o.Included = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UserTeamResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -70,6 +100,9 @@ func (o UserTeamResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
+	}
+	if o.Included != nil {
+		toSerialize["included"] = o.Included
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -81,14 +114,15 @@ func (o UserTeamResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UserTeamResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *UserTeam `json:"data,omitempty"`
+		Data     *UserTeam          `json:"data,omitempty"`
+		Included []UserTeamIncluded `json:"included,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
 	} else {
 		return err
 	}
@@ -98,6 +132,7 @@ func (o *UserTeamResponse) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Data = all.Data
+	o.Included = all.Included
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
