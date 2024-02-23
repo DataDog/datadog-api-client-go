@@ -568,6 +568,8 @@ type ListMonitorsOptionalParameters struct {
 	IdOffset      *int64
 	Page          *int64
 	PageSize      *int32
+	MonitorIds    *string
+	WithFreshness *bool
 }
 
 // NewListMonitorsOptionalParameters creates an empty struct for parameters.
@@ -624,6 +626,18 @@ func (r *ListMonitorsOptionalParameters) WithPageSize(pageSize int32) *ListMonit
 	return r
 }
 
+// WithMonitorIds sets the corresponding parameter name and returns the struct.
+func (r *ListMonitorsOptionalParameters) WithMonitorIds(monitorIds string) *ListMonitorsOptionalParameters {
+	r.MonitorIds = &monitorIds
+	return r
+}
+
+// WithWithFreshness sets the corresponding parameter name and returns the struct.
+func (r *ListMonitorsOptionalParameters) WithWithFreshness(withFreshness bool) *ListMonitorsOptionalParameters {
+	r.WithFreshness = &withFreshness
+	return r
+}
+
 // ListMonitors Get all monitor details.
 // Get details about the specified monitor from your organization.
 func (a *MonitorsApi) ListMonitors(ctx _context.Context, o ...ListMonitorsOptionalParameters) ([]Monitor, *_nethttp.Response, error) {
@@ -674,6 +688,12 @@ func (a *MonitorsApi) ListMonitors(ctx _context.Context, o ...ListMonitorsOption
 	}
 	if optionalParams.PageSize != nil {
 		localVarQueryParams.Add("page_size", datadog.ParameterToString(*optionalParams.PageSize, ""))
+	}
+	if optionalParams.MonitorIds != nil {
+		localVarQueryParams.Add("monitor_ids", datadog.ParameterToString(*optionalParams.MonitorIds, ""))
+	}
+	if optionalParams.WithFreshness != nil {
+		localVarQueryParams.Add("with_freshness", datadog.ParameterToString(*optionalParams.WithFreshness, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 

@@ -19,6 +19,8 @@ type Monitor struct {
 	Creator *Creator `json:"creator,omitempty"`
 	// Whether or not the monitor is deleted. (Always `null`)
 	Deleted datadog.NullableTime `json:"deleted,omitempty"`
+	// The freshness of the monitor, indicating if the monitor evaluation is up to date. **This feature is currently in private beta.**
+	Freshness *MonitorFreshness `json:"freshness,omitempty"`
 	// ID of this monitor.
 	Id *int64 `json:"id,omitempty"`
 	// A list of active v1 downtimes that match this monitor.
@@ -164,6 +166,34 @@ func (o *Monitor) SetDeletedNil() {
 // UnsetDeleted ensures that no value is present for Deleted, not even an explicit nil.
 func (o *Monitor) UnsetDeleted() {
 	o.Deleted.Unset()
+}
+
+// GetFreshness returns the Freshness field value if set, zero value otherwise.
+func (o *Monitor) GetFreshness() MonitorFreshness {
+	if o == nil || o.Freshness == nil {
+		var ret MonitorFreshness
+		return ret
+	}
+	return *o.Freshness
+}
+
+// GetFreshnessOk returns a tuple with the Freshness field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Monitor) GetFreshnessOk() (*MonitorFreshness, bool) {
+	if o == nil || o.Freshness == nil {
+		return nil, false
+	}
+	return o.Freshness, true
+}
+
+// HasFreshness returns a boolean if a field has been set.
+func (o *Monitor) HasFreshness() bool {
+	return o != nil && o.Freshness != nil
+}
+
+// SetFreshness gets a reference to the given MonitorFreshness and assigns it to the Freshness field.
+func (o *Monitor) SetFreshness(v MonitorFreshness) {
+	o.Freshness = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -589,6 +619,9 @@ func (o Monitor) MarshalJSON() ([]byte, error) {
 	if o.Deleted.IsSet() {
 		toSerialize["deleted"] = o.Deleted.Get()
 	}
+	if o.Freshness != nil {
+		toSerialize["freshness"] = o.Freshness
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
@@ -644,6 +677,7 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 		Created           *time.Time                   `json:"created,omitempty"`
 		Creator           *Creator                     `json:"creator,omitempty"`
 		Deleted           datadog.NullableTime         `json:"deleted,omitempty"`
+		Freshness         *MonitorFreshness            `json:"freshness,omitempty"`
 		Id                *int64                       `json:"id,omitempty"`
 		MatchingDowntimes []MatchingDowntime           `json:"matching_downtimes,omitempty"`
 		Message           *string                      `json:"message,omitempty"`
@@ -670,7 +704,7 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created", "creator", "deleted", "id", "matching_downtimes", "message", "modified", "multi", "name", "options", "overall_state", "priority", "query", "restricted_roles", "state", "tags", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created", "creator", "deleted", "freshness", "id", "matching_downtimes", "message", "modified", "multi", "name", "options", "overall_state", "priority", "query", "restricted_roles", "state", "tags", "type"})
 	} else {
 		return err
 	}
@@ -682,6 +716,10 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Creator = all.Creator
 	o.Deleted = all.Deleted
+	if all.Freshness != nil && all.Freshness.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Freshness = all.Freshness
 	o.Id = all.Id
 	o.MatchingDowntimes = all.MatchingDowntimes
 	o.Message = all.Message
