@@ -15,13 +15,14 @@ type MonitorFormulaAndFunctionEventsDataSource string
 
 // List of MonitorFormulaAndFunctionEventsDataSource.
 const (
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_RUM          MonitorFormulaAndFunctionEventsDataSource = "rum"
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES MonitorFormulaAndFunctionEventsDataSource = "ci_pipelines"
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_TESTS     MonitorFormulaAndFunctionEventsDataSource = "ci_tests"
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_AUDIT        MonitorFormulaAndFunctionEventsDataSource = "audit"
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS       MonitorFormulaAndFunctionEventsDataSource = "events"
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS         MonitorFormulaAndFunctionEventsDataSource = "logs"
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_SPANS        MonitorFormulaAndFunctionEventsDataSource = "spans"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_RUM              MonitorFormulaAndFunctionEventsDataSource = "rum"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES     MonitorFormulaAndFunctionEventsDataSource = "ci_pipelines"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_TESTS         MonitorFormulaAndFunctionEventsDataSource = "ci_tests"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_AUDIT            MonitorFormulaAndFunctionEventsDataSource = "audit"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS           MonitorFormulaAndFunctionEventsDataSource = "events"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS             MonitorFormulaAndFunctionEventsDataSource = "logs"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_SPANS            MonitorFormulaAndFunctionEventsDataSource = "spans"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_DATABASE_QUERIES MonitorFormulaAndFunctionEventsDataSource = "database_queries"
 )
 
 var allowedMonitorFormulaAndFunctionEventsDataSourceEnumValues = []MonitorFormulaAndFunctionEventsDataSource{
@@ -32,6 +33,7 @@ var allowedMonitorFormulaAndFunctionEventsDataSourceEnumValues = []MonitorFormul
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS,
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS,
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_SPANS,
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_DATABASE_QUERIES,
 }
 
 // GetAllowedValues reeturns the list of possible values.
