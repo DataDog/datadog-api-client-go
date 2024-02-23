@@ -61,6 +61,8 @@ type UsageSummaryDateOrg struct {
 	CloudCostManagementAwsHostCountAvg *int64 `json:"cloud_cost_management_aws_host_count_avg,omitempty"`
 	// Host count average of Cloud Cost Management for Azure for the given date and given org.
 	CloudCostManagementAzureHostCountAvg *int64 `json:"cloud_cost_management_azure_host_count_avg,omitempty"`
+	// Host count average of Cloud Cost Management for GCP for the given date and given org.
+	CloudCostManagementGcpHostCountAvg *int64 `json:"cloud_cost_management_gcp_host_count_avg,omitempty"`
 	// Host count average of Cloud Cost Management for all cloud providers for the given date and given org.
 	CloudCostManagementHostCountAvg *int64 `json:"cloud_cost_management_host_count_avg,omitempty"`
 	// Shows the sum of all Cloud Security Information and Event Management events over all hours in the current date for the given org.
@@ -119,10 +121,22 @@ type UsageSummaryDateOrg struct {
 	DbmHostTop99pSum *int64 `json:"dbm_host_top99p_sum,omitempty"`
 	// Shows the average of all distinct Database Monitoring normalized queries over all hours in the current month for the given org.
 	DbmQueriesAvgSum *int64 `json:"dbm_queries_avg_sum,omitempty"`
+	// Shows the sum of all Error Tracking events over all hours in the current date for the given org.
+	ErrorTrackingEventsSum *int64 `json:"error_tracking_events_sum,omitempty"`
 	// The average task count for Fargate.
 	FargateTasksCountAvg *int64 `json:"fargate_tasks_count_avg,omitempty"`
 	// Shows the high-water mark of all Fargate tasks over all hours in the current date for the given org.
 	FargateTasksCountHwm *int64 `json:"fargate_tasks_count_hwm,omitempty"`
+	// Shows the average number of Flex Logs Compute Large Instances over all hours in the current date for the given org.
+	FlexLogsComputeLargeAvg *int64 `json:"flex_logs_compute_large_avg,omitempty"`
+	// Shows the average number of Flex Logs Compute Medium Instances over all hours in the current date for the given org.
+	FlexLogsComputeMediumAvg *int64 `json:"flex_logs_compute_medium_avg,omitempty"`
+	// Shows the average number of Flex Logs Compute Small Instances over all hours in the current date for the given org.
+	FlexLogsComputeSmallAvg *int64 `json:"flex_logs_compute_small_avg,omitempty"`
+	// Shows the average number of Flex Logs Compute Extra Small Instances over all hours in the current date for the given org.
+	FlexLogsComputeXsmallAvg *int64 `json:"flex_logs_compute_xsmall_avg,omitempty"`
+	// Shows the average of all Flex Stored Logs over all hours in the current date for the given org.
+	FlexStoredLogsAvg *int64 `json:"flex_stored_logs_avg,omitempty"`
 	// Shows the sum of all log bytes forwarded over all hours in the current date for the given org.
 	ForwardingEventsBytesSum *int64 `json:"forwarding_events_bytes_sum,omitempty"`
 	// Shows the 99th percentile of all GCP hosts over all hours in the current date for the given org.
@@ -952,6 +966,34 @@ func (o *UsageSummaryDateOrg) SetCloudCostManagementAzureHostCountAvg(v int64) {
 	o.CloudCostManagementAzureHostCountAvg = &v
 }
 
+// GetCloudCostManagementGcpHostCountAvg returns the CloudCostManagementGcpHostCountAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetCloudCostManagementGcpHostCountAvg() int64 {
+	if o == nil || o.CloudCostManagementGcpHostCountAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CloudCostManagementGcpHostCountAvg
+}
+
+// GetCloudCostManagementGcpHostCountAvgOk returns a tuple with the CloudCostManagementGcpHostCountAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetCloudCostManagementGcpHostCountAvgOk() (*int64, bool) {
+	if o == nil || o.CloudCostManagementGcpHostCountAvg == nil {
+		return nil, false
+	}
+	return o.CloudCostManagementGcpHostCountAvg, true
+}
+
+// HasCloudCostManagementGcpHostCountAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasCloudCostManagementGcpHostCountAvg() bool {
+	return o != nil && o.CloudCostManagementGcpHostCountAvg != nil
+}
+
+// SetCloudCostManagementGcpHostCountAvg gets a reference to the given int64 and assigns it to the CloudCostManagementGcpHostCountAvg field.
+func (o *UsageSummaryDateOrg) SetCloudCostManagementGcpHostCountAvg(v int64) {
+	o.CloudCostManagementGcpHostCountAvg = &v
+}
+
 // GetCloudCostManagementHostCountAvg returns the CloudCostManagementHostCountAvg field value if set, zero value otherwise.
 func (o *UsageSummaryDateOrg) GetCloudCostManagementHostCountAvg() int64 {
 	if o == nil || o.CloudCostManagementHostCountAvg == nil {
@@ -1764,6 +1806,34 @@ func (o *UsageSummaryDateOrg) SetDbmQueriesAvgSum(v int64) {
 	o.DbmQueriesAvgSum = &v
 }
 
+// GetErrorTrackingEventsSum returns the ErrorTrackingEventsSum field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetErrorTrackingEventsSum() int64 {
+	if o == nil || o.ErrorTrackingEventsSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ErrorTrackingEventsSum
+}
+
+// GetErrorTrackingEventsSumOk returns a tuple with the ErrorTrackingEventsSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetErrorTrackingEventsSumOk() (*int64, bool) {
+	if o == nil || o.ErrorTrackingEventsSum == nil {
+		return nil, false
+	}
+	return o.ErrorTrackingEventsSum, true
+}
+
+// HasErrorTrackingEventsSum returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasErrorTrackingEventsSum() bool {
+	return o != nil && o.ErrorTrackingEventsSum != nil
+}
+
+// SetErrorTrackingEventsSum gets a reference to the given int64 and assigns it to the ErrorTrackingEventsSum field.
+func (o *UsageSummaryDateOrg) SetErrorTrackingEventsSum(v int64) {
+	o.ErrorTrackingEventsSum = &v
+}
+
 // GetFargateTasksCountAvg returns the FargateTasksCountAvg field value if set, zero value otherwise.
 func (o *UsageSummaryDateOrg) GetFargateTasksCountAvg() int64 {
 	if o == nil || o.FargateTasksCountAvg == nil {
@@ -1818,6 +1888,146 @@ func (o *UsageSummaryDateOrg) HasFargateTasksCountHwm() bool {
 // SetFargateTasksCountHwm gets a reference to the given int64 and assigns it to the FargateTasksCountHwm field.
 func (o *UsageSummaryDateOrg) SetFargateTasksCountHwm(v int64) {
 	o.FargateTasksCountHwm = &v
+}
+
+// GetFlexLogsComputeLargeAvg returns the FlexLogsComputeLargeAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetFlexLogsComputeLargeAvg() int64 {
+	if o == nil || o.FlexLogsComputeLargeAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.FlexLogsComputeLargeAvg
+}
+
+// GetFlexLogsComputeLargeAvgOk returns a tuple with the FlexLogsComputeLargeAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetFlexLogsComputeLargeAvgOk() (*int64, bool) {
+	if o == nil || o.FlexLogsComputeLargeAvg == nil {
+		return nil, false
+	}
+	return o.FlexLogsComputeLargeAvg, true
+}
+
+// HasFlexLogsComputeLargeAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasFlexLogsComputeLargeAvg() bool {
+	return o != nil && o.FlexLogsComputeLargeAvg != nil
+}
+
+// SetFlexLogsComputeLargeAvg gets a reference to the given int64 and assigns it to the FlexLogsComputeLargeAvg field.
+func (o *UsageSummaryDateOrg) SetFlexLogsComputeLargeAvg(v int64) {
+	o.FlexLogsComputeLargeAvg = &v
+}
+
+// GetFlexLogsComputeMediumAvg returns the FlexLogsComputeMediumAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetFlexLogsComputeMediumAvg() int64 {
+	if o == nil || o.FlexLogsComputeMediumAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.FlexLogsComputeMediumAvg
+}
+
+// GetFlexLogsComputeMediumAvgOk returns a tuple with the FlexLogsComputeMediumAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetFlexLogsComputeMediumAvgOk() (*int64, bool) {
+	if o == nil || o.FlexLogsComputeMediumAvg == nil {
+		return nil, false
+	}
+	return o.FlexLogsComputeMediumAvg, true
+}
+
+// HasFlexLogsComputeMediumAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasFlexLogsComputeMediumAvg() bool {
+	return o != nil && o.FlexLogsComputeMediumAvg != nil
+}
+
+// SetFlexLogsComputeMediumAvg gets a reference to the given int64 and assigns it to the FlexLogsComputeMediumAvg field.
+func (o *UsageSummaryDateOrg) SetFlexLogsComputeMediumAvg(v int64) {
+	o.FlexLogsComputeMediumAvg = &v
+}
+
+// GetFlexLogsComputeSmallAvg returns the FlexLogsComputeSmallAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetFlexLogsComputeSmallAvg() int64 {
+	if o == nil || o.FlexLogsComputeSmallAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.FlexLogsComputeSmallAvg
+}
+
+// GetFlexLogsComputeSmallAvgOk returns a tuple with the FlexLogsComputeSmallAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetFlexLogsComputeSmallAvgOk() (*int64, bool) {
+	if o == nil || o.FlexLogsComputeSmallAvg == nil {
+		return nil, false
+	}
+	return o.FlexLogsComputeSmallAvg, true
+}
+
+// HasFlexLogsComputeSmallAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasFlexLogsComputeSmallAvg() bool {
+	return o != nil && o.FlexLogsComputeSmallAvg != nil
+}
+
+// SetFlexLogsComputeSmallAvg gets a reference to the given int64 and assigns it to the FlexLogsComputeSmallAvg field.
+func (o *UsageSummaryDateOrg) SetFlexLogsComputeSmallAvg(v int64) {
+	o.FlexLogsComputeSmallAvg = &v
+}
+
+// GetFlexLogsComputeXsmallAvg returns the FlexLogsComputeXsmallAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetFlexLogsComputeXsmallAvg() int64 {
+	if o == nil || o.FlexLogsComputeXsmallAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.FlexLogsComputeXsmallAvg
+}
+
+// GetFlexLogsComputeXsmallAvgOk returns a tuple with the FlexLogsComputeXsmallAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetFlexLogsComputeXsmallAvgOk() (*int64, bool) {
+	if o == nil || o.FlexLogsComputeXsmallAvg == nil {
+		return nil, false
+	}
+	return o.FlexLogsComputeXsmallAvg, true
+}
+
+// HasFlexLogsComputeXsmallAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasFlexLogsComputeXsmallAvg() bool {
+	return o != nil && o.FlexLogsComputeXsmallAvg != nil
+}
+
+// SetFlexLogsComputeXsmallAvg gets a reference to the given int64 and assigns it to the FlexLogsComputeXsmallAvg field.
+func (o *UsageSummaryDateOrg) SetFlexLogsComputeXsmallAvg(v int64) {
+	o.FlexLogsComputeXsmallAvg = &v
+}
+
+// GetFlexStoredLogsAvg returns the FlexStoredLogsAvg field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetFlexStoredLogsAvg() int64 {
+	if o == nil || o.FlexStoredLogsAvg == nil {
+		var ret int64
+		return ret
+	}
+	return *o.FlexStoredLogsAvg
+}
+
+// GetFlexStoredLogsAvgOk returns a tuple with the FlexStoredLogsAvg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetFlexStoredLogsAvgOk() (*int64, bool) {
+	if o == nil || o.FlexStoredLogsAvg == nil {
+		return nil, false
+	}
+	return o.FlexStoredLogsAvg, true
+}
+
+// HasFlexStoredLogsAvg returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasFlexStoredLogsAvg() bool {
+	return o != nil && o.FlexStoredLogsAvg != nil
+}
+
+// SetFlexStoredLogsAvg gets a reference to the given int64 and assigns it to the FlexStoredLogsAvg field.
+func (o *UsageSummaryDateOrg) SetFlexStoredLogsAvg(v int64) {
+	o.FlexStoredLogsAvg = &v
 }
 
 // GetForwardingEventsBytesSum returns the ForwardingEventsBytesSum field value if set, zero value otherwise.
@@ -3357,6 +3567,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.CloudCostManagementAzureHostCountAvg != nil {
 		toSerialize["cloud_cost_management_azure_host_count_avg"] = o.CloudCostManagementAzureHostCountAvg
 	}
+	if o.CloudCostManagementGcpHostCountAvg != nil {
+		toSerialize["cloud_cost_management_gcp_host_count_avg"] = o.CloudCostManagementGcpHostCountAvg
+	}
 	if o.CloudCostManagementHostCountAvg != nil {
 		toSerialize["cloud_cost_management_host_count_avg"] = o.CloudCostManagementHostCountAvg
 	}
@@ -3444,11 +3657,29 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.DbmQueriesAvgSum != nil {
 		toSerialize["dbm_queries_avg_sum"] = o.DbmQueriesAvgSum
 	}
+	if o.ErrorTrackingEventsSum != nil {
+		toSerialize["error_tracking_events_sum"] = o.ErrorTrackingEventsSum
+	}
 	if o.FargateTasksCountAvg != nil {
 		toSerialize["fargate_tasks_count_avg"] = o.FargateTasksCountAvg
 	}
 	if o.FargateTasksCountHwm != nil {
 		toSerialize["fargate_tasks_count_hwm"] = o.FargateTasksCountHwm
+	}
+	if o.FlexLogsComputeLargeAvg != nil {
+		toSerialize["flex_logs_compute_large_avg"] = o.FlexLogsComputeLargeAvg
+	}
+	if o.FlexLogsComputeMediumAvg != nil {
+		toSerialize["flex_logs_compute_medium_avg"] = o.FlexLogsComputeMediumAvg
+	}
+	if o.FlexLogsComputeSmallAvg != nil {
+		toSerialize["flex_logs_compute_small_avg"] = o.FlexLogsComputeSmallAvg
+	}
+	if o.FlexLogsComputeXsmallAvg != nil {
+		toSerialize["flex_logs_compute_xsmall_avg"] = o.FlexLogsComputeXsmallAvg
+	}
+	if o.FlexStoredLogsAvg != nil {
+		toSerialize["flex_stored_logs_avg"] = o.FlexStoredLogsAvg
 	}
 	if o.ForwardingEventsBytesSum != nil {
 		toSerialize["forwarding_events_bytes_sum"] = o.ForwardingEventsBytesSum
@@ -3641,6 +3872,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		CiVisibilityTestCommittersHwm              *int64  `json:"ci_visibility_test_committers_hwm,omitempty"`
 		CloudCostManagementAwsHostCountAvg         *int64  `json:"cloud_cost_management_aws_host_count_avg,omitempty"`
 		CloudCostManagementAzureHostCountAvg       *int64  `json:"cloud_cost_management_azure_host_count_avg,omitempty"`
+		CloudCostManagementGcpHostCountAvg         *int64  `json:"cloud_cost_management_gcp_host_count_avg,omitempty"`
 		CloudCostManagementHostCountAvg            *int64  `json:"cloud_cost_management_host_count_avg,omitempty"`
 		CloudSiemEventsSum                         *int64  `json:"cloud_siem_events_sum,omitempty"`
 		ContainerAvg                               *int64  `json:"container_avg,omitempty"`
@@ -3670,8 +3902,14 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		CwsHostTop99p                              *int64  `json:"cws_host_top99p,omitempty"`
 		DbmHostTop99pSum                           *int64  `json:"dbm_host_top99p_sum,omitempty"`
 		DbmQueriesAvgSum                           *int64  `json:"dbm_queries_avg_sum,omitempty"`
+		ErrorTrackingEventsSum                     *int64  `json:"error_tracking_events_sum,omitempty"`
 		FargateTasksCountAvg                       *int64  `json:"fargate_tasks_count_avg,omitempty"`
 		FargateTasksCountHwm                       *int64  `json:"fargate_tasks_count_hwm,omitempty"`
+		FlexLogsComputeLargeAvg                    *int64  `json:"flex_logs_compute_large_avg,omitempty"`
+		FlexLogsComputeMediumAvg                   *int64  `json:"flex_logs_compute_medium_avg,omitempty"`
+		FlexLogsComputeSmallAvg                    *int64  `json:"flex_logs_compute_small_avg,omitempty"`
+		FlexLogsComputeXsmallAvg                   *int64  `json:"flex_logs_compute_xsmall_avg,omitempty"`
+		FlexStoredLogsAvg                          *int64  `json:"flex_stored_logs_avg,omitempty"`
 		ForwardingEventsBytesSum                   *int64  `json:"forwarding_events_bytes_sum,omitempty"`
 		GcpHostTop99p                              *int64  `json:"gcp_host_top99p,omitempty"`
 		HerokuHostTop99p                           *int64  `json:"heroku_host_top99p,omitempty"`
@@ -3730,7 +3968,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p", "apm_azure_app_service_host_top99p", "apm_devsecops_host_top99p", "apm_fargate_count_avg", "apm_host_top99p", "appsec_fargate_count_avg", "asm_serverless_sum", "audit_logs_lines_indexed_sum", "audit_trail_enabled_hwm", "avg_profiled_fargate_tasks", "aws_host_top99p", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p", "billable_ingested_bytes_sum", "browser_rum_lite_session_count_sum", "browser_rum_replay_session_count_sum", "browser_rum_units_sum", "ci_pipeline_indexed_spans_sum", "ci_test_indexed_spans_sum", "ci_visibility_itr_committers_hwm", "ci_visibility_pipeline_committers_hwm", "ci_visibility_test_committers_hwm", "cloud_cost_management_aws_host_count_avg", "cloud_cost_management_azure_host_count_avg", "cloud_cost_management_host_count_avg", "cloud_siem_events_sum", "container_avg", "container_excl_agent_avg", "container_hwm", "csm_container_enterprise_compliance_count_sum", "csm_container_enterprise_cws_count_sum", "csm_container_enterprise_total_count_sum", "csm_host_enterprise_aas_host_count_top99p", "csm_host_enterprise_aws_host_count_top99p", "csm_host_enterprise_azure_host_count_top99p", "csm_host_enterprise_compliance_host_count_top99p", "csm_host_enterprise_cws_host_count_top99p", "csm_host_enterprise_gcp_host_count_top99p", "csm_host_enterprise_total_host_count_top99p", "cspm_aas_host_top99p", "cspm_aws_host_top99p", "cspm_azure_host_top99p", "cspm_container_avg", "cspm_container_hwm", "cspm_gcp_host_top99p", "cspm_host_top99p", "custom_historical_ts_avg", "custom_live_ts_avg", "custom_ts_avg", "cws_container_count_avg", "cws_host_top99p", "dbm_host_top99p_sum", "dbm_queries_avg_sum", "fargate_tasks_count_avg", "fargate_tasks_count_hwm", "forwarding_events_bytes_sum", "gcp_host_top99p", "heroku_host_top99p", "id", "incident_management_monthly_active_users_hwm", "indexed_events_count_sum", "infra_host_top99p", "ingested_events_bytes_sum", "iot_device_agg_sum", "iot_device_top99p_sum", "mobile_rum_lite_session_count_sum", "mobile_rum_session_count_android_sum", "mobile_rum_session_count_flutter_sum", "mobile_rum_session_count_ios_sum", "mobile_rum_session_count_reactnative_sum", "mobile_rum_session_count_roku_sum", "mobile_rum_session_count_sum", "mobile_rum_units_sum", "name", "ndm_netflow_events_sum", "netflow_indexed_events_count_sum", "npm_host_top99p", "observability_pipelines_bytes_processed_sum", "online_archive_events_count_sum", "opentelemetry_apm_host_top99p", "opentelemetry_host_top99p", "profiling_aas_count_top99p", "profiling_host_top99p", "public_id", "region", "rum_browser_and_mobile_session_count", "rum_session_count_sum", "rum_total_session_count_sum", "rum_units_sum", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_azure_count_avg", "serverless_apps_google_count_avg", "serverless_apps_total_count_avg", "synthetics_browser_check_calls_count_sum", "synthetics_check_calls_count_sum", "synthetics_mobile_test_runs_sum", "synthetics_parallel_testing_max_slots_hwm", "trace_search_indexed_events_count_sum", "twol_ingested_events_bytes_sum", "universal_service_monitoring_host_top99p", "vsphere_host_top99p", "vuln_management_host_count_top99p", "workflow_executions_usage_sum"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p", "apm_azure_app_service_host_top99p", "apm_devsecops_host_top99p", "apm_fargate_count_avg", "apm_host_top99p", "appsec_fargate_count_avg", "asm_serverless_sum", "audit_logs_lines_indexed_sum", "audit_trail_enabled_hwm", "avg_profiled_fargate_tasks", "aws_host_top99p", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p", "billable_ingested_bytes_sum", "browser_rum_lite_session_count_sum", "browser_rum_replay_session_count_sum", "browser_rum_units_sum", "ci_pipeline_indexed_spans_sum", "ci_test_indexed_spans_sum", "ci_visibility_itr_committers_hwm", "ci_visibility_pipeline_committers_hwm", "ci_visibility_test_committers_hwm", "cloud_cost_management_aws_host_count_avg", "cloud_cost_management_azure_host_count_avg", "cloud_cost_management_gcp_host_count_avg", "cloud_cost_management_host_count_avg", "cloud_siem_events_sum", "container_avg", "container_excl_agent_avg", "container_hwm", "csm_container_enterprise_compliance_count_sum", "csm_container_enterprise_cws_count_sum", "csm_container_enterprise_total_count_sum", "csm_host_enterprise_aas_host_count_top99p", "csm_host_enterprise_aws_host_count_top99p", "csm_host_enterprise_azure_host_count_top99p", "csm_host_enterprise_compliance_host_count_top99p", "csm_host_enterprise_cws_host_count_top99p", "csm_host_enterprise_gcp_host_count_top99p", "csm_host_enterprise_total_host_count_top99p", "cspm_aas_host_top99p", "cspm_aws_host_top99p", "cspm_azure_host_top99p", "cspm_container_avg", "cspm_container_hwm", "cspm_gcp_host_top99p", "cspm_host_top99p", "custom_historical_ts_avg", "custom_live_ts_avg", "custom_ts_avg", "cws_container_count_avg", "cws_host_top99p", "dbm_host_top99p_sum", "dbm_queries_avg_sum", "error_tracking_events_sum", "fargate_tasks_count_avg", "fargate_tasks_count_hwm", "flex_logs_compute_large_avg", "flex_logs_compute_medium_avg", "flex_logs_compute_small_avg", "flex_logs_compute_xsmall_avg", "flex_stored_logs_avg", "forwarding_events_bytes_sum", "gcp_host_top99p", "heroku_host_top99p", "id", "incident_management_monthly_active_users_hwm", "indexed_events_count_sum", "infra_host_top99p", "ingested_events_bytes_sum", "iot_device_agg_sum", "iot_device_top99p_sum", "mobile_rum_lite_session_count_sum", "mobile_rum_session_count_android_sum", "mobile_rum_session_count_flutter_sum", "mobile_rum_session_count_ios_sum", "mobile_rum_session_count_reactnative_sum", "mobile_rum_session_count_roku_sum", "mobile_rum_session_count_sum", "mobile_rum_units_sum", "name", "ndm_netflow_events_sum", "netflow_indexed_events_count_sum", "npm_host_top99p", "observability_pipelines_bytes_processed_sum", "online_archive_events_count_sum", "opentelemetry_apm_host_top99p", "opentelemetry_host_top99p", "profiling_aas_count_top99p", "profiling_host_top99p", "public_id", "region", "rum_browser_and_mobile_session_count", "rum_session_count_sum", "rum_total_session_count_sum", "rum_units_sum", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_azure_count_avg", "serverless_apps_google_count_avg", "serverless_apps_total_count_avg", "synthetics_browser_check_calls_count_sum", "synthetics_check_calls_count_sum", "synthetics_mobile_test_runs_sum", "synthetics_parallel_testing_max_slots_hwm", "trace_search_indexed_events_count_sum", "twol_ingested_events_bytes_sum", "universal_service_monitoring_host_top99p", "vsphere_host_top99p", "vuln_management_host_count_top99p", "workflow_executions_usage_sum"})
 	} else {
 		return err
 	}
@@ -3759,6 +3997,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.CiVisibilityTestCommittersHwm = all.CiVisibilityTestCommittersHwm
 	o.CloudCostManagementAwsHostCountAvg = all.CloudCostManagementAwsHostCountAvg
 	o.CloudCostManagementAzureHostCountAvg = all.CloudCostManagementAzureHostCountAvg
+	o.CloudCostManagementGcpHostCountAvg = all.CloudCostManagementGcpHostCountAvg
 	o.CloudCostManagementHostCountAvg = all.CloudCostManagementHostCountAvg
 	o.CloudSiemEventsSum = all.CloudSiemEventsSum
 	o.ContainerAvg = all.ContainerAvg
@@ -3788,8 +4027,14 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.CwsHostTop99p = all.CwsHostTop99p
 	o.DbmHostTop99pSum = all.DbmHostTop99pSum
 	o.DbmQueriesAvgSum = all.DbmQueriesAvgSum
+	o.ErrorTrackingEventsSum = all.ErrorTrackingEventsSum
 	o.FargateTasksCountAvg = all.FargateTasksCountAvg
 	o.FargateTasksCountHwm = all.FargateTasksCountHwm
+	o.FlexLogsComputeLargeAvg = all.FlexLogsComputeLargeAvg
+	o.FlexLogsComputeMediumAvg = all.FlexLogsComputeMediumAvg
+	o.FlexLogsComputeSmallAvg = all.FlexLogsComputeSmallAvg
+	o.FlexLogsComputeXsmallAvg = all.FlexLogsComputeXsmallAvg
+	o.FlexStoredLogsAvg = all.FlexStoredLogsAvg
 	o.ForwardingEventsBytesSum = all.ForwardingEventsBytesSum
 	o.GcpHostTop99p = all.GcpHostTop99p
 	o.HerokuHostTop99p = all.HerokuHostTop99p
