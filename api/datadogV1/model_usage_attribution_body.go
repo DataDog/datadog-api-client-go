@@ -26,7 +26,7 @@ type UsageAttributionBody struct {
 	// configured for usage attribution](https://docs.datadoghq.com/account_management/billing/usage_attribution/#getting-started).
 	// In this scenario the API returns the total usage, not broken down by tags.
 	Tags map[string][]string `json:"tags,omitempty"`
-	// Shows the the most recent hour in the current months for all organizations for which all usages were calculated.
+	// Shows the the most recent hour in the current month for all organizations for which all usages were calculated.
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	// Fields in Usage Summary by tag(s).
 	Values *UsageAttributionValues `json:"values,omitempty"`

@@ -16,11 +16,11 @@ type UsageSummaryDateOrg struct {
 	ApmAzureAppServiceHostTop99p *int64 `json:"apm_azure_app_service_host_top99p,omitempty"`
 	// Shows the 99th percentile of all APM DevSecOps hosts over all hours in the current date for the given org.
 	ApmDevsecopsHostTop99p *int64 `json:"apm_devsecops_host_top99p,omitempty"`
-	// Shows the average of all APM ECS Fargate tasks over all hours in the current months for the given org.
+	// Shows the average of all APM ECS Fargate tasks over all hours in the current month for the given org.
 	ApmFargateCountAvg *int64 `json:"apm_fargate_count_avg,omitempty"`
 	// Shows the 99th percentile of all distinct APM hosts over all hours in the current date for the given org.
 	ApmHostTop99p *int64 `json:"apm_host_top99p,omitempty"`
-	// Shows the average of all Application Security Monitoring ECS Fargate tasks over all hours in the current months for the given org.
+	// Shows the average of all Application Security Monitoring ECS Fargate tasks over all hours in the current month for the given org.
 	AppsecFargateCountAvg *int64 `json:"appsec_fargate_count_avg,omitempty"`
 	// Shows the sum of all Application Security Monitoring Serverless invocations over all hours in the current month for the given org.
 	AsmServerlessSum *int64 `json:"asm_serverless_sum,omitempty"`

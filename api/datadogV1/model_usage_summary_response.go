@@ -12,54 +12,54 @@ import (
 
 // UsageSummaryResponse Response summarizing all usage aggregated across the months in the request for all organizations, and broken down by month and by organization.
 type UsageSummaryResponse struct {
-	// Shows the 99th percentile of all agent hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all agent hosts over all hours in the current month for all organizations.
 	AgentHostTop99pSum *int64 `json:"agent_host_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all Azure app services using APM over all hours in the current months all organizations.
+	// Shows the 99th percentile of all Azure app services using APM over all hours in the current month all organizations.
 	ApmAzureAppServiceHostTop99pSum *int64 `json:"apm_azure_app_service_host_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all APM DevSecOps hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all APM DevSecOps hosts over all hours in the current month for all organizations.
 	ApmDevsecopsHostTop99pSum *int64 `json:"apm_devsecops_host_top99p_sum,omitempty"`
-	// Shows the average of all APM ECS Fargate tasks over all hours in the current months for all organizations.
+	// Shows the average of all APM ECS Fargate tasks over all hours in the current month for all organizations.
 	ApmFargateCountAvgSum *int64 `json:"apm_fargate_count_avg_sum,omitempty"`
-	// Shows the 99th percentile of all distinct APM hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all distinct APM hosts over all hours in the current month for all organizations.
 	ApmHostTop99pSum *int64 `json:"apm_host_top99p_sum,omitempty"`
-	// Shows the average of all Application Security Monitoring ECS Fargate tasks over all hours in the current months for all organizations.
+	// Shows the average of all Application Security Monitoring ECS Fargate tasks over all hours in the current month for all organizations.
 	AppsecFargateCountAvgSum *int64 `json:"appsec_fargate_count_avg_sum,omitempty"`
 	// Shows the sum of all Application Security Monitoring Serverless invocations over all hours in the current months for all organizations.
 	AsmServerlessAggSum *int64 `json:"asm_serverless_agg_sum,omitempty"`
-	// Shows the sum of all audit logs lines indexed over all hours in the current months for all organizations.
+	// Shows the sum of all audit logs lines indexed over all hours in the current month for all organizations.
 	// Deprecated
 	AuditLogsLinesIndexedAggSum *int64 `json:"audit_logs_lines_indexed_agg_sum,omitempty"`
 	// Shows the total number of organizations that had Audit Trail enabled over a specific number of months.
 	AuditTrailEnabledHwmSum *int64 `json:"audit_trail_enabled_hwm_sum,omitempty"`
-	// Shows the average of all profiled Fargate tasks over all hours in the current months for all organizations.
+	// Shows the average of all profiled Fargate tasks over all hours in the current month for all organizations.
 	AvgProfiledFargateTasksSum *int64 `json:"avg_profiled_fargate_tasks_sum,omitempty"`
-	// Shows the 99th percentile of all AWS hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all AWS hosts over all hours in the current month for all organizations.
 	AwsHostTop99pSum *int64 `json:"aws_host_top99p_sum,omitempty"`
-	// Shows the average of the number of functions that executed 1 or more times each hour in the current months for all organizations.
+	// Shows the average of the number of functions that executed 1 or more times each hour in the current month for all organizations.
 	AwsLambdaFuncCount *int64 `json:"aws_lambda_func_count,omitempty"`
-	// Shows the sum of all AWS Lambda invocations over all hours in the current months for all organizations.
+	// Shows the sum of all AWS Lambda invocations over all hours in the current month for all organizations.
 	AwsLambdaInvocationsSum *int64 `json:"aws_lambda_invocations_sum,omitempty"`
-	// Shows the 99th percentile of all Azure app services over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Azure app services over all hours in the current month for all organizations.
 	AzureAppServiceTop99pSum *int64 `json:"azure_app_service_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all Azure hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Azure hosts over all hours in the current month for all organizations.
 	AzureHostTop99pSum *int64 `json:"azure_host_top99p_sum,omitempty"`
-	// Shows the sum of all log bytes ingested over all hours in the current months for all organizations.
+	// Shows the sum of all log bytes ingested over all hours in the current month for all organizations.
 	BillableIngestedBytesAggSum *int64 `json:"billable_ingested_bytes_agg_sum,omitempty"`
-	// Shows the sum of all browser lite sessions over all hours in the current months for all organizations.
+	// Shows the sum of all browser lite sessions over all hours in the current month for all organizations.
 	BrowserRumLiteSessionCountAggSum *int64 `json:"browser_rum_lite_session_count_agg_sum,omitempty"`
-	// Shows the sum of all browser replay sessions over all hours in the current months for all organizations.
+	// Shows the sum of all browser replay sessions over all hours in the current month for all organizations.
 	BrowserRumReplaySessionCountAggSum *int64 `json:"browser_rum_replay_session_count_agg_sum,omitempty"`
-	// Shows the sum of all browser RUM units over all hours in the current months for all organizations.
+	// Shows the sum of all browser RUM units over all hours in the current month for all organizations.
 	BrowserRumUnitsAggSum *int64 `json:"browser_rum_units_agg_sum,omitempty"`
-	// Shows the sum of all CI pipeline indexed spans over all hours in the current months for all organizations.
+	// Shows the sum of all CI pipeline indexed spans over all hours in the current month for all organizations.
 	CiPipelineIndexedSpansAggSum *int64 `json:"ci_pipeline_indexed_spans_agg_sum,omitempty"`
-	// Shows the sum of all CI test indexed spans over all hours in the current months for all organizations.
+	// Shows the sum of all CI test indexed spans over all hours in the current month for all organizations.
 	CiTestIndexedSpansAggSum *int64 `json:"ci_test_indexed_spans_agg_sum,omitempty"`
-	// Shows the high-water mark of all CI visibility intelligent test runner committers over all hours in the current months for all organizations.
+	// Shows the high-water mark of all CI visibility intelligent test runner committers over all hours in the current month for all organizations.
 	CiVisibilityItrCommittersHwmSum *int64 `json:"ci_visibility_itr_committers_hwm_sum,omitempty"`
-	// Shows the high-water mark of all CI visibility pipeline committers over all hours in the current months for all organizations.
+	// Shows the high-water mark of all CI visibility pipeline committers over all hours in the current month for all organizations.
 	CiVisibilityPipelineCommittersHwmSum *int64 `json:"ci_visibility_pipeline_committers_hwm_sum,omitempty"`
-	// Shows the high-water mark of all CI visibility test committers over all hours in the current months for all organizations.
+	// Shows the high-water mark of all CI visibility test committers over all hours in the current month for all organizations.
 	CiVisibilityTestCommittersHwmSum *int64 `json:"ci_visibility_test_committers_hwm_sum,omitempty"`
 	// Sum of the host count average for Cloud Cost Management for AWS.
 	CloudCostManagementAwsHostCountAvgSum *int64 `json:"cloud_cost_management_aws_host_count_avg_sum,omitempty"`
@@ -67,181 +67,181 @@ type UsageSummaryResponse struct {
 	CloudCostManagementAzureHostCountAvgSum *int64 `json:"cloud_cost_management_azure_host_count_avg_sum,omitempty"`
 	// Sum of the host count average for Cloud Cost Management for all cloud providers.
 	CloudCostManagementHostCountAvgSum *int64 `json:"cloud_cost_management_host_count_avg_sum,omitempty"`
-	// Shows the sum of all Cloud Security Information and Event Management events over all hours in the current months for all organizations.
+	// Shows the sum of all Cloud Security Information and Event Management events over all hours in the current month for all organizations.
 	CloudSiemEventsAggSum *int64 `json:"cloud_siem_events_agg_sum,omitempty"`
-	// Shows the average of all distinct containers over all hours in the current months for all organizations.
+	// Shows the average of all distinct containers over all hours in the current month for all organizations.
 	ContainerAvgSum *int64 `json:"container_avg_sum,omitempty"`
 	// Shows the average of the containers without the Datadog Agent over all hours in the current month for all organizations.
 	ContainerExclAgentAvgSum *int64 `json:"container_excl_agent_avg_sum,omitempty"`
-	// Shows the sum of the high-water marks of all distinct containers over all hours in the current months for all organizations.
+	// Shows the sum of the high-water marks of all distinct containers over all hours in the current month for all organizations.
 	ContainerHwmSum *int64 `json:"container_hwm_sum,omitempty"`
-	// Shows the sum of all Cloud Security Management Enterprise compliance containers over all hours in the current months for all organizations.
+	// Shows the sum of all Cloud Security Management Enterprise compliance containers over all hours in the current month for all organizations.
 	CsmContainerEnterpriseComplianceCountAggSum *int64 `json:"csm_container_enterprise_compliance_count_agg_sum,omitempty"`
-	// Shows the sum of all Cloud Security Management Enterprise Cloud Workload Security containers over all hours in the current months for all organizations.
+	// Shows the sum of all Cloud Security Management Enterprise Cloud Workload Security containers over all hours in the current month for all organizations.
 	CsmContainerEnterpriseCwsCountAggSum *int64 `json:"csm_container_enterprise_cws_count_agg_sum,omitempty"`
-	// Shows the sum of all Cloud Security Management Enterprise containers over all hours in the current months for all organizations.
+	// Shows the sum of all Cloud Security Management Enterprise containers over all hours in the current month for all organizations.
 	CsmContainerEnterpriseTotalCountAggSum *int64 `json:"csm_container_enterprise_total_count_agg_sum,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Enterprise Azure app services hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Cloud Security Management Enterprise Azure app services hosts over all hours in the current month for all organizations.
 	CsmHostEnterpriseAasHostCountTop99pSum *int64 `json:"csm_host_enterprise_aas_host_count_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Enterprise AWS hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Cloud Security Management Enterprise AWS hosts over all hours in the current month for all organizations.
 	CsmHostEnterpriseAwsHostCountTop99pSum *int64 `json:"csm_host_enterprise_aws_host_count_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Enterprise Azure hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Cloud Security Management Enterprise Azure hosts over all hours in the current month for all organizations.
 	CsmHostEnterpriseAzureHostCountTop99pSum *int64 `json:"csm_host_enterprise_azure_host_count_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Enterprise compliance hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Cloud Security Management Enterprise compliance hosts over all hours in the current month for all organizations.
 	CsmHostEnterpriseComplianceHostCountTop99pSum *int64 `json:"csm_host_enterprise_compliance_host_count_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Enterprise Cloud Workload Security hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Cloud Security Management Enterprise Cloud Workload Security hosts over all hours in the current month for all organizations.
 	CsmHostEnterpriseCwsHostCountTop99pSum *int64 `json:"csm_host_enterprise_cws_host_count_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Enterprise GCP hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Cloud Security Management Enterprise GCP hosts over all hours in the current month for all organizations.
 	CsmHostEnterpriseGcpHostCountTop99pSum *int64 `json:"csm_host_enterprise_gcp_host_count_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Enterprise hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Cloud Security Management Enterprise hosts over all hours in the current month for all organizations.
 	CsmHostEnterpriseTotalHostCountTop99pSum *int64 `json:"csm_host_enterprise_total_host_count_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Pro Azure app services hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Cloud Security Management Pro Azure app services hosts over all hours in the current month for all organizations.
 	CspmAasHostTop99pSum *int64 `json:"cspm_aas_host_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Pro AWS hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Cloud Security Management Pro AWS hosts over all hours in the current month for all organizations.
 	CspmAwsHostTop99pSum *int64 `json:"cspm_aws_host_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Pro Azure hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Cloud Security Management Pro Azure hosts over all hours in the current month for all organizations.
 	CspmAzureHostTop99pSum *int64 `json:"cspm_azure_host_top99p_sum,omitempty"`
-	// Shows the average number of Cloud Security Management Pro containers over all hours in the current months for all organizations.
+	// Shows the average number of Cloud Security Management Pro containers over all hours in the current month for all organizations.
 	CspmContainerAvgSum *int64 `json:"cspm_container_avg_sum,omitempty"`
-	// Shows the sum of the the high-water marks of Cloud Security Management Pro containers over all hours in the current months for all organizations.
+	// Shows the sum of the the high-water marks of Cloud Security Management Pro containers over all hours in the current month for all organizations.
 	CspmContainerHwmSum *int64 `json:"cspm_container_hwm_sum,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Pro GCP hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Cloud Security Management Pro GCP hosts over all hours in the current month for all organizations.
 	CspmGcpHostTop99pSum *int64 `json:"cspm_gcp_host_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Pro hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Cloud Security Management Pro hosts over all hours in the current month for all organizations.
 	CspmHostTop99pSum *int64 `json:"cspm_host_top99p_sum,omitempty"`
-	// Shows the average number of distinct historical custom metrics over all hours in the current months for all organizations.
+	// Shows the average number of distinct historical custom metrics over all hours in the current month for all organizations.
 	CustomHistoricalTsSum *int64 `json:"custom_historical_ts_sum,omitempty"`
-	// Shows the average number of distinct live custom metrics over all hours in the current months for all organizations.
+	// Shows the average number of distinct live custom metrics over all hours in the current month for all organizations.
 	CustomLiveTsSum *int64 `json:"custom_live_ts_sum,omitempty"`
-	// Shows the average number of distinct custom metrics over all hours in the current months for all organizations.
+	// Shows the average number of distinct custom metrics over all hours in the current month for all organizations.
 	CustomTsSum *int64 `json:"custom_ts_sum,omitempty"`
-	// Shows the average of all distinct Cloud Workload Security containers over all hours in the current months for all organizations.
+	// Shows the average of all distinct Cloud Workload Security containers over all hours in the current month for all organizations.
 	CwsContainersAvgSum *int64 `json:"cws_containers_avg_sum,omitempty"`
-	// Shows the 99th percentile of all Cloud Workload Security hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Cloud Workload Security hosts over all hours in the current month for all organizations.
 	CwsHostTop99pSum *int64 `json:"cws_host_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all Database Monitoring hosts over all hours in the current month for all organizations.
 	DbmHostTop99pSum *int64 `json:"dbm_host_top99p_sum,omitempty"`
 	// Shows the average of all distinct Database Monitoring Normalized Queries over all hours in the current month for all organizations.
 	DbmQueriesAvgSum *int64 `json:"dbm_queries_avg_sum,omitempty"`
-	// Shows the last date of usage in the current months for all organizations.
+	// Shows the last date of usage in the current month for all organizations.
 	EndDate *time.Time `json:"end_date,omitempty"`
-	// Shows the average of all Fargate tasks over all hours in the current months for all organizations.
+	// Shows the average of all Fargate tasks over all hours in the current month for all organizations.
 	FargateTasksCountAvgSum *int64 `json:"fargate_tasks_count_avg_sum,omitempty"`
-	// Shows the sum of the high-water marks of all Fargate tasks over all hours in the current months for all organizations.
+	// Shows the sum of the high-water marks of all Fargate tasks over all hours in the current month for all organizations.
 	FargateTasksCountHwmSum *int64 `json:"fargate_tasks_count_hwm_sum,omitempty"`
-	// Shows the sum of all logs forwarding bytes over all hours in the current months for all organizations (data available as of April 1, 2023)
+	// Shows the sum of all logs forwarding bytes over all hours in the current month for all organizations (data available as of April 1, 2023)
 	ForwardingEventsBytesAggSum *int64 `json:"forwarding_events_bytes_agg_sum,omitempty"`
-	// Shows the 99th percentile of all GCP hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all GCP hosts over all hours in the current month for all organizations.
 	GcpHostTop99pSum *int64 `json:"gcp_host_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all Heroku dynos over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Heroku dynos over all hours in the current month for all organizations.
 	HerokuHostTop99pSum *int64 `json:"heroku_host_top99p_sum,omitempty"`
-	// Shows sum of the the high-water marks of incident management monthly active users in the current months for all organizations.
+	// Shows sum of the the high-water marks of incident management monthly active users in the current month for all organizations.
 	IncidentManagementMonthlyActiveUsersHwmSum *int64 `json:"incident_management_monthly_active_users_hwm_sum,omitempty"`
-	// Shows the sum of all log events indexed over all hours in the current months for all organizations.
+	// Shows the sum of all log events indexed over all hours in the current month for all organizations.
 	IndexedEventsCountAggSum *int64 `json:"indexed_events_count_agg_sum,omitempty"`
-	// Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current month for all organizations.
 	InfraHostTop99pSum *int64 `json:"infra_host_top99p_sum,omitempty"`
-	// Shows the sum of all log bytes ingested over all hours in the current months for all organizations.
+	// Shows the sum of all log bytes ingested over all hours in the current month for all organizations.
 	IngestedEventsBytesAggSum *int64 `json:"ingested_events_bytes_agg_sum,omitempty"`
-	// Shows the sum of all IoT devices over all hours in the current months for all organizations.
+	// Shows the sum of all IoT devices over all hours in the current month for all organizations.
 	IotDeviceAggSum *int64 `json:"iot_device_agg_sum,omitempty"`
-	// Shows the 99th percentile of all IoT devices over all hours in the current months of all organizations.
+	// Shows the 99th percentile of all IoT devices over all hours in the current month of all organizations.
 	IotDeviceTop99pSum *int64 `json:"iot_device_top99p_sum,omitempty"`
-	// Shows the the most recent hour in the current months for all organizations for which all usages were calculated.
+	// Shows the the most recent hour in the current month for all organizations for which all usages were calculated.
 	LastUpdated *time.Time `json:"last_updated,omitempty"`
-	// Shows the sum of all live logs indexed over all hours in the current months for all organizations (data available as of December 1, 2020).
+	// Shows the sum of all live logs indexed over all hours in the current month for all organizations (data available as of December 1, 2020).
 	LiveIndexedEventsAggSum *int64 `json:"live_indexed_events_agg_sum,omitempty"`
-	// Shows the sum of all live logs bytes ingested over all hours in the current months for all organizations (data available as of December 1, 2020).
+	// Shows the sum of all live logs bytes ingested over all hours in the current month for all organizations (data available as of December 1, 2020).
 	LiveIngestedBytesAggSum *int64 `json:"live_ingested_bytes_agg_sum,omitempty"`
 	// Object containing logs usage data broken down by retention period.
 	LogsByRetention *LogsByRetention `json:"logs_by_retention,omitempty"`
-	// Shows the sum of all mobile lite sessions over all hours in the current months for all organizations.
+	// Shows the sum of all mobile lite sessions over all hours in the current month for all organizations.
 	MobileRumLiteSessionCountAggSum *int64 `json:"mobile_rum_lite_session_count_agg_sum,omitempty"`
-	// Shows the sum of all mobile RUM Sessions over all hours in the current months for all organizations.
+	// Shows the sum of all mobile RUM Sessions over all hours in the current month for all organizations.
 	MobileRumSessionCountAggSum *int64 `json:"mobile_rum_session_count_agg_sum,omitempty"`
-	// Shows the sum of all mobile RUM Sessions on Android over all hours in the current months for all organizations.
+	// Shows the sum of all mobile RUM Sessions on Android over all hours in the current month for all organizations.
 	MobileRumSessionCountAndroidAggSum *int64 `json:"mobile_rum_session_count_android_agg_sum,omitempty"`
-	// Shows the sum of all mobile RUM Sessions on Flutter over all hours in the current months for all organizations.
+	// Shows the sum of all mobile RUM Sessions on Flutter over all hours in the current month for all organizations.
 	MobileRumSessionCountFlutterAggSum *int64 `json:"mobile_rum_session_count_flutter_agg_sum,omitempty"`
-	// Shows the sum of all mobile RUM Sessions on iOS over all hours in the current months for all organizations.
+	// Shows the sum of all mobile RUM Sessions on iOS over all hours in the current month for all organizations.
 	MobileRumSessionCountIosAggSum *int64 `json:"mobile_rum_session_count_ios_agg_sum,omitempty"`
-	// Shows the sum of all mobile RUM Sessions on React Native over all hours in the current months for all organizations.
+	// Shows the sum of all mobile RUM Sessions on React Native over all hours in the current month for all organizations.
 	MobileRumSessionCountReactnativeAggSum *int64 `json:"mobile_rum_session_count_reactnative_agg_sum,omitempty"`
-	// Shows the sum of all mobile RUM Sessions on Roku over all hours in the current months for all organizations.
+	// Shows the sum of all mobile RUM Sessions on Roku over all hours in the current month for all organizations.
 	MobileRumSessionCountRokuAggSum *int64 `json:"mobile_rum_session_count_roku_agg_sum,omitempty"`
-	// Shows the sum of all mobile RUM units over all hours in the current months for all organizations.
+	// Shows the sum of all mobile RUM units over all hours in the current month for all organizations.
 	MobileRumUnitsAggSum *int64 `json:"mobile_rum_units_agg_sum,omitempty"`
-	// Shows the sum of all Network Device Monitoring NetFlow events over all hours in the current months for all organizations.
+	// Shows the sum of all Network Device Monitoring NetFlow events over all hours in the current month for all organizations.
 	NdmNetflowEventsAggSum *int64 `json:"ndm_netflow_events_agg_sum,omitempty"`
-	// Shows the sum of all Network flows indexed over all hours in the current months for all organizations.
+	// Shows the sum of all Network flows indexed over all hours in the current month for all organizations.
 	NetflowIndexedEventsCountAggSum *int64 `json:"netflow_indexed_events_count_agg_sum,omitempty"`
-	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current month for all organizations.
 	NpmHostTop99pSum *int64 `json:"npm_host_top99p_sum,omitempty"`
-	// Sum of all observability pipelines bytes processed over all hours in the current months for all organizations.
+	// Sum of all observability pipelines bytes processed over all hours in the current month for all organizations.
 	ObservabilityPipelinesBytesProcessedAggSum *int64 `json:"observability_pipelines_bytes_processed_agg_sum,omitempty"`
-	// Sum of all online archived events over all hours in the current months for all organizations.
+	// Sum of all online archived events over all hours in the current month for all organizations.
 	OnlineArchiveEventsCountAggSum *int64 `json:"online_archive_events_count_agg_sum,omitempty"`
-	// Shows the 99th percentile of APM hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current months for all organizations.
+	// Shows the 99th percentile of APM hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current month for all organizations.
 	OpentelemetryApmHostTop99pSum *int64 `json:"opentelemetry_apm_host_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current month for all organizations.
 	OpentelemetryHostTop99pSum *int64 `json:"opentelemetry_host_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all profiled Azure app services over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all profiled Azure app services over all hours in the current month for all organizations.
 	ProfilingAasCountTop99pSum *int64 `json:"profiling_aas_count_top99p_sum,omitempty"`
-	// Shows the average number of profiled containers over all hours in the current months for all organizations.
+	// Shows the average number of profiled containers over all hours in the current month for all organizations.
 	ProfilingContainerAgentCountAvg *int64 `json:"profiling_container_agent_count_avg,omitempty"`
-	// Shows the 99th percentile of all profiled hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all profiled hosts over all hours in the current month for all organizations.
 	ProfilingHostCountTop99pSum *int64 `json:"profiling_host_count_top99p_sum,omitempty"`
-	// Shows the sum of all rehydrated logs indexed over all hours in the current months for all organizations (data available as of December 1, 2020).
+	// Shows the sum of all rehydrated logs indexed over all hours in the current month for all organizations (data available as of December 1, 2020).
 	RehydratedIndexedEventsAggSum *int64 `json:"rehydrated_indexed_events_agg_sum,omitempty"`
-	// Shows the sum of all rehydrated logs bytes ingested over all hours in the current months for all organizations (data available as of December 1, 2020).
+	// Shows the sum of all rehydrated logs bytes ingested over all hours in the current month for all organizations (data available as of December 1, 2020).
 	RehydratedIngestedBytesAggSum *int64 `json:"rehydrated_ingested_bytes_agg_sum,omitempty"`
 	// Shows the sum of all mobile sessions and all browser lite and legacy sessions over all hours in the current month for all organizations.
 	RumBrowserAndMobileSessionCount *int64 `json:"rum_browser_and_mobile_session_count,omitempty"`
-	// Shows the sum of all browser RUM Lite Sessions over all hours in the current months for all organizations.
+	// Shows the sum of all browser RUM Lite Sessions over all hours in the current month for all organizations.
 	RumSessionCountAggSum *int64 `json:"rum_session_count_agg_sum,omitempty"`
-	// Shows the sum of RUM Sessions (browser and mobile) over all hours in the current months for all organizations.
+	// Shows the sum of RUM Sessions (browser and mobile) over all hours in the current month for all organizations.
 	RumTotalSessionCountAggSum *int64 `json:"rum_total_session_count_agg_sum,omitempty"`
-	// Shows the sum of all browser and mobile RUM units over all hours in the current months for all organizations.
+	// Shows the sum of all browser and mobile RUM units over all hours in the current month for all organizations.
 	RumUnitsAggSum *int64 `json:"rum_units_agg_sum,omitempty"`
-	// Sum of all APM bytes scanned with sensitive data scanner in the current months for all organizations.
+	// Sum of all APM bytes scanned with sensitive data scanner in the current month for all organizations.
 	SdsApmScannedBytesSum *int64 `json:"sds_apm_scanned_bytes_sum,omitempty"`
-	// Sum of all event stream events bytes scanned with sensitive data scanner in the current months for all organizations.
+	// Sum of all event stream events bytes scanned with sensitive data scanner in the current month for all organizations.
 	SdsEventsScannedBytesSum *int64 `json:"sds_events_scanned_bytes_sum,omitempty"`
 	// Shows the sum of all bytes scanned of logs usage by the Sensitive Data Scanner over all hours in the current month for all organizations.
 	SdsLogsScannedBytesSum *int64 `json:"sds_logs_scanned_bytes_sum,omitempty"`
-	// Sum of all RUM bytes scanned with sensitive data scanner in the current months for all organizations.
+	// Sum of all RUM bytes scanned with sensitive data scanner in the current month for all organizations.
 	SdsRumScannedBytesSum *int64 `json:"sds_rum_scanned_bytes_sum,omitempty"`
 	// Shows the sum of all bytes scanned across all usage types by the Sensitive Data Scanner over all hours in the current month for all organizations.
 	SdsTotalScannedBytesSum *int64 `json:"sds_total_scanned_bytes_sum,omitempty"`
-	// Sum of the average number of Serverless Apps for Azure in the current months for all organizations.
+	// Sum of the average number of Serverless Apps for Azure in the current month for all organizations.
 	ServerlessAppsAzureCountAvgSum *int64 `json:"serverless_apps_azure_count_avg_sum,omitempty"`
-	// Sum of the average number of Serverless Apps for Google Cloud in the current months for all organizations.
+	// Sum of the average number of Serverless Apps for Google Cloud in the current month for all organizations.
 	ServerlessAppsGoogleCountAvgSum *int64 `json:"serverless_apps_google_count_avg_sum,omitempty"`
-	// Sum of the average number of Serverless Apps for Azure and Google Cloud in the current months for all organizations.
+	// Sum of the average number of Serverless Apps for Azure and Google Cloud in the current month for all organizations.
 	ServerlessAppsTotalCountAvgSum *int64 `json:"serverless_apps_total_count_avg_sum,omitempty"`
-	// Shows the first date of usage in the current months for all organizations.
+	// Shows the first date of usage in the current month for all organizations.
 	StartDate *time.Time `json:"start_date,omitempty"`
-	// Shows the sum of all Synthetic browser tests over all hours in the current months for all organizations.
+	// Shows the sum of all Synthetic browser tests over all hours in the current month for all organizations.
 	SyntheticsBrowserCheckCallsCountAggSum *int64 `json:"synthetics_browser_check_calls_count_agg_sum,omitempty"`
-	// Shows the sum of all Synthetic API tests over all hours in the current months for all organizations.
+	// Shows the sum of all Synthetic API tests over all hours in the current month for all organizations.
 	SyntheticsCheckCallsCountAggSum *int64 `json:"synthetics_check_calls_count_agg_sum,omitempty"`
-	// Shows the sum of Synthetic mobile application tests over all hours in the current months for all organizations.
+	// Shows the sum of Synthetic mobile application tests over all hours in the current month for all organizations.
 	SyntheticsMobileTestRunsAggSum *int64 `json:"synthetics_mobile_test_runs_agg_sum,omitempty"`
 	// Shows the sum of the high-water marks of used synthetics parallel testing slots over all hours in the current month for all organizations.
 	SyntheticsParallelTestingMaxSlotsHwmSum *int64 `json:"synthetics_parallel_testing_max_slots_hwm_sum,omitempty"`
-	// Shows the sum of all Indexed Spans indexed over all hours in the current months for all organizations.
+	// Shows the sum of all Indexed Spans indexed over all hours in the current month for all organizations.
 	TraceSearchIndexedEventsCountAggSum *int64 `json:"trace_search_indexed_events_count_agg_sum,omitempty"`
-	// Shows the sum of all ingested APM span bytes over all hours in the current months for all organizations.
+	// Shows the sum of all ingested APM span bytes over all hours in the current month for all organizations.
 	TwolIngestedEventsBytesAggSum *int64 `json:"twol_ingested_events_bytes_agg_sum,omitempty"`
-	// Shows the 99th percentile of all Universal Service Monitoring hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Universal Service Monitoring hosts over all hours in the current month for all organizations.
 	UniversalServiceMonitoringHostTop99pSum *int64 `json:"universal_service_monitoring_host_top99p_sum,omitempty"`
 	// An array of objects regarding hourly usage.
 	Usage []UsageSummaryDate `json:"usage,omitempty"`
-	// Shows the 99th percentile of all vSphere hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all vSphere hosts over all hours in the current month for all organizations.
 	VsphereHostTop99pSum *int64 `json:"vsphere_host_top99p_sum,omitempty"`
-	// Shows the 99th percentile of all Application Vulnerability Management hosts over all hours in the current months for all organizations.
+	// Shows the 99th percentile of all Application Vulnerability Management hosts over all hours in the current month for all organizations.
 	VulnManagementHostCountTop99pSum *int64 `json:"vuln_management_host_count_top99p_sum,omitempty"`
-	// Sum of all workflows executed over all hours in the current months for all organizations.
+	// Sum of all workflows executed over all hours in the current month for all organizations.
 	WorkflowExecutionsUsageAggSum *int64 `json:"workflow_executions_usage_agg_sum,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
