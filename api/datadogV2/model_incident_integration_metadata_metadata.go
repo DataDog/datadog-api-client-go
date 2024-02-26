@@ -10,8 +10,9 @@ import (
 
 // IncidentIntegrationMetadataMetadata - Incident integration metadata's metadata attribute.
 type IncidentIntegrationMetadataMetadata struct {
-	SlackIntegrationMetadata *SlackIntegrationMetadata
-	JiraIntegrationMetadata  *JiraIntegrationMetadata
+	SlackIntegrationMetadata          *SlackIntegrationMetadata
+	JiraIntegrationMetadata           *JiraIntegrationMetadata
+	MicrosoftTeamsIntegrationMetadata *MicrosoftTeamsIntegrationMetadata
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -25,6 +26,11 @@ func SlackIntegrationMetadataAsIncidentIntegrationMetadataMetadata(v *SlackInteg
 // JiraIntegrationMetadataAsIncidentIntegrationMetadataMetadata is a convenience function that returns JiraIntegrationMetadata wrapped in IncidentIntegrationMetadataMetadata.
 func JiraIntegrationMetadataAsIncidentIntegrationMetadataMetadata(v *JiraIntegrationMetadata) IncidentIntegrationMetadataMetadata {
 	return IncidentIntegrationMetadataMetadata{JiraIntegrationMetadata: v}
+}
+
+// MicrosoftTeamsIntegrationMetadataAsIncidentIntegrationMetadataMetadata is a convenience function that returns MicrosoftTeamsIntegrationMetadata wrapped in IncidentIntegrationMetadataMetadata.
+func MicrosoftTeamsIntegrationMetadataAsIncidentIntegrationMetadataMetadata(v *MicrosoftTeamsIntegrationMetadata) IncidentIntegrationMetadataMetadata {
+	return IncidentIntegrationMetadataMetadata{MicrosoftTeamsIntegrationMetadata: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -65,10 +71,28 @@ func (obj *IncidentIntegrationMetadataMetadata) UnmarshalJSON(data []byte) error
 		obj.JiraIntegrationMetadata = nil
 	}
 
+	// try to unmarshal data into MicrosoftTeamsIntegrationMetadata
+	err = datadog.Unmarshal(data, &obj.MicrosoftTeamsIntegrationMetadata)
+	if err == nil {
+		if obj.MicrosoftTeamsIntegrationMetadata != nil && obj.MicrosoftTeamsIntegrationMetadata.UnparsedObject == nil {
+			jsonMicrosoftTeamsIntegrationMetadata, _ := datadog.Marshal(obj.MicrosoftTeamsIntegrationMetadata)
+			if string(jsonMicrosoftTeamsIntegrationMetadata) == "{}" { // empty struct
+				obj.MicrosoftTeamsIntegrationMetadata = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.MicrosoftTeamsIntegrationMetadata = nil
+		}
+	} else {
+		obj.MicrosoftTeamsIntegrationMetadata = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.SlackIntegrationMetadata = nil
 		obj.JiraIntegrationMetadata = nil
+		obj.MicrosoftTeamsIntegrationMetadata = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -82,6 +106,10 @@ func (obj IncidentIntegrationMetadataMetadata) MarshalJSON() ([]byte, error) {
 
 	if obj.JiraIntegrationMetadata != nil {
 		return datadog.Marshal(&obj.JiraIntegrationMetadata)
+	}
+
+	if obj.MicrosoftTeamsIntegrationMetadata != nil {
+		return datadog.Marshal(&obj.MicrosoftTeamsIntegrationMetadata)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -98,6 +126,10 @@ func (obj *IncidentIntegrationMetadataMetadata) GetActualInstance() interface{} 
 
 	if obj.JiraIntegrationMetadata != nil {
 		return obj.JiraIntegrationMetadata
+	}
+
+	if obj.MicrosoftTeamsIntegrationMetadata != nil {
+		return obj.MicrosoftTeamsIntegrationMetadata
 	}
 
 	// all schemas are nil
