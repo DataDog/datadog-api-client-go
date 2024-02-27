@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 2.23.0 / 2024-02-27
+
+### Fixed
+* Move under common tag Case Management by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2385
+* Include user data with team membership resource by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2380
+### Added
+* Case Management Public API documentation by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2364
+* Make grpc steps available for synthetics api multisteps tests by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2384
+* Add cloud run filter to GCP v1 and v2 spec by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2361
+* add ASM serverless to usage metering API docs by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2393
+* Add new products to usage API docs by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2396
+### Changed
+* Update spec for DORA Metrics Incident endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2381
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.22.0...v2.23.0
+
 ## 2.22.0 / 2024-02-06
 
 ### Fixed
