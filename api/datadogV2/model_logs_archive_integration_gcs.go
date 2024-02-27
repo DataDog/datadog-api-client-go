@@ -15,7 +15,7 @@ type LogsArchiveIntegrationGCS struct {
 	// A client email.
 	ClientEmail string `json:"client_email"`
 	// A project ID.
-	ProjectId string `json:"project_id"`
+	ProjectId *string `json:"project_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -25,10 +25,9 @@ type LogsArchiveIntegrationGCS struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLogsArchiveIntegrationGCS(clientEmail string, projectId string) *LogsArchiveIntegrationGCS {
+func NewLogsArchiveIntegrationGCS(clientEmail string) *LogsArchiveIntegrationGCS {
 	this := LogsArchiveIntegrationGCS{}
 	this.ClientEmail = clientEmail
-	this.ProjectId = projectId
 	return &this
 }
 
@@ -63,27 +62,32 @@ func (o *LogsArchiveIntegrationGCS) SetClientEmail(v string) {
 	o.ClientEmail = v
 }
 
-// GetProjectId returns the ProjectId field value.
+// GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *LogsArchiveIntegrationGCS) GetProjectId() string {
-	if o == nil {
+	if o == nil || o.ProjectId == nil {
 		var ret string
 		return ret
 	}
-	return o.ProjectId
+	return *o.ProjectId
 }
 
-// GetProjectIdOk returns a tuple with the ProjectId field value
+// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveIntegrationGCS) GetProjectIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.ProjectId == nil {
 		return nil, false
 	}
-	return &o.ProjectId, true
+	return o.ProjectId, true
 }
 
-// SetProjectId sets field value.
+// HasProjectId returns a boolean if a field has been set.
+func (o *LogsArchiveIntegrationGCS) HasProjectId() bool {
+	return o != nil && o.ProjectId != nil
+}
+
+// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
 func (o *LogsArchiveIntegrationGCS) SetProjectId(v string) {
-	o.ProjectId = v
+	o.ProjectId = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -93,7 +97,9 @@ func (o LogsArchiveIntegrationGCS) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["client_email"] = o.ClientEmail
-	toSerialize["project_id"] = o.ProjectId
+	if o.ProjectId != nil {
+		toSerialize["project_id"] = o.ProjectId
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -105,16 +111,13 @@ func (o LogsArchiveIntegrationGCS) MarshalJSON() ([]byte, error) {
 func (o *LogsArchiveIntegrationGCS) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ClientEmail *string `json:"client_email"`
-		ProjectId   *string `json:"project_id"`
+		ProjectId   *string `json:"project_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.ClientEmail == nil {
 		return fmt.Errorf("required field client_email missing")
-	}
-	if all.ProjectId == nil {
-		return fmt.Errorf("required field project_id missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -123,7 +126,7 @@ func (o *LogsArchiveIntegrationGCS) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.ClientEmail = *all.ClientEmail
-	o.ProjectId = *all.ProjectId
+	o.ProjectId = all.ProjectId
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
