@@ -9,9 +9,10 @@ package test
 import (
 	"context"
 	"fmt"
+	"testing"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"gopkg.in/h2non/gock.v1"
-	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	"github.com/DataDog/datadog-api-client-go/v2/tests"
@@ -23,6 +24,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
 	includeTags := true
+	projectIdStr := "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa"
 	testCases := []struct {
 		archiveType string
 		archive     datadogV2.LogsArchiveCreateRequest
@@ -89,7 +91,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 								Bucket: "dd-logs-test-datadog-api-client-go",
 								Integration: datadogV2.LogsArchiveIntegrationGCS{
 									ClientEmail: "email@email.com",
-									ProjectId:   "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
+									ProjectId:   &projectIdStr,
 								},
 								Path: datadog.PtrString("/path/blou"),
 								Type: "gcs",
