@@ -172,6 +172,7 @@
 //   - [MetricsApi.DeleteTagConfiguration]
 //   - [MetricsApi.EstimateMetricsOutputSeries]
 //   - [MetricsApi.ListActiveMetricConfigurations]
+//   - [MetricsApi.ListMetricAssets]
 //   - [MetricsApi.ListTagConfigurationByName]
 //   - [MetricsApi.ListTagConfigurations]
 //   - [MetricsApi.ListTagsByMetricName]
