@@ -16,7 +16,8 @@ type SensitiveDataScannerStandardPatternAttributes struct {
 	IncludedKeywords []string `json:"included_keywords,omitempty"`
 	// Name of the standard pattern.
 	Name *string `json:"name,omitempty"`
-	// Regex to match.
+	// (Deprecated) Regex to match, optionally documented for older standard rules. Refer to the `description` field to understand what the rule does.
+	// Deprecated
 	Pattern *string `json:"pattern,omitempty"`
 	// Integer from 1 (high) to 5 (low) indicating standard pattern issue severity.
 	Priority *int64 `json:"priority,omitempty"`
@@ -129,6 +130,7 @@ func (o *SensitiveDataScannerStandardPatternAttributes) SetName(v string) {
 }
 
 // GetPattern returns the Pattern field value if set, zero value otherwise.
+// Deprecated
 func (o *SensitiveDataScannerStandardPatternAttributes) GetPattern() string {
 	if o == nil || o.Pattern == nil {
 		var ret string
@@ -139,6 +141,7 @@ func (o *SensitiveDataScannerStandardPatternAttributes) GetPattern() string {
 
 // GetPatternOk returns a tuple with the Pattern field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *SensitiveDataScannerStandardPatternAttributes) GetPatternOk() (*string, bool) {
 	if o == nil || o.Pattern == nil {
 		return nil, false
@@ -152,6 +155,7 @@ func (o *SensitiveDataScannerStandardPatternAttributes) HasPattern() bool {
 }
 
 // SetPattern gets a reference to the given string and assigns it to the Pattern field.
+// Deprecated
 func (o *SensitiveDataScannerStandardPatternAttributes) SetPattern(v string) {
 	o.Pattern = &v
 }
