@@ -214,6 +214,10 @@ type MonthlyUsageAttributionValues struct {
 	ObsPipelineBytesPercentage *float64 `json:"obs_pipeline_bytes_percentage,omitempty"`
 	// The observability pipeline bytes usage by tag(s).
 	ObsPipelineBytesUsage *float64 `json:"obs_pipeline_bytes_usage,omitempty"`
+	// The percentage of observability pipeline per core usage by tag(s).
+	ObsPipelinesVcpuPercentage *float64 `json:"obs_pipelines_vcpu_percentage,omitempty"`
+	// The observability pipeline per core usage by tag(s).
+	ObsPipelinesVcpuUsage *float64 `json:"obs_pipelines_vcpu_usage,omitempty"`
 	// The percentage of profiled container usage by tag(s).
 	ProfiledContainerPercentage *float64 `json:"profiled_container_percentage,omitempty"`
 	// The profiled container usage by tag(s).
@@ -3136,6 +3140,62 @@ func (o *MonthlyUsageAttributionValues) SetObsPipelineBytesUsage(v float64) {
 	o.ObsPipelineBytesUsage = &v
 }
 
+// GetObsPipelinesVcpuPercentage returns the ObsPipelinesVcpuPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetObsPipelinesVcpuPercentage() float64 {
+	if o == nil || o.ObsPipelinesVcpuPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ObsPipelinesVcpuPercentage
+}
+
+// GetObsPipelinesVcpuPercentageOk returns a tuple with the ObsPipelinesVcpuPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetObsPipelinesVcpuPercentageOk() (*float64, bool) {
+	if o == nil || o.ObsPipelinesVcpuPercentage == nil {
+		return nil, false
+	}
+	return o.ObsPipelinesVcpuPercentage, true
+}
+
+// HasObsPipelinesVcpuPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasObsPipelinesVcpuPercentage() bool {
+	return o != nil && o.ObsPipelinesVcpuPercentage != nil
+}
+
+// SetObsPipelinesVcpuPercentage gets a reference to the given float64 and assigns it to the ObsPipelinesVcpuPercentage field.
+func (o *MonthlyUsageAttributionValues) SetObsPipelinesVcpuPercentage(v float64) {
+	o.ObsPipelinesVcpuPercentage = &v
+}
+
+// GetObsPipelinesVcpuUsage returns the ObsPipelinesVcpuUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetObsPipelinesVcpuUsage() float64 {
+	if o == nil || o.ObsPipelinesVcpuUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ObsPipelinesVcpuUsage
+}
+
+// GetObsPipelinesVcpuUsageOk returns a tuple with the ObsPipelinesVcpuUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetObsPipelinesVcpuUsageOk() (*float64, bool) {
+	if o == nil || o.ObsPipelinesVcpuUsage == nil {
+		return nil, false
+	}
+	return o.ObsPipelinesVcpuUsage, true
+}
+
+// HasObsPipelinesVcpuUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasObsPipelinesVcpuUsage() bool {
+	return o != nil && o.ObsPipelinesVcpuUsage != nil
+}
+
+// SetObsPipelinesVcpuUsage gets a reference to the given float64 and assigns it to the ObsPipelinesVcpuUsage field.
+func (o *MonthlyUsageAttributionValues) SetObsPipelinesVcpuUsage(v float64) {
+	o.ObsPipelinesVcpuUsage = &v
+}
+
 // GetProfiledContainerPercentage returns the ProfiledContainerPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetProfiledContainerPercentage() float64 {
 	if o == nil || o.ProfiledContainerPercentage == nil {
@@ -4064,6 +4124,12 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.ObsPipelineBytesUsage != nil {
 		toSerialize["obs_pipeline_bytes_usage"] = o.ObsPipelineBytesUsage
 	}
+	if o.ObsPipelinesVcpuPercentage != nil {
+		toSerialize["obs_pipelines_vcpu_percentage"] = o.ObsPipelinesVcpuPercentage
+	}
+	if o.ObsPipelinesVcpuUsage != nil {
+		toSerialize["obs_pipelines_vcpu_usage"] = o.ObsPipelinesVcpuUsage
+	}
 	if o.ProfiledContainerPercentage != nil {
 		toSerialize["profiled_container_percentage"] = o.ProfiledContainerPercentage
 	}
@@ -4242,6 +4308,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 		NpmHostUsage                             *float64 `json:"npm_host_usage,omitempty"`
 		ObsPipelineBytesPercentage               *float64 `json:"obs_pipeline_bytes_percentage,omitempty"`
 		ObsPipelineBytesUsage                    *float64 `json:"obs_pipeline_bytes_usage,omitempty"`
+		ObsPipelinesVcpuPercentage               *float64 `json:"obs_pipelines_vcpu_percentage,omitempty"`
+		ObsPipelinesVcpuUsage                    *float64 `json:"obs_pipelines_vcpu_usage,omitempty"`
 		ProfiledContainerPercentage              *float64 `json:"profiled_container_percentage,omitempty"`
 		ProfiledContainerUsage                   *float64 `json:"profiled_container_usage,omitempty"`
 		ProfiledFargatePercentage                *float64 `json:"profiled_fargate_percentage,omitempty"`
@@ -4270,7 +4338,7 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "apm_usm_percentage", "apm_usm_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "asm_serverless_traced_invocations_percentage", "asm_serverless_traced_invocations_usage", "browser_percentage", "browser_usage", "ci_pipeline_indexed_spans_percentage", "ci_pipeline_indexed_spans_usage", "ci_test_indexed_spans_percentage", "ci_test_indexed_spans_usage", "ci_visibility_itr_percentage", "ci_visibility_itr_usage", "cloud_siem_percentage", "cloud_siem_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_event_percentage", "custom_event_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_hosts_percentage", "cws_hosts_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "error_tracking_percentage", "error_tracking_usage", "estimated_indexed_logs_percentage", "estimated_indexed_logs_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_logs_percentage", "estimated_ingested_logs_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "estimated_rum_sessions_percentage", "estimated_rum_sessions_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "indexed_spans_percentage", "indexed_spans_usage", "infra_host_percentage", "infra_host_usage", "ingested_logs_bytes_percentage", "ingested_logs_bytes_usage", "ingested_spans_bytes_percentage", "ingested_spans_bytes_usage", "invocations_percentage", "invocations_usage", "lambda_traced_invocations_percentage", "lambda_traced_invocations_usage", "logs_indexed_15day_percentage", "logs_indexed_15day_usage", "logs_indexed_180day_percentage", "logs_indexed_180day_usage", "logs_indexed_30day_percentage", "logs_indexed_30day_usage", "logs_indexed_360day_percentage", "logs_indexed_360day_usage", "logs_indexed_3day_percentage", "logs_indexed_3day_usage", "logs_indexed_45day_percentage", "logs_indexed_45day_usage", "logs_indexed_60day_percentage", "logs_indexed_60day_usage", "logs_indexed_7day_percentage", "logs_indexed_7day_usage", "logs_indexed_90day_percentage", "logs_indexed_90day_usage", "logs_indexed_custom_retention_percentage", "logs_indexed_custom_retention_usage", "mobile_app_testing_percentage", "mobile_app_testing_usage", "ndm_netflow_percentage", "ndm_netflow_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "rum_browser_mobile_sessions_percentage", "rum_browser_mobile_sessions_usage", "rum_replay_sessions_percentage", "rum_replay_sessions_usage", "sds_scanned_bytes_percentage", "sds_scanned_bytes_usage", "serverless_apps_percentage", "serverless_apps_usage", "siem_ingested_bytes_percentage", "siem_ingested_bytes_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "apm_usm_percentage", "apm_usm_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "asm_serverless_traced_invocations_percentage", "asm_serverless_traced_invocations_usage", "browser_percentage", "browser_usage", "ci_pipeline_indexed_spans_percentage", "ci_pipeline_indexed_spans_usage", "ci_test_indexed_spans_percentage", "ci_test_indexed_spans_usage", "ci_visibility_itr_percentage", "ci_visibility_itr_usage", "cloud_siem_percentage", "cloud_siem_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_event_percentage", "custom_event_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_hosts_percentage", "cws_hosts_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "error_tracking_percentage", "error_tracking_usage", "estimated_indexed_logs_percentage", "estimated_indexed_logs_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_logs_percentage", "estimated_ingested_logs_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "estimated_rum_sessions_percentage", "estimated_rum_sessions_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "indexed_spans_percentage", "indexed_spans_usage", "infra_host_percentage", "infra_host_usage", "ingested_logs_bytes_percentage", "ingested_logs_bytes_usage", "ingested_spans_bytes_percentage", "ingested_spans_bytes_usage", "invocations_percentage", "invocations_usage", "lambda_traced_invocations_percentage", "lambda_traced_invocations_usage", "logs_indexed_15day_percentage", "logs_indexed_15day_usage", "logs_indexed_180day_percentage", "logs_indexed_180day_usage", "logs_indexed_30day_percentage", "logs_indexed_30day_usage", "logs_indexed_360day_percentage", "logs_indexed_360day_usage", "logs_indexed_3day_percentage", "logs_indexed_3day_usage", "logs_indexed_45day_percentage", "logs_indexed_45day_usage", "logs_indexed_60day_percentage", "logs_indexed_60day_usage", "logs_indexed_7day_percentage", "logs_indexed_7day_usage", "logs_indexed_90day_percentage", "logs_indexed_90day_usage", "logs_indexed_custom_retention_percentage", "logs_indexed_custom_retention_usage", "mobile_app_testing_percentage", "mobile_app_testing_usage", "ndm_netflow_percentage", "ndm_netflow_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "obs_pipelines_vcpu_percentage", "obs_pipelines_vcpu_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "rum_browser_mobile_sessions_percentage", "rum_browser_mobile_sessions_usage", "rum_replay_sessions_percentage", "rum_replay_sessions_usage", "sds_scanned_bytes_percentage", "sds_scanned_bytes_usage", "serverless_apps_percentage", "serverless_apps_usage", "siem_ingested_bytes_percentage", "siem_ingested_bytes_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage"})
 	} else {
 		return err
 	}
@@ -4376,6 +4444,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.NpmHostUsage = all.NpmHostUsage
 	o.ObsPipelineBytesPercentage = all.ObsPipelineBytesPercentage
 	o.ObsPipelineBytesUsage = all.ObsPipelineBytesUsage
+	o.ObsPipelinesVcpuPercentage = all.ObsPipelinesVcpuPercentage
+	o.ObsPipelinesVcpuUsage = all.ObsPipelinesVcpuUsage
 	o.ProfiledContainerPercentage = all.ProfiledContainerPercentage
 	o.ProfiledContainerUsage = all.ProfiledContainerUsage
 	o.ProfiledFargatePercentage = all.ProfiledFargatePercentage
