@@ -14,6 +14,8 @@ import (
 type CloudWorkloadSecurityAgentRuleUpdateData struct {
 	// Update an existing Cloud Workload Security Agent rule.
 	Attributes CloudWorkloadSecurityAgentRuleUpdateAttributes `json:"attributes"`
+	// The ID of the agent rule.
+	Id *string `json:"id,omitempty"`
 	// The type of the resource. The value should always be `agent_rule`.
 	Type CloudWorkloadSecurityAgentRuleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -65,6 +67,34 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateData) SetAttributes(v CloudWorkload
 	o.Attributes = v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleUpdateData) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleUpdateData) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleUpdateData) HasId() bool {
+	return o != nil && o.Id != nil
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *CloudWorkloadSecurityAgentRuleUpdateData) SetId(v string) {
+	o.Id = &v
+}
+
 // GetType returns the Type field value.
 func (o *CloudWorkloadSecurityAgentRuleUpdateData) GetType() CloudWorkloadSecurityAgentRuleType {
 	if o == nil {
@@ -95,6 +125,9 @@ func (o CloudWorkloadSecurityAgentRuleUpdateData) MarshalJSON() ([]byte, error) 
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -107,6 +140,7 @@ func (o CloudWorkloadSecurityAgentRuleUpdateData) MarshalJSON() ([]byte, error) 
 func (o *CloudWorkloadSecurityAgentRuleUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *CloudWorkloadSecurityAgentRuleUpdateAttributes `json:"attributes"`
+		Id         *string                                         `json:"id,omitempty"`
 		Type       *CloudWorkloadSecurityAgentRuleType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -120,7 +154,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateData) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
 	} else {
 		return err
 	}
@@ -130,6 +164,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateData) UnmarshalJSON(bytes []byte) (
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
+	o.Id = all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
