@@ -16,18 +16,15 @@ import (
 // MonitorsApi service type
 type MonitorsApi datadog.Service
 
-// CheckCanDeleteMonitor Check if a monitor can be deleted.
-// Check if the given monitors can be deleted.
-func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []int64) (CheckCanDeleteMonitorResponse, *_nethttp.Response, error) {
+func (a *MonitorsApi) PrepareCheckCanDeleteMonitor(ctx _context.Context, monitorIds []int64) (*_nethttp.Request, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue CheckCanDeleteMonitorResponse
+		localVarHTTPMethod = _nethttp.MethodGet
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.MonitorsApi.CheckCanDeleteMonitor")
 	if err != nil {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/can_delete"
@@ -44,10 +41,24 @@ func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []i
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	return a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+}
+
+// CheckCanDeleteMonitor Check if a monitor can be deleted.
+// Check if the given monitors can be deleted.
+func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []int64) (CheckCanDeleteMonitorResponse, *_nethttp.Response, error) {
+	var localVarReturnValue CheckCanDeleteMonitorResponse
+
+	req, err := a.PrepareCheckCanDeleteMonitor(ctx, monitorIds)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
+
+	return a.CheckCanDeleteMonitorCallAPI(ctx, req)
+}
+
+func (a *MonitorsApi) CheckCanDeleteMonitorCallAPI(ctx _context.Context, req *_nethttp.Request) (CheckCanDeleteMonitorResponse, *_nethttp.Response, error) {
+	var localVarReturnValue CheckCanDeleteMonitorResponse
 
 	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
@@ -94,6 +105,36 @@ func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []i
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+func (a *MonitorsApi) PrepareCreateMonitor(ctx _context.Context, body Monitor) (*_nethttp.Request, error) {
+	var (
+		localVarHTTPMethod = _nethttp.MethodPost
+		localVarPostBody   interface{}
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.MonitorsApi.CreateMonitor")
+	if err != nil {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/monitor"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	return a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 }
 
 // CreateMonitor Create a monitor.
@@ -278,37 +319,18 @@ func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []i
 // - `operator` `<`, `<=`, `>`, `>=`, `==`, or `!=`.
 // - `#` an integer or decimal number used to set the threshold.
 func (a *MonitorsApi) CreateMonitor(ctx _context.Context, body Monitor) (Monitor, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue Monitor
-	)
+	var localVarReturnValue Monitor
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.MonitorsApi.CreateMonitor")
-	if err != nil {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/monitor"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Content-Type"] = "application/json"
-	localVarHeaderParams["Accept"] = "application/json"
-
-	// body params
-	localVarPostBody = &body
-	datadog.SetAuthKeys(
-		ctx,
-		&localVarHeaderParams,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
-	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.PrepareCreateMonitor(ctx, body)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
+
+	return a.CreateMonitorCallAPI(ctx, req)
+}
+
+func (a *MonitorsApi) CreateMonitorCallAPI(ctx _context.Context, req *_nethttp.Request) (Monitor, *_nethttp.Response, error) {
+	var localVarReturnValue Monitor
 
 	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
@@ -365,18 +387,15 @@ func (r *DeleteMonitorOptionalParameters) WithForce(force string) *DeleteMonitor
 	return r
 }
 
-// DeleteMonitor Delete a monitor.
-// Delete the specified monitor
-func (a *MonitorsApi) DeleteMonitor(ctx _context.Context, monitorId int64, o ...DeleteMonitorOptionalParameters) (DeletedMonitor, *_nethttp.Response, error) {
+func (a *MonitorsApi) PrepareDeleteMonitor(ctx _context.Context, monitorId int64, o ...DeleteMonitorOptionalParameters) (*_nethttp.Request, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue DeletedMonitor
-		optionalParams      DeleteMonitorOptionalParameters
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
+		optionalParams     DeleteMonitorOptionalParameters
 	)
 
 	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type DeleteMonitorOptionalParameters is allowed")
+		return nil, datadog.ReportError("only one argument of type DeleteMonitorOptionalParameters is allowed")
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
@@ -384,7 +403,7 @@ func (a *MonitorsApi) DeleteMonitor(ctx _context.Context, monitorId int64, o ...
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.MonitorsApi.DeleteMonitor")
 	if err != nil {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
@@ -404,10 +423,24 @@ func (a *MonitorsApi) DeleteMonitor(ctx _context.Context, monitorId int64, o ...
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	return a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+}
+
+// DeleteMonitor Delete a monitor.
+// Delete the specified monitor
+func (a *MonitorsApi) DeleteMonitor(ctx _context.Context, monitorId int64, o ...DeleteMonitorOptionalParameters) (DeletedMonitor, *_nethttp.Response, error) {
+	var localVarReturnValue DeletedMonitor
+
+	req, err := a.PrepareDeleteMonitor(ctx, monitorId, o...)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
+
+	return a.DeleteMonitorCallAPI(ctx, req)
+}
+
+func (a *MonitorsApi) DeleteMonitorCallAPI(ctx _context.Context, req *_nethttp.Request) (DeletedMonitor, *_nethttp.Response, error) {
+	var localVarReturnValue DeletedMonitor
 
 	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
@@ -471,18 +504,15 @@ func (r *GetMonitorOptionalParameters) WithWithDowntimes(withDowntimes bool) *Ge
 	return r
 }
 
-// GetMonitor Get a monitor's details.
-// Get details about the specified monitor from your organization.
-func (a *MonitorsApi) GetMonitor(ctx _context.Context, monitorId int64, o ...GetMonitorOptionalParameters) (Monitor, *_nethttp.Response, error) {
+func (a *MonitorsApi) PrepareGetMonitor(ctx _context.Context, monitorId int64, o ...GetMonitorOptionalParameters) (*_nethttp.Request, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue Monitor
-		optionalParams      GetMonitorOptionalParameters
+		localVarHTTPMethod = _nethttp.MethodGet
+		localVarPostBody   interface{}
+		optionalParams     GetMonitorOptionalParameters
 	)
 
 	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetMonitorOptionalParameters is allowed")
+		return nil, datadog.ReportError("only one argument of type GetMonitorOptionalParameters is allowed")
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
@@ -490,7 +520,7 @@ func (a *MonitorsApi) GetMonitor(ctx _context.Context, monitorId int64, o ...Get
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.MonitorsApi.GetMonitor")
 	if err != nil {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
@@ -513,10 +543,24 @@ func (a *MonitorsApi) GetMonitor(ctx _context.Context, monitorId int64, o ...Get
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	return a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+}
+
+// GetMonitor Get a monitor's details.
+// Get details about the specified monitor from your organization.
+func (a *MonitorsApi) GetMonitor(ctx _context.Context, monitorId int64, o ...GetMonitorOptionalParameters) (Monitor, *_nethttp.Response, error) {
+	var localVarReturnValue Monitor
+
+	req, err := a.PrepareGetMonitor(ctx, monitorId, o...)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
+
+	return a.GetMonitorCallAPI(ctx, req)
+}
+
+func (a *MonitorsApi) GetMonitorCallAPI(ctx _context.Context, req *_nethttp.Request) (Monitor, *_nethttp.Response, error) {
+	var localVarReturnValue Monitor
 
 	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
@@ -622,18 +666,15 @@ func (r *ListMonitorsOptionalParameters) WithPageSize(pageSize int32) *ListMonit
 	return r
 }
 
-// ListMonitors Get all monitor details.
-// Get details about the specified monitor from your organization.
-func (a *MonitorsApi) ListMonitors(ctx _context.Context, o ...ListMonitorsOptionalParameters) ([]Monitor, *_nethttp.Response, error) {
+func (a *MonitorsApi) PrepareListMonitors(ctx _context.Context, o ...ListMonitorsOptionalParameters) (*_nethttp.Request, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue []Monitor
-		optionalParams      ListMonitorsOptionalParameters
+		localVarHTTPMethod = _nethttp.MethodGet
+		localVarPostBody   interface{}
+		optionalParams     ListMonitorsOptionalParameters
 	)
 
 	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListMonitorsOptionalParameters is allowed")
+		return nil, datadog.ReportError("only one argument of type ListMonitorsOptionalParameters is allowed")
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
@@ -641,7 +682,7 @@ func (a *MonitorsApi) ListMonitors(ctx _context.Context, o ...ListMonitorsOption
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.MonitorsApi.ListMonitors")
 	if err != nil {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor"
@@ -681,10 +722,24 @@ func (a *MonitorsApi) ListMonitors(ctx _context.Context, o ...ListMonitorsOption
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	return a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+}
+
+// ListMonitors Get all monitor details.
+// Get details about the specified monitor from your organization.
+func (a *MonitorsApi) ListMonitors(ctx _context.Context, o ...ListMonitorsOptionalParameters) ([]Monitor, *_nethttp.Response, error) {
+	var localVarReturnValue []Monitor
+
+	req, err := a.PrepareListMonitors(ctx, o...)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
+
+	return a.ListMonitorsCallAPI(ctx, req)
+}
+
+func (a *MonitorsApi) ListMonitorsCallAPI(ctx _context.Context, req *_nethttp.Request) ([]Monitor, *_nethttp.Response, error) {
+	var localVarReturnValue []Monitor
 
 	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
@@ -806,18 +861,15 @@ func (r *SearchMonitorGroupsOptionalParameters) WithSort(sort string) *SearchMon
 	return r
 }
 
-// SearchMonitorGroups Monitors group search.
-// Search and filter your monitor groups details.
-func (a *MonitorsApi) SearchMonitorGroups(ctx _context.Context, o ...SearchMonitorGroupsOptionalParameters) (MonitorGroupSearchResponse, *_nethttp.Response, error) {
+func (a *MonitorsApi) PrepareSearchMonitorGroups(ctx _context.Context, o ...SearchMonitorGroupsOptionalParameters) (*_nethttp.Request, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue MonitorGroupSearchResponse
-		optionalParams      SearchMonitorGroupsOptionalParameters
+		localVarHTTPMethod = _nethttp.MethodGet
+		localVarPostBody   interface{}
+		optionalParams     SearchMonitorGroupsOptionalParameters
 	)
 
 	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type SearchMonitorGroupsOptionalParameters is allowed")
+		return nil, datadog.ReportError("only one argument of type SearchMonitorGroupsOptionalParameters is allowed")
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
@@ -825,7 +877,7 @@ func (a *MonitorsApi) SearchMonitorGroups(ctx _context.Context, o ...SearchMonit
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.MonitorsApi.SearchMonitorGroups")
 	if err != nil {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/groups/search"
@@ -853,10 +905,24 @@ func (a *MonitorsApi) SearchMonitorGroups(ctx _context.Context, o ...SearchMonit
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	return a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+}
+
+// SearchMonitorGroups Monitors group search.
+// Search and filter your monitor groups details.
+func (a *MonitorsApi) SearchMonitorGroups(ctx _context.Context, o ...SearchMonitorGroupsOptionalParameters) (MonitorGroupSearchResponse, *_nethttp.Response, error) {
+	var localVarReturnValue MonitorGroupSearchResponse
+
+	req, err := a.PrepareSearchMonitorGroups(ctx, o...)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
+
+	return a.SearchMonitorGroupsCallAPI(ctx, req)
+}
+
+func (a *MonitorsApi) SearchMonitorGroupsCallAPI(ctx _context.Context, req *_nethttp.Request) (MonitorGroupSearchResponse, *_nethttp.Response, error) {
+	var localVarReturnValue MonitorGroupSearchResponse
 
 	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
@@ -934,18 +1000,15 @@ func (r *SearchMonitorsOptionalParameters) WithSort(sort string) *SearchMonitors
 	return r
 }
 
-// SearchMonitors Monitors search.
-// Search and filter your monitors details.
-func (a *MonitorsApi) SearchMonitors(ctx _context.Context, o ...SearchMonitorsOptionalParameters) (MonitorSearchResponse, *_nethttp.Response, error) {
+func (a *MonitorsApi) PrepareSearchMonitors(ctx _context.Context, o ...SearchMonitorsOptionalParameters) (*_nethttp.Request, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue MonitorSearchResponse
-		optionalParams      SearchMonitorsOptionalParameters
+		localVarHTTPMethod = _nethttp.MethodGet
+		localVarPostBody   interface{}
+		optionalParams     SearchMonitorsOptionalParameters
 	)
 
 	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type SearchMonitorsOptionalParameters is allowed")
+		return nil, datadog.ReportError("only one argument of type SearchMonitorsOptionalParameters is allowed")
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
@@ -953,7 +1016,7 @@ func (a *MonitorsApi) SearchMonitors(ctx _context.Context, o ...SearchMonitorsOp
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.MonitorsApi.SearchMonitors")
 	if err != nil {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/search"
@@ -981,10 +1044,24 @@ func (a *MonitorsApi) SearchMonitors(ctx _context.Context, o ...SearchMonitorsOp
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	return a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+}
+
+// SearchMonitors Monitors search.
+// Search and filter your monitors details.
+func (a *MonitorsApi) SearchMonitors(ctx _context.Context, o ...SearchMonitorsOptionalParameters) (MonitorSearchResponse, *_nethttp.Response, error) {
+	var localVarReturnValue MonitorSearchResponse
+
+	req, err := a.PrepareSearchMonitors(ctx, o...)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
+
+	return a.SearchMonitorsCallAPI(ctx, req)
+}
+
+func (a *MonitorsApi) SearchMonitorsCallAPI(ctx _context.Context, req *_nethttp.Request) (MonitorSearchResponse, *_nethttp.Response, error) {
+	var localVarReturnValue MonitorSearchResponse
 
 	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
@@ -1024,18 +1101,15 @@ func (a *MonitorsApi) SearchMonitors(ctx _context.Context, o ...SearchMonitorsOp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateMonitor Edit a monitor.
-// Edit the specified monitor.
-func (a *MonitorsApi) UpdateMonitor(ctx _context.Context, monitorId int64, body MonitorUpdateRequest) (Monitor, *_nethttp.Response, error) {
+func (a *MonitorsApi) PrepareUpdateMonitor(ctx _context.Context, monitorId int64, body MonitorUpdateRequest) (*_nethttp.Request, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue Monitor
+		localVarHTTPMethod = _nethttp.MethodPut
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.MonitorsApi.UpdateMonitor")
 	if err != nil {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
@@ -1055,10 +1129,24 @@ func (a *MonitorsApi) UpdateMonitor(ctx _context.Context, monitorId int64, body 
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	return a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+}
+
+// UpdateMonitor Edit a monitor.
+// Edit the specified monitor.
+func (a *MonitorsApi) UpdateMonitor(ctx _context.Context, monitorId int64, body MonitorUpdateRequest) (Monitor, *_nethttp.Response, error) {
+	var localVarReturnValue Monitor
+
+	req, err := a.PrepareUpdateMonitor(ctx, monitorId, body)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
+
+	return a.UpdateMonitorCallAPI(ctx, req)
+}
+
+func (a *MonitorsApi) UpdateMonitorCallAPI(ctx _context.Context, req *_nethttp.Request) (Monitor, *_nethttp.Response, error) {
+	var localVarReturnValue Monitor
 
 	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
@@ -1098,18 +1186,15 @@ func (a *MonitorsApi) UpdateMonitor(ctx _context.Context, monitorId int64, body 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ValidateExistingMonitor Validate an existing monitor.
-// Validate the monitor provided in the request.
-func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId int64, body Monitor) (interface{}, *_nethttp.Response, error) {
+func (a *MonitorsApi) PrepareValidateExistingMonitor(ctx _context.Context, monitorId int64, body Monitor) (*_nethttp.Request, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod = _nethttp.MethodPost
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.MonitorsApi.ValidateExistingMonitor")
 	if err != nil {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}/validate"
@@ -1129,10 +1214,24 @@ func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId in
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	return a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+}
+
+// ValidateExistingMonitor Validate an existing monitor.
+// Validate the monitor provided in the request.
+func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId int64, body Monitor) (interface{}, *_nethttp.Response, error) {
+	var localVarReturnValue interface{}
+
+	req, err := a.PrepareValidateExistingMonitor(ctx, monitorId, body)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
+
+	return a.ValidateExistingMonitorCallAPI(ctx, req)
+}
+
+func (a *MonitorsApi) ValidateExistingMonitorCallAPI(ctx _context.Context, req *_nethttp.Request) (interface{}, *_nethttp.Response, error) {
+	var localVarReturnValue interface{}
 
 	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
@@ -1172,20 +1271,15 @@ func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId in
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ValidateMonitor Validate a monitor.
-// Validate the monitor provided in the request.
-//
-// **Note**: Log monitors require an unscoped App Key.
-func (a *MonitorsApi) ValidateMonitor(ctx _context.Context, body Monitor) (interface{}, *_nethttp.Response, error) {
+func (a *MonitorsApi) PrepareValidateMonitor(ctx _context.Context, body Monitor) (*_nethttp.Request, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod = _nethttp.MethodPost
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.MonitorsApi.ValidateMonitor")
 	if err != nil {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/validate"
@@ -1204,10 +1298,26 @@ func (a *MonitorsApi) ValidateMonitor(ctx _context.Context, body Monitor) (inter
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
-	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	return a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+}
+
+// ValidateMonitor Validate a monitor.
+// Validate the monitor provided in the request.
+//
+// **Note**: Log monitors require an unscoped App Key.
+func (a *MonitorsApi) ValidateMonitor(ctx _context.Context, body Monitor) (interface{}, *_nethttp.Response, error) {
+	var localVarReturnValue interface{}
+
+	req, err := a.PrepareValidateMonitor(ctx, body)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
+
+	return a.ValidateMonitorCallAPI(ctx, req)
+}
+
+func (a *MonitorsApi) ValidateMonitorCallAPI(ctx _context.Context, req *_nethttp.Request) (interface{}, *_nethttp.Response, error) {
+	var localVarReturnValue interface{}
 
 	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {

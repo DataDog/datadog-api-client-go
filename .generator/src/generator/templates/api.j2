@@ -49,17 +49,10 @@ func (r *{{ operation.operationId }}OptionalParameters) With{{ name|camel_case }
 }
 {%- endfor %}
 
-// {{ operation.operationId }} {{ operation.summary }}.
-{{ operation.description|block_comment(prefix="//") }}{% if operation.deprecated %}
-//
-// Deprecated: This API is deprecated.{% endif %}
-func (a *{{ classname }}) {{ operation.operationId }}(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
+func (a *{{ classname }}) Prepare{{ operation.operationId }}(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) (*_nethttp.Request, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.Method{{ httpMethod.lower().title() }}
 		localVarPostBody     interface{}
-		{%- if returnType %}
-		localVarReturnValue  {{ returnType }}
-		{%- endif %}
 		{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}
 		optionalParams {{ operation.operationId }}OptionalParameters
 		{%- endif %}{% endfor %}
@@ -67,7 +60,7 @@ func (a *{{ classname }}) {{ operation.operationId }}(ctx _context.Context{% for
 
     {% for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}
     if len(o) > 1 {
-        return {% if returnType %} localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("only one argument of type {{ operation.operationId }}OptionalParameters is allowed")
+        return nil, {{ common_package_name }}.ReportError("only one argument of type {{ operation.operationId }}OptionalParameters is allowed")
     }
     if len(o) == 1 {
         optionalParams = o[0]
@@ -80,13 +73,13 @@ func (a *{{ classname }}) {{ operation.operationId }}(ctx _context.Context{% for
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return {% if returnType %} localVarReturnValue, {% endif %}nil, {{ common_package_name }}.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return nil, {{ common_package_name }}.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 	{%- endif %}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "{{ version }}.{{ classname }}.{{ operation.operationId }}")
 	if err != nil {
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return nil, {{ common_package_name }}.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "{{ path }}"
@@ -105,22 +98,22 @@ func (a *{{ classname }}) {{ operation.operationId }}(ctx _context.Context{% for
 	{%- endif %}
 	{%- if schema.minItems is defined %}
 	if len({% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %}) < {{ schema.minItems }} {
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have at least {{ schema.minItems }} elements")
+		return nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have at least {{ schema.minItems }} elements")
 	}
 	{%- endif %}
 	{%- if schema.maxItems is defined %}
 	if len({% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %}) > {{ schema.maxItems }} {
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have less than {{ schema.maxItems }} elements")
+		return nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have less than {{ schema.maxItems }} elements")
 	}
 	{%- endif %}
 	{%- if schema.minLength is defined %}
 	if datadog.Strlen({% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %}) < {{ schema.minLength }} {
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have at least {{ schema.minLength }} elements")
+		return nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have at least {{ schema.minLength }} elements")
 	}
 	{%- endif %}
 	{%- if schema.maxLength is defined %}
 	if datadog.Strlen({% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %}) > {{ schema.maxLength }} {
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have less than {{ schema.maxLength }} elements")
+		return nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must have less than {{ schema.maxLength }} elements")
 	}
 	{%- endif %}
 	{%- if schema.minimum is defined %}
@@ -130,7 +123,7 @@ func (a *{{ classname }}) {{ operation.operationId }}(ctx _context.Context{% for
 	{%- else %}
 	if {% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %} < {{ schema.minimum}} {
 	{%- endif %}
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must be greater than {{ schema.minimum }}")
+		return nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must be greater than {{ schema.minimum }}")
 	}
 	{%- endif %}
 	{%- if schema.maximum is defined %}
@@ -140,7 +133,7 @@ func (a *{{ classname }}) {{ operation.operationId }}(ctx _context.Context{% for
 	{%- else %}
 	if {% if isOptional %}optionalParams.{{ name|attribute_name }}{% else %}{{ name|variable_name}}{% endif %} > {{ schema.maximum }} {
 	{%- endif %}
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must be less than {{ schema.maximum }}")
+		return nil, {{ common_package_name }}.ReportError("{{ name|variable_name}} must be less than {{ schema.maximum }}")
 	}
 	{%- endif %}
 	{%- endfor %}
@@ -252,11 +245,32 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	{%- endfor %}
 	)
 	{%- endif %}
-	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, {% if formParameter %}&formFile{% else %}nil{% endif %})
+	return a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, {% if formParameter %}&formFile{% else %}nil{% endif %})
+}
+
+
+// {{ operation.operationId }} {{ operation.summary }}.
+{{ operation.description|block_comment(prefix="//") }}{% if operation.deprecated %}
+//
+// Deprecated: This API is deprecated.{% endif %}
+func (a *{{ classname }}) {{ operation.operationId }}(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
+	{%- if returnType %}
+	var localVarReturnValue  {{ returnType }}
+	{%- endif %}
+
+	req, err := a.Prepare{{ operation.operationId }}(ctx{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o...{% endif %}{% endfor %})
 	if err != nil {
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, err
 	}
 
+	return a.{{ operation.operationId }}CallAPI(ctx, req)
+}
+
+func (a *{{ classname }}) {{ operation.operationId }}CallAPI(ctx _context.Context, req *_nethttp.Request) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
+	{%- if returnType %}
+	var localVarReturnValue  {{ returnType }}
+	{%- endif %}
+	
 	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, err
