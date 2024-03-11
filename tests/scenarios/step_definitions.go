@@ -173,7 +173,7 @@ func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string,
 
 	if varType.IsValid() {
 		switch varType.Interface().(type) {
-		case *io.Reader: 
+		case *io.Reader:
 			version := GetVersion(ctx)
 			var basePath string
 			datadog.Unmarshal([]byte(templatedValue), &basePath)
@@ -442,6 +442,23 @@ func expectResponseHasField(t gobdd.StepTest, ctx gobdd.Context, responsePath st
 	}
 }
 
+func expectResponseDoesNotHaveField(t gobdd.StepTest, ctx gobdd.Context, responsePath string, field string) {
+	responseValue, err := tests.LookupStringI(GetJSONResponse(ctx), responsePath)
+	if err != nil {
+		t.Errorf("could not lookup response value %s in %+v: %v", CamelToSnakeCase(responsePath), GetJSONResponse(ctx), err)
+	}
+
+	responseMap, ok := responseValue.Interface().(map[string]interface{})
+	if !ok {
+		t.Fatalf("%v is not a map. Cannot lookup field %s", responseValue, field)
+	}
+
+	_, ok = responseMap[field]
+	if ok {
+		t.Errorf("%v should not contain field %s", responseValue, field)
+	}
+}
+
 func expectArrayContainsObject(t gobdd.StepTest, ctx gobdd.Context, responsePath string, keyPath string, value string) {
 	responseValue, err := tests.LookupStringI(GetJSONResponse(ctx), responsePath)
 	templatedValue := Templated(t, GetData(ctx), value)
@@ -509,6 +526,7 @@ func ConfigureSteps(s *gobdd.Suite) {
 		`the response has ([0-9]+) items`:                                      expectNumberOfItems,
 		`the response "([^"]+)" is false`:                                      expectFalse,
 		`the response "([^"]+)" has field "([^"]+)"`:                           expectResponseHasField,
+		`the response "([^"]+)" does not have field "([^"]+)"`:                 expectResponseDoesNotHaveField,
 		`the response "([^"]+)" has item with field "([^"]+)" with value (.*)`: expectArrayContainsObject,
 		`the response "([^"]+)" array contains value (.*)`:                     expectArrayContainsValue,
 	}
