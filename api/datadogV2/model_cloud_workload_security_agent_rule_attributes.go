@@ -10,6 +10,8 @@ import (
 
 // CloudWorkloadSecurityAgentRuleAttributes A Cloud Workload Security Agent rule returned by the API.
 type CloudWorkloadSecurityAgentRuleAttributes struct {
+	// The array of actions the rule can perform if triggered.
+	Actions []CloudWorkloadSecurityAgentRuleAction `json:"actions,omitempty"`
 	// The version of the agent.
 	AgentConstraint *string `json:"agentConstraint,omitempty"`
 	// The category of the Agent rule.
@@ -62,6 +64,35 @@ func NewCloudWorkloadSecurityAgentRuleAttributes() *CloudWorkloadSecurityAgentRu
 func NewCloudWorkloadSecurityAgentRuleAttributesWithDefaults() *CloudWorkloadSecurityAgentRuleAttributes {
 	this := CloudWorkloadSecurityAgentRuleAttributes{}
 	return &this
+}
+
+// GetActions returns the Actions field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CloudWorkloadSecurityAgentRuleAttributes) GetActions() []CloudWorkloadSecurityAgentRuleAction {
+	if o == nil {
+		var ret []CloudWorkloadSecurityAgentRuleAction
+		return ret
+	}
+	return o.Actions
+}
+
+// GetActionsOk returns a tuple with the Actions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) GetActionsOk() (*[]CloudWorkloadSecurityAgentRuleAction, bool) {
+	if o == nil || o.Actions == nil {
+		return nil, false
+	}
+	return &o.Actions, true
+}
+
+// HasActions returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) HasActions() bool {
+	return o != nil && o.Actions != nil
+}
+
+// SetActions gets a reference to the given []CloudWorkloadSecurityAgentRuleAction and assigns it to the Actions field.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) SetActions(v []CloudWorkloadSecurityAgentRuleAction) {
+	o.Actions = v
 }
 
 // GetAgentConstraint returns the AgentConstraint field value if set, zero value otherwise.
@@ -518,6 +549,9 @@ func (o CloudWorkloadSecurityAgentRuleAttributes) MarshalJSON() ([]byte, error) 
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Actions != nil {
+		toSerialize["actions"] = o.Actions
+	}
 	if o.AgentConstraint != nil {
 		toSerialize["agentConstraint"] = o.AgentConstraint
 	}
@@ -576,6 +610,7 @@ func (o CloudWorkloadSecurityAgentRuleAttributes) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Actions            []CloudWorkloadSecurityAgentRuleAction           `json:"actions,omitempty"`
 		AgentConstraint    *string                                          `json:"agentConstraint,omitempty"`
 		Category           *string                                          `json:"category,omitempty"`
 		CreationAuthorUuId *string                                          `json:"creationAuthorUuId,omitempty"`
@@ -598,12 +633,13 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agentConstraint", "category", "creationAuthorUuId", "creationDate", "creator", "defaultRule", "description", "enabled", "expression", "filters", "name", "updateAuthorUuId", "updateDate", "updatedAt", "updater", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"actions", "agentConstraint", "category", "creationAuthorUuId", "creationDate", "creator", "defaultRule", "description", "enabled", "expression", "filters", "name", "updateAuthorUuId", "updateDate", "updatedAt", "updater", "version"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Actions = all.Actions
 	o.AgentConstraint = all.AgentConstraint
 	o.Category = all.Category
 	o.CreationAuthorUuId = all.CreationAuthorUuId
