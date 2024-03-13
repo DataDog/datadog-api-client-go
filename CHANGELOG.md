@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 2.24.0 / 2024-03-13
+
+### Fixed
+* Disable additionalProperties for Downtime Schedule UpdateRequest oneOfs by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2390
+* Fix ListServiceDefinitions pagination information by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2416
+### Added
+* Adds support for `ListMetricAssets` endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2404
+* Add support for new CRUD agent rules endpoints by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2410
+* Add documentation for workflow usage attribution by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2418
+* Add Custom Destinations Public API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2422
+### Deprecated
+* Deprecate the pattern property for SDS Standard Pattern Attributes by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2411
+* Deprecate Incident Services endpoints by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2424
+
+## New Contributors
+* @antonio-ramadas-dd made their first contribution in https://github.com/DataDog/datadog-api-client-go/pull/2421
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.23.0...v2.24.0
+
 ## 2.23.0 / 2024-02-27
 
 ### Fixed
