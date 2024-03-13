@@ -19,7 +19,7 @@ func main() {
 	body := datadogV2.GCPSTSServiceAccountUpdateRequest{
 		Data: &datadogV2.GCPSTSServiceAccountUpdateRequestData{
 			Attributes: &datadogV2.GCPSTSServiceAccountAttributes{
-				ClientEmail: datadog.PtrString("252bf553ef04b351@example.com"),
+				ClientEmail: datadog.PtrString("Test-252bf553ef04b351@example.com"),
 				HostFilters: []string{
 					"foo:bar",
 				},
