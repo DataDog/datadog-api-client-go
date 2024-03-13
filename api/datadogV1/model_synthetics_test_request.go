@@ -38,6 +38,8 @@ type SyntheticsTestRequest struct {
 	Headers map[string]string `json:"headers,omitempty"`
 	// Host name to perform the test with.
 	Host *string `json:"host,omitempty"`
+	// HTTP version to use for a Synthetic test.
+	HttpVersion *SyntheticsTestOptionsHTTPVersion `json:"httpVersion,omitempty"`
 	// Message to send for UDP or WebSocket tests.
 	Message *string `json:"message,omitempty"`
 	// Metadata to include when performing the gRPC test.
@@ -482,6 +484,34 @@ func (o *SyntheticsTestRequest) SetHost(v string) {
 	o.Host = &v
 }
 
+// GetHttpVersion returns the HttpVersion field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetHttpVersion() SyntheticsTestOptionsHTTPVersion {
+	if o == nil || o.HttpVersion == nil {
+		var ret SyntheticsTestOptionsHTTPVersion
+		return ret
+	}
+	return *o.HttpVersion
+}
+
+// GetHttpVersionOk returns a tuple with the HttpVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetHttpVersionOk() (*SyntheticsTestOptionsHTTPVersion, bool) {
+	if o == nil || o.HttpVersion == nil {
+		return nil, false
+	}
+	return o.HttpVersion, true
+}
+
+// HasHttpVersion returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasHttpVersion() bool {
+	return o != nil && o.HttpVersion != nil
+}
+
+// SetHttpVersion gets a reference to the given SyntheticsTestOptionsHTTPVersion and assigns it to the HttpVersion field.
+func (o *SyntheticsTestRequest) SetHttpVersion(v SyntheticsTestOptionsHTTPVersion) {
+	o.HttpVersion = &v
+}
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -922,6 +952,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.Host != nil {
 		toSerialize["host"] = o.Host
 	}
+	if o.HttpVersion != nil {
+		toSerialize["httpVersion"] = o.HttpVersion
+	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
 	}
@@ -988,6 +1021,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		FollowRedirects          *bool                             `json:"follow_redirects,omitempty"`
 		Headers                  map[string]string                 `json:"headers,omitempty"`
 		Host                     *string                           `json:"host,omitempty"`
+		HttpVersion              *SyntheticsTestOptionsHTTPVersion `json:"httpVersion,omitempty"`
 		Message                  *string                           `json:"message,omitempty"`
 		Metadata                 map[string]string                 `json:"metadata,omitempty"`
 		Method                   *string                           `json:"method,omitempty"`
@@ -1008,7 +1042,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allow_insecure", "basicAuth", "body", "bodyType", "callType", "certificate", "certificateDomains", "compressedJsonDescriptor", "compressedProtoFile", "dnsServer", "dnsServerPort", "follow_redirects", "headers", "host", "message", "metadata", "method", "noSavingResponseBody", "numberOfPackets", "persistCookies", "port", "proxy", "query", "servername", "service", "shouldTrackHops", "timeout", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"allow_insecure", "basicAuth", "body", "bodyType", "callType", "certificate", "certificateDomains", "compressedJsonDescriptor", "compressedProtoFile", "dnsServer", "dnsServerPort", "follow_redirects", "headers", "host", "httpVersion", "message", "metadata", "method", "noSavingResponseBody", "numberOfPackets", "persistCookies", "port", "proxy", "query", "servername", "service", "shouldTrackHops", "timeout", "url"})
 	} else {
 		return err
 	}
@@ -1039,6 +1073,11 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.FollowRedirects = all.FollowRedirects
 	o.Headers = all.Headers
 	o.Host = all.Host
+	if all.HttpVersion != nil && !all.HttpVersion.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.HttpVersion = all.HttpVersion
+	}
 	o.Message = all.Message
 	o.Metadata = all.Metadata
 	o.Method = all.Method
