@@ -29,6 +29,7 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.UpdateCSMThreatsAgentRule", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudWorkloadSecurityApi(apiClient)
 	resp, r, err := api.UpdateCSMThreatsAgentRule(ctx, AgentRuleDataID, body)

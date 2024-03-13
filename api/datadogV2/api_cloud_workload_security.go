@@ -6,7 +6,9 @@ package datadogV2
 
 import (
 	_context "context"
+	_fmt "fmt"
 	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -25,6 +27,13 @@ func (a *CloudWorkloadSecurityApi) CreateCSMThreatsAgentRule(ctx _context.Contex
 		localVarPostBody    interface{}
 		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
+
+	operationId := "v2.CreateCSMThreatsAgentRule"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.CreateCSMThreatsAgentRule")
 	if err != nil {
@@ -171,6 +180,13 @@ func (a *CloudWorkloadSecurityApi) DeleteCSMThreatsAgentRule(ctx _context.Contex
 		localVarPostBody   interface{}
 	)
 
+	operationId := "v2.DeleteCSMThreatsAgentRule"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.DeleteCSMThreatsAgentRule")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -295,6 +311,13 @@ func (a *CloudWorkloadSecurityApi) DownloadCSMThreatsPolicy(ctx _context.Context
 		localVarPostBody    interface{}
 		localVarReturnValue _io.Reader
 	)
+
+	operationId := "v2.DownloadCSMThreatsPolicy"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.DownloadCSMThreatsPolicy")
 	if err != nil {
@@ -421,6 +444,13 @@ func (a *CloudWorkloadSecurityApi) GetCSMThreatsAgentRule(ctx _context.Context, 
 		localVarPostBody    interface{}
 		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
+
+	operationId := "v2.GetCSMThreatsAgentRule"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.GetCSMThreatsAgentRule")
 	if err != nil {
@@ -564,6 +594,13 @@ func (a *CloudWorkloadSecurityApi) ListCSMThreatsAgentRules(ctx _context.Context
 		localVarReturnValue CloudWorkloadSecurityAgentRulesListResponse
 	)
 
+	operationId := "v2.ListCSMThreatsAgentRules"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.ListCSMThreatsAgentRules")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -704,6 +741,13 @@ func (a *CloudWorkloadSecurityApi) UpdateCSMThreatsAgentRule(ctx _context.Contex
 		localVarPostBody    interface{}
 		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
+
+	operationId := "v2.UpdateCSMThreatsAgentRule"
+	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.UpdateCSMThreatsAgentRule")
 	if err != nil {
