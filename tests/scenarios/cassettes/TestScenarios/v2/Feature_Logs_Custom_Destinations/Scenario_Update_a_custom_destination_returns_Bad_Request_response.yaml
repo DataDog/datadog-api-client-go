@@ -1,0 +1,63 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"enabled":false,"forward_tags":false,"forward_tags_restriction_list":["host"],"forward_tags_restriction_list_type":"BLOCK_LIST","forwarder_destination":{"auth":{"password":"my-password","type":"basic","username":"my-username"},"endpoint":"https://example.com","type":"http"},"name":"Test-Update_a_custom_destination_returns_Bad_Request_response-1710235216","query":"source:nginx"},"type":"custom_destination"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/logs/config/custom-destinations
+  response:
+    body: '{"data":{"id":"0f1b60fc-4671-4bd5-834b-bc86c8a5065b","attributes":{"name":"Test-Update_a_custom_destination_returns_Bad_Request_response-1710235216","query":"source:nginx","enabled":false,"forwarder_destination":{"endpoint":"https://example.com","auth":{"type":"basic"},"type":"http"},"forward_tags_restriction_list_type":"BLOCK_LIST","forward_tags_restriction_list":["host"],"forward_tags":false},"type":"custom_destination"}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"forward_tags_restriction_list_type":"this_list_type_does_not_exist"},"id":"0f1b60fc-4671-4bd5-834b-bc86c8a5065b","type":"custom_destination"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/logs/config/custom-destinations/0f1b60fc-4671-4bd5-834b-bc86c8a5065b
+  response:
+    body: '{"errors":["Internal error"]}
+
+      '
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/logs/config/custom-destinations/0f1b60fc-4671-4bd5-834b-bc86c8a5065b
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+    status: 204 No Content
+version: 2
