@@ -20,7 +20,7 @@ func main() {
 					"lorem",
 					"ipsum",
 				},
-				ClientEmail: datadog.PtrString("252bf553ef04b351@test-project.iam.gserviceaccount.com"),
+				ClientEmail: datadog.PtrString("Test-252bf553ef04b351@test-project.iam.gserviceaccount.com"),
 				HostFilters: []string{},
 			},
 			Type: datadogV2.GCPSERVICEACCOUNTTYPE_GCP_SERVICE_ACCOUNT.Ptr(),
