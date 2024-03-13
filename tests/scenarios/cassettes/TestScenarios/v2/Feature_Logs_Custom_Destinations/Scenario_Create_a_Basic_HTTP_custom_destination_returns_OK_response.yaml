@@ -1,0 +1,42 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"enabled":false,"forward_tags":false,"forward_tags_restriction_list":["datacenter","host"],"forward_tags_restriction_list_type":"ALLOW_LIST","forwarder_destination":{"auth":{"password":"datadog-custom-destination-password","type":"basic","username":"datadog-custom-destination-username"},"endpoint":"https://example.com","type":"http"},"name":"Nginx logs","query":"source:nginx"},"type":"custom_destination"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/logs/config/custom-destinations
+  response:
+    body: '{"data":{"id":"9608c7d6-8ea4-4487-88da-ab7620dd000c","attributes":{"name":"Nginx
+      logs","query":"source:nginx","enabled":false,"forwarder_destination":{"endpoint":"https://example.com","auth":{"type":"basic"},"type":"http"},"forward_tags_restriction_list_type":"ALLOW_LIST","forward_tags_restriction_list":["datacenter","host"],"forward_tags":false},"type":"custom_destination"}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/logs/config/custom-destinations/9608c7d6-8ea4-4487-88da-ab7620dd000c
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+    status: 204 No Content
+version: 2
