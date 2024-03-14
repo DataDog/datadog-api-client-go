@@ -13,11 +13,24 @@ import (
 )
 
 func main() {
+	// there is a valid "permission" in the system
+	PermissionID := os.Getenv("PERMISSION_ID")
+
 	body := datadogV2.RoleCreateRequest{
 		Data: datadogV2.RoleCreateData{
 			Type: datadogV2.ROLESTYPE_ROLES.Ptr(),
 			Attributes: datadogV2.RoleCreateAttributes{
 				Name: "Example-Role",
+			},
+			Relationships: &datadogV2.RoleRelationships{
+				Permissions: &datadogV2.RelationshipToPermissions{
+					Data: []datadogV2.RelationshipToPermissionData{
+						{
+							Id:   datadog.PtrString(PermissionID),
+							Type: datadogV2.PERMISSIONSTYPE_PERMISSIONS.Ptr(),
+						},
+					},
+				},
 			},
 		},
 	}
