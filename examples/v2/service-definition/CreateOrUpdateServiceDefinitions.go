@@ -16,6 +16,10 @@ func main() {
 	body := datadogV2.ServiceDefinitionsCreateRequest{
 		ServiceDefinitionV2Dot2: &datadogV2.ServiceDefinitionV2Dot2{
 			Application: datadog.PtrString("my-app"),
+			CiPipelineFingerprints: []string{
+				"j88xdEy0J5lc",
+				"eZ7LMljCk8vo",
+			},
 			Contacts: []datadogV2.ServiceDefinitionV2Dot2Contact{
 				{
 					Contact: "https://teams.microsoft.com/myteam",
