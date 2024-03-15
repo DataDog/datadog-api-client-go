@@ -109,8 +109,10 @@ type RetryConfiguration struct {
 	MaxRetries        int
 }
 
+type ConfigurationOpt func(*Configuration)
+
 // NewConfiguration returns a new Configuration object.
-func NewConfiguration() *Configuration {
+func NewConfiguration(opts ...ConfigurationOpt) *Configuration {
 	cfg := &Configuration{
 		DefaultHeader: make(map[string]string),
 		UserAgent:     getUserAgent(),
@@ -377,6 +379,9 @@ func NewConfiguration() *Configuration {
 			HTTPRetryTimeout:  60 * time.Second,
 			MaxRetries:        3,
 		},
+	}
+	for _, opt := range opts {
+		opt(cfg)
 	}
 	return cfg
 }
