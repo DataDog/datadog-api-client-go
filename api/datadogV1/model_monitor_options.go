@@ -95,7 +95,8 @@ type MonitorOptions struct {
 	RenotifyStatuses []MonitorRenotifyStatusType `json:"renotify_statuses,omitempty"`
 	// A Boolean indicating whether this monitor needs a full window of data before it’s evaluated.
 	// We highly recommend you set this to `false` for sparse metrics,
-	// otherwise some evaluations are skipped. Default is false.
+	// otherwise some evaluations are skipped. Default is false. This setting only applies to
+	// metric monitors.
 	RequireFullWindow *bool `json:"require_full_window,omitempty"`
 	// Configuration options for scheduling.
 	SchedulingOptions *MonitorOptionsSchedulingOptions `json:"scheduling_options,omitempty"`
