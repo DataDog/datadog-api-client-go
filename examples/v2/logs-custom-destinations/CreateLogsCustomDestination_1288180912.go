@@ -32,7 +32,7 @@ func main() {
 				Name:  "Nginx logs",
 				Query: datadog.PtrString("source:nginx"),
 			},
-			Type: datadogV2.CUSTOMDESTINATIONTYPE_custom_destination,
+			Type: datadogV2.CUSTOMDESTINATIONTYPE_CUSTOM_DESTINATION,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
