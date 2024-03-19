@@ -21,7 +21,7 @@ func main() {
 			Attributes: &datadogV2.CustomDestinationUpdateRequestAttributes{
 				Name: datadog.PtrString("Nginx logs (Updated)"),
 			},
-			Type: datadogV2.CUSTOMDESTINATIONTYPE_custom_destination,
+			Type: datadogV2.CUSTOMDESTINATIONTYPE_CUSTOM_DESTINATION,
 			Id:   CustomDestinationDataID,
 		},
 	}
