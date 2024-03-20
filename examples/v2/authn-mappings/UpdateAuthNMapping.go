@@ -27,13 +27,14 @@ func main() {
 			},
 			Id: AuthnMappingDataID,
 			Relationships: &datadogV2.AuthNMappingUpdateRelationships{
-				Role: &datadogV2.RelationshipToRole{
-					Data: &datadogV2.RelationshipToRoleData{
-						Id:   datadog.PtrString(RoleDataID),
-						Type: datadogV2.ROLESTYPE_ROLES.Ptr(),
+				AuthNMappingRelationshipToRole: &datadogV2.AuthNMappingRelationshipToRole{
+					Role: datadogV2.RelationshipToRole{
+						Data: &datadogV2.RelationshipToRoleData{
+							Id:   datadog.PtrString(RoleDataID),
+							Type: datadogV2.ROLESTYPE_ROLES.Ptr(),
+						},
 					},
-				},
-			},
+				}},
 			Type: datadogV2.AUTHNMAPPINGSTYPE_AUTHN_MAPPINGS,
 		},
 	}
