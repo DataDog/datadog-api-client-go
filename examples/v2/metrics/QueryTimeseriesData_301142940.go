@@ -25,7 +25,7 @@ func main() {
 						},
 					},
 				},
-				From:     1671612804000,
+				From:     1636625471000,
 				Interval: datadog.PtrInt64(5000),
 				Queries: []datadogV2.TimeseriesQuery{
 					datadogV2.TimeseriesQuery{
@@ -35,7 +35,7 @@ func main() {
 							Name:       datadog.PtrString("a"),
 						}},
 				},
-				To: 1671620004000,
+				To: 1636629071000,
 			},
 			Type: datadogV2.TIMESERIESFORMULAREQUESTTYPE_TIMESERIES_REQUEST,
 		},
