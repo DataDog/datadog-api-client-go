@@ -25,7 +25,7 @@ func main() {
 						},
 					},
 				},
-				From: 1636625471000,
+				From: 1671612804000,
 				Queries: []datadogV2.ScalarQuery{
 					datadogV2.ScalarQuery{
 						MetricsScalarQuery: &datadogV2.MetricsScalarQuery{
@@ -35,7 +35,7 @@ func main() {
 							Name:       datadog.PtrString("a"),
 						}},
 				},
-				To: 1636629071000,
+				To: 1671620004000,
 			},
 			Type: datadogV2.SCALARFORMULAREQUESTTYPE_SCALAR_REQUEST,
 		},

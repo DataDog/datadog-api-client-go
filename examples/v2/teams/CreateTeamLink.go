@@ -20,7 +20,7 @@ func main() {
 		Data: datadogV2.TeamLinkCreate{
 			Attributes: datadogV2.TeamLinkAttributes{
 				Label:    "Link label",
-				Url:      "https://example.com",
+				Url:      "https://example.com/one",
 				Position: datadog.PtrInt32(0),
 			},
 			Type: datadogV2.TEAMLINKTYPE_TEAM_LINKS,
