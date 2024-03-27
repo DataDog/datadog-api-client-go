@@ -262,6 +262,7 @@
 //   - [SecurityMonitoringApi.UpdateSecurityFilter]
 //   - [SecurityMonitoringApi.UpdateSecurityMonitoringRule]
 //   - [SecurityMonitoringApi.UpdateSecurityMonitoringSuppression]
+//   - [SecurityMonitoringApi.ValidateSecurityMonitoringRule]
 //   - [SensitiveDataScannerApi.CreateScanningGroup]
 //   - [SensitiveDataScannerApi.CreateScanningRule]
 //   - [SensitiveDataScannerApi.DeleteScanningGroup]
