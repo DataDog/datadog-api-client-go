@@ -31,7 +31,7 @@ func main() {
 					datadogV2.TimeseriesQuery{
 						MetricsTimeseriesQuery: &datadogV2.MetricsTimeseriesQuery{
 							DataSource: datadogV2.METRICSDATASOURCE_METRICS,
-							Query:      "avg:system.cpu.user{*}",
+							Query:      "avg:datadog.estimated_usage.metrics.custom{*}",
 							Name:       datadog.PtrString("a"),
 						}},
 				},
