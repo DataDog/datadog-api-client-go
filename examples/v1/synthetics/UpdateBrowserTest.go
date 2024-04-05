@@ -37,7 +37,10 @@ func main() {
 					Key:  &datadogV1.SyntheticsTestRequestCertificateItem{},
 				},
 				CertificateDomains: []string{},
-				HttpVersion:        datadogV1.SYNTHETICSTESTOPTIONSHTTPVERSION_HTTP1.Ptr(),
+				Files: []datadogV1.SyntheticsTestRequestBodyFile{
+					{},
+				},
+				HttpVersion: datadogV1.SYNTHETICSTESTOPTIONSHTTPVERSION_HTTP1.Ptr(),
 				Proxy: &datadogV1.SyntheticsTestRequestProxy{
 					Url: "https://example.com",
 				},
