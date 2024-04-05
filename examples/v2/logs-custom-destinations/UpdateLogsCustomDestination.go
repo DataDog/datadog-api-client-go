@@ -19,7 +19,11 @@ func main() {
 	body := datadogV2.CustomDestinationUpdateRequest{
 		Data: &datadogV2.CustomDestinationUpdateRequestDefinition{
 			Attributes: &datadogV2.CustomDestinationUpdateRequestAttributes{
-				Name: datadog.PtrString("Nginx logs (Updated)"),
+				Name:                           datadog.PtrString("Nginx logs (Updated)"),
+				Query:                          datadog.PtrString("source:nginx"),
+				Enabled:                        datadog.PtrBool(false),
+				ForwardTags:                    datadog.PtrBool(false),
+				ForwardTagsRestrictionListType: datadogV2.CUSTOMDESTINATIONATTRIBUTETAGSRESTRICTIONLISTTYPE_BLOCK_LIST.Ptr(),
 			},
 			Type: datadogV2.CUSTOMDESTINATIONTYPE_CUSTOM_DESTINATION,
 			Id:   CustomDestinationDataID,
