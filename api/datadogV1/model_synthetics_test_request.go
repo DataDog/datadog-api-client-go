@@ -32,12 +32,16 @@ type SyntheticsTestRequest struct {
 	DnsServer *string `json:"dnsServer,omitempty"`
 	// DNS server port to use for DNS tests.
 	DnsServerPort *int32 `json:"dnsServerPort,omitempty"`
+	// Files to be used as part of the request in the test.
+	Files []SyntheticsTestRequestBodyFile `json:"files,omitempty"`
 	// Specifies whether or not the request follows redirects.
 	FollowRedirects *bool `json:"follow_redirects,omitempty"`
 	// Headers to include when performing the test.
 	Headers map[string]string `json:"headers,omitempty"`
 	// Host name to perform the test with.
 	Host *string `json:"host,omitempty"`
+	// HTTP version to use for a Synthetic test.
+	HttpVersion *SyntheticsTestOptionsHTTPVersion `json:"httpVersion,omitempty"`
 	// Message to send for UDP or WebSocket tests.
 	Message *string `json:"message,omitempty"`
 	// Metadata to include when performing the gRPC test.
@@ -398,6 +402,34 @@ func (o *SyntheticsTestRequest) SetDnsServerPort(v int32) {
 	o.DnsServerPort = &v
 }
 
+// GetFiles returns the Files field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetFiles() []SyntheticsTestRequestBodyFile {
+	if o == nil || o.Files == nil {
+		var ret []SyntheticsTestRequestBodyFile
+		return ret
+	}
+	return o.Files
+}
+
+// GetFilesOk returns a tuple with the Files field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetFilesOk() (*[]SyntheticsTestRequestBodyFile, bool) {
+	if o == nil || o.Files == nil {
+		return nil, false
+	}
+	return &o.Files, true
+}
+
+// HasFiles returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasFiles() bool {
+	return o != nil && o.Files != nil
+}
+
+// SetFiles gets a reference to the given []SyntheticsTestRequestBodyFile and assigns it to the Files field.
+func (o *SyntheticsTestRequest) SetFiles(v []SyntheticsTestRequestBodyFile) {
+	o.Files = v
+}
+
 // GetFollowRedirects returns the FollowRedirects field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetFollowRedirects() bool {
 	if o == nil || o.FollowRedirects == nil {
@@ -480,6 +512,34 @@ func (o *SyntheticsTestRequest) HasHost() bool {
 // SetHost gets a reference to the given string and assigns it to the Host field.
 func (o *SyntheticsTestRequest) SetHost(v string) {
 	o.Host = &v
+}
+
+// GetHttpVersion returns the HttpVersion field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetHttpVersion() SyntheticsTestOptionsHTTPVersion {
+	if o == nil || o.HttpVersion == nil {
+		var ret SyntheticsTestOptionsHTTPVersion
+		return ret
+	}
+	return *o.HttpVersion
+}
+
+// GetHttpVersionOk returns a tuple with the HttpVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetHttpVersionOk() (*SyntheticsTestOptionsHTTPVersion, bool) {
+	if o == nil || o.HttpVersion == nil {
+		return nil, false
+	}
+	return o.HttpVersion, true
+}
+
+// HasHttpVersion returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasHttpVersion() bool {
+	return o != nil && o.HttpVersion != nil
+}
+
+// SetHttpVersion gets a reference to the given SyntheticsTestOptionsHTTPVersion and assigns it to the HttpVersion field.
+func (o *SyntheticsTestRequest) SetHttpVersion(v SyntheticsTestOptionsHTTPVersion) {
+	o.HttpVersion = &v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
@@ -913,6 +973,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.DnsServerPort != nil {
 		toSerialize["dnsServerPort"] = o.DnsServerPort
 	}
+	if o.Files != nil {
+		toSerialize["files"] = o.Files
+	}
 	if o.FollowRedirects != nil {
 		toSerialize["follow_redirects"] = o.FollowRedirects
 	}
@@ -921,6 +984,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Host != nil {
 		toSerialize["host"] = o.Host
+	}
+	if o.HttpVersion != nil {
+		toSerialize["httpVersion"] = o.HttpVersion
 	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
@@ -985,9 +1051,11 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		CompressedProtoFile      *string                           `json:"compressedProtoFile,omitempty"`
 		DnsServer                *string                           `json:"dnsServer,omitempty"`
 		DnsServerPort            *int32                            `json:"dnsServerPort,omitempty"`
+		Files                    []SyntheticsTestRequestBodyFile   `json:"files,omitempty"`
 		FollowRedirects          *bool                             `json:"follow_redirects,omitempty"`
 		Headers                  map[string]string                 `json:"headers,omitempty"`
 		Host                     *string                           `json:"host,omitempty"`
+		HttpVersion              *SyntheticsTestOptionsHTTPVersion `json:"httpVersion,omitempty"`
 		Message                  *string                           `json:"message,omitempty"`
 		Metadata                 map[string]string                 `json:"metadata,omitempty"`
 		Method                   *string                           `json:"method,omitempty"`
@@ -1008,7 +1076,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allow_insecure", "basicAuth", "body", "bodyType", "callType", "certificate", "certificateDomains", "compressedJsonDescriptor", "compressedProtoFile", "dnsServer", "dnsServerPort", "follow_redirects", "headers", "host", "message", "metadata", "method", "noSavingResponseBody", "numberOfPackets", "persistCookies", "port", "proxy", "query", "servername", "service", "shouldTrackHops", "timeout", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"allow_insecure", "basicAuth", "body", "bodyType", "callType", "certificate", "certificateDomains", "compressedJsonDescriptor", "compressedProtoFile", "dnsServer", "dnsServerPort", "files", "follow_redirects", "headers", "host", "httpVersion", "message", "metadata", "method", "noSavingResponseBody", "numberOfPackets", "persistCookies", "port", "proxy", "query", "servername", "service", "shouldTrackHops", "timeout", "url"})
 	} else {
 		return err
 	}
@@ -1036,9 +1104,15 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.CompressedProtoFile = all.CompressedProtoFile
 	o.DnsServer = all.DnsServer
 	o.DnsServerPort = all.DnsServerPort
+	o.Files = all.Files
 	o.FollowRedirects = all.FollowRedirects
 	o.Headers = all.Headers
 	o.Host = all.Host
+	if all.HttpVersion != nil && !all.HttpVersion.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.HttpVersion = all.HttpVersion
+	}
 	o.Message = all.Message
 	o.Metadata = all.Metadata
 	o.Method = all.Method

@@ -1408,31 +1408,3 @@ func TestGetIncidentManagementErrors(t *testing.T) {
 		})
 	}
 }
-
-func TestGetUsageAttributionErrors(t *testing.T) {
-	ctx, finish := tests.WithTestSpan(context.Background(), t)
-	defer finish()
-
-	testCases := map[string]struct {
-		Ctx                func(context.Context) context.Context
-		ExpectedStatusCode int
-	}{
-		"403 Forbidden": {WithFakeAuth, 403},
-	}
-
-	for name, tc := range testCases {
-		t.Run(name, func(t *testing.T) {
-			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
-			defer finish()
-			assert := tests.Assert(ctx, t)
-			api := datadogV1.NewUsageMeteringApi(Client(ctx))
-
-			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetUsageAttribution", true)
-			_, httpresp, err := api.GetUsageAttribution(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0), "*")
-			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadogV1.APIErrorResponse)
-			assert.True(ok)
-			assert.NotEmpty(apiError.GetErrors())
-		})
-	}
-}

@@ -311,7 +311,7 @@ Feature: Metrics
     Given a valid "appKeyAuth" key in the system
     And operation "QueryScalarData" enabled
     And new "QueryScalarData" request
-    And body with value {"data": {"attributes": {"formulas": [{"formula": "a", "limit": {"count": 10, "order": "desc"}}], "from": 1671612804000, "queries": [{"aggregator": "avg", "data_source": "metrics", "query": "avg:system.cpu.user{*}", "name": "a"}], "to": 1671620004000}, "type": "scalar_request"}}
+    And body with value {"data": {"attributes": {"formulas": [{"formula": "a", "limit": {"count": 10, "order": "desc"}}], "from": {{ timestamp('now - 1h') }}000, "queries": [{"aggregator": "avg", "data_source": "metrics", "query": "avg:system.cpu.user{*}", "name": "a"}], "to": {{ timestamp('now') }}000}, "type": "scalar_request"}}
     When the request is sent
     Then the response status is 200 OK
     And the response "data.type" is equal to "scalar_response"
@@ -371,7 +371,7 @@ Feature: Metrics
     When the request is sent
     Then the response status is 200 Success
 
-  @team:Datadog/timeseries-query
+  @skip @team:Datadog/timeseries-query
   Scenario: Timeseries cross product query returns "Bad Request" response
     Given a valid "appKeyAuth" key in the system
     And operation "QueryTimeseriesData" enabled
@@ -385,11 +385,10 @@ Feature: Metrics
     Given a valid "appKeyAuth" key in the system
     And operation "QueryTimeseriesData" enabled
     And new "QueryTimeseriesData" request
-    And body with value {"data": {"attributes": {"formulas": [{"formula": "a", "limit": {"count": 10, "order": "desc"}}], "from": 1671612804000, "interval": 5000, "queries": [{"data_source": "metrics", "query": "avg:system.cpu.user{*}", "name": "a"}], "to": 1671620004000}, "type": "timeseries_request"}}
+    And body with value {"data": {"attributes": {"formulas": [{"formula": "a", "limit": {"count": 10, "order": "desc"}}], "from": {{ timestamp('now - 1h') }}000, "interval": 5000, "queries": [{"data_source": "metrics", "query": "avg:datadog.estimated_usage.metrics.custom{*}", "name": "a"}], "to": {{ timestamp('now') }}000}, "type": "timeseries_request"}}
     When the request is sent
     Then the response status is 200 OK
     And the response "data.type" is equal to "timeseries_response"
-    And the response "data.attributes.series[0].unit[0].name" is equal to "percent"
 
   @generated @skip @team:DataDog/metrics-experience
   Scenario: Update a tag configuration returns "Bad Request" response

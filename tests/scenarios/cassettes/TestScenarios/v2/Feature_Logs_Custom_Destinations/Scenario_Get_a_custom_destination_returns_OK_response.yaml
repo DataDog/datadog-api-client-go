@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"enabled":false,"forward_tags":false,"forward_tags_restriction_list":["host"],"forward_tags_restriction_list_type":"BLOCK_LIST","forwarder_destination":{"auth":{"password":"my-password","type":"basic","username":"my-username"},"endpoint":"https://example.com","type":"http"},"name":"Test-Get_a_custom_destination_returns_OK_response-1710235213","query":"source:nginx"},"type":"custom_destination"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/logs/config/custom-destinations
+  response:
+    body: '{"data":{"id":"13e3f7e6-307e-4a91-a269-e016da18efc5","attributes":{"name":"Test-Get_a_custom_destination_returns_OK_response-1710235213","query":"source:nginx","enabled":false,"forwarder_destination":{"endpoint":"https://example.com","auth":{"type":"basic"},"type":"http"},"forward_tags_restriction_list_type":"BLOCK_LIST","forward_tags_restriction_list":["host"],"forward_tags":false},"type":"custom_destination"}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 1
+    method: GET
+    url: https://api.datadoghq.com/api/v2/logs/config/custom-destinations/13e3f7e6-307e-4a91-a269-e016da18efc5
+  response:
+    body: '{"data":{"id":"13e3f7e6-307e-4a91-a269-e016da18efc5","attributes":{"name":"Test-Get_a_custom_destination_returns_OK_response-1710235213","query":"source:nginx","enabled":false,"forwarder_destination":{"endpoint":"https://example.com","auth":{"type":"basic"},"type":"http"},"forward_tags_restriction_list_type":"BLOCK_LIST","forward_tags_restriction_list":["host"],"forward_tags":false},"type":"custom_destination"}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/logs/config/custom-destinations/13e3f7e6-307e-4a91-a269-e016da18efc5
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+    status: 204 No Content
+version: 2

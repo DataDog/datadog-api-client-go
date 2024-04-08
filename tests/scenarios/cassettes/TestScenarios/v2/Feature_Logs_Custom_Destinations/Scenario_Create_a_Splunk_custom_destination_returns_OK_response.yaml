@@ -1,0 +1,42 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"enabled":false,"forward_tags":false,"forward_tags_restriction_list":["datacenter","host"],"forward_tags_restriction_list_type":"ALLOW_LIST","forwarder_destination":{"access_token":"my-access-token","endpoint":"https://example.com","type":"splunk_hec"},"name":"Nginx logs","query":"source:nginx"},"type":"custom_destination"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/logs/config/custom-destinations
+  response:
+    body: '{"data":{"id":"dcdf0ca2-b06a-4b75-8b07-0ba1987bd2fe","attributes":{"name":"Nginx
+      logs","query":"source:nginx","enabled":false,"forwarder_destination":{"endpoint":"https://example.com","type":"splunk_hec"},"forward_tags_restriction_list_type":"ALLOW_LIST","forward_tags_restriction_list":["datacenter","host"],"forward_tags":false},"type":"custom_destination"}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/logs/config/custom-destinations/dcdf0ca2-b06a-4b75-8b07-0ba1987bd2fe
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+    status: 204 No Content
+version: 2

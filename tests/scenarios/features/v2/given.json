@@ -192,7 +192,7 @@
     "parameters": [
       {
         "name": "body",
-        "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"client_email\": \"{{ unique_hash }}@example.com\",\n      \"host_filters\": []\n    },\n    \"type\": \"gcp_service_account\"\n  }\n}"
+        "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"client_email\": \"Test-{{ unique_hash }}@example.com\",\n      \"host_filters\": []\n    },\n    \"type\": \"gcp_service_account\"\n  }\n}"
       }
     ],
     "step": "there is a valid \"gcp_sts_account\" in the system",
@@ -283,6 +283,18 @@
     "key": "ip_allowlist_nonempty_disabled",
     "tag": "IP Allowlist",
     "operationId": "UpdateIPAllowlist"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"{{ unique }}\",\n      \"query\": \"source:nginx\",\n      \"enabled\": false,\n      \"forwarder_destination\": {\n        \"type\": \"http\",\n        \"endpoint\": \"https://example.com\",\n        \"auth\": {\n          \"type\": \"basic\",\n          \"username\": \"my-username\",\n          \"password\": \"my-password\"\n        }\n      },\n      \"forward_tags_restriction_list_type\": \"BLOCK_LIST\",\n      \"forward_tags_restriction_list\": [\"host\"],\n      \"forward_tags\": false\n    },\n    \"type\": \"custom_destination\"\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"custom_destination\" in the system",
+    "key": "custom_destination",
+    "tag": "Logs Custom Destinations",
+    "operationId": "CreateLogsCustomDestination"
   },
   {
     "parameters": [

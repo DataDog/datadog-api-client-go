@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 0
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/logs/config/custom-destinations/does-not-exist
+  response:
+    body: '{"errors":["NotFound"]}
+
+      '
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 2
