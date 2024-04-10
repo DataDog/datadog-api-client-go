@@ -1,4 +1,4 @@
-// Create a suppression rule returns "OK" response
+// Create a suppression rule with an exclusion query returns "OK" response
 
 package main
 
@@ -16,12 +16,12 @@ func main() {
 	body := datadogV2.SecurityMonitoringSuppressionCreateRequest{
 		Data: datadogV2.SecurityMonitoringSuppressionCreateData{
 			Attributes: datadogV2.SecurityMonitoringSuppressionCreateAttributes{
-				Description:      datadog.PtrString("This rule suppresses low-severity signals in staging environments."),
-				Enabled:          true,
-				ExpirationDate:   datadog.PtrInt64(1703187336000),
-				Name:             "Example-Security-Monitoring",
-				RuleQuery:        "type:log_detection source:cloudtrail",
-				SuppressionQuery: datadog.PtrString("env:staging status:low"),
+				Description:        datadog.PtrString("This rule suppresses low-severity signals in staging environments."),
+				Enabled:            true,
+				ExpirationDate:     datadog.PtrInt64(1703187336000),
+				Name:               "Example-Security-Monitoring",
+				RuleQuery:          "type:log_detection source:cloudtrail",
+				DataExclusionQuery: datadog.PtrString("account_id:12345"),
 			},
 			Type: datadogV2.SECURITYMONITORINGSUPPRESSIONTYPE_SUPPRESSIONS,
 		},
