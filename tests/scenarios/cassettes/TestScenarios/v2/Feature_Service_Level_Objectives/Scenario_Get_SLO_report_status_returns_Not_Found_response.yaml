@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/slo/report/2b468c54-f2a7-11ee-b0b4-ffe56bb6ad43/status
+  response:
+    body: '{"errors":[{"title":"Not Found","detail":"report ID not found: 2b468c54-f2a7-11ee-b0b4-ffe56bb6ad43"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2
