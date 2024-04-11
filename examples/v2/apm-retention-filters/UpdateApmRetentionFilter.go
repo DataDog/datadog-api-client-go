@@ -18,14 +18,14 @@ func main() {
 
 	body := datadogV2.RetentionFilterUpdateRequest{
 		Data: datadogV2.RetentionFilterUpdateData{
-			Attributes: datadogV2.RetentionFilterCreateAttributes{
+			Attributes: datadogV2.RetentionFilterUpdateAttributes{
 				Name: "test",
 				Rate: 0.9,
 				Filter: datadogV2.SpansFilterCreate{
 					Query: "@_top_level:1 test:service-demo",
 				},
 				Enabled:    true,
-				FilterType: datadogV2.RETENTIONFILTERTYPE_SPANS_SAMPLING_PROCESSOR,
+				FilterType: datadogV2.RETENTIONFILTERALLTYPE_SPANS_SAMPLING_PROCESSOR,
 			},
 			Id:   "test-id",
 			Type: datadogV2.APMRETENTIONFILTERTYPE_apm_retention_filter,
