@@ -59,6 +59,7 @@ func main() {
 					Type:    datadogV1.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
+			VariablesFromScript: datadog.PtrString(`dd.variable.set("FOO", "foo")`),
 			Request: &datadogV1.SyntheticsTestRequest{
 				Certificate: &datadogV1.SyntheticsTestRequestCertificate{
 					Cert: &datadogV1.SyntheticsTestRequestCertificateItem{
