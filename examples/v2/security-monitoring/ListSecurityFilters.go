@@ -1,4 +1,4 @@
-// Get all security filters returns "OK" response
+// List security filters returns "OK" response
 
 package main
 
