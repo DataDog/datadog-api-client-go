@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/slo/report
   response:
-    body: '{"data":{"id":"8226c9b6-f69a-11ee-8916-13e390f416b9","type":"report_id"}}'
+    body: '{"data":{"id":"98c67bea-fdbf-11ee-8a01-bfd37432018b","type":"report_id"}}'
     code: 200
     duration: 0ms
     headers:
