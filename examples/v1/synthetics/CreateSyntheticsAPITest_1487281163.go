@@ -41,6 +41,15 @@ func main() {
 						Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY,
 					}},
 				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionJSONSchemaTarget: &datadogV1.SyntheticsAssertionJSONSchemaTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONJSONSCHEMAOPERATOR_VALIDATES_JSON_SCHEMA,
+						Target: &datadogV1.SyntheticsAssertionJSONSchemaTargetTarget{
+							MetaSchema: datadogV1.SYNTHETICSASSERTIONJSONSCHEMAMETASCHEMA_DRAFT_07.Ptr(),
+							JsonSchema: datadog.PtrString(`{"type": "object", "properties":{"slideshow":{"type":"object"}}}`),
+						},
+						Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY,
+					}},
+				datadogV1.SyntheticsAssertion{
 					SyntheticsAssertionXPathTarget: &datadogV1.SyntheticsAssertionXPathTarget{
 						Operator: datadogV1.SYNTHETICSASSERTIONXPATHOPERATOR_VALIDATES_X_PATH,
 						Target: &datadogV1.SyntheticsAssertionXPathTargetTarget{
