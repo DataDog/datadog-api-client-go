@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RetentionFilterResponse The retention filters definition.
-type RetentionFilterResponse struct {
+// RetentionFilterCreateResponse The retention filters definition.
+type RetentionFilterCreateResponse struct {
 	// The definition of the retention filter.
-	Data *RetentionFilterAll `json:"data,omitempty"`
+	Data *RetentionFilter `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
 }
 
-// NewRetentionFilterResponse instantiates a new RetentionFilterResponse object.
+// NewRetentionFilterCreateResponse instantiates a new RetentionFilterCreateResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRetentionFilterResponse() *RetentionFilterResponse {
-	this := RetentionFilterResponse{}
+func NewRetentionFilterCreateResponse() *RetentionFilterCreateResponse {
+	this := RetentionFilterCreateResponse{}
 	return &this
 }
 
-// NewRetentionFilterResponseWithDefaults instantiates a new RetentionFilterResponse object.
+// NewRetentionFilterCreateResponseWithDefaults instantiates a new RetentionFilterCreateResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRetentionFilterResponseWithDefaults() *RetentionFilterResponse {
-	this := RetentionFilterResponse{}
+func NewRetentionFilterCreateResponseWithDefaults() *RetentionFilterCreateResponse {
+	this := RetentionFilterCreateResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *RetentionFilterResponse) GetData() RetentionFilterAll {
+func (o *RetentionFilterCreateResponse) GetData() RetentionFilter {
 	if o == nil || o.Data == nil {
-		var ret RetentionFilterAll
+		var ret RetentionFilter
 		return ret
 	}
 	return *o.Data
@@ -45,7 +45,7 @@ func (o *RetentionFilterResponse) GetData() RetentionFilterAll {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RetentionFilterResponse) GetDataOk() (*RetentionFilterAll, bool) {
+func (o *RetentionFilterCreateResponse) GetDataOk() (*RetentionFilter, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *RetentionFilterResponse) GetDataOk() (*RetentionFilterAll, bool) {
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *RetentionFilterResponse) HasData() bool {
+func (o *RetentionFilterCreateResponse) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
-// SetData gets a reference to the given RetentionFilterAll and assigns it to the Data field.
-func (o *RetentionFilterResponse) SetData(v RetentionFilterAll) {
+// SetData gets a reference to the given RetentionFilter and assigns it to the Data field.
+func (o *RetentionFilterCreateResponse) SetData(v RetentionFilter) {
 	o.Data = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RetentionFilterResponse) MarshalJSON() ([]byte, error) {
+func (o RetentionFilterCreateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,9 +79,9 @@ func (o RetentionFilterResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RetentionFilterResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RetentionFilterCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *RetentionFilterAll `json:"data,omitempty"`
+		Data *RetentionFilter `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
