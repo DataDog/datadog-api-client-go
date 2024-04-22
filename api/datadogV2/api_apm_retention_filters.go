@@ -21,11 +21,11 @@ type APMRetentionFiltersApi datadog.Service
 // Returns the retention filter definition when the request is successful.
 //
 // Default filters with types spans-errors-sampling-processor and spans-appsec-sampling-processor cannot be created.
-func (a *APMRetentionFiltersApi) CreateApmRetentionFilter(ctx _context.Context, body RetentionFilterCreateRequest) (RetentionFilterResponse, *_nethttp.Response, error) {
+func (a *APMRetentionFiltersApi) CreateApmRetentionFilter(ctx _context.Context, body RetentionFilterCreateRequest) (RetentionFilterCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue RetentionFilterResponse
+		localVarReturnValue RetentionFilterCreateResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.APMRetentionFiltersApi.CreateApmRetentionFilter")
