@@ -1,0 +1,64 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testupdateacsmthreatsagentrulereturnsbadrequestresponse1713895070"},"type":"agent_rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules
+  response:
+    body: '{"data":{"id":"rgf-aao-lo8","type":"agent_rule","attributes":{"category":"Process
+      Activity","creationDate":1713895070561,"creator":{"name":"","handle":"frog@datadoghq.com"},"defaultRule":false,"description":"My
+      Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","filters":["os
+      == \"linux\""],"name":"testupdateacsmthreatsagentrulereturnsbadrequestresponse1713895070","updateDate":1713895070561,"updater":{"name":"","handle":"frog@datadoghq.com"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"description":"Test Agent rule","enabled":true,"expression":"open.file.path = sh"},"id":"abc-123-xyz","type":"agent_rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/rgf-aao-lo8
+  response:
+    body: '{"errors":[{"title":"failed to update rule"}]}
+
+      '
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/rgf-aao-lo8
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 204 No Content
+version: 2

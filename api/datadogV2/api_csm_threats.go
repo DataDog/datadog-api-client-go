@@ -14,19 +14,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CloudWorkloadSecurityApi service type
-type CloudWorkloadSecurityApi datadog.Service
+// CSMThreatsApi service type
+type CSMThreatsApi datadog.Service
 
 // CreateCSMThreatsAgentRule Create a CSM Threats Agent rule.
 // Create a new Cloud Security Management Threats Agent rule with the given parameters.
-func (a *CloudWorkloadSecurityApi) CreateCSMThreatsAgentRule(ctx _context.Context, body CloudWorkloadSecurityAgentRuleCreateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
+func (a *CSMThreatsApi) CreateCSMThreatsAgentRule(ctx _context.Context, body CloudWorkloadSecurityAgentRuleCreateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.CreateCSMThreatsAgentRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.CreateCSMThreatsAgentRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -92,14 +92,14 @@ func (a *CloudWorkloadSecurityApi) CreateCSMThreatsAgentRule(ctx _context.Contex
 
 // CreateCloudWorkloadSecurityAgentRule Create a Cloud Workload Security Agent rule.
 // Create a new Agent rule with the given parameters.
-func (a *CloudWorkloadSecurityApi) CreateCloudWorkloadSecurityAgentRule(ctx _context.Context, body CloudWorkloadSecurityAgentRuleCreateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
+func (a *CSMThreatsApi) CreateCloudWorkloadSecurityAgentRule(ctx _context.Context, body CloudWorkloadSecurityAgentRuleCreateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.CreateCloudWorkloadSecurityAgentRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.CreateCloudWorkloadSecurityAgentRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -165,13 +165,13 @@ func (a *CloudWorkloadSecurityApi) CreateCloudWorkloadSecurityAgentRule(ctx _con
 
 // DeleteCSMThreatsAgentRule Delete a CSM Threats Agent rule.
 // Delete a specific Cloud Security Management Threats Agent rule.
-func (a *CloudWorkloadSecurityApi) DeleteCSMThreatsAgentRule(ctx _context.Context, agentRuleId string) (*_nethttp.Response, error) {
+func (a *CSMThreatsApi) DeleteCSMThreatsAgentRule(ctx _context.Context, agentRuleId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.DeleteCSMThreatsAgentRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.DeleteCSMThreatsAgentRule")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -226,13 +226,13 @@ func (a *CloudWorkloadSecurityApi) DeleteCSMThreatsAgentRule(ctx _context.Contex
 
 // DeleteCloudWorkloadSecurityAgentRule Delete a Cloud Workload Security Agent rule.
 // Delete a specific Agent rule.
-func (a *CloudWorkloadSecurityApi) DeleteCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string) (*_nethttp.Response, error) {
+func (a *CSMThreatsApi) DeleteCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.DeleteCloudWorkloadSecurityAgentRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.DeleteCloudWorkloadSecurityAgentRule")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -289,14 +289,14 @@ func (a *CloudWorkloadSecurityApi) DeleteCloudWorkloadSecurityAgentRule(ctx _con
 // The download endpoint generates a CSM Threats policy file from your currently active
 // CSM Threats rules, and downloads them as a `.policy` file. This file can then be deployed to
 // your Agents to update the policy running in your environment.
-func (a *CloudWorkloadSecurityApi) DownloadCSMThreatsPolicy(ctx _context.Context) (_io.Reader, *_nethttp.Response, error) {
+func (a *CSMThreatsApi) DownloadCSMThreatsPolicy(ctx _context.Context) (_io.Reader, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue _io.Reader
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.DownloadCSMThreatsPolicy")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.DownloadCSMThreatsPolicy")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -353,14 +353,14 @@ func (a *CloudWorkloadSecurityApi) DownloadCSMThreatsPolicy(ctx _context.Context
 // The download endpoint generates a Cloud Workload Security policy file from your currently active
 // Cloud Workload Security rules, and downloads them as a .policy file. This file can then be deployed to
 // your Agents to update the policy running in your environment.
-func (a *CloudWorkloadSecurityApi) DownloadCloudWorkloadPolicyFile(ctx _context.Context) (_io.Reader, *_nethttp.Response, error) {
+func (a *CSMThreatsApi) DownloadCloudWorkloadPolicyFile(ctx _context.Context) (_io.Reader, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue _io.Reader
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.DownloadCloudWorkloadPolicyFile")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.DownloadCloudWorkloadPolicyFile")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -415,14 +415,14 @@ func (a *CloudWorkloadSecurityApi) DownloadCloudWorkloadPolicyFile(ctx _context.
 
 // GetCSMThreatsAgentRule Get a CSM Threats Agent rule.
 // Get the details of a specific Cloud Security Management Threats Agent rule.
-func (a *CloudWorkloadSecurityApi) GetCSMThreatsAgentRule(ctx _context.Context, agentRuleId string) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
+func (a *CSMThreatsApi) GetCSMThreatsAgentRule(ctx _context.Context, agentRuleId string) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.GetCSMThreatsAgentRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.GetCSMThreatsAgentRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -486,14 +486,14 @@ func (a *CloudWorkloadSecurityApi) GetCSMThreatsAgentRule(ctx _context.Context, 
 
 // GetCloudWorkloadSecurityAgentRule Get a Cloud Workload Security Agent rule.
 // Get the details of a specific Agent rule.
-func (a *CloudWorkloadSecurityApi) GetCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
+func (a *CSMThreatsApi) GetCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.GetCloudWorkloadSecurityAgentRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.GetCloudWorkloadSecurityAgentRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -557,14 +557,14 @@ func (a *CloudWorkloadSecurityApi) GetCloudWorkloadSecurityAgentRule(ctx _contex
 
 // ListCSMThreatsAgentRules Get all CSM Threats Agent rules.
 // Get the list of Cloud Security Management Threats Agent rules.
-func (a *CloudWorkloadSecurityApi) ListCSMThreatsAgentRules(ctx _context.Context) (CloudWorkloadSecurityAgentRulesListResponse, *_nethttp.Response, error) {
+func (a *CSMThreatsApi) ListCSMThreatsAgentRules(ctx _context.Context) (CloudWorkloadSecurityAgentRulesListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue CloudWorkloadSecurityAgentRulesListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.ListCSMThreatsAgentRules")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.ListCSMThreatsAgentRules")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -627,14 +627,14 @@ func (a *CloudWorkloadSecurityApi) ListCSMThreatsAgentRules(ctx _context.Context
 
 // ListCloudWorkloadSecurityAgentRules Get all Cloud Workload Security Agent rules.
 // Get the list of Agent rules.
-func (a *CloudWorkloadSecurityApi) ListCloudWorkloadSecurityAgentRules(ctx _context.Context) (CloudWorkloadSecurityAgentRulesListResponse, *_nethttp.Response, error) {
+func (a *CSMThreatsApi) ListCloudWorkloadSecurityAgentRules(ctx _context.Context) (CloudWorkloadSecurityAgentRulesListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue CloudWorkloadSecurityAgentRulesListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.ListCloudWorkloadSecurityAgentRules")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.ListCloudWorkloadSecurityAgentRules")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -698,14 +698,14 @@ func (a *CloudWorkloadSecurityApi) ListCloudWorkloadSecurityAgentRules(ctx _cont
 // UpdateCSMThreatsAgentRule Update a CSM Threats Agent rule.
 // Update a specific Cloud Security Management Threats Agent rule.
 // Returns the Agent rule object when the request is successful.
-func (a *CloudWorkloadSecurityApi) UpdateCSMThreatsAgentRule(ctx _context.Context, agentRuleId string, body CloudWorkloadSecurityAgentRuleUpdateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
+func (a *CSMThreatsApi) UpdateCSMThreatsAgentRule(ctx _context.Context, agentRuleId string, body CloudWorkloadSecurityAgentRuleUpdateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.UpdateCSMThreatsAgentRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.UpdateCSMThreatsAgentRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -773,14 +773,14 @@ func (a *CloudWorkloadSecurityApi) UpdateCSMThreatsAgentRule(ctx _context.Contex
 // UpdateCloudWorkloadSecurityAgentRule Update a Cloud Workload Security Agent rule.
 // Update a specific Agent rule.
 // Returns the Agent rule object when the request is successful.
-func (a *CloudWorkloadSecurityApi) UpdateCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string, body CloudWorkloadSecurityAgentRuleUpdateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
+func (a *CSMThreatsApi) UpdateCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string, body CloudWorkloadSecurityAgentRuleUpdateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
 		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudWorkloadSecurityApi.UpdateCloudWorkloadSecurityAgentRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.UpdateCloudWorkloadSecurityAgentRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -845,9 +845,9 @@ func (a *CloudWorkloadSecurityApi) UpdateCloudWorkloadSecurityAgentRule(ctx _con
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// NewCloudWorkloadSecurityApi Returns NewCloudWorkloadSecurityApi.
-func NewCloudWorkloadSecurityApi(client *datadog.APIClient) *CloudWorkloadSecurityApi {
-	return &CloudWorkloadSecurityApi{
+// NewCSMThreatsApi Returns NewCSMThreatsApi.
+func NewCSMThreatsApi(client *datadog.APIClient) *CSMThreatsApi {
+	return &CSMThreatsApi{
 		Client: client,
 	}
 }

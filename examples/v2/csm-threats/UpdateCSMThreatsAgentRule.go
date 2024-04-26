@@ -1,4 +1,4 @@
-// Update a Cloud Workload Security Agent rule returns "OK" response
+// Update a CSM Threats Agent rule returns "OK" response
 
 package main
 
@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	// there is a valid "agent_rule" in the system
+	// there is a valid "agent_rule_rc" in the system
 	AgentRuleDataID := os.Getenv("AGENT_RULE_DATA_ID")
 
 	body := datadogV2.CloudWorkloadSecurityAgentRuleUpdateRequest{
@@ -24,19 +24,20 @@ func main() {
 				Expression:  datadog.PtrString(`exec.file.name == "sh"`),
 			},
 			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
+			Id:   datadog.PtrString(AgentRuleDataID),
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewCloudWorkloadSecurityApi(apiClient)
-	resp, r, err := api.UpdateCloudWorkloadSecurityAgentRule(ctx, AgentRuleDataID, body)
+	api := datadogV2.NewCSMThreatsApi(apiClient)
+	resp, r, err := api.UpdateCSMThreatsAgentRule(ctx, AgentRuleDataID, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CloudWorkloadSecurityApi.UpdateCloudWorkloadSecurityAgentRule`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.UpdateCSMThreatsAgentRule`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `CloudWorkloadSecurityApi.UpdateCloudWorkloadSecurityAgentRule`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `CSMThreatsApi.UpdateCSMThreatsAgentRule`:\n%s\n", responseContent)
 }
