@@ -18,11 +18,11 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewCloudWorkloadSecurityApi(apiClient)
+	api := datadogV2.NewCSMThreatsApi(apiClient)
 	r, err := api.DeleteCloudWorkloadSecurityAgentRule(ctx, AgentRuleDataID)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CloudWorkloadSecurityApi.DeleteCloudWorkloadSecurityAgentRule`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.DeleteCloudWorkloadSecurityAgentRule`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

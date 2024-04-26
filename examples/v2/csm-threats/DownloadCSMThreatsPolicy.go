@@ -1,4 +1,4 @@
-// Get the latest Cloud Workload Security policy returns "OK" response
+// Get the latest CSM Threats policy returns "OK" response
 
 package main
 
@@ -16,14 +16,14 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewCloudWorkloadSecurityApi(apiClient)
-	resp, r, err := api.DownloadCloudWorkloadPolicyFile(ctx)
+	api := datadogV2.NewCSMThreatsApi(apiClient)
+	resp, r, err := api.DownloadCSMThreatsPolicy(ctx)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CloudWorkloadSecurityApi.DownloadCloudWorkloadPolicyFile`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.DownloadCSMThreatsPolicy`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := ioutil.ReadAll(resp)
-	fmt.Fprintf(os.Stdout, "Response from `CloudWorkloadSecurityApi.DownloadCloudWorkloadPolicyFile`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `CSMThreatsApi.DownloadCSMThreatsPolicy`:\n%s\n", responseContent)
 }

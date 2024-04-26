@@ -19,7 +19,7 @@ func main() {
 				Description: datadog.PtrString("Test Agent rule"),
 				Enabled:     datadog.PtrBool(true),
 				Expression:  `exec.file.name == "sh"`,
-				Name:        "examplecloudworkloadsecurity",
+				Name:        "examplecsmthreat",
 			},
 			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
 		},
@@ -27,14 +27,14 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewCloudWorkloadSecurityApi(apiClient)
+	api := datadogV2.NewCSMThreatsApi(apiClient)
 	resp, r, err := api.CreateCloudWorkloadSecurityAgentRule(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CloudWorkloadSecurityApi.CreateCloudWorkloadSecurityAgentRule`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.CreateCloudWorkloadSecurityAgentRule`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `CloudWorkloadSecurityApi.CreateCloudWorkloadSecurityAgentRule`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `CSMThreatsApi.CreateCloudWorkloadSecurityAgentRule`:\n%s\n", responseContent)
 }

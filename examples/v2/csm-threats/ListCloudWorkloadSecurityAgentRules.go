@@ -16,14 +16,14 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewCloudWorkloadSecurityApi(apiClient)
+	api := datadogV2.NewCSMThreatsApi(apiClient)
 	resp, r, err := api.ListCloudWorkloadSecurityAgentRules(ctx)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CloudWorkloadSecurityApi.ListCloudWorkloadSecurityAgentRules`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.ListCloudWorkloadSecurityAgentRules`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `CloudWorkloadSecurityApi.ListCloudWorkloadSecurityAgentRules`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `CSMThreatsApi.ListCloudWorkloadSecurityAgentRules`:\n%s\n", responseContent)
 }
