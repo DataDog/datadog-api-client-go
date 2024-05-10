@@ -2121,7 +2121,8 @@ func (a *SecurityMonitoringApi) UpdateSecurityFilter(ctx _context.Context, secur
 // UpdateSecurityMonitoringRule Update an existing rule.
 // Update an existing rule. When updating `cases`, `queries` or `options`, the whole field
 // must be included. For example, when modifying a query all queries must be included.
-// Default rules can only be updated to be enabled and to change notifications.
+// Default rules can only be updated to be enabled, to change notifications, or to update
+// the tags (default tags cannot be removed).
 func (a *SecurityMonitoringApi) UpdateSecurityMonitoringRule(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
