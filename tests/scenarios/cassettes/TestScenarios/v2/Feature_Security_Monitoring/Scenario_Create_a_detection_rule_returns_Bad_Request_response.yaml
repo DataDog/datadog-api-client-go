@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"cases":[{"status":"info"}],"isEnabled":true,"message":"Test rule","name":"Test-Create_a_detection_rule_returns_Bad_Request_response-1666186593","options":{},"queries":[{"query":""}],"tags":[]}
+      {"cases":[{"status":"info"}],"isEnabled":true,"message":"Test rule","name":"Test-Create_a_detection_rule_returns_Bad_Request_response-1715358868","options":{},"queries":[{"query":""}],"tags":[]}
     form: {}
     headers:
       Accept:
@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
   response:
-    body: '{"errors":["Internal error"]}
+    body: '{"errors":["Invalid rule configuration","Query filter cannot be empty"]}
 
       '
     code: 400
