@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Update_an_existing_rule_returns_Bad_Request_response-1666647605","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metrics":[],"query":"@test:true"}],"tags":[],"type":"log_detection"}
+      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Update_an_existing_rule_returns_Bad_Request_response-1715358893","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metrics":[],"query":"@test:true"}],"tags":[],"type":"log_detection"}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
   response:
-    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"Test
-      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1666647605501,"filters":[],"queries":[{"query":"@test:true","groupByFields":[],"aggregation":"count","name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
-      > 0"}],"type":"log_detection","id":"3bq-nad-szq","isDefault":false,"name":"Test-Update_an_existing_rule_returns_Bad_Request_response-1666647605"}
+    body: '{"id":"zis-ime-pv8","version":1,"name":"Test-Update_an_existing_rule_returns_Bad_Request_response-1715358893","createdAt":1715358893704,"creationAuthorId":1445416,"isDefault":false,"isPartner":false,"isEnabled":true,"isDeleted":false,"isDeprecated":false,"queries":[{"query":"@test:true","groupByFields":[],"hasOptionalGroupByFields":false,"distinctFields":[],"aggregation":"count","name":""}],"options":{"keepAlive":3600,"maxSignalDuration":86400,"detectionMethod":"threshold","evaluationWindow":900},"cases":[{"name":"","status":"info","notifications":[],"condition":"a
+      > 0"}],"message":"Test rule","tags":[],"hasExtendedTitle":false,"type":"log_detection","filters":[]}
 
       '
     code: 200
@@ -25,7 +24,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"cases":[{"status":"info"}],"isEnabled":true,"message":"Test rule Bad","name":"Test-Update_an_existing_rule_returns_Bad_Request_response-1666647605","options":{},"queries":[{"query":""}],"tags":[]}
+      {"cases":[{"status":"info"}],"isEnabled":true,"message":"Test rule Bad","name":"Test-Update_an_existing_rule_returns_Bad_Request_response-1715358893","options":{},"queries":[{"query":""}],"tags":[]}
     form: {}
     headers:
       Accept:
@@ -34,7 +33,7 @@ interactions:
       - application/json
     id: 1
     method: PUT
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/3bq-nad-szq
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/zis-ime-pv8
   response:
     body: '{"errors":["Invalid rule configuration","Query filter cannot be empty"]}
 
@@ -53,7 +52,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/3bq-nad-szq
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/zis-ime-pv8
   response:
     body: ''
     code: 204
