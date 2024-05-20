@@ -1,5 +1,7 @@
 # datadog-api-client-go
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/DataDog/datadog-api-client-go.svg)](https://pkg.go.dev/github.com/DataDog/datadog-api-client-go)
+
 This repository contains a Go API client for the [Datadog API](https://docs.datadoghq.com/api/).
 
 ## Requirements
