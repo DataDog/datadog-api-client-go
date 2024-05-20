@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"This rule suppresses low-severity signals in staging environments.","enabled":true,"expiration_date":1703187336000,"name":"Test-Create_a_suppression_rule_returns_OK_response-1715358875","rule_query":"type:log_detection source:cloudtrail","suppression_query":"env:staging status:low"},"type":"suppressions"}}
+      {"data":{"attributes":{"description":"This rule suppresses low-severity signals in staging environments.","enabled":true,"expiration_date":1718039223000,"name":"Test-Create_a_suppression_rule_returns_OK_response-1716224823","rule_query":"type:log_detection source:cloudtrail","suppression_query":"env:staging status:low"},"type":"suppressions"}}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,9 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions
   response:
-    body: '{"data":{"id":"lzo-uda-vpz","attributes":{"name":"Test-Create_a_suppression_rule_returns_OK_response-1715358875","enabled":true,"description":"This
+    body: '{"data":{"id":"8qj-mmz-zym","attributes":{"name":"Test-Create_a_suppression_rule_returns_OK_response-1716224823","enabled":true,"description":"This
       rule suppresses low-severity signals in staging environments.","rule_query":"type:log_detection
-      source:cloudtrail","suppression_query":"env:staging status:low","data_exclusion_query":"","expiration_date":1703187336000,"version":1,"creation_date":1715358876178,"update_date":1715358876178,"creator":{"name":null,"handle":"frog@datadoghq.com"},"updater":{"name":null,"handle":"frog@datadoghq.com"}},"type":"suppressions"}}
+      source:cloudtrail","suppression_query":"env:staging status:low","data_exclusion_query":"","expiration_date":1718039223000,"version":1,"creation_date":1716224823374,"update_date":1716224823374,"creator":{"name":null,"handle":"frog@datadoghq.com"},"updater":{"name":null,"handle":"frog@datadoghq.com"}},"type":"suppressions"}}
 
       '
     code: 200
@@ -31,7 +31,7 @@ interactions:
       - '*/*'
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/lzo-uda-vpz
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/8qj-mmz-zym
   response:
     body: ''
     code: 204
