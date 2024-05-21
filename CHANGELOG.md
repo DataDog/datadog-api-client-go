@@ -11,7 +11,7 @@
 * Update UserTeamIncluded to include teams by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2482
 * Security Monitoring - Make Default Tags available in the response by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2491
 * Add flex logs storage tier by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2493
-### Changed
+### [**Breaking**]Changed
 * Rename the Cloud Workload Security tag to CSM Threats by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2481
 
 
