@@ -1,4 +1,4 @@
-// Create a new dashboard with toplist widget
+// Create a new dashboard with a toplist widget sorted by group
 
 package main
 
@@ -59,10 +59,10 @@ func main() {
 									Count: datadog.PtrInt64(10),
 									OrderBy: []datadogV1.WidgetSortOrderBy{
 										datadogV1.WidgetSortOrderBy{
-											WidgetFormulaSort: &datadogV1.WidgetFormulaSort{
-												Type:  datadogV1.FORMULATYPE_FORMULA,
-												Index: 0,
-												Order: datadogV1.WIDGETSORT_DESCENDING,
+											WidgetGroupSort: &datadogV1.WidgetGroupSort{
+												Type:  datadogV1.GROUPTYPE_GROUP,
+												Name:  "service",
+												Order: datadogV1.WIDGETSORT_ASCENDING,
 											}},
 									},
 								},
