@@ -19,7 +19,10 @@ func main() {
 				Description: datadog.PtrString("My Agent rule"),
 				Enabled:     datadog.PtrBool(true),
 				Expression:  `exec.file.name == "sh"`,
-				Name:        "examplecsmthreat",
+				Filters: []string{
+					`os == "linux"`,
+				},
+				Name: "examplecsmthreat",
 			},
 			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
 		},
