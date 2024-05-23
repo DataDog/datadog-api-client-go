@@ -3,13 +3,13 @@ version: 2
 interactions:
     - id: 0
       request:
-        proto: ""
-        proto_major: 0
-        proto_minor: 0
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
         content_length: 0
         transfer_encoding: []
         trailer: {}
-        host: ""
+        host: api.datadoghq.com
         remote_addr: ""
         request_uri: ""
         body: ""
@@ -18,38 +18,37 @@ interactions:
             Accept:
                 - application/json
             User-Agent:
-                - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+                - datadog-api-client-go/2.26.1+dev (go go1.21.0; os darwin; arch arm64)
             X-Datadog-Parent-Id:
-                - "6599909904091897528"
+                - "1147890079339465938"
             X-Datadog-Sampling-Priority:
-                - "1"
+                - "2"
             X-Datadog-Trace-Id:
-                - "7218965529160730359"
+                - "4998324798915125520"
         url: https://api.datadoghq.com/api/v1/metrics/ametric
         method: GET
       response:
-        proto: ""
-        proto_major: 0
-        proto_minor: 0
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 0
+        content_length: 24
         uncompressed: false
-        body: |
-            {"status":"error","code":403,"errors":["Forbidden"],"statuspage":"http://status.datadoghq.com","twitter":"http://twitter.com/datadogops","email":"support@datadoghq.com"}
+        body: '{"errors":["Forbidden"]}'
         headers:
-            Cache-Control:
-                - no-cache
             Connection:
                 - keep-alive
             Content-Length:
-                - "170"
+                - "24"
             Content-Type:
                 - application/json
             Date:
-                - Mon, 12 Apr 2021 09:53:36 GMT
-            Via:
-                - haproxy
+                - Thu, 23 May 2024 20:32:35 GMT
+            Strict-Transport-Security:
+                - max-age=31536000; includeSubDomains; preload
+            X-Content-Type-Options:
+                - nosniff
         status: 403 Forbidden
         code: 403
-        duration: 0s
+        duration: 82.938083ms
