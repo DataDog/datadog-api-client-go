@@ -25,7 +25,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"description":"Test Agent rule","enabled":true,"expression":"open.file.path = sh"},"type":"agent_rule"}}
+      {"data":{"attributes":{"description":"Test Agent rule","enabled":true,"expression":"open.file.path = sh"},"id":"1su-fqy-sjj","type":"agent_rule"}}
     form: {}
     headers:
       Accept:
