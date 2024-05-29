@@ -96,8 +96,8 @@
 <span id="L39" class="ln">    39  </span>
 <span id="L40" class="ln">    40  </span><span class="comment">// CreateOpenAPI Create a new API.</span>
 <span id="L41" class="ln">    41  </span><span class="comment">// Create a new API from the [OpenAPI](https://spec.openapis.org/oas/latest.html) specification given.</span>
-<span id="L42" class="ln">    42  </span><span class="comment">// It supports version `2.0`, `3.0` and `3.1` of the specification. A specific extension section, `x-datadog`,</span>
-<span id="L43" class="ln">    43  </span><span class="comment">// let you specify the `teamHandle` for your team responsible for the API in Datadog.</span>
+<span id="L42" class="ln">    42  </span><span class="comment">// See the [API Catalog documentation](https://docs.datadoghq.com/api_catalog/add_metadata/) for additional</span>
+<span id="L43" class="ln">    43  </span><span class="comment">// information about the possible metadata.</span>
 <span id="L44" class="ln">    44  </span><span class="comment">// It returns the created API ID.</span>
 <span id="L45" class="ln">    45  </span>func (a *APIManagementApi) CreateOpenAPI(ctx _context.Context, o ...CreateOpenAPIOptionalParameters) (CreateOpenAPIResponse, *_nethttp.Response, error) {
 <span id="L46" class="ln">    46  </span>	var (
