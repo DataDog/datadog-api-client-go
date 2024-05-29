@@ -259,6 +259,8 @@
 //   - [SecurityMonitoringApi.ListSecurityMonitoringSuppressions]
 //   - [SecurityMonitoringApi.MuteFindings]
 //   - [SecurityMonitoringApi.SearchSecurityMonitoringSignals]
+//   - [SecurityMonitoringApi.TestExistingSecurityMonitoringRule]
+//   - [SecurityMonitoringApi.TestSecurityMonitoringRule]
 //   - [SecurityMonitoringApi.UpdateSecurityFilter]
 //   - [SecurityMonitoringApi.UpdateSecurityMonitoringRule]
 //   - [SecurityMonitoringApi.UpdateSecurityMonitoringSuppression]
