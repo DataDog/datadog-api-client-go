@@ -15,7 +15,7 @@ type Event struct {
 	// `recommendation`, and `snapshot`.
 	AlertType *EventAlertType `json:"alert_type,omitempty"`
 	// POSIX timestamp of the event. Must be sent as an integer (that is no quotes).
-	// Limited to events no older than 18 hours.
+	// Limited to events up to 18 hours in the past and two hours in the future.
 	DateHappened *int64 `json:"date_happened,omitempty"`
 	// A device name.
 	DeviceName *string `json:"device_name,omitempty"`
