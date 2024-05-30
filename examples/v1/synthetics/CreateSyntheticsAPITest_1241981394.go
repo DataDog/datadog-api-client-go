@@ -85,9 +85,10 @@ func main() {
 				BodyType: datadogV1.SYNTHETICSTESTREQUESTBODYTYPE_APPLICATION_OCTET_STREAM.Ptr(),
 				Files: []datadogV1.SyntheticsTestRequestBodyFile{
 					{
-						Name:    datadog.PtrString("file name"),
-						Content: datadog.PtrString("file content"),
-						Type:    datadog.PtrString("file type"),
+						Name:             datadog.PtrString("file name"),
+						OriginalFileName: datadog.PtrString("image.png"),
+						Content:          datadog.PtrString("file content"),
+						Type:             datadog.PtrString("file type"),
 					},
 				},
 				BasicAuth: &datadogV1.SyntheticsBasicAuth{
