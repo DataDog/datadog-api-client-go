@@ -8,10 +8,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SecurityMonitoringRuleTestRequest Test the rule queries of a rule.
+// SecurityMonitoringRuleTestRequest Test the rule queries of a rule (rule property is ignored when applied to an existing rule)
 type SecurityMonitoringRuleTestRequest struct {
-	// Create a new rule.
-	Rule *SecurityMonitoringRuleCreatePayload `json:"rule,omitempty"`
+	// Test a rule.
+	Rule *SecurityMonitoringRuleTestPayload `json:"rule,omitempty"`
 	// Data payloads used to test rules query with the expected result.
 	RuleQueryPayloads []SecurityMonitoringRuleQueryPayload `json:"ruleQueryPayloads,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -37,9 +37,9 @@ func NewSecurityMonitoringRuleTestRequestWithDefaults() *SecurityMonitoringRuleT
 }
 
 // GetRule returns the Rule field value if set, zero value otherwise.
-func (o *SecurityMonitoringRuleTestRequest) GetRule() SecurityMonitoringRuleCreatePayload {
+func (o *SecurityMonitoringRuleTestRequest) GetRule() SecurityMonitoringRuleTestPayload {
 	if o == nil || o.Rule == nil {
-		var ret SecurityMonitoringRuleCreatePayload
+		var ret SecurityMonitoringRuleTestPayload
 		return ret
 	}
 	return *o.Rule
@@ -47,7 +47,7 @@ func (o *SecurityMonitoringRuleTestRequest) GetRule() SecurityMonitoringRuleCrea
 
 // GetRuleOk returns a tuple with the Rule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleTestRequest) GetRuleOk() (*SecurityMonitoringRuleCreatePayload, bool) {
+func (o *SecurityMonitoringRuleTestRequest) GetRuleOk() (*SecurityMonitoringRuleTestPayload, bool) {
 	if o == nil || o.Rule == nil {
 		return nil, false
 	}
@@ -59,8 +59,8 @@ func (o *SecurityMonitoringRuleTestRequest) HasRule() bool {
 	return o != nil && o.Rule != nil
 }
 
-// SetRule gets a reference to the given SecurityMonitoringRuleCreatePayload and assigns it to the Rule field.
-func (o *SecurityMonitoringRuleTestRequest) SetRule(v SecurityMonitoringRuleCreatePayload) {
+// SetRule gets a reference to the given SecurityMonitoringRuleTestPayload and assigns it to the Rule field.
+func (o *SecurityMonitoringRuleTestRequest) SetRule(v SecurityMonitoringRuleTestPayload) {
 	o.Rule = &v
 }
 
@@ -114,7 +114,7 @@ func (o SecurityMonitoringRuleTestRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Rule              *SecurityMonitoringRuleCreatePayload `json:"rule,omitempty"`
+		Rule              *SecurityMonitoringRuleTestPayload   `json:"rule,omitempty"`
 		RuleQueryPayloads []SecurityMonitoringRuleQueryPayload `json:"ruleQueryPayloads,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {

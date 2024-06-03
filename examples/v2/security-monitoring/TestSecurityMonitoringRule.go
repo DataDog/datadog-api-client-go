@@ -14,8 +14,8 @@ import (
 
 func main() {
 	body := datadogV2.SecurityMonitoringRuleTestRequest{
-		Rule: &datadogV2.SecurityMonitoringRuleCreatePayload{
-			SecurityMonitoringStandardRuleCreatePayload: &datadogV2.SecurityMonitoringStandardRuleCreatePayload{
+		Rule: &datadogV2.SecurityMonitoringRuleTestPayload{
+			SecurityMonitoringStandardRuleTestPayload: &datadogV2.SecurityMonitoringStandardRuleTestPayload{
 				Cases: []datadogV2.SecurityMonitoringRuleCaseCreate{
 					{
 						Name:          datadog.PtrString(""),
@@ -50,7 +50,7 @@ func main() {
 					"env:prod",
 					"team:security",
 				},
-				Type: datadogV2.SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION.Ptr(),
+				Type: datadogV2.SECURITYMONITORINGRULETYPETEST_LOG_DETECTION.Ptr(),
 			}},
 		RuleQueryPayloads: []datadogV2.SecurityMonitoringRuleQueryPayload{
 			{
