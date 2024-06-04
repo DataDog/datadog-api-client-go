@@ -44,7 +44,7 @@ type SecurityMonitoringStandardRuleResponse struct {
 	Queries []SecurityMonitoringStandardRuleQuery `json:"queries,omitempty"`
 	// Tags for generated signals.
 	Tags []string `json:"tags,omitempty"`
-	// Cases for generating signals from third party rules. Only available for third party rules.
+	// Cases for generating signals from third-party rules. Only available for third-party rules.
 	ThirdPartyCases []SecurityMonitoringThirdPartyRuleCase `json:"thirdPartyCases,omitempty"`
 	// The rule type.
 	Type *SecurityMonitoringRuleTypeRead `json:"type,omitempty"`

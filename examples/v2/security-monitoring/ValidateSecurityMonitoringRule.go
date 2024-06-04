@@ -12,8 +12,8 @@ import (
 )
 
 func main() {
-	body := datadogV2.SecurityMonitoringRuleCreatePayload{
-		SecurityMonitoringStandardRuleCreatePayload: &datadogV2.SecurityMonitoringStandardRuleCreatePayload{
+	body := datadogV2.SecurityMonitoringRuleValidatePayload{
+		SecurityMonitoringStandardRulePayload: &datadogV2.SecurityMonitoringStandardRulePayload{
 			Cases: []datadogV2.SecurityMonitoringRuleCaseCreate{
 				{
 					Name:          datadog.PtrString(""),

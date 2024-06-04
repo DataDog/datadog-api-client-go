@@ -30,7 +30,7 @@ type SecurityMonitoringRuleUpdatePayload struct {
 	Queries []SecurityMonitoringRuleQuery `json:"queries,omitempty"`
 	// Tags for generated signals.
 	Tags []string `json:"tags,omitempty"`
-	// Cases for generating signals from third party rules. Only available for third party rules.
+	// Cases for generating signals from third-party rules. Only available for third-party rules.
 	ThirdPartyCases []SecurityMonitoringThirdPartyRuleCase `json:"thirdPartyCases,omitempty"`
 	// The version of the rule being updated.
 	Version *int32 `json:"version,omitempty"`
