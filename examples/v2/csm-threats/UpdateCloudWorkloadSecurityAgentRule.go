@@ -24,6 +24,7 @@ func main() {
 				Expression:  datadog.PtrString(`exec.file.name == "sh"`),
 			},
 			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
+			Id:   datadog.PtrString(AgentRuleDataID),
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
