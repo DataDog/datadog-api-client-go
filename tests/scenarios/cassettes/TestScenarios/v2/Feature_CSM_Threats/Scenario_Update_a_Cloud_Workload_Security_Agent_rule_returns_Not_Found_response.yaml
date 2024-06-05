@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"Test Agent rule","enabled":true,"expression":"exec.file.name == \"sh\""},"type":"agent_rule"}}
+      {"data":{"attributes":{"description":"Test Agent rule","enabled":true,"expression":"exec.file.name == \"sh\""},"id":"abc-123-xyz","type":"agent_rule"}}
     form: {}
     headers:
       Accept:
