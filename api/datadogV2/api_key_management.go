@@ -463,11 +463,11 @@ func (r *GetApplicationKeyOptionalParameters) WithInclude(include string) *GetAp
 
 // GetApplicationKey Get an application key.
 // Get an application key for your org.
-func (a *KeyManagementApi) GetApplicationKey(ctx _context.Context, appKeyId string, o ...GetApplicationKeyOptionalParameters) (ApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApi) GetApplicationKey(ctx _context.Context, appKeyId string, o ...GetApplicationKeyOptionalParameters) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue ApplicationKeyResponse
+		localVarReturnValue PartialApplicationKeyResponse
 		optionalParams      GetApplicationKeyOptionalParameters
 	)
 
