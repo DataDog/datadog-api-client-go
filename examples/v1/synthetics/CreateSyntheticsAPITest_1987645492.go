@@ -1,4 +1,4 @@
-// Create an API HTTP test returns "OK - Returns the created test details." response
+// Create an API HTTP test has bodyHash filled out
 
 package main
 
