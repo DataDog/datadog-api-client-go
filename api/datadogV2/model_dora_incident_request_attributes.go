@@ -14,7 +14,7 @@ import (
 type DORAIncidentRequestAttributes struct {
 	// Environment name that was impacted by the incident.
 	Env *string `json:"env,omitempty"`
-	// Unix timestamp in nanoseconds when the incident finished. It should not be older than 3 hours.
+	// Unix timestamp in nanoseconds when the incident finished. It should not be older than 1 hour.
 	FinishedAt *int64 `json:"finished_at,omitempty"`
 	// Git info for DORA Metrics events.
 	Git *DORAGitInfo `json:"git,omitempty"`
