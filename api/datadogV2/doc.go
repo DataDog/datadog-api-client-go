@@ -6,6 +6,7 @@
 //   - [APIManagementApi.CreateOpenAPI]
 //   - [APIManagementApi.DeleteOpenAPI]
 //   - [APIManagementApi.GetOpenAPI]
+//   - [APIManagementApi.ListAPIs]
 //   - [APIManagementApi.UpdateOpenAPI]
 //   - [APMRetentionFiltersApi.CreateApmRetentionFilter]
 //   - [APMRetentionFiltersApi.DeleteApmRetentionFilter]
