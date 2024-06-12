@@ -24,6 +24,7 @@ func main() {
 			"us-east-1",
 			"us-west-2",
 		},
+		ExtendedResourceCollectionEnabled: datadog.PtrBool(true),
 		FilterTags: []string{
 			"$KEY:$VALUE",
 		},

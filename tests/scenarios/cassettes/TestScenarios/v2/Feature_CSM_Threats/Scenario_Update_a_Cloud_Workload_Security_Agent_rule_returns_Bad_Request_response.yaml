@@ -1,0 +1,67 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testupdateacloudworkloadsecurityagentrulereturnsbadrequestresponse1716925089"},"type":"agent_rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules
+  response:
+    body: '{"data":{"id":"qdg-dfm-kku","attributes":{"version":1,"name":"testupdateacloudworkloadsecurityagentrulereturnsbadrequestresponse1716925089","description":"My
+      Agent rule","expression":"exec.file.name == \"sh\"","category":"Process Activity","creationAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","creationDate":1716925089625,"updateAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","updateDate":1716925089625,"filters":["os
+      == \"linux\""],"actions":[],"agentConstraint":"","defaultRule":false,"enabled":true,"creator":{"name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"updater":{"name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}},"type":"agent_rule"}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"description":"Test Agent rule","enabled":true,"expression":"open.file.path = sh"},"id":"qdg-dfm-kku","type":"agent_rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/qdg-dfm-kku
+  response:
+    body: '{"errors":["input_validation_error(Field ''expression'' is invalid: rule
+      `testupdateacloudworkloadsecurityagentrulereturnsbadrequestresponse1716925089`
+      error: syntax error `1:18: unexpected token \"sh\" (expected \"~\")`)"]}
+
+      '
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/qdg-dfm-kku
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2

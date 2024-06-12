@@ -41,6 +41,15 @@ func main() {
 						Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY,
 					}},
 				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionJSONSchemaTarget: &datadogV1.SyntheticsAssertionJSONSchemaTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONJSONSCHEMAOPERATOR_VALIDATES_JSON_SCHEMA,
+						Target: &datadogV1.SyntheticsAssertionJSONSchemaTargetTarget{
+							MetaSchema: datadogV1.SYNTHETICSASSERTIONJSONSCHEMAMETASCHEMA_DRAFT_07.Ptr(),
+							JsonSchema: datadog.PtrString(`{"type": "object", "properties":{"slideshow":{"type":"object"}}}`),
+						},
+						Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY,
+					}},
+				datadogV1.SyntheticsAssertion{
 					SyntheticsAssertionXPathTarget: &datadogV1.SyntheticsAssertionXPathTarget{
 						Operator: datadogV1.SYNTHETICSASSERTIONXPATHOPERATOR_VALIDATES_X_PATH,
 						Target: &datadogV1.SyntheticsAssertionXPathTargetTarget{
@@ -49,6 +58,12 @@ func main() {
 							Operator:    datadog.PtrString("contains"),
 						},
 						Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY,
+					}},
+				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionBodyHashTarget: &datadogV1.SyntheticsAssertionBodyHashTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONBODYHASHOPERATOR_MD5,
+						Target:   "a",
+						Type:     datadogV1.SYNTHETICSASSERTIONBODYHASHTYPE_BODY_HASH,
 					}},
 			},
 			ConfigVariables: []datadogV1.SyntheticsConfigVariable{
@@ -59,6 +74,7 @@ func main() {
 					Type:    datadogV1.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
+			VariablesFromScript: datadog.PtrString(`dd.variable.set("FOO", "foo")`),
 			Request: &datadogV1.SyntheticsTestRequest{
 				Certificate: &datadogV1.SyntheticsTestRequestCertificate{
 					Cert: &datadogV1.SyntheticsTestRequestCertificateItem{

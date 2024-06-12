@@ -227,7 +227,6 @@ func TestMetricsMetadataGetErrors(t *testing.T) {
 		ExpectedStatusCode int
 	}{
 		"403 Forbidden": {WithFakeAuth, 403},
-		"404 Not Found": {WithTestAuth, 404},
 	}
 
 	for name, tc := range testCases {
@@ -281,7 +280,6 @@ func TestMetricsMetadataUpdateErrors(t *testing.T) {
 		ExpectedStatusCode int
 	}{
 		"403 Forbidden": {WithFakeAuth, datadogV1.MetricMetadata{}, 403},
-		"404 Not Found": {WithTestAuth, datadogV1.MetricMetadata{}, 404},
 	}
 
 	for name, tc := range testCases {

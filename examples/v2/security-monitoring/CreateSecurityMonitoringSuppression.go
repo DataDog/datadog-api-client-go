@@ -18,10 +18,10 @@ func main() {
 			Attributes: datadogV2.SecurityMonitoringSuppressionCreateAttributes{
 				Description:      datadog.PtrString("This rule suppresses low-severity signals in staging environments."),
 				Enabled:          true,
-				ExpirationDate:   datadog.PtrInt64(1703187336000),
+				ExpirationDate:   datadog.PtrInt64(1638443471000),
 				Name:             "Example-Security-Monitoring",
 				RuleQuery:        "type:log_detection source:cloudtrail",
-				SuppressionQuery: "env:staging status:low",
+				SuppressionQuery: datadog.PtrString("env:staging status:low"),
 			},
 			Type: datadogV2.SECURITYMONITORINGSUPPRESSIONTYPE_SUPPRESSIONS,
 		},

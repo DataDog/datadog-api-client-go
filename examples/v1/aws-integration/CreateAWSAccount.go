@@ -23,15 +23,15 @@ func main() {
 			"us-east-1",
 			"us-west-2",
 		},
+		ExtendedResourceCollectionEnabled: datadog.PtrBool(true),
 		FilterTags: []string{
 			"$KEY:$VALUE",
 		},
 		HostTags: []string{
 			"$KEY:$VALUE",
 		},
-		MetricsCollectionEnabled:  datadog.PtrBool(false),
-		ResourceCollectionEnabled: datadog.PtrBool(true),
-		RoleName:                  datadog.PtrString("DatadogAWSIntegrationRole"),
+		MetricsCollectionEnabled: datadog.PtrBool(false),
+		RoleName:                 datadog.PtrString("DatadogAWSIntegrationRole"),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

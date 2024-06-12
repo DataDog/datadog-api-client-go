@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - text/csv, application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/slo/report/invalid-report-id/download
+  response:
+    body: '{"errors":[{"title":"Invalid Argument","detail":"invalid report ID: invalid-report-id"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2

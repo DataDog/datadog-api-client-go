@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"from_ts":1690901870,"interval":"monthly","query":"slo_type:metric \"SLO Reporting Test\"","timezone":"America/New_York","to_ts":1706803070}}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/slo/report
+  response:
+    body: '{"data":{"id":"98c67bea-fdbf-11ee-8a01-bfd37432018b","type":"report_id"}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2

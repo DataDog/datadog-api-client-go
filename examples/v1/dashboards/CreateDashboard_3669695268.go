@@ -46,10 +46,17 @@ func main() {
 										ConditionalFormats: []datadogV1.WidgetConditionalFormat{},
 										CellDisplayMode:    datadogV1.TABLEWIDGETCELLDISPLAYMODE_BAR.Ptr(),
 										Formula:            "query1",
-										Limit: &datadogV1.WidgetFormulaLimit{
-											Count: datadog.PtrInt64(50),
-											Order: datadogV1.QUERYSORTORDER_DESC.Ptr(),
-										},
+									},
+								},
+								Sort: &datadogV1.WidgetSortBy{
+									Count: datadog.PtrInt64(50),
+									OrderBy: []datadogV1.WidgetSortOrderBy{
+										datadogV1.WidgetSortOrderBy{
+											WidgetFormulaSort: &datadogV1.WidgetFormulaSort{
+												Type:  datadogV1.FORMULATYPE_FORMULA,
+												Index: 0,
+												Order: datadogV1.WIDGETSORT_DESCENDING,
+											}},
 									},
 								},
 								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),

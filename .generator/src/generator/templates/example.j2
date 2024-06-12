@@ -83,6 +83,9 @@ func main() {
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
 	fmt.Fprintf(os.Stdout, "Response from `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`:\n%s\n", responseContent)
+	{%- elif contentType.startswith("text/csv") %}
+
+	fmt.Fprintf(os.Stdout, "Response from `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`:\n%s\n", resp)
 	{%- elif schema.get("schema", {}).get("format") == "binary" %}
 
 	responseContent, _ := ioutil.ReadAll(resp)

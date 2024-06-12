@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Update_an_existing_rule_returns_OK_response-1666643564","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metrics":[],"query":"@test:true"}],"tags":[],"type":"log_detection"}
+      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Update_an_existing_rule_returns_OK_response-1715358894","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metrics":[],"query":"@test:true"}],"tags":[],"type":"log_detection"}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
   response:
-    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"Test
-      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1666643564940,"filters":[],"queries":[{"query":"@test:true","groupByFields":[],"aggregation":"count","name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
-      > 0"}],"type":"log_detection","id":"uhl-lzc-3iz","isDefault":false,"name":"Test-Update_an_existing_rule_returns_OK_response-1666643564"}
+    body: '{"id":"fu8-wg9-rsy","version":1,"name":"Test-Update_an_existing_rule_returns_OK_response-1715358894","createdAt":1715358895245,"creationAuthorId":1445416,"isDefault":false,"isPartner":false,"isEnabled":true,"isDeleted":false,"isDeprecated":false,"queries":[{"query":"@test:true","groupByFields":[],"hasOptionalGroupByFields":false,"distinctFields":[],"aggregation":"count","name":""}],"options":{"keepAlive":3600,"maxSignalDuration":86400,"detectionMethod":"threshold","evaluationWindow":900},"cases":[{"name":"","status":"info","notifications":[],"condition":"a
+      > 0"}],"message":"Test rule","tags":[],"hasExtendedTitle":false,"type":"log_detection","filters":[]}
 
       '
     code: 200
@@ -25,7 +24,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Update_an_existing_rule_returns_OK_response-1666643564-Updated","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metrics":[],"query":"@test:true"}],"tags":[]}
+      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Update_an_existing_rule_returns_OK_response-1715358894-Updated","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metrics":[],"query":"@test:true"}],"tags":[]}
     form: {}
     headers:
       Accept:
@@ -34,11 +33,10 @@ interactions:
       - application/json
     id: 1
     method: PUT
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/uhl-lzc-3iz
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/fu8-wg9-rsy
   response:
-    body: '{"updateAuthorId":1445416,"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"Test
-      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":2,"isDefault":false,"filters":[],"queries":[{"query":"@test:true","groupByFields":[],"aggregation":"count","name":"","distinctFields":[]}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
-      > 0"}],"type":"log_detection","id":"uhl-lzc-3iz","createdAt":1666643564940,"name":"Test-Update_an_existing_rule_returns_OK_response-1666643564-Updated"}
+    body: '{"id":"fu8-wg9-rsy","version":2,"name":"Test-Update_an_existing_rule_returns_OK_response-1715358894-Updated","createdAt":1715358895245,"creationAuthorId":1445416,"updateAuthorId":1445416,"isDefault":false,"isPartner":false,"isEnabled":true,"isDeleted":false,"isDeprecated":false,"queries":[{"query":"@test:true","groupByFields":[],"hasOptionalGroupByFields":false,"distinctFields":[],"aggregation":"count","name":""}],"options":{"keepAlive":3600,"maxSignalDuration":86400,"detectionMethod":"threshold","evaluationWindow":900},"cases":[{"name":"","status":"info","notifications":[],"condition":"a
+      > 0"}],"message":"Test rule","tags":[],"hasExtendedTitle":false,"type":"log_detection","filters":[]}
 
       '
     code: 200
@@ -55,7 +53,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/uhl-lzc-3iz
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/fu8-wg9-rsy
   response:
     body: ''
     code: 204

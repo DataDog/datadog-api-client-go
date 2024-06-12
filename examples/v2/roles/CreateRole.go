@@ -15,10 +15,22 @@ import (
 func main() {
 	body := datadogV2.RoleCreateRequest{
 		Data: datadogV2.RoleCreateData{
-			Type: datadogV2.ROLESTYPE_ROLES.Ptr(),
 			Attributes: datadogV2.RoleCreateAttributes{
-				Name: "Example-Role",
+				Name: "developers",
 			},
+			Relationships: &datadogV2.RoleRelationships{
+				Permissions: &datadogV2.RelationshipToPermissions{
+					Data: []datadogV2.RelationshipToPermissionData{
+						{
+							Type: datadogV2.PERMISSIONSTYPE_PERMISSIONS.Ptr(),
+						},
+					},
+				},
+				Users: &datadogV2.RelationshipToUsers{
+					Data: []datadogV2.RelationshipToUserData{},
+				},
+			},
+			Type: datadogV2.ROLESTYPE_ROLES.Ptr(),
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
