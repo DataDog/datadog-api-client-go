@@ -165,7 +165,7 @@ func (a *AWSIntegrationApi) CreateAWSEventBridgeSource(ctx _context.Context, bod
 }
 
 // CreateAWSTagFilter Set an AWS tag filter.
-// Set an AWS tag filter.
+// Set an AWS tag filter for a specific AWS account and namespace. Before setting a tag filter, ensure that you have queried the available AWS namespaces by using `api_instance.list_available_aws_namespaces()`.
 func (a *AWSIntegrationApi) CreateAWSTagFilter(ctx _context.Context, body AWSTagFilterCreateRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

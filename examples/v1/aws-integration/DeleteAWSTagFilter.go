@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV1.AWSTagFilterDeleteRequest{
 		AccountId: datadog.PtrString("FAKEAC0FAKEAC2FAKEAC"),
-		Namespace: datadogV1.AWSNAMESPACE_ELB.Ptr(),
+		Namespace: datadogV1.AWSNAMESPACE_API_GATEWAY.Ptr(),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
