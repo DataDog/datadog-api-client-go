@@ -41,6 +41,17 @@ func main() {
 						Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY,
 					}},
 				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionJSONPathTarget: &datadogV1.SyntheticsAssertionJSONPathTarget{
+						Operator: datadogV1.SYNTHETICSASSERTIONJSONPATHOPERATOR_VALIDATES_JSON_PATH,
+						Target: &datadogV1.SyntheticsAssertionJSONPathTargetTarget{
+							ElementsOperator: datadog.PtrString("atLeastOneElementMatches"),
+							JsonPath:         datadog.PtrString("topKey"),
+							Operator:         datadog.PtrString("isNot"),
+							TargetValue:      "0",
+						},
+						Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY,
+					}},
+				datadogV1.SyntheticsAssertion{
 					SyntheticsAssertionJSONSchemaTarget: &datadogV1.SyntheticsAssertionJSONSchemaTarget{
 						Operator: datadogV1.SYNTHETICSASSERTIONJSONSCHEMAOPERATOR_VALIDATES_JSON_SCHEMA,
 						Target: &datadogV1.SyntheticsAssertionJSONSchemaTargetTarget{

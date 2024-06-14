@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"config":{"assertions":[],"request":{"method":"GET","url":"https://example.com"}},"locations":["aws:eu-west-3"],"message":"Notification message","name":"Example test name","options":{"ci":{"executionRule":"blocking"},"device_ids":["chrome.laptop_large"],"httpVersion":"http1","monitor_options":{},"restricted_roles":["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"],"retry":{},"rumSettings":{"applicationId":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx","clientTokenId":12345,"isEnabled":true},"scheduling":{"timeframes":[{"day":1,"from":"07:00","to":"16:00"},{"day":3,"from":"07:00","to":"16:00"}],"timezone":"America/New_York"}},"status":"live","subtype":"http","tags":["env:production"],"type":"api"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/api
+  response:
+    body: '{"errors":["Minimum number of elements in parameter ''assertions'' should
+      be 1\nRequired parameter ''tick_every'' is missing"]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 2
