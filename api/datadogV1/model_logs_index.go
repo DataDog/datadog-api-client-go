@@ -29,8 +29,14 @@ type LogsIndex struct {
 	IsRateLimited *bool `json:"is_rate_limited,omitempty"`
 	// The name of the index.
 	Name string `json:"name"`
-	// The number of days before logs are deleted from this index. Available values depend on
-	// retention plans specified in your organization's contract/subscriptions.
+	// The number of days logs are kept in Flex Logs (inclusive of Indexing) before they are deleted.
+	// The values available are 30, 60, 90, 180, 360, and 450 days.
+	//
+	// **Note:**: If using Flex Starter, then only 180, 360, and 450 days options are available.
+	// Flex Logs must be enabled on the account to specify this value.
+	NumFlexLogsRetentionDays *int64 `json:"num_flex_logs_retention_days,omitempty"`
+	// The number of days logs are kept in Standard Indexing before they are either deleted or retained in Flex Logs.
+	// Available values depend on retention plans specified in your organization's contract / subscriptions.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -242,6 +248,34 @@ func (o *LogsIndex) SetName(v string) {
 	o.Name = v
 }
 
+// GetNumFlexLogsRetentionDays returns the NumFlexLogsRetentionDays field value if set, zero value otherwise.
+func (o *LogsIndex) GetNumFlexLogsRetentionDays() int64 {
+	if o == nil || o.NumFlexLogsRetentionDays == nil {
+		var ret int64
+		return ret
+	}
+	return *o.NumFlexLogsRetentionDays
+}
+
+// GetNumFlexLogsRetentionDaysOk returns a tuple with the NumFlexLogsRetentionDays field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogsIndex) GetNumFlexLogsRetentionDaysOk() (*int64, bool) {
+	if o == nil || o.NumFlexLogsRetentionDays == nil {
+		return nil, false
+	}
+	return o.NumFlexLogsRetentionDays, true
+}
+
+// HasNumFlexLogsRetentionDays returns a boolean if a field has been set.
+func (o *LogsIndex) HasNumFlexLogsRetentionDays() bool {
+	return o != nil && o.NumFlexLogsRetentionDays != nil
+}
+
+// SetNumFlexLogsRetentionDays gets a reference to the given int64 and assigns it to the NumFlexLogsRetentionDays field.
+func (o *LogsIndex) SetNumFlexLogsRetentionDays(v int64) {
+	o.NumFlexLogsRetentionDays = &v
+}
+
 // GetNumRetentionDays returns the NumRetentionDays field value if set, zero value otherwise.
 func (o *LogsIndex) GetNumRetentionDays() int64 {
 	if o == nil || o.NumRetentionDays == nil {
@@ -293,6 +327,9 @@ func (o LogsIndex) MarshalJSON() ([]byte, error) {
 		toSerialize["is_rate_limited"] = o.IsRateLimited
 	}
 	toSerialize["name"] = o.Name
+	if o.NumFlexLogsRetentionDays != nil {
+		toSerialize["num_flex_logs_retention_days"] = o.NumFlexLogsRetentionDays
+	}
 	if o.NumRetentionDays != nil {
 		toSerialize["num_retention_days"] = o.NumRetentionDays
 	}
@@ -313,6 +350,7 @@ func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
 		Filter                               *LogsFilter          `json:"filter"`
 		IsRateLimited                        *bool                `json:"is_rate_limited,omitempty"`
 		Name                                 *string              `json:"name"`
+		NumFlexLogsRetentionDays             *int64               `json:"num_flex_logs_retention_days,omitempty"`
 		NumRetentionDays                     *int64               `json:"num_retention_days,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -326,7 +364,7 @@ func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"daily_limit", "daily_limit_reset", "daily_limit_warning_threshold_percentage", "exclusion_filters", "filter", "is_rate_limited", "name", "num_retention_days"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"daily_limit", "daily_limit_reset", "daily_limit_warning_threshold_percentage", "exclusion_filters", "filter", "is_rate_limited", "name", "num_flex_logs_retention_days", "num_retention_days"})
 	} else {
 		return err
 	}
@@ -345,6 +383,7 @@ func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
 	o.Filter = *all.Filter
 	o.IsRateLimited = all.IsRateLimited
 	o.Name = *all.Name
+	o.NumFlexLogsRetentionDays = all.NumFlexLogsRetentionDays
 	o.NumRetentionDays = all.NumRetentionDays
 
 	if len(additionalProperties) > 0 {
