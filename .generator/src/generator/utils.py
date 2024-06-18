@@ -6,6 +6,8 @@ PATTERN_DOUBLE_UNDERSCORE = re.compile(r"__+")
 PATTERN_LEADING_ALPHA = re.compile(r"(.)([A-Z][a-z]+)")
 PATTERN_FOLLOWING_ALPHA = re.compile(r"([a-z0-9])([A-Z])")
 PATTERN_WHITESPACE = re.compile(r"\W")
+# Other client generators have more edge cases defined but adding them here could cause backwards-incompatible breaking changes.
+EDGE_CASES = {"APIs": "Apis"}
 
 
 def snake_case(value):
@@ -14,6 +16,12 @@ def snake_case(value):
     s1 = PATTERN_WHITESPACE.sub("_", s1)
     s1 = s1.rstrip("_")
     return PATTERN_DOUBLE_UNDERSCORE.sub("_", s1)
+
+
+def safe_snake_case(value):
+    for token, replacement in EDGE_CASES.items():
+        value = value.replace(token, replacement)
+    return snake_case(value)
 
 
 def upperfirst(value):

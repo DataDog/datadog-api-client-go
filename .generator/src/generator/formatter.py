@@ -4,7 +4,7 @@ import re
 
 import dateutil.parser
 
-from .utils import snake_case, camel_case, untitle_case, schema_name
+from .utils import safe_snake_case, snake_case, camel_case, untitle_case, schema_name
 
 PRIMITIVE_TYPES = ["string", "number", "boolean", "integer"]
 
@@ -81,7 +81,7 @@ def block_comment(comment, prefix="#", first_line=True):
 
 
 def model_filename(name):
-    filename = snake_case(name)
+    filename = safe_snake_case(name)
     last = filename.split("_")[-1]
     if last in SUFFIXES:
         filename += "_"
