@@ -12,10 +12,10 @@ import (
 
 // ListAPIsResponseData Data envelope for `ListAPIsResponse`.
 type ListAPIsResponseData struct {
+	// Attributes for `ListAPIsResponseData`.
+	Attributes *ListAPIsResponseDataAttributes `json:"attributes,omitempty"`
 	// API identifier.
 	Id *uuid.UUID `json:"id,omitempty"`
-	// API name.
-	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -36,6 +36,34 @@ func NewListAPIsResponseData() *ListAPIsResponseData {
 func NewListAPIsResponseDataWithDefaults() *ListAPIsResponseData {
 	this := ListAPIsResponseData{}
 	return &this
+}
+
+// GetAttributes returns the Attributes field value if set, zero value otherwise.
+func (o *ListAPIsResponseData) GetAttributes() ListAPIsResponseDataAttributes {
+	if o == nil || o.Attributes == nil {
+		var ret ListAPIsResponseDataAttributes
+		return ret
+	}
+	return *o.Attributes
+}
+
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListAPIsResponseData) GetAttributesOk() (*ListAPIsResponseDataAttributes, bool) {
+	if o == nil || o.Attributes == nil {
+		return nil, false
+	}
+	return o.Attributes, true
+}
+
+// HasAttributes returns a boolean if a field has been set.
+func (o *ListAPIsResponseData) HasAttributes() bool {
+	return o != nil && o.Attributes != nil
+}
+
+// SetAttributes gets a reference to the given ListAPIsResponseDataAttributes and assigns it to the Attributes field.
+func (o *ListAPIsResponseData) SetAttributes(v ListAPIsResponseDataAttributes) {
+	o.Attributes = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -66,45 +94,17 @@ func (o *ListAPIsResponseData) SetId(v uuid.UUID) {
 	o.Id = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *ListAPIsResponseData) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListAPIsResponseData) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *ListAPIsResponseData) HasName() bool {
-	return o != nil && o.Name != nil
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *ListAPIsResponseData) SetName(v string) {
-	o.Name = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ListAPIsResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -116,23 +116,32 @@ func (o ListAPIsResponseData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListAPIsResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *uuid.UUID `json:"id,omitempty"`
-		Name *string    `json:"name,omitempty"`
+		Attributes *ListAPIsResponseDataAttributes `json:"attributes,omitempty"`
+		Id         *uuid.UUID                      `json:"id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Attributes = all.Attributes
 	o.Id = all.Id
-	o.Name = all.Name
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
