@@ -69,10 +69,10 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// ListAPIsResponseData Data envelope for `ListAPIsResponse`.</span>
 <span id="L14" class="ln">    14  </span>type ListAPIsResponseData struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// API identifier.</span>
-<span id="L16" class="ln">    16  </span>	Id *uuid.UUID `json:&#34;id,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// API name.</span>
-<span id="L18" class="ln">    18  </span>	Name *string `json:&#34;name,omitempty&#34;`
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Attributes for `ListAPIsResponseData`.</span>
+<span id="L16" class="ln">    16  </span>	Attributes *ListAPIsResponseDataAttributes `json:&#34;attributes,omitempty&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// API identifier.</span>
+<span id="L18" class="ln">    18  </span>	Id *uuid.UUID `json:&#34;id,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L20" class="ln">    20  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L21" class="ln">    21  </span>	AdditionalProperties map[string]interface{}
@@ -95,60 +95,60 @@
 <span id="L38" class="ln">    38  </span>	return &amp;this
 <span id="L39" class="ln">    39  </span>}
 <span id="L40" class="ln">    40  </span>
-<span id="L41" class="ln">    41  </span><span class="comment">// GetId returns the Id field value if set, zero value otherwise.</span>
-<span id="L42" class="ln">    42  </span>func (o *ListAPIsResponseData) GetId() uuid.UUID {
-<span id="L43" class="ln">    43  </span>	if o == nil || o.Id == nil {
-<span id="L44" class="ln">    44  </span>		var ret uuid.UUID
+<span id="L41" class="ln">    41  </span><span class="comment">// GetAttributes returns the Attributes field value if set, zero value otherwise.</span>
+<span id="L42" class="ln">    42  </span>func (o *ListAPIsResponseData) GetAttributes() ListAPIsResponseDataAttributes {
+<span id="L43" class="ln">    43  </span>	if o == nil || o.Attributes == nil {
+<span id="L44" class="ln">    44  </span>		var ret ListAPIsResponseDataAttributes
 <span id="L45" class="ln">    45  </span>		return ret
 <span id="L46" class="ln">    46  </span>	}
-<span id="L47" class="ln">    47  </span>	return *o.Id
+<span id="L47" class="ln">    47  </span>	return *o.Attributes
 <span id="L48" class="ln">    48  </span>}
 <span id="L49" class="ln">    49  </span>
-<span id="L50" class="ln">    50  </span><span class="comment">// GetIdOk returns a tuple with the Id field value if set, nil otherwise</span>
+<span id="L50" class="ln">    50  </span><span class="comment">// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise</span>
 <span id="L51" class="ln">    51  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L52" class="ln">    52  </span>func (o *ListAPIsResponseData) GetIdOk() (*uuid.UUID, bool) {
-<span id="L53" class="ln">    53  </span>	if o == nil || o.Id == nil {
+<span id="L52" class="ln">    52  </span>func (o *ListAPIsResponseData) GetAttributesOk() (*ListAPIsResponseDataAttributes, bool) {
+<span id="L53" class="ln">    53  </span>	if o == nil || o.Attributes == nil {
 <span id="L54" class="ln">    54  </span>		return nil, false
 <span id="L55" class="ln">    55  </span>	}
-<span id="L56" class="ln">    56  </span>	return o.Id, true
+<span id="L56" class="ln">    56  </span>	return o.Attributes, true
 <span id="L57" class="ln">    57  </span>}
 <span id="L58" class="ln">    58  </span>
-<span id="L59" class="ln">    59  </span><span class="comment">// HasId returns a boolean if a field has been set.</span>
-<span id="L60" class="ln">    60  </span>func (o *ListAPIsResponseData) HasId() bool {
-<span id="L61" class="ln">    61  </span>	return o != nil &amp;&amp; o.Id != nil
+<span id="L59" class="ln">    59  </span><span class="comment">// HasAttributes returns a boolean if a field has been set.</span>
+<span id="L60" class="ln">    60  </span>func (o *ListAPIsResponseData) HasAttributes() bool {
+<span id="L61" class="ln">    61  </span>	return o != nil &amp;&amp; o.Attributes != nil
 <span id="L62" class="ln">    62  </span>}
 <span id="L63" class="ln">    63  </span>
-<span id="L64" class="ln">    64  </span><span class="comment">// SetId gets a reference to the given uuid.UUID and assigns it to the Id field.</span>
-<span id="L65" class="ln">    65  </span>func (o *ListAPIsResponseData) SetId(v uuid.UUID) {
-<span id="L66" class="ln">    66  </span>	o.Id = &amp;v
+<span id="L64" class="ln">    64  </span><span class="comment">// SetAttributes gets a reference to the given ListAPIsResponseDataAttributes and assigns it to the Attributes field.</span>
+<span id="L65" class="ln">    65  </span>func (o *ListAPIsResponseData) SetAttributes(v ListAPIsResponseDataAttributes) {
+<span id="L66" class="ln">    66  </span>	o.Attributes = &amp;v
 <span id="L67" class="ln">    67  </span>}
 <span id="L68" class="ln">    68  </span>
-<span id="L69" class="ln">    69  </span><span class="comment">// GetName returns the Name field value if set, zero value otherwise.</span>
-<span id="L70" class="ln">    70  </span>func (o *ListAPIsResponseData) GetName() string {
-<span id="L71" class="ln">    71  </span>	if o == nil || o.Name == nil {
-<span id="L72" class="ln">    72  </span>		var ret string
+<span id="L69" class="ln">    69  </span><span class="comment">// GetId returns the Id field value if set, zero value otherwise.</span>
+<span id="L70" class="ln">    70  </span>func (o *ListAPIsResponseData) GetId() uuid.UUID {
+<span id="L71" class="ln">    71  </span>	if o == nil || o.Id == nil {
+<span id="L72" class="ln">    72  </span>		var ret uuid.UUID
 <span id="L73" class="ln">    73  </span>		return ret
 <span id="L74" class="ln">    74  </span>	}
-<span id="L75" class="ln">    75  </span>	return *o.Name
+<span id="L75" class="ln">    75  </span>	return *o.Id
 <span id="L76" class="ln">    76  </span>}
 <span id="L77" class="ln">    77  </span>
-<span id="L78" class="ln">    78  </span><span class="comment">// GetNameOk returns a tuple with the Name field value if set, nil otherwise</span>
+<span id="L78" class="ln">    78  </span><span class="comment">// GetIdOk returns a tuple with the Id field value if set, nil otherwise</span>
 <span id="L79" class="ln">    79  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L80" class="ln">    80  </span>func (o *ListAPIsResponseData) GetNameOk() (*string, bool) {
-<span id="L81" class="ln">    81  </span>	if o == nil || o.Name == nil {
+<span id="L80" class="ln">    80  </span>func (o *ListAPIsResponseData) GetIdOk() (*uuid.UUID, bool) {
+<span id="L81" class="ln">    81  </span>	if o == nil || o.Id == nil {
 <span id="L82" class="ln">    82  </span>		return nil, false
 <span id="L83" class="ln">    83  </span>	}
-<span id="L84" class="ln">    84  </span>	return o.Name, true
+<span id="L84" class="ln">    84  </span>	return o.Id, true
 <span id="L85" class="ln">    85  </span>}
 <span id="L86" class="ln">    86  </span>
-<span id="L87" class="ln">    87  </span><span class="comment">// HasName returns a boolean if a field has been set.</span>
-<span id="L88" class="ln">    88  </span>func (o *ListAPIsResponseData) HasName() bool {
-<span id="L89" class="ln">    89  </span>	return o != nil &amp;&amp; o.Name != nil
+<span id="L87" class="ln">    87  </span><span class="comment">// HasId returns a boolean if a field has been set.</span>
+<span id="L88" class="ln">    88  </span>func (o *ListAPIsResponseData) HasId() bool {
+<span id="L89" class="ln">    89  </span>	return o != nil &amp;&amp; o.Id != nil
 <span id="L90" class="ln">    90  </span>}
 <span id="L91" class="ln">    91  </span>
-<span id="L92" class="ln">    92  </span><span class="comment">// SetName gets a reference to the given string and assigns it to the Name field.</span>
-<span id="L93" class="ln">    93  </span>func (o *ListAPIsResponseData) SetName(v string) {
-<span id="L94" class="ln">    94  </span>	o.Name = &amp;v
+<span id="L92" class="ln">    92  </span><span class="comment">// SetId gets a reference to the given uuid.UUID and assigns it to the Id field.</span>
+<span id="L93" class="ln">    93  </span>func (o *ListAPIsResponseData) SetId(v uuid.UUID) {
+<span id="L94" class="ln">    94  </span>	o.Id = &amp;v
 <span id="L95" class="ln">    95  </span>}
 <span id="L96" class="ln">    96  </span>
 <span id="L97" class="ln">    97  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
@@ -157,11 +157,11 @@
 <span id="L100" class="ln">   100  </span>	if o.UnparsedObject != nil {
 <span id="L101" class="ln">   101  </span>		return datadog.Marshal(o.UnparsedObject)
 <span id="L102" class="ln">   102  </span>	}
-<span id="L103" class="ln">   103  </span>	if o.Id != nil {
-<span id="L104" class="ln">   104  </span>		toSerialize[&#34;id&#34;] = o.Id
+<span id="L103" class="ln">   103  </span>	if o.Attributes != nil {
+<span id="L104" class="ln">   104  </span>		toSerialize[&#34;attributes&#34;] = o.Attributes
 <span id="L105" class="ln">   105  </span>	}
-<span id="L106" class="ln">   106  </span>	if o.Name != nil {
-<span id="L107" class="ln">   107  </span>		toSerialize[&#34;name&#34;] = o.Name
+<span id="L106" class="ln">   106  </span>	if o.Id != nil {
+<span id="L107" class="ln">   107  </span>		toSerialize[&#34;id&#34;] = o.Id
 <span id="L108" class="ln">   108  </span>	}
 <span id="L109" class="ln">   109  </span>
 <span id="L110" class="ln">   110  </span>	for key, value := range o.AdditionalProperties {
@@ -173,28 +173,37 @@
 <span id="L116" class="ln">   116  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L117" class="ln">   117  </span>func (o *ListAPIsResponseData) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L118" class="ln">   118  </span>	all := struct {
-<span id="L119" class="ln">   119  </span>		Id   *uuid.UUID `json:&#34;id,omitempty&#34;`
-<span id="L120" class="ln">   120  </span>		Name *string    `json:&#34;name,omitempty&#34;`
+<span id="L119" class="ln">   119  </span>		Attributes *ListAPIsResponseDataAttributes `json:&#34;attributes,omitempty&#34;`
+<span id="L120" class="ln">   120  </span>		Id         *uuid.UUID                      `json:&#34;id,omitempty&#34;`
 <span id="L121" class="ln">   121  </span>	}{}
 <span id="L122" class="ln">   122  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L123" class="ln">   123  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
 <span id="L124" class="ln">   124  </span>	}
 <span id="L125" class="ln">   125  </span>	additionalProperties := make(map[string]interface{})
 <span id="L126" class="ln">   126  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L127" class="ln">   127  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;id&#34;, &#34;name&#34;})
+<span id="L127" class="ln">   127  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;attributes&#34;, &#34;id&#34;})
 <span id="L128" class="ln">   128  </span>	} else {
 <span id="L129" class="ln">   129  </span>		return err
 <span id="L130" class="ln">   130  </span>	}
-<span id="L131" class="ln">   131  </span>	o.Id = all.Id
-<span id="L132" class="ln">   132  </span>	o.Name = all.Name
-<span id="L133" class="ln">   133  </span>
-<span id="L134" class="ln">   134  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L135" class="ln">   135  </span>		o.AdditionalProperties = additionalProperties
-<span id="L136" class="ln">   136  </span>	}
-<span id="L137" class="ln">   137  </span>
-<span id="L138" class="ln">   138  </span>	return nil
-<span id="L139" class="ln">   139  </span>}
-<span id="L140" class="ln">   140  </span>
+<span id="L131" class="ln">   131  </span>
+<span id="L132" class="ln">   132  </span>	hasInvalidField := false
+<span id="L133" class="ln">   133  </span>	if all.Attributes != nil &amp;&amp; all.Attributes.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L134" class="ln">   134  </span>		hasInvalidField = true
+<span id="L135" class="ln">   135  </span>	}
+<span id="L136" class="ln">   136  </span>	o.Attributes = all.Attributes
+<span id="L137" class="ln">   137  </span>	o.Id = all.Id
+<span id="L138" class="ln">   138  </span>
+<span id="L139" class="ln">   139  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L140" class="ln">   140  </span>		o.AdditionalProperties = additionalProperties
+<span id="L141" class="ln">   141  </span>	}
+<span id="L142" class="ln">   142  </span>
+<span id="L143" class="ln">   143  </span>	if hasInvalidField {
+<span id="L144" class="ln">   144  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L145" class="ln">   145  </span>	}
+<span id="L146" class="ln">   146  </span>
+<span id="L147" class="ln">   147  </span>	return nil
+<span id="L148" class="ln">   148  </span>}
+<span id="L149" class="ln">   149  </span>
 </pre><p></p>
 
 <div id="footer">
