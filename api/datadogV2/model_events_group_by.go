@@ -14,7 +14,8 @@ import (
 type EventsGroupBy struct {
 	// The facet by which to split groups.
 	Facet string `json:"facet"`
-	// The maximum number of groups to return.
+	// The maximum buckets to return for this group by. Note: at most 10000 buckets are allowed.
+	// If grouping by multiple facets, the product of limits must not exceed 10000.
 	Limit *int32 `json:"limit,omitempty"`
 	// The dimension by which to sort a query's results.
 	Sort *EventsGroupBySort `json:"sort,omitempty"`
@@ -30,6 +31,8 @@ type EventsGroupBy struct {
 func NewEventsGroupBy(facet string) *EventsGroupBy {
 	this := EventsGroupBy{}
 	this.Facet = facet
+	var limit int32 = 10
+	this.Limit = &limit
 	return &this
 }
 
@@ -38,6 +41,8 @@ func NewEventsGroupBy(facet string) *EventsGroupBy {
 // but it doesn't guarantee that properties required by API are set.
 func NewEventsGroupByWithDefaults() *EventsGroupBy {
 	this := EventsGroupBy{}
+	var limit int32 = 10
+	this.Limit = &limit
 	return &this
 }
 
