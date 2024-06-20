@@ -1154,7 +1154,8 @@ func (a *UsageMeteringApi) GetUsageAuditLogs(ctx _context.Context, startHr time.
 
 // GetUsageBillableSummaryOptionalParameters holds optional parameters for GetUsageBillableSummary.
 type GetUsageBillableSummaryOptionalParameters struct {
-	Month *time.Time
+	Month                    *time.Time
+	IncludeConnectedAccounts *bool
 }
 
 // NewGetUsageBillableSummaryOptionalParameters creates an empty struct for parameters.
@@ -1166,6 +1167,12 @@ func NewGetUsageBillableSummaryOptionalParameters() *GetUsageBillableSummaryOpti
 // WithMonth sets the corresponding parameter name and returns the struct.
 func (r *GetUsageBillableSummaryOptionalParameters) WithMonth(month time.Time) *GetUsageBillableSummaryOptionalParameters {
 	r.Month = &month
+	return r
+}
+
+// WithIncludeConnectedAccounts sets the corresponding parameter name and returns the struct.
+func (r *GetUsageBillableSummaryOptionalParameters) WithIncludeConnectedAccounts(includeConnectedAccounts bool) *GetUsageBillableSummaryOptionalParameters {
+	r.IncludeConnectedAccounts = &includeConnectedAccounts
 	return r
 }
 
@@ -1200,6 +1207,9 @@ func (a *UsageMeteringApi) GetUsageBillableSummary(ctx _context.Context, o ...Ge
 	localVarFormParams := _neturl.Values{}
 	if optionalParams.Month != nil {
 		localVarQueryParams.Add("month", datadog.ParameterToString(*optionalParams.Month, ""))
+	}
+	if optionalParams.IncludeConnectedAccounts != nil {
+		localVarQueryParams.Add("include_connected_accounts", datadog.ParameterToString(*optionalParams.IncludeConnectedAccounts, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
