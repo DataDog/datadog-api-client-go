@@ -246,9 +246,9 @@ type MonthlyUsageAttributionValues struct {
 	RumBrowserMobileSessionsPercentage *float64 `json:"rum_browser_mobile_sessions_percentage,omitempty"`
 	// The total RUM Browser and Mobile usage by tag(s).
 	RumBrowserMobileSessionsUsage *float64 `json:"rum_browser_mobile_sessions_usage,omitempty"`
-	// The percentage of RUM Replay Sessions usage by tag(s).
+	// The percentage of RUM Session Replay usage by tag(s).
 	RumReplaySessionsPercentage *float64 `json:"rum_replay_sessions_percentage,omitempty"`
-	// The total RUM Replay Sessions usage by tag(s).
+	// The total RUM Session Replay usage by tag(s).
 	RumReplaySessionsUsage *float64 `json:"rum_replay_sessions_usage,omitempty"`
 	// The percentage of Sensitive Data Scanner usage by tag(s).
 	SdsScannedBytesPercentage *float64 `json:"sds_scanned_bytes_percentage,omitempty"`
