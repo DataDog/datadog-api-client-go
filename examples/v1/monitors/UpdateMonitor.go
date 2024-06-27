@@ -18,7 +18,8 @@ func main() {
 	MonitorID, _ := strconv.ParseInt(os.Getenv("MONITOR_ID"), 10, 64)
 
 	body := datadogV1.MonitorUpdateRequest{
-		Name: datadog.PtrString("My monitor-updated"),
+		Name:     datadog.PtrString("My monitor-updated"),
+		Priority: *datadog.NewNullableInt64(nil),
 		Options: &datadogV1.MonitorOptions{
 			EvaluationDelay:  *datadog.NewNullableInt64(nil),
 			NewGroupDelay:    *datadog.NewNullableInt64(datadog.PtrInt64(600)),
