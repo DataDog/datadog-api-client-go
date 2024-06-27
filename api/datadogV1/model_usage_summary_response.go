@@ -26,7 +26,7 @@ type UsageSummaryResponse struct {
 	AppsecFargateCountAvgSum *int64 `json:"appsec_fargate_count_avg_sum,omitempty"`
 	// Shows the sum of all Application Security Monitoring Serverless invocations over all hours in the current months for all organizations.
 	AsmServerlessAggSum *int64 `json:"asm_serverless_agg_sum,omitempty"`
-	// Shows the sum of all audit logs lines indexed over all hours in the current month for all organizations.
+	// Shows the sum of all audit logs lines indexed over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
 	// Deprecated
 	AuditLogsLinesIndexedAggSum *int64 `json:"audit_logs_lines_indexed_agg_sum,omitempty"`
 	// Shows the total number of organizations that had Audit Trail enabled over a specific number of months.
@@ -45,11 +45,13 @@ type UsageSummaryResponse struct {
 	AzureHostTop99pSum *int64 `json:"azure_host_top99p_sum,omitempty"`
 	// Shows the sum of all log bytes ingested over all hours in the current month for all organizations.
 	BillableIngestedBytesAggSum *int64 `json:"billable_ingested_bytes_agg_sum,omitempty"`
-	// Shows the sum of all browser lite sessions over all hours in the current month for all organizations.
+	// Shows the sum of all browser lite sessions over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	BrowserRumLiteSessionCountAggSum *int64 `json:"browser_rum_lite_session_count_agg_sum,omitempty"`
-	// Shows the sum of all browser replay sessions over all hours in the current month for all organizations.
+	// Shows the sum of all browser replay sessions over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
 	BrowserRumReplaySessionCountAggSum *int64 `json:"browser_rum_replay_session_count_agg_sum,omitempty"`
-	// Shows the sum of all browser RUM units over all hours in the current month for all organizations.
+	// Shows the sum of all browser RUM units over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	BrowserRumUnitsAggSum *int64 `json:"browser_rum_units_agg_sum,omitempty"`
 	// Shows the sum of all CI pipeline indexed spans over all hours in the current month for all organizations.
 	CiPipelineIndexedSpansAggSum *int64 `json:"ci_pipeline_indexed_spans_agg_sum,omitempty"`
@@ -151,7 +153,8 @@ type UsageSummaryResponse struct {
 	HerokuHostTop99pSum *int64 `json:"heroku_host_top99p_sum,omitempty"`
 	// Shows sum of the the high-water marks of incident management monthly active users in the current month for all organizations.
 	IncidentManagementMonthlyActiveUsersHwmSum *int64 `json:"incident_management_monthly_active_users_hwm_sum,omitempty"`
-	// Shows the sum of all log events indexed over all hours in the current month for all organizations.
+	// Shows the sum of all log events indexed over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	IndexedEventsCountAggSum *int64 `json:"indexed_events_count_agg_sum,omitempty"`
 	// Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current month for all organizations.
 	InfraHostTop99pSum *int64 `json:"infra_host_top99p_sum,omitempty"`
@@ -163,31 +166,41 @@ type UsageSummaryResponse struct {
 	IotDeviceTop99pSum *int64 `json:"iot_device_top99p_sum,omitempty"`
 	// Shows the the most recent hour in the current month for all organizations for which all usages were calculated.
 	LastUpdated *time.Time `json:"last_updated,omitempty"`
-	// Shows the sum of all live logs indexed over all hours in the current month for all organizations (data available as of December 1, 2020).
+	// Shows the sum of all live logs indexed over all hours in the current month for all organization (To be deprecated on October 1st, 2024).
+	// Deprecated
 	LiveIndexedEventsAggSum *int64 `json:"live_indexed_events_agg_sum,omitempty"`
 	// Shows the sum of all live logs bytes ingested over all hours in the current month for all organizations (data available as of December 1, 2020).
 	LiveIngestedBytesAggSum *int64 `json:"live_ingested_bytes_agg_sum,omitempty"`
 	// Object containing logs usage data broken down by retention period.
 	LogsByRetention *LogsByRetention `json:"logs_by_retention,omitempty"`
-	// Shows the sum of all mobile lite sessions over all hours in the current month for all organizations.
+	// Shows the sum of all mobile lite sessions over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	MobileRumLiteSessionCountAggSum *int64 `json:"mobile_rum_lite_session_count_agg_sum,omitempty"`
-	// Shows the sum of all mobile RUM Sessions over all hours in the current month for all organizations.
+	// Shows the sum of all mobile RUM sessions over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	MobileRumSessionCountAggSum *int64 `json:"mobile_rum_session_count_agg_sum,omitempty"`
-	// Shows the sum of all mobile RUM Sessions on Android over all hours in the current month for all organizations.
+	// Shows the sum of all mobile RUM sessions on Android over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	MobileRumSessionCountAndroidAggSum *int64 `json:"mobile_rum_session_count_android_agg_sum,omitempty"`
-	// Shows the sum of all mobile RUM Sessions on Flutter over all hours in the current month for all organizations.
+	// Shows the sum of all mobile RUM sessions on Flutter over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	MobileRumSessionCountFlutterAggSum *int64 `json:"mobile_rum_session_count_flutter_agg_sum,omitempty"`
-	// Shows the sum of all mobile RUM Sessions on iOS over all hours in the current month for all organizations.
+	// Shows the sum of all mobile RUM sessions on iOS over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	MobileRumSessionCountIosAggSum *int64 `json:"mobile_rum_session_count_ios_agg_sum,omitempty"`
-	// Shows the sum of all mobile RUM Sessions on React Native over all hours in the current month for all organizations.
+	// Shows the sum of all mobile RUM sessions on React Native over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	MobileRumSessionCountReactnativeAggSum *int64 `json:"mobile_rum_session_count_reactnative_agg_sum,omitempty"`
-	// Shows the sum of all mobile RUM Sessions on Roku over all hours in the current month for all organizations.
+	// Shows the sum of all mobile RUM sessions on Roku over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	MobileRumSessionCountRokuAggSum *int64 `json:"mobile_rum_session_count_roku_agg_sum,omitempty"`
-	// Shows the sum of all mobile RUM units over all hours in the current month for all organizations.
+	// Shows the sum of all mobile RUM units over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	MobileRumUnitsAggSum *int64 `json:"mobile_rum_units_agg_sum,omitempty"`
 	// Shows the sum of all Network Device Monitoring NetFlow events over all hours in the current month for all organizations.
 	NdmNetflowEventsAggSum *int64 `json:"ndm_netflow_events_agg_sum,omitempty"`
-	// Shows the sum of all Network flows indexed over all hours in the current month for all organizations.
+	// Shows the sum of all Network flows indexed over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	NetflowIndexedEventsCountAggSum *int64 `json:"netflow_indexed_events_count_agg_sum,omitempty"`
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current month for all organizations.
 	NpmHostTop99pSum *int64 `json:"npm_host_top99p_sum,omitempty"`
@@ -205,17 +218,50 @@ type UsageSummaryResponse struct {
 	ProfilingContainerAgentCountAvg *int64 `json:"profiling_container_agent_count_avg,omitempty"`
 	// Shows the 99th percentile of all profiled hosts over all hours in the current month for all organizations.
 	ProfilingHostCountTop99pSum *int64 `json:"profiling_host_count_top99p_sum,omitempty"`
-	// Shows the sum of all rehydrated logs indexed over all hours in the current month for all organizations (data available as of December 1, 2020).
+	// Shows the sum of all rehydrated logs indexed over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	RehydratedIndexedEventsAggSum *int64 `json:"rehydrated_indexed_events_agg_sum,omitempty"`
 	// Shows the sum of all rehydrated logs bytes ingested over all hours in the current month for all organizations (data available as of December 1, 2020).
 	RehydratedIngestedBytesAggSum *int64 `json:"rehydrated_ingested_bytes_agg_sum,omitempty"`
-	// Shows the sum of all mobile sessions and all browser lite and legacy sessions over all hours in the current month for all organizations.
+	// Shows the sum of all mobile sessions and all browser lite and legacy sessions over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
 	RumBrowserAndMobileSessionCount *int64 `json:"rum_browser_and_mobile_session_count,omitempty"`
-	// Shows the sum of all browser RUM Lite Sessions over all hours in the current month for all organizations.
+	// Shows the sum of all browser RUM legacy sessions over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumBrowserLegacySessionCountAggSum *int64 `json:"rum_browser_legacy_session_count_agg_sum,omitempty"`
+	// Shows the sum of all browser RUM lite sessions over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumBrowserLiteSessionCountAggSum *int64 `json:"rum_browser_lite_session_count_agg_sum,omitempty"`
+	// Shows the sum of all browser RUM Session Replay counts over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumBrowserReplaySessionCountAggSum *int64 `json:"rum_browser_replay_session_count_agg_sum,omitempty"`
+	// Shows the sum of all RUM lite sessions (browser and mobile) over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumLiteSessionCountAggSum *int64 `json:"rum_lite_session_count_agg_sum,omitempty"`
+	// Shows the sum of all mobile RUM legacy sessions on Android over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumMobileLegacySessionCountAndroidAggSum *int64 `json:"rum_mobile_legacy_session_count_android_agg_sum,omitempty"`
+	// Shows the sum of all mobile RUM legacy sessions on Flutter over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumMobileLegacySessionCountFlutterAggSum *int64 `json:"rum_mobile_legacy_session_count_flutter_agg_sum,omitempty"`
+	// Shows the sum of all mobile RUM legacy sessions on iOS over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumMobileLegacySessionCountIosAggSum *int64 `json:"rum_mobile_legacy_session_count_ios_agg_sum,omitempty"`
+	// Shows the sum of all mobile RUM legacy sessions on React Native over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumMobileLegacySessionCountReactnativeAggSum *int64 `json:"rum_mobile_legacy_session_count_reactnative_agg_sum,omitempty"`
+	// Shows the sum of all mobile RUM legacy sessions on Roku over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumMobileLegacySessionCountRokuAggSum *int64 `json:"rum_mobile_legacy_session_count_roku_agg_sum,omitempty"`
+	// Shows the sum of all mobile RUM lite sessions on Android over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumMobileLiteSessionCountAndroidAggSum *int64 `json:"rum_mobile_lite_session_count_android_agg_sum,omitempty"`
+	// Shows the sum of all mobile RUM lite sessions on Flutter over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumMobileLiteSessionCountFlutterAggSum *int64 `json:"rum_mobile_lite_session_count_flutter_agg_sum,omitempty"`
+	// Shows the sum of all mobile RUM lite sessions on iOS over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumMobileLiteSessionCountIosAggSum *int64 `json:"rum_mobile_lite_session_count_ios_agg_sum,omitempty"`
+	// Shows the sum of all mobile RUM lite sessions on React Native over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumMobileLiteSessionCountReactnativeAggSum *int64 `json:"rum_mobile_lite_session_count_reactnative_agg_sum,omitempty"`
+	// Shows the sum of all mobile RUM lite sessions on Roku over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumMobileLiteSessionCountRokuAggSum *int64 `json:"rum_mobile_lite_session_count_roku_agg_sum,omitempty"`
+	// Shows the sum of all RUM Session Replay counts over all hours in the current month for all organizations (To be introduced on October 1st, 2024).
+	RumReplaySessionCountAggSum *int64 `json:"rum_replay_session_count_agg_sum,omitempty"`
+	// Shows the sum of all browser RUM lite sessions over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	RumSessionCountAggSum *int64 `json:"rum_session_count_agg_sum,omitempty"`
-	// Shows the sum of RUM Sessions (browser and mobile) over all hours in the current month for all organizations.
+	// Shows the sum of RUM sessions (browser and mobile) over all hours in the current month for all organizations.
 	RumTotalSessionCountAggSum *int64 `json:"rum_total_session_count_agg_sum,omitempty"`
-	// Shows the sum of all browser and mobile RUM units over all hours in the current month for all organizations.
+	// Shows the sum of all browser and mobile RUM units over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Deprecated
 	RumUnitsAggSum *int64 `json:"rum_units_agg_sum,omitempty"`
 	// Sum of all APM bytes scanned with sensitive data scanner in the current month for all organizations.
 	SdsApmScannedBytesSum *int64 `json:"sds_apm_scanned_bytes_sum,omitempty"`
@@ -731,6 +777,7 @@ func (o *UsageSummaryResponse) SetBillableIngestedBytesAggSum(v int64) {
 }
 
 // GetBrowserRumLiteSessionCountAggSum returns the BrowserRumLiteSessionCountAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetBrowserRumLiteSessionCountAggSum() int64 {
 	if o == nil || o.BrowserRumLiteSessionCountAggSum == nil {
 		var ret int64
@@ -741,6 +788,7 @@ func (o *UsageSummaryResponse) GetBrowserRumLiteSessionCountAggSum() int64 {
 
 // GetBrowserRumLiteSessionCountAggSumOk returns a tuple with the BrowserRumLiteSessionCountAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetBrowserRumLiteSessionCountAggSumOk() (*int64, bool) {
 	if o == nil || o.BrowserRumLiteSessionCountAggSum == nil {
 		return nil, false
@@ -754,6 +802,7 @@ func (o *UsageSummaryResponse) HasBrowserRumLiteSessionCountAggSum() bool {
 }
 
 // SetBrowserRumLiteSessionCountAggSum gets a reference to the given int64 and assigns it to the BrowserRumLiteSessionCountAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetBrowserRumLiteSessionCountAggSum(v int64) {
 	o.BrowserRumLiteSessionCountAggSum = &v
 }
@@ -787,6 +836,7 @@ func (o *UsageSummaryResponse) SetBrowserRumReplaySessionCountAggSum(v int64) {
 }
 
 // GetBrowserRumUnitsAggSum returns the BrowserRumUnitsAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetBrowserRumUnitsAggSum() int64 {
 	if o == nil || o.BrowserRumUnitsAggSum == nil {
 		var ret int64
@@ -797,6 +847,7 @@ func (o *UsageSummaryResponse) GetBrowserRumUnitsAggSum() int64 {
 
 // GetBrowserRumUnitsAggSumOk returns a tuple with the BrowserRumUnitsAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetBrowserRumUnitsAggSumOk() (*int64, bool) {
 	if o == nil || o.BrowserRumUnitsAggSum == nil {
 		return nil, false
@@ -810,6 +861,7 @@ func (o *UsageSummaryResponse) HasBrowserRumUnitsAggSum() bool {
 }
 
 // SetBrowserRumUnitsAggSum gets a reference to the given int64 and assigns it to the BrowserRumUnitsAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetBrowserRumUnitsAggSum(v int64) {
 	o.BrowserRumUnitsAggSum = &v
 }
@@ -2215,6 +2267,7 @@ func (o *UsageSummaryResponse) SetIncidentManagementMonthlyActiveUsersHwmSum(v i
 }
 
 // GetIndexedEventsCountAggSum returns the IndexedEventsCountAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetIndexedEventsCountAggSum() int64 {
 	if o == nil || o.IndexedEventsCountAggSum == nil {
 		var ret int64
@@ -2225,6 +2278,7 @@ func (o *UsageSummaryResponse) GetIndexedEventsCountAggSum() int64 {
 
 // GetIndexedEventsCountAggSumOk returns a tuple with the IndexedEventsCountAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetIndexedEventsCountAggSumOk() (*int64, bool) {
 	if o == nil || o.IndexedEventsCountAggSum == nil {
 		return nil, false
@@ -2238,6 +2292,7 @@ func (o *UsageSummaryResponse) HasIndexedEventsCountAggSum() bool {
 }
 
 // SetIndexedEventsCountAggSum gets a reference to the given int64 and assigns it to the IndexedEventsCountAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetIndexedEventsCountAggSum(v int64) {
 	o.IndexedEventsCountAggSum = &v
 }
@@ -2383,6 +2438,7 @@ func (o *UsageSummaryResponse) SetLastUpdated(v time.Time) {
 }
 
 // GetLiveIndexedEventsAggSum returns the LiveIndexedEventsAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetLiveIndexedEventsAggSum() int64 {
 	if o == nil || o.LiveIndexedEventsAggSum == nil {
 		var ret int64
@@ -2393,6 +2449,7 @@ func (o *UsageSummaryResponse) GetLiveIndexedEventsAggSum() int64 {
 
 // GetLiveIndexedEventsAggSumOk returns a tuple with the LiveIndexedEventsAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetLiveIndexedEventsAggSumOk() (*int64, bool) {
 	if o == nil || o.LiveIndexedEventsAggSum == nil {
 		return nil, false
@@ -2406,6 +2463,7 @@ func (o *UsageSummaryResponse) HasLiveIndexedEventsAggSum() bool {
 }
 
 // SetLiveIndexedEventsAggSum gets a reference to the given int64 and assigns it to the LiveIndexedEventsAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetLiveIndexedEventsAggSum(v int64) {
 	o.LiveIndexedEventsAggSum = &v
 }
@@ -2467,6 +2525,7 @@ func (o *UsageSummaryResponse) SetLogsByRetention(v LogsByRetention) {
 }
 
 // GetMobileRumLiteSessionCountAggSum returns the MobileRumLiteSessionCountAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumLiteSessionCountAggSum() int64 {
 	if o == nil || o.MobileRumLiteSessionCountAggSum == nil {
 		var ret int64
@@ -2477,6 +2536,7 @@ func (o *UsageSummaryResponse) GetMobileRumLiteSessionCountAggSum() int64 {
 
 // GetMobileRumLiteSessionCountAggSumOk returns a tuple with the MobileRumLiteSessionCountAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumLiteSessionCountAggSumOk() (*int64, bool) {
 	if o == nil || o.MobileRumLiteSessionCountAggSum == nil {
 		return nil, false
@@ -2490,11 +2550,13 @@ func (o *UsageSummaryResponse) HasMobileRumLiteSessionCountAggSum() bool {
 }
 
 // SetMobileRumLiteSessionCountAggSum gets a reference to the given int64 and assigns it to the MobileRumLiteSessionCountAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetMobileRumLiteSessionCountAggSum(v int64) {
 	o.MobileRumLiteSessionCountAggSum = &v
 }
 
 // GetMobileRumSessionCountAggSum returns the MobileRumSessionCountAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumSessionCountAggSum() int64 {
 	if o == nil || o.MobileRumSessionCountAggSum == nil {
 		var ret int64
@@ -2505,6 +2567,7 @@ func (o *UsageSummaryResponse) GetMobileRumSessionCountAggSum() int64 {
 
 // GetMobileRumSessionCountAggSumOk returns a tuple with the MobileRumSessionCountAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumSessionCountAggSumOk() (*int64, bool) {
 	if o == nil || o.MobileRumSessionCountAggSum == nil {
 		return nil, false
@@ -2518,11 +2581,13 @@ func (o *UsageSummaryResponse) HasMobileRumSessionCountAggSum() bool {
 }
 
 // SetMobileRumSessionCountAggSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetMobileRumSessionCountAggSum(v int64) {
 	o.MobileRumSessionCountAggSum = &v
 }
 
 // GetMobileRumSessionCountAndroidAggSum returns the MobileRumSessionCountAndroidAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumSessionCountAndroidAggSum() int64 {
 	if o == nil || o.MobileRumSessionCountAndroidAggSum == nil {
 		var ret int64
@@ -2533,6 +2598,7 @@ func (o *UsageSummaryResponse) GetMobileRumSessionCountAndroidAggSum() int64 {
 
 // GetMobileRumSessionCountAndroidAggSumOk returns a tuple with the MobileRumSessionCountAndroidAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumSessionCountAndroidAggSumOk() (*int64, bool) {
 	if o == nil || o.MobileRumSessionCountAndroidAggSum == nil {
 		return nil, false
@@ -2546,11 +2612,13 @@ func (o *UsageSummaryResponse) HasMobileRumSessionCountAndroidAggSum() bool {
 }
 
 // SetMobileRumSessionCountAndroidAggSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountAndroidAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetMobileRumSessionCountAndroidAggSum(v int64) {
 	o.MobileRumSessionCountAndroidAggSum = &v
 }
 
 // GetMobileRumSessionCountFlutterAggSum returns the MobileRumSessionCountFlutterAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumSessionCountFlutterAggSum() int64 {
 	if o == nil || o.MobileRumSessionCountFlutterAggSum == nil {
 		var ret int64
@@ -2561,6 +2629,7 @@ func (o *UsageSummaryResponse) GetMobileRumSessionCountFlutterAggSum() int64 {
 
 // GetMobileRumSessionCountFlutterAggSumOk returns a tuple with the MobileRumSessionCountFlutterAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumSessionCountFlutterAggSumOk() (*int64, bool) {
 	if o == nil || o.MobileRumSessionCountFlutterAggSum == nil {
 		return nil, false
@@ -2574,11 +2643,13 @@ func (o *UsageSummaryResponse) HasMobileRumSessionCountFlutterAggSum() bool {
 }
 
 // SetMobileRumSessionCountFlutterAggSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountFlutterAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetMobileRumSessionCountFlutterAggSum(v int64) {
 	o.MobileRumSessionCountFlutterAggSum = &v
 }
 
 // GetMobileRumSessionCountIosAggSum returns the MobileRumSessionCountIosAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumSessionCountIosAggSum() int64 {
 	if o == nil || o.MobileRumSessionCountIosAggSum == nil {
 		var ret int64
@@ -2589,6 +2660,7 @@ func (o *UsageSummaryResponse) GetMobileRumSessionCountIosAggSum() int64 {
 
 // GetMobileRumSessionCountIosAggSumOk returns a tuple with the MobileRumSessionCountIosAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumSessionCountIosAggSumOk() (*int64, bool) {
 	if o == nil || o.MobileRumSessionCountIosAggSum == nil {
 		return nil, false
@@ -2602,11 +2674,13 @@ func (o *UsageSummaryResponse) HasMobileRumSessionCountIosAggSum() bool {
 }
 
 // SetMobileRumSessionCountIosAggSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountIosAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetMobileRumSessionCountIosAggSum(v int64) {
 	o.MobileRumSessionCountIosAggSum = &v
 }
 
 // GetMobileRumSessionCountReactnativeAggSum returns the MobileRumSessionCountReactnativeAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumSessionCountReactnativeAggSum() int64 {
 	if o == nil || o.MobileRumSessionCountReactnativeAggSum == nil {
 		var ret int64
@@ -2617,6 +2691,7 @@ func (o *UsageSummaryResponse) GetMobileRumSessionCountReactnativeAggSum() int64
 
 // GetMobileRumSessionCountReactnativeAggSumOk returns a tuple with the MobileRumSessionCountReactnativeAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumSessionCountReactnativeAggSumOk() (*int64, bool) {
 	if o == nil || o.MobileRumSessionCountReactnativeAggSum == nil {
 		return nil, false
@@ -2630,11 +2705,13 @@ func (o *UsageSummaryResponse) HasMobileRumSessionCountReactnativeAggSum() bool 
 }
 
 // SetMobileRumSessionCountReactnativeAggSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountReactnativeAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetMobileRumSessionCountReactnativeAggSum(v int64) {
 	o.MobileRumSessionCountReactnativeAggSum = &v
 }
 
 // GetMobileRumSessionCountRokuAggSum returns the MobileRumSessionCountRokuAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumSessionCountRokuAggSum() int64 {
 	if o == nil || o.MobileRumSessionCountRokuAggSum == nil {
 		var ret int64
@@ -2645,6 +2722,7 @@ func (o *UsageSummaryResponse) GetMobileRumSessionCountRokuAggSum() int64 {
 
 // GetMobileRumSessionCountRokuAggSumOk returns a tuple with the MobileRumSessionCountRokuAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumSessionCountRokuAggSumOk() (*int64, bool) {
 	if o == nil || o.MobileRumSessionCountRokuAggSum == nil {
 		return nil, false
@@ -2658,11 +2736,13 @@ func (o *UsageSummaryResponse) HasMobileRumSessionCountRokuAggSum() bool {
 }
 
 // SetMobileRumSessionCountRokuAggSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountRokuAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetMobileRumSessionCountRokuAggSum(v int64) {
 	o.MobileRumSessionCountRokuAggSum = &v
 }
 
 // GetMobileRumUnitsAggSum returns the MobileRumUnitsAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumUnitsAggSum() int64 {
 	if o == nil || o.MobileRumUnitsAggSum == nil {
 		var ret int64
@@ -2673,6 +2753,7 @@ func (o *UsageSummaryResponse) GetMobileRumUnitsAggSum() int64 {
 
 // GetMobileRumUnitsAggSumOk returns a tuple with the MobileRumUnitsAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetMobileRumUnitsAggSumOk() (*int64, bool) {
 	if o == nil || o.MobileRumUnitsAggSum == nil {
 		return nil, false
@@ -2686,6 +2767,7 @@ func (o *UsageSummaryResponse) HasMobileRumUnitsAggSum() bool {
 }
 
 // SetMobileRumUnitsAggSum gets a reference to the given int64 and assigns it to the MobileRumUnitsAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetMobileRumUnitsAggSum(v int64) {
 	o.MobileRumUnitsAggSum = &v
 }
@@ -2719,6 +2801,7 @@ func (o *UsageSummaryResponse) SetNdmNetflowEventsAggSum(v int64) {
 }
 
 // GetNetflowIndexedEventsCountAggSum returns the NetflowIndexedEventsCountAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetNetflowIndexedEventsCountAggSum() int64 {
 	if o == nil || o.NetflowIndexedEventsCountAggSum == nil {
 		var ret int64
@@ -2729,6 +2812,7 @@ func (o *UsageSummaryResponse) GetNetflowIndexedEventsCountAggSum() int64 {
 
 // GetNetflowIndexedEventsCountAggSumOk returns a tuple with the NetflowIndexedEventsCountAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetNetflowIndexedEventsCountAggSumOk() (*int64, bool) {
 	if o == nil || o.NetflowIndexedEventsCountAggSum == nil {
 		return nil, false
@@ -2742,6 +2826,7 @@ func (o *UsageSummaryResponse) HasNetflowIndexedEventsCountAggSum() bool {
 }
 
 // SetNetflowIndexedEventsCountAggSum gets a reference to the given int64 and assigns it to the NetflowIndexedEventsCountAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetNetflowIndexedEventsCountAggSum(v int64) {
 	o.NetflowIndexedEventsCountAggSum = &v
 }
@@ -2971,6 +3056,7 @@ func (o *UsageSummaryResponse) SetProfilingHostCountTop99pSum(v int64) {
 }
 
 // GetRehydratedIndexedEventsAggSum returns the RehydratedIndexedEventsAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetRehydratedIndexedEventsAggSum() int64 {
 	if o == nil || o.RehydratedIndexedEventsAggSum == nil {
 		var ret int64
@@ -2981,6 +3067,7 @@ func (o *UsageSummaryResponse) GetRehydratedIndexedEventsAggSum() int64 {
 
 // GetRehydratedIndexedEventsAggSumOk returns a tuple with the RehydratedIndexedEventsAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetRehydratedIndexedEventsAggSumOk() (*int64, bool) {
 	if o == nil || o.RehydratedIndexedEventsAggSum == nil {
 		return nil, false
@@ -2994,6 +3081,7 @@ func (o *UsageSummaryResponse) HasRehydratedIndexedEventsAggSum() bool {
 }
 
 // SetRehydratedIndexedEventsAggSum gets a reference to the given int64 and assigns it to the RehydratedIndexedEventsAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetRehydratedIndexedEventsAggSum(v int64) {
 	o.RehydratedIndexedEventsAggSum = &v
 }
@@ -3054,7 +3142,428 @@ func (o *UsageSummaryResponse) SetRumBrowserAndMobileSessionCount(v int64) {
 	o.RumBrowserAndMobileSessionCount = &v
 }
 
+// GetRumBrowserLegacySessionCountAggSum returns the RumBrowserLegacySessionCountAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumBrowserLegacySessionCountAggSum() int64 {
+	if o == nil || o.RumBrowserLegacySessionCountAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumBrowserLegacySessionCountAggSum
+}
+
+// GetRumBrowserLegacySessionCountAggSumOk returns a tuple with the RumBrowserLegacySessionCountAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumBrowserLegacySessionCountAggSumOk() (*int64, bool) {
+	if o == nil || o.RumBrowserLegacySessionCountAggSum == nil {
+		return nil, false
+	}
+	return o.RumBrowserLegacySessionCountAggSum, true
+}
+
+// HasRumBrowserLegacySessionCountAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumBrowserLegacySessionCountAggSum() bool {
+	return o != nil && o.RumBrowserLegacySessionCountAggSum != nil
+}
+
+// SetRumBrowserLegacySessionCountAggSum gets a reference to the given int64 and assigns it to the RumBrowserLegacySessionCountAggSum field.
+func (o *UsageSummaryResponse) SetRumBrowserLegacySessionCountAggSum(v int64) {
+	o.RumBrowserLegacySessionCountAggSum = &v
+}
+
+// GetRumBrowserLiteSessionCountAggSum returns the RumBrowserLiteSessionCountAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumBrowserLiteSessionCountAggSum() int64 {
+	if o == nil || o.RumBrowserLiteSessionCountAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumBrowserLiteSessionCountAggSum
+}
+
+// GetRumBrowserLiteSessionCountAggSumOk returns a tuple with the RumBrowserLiteSessionCountAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumBrowserLiteSessionCountAggSumOk() (*int64, bool) {
+	if o == nil || o.RumBrowserLiteSessionCountAggSum == nil {
+		return nil, false
+	}
+	return o.RumBrowserLiteSessionCountAggSum, true
+}
+
+// HasRumBrowserLiteSessionCountAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumBrowserLiteSessionCountAggSum() bool {
+	return o != nil && o.RumBrowserLiteSessionCountAggSum != nil
+}
+
+// SetRumBrowserLiteSessionCountAggSum gets a reference to the given int64 and assigns it to the RumBrowserLiteSessionCountAggSum field.
+func (o *UsageSummaryResponse) SetRumBrowserLiteSessionCountAggSum(v int64) {
+	o.RumBrowserLiteSessionCountAggSum = &v
+}
+
+// GetRumBrowserReplaySessionCountAggSum returns the RumBrowserReplaySessionCountAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumBrowserReplaySessionCountAggSum() int64 {
+	if o == nil || o.RumBrowserReplaySessionCountAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumBrowserReplaySessionCountAggSum
+}
+
+// GetRumBrowserReplaySessionCountAggSumOk returns a tuple with the RumBrowserReplaySessionCountAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumBrowserReplaySessionCountAggSumOk() (*int64, bool) {
+	if o == nil || o.RumBrowserReplaySessionCountAggSum == nil {
+		return nil, false
+	}
+	return o.RumBrowserReplaySessionCountAggSum, true
+}
+
+// HasRumBrowserReplaySessionCountAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumBrowserReplaySessionCountAggSum() bool {
+	return o != nil && o.RumBrowserReplaySessionCountAggSum != nil
+}
+
+// SetRumBrowserReplaySessionCountAggSum gets a reference to the given int64 and assigns it to the RumBrowserReplaySessionCountAggSum field.
+func (o *UsageSummaryResponse) SetRumBrowserReplaySessionCountAggSum(v int64) {
+	o.RumBrowserReplaySessionCountAggSum = &v
+}
+
+// GetRumLiteSessionCountAggSum returns the RumLiteSessionCountAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumLiteSessionCountAggSum() int64 {
+	if o == nil || o.RumLiteSessionCountAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumLiteSessionCountAggSum
+}
+
+// GetRumLiteSessionCountAggSumOk returns a tuple with the RumLiteSessionCountAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumLiteSessionCountAggSumOk() (*int64, bool) {
+	if o == nil || o.RumLiteSessionCountAggSum == nil {
+		return nil, false
+	}
+	return o.RumLiteSessionCountAggSum, true
+}
+
+// HasRumLiteSessionCountAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumLiteSessionCountAggSum() bool {
+	return o != nil && o.RumLiteSessionCountAggSum != nil
+}
+
+// SetRumLiteSessionCountAggSum gets a reference to the given int64 and assigns it to the RumLiteSessionCountAggSum field.
+func (o *UsageSummaryResponse) SetRumLiteSessionCountAggSum(v int64) {
+	o.RumLiteSessionCountAggSum = &v
+}
+
+// GetRumMobileLegacySessionCountAndroidAggSum returns the RumMobileLegacySessionCountAndroidAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumMobileLegacySessionCountAndroidAggSum() int64 {
+	if o == nil || o.RumMobileLegacySessionCountAndroidAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumMobileLegacySessionCountAndroidAggSum
+}
+
+// GetRumMobileLegacySessionCountAndroidAggSumOk returns a tuple with the RumMobileLegacySessionCountAndroidAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumMobileLegacySessionCountAndroidAggSumOk() (*int64, bool) {
+	if o == nil || o.RumMobileLegacySessionCountAndroidAggSum == nil {
+		return nil, false
+	}
+	return o.RumMobileLegacySessionCountAndroidAggSum, true
+}
+
+// HasRumMobileLegacySessionCountAndroidAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumMobileLegacySessionCountAndroidAggSum() bool {
+	return o != nil && o.RumMobileLegacySessionCountAndroidAggSum != nil
+}
+
+// SetRumMobileLegacySessionCountAndroidAggSum gets a reference to the given int64 and assigns it to the RumMobileLegacySessionCountAndroidAggSum field.
+func (o *UsageSummaryResponse) SetRumMobileLegacySessionCountAndroidAggSum(v int64) {
+	o.RumMobileLegacySessionCountAndroidAggSum = &v
+}
+
+// GetRumMobileLegacySessionCountFlutterAggSum returns the RumMobileLegacySessionCountFlutterAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumMobileLegacySessionCountFlutterAggSum() int64 {
+	if o == nil || o.RumMobileLegacySessionCountFlutterAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumMobileLegacySessionCountFlutterAggSum
+}
+
+// GetRumMobileLegacySessionCountFlutterAggSumOk returns a tuple with the RumMobileLegacySessionCountFlutterAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumMobileLegacySessionCountFlutterAggSumOk() (*int64, bool) {
+	if o == nil || o.RumMobileLegacySessionCountFlutterAggSum == nil {
+		return nil, false
+	}
+	return o.RumMobileLegacySessionCountFlutterAggSum, true
+}
+
+// HasRumMobileLegacySessionCountFlutterAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumMobileLegacySessionCountFlutterAggSum() bool {
+	return o != nil && o.RumMobileLegacySessionCountFlutterAggSum != nil
+}
+
+// SetRumMobileLegacySessionCountFlutterAggSum gets a reference to the given int64 and assigns it to the RumMobileLegacySessionCountFlutterAggSum field.
+func (o *UsageSummaryResponse) SetRumMobileLegacySessionCountFlutterAggSum(v int64) {
+	o.RumMobileLegacySessionCountFlutterAggSum = &v
+}
+
+// GetRumMobileLegacySessionCountIosAggSum returns the RumMobileLegacySessionCountIosAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumMobileLegacySessionCountIosAggSum() int64 {
+	if o == nil || o.RumMobileLegacySessionCountIosAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumMobileLegacySessionCountIosAggSum
+}
+
+// GetRumMobileLegacySessionCountIosAggSumOk returns a tuple with the RumMobileLegacySessionCountIosAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumMobileLegacySessionCountIosAggSumOk() (*int64, bool) {
+	if o == nil || o.RumMobileLegacySessionCountIosAggSum == nil {
+		return nil, false
+	}
+	return o.RumMobileLegacySessionCountIosAggSum, true
+}
+
+// HasRumMobileLegacySessionCountIosAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumMobileLegacySessionCountIosAggSum() bool {
+	return o != nil && o.RumMobileLegacySessionCountIosAggSum != nil
+}
+
+// SetRumMobileLegacySessionCountIosAggSum gets a reference to the given int64 and assigns it to the RumMobileLegacySessionCountIosAggSum field.
+func (o *UsageSummaryResponse) SetRumMobileLegacySessionCountIosAggSum(v int64) {
+	o.RumMobileLegacySessionCountIosAggSum = &v
+}
+
+// GetRumMobileLegacySessionCountReactnativeAggSum returns the RumMobileLegacySessionCountReactnativeAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumMobileLegacySessionCountReactnativeAggSum() int64 {
+	if o == nil || o.RumMobileLegacySessionCountReactnativeAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumMobileLegacySessionCountReactnativeAggSum
+}
+
+// GetRumMobileLegacySessionCountReactnativeAggSumOk returns a tuple with the RumMobileLegacySessionCountReactnativeAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumMobileLegacySessionCountReactnativeAggSumOk() (*int64, bool) {
+	if o == nil || o.RumMobileLegacySessionCountReactnativeAggSum == nil {
+		return nil, false
+	}
+	return o.RumMobileLegacySessionCountReactnativeAggSum, true
+}
+
+// HasRumMobileLegacySessionCountReactnativeAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumMobileLegacySessionCountReactnativeAggSum() bool {
+	return o != nil && o.RumMobileLegacySessionCountReactnativeAggSum != nil
+}
+
+// SetRumMobileLegacySessionCountReactnativeAggSum gets a reference to the given int64 and assigns it to the RumMobileLegacySessionCountReactnativeAggSum field.
+func (o *UsageSummaryResponse) SetRumMobileLegacySessionCountReactnativeAggSum(v int64) {
+	o.RumMobileLegacySessionCountReactnativeAggSum = &v
+}
+
+// GetRumMobileLegacySessionCountRokuAggSum returns the RumMobileLegacySessionCountRokuAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumMobileLegacySessionCountRokuAggSum() int64 {
+	if o == nil || o.RumMobileLegacySessionCountRokuAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumMobileLegacySessionCountRokuAggSum
+}
+
+// GetRumMobileLegacySessionCountRokuAggSumOk returns a tuple with the RumMobileLegacySessionCountRokuAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumMobileLegacySessionCountRokuAggSumOk() (*int64, bool) {
+	if o == nil || o.RumMobileLegacySessionCountRokuAggSum == nil {
+		return nil, false
+	}
+	return o.RumMobileLegacySessionCountRokuAggSum, true
+}
+
+// HasRumMobileLegacySessionCountRokuAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumMobileLegacySessionCountRokuAggSum() bool {
+	return o != nil && o.RumMobileLegacySessionCountRokuAggSum != nil
+}
+
+// SetRumMobileLegacySessionCountRokuAggSum gets a reference to the given int64 and assigns it to the RumMobileLegacySessionCountRokuAggSum field.
+func (o *UsageSummaryResponse) SetRumMobileLegacySessionCountRokuAggSum(v int64) {
+	o.RumMobileLegacySessionCountRokuAggSum = &v
+}
+
+// GetRumMobileLiteSessionCountAndroidAggSum returns the RumMobileLiteSessionCountAndroidAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumMobileLiteSessionCountAndroidAggSum() int64 {
+	if o == nil || o.RumMobileLiteSessionCountAndroidAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumMobileLiteSessionCountAndroidAggSum
+}
+
+// GetRumMobileLiteSessionCountAndroidAggSumOk returns a tuple with the RumMobileLiteSessionCountAndroidAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumMobileLiteSessionCountAndroidAggSumOk() (*int64, bool) {
+	if o == nil || o.RumMobileLiteSessionCountAndroidAggSum == nil {
+		return nil, false
+	}
+	return o.RumMobileLiteSessionCountAndroidAggSum, true
+}
+
+// HasRumMobileLiteSessionCountAndroidAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumMobileLiteSessionCountAndroidAggSum() bool {
+	return o != nil && o.RumMobileLiteSessionCountAndroidAggSum != nil
+}
+
+// SetRumMobileLiteSessionCountAndroidAggSum gets a reference to the given int64 and assigns it to the RumMobileLiteSessionCountAndroidAggSum field.
+func (o *UsageSummaryResponse) SetRumMobileLiteSessionCountAndroidAggSum(v int64) {
+	o.RumMobileLiteSessionCountAndroidAggSum = &v
+}
+
+// GetRumMobileLiteSessionCountFlutterAggSum returns the RumMobileLiteSessionCountFlutterAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumMobileLiteSessionCountFlutterAggSum() int64 {
+	if o == nil || o.RumMobileLiteSessionCountFlutterAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumMobileLiteSessionCountFlutterAggSum
+}
+
+// GetRumMobileLiteSessionCountFlutterAggSumOk returns a tuple with the RumMobileLiteSessionCountFlutterAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumMobileLiteSessionCountFlutterAggSumOk() (*int64, bool) {
+	if o == nil || o.RumMobileLiteSessionCountFlutterAggSum == nil {
+		return nil, false
+	}
+	return o.RumMobileLiteSessionCountFlutterAggSum, true
+}
+
+// HasRumMobileLiteSessionCountFlutterAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumMobileLiteSessionCountFlutterAggSum() bool {
+	return o != nil && o.RumMobileLiteSessionCountFlutterAggSum != nil
+}
+
+// SetRumMobileLiteSessionCountFlutterAggSum gets a reference to the given int64 and assigns it to the RumMobileLiteSessionCountFlutterAggSum field.
+func (o *UsageSummaryResponse) SetRumMobileLiteSessionCountFlutterAggSum(v int64) {
+	o.RumMobileLiteSessionCountFlutterAggSum = &v
+}
+
+// GetRumMobileLiteSessionCountIosAggSum returns the RumMobileLiteSessionCountIosAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumMobileLiteSessionCountIosAggSum() int64 {
+	if o == nil || o.RumMobileLiteSessionCountIosAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumMobileLiteSessionCountIosAggSum
+}
+
+// GetRumMobileLiteSessionCountIosAggSumOk returns a tuple with the RumMobileLiteSessionCountIosAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumMobileLiteSessionCountIosAggSumOk() (*int64, bool) {
+	if o == nil || o.RumMobileLiteSessionCountIosAggSum == nil {
+		return nil, false
+	}
+	return o.RumMobileLiteSessionCountIosAggSum, true
+}
+
+// HasRumMobileLiteSessionCountIosAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumMobileLiteSessionCountIosAggSum() bool {
+	return o != nil && o.RumMobileLiteSessionCountIosAggSum != nil
+}
+
+// SetRumMobileLiteSessionCountIosAggSum gets a reference to the given int64 and assigns it to the RumMobileLiteSessionCountIosAggSum field.
+func (o *UsageSummaryResponse) SetRumMobileLiteSessionCountIosAggSum(v int64) {
+	o.RumMobileLiteSessionCountIosAggSum = &v
+}
+
+// GetRumMobileLiteSessionCountReactnativeAggSum returns the RumMobileLiteSessionCountReactnativeAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumMobileLiteSessionCountReactnativeAggSum() int64 {
+	if o == nil || o.RumMobileLiteSessionCountReactnativeAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumMobileLiteSessionCountReactnativeAggSum
+}
+
+// GetRumMobileLiteSessionCountReactnativeAggSumOk returns a tuple with the RumMobileLiteSessionCountReactnativeAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumMobileLiteSessionCountReactnativeAggSumOk() (*int64, bool) {
+	if o == nil || o.RumMobileLiteSessionCountReactnativeAggSum == nil {
+		return nil, false
+	}
+	return o.RumMobileLiteSessionCountReactnativeAggSum, true
+}
+
+// HasRumMobileLiteSessionCountReactnativeAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumMobileLiteSessionCountReactnativeAggSum() bool {
+	return o != nil && o.RumMobileLiteSessionCountReactnativeAggSum != nil
+}
+
+// SetRumMobileLiteSessionCountReactnativeAggSum gets a reference to the given int64 and assigns it to the RumMobileLiteSessionCountReactnativeAggSum field.
+func (o *UsageSummaryResponse) SetRumMobileLiteSessionCountReactnativeAggSum(v int64) {
+	o.RumMobileLiteSessionCountReactnativeAggSum = &v
+}
+
+// GetRumMobileLiteSessionCountRokuAggSum returns the RumMobileLiteSessionCountRokuAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumMobileLiteSessionCountRokuAggSum() int64 {
+	if o == nil || o.RumMobileLiteSessionCountRokuAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumMobileLiteSessionCountRokuAggSum
+}
+
+// GetRumMobileLiteSessionCountRokuAggSumOk returns a tuple with the RumMobileLiteSessionCountRokuAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumMobileLiteSessionCountRokuAggSumOk() (*int64, bool) {
+	if o == nil || o.RumMobileLiteSessionCountRokuAggSum == nil {
+		return nil, false
+	}
+	return o.RumMobileLiteSessionCountRokuAggSum, true
+}
+
+// HasRumMobileLiteSessionCountRokuAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumMobileLiteSessionCountRokuAggSum() bool {
+	return o != nil && o.RumMobileLiteSessionCountRokuAggSum != nil
+}
+
+// SetRumMobileLiteSessionCountRokuAggSum gets a reference to the given int64 and assigns it to the RumMobileLiteSessionCountRokuAggSum field.
+func (o *UsageSummaryResponse) SetRumMobileLiteSessionCountRokuAggSum(v int64) {
+	o.RumMobileLiteSessionCountRokuAggSum = &v
+}
+
+// GetRumReplaySessionCountAggSum returns the RumReplaySessionCountAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetRumReplaySessionCountAggSum() int64 {
+	if o == nil || o.RumReplaySessionCountAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumReplaySessionCountAggSum
+}
+
+// GetRumReplaySessionCountAggSumOk returns a tuple with the RumReplaySessionCountAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetRumReplaySessionCountAggSumOk() (*int64, bool) {
+	if o == nil || o.RumReplaySessionCountAggSum == nil {
+		return nil, false
+	}
+	return o.RumReplaySessionCountAggSum, true
+}
+
+// HasRumReplaySessionCountAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasRumReplaySessionCountAggSum() bool {
+	return o != nil && o.RumReplaySessionCountAggSum != nil
+}
+
+// SetRumReplaySessionCountAggSum gets a reference to the given int64 and assigns it to the RumReplaySessionCountAggSum field.
+func (o *UsageSummaryResponse) SetRumReplaySessionCountAggSum(v int64) {
+	o.RumReplaySessionCountAggSum = &v
+}
+
 // GetRumSessionCountAggSum returns the RumSessionCountAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetRumSessionCountAggSum() int64 {
 	if o == nil || o.RumSessionCountAggSum == nil {
 		var ret int64
@@ -3065,6 +3574,7 @@ func (o *UsageSummaryResponse) GetRumSessionCountAggSum() int64 {
 
 // GetRumSessionCountAggSumOk returns a tuple with the RumSessionCountAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetRumSessionCountAggSumOk() (*int64, bool) {
 	if o == nil || o.RumSessionCountAggSum == nil {
 		return nil, false
@@ -3078,6 +3588,7 @@ func (o *UsageSummaryResponse) HasRumSessionCountAggSum() bool {
 }
 
 // SetRumSessionCountAggSum gets a reference to the given int64 and assigns it to the RumSessionCountAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetRumSessionCountAggSum(v int64) {
 	o.RumSessionCountAggSum = &v
 }
@@ -3111,6 +3622,7 @@ func (o *UsageSummaryResponse) SetRumTotalSessionCountAggSum(v int64) {
 }
 
 // GetRumUnitsAggSum returns the RumUnitsAggSum field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageSummaryResponse) GetRumUnitsAggSum() int64 {
 	if o == nil || o.RumUnitsAggSum == nil {
 		var ret int64
@@ -3121,6 +3633,7 @@ func (o *UsageSummaryResponse) GetRumUnitsAggSum() int64 {
 
 // GetRumUnitsAggSumOk returns a tuple with the RumUnitsAggSum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageSummaryResponse) GetRumUnitsAggSumOk() (*int64, bool) {
 	if o == nil || o.RumUnitsAggSum == nil {
 		return nil, false
@@ -3134,6 +3647,7 @@ func (o *UsageSummaryResponse) HasRumUnitsAggSum() bool {
 }
 
 // SetRumUnitsAggSum gets a reference to the given int64 and assigns it to the RumUnitsAggSum field.
+// Deprecated
 func (o *UsageSummaryResponse) SetRumUnitsAggSum(v int64) {
 	o.RumUnitsAggSum = &v
 }
@@ -4009,6 +4523,51 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.RumBrowserAndMobileSessionCount != nil {
 		toSerialize["rum_browser_and_mobile_session_count"] = o.RumBrowserAndMobileSessionCount
 	}
+	if o.RumBrowserLegacySessionCountAggSum != nil {
+		toSerialize["rum_browser_legacy_session_count_agg_sum"] = o.RumBrowserLegacySessionCountAggSum
+	}
+	if o.RumBrowserLiteSessionCountAggSum != nil {
+		toSerialize["rum_browser_lite_session_count_agg_sum"] = o.RumBrowserLiteSessionCountAggSum
+	}
+	if o.RumBrowserReplaySessionCountAggSum != nil {
+		toSerialize["rum_browser_replay_session_count_agg_sum"] = o.RumBrowserReplaySessionCountAggSum
+	}
+	if o.RumLiteSessionCountAggSum != nil {
+		toSerialize["rum_lite_session_count_agg_sum"] = o.RumLiteSessionCountAggSum
+	}
+	if o.RumMobileLegacySessionCountAndroidAggSum != nil {
+		toSerialize["rum_mobile_legacy_session_count_android_agg_sum"] = o.RumMobileLegacySessionCountAndroidAggSum
+	}
+	if o.RumMobileLegacySessionCountFlutterAggSum != nil {
+		toSerialize["rum_mobile_legacy_session_count_flutter_agg_sum"] = o.RumMobileLegacySessionCountFlutterAggSum
+	}
+	if o.RumMobileLegacySessionCountIosAggSum != nil {
+		toSerialize["rum_mobile_legacy_session_count_ios_agg_sum"] = o.RumMobileLegacySessionCountIosAggSum
+	}
+	if o.RumMobileLegacySessionCountReactnativeAggSum != nil {
+		toSerialize["rum_mobile_legacy_session_count_reactnative_agg_sum"] = o.RumMobileLegacySessionCountReactnativeAggSum
+	}
+	if o.RumMobileLegacySessionCountRokuAggSum != nil {
+		toSerialize["rum_mobile_legacy_session_count_roku_agg_sum"] = o.RumMobileLegacySessionCountRokuAggSum
+	}
+	if o.RumMobileLiteSessionCountAndroidAggSum != nil {
+		toSerialize["rum_mobile_lite_session_count_android_agg_sum"] = o.RumMobileLiteSessionCountAndroidAggSum
+	}
+	if o.RumMobileLiteSessionCountFlutterAggSum != nil {
+		toSerialize["rum_mobile_lite_session_count_flutter_agg_sum"] = o.RumMobileLiteSessionCountFlutterAggSum
+	}
+	if o.RumMobileLiteSessionCountIosAggSum != nil {
+		toSerialize["rum_mobile_lite_session_count_ios_agg_sum"] = o.RumMobileLiteSessionCountIosAggSum
+	}
+	if o.RumMobileLiteSessionCountReactnativeAggSum != nil {
+		toSerialize["rum_mobile_lite_session_count_reactnative_agg_sum"] = o.RumMobileLiteSessionCountReactnativeAggSum
+	}
+	if o.RumMobileLiteSessionCountRokuAggSum != nil {
+		toSerialize["rum_mobile_lite_session_count_roku_agg_sum"] = o.RumMobileLiteSessionCountRokuAggSum
+	}
+	if o.RumReplaySessionCountAggSum != nil {
+		toSerialize["rum_replay_session_count_agg_sum"] = o.RumReplaySessionCountAggSum
+	}
 	if o.RumSessionCountAggSum != nil {
 		toSerialize["rum_session_count_agg_sum"] = o.RumSessionCountAggSum
 	}
@@ -4191,6 +4750,21 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		RehydratedIndexedEventsAggSum                 *int64             `json:"rehydrated_indexed_events_agg_sum,omitempty"`
 		RehydratedIngestedBytesAggSum                 *int64             `json:"rehydrated_ingested_bytes_agg_sum,omitempty"`
 		RumBrowserAndMobileSessionCount               *int64             `json:"rum_browser_and_mobile_session_count,omitempty"`
+		RumBrowserLegacySessionCountAggSum            *int64             `json:"rum_browser_legacy_session_count_agg_sum,omitempty"`
+		RumBrowserLiteSessionCountAggSum              *int64             `json:"rum_browser_lite_session_count_agg_sum,omitempty"`
+		RumBrowserReplaySessionCountAggSum            *int64             `json:"rum_browser_replay_session_count_agg_sum,omitempty"`
+		RumLiteSessionCountAggSum                     *int64             `json:"rum_lite_session_count_agg_sum,omitempty"`
+		RumMobileLegacySessionCountAndroidAggSum      *int64             `json:"rum_mobile_legacy_session_count_android_agg_sum,omitempty"`
+		RumMobileLegacySessionCountFlutterAggSum      *int64             `json:"rum_mobile_legacy_session_count_flutter_agg_sum,omitempty"`
+		RumMobileLegacySessionCountIosAggSum          *int64             `json:"rum_mobile_legacy_session_count_ios_agg_sum,omitempty"`
+		RumMobileLegacySessionCountReactnativeAggSum  *int64             `json:"rum_mobile_legacy_session_count_reactnative_agg_sum,omitempty"`
+		RumMobileLegacySessionCountRokuAggSum         *int64             `json:"rum_mobile_legacy_session_count_roku_agg_sum,omitempty"`
+		RumMobileLiteSessionCountAndroidAggSum        *int64             `json:"rum_mobile_lite_session_count_android_agg_sum,omitempty"`
+		RumMobileLiteSessionCountFlutterAggSum        *int64             `json:"rum_mobile_lite_session_count_flutter_agg_sum,omitempty"`
+		RumMobileLiteSessionCountIosAggSum            *int64             `json:"rum_mobile_lite_session_count_ios_agg_sum,omitempty"`
+		RumMobileLiteSessionCountReactnativeAggSum    *int64             `json:"rum_mobile_lite_session_count_reactnative_agg_sum,omitempty"`
+		RumMobileLiteSessionCountRokuAggSum           *int64             `json:"rum_mobile_lite_session_count_roku_agg_sum,omitempty"`
+		RumReplaySessionCountAggSum                   *int64             `json:"rum_replay_session_count_agg_sum,omitempty"`
 		RumSessionCountAggSum                         *int64             `json:"rum_session_count_agg_sum,omitempty"`
 		RumTotalSessionCountAggSum                    *int64             `json:"rum_total_session_count_agg_sum,omitempty"`
 		RumUnitsAggSum                                *int64             `json:"rum_units_agg_sum,omitempty"`
@@ -4220,7 +4794,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p_sum", "apm_azure_app_service_host_top99p_sum", "apm_devsecops_host_top99p_sum", "apm_fargate_count_avg_sum", "apm_host_top99p_sum", "appsec_fargate_count_avg_sum", "asm_serverless_agg_sum", "audit_logs_lines_indexed_agg_sum", "audit_trail_enabled_hwm_sum", "avg_profiled_fargate_tasks_sum", "aws_host_top99p_sum", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p_sum", "azure_host_top99p_sum", "billable_ingested_bytes_agg_sum", "browser_rum_lite_session_count_agg_sum", "browser_rum_replay_session_count_agg_sum", "browser_rum_units_agg_sum", "ci_pipeline_indexed_spans_agg_sum", "ci_test_indexed_spans_agg_sum", "ci_visibility_itr_committers_hwm_sum", "ci_visibility_pipeline_committers_hwm_sum", "ci_visibility_test_committers_hwm_sum", "cloud_cost_management_aws_host_count_avg_sum", "cloud_cost_management_azure_host_count_avg_sum", "cloud_cost_management_gcp_host_count_avg_sum", "cloud_cost_management_host_count_avg_sum", "cloud_siem_events_agg_sum", "container_avg_sum", "container_excl_agent_avg_sum", "container_hwm_sum", "csm_container_enterprise_compliance_count_agg_sum", "csm_container_enterprise_cws_count_agg_sum", "csm_container_enterprise_total_count_agg_sum", "csm_host_enterprise_aas_host_count_top99p_sum", "csm_host_enterprise_aws_host_count_top99p_sum", "csm_host_enterprise_azure_host_count_top99p_sum", "csm_host_enterprise_compliance_host_count_top99p_sum", "csm_host_enterprise_cws_host_count_top99p_sum", "csm_host_enterprise_gcp_host_count_top99p_sum", "csm_host_enterprise_total_host_count_top99p_sum", "cspm_aas_host_top99p_sum", "cspm_aws_host_top99p_sum", "cspm_azure_host_top99p_sum", "cspm_container_avg_sum", "cspm_container_hwm_sum", "cspm_gcp_host_top99p_sum", "cspm_host_top99p_sum", "custom_historical_ts_sum", "custom_live_ts_sum", "custom_ts_sum", "cws_containers_avg_sum", "cws_host_top99p_sum", "dbm_host_top99p_sum", "dbm_queries_avg_sum", "end_date", "error_tracking_events_agg_sum", "fargate_tasks_count_avg_sum", "fargate_tasks_count_hwm_sum", "flex_logs_compute_large_avg_sum", "flex_logs_compute_medium_avg_sum", "flex_logs_compute_small_avg_sum", "flex_logs_compute_xsmall_avg_sum", "flex_stored_logs_avg_sum", "forwarding_events_bytes_agg_sum", "gcp_host_top99p_sum", "heroku_host_top99p_sum", "incident_management_monthly_active_users_hwm_sum", "indexed_events_count_agg_sum", "infra_host_top99p_sum", "ingested_events_bytes_agg_sum", "iot_device_agg_sum", "iot_device_top99p_sum", "last_updated", "live_indexed_events_agg_sum", "live_ingested_bytes_agg_sum", "logs_by_retention", "mobile_rum_lite_session_count_agg_sum", "mobile_rum_session_count_agg_sum", "mobile_rum_session_count_android_agg_sum", "mobile_rum_session_count_flutter_agg_sum", "mobile_rum_session_count_ios_agg_sum", "mobile_rum_session_count_reactnative_agg_sum", "mobile_rum_session_count_roku_agg_sum", "mobile_rum_units_agg_sum", "ndm_netflow_events_agg_sum", "netflow_indexed_events_count_agg_sum", "npm_host_top99p_sum", "observability_pipelines_bytes_processed_agg_sum", "online_archive_events_count_agg_sum", "opentelemetry_apm_host_top99p_sum", "opentelemetry_host_top99p_sum", "profiling_aas_count_top99p_sum", "profiling_container_agent_count_avg", "profiling_host_count_top99p_sum", "rehydrated_indexed_events_agg_sum", "rehydrated_ingested_bytes_agg_sum", "rum_browser_and_mobile_session_count", "rum_session_count_agg_sum", "rum_total_session_count_agg_sum", "rum_units_agg_sum", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_azure_count_avg_sum", "serverless_apps_google_count_avg_sum", "serverless_apps_total_count_avg_sum", "start_date", "synthetics_browser_check_calls_count_agg_sum", "synthetics_check_calls_count_agg_sum", "synthetics_mobile_test_runs_agg_sum", "synthetics_parallel_testing_max_slots_hwm_sum", "trace_search_indexed_events_count_agg_sum", "twol_ingested_events_bytes_agg_sum", "universal_service_monitoring_host_top99p_sum", "usage", "vsphere_host_top99p_sum", "vuln_management_host_count_top99p_sum", "workflow_executions_usage_agg_sum"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p_sum", "apm_azure_app_service_host_top99p_sum", "apm_devsecops_host_top99p_sum", "apm_fargate_count_avg_sum", "apm_host_top99p_sum", "appsec_fargate_count_avg_sum", "asm_serverless_agg_sum", "audit_logs_lines_indexed_agg_sum", "audit_trail_enabled_hwm_sum", "avg_profiled_fargate_tasks_sum", "aws_host_top99p_sum", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p_sum", "azure_host_top99p_sum", "billable_ingested_bytes_agg_sum", "browser_rum_lite_session_count_agg_sum", "browser_rum_replay_session_count_agg_sum", "browser_rum_units_agg_sum", "ci_pipeline_indexed_spans_agg_sum", "ci_test_indexed_spans_agg_sum", "ci_visibility_itr_committers_hwm_sum", "ci_visibility_pipeline_committers_hwm_sum", "ci_visibility_test_committers_hwm_sum", "cloud_cost_management_aws_host_count_avg_sum", "cloud_cost_management_azure_host_count_avg_sum", "cloud_cost_management_gcp_host_count_avg_sum", "cloud_cost_management_host_count_avg_sum", "cloud_siem_events_agg_sum", "container_avg_sum", "container_excl_agent_avg_sum", "container_hwm_sum", "csm_container_enterprise_compliance_count_agg_sum", "csm_container_enterprise_cws_count_agg_sum", "csm_container_enterprise_total_count_agg_sum", "csm_host_enterprise_aas_host_count_top99p_sum", "csm_host_enterprise_aws_host_count_top99p_sum", "csm_host_enterprise_azure_host_count_top99p_sum", "csm_host_enterprise_compliance_host_count_top99p_sum", "csm_host_enterprise_cws_host_count_top99p_sum", "csm_host_enterprise_gcp_host_count_top99p_sum", "csm_host_enterprise_total_host_count_top99p_sum", "cspm_aas_host_top99p_sum", "cspm_aws_host_top99p_sum", "cspm_azure_host_top99p_sum", "cspm_container_avg_sum", "cspm_container_hwm_sum", "cspm_gcp_host_top99p_sum", "cspm_host_top99p_sum", "custom_historical_ts_sum", "custom_live_ts_sum", "custom_ts_sum", "cws_containers_avg_sum", "cws_host_top99p_sum", "dbm_host_top99p_sum", "dbm_queries_avg_sum", "end_date", "error_tracking_events_agg_sum", "fargate_tasks_count_avg_sum", "fargate_tasks_count_hwm_sum", "flex_logs_compute_large_avg_sum", "flex_logs_compute_medium_avg_sum", "flex_logs_compute_small_avg_sum", "flex_logs_compute_xsmall_avg_sum", "flex_stored_logs_avg_sum", "forwarding_events_bytes_agg_sum", "gcp_host_top99p_sum", "heroku_host_top99p_sum", "incident_management_monthly_active_users_hwm_sum", "indexed_events_count_agg_sum", "infra_host_top99p_sum", "ingested_events_bytes_agg_sum", "iot_device_agg_sum", "iot_device_top99p_sum", "last_updated", "live_indexed_events_agg_sum", "live_ingested_bytes_agg_sum", "logs_by_retention", "mobile_rum_lite_session_count_agg_sum", "mobile_rum_session_count_agg_sum", "mobile_rum_session_count_android_agg_sum", "mobile_rum_session_count_flutter_agg_sum", "mobile_rum_session_count_ios_agg_sum", "mobile_rum_session_count_reactnative_agg_sum", "mobile_rum_session_count_roku_agg_sum", "mobile_rum_units_agg_sum", "ndm_netflow_events_agg_sum", "netflow_indexed_events_count_agg_sum", "npm_host_top99p_sum", "observability_pipelines_bytes_processed_agg_sum", "online_archive_events_count_agg_sum", "opentelemetry_apm_host_top99p_sum", "opentelemetry_host_top99p_sum", "profiling_aas_count_top99p_sum", "profiling_container_agent_count_avg", "profiling_host_count_top99p_sum", "rehydrated_indexed_events_agg_sum", "rehydrated_ingested_bytes_agg_sum", "rum_browser_and_mobile_session_count", "rum_browser_legacy_session_count_agg_sum", "rum_browser_lite_session_count_agg_sum", "rum_browser_replay_session_count_agg_sum", "rum_lite_session_count_agg_sum", "rum_mobile_legacy_session_count_android_agg_sum", "rum_mobile_legacy_session_count_flutter_agg_sum", "rum_mobile_legacy_session_count_ios_agg_sum", "rum_mobile_legacy_session_count_reactnative_agg_sum", "rum_mobile_legacy_session_count_roku_agg_sum", "rum_mobile_lite_session_count_android_agg_sum", "rum_mobile_lite_session_count_flutter_agg_sum", "rum_mobile_lite_session_count_ios_agg_sum", "rum_mobile_lite_session_count_reactnative_agg_sum", "rum_mobile_lite_session_count_roku_agg_sum", "rum_replay_session_count_agg_sum", "rum_session_count_agg_sum", "rum_total_session_count_agg_sum", "rum_units_agg_sum", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_azure_count_avg_sum", "serverless_apps_google_count_avg_sum", "serverless_apps_total_count_avg_sum", "start_date", "synthetics_browser_check_calls_count_agg_sum", "synthetics_check_calls_count_agg_sum", "synthetics_mobile_test_runs_agg_sum", "synthetics_parallel_testing_max_slots_hwm_sum", "trace_search_indexed_events_count_agg_sum", "twol_ingested_events_bytes_agg_sum", "universal_service_monitoring_host_top99p_sum", "usage", "vsphere_host_top99p_sum", "vuln_management_host_count_top99p_sum", "workflow_executions_usage_agg_sum"})
 	} else {
 		return err
 	}
@@ -4328,6 +4902,21 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.RehydratedIndexedEventsAggSum = all.RehydratedIndexedEventsAggSum
 	o.RehydratedIngestedBytesAggSum = all.RehydratedIngestedBytesAggSum
 	o.RumBrowserAndMobileSessionCount = all.RumBrowserAndMobileSessionCount
+	o.RumBrowserLegacySessionCountAggSum = all.RumBrowserLegacySessionCountAggSum
+	o.RumBrowserLiteSessionCountAggSum = all.RumBrowserLiteSessionCountAggSum
+	o.RumBrowserReplaySessionCountAggSum = all.RumBrowserReplaySessionCountAggSum
+	o.RumLiteSessionCountAggSum = all.RumLiteSessionCountAggSum
+	o.RumMobileLegacySessionCountAndroidAggSum = all.RumMobileLegacySessionCountAndroidAggSum
+	o.RumMobileLegacySessionCountFlutterAggSum = all.RumMobileLegacySessionCountFlutterAggSum
+	o.RumMobileLegacySessionCountIosAggSum = all.RumMobileLegacySessionCountIosAggSum
+	o.RumMobileLegacySessionCountReactnativeAggSum = all.RumMobileLegacySessionCountReactnativeAggSum
+	o.RumMobileLegacySessionCountRokuAggSum = all.RumMobileLegacySessionCountRokuAggSum
+	o.RumMobileLiteSessionCountAndroidAggSum = all.RumMobileLiteSessionCountAndroidAggSum
+	o.RumMobileLiteSessionCountFlutterAggSum = all.RumMobileLiteSessionCountFlutterAggSum
+	o.RumMobileLiteSessionCountIosAggSum = all.RumMobileLiteSessionCountIosAggSum
+	o.RumMobileLiteSessionCountReactnativeAggSum = all.RumMobileLiteSessionCountReactnativeAggSum
+	o.RumMobileLiteSessionCountRokuAggSum = all.RumMobileLiteSessionCountRokuAggSum
+	o.RumReplaySessionCountAggSum = all.RumReplaySessionCountAggSum
 	o.RumSessionCountAggSum = all.RumSessionCountAggSum
 	o.RumTotalSessionCountAggSum = all.RumTotalSessionCountAggSum
 	o.RumUnitsAggSum = all.RumUnitsAggSum
