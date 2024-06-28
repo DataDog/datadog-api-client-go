@@ -158,6 +158,7 @@ func (a *RestrictionPoliciesApi) GetRestrictionPolicy(ctx _context.Context, reso
 // - Powerpacks: `powerpack`
 // - Security Rules: `security-rule`
 // - Service Level Objectives: `slo`
+// - Suppression Rules: `suppression-rule`
 //
 // #### Supported relations for resources
 // Resource Type            | Supported Relations
@@ -167,6 +168,7 @@ func (a *RestrictionPoliciesApi) GetRestrictionPolicy(ctx _context.Context, reso
 // Powerpacks               | `viewer`, `editor`
 // Security Rules           | `viewer`, `editor`
 // Service Level Objectives | `viewer`, `editor`
+// Suppression Rules        | `viewer`, `editor`
 func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest) (RestrictionPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
