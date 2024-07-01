@@ -44,6 +44,8 @@ func NewDowntimeCreateRequestAttributes(monitorIdentifier DowntimeMonitorIdentif
 	var displayTimezone string = "UTC"
 	this.DisplayTimezone = *datadog.NewNullableString(&displayTimezone)
 	this.MonitorIdentifier = monitorIdentifier
+	var muteFirstRecoveryNotification bool = false
+	this.MuteFirstRecoveryNotification = &muteFirstRecoveryNotification
 	this.Scope = scope
 	return &this
 }
@@ -55,6 +57,8 @@ func NewDowntimeCreateRequestAttributesWithDefaults() *DowntimeCreateRequestAttr
 	this := DowntimeCreateRequestAttributes{}
 	var displayTimezone string = "UTC"
 	this.DisplayTimezone = *datadog.NewNullableString(&displayTimezone)
+	var muteFirstRecoveryNotification bool = false
+	this.MuteFirstRecoveryNotification = &muteFirstRecoveryNotification
 	return &this
 }
 
