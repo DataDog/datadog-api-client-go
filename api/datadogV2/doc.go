@@ -198,6 +198,7 @@
 //   - [MonitorsApi.GetMonitorConfigPolicy]
 //   - [MonitorsApi.ListMonitorConfigPolicies]
 //   - [MonitorsApi.UpdateMonitorConfigPolicy]
+//   - [NetworkDeviceMonitoringApi.ListDevices]
 //   - [OktaIntegrationApi.CreateOktaAccount]
 //   - [OktaIntegrationApi.DeleteOktaAccount]
 //   - [OktaIntegrationApi.GetOktaAccount]
