@@ -24,7 +24,13 @@ func main() {
 		Errors: []string{
 			"*",
 		},
-		HostFilters:               datadog.PtrString("key:value,filter:example"),
+		HostFilters: datadog.PtrString("key:value,filter:example"),
+		MetricsConfig: &datadogV1.AzureAccountMetricsConfig{
+			ExcludedResourceProviders: []string{
+				"Microsoft.Sql",
+				"Microsoft.Cdn",
+			},
+		},
 		NewClientId:               datadog.PtrString("new1c7f6-1234-5678-9101-3fcbf464test"),
 		NewTenantName:             datadog.PtrString("new1c44-1234-5678-9101-cc00736ftest"),
 		ResourceCollectionEnabled: datadog.PtrBool(true),
