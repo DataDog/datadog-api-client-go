@@ -28,7 +28,13 @@ func main() {
 		NewClientId:               datadog.PtrString("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"),
 		NewTenantName:             datadog.PtrString("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"),
 		ResourceCollectionEnabled: datadog.PtrBool(true),
-		TenantName:                datadog.PtrString("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"),
+		MetricsConfig: &datadogV1.AzureAccountMetricsConfig{
+			ExcludedResourceProviders: []string{
+				"Microsoft.Sql",
+				"Microsoft.Cdn",
+			},
+		},
+		TenantName: datadog.PtrString("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
