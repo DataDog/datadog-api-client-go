@@ -3,17 +3,17 @@ version: 2
 interactions:
     - id: 0
       request:
-        proto: ""
-        proto_major: 0
-        proto_minor: 0
-        content_length: 0
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 157
         transfer_encoding: []
         trailer: {}
-        host: ""
+        host: api.datadoghq.com
         remote_addr: ""
         request_uri: ""
         body: |
-            {"client_id":"testc7f6-1234-5678-9101-tt1692864904","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864904ee"}
+            {"client_id":"testc7f6-1234-5678-9101-tt1720557371","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1720557371ee"}
         form: {}
         headers:
             Accept:
@@ -23,22 +23,22 @@ interactions:
             Content-Type:
                 - application/json
             User-Agent:
-                - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
+                - datadog-api-client-go/2.27.1+dev (go go1.21.5; os darwin; arch arm64)
             X-Datadog-Parent-Id:
-                - "1767590789407948788"
+                - "2929661720325999012"
             X-Datadog-Sampling-Priority:
                 - "2"
             X-Datadog-Trace-Id:
-                - "3735991913634290079"
+                - "7628435484381993447"
         url: https://api.datadoghq.com/api/v1/integration/azure
         method: POST
       response:
-        proto: ""
-        proto_major: 0
-        proto_minor: 0
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 0
+        content_length: 3
         uncompressed: false
         body: |
             {}
@@ -50,7 +50,7 @@ interactions:
             Content-Type:
                 - application/json
             Date:
-                - Thu, 24 Aug 2023 08:15:06 GMT
+                - Tue, 09 Jul 2024 20:36:11 GMT
             Strict-Transport-Security:
                 - max-age=31536000; includeSubDomains; preload
             X-Content-Type-Options:
@@ -59,16 +59,16 @@ interactions:
                 - SAMEORIGIN
         status: 200 OK
         code: 200
-        duration: 0s
+        duration: 151.622958ms
     - id: 1
       request:
-        proto: ""
-        proto_major: 0
-        proto_minor: 0
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
         content_length: 0
         transfer_encoding: []
         trailer: {}
-        host: ""
+        host: api.datadoghq.com
         remote_addr: ""
         request_uri: ""
         body: ""
@@ -77,32 +77,33 @@ interactions:
             Accept:
                 - application/json
             User-Agent:
-                - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
+                - datadog-api-client-go/2.27.1+dev (go go1.21.5; os darwin; arch arm64)
             X-Datadog-Parent-Id:
-                - "1727166978423307032"
+                - "4573391800090157108"
             X-Datadog-Sampling-Priority:
                 - "2"
             X-Datadog-Trace-Id:
-                - "3735991913634290079"
+                - "7628435484381993447"
         url: https://api.datadoghq.com/api/v1/integration/azure
         method: GET
       response:
-        proto: ""
-        proto_major: 0
-        proto_minor: 0
-        transfer_encoding: []
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        transfer_encoding:
+            - chunked
         trailer: {}
-        content_length: 0
-        uncompressed: false
+        content_length: -1
+        uncompressed: true
         body: |
-            [{"tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864904ee","client_id":"testc7f6-1234-5678-9101-tt1692864904","host_filters":"","app_service_plan_filters":"","automute":true,"cspm_enabled":false,"custom_metrics_enabled":false,"errors":[],"warnings":[]}]
+            [{"tenant_name":"17061199-0000-0000-0000-170611998800","client_id":"17061199-0000-0000-0000-170611998800","host_filters":"key:value,filter:example","app_service_plan_filters":"key:value,filter:example","container_app_filters":"key:value,filter:example","automute":true,"cspm_enabled":true,"custom_metrics_enabled":true,"resource_collection_enabled":true,"errors":["Invalid credentials. Datadog could not authenticate with Azure."],"warnings":[]},{"tenant_name":"17115529-0000-0000-0000-171155292400","client_id":"17115529-0000-0000-0000-171155292400","host_filters":"key:value,filter:example","app_service_plan_filters":"key:value,filter:example","container_app_filters":"key:value,filter:example","automute":true,"cspm_enabled":true,"custom_metrics_enabled":true,"resource_collection_enabled":true,"errors":["Invalid credentials. Datadog could not authenticate with Azure."],"warnings":[]},{"tenant_name":"201b4113-5e9e-42b1-bc9e-d551d5eecdc7","client_id":"201b4233-5e9e-42b1-bc9e-d551d5eecdc7","host_filters":"","app_service_plan_filters":"","container_app_filters":"","automute":false,"cspm_enabled":false,"custom_metrics_enabled":false,"resource_collection_enabled":true,"errors":["Invalid credentials. Datadog could not authenticate with Azure."],"warnings":[]},{"tenant_name":"428ac265-45f6-4f64-be69-6ec9ba940c13","client_id":"428ac265-45f6-4f64-be69-6ec9ba940c13","host_filters":"key:value,filter:example","app_service_plan_filters":"key:value,filter:example","container_app_filters":"key:value,filter:example","automute":true,"cspm_enabled":true,"custom_metrics_enabled":true,"resource_collection_enabled":true,"errors":["Invalid credentials. Datadog could not authenticate with Azure."],"warnings":[]},{"tenant_name":"791b0140-31a1-44b7-9a07-d371472463c2","client_id":"791b0140-31a1-44b7-9a07-d371472463c2","host_filters":"key:value,filter:example","app_service_plan_filters":"key:value,filter:example","container_app_filters":"key:value,filter:example","automute":true,"cspm_enabled":true,"custom_metrics_enabled":true,"resource_collection_enabled":true,"errors":["Invalid credentials. Datadog could not authenticate with Azure."],"warnings":[]},{"tenant_name":"994f15eb-4c53-40b7-94dc-12a4a1cb5f24","client_id":"994f15eb-4c53-40b7-94dc-12a4a1cb5f24","host_filters":"key:value,filter:example","app_service_plan_filters":"key:value,filter:example","container_app_filters":"key:value,filter:example","automute":true,"cspm_enabled":true,"custom_metrics_enabled":true,"resource_collection_enabled":true,"errors":["Invalid credentials. Datadog could not authenticate with Azure."],"warnings":[]},{"tenant_name":"9be509c5-d65e-51bb-174e-0c1cb2d6b537","client_id":"a75fbdd2-ade6-43d0-a810-4d886c53871e","host_filters":"","app_service_plan_filters":"","container_app_filters":"","automute":false,"cspm_enabled":false,"custom_metrics_enabled":false,"resource_collection_enabled":true,"errors":["Invalid credentials. Datadog could not authenticate with Azure."],"warnings":[]},{"tenant_name":"bc0dd12b-1541-6e94-079e-38f847ff7b49","client_id":"a75fbdd2-ade6-43d0-a810-4d886c53871e","host_filters":"","app_service_plan_filters":"","container_app_filters":"","automute":false,"cspm_enabled":false,"custom_metrics_enabled":false,"resource_collection_enabled":false,"errors":["Invalid credentials. Datadog could not authenticate with Azure."],"warnings":[]},{"tenant_name":"c176cb8c-e9d2-43e1-8726-e99421b98e01","client_id":"c176cb8c-e9d2-43e1-8726-e99421b98e01","host_filters":"key:value,filter:example","app_service_plan_filters":"key:value,filter:example","container_app_filters":"key:value,filter:example","automute":true,"cspm_enabled":true,"custom_metrics_enabled":true,"resource_collection_enabled":true,"errors":["Invalid credentials. Datadog could not authenticate with Azure."],"warnings":[]},{"tenant_name":"c515df33-c960-4a04-8113-29244dcbd0b7","client_id":"c515df33-c960-4a04-8113-29244dcbd0b7","host_filters":"key:value,filter:example","app_service_plan_filters":"key:value,filter:example","container_app_filters":"key:value,filter:example","automute":true,"cspm_enabled":true,"custom_metrics_enabled":true,"resource_collection_enabled":true,"errors":["Invalid credentials. Datadog could not authenticate with Azure."],"warnings":[]},{"tenant_name":"fbf121cb-d1d0-42e4-8cd6-61eed50481bb","client_id":"fbf121cb-d1d0-42e4-8cd6-61eed50481bb","host_filters":"key:value,filter:example","app_service_plan_filters":"key:value,filter:example","container_app_filters":"key:value,filter:example","automute":true,"cspm_enabled":true,"custom_metrics_enabled":true,"resource_collection_enabled":true,"errors":["Invalid credentials. Datadog could not authenticate with Azure."],"warnings":[]},{"tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1720557371ee","client_id":"testc7f6-1234-5678-9101-tt1720557371","host_filters":"","app_service_plan_filters":"","container_app_filters":"","automute":true,"cspm_enabled":false,"custom_metrics_enabled":false,"resource_collection_enabled":true,"errors":[],"warnings":[]}]
         headers:
             Connection:
                 - keep-alive
             Content-Type:
                 - application/json
             Date:
-                - Thu, 24 Aug 2023 08:15:06 GMT
+                - Tue, 09 Jul 2024 20:36:11 GMT
             Strict-Transport-Security:
                 - max-age=31536000; includeSubDomains; preload
             Vary:
@@ -113,20 +114,20 @@ interactions:
                 - SAMEORIGIN
         status: 200 OK
         code: 200
-        duration: 0s
+        duration: 109.516542ms
     - id: 2
       request:
-        proto: ""
-        proto_major: 0
-        proto_minor: 0
-        content_length: 0
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 157
         transfer_encoding: []
         trailer: {}
-        host: ""
+        host: api.datadoghq.com
         remote_addr: ""
         request_uri: ""
         body: |
-            {"client_id":"testc7f6-1234-5678-9101-tt1692864904","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864904ee"}
+            {"client_id":"testc7f6-1234-5678-9101-tt1720557371","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1720557371ee"}
         form: {}
         headers:
             Accept:
@@ -136,22 +137,22 @@ interactions:
             Content-Type:
                 - application/json
             User-Agent:
-                - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
+                - datadog-api-client-go/2.27.1+dev (go go1.21.5; os darwin; arch arm64)
             X-Datadog-Parent-Id:
-                - "554097172529471676"
+                - "3692969570708460801"
             X-Datadog-Sampling-Priority:
                 - "2"
             X-Datadog-Trace-Id:
-                - "3735991913634290079"
+                - "7628435484381993447"
         url: https://api.datadoghq.com/api/v1/integration/azure
         method: DELETE
       response:
-        proto: ""
-        proto_major: 0
-        proto_minor: 0
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 0
+        content_length: 3
         uncompressed: false
         body: |
             {}
@@ -163,7 +164,7 @@ interactions:
             Content-Type:
                 - application/json
             Date:
-                - Thu, 24 Aug 2023 08:15:09 GMT
+                - Tue, 09 Jul 2024 20:36:11 GMT
             Strict-Transport-Security:
                 - max-age=31536000; includeSubDomains; preload
             X-Content-Type-Options:
@@ -172,20 +173,20 @@ interactions:
                 - SAMEORIGIN
         status: 200 OK
         code: 200
-        duration: 0s
+        duration: 102.584292ms
     - id: 3
       request:
-        proto: ""
-        proto_major: 0
-        proto_minor: 0
-        content_length: 0
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 106
         transfer_encoding: []
         trailer: {}
-        host: ""
+        host: api.datadoghq.com
         remote_addr: ""
         request_uri: ""
         body: |
-            {"client_id":"testc7f6-1234-5678-9101-uu1692864904","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864904ff"}
+            {"client_id":"testc7f6-1234-5678-9101-tt1720557371","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1720557371ee"}
         form: {}
         headers:
             Accept:
@@ -195,55 +196,56 @@ interactions:
             Content-Type:
                 - application/json
             User-Agent:
-                - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
+                - datadog-api-client-go/2.27.1+dev (go go1.21.5; os darwin; arch arm64)
             X-Datadog-Parent-Id:
-                - "4982743346472074692"
+                - "2269572686769323065"
             X-Datadog-Sampling-Priority:
                 - "2"
             X-Datadog-Trace-Id:
-                - "3735991913634290079"
+                - "7628435484381993447"
         url: https://api.datadoghq.com/api/v1/integration/azure
         method: DELETE
       response:
-        proto: ""
-        proto_major: 0
-        proto_minor: 0
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 0
+        content_length: 3
         uncompressed: false
-        body: '{"errors":["Azure Integration not yet installed. Please install before performing this action."]}'
+        body: |
+            {}
         headers:
             Connection:
                 - keep-alive
+            Content-Length:
+                - "3"
             Content-Type:
                 - application/json
             Date:
-                - Thu, 24 Aug 2023 08:15:09 GMT
+                - Tue, 09 Jul 2024 20:36:12 GMT
             Strict-Transport-Security:
                 - max-age=31536000; includeSubDomains; preload
-            Vary:
-                - Accept-Encoding
             X-Content-Type-Options:
                 - nosniff
             X-Frame-Options:
                 - SAMEORIGIN
-        status: 400 Bad Request
-        code: 400
-        duration: 0s
+        status: 200 OK
+        code: 200
+        duration: 79.693417ms
     - id: 4
       request:
-        proto: ""
-        proto_major: 0
-        proto_minor: 0
-        content_length: 0
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
+        content_length: 106
         transfer_encoding: []
         trailer: {}
-        host: ""
+        host: api.datadoghq.com
         remote_addr: ""
         request_uri: ""
         body: |
-            {"client_id":"testc7f6-1234-5678-9101-tt1692864904","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1692864904ee"}
+            {"client_id":"testc7f6-1234-5678-9101-tt1720557371","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1720557371ee"}
         form: {}
         headers:
             Accept:
@@ -253,39 +255,40 @@ interactions:
             Content-Type:
                 - application/json
             User-Agent:
-                - datadog-api-client-go/2.16.1+dev (go go1.18.1; os linux; arch amd64)
+                - datadog-api-client-go/2.27.1+dev (go go1.21.5; os darwin; arch arm64)
             X-Datadog-Parent-Id:
-                - "395493981674492845"
+                - "2696356764357524970"
             X-Datadog-Sampling-Priority:
                 - "2"
             X-Datadog-Trace-Id:
-                - "3735991913634290079"
+                - "7628435484381993447"
         url: https://api.datadoghq.com/api/v1/integration/azure
         method: DELETE
       response:
-        proto: ""
-        proto_major: 0
-        proto_minor: 0
+        proto: HTTP/1.1
+        proto_major: 1
+        proto_minor: 1
         transfer_encoding: []
         trailer: {}
-        content_length: 0
+        content_length: 3
         uncompressed: false
-        body: '{"errors":["Azure Integration not yet installed. Please install before performing this action."]}'
+        body: |
+            {}
         headers:
             Connection:
                 - keep-alive
+            Content-Length:
+                - "3"
             Content-Type:
                 - application/json
             Date:
-                - Thu, 24 Aug 2023 08:15:09 GMT
+                - Tue, 09 Jul 2024 20:36:12 GMT
             Strict-Transport-Security:
                 - max-age=31536000; includeSubDomains; preload
-            Vary:
-                - Accept-Encoding
             X-Content-Type-Options:
                 - nosniff
             X-Frame-Options:
                 - SAMEORIGIN
-        status: 400 Bad Request
-        code: 400
-        duration: 0s
+        status: 200 OK
+        code: 200
+        duration: 119.987209ms
