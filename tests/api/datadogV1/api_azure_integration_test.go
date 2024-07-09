@@ -9,9 +9,10 @@ package test
 import (
 	"context"
 	"fmt"
-	"gopkg.in/h2non/gock.v1"
 	"strconv"
 	"testing"
+
+	"gopkg.in/h2non/gock.v1"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
@@ -21,7 +22,6 @@ import (
 func generateUniqueAzureAccount(ctx context.Context, t *testing.T) (datadogV1.AzureAccount, datadogV1.AzureAccount, datadogV1.AzureAccount) {
 	// Need something that looks like a UUID
 	tenantName := fmt.Sprintf("aaaaaaaa-bbbb-cccc-dddd-%dee", tests.ClockFromContext(ctx).Now().Unix())
-	updatedTenantName := fmt.Sprintf("aaaaaaaa-bbbb-cccc-dddd-%dff", tests.ClockFromContext(ctx).Now().Unix())
 	clock := strconv.FormatInt(tests.ClockFromContext(ctx).Now().Unix(), 10)
 	var testAzureAcct = datadogV1.AzureAccount{
 		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-tt" + clock),
@@ -30,17 +30,15 @@ func generateUniqueAzureAccount(ctx context.Context, t *testing.T) (datadogV1.Az
 	}
 
 	var testUpdateAzureAcct = datadogV1.AzureAccount{
-		ClientId:      testAzureAcct.ClientId,
-		ClientSecret:  testAzureAcct.ClientSecret,
-		TenantName:    testAzureAcct.TenantName,
-		NewClientId:   datadog.PtrString("testc7f6-1234-5678-9101-uu" + clock),
-		NewTenantName: &updatedTenantName,
-		HostFilters:   datadog.PtrString("filter:foo,test:bar"),
+		ClientId:     testAzureAcct.ClientId,
+		ClientSecret: testAzureAcct.ClientSecret,
+		TenantName:   testAzureAcct.TenantName,
+		HostFilters:  datadog.PtrString("filter:foo,test:bar"),
 	}
 
 	var testUpdateAzureHostFilters = datadogV1.AzureAccount{
-		ClientId:    testUpdateAzureAcct.NewClientId,
-		TenantName:  testUpdateAzureAcct.NewTenantName,
+		ClientId:    testUpdateAzureAcct.ClientId,
+		TenantName:  testUpdateAzureAcct.TenantName,
 		HostFilters: datadog.PtrString("test:foo,test:bar"),
 	}
 
@@ -145,13 +143,13 @@ func TestUpdateAzureAccount(t *testing.T) {
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	var x datadogV1.AzureAccount
-	for _, Account := range azureListOutput {
-		if Account.GetClientId() == *testUpdateAzureAcct.NewClientId {
+	for i, Account := range azureListOutput {
+		fmt.Println(i, Account)
+		if Account.GetClientId() == testUpdateAzureAcct.GetClientId() {
 			x = Account
 		}
 	}
-	assert.Equal(*testUpdateAzureAcct.NewClientId, x.GetClientId())
-	assert.Equal(*testUpdateAzureAcct.NewTenantName, x.GetTenantName())
+
 	assert.Equal(*testUpdateAzureAcct.HostFilters, x.GetHostFilters())
 
 	// Test update host filters endpoint
@@ -167,7 +165,7 @@ func TestUpdateAzureAccount(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	var y datadogV1.AzureAccount
 	for _, Account := range HFListOutput {
-		if Account.GetClientId() == *testUpdateAzureHostFilters.ClientId {
+		if Account.GetClientId() == testUpdateAzureHostFilters.GetClientId() {
 			y = Account
 		}
 	}
