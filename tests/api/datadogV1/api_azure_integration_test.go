@@ -335,11 +335,7 @@ func uninstallAzureIntegration(ctx context.Context, t *testing.T, account datado
 	api := datadogV1.NewAzureIntegrationApi(Client(ctx))
 
 	toDelete := datadogV1.AzureAccount{ClientId: account.ClientId, TenantName: account.TenantName}
-	if account.NewClientId != nil {
-		// when we call this on an update request, make sure we actually delete the updated entity, not the original one
-		toDelete.ClientId = account.NewClientId
-		toDelete.TenantName = account.NewTenantName
-	}
+
 	_, httpresp, err := api.DeleteAzureIntegration(ctx, toDelete)
 	if httpresp.StatusCode != 200 || err != nil {
 		t.Logf("Error uninstalling Azure Account: %v, Another test may have already removed this account.", account)
