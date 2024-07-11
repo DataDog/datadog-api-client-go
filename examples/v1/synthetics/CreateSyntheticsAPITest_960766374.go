@@ -99,7 +99,7 @@ func main() {
 						Resource:               datadog.PtrString("resource"),
 						Scope:                  datadog.PtrString("yoyo"),
 						TokenApiAuthentication: datadogV1.SYNTHETICSBASICAUTHOAUTHTOKENAPIAUTHENTICATION_BODY,
-						Type:                   datadogV1.SYNTHETICSBASICAUTHOAUTHROPTYPE_OAUTH_ROP.Ptr(),
+						Type:                   datadogV1.SYNTHETICSBASICAUTHOAUTHROPTYPE_OAUTH_ROP,
 						Username:               "oauth-usermame",
 						Password:               "oauth-password",
 					}},

@@ -100,7 +100,7 @@ func main() {
 						Resource:               datadog.PtrString("resource"),
 						Scope:                  datadog.PtrString("yoyo"),
 						TokenApiAuthentication: datadogV1.SYNTHETICSBASICAUTHOAUTHTOKENAPIAUTHENTICATION_HEADER,
-						Type:                   datadogV1.SYNTHETICSBASICAUTHOAUTHCLIENTTYPE_OAUTH_CLIENT.Ptr(),
+						Type:                   datadogV1.SYNTHETICSBASICAUTHOAUTHCLIENTTYPE_OAUTH_CLIENT,
 					}},
 				PersistCookies: datadog.PtrBool(true),
 			},
