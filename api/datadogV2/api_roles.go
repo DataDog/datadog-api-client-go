@@ -589,7 +589,6 @@ type ListRoleUsersOptionalParameters struct {
 	PageSize   *int64
 	PageNumber *int64
 	Sort       *string
-	Filter     *string
 }
 
 // NewListRoleUsersOptionalParameters creates an empty struct for parameters.
@@ -613,12 +612,6 @@ func (r *ListRoleUsersOptionalParameters) WithPageNumber(pageNumber int64) *List
 // WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListRoleUsersOptionalParameters) WithSort(sort string) *ListRoleUsersOptionalParameters {
 	r.Sort = &sort
-	return r
-}
-
-// WithFilter sets the corresponding parameter name and returns the struct.
-func (r *ListRoleUsersOptionalParameters) WithFilter(filter string) *ListRoleUsersOptionalParameters {
-	r.Filter = &filter
 	return r
 }
 
@@ -658,9 +651,6 @@ func (a *RolesApi) ListRoleUsers(ctx _context.Context, roleId string, o ...ListR
 	}
 	if optionalParams.Sort != nil {
 		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
-	}
-	if optionalParams.Filter != nil {
-		localVarQueryParams.Add("filter", datadog.ParameterToString(*optionalParams.Filter, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
