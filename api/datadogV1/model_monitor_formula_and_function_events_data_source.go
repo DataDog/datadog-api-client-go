@@ -24,6 +24,7 @@ const (
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_SPANS                       MonitorFormulaAndFunctionEventsDataSource = "spans"
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_DATABASE_QUERIES            MonitorFormulaAndFunctionEventsDataSource = "database_queries"
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_NETWORK_PERFORMANCE_QUERIES MonitorFormulaAndFunctionEventsDataSource = "network_performance_queries"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_NETWORK                     MonitorFormulaAndFunctionEventsDataSource = "network"
 )
 
 var allowedMonitorFormulaAndFunctionEventsDataSourceEnumValues = []MonitorFormulaAndFunctionEventsDataSource{
@@ -36,6 +37,7 @@ var allowedMonitorFormulaAndFunctionEventsDataSourceEnumValues = []MonitorFormul
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_SPANS,
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_DATABASE_QUERIES,
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_NETWORK_PERFORMANCE_QUERIES,
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_NETWORK,
 }
 
 // GetAllowedValues reeturns the list of possible values.
