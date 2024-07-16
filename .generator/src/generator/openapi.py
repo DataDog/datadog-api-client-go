@@ -213,7 +213,7 @@ def models(spec):
     name_to_schema = {}
 
     for path in spec["paths"]:
-        if path == "x-merge-override":
+        if path.startswith("x-"):
             continue
         for method in spec["paths"][path]:
             operation = spec["paths"][path][method]
@@ -238,7 +238,7 @@ def apis(spec):
     operations = {}
 
     for path in spec["paths"]:
-        if path == "x-merge-override":
+        if path.startswith("x-"):
             continue
         for method in spec["paths"][path]:
             operation = spec["paths"][path][method]
