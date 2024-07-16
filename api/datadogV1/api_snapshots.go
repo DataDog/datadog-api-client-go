@@ -17,24 +17,17 @@ type SnapshotsApi datadog.Service
 
 // GetGraphSnapshotOptionalParameters holds optional parameters for GetGraphSnapshot.
 type GetGraphSnapshotOptionalParameters struct {
-	MetricQuery *string
-	EventQuery  *string
-	GraphDef    *string
-	Title       *string
-	Height      *int64
-	Width       *int64
+	EventQuery *string
+	GraphDef   *string
+	Title      *string
+	Height     *int64
+	Width      *int64
 }
 
 // NewGetGraphSnapshotOptionalParameters creates an empty struct for parameters.
 func NewGetGraphSnapshotOptionalParameters() *GetGraphSnapshotOptionalParameters {
 	this := GetGraphSnapshotOptionalParameters{}
 	return &this
-}
-
-// WithMetricQuery sets the corresponding parameter name and returns the struct.
-func (r *GetGraphSnapshotOptionalParameters) WithMetricQuery(metricQuery string) *GetGraphSnapshotOptionalParameters {
-	r.MetricQuery = &metricQuery
-	return r
 }
 
 // WithEventQuery sets the corresponding parameter name and returns the struct.
@@ -70,7 +63,7 @@ func (r *GetGraphSnapshotOptionalParameters) WithWidth(width int64) *GetGraphSna
 // GetGraphSnapshot Take graph snapshots.
 // Take graph snapshots.
 // **Note**: When a snapshot is created, there is some delay before it is available.
-func (a *SnapshotsApi) GetGraphSnapshot(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (GraphSnapshot, *_nethttp.Response, error) {
+func (a *SnapshotsApi) GetGraphSnapshot(ctx _context.Context, metricQuery string, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (GraphSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -95,11 +88,9 @@ func (a *SnapshotsApi) GetGraphSnapshot(ctx _context.Context, start int64, end i
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("metric_query", datadog.ParameterToString(metricQuery, ""))
 	localVarQueryParams.Add("start", datadog.ParameterToString(start, ""))
 	localVarQueryParams.Add("end", datadog.ParameterToString(end, ""))
-	if optionalParams.MetricQuery != nil {
-		localVarQueryParams.Add("metric_query", datadog.ParameterToString(*optionalParams.MetricQuery, ""))
-	}
 	if optionalParams.EventQuery != nil {
 		localVarQueryParams.Add("event_query", datadog.ParameterToString(*optionalParams.EventQuery, ""))
 	}
