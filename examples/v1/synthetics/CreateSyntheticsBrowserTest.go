@@ -60,7 +60,9 @@ func main() {
 				Count:    datadog.PtrInt64(2),
 				Interval: datadog.PtrFloat64(10),
 			},
-			TickEvery: datadog.PtrInt64(300),
+			TickEvery:             datadog.PtrInt64(300),
+			EnableProfiling:       datadog.PtrBool(true),
+			EnableSecurityTesting: datadog.PtrBool(true),
 		},
 		Tags: []string{
 			"testing:browser",

@@ -242,6 +242,8 @@
 //   - [RolesApi.RemovePermissionFromRole]
 //   - [RolesApi.RemoveUserFromRole]
 //   - [RolesApi.UpdateRole]
+//   - [SecurityMonitoringApi.ConvertExistingSecurityMonitoringRule]
+//   - [SecurityMonitoringApi.ConvertSecurityMonitoringRuleFromJSONToTerraform]
 //   - [SecurityMonitoringApi.CreateSecurityFilter]
 //   - [SecurityMonitoringApi.CreateSecurityMonitoringRule]
 //   - [SecurityMonitoringApi.CreateSecurityMonitoringSuppression]
