@@ -469,12 +469,13 @@ func (a *UsageMeteringApi) GetHistoricalCostByOrg(ctx _context.Context, startMon
 
 // GetHourlyUsageOptionalParameters holds optional parameters for GetHourlyUsage.
 type GetHourlyUsageOptionalParameters struct {
-	FilterTimestampEnd       *time.Time
-	FilterIncludeDescendants *bool
-	FilterIncludeBreakdown   *bool
-	FilterVersions           *string
-	PageLimit                *int32
-	PageNextRecordId         *string
+	FilterTimestampEnd             *time.Time
+	FilterIncludeDescendants       *bool
+	FilterIncludeConnectedAccounts *bool
+	FilterIncludeBreakdown         *bool
+	FilterVersions                 *string
+	PageLimit                      *int32
+	PageNextRecordId               *string
 }
 
 // NewGetHourlyUsageOptionalParameters creates an empty struct for parameters.
@@ -492,6 +493,12 @@ func (r *GetHourlyUsageOptionalParameters) WithFilterTimestampEnd(filterTimestam
 // WithFilterIncludeDescendants sets the corresponding parameter name and returns the struct.
 func (r *GetHourlyUsageOptionalParameters) WithFilterIncludeDescendants(filterIncludeDescendants bool) *GetHourlyUsageOptionalParameters {
 	r.FilterIncludeDescendants = &filterIncludeDescendants
+	return r
+}
+
+// WithFilterIncludeConnectedAccounts sets the corresponding parameter name and returns the struct.
+func (r *GetHourlyUsageOptionalParameters) WithFilterIncludeConnectedAccounts(filterIncludeConnectedAccounts bool) *GetHourlyUsageOptionalParameters {
+	r.FilterIncludeConnectedAccounts = &filterIncludeConnectedAccounts
 	return r
 }
 
@@ -553,6 +560,9 @@ func (a *UsageMeteringApi) GetHourlyUsage(ctx _context.Context, filterTimestampS
 	}
 	if optionalParams.FilterIncludeDescendants != nil {
 		localVarQueryParams.Add("filter[include_descendants]", datadog.ParameterToString(*optionalParams.FilterIncludeDescendants, ""))
+	}
+	if optionalParams.FilterIncludeConnectedAccounts != nil {
+		localVarQueryParams.Add("filter[include_connected_accounts]", datadog.ParameterToString(*optionalParams.FilterIncludeConnectedAccounts, ""))
 	}
 	if optionalParams.FilterIncludeBreakdown != nil {
 		localVarQueryParams.Add("filter[include_breakdown]", datadog.ParameterToString(*optionalParams.FilterIncludeBreakdown, ""))
