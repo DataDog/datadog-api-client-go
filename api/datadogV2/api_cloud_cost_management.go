@@ -356,6 +356,8 @@ func (a *CloudCostManagementApi) GetCloudCostActivity(ctx _context.Context) (Clo
 
 // ListAWSRelatedAccounts List related AWS accounts.
 // List the AWS accounts in an organization by calling 'organizations:ListAccounts' from the specified management account.
+//
+// Deprecated: This API is deprecated.
 func (a *CloudCostManagementApi) ListAWSRelatedAccounts(ctx _context.Context, filterManagementAccountId string) (AWSRelatedAccountsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
