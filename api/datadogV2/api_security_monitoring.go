@@ -29,13 +29,6 @@ func (a *SecurityMonitoringApi) ConvertExistingSecurityMonitoringRule(ctx _conte
 		localVarReturnValue SecurityMonitoringRuleConvertResponse
 	)
 
-	operationId := "v2.ConvertExistingSecurityMonitoringRule"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ConvertExistingSecurityMonitoringRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -107,13 +100,6 @@ func (a *SecurityMonitoringApi) ConvertSecurityMonitoringRuleFromJSONToTerraform
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringRuleConvertResponse
 	)
-
-	operationId := "v2.ConvertSecurityMonitoringRuleFromJSONToTerraform"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ConvertSecurityMonitoringRuleFromJSONToTerraform")
 	if err != nil {
