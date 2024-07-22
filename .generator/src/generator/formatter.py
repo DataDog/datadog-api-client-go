@@ -454,7 +454,7 @@ def format_data_with_schema(
             def open_file(x):
                 return f"func() io.Reader {{ fp, _ := os.Open({format_string(x)}); return fp }}()"
 
-            formatter = {
+            formatters = {
                 "int32": str,
                 "int64": str,
                 "double": format_double,
@@ -467,7 +467,9 @@ def format_data_with_schema(
                 "uuid": format_uuid,
                 "binary": open_file,
                 None: format_interface,
-            }[schema.get("format", schema.get("type"))]
+            }
+            schema_type = schema.get("type")
+            formatter = formatters.get(schema.get("format", schema_type), formatters.get(schema_type))
 
             # TODO format date and datetime
             parameters = formatter(data)
