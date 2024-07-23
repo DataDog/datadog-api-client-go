@@ -1,0 +1,44 @@
+interactions:
+- request:
+    body: |
+      {"layout_type":"ordered","reflow_type":"auto","title":"Test-Create_a_new_timeseries_widget_with_incident_analytics_data_source-1721746799 with incident_analytics datasource","widgets":[{"definition":{"legend_columns":["avg","min","max","value","sum"],"legend_layout":"auto","requests":[{"display_type":"line","formulas":[{"formula":"query1"}],"queries":[{"compute":{"aggregation":"count"},"data_source":"incident_analytics","group_by":[],"indexes":["*"],"name":"query1","search":{"query":"test_level:test"}}],"response_format":"timeseries","style":{"line_type":"solid","line_width":"normal","palette":"dog_classic"}}],"show_legend":true,"time":{},"title":"","type":"timeseries"}}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v1/dashboard
+  response:
+    body: '{"id":"r29-a2b-nhh","title":"Test-Create_a_new_timeseries_widget_with_incident_analytics_data_source-1721746799
+      with incident_analytics datasource","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"ordered","url":"/dashboard/r29-a2b-nhh/test-createanewtimeserieswidgetwithincidentanalyticsdatasource-1721746799-with-i","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"legend_columns":["avg","min","max","value","sum"],"legend_layout":"auto","requests":[{"display_type":"line","formulas":[{"formula":"query1"}],"queries":[{"compute":{"aggregation":"count"},"data_source":"incident_analytics","group_by":[],"indexes":["*"],"name":"query1","search":{"query":"test_level:test"}}],"response_format":"timeseries","style":{"line_type":"solid","line_width":"normal","palette":"dog_classic"}}],"show_legend":true,"time":{},"title":"","type":"timeseries"},"id":4216078110414841}],"notify_list":null,"created_at":"2024-07-23T14:59:59.491800+00:00","modified_at":"2024-07-23T14:59:59.491800+00:00","reflow_type":"auto","restricted_roles":[]}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/dashboard/r29-a2b-nhh
+  response:
+    body: '{"deleted_dashboard_id":"r29-a2b-nhh"}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 2
