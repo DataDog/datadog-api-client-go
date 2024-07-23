@@ -3329,8 +3329,9 @@ func (a *UsageMeteringApi) GetUsageSNMP(ctx _context.Context, startHr time.Time,
 
 // GetUsageSummaryOptionalParameters holds optional parameters for GetUsageSummary.
 type GetUsageSummaryOptionalParameters struct {
-	EndMonth          *time.Time
-	IncludeOrgDetails *bool
+	EndMonth                 *time.Time
+	IncludeOrgDetails        *bool
+	IncludeConnectedAccounts *bool
 }
 
 // NewGetUsageSummaryOptionalParameters creates an empty struct for parameters.
@@ -3348,6 +3349,12 @@ func (r *GetUsageSummaryOptionalParameters) WithEndMonth(endMonth time.Time) *Ge
 // WithIncludeOrgDetails sets the corresponding parameter name and returns the struct.
 func (r *GetUsageSummaryOptionalParameters) WithIncludeOrgDetails(includeOrgDetails bool) *GetUsageSummaryOptionalParameters {
 	r.IncludeOrgDetails = &includeOrgDetails
+	return r
+}
+
+// WithIncludeConnectedAccounts sets the corresponding parameter name and returns the struct.
+func (r *GetUsageSummaryOptionalParameters) WithIncludeConnectedAccounts(includeConnectedAccounts bool) *GetUsageSummaryOptionalParameters {
+	r.IncludeConnectedAccounts = &includeConnectedAccounts
 	return r
 }
 
@@ -3386,6 +3393,9 @@ func (a *UsageMeteringApi) GetUsageSummary(ctx _context.Context, startMonth time
 	}
 	if optionalParams.IncludeOrgDetails != nil {
 		localVarQueryParams.Add("include_org_details", datadog.ParameterToString(*optionalParams.IncludeOrgDetails, ""))
+	}
+	if optionalParams.IncludeConnectedAccounts != nil {
+		localVarQueryParams.Add("include_connected_accounts", datadog.ParameterToString(*optionalParams.IncludeConnectedAccounts, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
