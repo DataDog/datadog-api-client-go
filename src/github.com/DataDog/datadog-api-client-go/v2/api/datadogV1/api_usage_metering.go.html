@@ -3386,676 +3386,686 @@
 <span id="L3329" class="ln">  3329  </span>
 <span id="L3330" class="ln">  3330  </span><span class="comment">// GetUsageSummaryOptionalParameters holds optional parameters for GetUsageSummary.</span>
 <span id="L3331" class="ln">  3331  </span>type GetUsageSummaryOptionalParameters struct {
-<span id="L3332" class="ln">  3332  </span>	EndMonth          *time.Time
-<span id="L3333" class="ln">  3333  </span>	IncludeOrgDetails *bool
-<span id="L3334" class="ln">  3334  </span>}
-<span id="L3335" class="ln">  3335  </span>
-<span id="L3336" class="ln">  3336  </span><span class="comment">// NewGetUsageSummaryOptionalParameters creates an empty struct for parameters.</span>
-<span id="L3337" class="ln">  3337  </span>func NewGetUsageSummaryOptionalParameters() *GetUsageSummaryOptionalParameters {
-<span id="L3338" class="ln">  3338  </span>	this := GetUsageSummaryOptionalParameters{}
-<span id="L3339" class="ln">  3339  </span>	return &amp;this
-<span id="L3340" class="ln">  3340  </span>}
-<span id="L3341" class="ln">  3341  </span>
-<span id="L3342" class="ln">  3342  </span><span class="comment">// WithEndMonth sets the corresponding parameter name and returns the struct.</span>
-<span id="L3343" class="ln">  3343  </span>func (r *GetUsageSummaryOptionalParameters) WithEndMonth(endMonth time.Time) *GetUsageSummaryOptionalParameters {
-<span id="L3344" class="ln">  3344  </span>	r.EndMonth = &amp;endMonth
-<span id="L3345" class="ln">  3345  </span>	return r
-<span id="L3346" class="ln">  3346  </span>}
-<span id="L3347" class="ln">  3347  </span>
-<span id="L3348" class="ln">  3348  </span><span class="comment">// WithIncludeOrgDetails sets the corresponding parameter name and returns the struct.</span>
-<span id="L3349" class="ln">  3349  </span>func (r *GetUsageSummaryOptionalParameters) WithIncludeOrgDetails(includeOrgDetails bool) *GetUsageSummaryOptionalParameters {
-<span id="L3350" class="ln">  3350  </span>	r.IncludeOrgDetails = &amp;includeOrgDetails
-<span id="L3351" class="ln">  3351  </span>	return r
-<span id="L3352" class="ln">  3352  </span>}
-<span id="L3353" class="ln">  3353  </span>
-<span id="L3354" class="ln">  3354  </span><span class="comment">// GetUsageSummary Get usage across your account.</span>
-<span id="L3355" class="ln">  3355  </span><span class="comment">// Get all usage across your account.</span>
-<span id="L3356" class="ln">  3356  </span><span class="comment">//</span>
-<span id="L3357" class="ln">  3357  </span><span class="comment">// This endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/).</span>
-<span id="L3358" class="ln">  3358  </span>func (a *UsageMeteringApi) GetUsageSummary(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (UsageSummaryResponse, *_nethttp.Response, error) {
-<span id="L3359" class="ln">  3359  </span>	var (
-<span id="L3360" class="ln">  3360  </span>		localVarHTTPMethod  = _nethttp.MethodGet
-<span id="L3361" class="ln">  3361  </span>		localVarPostBody    interface{}
-<span id="L3362" class="ln">  3362  </span>		localVarReturnValue UsageSummaryResponse
-<span id="L3363" class="ln">  3363  </span>		optionalParams      GetUsageSummaryOptionalParameters
-<span id="L3364" class="ln">  3364  </span>	)
-<span id="L3365" class="ln">  3365  </span>
-<span id="L3366" class="ln">  3366  </span>	if len(o) &gt; 1 {
-<span id="L3367" class="ln">  3367  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type GetUsageSummaryOptionalParameters is allowed&#34;)
-<span id="L3368" class="ln">  3368  </span>	}
-<span id="L3369" class="ln">  3369  </span>	if len(o) == 1 {
-<span id="L3370" class="ln">  3370  </span>		optionalParams = o[0]
-<span id="L3371" class="ln">  3371  </span>	}
+<span id="L3332" class="ln">  3332  </span>	EndMonth                 *time.Time
+<span id="L3333" class="ln">  3333  </span>	IncludeOrgDetails        *bool
+<span id="L3334" class="ln">  3334  </span>	IncludeConnectedAccounts *bool
+<span id="L3335" class="ln">  3335  </span>}
+<span id="L3336" class="ln">  3336  </span>
+<span id="L3337" class="ln">  3337  </span><span class="comment">// NewGetUsageSummaryOptionalParameters creates an empty struct for parameters.</span>
+<span id="L3338" class="ln">  3338  </span>func NewGetUsageSummaryOptionalParameters() *GetUsageSummaryOptionalParameters {
+<span id="L3339" class="ln">  3339  </span>	this := GetUsageSummaryOptionalParameters{}
+<span id="L3340" class="ln">  3340  </span>	return &amp;this
+<span id="L3341" class="ln">  3341  </span>}
+<span id="L3342" class="ln">  3342  </span>
+<span id="L3343" class="ln">  3343  </span><span class="comment">// WithEndMonth sets the corresponding parameter name and returns the struct.</span>
+<span id="L3344" class="ln">  3344  </span>func (r *GetUsageSummaryOptionalParameters) WithEndMonth(endMonth time.Time) *GetUsageSummaryOptionalParameters {
+<span id="L3345" class="ln">  3345  </span>	r.EndMonth = &amp;endMonth
+<span id="L3346" class="ln">  3346  </span>	return r
+<span id="L3347" class="ln">  3347  </span>}
+<span id="L3348" class="ln">  3348  </span>
+<span id="L3349" class="ln">  3349  </span><span class="comment">// WithIncludeOrgDetails sets the corresponding parameter name and returns the struct.</span>
+<span id="L3350" class="ln">  3350  </span>func (r *GetUsageSummaryOptionalParameters) WithIncludeOrgDetails(includeOrgDetails bool) *GetUsageSummaryOptionalParameters {
+<span id="L3351" class="ln">  3351  </span>	r.IncludeOrgDetails = &amp;includeOrgDetails
+<span id="L3352" class="ln">  3352  </span>	return r
+<span id="L3353" class="ln">  3353  </span>}
+<span id="L3354" class="ln">  3354  </span>
+<span id="L3355" class="ln">  3355  </span><span class="comment">// WithIncludeConnectedAccounts sets the corresponding parameter name and returns the struct.</span>
+<span id="L3356" class="ln">  3356  </span>func (r *GetUsageSummaryOptionalParameters) WithIncludeConnectedAccounts(includeConnectedAccounts bool) *GetUsageSummaryOptionalParameters {
+<span id="L3357" class="ln">  3357  </span>	r.IncludeConnectedAccounts = &amp;includeConnectedAccounts
+<span id="L3358" class="ln">  3358  </span>	return r
+<span id="L3359" class="ln">  3359  </span>}
+<span id="L3360" class="ln">  3360  </span>
+<span id="L3361" class="ln">  3361  </span><span class="comment">// GetUsageSummary Get usage across your account.</span>
+<span id="L3362" class="ln">  3362  </span><span class="comment">// Get all usage across your account.</span>
+<span id="L3363" class="ln">  3363  </span><span class="comment">//</span>
+<span id="L3364" class="ln">  3364  </span><span class="comment">// This endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/).</span>
+<span id="L3365" class="ln">  3365  </span>func (a *UsageMeteringApi) GetUsageSummary(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (UsageSummaryResponse, *_nethttp.Response, error) {
+<span id="L3366" class="ln">  3366  </span>	var (
+<span id="L3367" class="ln">  3367  </span>		localVarHTTPMethod  = _nethttp.MethodGet
+<span id="L3368" class="ln">  3368  </span>		localVarPostBody    interface{}
+<span id="L3369" class="ln">  3369  </span>		localVarReturnValue UsageSummaryResponse
+<span id="L3370" class="ln">  3370  </span>		optionalParams      GetUsageSummaryOptionalParameters
+<span id="L3371" class="ln">  3371  </span>	)
 <span id="L3372" class="ln">  3372  </span>
-<span id="L3373" class="ln">  3373  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.UsageMeteringApi.GetUsageSummary&#34;)
-<span id="L3374" class="ln">  3374  </span>	if err != nil {
-<span id="L3375" class="ln">  3375  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L3376" class="ln">  3376  </span>	}
-<span id="L3377" class="ln">  3377  </span>
-<span id="L3378" class="ln">  3378  </span>	localVarPath := localBasePath + &#34;/api/v1/usage/summary&#34;
+<span id="L3373" class="ln">  3373  </span>	if len(o) &gt; 1 {
+<span id="L3374" class="ln">  3374  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type GetUsageSummaryOptionalParameters is allowed&#34;)
+<span id="L3375" class="ln">  3375  </span>	}
+<span id="L3376" class="ln">  3376  </span>	if len(o) == 1 {
+<span id="L3377" class="ln">  3377  </span>		optionalParams = o[0]
+<span id="L3378" class="ln">  3378  </span>	}
 <span id="L3379" class="ln">  3379  </span>
-<span id="L3380" class="ln">  3380  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L3381" class="ln">  3381  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L3382" class="ln">  3382  </span>	localVarFormParams := _neturl.Values{}
-<span id="L3383" class="ln">  3383  </span>	localVarQueryParams.Add(&#34;start_month&#34;, datadog.ParameterToString(startMonth, &#34;&#34;))
-<span id="L3384" class="ln">  3384  </span>	if optionalParams.EndMonth != nil {
-<span id="L3385" class="ln">  3385  </span>		localVarQueryParams.Add(&#34;end_month&#34;, datadog.ParameterToString(*optionalParams.EndMonth, &#34;&#34;))
-<span id="L3386" class="ln">  3386  </span>	}
-<span id="L3387" class="ln">  3387  </span>	if optionalParams.IncludeOrgDetails != nil {
-<span id="L3388" class="ln">  3388  </span>		localVarQueryParams.Add(&#34;include_org_details&#34;, datadog.ParameterToString(*optionalParams.IncludeOrgDetails, &#34;&#34;))
-<span id="L3389" class="ln">  3389  </span>	}
-<span id="L3390" class="ln">  3390  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json;datetime-format=rfc3339&#34;
-<span id="L3391" class="ln">  3391  </span>
-<span id="L3392" class="ln">  3392  </span>	datadog.SetAuthKeys(
-<span id="L3393" class="ln">  3393  </span>		ctx,
-<span id="L3394" class="ln">  3394  </span>		&amp;localVarHeaderParams,
-<span id="L3395" class="ln">  3395  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L3396" class="ln">  3396  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L3397" class="ln">  3397  </span>	)
-<span id="L3398" class="ln">  3398  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L3399" class="ln">  3399  </span>	if err != nil {
-<span id="L3400" class="ln">  3400  </span>		return localVarReturnValue, nil, err
-<span id="L3401" class="ln">  3401  </span>	}
-<span id="L3402" class="ln">  3402  </span>
-<span id="L3403" class="ln">  3403  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L3404" class="ln">  3404  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L3405" class="ln">  3405  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L3406" class="ln">  3406  </span>	}
-<span id="L3407" class="ln">  3407  </span>
-<span id="L3408" class="ln">  3408  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L3380" class="ln">  3380  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.UsageMeteringApi.GetUsageSummary&#34;)
+<span id="L3381" class="ln">  3381  </span>	if err != nil {
+<span id="L3382" class="ln">  3382  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L3383" class="ln">  3383  </span>	}
+<span id="L3384" class="ln">  3384  </span>
+<span id="L3385" class="ln">  3385  </span>	localVarPath := localBasePath + &#34;/api/v1/usage/summary&#34;
+<span id="L3386" class="ln">  3386  </span>
+<span id="L3387" class="ln">  3387  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L3388" class="ln">  3388  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L3389" class="ln">  3389  </span>	localVarFormParams := _neturl.Values{}
+<span id="L3390" class="ln">  3390  </span>	localVarQueryParams.Add(&#34;start_month&#34;, datadog.ParameterToString(startMonth, &#34;&#34;))
+<span id="L3391" class="ln">  3391  </span>	if optionalParams.EndMonth != nil {
+<span id="L3392" class="ln">  3392  </span>		localVarQueryParams.Add(&#34;end_month&#34;, datadog.ParameterToString(*optionalParams.EndMonth, &#34;&#34;))
+<span id="L3393" class="ln">  3393  </span>	}
+<span id="L3394" class="ln">  3394  </span>	if optionalParams.IncludeOrgDetails != nil {
+<span id="L3395" class="ln">  3395  </span>		localVarQueryParams.Add(&#34;include_org_details&#34;, datadog.ParameterToString(*optionalParams.IncludeOrgDetails, &#34;&#34;))
+<span id="L3396" class="ln">  3396  </span>	}
+<span id="L3397" class="ln">  3397  </span>	if optionalParams.IncludeConnectedAccounts != nil {
+<span id="L3398" class="ln">  3398  </span>		localVarQueryParams.Add(&#34;include_connected_accounts&#34;, datadog.ParameterToString(*optionalParams.IncludeConnectedAccounts, &#34;&#34;))
+<span id="L3399" class="ln">  3399  </span>	}
+<span id="L3400" class="ln">  3400  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json;datetime-format=rfc3339&#34;
+<span id="L3401" class="ln">  3401  </span>
+<span id="L3402" class="ln">  3402  </span>	datadog.SetAuthKeys(
+<span id="L3403" class="ln">  3403  </span>		ctx,
+<span id="L3404" class="ln">  3404  </span>		&amp;localVarHeaderParams,
+<span id="L3405" class="ln">  3405  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L3406" class="ln">  3406  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L3407" class="ln">  3407  </span>	)
+<span id="L3408" class="ln">  3408  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 <span id="L3409" class="ln">  3409  </span>	if err != nil {
-<span id="L3410" class="ln">  3410  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3410" class="ln">  3410  </span>		return localVarReturnValue, nil, err
 <span id="L3411" class="ln">  3411  </span>	}
 <span id="L3412" class="ln">  3412  </span>
-<span id="L3413" class="ln">  3413  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L3414" class="ln">  3414  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L3415" class="ln">  3415  </span>			ErrorBody:    localVarBody,
-<span id="L3416" class="ln">  3416  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L3417" class="ln">  3417  </span>		}
-<span id="L3418" class="ln">  3418  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L3419" class="ln">  3419  </span>			var v APIErrorResponse
-<span id="L3420" class="ln">  3420  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L3421" class="ln">  3421  </span>			if err != nil {
-<span id="L3422" class="ln">  3422  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3423" class="ln">  3423  </span>			}
-<span id="L3424" class="ln">  3424  </span>			newErr.ErrorModel = v
-<span id="L3425" class="ln">  3425  </span>		}
-<span id="L3426" class="ln">  3426  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3427" class="ln">  3427  </span>	}
-<span id="L3428" class="ln">  3428  </span>
-<span id="L3429" class="ln">  3429  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L3430" class="ln">  3430  </span>	if err != nil {
-<span id="L3431" class="ln">  3431  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L3432" class="ln">  3432  </span>			ErrorBody:    localVarBody,
-<span id="L3433" class="ln">  3433  </span>			ErrorMessage: err.Error(),
-<span id="L3434" class="ln">  3434  </span>		}
-<span id="L3435" class="ln">  3435  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3436" class="ln">  3436  </span>	}
-<span id="L3437" class="ln">  3437  </span>
-<span id="L3438" class="ln">  3438  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L3439" class="ln">  3439  </span>}
-<span id="L3440" class="ln">  3440  </span>
-<span id="L3441" class="ln">  3441  </span><span class="comment">// GetUsageSyntheticsOptionalParameters holds optional parameters for GetUsageSynthetics.</span>
-<span id="L3442" class="ln">  3442  </span>type GetUsageSyntheticsOptionalParameters struct {
-<span id="L3443" class="ln">  3443  </span>	EndHr *time.Time
-<span id="L3444" class="ln">  3444  </span>}
-<span id="L3445" class="ln">  3445  </span>
-<span id="L3446" class="ln">  3446  </span><span class="comment">// NewGetUsageSyntheticsOptionalParameters creates an empty struct for parameters.</span>
-<span id="L3447" class="ln">  3447  </span>func NewGetUsageSyntheticsOptionalParameters() *GetUsageSyntheticsOptionalParameters {
-<span id="L3448" class="ln">  3448  </span>	this := GetUsageSyntheticsOptionalParameters{}
-<span id="L3449" class="ln">  3449  </span>	return &amp;this
-<span id="L3450" class="ln">  3450  </span>}
-<span id="L3451" class="ln">  3451  </span>
-<span id="L3452" class="ln">  3452  </span><span class="comment">// WithEndHr sets the corresponding parameter name and returns the struct.</span>
-<span id="L3453" class="ln">  3453  </span>func (r *GetUsageSyntheticsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSyntheticsOptionalParameters {
-<span id="L3454" class="ln">  3454  </span>	r.EndHr = &amp;endHr
-<span id="L3455" class="ln">  3455  </span>	return r
-<span id="L3456" class="ln">  3456  </span>}
-<span id="L3457" class="ln">  3457  </span>
-<span id="L3458" class="ln">  3458  </span><span class="comment">// GetUsageSynthetics Get hourly usage for synthetics checks.</span>
-<span id="L3459" class="ln">  3459  </span><span class="comment">// Get hourly usage for [synthetics checks](https://docs.datadoghq.com/synthetics/).</span>
-<span id="L3460" class="ln">  3460  </span><span class="comment">// **Note:** This endpoint has been deprecated. Hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family). Refer to [Migrating from the V1 Hourly Usage APIs to V2](https://docs.datadoghq.com/account_management/guide/hourly-usage-migration/) for the associated migration guide.</span>
-<span id="L3461" class="ln">  3461  </span><span class="comment">//</span>
-<span id="L3462" class="ln">  3462  </span><span class="comment">// Deprecated: This API is deprecated.</span>
-<span id="L3463" class="ln">  3463  </span>func (a *UsageMeteringApi) GetUsageSynthetics(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (UsageSyntheticsResponse, *_nethttp.Response, error) {
-<span id="L3464" class="ln">  3464  </span>	var (
-<span id="L3465" class="ln">  3465  </span>		localVarHTTPMethod  = _nethttp.MethodGet
-<span id="L3466" class="ln">  3466  </span>		localVarPostBody    interface{}
-<span id="L3467" class="ln">  3467  </span>		localVarReturnValue UsageSyntheticsResponse
-<span id="L3468" class="ln">  3468  </span>		optionalParams      GetUsageSyntheticsOptionalParameters
-<span id="L3469" class="ln">  3469  </span>	)
-<span id="L3470" class="ln">  3470  </span>
-<span id="L3471" class="ln">  3471  </span>	if len(o) &gt; 1 {
-<span id="L3472" class="ln">  3472  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type GetUsageSyntheticsOptionalParameters is allowed&#34;)
-<span id="L3473" class="ln">  3473  </span>	}
-<span id="L3474" class="ln">  3474  </span>	if len(o) == 1 {
-<span id="L3475" class="ln">  3475  </span>		optionalParams = o[0]
-<span id="L3476" class="ln">  3476  </span>	}
-<span id="L3477" class="ln">  3477  </span>
-<span id="L3478" class="ln">  3478  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.UsageMeteringApi.GetUsageSynthetics&#34;)
-<span id="L3479" class="ln">  3479  </span>	if err != nil {
-<span id="L3480" class="ln">  3480  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L3481" class="ln">  3481  </span>	}
-<span id="L3482" class="ln">  3482  </span>
-<span id="L3483" class="ln">  3483  </span>	localVarPath := localBasePath + &#34;/api/v1/usage/synthetics&#34;
-<span id="L3484" class="ln">  3484  </span>
-<span id="L3485" class="ln">  3485  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L3486" class="ln">  3486  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L3487" class="ln">  3487  </span>	localVarFormParams := _neturl.Values{}
-<span id="L3488" class="ln">  3488  </span>	localVarQueryParams.Add(&#34;start_hr&#34;, datadog.ParameterToString(startHr, &#34;&#34;))
-<span id="L3489" class="ln">  3489  </span>	if optionalParams.EndHr != nil {
-<span id="L3490" class="ln">  3490  </span>		localVarQueryParams.Add(&#34;end_hr&#34;, datadog.ParameterToString(*optionalParams.EndHr, &#34;&#34;))
+<span id="L3413" class="ln">  3413  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L3414" class="ln">  3414  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L3415" class="ln">  3415  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3416" class="ln">  3416  </span>	}
+<span id="L3417" class="ln">  3417  </span>
+<span id="L3418" class="ln">  3418  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L3419" class="ln">  3419  </span>	if err != nil {
+<span id="L3420" class="ln">  3420  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3421" class="ln">  3421  </span>	}
+<span id="L3422" class="ln">  3422  </span>
+<span id="L3423" class="ln">  3423  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L3424" class="ln">  3424  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L3425" class="ln">  3425  </span>			ErrorBody:    localVarBody,
+<span id="L3426" class="ln">  3426  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L3427" class="ln">  3427  </span>		}
+<span id="L3428" class="ln">  3428  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L3429" class="ln">  3429  </span>			var v APIErrorResponse
+<span id="L3430" class="ln">  3430  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L3431" class="ln">  3431  </span>			if err != nil {
+<span id="L3432" class="ln">  3432  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3433" class="ln">  3433  </span>			}
+<span id="L3434" class="ln">  3434  </span>			newErr.ErrorModel = v
+<span id="L3435" class="ln">  3435  </span>		}
+<span id="L3436" class="ln">  3436  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3437" class="ln">  3437  </span>	}
+<span id="L3438" class="ln">  3438  </span>
+<span id="L3439" class="ln">  3439  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L3440" class="ln">  3440  </span>	if err != nil {
+<span id="L3441" class="ln">  3441  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L3442" class="ln">  3442  </span>			ErrorBody:    localVarBody,
+<span id="L3443" class="ln">  3443  </span>			ErrorMessage: err.Error(),
+<span id="L3444" class="ln">  3444  </span>		}
+<span id="L3445" class="ln">  3445  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3446" class="ln">  3446  </span>	}
+<span id="L3447" class="ln">  3447  </span>
+<span id="L3448" class="ln">  3448  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L3449" class="ln">  3449  </span>}
+<span id="L3450" class="ln">  3450  </span>
+<span id="L3451" class="ln">  3451  </span><span class="comment">// GetUsageSyntheticsOptionalParameters holds optional parameters for GetUsageSynthetics.</span>
+<span id="L3452" class="ln">  3452  </span>type GetUsageSyntheticsOptionalParameters struct {
+<span id="L3453" class="ln">  3453  </span>	EndHr *time.Time
+<span id="L3454" class="ln">  3454  </span>}
+<span id="L3455" class="ln">  3455  </span>
+<span id="L3456" class="ln">  3456  </span><span class="comment">// NewGetUsageSyntheticsOptionalParameters creates an empty struct for parameters.</span>
+<span id="L3457" class="ln">  3457  </span>func NewGetUsageSyntheticsOptionalParameters() *GetUsageSyntheticsOptionalParameters {
+<span id="L3458" class="ln">  3458  </span>	this := GetUsageSyntheticsOptionalParameters{}
+<span id="L3459" class="ln">  3459  </span>	return &amp;this
+<span id="L3460" class="ln">  3460  </span>}
+<span id="L3461" class="ln">  3461  </span>
+<span id="L3462" class="ln">  3462  </span><span class="comment">// WithEndHr sets the corresponding parameter name and returns the struct.</span>
+<span id="L3463" class="ln">  3463  </span>func (r *GetUsageSyntheticsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSyntheticsOptionalParameters {
+<span id="L3464" class="ln">  3464  </span>	r.EndHr = &amp;endHr
+<span id="L3465" class="ln">  3465  </span>	return r
+<span id="L3466" class="ln">  3466  </span>}
+<span id="L3467" class="ln">  3467  </span>
+<span id="L3468" class="ln">  3468  </span><span class="comment">// GetUsageSynthetics Get hourly usage for synthetics checks.</span>
+<span id="L3469" class="ln">  3469  </span><span class="comment">// Get hourly usage for [synthetics checks](https://docs.datadoghq.com/synthetics/).</span>
+<span id="L3470" class="ln">  3470  </span><span class="comment">// **Note:** This endpoint has been deprecated. Hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family). Refer to [Migrating from the V1 Hourly Usage APIs to V2](https://docs.datadoghq.com/account_management/guide/hourly-usage-migration/) for the associated migration guide.</span>
+<span id="L3471" class="ln">  3471  </span><span class="comment">//</span>
+<span id="L3472" class="ln">  3472  </span><span class="comment">// Deprecated: This API is deprecated.</span>
+<span id="L3473" class="ln">  3473  </span>func (a *UsageMeteringApi) GetUsageSynthetics(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (UsageSyntheticsResponse, *_nethttp.Response, error) {
+<span id="L3474" class="ln">  3474  </span>	var (
+<span id="L3475" class="ln">  3475  </span>		localVarHTTPMethod  = _nethttp.MethodGet
+<span id="L3476" class="ln">  3476  </span>		localVarPostBody    interface{}
+<span id="L3477" class="ln">  3477  </span>		localVarReturnValue UsageSyntheticsResponse
+<span id="L3478" class="ln">  3478  </span>		optionalParams      GetUsageSyntheticsOptionalParameters
+<span id="L3479" class="ln">  3479  </span>	)
+<span id="L3480" class="ln">  3480  </span>
+<span id="L3481" class="ln">  3481  </span>	if len(o) &gt; 1 {
+<span id="L3482" class="ln">  3482  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type GetUsageSyntheticsOptionalParameters is allowed&#34;)
+<span id="L3483" class="ln">  3483  </span>	}
+<span id="L3484" class="ln">  3484  </span>	if len(o) == 1 {
+<span id="L3485" class="ln">  3485  </span>		optionalParams = o[0]
+<span id="L3486" class="ln">  3486  </span>	}
+<span id="L3487" class="ln">  3487  </span>
+<span id="L3488" class="ln">  3488  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.UsageMeteringApi.GetUsageSynthetics&#34;)
+<span id="L3489" class="ln">  3489  </span>	if err != nil {
+<span id="L3490" class="ln">  3490  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L3491" class="ln">  3491  </span>	}
-<span id="L3492" class="ln">  3492  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json;datetime-format=rfc3339&#34;
-<span id="L3493" class="ln">  3493  </span>
-<span id="L3494" class="ln">  3494  </span>	datadog.SetAuthKeys(
-<span id="L3495" class="ln">  3495  </span>		ctx,
-<span id="L3496" class="ln">  3496  </span>		&amp;localVarHeaderParams,
-<span id="L3497" class="ln">  3497  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L3498" class="ln">  3498  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L3499" class="ln">  3499  </span>	)
-<span id="L3500" class="ln">  3500  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L3501" class="ln">  3501  </span>	if err != nil {
-<span id="L3502" class="ln">  3502  </span>		return localVarReturnValue, nil, err
-<span id="L3503" class="ln">  3503  </span>	}
-<span id="L3504" class="ln">  3504  </span>
-<span id="L3505" class="ln">  3505  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L3506" class="ln">  3506  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L3507" class="ln">  3507  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L3508" class="ln">  3508  </span>	}
-<span id="L3509" class="ln">  3509  </span>
-<span id="L3510" class="ln">  3510  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L3492" class="ln">  3492  </span>
+<span id="L3493" class="ln">  3493  </span>	localVarPath := localBasePath + &#34;/api/v1/usage/synthetics&#34;
+<span id="L3494" class="ln">  3494  </span>
+<span id="L3495" class="ln">  3495  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L3496" class="ln">  3496  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L3497" class="ln">  3497  </span>	localVarFormParams := _neturl.Values{}
+<span id="L3498" class="ln">  3498  </span>	localVarQueryParams.Add(&#34;start_hr&#34;, datadog.ParameterToString(startHr, &#34;&#34;))
+<span id="L3499" class="ln">  3499  </span>	if optionalParams.EndHr != nil {
+<span id="L3500" class="ln">  3500  </span>		localVarQueryParams.Add(&#34;end_hr&#34;, datadog.ParameterToString(*optionalParams.EndHr, &#34;&#34;))
+<span id="L3501" class="ln">  3501  </span>	}
+<span id="L3502" class="ln">  3502  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json;datetime-format=rfc3339&#34;
+<span id="L3503" class="ln">  3503  </span>
+<span id="L3504" class="ln">  3504  </span>	datadog.SetAuthKeys(
+<span id="L3505" class="ln">  3505  </span>		ctx,
+<span id="L3506" class="ln">  3506  </span>		&amp;localVarHeaderParams,
+<span id="L3507" class="ln">  3507  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L3508" class="ln">  3508  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L3509" class="ln">  3509  </span>	)
+<span id="L3510" class="ln">  3510  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 <span id="L3511" class="ln">  3511  </span>	if err != nil {
-<span id="L3512" class="ln">  3512  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3512" class="ln">  3512  </span>		return localVarReturnValue, nil, err
 <span id="L3513" class="ln">  3513  </span>	}
 <span id="L3514" class="ln">  3514  </span>
-<span id="L3515" class="ln">  3515  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L3516" class="ln">  3516  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L3517" class="ln">  3517  </span>			ErrorBody:    localVarBody,
-<span id="L3518" class="ln">  3518  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L3519" class="ln">  3519  </span>		}
-<span id="L3520" class="ln">  3520  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L3521" class="ln">  3521  </span>			var v APIErrorResponse
-<span id="L3522" class="ln">  3522  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L3523" class="ln">  3523  </span>			if err != nil {
-<span id="L3524" class="ln">  3524  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3525" class="ln">  3525  </span>			}
-<span id="L3526" class="ln">  3526  </span>			newErr.ErrorModel = v
-<span id="L3527" class="ln">  3527  </span>		}
-<span id="L3528" class="ln">  3528  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3529" class="ln">  3529  </span>	}
-<span id="L3530" class="ln">  3530  </span>
-<span id="L3531" class="ln">  3531  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L3532" class="ln">  3532  </span>	if err != nil {
-<span id="L3533" class="ln">  3533  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L3534" class="ln">  3534  </span>			ErrorBody:    localVarBody,
-<span id="L3535" class="ln">  3535  </span>			ErrorMessage: err.Error(),
-<span id="L3536" class="ln">  3536  </span>		}
-<span id="L3537" class="ln">  3537  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3538" class="ln">  3538  </span>	}
-<span id="L3539" class="ln">  3539  </span>
-<span id="L3540" class="ln">  3540  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L3541" class="ln">  3541  </span>}
-<span id="L3542" class="ln">  3542  </span>
-<span id="L3543" class="ln">  3543  </span><span class="comment">// GetUsageSyntheticsAPIOptionalParameters holds optional parameters for GetUsageSyntheticsAPI.</span>
-<span id="L3544" class="ln">  3544  </span>type GetUsageSyntheticsAPIOptionalParameters struct {
-<span id="L3545" class="ln">  3545  </span>	EndHr *time.Time
-<span id="L3546" class="ln">  3546  </span>}
-<span id="L3547" class="ln">  3547  </span>
-<span id="L3548" class="ln">  3548  </span><span class="comment">// NewGetUsageSyntheticsAPIOptionalParameters creates an empty struct for parameters.</span>
-<span id="L3549" class="ln">  3549  </span>func NewGetUsageSyntheticsAPIOptionalParameters() *GetUsageSyntheticsAPIOptionalParameters {
-<span id="L3550" class="ln">  3550  </span>	this := GetUsageSyntheticsAPIOptionalParameters{}
-<span id="L3551" class="ln">  3551  </span>	return &amp;this
-<span id="L3552" class="ln">  3552  </span>}
-<span id="L3553" class="ln">  3553  </span>
-<span id="L3554" class="ln">  3554  </span><span class="comment">// WithEndHr sets the corresponding parameter name and returns the struct.</span>
-<span id="L3555" class="ln">  3555  </span>func (r *GetUsageSyntheticsAPIOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSyntheticsAPIOptionalParameters {
-<span id="L3556" class="ln">  3556  </span>	r.EndHr = &amp;endHr
-<span id="L3557" class="ln">  3557  </span>	return r
-<span id="L3558" class="ln">  3558  </span>}
-<span id="L3559" class="ln">  3559  </span>
-<span id="L3560" class="ln">  3560  </span><span class="comment">// GetUsageSyntheticsAPI Get hourly usage for synthetics API checks.</span>
-<span id="L3561" class="ln">  3561  </span><span class="comment">// Get hourly usage for [synthetics API checks](https://docs.datadoghq.com/synthetics/).</span>
-<span id="L3562" class="ln">  3562  </span><span class="comment">// **Note:** This endpoint has been deprecated. Hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family). Refer to [Migrating from the V1 Hourly Usage APIs to V2](https://docs.datadoghq.com/account_management/guide/hourly-usage-migration/) for the associated migration guide.</span>
-<span id="L3563" class="ln">  3563  </span><span class="comment">//</span>
-<span id="L3564" class="ln">  3564  </span><span class="comment">// Deprecated: This API is deprecated.</span>
-<span id="L3565" class="ln">  3565  </span>func (a *UsageMeteringApi) GetUsageSyntheticsAPI(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsAPIOptionalParameters) (UsageSyntheticsAPIResponse, *_nethttp.Response, error) {
-<span id="L3566" class="ln">  3566  </span>	var (
-<span id="L3567" class="ln">  3567  </span>		localVarHTTPMethod  = _nethttp.MethodGet
-<span id="L3568" class="ln">  3568  </span>		localVarPostBody    interface{}
-<span id="L3569" class="ln">  3569  </span>		localVarReturnValue UsageSyntheticsAPIResponse
-<span id="L3570" class="ln">  3570  </span>		optionalParams      GetUsageSyntheticsAPIOptionalParameters
-<span id="L3571" class="ln">  3571  </span>	)
-<span id="L3572" class="ln">  3572  </span>
-<span id="L3573" class="ln">  3573  </span>	if len(o) &gt; 1 {
-<span id="L3574" class="ln">  3574  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type GetUsageSyntheticsAPIOptionalParameters is allowed&#34;)
-<span id="L3575" class="ln">  3575  </span>	}
-<span id="L3576" class="ln">  3576  </span>	if len(o) == 1 {
-<span id="L3577" class="ln">  3577  </span>		optionalParams = o[0]
-<span id="L3578" class="ln">  3578  </span>	}
-<span id="L3579" class="ln">  3579  </span>
-<span id="L3580" class="ln">  3580  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.UsageMeteringApi.GetUsageSyntheticsAPI&#34;)
-<span id="L3581" class="ln">  3581  </span>	if err != nil {
-<span id="L3582" class="ln">  3582  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L3583" class="ln">  3583  </span>	}
-<span id="L3584" class="ln">  3584  </span>
-<span id="L3585" class="ln">  3585  </span>	localVarPath := localBasePath + &#34;/api/v1/usage/synthetics_api&#34;
-<span id="L3586" class="ln">  3586  </span>
-<span id="L3587" class="ln">  3587  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L3588" class="ln">  3588  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L3589" class="ln">  3589  </span>	localVarFormParams := _neturl.Values{}
-<span id="L3590" class="ln">  3590  </span>	localVarQueryParams.Add(&#34;start_hr&#34;, datadog.ParameterToString(startHr, &#34;&#34;))
-<span id="L3591" class="ln">  3591  </span>	if optionalParams.EndHr != nil {
-<span id="L3592" class="ln">  3592  </span>		localVarQueryParams.Add(&#34;end_hr&#34;, datadog.ParameterToString(*optionalParams.EndHr, &#34;&#34;))
+<span id="L3515" class="ln">  3515  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L3516" class="ln">  3516  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L3517" class="ln">  3517  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3518" class="ln">  3518  </span>	}
+<span id="L3519" class="ln">  3519  </span>
+<span id="L3520" class="ln">  3520  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L3521" class="ln">  3521  </span>	if err != nil {
+<span id="L3522" class="ln">  3522  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3523" class="ln">  3523  </span>	}
+<span id="L3524" class="ln">  3524  </span>
+<span id="L3525" class="ln">  3525  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L3526" class="ln">  3526  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L3527" class="ln">  3527  </span>			ErrorBody:    localVarBody,
+<span id="L3528" class="ln">  3528  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L3529" class="ln">  3529  </span>		}
+<span id="L3530" class="ln">  3530  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L3531" class="ln">  3531  </span>			var v APIErrorResponse
+<span id="L3532" class="ln">  3532  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L3533" class="ln">  3533  </span>			if err != nil {
+<span id="L3534" class="ln">  3534  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3535" class="ln">  3535  </span>			}
+<span id="L3536" class="ln">  3536  </span>			newErr.ErrorModel = v
+<span id="L3537" class="ln">  3537  </span>		}
+<span id="L3538" class="ln">  3538  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3539" class="ln">  3539  </span>	}
+<span id="L3540" class="ln">  3540  </span>
+<span id="L3541" class="ln">  3541  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L3542" class="ln">  3542  </span>	if err != nil {
+<span id="L3543" class="ln">  3543  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L3544" class="ln">  3544  </span>			ErrorBody:    localVarBody,
+<span id="L3545" class="ln">  3545  </span>			ErrorMessage: err.Error(),
+<span id="L3546" class="ln">  3546  </span>		}
+<span id="L3547" class="ln">  3547  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3548" class="ln">  3548  </span>	}
+<span id="L3549" class="ln">  3549  </span>
+<span id="L3550" class="ln">  3550  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L3551" class="ln">  3551  </span>}
+<span id="L3552" class="ln">  3552  </span>
+<span id="L3553" class="ln">  3553  </span><span class="comment">// GetUsageSyntheticsAPIOptionalParameters holds optional parameters for GetUsageSyntheticsAPI.</span>
+<span id="L3554" class="ln">  3554  </span>type GetUsageSyntheticsAPIOptionalParameters struct {
+<span id="L3555" class="ln">  3555  </span>	EndHr *time.Time
+<span id="L3556" class="ln">  3556  </span>}
+<span id="L3557" class="ln">  3557  </span>
+<span id="L3558" class="ln">  3558  </span><span class="comment">// NewGetUsageSyntheticsAPIOptionalParameters creates an empty struct for parameters.</span>
+<span id="L3559" class="ln">  3559  </span>func NewGetUsageSyntheticsAPIOptionalParameters() *GetUsageSyntheticsAPIOptionalParameters {
+<span id="L3560" class="ln">  3560  </span>	this := GetUsageSyntheticsAPIOptionalParameters{}
+<span id="L3561" class="ln">  3561  </span>	return &amp;this
+<span id="L3562" class="ln">  3562  </span>}
+<span id="L3563" class="ln">  3563  </span>
+<span id="L3564" class="ln">  3564  </span><span class="comment">// WithEndHr sets the corresponding parameter name and returns the struct.</span>
+<span id="L3565" class="ln">  3565  </span>func (r *GetUsageSyntheticsAPIOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSyntheticsAPIOptionalParameters {
+<span id="L3566" class="ln">  3566  </span>	r.EndHr = &amp;endHr
+<span id="L3567" class="ln">  3567  </span>	return r
+<span id="L3568" class="ln">  3568  </span>}
+<span id="L3569" class="ln">  3569  </span>
+<span id="L3570" class="ln">  3570  </span><span class="comment">// GetUsageSyntheticsAPI Get hourly usage for synthetics API checks.</span>
+<span id="L3571" class="ln">  3571  </span><span class="comment">// Get hourly usage for [synthetics API checks](https://docs.datadoghq.com/synthetics/).</span>
+<span id="L3572" class="ln">  3572  </span><span class="comment">// **Note:** This endpoint has been deprecated. Hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family). Refer to [Migrating from the V1 Hourly Usage APIs to V2](https://docs.datadoghq.com/account_management/guide/hourly-usage-migration/) for the associated migration guide.</span>
+<span id="L3573" class="ln">  3573  </span><span class="comment">//</span>
+<span id="L3574" class="ln">  3574  </span><span class="comment">// Deprecated: This API is deprecated.</span>
+<span id="L3575" class="ln">  3575  </span>func (a *UsageMeteringApi) GetUsageSyntheticsAPI(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsAPIOptionalParameters) (UsageSyntheticsAPIResponse, *_nethttp.Response, error) {
+<span id="L3576" class="ln">  3576  </span>	var (
+<span id="L3577" class="ln">  3577  </span>		localVarHTTPMethod  = _nethttp.MethodGet
+<span id="L3578" class="ln">  3578  </span>		localVarPostBody    interface{}
+<span id="L3579" class="ln">  3579  </span>		localVarReturnValue UsageSyntheticsAPIResponse
+<span id="L3580" class="ln">  3580  </span>		optionalParams      GetUsageSyntheticsAPIOptionalParameters
+<span id="L3581" class="ln">  3581  </span>	)
+<span id="L3582" class="ln">  3582  </span>
+<span id="L3583" class="ln">  3583  </span>	if len(o) &gt; 1 {
+<span id="L3584" class="ln">  3584  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type GetUsageSyntheticsAPIOptionalParameters is allowed&#34;)
+<span id="L3585" class="ln">  3585  </span>	}
+<span id="L3586" class="ln">  3586  </span>	if len(o) == 1 {
+<span id="L3587" class="ln">  3587  </span>		optionalParams = o[0]
+<span id="L3588" class="ln">  3588  </span>	}
+<span id="L3589" class="ln">  3589  </span>
+<span id="L3590" class="ln">  3590  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.UsageMeteringApi.GetUsageSyntheticsAPI&#34;)
+<span id="L3591" class="ln">  3591  </span>	if err != nil {
+<span id="L3592" class="ln">  3592  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L3593" class="ln">  3593  </span>	}
-<span id="L3594" class="ln">  3594  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json;datetime-format=rfc3339&#34;
-<span id="L3595" class="ln">  3595  </span>
-<span id="L3596" class="ln">  3596  </span>	datadog.SetAuthKeys(
-<span id="L3597" class="ln">  3597  </span>		ctx,
-<span id="L3598" class="ln">  3598  </span>		&amp;localVarHeaderParams,
-<span id="L3599" class="ln">  3599  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L3600" class="ln">  3600  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L3601" class="ln">  3601  </span>	)
-<span id="L3602" class="ln">  3602  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L3603" class="ln">  3603  </span>	if err != nil {
-<span id="L3604" class="ln">  3604  </span>		return localVarReturnValue, nil, err
-<span id="L3605" class="ln">  3605  </span>	}
-<span id="L3606" class="ln">  3606  </span>
-<span id="L3607" class="ln">  3607  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L3608" class="ln">  3608  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L3609" class="ln">  3609  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L3610" class="ln">  3610  </span>	}
-<span id="L3611" class="ln">  3611  </span>
-<span id="L3612" class="ln">  3612  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L3594" class="ln">  3594  </span>
+<span id="L3595" class="ln">  3595  </span>	localVarPath := localBasePath + &#34;/api/v1/usage/synthetics_api&#34;
+<span id="L3596" class="ln">  3596  </span>
+<span id="L3597" class="ln">  3597  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L3598" class="ln">  3598  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L3599" class="ln">  3599  </span>	localVarFormParams := _neturl.Values{}
+<span id="L3600" class="ln">  3600  </span>	localVarQueryParams.Add(&#34;start_hr&#34;, datadog.ParameterToString(startHr, &#34;&#34;))
+<span id="L3601" class="ln">  3601  </span>	if optionalParams.EndHr != nil {
+<span id="L3602" class="ln">  3602  </span>		localVarQueryParams.Add(&#34;end_hr&#34;, datadog.ParameterToString(*optionalParams.EndHr, &#34;&#34;))
+<span id="L3603" class="ln">  3603  </span>	}
+<span id="L3604" class="ln">  3604  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json;datetime-format=rfc3339&#34;
+<span id="L3605" class="ln">  3605  </span>
+<span id="L3606" class="ln">  3606  </span>	datadog.SetAuthKeys(
+<span id="L3607" class="ln">  3607  </span>		ctx,
+<span id="L3608" class="ln">  3608  </span>		&amp;localVarHeaderParams,
+<span id="L3609" class="ln">  3609  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L3610" class="ln">  3610  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L3611" class="ln">  3611  </span>	)
+<span id="L3612" class="ln">  3612  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 <span id="L3613" class="ln">  3613  </span>	if err != nil {
-<span id="L3614" class="ln">  3614  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3614" class="ln">  3614  </span>		return localVarReturnValue, nil, err
 <span id="L3615" class="ln">  3615  </span>	}
 <span id="L3616" class="ln">  3616  </span>
-<span id="L3617" class="ln">  3617  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L3618" class="ln">  3618  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L3619" class="ln">  3619  </span>			ErrorBody:    localVarBody,
-<span id="L3620" class="ln">  3620  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L3621" class="ln">  3621  </span>		}
-<span id="L3622" class="ln">  3622  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L3623" class="ln">  3623  </span>			var v APIErrorResponse
-<span id="L3624" class="ln">  3624  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L3625" class="ln">  3625  </span>			if err != nil {
-<span id="L3626" class="ln">  3626  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3627" class="ln">  3627  </span>			}
-<span id="L3628" class="ln">  3628  </span>			newErr.ErrorModel = v
-<span id="L3629" class="ln">  3629  </span>		}
-<span id="L3630" class="ln">  3630  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3631" class="ln">  3631  </span>	}
-<span id="L3632" class="ln">  3632  </span>
-<span id="L3633" class="ln">  3633  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L3634" class="ln">  3634  </span>	if err != nil {
-<span id="L3635" class="ln">  3635  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L3636" class="ln">  3636  </span>			ErrorBody:    localVarBody,
-<span id="L3637" class="ln">  3637  </span>			ErrorMessage: err.Error(),
-<span id="L3638" class="ln">  3638  </span>		}
-<span id="L3639" class="ln">  3639  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3640" class="ln">  3640  </span>	}
-<span id="L3641" class="ln">  3641  </span>
-<span id="L3642" class="ln">  3642  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L3643" class="ln">  3643  </span>}
-<span id="L3644" class="ln">  3644  </span>
-<span id="L3645" class="ln">  3645  </span><span class="comment">// GetUsageSyntheticsBrowserOptionalParameters holds optional parameters for GetUsageSyntheticsBrowser.</span>
-<span id="L3646" class="ln">  3646  </span>type GetUsageSyntheticsBrowserOptionalParameters struct {
-<span id="L3647" class="ln">  3647  </span>	EndHr *time.Time
-<span id="L3648" class="ln">  3648  </span>}
-<span id="L3649" class="ln">  3649  </span>
-<span id="L3650" class="ln">  3650  </span><span class="comment">// NewGetUsageSyntheticsBrowserOptionalParameters creates an empty struct for parameters.</span>
-<span id="L3651" class="ln">  3651  </span>func NewGetUsageSyntheticsBrowserOptionalParameters() *GetUsageSyntheticsBrowserOptionalParameters {
-<span id="L3652" class="ln">  3652  </span>	this := GetUsageSyntheticsBrowserOptionalParameters{}
-<span id="L3653" class="ln">  3653  </span>	return &amp;this
-<span id="L3654" class="ln">  3654  </span>}
-<span id="L3655" class="ln">  3655  </span>
-<span id="L3656" class="ln">  3656  </span><span class="comment">// WithEndHr sets the corresponding parameter name and returns the struct.</span>
-<span id="L3657" class="ln">  3657  </span>func (r *GetUsageSyntheticsBrowserOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSyntheticsBrowserOptionalParameters {
-<span id="L3658" class="ln">  3658  </span>	r.EndHr = &amp;endHr
-<span id="L3659" class="ln">  3659  </span>	return r
-<span id="L3660" class="ln">  3660  </span>}
-<span id="L3661" class="ln">  3661  </span>
-<span id="L3662" class="ln">  3662  </span><span class="comment">// GetUsageSyntheticsBrowser Get hourly usage for synthetics browser checks.</span>
-<span id="L3663" class="ln">  3663  </span><span class="comment">// Get hourly usage for synthetics browser checks.</span>
-<span id="L3664" class="ln">  3664  </span><span class="comment">// **Note:** This endpoint has been deprecated. Hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family). Refer to [Migrating from the V1 Hourly Usage APIs to V2](https://docs.datadoghq.com/account_management/guide/hourly-usage-migration/) for the associated migration guide.</span>
-<span id="L3665" class="ln">  3665  </span><span class="comment">//</span>
-<span id="L3666" class="ln">  3666  </span><span class="comment">// Deprecated: This API is deprecated.</span>
-<span id="L3667" class="ln">  3667  </span>func (a *UsageMeteringApi) GetUsageSyntheticsBrowser(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsBrowserOptionalParameters) (UsageSyntheticsBrowserResponse, *_nethttp.Response, error) {
-<span id="L3668" class="ln">  3668  </span>	var (
-<span id="L3669" class="ln">  3669  </span>		localVarHTTPMethod  = _nethttp.MethodGet
-<span id="L3670" class="ln">  3670  </span>		localVarPostBody    interface{}
-<span id="L3671" class="ln">  3671  </span>		localVarReturnValue UsageSyntheticsBrowserResponse
-<span id="L3672" class="ln">  3672  </span>		optionalParams      GetUsageSyntheticsBrowserOptionalParameters
-<span id="L3673" class="ln">  3673  </span>	)
-<span id="L3674" class="ln">  3674  </span>
-<span id="L3675" class="ln">  3675  </span>	if len(o) &gt; 1 {
-<span id="L3676" class="ln">  3676  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type GetUsageSyntheticsBrowserOptionalParameters is allowed&#34;)
-<span id="L3677" class="ln">  3677  </span>	}
-<span id="L3678" class="ln">  3678  </span>	if len(o) == 1 {
-<span id="L3679" class="ln">  3679  </span>		optionalParams = o[0]
-<span id="L3680" class="ln">  3680  </span>	}
-<span id="L3681" class="ln">  3681  </span>
-<span id="L3682" class="ln">  3682  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.UsageMeteringApi.GetUsageSyntheticsBrowser&#34;)
-<span id="L3683" class="ln">  3683  </span>	if err != nil {
-<span id="L3684" class="ln">  3684  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L3685" class="ln">  3685  </span>	}
-<span id="L3686" class="ln">  3686  </span>
-<span id="L3687" class="ln">  3687  </span>	localVarPath := localBasePath + &#34;/api/v1/usage/synthetics_browser&#34;
-<span id="L3688" class="ln">  3688  </span>
-<span id="L3689" class="ln">  3689  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L3690" class="ln">  3690  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L3691" class="ln">  3691  </span>	localVarFormParams := _neturl.Values{}
-<span id="L3692" class="ln">  3692  </span>	localVarQueryParams.Add(&#34;start_hr&#34;, datadog.ParameterToString(startHr, &#34;&#34;))
-<span id="L3693" class="ln">  3693  </span>	if optionalParams.EndHr != nil {
-<span id="L3694" class="ln">  3694  </span>		localVarQueryParams.Add(&#34;end_hr&#34;, datadog.ParameterToString(*optionalParams.EndHr, &#34;&#34;))
+<span id="L3617" class="ln">  3617  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L3618" class="ln">  3618  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L3619" class="ln">  3619  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3620" class="ln">  3620  </span>	}
+<span id="L3621" class="ln">  3621  </span>
+<span id="L3622" class="ln">  3622  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L3623" class="ln">  3623  </span>	if err != nil {
+<span id="L3624" class="ln">  3624  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3625" class="ln">  3625  </span>	}
+<span id="L3626" class="ln">  3626  </span>
+<span id="L3627" class="ln">  3627  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L3628" class="ln">  3628  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L3629" class="ln">  3629  </span>			ErrorBody:    localVarBody,
+<span id="L3630" class="ln">  3630  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L3631" class="ln">  3631  </span>		}
+<span id="L3632" class="ln">  3632  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L3633" class="ln">  3633  </span>			var v APIErrorResponse
+<span id="L3634" class="ln">  3634  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L3635" class="ln">  3635  </span>			if err != nil {
+<span id="L3636" class="ln">  3636  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3637" class="ln">  3637  </span>			}
+<span id="L3638" class="ln">  3638  </span>			newErr.ErrorModel = v
+<span id="L3639" class="ln">  3639  </span>		}
+<span id="L3640" class="ln">  3640  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3641" class="ln">  3641  </span>	}
+<span id="L3642" class="ln">  3642  </span>
+<span id="L3643" class="ln">  3643  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L3644" class="ln">  3644  </span>	if err != nil {
+<span id="L3645" class="ln">  3645  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L3646" class="ln">  3646  </span>			ErrorBody:    localVarBody,
+<span id="L3647" class="ln">  3647  </span>			ErrorMessage: err.Error(),
+<span id="L3648" class="ln">  3648  </span>		}
+<span id="L3649" class="ln">  3649  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3650" class="ln">  3650  </span>	}
+<span id="L3651" class="ln">  3651  </span>
+<span id="L3652" class="ln">  3652  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L3653" class="ln">  3653  </span>}
+<span id="L3654" class="ln">  3654  </span>
+<span id="L3655" class="ln">  3655  </span><span class="comment">// GetUsageSyntheticsBrowserOptionalParameters holds optional parameters for GetUsageSyntheticsBrowser.</span>
+<span id="L3656" class="ln">  3656  </span>type GetUsageSyntheticsBrowserOptionalParameters struct {
+<span id="L3657" class="ln">  3657  </span>	EndHr *time.Time
+<span id="L3658" class="ln">  3658  </span>}
+<span id="L3659" class="ln">  3659  </span>
+<span id="L3660" class="ln">  3660  </span><span class="comment">// NewGetUsageSyntheticsBrowserOptionalParameters creates an empty struct for parameters.</span>
+<span id="L3661" class="ln">  3661  </span>func NewGetUsageSyntheticsBrowserOptionalParameters() *GetUsageSyntheticsBrowserOptionalParameters {
+<span id="L3662" class="ln">  3662  </span>	this := GetUsageSyntheticsBrowserOptionalParameters{}
+<span id="L3663" class="ln">  3663  </span>	return &amp;this
+<span id="L3664" class="ln">  3664  </span>}
+<span id="L3665" class="ln">  3665  </span>
+<span id="L3666" class="ln">  3666  </span><span class="comment">// WithEndHr sets the corresponding parameter name and returns the struct.</span>
+<span id="L3667" class="ln">  3667  </span>func (r *GetUsageSyntheticsBrowserOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSyntheticsBrowserOptionalParameters {
+<span id="L3668" class="ln">  3668  </span>	r.EndHr = &amp;endHr
+<span id="L3669" class="ln">  3669  </span>	return r
+<span id="L3670" class="ln">  3670  </span>}
+<span id="L3671" class="ln">  3671  </span>
+<span id="L3672" class="ln">  3672  </span><span class="comment">// GetUsageSyntheticsBrowser Get hourly usage for synthetics browser checks.</span>
+<span id="L3673" class="ln">  3673  </span><span class="comment">// Get hourly usage for synthetics browser checks.</span>
+<span id="L3674" class="ln">  3674  </span><span class="comment">// **Note:** This endpoint has been deprecated. Hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family). Refer to [Migrating from the V1 Hourly Usage APIs to V2](https://docs.datadoghq.com/account_management/guide/hourly-usage-migration/) for the associated migration guide.</span>
+<span id="L3675" class="ln">  3675  </span><span class="comment">//</span>
+<span id="L3676" class="ln">  3676  </span><span class="comment">// Deprecated: This API is deprecated.</span>
+<span id="L3677" class="ln">  3677  </span>func (a *UsageMeteringApi) GetUsageSyntheticsBrowser(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsBrowserOptionalParameters) (UsageSyntheticsBrowserResponse, *_nethttp.Response, error) {
+<span id="L3678" class="ln">  3678  </span>	var (
+<span id="L3679" class="ln">  3679  </span>		localVarHTTPMethod  = _nethttp.MethodGet
+<span id="L3680" class="ln">  3680  </span>		localVarPostBody    interface{}
+<span id="L3681" class="ln">  3681  </span>		localVarReturnValue UsageSyntheticsBrowserResponse
+<span id="L3682" class="ln">  3682  </span>		optionalParams      GetUsageSyntheticsBrowserOptionalParameters
+<span id="L3683" class="ln">  3683  </span>	)
+<span id="L3684" class="ln">  3684  </span>
+<span id="L3685" class="ln">  3685  </span>	if len(o) &gt; 1 {
+<span id="L3686" class="ln">  3686  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type GetUsageSyntheticsBrowserOptionalParameters is allowed&#34;)
+<span id="L3687" class="ln">  3687  </span>	}
+<span id="L3688" class="ln">  3688  </span>	if len(o) == 1 {
+<span id="L3689" class="ln">  3689  </span>		optionalParams = o[0]
+<span id="L3690" class="ln">  3690  </span>	}
+<span id="L3691" class="ln">  3691  </span>
+<span id="L3692" class="ln">  3692  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.UsageMeteringApi.GetUsageSyntheticsBrowser&#34;)
+<span id="L3693" class="ln">  3693  </span>	if err != nil {
+<span id="L3694" class="ln">  3694  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L3695" class="ln">  3695  </span>	}
-<span id="L3696" class="ln">  3696  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json;datetime-format=rfc3339&#34;
-<span id="L3697" class="ln">  3697  </span>
-<span id="L3698" class="ln">  3698  </span>	datadog.SetAuthKeys(
-<span id="L3699" class="ln">  3699  </span>		ctx,
-<span id="L3700" class="ln">  3700  </span>		&amp;localVarHeaderParams,
-<span id="L3701" class="ln">  3701  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L3702" class="ln">  3702  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L3703" class="ln">  3703  </span>	)
-<span id="L3704" class="ln">  3704  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L3705" class="ln">  3705  </span>	if err != nil {
-<span id="L3706" class="ln">  3706  </span>		return localVarReturnValue, nil, err
-<span id="L3707" class="ln">  3707  </span>	}
-<span id="L3708" class="ln">  3708  </span>
-<span id="L3709" class="ln">  3709  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L3710" class="ln">  3710  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L3711" class="ln">  3711  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L3712" class="ln">  3712  </span>	}
-<span id="L3713" class="ln">  3713  </span>
-<span id="L3714" class="ln">  3714  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L3696" class="ln">  3696  </span>
+<span id="L3697" class="ln">  3697  </span>	localVarPath := localBasePath + &#34;/api/v1/usage/synthetics_browser&#34;
+<span id="L3698" class="ln">  3698  </span>
+<span id="L3699" class="ln">  3699  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L3700" class="ln">  3700  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L3701" class="ln">  3701  </span>	localVarFormParams := _neturl.Values{}
+<span id="L3702" class="ln">  3702  </span>	localVarQueryParams.Add(&#34;start_hr&#34;, datadog.ParameterToString(startHr, &#34;&#34;))
+<span id="L3703" class="ln">  3703  </span>	if optionalParams.EndHr != nil {
+<span id="L3704" class="ln">  3704  </span>		localVarQueryParams.Add(&#34;end_hr&#34;, datadog.ParameterToString(*optionalParams.EndHr, &#34;&#34;))
+<span id="L3705" class="ln">  3705  </span>	}
+<span id="L3706" class="ln">  3706  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json;datetime-format=rfc3339&#34;
+<span id="L3707" class="ln">  3707  </span>
+<span id="L3708" class="ln">  3708  </span>	datadog.SetAuthKeys(
+<span id="L3709" class="ln">  3709  </span>		ctx,
+<span id="L3710" class="ln">  3710  </span>		&amp;localVarHeaderParams,
+<span id="L3711" class="ln">  3711  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L3712" class="ln">  3712  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L3713" class="ln">  3713  </span>	)
+<span id="L3714" class="ln">  3714  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 <span id="L3715" class="ln">  3715  </span>	if err != nil {
-<span id="L3716" class="ln">  3716  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3716" class="ln">  3716  </span>		return localVarReturnValue, nil, err
 <span id="L3717" class="ln">  3717  </span>	}
 <span id="L3718" class="ln">  3718  </span>
-<span id="L3719" class="ln">  3719  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L3720" class="ln">  3720  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L3721" class="ln">  3721  </span>			ErrorBody:    localVarBody,
-<span id="L3722" class="ln">  3722  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L3723" class="ln">  3723  </span>		}
-<span id="L3724" class="ln">  3724  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L3725" class="ln">  3725  </span>			var v APIErrorResponse
-<span id="L3726" class="ln">  3726  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L3727" class="ln">  3727  </span>			if err != nil {
-<span id="L3728" class="ln">  3728  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3729" class="ln">  3729  </span>			}
-<span id="L3730" class="ln">  3730  </span>			newErr.ErrorModel = v
-<span id="L3731" class="ln">  3731  </span>		}
-<span id="L3732" class="ln">  3732  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3733" class="ln">  3733  </span>	}
-<span id="L3734" class="ln">  3734  </span>
-<span id="L3735" class="ln">  3735  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L3736" class="ln">  3736  </span>	if err != nil {
-<span id="L3737" class="ln">  3737  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L3738" class="ln">  3738  </span>			ErrorBody:    localVarBody,
-<span id="L3739" class="ln">  3739  </span>			ErrorMessage: err.Error(),
-<span id="L3740" class="ln">  3740  </span>		}
-<span id="L3741" class="ln">  3741  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3742" class="ln">  3742  </span>	}
-<span id="L3743" class="ln">  3743  </span>
-<span id="L3744" class="ln">  3744  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L3745" class="ln">  3745  </span>}
-<span id="L3746" class="ln">  3746  </span>
-<span id="L3747" class="ln">  3747  </span><span class="comment">// GetUsageTimeseriesOptionalParameters holds optional parameters for GetUsageTimeseries.</span>
-<span id="L3748" class="ln">  3748  </span>type GetUsageTimeseriesOptionalParameters struct {
-<span id="L3749" class="ln">  3749  </span>	EndHr *time.Time
-<span id="L3750" class="ln">  3750  </span>}
-<span id="L3751" class="ln">  3751  </span>
-<span id="L3752" class="ln">  3752  </span><span class="comment">// NewGetUsageTimeseriesOptionalParameters creates an empty struct for parameters.</span>
-<span id="L3753" class="ln">  3753  </span>func NewGetUsageTimeseriesOptionalParameters() *GetUsageTimeseriesOptionalParameters {
-<span id="L3754" class="ln">  3754  </span>	this := GetUsageTimeseriesOptionalParameters{}
-<span id="L3755" class="ln">  3755  </span>	return &amp;this
-<span id="L3756" class="ln">  3756  </span>}
-<span id="L3757" class="ln">  3757  </span>
-<span id="L3758" class="ln">  3758  </span><span class="comment">// WithEndHr sets the corresponding parameter name and returns the struct.</span>
-<span id="L3759" class="ln">  3759  </span>func (r *GetUsageTimeseriesOptionalParameters) WithEndHr(endHr time.Time) *GetUsageTimeseriesOptionalParameters {
-<span id="L3760" class="ln">  3760  </span>	r.EndHr = &amp;endHr
-<span id="L3761" class="ln">  3761  </span>	return r
-<span id="L3762" class="ln">  3762  </span>}
-<span id="L3763" class="ln">  3763  </span>
-<span id="L3764" class="ln">  3764  </span><span class="comment">// GetUsageTimeseries Get hourly usage for custom metrics.</span>
-<span id="L3765" class="ln">  3765  </span><span class="comment">// Get hourly usage for [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/).</span>
-<span id="L3766" class="ln">  3766  </span><span class="comment">// **Note:** This endpoint has been deprecated. Hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family). Refer to [Migrating from the V1 Hourly Usage APIs to V2](https://docs.datadoghq.com/account_management/guide/hourly-usage-migration/) for the associated migration guide.</span>
-<span id="L3767" class="ln">  3767  </span><span class="comment">//</span>
-<span id="L3768" class="ln">  3768  </span><span class="comment">// Deprecated: This API is deprecated.</span>
-<span id="L3769" class="ln">  3769  </span>func (a *UsageMeteringApi) GetUsageTimeseries(ctx _context.Context, startHr time.Time, o ...GetUsageTimeseriesOptionalParameters) (UsageTimeseriesResponse, *_nethttp.Response, error) {
-<span id="L3770" class="ln">  3770  </span>	var (
-<span id="L3771" class="ln">  3771  </span>		localVarHTTPMethod  = _nethttp.MethodGet
-<span id="L3772" class="ln">  3772  </span>		localVarPostBody    interface{}
-<span id="L3773" class="ln">  3773  </span>		localVarReturnValue UsageTimeseriesResponse
-<span id="L3774" class="ln">  3774  </span>		optionalParams      GetUsageTimeseriesOptionalParameters
-<span id="L3775" class="ln">  3775  </span>	)
-<span id="L3776" class="ln">  3776  </span>
-<span id="L3777" class="ln">  3777  </span>	if len(o) &gt; 1 {
-<span id="L3778" class="ln">  3778  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type GetUsageTimeseriesOptionalParameters is allowed&#34;)
-<span id="L3779" class="ln">  3779  </span>	}
-<span id="L3780" class="ln">  3780  </span>	if len(o) == 1 {
-<span id="L3781" class="ln">  3781  </span>		optionalParams = o[0]
-<span id="L3782" class="ln">  3782  </span>	}
-<span id="L3783" class="ln">  3783  </span>
-<span id="L3784" class="ln">  3784  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.UsageMeteringApi.GetUsageTimeseries&#34;)
-<span id="L3785" class="ln">  3785  </span>	if err != nil {
-<span id="L3786" class="ln">  3786  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L3787" class="ln">  3787  </span>	}
-<span id="L3788" class="ln">  3788  </span>
-<span id="L3789" class="ln">  3789  </span>	localVarPath := localBasePath + &#34;/api/v1/usage/timeseries&#34;
-<span id="L3790" class="ln">  3790  </span>
-<span id="L3791" class="ln">  3791  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L3792" class="ln">  3792  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L3793" class="ln">  3793  </span>	localVarFormParams := _neturl.Values{}
-<span id="L3794" class="ln">  3794  </span>	localVarQueryParams.Add(&#34;start_hr&#34;, datadog.ParameterToString(startHr, &#34;&#34;))
-<span id="L3795" class="ln">  3795  </span>	if optionalParams.EndHr != nil {
-<span id="L3796" class="ln">  3796  </span>		localVarQueryParams.Add(&#34;end_hr&#34;, datadog.ParameterToString(*optionalParams.EndHr, &#34;&#34;))
+<span id="L3719" class="ln">  3719  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L3720" class="ln">  3720  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L3721" class="ln">  3721  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3722" class="ln">  3722  </span>	}
+<span id="L3723" class="ln">  3723  </span>
+<span id="L3724" class="ln">  3724  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L3725" class="ln">  3725  </span>	if err != nil {
+<span id="L3726" class="ln">  3726  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3727" class="ln">  3727  </span>	}
+<span id="L3728" class="ln">  3728  </span>
+<span id="L3729" class="ln">  3729  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L3730" class="ln">  3730  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L3731" class="ln">  3731  </span>			ErrorBody:    localVarBody,
+<span id="L3732" class="ln">  3732  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L3733" class="ln">  3733  </span>		}
+<span id="L3734" class="ln">  3734  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L3735" class="ln">  3735  </span>			var v APIErrorResponse
+<span id="L3736" class="ln">  3736  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L3737" class="ln">  3737  </span>			if err != nil {
+<span id="L3738" class="ln">  3738  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3739" class="ln">  3739  </span>			}
+<span id="L3740" class="ln">  3740  </span>			newErr.ErrorModel = v
+<span id="L3741" class="ln">  3741  </span>		}
+<span id="L3742" class="ln">  3742  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3743" class="ln">  3743  </span>	}
+<span id="L3744" class="ln">  3744  </span>
+<span id="L3745" class="ln">  3745  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L3746" class="ln">  3746  </span>	if err != nil {
+<span id="L3747" class="ln">  3747  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L3748" class="ln">  3748  </span>			ErrorBody:    localVarBody,
+<span id="L3749" class="ln">  3749  </span>			ErrorMessage: err.Error(),
+<span id="L3750" class="ln">  3750  </span>		}
+<span id="L3751" class="ln">  3751  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3752" class="ln">  3752  </span>	}
+<span id="L3753" class="ln">  3753  </span>
+<span id="L3754" class="ln">  3754  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L3755" class="ln">  3755  </span>}
+<span id="L3756" class="ln">  3756  </span>
+<span id="L3757" class="ln">  3757  </span><span class="comment">// GetUsageTimeseriesOptionalParameters holds optional parameters for GetUsageTimeseries.</span>
+<span id="L3758" class="ln">  3758  </span>type GetUsageTimeseriesOptionalParameters struct {
+<span id="L3759" class="ln">  3759  </span>	EndHr *time.Time
+<span id="L3760" class="ln">  3760  </span>}
+<span id="L3761" class="ln">  3761  </span>
+<span id="L3762" class="ln">  3762  </span><span class="comment">// NewGetUsageTimeseriesOptionalParameters creates an empty struct for parameters.</span>
+<span id="L3763" class="ln">  3763  </span>func NewGetUsageTimeseriesOptionalParameters() *GetUsageTimeseriesOptionalParameters {
+<span id="L3764" class="ln">  3764  </span>	this := GetUsageTimeseriesOptionalParameters{}
+<span id="L3765" class="ln">  3765  </span>	return &amp;this
+<span id="L3766" class="ln">  3766  </span>}
+<span id="L3767" class="ln">  3767  </span>
+<span id="L3768" class="ln">  3768  </span><span class="comment">// WithEndHr sets the corresponding parameter name and returns the struct.</span>
+<span id="L3769" class="ln">  3769  </span>func (r *GetUsageTimeseriesOptionalParameters) WithEndHr(endHr time.Time) *GetUsageTimeseriesOptionalParameters {
+<span id="L3770" class="ln">  3770  </span>	r.EndHr = &amp;endHr
+<span id="L3771" class="ln">  3771  </span>	return r
+<span id="L3772" class="ln">  3772  </span>}
+<span id="L3773" class="ln">  3773  </span>
+<span id="L3774" class="ln">  3774  </span><span class="comment">// GetUsageTimeseries Get hourly usage for custom metrics.</span>
+<span id="L3775" class="ln">  3775  </span><span class="comment">// Get hourly usage for [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/).</span>
+<span id="L3776" class="ln">  3776  </span><span class="comment">// **Note:** This endpoint has been deprecated. Hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family). Refer to [Migrating from the V1 Hourly Usage APIs to V2](https://docs.datadoghq.com/account_management/guide/hourly-usage-migration/) for the associated migration guide.</span>
+<span id="L3777" class="ln">  3777  </span><span class="comment">//</span>
+<span id="L3778" class="ln">  3778  </span><span class="comment">// Deprecated: This API is deprecated.</span>
+<span id="L3779" class="ln">  3779  </span>func (a *UsageMeteringApi) GetUsageTimeseries(ctx _context.Context, startHr time.Time, o ...GetUsageTimeseriesOptionalParameters) (UsageTimeseriesResponse, *_nethttp.Response, error) {
+<span id="L3780" class="ln">  3780  </span>	var (
+<span id="L3781" class="ln">  3781  </span>		localVarHTTPMethod  = _nethttp.MethodGet
+<span id="L3782" class="ln">  3782  </span>		localVarPostBody    interface{}
+<span id="L3783" class="ln">  3783  </span>		localVarReturnValue UsageTimeseriesResponse
+<span id="L3784" class="ln">  3784  </span>		optionalParams      GetUsageTimeseriesOptionalParameters
+<span id="L3785" class="ln">  3785  </span>	)
+<span id="L3786" class="ln">  3786  </span>
+<span id="L3787" class="ln">  3787  </span>	if len(o) &gt; 1 {
+<span id="L3788" class="ln">  3788  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type GetUsageTimeseriesOptionalParameters is allowed&#34;)
+<span id="L3789" class="ln">  3789  </span>	}
+<span id="L3790" class="ln">  3790  </span>	if len(o) == 1 {
+<span id="L3791" class="ln">  3791  </span>		optionalParams = o[0]
+<span id="L3792" class="ln">  3792  </span>	}
+<span id="L3793" class="ln">  3793  </span>
+<span id="L3794" class="ln">  3794  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.UsageMeteringApi.GetUsageTimeseries&#34;)
+<span id="L3795" class="ln">  3795  </span>	if err != nil {
+<span id="L3796" class="ln">  3796  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L3797" class="ln">  3797  </span>	}
-<span id="L3798" class="ln">  3798  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json;datetime-format=rfc3339&#34;
-<span id="L3799" class="ln">  3799  </span>
-<span id="L3800" class="ln">  3800  </span>	datadog.SetAuthKeys(
-<span id="L3801" class="ln">  3801  </span>		ctx,
-<span id="L3802" class="ln">  3802  </span>		&amp;localVarHeaderParams,
-<span id="L3803" class="ln">  3803  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L3804" class="ln">  3804  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L3805" class="ln">  3805  </span>	)
-<span id="L3806" class="ln">  3806  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L3807" class="ln">  3807  </span>	if err != nil {
-<span id="L3808" class="ln">  3808  </span>		return localVarReturnValue, nil, err
-<span id="L3809" class="ln">  3809  </span>	}
-<span id="L3810" class="ln">  3810  </span>
-<span id="L3811" class="ln">  3811  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L3812" class="ln">  3812  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L3813" class="ln">  3813  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L3814" class="ln">  3814  </span>	}
-<span id="L3815" class="ln">  3815  </span>
-<span id="L3816" class="ln">  3816  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L3798" class="ln">  3798  </span>
+<span id="L3799" class="ln">  3799  </span>	localVarPath := localBasePath + &#34;/api/v1/usage/timeseries&#34;
+<span id="L3800" class="ln">  3800  </span>
+<span id="L3801" class="ln">  3801  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L3802" class="ln">  3802  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L3803" class="ln">  3803  </span>	localVarFormParams := _neturl.Values{}
+<span id="L3804" class="ln">  3804  </span>	localVarQueryParams.Add(&#34;start_hr&#34;, datadog.ParameterToString(startHr, &#34;&#34;))
+<span id="L3805" class="ln">  3805  </span>	if optionalParams.EndHr != nil {
+<span id="L3806" class="ln">  3806  </span>		localVarQueryParams.Add(&#34;end_hr&#34;, datadog.ParameterToString(*optionalParams.EndHr, &#34;&#34;))
+<span id="L3807" class="ln">  3807  </span>	}
+<span id="L3808" class="ln">  3808  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json;datetime-format=rfc3339&#34;
+<span id="L3809" class="ln">  3809  </span>
+<span id="L3810" class="ln">  3810  </span>	datadog.SetAuthKeys(
+<span id="L3811" class="ln">  3811  </span>		ctx,
+<span id="L3812" class="ln">  3812  </span>		&amp;localVarHeaderParams,
+<span id="L3813" class="ln">  3813  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L3814" class="ln">  3814  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L3815" class="ln">  3815  </span>	)
+<span id="L3816" class="ln">  3816  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 <span id="L3817" class="ln">  3817  </span>	if err != nil {
-<span id="L3818" class="ln">  3818  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3818" class="ln">  3818  </span>		return localVarReturnValue, nil, err
 <span id="L3819" class="ln">  3819  </span>	}
 <span id="L3820" class="ln">  3820  </span>
-<span id="L3821" class="ln">  3821  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L3822" class="ln">  3822  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L3823" class="ln">  3823  </span>			ErrorBody:    localVarBody,
-<span id="L3824" class="ln">  3824  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L3825" class="ln">  3825  </span>		}
-<span id="L3826" class="ln">  3826  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L3827" class="ln">  3827  </span>			var v APIErrorResponse
-<span id="L3828" class="ln">  3828  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L3829" class="ln">  3829  </span>			if err != nil {
-<span id="L3830" class="ln">  3830  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3831" class="ln">  3831  </span>			}
-<span id="L3832" class="ln">  3832  </span>			newErr.ErrorModel = v
-<span id="L3833" class="ln">  3833  </span>		}
-<span id="L3834" class="ln">  3834  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3835" class="ln">  3835  </span>	}
-<span id="L3836" class="ln">  3836  </span>
-<span id="L3837" class="ln">  3837  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L3838" class="ln">  3838  </span>	if err != nil {
-<span id="L3839" class="ln">  3839  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L3840" class="ln">  3840  </span>			ErrorBody:    localVarBody,
-<span id="L3841" class="ln">  3841  </span>			ErrorMessage: err.Error(),
-<span id="L3842" class="ln">  3842  </span>		}
-<span id="L3843" class="ln">  3843  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3844" class="ln">  3844  </span>	}
-<span id="L3845" class="ln">  3845  </span>
-<span id="L3846" class="ln">  3846  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L3847" class="ln">  3847  </span>}
-<span id="L3848" class="ln">  3848  </span>
-<span id="L3849" class="ln">  3849  </span><span class="comment">// GetUsageTopAvgMetricsOptionalParameters holds optional parameters for GetUsageTopAvgMetrics.</span>
-<span id="L3850" class="ln">  3850  </span>type GetUsageTopAvgMetricsOptionalParameters struct {
-<span id="L3851" class="ln">  3851  </span>	Month        *time.Time
-<span id="L3852" class="ln">  3852  </span>	Day          *time.Time
-<span id="L3853" class="ln">  3853  </span>	Names        *[]string
-<span id="L3854" class="ln">  3854  </span>	Limit        *int32
-<span id="L3855" class="ln">  3855  </span>	NextRecordId *string
-<span id="L3856" class="ln">  3856  </span>}
-<span id="L3857" class="ln">  3857  </span>
-<span id="L3858" class="ln">  3858  </span><span class="comment">// NewGetUsageTopAvgMetricsOptionalParameters creates an empty struct for parameters.</span>
-<span id="L3859" class="ln">  3859  </span>func NewGetUsageTopAvgMetricsOptionalParameters() *GetUsageTopAvgMetricsOptionalParameters {
-<span id="L3860" class="ln">  3860  </span>	this := GetUsageTopAvgMetricsOptionalParameters{}
-<span id="L3861" class="ln">  3861  </span>	return &amp;this
-<span id="L3862" class="ln">  3862  </span>}
-<span id="L3863" class="ln">  3863  </span>
-<span id="L3864" class="ln">  3864  </span><span class="comment">// WithMonth sets the corresponding parameter name and returns the struct.</span>
-<span id="L3865" class="ln">  3865  </span>func (r *GetUsageTopAvgMetricsOptionalParameters) WithMonth(month time.Time) *GetUsageTopAvgMetricsOptionalParameters {
-<span id="L3866" class="ln">  3866  </span>	r.Month = &amp;month
-<span id="L3867" class="ln">  3867  </span>	return r
-<span id="L3868" class="ln">  3868  </span>}
-<span id="L3869" class="ln">  3869  </span>
-<span id="L3870" class="ln">  3870  </span><span class="comment">// WithDay sets the corresponding parameter name and returns the struct.</span>
-<span id="L3871" class="ln">  3871  </span>func (r *GetUsageTopAvgMetricsOptionalParameters) WithDay(day time.Time) *GetUsageTopAvgMetricsOptionalParameters {
-<span id="L3872" class="ln">  3872  </span>	r.Day = &amp;day
-<span id="L3873" class="ln">  3873  </span>	return r
-<span id="L3874" class="ln">  3874  </span>}
-<span id="L3875" class="ln">  3875  </span>
-<span id="L3876" class="ln">  3876  </span><span class="comment">// WithNames sets the corresponding parameter name and returns the struct.</span>
-<span id="L3877" class="ln">  3877  </span>func (r *GetUsageTopAvgMetricsOptionalParameters) WithNames(names []string) *GetUsageTopAvgMetricsOptionalParameters {
-<span id="L3878" class="ln">  3878  </span>	r.Names = &amp;names
-<span id="L3879" class="ln">  3879  </span>	return r
-<span id="L3880" class="ln">  3880  </span>}
-<span id="L3881" class="ln">  3881  </span>
-<span id="L3882" class="ln">  3882  </span><span class="comment">// WithLimit sets the corresponding parameter name and returns the struct.</span>
-<span id="L3883" class="ln">  3883  </span>func (r *GetUsageTopAvgMetricsOptionalParameters) WithLimit(limit int32) *GetUsageTopAvgMetricsOptionalParameters {
-<span id="L3884" class="ln">  3884  </span>	r.Limit = &amp;limit
-<span id="L3885" class="ln">  3885  </span>	return r
-<span id="L3886" class="ln">  3886  </span>}
-<span id="L3887" class="ln">  3887  </span>
-<span id="L3888" class="ln">  3888  </span><span class="comment">// WithNextRecordId sets the corresponding parameter name and returns the struct.</span>
-<span id="L3889" class="ln">  3889  </span>func (r *GetUsageTopAvgMetricsOptionalParameters) WithNextRecordId(nextRecordId string) *GetUsageTopAvgMetricsOptionalParameters {
-<span id="L3890" class="ln">  3890  </span>	r.NextRecordId = &amp;nextRecordId
-<span id="L3891" class="ln">  3891  </span>	return r
-<span id="L3892" class="ln">  3892  </span>}
-<span id="L3893" class="ln">  3893  </span>
-<span id="L3894" class="ln">  3894  </span><span class="comment">// GetUsageTopAvgMetrics Get all custom metrics by hourly average.</span>
-<span id="L3895" class="ln">  3895  </span><span class="comment">// Get all [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average. Use the month parameter to get a month-to-date data resolution or use the day parameter to get a daily resolution. One of the two is required, and only one of the two is allowed.</span>
-<span id="L3896" class="ln">  3896  </span>func (a *UsageMeteringApi) GetUsageTopAvgMetrics(ctx _context.Context, o ...GetUsageTopAvgMetricsOptionalParameters) (UsageTopAvgMetricsResponse, *_nethttp.Response, error) {
-<span id="L3897" class="ln">  3897  </span>	var (
-<span id="L3898" class="ln">  3898  </span>		localVarHTTPMethod  = _nethttp.MethodGet
-<span id="L3899" class="ln">  3899  </span>		localVarPostBody    interface{}
-<span id="L3900" class="ln">  3900  </span>		localVarReturnValue UsageTopAvgMetricsResponse
-<span id="L3901" class="ln">  3901  </span>		optionalParams      GetUsageTopAvgMetricsOptionalParameters
-<span id="L3902" class="ln">  3902  </span>	)
+<span id="L3821" class="ln">  3821  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L3822" class="ln">  3822  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L3823" class="ln">  3823  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3824" class="ln">  3824  </span>	}
+<span id="L3825" class="ln">  3825  </span>
+<span id="L3826" class="ln">  3826  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L3827" class="ln">  3827  </span>	if err != nil {
+<span id="L3828" class="ln">  3828  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3829" class="ln">  3829  </span>	}
+<span id="L3830" class="ln">  3830  </span>
+<span id="L3831" class="ln">  3831  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L3832" class="ln">  3832  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L3833" class="ln">  3833  </span>			ErrorBody:    localVarBody,
+<span id="L3834" class="ln">  3834  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L3835" class="ln">  3835  </span>		}
+<span id="L3836" class="ln">  3836  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L3837" class="ln">  3837  </span>			var v APIErrorResponse
+<span id="L3838" class="ln">  3838  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L3839" class="ln">  3839  </span>			if err != nil {
+<span id="L3840" class="ln">  3840  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3841" class="ln">  3841  </span>			}
+<span id="L3842" class="ln">  3842  </span>			newErr.ErrorModel = v
+<span id="L3843" class="ln">  3843  </span>		}
+<span id="L3844" class="ln">  3844  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3845" class="ln">  3845  </span>	}
+<span id="L3846" class="ln">  3846  </span>
+<span id="L3847" class="ln">  3847  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L3848" class="ln">  3848  </span>	if err != nil {
+<span id="L3849" class="ln">  3849  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L3850" class="ln">  3850  </span>			ErrorBody:    localVarBody,
+<span id="L3851" class="ln">  3851  </span>			ErrorMessage: err.Error(),
+<span id="L3852" class="ln">  3852  </span>		}
+<span id="L3853" class="ln">  3853  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3854" class="ln">  3854  </span>	}
+<span id="L3855" class="ln">  3855  </span>
+<span id="L3856" class="ln">  3856  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L3857" class="ln">  3857  </span>}
+<span id="L3858" class="ln">  3858  </span>
+<span id="L3859" class="ln">  3859  </span><span class="comment">// GetUsageTopAvgMetricsOptionalParameters holds optional parameters for GetUsageTopAvgMetrics.</span>
+<span id="L3860" class="ln">  3860  </span>type GetUsageTopAvgMetricsOptionalParameters struct {
+<span id="L3861" class="ln">  3861  </span>	Month        *time.Time
+<span id="L3862" class="ln">  3862  </span>	Day          *time.Time
+<span id="L3863" class="ln">  3863  </span>	Names        *[]string
+<span id="L3864" class="ln">  3864  </span>	Limit        *int32
+<span id="L3865" class="ln">  3865  </span>	NextRecordId *string
+<span id="L3866" class="ln">  3866  </span>}
+<span id="L3867" class="ln">  3867  </span>
+<span id="L3868" class="ln">  3868  </span><span class="comment">// NewGetUsageTopAvgMetricsOptionalParameters creates an empty struct for parameters.</span>
+<span id="L3869" class="ln">  3869  </span>func NewGetUsageTopAvgMetricsOptionalParameters() *GetUsageTopAvgMetricsOptionalParameters {
+<span id="L3870" class="ln">  3870  </span>	this := GetUsageTopAvgMetricsOptionalParameters{}
+<span id="L3871" class="ln">  3871  </span>	return &amp;this
+<span id="L3872" class="ln">  3872  </span>}
+<span id="L3873" class="ln">  3873  </span>
+<span id="L3874" class="ln">  3874  </span><span class="comment">// WithMonth sets the corresponding parameter name and returns the struct.</span>
+<span id="L3875" class="ln">  3875  </span>func (r *GetUsageTopAvgMetricsOptionalParameters) WithMonth(month time.Time) *GetUsageTopAvgMetricsOptionalParameters {
+<span id="L3876" class="ln">  3876  </span>	r.Month = &amp;month
+<span id="L3877" class="ln">  3877  </span>	return r
+<span id="L3878" class="ln">  3878  </span>}
+<span id="L3879" class="ln">  3879  </span>
+<span id="L3880" class="ln">  3880  </span><span class="comment">// WithDay sets the corresponding parameter name and returns the struct.</span>
+<span id="L3881" class="ln">  3881  </span>func (r *GetUsageTopAvgMetricsOptionalParameters) WithDay(day time.Time) *GetUsageTopAvgMetricsOptionalParameters {
+<span id="L3882" class="ln">  3882  </span>	r.Day = &amp;day
+<span id="L3883" class="ln">  3883  </span>	return r
+<span id="L3884" class="ln">  3884  </span>}
+<span id="L3885" class="ln">  3885  </span>
+<span id="L3886" class="ln">  3886  </span><span class="comment">// WithNames sets the corresponding parameter name and returns the struct.</span>
+<span id="L3887" class="ln">  3887  </span>func (r *GetUsageTopAvgMetricsOptionalParameters) WithNames(names []string) *GetUsageTopAvgMetricsOptionalParameters {
+<span id="L3888" class="ln">  3888  </span>	r.Names = &amp;names
+<span id="L3889" class="ln">  3889  </span>	return r
+<span id="L3890" class="ln">  3890  </span>}
+<span id="L3891" class="ln">  3891  </span>
+<span id="L3892" class="ln">  3892  </span><span class="comment">// WithLimit sets the corresponding parameter name and returns the struct.</span>
+<span id="L3893" class="ln">  3893  </span>func (r *GetUsageTopAvgMetricsOptionalParameters) WithLimit(limit int32) *GetUsageTopAvgMetricsOptionalParameters {
+<span id="L3894" class="ln">  3894  </span>	r.Limit = &amp;limit
+<span id="L3895" class="ln">  3895  </span>	return r
+<span id="L3896" class="ln">  3896  </span>}
+<span id="L3897" class="ln">  3897  </span>
+<span id="L3898" class="ln">  3898  </span><span class="comment">// WithNextRecordId sets the corresponding parameter name and returns the struct.</span>
+<span id="L3899" class="ln">  3899  </span>func (r *GetUsageTopAvgMetricsOptionalParameters) WithNextRecordId(nextRecordId string) *GetUsageTopAvgMetricsOptionalParameters {
+<span id="L3900" class="ln">  3900  </span>	r.NextRecordId = &amp;nextRecordId
+<span id="L3901" class="ln">  3901  </span>	return r
+<span id="L3902" class="ln">  3902  </span>}
 <span id="L3903" class="ln">  3903  </span>
-<span id="L3904" class="ln">  3904  </span>	if len(o) &gt; 1 {
-<span id="L3905" class="ln">  3905  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type GetUsageTopAvgMetricsOptionalParameters is allowed&#34;)
-<span id="L3906" class="ln">  3906  </span>	}
-<span id="L3907" class="ln">  3907  </span>	if len(o) == 1 {
-<span id="L3908" class="ln">  3908  </span>		optionalParams = o[0]
-<span id="L3909" class="ln">  3909  </span>	}
-<span id="L3910" class="ln">  3910  </span>
-<span id="L3911" class="ln">  3911  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.UsageMeteringApi.GetUsageTopAvgMetrics&#34;)
-<span id="L3912" class="ln">  3912  </span>	if err != nil {
-<span id="L3913" class="ln">  3913  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L3914" class="ln">  3914  </span>	}
-<span id="L3915" class="ln">  3915  </span>
-<span id="L3916" class="ln">  3916  </span>	localVarPath := localBasePath + &#34;/api/v1/usage/top_avg_metrics&#34;
-<span id="L3917" class="ln">  3917  </span>
-<span id="L3918" class="ln">  3918  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L3919" class="ln">  3919  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L3920" class="ln">  3920  </span>	localVarFormParams := _neturl.Values{}
-<span id="L3921" class="ln">  3921  </span>	if optionalParams.Month != nil {
-<span id="L3922" class="ln">  3922  </span>		localVarQueryParams.Add(&#34;month&#34;, datadog.ParameterToString(*optionalParams.Month, &#34;&#34;))
-<span id="L3923" class="ln">  3923  </span>	}
-<span id="L3924" class="ln">  3924  </span>	if optionalParams.Day != nil {
-<span id="L3925" class="ln">  3925  </span>		localVarQueryParams.Add(&#34;day&#34;, datadog.ParameterToString(*optionalParams.Day, &#34;&#34;))
-<span id="L3926" class="ln">  3926  </span>	}
-<span id="L3927" class="ln">  3927  </span>	if optionalParams.Names != nil {
-<span id="L3928" class="ln">  3928  </span>		t := *optionalParams.Names
-<span id="L3929" class="ln">  3929  </span>		if reflect.TypeOf(t).Kind() == reflect.Slice {
-<span id="L3930" class="ln">  3930  </span>			s := reflect.ValueOf(t)
-<span id="L3931" class="ln">  3931  </span>			for i := 0; i &lt; s.Len(); i++ {
-<span id="L3932" class="ln">  3932  </span>				localVarQueryParams.Add(&#34;names&#34;, datadog.ParameterToString(s.Index(i), &#34;multi&#34;))
-<span id="L3933" class="ln">  3933  </span>			}
-<span id="L3934" class="ln">  3934  </span>		} else {
-<span id="L3935" class="ln">  3935  </span>			localVarQueryParams.Add(&#34;names&#34;, datadog.ParameterToString(t, &#34;multi&#34;))
-<span id="L3936" class="ln">  3936  </span>		}
-<span id="L3937" class="ln">  3937  </span>	}
-<span id="L3938" class="ln">  3938  </span>	if optionalParams.Limit != nil {
-<span id="L3939" class="ln">  3939  </span>		localVarQueryParams.Add(&#34;limit&#34;, datadog.ParameterToString(*optionalParams.Limit, &#34;&#34;))
-<span id="L3940" class="ln">  3940  </span>	}
-<span id="L3941" class="ln">  3941  </span>	if optionalParams.NextRecordId != nil {
-<span id="L3942" class="ln">  3942  </span>		localVarQueryParams.Add(&#34;next_record_id&#34;, datadog.ParameterToString(*optionalParams.NextRecordId, &#34;&#34;))
-<span id="L3943" class="ln">  3943  </span>	}
-<span id="L3944" class="ln">  3944  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json;datetime-format=rfc3339&#34;
-<span id="L3945" class="ln">  3945  </span>
-<span id="L3946" class="ln">  3946  </span>	datadog.SetAuthKeys(
-<span id="L3947" class="ln">  3947  </span>		ctx,
-<span id="L3948" class="ln">  3948  </span>		&amp;localVarHeaderParams,
-<span id="L3949" class="ln">  3949  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L3950" class="ln">  3950  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L3951" class="ln">  3951  </span>	)
-<span id="L3952" class="ln">  3952  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L3953" class="ln">  3953  </span>	if err != nil {
-<span id="L3954" class="ln">  3954  </span>		return localVarReturnValue, nil, err
-<span id="L3955" class="ln">  3955  </span>	}
-<span id="L3956" class="ln">  3956  </span>
-<span id="L3957" class="ln">  3957  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L3958" class="ln">  3958  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L3959" class="ln">  3959  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L3960" class="ln">  3960  </span>	}
-<span id="L3961" class="ln">  3961  </span>
-<span id="L3962" class="ln">  3962  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L3904" class="ln">  3904  </span><span class="comment">// GetUsageTopAvgMetrics Get all custom metrics by hourly average.</span>
+<span id="L3905" class="ln">  3905  </span><span class="comment">// Get all [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average. Use the month parameter to get a month-to-date data resolution or use the day parameter to get a daily resolution. One of the two is required, and only one of the two is allowed.</span>
+<span id="L3906" class="ln">  3906  </span>func (a *UsageMeteringApi) GetUsageTopAvgMetrics(ctx _context.Context, o ...GetUsageTopAvgMetricsOptionalParameters) (UsageTopAvgMetricsResponse, *_nethttp.Response, error) {
+<span id="L3907" class="ln">  3907  </span>	var (
+<span id="L3908" class="ln">  3908  </span>		localVarHTTPMethod  = _nethttp.MethodGet
+<span id="L3909" class="ln">  3909  </span>		localVarPostBody    interface{}
+<span id="L3910" class="ln">  3910  </span>		localVarReturnValue UsageTopAvgMetricsResponse
+<span id="L3911" class="ln">  3911  </span>		optionalParams      GetUsageTopAvgMetricsOptionalParameters
+<span id="L3912" class="ln">  3912  </span>	)
+<span id="L3913" class="ln">  3913  </span>
+<span id="L3914" class="ln">  3914  </span>	if len(o) &gt; 1 {
+<span id="L3915" class="ln">  3915  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type GetUsageTopAvgMetricsOptionalParameters is allowed&#34;)
+<span id="L3916" class="ln">  3916  </span>	}
+<span id="L3917" class="ln">  3917  </span>	if len(o) == 1 {
+<span id="L3918" class="ln">  3918  </span>		optionalParams = o[0]
+<span id="L3919" class="ln">  3919  </span>	}
+<span id="L3920" class="ln">  3920  </span>
+<span id="L3921" class="ln">  3921  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.UsageMeteringApi.GetUsageTopAvgMetrics&#34;)
+<span id="L3922" class="ln">  3922  </span>	if err != nil {
+<span id="L3923" class="ln">  3923  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L3924" class="ln">  3924  </span>	}
+<span id="L3925" class="ln">  3925  </span>
+<span id="L3926" class="ln">  3926  </span>	localVarPath := localBasePath + &#34;/api/v1/usage/top_avg_metrics&#34;
+<span id="L3927" class="ln">  3927  </span>
+<span id="L3928" class="ln">  3928  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L3929" class="ln">  3929  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L3930" class="ln">  3930  </span>	localVarFormParams := _neturl.Values{}
+<span id="L3931" class="ln">  3931  </span>	if optionalParams.Month != nil {
+<span id="L3932" class="ln">  3932  </span>		localVarQueryParams.Add(&#34;month&#34;, datadog.ParameterToString(*optionalParams.Month, &#34;&#34;))
+<span id="L3933" class="ln">  3933  </span>	}
+<span id="L3934" class="ln">  3934  </span>	if optionalParams.Day != nil {
+<span id="L3935" class="ln">  3935  </span>		localVarQueryParams.Add(&#34;day&#34;, datadog.ParameterToString(*optionalParams.Day, &#34;&#34;))
+<span id="L3936" class="ln">  3936  </span>	}
+<span id="L3937" class="ln">  3937  </span>	if optionalParams.Names != nil {
+<span id="L3938" class="ln">  3938  </span>		t := *optionalParams.Names
+<span id="L3939" class="ln">  3939  </span>		if reflect.TypeOf(t).Kind() == reflect.Slice {
+<span id="L3940" class="ln">  3940  </span>			s := reflect.ValueOf(t)
+<span id="L3941" class="ln">  3941  </span>			for i := 0; i &lt; s.Len(); i++ {
+<span id="L3942" class="ln">  3942  </span>				localVarQueryParams.Add(&#34;names&#34;, datadog.ParameterToString(s.Index(i), &#34;multi&#34;))
+<span id="L3943" class="ln">  3943  </span>			}
+<span id="L3944" class="ln">  3944  </span>		} else {
+<span id="L3945" class="ln">  3945  </span>			localVarQueryParams.Add(&#34;names&#34;, datadog.ParameterToString(t, &#34;multi&#34;))
+<span id="L3946" class="ln">  3946  </span>		}
+<span id="L3947" class="ln">  3947  </span>	}
+<span id="L3948" class="ln">  3948  </span>	if optionalParams.Limit != nil {
+<span id="L3949" class="ln">  3949  </span>		localVarQueryParams.Add(&#34;limit&#34;, datadog.ParameterToString(*optionalParams.Limit, &#34;&#34;))
+<span id="L3950" class="ln">  3950  </span>	}
+<span id="L3951" class="ln">  3951  </span>	if optionalParams.NextRecordId != nil {
+<span id="L3952" class="ln">  3952  </span>		localVarQueryParams.Add(&#34;next_record_id&#34;, datadog.ParameterToString(*optionalParams.NextRecordId, &#34;&#34;))
+<span id="L3953" class="ln">  3953  </span>	}
+<span id="L3954" class="ln">  3954  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json;datetime-format=rfc3339&#34;
+<span id="L3955" class="ln">  3955  </span>
+<span id="L3956" class="ln">  3956  </span>	datadog.SetAuthKeys(
+<span id="L3957" class="ln">  3957  </span>		ctx,
+<span id="L3958" class="ln">  3958  </span>		&amp;localVarHeaderParams,
+<span id="L3959" class="ln">  3959  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L3960" class="ln">  3960  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L3961" class="ln">  3961  </span>	)
+<span id="L3962" class="ln">  3962  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 <span id="L3963" class="ln">  3963  </span>	if err != nil {
-<span id="L3964" class="ln">  3964  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3964" class="ln">  3964  </span>		return localVarReturnValue, nil, err
 <span id="L3965" class="ln">  3965  </span>	}
 <span id="L3966" class="ln">  3966  </span>
-<span id="L3967" class="ln">  3967  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L3968" class="ln">  3968  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L3969" class="ln">  3969  </span>			ErrorBody:    localVarBody,
-<span id="L3970" class="ln">  3970  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L3971" class="ln">  3971  </span>		}
-<span id="L3972" class="ln">  3972  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L3973" class="ln">  3973  </span>			var v APIErrorResponse
-<span id="L3974" class="ln">  3974  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L3975" class="ln">  3975  </span>			if err != nil {
-<span id="L3976" class="ln">  3976  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3977" class="ln">  3977  </span>			}
-<span id="L3978" class="ln">  3978  </span>			newErr.ErrorModel = v
-<span id="L3979" class="ln">  3979  </span>		}
-<span id="L3980" class="ln">  3980  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3981" class="ln">  3981  </span>	}
-<span id="L3982" class="ln">  3982  </span>
-<span id="L3983" class="ln">  3983  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L3984" class="ln">  3984  </span>	if err != nil {
-<span id="L3985" class="ln">  3985  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L3986" class="ln">  3986  </span>			ErrorBody:    localVarBody,
-<span id="L3987" class="ln">  3987  </span>			ErrorMessage: err.Error(),
-<span id="L3988" class="ln">  3988  </span>		}
-<span id="L3989" class="ln">  3989  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L3990" class="ln">  3990  </span>	}
-<span id="L3991" class="ln">  3991  </span>
-<span id="L3992" class="ln">  3992  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L3993" class="ln">  3993  </span>}
-<span id="L3994" class="ln">  3994  </span>
-<span id="L3995" class="ln">  3995  </span><span class="comment">// NewUsageMeteringApi Returns NewUsageMeteringApi.</span>
-<span id="L3996" class="ln">  3996  </span>func NewUsageMeteringApi(client *datadog.APIClient) *UsageMeteringApi {
-<span id="L3997" class="ln">  3997  </span>	return &amp;UsageMeteringApi{
-<span id="L3998" class="ln">  3998  </span>		Client: client,
-<span id="L3999" class="ln">  3999  </span>	}
-<span id="L4000" class="ln">  4000  </span>}
+<span id="L3967" class="ln">  3967  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L3968" class="ln">  3968  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L3969" class="ln">  3969  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3970" class="ln">  3970  </span>	}
+<span id="L3971" class="ln">  3971  </span>
+<span id="L3972" class="ln">  3972  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L3973" class="ln">  3973  </span>	if err != nil {
+<span id="L3974" class="ln">  3974  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L3975" class="ln">  3975  </span>	}
+<span id="L3976" class="ln">  3976  </span>
+<span id="L3977" class="ln">  3977  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L3978" class="ln">  3978  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L3979" class="ln">  3979  </span>			ErrorBody:    localVarBody,
+<span id="L3980" class="ln">  3980  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L3981" class="ln">  3981  </span>		}
+<span id="L3982" class="ln">  3982  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L3983" class="ln">  3983  </span>			var v APIErrorResponse
+<span id="L3984" class="ln">  3984  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L3985" class="ln">  3985  </span>			if err != nil {
+<span id="L3986" class="ln">  3986  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3987" class="ln">  3987  </span>			}
+<span id="L3988" class="ln">  3988  </span>			newErr.ErrorModel = v
+<span id="L3989" class="ln">  3989  </span>		}
+<span id="L3990" class="ln">  3990  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L3991" class="ln">  3991  </span>	}
+<span id="L3992" class="ln">  3992  </span>
+<span id="L3993" class="ln">  3993  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L3994" class="ln">  3994  </span>	if err != nil {
+<span id="L3995" class="ln">  3995  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L3996" class="ln">  3996  </span>			ErrorBody:    localVarBody,
+<span id="L3997" class="ln">  3997  </span>			ErrorMessage: err.Error(),
+<span id="L3998" class="ln">  3998  </span>		}
+<span id="L3999" class="ln">  3999  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L4000" class="ln">  4000  </span>	}
 <span id="L4001" class="ln">  4001  </span>
+<span id="L4002" class="ln">  4002  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L4003" class="ln">  4003  </span>}
+<span id="L4004" class="ln">  4004  </span>
+<span id="L4005" class="ln">  4005  </span><span class="comment">// NewUsageMeteringApi Returns NewUsageMeteringApi.</span>
+<span id="L4006" class="ln">  4006  </span>func NewUsageMeteringApi(client *datadog.APIClient) *UsageMeteringApi {
+<span id="L4007" class="ln">  4007  </span>	return &amp;UsageMeteringApi{
+<span id="L4008" class="ln">  4008  </span>		Client: client,
+<span id="L4009" class="ln">  4009  </span>	}
+<span id="L4010" class="ln">  4010  </span>}
+<span id="L4011" class="ln">  4011  </span>
 </pre><p></p>
 
 <div id="footer">
