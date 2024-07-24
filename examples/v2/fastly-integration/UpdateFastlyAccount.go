@@ -18,10 +18,11 @@ func main() {
 
 	body := datadogV2.FastlyAccountUpdateRequest{
 		Data: datadogV2.FastlyAccountUpdateRequestData{
-			Attributes: &datadogV2.FastlyAccountUpdateRequestAttributes{
-				ApiKey: datadog.PtrString("update-secret"),
+			Attributes: datadogV2.FastlyAccountUpdateRequestAttributes{
+				ApiKey: "update-secret",
+				Name:   "test-name",
 			},
-			Type: datadogV2.FASTLYACCOUNTTYPE_FASTLY_ACCOUNTS.Ptr(),
+			Type: datadogV2.FASTLYACCOUNTTYPE_FASTLY_ACCOUNTS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

@@ -5,15 +5,17 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // FastlyAccountUpdateRequestData Data object for updating a Fastly account.
 type FastlyAccountUpdateRequestData struct {
 	// Attributes object for updating a Fastly account.
-	Attributes *FastlyAccountUpdateRequestAttributes `json:"attributes,omitempty"`
+	Attributes FastlyAccountUpdateRequestAttributes `json:"attributes"`
 	// The JSON:API type for this API. Should always be `fastly-accounts`.
-	Type *FastlyAccountType `json:"type,omitempty"`
+	Type FastlyAccountType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -23,10 +25,10 @@ type FastlyAccountUpdateRequestData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFastlyAccountUpdateRequestData() *FastlyAccountUpdateRequestData {
+func NewFastlyAccountUpdateRequestData(attributes FastlyAccountUpdateRequestAttributes, typeVar FastlyAccountType) *FastlyAccountUpdateRequestData {
 	this := FastlyAccountUpdateRequestData{}
-	var typeVar FastlyAccountType = FASTLYACCOUNTTYPE_FASTLY_ACCOUNTS
-	this.Type = &typeVar
+	this.Attributes = attributes
+	this.Type = typeVar
 	return &this
 }
 
@@ -36,64 +38,54 @@ func NewFastlyAccountUpdateRequestData() *FastlyAccountUpdateRequestData {
 func NewFastlyAccountUpdateRequestDataWithDefaults() *FastlyAccountUpdateRequestData {
 	this := FastlyAccountUpdateRequestData{}
 	var typeVar FastlyAccountType = FASTLYACCOUNTTYPE_FASTLY_ACCOUNTS
-	this.Type = &typeVar
+	this.Type = typeVar
 	return &this
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
+// GetAttributes returns the Attributes field value.
 func (o *FastlyAccountUpdateRequestData) GetAttributes() FastlyAccountUpdateRequestAttributes {
-	if o == nil || o.Attributes == nil {
+	if o == nil {
 		var ret FastlyAccountUpdateRequestAttributes
 		return ret
 	}
-	return *o.Attributes
+	return o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *FastlyAccountUpdateRequestData) GetAttributesOk() (*FastlyAccountUpdateRequestAttributes, bool) {
-	if o == nil || o.Attributes == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Attributes, true
+	return &o.Attributes, true
 }
 
-// HasAttributes returns a boolean if a field has been set.
-func (o *FastlyAccountUpdateRequestData) HasAttributes() bool {
-	return o != nil && o.Attributes != nil
-}
-
-// SetAttributes gets a reference to the given FastlyAccountUpdateRequestAttributes and assigns it to the Attributes field.
+// SetAttributes sets field value.
 func (o *FastlyAccountUpdateRequestData) SetAttributes(v FastlyAccountUpdateRequestAttributes) {
-	o.Attributes = &v
+	o.Attributes = v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value.
 func (o *FastlyAccountUpdateRequestData) GetType() FastlyAccountType {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret FastlyAccountType
 		return ret
 	}
-	return *o.Type
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *FastlyAccountUpdateRequestData) GetTypeOk() (*FastlyAccountType, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *FastlyAccountUpdateRequestData) HasType() bool {
-	return o != nil && o.Type != nil
-}
-
-// SetType gets a reference to the given FastlyAccountType and assigns it to the Type field.
+// SetType sets field value.
 func (o *FastlyAccountUpdateRequestData) SetType(v FastlyAccountType) {
-	o.Type = &v
+	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -102,12 +94,8 @@ func (o FastlyAccountUpdateRequestData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Attributes != nil {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -118,11 +106,17 @@ func (o FastlyAccountUpdateRequestData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FastlyAccountUpdateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *FastlyAccountUpdateRequestAttributes `json:"attributes,omitempty"`
-		Type       *FastlyAccountType                    `json:"type,omitempty"`
+		Attributes *FastlyAccountUpdateRequestAttributes `json:"attributes"`
+		Type       *FastlyAccountType                    `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -132,14 +126,14 @@ func (o *FastlyAccountUpdateRequestData) UnmarshalJSON(bytes []byte) (err error)
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Attributes = all.Attributes
-	if all.Type != nil && !all.Type.IsValid() {
+	o.Attributes = *all.Attributes
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Type = all.Type
+		o.Type = *all.Type
 	}
 
 	if len(additionalProperties) > 0 {

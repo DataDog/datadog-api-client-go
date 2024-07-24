@@ -12,6 +12,8 @@ import (
 
 // FastlyAccounResponseAttributes Attributes object of a Fastly account.
 type FastlyAccounResponseAttributes struct {
+	// The API key for the Fastly account.
+	ApiKey string `json:"api_key"`
 	// The name of the Fastly account.
 	Name string `json:"name"`
 	// A list of services belonging to the parent account.
@@ -25,8 +27,9 @@ type FastlyAccounResponseAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFastlyAccounResponseAttributes(name string) *FastlyAccounResponseAttributes {
+func NewFastlyAccounResponseAttributes(apiKey string, name string) *FastlyAccounResponseAttributes {
 	this := FastlyAccounResponseAttributes{}
+	this.ApiKey = apiKey
 	this.Name = name
 	return &this
 }
@@ -37,6 +40,29 @@ func NewFastlyAccounResponseAttributes(name string) *FastlyAccounResponseAttribu
 func NewFastlyAccounResponseAttributesWithDefaults() *FastlyAccounResponseAttributes {
 	this := FastlyAccounResponseAttributes{}
 	return &this
+}
+
+// GetApiKey returns the ApiKey field value.
+func (o *FastlyAccounResponseAttributes) GetApiKey() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+	return o.ApiKey
+}
+
+// GetApiKeyOk returns a tuple with the ApiKey field value
+// and a boolean to check if the value has been set.
+func (o *FastlyAccounResponseAttributes) GetApiKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApiKey, true
+}
+
+// SetApiKey sets field value.
+func (o *FastlyAccounResponseAttributes) SetApiKey(v string) {
+	o.ApiKey = v
 }
 
 // GetName returns the Name field value.
@@ -96,6 +122,7 @@ func (o FastlyAccounResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	toSerialize["api_key"] = o.ApiKey
 	toSerialize["name"] = o.Name
 	if o.Services != nil {
 		toSerialize["services"] = o.Services
@@ -110,21 +137,26 @@ func (o FastlyAccounResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FastlyAccounResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		ApiKey   *string         `json:"api_key"`
 		Name     *string         `json:"name"`
 		Services []FastlyService `json:"services,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
+	if all.ApiKey == nil {
+		return fmt.Errorf("required field api_key missing")
+	}
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "services"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "name", "services"})
 	} else {
 		return err
 	}
+	o.ApiKey = *all.ApiKey
 	o.Name = *all.Name
 	o.Services = all.Services
 
