@@ -13,7 +13,7 @@ import (
 // ApplicationKeyUpdateData Object used to update an application key.
 type ApplicationKeyUpdateData struct {
 	// Attributes used to update an application Key.
-	Attributes ApplicationKeyUpdateAttributes `json:"attributes"`
+	Attributes *ApplicationKeyUpdateAttributes `json:"attributes,omitempty"`
 	// ID of the application key.
 	Id string `json:"id"`
 	// Application Keys resource type.
@@ -27,9 +27,8 @@ type ApplicationKeyUpdateData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewApplicationKeyUpdateData(attributes ApplicationKeyUpdateAttributes, id string, typeVar ApplicationKeysType) *ApplicationKeyUpdateData {
+func NewApplicationKeyUpdateData(id string, typeVar ApplicationKeysType) *ApplicationKeyUpdateData {
 	this := ApplicationKeyUpdateData{}
-	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
@@ -45,27 +44,32 @@ func NewApplicationKeyUpdateDataWithDefaults() *ApplicationKeyUpdateData {
 	return &this
 }
 
-// GetAttributes returns the Attributes field value.
+// GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *ApplicationKeyUpdateData) GetAttributes() ApplicationKeyUpdateAttributes {
-	if o == nil {
+	if o == nil || o.Attributes == nil {
 		var ret ApplicationKeyUpdateAttributes
 		return ret
 	}
-	return o.Attributes
+	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ApplicationKeyUpdateData) GetAttributesOk() (*ApplicationKeyUpdateAttributes, bool) {
-	if o == nil {
+	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
-	return &o.Attributes, true
+	return o.Attributes, true
 }
 
-// SetAttributes sets field value.
+// HasAttributes returns a boolean if a field has been set.
+func (o *ApplicationKeyUpdateData) HasAttributes() bool {
+	return o != nil && o.Attributes != nil
+}
+
+// SetAttributes gets a reference to the given ApplicationKeyUpdateAttributes and assigns it to the Attributes field.
 func (o *ApplicationKeyUpdateData) SetAttributes(v ApplicationKeyUpdateAttributes) {
-	o.Attributes = v
+	o.Attributes = &v
 }
 
 // GetId returns the Id field value.
@@ -120,7 +124,9 @@ func (o ApplicationKeyUpdateData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["attributes"] = o.Attributes
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
 
@@ -133,15 +139,12 @@ func (o ApplicationKeyUpdateData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *ApplicationKeyUpdateAttributes `json:"attributes"`
+		Attributes *ApplicationKeyUpdateAttributes `json:"attributes,omitempty"`
 		Id         *string                         `json:"id"`
 		Type       *ApplicationKeysType            `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.Attributes == nil {
-		return fmt.Errorf("required field attributes missing")
 	}
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
@@ -157,10 +160,10 @@ func (o *ApplicationKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Attributes = *all.Attributes
+	o.Attributes = all.Attributes
 	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true

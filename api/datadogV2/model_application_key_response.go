@@ -12,8 +12,6 @@ import (
 type ApplicationKeyResponse struct {
 	// Datadog application key.
 	Data *FullApplicationKey `json:"data,omitempty"`
-	// Array of objects related to the application key.
-	Included []ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -64,34 +62,6 @@ func (o *ApplicationKeyResponse) SetData(v FullApplicationKey) {
 	o.Data = &v
 }
 
-// GetIncluded returns the Included field value if set, zero value otherwise.
-func (o *ApplicationKeyResponse) GetIncluded() []ApplicationKeyResponseIncludedItem {
-	if o == nil || o.Included == nil {
-		var ret []ApplicationKeyResponseIncludedItem
-		return ret
-	}
-	return o.Included
-}
-
-// GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ApplicationKeyResponse) GetIncludedOk() (*[]ApplicationKeyResponseIncludedItem, bool) {
-	if o == nil || o.Included == nil {
-		return nil, false
-	}
-	return &o.Included, true
-}
-
-// HasIncluded returns a boolean if a field has been set.
-func (o *ApplicationKeyResponse) HasIncluded() bool {
-	return o != nil && o.Included != nil
-}
-
-// SetIncluded gets a reference to the given []ApplicationKeyResponseIncludedItem and assigns it to the Included field.
-func (o *ApplicationKeyResponse) SetIncluded(v []ApplicationKeyResponseIncludedItem) {
-	o.Included = v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationKeyResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -100,9 +70,6 @@ func (o ApplicationKeyResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
-	}
-	if o.Included != nil {
-		toSerialize["included"] = o.Included
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -114,15 +81,14 @@ func (o ApplicationKeyResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     *FullApplicationKey                  `json:"data,omitempty"`
-		Included []ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
+		Data *FullApplicationKey `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}
@@ -132,7 +98,6 @@ func (o *ApplicationKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Data = all.Data
-	o.Included = all.Included
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

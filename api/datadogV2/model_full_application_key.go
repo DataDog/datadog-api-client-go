@@ -5,6 +5,8 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -13,11 +15,11 @@ type FullApplicationKey struct {
 	// Attributes of a full application key.
 	Attributes *FullApplicationKeyAttributes `json:"attributes,omitempty"`
 	// ID of the application key.
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	// Resources related to the application key.
 	Relationships *ApplicationKeyRelationships `json:"relationships,omitempty"`
 	// Application Keys resource type.
-	Type *ApplicationKeysType `json:"type,omitempty"`
+	Type ApplicationKeysType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{}
@@ -27,10 +29,10 @@ type FullApplicationKey struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFullApplicationKey() *FullApplicationKey {
+func NewFullApplicationKey(id string, typeVar ApplicationKeysType) *FullApplicationKey {
 	this := FullApplicationKey{}
-	var typeVar ApplicationKeysType = APPLICATIONKEYSTYPE_APPLICATION_KEYS
-	this.Type = &typeVar
+	this.Id = id
+	this.Type = typeVar
 	return &this
 }
 
@@ -40,7 +42,7 @@ func NewFullApplicationKey() *FullApplicationKey {
 func NewFullApplicationKeyWithDefaults() *FullApplicationKey {
 	this := FullApplicationKey{}
 	var typeVar ApplicationKeysType = APPLICATIONKEYSTYPE_APPLICATION_KEYS
-	this.Type = &typeVar
+	this.Type = typeVar
 	return &this
 }
 
@@ -72,32 +74,27 @@ func (o *FullApplicationKey) SetAttributes(v FullApplicationKeyAttributes) {
 	o.Attributes = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value.
 func (o *FullApplicationKey) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *FullApplicationKey) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *FullApplicationKey) HasId() bool {
-	return o != nil && o.Id != nil
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value.
 func (o *FullApplicationKey) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
@@ -128,32 +125,27 @@ func (o *FullApplicationKey) SetRelationships(v ApplicationKeyRelationships) {
 	o.Relationships = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value.
 func (o *FullApplicationKey) GetType() ApplicationKeysType {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret ApplicationKeysType
 		return ret
 	}
-	return *o.Type
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *FullApplicationKey) GetTypeOk() (*ApplicationKeysType, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *FullApplicationKey) HasType() bool {
-	return o != nil && o.Type != nil
-}
-
-// SetType gets a reference to the given ApplicationKeysType and assigns it to the Type field.
+// SetType sets field value.
 func (o *FullApplicationKey) SetType(v ApplicationKeysType) {
-	o.Type = &v
+	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -165,15 +157,11 @@ func (o FullApplicationKey) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -185,12 +173,18 @@ func (o FullApplicationKey) MarshalJSON() ([]byte, error) {
 func (o *FullApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes    *FullApplicationKeyAttributes `json:"attributes,omitempty"`
-		Id            *string                       `json:"id,omitempty"`
+		Id            *string                       `json:"id"`
 		Relationships *ApplicationKeyRelationships  `json:"relationships,omitempty"`
-		Type          *ApplicationKeysType          `json:"type,omitempty"`
+		Type          *ApplicationKeysType          `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -204,15 +198,15 @@ func (o *FullApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
-	o.Id = all.Id
+	o.Id = *all.Id
 	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships
-	if all.Type != nil && !all.Type.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Type = all.Type
+		o.Type = *all.Type
 	}
 
 	if len(additionalProperties) > 0 {
