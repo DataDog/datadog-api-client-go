@@ -17,7 +17,7 @@ func main() {
 		AppServicePlanFilters: datadog.PtrString("key:value,filter:example"),
 		Automute:              datadog.PtrBool(true),
 		ClientId:              datadog.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
-		ClientSecret:          datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
+		ClientSecret:          datadog.PtrString("TestingRh2nx664kUy5dIApvM54T4AtO"),
 		ContainerAppFilters:   datadog.PtrString("key:value,filter:example"),
 		CspmEnabled:           datadog.PtrBool(true),
 		CustomMetricsEnabled:  datadog.PtrBool(true),
