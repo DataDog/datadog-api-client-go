@@ -263,6 +263,10 @@ type UsageSummaryResponse struct {
 	// Shows the sum of all browser and mobile RUM units over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
 	// Deprecated
 	RumUnitsAggSum *int64 `json:"rum_units_agg_sum,omitempty"`
+	// Shows the average of all Software Composition Analysis Fargate tasks over all hours in the current months for all organizations.
+	ScaFargateCountAvgSum *int64 `json:"sca_fargate_count_avg_sum,omitempty"`
+	// Shows the sum of the high-water marks of all Software Composition Analysis Fargate tasks over all hours in the current months for all organizations.
+	ScaFargateCountHwmSum *int64 `json:"sca_fargate_count_hwm_sum,omitempty"`
 	// Sum of all APM bytes scanned with sensitive data scanner in the current month for all organizations.
 	SdsApmScannedBytesSum *int64 `json:"sds_apm_scanned_bytes_sum,omitempty"`
 	// Sum of all event stream events bytes scanned with sensitive data scanner in the current month for all organizations.
@@ -3654,6 +3658,62 @@ func (o *UsageSummaryResponse) SetRumUnitsAggSum(v int64) {
 	o.RumUnitsAggSum = &v
 }
 
+// GetScaFargateCountAvgSum returns the ScaFargateCountAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetScaFargateCountAvgSum() int64 {
+	if o == nil || o.ScaFargateCountAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ScaFargateCountAvgSum
+}
+
+// GetScaFargateCountAvgSumOk returns a tuple with the ScaFargateCountAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetScaFargateCountAvgSumOk() (*int64, bool) {
+	if o == nil || o.ScaFargateCountAvgSum == nil {
+		return nil, false
+	}
+	return o.ScaFargateCountAvgSum, true
+}
+
+// HasScaFargateCountAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasScaFargateCountAvgSum() bool {
+	return o != nil && o.ScaFargateCountAvgSum != nil
+}
+
+// SetScaFargateCountAvgSum gets a reference to the given int64 and assigns it to the ScaFargateCountAvgSum field.
+func (o *UsageSummaryResponse) SetScaFargateCountAvgSum(v int64) {
+	o.ScaFargateCountAvgSum = &v
+}
+
+// GetScaFargateCountHwmSum returns the ScaFargateCountHwmSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetScaFargateCountHwmSum() int64 {
+	if o == nil || o.ScaFargateCountHwmSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ScaFargateCountHwmSum
+}
+
+// GetScaFargateCountHwmSumOk returns a tuple with the ScaFargateCountHwmSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetScaFargateCountHwmSumOk() (*int64, bool) {
+	if o == nil || o.ScaFargateCountHwmSum == nil {
+		return nil, false
+	}
+	return o.ScaFargateCountHwmSum, true
+}
+
+// HasScaFargateCountHwmSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasScaFargateCountHwmSum() bool {
+	return o != nil && o.ScaFargateCountHwmSum != nil
+}
+
+// SetScaFargateCountHwmSum gets a reference to the given int64 and assigns it to the ScaFargateCountHwmSum field.
+func (o *UsageSummaryResponse) SetScaFargateCountHwmSum(v int64) {
+	o.ScaFargateCountHwmSum = &v
+}
+
 // GetSdsApmScannedBytesSum returns the SdsApmScannedBytesSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetSdsApmScannedBytesSum() int64 {
 	if o == nil || o.SdsApmScannedBytesSum == nil {
@@ -4607,6 +4667,12 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.RumUnitsAggSum != nil {
 		toSerialize["rum_units_agg_sum"] = o.RumUnitsAggSum
 	}
+	if o.ScaFargateCountAvgSum != nil {
+		toSerialize["sca_fargate_count_avg_sum"] = o.ScaFargateCountAvgSum
+	}
+	if o.ScaFargateCountHwmSum != nil {
+		toSerialize["sca_fargate_count_hwm_sum"] = o.ScaFargateCountHwmSum
+	}
 	if o.SdsApmScannedBytesSum != nil {
 		toSerialize["sds_apm_scanned_bytes_sum"] = o.SdsApmScannedBytesSum
 	}
@@ -4801,6 +4867,8 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		RumSessionCountAggSum                         *int64             `json:"rum_session_count_agg_sum,omitempty"`
 		RumTotalSessionCountAggSum                    *int64             `json:"rum_total_session_count_agg_sum,omitempty"`
 		RumUnitsAggSum                                *int64             `json:"rum_units_agg_sum,omitempty"`
+		ScaFargateCountAvgSum                         *int64             `json:"sca_fargate_count_avg_sum,omitempty"`
+		ScaFargateCountHwmSum                         *int64             `json:"sca_fargate_count_hwm_sum,omitempty"`
 		SdsApmScannedBytesSum                         *int64             `json:"sds_apm_scanned_bytes_sum,omitempty"`
 		SdsEventsScannedBytesSum                      *int64             `json:"sds_events_scanned_bytes_sum,omitempty"`
 		SdsLogsScannedBytesSum                        *int64             `json:"sds_logs_scanned_bytes_sum,omitempty"`
@@ -4828,7 +4896,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p_sum", "apm_azure_app_service_host_top99p_sum", "apm_devsecops_host_top99p_sum", "apm_fargate_count_avg_sum", "apm_host_top99p_sum", "appsec_fargate_count_avg_sum", "asm_serverless_agg_sum", "audit_logs_lines_indexed_agg_sum", "audit_trail_enabled_hwm_sum", "avg_profiled_fargate_tasks_sum", "aws_host_top99p_sum", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p_sum", "azure_host_top99p_sum", "billable_ingested_bytes_agg_sum", "browser_rum_lite_session_count_agg_sum", "browser_rum_replay_session_count_agg_sum", "browser_rum_units_agg_sum", "ci_pipeline_indexed_spans_agg_sum", "ci_test_indexed_spans_agg_sum", "ci_visibility_itr_committers_hwm_sum", "ci_visibility_pipeline_committers_hwm_sum", "ci_visibility_test_committers_hwm_sum", "cloud_cost_management_aws_host_count_avg_sum", "cloud_cost_management_azure_host_count_avg_sum", "cloud_cost_management_gcp_host_count_avg_sum", "cloud_cost_management_host_count_avg_sum", "cloud_siem_events_agg_sum", "container_avg_sum", "container_excl_agent_avg_sum", "container_hwm_sum", "csm_container_enterprise_compliance_count_agg_sum", "csm_container_enterprise_cws_count_agg_sum", "csm_container_enterprise_total_count_agg_sum", "csm_host_enterprise_aas_host_count_top99p_sum", "csm_host_enterprise_aws_host_count_top99p_sum", "csm_host_enterprise_azure_host_count_top99p_sum", "csm_host_enterprise_compliance_host_count_top99p_sum", "csm_host_enterprise_cws_host_count_top99p_sum", "csm_host_enterprise_gcp_host_count_top99p_sum", "csm_host_enterprise_total_host_count_top99p_sum", "cspm_aas_host_top99p_sum", "cspm_aws_host_top99p_sum", "cspm_azure_host_top99p_sum", "cspm_container_avg_sum", "cspm_container_hwm_sum", "cspm_gcp_host_top99p_sum", "cspm_host_top99p_sum", "custom_historical_ts_sum", "custom_live_ts_sum", "custom_ts_sum", "cws_containers_avg_sum", "cws_host_top99p_sum", "dbm_host_top99p_sum", "dbm_queries_avg_sum", "end_date", "error_tracking_events_agg_sum", "fargate_tasks_count_avg_sum", "fargate_tasks_count_hwm_sum", "flex_logs_compute_large_avg_sum", "flex_logs_compute_medium_avg_sum", "flex_logs_compute_small_avg_sum", "flex_logs_compute_xsmall_avg_sum", "flex_stored_logs_avg_sum", "forwarding_events_bytes_agg_sum", "gcp_host_top99p_sum", "heroku_host_top99p_sum", "incident_management_monthly_active_users_hwm_sum", "indexed_events_count_agg_sum", "infra_host_top99p_sum", "ingested_events_bytes_agg_sum", "iot_device_agg_sum", "iot_device_top99p_sum", "last_updated", "live_indexed_events_agg_sum", "live_ingested_bytes_agg_sum", "logs_by_retention", "mobile_rum_lite_session_count_agg_sum", "mobile_rum_session_count_agg_sum", "mobile_rum_session_count_android_agg_sum", "mobile_rum_session_count_flutter_agg_sum", "mobile_rum_session_count_ios_agg_sum", "mobile_rum_session_count_reactnative_agg_sum", "mobile_rum_session_count_roku_agg_sum", "mobile_rum_units_agg_sum", "ndm_netflow_events_agg_sum", "netflow_indexed_events_count_agg_sum", "npm_host_top99p_sum", "observability_pipelines_bytes_processed_agg_sum", "online_archive_events_count_agg_sum", "opentelemetry_apm_host_top99p_sum", "opentelemetry_host_top99p_sum", "profiling_aas_count_top99p_sum", "profiling_container_agent_count_avg", "profiling_host_count_top99p_sum", "rehydrated_indexed_events_agg_sum", "rehydrated_ingested_bytes_agg_sum", "rum_browser_and_mobile_session_count", "rum_browser_legacy_session_count_agg_sum", "rum_browser_lite_session_count_agg_sum", "rum_browser_replay_session_count_agg_sum", "rum_lite_session_count_agg_sum", "rum_mobile_legacy_session_count_android_agg_sum", "rum_mobile_legacy_session_count_flutter_agg_sum", "rum_mobile_legacy_session_count_ios_agg_sum", "rum_mobile_legacy_session_count_reactnative_agg_sum", "rum_mobile_legacy_session_count_roku_agg_sum", "rum_mobile_lite_session_count_android_agg_sum", "rum_mobile_lite_session_count_flutter_agg_sum", "rum_mobile_lite_session_count_ios_agg_sum", "rum_mobile_lite_session_count_reactnative_agg_sum", "rum_mobile_lite_session_count_roku_agg_sum", "rum_replay_session_count_agg_sum", "rum_session_count_agg_sum", "rum_total_session_count_agg_sum", "rum_units_agg_sum", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_azure_count_avg_sum", "serverless_apps_google_count_avg_sum", "serverless_apps_total_count_avg_sum", "siem_analyzed_logs_add_on_count_agg_sum", "start_date", "synthetics_browser_check_calls_count_agg_sum", "synthetics_check_calls_count_agg_sum", "synthetics_mobile_test_runs_agg_sum", "synthetics_parallel_testing_max_slots_hwm_sum", "trace_search_indexed_events_count_agg_sum", "twol_ingested_events_bytes_agg_sum", "universal_service_monitoring_host_top99p_sum", "usage", "vsphere_host_top99p_sum", "vuln_management_host_count_top99p_sum", "workflow_executions_usage_agg_sum"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p_sum", "apm_azure_app_service_host_top99p_sum", "apm_devsecops_host_top99p_sum", "apm_fargate_count_avg_sum", "apm_host_top99p_sum", "appsec_fargate_count_avg_sum", "asm_serverless_agg_sum", "audit_logs_lines_indexed_agg_sum", "audit_trail_enabled_hwm_sum", "avg_profiled_fargate_tasks_sum", "aws_host_top99p_sum", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p_sum", "azure_host_top99p_sum", "billable_ingested_bytes_agg_sum", "browser_rum_lite_session_count_agg_sum", "browser_rum_replay_session_count_agg_sum", "browser_rum_units_agg_sum", "ci_pipeline_indexed_spans_agg_sum", "ci_test_indexed_spans_agg_sum", "ci_visibility_itr_committers_hwm_sum", "ci_visibility_pipeline_committers_hwm_sum", "ci_visibility_test_committers_hwm_sum", "cloud_cost_management_aws_host_count_avg_sum", "cloud_cost_management_azure_host_count_avg_sum", "cloud_cost_management_gcp_host_count_avg_sum", "cloud_cost_management_host_count_avg_sum", "cloud_siem_events_agg_sum", "container_avg_sum", "container_excl_agent_avg_sum", "container_hwm_sum", "csm_container_enterprise_compliance_count_agg_sum", "csm_container_enterprise_cws_count_agg_sum", "csm_container_enterprise_total_count_agg_sum", "csm_host_enterprise_aas_host_count_top99p_sum", "csm_host_enterprise_aws_host_count_top99p_sum", "csm_host_enterprise_azure_host_count_top99p_sum", "csm_host_enterprise_compliance_host_count_top99p_sum", "csm_host_enterprise_cws_host_count_top99p_sum", "csm_host_enterprise_gcp_host_count_top99p_sum", "csm_host_enterprise_total_host_count_top99p_sum", "cspm_aas_host_top99p_sum", "cspm_aws_host_top99p_sum", "cspm_azure_host_top99p_sum", "cspm_container_avg_sum", "cspm_container_hwm_sum", "cspm_gcp_host_top99p_sum", "cspm_host_top99p_sum", "custom_historical_ts_sum", "custom_live_ts_sum", "custom_ts_sum", "cws_containers_avg_sum", "cws_host_top99p_sum", "dbm_host_top99p_sum", "dbm_queries_avg_sum", "end_date", "error_tracking_events_agg_sum", "fargate_tasks_count_avg_sum", "fargate_tasks_count_hwm_sum", "flex_logs_compute_large_avg_sum", "flex_logs_compute_medium_avg_sum", "flex_logs_compute_small_avg_sum", "flex_logs_compute_xsmall_avg_sum", "flex_stored_logs_avg_sum", "forwarding_events_bytes_agg_sum", "gcp_host_top99p_sum", "heroku_host_top99p_sum", "incident_management_monthly_active_users_hwm_sum", "indexed_events_count_agg_sum", "infra_host_top99p_sum", "ingested_events_bytes_agg_sum", "iot_device_agg_sum", "iot_device_top99p_sum", "last_updated", "live_indexed_events_agg_sum", "live_ingested_bytes_agg_sum", "logs_by_retention", "mobile_rum_lite_session_count_agg_sum", "mobile_rum_session_count_agg_sum", "mobile_rum_session_count_android_agg_sum", "mobile_rum_session_count_flutter_agg_sum", "mobile_rum_session_count_ios_agg_sum", "mobile_rum_session_count_reactnative_agg_sum", "mobile_rum_session_count_roku_agg_sum", "mobile_rum_units_agg_sum", "ndm_netflow_events_agg_sum", "netflow_indexed_events_count_agg_sum", "npm_host_top99p_sum", "observability_pipelines_bytes_processed_agg_sum", "online_archive_events_count_agg_sum", "opentelemetry_apm_host_top99p_sum", "opentelemetry_host_top99p_sum", "profiling_aas_count_top99p_sum", "profiling_container_agent_count_avg", "profiling_host_count_top99p_sum", "rehydrated_indexed_events_agg_sum", "rehydrated_ingested_bytes_agg_sum", "rum_browser_and_mobile_session_count", "rum_browser_legacy_session_count_agg_sum", "rum_browser_lite_session_count_agg_sum", "rum_browser_replay_session_count_agg_sum", "rum_lite_session_count_agg_sum", "rum_mobile_legacy_session_count_android_agg_sum", "rum_mobile_legacy_session_count_flutter_agg_sum", "rum_mobile_legacy_session_count_ios_agg_sum", "rum_mobile_legacy_session_count_reactnative_agg_sum", "rum_mobile_legacy_session_count_roku_agg_sum", "rum_mobile_lite_session_count_android_agg_sum", "rum_mobile_lite_session_count_flutter_agg_sum", "rum_mobile_lite_session_count_ios_agg_sum", "rum_mobile_lite_session_count_reactnative_agg_sum", "rum_mobile_lite_session_count_roku_agg_sum", "rum_replay_session_count_agg_sum", "rum_session_count_agg_sum", "rum_total_session_count_agg_sum", "rum_units_agg_sum", "sca_fargate_count_avg_sum", "sca_fargate_count_hwm_sum", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_azure_count_avg_sum", "serverless_apps_google_count_avg_sum", "serverless_apps_total_count_avg_sum", "siem_analyzed_logs_add_on_count_agg_sum", "start_date", "synthetics_browser_check_calls_count_agg_sum", "synthetics_check_calls_count_agg_sum", "synthetics_mobile_test_runs_agg_sum", "synthetics_parallel_testing_max_slots_hwm_sum", "trace_search_indexed_events_count_agg_sum", "twol_ingested_events_bytes_agg_sum", "universal_service_monitoring_host_top99p_sum", "usage", "vsphere_host_top99p_sum", "vuln_management_host_count_top99p_sum", "workflow_executions_usage_agg_sum"})
 	} else {
 		return err
 	}
@@ -4954,6 +5022,8 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.RumSessionCountAggSum = all.RumSessionCountAggSum
 	o.RumTotalSessionCountAggSum = all.RumTotalSessionCountAggSum
 	o.RumUnitsAggSum = all.RumUnitsAggSum
+	o.ScaFargateCountAvgSum = all.ScaFargateCountAvgSum
+	o.ScaFargateCountHwmSum = all.ScaFargateCountHwmSum
 	o.SdsApmScannedBytesSum = all.SdsApmScannedBytesSum
 	o.SdsEventsScannedBytesSum = all.SdsEventsScannedBytesSum
 	o.SdsLogsScannedBytesSum = all.SdsLogsScannedBytesSum
