@@ -11,7 +11,7 @@ import (
 )
 
 // SecurityMonitoringRuleEvaluationWindow A time window is specified to match when at least one of the cases matches true. This is a sliding window
-// and evaluates in real time.
+// and evaluates in real time. For third party rules, it should equal max signal duration.
 type SecurityMonitoringRuleEvaluationWindow int32
 
 // List of SecurityMonitoringRuleEvaluationWindow.
