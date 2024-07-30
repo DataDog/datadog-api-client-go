@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/workflows/0233a3b7-b7ba-425e-a8cc-375ca2020b5b/instances/e0c64dc8-f946-4ae8-8d79-54569031ce67
+  response:
+    body: '{"errors":[{"code":"WORKFLOW_NOT_FOUND","detail":"workflow not found"}]}
+
+      '
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 2
