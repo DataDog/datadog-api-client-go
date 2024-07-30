@@ -15,7 +15,7 @@ type TeamLink struct {
 	// Team link attributes
 	Attributes TeamLinkAttributes `json:"attributes"`
 	// The team link's identifier
-	Id string `json:"id"`
+	Id *string `json:"id,omitempty"`
 	// Team link type
 	Type TeamLinkType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -27,10 +27,9 @@ type TeamLink struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTeamLink(attributes TeamLinkAttributes, id string, typeVar TeamLinkType) *TeamLink {
+func NewTeamLink(attributes TeamLinkAttributes, typeVar TeamLinkType) *TeamLink {
 	this := TeamLink{}
 	this.Attributes = attributes
-	this.Id = id
 	this.Type = typeVar
 	return &this
 }
@@ -68,27 +67,32 @@ func (o *TeamLink) SetAttributes(v TeamLinkAttributes) {
 	o.Attributes = v
 }
 
-// GetId returns the Id field value.
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *TeamLink) GetId() string {
-	if o == nil {
+	if o == nil || o.Id == nil {
 		var ret string
 		return ret
 	}
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TeamLink) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Id == nil {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value.
+// HasId returns a boolean if a field has been set.
+func (o *TeamLink) HasId() bool {
+	return o != nil && o.Id != nil
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
 func (o *TeamLink) SetId(v string) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetType returns the Type field value.
@@ -121,7 +125,9 @@ func (o TeamLink) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
-	toSerialize["id"] = o.Id
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -134,7 +140,7 @@ func (o TeamLink) MarshalJSON() ([]byte, error) {
 func (o *TeamLink) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *TeamLinkAttributes `json:"attributes"`
-		Id         *string             `json:"id"`
+		Id         *string             `json:"id,omitempty"`
 		Type       *TeamLinkType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -142,9 +148,6 @@ func (o *TeamLink) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.Attributes == nil {
 		return fmt.Errorf("required field attributes missing")
-	}
-	if all.Id == nil {
-		return fmt.Errorf("required field id missing")
 	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
@@ -161,7 +164,7 @@ func (o *TeamLink) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	o.Id = *all.Id
+	o.Id = all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
