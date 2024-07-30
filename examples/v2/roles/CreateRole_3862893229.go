@@ -26,8 +26,8 @@ func main() {
 				Permissions: &datadogV2.RelationshipToPermissions{
 					Data: []datadogV2.RelationshipToPermissionData{
 						{
-							Id:   datadog.PtrString(PermissionID),
-							Type: datadogV2.PERMISSIONSTYPE_PERMISSIONS.Ptr(),
+							Id:   PermissionID,
+							Type: datadogV2.PERMISSIONSTYPE_PERMISSIONS,
 						},
 					},
 				},

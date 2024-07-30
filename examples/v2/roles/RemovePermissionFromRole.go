@@ -20,9 +20,9 @@ func main() {
 	PermissionID := os.Getenv("PERMISSION_ID")
 
 	body := datadogV2.RelationshipToPermission{
-		Data: &datadogV2.RelationshipToPermissionData{
-			Id:   datadog.PtrString(PermissionID),
-			Type: datadogV2.PERMISSIONSTYPE_PERMISSIONS.Ptr(),
+		Data: datadogV2.RelationshipToPermissionData{
+			Id:   PermissionID,
+			Type: datadogV2.PERMISSIONSTYPE_PERMISSIONS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

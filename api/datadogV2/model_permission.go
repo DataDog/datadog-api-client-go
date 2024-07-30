@@ -15,7 +15,7 @@ type Permission struct {
 	// Attributes of a permission.
 	Attributes *PermissionAttributes `json:"attributes,omitempty"`
 	// ID of the permission.
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	// Permissions resource type.
 	Type PermissionsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -27,8 +27,9 @@ type Permission struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewPermission(typeVar PermissionsType) *Permission {
+func NewPermission(id string, typeVar PermissionsType) *Permission {
 	this := Permission{}
+	this.Id = id
 	this.Type = typeVar
 	return &this
 }
@@ -71,32 +72,27 @@ func (o *Permission) SetAttributes(v PermissionAttributes) {
 	o.Attributes = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value.
 func (o *Permission) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Permission) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *Permission) HasId() bool {
-	return o != nil && o.Id != nil
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value.
 func (o *Permission) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetType returns the Type field value.
@@ -131,9 +127,7 @@ func (o Permission) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -146,11 +140,14 @@ func (o Permission) MarshalJSON() ([]byte, error) {
 func (o *Permission) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *PermissionAttributes `json:"attributes,omitempty"`
-		Id         *string               `json:"id,omitempty"`
+		Id         *string               `json:"id"`
 		Type       *PermissionsType      `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
 	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
@@ -167,7 +164,7 @@ func (o *Permission) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
-	o.Id = all.Id
+	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
