@@ -19,7 +19,7 @@ type SyntheticsApi datadog.Service
 
 // CreateGlobalVariable Create a global variable.
 // Create a Synthetic global variable.
-func (a *SyntheticsApi) CreateGlobalVariable(ctx _context.Context, body SyntheticsGlobalVariable) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
+func (a *SyntheticsApi) CreateGlobalVariable(ctx _context.Context, body SyntheticsGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}

@@ -1,4 +1,4 @@
-// Create a global variable returns "OK" response
+// Create a TOTP global variable returns "OK" response
 
 package main
 
@@ -14,30 +14,19 @@ import (
 
 func main() {
 	body := datadogV1.SyntheticsGlobalVariableRequest{
-		Attributes: &datadogV1.SyntheticsGlobalVariableAttributes{
-			RestrictedRoles: []string{
-				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-			},
-		},
-		Description: "Example description",
-		Name:        "MY_VARIABLE",
-		ParseTestOptions: &datadogV1.SyntheticsGlobalVariableParseTestOptions{
-			Field:             datadog.PtrString("content-type"),
-			LocalVariableName: datadog.PtrString("LOCAL_VARIABLE"),
-			Parser: &datadogV1.SyntheticsVariableParser{
-				Type:  datadogV1.SYNTHETICSGLOBALVARIABLEPARSERTYPE_REGEX,
-				Value: datadog.PtrString(".*"),
-			},
-			Type: datadogV1.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY,
-		},
-		ParseTestPublicId: datadog.PtrString("abc-def-123"),
-		Tags: []string{
-			"team:front",
-			"test:workflow-1",
-		},
+		Description: "",
+		IsTotp:      datadog.PtrBool(true),
+		Name:        "GLOBAL_VARIABLE_TOTP_PAYLOAD_EXAMPLESYNTHETIC",
+		Tags:        []string{},
 		Value: &datadogV1.SyntheticsGlobalVariableValue{
-			Secure: datadog.PtrBool(true),
-			Value:  datadog.PtrString("value"),
+			Secure: datadog.PtrBool(false),
+			Value:  datadog.PtrString(""),
+			Options: &datadogV1.SyntheticsGlobalVariableOptions{
+				TotpParameters: &datadogV1.SyntheticsGlobalVariableTOTPParameters{
+					Digits:          datadog.PtrInt32(6),
+					RefreshInterval: datadog.PtrInt32(30),
+				},
+			},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
