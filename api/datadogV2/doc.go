@@ -305,6 +305,7 @@
 //   - [ServiceScorecardsApi.DeleteScorecardRule]
 //   - [ServiceScorecardsApi.ListScorecardOutcomes]
 //   - [ServiceScorecardsApi.ListScorecardRules]
+//   - [ServiceScorecardsApi.UpdateScorecardRule]
 //   - [SpansApi.AggregateSpans]
 //   - [SpansApi.ListSpans]
 //   - [SpansApi.ListSpansGet]
