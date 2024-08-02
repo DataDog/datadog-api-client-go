@@ -74,7 +74,7 @@
 <span id="L17" class="ln">    17  </span>type WorkflowAutomationApi datadog.Service
 <span id="L18" class="ln">    18  </span>
 <span id="L19" class="ln">    19  </span><span class="comment">// CancelWorkflowInstance Cancel a workflow instance.</span>
-<span id="L20" class="ln">    20  </span><span class="comment">// Cancels a specific execution of a given workflow.</span>
+<span id="L20" class="ln">    20  </span><span class="comment">// Cancels a specific execution of a given workflow. This API requires an application key scoped with the workflows_run permission.</span>
 <span id="L21" class="ln">    21  </span>func (a *WorkflowAutomationApi) CancelWorkflowInstance(ctx _context.Context, workflowId string, instanceId string) (WorklflowCancelInstanceResponse, *_nethttp.Response, error) {
 <span id="L22" class="ln">    22  </span>	var (
 <span id="L23" class="ln">    23  </span>		localVarHTTPMethod  = _nethttp.MethodPut
@@ -146,7 +146,7 @@
 <span id="L89" class="ln">    89  </span>}
 <span id="L90" class="ln">    90  </span>
 <span id="L91" class="ln">    91  </span><span class="comment">// CreateWorkflowInstance Execute a workflow.</span>
-<span id="L92" class="ln">    92  </span><span class="comment">// Execute the given workflow</span>
+<span id="L92" class="ln">    92  </span><span class="comment">// Execute the given workflow. This API requires an application key scoped with the workflows_run permission.</span>
 <span id="L93" class="ln">    93  </span>func (a *WorkflowAutomationApi) CreateWorkflowInstance(ctx _context.Context, workflowId string, body WorkflowInstanceCreateRequest) (WorkflowInstanceCreateResponse, *_nethttp.Response, error) {
 <span id="L94" class="ln">    94  </span>	var (
 <span id="L95" class="ln">    95  </span>		localVarHTTPMethod  = _nethttp.MethodPost
@@ -220,7 +220,7 @@
 <span id="L163" class="ln">   163  </span>}
 <span id="L164" class="ln">   164  </span>
 <span id="L165" class="ln">   165  </span><span class="comment">// GetWorkflowInstance Get a workflow instance.</span>
-<span id="L166" class="ln">   166  </span><span class="comment">// Get a specific execution of a given workflow.</span>
+<span id="L166" class="ln">   166  </span><span class="comment">// Get a specific execution of a given workflow. This API requires an application key scoped with the workflows_read permission.</span>
 <span id="L167" class="ln">   167  </span>func (a *WorkflowAutomationApi) GetWorkflowInstance(ctx _context.Context, workflowId string, instanceId string) (WorklflowGetInstanceResponse, *_nethttp.Response, error) {
 <span id="L168" class="ln">   168  </span>	var (
 <span id="L169" class="ln">   169  </span>		localVarHTTPMethod  = _nethttp.MethodGet
@@ -316,7 +316,7 @@
 <span id="L259" class="ln">   259  </span>}
 <span id="L260" class="ln">   260  </span>
 <span id="L261" class="ln">   261  </span><span class="comment">// ListWorkflowInstances List workflow instances.</span>
-<span id="L262" class="ln">   262  </span><span class="comment">// List all instances of a given workflow.</span>
+<span id="L262" class="ln">   262  </span><span class="comment">// List all instances of a given workflow. This API requires an application key scoped with the workflows_read permission.</span>
 <span id="L263" class="ln">   263  </span>func (a *WorkflowAutomationApi) ListWorkflowInstances(ctx _context.Context, workflowId string, o ...ListWorkflowInstancesOptionalParameters) (WorkflowListInstancesResponse, *_nethttp.Response, error) {
 <span id="L264" class="ln">   264  </span>	var (
 <span id="L265" class="ln">   265  </span>		localVarHTTPMethod  = _nethttp.MethodGet
