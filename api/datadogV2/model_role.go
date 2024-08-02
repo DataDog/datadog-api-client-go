@@ -15,7 +15,7 @@ type Role struct {
 	// Attributes of the role.
 	Attributes *RoleAttributes `json:"attributes,omitempty"`
 	// The unique identifier of the role.
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	// Relationships of the role object returned by the API.
 	Relationships *RoleResponseRelationships `json:"relationships,omitempty"`
 	// Roles type.
@@ -29,8 +29,9 @@ type Role struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRole(typeVar RolesType) *Role {
+func NewRole(id string, typeVar RolesType) *Role {
 	this := Role{}
+	this.Id = id
 	this.Type = typeVar
 	return &this
 }
@@ -73,32 +74,27 @@ func (o *Role) SetAttributes(v RoleAttributes) {
 	o.Attributes = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value.
 func (o *Role) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Role) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *Role) HasId() bool {
-	return o != nil && o.Id != nil
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value.
 func (o *Role) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
@@ -161,9 +157,7 @@ func (o Role) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
@@ -179,12 +173,15 @@ func (o Role) MarshalJSON() ([]byte, error) {
 func (o *Role) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes    *RoleAttributes            `json:"attributes,omitempty"`
-		Id            *string                    `json:"id,omitempty"`
+		Id            *string                    `json:"id"`
 		Relationships *RoleResponseRelationships `json:"relationships,omitempty"`
 		Type          *RolesType                 `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
 	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
@@ -201,7 +198,7 @@ func (o *Role) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
-	o.Id = all.Id
+	o.Id = *all.Id
 	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
