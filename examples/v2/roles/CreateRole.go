@@ -26,9 +26,6 @@ func main() {
 						},
 					},
 				},
-				Users: &datadogV2.RelationshipToUsers{
-					Data: []datadogV2.RelationshipToUserData{},
-				},
 			},
 			Type: datadogV2.ROLESTYPE_ROLES.Ptr(),
 		},
