@@ -115,7 +115,7 @@
 <span id="L58" class="ln">    58  </span>	Widgets []Widget `json:&#34;widgets&#34;`
 <span id="L59" class="ln">    59  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L60" class="ln">    60  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L61" class="ln">    61  </span>	AdditionalProperties map[string]interface{}
+<span id="L61" class="ln">    61  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
 <span id="L62" class="ln">    62  </span>}
 <span id="L63" class="ln">    63  </span>
 <span id="L64" class="ln">    64  </span><span class="comment">// NewDashboard instantiates a new Dashboard object.</span>

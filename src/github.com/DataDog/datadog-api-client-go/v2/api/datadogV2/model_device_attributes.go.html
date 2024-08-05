@@ -109,7 +109,7 @@
 <span id="L52" class="ln">    52  </span>	Version *string `json:&#34;version,omitempty&#34;`
 <span id="L53" class="ln">    53  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L54" class="ln">    54  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L55" class="ln">    55  </span>	AdditionalProperties map[string]interface{}
+<span id="L55" class="ln">    55  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
 <span id="L56" class="ln">    56  </span>}
 <span id="L57" class="ln">    57  </span>
 <span id="L58" class="ln">    58  </span><span class="comment">// NewDeviceAttributes instantiates a new DeviceAttributes object.</span>

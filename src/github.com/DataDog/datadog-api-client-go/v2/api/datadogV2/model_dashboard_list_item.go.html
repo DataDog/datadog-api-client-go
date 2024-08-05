@@ -100,7 +100,7 @@
 <span id="L43" class="ln">    43  </span>	Url *string `json:&#34;url,omitempty&#34;`
 <span id="L44" class="ln">    44  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L45" class="ln">    45  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L46" class="ln">    46  </span>	AdditionalProperties map[string]interface{}
+<span id="L46" class="ln">    46  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
 <span id="L47" class="ln">    47  </span>}
 <span id="L48" class="ln">    48  </span>
 <span id="L49" class="ln">    49  </span><span class="comment">// NewDashboardListItem instantiates a new DashboardListItem object.</span>

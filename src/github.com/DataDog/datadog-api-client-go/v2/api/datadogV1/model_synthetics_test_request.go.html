@@ -131,7 +131,7 @@
 <span id="L74" class="ln">    74  </span>	Url *string `json:&#34;url,omitempty&#34;`
 <span id="L75" class="ln">    75  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L76" class="ln">    76  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L77" class="ln">    77  </span>	AdditionalProperties map[string]interface{}
+<span id="L77" class="ln">    77  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
 <span id="L78" class="ln">    78  </span>}
 <span id="L79" class="ln">    79  </span>
 <span id="L80" class="ln">    80  </span><span class="comment">// NewSyntheticsTestRequest instantiates a new SyntheticsTestRequest object.</span>

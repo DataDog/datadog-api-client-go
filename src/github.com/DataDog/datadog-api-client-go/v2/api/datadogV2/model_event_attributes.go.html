@@ -113,7 +113,7 @@
 <span id="L56" class="ln">    56  </span>	Title *string `json:&#34;title,omitempty&#34;`
 <span id="L57" class="ln">    57  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L58" class="ln">    58  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L59" class="ln">    59  </span>	AdditionalProperties map[string]interface{}
+<span id="L59" class="ln">    59  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
 <span id="L60" class="ln">    60  </span>}
 <span id="L61" class="ln">    61  </span>
 <span id="L62" class="ln">    62  </span><span class="comment">// NewEventAttributes instantiates a new EventAttributes object.</span>

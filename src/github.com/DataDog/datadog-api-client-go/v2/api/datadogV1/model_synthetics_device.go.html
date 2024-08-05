@@ -81,7 +81,7 @@
 <span id="L24" class="ln">    24  </span>	Width int64 `json:&#34;width&#34;`
 <span id="L25" class="ln">    25  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L26" class="ln">    26  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L27" class="ln">    27  </span>	AdditionalProperties map[string]interface{}
+<span id="L27" class="ln">    27  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
 <span id="L28" class="ln">    28  </span>}
 <span id="L29" class="ln">    29  </span>
 <span id="L30" class="ln">    30  </span><span class="comment">// NewSyntheticsDevice instantiates a new SyntheticsDevice object.</span>

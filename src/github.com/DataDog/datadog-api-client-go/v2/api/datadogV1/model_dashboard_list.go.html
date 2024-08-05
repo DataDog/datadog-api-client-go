@@ -88,7 +88,7 @@
 <span id="L31" class="ln">    31  </span>	Type *string `json:&#34;type,omitempty&#34;`
 <span id="L32" class="ln">    32  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L33" class="ln">    33  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L34" class="ln">    34  </span>	AdditionalProperties map[string]interface{}
+<span id="L34" class="ln">    34  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
 <span id="L35" class="ln">    35  </span>}
 <span id="L36" class="ln">    36  </span>
 <span id="L37" class="ln">    37  </span><span class="comment">// NewDashboardList instantiates a new DashboardList object.</span>

@@ -104,7 +104,7 @@
 <span id="L47" class="ln">    47  </span>	TenantName *string `json:&#34;tenant_name,omitempty&#34;`
 <span id="L48" class="ln">    48  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L49" class="ln">    49  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L50" class="ln">    50  </span>	AdditionalProperties map[string]interface{}
+<span id="L50" class="ln">    50  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
 <span id="L51" class="ln">    51  </span>}
 <span id="L52" class="ln">    52  </span>
 <span id="L53" class="ln">    53  </span><span class="comment">// NewAzureAccount instantiates a new AzureAccount object.</span>
