@@ -10,8 +10,8 @@ import (
 
 // AuthNMappingCreateRelationships - Relationship of AuthN Mapping create object to a Role or Team.
 type AuthNMappingCreateRelationships struct {
-	AuthNMappingRelationshipToRole *AuthNMappingRelationshipToRole
-	AuthNMappingRelationshipToTeam *AuthNMappingRelationshipToTeam
+	AuthNMappingRelationshipToRole *AuthNMappingRelationshipToRole `json:"-"`
+	AuthNMappingRelationshipToTeam *AuthNMappingRelationshipToTeam `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

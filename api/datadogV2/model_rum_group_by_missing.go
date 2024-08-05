@@ -10,8 +10,8 @@ import (
 
 // RUMGroupByMissing - The value to use for logs that don't have the facet used to group by.
 type RUMGroupByMissing struct {
-	RUMGroupByMissingString *string
-	RUMGroupByMissingNumber *float64
+	RUMGroupByMissingString *string  `json:"-"`
+	RUMGroupByMissingNumber *float64 `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

@@ -10,8 +10,8 @@ import (
 
 // IncidentFieldAttributes - Dynamic fields for which selections can be made, with field names as keys.
 type IncidentFieldAttributes struct {
-	IncidentFieldAttributesSingleValue   *IncidentFieldAttributesSingleValue
-	IncidentFieldAttributesMultipleValue *IncidentFieldAttributesMultipleValue
+	IncidentFieldAttributesSingleValue   *IncidentFieldAttributesSingleValue   `json:"-"`
+	IncidentFieldAttributesMultipleValue *IncidentFieldAttributesMultipleValue `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

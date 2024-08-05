@@ -138,8 +138,8 @@ func (o *SLORawErrorBudgetRemaining) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableSLORawErrorBudgetRemaining handles when a null is used for SLORawErrorBudgetRemaining.
 type NullableSLORawErrorBudgetRemaining struct {
-	value *SLORawErrorBudgetRemaining
-	isSet bool
+	value *SLORawErrorBudgetRemaining `json:"-"`
+	isSet bool                        `json:"-"`
 }
 
 // Get returns the associated value.

@@ -11,11 +11,11 @@ import (
 // SyntheticsAssertion - Object describing the assertions type, their associated operator,
 // which property they apply, and upon which target.
 type SyntheticsAssertion struct {
-	SyntheticsAssertionTarget           *SyntheticsAssertionTarget
-	SyntheticsAssertionBodyHashTarget   *SyntheticsAssertionBodyHashTarget
-	SyntheticsAssertionJSONPathTarget   *SyntheticsAssertionJSONPathTarget
-	SyntheticsAssertionJSONSchemaTarget *SyntheticsAssertionJSONSchemaTarget
-	SyntheticsAssertionXPathTarget      *SyntheticsAssertionXPathTarget
+	SyntheticsAssertionTarget           *SyntheticsAssertionTarget           `json:"-"`
+	SyntheticsAssertionBodyHashTarget   *SyntheticsAssertionBodyHashTarget   `json:"-"`
+	SyntheticsAssertionJSONPathTarget   *SyntheticsAssertionJSONPathTarget   `json:"-"`
+	SyntheticsAssertionJSONSchemaTarget *SyntheticsAssertionJSONSchemaTarget `json:"-"`
+	SyntheticsAssertionXPathTarget      *SyntheticsAssertionXPathTarget      `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

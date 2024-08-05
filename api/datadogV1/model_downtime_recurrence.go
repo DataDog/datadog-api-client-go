@@ -320,8 +320,8 @@ func (o *DowntimeRecurrence) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableDowntimeRecurrence handles when a null is used for DowntimeRecurrence.
 type NullableDowntimeRecurrence struct {
-	value *DowntimeRecurrence
-	isSet bool
+	value *DowntimeRecurrence `json:"-"`
+	isSet bool                `json:"-"`
 }
 
 // Get returns the associated value.

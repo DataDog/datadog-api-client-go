@@ -10,40 +10,40 @@ import (
 
 // WidgetDefinition - [Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).
 type WidgetDefinition struct {
-	AlertGraphWidgetDefinition     *AlertGraphWidgetDefinition
-	AlertValueWidgetDefinition     *AlertValueWidgetDefinition
-	ChangeWidgetDefinition         *ChangeWidgetDefinition
-	CheckStatusWidgetDefinition    *CheckStatusWidgetDefinition
-	DistributionWidgetDefinition   *DistributionWidgetDefinition
-	EventStreamWidgetDefinition    *EventStreamWidgetDefinition
-	EventTimelineWidgetDefinition  *EventTimelineWidgetDefinition
-	FreeTextWidgetDefinition       *FreeTextWidgetDefinition
-	FunnelWidgetDefinition         *FunnelWidgetDefinition
-	GeomapWidgetDefinition         *GeomapWidgetDefinition
-	GroupWidgetDefinition          *GroupWidgetDefinition
-	HeatMapWidgetDefinition        *HeatMapWidgetDefinition
-	HostMapWidgetDefinition        *HostMapWidgetDefinition
-	IFrameWidgetDefinition         *IFrameWidgetDefinition
-	ImageWidgetDefinition          *ImageWidgetDefinition
-	ListStreamWidgetDefinition     *ListStreamWidgetDefinition
-	LogStreamWidgetDefinition      *LogStreamWidgetDefinition
-	MonitorSummaryWidgetDefinition *MonitorSummaryWidgetDefinition
-	NoteWidgetDefinition           *NoteWidgetDefinition
-	PowerpackWidgetDefinition      *PowerpackWidgetDefinition
-	QueryValueWidgetDefinition     *QueryValueWidgetDefinition
-	RunWorkflowWidgetDefinition    *RunWorkflowWidgetDefinition
-	SLOListWidgetDefinition        *SLOListWidgetDefinition
-	SLOWidgetDefinition            *SLOWidgetDefinition
-	ScatterPlotWidgetDefinition    *ScatterPlotWidgetDefinition
-	ServiceMapWidgetDefinition     *ServiceMapWidgetDefinition
-	ServiceSummaryWidgetDefinition *ServiceSummaryWidgetDefinition
-	SplitGraphWidgetDefinition     *SplitGraphWidgetDefinition
-	SunburstWidgetDefinition       *SunburstWidgetDefinition
-	TableWidgetDefinition          *TableWidgetDefinition
-	TimeseriesWidgetDefinition     *TimeseriesWidgetDefinition
-	ToplistWidgetDefinition        *ToplistWidgetDefinition
-	TopologyMapWidgetDefinition    *TopologyMapWidgetDefinition
-	TreeMapWidgetDefinition        *TreeMapWidgetDefinition
+	AlertGraphWidgetDefinition     *AlertGraphWidgetDefinition     `json:"-"`
+	AlertValueWidgetDefinition     *AlertValueWidgetDefinition     `json:"-"`
+	ChangeWidgetDefinition         *ChangeWidgetDefinition         `json:"-"`
+	CheckStatusWidgetDefinition    *CheckStatusWidgetDefinition    `json:"-"`
+	DistributionWidgetDefinition   *DistributionWidgetDefinition   `json:"-"`
+	EventStreamWidgetDefinition    *EventStreamWidgetDefinition    `json:"-"`
+	EventTimelineWidgetDefinition  *EventTimelineWidgetDefinition  `json:"-"`
+	FreeTextWidgetDefinition       *FreeTextWidgetDefinition       `json:"-"`
+	FunnelWidgetDefinition         *FunnelWidgetDefinition         `json:"-"`
+	GeomapWidgetDefinition         *GeomapWidgetDefinition         `json:"-"`
+	GroupWidgetDefinition          *GroupWidgetDefinition          `json:"-"`
+	HeatMapWidgetDefinition        *HeatMapWidgetDefinition        `json:"-"`
+	HostMapWidgetDefinition        *HostMapWidgetDefinition        `json:"-"`
+	IFrameWidgetDefinition         *IFrameWidgetDefinition         `json:"-"`
+	ImageWidgetDefinition          *ImageWidgetDefinition          `json:"-"`
+	ListStreamWidgetDefinition     *ListStreamWidgetDefinition     `json:"-"`
+	LogStreamWidgetDefinition      *LogStreamWidgetDefinition      `json:"-"`
+	MonitorSummaryWidgetDefinition *MonitorSummaryWidgetDefinition `json:"-"`
+	NoteWidgetDefinition           *NoteWidgetDefinition           `json:"-"`
+	PowerpackWidgetDefinition      *PowerpackWidgetDefinition      `json:"-"`
+	QueryValueWidgetDefinition     *QueryValueWidgetDefinition     `json:"-"`
+	RunWorkflowWidgetDefinition    *RunWorkflowWidgetDefinition    `json:"-"`
+	SLOListWidgetDefinition        *SLOListWidgetDefinition        `json:"-"`
+	SLOWidgetDefinition            *SLOWidgetDefinition            `json:"-"`
+	ScatterPlotWidgetDefinition    *ScatterPlotWidgetDefinition    `json:"-"`
+	ServiceMapWidgetDefinition     *ServiceMapWidgetDefinition     `json:"-"`
+	ServiceSummaryWidgetDefinition *ServiceSummaryWidgetDefinition `json:"-"`
+	SplitGraphWidgetDefinition     *SplitGraphWidgetDefinition     `json:"-"`
+	SunburstWidgetDefinition       *SunburstWidgetDefinition       `json:"-"`
+	TableWidgetDefinition          *TableWidgetDefinition          `json:"-"`
+	TimeseriesWidgetDefinition     *TimeseriesWidgetDefinition     `json:"-"`
+	ToplistWidgetDefinition        *ToplistWidgetDefinition        `json:"-"`
+	TopologyMapWidgetDefinition    *TopologyMapWidgetDefinition    `json:"-"`
+	TreeMapWidgetDefinition        *TreeMapWidgetDefinition        `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

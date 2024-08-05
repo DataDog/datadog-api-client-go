@@ -10,9 +10,9 @@ import (
 
 // LogsArchiveDestination - An archive's destination.
 type LogsArchiveDestination struct {
-	LogsArchiveDestinationAzure *LogsArchiveDestinationAzure
-	LogsArchiveDestinationGCS   *LogsArchiveDestinationGCS
-	LogsArchiveDestinationS3    *LogsArchiveDestinationS3
+	LogsArchiveDestinationAzure *LogsArchiveDestinationAzure `json:"-"`
+	LogsArchiveDestinationGCS   *LogsArchiveDestinationGCS   `json:"-"`
+	LogsArchiveDestinationS3    *LogsArchiveDestinationS3    `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -138,8 +138,8 @@ func (obj *LogsArchiveDestination) GetActualInstance() interface{} {
 
 // NullableLogsArchiveDestination handles when a null is used for LogsArchiveDestination.
 type NullableLogsArchiveDestination struct {
-	value *LogsArchiveDestination
-	isSet bool
+	value *LogsArchiveDestination `json:"-"`
+	isSet bool                    `json:"-"`
 }
 
 // Get returns the associated value.

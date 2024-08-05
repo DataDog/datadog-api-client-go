@@ -10,9 +10,9 @@ import (
 
 // CIAppGroupByTotal - A resulting object to put the given computes in over all the matching records.
 type CIAppGroupByTotal struct {
-	CIAppGroupByTotalBoolean *bool
-	CIAppGroupByTotalString  *string
-	CIAppGroupByTotalNumber  *float64
+	CIAppGroupByTotalBoolean *bool    `json:"-"`
+	CIAppGroupByTotalString  *string  `json:"-"`
+	CIAppGroupByTotalNumber  *float64 `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

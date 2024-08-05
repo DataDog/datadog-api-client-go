@@ -10,9 +10,9 @@ import (
 
 // LogsGroupByTotal - A resulting object to put the given computes in over all the matching records.
 type LogsGroupByTotal struct {
-	LogsGroupByTotalBoolean *bool
-	LogsGroupByTotalString  *string
-	LogsGroupByTotalNumber  *float64
+	LogsGroupByTotalBoolean *bool    `json:"-"`
+	LogsGroupByTotalString  *string  `json:"-"`
+	LogsGroupByTotalNumber  *float64 `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

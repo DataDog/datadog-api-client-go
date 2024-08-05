@@ -10,12 +10,12 @@ import (
 
 // SyntheticsBasicAuth - Object to handle basic authentication when performing the test.
 type SyntheticsBasicAuth struct {
-	SyntheticsBasicAuthWeb         *SyntheticsBasicAuthWeb
-	SyntheticsBasicAuthSigv4       *SyntheticsBasicAuthSigv4
-	SyntheticsBasicAuthNTLM        *SyntheticsBasicAuthNTLM
-	SyntheticsBasicAuthDigest      *SyntheticsBasicAuthDigest
-	SyntheticsBasicAuthOauthClient *SyntheticsBasicAuthOauthClient
-	SyntheticsBasicAuthOauthROP    *SyntheticsBasicAuthOauthROP
+	SyntheticsBasicAuthWeb         *SyntheticsBasicAuthWeb         `json:"-"`
+	SyntheticsBasicAuthSigv4       *SyntheticsBasicAuthSigv4       `json:"-"`
+	SyntheticsBasicAuthNTLM        *SyntheticsBasicAuthNTLM        `json:"-"`
+	SyntheticsBasicAuthDigest      *SyntheticsBasicAuthDigest      `json:"-"`
+	SyntheticsBasicAuthOauthClient *SyntheticsBasicAuthOauthClient `json:"-"`
+	SyntheticsBasicAuthOauthROP    *SyntheticsBasicAuthOauthROP    `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

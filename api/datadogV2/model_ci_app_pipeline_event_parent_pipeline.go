@@ -137,8 +137,8 @@ func (o *CIAppPipelineEventParentPipeline) UnmarshalJSON(bytes []byte) (err erro
 
 // NullableCIAppPipelineEventParentPipeline handles when a null is used for CIAppPipelineEventParentPipeline.
 type NullableCIAppPipelineEventParentPipeline struct {
-	value *CIAppPipelineEventParentPipeline
-	isSet bool
+	value *CIAppPipelineEventParentPipeline `json:"-"`
+	isSet bool                              `json:"-"`
 }
 
 // Get returns the associated value.

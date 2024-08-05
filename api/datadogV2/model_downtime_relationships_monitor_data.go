@@ -152,8 +152,8 @@ func (o *DowntimeRelationshipsMonitorData) UnmarshalJSON(bytes []byte) (err erro
 
 // NullableDowntimeRelationshipsMonitorData handles when a null is used for DowntimeRelationshipsMonitorData.
 type NullableDowntimeRelationshipsMonitorData struct {
-	value *DowntimeRelationshipsMonitorData
-	isSet bool
+	value *DowntimeRelationshipsMonitorData `json:"-"`
+	isSet bool                              `json:"-"`
 }
 
 // Get returns the associated value.

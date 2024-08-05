@@ -104,8 +104,8 @@ func (o *NullableRelationshipToUser) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableNullableRelationshipToUser handles when a null is used for NullableRelationshipToUser.
 type NullableNullableRelationshipToUser struct {
-	value *NullableRelationshipToUser
-	isSet bool
+	value *NullableRelationshipToUser `json:"-"`
+	isSet bool                        `json:"-"`
 }
 
 // Get returns the associated value.

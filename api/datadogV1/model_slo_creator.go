@@ -184,8 +184,8 @@ func (o *SLOCreator) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableSLOCreator handles when a null is used for SLOCreator.
 type NullableSLOCreator struct {
-	value *SLOCreator
-	isSet bool
+	value *SLOCreator `json:"-"`
+	isSet bool        `json:"-"`
 }
 
 // Get returns the associated value.

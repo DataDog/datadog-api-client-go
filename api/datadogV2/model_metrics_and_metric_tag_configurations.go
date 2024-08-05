@@ -10,8 +10,8 @@ import (
 
 // MetricsAndMetricTagConfigurations - Object for a metrics and metric tag configurations.
 type MetricsAndMetricTagConfigurations struct {
-	Metric                 *Metric
-	MetricTagConfiguration *MetricTagConfiguration
+	Metric                 *Metric                 `json:"-"`
+	MetricTagConfiguration *MetricTagConfiguration `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

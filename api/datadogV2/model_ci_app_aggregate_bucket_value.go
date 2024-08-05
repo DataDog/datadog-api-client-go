@@ -10,9 +10,9 @@ import (
 
 // CIAppAggregateBucketValue - A bucket value, can either be a timeseries or a single value.
 type CIAppAggregateBucketValue struct {
-	CIAppAggregateBucketValueSingleString *string
-	CIAppAggregateBucketValueSingleNumber *float64
-	CIAppAggregateBucketValueTimeseries   *CIAppAggregateBucketValueTimeseries
+	CIAppAggregateBucketValueSingleString *string                              `json:"-"`
+	CIAppAggregateBucketValueSingleNumber *float64                             `json:"-"`
+	CIAppAggregateBucketValueTimeseries   *CIAppAggregateBucketValueTimeseries `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

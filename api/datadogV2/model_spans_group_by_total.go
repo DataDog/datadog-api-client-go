@@ -10,9 +10,9 @@ import (
 
 // SpansGroupByTotal - A resulting object to put the given computes in over all the matching records.
 type SpansGroupByTotal struct {
-	SpansGroupByTotalBoolean *bool
-	SpansGroupByTotalString  *string
-	SpansGroupByTotalNumber  *float64
+	SpansGroupByTotalBoolean *bool    `json:"-"`
+	SpansGroupByTotalString  *string  `json:"-"`
+	SpansGroupByTotalNumber  *float64 `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

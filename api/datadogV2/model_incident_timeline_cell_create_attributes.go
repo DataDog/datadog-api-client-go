@@ -10,7 +10,7 @@ import (
 
 // IncidentTimelineCellCreateAttributes - The timeline cell's attributes for a create request.
 type IncidentTimelineCellCreateAttributes struct {
-	IncidentTimelineCellMarkdownCreateAttributes *IncidentTimelineCellMarkdownCreateAttributes
+	IncidentTimelineCellMarkdownCreateAttributes *IncidentTimelineCellMarkdownCreateAttributes `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

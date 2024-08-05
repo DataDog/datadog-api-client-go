@@ -113,8 +113,8 @@ func (o *SharedDashboardUpdateRequestGlobalTime) UnmarshalJSON(bytes []byte) (er
 
 // NullableSharedDashboardUpdateRequestGlobalTime handles when a null is used for SharedDashboardUpdateRequestGlobalTime.
 type NullableSharedDashboardUpdateRequestGlobalTime struct {
-	value *SharedDashboardUpdateRequestGlobalTime
-	isSet bool
+	value *SharedDashboardUpdateRequestGlobalTime `json:"-"`
+	isSet bool                                    `json:"-"`
 }
 
 // Get returns the associated value.

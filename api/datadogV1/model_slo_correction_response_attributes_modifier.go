@@ -173,8 +173,8 @@ func (o *SLOCorrectionResponseAttributesModifier) UnmarshalJSON(bytes []byte) (e
 
 // NullableSLOCorrectionResponseAttributesModifier handles when a null is used for SLOCorrectionResponseAttributesModifier.
 type NullableSLOCorrectionResponseAttributesModifier struct {
-	value *SLOCorrectionResponseAttributesModifier
-	isSet bool
+	value *SLOCorrectionResponseAttributesModifier `json:"-"`
+	isSet bool                                     `json:"-"`
 }
 
 // Get returns the associated value.

@@ -10,13 +10,13 @@ import (
 
 // FormulaAndFunctionQueryDefinition - A formula and function query.
 type FormulaAndFunctionQueryDefinition struct {
-	FormulaAndFunctionMetricQueryDefinition             *FormulaAndFunctionMetricQueryDefinition
-	FormulaAndFunctionEventQueryDefinition              *FormulaAndFunctionEventQueryDefinition
-	FormulaAndFunctionProcessQueryDefinition            *FormulaAndFunctionProcessQueryDefinition
-	FormulaAndFunctionApmDependencyStatsQueryDefinition *FormulaAndFunctionApmDependencyStatsQueryDefinition
-	FormulaAndFunctionApmResourceStatsQueryDefinition   *FormulaAndFunctionApmResourceStatsQueryDefinition
-	FormulaAndFunctionSLOQueryDefinition                *FormulaAndFunctionSLOQueryDefinition
-	FormulaAndFunctionCloudCostQueryDefinition          *FormulaAndFunctionCloudCostQueryDefinition
+	FormulaAndFunctionMetricQueryDefinition             *FormulaAndFunctionMetricQueryDefinition             `json:"-"`
+	FormulaAndFunctionEventQueryDefinition              *FormulaAndFunctionEventQueryDefinition              `json:"-"`
+	FormulaAndFunctionProcessQueryDefinition            *FormulaAndFunctionProcessQueryDefinition            `json:"-"`
+	FormulaAndFunctionApmDependencyStatsQueryDefinition *FormulaAndFunctionApmDependencyStatsQueryDefinition `json:"-"`
+	FormulaAndFunctionApmResourceStatsQueryDefinition   *FormulaAndFunctionApmResourceStatsQueryDefinition   `json:"-"`
+	FormulaAndFunctionSLOQueryDefinition                *FormulaAndFunctionSLOQueryDefinition                `json:"-"`
+	FormulaAndFunctionCloudCostQueryDefinition          *FormulaAndFunctionCloudCostQueryDefinition          `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

@@ -10,8 +10,8 @@ import (
 
 // SyntheticsAPIStep - The steps used in a Synthetic multi-step API test.
 type SyntheticsAPIStep struct {
-	SyntheticsAPITestStep *SyntheticsAPITestStep
-	SyntheticsAPIWaitStep *SyntheticsAPIWaitStep
+	SyntheticsAPITestStep *SyntheticsAPITestStep `json:"-"`
+	SyntheticsAPIWaitStep *SyntheticsAPIWaitStep `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

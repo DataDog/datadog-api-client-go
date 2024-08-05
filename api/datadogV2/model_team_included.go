@@ -10,9 +10,9 @@ import (
 
 // TeamIncluded - Included resources related to the team
 type TeamIncluded struct {
-	User               *User
-	TeamLink           *TeamLink
-	UserTeamPermission *UserTeamPermission
+	User               *User               `json:"-"`
+	TeamLink           *TeamLink           `json:"-"`
+	UserTeamPermission *UserTeamPermission `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

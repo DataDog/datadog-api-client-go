@@ -10,8 +10,8 @@ import (
 
 // DistributionPointItem - List of distribution point.
 type DistributionPointItem struct {
-	DistributionPointTimestamp *float64
-	DistributionPointData      *[]float64
+	DistributionPointTimestamp *float64   `json:"-"`
+	DistributionPointData      *[]float64 `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

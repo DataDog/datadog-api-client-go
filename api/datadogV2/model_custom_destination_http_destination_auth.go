@@ -10,8 +10,8 @@ import (
 
 // CustomDestinationHttpDestinationAuth - Authentication method of the HTTP requests.
 type CustomDestinationHttpDestinationAuth struct {
-	CustomDestinationHttpDestinationAuthBasic        *CustomDestinationHttpDestinationAuthBasic
-	CustomDestinationHttpDestinationAuthCustomHeader *CustomDestinationHttpDestinationAuthCustomHeader
+	CustomDestinationHttpDestinationAuthBasic        *CustomDestinationHttpDestinationAuthBasic        `json:"-"`
+	CustomDestinationHttpDestinationAuthCustomHeader *CustomDestinationHttpDestinationAuthCustomHeader `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

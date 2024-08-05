@@ -1,7 +1,7 @@
 // Nullable{{ name }} handles when a null is used for {{ name }}.
 type Nullable{{ name }} struct {
-	value *{{ name }}
-	isSet bool
+	value *{{ name }} `json:"-"`
+	isSet bool `json:"-"`
 }
 
 // Get returns the associated value.

@@ -10,8 +10,8 @@ import (
 
 // IncidentAttachmentAttributes - The attributes object for an attachment.
 type IncidentAttachmentAttributes struct {
-	IncidentAttachmentPostmortemAttributes *IncidentAttachmentPostmortemAttributes
-	IncidentAttachmentLinkAttributes       *IncidentAttachmentLinkAttributes
+	IncidentAttachmentPostmortemAttributes *IncidentAttachmentPostmortemAttributes `json:"-"`
+	IncidentAttachmentLinkAttributes       *IncidentAttachmentLinkAttributes       `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

@@ -208,8 +208,8 @@ func (o *CIAppHostInfo) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableCIAppHostInfo handles when a null is used for CIAppHostInfo.
 type NullableCIAppHostInfo struct {
-	value *CIAppHostInfo
-	isSet bool
+	value *CIAppHostInfo `json:"-"`
+	isSet bool           `json:"-"`
 }
 
 // Get returns the associated value.

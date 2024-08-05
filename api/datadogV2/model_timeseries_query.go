@@ -10,8 +10,8 @@ import (
 
 // TimeseriesQuery - An individual timeseries query to one of the basic Datadog data sources.
 type TimeseriesQuery struct {
-	MetricsTimeseriesQuery *MetricsTimeseriesQuery
-	EventsTimeseriesQuery  *EventsTimeseriesQuery
+	MetricsTimeseriesQuery *MetricsTimeseriesQuery `json:"-"`
+	EventsTimeseriesQuery  *EventsTimeseriesQuery  `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

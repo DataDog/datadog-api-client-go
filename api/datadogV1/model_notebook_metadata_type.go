@@ -73,8 +73,8 @@ func (v NotebookMetadataType) Ptr() *NotebookMetadataType {
 
 // NullableNotebookMetadataType handles when a null is used for NotebookMetadataType.
 type NullableNotebookMetadataType struct {
-	value *NotebookMetadataType
-	isSet bool
+	value *NotebookMetadataType `json:"-"`
+	isSet bool                  `json:"-"`
 }
 
 // Get returns the associated value.

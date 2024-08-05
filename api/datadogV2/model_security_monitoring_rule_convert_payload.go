@@ -10,8 +10,8 @@ import (
 
 // SecurityMonitoringRuleConvertPayload - Convert a rule from JSON to Terraform.
 type SecurityMonitoringRuleConvertPayload struct {
-	SecurityMonitoringStandardRulePayload *SecurityMonitoringStandardRulePayload
-	SecurityMonitoringSignalRulePayload   *SecurityMonitoringSignalRulePayload
+	SecurityMonitoringStandardRulePayload *SecurityMonitoringStandardRulePayload `json:"-"`
+	SecurityMonitoringSignalRulePayload   *SecurityMonitoringSignalRulePayload   `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

@@ -10,7 +10,7 @@ import (
 
 // IncidentIntegrationMetadataResponseIncludedItem - An object related to an incident integration metadata that is included in the response.
 type IncidentIntegrationMetadataResponseIncludedItem struct {
-	User *User
+	User *User `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

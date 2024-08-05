@@ -10,9 +10,9 @@ import (
 
 // SpansAggregateBucketValue - A bucket value, can be either a timeseries or a single value.
 type SpansAggregateBucketValue struct {
-	SpansAggregateBucketValueSingleString *string
-	SpansAggregateBucketValueSingleNumber *float64
-	SpansAggregateBucketValueTimeseries   *SpansAggregateBucketValueTimeseries
+	SpansAggregateBucketValueSingleString *string                              `json:"-"`
+	SpansAggregateBucketValueSingleNumber *float64                             `json:"-"`
+	SpansAggregateBucketValueTimeseries   *SpansAggregateBucketValueTimeseries `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

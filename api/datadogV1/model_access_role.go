@@ -71,8 +71,8 @@ func (v AccessRole) Ptr() *AccessRole {
 
 // NullableAccessRole handles when a null is used for AccessRole.
 type NullableAccessRole struct {
-	value *AccessRole
-	isSet bool
+	value *AccessRole `json:"-"`
+	isSet bool        `json:"-"`
 }
 
 // Get returns the associated value.

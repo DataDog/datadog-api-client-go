@@ -10,7 +10,7 @@ import (
 
 // SLOSliSpec - A generic SLI specification. This is currently used for time-slice SLOs only.
 type SLOSliSpec struct {
-	SLOTimeSliceSpec *SLOTimeSliceSpec
+	SLOTimeSliceSpec *SLOTimeSliceSpec `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

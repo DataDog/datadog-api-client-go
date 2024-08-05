@@ -10,9 +10,9 @@ import (
 
 // LogsAggregateBucketValue - A bucket value, can be either a timeseries or a single value
 type LogsAggregateBucketValue struct {
-	LogsAggregateBucketValueSingleString *string
-	LogsAggregateBucketValueSingleNumber *float64
-	LogsAggregateBucketValueTimeseries   *LogsAggregateBucketValueTimeseries
+	LogsAggregateBucketValueSingleString *string                             `json:"-"`
+	LogsAggregateBucketValueSingleNumber *float64                            `json:"-"`
+	LogsAggregateBucketValueTimeseries   *LogsAggregateBucketValueTimeseries `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

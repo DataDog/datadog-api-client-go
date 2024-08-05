@@ -10,9 +10,9 @@ import (
 
 // LogsArchiveCreateRequestDestination - An archive's destination.
 type LogsArchiveCreateRequestDestination struct {
-	LogsArchiveDestinationAzure *LogsArchiveDestinationAzure
-	LogsArchiveDestinationGCS   *LogsArchiveDestinationGCS
-	LogsArchiveDestinationS3    *LogsArchiveDestinationS3
+	LogsArchiveDestinationAzure *LogsArchiveDestinationAzure `json:"-"`
+	LogsArchiveDestinationGCS   *LogsArchiveDestinationGCS   `json:"-"`
+	LogsArchiveDestinationS3    *LogsArchiveDestinationS3    `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

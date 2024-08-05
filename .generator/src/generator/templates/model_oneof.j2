@@ -3,7 +3,7 @@ type {{ name }} struct {
 {%- for oneOf in model.oneOf %}
 	{%- set dataType = get_type(oneOf) %}
 	{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
-	{{ attributeName }} *{{ dataType }}
+	{{ attributeName }} *{{ dataType }} `json:"-"`
 {%- endfor%}
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct

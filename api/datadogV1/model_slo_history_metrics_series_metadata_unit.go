@@ -300,8 +300,8 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) UnmarshalJSON(bytes []byte) (err e
 
 // NullableSLOHistoryMetricsSeriesMetadataUnit handles when a null is used for SLOHistoryMetricsSeriesMetadataUnit.
 type NullableSLOHistoryMetricsSeriesMetadataUnit struct {
-	value *SLOHistoryMetricsSeriesMetadataUnit
-	isSet bool
+	value *SLOHistoryMetricsSeriesMetadataUnit `json:"-"`
+	isSet bool                                 `json:"-"`
 }
 
 // Get returns the associated value.

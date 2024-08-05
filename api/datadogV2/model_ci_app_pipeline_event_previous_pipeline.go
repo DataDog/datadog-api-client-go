@@ -137,8 +137,8 @@ func (o *CIAppPipelineEventPreviousPipeline) UnmarshalJSON(bytes []byte) (err er
 
 // NullableCIAppPipelineEventPreviousPipeline handles when a null is used for CIAppPipelineEventPreviousPipeline.
 type NullableCIAppPipelineEventPreviousPipeline struct {
-	value *CIAppPipelineEventPreviousPipeline
-	isSet bool
+	value *CIAppPipelineEventPreviousPipeline `json:"-"`
+	isSet bool                                `json:"-"`
 }
 
 // Get returns the associated value.

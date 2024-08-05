@@ -65,8 +65,8 @@ func (v UserTeamRole) Ptr() *UserTeamRole {
 
 // NullableUserTeamRole handles when a null is used for UserTeamRole.
 type NullableUserTeamRole struct {
-	value *UserTeamRole
-	isSet bool
+	value *UserTeamRole `json:"-"`
+	isSet bool          `json:"-"`
 }
 
 // Get returns the associated value.

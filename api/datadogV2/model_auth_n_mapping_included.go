@@ -10,9 +10,9 @@ import (
 
 // AuthNMappingIncluded - Included data in the AuthN Mapping response.
 type AuthNMappingIncluded struct {
-	SAMLAssertionAttribute *SAMLAssertionAttribute
-	Role                   *Role
-	AuthNMappingTeam       *AuthNMappingTeam
+	SAMLAssertionAttribute *SAMLAssertionAttribute `json:"-"`
+	Role                   *Role                   `json:"-"`
+	AuthNMappingTeam       *AuthNMappingTeam       `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

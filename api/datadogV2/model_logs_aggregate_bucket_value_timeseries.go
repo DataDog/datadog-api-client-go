@@ -10,7 +10,7 @@ import (
 
 // LogsAggregateBucketValueTimeseries A timeseries array
 type LogsAggregateBucketValueTimeseries struct {
-	Items []LogsAggregateBucketValueTimeseriesPoint
+	Items []LogsAggregateBucketValueTimeseriesPoint `json:"-"`
 
 	// UnparsedObject contains the raw value of the array if there was an error when deserializing into the struct
 	UnparsedObject []interface{} `json:"-"`

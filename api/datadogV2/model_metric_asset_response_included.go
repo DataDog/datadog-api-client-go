@@ -10,10 +10,10 @@ import (
 
 // MetricAssetResponseIncluded - List of included assets with full set of attributes.
 type MetricAssetResponseIncluded struct {
-	MetricDashboardAsset *MetricDashboardAsset
-	MetricMonitorAsset   *MetricMonitorAsset
-	MetricNotebookAsset  *MetricNotebookAsset
-	MetricSLOAsset       *MetricSLOAsset
+	MetricDashboardAsset *MetricDashboardAsset `json:"-"`
+	MetricMonitorAsset   *MetricMonitorAsset   `json:"-"`
+	MetricNotebookAsset  *MetricNotebookAsset  `json:"-"`
+	MetricSLOAsset       *MetricSLOAsset       `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

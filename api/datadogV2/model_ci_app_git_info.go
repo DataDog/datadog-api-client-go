@@ -581,8 +581,8 @@ func (o *CIAppGitInfo) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableCIAppGitInfo handles when a null is used for CIAppGitInfo.
 type NullableCIAppGitInfo struct {
-	value *CIAppGitInfo
-	isSet bool
+	value *CIAppGitInfo `json:"-"`
+	isSet bool          `json:"-"`
 }
 
 // Get returns the associated value.

@@ -825,8 +825,8 @@ func (o *DowntimeChild) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableDowntimeChild handles when a null is used for DowntimeChild.
 type NullableDowntimeChild struct {
-	value *DowntimeChild
-	isSet bool
+	value *DowntimeChild `json:"-"`
+	isSet bool           `json:"-"`
 }
 
 // Get returns the associated value.

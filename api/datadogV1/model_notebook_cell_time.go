@@ -10,8 +10,8 @@ import (
 
 // NotebookCellTime - Timeframe for the notebook cell. When 'null', the notebook global time is used.
 type NotebookCellTime struct {
-	NotebookRelativeTime *NotebookRelativeTime
-	NotebookAbsoluteTime *NotebookAbsoluteTime
+	NotebookRelativeTime *NotebookRelativeTime `json:"-"`
+	NotebookAbsoluteTime *NotebookAbsoluteTime `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -106,8 +106,8 @@ func (obj *NotebookCellTime) GetActualInstance() interface{} {
 
 // NullableNotebookCellTime handles when a null is used for NotebookCellTime.
 type NullableNotebookCellTime struct {
-	value *NotebookCellTime
-	isSet bool
+	value *NotebookCellTime `json:"-"`
+	isSet bool              `json:"-"`
 }
 
 // Get returns the associated value.

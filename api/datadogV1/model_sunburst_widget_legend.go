@@ -10,8 +10,8 @@ import (
 
 // SunburstWidgetLegend - Configuration of the legend.
 type SunburstWidgetLegend struct {
-	SunburstWidgetLegendTable           *SunburstWidgetLegendTable
-	SunburstWidgetLegendInlineAutomatic *SunburstWidgetLegendInlineAutomatic
+	SunburstWidgetLegendTable           *SunburstWidgetLegendTable           `json:"-"`
+	SunburstWidgetLegendInlineAutomatic *SunburstWidgetLegendInlineAutomatic `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

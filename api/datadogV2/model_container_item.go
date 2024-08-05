@@ -10,8 +10,8 @@ import (
 
 // ContainerItem - Possible Container models.
 type ContainerItem struct {
-	Container      *Container
-	ContainerGroup *ContainerGroup
+	Container      *Container      `json:"-"`
+	ContainerGroup *ContainerGroup `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

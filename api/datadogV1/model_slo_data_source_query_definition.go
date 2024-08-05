@@ -10,7 +10,7 @@ import (
 
 // SLODataSourceQueryDefinition - A formula and function query.
 type SLODataSourceQueryDefinition struct {
-	FormulaAndFunctionMetricQueryDefinition *FormulaAndFunctionMetricQueryDefinition
+	FormulaAndFunctionMetricQueryDefinition *FormulaAndFunctionMetricQueryDefinition `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

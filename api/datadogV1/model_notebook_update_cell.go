@@ -11,8 +11,8 @@ import (
 // NotebookUpdateCell - Updating a notebook can either insert new cell(s) or update existing cell(s) by including the cell `id`.
 // To delete existing cell(s), simply omit it from the list of cells.
 type NotebookUpdateCell struct {
-	NotebookCellCreateRequest *NotebookCellCreateRequest
-	NotebookCellUpdateRequest *NotebookCellUpdateRequest
+	NotebookCellCreateRequest *NotebookCellCreateRequest `json:"-"`
+	NotebookCellUpdateRequest *NotebookCellUpdateRequest `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

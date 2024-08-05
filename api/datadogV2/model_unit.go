@@ -243,8 +243,8 @@ func (o *Unit) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableUnit handles when a null is used for Unit.
 type NullableUnit struct {
-	value *Unit
-	isSet bool
+	value *Unit `json:"-"`
+	isSet bool  `json:"-"`
 }
 
 // Get returns the associated value.

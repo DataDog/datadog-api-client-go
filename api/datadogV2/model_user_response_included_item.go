@@ -10,9 +10,9 @@ import (
 
 // UserResponseIncludedItem - An object related to a user.
 type UserResponseIncludedItem struct {
-	Organization *Organization
-	Permission   *Permission
-	Role         *Role
+	Organization *Organization `json:"-"`
+	Permission   *Permission   `json:"-"`
+	Role         *Role         `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

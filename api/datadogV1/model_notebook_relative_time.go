@@ -112,8 +112,8 @@ func (o *NotebookRelativeTime) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableNotebookRelativeTime handles when a null is used for NotebookRelativeTime.
 type NullableNotebookRelativeTime struct {
-	value *NotebookRelativeTime
-	isSet bool
+	value *NotebookRelativeTime `json:"-"`
+	isSet bool                  `json:"-"`
 }
 
 // Get returns the associated value.

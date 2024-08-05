@@ -251,8 +251,8 @@ func (o *CIAppCIError) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableCIAppCIError handles when a null is used for CIAppCIError.
 type NullableCIAppCIError struct {
-	value *CIAppCIError
-	isSet bool
+	value *CIAppCIError `json:"-"`
+	isSet bool          `json:"-"`
 }
 
 // Get returns the associated value.

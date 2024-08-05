@@ -10,7 +10,7 @@ import (
 
 // SecurityMonitoringRuleTestPayload - Test a rule.
 type SecurityMonitoringRuleTestPayload struct {
-	SecurityMonitoringStandardRuleTestPayload *SecurityMonitoringStandardRuleTestPayload
+	SecurityMonitoringStandardRuleTestPayload *SecurityMonitoringStandardRuleTestPayload `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

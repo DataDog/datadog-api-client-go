@@ -453,8 +453,8 @@ func (o *MonitorType) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableMonitorType handles when a null is used for MonitorType.
 type NullableMonitorType struct {
-	value *MonitorType
-	isSet bool
+	value *MonitorType `json:"-"`
+	isSet bool         `json:"-"`
 }
 
 // Get returns the associated value.

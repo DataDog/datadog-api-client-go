@@ -10,8 +10,8 @@ import (
 
 // SharedDashboardInvitesData - An object or list of objects containing the information for an invitation to a shared dashboard.
 type SharedDashboardInvitesData struct {
-	SharedDashboardInvitesDataObject *SharedDashboardInvitesDataObject
-	SharedDashboardInvitesDataList   *[]SharedDashboardInvitesDataObject
+	SharedDashboardInvitesDataObject *SharedDashboardInvitesDataObject   `json:"-"`
+	SharedDashboardInvitesDataList   *[]SharedDashboardInvitesDataObject `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

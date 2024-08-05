@@ -10,22 +10,22 @@ import (
 
 // LogsProcessor - Definition of a logs processor.
 type LogsProcessor struct {
-	LogsGrokParser                    *LogsGrokParser
-	LogsDateRemapper                  *LogsDateRemapper
-	LogsStatusRemapper                *LogsStatusRemapper
-	LogsServiceRemapper               *LogsServiceRemapper
-	LogsMessageRemapper               *LogsMessageRemapper
-	LogsAttributeRemapper             *LogsAttributeRemapper
-	LogsURLParser                     *LogsURLParser
-	LogsUserAgentParser               *LogsUserAgentParser
-	LogsCategoryProcessor             *LogsCategoryProcessor
-	LogsArithmeticProcessor           *LogsArithmeticProcessor
-	LogsStringBuilderProcessor        *LogsStringBuilderProcessor
-	LogsPipelineProcessor             *LogsPipelineProcessor
-	LogsGeoIPParser                   *LogsGeoIPParser
-	LogsLookupProcessor               *LogsLookupProcessor
-	ReferenceTableLogsLookupProcessor *ReferenceTableLogsLookupProcessor
-	LogsTraceRemapper                 *LogsTraceRemapper
+	LogsGrokParser                    *LogsGrokParser                    `json:"-"`
+	LogsDateRemapper                  *LogsDateRemapper                  `json:"-"`
+	LogsStatusRemapper                *LogsStatusRemapper                `json:"-"`
+	LogsServiceRemapper               *LogsServiceRemapper               `json:"-"`
+	LogsMessageRemapper               *LogsMessageRemapper               `json:"-"`
+	LogsAttributeRemapper             *LogsAttributeRemapper             `json:"-"`
+	LogsURLParser                     *LogsURLParser                     `json:"-"`
+	LogsUserAgentParser               *LogsUserAgentParser               `json:"-"`
+	LogsCategoryProcessor             *LogsCategoryProcessor             `json:"-"`
+	LogsArithmeticProcessor           *LogsArithmeticProcessor           `json:"-"`
+	LogsStringBuilderProcessor        *LogsStringBuilderProcessor        `json:"-"`
+	LogsPipelineProcessor             *LogsPipelineProcessor             `json:"-"`
+	LogsGeoIPParser                   *LogsGeoIPParser                   `json:"-"`
+	LogsLookupProcessor               *LogsLookupProcessor               `json:"-"`
+	ReferenceTableLogsLookupProcessor *ReferenceTableLogsLookupProcessor `json:"-"`
+	LogsTraceRemapper                 *LogsTraceRemapper                 `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

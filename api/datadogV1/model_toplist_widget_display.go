@@ -10,8 +10,8 @@ import (
 
 // ToplistWidgetDisplay - Top list widget display options.
 type ToplistWidgetDisplay struct {
-	ToplistWidgetStacked *ToplistWidgetStacked
-	ToplistWidgetFlat    *ToplistWidgetFlat
+	ToplistWidgetStacked *ToplistWidgetStacked `json:"-"`
+	ToplistWidgetFlat    *ToplistWidgetFlat    `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

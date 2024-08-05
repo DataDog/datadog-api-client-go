@@ -46,8 +46,8 @@ type PaginationResult[T any] struct {
 
 // NullableBool is a struct to hold a nullable boolean value.
 type NullableBool struct {
-	value *bool
-	isSet bool
+	value *bool `json:"-"`
+	isSet bool  `json:"-"`
 }
 
 // Get returns the value associated with the nullable bool.
@@ -90,8 +90,8 @@ func (v *NullableBool) UnmarshalJSON(src []byte) error {
 
 // NullableInt is a struct to hold a nullable int value.
 type NullableInt struct {
-	value *int
-	isSet bool
+	value *int `json:"-"`
+	isSet bool `json:"-"`
 }
 
 // Get returns the value associated with the nullable int.
@@ -134,8 +134,8 @@ func (v *NullableInt) UnmarshalJSON(src []byte) error {
 
 // NullableInt32 is a struct to hold a nullable int32 value.
 type NullableInt32 struct {
-	value *int32
-	isSet bool
+	value *int32 `json:"-"`
+	isSet bool   `json:"-"`
 }
 
 // Get returns the value associated with the nullable int32.
@@ -178,8 +178,8 @@ func (v *NullableInt32) UnmarshalJSON(src []byte) error {
 
 // NullableInt64 is a struct to hold a nullable int64 value.
 type NullableInt64 struct {
-	value *int64
-	isSet bool
+	value *int64 `json:"-"`
+	isSet bool   `json:"-"`
 }
 
 // Get returns the value associated with the nullable int64.
@@ -222,8 +222,8 @@ func (v *NullableInt64) UnmarshalJSON(src []byte) error {
 
 // NullableFloat32 is a struct to hold a nullable float32 value.
 type NullableFloat32 struct {
-	value *float32
-	isSet bool
+	value *float32 `json:"-"`
+	isSet bool     `json:"-"`
 }
 
 // Get returns the value associated with the nullable float32.
@@ -266,8 +266,8 @@ func (v *NullableFloat32) UnmarshalJSON(src []byte) error {
 
 // NullableFloat64 is a struct to hold a nullable float64 value.
 type NullableFloat64 struct {
-	value *float64
-	isSet bool
+	value *float64 `json:"-"`
+	isSet bool     `json:"-"`
 }
 
 // Get returns the value associated with the nullable float64.
@@ -310,8 +310,8 @@ func (v *NullableFloat64) UnmarshalJSON(src []byte) error {
 
 // NullableString is a struct to hold a nullable string value.
 type NullableString struct {
-	value *string
-	isSet bool
+	value *string `json:"-"`
+	isSet bool    `json:"-"`
 }
 
 // Get returns the value associated with the nullable string.
@@ -354,8 +354,8 @@ func (v *NullableString) UnmarshalJSON(src []byte) error {
 
 // NullableTime is a struct to hold a nullable Time value.
 type NullableTime struct {
-	value *time.Time
-	isSet bool
+	value *time.Time `json:"-"`
+	isSet bool       `json:"-"`
 }
 
 // Get returns the value associated with the nullable Time.
@@ -398,8 +398,8 @@ func (v *NullableTime) UnmarshalJSON(src []byte) error {
 
 // NullableList struct to hold nullable list value.
 type NullableList[T any] struct {
-	value *[]T
-	isSet bool
+	value *[]T `json:"-"`
+	isSet bool `json:"-"`
 }
 
 // Get returns the value associated with the nullable list.

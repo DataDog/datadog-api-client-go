@@ -67,8 +67,8 @@ func (v DashboardShareType) Ptr() *DashboardShareType {
 
 // NullableDashboardShareType handles when a null is used for DashboardShareType.
 type NullableDashboardShareType struct {
-	value *DashboardShareType
-	isSet bool
+	value *DashboardShareType `json:"-"`
+	isSet bool                `json:"-"`
 }
 
 // Get returns the associated value.

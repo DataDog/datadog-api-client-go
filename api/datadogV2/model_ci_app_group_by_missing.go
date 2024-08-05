@@ -10,8 +10,8 @@ import (
 
 // CIAppGroupByMissing - The value to use for logs that don't have the facet used to group-by.
 type CIAppGroupByMissing struct {
-	CIAppGroupByMissingString *string
-	CIAppGroupByMissingNumber *float64
+	CIAppGroupByMissingString *string  `json:"-"`
+	CIAppGroupByMissingNumber *float64 `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

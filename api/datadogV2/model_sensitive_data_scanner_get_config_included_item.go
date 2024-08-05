@@ -10,8 +10,8 @@ import (
 
 // SensitiveDataScannerGetConfigIncludedItem - An object related to the configuration.
 type SensitiveDataScannerGetConfigIncludedItem struct {
-	SensitiveDataScannerRuleIncludedItem  *SensitiveDataScannerRuleIncludedItem
-	SensitiveDataScannerGroupIncludedItem *SensitiveDataScannerGroupIncludedItem
+	SensitiveDataScannerRuleIncludedItem  *SensitiveDataScannerRuleIncludedItem  `json:"-"`
+	SensitiveDataScannerGroupIncludedItem *SensitiveDataScannerGroupIncludedItem `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

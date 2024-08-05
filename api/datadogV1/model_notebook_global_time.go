@@ -10,8 +10,8 @@ import (
 
 // NotebookGlobalTime - Notebook global timeframe.
 type NotebookGlobalTime struct {
-	NotebookRelativeTime *NotebookRelativeTime
-	NotebookAbsoluteTime *NotebookAbsoluteTime
+	NotebookRelativeTime *NotebookRelativeTime `json:"-"`
+	NotebookAbsoluteTime *NotebookAbsoluteTime `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

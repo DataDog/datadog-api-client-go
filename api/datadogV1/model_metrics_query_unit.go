@@ -243,8 +243,8 @@ func (o *MetricsQueryUnit) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableMetricsQueryUnit handles when a null is used for MetricsQueryUnit.
 type NullableMetricsQueryUnit struct {
-	value *MetricsQueryUnit
-	isSet bool
+	value *MetricsQueryUnit `json:"-"`
+	isSet bool              `json:"-"`
 }
 
 // Get returns the associated value.

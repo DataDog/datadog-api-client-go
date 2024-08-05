@@ -10,8 +10,8 @@ import (
 
 // DowntimeResponseIncludedItem - An object related to a downtime.
 type DowntimeResponseIncludedItem struct {
-	User                        *User
-	DowntimeMonitorIncludedItem *DowntimeMonitorIncludedItem
+	User                        *User                        `json:"-"`
+	DowntimeMonitorIncludedItem *DowntimeMonitorIncludedItem `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

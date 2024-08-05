@@ -10,8 +10,8 @@ import (
 
 // MetricVolumes - Possible response objects for a metric's volume.
 type MetricVolumes struct {
-	MetricDistinctVolume        *MetricDistinctVolume
-	MetricIngestedIndexedVolume *MetricIngestedIndexedVolume
+	MetricDistinctVolume        *MetricDistinctVolume        `json:"-"`
+	MetricIngestedIndexedVolume *MetricIngestedIndexedVolume `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

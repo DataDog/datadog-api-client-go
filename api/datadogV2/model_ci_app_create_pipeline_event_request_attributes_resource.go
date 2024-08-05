@@ -10,10 +10,10 @@ import (
 
 // CIAppCreatePipelineEventRequestAttributesResource - Details of the CI pipeline event.
 type CIAppCreatePipelineEventRequestAttributesResource struct {
-	CIAppPipelineEventPipeline *CIAppPipelineEventPipeline
-	CIAppPipelineEventStage    *CIAppPipelineEventStage
-	CIAppPipelineEventJob      *CIAppPipelineEventJob
-	CIAppPipelineEventStep     *CIAppPipelineEventStep
+	CIAppPipelineEventPipeline *CIAppPipelineEventPipeline `json:"-"`
+	CIAppPipelineEventStage    *CIAppPipelineEventStage    `json:"-"`
+	CIAppPipelineEventJob      *CIAppPipelineEventJob      `json:"-"`
+	CIAppPipelineEventStep     *CIAppPipelineEventStep     `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

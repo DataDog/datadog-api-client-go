@@ -10,8 +10,8 @@ import (
 
 // IncidentIntegrationMetadataMetadata - Incident integration metadata's metadata attribute.
 type IncidentIntegrationMetadataMetadata struct {
-	SlackIntegrationMetadata *SlackIntegrationMetadata
-	JiraIntegrationMetadata  *JiraIntegrationMetadata
+	SlackIntegrationMetadata *SlackIntegrationMetadata `json:"-"`
+	JiraIntegrationMetadata  *JiraIntegrationMetadata  `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

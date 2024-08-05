@@ -10,8 +10,8 @@ import (
 
 // ContainerImageItem - Possible Container Image models.
 type ContainerImageItem struct {
-	ContainerImage      *ContainerImage
-	ContainerImageGroup *ContainerImageGroup
+	ContainerImage      *ContainerImage      `json:"-"`
+	ContainerImageGroup *ContainerImageGroup `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

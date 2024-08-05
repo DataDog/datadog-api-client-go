@@ -151,8 +151,8 @@ func (o *ServiceNowTicket) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableServiceNowTicket handles when a null is used for ServiceNowTicket.
 type NullableServiceNowTicket struct {
-	value *ServiceNowTicket
-	isSet bool
+	value *ServiceNowTicket `json:"-"`
+	isSet bool              `json:"-"`
 }
 
 // Get returns the associated value.

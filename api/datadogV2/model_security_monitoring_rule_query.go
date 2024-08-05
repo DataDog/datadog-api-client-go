@@ -10,8 +10,8 @@ import (
 
 // SecurityMonitoringRuleQuery - Query for matching rule.
 type SecurityMonitoringRuleQuery struct {
-	SecurityMonitoringStandardRuleQuery *SecurityMonitoringStandardRuleQuery
-	SecurityMonitoringSignalRuleQuery   *SecurityMonitoringSignalRuleQuery
+	SecurityMonitoringStandardRuleQuery *SecurityMonitoringStandardRuleQuery `json:"-"`
+	SecurityMonitoringSignalRuleQuery   *SecurityMonitoringSignalRuleQuery   `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

@@ -10,8 +10,8 @@ import (
 
 // SecurityMonitoringRuleResponse - Create a new rule.
 type SecurityMonitoringRuleResponse struct {
-	SecurityMonitoringStandardRuleResponse *SecurityMonitoringStandardRuleResponse
-	SecurityMonitoringSignalRuleResponse   *SecurityMonitoringSignalRuleResponse
+	SecurityMonitoringStandardRuleResponse *SecurityMonitoringStandardRuleResponse `json:"-"`
+	SecurityMonitoringSignalRuleResponse   *SecurityMonitoringSignalRuleResponse   `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

@@ -10,9 +10,9 @@ import (
 
 // RUMAggregateBucketValue - A bucket value, can be either a timeseries or a single value.
 type RUMAggregateBucketValue struct {
-	RUMAggregateBucketValueSingleString *string
-	RUMAggregateBucketValueSingleNumber *float64
-	RUMAggregateBucketValueTimeseries   *RUMAggregateBucketValueTimeseries
+	RUMAggregateBucketValueSingleString *string                            `json:"-"`
+	RUMAggregateBucketValueSingleNumber *float64                           `json:"-"`
+	RUMAggregateBucketValueTimeseries   *RUMAggregateBucketValueTimeseries `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

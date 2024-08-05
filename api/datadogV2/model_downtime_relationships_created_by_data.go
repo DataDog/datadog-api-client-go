@@ -152,8 +152,8 @@ func (o *DowntimeRelationshipsCreatedByData) UnmarshalJSON(bytes []byte) (err er
 
 // NullableDowntimeRelationshipsCreatedByData handles when a null is used for DowntimeRelationshipsCreatedByData.
 type NullableDowntimeRelationshipsCreatedByData struct {
-	value *DowntimeRelationshipsCreatedByData
-	isSet bool
+	value *DowntimeRelationshipsCreatedByData `json:"-"`
+	isSet bool                                `json:"-"`
 }
 
 // Get returns the associated value.

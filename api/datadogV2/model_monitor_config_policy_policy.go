@@ -10,7 +10,7 @@ import (
 
 // MonitorConfigPolicyPolicy - Configuration for the policy.
 type MonitorConfigPolicyPolicy struct {
-	MonitorConfigPolicyTagPolicy *MonitorConfigPolicyTagPolicy
+	MonitorConfigPolicyTagPolicy *MonitorConfigPolicyTagPolicy `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

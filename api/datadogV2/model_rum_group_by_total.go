@@ -10,9 +10,9 @@ import (
 
 // RUMGroupByTotal - A resulting object to put the given computes in over all the matching records.
 type RUMGroupByTotal struct {
-	RUMGroupByTotalBoolean *bool
-	RUMGroupByTotalString  *string
-	RUMGroupByTotalNumber  *float64
+	RUMGroupByTotalBoolean *bool    `json:"-"`
+	RUMGroupByTotalString  *string  `json:"-"`
+	RUMGroupByTotalNumber  *float64 `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

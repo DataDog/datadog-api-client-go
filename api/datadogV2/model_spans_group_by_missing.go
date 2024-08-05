@@ -10,8 +10,8 @@ import (
 
 // SpansGroupByMissing - The value to use for spans that don't have the facet used to group by.
 type SpansGroupByMissing struct {
-	SpansGroupByMissingString *string
-	SpansGroupByMissingNumber *float64
+	SpansGroupByMissingString *string  `json:"-"`
+	SpansGroupByMissingNumber *float64 `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

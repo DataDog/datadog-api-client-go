@@ -10,8 +10,8 @@ import (
 
 // ScalarQuery - An individual scalar query to one of the basic Datadog data sources.
 type ScalarQuery struct {
-	MetricsScalarQuery *MetricsScalarQuery
-	EventsScalarQuery  *EventsScalarQuery
+	MetricsScalarQuery *MetricsScalarQuery `json:"-"`
+	EventsScalarQuery  *EventsScalarQuery  `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

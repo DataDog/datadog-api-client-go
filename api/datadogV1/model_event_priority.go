@@ -67,8 +67,8 @@ func (v EventPriority) Ptr() *EventPriority {
 
 // NullableEventPriority handles when a null is used for EventPriority.
 type NullableEventPriority struct {
-	value *EventPriority
-	isSet bool
+	value *EventPriority `json:"-"`
+	isSet bool           `json:"-"`
 }
 
 // Get returns the associated value.

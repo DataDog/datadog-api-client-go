@@ -10,7 +10,7 @@ import (
 
 // IncidentTeamIncludedItems - An object related to an incident team which is present in the included payload.
 type IncidentTeamIncludedItems struct {
-	User *User
+	User *User `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

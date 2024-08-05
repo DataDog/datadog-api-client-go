@@ -10,7 +10,7 @@ import (
 
 // CIAppAggregateBucketValueTimeseries A timeseries array.
 type CIAppAggregateBucketValueTimeseries struct {
-	Items []CIAppAggregateBucketValueTimeseriesPoint
+	Items []CIAppAggregateBucketValueTimeseriesPoint `json:"-"`
 
 	// UnparsedObject contains the raw value of the array if there was an error when deserializing into the struct
 	UnparsedObject []interface{} `json:"-"`

@@ -10,9 +10,9 @@ import (
 
 // SecurityMonitoringRuleCreatePayload - Create a new rule.
 type SecurityMonitoringRuleCreatePayload struct {
-	SecurityMonitoringStandardRuleCreatePayload *SecurityMonitoringStandardRuleCreatePayload
-	SecurityMonitoringSignalRuleCreatePayload   *SecurityMonitoringSignalRuleCreatePayload
-	CloudConfigurationRuleCreatePayload         *CloudConfigurationRuleCreatePayload
+	SecurityMonitoringStandardRuleCreatePayload *SecurityMonitoringStandardRuleCreatePayload `json:"-"`
+	SecurityMonitoringSignalRuleCreatePayload   *SecurityMonitoringSignalRuleCreatePayload   `json:"-"`
+	CloudConfigurationRuleCreatePayload         *CloudConfigurationRuleCreatePayload         `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

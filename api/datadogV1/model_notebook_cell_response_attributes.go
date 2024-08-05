@@ -11,12 +11,12 @@ import (
 // NotebookCellResponseAttributes - The attributes of a notebook cell response. Valid cell types are `markdown`, `timeseries`, `toplist`, `heatmap`, `distribution`,
 // `log_stream`. [More information on each graph visualization type.](https://docs.datadoghq.com/dashboards/widgets/)
 type NotebookCellResponseAttributes struct {
-	NotebookMarkdownCellAttributes     *NotebookMarkdownCellAttributes
-	NotebookTimeseriesCellAttributes   *NotebookTimeseriesCellAttributes
-	NotebookToplistCellAttributes      *NotebookToplistCellAttributes
-	NotebookHeatMapCellAttributes      *NotebookHeatMapCellAttributes
-	NotebookDistributionCellAttributes *NotebookDistributionCellAttributes
-	NotebookLogStreamCellAttributes    *NotebookLogStreamCellAttributes
+	NotebookMarkdownCellAttributes     *NotebookMarkdownCellAttributes     `json:"-"`
+	NotebookTimeseriesCellAttributes   *NotebookTimeseriesCellAttributes   `json:"-"`
+	NotebookToplistCellAttributes      *NotebookToplistCellAttributes      `json:"-"`
+	NotebookHeatMapCellAttributes      *NotebookHeatMapCellAttributes      `json:"-"`
+	NotebookDistributionCellAttributes *NotebookDistributionCellAttributes `json:"-"`
+	NotebookLogStreamCellAttributes    *NotebookLogStreamCellAttributes    `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

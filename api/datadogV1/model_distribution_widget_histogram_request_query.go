@@ -10,9 +10,9 @@ import (
 
 // DistributionWidgetHistogramRequestQuery - Query definition for Distribution Widget Histogram Request
 type DistributionWidgetHistogramRequestQuery struct {
-	FormulaAndFunctionMetricQueryDefinition           *FormulaAndFunctionMetricQueryDefinition
-	FormulaAndFunctionEventQueryDefinition            *FormulaAndFunctionEventQueryDefinition
-	FormulaAndFunctionApmResourceStatsQueryDefinition *FormulaAndFunctionApmResourceStatsQueryDefinition
+	FormulaAndFunctionMetricQueryDefinition           *FormulaAndFunctionMetricQueryDefinition           `json:"-"`
+	FormulaAndFunctionEventQueryDefinition            *FormulaAndFunctionEventQueryDefinition            `json:"-"`
+	FormulaAndFunctionApmResourceStatsQueryDefinition *FormulaAndFunctionApmResourceStatsQueryDefinition `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

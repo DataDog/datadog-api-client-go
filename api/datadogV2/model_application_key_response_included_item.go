@@ -10,8 +10,8 @@ import (
 
 // ApplicationKeyResponseIncludedItem - An object related to an application key.
 type ApplicationKeyResponseIncludedItem struct {
-	User *User
-	Role *Role
+	User *User `json:"-"`
+	Role *Role `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

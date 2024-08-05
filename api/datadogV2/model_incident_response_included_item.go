@@ -10,8 +10,8 @@ import (
 
 // IncidentResponseIncludedItem - An object related to an incident that is included in the response.
 type IncidentResponseIncludedItem struct {
-	User                   *User
-	IncidentAttachmentData *IncidentAttachmentData
+	User                   *User                   `json:"-"`
+	IncidentAttachmentData *IncidentAttachmentData `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

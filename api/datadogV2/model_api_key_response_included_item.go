@@ -10,7 +10,7 @@ import (
 
 // APIKeyResponseIncludedItem - An object related to an API key.
 type APIKeyResponseIncludedItem struct {
-	User *User
+	User *User `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

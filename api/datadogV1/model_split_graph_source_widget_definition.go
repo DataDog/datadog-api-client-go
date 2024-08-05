@@ -10,15 +10,15 @@ import (
 
 // SplitGraphSourceWidgetDefinition - The original widget we are splitting on.
 type SplitGraphSourceWidgetDefinition struct {
-	ChangeWidgetDefinition      *ChangeWidgetDefinition
-	GeomapWidgetDefinition      *GeomapWidgetDefinition
-	QueryValueWidgetDefinition  *QueryValueWidgetDefinition
-	ScatterPlotWidgetDefinition *ScatterPlotWidgetDefinition
-	SunburstWidgetDefinition    *SunburstWidgetDefinition
-	TableWidgetDefinition       *TableWidgetDefinition
-	TimeseriesWidgetDefinition  *TimeseriesWidgetDefinition
-	ToplistWidgetDefinition     *ToplistWidgetDefinition
-	TreeMapWidgetDefinition     *TreeMapWidgetDefinition
+	ChangeWidgetDefinition      *ChangeWidgetDefinition      `json:"-"`
+	GeomapWidgetDefinition      *GeomapWidgetDefinition      `json:"-"`
+	QueryValueWidgetDefinition  *QueryValueWidgetDefinition  `json:"-"`
+	ScatterPlotWidgetDefinition *ScatterPlotWidgetDefinition `json:"-"`
+	SunburstWidgetDefinition    *SunburstWidgetDefinition    `json:"-"`
+	TableWidgetDefinition       *TableWidgetDefinition       `json:"-"`
+	TimeseriesWidgetDefinition  *TimeseriesWidgetDefinition  `json:"-"`
+	ToplistWidgetDefinition     *ToplistWidgetDefinition     `json:"-"`
+	TreeMapWidgetDefinition     *TreeMapWidgetDefinition     `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

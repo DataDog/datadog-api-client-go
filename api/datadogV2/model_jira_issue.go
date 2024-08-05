@@ -151,8 +151,8 @@ func (o *JiraIssue) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableJiraIssue handles when a null is used for JiraIssue.
 type NullableJiraIssue struct {
-	value *JiraIssue
-	isSet bool
+	value *JiraIssue `json:"-"`
+	isSet bool       `json:"-"`
 }
 
 // Get returns the associated value.

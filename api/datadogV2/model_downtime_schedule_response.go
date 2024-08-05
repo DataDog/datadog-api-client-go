@@ -12,8 +12,8 @@ import (
 // one-time and recurring. Recurring schedules may have up to five RRULE-based recurrences. If no schedules are
 // provided, the downtime will begin immediately and never end.
 type DowntimeScheduleResponse struct {
-	DowntimeScheduleRecurrencesResponse *DowntimeScheduleRecurrencesResponse
-	DowntimeScheduleOneTimeResponse     *DowntimeScheduleOneTimeResponse
+	DowntimeScheduleRecurrencesResponse *DowntimeScheduleRecurrencesResponse `json:"-"`
+	DowntimeScheduleOneTimeResponse     *DowntimeScheduleOneTimeResponse     `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

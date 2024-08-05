@@ -2,15 +2,8 @@
 //
 // Deprecated: This model is deprecated.{% endif %}
 type {{ name }} struct {
-{#-
-{{^isMap}}
-{{^isArray}}
-	{{{parent}}}
-{{/isArray}}
-{{/isMap}}
--#}
 {%- if model.type == "array" %}
-	Items []{{ get_type(model.get("items", {}), alternative_name=name + "Item") }}
+	Items []{{ get_type(model.get("items", {}), alternative_name=name + "Item") }} `json:"-"`
 
 	// UnparsedObject contains the raw value of the array if there was an error when deserializing into the struct
 	UnparsedObject []interface{} `json:"-"`

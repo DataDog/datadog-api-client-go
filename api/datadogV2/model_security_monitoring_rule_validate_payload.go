@@ -10,9 +10,9 @@ import (
 
 // SecurityMonitoringRuleValidatePayload - Validate a rule.
 type SecurityMonitoringRuleValidatePayload struct {
-	SecurityMonitoringStandardRulePayload *SecurityMonitoringStandardRulePayload
-	SecurityMonitoringSignalRulePayload   *SecurityMonitoringSignalRulePayload
-	CloudConfigurationRulePayload         *CloudConfigurationRulePayload
+	SecurityMonitoringStandardRulePayload *SecurityMonitoringStandardRulePayload `json:"-"`
+	SecurityMonitoringSignalRulePayload   *SecurityMonitoringSignalRulePayload   `json:"-"`
+	CloudConfigurationRulePayload         *CloudConfigurationRulePayload         `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

@@ -10,9 +10,9 @@ import (
 
 // CustomDestinationForwardDestination - A custom destination's location to forward logs.
 type CustomDestinationForwardDestination struct {
-	CustomDestinationForwardDestinationHttp          *CustomDestinationForwardDestinationHttp
-	CustomDestinationForwardDestinationSplunk        *CustomDestinationForwardDestinationSplunk
-	CustomDestinationForwardDestinationElasticsearch *CustomDestinationForwardDestinationElasticsearch
+	CustomDestinationForwardDestinationHttp          *CustomDestinationForwardDestinationHttp          `json:"-"`
+	CustomDestinationForwardDestinationSplunk        *CustomDestinationForwardDestinationSplunk        `json:"-"`
+	CustomDestinationForwardDestinationElasticsearch *CustomDestinationForwardDestinationElasticsearch `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

@@ -10,10 +10,10 @@ import (
 
 // ServiceDefinitionSchema - Service definition schema.
 type ServiceDefinitionSchema struct {
-	ServiceDefinitionV1     *ServiceDefinitionV1
-	ServiceDefinitionV2     *ServiceDefinitionV2
-	ServiceDefinitionV2Dot1 *ServiceDefinitionV2Dot1
-	ServiceDefinitionV2Dot2 *ServiceDefinitionV2Dot2
+	ServiceDefinitionV1     *ServiceDefinitionV1     `json:"-"`
+	ServiceDefinitionV2     *ServiceDefinitionV2     `json:"-"`
+	ServiceDefinitionV2Dot1 *ServiceDefinitionV2Dot1 `json:"-"`
+	ServiceDefinitionV2Dot2 *ServiceDefinitionV2Dot2 `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

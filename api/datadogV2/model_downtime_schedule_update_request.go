@@ -10,8 +10,8 @@ import (
 
 // DowntimeScheduleUpdateRequest - Schedule for the downtime.
 type DowntimeScheduleUpdateRequest struct {
-	DowntimeScheduleRecurrencesUpdateRequest   *DowntimeScheduleRecurrencesUpdateRequest
-	DowntimeScheduleOneTimeCreateUpdateRequest *DowntimeScheduleOneTimeCreateUpdateRequest
+	DowntimeScheduleRecurrencesUpdateRequest   *DowntimeScheduleRecurrencesUpdateRequest   `json:"-"`
+	DowntimeScheduleOneTimeCreateUpdateRequest *DowntimeScheduleOneTimeCreateUpdateRequest `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

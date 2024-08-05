@@ -10,9 +10,9 @@ import (
 
 // ServiceDefinitionV2Contact - Service owner's contacts information.
 type ServiceDefinitionV2Contact struct {
-	ServiceDefinitionV2Email   *ServiceDefinitionV2Email
-	ServiceDefinitionV2Slack   *ServiceDefinitionV2Slack
-	ServiceDefinitionV2MSTeams *ServiceDefinitionV2MSTeams
+	ServiceDefinitionV2Email   *ServiceDefinitionV2Email   `json:"-"`
+	ServiceDefinitionV2Slack   *ServiceDefinitionV2Slack   `json:"-"`
+	ServiceDefinitionV2MSTeams *ServiceDefinitionV2MSTeams `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

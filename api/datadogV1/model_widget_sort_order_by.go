@@ -10,8 +10,8 @@ import (
 
 // WidgetSortOrderBy - The item to sort the widget by.
 type WidgetSortOrderBy struct {
-	WidgetFormulaSort *WidgetFormulaSort
-	WidgetGroupSort   *WidgetGroupSort
+	WidgetFormulaSort *WidgetFormulaSort `json:"-"`
+	WidgetGroupSort   *WidgetGroupSort   `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}

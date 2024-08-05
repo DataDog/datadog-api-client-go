@@ -10,7 +10,7 @@ import (
 
 // RUMAggregateBucketValueTimeseries A timeseries array.
 type RUMAggregateBucketValueTimeseries struct {
-	Items []RUMAggregateBucketValueTimeseriesPoint
+	Items []RUMAggregateBucketValueTimeseriesPoint `json:"-"`
 
 	// UnparsedObject contains the raw value of the array if there was an error when deserializing into the struct
 	UnparsedObject []interface{} `json:"-"`

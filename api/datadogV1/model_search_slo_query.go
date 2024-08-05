@@ -187,8 +187,8 @@ func (o *SearchSLOQuery) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableSearchSLOQuery handles when a null is used for SearchSLOQuery.
 type NullableSearchSLOQuery struct {
-	value *SearchSLOQuery
-	isSet bool
+	value *SearchSLOQuery `json:"-"`
+	isSet bool            `json:"-"`
 }
 
 // Get returns the associated value.

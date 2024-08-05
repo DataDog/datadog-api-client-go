@@ -138,8 +138,8 @@ func (o *IncidentNonDatadogCreator) UnmarshalJSON(bytes []byte) (err error) {
 
 // NullableIncidentNonDatadogCreator handles when a null is used for IncidentNonDatadogCreator.
 type NullableIncidentNonDatadogCreator struct {
-	value *IncidentNonDatadogCreator
-	isSet bool
+	value *IncidentNonDatadogCreator `json:"-"`
+	isSet bool                       `json:"-"`
 }
 
 // Get returns the associated value.
