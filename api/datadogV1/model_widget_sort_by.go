@@ -16,7 +16,7 @@ type WidgetSortBy struct {
 	OrderBy []WidgetSortOrderBy `json:"order_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{}
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // NewWidgetSortBy instantiates a new WidgetSortBy object.

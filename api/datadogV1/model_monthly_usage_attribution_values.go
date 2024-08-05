@@ -288,7 +288,7 @@ type MonthlyUsageAttributionValues struct {
 	WorkflowExecutionsUsage *float64 `json:"workflow_executions_usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{}
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // NewMonthlyUsageAttributionValues instantiates a new MonthlyUsageAttributionValues object.
