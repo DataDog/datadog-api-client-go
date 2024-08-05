@@ -13,7 +13,7 @@ type SecurityMonitoringRuleTestPayload struct {
 	SecurityMonitoringStandardRuleTestPayload *SecurityMonitoringStandardRuleTestPayload `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject interface{} `json:"-"`
 }
 
 // SecurityMonitoringStandardRuleTestPayloadAsSecurityMonitoringRuleTestPayload is a convenience function that returns SecurityMonitoringStandardRuleTestPayload wrapped in SecurityMonitoringRuleTestPayload.

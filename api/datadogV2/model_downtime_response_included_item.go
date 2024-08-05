@@ -14,7 +14,7 @@ type DowntimeResponseIncludedItem struct {
 	DowntimeMonitorIncludedItem *DowntimeMonitorIncludedItem `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject interface{} `json:"-"`
 }
 
 // UserAsDowntimeResponseIncludedItem is a convenience function that returns User wrapped in DowntimeResponseIncludedItem.

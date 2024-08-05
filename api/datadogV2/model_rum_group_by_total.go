@@ -15,7 +15,7 @@ type RUMGroupByTotal struct {
 	RUMGroupByTotalNumber  *float64 `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject interface{} `json:"-"`
 }
 
 // RUMGroupByTotalBooleanAsRUMGroupByTotal is a convenience function that returns bool wrapped in RUMGroupByTotal.

@@ -14,7 +14,7 @@ type ToplistWidgetDisplay struct {
 	ToplistWidgetFlat    *ToplistWidgetFlat    `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject interface{} `json:"-"`
 }
 
 // ToplistWidgetStackedAsToplistWidgetDisplay is a convenience function that returns ToplistWidgetStacked wrapped in ToplistWidgetDisplay.

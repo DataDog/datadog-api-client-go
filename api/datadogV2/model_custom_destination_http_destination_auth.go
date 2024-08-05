@@ -14,7 +14,7 @@ type CustomDestinationHttpDestinationAuth struct {
 	CustomDestinationHttpDestinationAuthCustomHeader *CustomDestinationHttpDestinationAuthCustomHeader `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject interface{} `json:"-"`
 }
 
 // CustomDestinationHttpDestinationAuthBasicAsCustomDestinationHttpDestinationAuth is a convenience function that returns CustomDestinationHttpDestinationAuthBasic wrapped in CustomDestinationHttpDestinationAuth.

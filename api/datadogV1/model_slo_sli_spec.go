@@ -13,7 +13,7 @@ type SLOSliSpec struct {
 	SLOTimeSliceSpec *SLOTimeSliceSpec `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject interface{} `json:"-"`
 }
 
 // SLOTimeSliceSpecAsSLOSliSpec is a convenience function that returns SLOTimeSliceSpec wrapped in SLOSliSpec.

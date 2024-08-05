@@ -15,7 +15,7 @@ type CIAppAggregateBucketValue struct {
 	CIAppAggregateBucketValueTimeseries   *CIAppAggregateBucketValueTimeseries `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject interface{} `json:"-"`
 }
 
 // CIAppAggregateBucketValueSingleStringAsCIAppAggregateBucketValue is a convenience function that returns string wrapped in CIAppAggregateBucketValue.

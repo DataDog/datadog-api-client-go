@@ -13,7 +13,7 @@ type MonitorConfigPolicyPolicy struct {
 	MonitorConfigPolicyTagPolicy *MonitorConfigPolicyTagPolicy `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject interface{} `json:"-"`
 }
 
 // MonitorConfigPolicyTagPolicyAsMonitorConfigPolicyPolicy is a convenience function that returns MonitorConfigPolicyTagPolicy wrapped in MonitorConfigPolicyPolicy.

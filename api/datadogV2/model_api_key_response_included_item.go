@@ -13,7 +13,7 @@ type APIKeyResponseIncludedItem struct {
 	User *User `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject interface{} `json:"-"`
 }
 
 // UserAsAPIKeyResponseIncludedItem is a convenience function that returns User wrapped in APIKeyResponseIncludedItem.

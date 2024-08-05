@@ -14,7 +14,7 @@ type IncidentIntegrationMetadataMetadata struct {
 	JiraIntegrationMetadata  *JiraIntegrationMetadata  `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject interface{} `json:"-"`
 }
 
 // SlackIntegrationMetadataAsIncidentIntegrationMetadataMetadata is a convenience function that returns SlackIntegrationMetadata wrapped in IncidentIntegrationMetadataMetadata.

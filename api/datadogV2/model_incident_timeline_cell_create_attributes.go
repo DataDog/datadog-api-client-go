@@ -13,7 +13,7 @@ type IncidentTimelineCellCreateAttributes struct {
 	IncidentTimelineCellMarkdownCreateAttributes *IncidentTimelineCellMarkdownCreateAttributes `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject interface{} `json:"-"`
 }
 
 // IncidentTimelineCellMarkdownCreateAttributesAsIncidentTimelineCellCreateAttributes is a convenience function that returns IncidentTimelineCellMarkdownCreateAttributes wrapped in IncidentTimelineCellCreateAttributes.

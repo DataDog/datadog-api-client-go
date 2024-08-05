@@ -14,7 +14,7 @@ type SensitiveDataScannerGetConfigIncludedItem struct {
 	SensitiveDataScannerGroupIncludedItem *SensitiveDataScannerGroupIncludedItem `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject interface{} `json:"-"`
 }
 
 // SensitiveDataScannerRuleIncludedItemAsSensitiveDataScannerGetConfigIncludedItem is a convenience function that returns SensitiveDataScannerRuleIncludedItem wrapped in SensitiveDataScannerGetConfigIncludedItem.

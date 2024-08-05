@@ -15,7 +15,7 @@ type ServiceDefinitionV2Dot1Contact struct {
 	ServiceDefinitionV2Dot1MSTeams *ServiceDefinitionV2Dot1MSTeams `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject interface{} `json:"-"`
 }
 
 // ServiceDefinitionV2Dot1EmailAsServiceDefinitionV2Dot1Contact is a convenience function that returns ServiceDefinitionV2Dot1Email wrapped in ServiceDefinitionV2Dot1Contact.

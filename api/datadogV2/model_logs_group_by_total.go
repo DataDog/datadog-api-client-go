@@ -15,7 +15,7 @@ type LogsGroupByTotal struct {
 	LogsGroupByTotalNumber  *float64 `json:"-"`
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject interface{} `json:"-"`
 }
 
 // LogsGroupByTotalBooleanAsLogsGroupByTotal is a convenience function that returns bool wrapped in LogsGroupByTotal.
