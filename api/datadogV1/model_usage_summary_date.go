@@ -286,7 +286,7 @@ type UsageSummaryDate struct {
 	WorkflowExecutionsUsageSum *int64 `json:"workflow_executions_usage_sum,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{}
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // NewUsageSummaryDate instantiates a new UsageSummaryDate object.

@@ -24,7 +24,7 @@ type SyntheticsTestRequestBodyFile struct {
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{}
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // NewSyntheticsTestRequestBodyFile instantiates a new SyntheticsTestRequestBodyFile object.

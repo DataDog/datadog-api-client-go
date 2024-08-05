@@ -18,7 +18,7 @@ type ListAPIsResponseMetaPagination struct {
 	TotalCount *int64 `json:"total_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{}
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // NewListAPIsResponseMetaPagination instantiates a new ListAPIsResponseMetaPagination object.

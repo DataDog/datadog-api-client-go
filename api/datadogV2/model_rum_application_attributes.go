@@ -36,7 +36,7 @@ type RUMApplicationAttributes struct {
 	UpdatedByHandle string `json:"updated_by_handle"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{}
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // NewRUMApplicationAttributes instantiates a new RUMApplicationAttributes object.
