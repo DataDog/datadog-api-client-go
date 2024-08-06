@@ -34,6 +34,7 @@ const (
 	SYNTHETICSASSERTIONTYPE_GRPC_METADATA           SyntheticsAssertionType = "grpcMetadata"
 	SYNTHETICSASSERTIONTYPE_GRPC_PROTO              SyntheticsAssertionType = "grpcProto"
 	SYNTHETICSASSERTIONTYPE_CONNECTION              SyntheticsAssertionType = "connection"
+	SYNTHETICSASSERTIONTYPE_JAVASCRIPT              SyntheticsAssertionType = "javascript"
 )
 
 var allowedSyntheticsAssertionTypeEnumValues = []SyntheticsAssertionType{
@@ -56,6 +57,7 @@ var allowedSyntheticsAssertionTypeEnumValues = []SyntheticsAssertionType{
 	SYNTHETICSASSERTIONTYPE_GRPC_METADATA,
 	SYNTHETICSASSERTIONTYPE_GRPC_PROTO,
 	SYNTHETICSASSERTIONTYPE_CONNECTION,
+	SYNTHETICSASSERTIONTYPE_JAVASCRIPT,
 }
 
 // GetAllowedValues reeturns the list of possible values.
