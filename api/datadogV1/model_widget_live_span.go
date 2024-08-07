@@ -30,6 +30,7 @@ const (
 	WIDGETLIVESPAN_PAST_SIX_MONTHS      WidgetLiveSpan = "6mo"
 	WIDGETLIVESPAN_WEEK_TO_DATE         WidgetLiveSpan = "week_to_date"
 	WIDGETLIVESPAN_MONTH_TO_DATE        WidgetLiveSpan = "month_to_date"
+	WIDGETLIVESPAN_LAST_MONTH           WidgetLiveSpan = "last_month"
 	WIDGETLIVESPAN_PAST_ONE_YEAR        WidgetLiveSpan = "1y"
 	WIDGETLIVESPAN_ALERT                WidgetLiveSpan = "alert"
 )
@@ -50,6 +51,7 @@ var allowedWidgetLiveSpanEnumValues = []WidgetLiveSpan{
 	WIDGETLIVESPAN_PAST_SIX_MONTHS,
 	WIDGETLIVESPAN_WEEK_TO_DATE,
 	WIDGETLIVESPAN_MONTH_TO_DATE,
+	WIDGETLIVESPAN_LAST_MONTH,
 	WIDGETLIVESPAN_PAST_ONE_YEAR,
 	WIDGETLIVESPAN_ALERT,
 }
