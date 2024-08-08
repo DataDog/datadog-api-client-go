@@ -26,7 +26,7 @@ func main() {
 				},
 				EnableCustomMetrics: datadog.PtrBool(false),
 			},
-			Id:   "exampleconfluentcloud",
+			Id:   *datadog.NewNullableString(datadog.PtrString("exampleconfluentcloud")),
 			Type: datadogV2.CONFLUENTRESOURCETYPE_CONFLUENT_CLOUD_RESOURCES,
 		},
 	}

@@ -9,6 +9,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -447,6 +448,7 @@ func (a *KeyManagementApi) GetAPIKey(ctx _context.Context, apiKeyId string, o ..
 // GetApplicationKeyOptionalParameters holds optional parameters for GetApplicationKey.
 type GetApplicationKeyOptionalParameters struct {
 	Include *string
+	HideKey *bool
 }
 
 // NewGetApplicationKeyOptionalParameters creates an empty struct for parameters.
@@ -458,6 +460,12 @@ func NewGetApplicationKeyOptionalParameters() *GetApplicationKeyOptionalParamete
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *GetApplicationKeyOptionalParameters) WithInclude(include string) *GetApplicationKeyOptionalParameters {
 	r.Include = &include
+	return r
+}
+
+// WithHideKey sets the corresponding parameter name and returns the struct.
+func (r *GetApplicationKeyOptionalParameters) WithHideKey(hideKey bool) *GetApplicationKeyOptionalParameters {
+	r.HideKey = &hideKey
 	return r
 }
 
@@ -491,6 +499,9 @@ func (a *KeyManagementApi) GetApplicationKey(ctx _context.Context, appKeyId stri
 	localVarFormParams := _neturl.Values{}
 	if optionalParams.Include != nil {
 		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	if optionalParams.HideKey != nil {
+		localVarQueryParams.Add("hide_key", datadog.ParameterToString(*optionalParams.HideKey, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
@@ -620,10 +631,10 @@ type ListAPIKeysOptionalParameters struct {
 	PageNumber                    *int64
 	Sort                          *APIKeysSort
 	Filter                        *string
-	FilterCreatedAtStart          *string
-	FilterCreatedAtEnd            *string
-	FilterModifiedAtStart         *string
-	FilterModifiedAtEnd           *string
+	FilterCreatedAtStart          *time.Time
+	FilterCreatedAtEnd            *time.Time
+	FilterModifiedAtStart         *time.Time
+	FilterModifiedAtEnd           *time.Time
 	Include                       *string
 	FilterRemoteConfigReadEnabled *bool
 	FilterCategory                *string
@@ -660,25 +671,25 @@ func (r *ListAPIKeysOptionalParameters) WithFilter(filter string) *ListAPIKeysOp
 }
 
 // WithFilterCreatedAtStart sets the corresponding parameter name and returns the struct.
-func (r *ListAPIKeysOptionalParameters) WithFilterCreatedAtStart(filterCreatedAtStart string) *ListAPIKeysOptionalParameters {
+func (r *ListAPIKeysOptionalParameters) WithFilterCreatedAtStart(filterCreatedAtStart time.Time) *ListAPIKeysOptionalParameters {
 	r.FilterCreatedAtStart = &filterCreatedAtStart
 	return r
 }
 
 // WithFilterCreatedAtEnd sets the corresponding parameter name and returns the struct.
-func (r *ListAPIKeysOptionalParameters) WithFilterCreatedAtEnd(filterCreatedAtEnd string) *ListAPIKeysOptionalParameters {
+func (r *ListAPIKeysOptionalParameters) WithFilterCreatedAtEnd(filterCreatedAtEnd time.Time) *ListAPIKeysOptionalParameters {
 	r.FilterCreatedAtEnd = &filterCreatedAtEnd
 	return r
 }
 
 // WithFilterModifiedAtStart sets the corresponding parameter name and returns the struct.
-func (r *ListAPIKeysOptionalParameters) WithFilterModifiedAtStart(filterModifiedAtStart string) *ListAPIKeysOptionalParameters {
+func (r *ListAPIKeysOptionalParameters) WithFilterModifiedAtStart(filterModifiedAtStart time.Time) *ListAPIKeysOptionalParameters {
 	r.FilterModifiedAtStart = &filterModifiedAtStart
 	return r
 }
 
 // WithFilterModifiedAtEnd sets the corresponding parameter name and returns the struct.
-func (r *ListAPIKeysOptionalParameters) WithFilterModifiedAtEnd(filterModifiedAtEnd string) *ListAPIKeysOptionalParameters {
+func (r *ListAPIKeysOptionalParameters) WithFilterModifiedAtEnd(filterModifiedAtEnd time.Time) *ListAPIKeysOptionalParameters {
 	r.FilterModifiedAtEnd = &filterModifiedAtEnd
 	return r
 }
@@ -818,8 +829,8 @@ type ListApplicationKeysOptionalParameters struct {
 	PageNumber           *int64
 	Sort                 *ApplicationKeysSort
 	Filter               *string
-	FilterCreatedAtStart *string
-	FilterCreatedAtEnd   *string
+	FilterCreatedAtStart *time.Time
+	FilterCreatedAtEnd   *time.Time
 	Include              *string
 }
 
@@ -854,13 +865,13 @@ func (r *ListApplicationKeysOptionalParameters) WithFilter(filter string) *ListA
 }
 
 // WithFilterCreatedAtStart sets the corresponding parameter name and returns the struct.
-func (r *ListApplicationKeysOptionalParameters) WithFilterCreatedAtStart(filterCreatedAtStart string) *ListApplicationKeysOptionalParameters {
+func (r *ListApplicationKeysOptionalParameters) WithFilterCreatedAtStart(filterCreatedAtStart time.Time) *ListApplicationKeysOptionalParameters {
 	r.FilterCreatedAtStart = &filterCreatedAtStart
 	return r
 }
 
 // WithFilterCreatedAtEnd sets the corresponding parameter name and returns the struct.
-func (r *ListApplicationKeysOptionalParameters) WithFilterCreatedAtEnd(filterCreatedAtEnd string) *ListApplicationKeysOptionalParameters {
+func (r *ListApplicationKeysOptionalParameters) WithFilterCreatedAtEnd(filterCreatedAtEnd time.Time) *ListApplicationKeysOptionalParameters {
 	r.FilterCreatedAtEnd = &filterCreatedAtEnd
 	return r
 }
@@ -976,8 +987,8 @@ type ListCurrentUserApplicationKeysOptionalParameters struct {
 	PageNumber           *int64
 	Sort                 *ApplicationKeysSort
 	Filter               *string
-	FilterCreatedAtStart *string
-	FilterCreatedAtEnd   *string
+	FilterCreatedAtStart *time.Time
+	FilterCreatedAtEnd   *time.Time
 	Include              *string
 }
 
@@ -1012,13 +1023,13 @@ func (r *ListCurrentUserApplicationKeysOptionalParameters) WithFilter(filter str
 }
 
 // WithFilterCreatedAtStart sets the corresponding parameter name and returns the struct.
-func (r *ListCurrentUserApplicationKeysOptionalParameters) WithFilterCreatedAtStart(filterCreatedAtStart string) *ListCurrentUserApplicationKeysOptionalParameters {
+func (r *ListCurrentUserApplicationKeysOptionalParameters) WithFilterCreatedAtStart(filterCreatedAtStart time.Time) *ListCurrentUserApplicationKeysOptionalParameters {
 	r.FilterCreatedAtStart = &filterCreatedAtStart
 	return r
 }
 
 // WithFilterCreatedAtEnd sets the corresponding parameter name and returns the struct.
-func (r *ListCurrentUserApplicationKeysOptionalParameters) WithFilterCreatedAtEnd(filterCreatedAtEnd string) *ListCurrentUserApplicationKeysOptionalParameters {
+func (r *ListCurrentUserApplicationKeysOptionalParameters) WithFilterCreatedAtEnd(filterCreatedAtEnd time.Time) *ListCurrentUserApplicationKeysOptionalParameters {
 	r.FilterCreatedAtEnd = &filterCreatedAtEnd
 	return r
 }

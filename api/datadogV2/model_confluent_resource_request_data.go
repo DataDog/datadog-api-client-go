@@ -14,8 +14,8 @@ import (
 type ConfluentResourceRequestData struct {
 	// Attributes object for updating a Confluent resource.
 	Attributes ConfluentResourceRequestAttributes `json:"attributes"`
-	// The ID associated with a Confluent resource.
-	Id string `json:"id"`
+	// The ConfluentResourceRequestData id.
+	Id datadog.NullableString `json:"id"`
 	// The JSON:API type for this request.
 	Type ConfluentResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -27,7 +27,7 @@ type ConfluentResourceRequestData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewConfluentResourceRequestData(attributes ConfluentResourceRequestAttributes, id string, typeVar ConfluentResourceType) *ConfluentResourceRequestData {
+func NewConfluentResourceRequestData(attributes ConfluentResourceRequestAttributes, id datadog.NullableString, typeVar ConfluentResourceType) *ConfluentResourceRequestData {
 	this := ConfluentResourceRequestData{}
 	this.Attributes = attributes
 	this.Id = id
@@ -69,26 +69,28 @@ func (o *ConfluentResourceRequestData) SetAttributes(v ConfluentResourceRequestA
 }
 
 // GetId returns the Id field value.
+// If the value is explicit nil, the zero value for string will be returned.
 func (o *ConfluentResourceRequestData) GetId() string {
-	if o == nil {
+	if o == nil || o.Id.Get() == nil {
 		var ret string
 		return ret
 	}
-	return o.Id
+	return *o.Id.Get()
 }
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *ConfluentResourceRequestData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id.Get(), o.Id.IsSet()
 }
 
 // SetId sets field value.
 func (o *ConfluentResourceRequestData) SetId(v string) {
-	o.Id = v
+	o.Id.Set(&v)
 }
 
 // GetType returns the Type field value.
@@ -121,7 +123,7 @@ func (o ConfluentResourceRequestData) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
-	toSerialize["id"] = o.Id
+	toSerialize["id"] = o.Id.Get()
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -134,7 +136,7 @@ func (o ConfluentResourceRequestData) MarshalJSON() ([]byte, error) {
 func (o *ConfluentResourceRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *ConfluentResourceRequestAttributes `json:"attributes"`
-		Id         *string                             `json:"id"`
+		Id         datadog.NullableString              `json:"id"`
 		Type       *ConfluentResourceType              `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -143,7 +145,7 @@ func (o *ConfluentResourceRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Attributes == nil {
 		return fmt.Errorf("required field attributes missing")
 	}
-	if all.Id == nil {
+	if !all.Id.IsSet() {
 		return fmt.Errorf("required field id missing")
 	}
 	if all.Type == nil {
@@ -161,7 +163,7 @@ func (o *ConfluentResourceRequestData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	o.Id = *all.Id
+	o.Id = all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

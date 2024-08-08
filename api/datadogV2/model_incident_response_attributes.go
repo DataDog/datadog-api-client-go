@@ -13,12 +13,18 @@ import (
 
 // IncidentResponseAttributes The incident's attributes from a response.
 type IncidentResponseAttributes struct {
+	// The IncidentResponseAttributes additional_notifications.
+	AdditionalNotifications datadog.NullableString `json:"additional_notifications,omitempty"`
 	// Timestamp of when the incident was archived.
 	Archived datadog.NullableTime `json:"archived,omitempty"`
 	// The incident case id.
 	CaseId datadog.NullableInt64 `json:"case_id,omitempty"`
 	// Timestamp when the incident was created.
 	Created *time.Time `json:"created,omitempty"`
+	// The IncidentResponseAttributes created_by_uuid.
+	CreatedByUuid datadog.NullableString `json:"created_by_uuid,omitempty"`
+	// The IncidentResponseAttributes creation_idempotency_key.
+	CreationIdempotencyKey datadog.NullableString `json:"creation_idempotency_key,omitempty"`
 	// Length of the incident's customer impact in seconds.
 	// Equals the difference between `customer_impact_start` and `customer_impact_end`.
 	CustomerImpactDuration *int64 `json:"customer_impact_duration,omitempty"`
@@ -32,8 +38,14 @@ type IncidentResponseAttributes struct {
 	CustomerImpacted *bool `json:"customer_impacted,omitempty"`
 	// Timestamp when the incident was detected.
 	Detected datadog.NullableTime `json:"detected,omitempty"`
+	// The IncidentResponseAttributes duration.
+	Duration datadog.NullableInt32 `json:"duration,omitempty"`
 	// A condensed view of the user-defined fields attached to incidents.
 	Fields map[string]IncidentFieldAttributes `json:"fields,omitempty"`
+	// The IncidentResponseAttributes incident_type_uuid.
+	IncidentTypeUuid datadog.NullableString `json:"incident_type_uuid,omitempty"`
+	// The IncidentResponseAttributes last_modified_by_uuid.
+	LastModifiedByUuid datadog.NullableString `json:"last_modified_by_uuid,omitempty"`
 	// Timestamp when the incident was last modified.
 	Modified *time.Time `json:"modified,omitempty"`
 	// Incident's non Datadog creator.
@@ -82,6 +94,45 @@ func NewIncidentResponseAttributes(title string) *IncidentResponseAttributes {
 func NewIncidentResponseAttributesWithDefaults() *IncidentResponseAttributes {
 	this := IncidentResponseAttributes{}
 	return &this
+}
+
+// GetAdditionalNotifications returns the AdditionalNotifications field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IncidentResponseAttributes) GetAdditionalNotifications() string {
+	if o == nil || o.AdditionalNotifications.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.AdditionalNotifications.Get()
+}
+
+// GetAdditionalNotificationsOk returns a tuple with the AdditionalNotifications field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *IncidentResponseAttributes) GetAdditionalNotificationsOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AdditionalNotifications.Get(), o.AdditionalNotifications.IsSet()
+}
+
+// HasAdditionalNotifications returns a boolean if a field has been set.
+func (o *IncidentResponseAttributes) HasAdditionalNotifications() bool {
+	return o != nil && o.AdditionalNotifications.IsSet()
+}
+
+// SetAdditionalNotifications gets a reference to the given datadog.NullableString and assigns it to the AdditionalNotifications field.
+func (o *IncidentResponseAttributes) SetAdditionalNotifications(v string) {
+	o.AdditionalNotifications.Set(&v)
+}
+
+// SetAdditionalNotificationsNil sets the value for AdditionalNotifications to be an explicit nil.
+func (o *IncidentResponseAttributes) SetAdditionalNotificationsNil() {
+	o.AdditionalNotifications.Set(nil)
+}
+
+// UnsetAdditionalNotifications ensures that no value is present for AdditionalNotifications, not even an explicit nil.
+func (o *IncidentResponseAttributes) UnsetAdditionalNotifications() {
+	o.AdditionalNotifications.Unset()
 }
 
 // GetArchived returns the Archived field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -188,6 +239,84 @@ func (o *IncidentResponseAttributes) HasCreated() bool {
 // SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 func (o *IncidentResponseAttributes) SetCreated(v time.Time) {
 	o.Created = &v
+}
+
+// GetCreatedByUuid returns the CreatedByUuid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IncidentResponseAttributes) GetCreatedByUuid() string {
+	if o == nil || o.CreatedByUuid.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CreatedByUuid.Get()
+}
+
+// GetCreatedByUuidOk returns a tuple with the CreatedByUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *IncidentResponseAttributes) GetCreatedByUuidOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreatedByUuid.Get(), o.CreatedByUuid.IsSet()
+}
+
+// HasCreatedByUuid returns a boolean if a field has been set.
+func (o *IncidentResponseAttributes) HasCreatedByUuid() bool {
+	return o != nil && o.CreatedByUuid.IsSet()
+}
+
+// SetCreatedByUuid gets a reference to the given datadog.NullableString and assigns it to the CreatedByUuid field.
+func (o *IncidentResponseAttributes) SetCreatedByUuid(v string) {
+	o.CreatedByUuid.Set(&v)
+}
+
+// SetCreatedByUuidNil sets the value for CreatedByUuid to be an explicit nil.
+func (o *IncidentResponseAttributes) SetCreatedByUuidNil() {
+	o.CreatedByUuid.Set(nil)
+}
+
+// UnsetCreatedByUuid ensures that no value is present for CreatedByUuid, not even an explicit nil.
+func (o *IncidentResponseAttributes) UnsetCreatedByUuid() {
+	o.CreatedByUuid.Unset()
+}
+
+// GetCreationIdempotencyKey returns the CreationIdempotencyKey field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IncidentResponseAttributes) GetCreationIdempotencyKey() string {
+	if o == nil || o.CreationIdempotencyKey.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.CreationIdempotencyKey.Get()
+}
+
+// GetCreationIdempotencyKeyOk returns a tuple with the CreationIdempotencyKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *IncidentResponseAttributes) GetCreationIdempotencyKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreationIdempotencyKey.Get(), o.CreationIdempotencyKey.IsSet()
+}
+
+// HasCreationIdempotencyKey returns a boolean if a field has been set.
+func (o *IncidentResponseAttributes) HasCreationIdempotencyKey() bool {
+	return o != nil && o.CreationIdempotencyKey.IsSet()
+}
+
+// SetCreationIdempotencyKey gets a reference to the given datadog.NullableString and assigns it to the CreationIdempotencyKey field.
+func (o *IncidentResponseAttributes) SetCreationIdempotencyKey(v string) {
+	o.CreationIdempotencyKey.Set(&v)
+}
+
+// SetCreationIdempotencyKeyNil sets the value for CreationIdempotencyKey to be an explicit nil.
+func (o *IncidentResponseAttributes) SetCreationIdempotencyKeyNil() {
+	o.CreationIdempotencyKey.Set(nil)
+}
+
+// UnsetCreationIdempotencyKey ensures that no value is present for CreationIdempotencyKey, not even an explicit nil.
+func (o *IncidentResponseAttributes) UnsetCreationIdempotencyKey() {
+	o.CreationIdempotencyKey.Unset()
 }
 
 // GetCustomerImpactDuration returns the CustomerImpactDuration field value if set, zero value otherwise.
@@ -402,6 +531,45 @@ func (o *IncidentResponseAttributes) UnsetDetected() {
 	o.Detected.Unset()
 }
 
+// GetDuration returns the Duration field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IncidentResponseAttributes) GetDuration() int32 {
+	if o == nil || o.Duration.Get() == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Duration.Get()
+}
+
+// GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *IncidentResponseAttributes) GetDurationOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Duration.Get(), o.Duration.IsSet()
+}
+
+// HasDuration returns a boolean if a field has been set.
+func (o *IncidentResponseAttributes) HasDuration() bool {
+	return o != nil && o.Duration.IsSet()
+}
+
+// SetDuration gets a reference to the given datadog.NullableInt32 and assigns it to the Duration field.
+func (o *IncidentResponseAttributes) SetDuration(v int32) {
+	o.Duration.Set(&v)
+}
+
+// SetDurationNil sets the value for Duration to be an explicit nil.
+func (o *IncidentResponseAttributes) SetDurationNil() {
+	o.Duration.Set(nil)
+}
+
+// UnsetDuration ensures that no value is present for Duration, not even an explicit nil.
+func (o *IncidentResponseAttributes) UnsetDuration() {
+	o.Duration.Unset()
+}
+
 // GetFields returns the Fields field value if set, zero value otherwise.
 func (o *IncidentResponseAttributes) GetFields() map[string]IncidentFieldAttributes {
 	if o == nil || o.Fields == nil {
@@ -428,6 +596,84 @@ func (o *IncidentResponseAttributes) HasFields() bool {
 // SetFields gets a reference to the given map[string]IncidentFieldAttributes and assigns it to the Fields field.
 func (o *IncidentResponseAttributes) SetFields(v map[string]IncidentFieldAttributes) {
 	o.Fields = v
+}
+
+// GetIncidentTypeUuid returns the IncidentTypeUuid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IncidentResponseAttributes) GetIncidentTypeUuid() string {
+	if o == nil || o.IncidentTypeUuid.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.IncidentTypeUuid.Get()
+}
+
+// GetIncidentTypeUuidOk returns a tuple with the IncidentTypeUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *IncidentResponseAttributes) GetIncidentTypeUuidOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IncidentTypeUuid.Get(), o.IncidentTypeUuid.IsSet()
+}
+
+// HasIncidentTypeUuid returns a boolean if a field has been set.
+func (o *IncidentResponseAttributes) HasIncidentTypeUuid() bool {
+	return o != nil && o.IncidentTypeUuid.IsSet()
+}
+
+// SetIncidentTypeUuid gets a reference to the given datadog.NullableString and assigns it to the IncidentTypeUuid field.
+func (o *IncidentResponseAttributes) SetIncidentTypeUuid(v string) {
+	o.IncidentTypeUuid.Set(&v)
+}
+
+// SetIncidentTypeUuidNil sets the value for IncidentTypeUuid to be an explicit nil.
+func (o *IncidentResponseAttributes) SetIncidentTypeUuidNil() {
+	o.IncidentTypeUuid.Set(nil)
+}
+
+// UnsetIncidentTypeUuid ensures that no value is present for IncidentTypeUuid, not even an explicit nil.
+func (o *IncidentResponseAttributes) UnsetIncidentTypeUuid() {
+	o.IncidentTypeUuid.Unset()
+}
+
+// GetLastModifiedByUuid returns the LastModifiedByUuid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IncidentResponseAttributes) GetLastModifiedByUuid() string {
+	if o == nil || o.LastModifiedByUuid.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LastModifiedByUuid.Get()
+}
+
+// GetLastModifiedByUuidOk returns a tuple with the LastModifiedByUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *IncidentResponseAttributes) GetLastModifiedByUuidOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LastModifiedByUuid.Get(), o.LastModifiedByUuid.IsSet()
+}
+
+// HasLastModifiedByUuid returns a boolean if a field has been set.
+func (o *IncidentResponseAttributes) HasLastModifiedByUuid() bool {
+	return o != nil && o.LastModifiedByUuid.IsSet()
+}
+
+// SetLastModifiedByUuid gets a reference to the given datadog.NullableString and assigns it to the LastModifiedByUuid field.
+func (o *IncidentResponseAttributes) SetLastModifiedByUuid(v string) {
+	o.LastModifiedByUuid.Set(&v)
+}
+
+// SetLastModifiedByUuidNil sets the value for LastModifiedByUuid to be an explicit nil.
+func (o *IncidentResponseAttributes) SetLastModifiedByUuidNil() {
+	o.LastModifiedByUuid.Set(nil)
+}
+
+// UnsetLastModifiedByUuid ensures that no value is present for LastModifiedByUuid, not even an explicit nil.
+func (o *IncidentResponseAttributes) UnsetLastModifiedByUuid() {
+	o.LastModifiedByUuid.Unset()
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
@@ -840,6 +1086,9 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.AdditionalNotifications.IsSet() {
+		toSerialize["additional_notifications"] = o.AdditionalNotifications.Get()
+	}
 	if o.Archived.IsSet() {
 		toSerialize["archived"] = o.Archived.Get()
 	}
@@ -852,6 +1101,12 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 		} else {
 			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05.000Z07:00")
 		}
+	}
+	if o.CreatedByUuid.IsSet() {
+		toSerialize["created_by_uuid"] = o.CreatedByUuid.Get()
+	}
+	if o.CreationIdempotencyKey.IsSet() {
+		toSerialize["creation_idempotency_key"] = o.CreationIdempotencyKey.Get()
 	}
 	if o.CustomerImpactDuration != nil {
 		toSerialize["customer_impact_duration"] = o.CustomerImpactDuration
@@ -871,8 +1126,17 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.Detected.IsSet() {
 		toSerialize["detected"] = o.Detected.Get()
 	}
+	if o.Duration.IsSet() {
+		toSerialize["duration"] = o.Duration.Get()
+	}
 	if o.Fields != nil {
 		toSerialize["fields"] = o.Fields
+	}
+	if o.IncidentTypeUuid.IsSet() {
+		toSerialize["incident_type_uuid"] = o.IncidentTypeUuid.Get()
+	}
+	if o.LastModifiedByUuid.IsSet() {
+		toSerialize["last_modified_by_uuid"] = o.LastModifiedByUuid.Get()
 	}
 	if o.Modified != nil {
 		if o.Modified.Nanosecond() == 0 {
@@ -925,29 +1189,35 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Archived               datadog.NullableTime               `json:"archived,omitempty"`
-		CaseId                 datadog.NullableInt64              `json:"case_id,omitempty"`
-		Created                *time.Time                         `json:"created,omitempty"`
-		CustomerImpactDuration *int64                             `json:"customer_impact_duration,omitempty"`
-		CustomerImpactEnd      datadog.NullableTime               `json:"customer_impact_end,omitempty"`
-		CustomerImpactScope    datadog.NullableString             `json:"customer_impact_scope,omitempty"`
-		CustomerImpactStart    datadog.NullableTime               `json:"customer_impact_start,omitempty"`
-		CustomerImpacted       *bool                              `json:"customer_impacted,omitempty"`
-		Detected               datadog.NullableTime               `json:"detected,omitempty"`
-		Fields                 map[string]IncidentFieldAttributes `json:"fields,omitempty"`
-		Modified               *time.Time                         `json:"modified,omitempty"`
-		NonDatadogCreator      NullableIncidentNonDatadogCreator  `json:"non_datadog_creator,omitempty"`
-		NotificationHandles    []IncidentNotificationHandle       `json:"notification_handles,omitempty"`
-		PublicId               *int64                             `json:"public_id,omitempty"`
-		Resolved               datadog.NullableTime               `json:"resolved,omitempty"`
-		Severity               *IncidentSeverity                  `json:"severity,omitempty"`
-		State                  datadog.NullableString             `json:"state,omitempty"`
-		TimeToDetect           *int64                             `json:"time_to_detect,omitempty"`
-		TimeToInternalResponse *int64                             `json:"time_to_internal_response,omitempty"`
-		TimeToRepair           *int64                             `json:"time_to_repair,omitempty"`
-		TimeToResolve          *int64                             `json:"time_to_resolve,omitempty"`
-		Title                  *string                            `json:"title"`
-		Visibility             datadog.NullableString             `json:"visibility,omitempty"`
+		AdditionalNotifications datadog.NullableString             `json:"additional_notifications,omitempty"`
+		Archived                datadog.NullableTime               `json:"archived,omitempty"`
+		CaseId                  datadog.NullableInt64              `json:"case_id,omitempty"`
+		Created                 *time.Time                         `json:"created,omitempty"`
+		CreatedByUuid           datadog.NullableString             `json:"created_by_uuid,omitempty"`
+		CreationIdempotencyKey  datadog.NullableString             `json:"creation_idempotency_key,omitempty"`
+		CustomerImpactDuration  *int64                             `json:"customer_impact_duration,omitempty"`
+		CustomerImpactEnd       datadog.NullableTime               `json:"customer_impact_end,omitempty"`
+		CustomerImpactScope     datadog.NullableString             `json:"customer_impact_scope,omitempty"`
+		CustomerImpactStart     datadog.NullableTime               `json:"customer_impact_start,omitempty"`
+		CustomerImpacted        *bool                              `json:"customer_impacted,omitempty"`
+		Detected                datadog.NullableTime               `json:"detected,omitempty"`
+		Duration                datadog.NullableInt32              `json:"duration,omitempty"`
+		Fields                  map[string]IncidentFieldAttributes `json:"fields,omitempty"`
+		IncidentTypeUuid        datadog.NullableString             `json:"incident_type_uuid,omitempty"`
+		LastModifiedByUuid      datadog.NullableString             `json:"last_modified_by_uuid,omitempty"`
+		Modified                *time.Time                         `json:"modified,omitempty"`
+		NonDatadogCreator       NullableIncidentNonDatadogCreator  `json:"non_datadog_creator,omitempty"`
+		NotificationHandles     []IncidentNotificationHandle       `json:"notification_handles,omitempty"`
+		PublicId                *int64                             `json:"public_id,omitempty"`
+		Resolved                datadog.NullableTime               `json:"resolved,omitempty"`
+		Severity                *IncidentSeverity                  `json:"severity,omitempty"`
+		State                   datadog.NullableString             `json:"state,omitempty"`
+		TimeToDetect            *int64                             `json:"time_to_detect,omitempty"`
+		TimeToInternalResponse  *int64                             `json:"time_to_internal_response,omitempty"`
+		TimeToRepair            *int64                             `json:"time_to_repair,omitempty"`
+		TimeToResolve           *int64                             `json:"time_to_resolve,omitempty"`
+		Title                   *string                            `json:"title"`
+		Visibility              datadog.NullableString             `json:"visibility,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -957,22 +1227,28 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archived", "case_id", "created", "customer_impact_duration", "customer_impact_end", "customer_impact_scope", "customer_impact_start", "customer_impacted", "detected", "fields", "modified", "non_datadog_creator", "notification_handles", "public_id", "resolved", "severity", "state", "time_to_detect", "time_to_internal_response", "time_to_repair", "time_to_resolve", "title", "visibility"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"additional_notifications", "archived", "case_id", "created", "created_by_uuid", "creation_idempotency_key", "customer_impact_duration", "customer_impact_end", "customer_impact_scope", "customer_impact_start", "customer_impacted", "detected", "duration", "fields", "incident_type_uuid", "last_modified_by_uuid", "modified", "non_datadog_creator", "notification_handles", "public_id", "resolved", "severity", "state", "time_to_detect", "time_to_internal_response", "time_to_repair", "time_to_resolve", "title", "visibility"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.AdditionalNotifications = all.AdditionalNotifications
 	o.Archived = all.Archived
 	o.CaseId = all.CaseId
 	o.Created = all.Created
+	o.CreatedByUuid = all.CreatedByUuid
+	o.CreationIdempotencyKey = all.CreationIdempotencyKey
 	o.CustomerImpactDuration = all.CustomerImpactDuration
 	o.CustomerImpactEnd = all.CustomerImpactEnd
 	o.CustomerImpactScope = all.CustomerImpactScope
 	o.CustomerImpactStart = all.CustomerImpactStart
 	o.CustomerImpacted = all.CustomerImpacted
 	o.Detected = all.Detected
+	o.Duration = all.Duration
 	o.Fields = all.Fields
+	o.IncidentTypeUuid = all.IncidentTypeUuid
+	o.LastModifiedByUuid = all.LastModifiedByUuid
 	o.Modified = all.Modified
 	o.NonDatadogCreator = all.NonDatadogCreator
 	o.NotificationHandles = all.NotificationHandles

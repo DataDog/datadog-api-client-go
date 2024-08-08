@@ -23,6 +23,8 @@ type TeamAttributes struct {
 	Description datadog.NullableString `json:"description,omitempty"`
 	// The team's identifier
 	Handle string `json:"handle"`
+	// The TeamAttributes handles.
+	Handles *string `json:"handles,omitempty"`
 	// Collection of hidden modules for the team
 	HiddenModules []string `json:"hidden_modules,omitempty"`
 	// The number of links belonging to the team
@@ -227,6 +229,34 @@ func (o *TeamAttributes) GetHandleOk() (*string, bool) {
 // SetHandle sets field value.
 func (o *TeamAttributes) SetHandle(v string) {
 	o.Handle = v
+}
+
+// GetHandles returns the Handles field value if set, zero value otherwise.
+func (o *TeamAttributes) GetHandles() string {
+	if o == nil || o.Handles == nil {
+		var ret string
+		return ret
+	}
+	return *o.Handles
+}
+
+// GetHandlesOk returns a tuple with the Handles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TeamAttributes) GetHandlesOk() (*string, bool) {
+	if o == nil || o.Handles == nil {
+		return nil, false
+	}
+	return o.Handles, true
+}
+
+// HasHandles returns a boolean if a field has been set.
+func (o *TeamAttributes) HasHandles() bool {
+	return o != nil && o.Handles != nil
+}
+
+// SetHandles gets a reference to the given string and assigns it to the Handles field.
+func (o *TeamAttributes) SetHandles(v string) {
+	o.Handles = &v
 }
 
 // GetHiddenModules returns the HiddenModules field value if set, zero value otherwise.
@@ -454,6 +484,9 @@ func (o TeamAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["description"] = o.Description.Get()
 	}
 	toSerialize["handle"] = o.Handle
+	if o.Handles != nil {
+		toSerialize["handles"] = o.Handles
+	}
 	if o.HiddenModules != nil {
 		toSerialize["hidden_modules"] = o.HiddenModules
 	}
@@ -492,6 +525,7 @@ func (o *TeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		CreatedAt      *time.Time             `json:"created_at,omitempty"`
 		Description    datadog.NullableString `json:"description,omitempty"`
 		Handle         *string                `json:"handle"`
+		Handles        *string                `json:"handles,omitempty"`
 		HiddenModules  []string               `json:"hidden_modules,omitempty"`
 		LinkCount      *int32                 `json:"link_count,omitempty"`
 		ModifiedAt     *time.Time             `json:"modified_at,omitempty"`
@@ -511,7 +545,7 @@ func (o *TeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"avatar", "banner", "created_at", "description", "handle", "hidden_modules", "link_count", "modified_at", "name", "summary", "user_count", "visible_modules"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"avatar", "banner", "created_at", "description", "handle", "handles", "hidden_modules", "link_count", "modified_at", "name", "summary", "user_count", "visible_modules"})
 	} else {
 		return err
 	}
@@ -520,6 +554,7 @@ func (o *TeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.CreatedAt = all.CreatedAt
 	o.Description = all.Description
 	o.Handle = *all.Handle
+	o.Handles = all.Handles
 	o.HiddenModules = all.HiddenModules
 	o.LinkCount = all.LinkCount
 	o.ModifiedAt = all.ModifiedAt

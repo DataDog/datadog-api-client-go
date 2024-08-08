@@ -5,15 +5,15 @@
 package datadogV2
 
 import (
+	"time"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // FullApplicationKeyAttributes Attributes of a full application key.
 type FullApplicationKeyAttributes struct {
 	// Creation date of the application key.
-	CreatedAt *string `json:"created_at,omitempty"`
-	// The application key.
-	Key *string `json:"key,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The last four characters of the application key.
 	Last4 *string `json:"last4,omitempty"`
 	// Name of the application key.
@@ -43,9 +43,9 @@ func NewFullApplicationKeyAttributesWithDefaults() *FullApplicationKeyAttributes
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *FullApplicationKeyAttributes) GetCreatedAt() string {
+func (o *FullApplicationKeyAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.CreatedAt
@@ -53,7 +53,7 @@ func (o *FullApplicationKeyAttributes) GetCreatedAt() string {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FullApplicationKeyAttributes) GetCreatedAtOk() (*string, bool) {
+func (o *FullApplicationKeyAttributes) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
@@ -65,37 +65,9 @@ func (o *FullApplicationKeyAttributes) HasCreatedAt() bool {
 	return o != nil && o.CreatedAt != nil
 }
 
-// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
-func (o *FullApplicationKeyAttributes) SetCreatedAt(v string) {
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *FullApplicationKeyAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
-}
-
-// GetKey returns the Key field value if set, zero value otherwise.
-func (o *FullApplicationKeyAttributes) GetKey() string {
-	if o == nil || o.Key == nil {
-		var ret string
-		return ret
-	}
-	return *o.Key
-}
-
-// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FullApplicationKeyAttributes) GetKeyOk() (*string, bool) {
-	if o == nil || o.Key == nil {
-		return nil, false
-	}
-	return o.Key, true
-}
-
-// HasKey returns a boolean if a field has been set.
-func (o *FullApplicationKeyAttributes) HasKey() bool {
-	return o != nil && o.Key != nil
-}
-
-// SetKey gets a reference to the given string and assigns it to the Key field.
-func (o *FullApplicationKeyAttributes) SetKey(v string) {
-	o.Key = &v
 }
 
 // GetLast4 returns the Last4 field value if set, zero value otherwise.
@@ -200,10 +172,11 @@ func (o FullApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.Key != nil {
-		toSerialize["key"] = o.Key
+		if o.CreatedAt.Nanosecond() == 0 {
+			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Last4 != nil {
 		toSerialize["last4"] = o.Last4
@@ -224,8 +197,7 @@ func (o FullApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FullApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt *string                      `json:"created_at,omitempty"`
-		Key       *string                      `json:"key,omitempty"`
+		CreatedAt *time.Time                   `json:"created_at,omitempty"`
 		Last4     *string                      `json:"last4,omitempty"`
 		Name      *string                      `json:"name,omitempty"`
 		Scopes    datadog.NullableList[string] `json:"scopes,omitempty"`
@@ -235,12 +207,11 @@ func (o *FullApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "key", "last4", "name", "scopes"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "last4", "name", "scopes"})
 	} else {
 		return err
 	}
 	o.CreatedAt = all.CreatedAt
-	o.Key = all.Key
 	o.Last4 = all.Last4
 	o.Name = all.Name
 	o.Scopes = all.Scopes

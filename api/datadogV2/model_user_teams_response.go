@@ -14,10 +14,6 @@ type UserTeamsResponse struct {
 	Data []UserTeam `json:"data,omitempty"`
 	// Resources related to the team memberships
 	Included []UserTeamIncluded `json:"included,omitempty"`
-	// Teams response links.
-	Links *TeamsResponseLinks `json:"links,omitempty"`
-	// Teams response metadata.
-	Meta *TeamsResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -96,62 +92,6 @@ func (o *UserTeamsResponse) SetIncluded(v []UserTeamIncluded) {
 	o.Included = v
 }
 
-// GetLinks returns the Links field value if set, zero value otherwise.
-func (o *UserTeamsResponse) GetLinks() TeamsResponseLinks {
-	if o == nil || o.Links == nil {
-		var ret TeamsResponseLinks
-		return ret
-	}
-	return *o.Links
-}
-
-// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserTeamsResponse) GetLinksOk() (*TeamsResponseLinks, bool) {
-	if o == nil || o.Links == nil {
-		return nil, false
-	}
-	return o.Links, true
-}
-
-// HasLinks returns a boolean if a field has been set.
-func (o *UserTeamsResponse) HasLinks() bool {
-	return o != nil && o.Links != nil
-}
-
-// SetLinks gets a reference to the given TeamsResponseLinks and assigns it to the Links field.
-func (o *UserTeamsResponse) SetLinks(v TeamsResponseLinks) {
-	o.Links = &v
-}
-
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *UserTeamsResponse) GetMeta() TeamsResponseMeta {
-	if o == nil || o.Meta == nil {
-		var ret TeamsResponseMeta
-		return ret
-	}
-	return *o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserTeamsResponse) GetMetaOk() (*TeamsResponseMeta, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *UserTeamsResponse) HasMeta() bool {
-	return o != nil && o.Meta != nil
-}
-
-// SetMeta gets a reference to the given TeamsResponseMeta and assigns it to the Meta field.
-func (o *UserTeamsResponse) SetMeta(v TeamsResponseMeta) {
-	o.Meta = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o UserTeamsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -164,12 +104,6 @@ func (o UserTeamsResponse) MarshalJSON() ([]byte, error) {
 	if o.Included != nil {
 		toSerialize["included"] = o.Included
 	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -180,39 +114,23 @@ func (o UserTeamsResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UserTeamsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     []UserTeam          `json:"data,omitempty"`
-		Included []UserTeamIncluded  `json:"included,omitempty"`
-		Links    *TeamsResponseLinks `json:"links,omitempty"`
-		Meta     *TeamsResponseMeta  `json:"meta,omitempty"`
+		Data     []UserTeam         `json:"data,omitempty"`
+		Included []UserTeamIncluded `json:"included,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "links", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
 	o.Data = all.Data
 	o.Included = all.Included
-	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.Links = all.Links
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

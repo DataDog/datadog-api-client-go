@@ -14,6 +14,8 @@ type OpsgenieServiceResponseAttributes struct {
 	CustomUrl datadog.NullableString `json:"custom_url,omitempty"`
 	// The name for the Opsgenie service.
 	Name *string `json:"name,omitempty"`
+	// The OpsgenieServiceResponseAttributes opsgenie_api_key.
+	OpsgenieApiKey *string `json:"opsgenie_api_key,omitempty"`
 	// The region for the Opsgenie service.
 	Region *OpsgenieServiceRegionType `json:"region,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -105,6 +107,34 @@ func (o *OpsgenieServiceResponseAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+// GetOpsgenieApiKey returns the OpsgenieApiKey field value if set, zero value otherwise.
+func (o *OpsgenieServiceResponseAttributes) GetOpsgenieApiKey() string {
+	if o == nil || o.OpsgenieApiKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.OpsgenieApiKey
+}
+
+// GetOpsgenieApiKeyOk returns a tuple with the OpsgenieApiKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OpsgenieServiceResponseAttributes) GetOpsgenieApiKeyOk() (*string, bool) {
+	if o == nil || o.OpsgenieApiKey == nil {
+		return nil, false
+	}
+	return o.OpsgenieApiKey, true
+}
+
+// HasOpsgenieApiKey returns a boolean if a field has been set.
+func (o *OpsgenieServiceResponseAttributes) HasOpsgenieApiKey() bool {
+	return o != nil && o.OpsgenieApiKey != nil
+}
+
+// SetOpsgenieApiKey gets a reference to the given string and assigns it to the OpsgenieApiKey field.
+func (o *OpsgenieServiceResponseAttributes) SetOpsgenieApiKey(v string) {
+	o.OpsgenieApiKey = &v
+}
+
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *OpsgenieServiceResponseAttributes) GetRegion() OpsgenieServiceRegionType {
 	if o == nil || o.Region == nil {
@@ -145,6 +175,9 @@ func (o OpsgenieServiceResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
+	if o.OpsgenieApiKey != nil {
+		toSerialize["opsgenie_api_key"] = o.OpsgenieApiKey
+	}
 	if o.Region != nil {
 		toSerialize["region"] = o.Region
 	}
@@ -158,16 +191,17 @@ func (o OpsgenieServiceResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OpsgenieServiceResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomUrl datadog.NullableString     `json:"custom_url,omitempty"`
-		Name      *string                    `json:"name,omitempty"`
-		Region    *OpsgenieServiceRegionType `json:"region,omitempty"`
+		CustomUrl      datadog.NullableString     `json:"custom_url,omitempty"`
+		Name           *string                    `json:"name,omitempty"`
+		OpsgenieApiKey *string                    `json:"opsgenie_api_key,omitempty"`
+		Region         *OpsgenieServiceRegionType `json:"region,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_url", "name", "region"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_url", "name", "opsgenie_api_key", "region"})
 	} else {
 		return err
 	}
@@ -175,6 +209,7 @@ func (o *OpsgenieServiceResponseAttributes) UnmarshalJSON(bytes []byte) (err err
 	hasInvalidField := false
 	o.CustomUrl = all.CustomUrl
 	o.Name = all.Name
+	o.OpsgenieApiKey = all.OpsgenieApiKey
 	if all.Region != nil && !all.Region.IsValid() {
 		hasInvalidField = true
 	} else {

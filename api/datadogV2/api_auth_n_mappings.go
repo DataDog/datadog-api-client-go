@@ -8,6 +8,7 @@ import (
 	_context "context"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"reflect"
 	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -228,6 +229,7 @@ type ListAuthNMappingsOptionalParameters struct {
 	Sort         *AuthNMappingsSort
 	Filter       *string
 	ResourceType *AuthNMappingResourceType
+	Include      *[]string
 }
 
 // NewListAuthNMappingsOptionalParameters creates an empty struct for parameters.
@@ -263,6 +265,12 @@ func (r *ListAuthNMappingsOptionalParameters) WithFilter(filter string) *ListAut
 // WithResourceType sets the corresponding parameter name and returns the struct.
 func (r *ListAuthNMappingsOptionalParameters) WithResourceType(resourceType AuthNMappingResourceType) *ListAuthNMappingsOptionalParameters {
 	r.ResourceType = &resourceType
+	return r
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *ListAuthNMappingsOptionalParameters) WithInclude(include []string) *ListAuthNMappingsOptionalParameters {
+	r.Include = &include
 	return r
 }
 
@@ -307,6 +315,17 @@ func (a *AuthNMappingsApi) ListAuthNMappings(ctx _context.Context, o ...ListAuth
 	}
 	if optionalParams.ResourceType != nil {
 		localVarQueryParams.Add("resource_type", datadog.ParameterToString(*optionalParams.ResourceType, ""))
+	}
+	if optionalParams.Include != nil {
+		t := *optionalParams.Include
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("include", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("include", datadog.ParameterToString(t, "multi"))
+		}
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 

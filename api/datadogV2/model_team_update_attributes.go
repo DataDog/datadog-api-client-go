@@ -16,16 +16,20 @@ type TeamUpdateAttributes struct {
 	Avatar datadog.NullableString `json:"avatar,omitempty"`
 	// Banner selection for the team
 	Banner datadog.NullableInt64 `json:"banner,omitempty"`
-	// An identifier for the color representing the team
-	Color *int32 `json:"color,omitempty"`
 	// Free-form markdown description/content for the team's homepage
 	Description *string `json:"description,omitempty"`
 	// The team's identifier
 	Handle string `json:"handle"`
+	// The TeamUpdateAttributes handles.
+	Handles *string `json:"handles,omitempty"`
 	// Collection of hidden modules for the team
 	HiddenModules []string `json:"hidden_modules,omitempty"`
+	// The number of links belonging to the team
+	LinkCount *int32 `json:"link_count,omitempty"`
 	// The name of the team
 	Name string `json:"name"`
+	// A brief summary of the team
+	Summary *string `json:"summary,omitempty"`
 	// Collection of visible modules for the team
 	VisibleModules []string `json:"visible_modules,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -130,34 +134,6 @@ func (o *TeamUpdateAttributes) UnsetBanner() {
 	o.Banner.Unset()
 }
 
-// GetColor returns the Color field value if set, zero value otherwise.
-func (o *TeamUpdateAttributes) GetColor() int32 {
-	if o == nil || o.Color == nil {
-		var ret int32
-		return ret
-	}
-	return *o.Color
-}
-
-// GetColorOk returns a tuple with the Color field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TeamUpdateAttributes) GetColorOk() (*int32, bool) {
-	if o == nil || o.Color == nil {
-		return nil, false
-	}
-	return o.Color, true
-}
-
-// HasColor returns a boolean if a field has been set.
-func (o *TeamUpdateAttributes) HasColor() bool {
-	return o != nil && o.Color != nil
-}
-
-// SetColor gets a reference to the given int32 and assigns it to the Color field.
-func (o *TeamUpdateAttributes) SetColor(v int32) {
-	o.Color = &v
-}
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *TeamUpdateAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -209,6 +185,34 @@ func (o *TeamUpdateAttributes) SetHandle(v string) {
 	o.Handle = v
 }
 
+// GetHandles returns the Handles field value if set, zero value otherwise.
+func (o *TeamUpdateAttributes) GetHandles() string {
+	if o == nil || o.Handles == nil {
+		var ret string
+		return ret
+	}
+	return *o.Handles
+}
+
+// GetHandlesOk returns a tuple with the Handles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TeamUpdateAttributes) GetHandlesOk() (*string, bool) {
+	if o == nil || o.Handles == nil {
+		return nil, false
+	}
+	return o.Handles, true
+}
+
+// HasHandles returns a boolean if a field has been set.
+func (o *TeamUpdateAttributes) HasHandles() bool {
+	return o != nil && o.Handles != nil
+}
+
+// SetHandles gets a reference to the given string and assigns it to the Handles field.
+func (o *TeamUpdateAttributes) SetHandles(v string) {
+	o.Handles = &v
+}
+
 // GetHiddenModules returns the HiddenModules field value if set, zero value otherwise.
 func (o *TeamUpdateAttributes) GetHiddenModules() []string {
 	if o == nil || o.HiddenModules == nil {
@@ -237,6 +241,34 @@ func (o *TeamUpdateAttributes) SetHiddenModules(v []string) {
 	o.HiddenModules = v
 }
 
+// GetLinkCount returns the LinkCount field value if set, zero value otherwise.
+func (o *TeamUpdateAttributes) GetLinkCount() int32 {
+	if o == nil || o.LinkCount == nil {
+		var ret int32
+		return ret
+	}
+	return *o.LinkCount
+}
+
+// GetLinkCountOk returns a tuple with the LinkCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TeamUpdateAttributes) GetLinkCountOk() (*int32, bool) {
+	if o == nil || o.LinkCount == nil {
+		return nil, false
+	}
+	return o.LinkCount, true
+}
+
+// HasLinkCount returns a boolean if a field has been set.
+func (o *TeamUpdateAttributes) HasLinkCount() bool {
+	return o != nil && o.LinkCount != nil
+}
+
+// SetLinkCount gets a reference to the given int32 and assigns it to the LinkCount field.
+func (o *TeamUpdateAttributes) SetLinkCount(v int32) {
+	o.LinkCount = &v
+}
+
 // GetName returns the Name field value.
 func (o *TeamUpdateAttributes) GetName() string {
 	if o == nil {
@@ -258,6 +290,34 @@ func (o *TeamUpdateAttributes) GetNameOk() (*string, bool) {
 // SetName sets field value.
 func (o *TeamUpdateAttributes) SetName(v string) {
 	o.Name = v
+}
+
+// GetSummary returns the Summary field value if set, zero value otherwise.
+func (o *TeamUpdateAttributes) GetSummary() string {
+	if o == nil || o.Summary == nil {
+		var ret string
+		return ret
+	}
+	return *o.Summary
+}
+
+// GetSummaryOk returns a tuple with the Summary field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TeamUpdateAttributes) GetSummaryOk() (*string, bool) {
+	if o == nil || o.Summary == nil {
+		return nil, false
+	}
+	return o.Summary, true
+}
+
+// HasSummary returns a boolean if a field has been set.
+func (o *TeamUpdateAttributes) HasSummary() bool {
+	return o != nil && o.Summary != nil
+}
+
+// SetSummary gets a reference to the given string and assigns it to the Summary field.
+func (o *TeamUpdateAttributes) SetSummary(v string) {
+	o.Summary = &v
 }
 
 // GetVisibleModules returns the VisibleModules field value if set, zero value otherwise.
@@ -300,17 +360,23 @@ func (o TeamUpdateAttributes) MarshalJSON() ([]byte, error) {
 	if o.Banner.IsSet() {
 		toSerialize["banner"] = o.Banner.Get()
 	}
-	if o.Color != nil {
-		toSerialize["color"] = o.Color
-	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
 	toSerialize["handle"] = o.Handle
+	if o.Handles != nil {
+		toSerialize["handles"] = o.Handles
+	}
 	if o.HiddenModules != nil {
 		toSerialize["hidden_modules"] = o.HiddenModules
 	}
+	if o.LinkCount != nil {
+		toSerialize["link_count"] = o.LinkCount
+	}
 	toSerialize["name"] = o.Name
+	if o.Summary != nil {
+		toSerialize["summary"] = o.Summary
+	}
 	if o.VisibleModules != nil {
 		toSerialize["visible_modules"] = o.VisibleModules
 	}
@@ -326,11 +392,13 @@ func (o *TeamUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Avatar         datadog.NullableString `json:"avatar,omitempty"`
 		Banner         datadog.NullableInt64  `json:"banner,omitempty"`
-		Color          *int32                 `json:"color,omitempty"`
 		Description    *string                `json:"description,omitempty"`
 		Handle         *string                `json:"handle"`
+		Handles        *string                `json:"handles,omitempty"`
 		HiddenModules  []string               `json:"hidden_modules,omitempty"`
+		LinkCount      *int32                 `json:"link_count,omitempty"`
 		Name           *string                `json:"name"`
+		Summary        *string                `json:"summary,omitempty"`
 		VisibleModules []string               `json:"visible_modules,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -344,17 +412,19 @@ func (o *TeamUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"avatar", "banner", "color", "description", "handle", "hidden_modules", "name", "visible_modules"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"avatar", "banner", "description", "handle", "handles", "hidden_modules", "link_count", "name", "summary", "visible_modules"})
 	} else {
 		return err
 	}
 	o.Avatar = all.Avatar
 	o.Banner = all.Banner
-	o.Color = all.Color
 	o.Description = all.Description
 	o.Handle = *all.Handle
+	o.Handles = all.Handles
 	o.HiddenModules = all.HiddenModules
+	o.LinkCount = all.LinkCount
 	o.Name = *all.Name
+	o.Summary = all.Summary
 	o.VisibleModules = all.VisibleModules
 
 	if len(additionalProperties) > 0 {

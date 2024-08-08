@@ -16,6 +16,8 @@ type ConfluentAccountUpdateRequestAttributes struct {
 	ApiKey string `json:"api_key"`
 	// The API secret associated with your Confluent account.
 	ApiSecret string `json:"api_secret"`
+	// The ConfluentAccountUpdateRequestAttributes resources.
+	Resources *string `json:"resources,omitempty"`
 	// A list of strings representing tags. Can be a single key, or key-value pairs separated by a colon.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -88,6 +90,34 @@ func (o *ConfluentAccountUpdateRequestAttributes) SetApiSecret(v string) {
 	o.ApiSecret = v
 }
 
+// GetResources returns the Resources field value if set, zero value otherwise.
+func (o *ConfluentAccountUpdateRequestAttributes) GetResources() string {
+	if o == nil || o.Resources == nil {
+		var ret string
+		return ret
+	}
+	return *o.Resources
+}
+
+// GetResourcesOk returns a tuple with the Resources field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConfluentAccountUpdateRequestAttributes) GetResourcesOk() (*string, bool) {
+	if o == nil || o.Resources == nil {
+		return nil, false
+	}
+	return o.Resources, true
+}
+
+// HasResources returns a boolean if a field has been set.
+func (o *ConfluentAccountUpdateRequestAttributes) HasResources() bool {
+	return o != nil && o.Resources != nil
+}
+
+// SetResources gets a reference to the given string and assigns it to the Resources field.
+func (o *ConfluentAccountUpdateRequestAttributes) SetResources(v string) {
+	o.Resources = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ConfluentAccountUpdateRequestAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -124,6 +154,9 @@ func (o ConfluentAccountUpdateRequestAttributes) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["api_key"] = o.ApiKey
 	toSerialize["api_secret"] = o.ApiSecret
+	if o.Resources != nil {
+		toSerialize["resources"] = o.Resources
+	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
@@ -139,6 +172,7 @@ func (o *ConfluentAccountUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (e
 	all := struct {
 		ApiKey    *string  `json:"api_key"`
 		ApiSecret *string  `json:"api_secret"`
+		Resources *string  `json:"resources,omitempty"`
 		Tags      []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -152,12 +186,13 @@ func (o *ConfluentAccountUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "api_secret", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "api_secret", "resources", "tags"})
 	} else {
 		return err
 	}
 	o.ApiKey = *all.ApiKey
 	o.ApiSecret = *all.ApiSecret
+	o.Resources = all.Resources
 	o.Tags = all.Tags
 
 	if len(additionalProperties) > 0 {

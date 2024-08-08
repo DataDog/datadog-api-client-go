@@ -23,7 +23,7 @@ func main() {
 					"myTag2:myValue",
 				},
 			},
-			Id:   "resource-id-123",
+			Id:   *datadog.NewNullableString(datadog.PtrString("resource-id-123")),
 			Type: datadogV2.CONFLUENTRESOURCETYPE_CONFLUENT_CLOUD_RESOURCES,
 		},
 	}
