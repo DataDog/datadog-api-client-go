@@ -8,7 +8,9 @@ import (
 	_context "context"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"reflect"
 	"strings"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -303,8 +305,9 @@ type ListServiceAccountApplicationKeysOptionalParameters struct {
 	PageNumber           *int64
 	Sort                 *ApplicationKeysSort
 	Filter               *string
-	FilterCreatedAtStart *string
-	FilterCreatedAtEnd   *string
+	FilterCreatedAtStart *time.Time
+	FilterCreatedAtEnd   *time.Time
+	Include              *[]ListServiceAccountApplicationKeysInclude
 }
 
 // NewListServiceAccountApplicationKeysOptionalParameters creates an empty struct for parameters.
@@ -338,14 +341,20 @@ func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilter(filter 
 }
 
 // WithFilterCreatedAtStart sets the corresponding parameter name and returns the struct.
-func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilterCreatedAtStart(filterCreatedAtStart string) *ListServiceAccountApplicationKeysOptionalParameters {
+func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilterCreatedAtStart(filterCreatedAtStart time.Time) *ListServiceAccountApplicationKeysOptionalParameters {
 	r.FilterCreatedAtStart = &filterCreatedAtStart
 	return r
 }
 
 // WithFilterCreatedAtEnd sets the corresponding parameter name and returns the struct.
-func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilterCreatedAtEnd(filterCreatedAtEnd string) *ListServiceAccountApplicationKeysOptionalParameters {
+func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilterCreatedAtEnd(filterCreatedAtEnd time.Time) *ListServiceAccountApplicationKeysOptionalParameters {
 	r.FilterCreatedAtEnd = &filterCreatedAtEnd
+	return r
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *ListServiceAccountApplicationKeysOptionalParameters) WithInclude(include []ListServiceAccountApplicationKeysInclude) *ListServiceAccountApplicationKeysOptionalParameters {
+	r.Include = &include
 	return r
 }
 
@@ -394,6 +403,17 @@ func (a *ServiceAccountsApi) ListServiceAccountApplicationKeys(ctx _context.Cont
 	}
 	if optionalParams.FilterCreatedAtEnd != nil {
 		localVarQueryParams.Add("filter[created_at][end]", datadog.ParameterToString(*optionalParams.FilterCreatedAtEnd, ""))
+	}
+	if optionalParams.Include != nil {
+		t := *optionalParams.Include
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("include", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("include", datadog.ParameterToString(t, "multi"))
+		}
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 

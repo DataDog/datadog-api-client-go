@@ -12,8 +12,6 @@ import (
 type RelationshipToUserTeamPermission struct {
 	// Related user team permission data
 	Data *RelationshipToUserTeamPermissionData `json:"data,omitempty"`
-	// Links attributes.
-	Links *TeamRelationshipsLinks `json:"links,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -64,34 +62,6 @@ func (o *RelationshipToUserTeamPermission) SetData(v RelationshipToUserTeamPermi
 	o.Data = &v
 }
 
-// GetLinks returns the Links field value if set, zero value otherwise.
-func (o *RelationshipToUserTeamPermission) GetLinks() TeamRelationshipsLinks {
-	if o == nil || o.Links == nil {
-		var ret TeamRelationshipsLinks
-		return ret
-	}
-	return *o.Links
-}
-
-// GetLinksOk returns a tuple with the Links field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RelationshipToUserTeamPermission) GetLinksOk() (*TeamRelationshipsLinks, bool) {
-	if o == nil || o.Links == nil {
-		return nil, false
-	}
-	return o.Links, true
-}
-
-// HasLinks returns a boolean if a field has been set.
-func (o *RelationshipToUserTeamPermission) HasLinks() bool {
-	return o != nil && o.Links != nil
-}
-
-// SetLinks gets a reference to the given TeamRelationshipsLinks and assigns it to the Links field.
-func (o *RelationshipToUserTeamPermission) SetLinks(v TeamRelationshipsLinks) {
-	o.Links = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationshipToUserTeamPermission) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -100,9 +70,6 @@ func (o RelationshipToUserTeamPermission) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
-	}
-	if o.Links != nil {
-		toSerialize["links"] = o.Links
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -114,15 +81,14 @@ func (o RelationshipToUserTeamPermission) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RelationshipToUserTeamPermission) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data  *RelationshipToUserTeamPermissionData `json:"data,omitempty"`
-		Links *TeamRelationshipsLinks               `json:"links,omitempty"`
+		Data *RelationshipToUserTeamPermissionData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "links"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}
@@ -132,10 +98,6 @@ func (o *RelationshipToUserTeamPermission) UnmarshalJSON(bytes []byte) (err erro
 		hasInvalidField = true
 	}
 	o.Data = all.Data
-	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.Links = all.Links
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

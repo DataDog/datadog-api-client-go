@@ -14,6 +14,8 @@ import (
 type UserTeamUpdate struct {
 	// Team membership attributes
 	Attributes *UserTeamAttributes `json:"attributes,omitempty"`
+	// ID of user team
+	Id *string `json:"id,omitempty"`
 	// Team membership type
 	Type UserTeamType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -69,6 +71,34 @@ func (o *UserTeamUpdate) SetAttributes(v UserTeamAttributes) {
 	o.Attributes = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *UserTeamUpdate) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserTeamUpdate) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *UserTeamUpdate) HasId() bool {
+	return o != nil && o.Id != nil
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *UserTeamUpdate) SetId(v string) {
+	o.Id = &v
+}
+
 // GetType returns the Type field value.
 func (o *UserTeamUpdate) GetType() UserTeamType {
 	if o == nil {
@@ -101,6 +131,9 @@ func (o UserTeamUpdate) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -113,6 +146,7 @@ func (o UserTeamUpdate) MarshalJSON() ([]byte, error) {
 func (o *UserTeamUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *UserTeamAttributes `json:"attributes,omitempty"`
+		Id         *string             `json:"id,omitempty"`
 		Type       *UserTeamType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -123,7 +157,7 @@ func (o *UserTeamUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
 	} else {
 		return err
 	}
@@ -133,6 +167,7 @@ func (o *UserTeamUpdate) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
+	o.Id = all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

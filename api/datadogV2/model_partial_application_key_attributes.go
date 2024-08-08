@@ -5,13 +5,15 @@
 package datadogV2
 
 import (
+	"time"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // PartialApplicationKeyAttributes Attributes of a partial application key.
 type PartialApplicationKeyAttributes struct {
 	// Creation date of the application key.
-	CreatedAt *string `json:"created_at,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The last four characters of the application key.
 	Last4 *string `json:"last4,omitempty"`
 	// Name of the application key.
@@ -41,9 +43,9 @@ func NewPartialApplicationKeyAttributesWithDefaults() *PartialApplicationKeyAttr
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *PartialApplicationKeyAttributes) GetCreatedAt() string {
+func (o *PartialApplicationKeyAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.CreatedAt
@@ -51,7 +53,7 @@ func (o *PartialApplicationKeyAttributes) GetCreatedAt() string {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PartialApplicationKeyAttributes) GetCreatedAtOk() (*string, bool) {
+func (o *PartialApplicationKeyAttributes) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
@@ -63,8 +65,8 @@ func (o *PartialApplicationKeyAttributes) HasCreatedAt() bool {
 	return o != nil && o.CreatedAt != nil
 }
 
-// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
-func (o *PartialApplicationKeyAttributes) SetCreatedAt(v string) {
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *PartialApplicationKeyAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
@@ -170,7 +172,11 @@ func (o PartialApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+		if o.CreatedAt.Nanosecond() == 0 {
+			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Last4 != nil {
 		toSerialize["last4"] = o.Last4
@@ -191,7 +197,7 @@ func (o PartialApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PartialApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt *string                      `json:"created_at,omitempty"`
+		CreatedAt *time.Time                   `json:"created_at,omitempty"`
 		Last4     *string                      `json:"last4,omitempty"`
 		Name      *string                      `json:"name,omitempty"`
 		Scopes    datadog.NullableList[string] `json:"scopes,omitempty"`

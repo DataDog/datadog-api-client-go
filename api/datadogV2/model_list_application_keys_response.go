@@ -14,8 +14,6 @@ type ListApplicationKeysResponse struct {
 	Data []PartialApplicationKey `json:"data,omitempty"`
 	// Array of objects related to the application key.
 	Included []ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
-	// Additional information related to the application key response.
-	Meta *ApplicationKeyResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -94,34 +92,6 @@ func (o *ListApplicationKeysResponse) SetIncluded(v []ApplicationKeyResponseIncl
 	o.Included = v
 }
 
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListApplicationKeysResponse) GetMeta() ApplicationKeyResponseMeta {
-	if o == nil || o.Meta == nil {
-		var ret ApplicationKeyResponseMeta
-		return ret
-	}
-	return *o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListApplicationKeysResponse) GetMetaOk() (*ApplicationKeyResponseMeta, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *ListApplicationKeysResponse) HasMeta() bool {
-	return o != nil && o.Meta != nil
-}
-
-// SetMeta gets a reference to the given ApplicationKeyResponseMeta and assigns it to the Meta field.
-func (o *ListApplicationKeysResponse) SetMeta(v ApplicationKeyResponseMeta) {
-	o.Meta = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ListApplicationKeysResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -133,9 +103,6 @@ func (o ListApplicationKeysResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Included != nil {
 		toSerialize["included"] = o.Included
-	}
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -149,32 +116,21 @@ func (o *ListApplicationKeysResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data     []PartialApplicationKey              `json:"data,omitempty"`
 		Included []ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
-		Meta     *ApplicationKeyResponseMeta          `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
 	o.Data = all.Data
 	o.Included = all.Included
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

@@ -12,6 +12,8 @@ import (
 
 // CloudflareAccountResponseAttributes Attributes object of a Cloudflare account.
 type CloudflareAccountResponseAttributes struct {
+	// The CloudflareAccountResponseAttributes api_key.
+	ApiKey *string `json:"api_key,omitempty"`
 	// The email associated with the Cloudflare account.
 	Email *string `json:"email,omitempty"`
 	// The name of the Cloudflare account.
@@ -41,6 +43,34 @@ func NewCloudflareAccountResponseAttributes(name string) *CloudflareAccountRespo
 func NewCloudflareAccountResponseAttributesWithDefaults() *CloudflareAccountResponseAttributes {
 	this := CloudflareAccountResponseAttributes{}
 	return &this
+}
+
+// GetApiKey returns the ApiKey field value if set, zero value otherwise.
+func (o *CloudflareAccountResponseAttributes) GetApiKey() string {
+	if o == nil || o.ApiKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.ApiKey
+}
+
+// GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudflareAccountResponseAttributes) GetApiKeyOk() (*string, bool) {
+	if o == nil || o.ApiKey == nil {
+		return nil, false
+	}
+	return o.ApiKey, true
+}
+
+// HasApiKey returns a boolean if a field has been set.
+func (o *CloudflareAccountResponseAttributes) HasApiKey() bool {
+	return o != nil && o.ApiKey != nil
+}
+
+// SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
+func (o *CloudflareAccountResponseAttributes) SetApiKey(v string) {
+	o.ApiKey = &v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.
@@ -156,6 +186,9 @@ func (o CloudflareAccountResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.ApiKey != nil {
+		toSerialize["api_key"] = o.ApiKey
+	}
 	if o.Email != nil {
 		toSerialize["email"] = o.Email
 	}
@@ -176,6 +209,7 @@ func (o CloudflareAccountResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudflareAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		ApiKey    *string  `json:"api_key,omitempty"`
 		Email     *string  `json:"email,omitempty"`
 		Name      *string  `json:"name"`
 		Resources []string `json:"resources,omitempty"`
@@ -189,10 +223,11 @@ func (o *CloudflareAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"email", "name", "resources", "zones"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "email", "name", "resources", "zones"})
 	} else {
 		return err
 	}
+	o.ApiKey = all.ApiKey
 	o.Email = all.Email
 	o.Name = *all.Name
 	o.Resources = all.Resources
