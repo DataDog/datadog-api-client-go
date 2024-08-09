@@ -71,7 +71,7 @@
 <span id="L14" class="ln">    14  </span>type DORADeploymentRequestAttributes struct {
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Environment name to where the service was deployed.</span>
 <span id="L16" class="ln">    16  </span>	Env *string `json:&#34;env,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// Unix timestamp in nanoseconds when the deployment finished. It should not be older than 1 hour.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Unix timestamp when the deployment finished. It must be in nanoseconds, milliseconds, or seconds, and it should not be older than 1 hour.</span>
 <span id="L18" class="ln">    18  </span>	FinishedAt int64 `json:&#34;finished_at&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// Git info for DORA Metrics events.</span>
 <span id="L20" class="ln">    20  </span>	Git *DORAGitInfo `json:&#34;git,omitempty&#34;`
@@ -79,7 +79,7 @@
 <span id="L22" class="ln">    22  </span>	Id *string `json:&#34;id,omitempty&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// Service name from a service available in the Service Catalog.</span>
 <span id="L24" class="ln">    24  </span>	Service string `json:&#34;service&#34;`
-<span id="L25" class="ln">    25  </span>	<span class="comment">// Unix timestamp in nanoseconds when the deployment started.</span>
+<span id="L25" class="ln">    25  </span>	<span class="comment">// Unix timestamp when the deployment started. It must be in nanoseconds, milliseconds, or seconds.</span>
 <span id="L26" class="ln">    26  </span>	StartedAt int64 `json:&#34;started_at&#34;`
 <span id="L27" class="ln">    27  </span>	<span class="comment">// Version to correlate with [APM Deployment Tracking](https://docs.datadoghq.com/tracing/services/deployment_tracking/).</span>
 <span id="L28" class="ln">    28  </span>	Version *string `json:&#34;version,omitempty&#34;`
