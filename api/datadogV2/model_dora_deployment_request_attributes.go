@@ -14,7 +14,7 @@ import (
 type DORADeploymentRequestAttributes struct {
 	// Environment name to where the service was deployed.
 	Env *string `json:"env,omitempty"`
-	// Unix timestamp in nanoseconds when the deployment finished. It should not be older than 1 hour.
+	// Unix timestamp when the deployment finished. It must be in nanoseconds, milliseconds, or seconds, and it should not be older than 1 hour.
 	FinishedAt int64 `json:"finished_at"`
 	// Git info for DORA Metrics events.
 	Git *DORAGitInfo `json:"git,omitempty"`
@@ -22,7 +22,7 @@ type DORADeploymentRequestAttributes struct {
 	Id *string `json:"id,omitempty"`
 	// Service name from a service available in the Service Catalog.
 	Service string `json:"service"`
-	// Unix timestamp in nanoseconds when the deployment started.
+	// Unix timestamp when the deployment started. It must be in nanoseconds, milliseconds, or seconds.
 	StartedAt int64 `json:"started_at"`
 	// Version to correlate with [APM Deployment Tracking](https://docs.datadoghq.com/tracing/services/deployment_tracking/).
 	Version *string `json:"version,omitempty"`
