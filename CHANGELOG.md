@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 2.29.0 / 2024-08-12
+
+### Fixed
+* Add `409 Conflict` to `CreateGlobalVariable` by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2586
+### Added
+* Support `incident_analytics` enum in dashboard widget `FormulaAndFunctionEventsDataSource` data sources by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2594
+* update usage summary API docs for partner program by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2589
+* update historical_cost and projected_cost for partner program by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2579
+* Add custom cost endpoints to public API documentation by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2595
+* Update documentation for Cloud SIEM Analyzed Logs by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2597
+* Update documentation for App Sec SCA by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2584
+* Add trigger API documentation for workflow automation by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2558
+* Add PUT endpoint to scorecards APIs by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2605
+* Add json tag to `AdditionalProperties` by @skarimo in https://github.com/DataDog/datadog-api-client-go/pull/2613
+* Documentation for new device tags endpoints by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2599
+* Update documentation for Flex Logs Starter by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2614
+### Changed
+* add mfa_enabled field and change created_at type to datetime by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2615
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.28.0...v2.29.0
+
 ## 2.28.0 / 2024-07-22
 
 ### Fixed
