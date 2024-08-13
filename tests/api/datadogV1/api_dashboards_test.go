@@ -36,17 +36,21 @@ func TestDashboardLifecycle(t *testing.T) {
 	defer deleteSLOIfExists(ctx, t, slo.GetId())
 	assert.Equal(httpresp.StatusCode, 200)
 
-	widgetTime := datadogV1.NewWidgetTimeWithDefaults()
-	widgetTime.SetLiveSpan(datadogV1.WIDGETLIVESPAN_PAST_FIFTEEN_MINUTES)
+	widgetTimeLegacy := datadogV1.NewWidgetLegacyLiveSpanWithDefaults()
+	widgetTimeLegacy.SetLiveSpan(datadogV1.WIDGETLIVESPAN_PAST_FIFTEEN_MINUTES)
+	widgetTime := datadogV1.WidgetLegacyLiveSpanAsWidgetTime(widgetTimeLegacy)
 
-	widgetTimePastOneHour := datadogV1.NewWidgetTimeWithDefaults()
-	widgetTimePastOneHour.SetLiveSpan(datadogV1.WIDGETLIVESPAN_PAST_ONE_HOUR)
+	widgetTimePastOneHourLegacy := datadogV1.NewWidgetLegacyLiveSpanWithDefaults()
+	widgetTimePastOneHourLegacy.SetLiveSpan(datadogV1.WIDGETLIVESPAN_PAST_ONE_HOUR)
+	widgetTimePastOneHour := datadogV1.WidgetLegacyLiveSpanAsWidgetTime(widgetTimePastOneHourLegacy)
 
-	widgetTimePastOneDay := datadogV1.NewWidgetTimeWithDefaults()
-	widgetTimePastOneDay.SetLiveSpan(datadogV1.WIDGETLIVESPAN_PAST_ONE_DAY)
+	widgetTimePastOneDayLegacy := datadogV1.NewWidgetLegacyLiveSpanWithDefaults()
+	widgetTimePastOneDayLegacy.SetLiveSpan(datadogV1.WIDGETLIVESPAN_PAST_ONE_DAY)
+	widgetTimePastOneDay := datadogV1.WidgetLegacyLiveSpanAsWidgetTime(widgetTimePastOneDayLegacy)
 
-	widgetTimePastOneMonth := datadogV1.NewWidgetTimeWithDefaults()
-	widgetTimePastOneMonth.SetLiveSpan(datadogV1.WIDGETLIVESPAN_PAST_ONE_MONTH)
+	widgetTimePastOneMonthLegacy := datadogV1.NewWidgetLegacyLiveSpanWithDefaults()
+	widgetTimePastOneMonthLegacy.SetLiveSpan(datadogV1.WIDGETLIVESPAN_PAST_ONE_MONTH)
+	widgetTimePastOneMonth := datadogV1.WidgetLegacyLiveSpanAsWidgetTime(widgetTimePastOneMonthLegacy)
 
 	widgetLayout := datadogV1.NewWidgetLayoutWithDefaults()
 	widgetLayout.SetHeight(10)
@@ -66,7 +70,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	alertGraphDefinition.SetTitle("Test Alert Graph Widget")
 	alertGraphDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	alertGraphDefinition.SetTitleSize("16")
-	alertGraphDefinition.SetTime(*widgetTime)
+	alertGraphDefinition.SetTime(widgetTime)
 
 	alertGraphWidget := datadogV1.NewWidgetWithDefaults()
 	alertGraphWidget.SetDefinition(datadogV1.AlertGraphWidgetDefinitionAsWidgetDefinition(alertGraphDefinition))
@@ -98,7 +102,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	changeWidgetDefinition.SetTitle("Test Change Widget")
 	changeWidgetDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	changeWidgetDefinition.SetTitleSize("16")
-	changeWidgetDefinition.SetTime(*widgetTime)
+	changeWidgetDefinition.SetTime(widgetTime)
 	changeWidgetDefinition.SetCustomLinks([]datadogV1.WidgetCustomLink{
 		customLink,
 	})
@@ -119,7 +123,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	checkStatusWidgetDefinition.SetTitle("Test Check Status Widget")
 	checkStatusWidgetDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	checkStatusWidgetDefinition.SetTitleSize("16")
-	checkStatusWidgetDefinition.SetTime(*widgetTime)
+	checkStatusWidgetDefinition.SetTime(widgetTime)
 
 	checkStatusWidget := datadogV1.NewWidgetWithDefaults()
 	checkStatusWidget.SetDefinition(datadogV1.CheckStatusWidgetDefinitionAsWidgetDefinition(checkStatusWidgetDefinition))
@@ -141,7 +145,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	distributionWidgetDefinition.SetTitle("Test Distribution Widget")
 	distributionWidgetDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	distributionWidgetDefinition.SetTitleSize("16")
-	distributionWidgetDefinition.SetTime(*widgetTime)
+	distributionWidgetDefinition.SetTime(widgetTime)
 
 	distributionWidget := datadogV1.NewWidget(datadogV1.DistributionWidgetDefinitionAsWidgetDefinition(distributionWidgetDefinition))
 
@@ -152,7 +156,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	eventStreamWidgetDefinition.SetTitle("Test Event Stream Widget")
 	eventStreamWidgetDefinition.SetTitleSize("16")
 	eventStreamWidgetDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
-	eventStreamWidgetDefinition.SetTime(*widgetTimePastOneDay)
+	eventStreamWidgetDefinition.SetTime(widgetTimePastOneDay)
 
 	eventStreamWidget := datadogV1.NewWidgetWithDefaults()
 	eventStreamWidget.SetDefinition(datadogV1.EventStreamWidgetDefinitionAsWidgetDefinition(eventStreamWidgetDefinition))
@@ -164,7 +168,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	eventTimelineWidgetDefinition.SetTitle("Test Event Timeline Widget")
 	eventTimelineWidgetDefinition.SetTitleSize("16")
 	eventTimelineWidgetDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_LEFT)
-	eventTimelineWidgetDefinition.SetTime(*widgetTimePastOneMonth)
+	eventTimelineWidgetDefinition.SetTime(widgetTimePastOneMonth)
 
 	eventTimelineWidget := datadogV1.NewWidgetWithDefaults()
 	eventTimelineWidget.SetDefinition(datadogV1.EventTimelineWidgetDefinitionAsWidgetDefinition(eventTimelineWidgetDefinition))
@@ -209,7 +213,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	geoMapWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
 	geoMapWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	geoMapWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
-	geoMapWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
+	geoMapWidgetDefinitionFormulaFunctionsQuery.SetTime(widgetTime)
 	geoMapWidgetDefinitionFormulaFunctionsQuery.SetStyle(datadogV1.GeomapWidgetDefinitionStyle{
 		Palette:     *datadog.PtrString("dog_classic"),
 		PaletteFlip: *datadog.PtrBool(true),
@@ -285,7 +289,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	heatMapWidgetDefinition.SetTitle("Test Headmap Widget")
 	heatMapWidgetDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	heatMapWidgetDefinition.SetTitleSize("16")
-	heatMapWidgetDefinition.SetTime(*widgetTime)
+	heatMapWidgetDefinition.SetTime(widgetTime)
 	heatMapWidgetDefinition.SetShowLegend(true)
 	heatMapWidgetDefinition.SetLegendSize("4")
 	heatMapWidgetDefinition.SetCustomLinks([]datadogV1.WidgetCustomLink{
@@ -345,7 +349,10 @@ func TestDashboardLifecycle(t *testing.T) {
 	logStreamWidgetDefinition.SetTitle("Test Logstream Widget")
 	logStreamWidgetDefinition.SetTitleSize("16")
 	logStreamWidgetDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_RIGHT)
-	logStreamWidgetDefinition.SetTime(datadogV1.WidgetTime{LiveSpan: datadogV1.WIDGETLIVESPAN_PAST_TWO_DAYS.Ptr()})
+	liveSpan := &datadogV1.WidgetLegacyLiveSpan{
+		LiveSpan: datadogV1.WIDGETLIVESPAN_PAST_TWO_DAYS.Ptr(),
+	}
+	logStreamWidgetDefinition.SetTime(datadogV1.WidgetLegacyLiveSpanAsWidgetTime(liveSpan))
 	logStreamWidgetDefinition.SetMessageDisplay(datadogV1.WIDGETMESSAGEDISPLAY_EXPANDED_LARGE)
 	logStreamWidgetDefinition.SetShowDateColumn(true)
 	logStreamWidgetDefinition.SetShowMessageColumn(true)
@@ -406,7 +413,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	queryValueWidgetDefinition.SetTitle("Test Query Value Widget")
 	queryValueWidgetDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	queryValueWidgetDefinition.SetTitleSize("16")
-	queryValueWidgetDefinition.SetTime(*widgetTime)
+	queryValueWidgetDefinition.SetTime(widgetTime)
 	queryValueWidgetDefinition.SetCustomLinks([]datadogV1.WidgetCustomLink{
 		customLink,
 	})
@@ -458,7 +465,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	queryValueWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
 	queryValueWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	queryValueWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
-	queryValueWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
+	queryValueWidgetDefinitionFormulaFunctionsQuery.SetTime(widgetTime)
 
 	queryValueWidgetFormulaFunctionsQuery := datadogV1.NewWidget(datadogV1.QueryValueWidgetDefinitionAsWidgetDefinition(queryValueWidgetDefinitionFormulaFunctionsQuery))
 
@@ -479,7 +486,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	scatterPlotWidgetDefinition.SetTitle("Test ScatterPlot Widget")
 	scatterPlotWidgetDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	scatterPlotWidgetDefinition.SetTitleSize("16")
-	scatterPlotWidgetDefinition.SetTime(*widgetTime)
+	scatterPlotWidgetDefinition.SetTime(widgetTime)
 	scatterPlotWidgetDefinition.SetCustomLinks([]datadogV1.WidgetCustomLink{
 		customLink,
 	})
@@ -530,7 +537,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	serviceSummaryWidgetDefinition.SetTitle("Test Service Summary Widget")
 	serviceSummaryWidgetDefinition.SetTitleSize("16")
 	serviceSummaryWidgetDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
-	serviceSummaryWidgetDefinition.SetTime(*widgetTimePastOneHour)
+	serviceSummaryWidgetDefinition.SetTime(widgetTimePastOneHour)
 
 	serviceSummaryWidget := datadogV1.NewWidget(datadogV1.ServiceSummaryWidgetDefinitionAsWidgetDefinition(serviceSummaryWidgetDefinition))
 	serviceSummaryWidget.SetLayout(*widgetLayout)
@@ -556,7 +563,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	tableWidgetDefinition.SetTitle("Test Table Widget")
 	tableWidgetDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	tableWidgetDefinition.SetTitleSize("16")
-	tableWidgetDefinition.SetTime(*widgetTime)
+	tableWidgetDefinition.SetTime(widgetTime)
 	tableWidgetDefinition.SetCustomLinks([]datadogV1.WidgetCustomLink{
 		customLink,
 	})
@@ -593,7 +600,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	tableWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
 	tableWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	tableWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
-	tableWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
+	tableWidgetDefinitionFormulaFunctionsQuery.SetTime(widgetTime)
 
 	tableWidgetFormulaFunctionsQuery := datadogV1.NewWidget(datadogV1.TableWidgetDefinitionAsWidgetDefinition(tableWidgetDefinitionFormulaFunctionsQuery))
 
@@ -614,7 +621,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	tableWidgetApmStatsDefinition.SetTitle("Test Table Widget with APM Stats Data")
 	tableWidgetApmStatsDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	tableWidgetApmStatsDefinition.SetTitleSize("16")
-	tableWidgetApmStatsDefinition.SetTime(*widgetTime)
+	tableWidgetApmStatsDefinition.SetTime(widgetTime)
 	tableWidgetApmStatsDefinition.SetCustomLinks([]datadogV1.WidgetCustomLink{
 		customLink,
 	})
@@ -661,7 +668,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinition.SetTitle("Test Timeseries Widget")
 	timeseriesWidgetDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	timeseriesWidgetDefinition.SetTitleSize("16")
-	timeseriesWidgetDefinition.SetTime(*widgetTime)
+	timeseriesWidgetDefinition.SetTime(widgetTime)
 	timeseriesWidgetDefinition.SetShowLegend(true)
 	timeseriesWidgetDefinition.SetLegendSize("16")
 	timeseriesWidgetDefinition.SetLegendLayout("horizontal")
@@ -715,7 +722,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionProcessQuery.SetTitle("Test Timeseries Widget with Process Query")
 	timeseriesWidgetDefinitionProcessQuery.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	timeseriesWidgetDefinitionProcessQuery.SetTitleSize("16")
-	timeseriesWidgetDefinitionProcessQuery.SetTime(*widgetTime)
+	timeseriesWidgetDefinitionProcessQuery.SetTime(widgetTime)
 	timeseriesWidgetDefinitionProcessQuery.SetShowLegend(true)
 	timeseriesWidgetDefinitionProcessQuery.SetLegendSize("16")
 	timeseriesWidgetDefinitionProcessQuery.SetCustomLinks([]datadogV1.WidgetCustomLink{
@@ -770,7 +777,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionLogQuery.SetTitle("Test Timeseries Widget with Log Query")
 	timeseriesWidgetDefinitionLogQuery.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	timeseriesWidgetDefinitionLogQuery.SetTitleSize("16")
-	timeseriesWidgetDefinitionLogQuery.SetTime(*widgetTime)
+	timeseriesWidgetDefinitionLogQuery.SetTime(widgetTime)
 	timeseriesWidgetDefinitionLogQuery.SetShowLegend(true)
 	timeseriesWidgetDefinitionLogQuery.SetLegendSize("16")
 	timeseriesWidgetDefinitionLogQuery.SetCustomLinks([]datadogV1.WidgetCustomLink{
@@ -824,7 +831,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionEventQuery.SetTitle("Test Timeseries Widget with Event Query")
 	timeseriesWidgetDefinitionEventQuery.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	timeseriesWidgetDefinitionEventQuery.SetTitleSize("16")
-	timeseriesWidgetDefinitionEventQuery.SetTime(*widgetTime)
+	timeseriesWidgetDefinitionEventQuery.SetTime(widgetTime)
 	timeseriesWidgetDefinitionEventQuery.SetShowLegend(true)
 	timeseriesWidgetDefinitionEventQuery.SetLegendSize("16")
 	timeseriesWidgetDefinitionEventQuery.SetCustomLinks([]datadogV1.WidgetCustomLink{
@@ -878,7 +885,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
-	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
+	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetTime(widgetTime)
 
 	timeseriesWidgetFormulaFunctionsQuery := datadogV1.NewWidget(datadogV1.TimeseriesWidgetDefinitionAsWidgetDefinition(timeseriesWidgetDefinitionFormulaFunctionsQuery))
 
@@ -898,7 +905,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	toplistWidgetDefinition.SetTitle("Test Toplist Widget")
 	toplistWidgetDefinition.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	toplistWidgetDefinition.SetTitleSize("16")
-	toplistWidgetDefinition.SetTime(*widgetTime)
+	toplistWidgetDefinition.SetTime(widgetTime)
 	toplistWidgetDefinition.SetCustomLinks([]datadogV1.WidgetCustomLink{
 		customLink,
 	})
@@ -950,7 +957,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	toplistWidgetDefinitionFormulaFunctionsQuery.SetTitle("Test Formulas and Functions Metric + Event query")
 	toplistWidgetDefinitionFormulaFunctionsQuery.SetTitleAlign(datadogV1.WIDGETTEXTALIGN_CENTER)
 	toplistWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
-	toplistWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
+	toplistWidgetDefinitionFormulaFunctionsQuery.SetTime(widgetTime)
 
 	toplistWidgetFormulaFunctionsQuery := datadogV1.NewWidget(datadogV1.ToplistWidgetDefinitionAsWidgetDefinition(toplistWidgetDefinitionFormulaFunctionsQuery))
 
