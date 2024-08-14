@@ -10,8 +10,9 @@ import (
 
 // ApplicationKeyResponseIncludedItem - An object related to an application key.
 type ApplicationKeyResponseIncludedItem struct {
-	User *User
-	Role *Role
+	User      *User
+	Role      *Role
+	LeakedKey *LeakedKey
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -25,6 +26,11 @@ func UserAsApplicationKeyResponseIncludedItem(v *User) ApplicationKeyResponseInc
 // RoleAsApplicationKeyResponseIncludedItem is a convenience function that returns Role wrapped in ApplicationKeyResponseIncludedItem.
 func RoleAsApplicationKeyResponseIncludedItem(v *Role) ApplicationKeyResponseIncludedItem {
 	return ApplicationKeyResponseIncludedItem{Role: v}
+}
+
+// LeakedKeyAsApplicationKeyResponseIncludedItem is a convenience function that returns LeakedKey wrapped in ApplicationKeyResponseIncludedItem.
+func LeakedKeyAsApplicationKeyResponseIncludedItem(v *LeakedKey) ApplicationKeyResponseIncludedItem {
+	return ApplicationKeyResponseIncludedItem{LeakedKey: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -65,10 +71,28 @@ func (obj *ApplicationKeyResponseIncludedItem) UnmarshalJSON(data []byte) error 
 		obj.Role = nil
 	}
 
+	// try to unmarshal data into LeakedKey
+	err = datadog.Unmarshal(data, &obj.LeakedKey)
+	if err == nil {
+		if obj.LeakedKey != nil && obj.LeakedKey.UnparsedObject == nil {
+			jsonLeakedKey, _ := datadog.Marshal(obj.LeakedKey)
+			if string(jsonLeakedKey) == "{}" { // empty struct
+				obj.LeakedKey = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.LeakedKey = nil
+		}
+	} else {
+		obj.LeakedKey = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.User = nil
 		obj.Role = nil
+		obj.LeakedKey = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -82,6 +106,10 @@ func (obj ApplicationKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 
 	if obj.Role != nil {
 		return datadog.Marshal(&obj.Role)
+	}
+
+	if obj.LeakedKey != nil {
+		return datadog.Marshal(&obj.LeakedKey)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -98,6 +126,10 @@ func (obj *ApplicationKeyResponseIncludedItem) GetActualInstance() interface{} {
 
 	if obj.Role != nil {
 		return obj.Role
+	}
+
+	if obj.LeakedKey != nil {
+		return obj.LeakedKey
 	}
 
 	// all schemas are nil
