@@ -13,7 +13,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"client_id":"testc7f6-1234-5678-9101-tt1720557360","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1720557360ee"}
+            {"client_id":"testc7f6-1234-5678-9101-tt1720557360","client_secret":"TestingRh2nx664kUy5dIApvM54T4AtO","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1720557360ee"}
         form: {}
         headers:
             Accept:
@@ -72,7 +72,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"client_id":"testc7f6-1234-5678-9101-tt1720557360","client_secret":"testingx./Sw*g/Y33t..R1cH+hScMDt","host_filters":"filter:foo,test:bar","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1720557360ee"}
+            {"client_id":"testc7f6-1234-5678-9101-tt1720557360","client_secret":"TestingRh2nx664kUy5dIApvM54T4AtO","host_filters":"filter:foo,test:bar","tenant_name":"aaaaaaaa-bbbb-cccc-dddd-1720557360ee"}
         form: {}
         headers:
             Accept:

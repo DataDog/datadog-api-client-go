@@ -25,7 +25,7 @@ func generateUniqueAzureAccount(ctx context.Context, t *testing.T) (datadogV1.Az
 	clock := strconv.FormatInt(tests.ClockFromContext(ctx).Now().Unix(), 10)
 	var testAzureAcct = datadogV1.AzureAccount{
 		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-tt" + clock),
-		ClientSecret: datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
+		ClientSecret: datadog.PtrString("TestingRh2nx664kUy5dIApvM54T4AtO"),
 		TenantName:   &tenantName,
 	}
 
