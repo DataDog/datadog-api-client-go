@@ -12,8 +12,6 @@ import (
 
 // FastlyAccounResponseAttributes Attributes object of a Fastly account.
 type FastlyAccounResponseAttributes struct {
-	// The FastlyAccounResponseAttributes api_key.
-	ApiKey *string `json:"api_key,omitempty"`
 	// The name of the Fastly account.
 	Name string `json:"name"`
 	// A list of services belonging to the parent account.
@@ -39,34 +37,6 @@ func NewFastlyAccounResponseAttributes(name string) *FastlyAccounResponseAttribu
 func NewFastlyAccounResponseAttributesWithDefaults() *FastlyAccounResponseAttributes {
 	this := FastlyAccounResponseAttributes{}
 	return &this
-}
-
-// GetApiKey returns the ApiKey field value if set, zero value otherwise.
-func (o *FastlyAccounResponseAttributes) GetApiKey() string {
-	if o == nil || o.ApiKey == nil {
-		var ret string
-		return ret
-	}
-	return *o.ApiKey
-}
-
-// GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FastlyAccounResponseAttributes) GetApiKeyOk() (*string, bool) {
-	if o == nil || o.ApiKey == nil {
-		return nil, false
-	}
-	return o.ApiKey, true
-}
-
-// HasApiKey returns a boolean if a field has been set.
-func (o *FastlyAccounResponseAttributes) HasApiKey() bool {
-	return o != nil && o.ApiKey != nil
-}
-
-// SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
-func (o *FastlyAccounResponseAttributes) SetApiKey(v string) {
-	o.ApiKey = &v
 }
 
 // GetName returns the Name field value.
@@ -126,9 +96,6 @@ func (o FastlyAccounResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.ApiKey != nil {
-		toSerialize["api_key"] = o.ApiKey
-	}
 	toSerialize["name"] = o.Name
 	if o.Services != nil {
 		toSerialize["services"] = o.Services
@@ -143,7 +110,6 @@ func (o FastlyAccounResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FastlyAccounResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey   *string         `json:"api_key,omitempty"`
 		Name     *string         `json:"name"`
 		Services []FastlyService `json:"services,omitempty"`
 	}{}
@@ -155,11 +121,10 @@ func (o *FastlyAccounResponseAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "name", "services"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"name", "services"})
 	} else {
 		return err
 	}
-	o.ApiKey = all.ApiKey
 	o.Name = *all.Name
 	o.Services = all.Services
 
