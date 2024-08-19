@@ -1,4 +1,4 @@
-// Create a global variable from test returns "OK" response
+// Create a FIDO global variable returns "OK" response
 
 package main
 
@@ -13,22 +13,11 @@ import (
 )
 
 func main() {
-	// there is a valid "synthetics_api_test_multi_step" in the system
-	SyntheticsAPITestMultiStepPublicID := os.Getenv("SYNTHETICS_API_TEST_MULTI_STEP_PUBLIC_ID")
-
 	body := datadogV1.SyntheticsGlobalVariableRequest{
 		Description: "",
-		Name:        "GLOBAL_VARIABLE_FROM_TEST_PAYLOAD_EXAMPLESYNTHETIC",
+		IsFido:      datadog.PtrBool(true),
+		Name:        "GLOBAL_VARIABLE_FIDO_PAYLOAD_EXAMPLESYNTHETIC",
 		Tags:        []string{},
-		Value: &datadogV1.SyntheticsGlobalVariableValue{
-			Secure: datadog.PtrBool(false),
-			Value:  datadog.PtrString(""),
-		},
-		ParseTestPublicId: datadog.PtrString(SyntheticsAPITestMultiStepPublicID),
-		ParseTestOptions: &datadogV1.SyntheticsGlobalVariableParseTestOptions{
-			Type:              datadogV1.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_LOCAL_VARIABLE,
-			LocalVariableName: datadog.PtrString("EXTRACTED_VALUE"),
-		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

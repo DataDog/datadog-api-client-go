@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	body := datadogV1.SyntheticsGlobalVariable{
+	body := datadogV1.SyntheticsGlobalVariableRequest{
 		Attributes: &datadogV1.SyntheticsGlobalVariableAttributes{
 			RestrictedRoles: []string{
 				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -35,7 +35,7 @@ func main() {
 			"team:front",
 			"test:workflow-1",
 		},
-		Value: datadogV1.SyntheticsGlobalVariableValue{
+		Value: &datadogV1.SyntheticsGlobalVariableValue{
 			Secure: datadog.PtrBool(true),
 			Value:  datadog.PtrString("value"),
 		},

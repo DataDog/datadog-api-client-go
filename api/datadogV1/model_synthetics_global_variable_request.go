@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsGlobalVariable Synthetic global variable.
-type SyntheticsGlobalVariable struct {
+// SyntheticsGlobalVariableRequest Details of the global variable to create.
+type SyntheticsGlobalVariableRequest struct {
 	// Attributes of the global variable.
 	Attributes *SyntheticsGlobalVariableAttributes `json:"attributes,omitempty"`
 	// Description of the global variable.
@@ -31,35 +31,34 @@ type SyntheticsGlobalVariable struct {
 	// Tags of the global variable.
 	Tags []string `json:"tags"`
 	// Value of the global variable.
-	Value SyntheticsGlobalVariableValue `json:"value"`
+	Value *SyntheticsGlobalVariableValue `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewSyntheticsGlobalVariable instantiates a new SyntheticsGlobalVariable object.
+// NewSyntheticsGlobalVariableRequest instantiates a new SyntheticsGlobalVariableRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSyntheticsGlobalVariable(description string, name string, tags []string, value SyntheticsGlobalVariableValue) *SyntheticsGlobalVariable {
-	this := SyntheticsGlobalVariable{}
+func NewSyntheticsGlobalVariableRequest(description string, name string, tags []string) *SyntheticsGlobalVariableRequest {
+	this := SyntheticsGlobalVariableRequest{}
 	this.Description = description
 	this.Name = name
 	this.Tags = tags
-	this.Value = value
 	return &this
 }
 
-// NewSyntheticsGlobalVariableWithDefaults instantiates a new SyntheticsGlobalVariable object.
+// NewSyntheticsGlobalVariableRequestWithDefaults instantiates a new SyntheticsGlobalVariableRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewSyntheticsGlobalVariableWithDefaults() *SyntheticsGlobalVariable {
-	this := SyntheticsGlobalVariable{}
+func NewSyntheticsGlobalVariableRequestWithDefaults() *SyntheticsGlobalVariableRequest {
+	this := SyntheticsGlobalVariableRequest{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *SyntheticsGlobalVariable) GetAttributes() SyntheticsGlobalVariableAttributes {
+func (o *SyntheticsGlobalVariableRequest) GetAttributes() SyntheticsGlobalVariableAttributes {
 	if o == nil || o.Attributes == nil {
 		var ret SyntheticsGlobalVariableAttributes
 		return ret
@@ -69,7 +68,7 @@ func (o *SyntheticsGlobalVariable) GetAttributes() SyntheticsGlobalVariableAttri
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGlobalVariable) GetAttributesOk() (*SyntheticsGlobalVariableAttributes, bool) {
+func (o *SyntheticsGlobalVariableRequest) GetAttributesOk() (*SyntheticsGlobalVariableAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -77,17 +76,17 @@ func (o *SyntheticsGlobalVariable) GetAttributesOk() (*SyntheticsGlobalVariableA
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *SyntheticsGlobalVariable) HasAttributes() bool {
+func (o *SyntheticsGlobalVariableRequest) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
 // SetAttributes gets a reference to the given SyntheticsGlobalVariableAttributes and assigns it to the Attributes field.
-func (o *SyntheticsGlobalVariable) SetAttributes(v SyntheticsGlobalVariableAttributes) {
+func (o *SyntheticsGlobalVariableRequest) SetAttributes(v SyntheticsGlobalVariableAttributes) {
 	o.Attributes = &v
 }
 
 // GetDescription returns the Description field value.
-func (o *SyntheticsGlobalVariable) GetDescription() string {
+func (o *SyntheticsGlobalVariableRequest) GetDescription() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -97,7 +96,7 @@ func (o *SyntheticsGlobalVariable) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGlobalVariable) GetDescriptionOk() (*string, bool) {
+func (o *SyntheticsGlobalVariableRequest) GetDescriptionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -105,12 +104,12 @@ func (o *SyntheticsGlobalVariable) GetDescriptionOk() (*string, bool) {
 }
 
 // SetDescription sets field value.
-func (o *SyntheticsGlobalVariable) SetDescription(v string) {
+func (o *SyntheticsGlobalVariableRequest) SetDescription(v string) {
 	o.Description = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *SyntheticsGlobalVariable) GetId() string {
+func (o *SyntheticsGlobalVariableRequest) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -120,7 +119,7 @@ func (o *SyntheticsGlobalVariable) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGlobalVariable) GetIdOk() (*string, bool) {
+func (o *SyntheticsGlobalVariableRequest) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -128,17 +127,17 @@ func (o *SyntheticsGlobalVariable) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *SyntheticsGlobalVariable) HasId() bool {
+func (o *SyntheticsGlobalVariableRequest) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *SyntheticsGlobalVariable) SetId(v string) {
+func (o *SyntheticsGlobalVariableRequest) SetId(v string) {
 	o.Id = &v
 }
 
 // GetIsFido returns the IsFido field value if set, zero value otherwise.
-func (o *SyntheticsGlobalVariable) GetIsFido() bool {
+func (o *SyntheticsGlobalVariableRequest) GetIsFido() bool {
 	if o == nil || o.IsFido == nil {
 		var ret bool
 		return ret
@@ -148,7 +147,7 @@ func (o *SyntheticsGlobalVariable) GetIsFido() bool {
 
 // GetIsFidoOk returns a tuple with the IsFido field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGlobalVariable) GetIsFidoOk() (*bool, bool) {
+func (o *SyntheticsGlobalVariableRequest) GetIsFidoOk() (*bool, bool) {
 	if o == nil || o.IsFido == nil {
 		return nil, false
 	}
@@ -156,17 +155,17 @@ func (o *SyntheticsGlobalVariable) GetIsFidoOk() (*bool, bool) {
 }
 
 // HasIsFido returns a boolean if a field has been set.
-func (o *SyntheticsGlobalVariable) HasIsFido() bool {
+func (o *SyntheticsGlobalVariableRequest) HasIsFido() bool {
 	return o != nil && o.IsFido != nil
 }
 
 // SetIsFido gets a reference to the given bool and assigns it to the IsFido field.
-func (o *SyntheticsGlobalVariable) SetIsFido(v bool) {
+func (o *SyntheticsGlobalVariableRequest) SetIsFido(v bool) {
 	o.IsFido = &v
 }
 
 // GetIsTotp returns the IsTotp field value if set, zero value otherwise.
-func (o *SyntheticsGlobalVariable) GetIsTotp() bool {
+func (o *SyntheticsGlobalVariableRequest) GetIsTotp() bool {
 	if o == nil || o.IsTotp == nil {
 		var ret bool
 		return ret
@@ -176,7 +175,7 @@ func (o *SyntheticsGlobalVariable) GetIsTotp() bool {
 
 // GetIsTotpOk returns a tuple with the IsTotp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGlobalVariable) GetIsTotpOk() (*bool, bool) {
+func (o *SyntheticsGlobalVariableRequest) GetIsTotpOk() (*bool, bool) {
 	if o == nil || o.IsTotp == nil {
 		return nil, false
 	}
@@ -184,17 +183,17 @@ func (o *SyntheticsGlobalVariable) GetIsTotpOk() (*bool, bool) {
 }
 
 // HasIsTotp returns a boolean if a field has been set.
-func (o *SyntheticsGlobalVariable) HasIsTotp() bool {
+func (o *SyntheticsGlobalVariableRequest) HasIsTotp() bool {
 	return o != nil && o.IsTotp != nil
 }
 
 // SetIsTotp gets a reference to the given bool and assigns it to the IsTotp field.
-func (o *SyntheticsGlobalVariable) SetIsTotp(v bool) {
+func (o *SyntheticsGlobalVariableRequest) SetIsTotp(v bool) {
 	o.IsTotp = &v
 }
 
 // GetName returns the Name field value.
-func (o *SyntheticsGlobalVariable) GetName() string {
+func (o *SyntheticsGlobalVariableRequest) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -204,7 +203,7 @@ func (o *SyntheticsGlobalVariable) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGlobalVariable) GetNameOk() (*string, bool) {
+func (o *SyntheticsGlobalVariableRequest) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -212,12 +211,12 @@ func (o *SyntheticsGlobalVariable) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value.
-func (o *SyntheticsGlobalVariable) SetName(v string) {
+func (o *SyntheticsGlobalVariableRequest) SetName(v string) {
 	o.Name = v
 }
 
 // GetParseTestOptions returns the ParseTestOptions field value if set, zero value otherwise.
-func (o *SyntheticsGlobalVariable) GetParseTestOptions() SyntheticsGlobalVariableParseTestOptions {
+func (o *SyntheticsGlobalVariableRequest) GetParseTestOptions() SyntheticsGlobalVariableParseTestOptions {
 	if o == nil || o.ParseTestOptions == nil {
 		var ret SyntheticsGlobalVariableParseTestOptions
 		return ret
@@ -227,7 +226,7 @@ func (o *SyntheticsGlobalVariable) GetParseTestOptions() SyntheticsGlobalVariabl
 
 // GetParseTestOptionsOk returns a tuple with the ParseTestOptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGlobalVariable) GetParseTestOptionsOk() (*SyntheticsGlobalVariableParseTestOptions, bool) {
+func (o *SyntheticsGlobalVariableRequest) GetParseTestOptionsOk() (*SyntheticsGlobalVariableParseTestOptions, bool) {
 	if o == nil || o.ParseTestOptions == nil {
 		return nil, false
 	}
@@ -235,17 +234,17 @@ func (o *SyntheticsGlobalVariable) GetParseTestOptionsOk() (*SyntheticsGlobalVar
 }
 
 // HasParseTestOptions returns a boolean if a field has been set.
-func (o *SyntheticsGlobalVariable) HasParseTestOptions() bool {
+func (o *SyntheticsGlobalVariableRequest) HasParseTestOptions() bool {
 	return o != nil && o.ParseTestOptions != nil
 }
 
 // SetParseTestOptions gets a reference to the given SyntheticsGlobalVariableParseTestOptions and assigns it to the ParseTestOptions field.
-func (o *SyntheticsGlobalVariable) SetParseTestOptions(v SyntheticsGlobalVariableParseTestOptions) {
+func (o *SyntheticsGlobalVariableRequest) SetParseTestOptions(v SyntheticsGlobalVariableParseTestOptions) {
 	o.ParseTestOptions = &v
 }
 
 // GetParseTestPublicId returns the ParseTestPublicId field value if set, zero value otherwise.
-func (o *SyntheticsGlobalVariable) GetParseTestPublicId() string {
+func (o *SyntheticsGlobalVariableRequest) GetParseTestPublicId() string {
 	if o == nil || o.ParseTestPublicId == nil {
 		var ret string
 		return ret
@@ -255,7 +254,7 @@ func (o *SyntheticsGlobalVariable) GetParseTestPublicId() string {
 
 // GetParseTestPublicIdOk returns a tuple with the ParseTestPublicId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGlobalVariable) GetParseTestPublicIdOk() (*string, bool) {
+func (o *SyntheticsGlobalVariableRequest) GetParseTestPublicIdOk() (*string, bool) {
 	if o == nil || o.ParseTestPublicId == nil {
 		return nil, false
 	}
@@ -263,17 +262,17 @@ func (o *SyntheticsGlobalVariable) GetParseTestPublicIdOk() (*string, bool) {
 }
 
 // HasParseTestPublicId returns a boolean if a field has been set.
-func (o *SyntheticsGlobalVariable) HasParseTestPublicId() bool {
+func (o *SyntheticsGlobalVariableRequest) HasParseTestPublicId() bool {
 	return o != nil && o.ParseTestPublicId != nil
 }
 
 // SetParseTestPublicId gets a reference to the given string and assigns it to the ParseTestPublicId field.
-func (o *SyntheticsGlobalVariable) SetParseTestPublicId(v string) {
+func (o *SyntheticsGlobalVariableRequest) SetParseTestPublicId(v string) {
 	o.ParseTestPublicId = &v
 }
 
 // GetTags returns the Tags field value.
-func (o *SyntheticsGlobalVariable) GetTags() []string {
+func (o *SyntheticsGlobalVariableRequest) GetTags() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -283,7 +282,7 @@ func (o *SyntheticsGlobalVariable) GetTags() []string {
 
 // GetTagsOk returns a tuple with the Tags field value
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGlobalVariable) GetTagsOk() (*[]string, bool) {
+func (o *SyntheticsGlobalVariableRequest) GetTagsOk() (*[]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -291,35 +290,40 @@ func (o *SyntheticsGlobalVariable) GetTagsOk() (*[]string, bool) {
 }
 
 // SetTags sets field value.
-func (o *SyntheticsGlobalVariable) SetTags(v []string) {
+func (o *SyntheticsGlobalVariableRequest) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetValue returns the Value field value.
-func (o *SyntheticsGlobalVariable) GetValue() SyntheticsGlobalVariableValue {
-	if o == nil {
+// GetValue returns the Value field value if set, zero value otherwise.
+func (o *SyntheticsGlobalVariableRequest) GetValue() SyntheticsGlobalVariableValue {
+	if o == nil || o.Value == nil {
 		var ret SyntheticsGlobalVariableValue
 		return ret
 	}
-	return o.Value
+	return *o.Value
 }
 
-// GetValueOk returns a tuple with the Value field value
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGlobalVariable) GetValueOk() (*SyntheticsGlobalVariableValue, bool) {
-	if o == nil {
+func (o *SyntheticsGlobalVariableRequest) GetValueOk() (*SyntheticsGlobalVariableValue, bool) {
+	if o == nil || o.Value == nil {
 		return nil, false
 	}
-	return &o.Value, true
+	return o.Value, true
 }
 
-// SetValue sets field value.
-func (o *SyntheticsGlobalVariable) SetValue(v SyntheticsGlobalVariableValue) {
-	o.Value = v
+// HasValue returns a boolean if a field has been set.
+func (o *SyntheticsGlobalVariableRequest) HasValue() bool {
+	return o != nil && o.Value != nil
+}
+
+// SetValue gets a reference to the given SyntheticsGlobalVariableValue and assigns it to the Value field.
+func (o *SyntheticsGlobalVariableRequest) SetValue(v SyntheticsGlobalVariableValue) {
+	o.Value = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o SyntheticsGlobalVariable) MarshalJSON() ([]byte, error) {
+func (o SyntheticsGlobalVariableRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -345,7 +349,9 @@ func (o SyntheticsGlobalVariable) MarshalJSON() ([]byte, error) {
 		toSerialize["parse_test_public_id"] = o.ParseTestPublicId
 	}
 	toSerialize["tags"] = o.Tags
-	toSerialize["value"] = o.Value
+	if o.Value != nil {
+		toSerialize["value"] = o.Value
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -354,7 +360,7 @@ func (o SyntheticsGlobalVariable) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SyntheticsGlobalVariableRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes        *SyntheticsGlobalVariableAttributes       `json:"attributes,omitempty"`
 		Description       *string                                   `json:"description"`
@@ -365,7 +371,7 @@ func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 		ParseTestOptions  *SyntheticsGlobalVariableParseTestOptions `json:"parse_test_options,omitempty"`
 		ParseTestPublicId *string                                   `json:"parse_test_public_id,omitempty"`
 		Tags              *[]string                                 `json:"tags"`
-		Value             *SyntheticsGlobalVariableValue            `json:"value"`
+		Value             *SyntheticsGlobalVariableValue            `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -378,9 +384,6 @@ func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.Tags == nil {
 		return fmt.Errorf("required field tags missing")
-	}
-	if all.Value == nil {
-		return fmt.Errorf("required field value missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -405,10 +408,10 @@ func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 	o.ParseTestOptions = all.ParseTestOptions
 	o.ParseTestPublicId = all.ParseTestPublicId
 	o.Tags = *all.Tags
-	if all.Value.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Value != nil && all.Value.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Value = *all.Value
+	o.Value = all.Value
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
