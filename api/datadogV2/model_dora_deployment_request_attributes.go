@@ -20,7 +20,7 @@ type DORADeploymentRequestAttributes struct {
 	Git *DORAGitInfo `json:"git,omitempty"`
 	// Deployment ID.
 	Id *string `json:"id,omitempty"`
-	// Service name from a service available in the Service Catalog.
+	// Service name.
 	Service string `json:"service"`
 	// Unix timestamp when the deployment started. It must be in nanoseconds, milliseconds, or seconds.
 	StartedAt int64 `json:"started_at"`
