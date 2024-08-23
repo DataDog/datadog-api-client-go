@@ -1,0 +1,1445 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV1/model_monitor_options.go - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.19.13";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV1">datadogV1</a>/<span class="text-muted">model_monitor_options.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/api/datadogV1">github.com/DataDog/datadog-api-client-go/v2/api/datadogV1</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span><span class="comment">// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.</span>
+<span id="L2" class="ln">     2  </span><span class="comment">// This product includes software developed at Datadog (https://www.datadoghq.com/).</span>
+<span id="L3" class="ln">     3  </span><span class="comment">// Copyright 2019-Present Datadog, Inc.</span>
+<span id="L4" class="ln">     4  </span>
+<span id="L5" class="ln">     5  </span>package datadogV1
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>import (
+<span id="L8" class="ln">     8  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
+<span id="L9" class="ln">     9  </span>)
+<span id="L10" class="ln">    10  </span>
+<span id="L11" class="ln">    11  </span><span class="comment">// MonitorOptions List of options associated with your monitor.</span>
+<span id="L12" class="ln">    12  </span>type MonitorOptions struct {
+<span id="L13" class="ln">    13  </span>	<span class="comment">// Type of aggregation performed in the monitor query.</span>
+<span id="L14" class="ln">    14  </span>	Aggregation *MonitorOptionsAggregation `json:&#34;aggregation,omitempty&#34;`
+<span id="L15" class="ln">    15  </span>	<span class="comment">// IDs of the device the Synthetics monitor is running on.</span>
+<span id="L16" class="ln">    16  </span>	<span class="comment">// Deprecated</span>
+<span id="L17" class="ln">    17  </span>	DeviceIds []MonitorDeviceID `json:&#34;device_ids,omitempty&#34;`
+<span id="L18" class="ln">    18  </span>	<span class="comment">// Whether or not to send a log sample when the log monitor triggers.</span>
+<span id="L19" class="ln">    19  </span>	EnableLogsSample *bool `json:&#34;enable_logs_sample,omitempty&#34;`
+<span id="L20" class="ln">    20  </span>	<span class="comment">// Whether or not to send a list of samples when the monitor triggers. This is only used by CI Test and Pipeline monitors.</span>
+<span id="L21" class="ln">    21  </span>	EnableSamples *bool `json:&#34;enable_samples,omitempty&#34;`
+<span id="L22" class="ln">    22  </span>	<span class="comment">// We recommend using the [is_renotify](https://docs.datadoghq.com/monitors/notify/?tab=is_alert#renotify),</span>
+<span id="L23" class="ln">    23  </span>	<span class="comment">// block in the original message instead.</span>
+<span id="L24" class="ln">    24  </span>	<span class="comment">// A message to include with a re-notification. Supports the `@username` notification we allow elsewhere.</span>
+<span id="L25" class="ln">    25  </span>	<span class="comment">// Not applicable if `renotify_interval` is `None`.</span>
+<span id="L26" class="ln">    26  </span>	EscalationMessage *string `json:&#34;escalation_message,omitempty&#34;`
+<span id="L27" class="ln">    27  </span>	<span class="comment">// Time (in seconds) to delay evaluation, as a non-negative integer. For example, if the value is set to `300` (5min),</span>
+<span id="L28" class="ln">    28  </span>	<span class="comment">// the timeframe is set to `last_5m` and the time is 7:00, the monitor evaluates data from 6:50 to 6:55.</span>
+<span id="L29" class="ln">    29  </span>	<span class="comment">// This is useful for AWS CloudWatch and other backfilled metrics to ensure the monitor always has data during evaluation.</span>
+<span id="L30" class="ln">    30  </span>	EvaluationDelay datadog.NullableInt64 `json:&#34;evaluation_delay,omitempty&#34;`
+<span id="L31" class="ln">    31  </span>	<span class="comment">// The time span after which groups with missing data are dropped from the monitor state.</span>
+<span id="L32" class="ln">    32  </span>	<span class="comment">// The minimum value is one hour, and the maximum value is 72 hours.</span>
+<span id="L33" class="ln">    33  </span>	<span class="comment">// Example values are: &#34;60m&#34;, &#34;1h&#34;, and &#34;2d&#34;.</span>
+<span id="L34" class="ln">    34  </span>	<span class="comment">// This option is only available for APM Trace Analytics, Audit Trail, CI, Error Tracking, Event, Logs, and RUM monitors.</span>
+<span id="L35" class="ln">    35  </span>	GroupRetentionDuration *string `json:&#34;group_retention_duration,omitempty&#34;`
+<span id="L36" class="ln">    36  </span>	<span class="comment">// Whether the log alert monitor triggers a single alert or multiple alerts when any group breaches a threshold.</span>
+<span id="L37" class="ln">    37  </span>	GroupbySimpleMonitor *bool `json:&#34;groupby_simple_monitor,omitempty&#34;`
+<span id="L38" class="ln">    38  </span>	<span class="comment">// A Boolean indicating whether notifications from this monitor automatically inserts its triggering tags into the title.</span>
+<span id="L39" class="ln">    39  </span>	<span class="comment">//</span>
+<span id="L40" class="ln">    40  </span>	<span class="comment">// **Examples**</span>
+<span id="L41" class="ln">    41  </span>	<span class="comment">// - If `True`, `[Triggered on {host:h1}] Monitor Title`</span>
+<span id="L42" class="ln">    42  </span>	<span class="comment">// - If `False`, `[Triggered] Monitor Title`</span>
+<span id="L43" class="ln">    43  </span>	IncludeTags *bool `json:&#34;include_tags,omitempty&#34;`
+<span id="L44" class="ln">    44  </span>	<span class="comment">// Whether or not the monitor is locked (only editable by creator and admins). Use `restricted_roles` instead.</span>
+<span id="L45" class="ln">    45  </span>	<span class="comment">// Deprecated</span>
+<span id="L46" class="ln">    46  </span>	Locked *bool `json:&#34;locked,omitempty&#34;`
+<span id="L47" class="ln">    47  </span>	<span class="comment">// How long the test should be in failure before alerting (integer, number of seconds, max 7200).</span>
+<span id="L48" class="ln">    48  </span>	MinFailureDuration datadog.NullableInt64 `json:&#34;min_failure_duration,omitempty&#34;`
+<span id="L49" class="ln">    49  </span>	<span class="comment">// The minimum number of locations in failure at the same time during</span>
+<span id="L50" class="ln">    50  </span>	<span class="comment">// at least one moment in the `min_failure_duration` period (`min_location_failed` and `min_failure_duration`</span>
+<span id="L51" class="ln">    51  </span>	<span class="comment">// are part of the advanced alerting rules - integer, &gt;= 1).</span>
+<span id="L52" class="ln">    52  </span>	MinLocationFailed datadog.NullableInt64 `json:&#34;min_location_failed,omitempty&#34;`
+<span id="L53" class="ln">    53  </span>	<span class="comment">// Time (in seconds) to skip evaluations for new groups.</span>
+<span id="L54" class="ln">    54  </span>	<span class="comment">//</span>
+<span id="L55" class="ln">    55  </span>	<span class="comment">// For example, this option can be used to skip evaluations for new hosts while they initialize.</span>
+<span id="L56" class="ln">    56  </span>	<span class="comment">//</span>
+<span id="L57" class="ln">    57  </span>	<span class="comment">// Must be a non negative integer.</span>
+<span id="L58" class="ln">    58  </span>	NewGroupDelay datadog.NullableInt64 `json:&#34;new_group_delay,omitempty&#34;`
+<span id="L59" class="ln">    59  </span>	<span class="comment">// Time (in seconds) to allow a host to boot and applications</span>
+<span id="L60" class="ln">    60  </span>	<span class="comment">// to fully start before starting the evaluation of monitor results.</span>
+<span id="L61" class="ln">    61  </span>	<span class="comment">// Should be a non negative integer.</span>
+<span id="L62" class="ln">    62  </span>	<span class="comment">//</span>
+<span id="L63" class="ln">    63  </span>	<span class="comment">// Use new_group_delay instead.</span>
+<span id="L64" class="ln">    64  </span>	<span class="comment">// Deprecated</span>
+<span id="L65" class="ln">    65  </span>	NewHostDelay datadog.NullableInt64 `json:&#34;new_host_delay,omitempty&#34;`
+<span id="L66" class="ln">    66  </span>	<span class="comment">// The number of minutes before a monitor notifies after data stops reporting.</span>
+<span id="L67" class="ln">    67  </span>	<span class="comment">// Datadog recommends at least 2x the monitor timeframe for query alerts or 2 minutes for service checks.</span>
+<span id="L68" class="ln">    68  </span>	<span class="comment">// If omitted, 2x the evaluation timeframe is used for query alerts, and 24 hours is used for service checks.</span>
+<span id="L69" class="ln">    69  </span>	NoDataTimeframe datadog.NullableInt64 `json:&#34;no_data_timeframe,omitempty&#34;`
+<span id="L70" class="ln">    70  </span>	<span class="comment">// Toggles the display of additional content sent in the monitor notification.</span>
+<span id="L71" class="ln">    71  </span>	NotificationPresetName *MonitorOptionsNotificationPresets `json:&#34;notification_preset_name,omitempty&#34;`
+<span id="L72" class="ln">    72  </span>	<span class="comment">// A Boolean indicating whether tagged users is notified on changes to this monitor.</span>
+<span id="L73" class="ln">    73  </span>	NotifyAudit *bool `json:&#34;notify_audit,omitempty&#34;`
+<span id="L74" class="ln">    74  </span>	<span class="comment">// Controls what granularity a monitor alerts on. Only available for monitors with groupings.</span>
+<span id="L75" class="ln">    75  </span>	<span class="comment">// For instance, a monitor grouped by `cluster`, `namespace`, and `pod` can be configured to only notify on each</span>
+<span id="L76" class="ln">    76  </span>	<span class="comment">// new `cluster` violating the alert conditions by setting `notify_by` to `[&#34;cluster&#34;]`. Tags mentioned</span>
+<span id="L77" class="ln">    77  </span>	<span class="comment">// in `notify_by` must be a subset of the grouping tags in the query.</span>
+<span id="L78" class="ln">    78  </span>	<span class="comment">// For example, a query grouped by `cluster` and `namespace` cannot notify on `region`.</span>
+<span id="L79" class="ln">    79  </span>	<span class="comment">// Setting `notify_by` to `[*]` configures the monitor to notify as a simple-alert.</span>
+<span id="L80" class="ln">    80  </span>	NotifyBy []string `json:&#34;notify_by,omitempty&#34;`
+<span id="L81" class="ln">    81  </span>	<span class="comment">// A Boolean indicating whether this monitor notifies when data stops reporting. Defaults to `false`.</span>
+<span id="L82" class="ln">    82  </span>	NotifyNoData *bool `json:&#34;notify_no_data,omitempty&#34;`
+<span id="L83" class="ln">    83  </span>	<span class="comment">// Controls how groups or monitors are treated if an evaluation does not return any data points.</span>
+<span id="L84" class="ln">    84  </span>	<span class="comment">// The default option results in different behavior depending on the monitor query type.</span>
+<span id="L85" class="ln">    85  </span>	<span class="comment">// For monitors using Count queries, an empty monitor evaluation is treated as 0 and is compared to the threshold conditions.</span>
+<span id="L86" class="ln">    86  </span>	<span class="comment">// For monitors using any query type other than Count, for example Gauge, Measure, or Rate, the monitor shows the last known status.</span>
+<span id="L87" class="ln">    87  </span>	<span class="comment">// This option is only available for APM Trace Analytics, Audit Trail, CI, Error Tracking, Event, Logs, and RUM monitors.</span>
+<span id="L88" class="ln">    88  </span>	OnMissingData *OnMissingDataOption `json:&#34;on_missing_data,omitempty&#34;`
+<span id="L89" class="ln">    89  </span>	<span class="comment">// The number of minutes after the last notification before a monitor re-notifies on the current status.</span>
+<span id="L90" class="ln">    90  </span>	<span class="comment">// It only re-notifies if it’s not resolved.</span>
+<span id="L91" class="ln">    91  </span>	RenotifyInterval datadog.NullableInt64 `json:&#34;renotify_interval,omitempty&#34;`
+<span id="L92" class="ln">    92  </span>	<span class="comment">// The number of times re-notification messages should be sent on the current status at the provided re-notification interval.</span>
+<span id="L93" class="ln">    93  </span>	RenotifyOccurrences datadog.NullableInt64 `json:&#34;renotify_occurrences,omitempty&#34;`
+<span id="L94" class="ln">    94  </span>	<span class="comment">// The types of monitor statuses for which re-notification messages are sent.</span>
+<span id="L95" class="ln">    95  </span>	<span class="comment">// Default: **null** if `renotify_interval` is **null**.</span>
+<span id="L96" class="ln">    96  </span>	<span class="comment">// If `renotify_interval` is set, defaults to renotify on `Alert` and `No Data`.</span>
+<span id="L97" class="ln">    97  </span>	RenotifyStatuses []MonitorRenotifyStatusType `json:&#34;renotify_statuses,omitempty&#34;`
+<span id="L98" class="ln">    98  </span>	<span class="comment">// A Boolean indicating whether this monitor needs a full window of data before it’s evaluated.</span>
+<span id="L99" class="ln">    99  </span>	<span class="comment">// We highly recommend you set this to `false` for sparse metrics,</span>
+<span id="L100" class="ln">   100  </span>	<span class="comment">// otherwise some evaluations are skipped. Default is false. This setting only applies to</span>
+<span id="L101" class="ln">   101  </span>	<span class="comment">// metric monitors.</span>
+<span id="L102" class="ln">   102  </span>	RequireFullWindow *bool `json:&#34;require_full_window,omitempty&#34;`
+<span id="L103" class="ln">   103  </span>	<span class="comment">// Configuration options for scheduling.</span>
+<span id="L104" class="ln">   104  </span>	SchedulingOptions *MonitorOptionsSchedulingOptions `json:&#34;scheduling_options,omitempty&#34;`
+<span id="L105" class="ln">   105  </span>	<span class="comment">// Information about the downtime applied to the monitor. Only shows v1 downtimes.</span>
+<span id="L106" class="ln">   106  </span>	<span class="comment">// Deprecated</span>
+<span id="L107" class="ln">   107  </span>	Silenced map[string]int64 `json:&#34;silenced,omitempty&#34;`
+<span id="L108" class="ln">   108  </span>	<span class="comment">// ID of the corresponding Synthetic check.</span>
+<span id="L109" class="ln">   109  </span>	<span class="comment">// Deprecated</span>
+<span id="L110" class="ln">   110  </span>	SyntheticsCheckId datadog.NullableString `json:&#34;synthetics_check_id,omitempty&#34;`
+<span id="L111" class="ln">   111  </span>	<span class="comment">// Alerting time window options.</span>
+<span id="L112" class="ln">   112  </span>	ThresholdWindows *MonitorThresholdWindowOptions `json:&#34;threshold_windows,omitempty&#34;`
+<span id="L113" class="ln">   113  </span>	<span class="comment">// List of the different monitor threshold available.</span>
+<span id="L114" class="ln">   114  </span>	Thresholds *MonitorThresholds `json:&#34;thresholds,omitempty&#34;`
+<span id="L115" class="ln">   115  </span>	<span class="comment">// The number of hours of the monitor not reporting data before it automatically resolves from a triggered state. The minimum allowed value is 0 hours. The maximum allowed value is 24 hours.</span>
+<span id="L116" class="ln">   116  </span>	TimeoutH datadog.NullableInt64 `json:&#34;timeout_h,omitempty&#34;`
+<span id="L117" class="ln">   117  </span>	<span class="comment">// List of requests that can be used in the monitor query. **This feature is currently in beta.**</span>
+<span id="L118" class="ln">   118  </span>	Variables []MonitorFormulaAndFunctionQueryDefinition `json:&#34;variables,omitempty&#34;`
+<span id="L119" class="ln">   119  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L120" class="ln">   120  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L121" class="ln">   121  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L122" class="ln">   122  </span>}
+<span id="L123" class="ln">   123  </span>
+<span id="L124" class="ln">   124  </span><span class="comment">// NewMonitorOptions instantiates a new MonitorOptions object.</span>
+<span id="L125" class="ln">   125  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L126" class="ln">   126  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L127" class="ln">   127  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L128" class="ln">   128  </span>func NewMonitorOptions() *MonitorOptions {
+<span id="L129" class="ln">   129  </span>	this := MonitorOptions{}
+<span id="L130" class="ln">   130  </span>	var includeTags bool = true
+<span id="L131" class="ln">   131  </span>	this.IncludeTags = &amp;includeTags
+<span id="L132" class="ln">   132  </span>	var minFailureDuration int64 = 0
+<span id="L133" class="ln">   133  </span>	this.MinFailureDuration = *datadog.NewNullableInt64(&amp;minFailureDuration)
+<span id="L134" class="ln">   134  </span>	var minLocationFailed int64 = 1
+<span id="L135" class="ln">   135  </span>	this.MinLocationFailed = *datadog.NewNullableInt64(&amp;minLocationFailed)
+<span id="L136" class="ln">   136  </span>	var newHostDelay int64 = 300
+<span id="L137" class="ln">   137  </span>	this.NewHostDelay = *datadog.NewNullableInt64(&amp;newHostDelay)
+<span id="L138" class="ln">   138  </span>	var notificationPresetName MonitorOptionsNotificationPresets = MONITOROPTIONSNOTIFICATIONPRESETS_SHOW_ALL
+<span id="L139" class="ln">   139  </span>	this.NotificationPresetName = &amp;notificationPresetName
+<span id="L140" class="ln">   140  </span>	var notifyAudit bool = false
+<span id="L141" class="ln">   141  </span>	this.NotifyAudit = &amp;notifyAudit
+<span id="L142" class="ln">   142  </span>	this.RenotifyInterval = *datadog.NewNullableInt64(nil)
+<span id="L143" class="ln">   143  </span>	this.TimeoutH = *datadog.NewNullableInt64(nil)
+<span id="L144" class="ln">   144  </span>	return &amp;this
+<span id="L145" class="ln">   145  </span>}
+<span id="L146" class="ln">   146  </span>
+<span id="L147" class="ln">   147  </span><span class="comment">// NewMonitorOptionsWithDefaults instantiates a new MonitorOptions object.</span>
+<span id="L148" class="ln">   148  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L149" class="ln">   149  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L150" class="ln">   150  </span>func NewMonitorOptionsWithDefaults() *MonitorOptions {
+<span id="L151" class="ln">   151  </span>	this := MonitorOptions{}
+<span id="L152" class="ln">   152  </span>	var includeTags bool = true
+<span id="L153" class="ln">   153  </span>	this.IncludeTags = &amp;includeTags
+<span id="L154" class="ln">   154  </span>	var minFailureDuration int64 = 0
+<span id="L155" class="ln">   155  </span>	this.MinFailureDuration = *datadog.NewNullableInt64(&amp;minFailureDuration)
+<span id="L156" class="ln">   156  </span>	var minLocationFailed int64 = 1
+<span id="L157" class="ln">   157  </span>	this.MinLocationFailed = *datadog.NewNullableInt64(&amp;minLocationFailed)
+<span id="L158" class="ln">   158  </span>	var newHostDelay int64 = 300
+<span id="L159" class="ln">   159  </span>	this.NewHostDelay = *datadog.NewNullableInt64(&amp;newHostDelay)
+<span id="L160" class="ln">   160  </span>	var notificationPresetName MonitorOptionsNotificationPresets = MONITOROPTIONSNOTIFICATIONPRESETS_SHOW_ALL
+<span id="L161" class="ln">   161  </span>	this.NotificationPresetName = &amp;notificationPresetName
+<span id="L162" class="ln">   162  </span>	var notifyAudit bool = false
+<span id="L163" class="ln">   163  </span>	this.NotifyAudit = &amp;notifyAudit
+<span id="L164" class="ln">   164  </span>	this.RenotifyInterval = *datadog.NewNullableInt64(nil)
+<span id="L165" class="ln">   165  </span>	this.TimeoutH = *datadog.NewNullableInt64(nil)
+<span id="L166" class="ln">   166  </span>	return &amp;this
+<span id="L167" class="ln">   167  </span>}
+<span id="L168" class="ln">   168  </span>
+<span id="L169" class="ln">   169  </span><span class="comment">// GetAggregation returns the Aggregation field value if set, zero value otherwise.</span>
+<span id="L170" class="ln">   170  </span>func (o *MonitorOptions) GetAggregation() MonitorOptionsAggregation {
+<span id="L171" class="ln">   171  </span>	if o == nil || o.Aggregation == nil {
+<span id="L172" class="ln">   172  </span>		var ret MonitorOptionsAggregation
+<span id="L173" class="ln">   173  </span>		return ret
+<span id="L174" class="ln">   174  </span>	}
+<span id="L175" class="ln">   175  </span>	return *o.Aggregation
+<span id="L176" class="ln">   176  </span>}
+<span id="L177" class="ln">   177  </span>
+<span id="L178" class="ln">   178  </span><span class="comment">// GetAggregationOk returns a tuple with the Aggregation field value if set, nil otherwise</span>
+<span id="L179" class="ln">   179  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L180" class="ln">   180  </span>func (o *MonitorOptions) GetAggregationOk() (*MonitorOptionsAggregation, bool) {
+<span id="L181" class="ln">   181  </span>	if o == nil || o.Aggregation == nil {
+<span id="L182" class="ln">   182  </span>		return nil, false
+<span id="L183" class="ln">   183  </span>	}
+<span id="L184" class="ln">   184  </span>	return o.Aggregation, true
+<span id="L185" class="ln">   185  </span>}
+<span id="L186" class="ln">   186  </span>
+<span id="L187" class="ln">   187  </span><span class="comment">// HasAggregation returns a boolean if a field has been set.</span>
+<span id="L188" class="ln">   188  </span>func (o *MonitorOptions) HasAggregation() bool {
+<span id="L189" class="ln">   189  </span>	return o != nil &amp;&amp; o.Aggregation != nil
+<span id="L190" class="ln">   190  </span>}
+<span id="L191" class="ln">   191  </span>
+<span id="L192" class="ln">   192  </span><span class="comment">// SetAggregation gets a reference to the given MonitorOptionsAggregation and assigns it to the Aggregation field.</span>
+<span id="L193" class="ln">   193  </span>func (o *MonitorOptions) SetAggregation(v MonitorOptionsAggregation) {
+<span id="L194" class="ln">   194  </span>	o.Aggregation = &amp;v
+<span id="L195" class="ln">   195  </span>}
+<span id="L196" class="ln">   196  </span>
+<span id="L197" class="ln">   197  </span><span class="comment">// GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.</span>
+<span id="L198" class="ln">   198  </span><span class="comment">// Deprecated</span>
+<span id="L199" class="ln">   199  </span>func (o *MonitorOptions) GetDeviceIds() []MonitorDeviceID {
+<span id="L200" class="ln">   200  </span>	if o == nil || o.DeviceIds == nil {
+<span id="L201" class="ln">   201  </span>		var ret []MonitorDeviceID
+<span id="L202" class="ln">   202  </span>		return ret
+<span id="L203" class="ln">   203  </span>	}
+<span id="L204" class="ln">   204  </span>	return o.DeviceIds
+<span id="L205" class="ln">   205  </span>}
+<span id="L206" class="ln">   206  </span>
+<span id="L207" class="ln">   207  </span><span class="comment">// GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise</span>
+<span id="L208" class="ln">   208  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L209" class="ln">   209  </span><span class="comment">// Deprecated</span>
+<span id="L210" class="ln">   210  </span>func (o *MonitorOptions) GetDeviceIdsOk() (*[]MonitorDeviceID, bool) {
+<span id="L211" class="ln">   211  </span>	if o == nil || o.DeviceIds == nil {
+<span id="L212" class="ln">   212  </span>		return nil, false
+<span id="L213" class="ln">   213  </span>	}
+<span id="L214" class="ln">   214  </span>	return &amp;o.DeviceIds, true
+<span id="L215" class="ln">   215  </span>}
+<span id="L216" class="ln">   216  </span>
+<span id="L217" class="ln">   217  </span><span class="comment">// HasDeviceIds returns a boolean if a field has been set.</span>
+<span id="L218" class="ln">   218  </span>func (o *MonitorOptions) HasDeviceIds() bool {
+<span id="L219" class="ln">   219  </span>	return o != nil &amp;&amp; o.DeviceIds != nil
+<span id="L220" class="ln">   220  </span>}
+<span id="L221" class="ln">   221  </span>
+<span id="L222" class="ln">   222  </span><span class="comment">// SetDeviceIds gets a reference to the given []MonitorDeviceID and assigns it to the DeviceIds field.</span>
+<span id="L223" class="ln">   223  </span><span class="comment">// Deprecated</span>
+<span id="L224" class="ln">   224  </span>func (o *MonitorOptions) SetDeviceIds(v []MonitorDeviceID) {
+<span id="L225" class="ln">   225  </span>	o.DeviceIds = v
+<span id="L226" class="ln">   226  </span>}
+<span id="L227" class="ln">   227  </span>
+<span id="L228" class="ln">   228  </span><span class="comment">// GetEnableLogsSample returns the EnableLogsSample field value if set, zero value otherwise.</span>
+<span id="L229" class="ln">   229  </span>func (o *MonitorOptions) GetEnableLogsSample() bool {
+<span id="L230" class="ln">   230  </span>	if o == nil || o.EnableLogsSample == nil {
+<span id="L231" class="ln">   231  </span>		var ret bool
+<span id="L232" class="ln">   232  </span>		return ret
+<span id="L233" class="ln">   233  </span>	}
+<span id="L234" class="ln">   234  </span>	return *o.EnableLogsSample
+<span id="L235" class="ln">   235  </span>}
+<span id="L236" class="ln">   236  </span>
+<span id="L237" class="ln">   237  </span><span class="comment">// GetEnableLogsSampleOk returns a tuple with the EnableLogsSample field value if set, nil otherwise</span>
+<span id="L238" class="ln">   238  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L239" class="ln">   239  </span>func (o *MonitorOptions) GetEnableLogsSampleOk() (*bool, bool) {
+<span id="L240" class="ln">   240  </span>	if o == nil || o.EnableLogsSample == nil {
+<span id="L241" class="ln">   241  </span>		return nil, false
+<span id="L242" class="ln">   242  </span>	}
+<span id="L243" class="ln">   243  </span>	return o.EnableLogsSample, true
+<span id="L244" class="ln">   244  </span>}
+<span id="L245" class="ln">   245  </span>
+<span id="L246" class="ln">   246  </span><span class="comment">// HasEnableLogsSample returns a boolean if a field has been set.</span>
+<span id="L247" class="ln">   247  </span>func (o *MonitorOptions) HasEnableLogsSample() bool {
+<span id="L248" class="ln">   248  </span>	return o != nil &amp;&amp; o.EnableLogsSample != nil
+<span id="L249" class="ln">   249  </span>}
+<span id="L250" class="ln">   250  </span>
+<span id="L251" class="ln">   251  </span><span class="comment">// SetEnableLogsSample gets a reference to the given bool and assigns it to the EnableLogsSample field.</span>
+<span id="L252" class="ln">   252  </span>func (o *MonitorOptions) SetEnableLogsSample(v bool) {
+<span id="L253" class="ln">   253  </span>	o.EnableLogsSample = &amp;v
+<span id="L254" class="ln">   254  </span>}
+<span id="L255" class="ln">   255  </span>
+<span id="L256" class="ln">   256  </span><span class="comment">// GetEnableSamples returns the EnableSamples field value if set, zero value otherwise.</span>
+<span id="L257" class="ln">   257  </span>func (o *MonitorOptions) GetEnableSamples() bool {
+<span id="L258" class="ln">   258  </span>	if o == nil || o.EnableSamples == nil {
+<span id="L259" class="ln">   259  </span>		var ret bool
+<span id="L260" class="ln">   260  </span>		return ret
+<span id="L261" class="ln">   261  </span>	}
+<span id="L262" class="ln">   262  </span>	return *o.EnableSamples
+<span id="L263" class="ln">   263  </span>}
+<span id="L264" class="ln">   264  </span>
+<span id="L265" class="ln">   265  </span><span class="comment">// GetEnableSamplesOk returns a tuple with the EnableSamples field value if set, nil otherwise</span>
+<span id="L266" class="ln">   266  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L267" class="ln">   267  </span>func (o *MonitorOptions) GetEnableSamplesOk() (*bool, bool) {
+<span id="L268" class="ln">   268  </span>	if o == nil || o.EnableSamples == nil {
+<span id="L269" class="ln">   269  </span>		return nil, false
+<span id="L270" class="ln">   270  </span>	}
+<span id="L271" class="ln">   271  </span>	return o.EnableSamples, true
+<span id="L272" class="ln">   272  </span>}
+<span id="L273" class="ln">   273  </span>
+<span id="L274" class="ln">   274  </span><span class="comment">// HasEnableSamples returns a boolean if a field has been set.</span>
+<span id="L275" class="ln">   275  </span>func (o *MonitorOptions) HasEnableSamples() bool {
+<span id="L276" class="ln">   276  </span>	return o != nil &amp;&amp; o.EnableSamples != nil
+<span id="L277" class="ln">   277  </span>}
+<span id="L278" class="ln">   278  </span>
+<span id="L279" class="ln">   279  </span><span class="comment">// SetEnableSamples gets a reference to the given bool and assigns it to the EnableSamples field.</span>
+<span id="L280" class="ln">   280  </span>func (o *MonitorOptions) SetEnableSamples(v bool) {
+<span id="L281" class="ln">   281  </span>	o.EnableSamples = &amp;v
+<span id="L282" class="ln">   282  </span>}
+<span id="L283" class="ln">   283  </span>
+<span id="L284" class="ln">   284  </span><span class="comment">// GetEscalationMessage returns the EscalationMessage field value if set, zero value otherwise.</span>
+<span id="L285" class="ln">   285  </span>func (o *MonitorOptions) GetEscalationMessage() string {
+<span id="L286" class="ln">   286  </span>	if o == nil || o.EscalationMessage == nil {
+<span id="L287" class="ln">   287  </span>		var ret string
+<span id="L288" class="ln">   288  </span>		return ret
+<span id="L289" class="ln">   289  </span>	}
+<span id="L290" class="ln">   290  </span>	return *o.EscalationMessage
+<span id="L291" class="ln">   291  </span>}
+<span id="L292" class="ln">   292  </span>
+<span id="L293" class="ln">   293  </span><span class="comment">// GetEscalationMessageOk returns a tuple with the EscalationMessage field value if set, nil otherwise</span>
+<span id="L294" class="ln">   294  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L295" class="ln">   295  </span>func (o *MonitorOptions) GetEscalationMessageOk() (*string, bool) {
+<span id="L296" class="ln">   296  </span>	if o == nil || o.EscalationMessage == nil {
+<span id="L297" class="ln">   297  </span>		return nil, false
+<span id="L298" class="ln">   298  </span>	}
+<span id="L299" class="ln">   299  </span>	return o.EscalationMessage, true
+<span id="L300" class="ln">   300  </span>}
+<span id="L301" class="ln">   301  </span>
+<span id="L302" class="ln">   302  </span><span class="comment">// HasEscalationMessage returns a boolean if a field has been set.</span>
+<span id="L303" class="ln">   303  </span>func (o *MonitorOptions) HasEscalationMessage() bool {
+<span id="L304" class="ln">   304  </span>	return o != nil &amp;&amp; o.EscalationMessage != nil
+<span id="L305" class="ln">   305  </span>}
+<span id="L306" class="ln">   306  </span>
+<span id="L307" class="ln">   307  </span><span class="comment">// SetEscalationMessage gets a reference to the given string and assigns it to the EscalationMessage field.</span>
+<span id="L308" class="ln">   308  </span>func (o *MonitorOptions) SetEscalationMessage(v string) {
+<span id="L309" class="ln">   309  </span>	o.EscalationMessage = &amp;v
+<span id="L310" class="ln">   310  </span>}
+<span id="L311" class="ln">   311  </span>
+<span id="L312" class="ln">   312  </span><span class="comment">// GetEvaluationDelay returns the EvaluationDelay field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L313" class="ln">   313  </span>func (o *MonitorOptions) GetEvaluationDelay() int64 {
+<span id="L314" class="ln">   314  </span>	if o == nil || o.EvaluationDelay.Get() == nil {
+<span id="L315" class="ln">   315  </span>		var ret int64
+<span id="L316" class="ln">   316  </span>		return ret
+<span id="L317" class="ln">   317  </span>	}
+<span id="L318" class="ln">   318  </span>	return *o.EvaluationDelay.Get()
+<span id="L319" class="ln">   319  </span>}
+<span id="L320" class="ln">   320  </span>
+<span id="L321" class="ln">   321  </span><span class="comment">// GetEvaluationDelayOk returns a tuple with the EvaluationDelay field value if set, nil otherwise</span>
+<span id="L322" class="ln">   322  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L323" class="ln">   323  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L324" class="ln">   324  </span>func (o *MonitorOptions) GetEvaluationDelayOk() (*int64, bool) {
+<span id="L325" class="ln">   325  </span>	if o == nil {
+<span id="L326" class="ln">   326  </span>		return nil, false
+<span id="L327" class="ln">   327  </span>	}
+<span id="L328" class="ln">   328  </span>	return o.EvaluationDelay.Get(), o.EvaluationDelay.IsSet()
+<span id="L329" class="ln">   329  </span>}
+<span id="L330" class="ln">   330  </span>
+<span id="L331" class="ln">   331  </span><span class="comment">// HasEvaluationDelay returns a boolean if a field has been set.</span>
+<span id="L332" class="ln">   332  </span>func (o *MonitorOptions) HasEvaluationDelay() bool {
+<span id="L333" class="ln">   333  </span>	return o != nil &amp;&amp; o.EvaluationDelay.IsSet()
+<span id="L334" class="ln">   334  </span>}
+<span id="L335" class="ln">   335  </span>
+<span id="L336" class="ln">   336  </span><span class="comment">// SetEvaluationDelay gets a reference to the given datadog.NullableInt64 and assigns it to the EvaluationDelay field.</span>
+<span id="L337" class="ln">   337  </span>func (o *MonitorOptions) SetEvaluationDelay(v int64) {
+<span id="L338" class="ln">   338  </span>	o.EvaluationDelay.Set(&amp;v)
+<span id="L339" class="ln">   339  </span>}
+<span id="L340" class="ln">   340  </span>
+<span id="L341" class="ln">   341  </span><span class="comment">// SetEvaluationDelayNil sets the value for EvaluationDelay to be an explicit nil.</span>
+<span id="L342" class="ln">   342  </span>func (o *MonitorOptions) SetEvaluationDelayNil() {
+<span id="L343" class="ln">   343  </span>	o.EvaluationDelay.Set(nil)
+<span id="L344" class="ln">   344  </span>}
+<span id="L345" class="ln">   345  </span>
+<span id="L346" class="ln">   346  </span><span class="comment">// UnsetEvaluationDelay ensures that no value is present for EvaluationDelay, not even an explicit nil.</span>
+<span id="L347" class="ln">   347  </span>func (o *MonitorOptions) UnsetEvaluationDelay() {
+<span id="L348" class="ln">   348  </span>	o.EvaluationDelay.Unset()
+<span id="L349" class="ln">   349  </span>}
+<span id="L350" class="ln">   350  </span>
+<span id="L351" class="ln">   351  </span><span class="comment">// GetGroupRetentionDuration returns the GroupRetentionDuration field value if set, zero value otherwise.</span>
+<span id="L352" class="ln">   352  </span>func (o *MonitorOptions) GetGroupRetentionDuration() string {
+<span id="L353" class="ln">   353  </span>	if o == nil || o.GroupRetentionDuration == nil {
+<span id="L354" class="ln">   354  </span>		var ret string
+<span id="L355" class="ln">   355  </span>		return ret
+<span id="L356" class="ln">   356  </span>	}
+<span id="L357" class="ln">   357  </span>	return *o.GroupRetentionDuration
+<span id="L358" class="ln">   358  </span>}
+<span id="L359" class="ln">   359  </span>
+<span id="L360" class="ln">   360  </span><span class="comment">// GetGroupRetentionDurationOk returns a tuple with the GroupRetentionDuration field value if set, nil otherwise</span>
+<span id="L361" class="ln">   361  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L362" class="ln">   362  </span>func (o *MonitorOptions) GetGroupRetentionDurationOk() (*string, bool) {
+<span id="L363" class="ln">   363  </span>	if o == nil || o.GroupRetentionDuration == nil {
+<span id="L364" class="ln">   364  </span>		return nil, false
+<span id="L365" class="ln">   365  </span>	}
+<span id="L366" class="ln">   366  </span>	return o.GroupRetentionDuration, true
+<span id="L367" class="ln">   367  </span>}
+<span id="L368" class="ln">   368  </span>
+<span id="L369" class="ln">   369  </span><span class="comment">// HasGroupRetentionDuration returns a boolean if a field has been set.</span>
+<span id="L370" class="ln">   370  </span>func (o *MonitorOptions) HasGroupRetentionDuration() bool {
+<span id="L371" class="ln">   371  </span>	return o != nil &amp;&amp; o.GroupRetentionDuration != nil
+<span id="L372" class="ln">   372  </span>}
+<span id="L373" class="ln">   373  </span>
+<span id="L374" class="ln">   374  </span><span class="comment">// SetGroupRetentionDuration gets a reference to the given string and assigns it to the GroupRetentionDuration field.</span>
+<span id="L375" class="ln">   375  </span>func (o *MonitorOptions) SetGroupRetentionDuration(v string) {
+<span id="L376" class="ln">   376  </span>	o.GroupRetentionDuration = &amp;v
+<span id="L377" class="ln">   377  </span>}
+<span id="L378" class="ln">   378  </span>
+<span id="L379" class="ln">   379  </span><span class="comment">// GetGroupbySimpleMonitor returns the GroupbySimpleMonitor field value if set, zero value otherwise.</span>
+<span id="L380" class="ln">   380  </span>func (o *MonitorOptions) GetGroupbySimpleMonitor() bool {
+<span id="L381" class="ln">   381  </span>	if o == nil || o.GroupbySimpleMonitor == nil {
+<span id="L382" class="ln">   382  </span>		var ret bool
+<span id="L383" class="ln">   383  </span>		return ret
+<span id="L384" class="ln">   384  </span>	}
+<span id="L385" class="ln">   385  </span>	return *o.GroupbySimpleMonitor
+<span id="L386" class="ln">   386  </span>}
+<span id="L387" class="ln">   387  </span>
+<span id="L388" class="ln">   388  </span><span class="comment">// GetGroupbySimpleMonitorOk returns a tuple with the GroupbySimpleMonitor field value if set, nil otherwise</span>
+<span id="L389" class="ln">   389  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L390" class="ln">   390  </span>func (o *MonitorOptions) GetGroupbySimpleMonitorOk() (*bool, bool) {
+<span id="L391" class="ln">   391  </span>	if o == nil || o.GroupbySimpleMonitor == nil {
+<span id="L392" class="ln">   392  </span>		return nil, false
+<span id="L393" class="ln">   393  </span>	}
+<span id="L394" class="ln">   394  </span>	return o.GroupbySimpleMonitor, true
+<span id="L395" class="ln">   395  </span>}
+<span id="L396" class="ln">   396  </span>
+<span id="L397" class="ln">   397  </span><span class="comment">// HasGroupbySimpleMonitor returns a boolean if a field has been set.</span>
+<span id="L398" class="ln">   398  </span>func (o *MonitorOptions) HasGroupbySimpleMonitor() bool {
+<span id="L399" class="ln">   399  </span>	return o != nil &amp;&amp; o.GroupbySimpleMonitor != nil
+<span id="L400" class="ln">   400  </span>}
+<span id="L401" class="ln">   401  </span>
+<span id="L402" class="ln">   402  </span><span class="comment">// SetGroupbySimpleMonitor gets a reference to the given bool and assigns it to the GroupbySimpleMonitor field.</span>
+<span id="L403" class="ln">   403  </span>func (o *MonitorOptions) SetGroupbySimpleMonitor(v bool) {
+<span id="L404" class="ln">   404  </span>	o.GroupbySimpleMonitor = &amp;v
+<span id="L405" class="ln">   405  </span>}
+<span id="L406" class="ln">   406  </span>
+<span id="L407" class="ln">   407  </span><span class="comment">// GetIncludeTags returns the IncludeTags field value if set, zero value otherwise.</span>
+<span id="L408" class="ln">   408  </span>func (o *MonitorOptions) GetIncludeTags() bool {
+<span id="L409" class="ln">   409  </span>	if o == nil || o.IncludeTags == nil {
+<span id="L410" class="ln">   410  </span>		var ret bool
+<span id="L411" class="ln">   411  </span>		return ret
+<span id="L412" class="ln">   412  </span>	}
+<span id="L413" class="ln">   413  </span>	return *o.IncludeTags
+<span id="L414" class="ln">   414  </span>}
+<span id="L415" class="ln">   415  </span>
+<span id="L416" class="ln">   416  </span><span class="comment">// GetIncludeTagsOk returns a tuple with the IncludeTags field value if set, nil otherwise</span>
+<span id="L417" class="ln">   417  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L418" class="ln">   418  </span>func (o *MonitorOptions) GetIncludeTagsOk() (*bool, bool) {
+<span id="L419" class="ln">   419  </span>	if o == nil || o.IncludeTags == nil {
+<span id="L420" class="ln">   420  </span>		return nil, false
+<span id="L421" class="ln">   421  </span>	}
+<span id="L422" class="ln">   422  </span>	return o.IncludeTags, true
+<span id="L423" class="ln">   423  </span>}
+<span id="L424" class="ln">   424  </span>
+<span id="L425" class="ln">   425  </span><span class="comment">// HasIncludeTags returns a boolean if a field has been set.</span>
+<span id="L426" class="ln">   426  </span>func (o *MonitorOptions) HasIncludeTags() bool {
+<span id="L427" class="ln">   427  </span>	return o != nil &amp;&amp; o.IncludeTags != nil
+<span id="L428" class="ln">   428  </span>}
+<span id="L429" class="ln">   429  </span>
+<span id="L430" class="ln">   430  </span><span class="comment">// SetIncludeTags gets a reference to the given bool and assigns it to the IncludeTags field.</span>
+<span id="L431" class="ln">   431  </span>func (o *MonitorOptions) SetIncludeTags(v bool) {
+<span id="L432" class="ln">   432  </span>	o.IncludeTags = &amp;v
+<span id="L433" class="ln">   433  </span>}
+<span id="L434" class="ln">   434  </span>
+<span id="L435" class="ln">   435  </span><span class="comment">// GetLocked returns the Locked field value if set, zero value otherwise.</span>
+<span id="L436" class="ln">   436  </span><span class="comment">// Deprecated</span>
+<span id="L437" class="ln">   437  </span>func (o *MonitorOptions) GetLocked() bool {
+<span id="L438" class="ln">   438  </span>	if o == nil || o.Locked == nil {
+<span id="L439" class="ln">   439  </span>		var ret bool
+<span id="L440" class="ln">   440  </span>		return ret
+<span id="L441" class="ln">   441  </span>	}
+<span id="L442" class="ln">   442  </span>	return *o.Locked
+<span id="L443" class="ln">   443  </span>}
+<span id="L444" class="ln">   444  </span>
+<span id="L445" class="ln">   445  </span><span class="comment">// GetLockedOk returns a tuple with the Locked field value if set, nil otherwise</span>
+<span id="L446" class="ln">   446  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L447" class="ln">   447  </span><span class="comment">// Deprecated</span>
+<span id="L448" class="ln">   448  </span>func (o *MonitorOptions) GetLockedOk() (*bool, bool) {
+<span id="L449" class="ln">   449  </span>	if o == nil || o.Locked == nil {
+<span id="L450" class="ln">   450  </span>		return nil, false
+<span id="L451" class="ln">   451  </span>	}
+<span id="L452" class="ln">   452  </span>	return o.Locked, true
+<span id="L453" class="ln">   453  </span>}
+<span id="L454" class="ln">   454  </span>
+<span id="L455" class="ln">   455  </span><span class="comment">// HasLocked returns a boolean if a field has been set.</span>
+<span id="L456" class="ln">   456  </span>func (o *MonitorOptions) HasLocked() bool {
+<span id="L457" class="ln">   457  </span>	return o != nil &amp;&amp; o.Locked != nil
+<span id="L458" class="ln">   458  </span>}
+<span id="L459" class="ln">   459  </span>
+<span id="L460" class="ln">   460  </span><span class="comment">// SetLocked gets a reference to the given bool and assigns it to the Locked field.</span>
+<span id="L461" class="ln">   461  </span><span class="comment">// Deprecated</span>
+<span id="L462" class="ln">   462  </span>func (o *MonitorOptions) SetLocked(v bool) {
+<span id="L463" class="ln">   463  </span>	o.Locked = &amp;v
+<span id="L464" class="ln">   464  </span>}
+<span id="L465" class="ln">   465  </span>
+<span id="L466" class="ln">   466  </span><span class="comment">// GetMinFailureDuration returns the MinFailureDuration field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L467" class="ln">   467  </span>func (o *MonitorOptions) GetMinFailureDuration() int64 {
+<span id="L468" class="ln">   468  </span>	if o == nil || o.MinFailureDuration.Get() == nil {
+<span id="L469" class="ln">   469  </span>		var ret int64
+<span id="L470" class="ln">   470  </span>		return ret
+<span id="L471" class="ln">   471  </span>	}
+<span id="L472" class="ln">   472  </span>	return *o.MinFailureDuration.Get()
+<span id="L473" class="ln">   473  </span>}
+<span id="L474" class="ln">   474  </span>
+<span id="L475" class="ln">   475  </span><span class="comment">// GetMinFailureDurationOk returns a tuple with the MinFailureDuration field value if set, nil otherwise</span>
+<span id="L476" class="ln">   476  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L477" class="ln">   477  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L478" class="ln">   478  </span>func (o *MonitorOptions) GetMinFailureDurationOk() (*int64, bool) {
+<span id="L479" class="ln">   479  </span>	if o == nil {
+<span id="L480" class="ln">   480  </span>		return nil, false
+<span id="L481" class="ln">   481  </span>	}
+<span id="L482" class="ln">   482  </span>	return o.MinFailureDuration.Get(), o.MinFailureDuration.IsSet()
+<span id="L483" class="ln">   483  </span>}
+<span id="L484" class="ln">   484  </span>
+<span id="L485" class="ln">   485  </span><span class="comment">// HasMinFailureDuration returns a boolean if a field has been set.</span>
+<span id="L486" class="ln">   486  </span>func (o *MonitorOptions) HasMinFailureDuration() bool {
+<span id="L487" class="ln">   487  </span>	return o != nil &amp;&amp; o.MinFailureDuration.IsSet()
+<span id="L488" class="ln">   488  </span>}
+<span id="L489" class="ln">   489  </span>
+<span id="L490" class="ln">   490  </span><span class="comment">// SetMinFailureDuration gets a reference to the given datadog.NullableInt64 and assigns it to the MinFailureDuration field.</span>
+<span id="L491" class="ln">   491  </span>func (o *MonitorOptions) SetMinFailureDuration(v int64) {
+<span id="L492" class="ln">   492  </span>	o.MinFailureDuration.Set(&amp;v)
+<span id="L493" class="ln">   493  </span>}
+<span id="L494" class="ln">   494  </span>
+<span id="L495" class="ln">   495  </span><span class="comment">// SetMinFailureDurationNil sets the value for MinFailureDuration to be an explicit nil.</span>
+<span id="L496" class="ln">   496  </span>func (o *MonitorOptions) SetMinFailureDurationNil() {
+<span id="L497" class="ln">   497  </span>	o.MinFailureDuration.Set(nil)
+<span id="L498" class="ln">   498  </span>}
+<span id="L499" class="ln">   499  </span>
+<span id="L500" class="ln">   500  </span><span class="comment">// UnsetMinFailureDuration ensures that no value is present for MinFailureDuration, not even an explicit nil.</span>
+<span id="L501" class="ln">   501  </span>func (o *MonitorOptions) UnsetMinFailureDuration() {
+<span id="L502" class="ln">   502  </span>	o.MinFailureDuration.Unset()
+<span id="L503" class="ln">   503  </span>}
+<span id="L504" class="ln">   504  </span>
+<span id="L505" class="ln">   505  </span><span class="comment">// GetMinLocationFailed returns the MinLocationFailed field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L506" class="ln">   506  </span>func (o *MonitorOptions) GetMinLocationFailed() int64 {
+<span id="L507" class="ln">   507  </span>	if o == nil || o.MinLocationFailed.Get() == nil {
+<span id="L508" class="ln">   508  </span>		var ret int64
+<span id="L509" class="ln">   509  </span>		return ret
+<span id="L510" class="ln">   510  </span>	}
+<span id="L511" class="ln">   511  </span>	return *o.MinLocationFailed.Get()
+<span id="L512" class="ln">   512  </span>}
+<span id="L513" class="ln">   513  </span>
+<span id="L514" class="ln">   514  </span><span class="comment">// GetMinLocationFailedOk returns a tuple with the MinLocationFailed field value if set, nil otherwise</span>
+<span id="L515" class="ln">   515  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L516" class="ln">   516  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L517" class="ln">   517  </span>func (o *MonitorOptions) GetMinLocationFailedOk() (*int64, bool) {
+<span id="L518" class="ln">   518  </span>	if o == nil {
+<span id="L519" class="ln">   519  </span>		return nil, false
+<span id="L520" class="ln">   520  </span>	}
+<span id="L521" class="ln">   521  </span>	return o.MinLocationFailed.Get(), o.MinLocationFailed.IsSet()
+<span id="L522" class="ln">   522  </span>}
+<span id="L523" class="ln">   523  </span>
+<span id="L524" class="ln">   524  </span><span class="comment">// HasMinLocationFailed returns a boolean if a field has been set.</span>
+<span id="L525" class="ln">   525  </span>func (o *MonitorOptions) HasMinLocationFailed() bool {
+<span id="L526" class="ln">   526  </span>	return o != nil &amp;&amp; o.MinLocationFailed.IsSet()
+<span id="L527" class="ln">   527  </span>}
+<span id="L528" class="ln">   528  </span>
+<span id="L529" class="ln">   529  </span><span class="comment">// SetMinLocationFailed gets a reference to the given datadog.NullableInt64 and assigns it to the MinLocationFailed field.</span>
+<span id="L530" class="ln">   530  </span>func (o *MonitorOptions) SetMinLocationFailed(v int64) {
+<span id="L531" class="ln">   531  </span>	o.MinLocationFailed.Set(&amp;v)
+<span id="L532" class="ln">   532  </span>}
+<span id="L533" class="ln">   533  </span>
+<span id="L534" class="ln">   534  </span><span class="comment">// SetMinLocationFailedNil sets the value for MinLocationFailed to be an explicit nil.</span>
+<span id="L535" class="ln">   535  </span>func (o *MonitorOptions) SetMinLocationFailedNil() {
+<span id="L536" class="ln">   536  </span>	o.MinLocationFailed.Set(nil)
+<span id="L537" class="ln">   537  </span>}
+<span id="L538" class="ln">   538  </span>
+<span id="L539" class="ln">   539  </span><span class="comment">// UnsetMinLocationFailed ensures that no value is present for MinLocationFailed, not even an explicit nil.</span>
+<span id="L540" class="ln">   540  </span>func (o *MonitorOptions) UnsetMinLocationFailed() {
+<span id="L541" class="ln">   541  </span>	o.MinLocationFailed.Unset()
+<span id="L542" class="ln">   542  </span>}
+<span id="L543" class="ln">   543  </span>
+<span id="L544" class="ln">   544  </span><span class="comment">// GetNewGroupDelay returns the NewGroupDelay field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L545" class="ln">   545  </span>func (o *MonitorOptions) GetNewGroupDelay() int64 {
+<span id="L546" class="ln">   546  </span>	if o == nil || o.NewGroupDelay.Get() == nil {
+<span id="L547" class="ln">   547  </span>		var ret int64
+<span id="L548" class="ln">   548  </span>		return ret
+<span id="L549" class="ln">   549  </span>	}
+<span id="L550" class="ln">   550  </span>	return *o.NewGroupDelay.Get()
+<span id="L551" class="ln">   551  </span>}
+<span id="L552" class="ln">   552  </span>
+<span id="L553" class="ln">   553  </span><span class="comment">// GetNewGroupDelayOk returns a tuple with the NewGroupDelay field value if set, nil otherwise</span>
+<span id="L554" class="ln">   554  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L555" class="ln">   555  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L556" class="ln">   556  </span>func (o *MonitorOptions) GetNewGroupDelayOk() (*int64, bool) {
+<span id="L557" class="ln">   557  </span>	if o == nil {
+<span id="L558" class="ln">   558  </span>		return nil, false
+<span id="L559" class="ln">   559  </span>	}
+<span id="L560" class="ln">   560  </span>	return o.NewGroupDelay.Get(), o.NewGroupDelay.IsSet()
+<span id="L561" class="ln">   561  </span>}
+<span id="L562" class="ln">   562  </span>
+<span id="L563" class="ln">   563  </span><span class="comment">// HasNewGroupDelay returns a boolean if a field has been set.</span>
+<span id="L564" class="ln">   564  </span>func (o *MonitorOptions) HasNewGroupDelay() bool {
+<span id="L565" class="ln">   565  </span>	return o != nil &amp;&amp; o.NewGroupDelay.IsSet()
+<span id="L566" class="ln">   566  </span>}
+<span id="L567" class="ln">   567  </span>
+<span id="L568" class="ln">   568  </span><span class="comment">// SetNewGroupDelay gets a reference to the given datadog.NullableInt64 and assigns it to the NewGroupDelay field.</span>
+<span id="L569" class="ln">   569  </span>func (o *MonitorOptions) SetNewGroupDelay(v int64) {
+<span id="L570" class="ln">   570  </span>	o.NewGroupDelay.Set(&amp;v)
+<span id="L571" class="ln">   571  </span>}
+<span id="L572" class="ln">   572  </span>
+<span id="L573" class="ln">   573  </span><span class="comment">// SetNewGroupDelayNil sets the value for NewGroupDelay to be an explicit nil.</span>
+<span id="L574" class="ln">   574  </span>func (o *MonitorOptions) SetNewGroupDelayNil() {
+<span id="L575" class="ln">   575  </span>	o.NewGroupDelay.Set(nil)
+<span id="L576" class="ln">   576  </span>}
+<span id="L577" class="ln">   577  </span>
+<span id="L578" class="ln">   578  </span><span class="comment">// UnsetNewGroupDelay ensures that no value is present for NewGroupDelay, not even an explicit nil.</span>
+<span id="L579" class="ln">   579  </span>func (o *MonitorOptions) UnsetNewGroupDelay() {
+<span id="L580" class="ln">   580  </span>	o.NewGroupDelay.Unset()
+<span id="L581" class="ln">   581  </span>}
+<span id="L582" class="ln">   582  </span>
+<span id="L583" class="ln">   583  </span><span class="comment">// GetNewHostDelay returns the NewHostDelay field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L584" class="ln">   584  </span><span class="comment">// Deprecated</span>
+<span id="L585" class="ln">   585  </span>func (o *MonitorOptions) GetNewHostDelay() int64 {
+<span id="L586" class="ln">   586  </span>	if o == nil || o.NewHostDelay.Get() == nil {
+<span id="L587" class="ln">   587  </span>		var ret int64
+<span id="L588" class="ln">   588  </span>		return ret
+<span id="L589" class="ln">   589  </span>	}
+<span id="L590" class="ln">   590  </span>	return *o.NewHostDelay.Get()
+<span id="L591" class="ln">   591  </span>}
+<span id="L592" class="ln">   592  </span>
+<span id="L593" class="ln">   593  </span><span class="comment">// GetNewHostDelayOk returns a tuple with the NewHostDelay field value if set, nil otherwise</span>
+<span id="L594" class="ln">   594  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L595" class="ln">   595  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L596" class="ln">   596  </span><span class="comment">// Deprecated</span>
+<span id="L597" class="ln">   597  </span>func (o *MonitorOptions) GetNewHostDelayOk() (*int64, bool) {
+<span id="L598" class="ln">   598  </span>	if o == nil {
+<span id="L599" class="ln">   599  </span>		return nil, false
+<span id="L600" class="ln">   600  </span>	}
+<span id="L601" class="ln">   601  </span>	return o.NewHostDelay.Get(), o.NewHostDelay.IsSet()
+<span id="L602" class="ln">   602  </span>}
+<span id="L603" class="ln">   603  </span>
+<span id="L604" class="ln">   604  </span><span class="comment">// HasNewHostDelay returns a boolean if a field has been set.</span>
+<span id="L605" class="ln">   605  </span>func (o *MonitorOptions) HasNewHostDelay() bool {
+<span id="L606" class="ln">   606  </span>	return o != nil &amp;&amp; o.NewHostDelay.IsSet()
+<span id="L607" class="ln">   607  </span>}
+<span id="L608" class="ln">   608  </span>
+<span id="L609" class="ln">   609  </span><span class="comment">// SetNewHostDelay gets a reference to the given datadog.NullableInt64 and assigns it to the NewHostDelay field.</span>
+<span id="L610" class="ln">   610  </span><span class="comment">// Deprecated</span>
+<span id="L611" class="ln">   611  </span>func (o *MonitorOptions) SetNewHostDelay(v int64) {
+<span id="L612" class="ln">   612  </span>	o.NewHostDelay.Set(&amp;v)
+<span id="L613" class="ln">   613  </span>}
+<span id="L614" class="ln">   614  </span>
+<span id="L615" class="ln">   615  </span><span class="comment">// SetNewHostDelayNil sets the value for NewHostDelay to be an explicit nil.</span>
+<span id="L616" class="ln">   616  </span>func (o *MonitorOptions) SetNewHostDelayNil() {
+<span id="L617" class="ln">   617  </span>	o.NewHostDelay.Set(nil)
+<span id="L618" class="ln">   618  </span>}
+<span id="L619" class="ln">   619  </span>
+<span id="L620" class="ln">   620  </span><span class="comment">// UnsetNewHostDelay ensures that no value is present for NewHostDelay, not even an explicit nil.</span>
+<span id="L621" class="ln">   621  </span>func (o *MonitorOptions) UnsetNewHostDelay() {
+<span id="L622" class="ln">   622  </span>	o.NewHostDelay.Unset()
+<span id="L623" class="ln">   623  </span>}
+<span id="L624" class="ln">   624  </span>
+<span id="L625" class="ln">   625  </span><span class="comment">// GetNoDataTimeframe returns the NoDataTimeframe field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L626" class="ln">   626  </span>func (o *MonitorOptions) GetNoDataTimeframe() int64 {
+<span id="L627" class="ln">   627  </span>	if o == nil || o.NoDataTimeframe.Get() == nil {
+<span id="L628" class="ln">   628  </span>		var ret int64
+<span id="L629" class="ln">   629  </span>		return ret
+<span id="L630" class="ln">   630  </span>	}
+<span id="L631" class="ln">   631  </span>	return *o.NoDataTimeframe.Get()
+<span id="L632" class="ln">   632  </span>}
+<span id="L633" class="ln">   633  </span>
+<span id="L634" class="ln">   634  </span><span class="comment">// GetNoDataTimeframeOk returns a tuple with the NoDataTimeframe field value if set, nil otherwise</span>
+<span id="L635" class="ln">   635  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L636" class="ln">   636  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L637" class="ln">   637  </span>func (o *MonitorOptions) GetNoDataTimeframeOk() (*int64, bool) {
+<span id="L638" class="ln">   638  </span>	if o == nil {
+<span id="L639" class="ln">   639  </span>		return nil, false
+<span id="L640" class="ln">   640  </span>	}
+<span id="L641" class="ln">   641  </span>	return o.NoDataTimeframe.Get(), o.NoDataTimeframe.IsSet()
+<span id="L642" class="ln">   642  </span>}
+<span id="L643" class="ln">   643  </span>
+<span id="L644" class="ln">   644  </span><span class="comment">// HasNoDataTimeframe returns a boolean if a field has been set.</span>
+<span id="L645" class="ln">   645  </span>func (o *MonitorOptions) HasNoDataTimeframe() bool {
+<span id="L646" class="ln">   646  </span>	return o != nil &amp;&amp; o.NoDataTimeframe.IsSet()
+<span id="L647" class="ln">   647  </span>}
+<span id="L648" class="ln">   648  </span>
+<span id="L649" class="ln">   649  </span><span class="comment">// SetNoDataTimeframe gets a reference to the given datadog.NullableInt64 and assigns it to the NoDataTimeframe field.</span>
+<span id="L650" class="ln">   650  </span>func (o *MonitorOptions) SetNoDataTimeframe(v int64) {
+<span id="L651" class="ln">   651  </span>	o.NoDataTimeframe.Set(&amp;v)
+<span id="L652" class="ln">   652  </span>}
+<span id="L653" class="ln">   653  </span>
+<span id="L654" class="ln">   654  </span><span class="comment">// SetNoDataTimeframeNil sets the value for NoDataTimeframe to be an explicit nil.</span>
+<span id="L655" class="ln">   655  </span>func (o *MonitorOptions) SetNoDataTimeframeNil() {
+<span id="L656" class="ln">   656  </span>	o.NoDataTimeframe.Set(nil)
+<span id="L657" class="ln">   657  </span>}
+<span id="L658" class="ln">   658  </span>
+<span id="L659" class="ln">   659  </span><span class="comment">// UnsetNoDataTimeframe ensures that no value is present for NoDataTimeframe, not even an explicit nil.</span>
+<span id="L660" class="ln">   660  </span>func (o *MonitorOptions) UnsetNoDataTimeframe() {
+<span id="L661" class="ln">   661  </span>	o.NoDataTimeframe.Unset()
+<span id="L662" class="ln">   662  </span>}
+<span id="L663" class="ln">   663  </span>
+<span id="L664" class="ln">   664  </span><span class="comment">// GetNotificationPresetName returns the NotificationPresetName field value if set, zero value otherwise.</span>
+<span id="L665" class="ln">   665  </span>func (o *MonitorOptions) GetNotificationPresetName() MonitorOptionsNotificationPresets {
+<span id="L666" class="ln">   666  </span>	if o == nil || o.NotificationPresetName == nil {
+<span id="L667" class="ln">   667  </span>		var ret MonitorOptionsNotificationPresets
+<span id="L668" class="ln">   668  </span>		return ret
+<span id="L669" class="ln">   669  </span>	}
+<span id="L670" class="ln">   670  </span>	return *o.NotificationPresetName
+<span id="L671" class="ln">   671  </span>}
+<span id="L672" class="ln">   672  </span>
+<span id="L673" class="ln">   673  </span><span class="comment">// GetNotificationPresetNameOk returns a tuple with the NotificationPresetName field value if set, nil otherwise</span>
+<span id="L674" class="ln">   674  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L675" class="ln">   675  </span>func (o *MonitorOptions) GetNotificationPresetNameOk() (*MonitorOptionsNotificationPresets, bool) {
+<span id="L676" class="ln">   676  </span>	if o == nil || o.NotificationPresetName == nil {
+<span id="L677" class="ln">   677  </span>		return nil, false
+<span id="L678" class="ln">   678  </span>	}
+<span id="L679" class="ln">   679  </span>	return o.NotificationPresetName, true
+<span id="L680" class="ln">   680  </span>}
+<span id="L681" class="ln">   681  </span>
+<span id="L682" class="ln">   682  </span><span class="comment">// HasNotificationPresetName returns a boolean if a field has been set.</span>
+<span id="L683" class="ln">   683  </span>func (o *MonitorOptions) HasNotificationPresetName() bool {
+<span id="L684" class="ln">   684  </span>	return o != nil &amp;&amp; o.NotificationPresetName != nil
+<span id="L685" class="ln">   685  </span>}
+<span id="L686" class="ln">   686  </span>
+<span id="L687" class="ln">   687  </span><span class="comment">// SetNotificationPresetName gets a reference to the given MonitorOptionsNotificationPresets and assigns it to the NotificationPresetName field.</span>
+<span id="L688" class="ln">   688  </span>func (o *MonitorOptions) SetNotificationPresetName(v MonitorOptionsNotificationPresets) {
+<span id="L689" class="ln">   689  </span>	o.NotificationPresetName = &amp;v
+<span id="L690" class="ln">   690  </span>}
+<span id="L691" class="ln">   691  </span>
+<span id="L692" class="ln">   692  </span><span class="comment">// GetNotifyAudit returns the NotifyAudit field value if set, zero value otherwise.</span>
+<span id="L693" class="ln">   693  </span>func (o *MonitorOptions) GetNotifyAudit() bool {
+<span id="L694" class="ln">   694  </span>	if o == nil || o.NotifyAudit == nil {
+<span id="L695" class="ln">   695  </span>		var ret bool
+<span id="L696" class="ln">   696  </span>		return ret
+<span id="L697" class="ln">   697  </span>	}
+<span id="L698" class="ln">   698  </span>	return *o.NotifyAudit
+<span id="L699" class="ln">   699  </span>}
+<span id="L700" class="ln">   700  </span>
+<span id="L701" class="ln">   701  </span><span class="comment">// GetNotifyAuditOk returns a tuple with the NotifyAudit field value if set, nil otherwise</span>
+<span id="L702" class="ln">   702  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L703" class="ln">   703  </span>func (o *MonitorOptions) GetNotifyAuditOk() (*bool, bool) {
+<span id="L704" class="ln">   704  </span>	if o == nil || o.NotifyAudit == nil {
+<span id="L705" class="ln">   705  </span>		return nil, false
+<span id="L706" class="ln">   706  </span>	}
+<span id="L707" class="ln">   707  </span>	return o.NotifyAudit, true
+<span id="L708" class="ln">   708  </span>}
+<span id="L709" class="ln">   709  </span>
+<span id="L710" class="ln">   710  </span><span class="comment">// HasNotifyAudit returns a boolean if a field has been set.</span>
+<span id="L711" class="ln">   711  </span>func (o *MonitorOptions) HasNotifyAudit() bool {
+<span id="L712" class="ln">   712  </span>	return o != nil &amp;&amp; o.NotifyAudit != nil
+<span id="L713" class="ln">   713  </span>}
+<span id="L714" class="ln">   714  </span>
+<span id="L715" class="ln">   715  </span><span class="comment">// SetNotifyAudit gets a reference to the given bool and assigns it to the NotifyAudit field.</span>
+<span id="L716" class="ln">   716  </span>func (o *MonitorOptions) SetNotifyAudit(v bool) {
+<span id="L717" class="ln">   717  </span>	o.NotifyAudit = &amp;v
+<span id="L718" class="ln">   718  </span>}
+<span id="L719" class="ln">   719  </span>
+<span id="L720" class="ln">   720  </span><span class="comment">// GetNotifyBy returns the NotifyBy field value if set, zero value otherwise.</span>
+<span id="L721" class="ln">   721  </span>func (o *MonitorOptions) GetNotifyBy() []string {
+<span id="L722" class="ln">   722  </span>	if o == nil || o.NotifyBy == nil {
+<span id="L723" class="ln">   723  </span>		var ret []string
+<span id="L724" class="ln">   724  </span>		return ret
+<span id="L725" class="ln">   725  </span>	}
+<span id="L726" class="ln">   726  </span>	return o.NotifyBy
+<span id="L727" class="ln">   727  </span>}
+<span id="L728" class="ln">   728  </span>
+<span id="L729" class="ln">   729  </span><span class="comment">// GetNotifyByOk returns a tuple with the NotifyBy field value if set, nil otherwise</span>
+<span id="L730" class="ln">   730  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L731" class="ln">   731  </span>func (o *MonitorOptions) GetNotifyByOk() (*[]string, bool) {
+<span id="L732" class="ln">   732  </span>	if o == nil || o.NotifyBy == nil {
+<span id="L733" class="ln">   733  </span>		return nil, false
+<span id="L734" class="ln">   734  </span>	}
+<span id="L735" class="ln">   735  </span>	return &amp;o.NotifyBy, true
+<span id="L736" class="ln">   736  </span>}
+<span id="L737" class="ln">   737  </span>
+<span id="L738" class="ln">   738  </span><span class="comment">// HasNotifyBy returns a boolean if a field has been set.</span>
+<span id="L739" class="ln">   739  </span>func (o *MonitorOptions) HasNotifyBy() bool {
+<span id="L740" class="ln">   740  </span>	return o != nil &amp;&amp; o.NotifyBy != nil
+<span id="L741" class="ln">   741  </span>}
+<span id="L742" class="ln">   742  </span>
+<span id="L743" class="ln">   743  </span><span class="comment">// SetNotifyBy gets a reference to the given []string and assigns it to the NotifyBy field.</span>
+<span id="L744" class="ln">   744  </span>func (o *MonitorOptions) SetNotifyBy(v []string) {
+<span id="L745" class="ln">   745  </span>	o.NotifyBy = v
+<span id="L746" class="ln">   746  </span>}
+<span id="L747" class="ln">   747  </span>
+<span id="L748" class="ln">   748  </span><span class="comment">// GetNotifyNoData returns the NotifyNoData field value if set, zero value otherwise.</span>
+<span id="L749" class="ln">   749  </span>func (o *MonitorOptions) GetNotifyNoData() bool {
+<span id="L750" class="ln">   750  </span>	if o == nil || o.NotifyNoData == nil {
+<span id="L751" class="ln">   751  </span>		var ret bool
+<span id="L752" class="ln">   752  </span>		return ret
+<span id="L753" class="ln">   753  </span>	}
+<span id="L754" class="ln">   754  </span>	return *o.NotifyNoData
+<span id="L755" class="ln">   755  </span>}
+<span id="L756" class="ln">   756  </span>
+<span id="L757" class="ln">   757  </span><span class="comment">// GetNotifyNoDataOk returns a tuple with the NotifyNoData field value if set, nil otherwise</span>
+<span id="L758" class="ln">   758  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L759" class="ln">   759  </span>func (o *MonitorOptions) GetNotifyNoDataOk() (*bool, bool) {
+<span id="L760" class="ln">   760  </span>	if o == nil || o.NotifyNoData == nil {
+<span id="L761" class="ln">   761  </span>		return nil, false
+<span id="L762" class="ln">   762  </span>	}
+<span id="L763" class="ln">   763  </span>	return o.NotifyNoData, true
+<span id="L764" class="ln">   764  </span>}
+<span id="L765" class="ln">   765  </span>
+<span id="L766" class="ln">   766  </span><span class="comment">// HasNotifyNoData returns a boolean if a field has been set.</span>
+<span id="L767" class="ln">   767  </span>func (o *MonitorOptions) HasNotifyNoData() bool {
+<span id="L768" class="ln">   768  </span>	return o != nil &amp;&amp; o.NotifyNoData != nil
+<span id="L769" class="ln">   769  </span>}
+<span id="L770" class="ln">   770  </span>
+<span id="L771" class="ln">   771  </span><span class="comment">// SetNotifyNoData gets a reference to the given bool and assigns it to the NotifyNoData field.</span>
+<span id="L772" class="ln">   772  </span>func (o *MonitorOptions) SetNotifyNoData(v bool) {
+<span id="L773" class="ln">   773  </span>	o.NotifyNoData = &amp;v
+<span id="L774" class="ln">   774  </span>}
+<span id="L775" class="ln">   775  </span>
+<span id="L776" class="ln">   776  </span><span class="comment">// GetOnMissingData returns the OnMissingData field value if set, zero value otherwise.</span>
+<span id="L777" class="ln">   777  </span>func (o *MonitorOptions) GetOnMissingData() OnMissingDataOption {
+<span id="L778" class="ln">   778  </span>	if o == nil || o.OnMissingData == nil {
+<span id="L779" class="ln">   779  </span>		var ret OnMissingDataOption
+<span id="L780" class="ln">   780  </span>		return ret
+<span id="L781" class="ln">   781  </span>	}
+<span id="L782" class="ln">   782  </span>	return *o.OnMissingData
+<span id="L783" class="ln">   783  </span>}
+<span id="L784" class="ln">   784  </span>
+<span id="L785" class="ln">   785  </span><span class="comment">// GetOnMissingDataOk returns a tuple with the OnMissingData field value if set, nil otherwise</span>
+<span id="L786" class="ln">   786  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L787" class="ln">   787  </span>func (o *MonitorOptions) GetOnMissingDataOk() (*OnMissingDataOption, bool) {
+<span id="L788" class="ln">   788  </span>	if o == nil || o.OnMissingData == nil {
+<span id="L789" class="ln">   789  </span>		return nil, false
+<span id="L790" class="ln">   790  </span>	}
+<span id="L791" class="ln">   791  </span>	return o.OnMissingData, true
+<span id="L792" class="ln">   792  </span>}
+<span id="L793" class="ln">   793  </span>
+<span id="L794" class="ln">   794  </span><span class="comment">// HasOnMissingData returns a boolean if a field has been set.</span>
+<span id="L795" class="ln">   795  </span>func (o *MonitorOptions) HasOnMissingData() bool {
+<span id="L796" class="ln">   796  </span>	return o != nil &amp;&amp; o.OnMissingData != nil
+<span id="L797" class="ln">   797  </span>}
+<span id="L798" class="ln">   798  </span>
+<span id="L799" class="ln">   799  </span><span class="comment">// SetOnMissingData gets a reference to the given OnMissingDataOption and assigns it to the OnMissingData field.</span>
+<span id="L800" class="ln">   800  </span>func (o *MonitorOptions) SetOnMissingData(v OnMissingDataOption) {
+<span id="L801" class="ln">   801  </span>	o.OnMissingData = &amp;v
+<span id="L802" class="ln">   802  </span>}
+<span id="L803" class="ln">   803  </span>
+<span id="L804" class="ln">   804  </span><span class="comment">// GetRenotifyInterval returns the RenotifyInterval field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L805" class="ln">   805  </span>func (o *MonitorOptions) GetRenotifyInterval() int64 {
+<span id="L806" class="ln">   806  </span>	if o == nil || o.RenotifyInterval.Get() == nil {
+<span id="L807" class="ln">   807  </span>		var ret int64
+<span id="L808" class="ln">   808  </span>		return ret
+<span id="L809" class="ln">   809  </span>	}
+<span id="L810" class="ln">   810  </span>	return *o.RenotifyInterval.Get()
+<span id="L811" class="ln">   811  </span>}
+<span id="L812" class="ln">   812  </span>
+<span id="L813" class="ln">   813  </span><span class="comment">// GetRenotifyIntervalOk returns a tuple with the RenotifyInterval field value if set, nil otherwise</span>
+<span id="L814" class="ln">   814  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L815" class="ln">   815  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L816" class="ln">   816  </span>func (o *MonitorOptions) GetRenotifyIntervalOk() (*int64, bool) {
+<span id="L817" class="ln">   817  </span>	if o == nil {
+<span id="L818" class="ln">   818  </span>		return nil, false
+<span id="L819" class="ln">   819  </span>	}
+<span id="L820" class="ln">   820  </span>	return o.RenotifyInterval.Get(), o.RenotifyInterval.IsSet()
+<span id="L821" class="ln">   821  </span>}
+<span id="L822" class="ln">   822  </span>
+<span id="L823" class="ln">   823  </span><span class="comment">// HasRenotifyInterval returns a boolean if a field has been set.</span>
+<span id="L824" class="ln">   824  </span>func (o *MonitorOptions) HasRenotifyInterval() bool {
+<span id="L825" class="ln">   825  </span>	return o != nil &amp;&amp; o.RenotifyInterval.IsSet()
+<span id="L826" class="ln">   826  </span>}
+<span id="L827" class="ln">   827  </span>
+<span id="L828" class="ln">   828  </span><span class="comment">// SetRenotifyInterval gets a reference to the given datadog.NullableInt64 and assigns it to the RenotifyInterval field.</span>
+<span id="L829" class="ln">   829  </span>func (o *MonitorOptions) SetRenotifyInterval(v int64) {
+<span id="L830" class="ln">   830  </span>	o.RenotifyInterval.Set(&amp;v)
+<span id="L831" class="ln">   831  </span>}
+<span id="L832" class="ln">   832  </span>
+<span id="L833" class="ln">   833  </span><span class="comment">// SetRenotifyIntervalNil sets the value for RenotifyInterval to be an explicit nil.</span>
+<span id="L834" class="ln">   834  </span>func (o *MonitorOptions) SetRenotifyIntervalNil() {
+<span id="L835" class="ln">   835  </span>	o.RenotifyInterval.Set(nil)
+<span id="L836" class="ln">   836  </span>}
+<span id="L837" class="ln">   837  </span>
+<span id="L838" class="ln">   838  </span><span class="comment">// UnsetRenotifyInterval ensures that no value is present for RenotifyInterval, not even an explicit nil.</span>
+<span id="L839" class="ln">   839  </span>func (o *MonitorOptions) UnsetRenotifyInterval() {
+<span id="L840" class="ln">   840  </span>	o.RenotifyInterval.Unset()
+<span id="L841" class="ln">   841  </span>}
+<span id="L842" class="ln">   842  </span>
+<span id="L843" class="ln">   843  </span><span class="comment">// GetRenotifyOccurrences returns the RenotifyOccurrences field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L844" class="ln">   844  </span>func (o *MonitorOptions) GetRenotifyOccurrences() int64 {
+<span id="L845" class="ln">   845  </span>	if o == nil || o.RenotifyOccurrences.Get() == nil {
+<span id="L846" class="ln">   846  </span>		var ret int64
+<span id="L847" class="ln">   847  </span>		return ret
+<span id="L848" class="ln">   848  </span>	}
+<span id="L849" class="ln">   849  </span>	return *o.RenotifyOccurrences.Get()
+<span id="L850" class="ln">   850  </span>}
+<span id="L851" class="ln">   851  </span>
+<span id="L852" class="ln">   852  </span><span class="comment">// GetRenotifyOccurrencesOk returns a tuple with the RenotifyOccurrences field value if set, nil otherwise</span>
+<span id="L853" class="ln">   853  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L854" class="ln">   854  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L855" class="ln">   855  </span>func (o *MonitorOptions) GetRenotifyOccurrencesOk() (*int64, bool) {
+<span id="L856" class="ln">   856  </span>	if o == nil {
+<span id="L857" class="ln">   857  </span>		return nil, false
+<span id="L858" class="ln">   858  </span>	}
+<span id="L859" class="ln">   859  </span>	return o.RenotifyOccurrences.Get(), o.RenotifyOccurrences.IsSet()
+<span id="L860" class="ln">   860  </span>}
+<span id="L861" class="ln">   861  </span>
+<span id="L862" class="ln">   862  </span><span class="comment">// HasRenotifyOccurrences returns a boolean if a field has been set.</span>
+<span id="L863" class="ln">   863  </span>func (o *MonitorOptions) HasRenotifyOccurrences() bool {
+<span id="L864" class="ln">   864  </span>	return o != nil &amp;&amp; o.RenotifyOccurrences.IsSet()
+<span id="L865" class="ln">   865  </span>}
+<span id="L866" class="ln">   866  </span>
+<span id="L867" class="ln">   867  </span><span class="comment">// SetRenotifyOccurrences gets a reference to the given datadog.NullableInt64 and assigns it to the RenotifyOccurrences field.</span>
+<span id="L868" class="ln">   868  </span>func (o *MonitorOptions) SetRenotifyOccurrences(v int64) {
+<span id="L869" class="ln">   869  </span>	o.RenotifyOccurrences.Set(&amp;v)
+<span id="L870" class="ln">   870  </span>}
+<span id="L871" class="ln">   871  </span>
+<span id="L872" class="ln">   872  </span><span class="comment">// SetRenotifyOccurrencesNil sets the value for RenotifyOccurrences to be an explicit nil.</span>
+<span id="L873" class="ln">   873  </span>func (o *MonitorOptions) SetRenotifyOccurrencesNil() {
+<span id="L874" class="ln">   874  </span>	o.RenotifyOccurrences.Set(nil)
+<span id="L875" class="ln">   875  </span>}
+<span id="L876" class="ln">   876  </span>
+<span id="L877" class="ln">   877  </span><span class="comment">// UnsetRenotifyOccurrences ensures that no value is present for RenotifyOccurrences, not even an explicit nil.</span>
+<span id="L878" class="ln">   878  </span>func (o *MonitorOptions) UnsetRenotifyOccurrences() {
+<span id="L879" class="ln">   879  </span>	o.RenotifyOccurrences.Unset()
+<span id="L880" class="ln">   880  </span>}
+<span id="L881" class="ln">   881  </span>
+<span id="L882" class="ln">   882  </span><span class="comment">// GetRenotifyStatuses returns the RenotifyStatuses field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L883" class="ln">   883  </span>func (o *MonitorOptions) GetRenotifyStatuses() []MonitorRenotifyStatusType {
+<span id="L884" class="ln">   884  </span>	if o == nil {
+<span id="L885" class="ln">   885  </span>		var ret []MonitorRenotifyStatusType
+<span id="L886" class="ln">   886  </span>		return ret
+<span id="L887" class="ln">   887  </span>	}
+<span id="L888" class="ln">   888  </span>	return o.RenotifyStatuses
+<span id="L889" class="ln">   889  </span>}
+<span id="L890" class="ln">   890  </span>
+<span id="L891" class="ln">   891  </span><span class="comment">// GetRenotifyStatusesOk returns a tuple with the RenotifyStatuses field value if set, nil otherwise</span>
+<span id="L892" class="ln">   892  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L893" class="ln">   893  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L894" class="ln">   894  </span>func (o *MonitorOptions) GetRenotifyStatusesOk() (*[]MonitorRenotifyStatusType, bool) {
+<span id="L895" class="ln">   895  </span>	if o == nil || o.RenotifyStatuses == nil {
+<span id="L896" class="ln">   896  </span>		return nil, false
+<span id="L897" class="ln">   897  </span>	}
+<span id="L898" class="ln">   898  </span>	return &amp;o.RenotifyStatuses, true
+<span id="L899" class="ln">   899  </span>}
+<span id="L900" class="ln">   900  </span>
+<span id="L901" class="ln">   901  </span><span class="comment">// HasRenotifyStatuses returns a boolean if a field has been set.</span>
+<span id="L902" class="ln">   902  </span>func (o *MonitorOptions) HasRenotifyStatuses() bool {
+<span id="L903" class="ln">   903  </span>	return o != nil &amp;&amp; o.RenotifyStatuses != nil
+<span id="L904" class="ln">   904  </span>}
+<span id="L905" class="ln">   905  </span>
+<span id="L906" class="ln">   906  </span><span class="comment">// SetRenotifyStatuses gets a reference to the given []MonitorRenotifyStatusType and assigns it to the RenotifyStatuses field.</span>
+<span id="L907" class="ln">   907  </span>func (o *MonitorOptions) SetRenotifyStatuses(v []MonitorRenotifyStatusType) {
+<span id="L908" class="ln">   908  </span>	o.RenotifyStatuses = v
+<span id="L909" class="ln">   909  </span>}
+<span id="L910" class="ln">   910  </span>
+<span id="L911" class="ln">   911  </span><span class="comment">// GetRequireFullWindow returns the RequireFullWindow field value if set, zero value otherwise.</span>
+<span id="L912" class="ln">   912  </span>func (o *MonitorOptions) GetRequireFullWindow() bool {
+<span id="L913" class="ln">   913  </span>	if o == nil || o.RequireFullWindow == nil {
+<span id="L914" class="ln">   914  </span>		var ret bool
+<span id="L915" class="ln">   915  </span>		return ret
+<span id="L916" class="ln">   916  </span>	}
+<span id="L917" class="ln">   917  </span>	return *o.RequireFullWindow
+<span id="L918" class="ln">   918  </span>}
+<span id="L919" class="ln">   919  </span>
+<span id="L920" class="ln">   920  </span><span class="comment">// GetRequireFullWindowOk returns a tuple with the RequireFullWindow field value if set, nil otherwise</span>
+<span id="L921" class="ln">   921  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L922" class="ln">   922  </span>func (o *MonitorOptions) GetRequireFullWindowOk() (*bool, bool) {
+<span id="L923" class="ln">   923  </span>	if o == nil || o.RequireFullWindow == nil {
+<span id="L924" class="ln">   924  </span>		return nil, false
+<span id="L925" class="ln">   925  </span>	}
+<span id="L926" class="ln">   926  </span>	return o.RequireFullWindow, true
+<span id="L927" class="ln">   927  </span>}
+<span id="L928" class="ln">   928  </span>
+<span id="L929" class="ln">   929  </span><span class="comment">// HasRequireFullWindow returns a boolean if a field has been set.</span>
+<span id="L930" class="ln">   930  </span>func (o *MonitorOptions) HasRequireFullWindow() bool {
+<span id="L931" class="ln">   931  </span>	return o != nil &amp;&amp; o.RequireFullWindow != nil
+<span id="L932" class="ln">   932  </span>}
+<span id="L933" class="ln">   933  </span>
+<span id="L934" class="ln">   934  </span><span class="comment">// SetRequireFullWindow gets a reference to the given bool and assigns it to the RequireFullWindow field.</span>
+<span id="L935" class="ln">   935  </span>func (o *MonitorOptions) SetRequireFullWindow(v bool) {
+<span id="L936" class="ln">   936  </span>	o.RequireFullWindow = &amp;v
+<span id="L937" class="ln">   937  </span>}
+<span id="L938" class="ln">   938  </span>
+<span id="L939" class="ln">   939  </span><span class="comment">// GetSchedulingOptions returns the SchedulingOptions field value if set, zero value otherwise.</span>
+<span id="L940" class="ln">   940  </span>func (o *MonitorOptions) GetSchedulingOptions() MonitorOptionsSchedulingOptions {
+<span id="L941" class="ln">   941  </span>	if o == nil || o.SchedulingOptions == nil {
+<span id="L942" class="ln">   942  </span>		var ret MonitorOptionsSchedulingOptions
+<span id="L943" class="ln">   943  </span>		return ret
+<span id="L944" class="ln">   944  </span>	}
+<span id="L945" class="ln">   945  </span>	return *o.SchedulingOptions
+<span id="L946" class="ln">   946  </span>}
+<span id="L947" class="ln">   947  </span>
+<span id="L948" class="ln">   948  </span><span class="comment">// GetSchedulingOptionsOk returns a tuple with the SchedulingOptions field value if set, nil otherwise</span>
+<span id="L949" class="ln">   949  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L950" class="ln">   950  </span>func (o *MonitorOptions) GetSchedulingOptionsOk() (*MonitorOptionsSchedulingOptions, bool) {
+<span id="L951" class="ln">   951  </span>	if o == nil || o.SchedulingOptions == nil {
+<span id="L952" class="ln">   952  </span>		return nil, false
+<span id="L953" class="ln">   953  </span>	}
+<span id="L954" class="ln">   954  </span>	return o.SchedulingOptions, true
+<span id="L955" class="ln">   955  </span>}
+<span id="L956" class="ln">   956  </span>
+<span id="L957" class="ln">   957  </span><span class="comment">// HasSchedulingOptions returns a boolean if a field has been set.</span>
+<span id="L958" class="ln">   958  </span>func (o *MonitorOptions) HasSchedulingOptions() bool {
+<span id="L959" class="ln">   959  </span>	return o != nil &amp;&amp; o.SchedulingOptions != nil
+<span id="L960" class="ln">   960  </span>}
+<span id="L961" class="ln">   961  </span>
+<span id="L962" class="ln">   962  </span><span class="comment">// SetSchedulingOptions gets a reference to the given MonitorOptionsSchedulingOptions and assigns it to the SchedulingOptions field.</span>
+<span id="L963" class="ln">   963  </span>func (o *MonitorOptions) SetSchedulingOptions(v MonitorOptionsSchedulingOptions) {
+<span id="L964" class="ln">   964  </span>	o.SchedulingOptions = &amp;v
+<span id="L965" class="ln">   965  </span>}
+<span id="L966" class="ln">   966  </span>
+<span id="L967" class="ln">   967  </span><span class="comment">// GetSilenced returns the Silenced field value if set, zero value otherwise.</span>
+<span id="L968" class="ln">   968  </span><span class="comment">// Deprecated</span>
+<span id="L969" class="ln">   969  </span>func (o *MonitorOptions) GetSilenced() map[string]int64 {
+<span id="L970" class="ln">   970  </span>	if o == nil || o.Silenced == nil {
+<span id="L971" class="ln">   971  </span>		var ret map[string]int64
+<span id="L972" class="ln">   972  </span>		return ret
+<span id="L973" class="ln">   973  </span>	}
+<span id="L974" class="ln">   974  </span>	return o.Silenced
+<span id="L975" class="ln">   975  </span>}
+<span id="L976" class="ln">   976  </span>
+<span id="L977" class="ln">   977  </span><span class="comment">// GetSilencedOk returns a tuple with the Silenced field value if set, nil otherwise</span>
+<span id="L978" class="ln">   978  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L979" class="ln">   979  </span><span class="comment">// Deprecated</span>
+<span id="L980" class="ln">   980  </span>func (o *MonitorOptions) GetSilencedOk() (*map[string]int64, bool) {
+<span id="L981" class="ln">   981  </span>	if o == nil || o.Silenced == nil {
+<span id="L982" class="ln">   982  </span>		return nil, false
+<span id="L983" class="ln">   983  </span>	}
+<span id="L984" class="ln">   984  </span>	return &amp;o.Silenced, true
+<span id="L985" class="ln">   985  </span>}
+<span id="L986" class="ln">   986  </span>
+<span id="L987" class="ln">   987  </span><span class="comment">// HasSilenced returns a boolean if a field has been set.</span>
+<span id="L988" class="ln">   988  </span>func (o *MonitorOptions) HasSilenced() bool {
+<span id="L989" class="ln">   989  </span>	return o != nil &amp;&amp; o.Silenced != nil
+<span id="L990" class="ln">   990  </span>}
+<span id="L991" class="ln">   991  </span>
+<span id="L992" class="ln">   992  </span><span class="comment">// SetSilenced gets a reference to the given map[string]int64 and assigns it to the Silenced field.</span>
+<span id="L993" class="ln">   993  </span><span class="comment">// Deprecated</span>
+<span id="L994" class="ln">   994  </span>func (o *MonitorOptions) SetSilenced(v map[string]int64) {
+<span id="L995" class="ln">   995  </span>	o.Silenced = v
+<span id="L996" class="ln">   996  </span>}
+<span id="L997" class="ln">   997  </span>
+<span id="L998" class="ln">   998  </span><span class="comment">// GetSyntheticsCheckId returns the SyntheticsCheckId field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L999" class="ln">   999  </span><span class="comment">// Deprecated</span>
+<span id="L1000" class="ln">  1000  </span>func (o *MonitorOptions) GetSyntheticsCheckId() string {
+<span id="L1001" class="ln">  1001  </span>	if o == nil || o.SyntheticsCheckId.Get() == nil {
+<span id="L1002" class="ln">  1002  </span>		var ret string
+<span id="L1003" class="ln">  1003  </span>		return ret
+<span id="L1004" class="ln">  1004  </span>	}
+<span id="L1005" class="ln">  1005  </span>	return *o.SyntheticsCheckId.Get()
+<span id="L1006" class="ln">  1006  </span>}
+<span id="L1007" class="ln">  1007  </span>
+<span id="L1008" class="ln">  1008  </span><span class="comment">// GetSyntheticsCheckIdOk returns a tuple with the SyntheticsCheckId field value if set, nil otherwise</span>
+<span id="L1009" class="ln">  1009  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L1010" class="ln">  1010  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L1011" class="ln">  1011  </span><span class="comment">// Deprecated</span>
+<span id="L1012" class="ln">  1012  </span>func (o *MonitorOptions) GetSyntheticsCheckIdOk() (*string, bool) {
+<span id="L1013" class="ln">  1013  </span>	if o == nil {
+<span id="L1014" class="ln">  1014  </span>		return nil, false
+<span id="L1015" class="ln">  1015  </span>	}
+<span id="L1016" class="ln">  1016  </span>	return o.SyntheticsCheckId.Get(), o.SyntheticsCheckId.IsSet()
+<span id="L1017" class="ln">  1017  </span>}
+<span id="L1018" class="ln">  1018  </span>
+<span id="L1019" class="ln">  1019  </span><span class="comment">// HasSyntheticsCheckId returns a boolean if a field has been set.</span>
+<span id="L1020" class="ln">  1020  </span>func (o *MonitorOptions) HasSyntheticsCheckId() bool {
+<span id="L1021" class="ln">  1021  </span>	return o != nil &amp;&amp; o.SyntheticsCheckId.IsSet()
+<span id="L1022" class="ln">  1022  </span>}
+<span id="L1023" class="ln">  1023  </span>
+<span id="L1024" class="ln">  1024  </span><span class="comment">// SetSyntheticsCheckId gets a reference to the given datadog.NullableString and assigns it to the SyntheticsCheckId field.</span>
+<span id="L1025" class="ln">  1025  </span><span class="comment">// Deprecated</span>
+<span id="L1026" class="ln">  1026  </span>func (o *MonitorOptions) SetSyntheticsCheckId(v string) {
+<span id="L1027" class="ln">  1027  </span>	o.SyntheticsCheckId.Set(&amp;v)
+<span id="L1028" class="ln">  1028  </span>}
+<span id="L1029" class="ln">  1029  </span>
+<span id="L1030" class="ln">  1030  </span><span class="comment">// SetSyntheticsCheckIdNil sets the value for SyntheticsCheckId to be an explicit nil.</span>
+<span id="L1031" class="ln">  1031  </span>func (o *MonitorOptions) SetSyntheticsCheckIdNil() {
+<span id="L1032" class="ln">  1032  </span>	o.SyntheticsCheckId.Set(nil)
+<span id="L1033" class="ln">  1033  </span>}
+<span id="L1034" class="ln">  1034  </span>
+<span id="L1035" class="ln">  1035  </span><span class="comment">// UnsetSyntheticsCheckId ensures that no value is present for SyntheticsCheckId, not even an explicit nil.</span>
+<span id="L1036" class="ln">  1036  </span>func (o *MonitorOptions) UnsetSyntheticsCheckId() {
+<span id="L1037" class="ln">  1037  </span>	o.SyntheticsCheckId.Unset()
+<span id="L1038" class="ln">  1038  </span>}
+<span id="L1039" class="ln">  1039  </span>
+<span id="L1040" class="ln">  1040  </span><span class="comment">// GetThresholdWindows returns the ThresholdWindows field value if set, zero value otherwise.</span>
+<span id="L1041" class="ln">  1041  </span>func (o *MonitorOptions) GetThresholdWindows() MonitorThresholdWindowOptions {
+<span id="L1042" class="ln">  1042  </span>	if o == nil || o.ThresholdWindows == nil {
+<span id="L1043" class="ln">  1043  </span>		var ret MonitorThresholdWindowOptions
+<span id="L1044" class="ln">  1044  </span>		return ret
+<span id="L1045" class="ln">  1045  </span>	}
+<span id="L1046" class="ln">  1046  </span>	return *o.ThresholdWindows
+<span id="L1047" class="ln">  1047  </span>}
+<span id="L1048" class="ln">  1048  </span>
+<span id="L1049" class="ln">  1049  </span><span class="comment">// GetThresholdWindowsOk returns a tuple with the ThresholdWindows field value if set, nil otherwise</span>
+<span id="L1050" class="ln">  1050  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L1051" class="ln">  1051  </span>func (o *MonitorOptions) GetThresholdWindowsOk() (*MonitorThresholdWindowOptions, bool) {
+<span id="L1052" class="ln">  1052  </span>	if o == nil || o.ThresholdWindows == nil {
+<span id="L1053" class="ln">  1053  </span>		return nil, false
+<span id="L1054" class="ln">  1054  </span>	}
+<span id="L1055" class="ln">  1055  </span>	return o.ThresholdWindows, true
+<span id="L1056" class="ln">  1056  </span>}
+<span id="L1057" class="ln">  1057  </span>
+<span id="L1058" class="ln">  1058  </span><span class="comment">// HasThresholdWindows returns a boolean if a field has been set.</span>
+<span id="L1059" class="ln">  1059  </span>func (o *MonitorOptions) HasThresholdWindows() bool {
+<span id="L1060" class="ln">  1060  </span>	return o != nil &amp;&amp; o.ThresholdWindows != nil
+<span id="L1061" class="ln">  1061  </span>}
+<span id="L1062" class="ln">  1062  </span>
+<span id="L1063" class="ln">  1063  </span><span class="comment">// SetThresholdWindows gets a reference to the given MonitorThresholdWindowOptions and assigns it to the ThresholdWindows field.</span>
+<span id="L1064" class="ln">  1064  </span>func (o *MonitorOptions) SetThresholdWindows(v MonitorThresholdWindowOptions) {
+<span id="L1065" class="ln">  1065  </span>	o.ThresholdWindows = &amp;v
+<span id="L1066" class="ln">  1066  </span>}
+<span id="L1067" class="ln">  1067  </span>
+<span id="L1068" class="ln">  1068  </span><span class="comment">// GetThresholds returns the Thresholds field value if set, zero value otherwise.</span>
+<span id="L1069" class="ln">  1069  </span>func (o *MonitorOptions) GetThresholds() MonitorThresholds {
+<span id="L1070" class="ln">  1070  </span>	if o == nil || o.Thresholds == nil {
+<span id="L1071" class="ln">  1071  </span>		var ret MonitorThresholds
+<span id="L1072" class="ln">  1072  </span>		return ret
+<span id="L1073" class="ln">  1073  </span>	}
+<span id="L1074" class="ln">  1074  </span>	return *o.Thresholds
+<span id="L1075" class="ln">  1075  </span>}
+<span id="L1076" class="ln">  1076  </span>
+<span id="L1077" class="ln">  1077  </span><span class="comment">// GetThresholdsOk returns a tuple with the Thresholds field value if set, nil otherwise</span>
+<span id="L1078" class="ln">  1078  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L1079" class="ln">  1079  </span>func (o *MonitorOptions) GetThresholdsOk() (*MonitorThresholds, bool) {
+<span id="L1080" class="ln">  1080  </span>	if o == nil || o.Thresholds == nil {
+<span id="L1081" class="ln">  1081  </span>		return nil, false
+<span id="L1082" class="ln">  1082  </span>	}
+<span id="L1083" class="ln">  1083  </span>	return o.Thresholds, true
+<span id="L1084" class="ln">  1084  </span>}
+<span id="L1085" class="ln">  1085  </span>
+<span id="L1086" class="ln">  1086  </span><span class="comment">// HasThresholds returns a boolean if a field has been set.</span>
+<span id="L1087" class="ln">  1087  </span>func (o *MonitorOptions) HasThresholds() bool {
+<span id="L1088" class="ln">  1088  </span>	return o != nil &amp;&amp; o.Thresholds != nil
+<span id="L1089" class="ln">  1089  </span>}
+<span id="L1090" class="ln">  1090  </span>
+<span id="L1091" class="ln">  1091  </span><span class="comment">// SetThresholds gets a reference to the given MonitorThresholds and assigns it to the Thresholds field.</span>
+<span id="L1092" class="ln">  1092  </span>func (o *MonitorOptions) SetThresholds(v MonitorThresholds) {
+<span id="L1093" class="ln">  1093  </span>	o.Thresholds = &amp;v
+<span id="L1094" class="ln">  1094  </span>}
+<span id="L1095" class="ln">  1095  </span>
+<span id="L1096" class="ln">  1096  </span><span class="comment">// GetTimeoutH returns the TimeoutH field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L1097" class="ln">  1097  </span>func (o *MonitorOptions) GetTimeoutH() int64 {
+<span id="L1098" class="ln">  1098  </span>	if o == nil || o.TimeoutH.Get() == nil {
+<span id="L1099" class="ln">  1099  </span>		var ret int64
+<span id="L1100" class="ln">  1100  </span>		return ret
+<span id="L1101" class="ln">  1101  </span>	}
+<span id="L1102" class="ln">  1102  </span>	return *o.TimeoutH.Get()
+<span id="L1103" class="ln">  1103  </span>}
+<span id="L1104" class="ln">  1104  </span>
+<span id="L1105" class="ln">  1105  </span><span class="comment">// GetTimeoutHOk returns a tuple with the TimeoutH field value if set, nil otherwise</span>
+<span id="L1106" class="ln">  1106  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L1107" class="ln">  1107  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L1108" class="ln">  1108  </span>func (o *MonitorOptions) GetTimeoutHOk() (*int64, bool) {
+<span id="L1109" class="ln">  1109  </span>	if o == nil {
+<span id="L1110" class="ln">  1110  </span>		return nil, false
+<span id="L1111" class="ln">  1111  </span>	}
+<span id="L1112" class="ln">  1112  </span>	return o.TimeoutH.Get(), o.TimeoutH.IsSet()
+<span id="L1113" class="ln">  1113  </span>}
+<span id="L1114" class="ln">  1114  </span>
+<span id="L1115" class="ln">  1115  </span><span class="comment">// HasTimeoutH returns a boolean if a field has been set.</span>
+<span id="L1116" class="ln">  1116  </span>func (o *MonitorOptions) HasTimeoutH() bool {
+<span id="L1117" class="ln">  1117  </span>	return o != nil &amp;&amp; o.TimeoutH.IsSet()
+<span id="L1118" class="ln">  1118  </span>}
+<span id="L1119" class="ln">  1119  </span>
+<span id="L1120" class="ln">  1120  </span><span class="comment">// SetTimeoutH gets a reference to the given datadog.NullableInt64 and assigns it to the TimeoutH field.</span>
+<span id="L1121" class="ln">  1121  </span>func (o *MonitorOptions) SetTimeoutH(v int64) {
+<span id="L1122" class="ln">  1122  </span>	o.TimeoutH.Set(&amp;v)
+<span id="L1123" class="ln">  1123  </span>}
+<span id="L1124" class="ln">  1124  </span>
+<span id="L1125" class="ln">  1125  </span><span class="comment">// SetTimeoutHNil sets the value for TimeoutH to be an explicit nil.</span>
+<span id="L1126" class="ln">  1126  </span>func (o *MonitorOptions) SetTimeoutHNil() {
+<span id="L1127" class="ln">  1127  </span>	o.TimeoutH.Set(nil)
+<span id="L1128" class="ln">  1128  </span>}
+<span id="L1129" class="ln">  1129  </span>
+<span id="L1130" class="ln">  1130  </span><span class="comment">// UnsetTimeoutH ensures that no value is present for TimeoutH, not even an explicit nil.</span>
+<span id="L1131" class="ln">  1131  </span>func (o *MonitorOptions) UnsetTimeoutH() {
+<span id="L1132" class="ln">  1132  </span>	o.TimeoutH.Unset()
+<span id="L1133" class="ln">  1133  </span>}
+<span id="L1134" class="ln">  1134  </span>
+<span id="L1135" class="ln">  1135  </span><span class="comment">// GetVariables returns the Variables field value if set, zero value otherwise.</span>
+<span id="L1136" class="ln">  1136  </span>func (o *MonitorOptions) GetVariables() []MonitorFormulaAndFunctionQueryDefinition {
+<span id="L1137" class="ln">  1137  </span>	if o == nil || o.Variables == nil {
+<span id="L1138" class="ln">  1138  </span>		var ret []MonitorFormulaAndFunctionQueryDefinition
+<span id="L1139" class="ln">  1139  </span>		return ret
+<span id="L1140" class="ln">  1140  </span>	}
+<span id="L1141" class="ln">  1141  </span>	return o.Variables
+<span id="L1142" class="ln">  1142  </span>}
+<span id="L1143" class="ln">  1143  </span>
+<span id="L1144" class="ln">  1144  </span><span class="comment">// GetVariablesOk returns a tuple with the Variables field value if set, nil otherwise</span>
+<span id="L1145" class="ln">  1145  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L1146" class="ln">  1146  </span>func (o *MonitorOptions) GetVariablesOk() (*[]MonitorFormulaAndFunctionQueryDefinition, bool) {
+<span id="L1147" class="ln">  1147  </span>	if o == nil || o.Variables == nil {
+<span id="L1148" class="ln">  1148  </span>		return nil, false
+<span id="L1149" class="ln">  1149  </span>	}
+<span id="L1150" class="ln">  1150  </span>	return &amp;o.Variables, true
+<span id="L1151" class="ln">  1151  </span>}
+<span id="L1152" class="ln">  1152  </span>
+<span id="L1153" class="ln">  1153  </span><span class="comment">// HasVariables returns a boolean if a field has been set.</span>
+<span id="L1154" class="ln">  1154  </span>func (o *MonitorOptions) HasVariables() bool {
+<span id="L1155" class="ln">  1155  </span>	return o != nil &amp;&amp; o.Variables != nil
+<span id="L1156" class="ln">  1156  </span>}
+<span id="L1157" class="ln">  1157  </span>
+<span id="L1158" class="ln">  1158  </span><span class="comment">// SetVariables gets a reference to the given []MonitorFormulaAndFunctionQueryDefinition and assigns it to the Variables field.</span>
+<span id="L1159" class="ln">  1159  </span>func (o *MonitorOptions) SetVariables(v []MonitorFormulaAndFunctionQueryDefinition) {
+<span id="L1160" class="ln">  1160  </span>	o.Variables = v
+<span id="L1161" class="ln">  1161  </span>}
+<span id="L1162" class="ln">  1162  </span>
+<span id="L1163" class="ln">  1163  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L1164" class="ln">  1164  </span>func (o MonitorOptions) MarshalJSON() ([]byte, error) {
+<span id="L1165" class="ln">  1165  </span>	toSerialize := map[string]interface{}{}
+<span id="L1166" class="ln">  1166  </span>	if o.UnparsedObject != nil {
+<span id="L1167" class="ln">  1167  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L1168" class="ln">  1168  </span>	}
+<span id="L1169" class="ln">  1169  </span>	if o.Aggregation != nil {
+<span id="L1170" class="ln">  1170  </span>		toSerialize[&#34;aggregation&#34;] = o.Aggregation
+<span id="L1171" class="ln">  1171  </span>	}
+<span id="L1172" class="ln">  1172  </span>	if o.DeviceIds != nil {
+<span id="L1173" class="ln">  1173  </span>		toSerialize[&#34;device_ids&#34;] = o.DeviceIds
+<span id="L1174" class="ln">  1174  </span>	}
+<span id="L1175" class="ln">  1175  </span>	if o.EnableLogsSample != nil {
+<span id="L1176" class="ln">  1176  </span>		toSerialize[&#34;enable_logs_sample&#34;] = o.EnableLogsSample
+<span id="L1177" class="ln">  1177  </span>	}
+<span id="L1178" class="ln">  1178  </span>	if o.EnableSamples != nil {
+<span id="L1179" class="ln">  1179  </span>		toSerialize[&#34;enable_samples&#34;] = o.EnableSamples
+<span id="L1180" class="ln">  1180  </span>	}
+<span id="L1181" class="ln">  1181  </span>	if o.EscalationMessage != nil {
+<span id="L1182" class="ln">  1182  </span>		toSerialize[&#34;escalation_message&#34;] = o.EscalationMessage
+<span id="L1183" class="ln">  1183  </span>	}
+<span id="L1184" class="ln">  1184  </span>	if o.EvaluationDelay.IsSet() {
+<span id="L1185" class="ln">  1185  </span>		toSerialize[&#34;evaluation_delay&#34;] = o.EvaluationDelay.Get()
+<span id="L1186" class="ln">  1186  </span>	}
+<span id="L1187" class="ln">  1187  </span>	if o.GroupRetentionDuration != nil {
+<span id="L1188" class="ln">  1188  </span>		toSerialize[&#34;group_retention_duration&#34;] = o.GroupRetentionDuration
+<span id="L1189" class="ln">  1189  </span>	}
+<span id="L1190" class="ln">  1190  </span>	if o.GroupbySimpleMonitor != nil {
+<span id="L1191" class="ln">  1191  </span>		toSerialize[&#34;groupby_simple_monitor&#34;] = o.GroupbySimpleMonitor
+<span id="L1192" class="ln">  1192  </span>	}
+<span id="L1193" class="ln">  1193  </span>	if o.IncludeTags != nil {
+<span id="L1194" class="ln">  1194  </span>		toSerialize[&#34;include_tags&#34;] = o.IncludeTags
+<span id="L1195" class="ln">  1195  </span>	}
+<span id="L1196" class="ln">  1196  </span>	if o.Locked != nil {
+<span id="L1197" class="ln">  1197  </span>		toSerialize[&#34;locked&#34;] = o.Locked
+<span id="L1198" class="ln">  1198  </span>	}
+<span id="L1199" class="ln">  1199  </span>	if o.MinFailureDuration.IsSet() {
+<span id="L1200" class="ln">  1200  </span>		toSerialize[&#34;min_failure_duration&#34;] = o.MinFailureDuration.Get()
+<span id="L1201" class="ln">  1201  </span>	}
+<span id="L1202" class="ln">  1202  </span>	if o.MinLocationFailed.IsSet() {
+<span id="L1203" class="ln">  1203  </span>		toSerialize[&#34;min_location_failed&#34;] = o.MinLocationFailed.Get()
+<span id="L1204" class="ln">  1204  </span>	}
+<span id="L1205" class="ln">  1205  </span>	if o.NewGroupDelay.IsSet() {
+<span id="L1206" class="ln">  1206  </span>		toSerialize[&#34;new_group_delay&#34;] = o.NewGroupDelay.Get()
+<span id="L1207" class="ln">  1207  </span>	}
+<span id="L1208" class="ln">  1208  </span>	if o.NewHostDelay.IsSet() {
+<span id="L1209" class="ln">  1209  </span>		toSerialize[&#34;new_host_delay&#34;] = o.NewHostDelay.Get()
+<span id="L1210" class="ln">  1210  </span>	}
+<span id="L1211" class="ln">  1211  </span>	if o.NoDataTimeframe.IsSet() {
+<span id="L1212" class="ln">  1212  </span>		toSerialize[&#34;no_data_timeframe&#34;] = o.NoDataTimeframe.Get()
+<span id="L1213" class="ln">  1213  </span>	}
+<span id="L1214" class="ln">  1214  </span>	if o.NotificationPresetName != nil {
+<span id="L1215" class="ln">  1215  </span>		toSerialize[&#34;notification_preset_name&#34;] = o.NotificationPresetName
+<span id="L1216" class="ln">  1216  </span>	}
+<span id="L1217" class="ln">  1217  </span>	if o.NotifyAudit != nil {
+<span id="L1218" class="ln">  1218  </span>		toSerialize[&#34;notify_audit&#34;] = o.NotifyAudit
+<span id="L1219" class="ln">  1219  </span>	}
+<span id="L1220" class="ln">  1220  </span>	if o.NotifyBy != nil {
+<span id="L1221" class="ln">  1221  </span>		toSerialize[&#34;notify_by&#34;] = o.NotifyBy
+<span id="L1222" class="ln">  1222  </span>	}
+<span id="L1223" class="ln">  1223  </span>	if o.NotifyNoData != nil {
+<span id="L1224" class="ln">  1224  </span>		toSerialize[&#34;notify_no_data&#34;] = o.NotifyNoData
+<span id="L1225" class="ln">  1225  </span>	}
+<span id="L1226" class="ln">  1226  </span>	if o.OnMissingData != nil {
+<span id="L1227" class="ln">  1227  </span>		toSerialize[&#34;on_missing_data&#34;] = o.OnMissingData
+<span id="L1228" class="ln">  1228  </span>	}
+<span id="L1229" class="ln">  1229  </span>	if o.RenotifyInterval.IsSet() {
+<span id="L1230" class="ln">  1230  </span>		toSerialize[&#34;renotify_interval&#34;] = o.RenotifyInterval.Get()
+<span id="L1231" class="ln">  1231  </span>	}
+<span id="L1232" class="ln">  1232  </span>	if o.RenotifyOccurrences.IsSet() {
+<span id="L1233" class="ln">  1233  </span>		toSerialize[&#34;renotify_occurrences&#34;] = o.RenotifyOccurrences.Get()
+<span id="L1234" class="ln">  1234  </span>	}
+<span id="L1235" class="ln">  1235  </span>	if o.RenotifyStatuses != nil {
+<span id="L1236" class="ln">  1236  </span>		toSerialize[&#34;renotify_statuses&#34;] = o.RenotifyStatuses
+<span id="L1237" class="ln">  1237  </span>	}
+<span id="L1238" class="ln">  1238  </span>	if o.RequireFullWindow != nil {
+<span id="L1239" class="ln">  1239  </span>		toSerialize[&#34;require_full_window&#34;] = o.RequireFullWindow
+<span id="L1240" class="ln">  1240  </span>	}
+<span id="L1241" class="ln">  1241  </span>	if o.SchedulingOptions != nil {
+<span id="L1242" class="ln">  1242  </span>		toSerialize[&#34;scheduling_options&#34;] = o.SchedulingOptions
+<span id="L1243" class="ln">  1243  </span>	}
+<span id="L1244" class="ln">  1244  </span>	if o.Silenced != nil {
+<span id="L1245" class="ln">  1245  </span>		toSerialize[&#34;silenced&#34;] = o.Silenced
+<span id="L1246" class="ln">  1246  </span>	}
+<span id="L1247" class="ln">  1247  </span>	if o.SyntheticsCheckId.IsSet() {
+<span id="L1248" class="ln">  1248  </span>		toSerialize[&#34;synthetics_check_id&#34;] = o.SyntheticsCheckId.Get()
+<span id="L1249" class="ln">  1249  </span>	}
+<span id="L1250" class="ln">  1250  </span>	if o.ThresholdWindows != nil {
+<span id="L1251" class="ln">  1251  </span>		toSerialize[&#34;threshold_windows&#34;] = o.ThresholdWindows
+<span id="L1252" class="ln">  1252  </span>	}
+<span id="L1253" class="ln">  1253  </span>	if o.Thresholds != nil {
+<span id="L1254" class="ln">  1254  </span>		toSerialize[&#34;thresholds&#34;] = o.Thresholds
+<span id="L1255" class="ln">  1255  </span>	}
+<span id="L1256" class="ln">  1256  </span>	if o.TimeoutH.IsSet() {
+<span id="L1257" class="ln">  1257  </span>		toSerialize[&#34;timeout_h&#34;] = o.TimeoutH.Get()
+<span id="L1258" class="ln">  1258  </span>	}
+<span id="L1259" class="ln">  1259  </span>	if o.Variables != nil {
+<span id="L1260" class="ln">  1260  </span>		toSerialize[&#34;variables&#34;] = o.Variables
+<span id="L1261" class="ln">  1261  </span>	}
+<span id="L1262" class="ln">  1262  </span>
+<span id="L1263" class="ln">  1263  </span>	for key, value := range o.AdditionalProperties {
+<span id="L1264" class="ln">  1264  </span>		toSerialize[key] = value
+<span id="L1265" class="ln">  1265  </span>	}
+<span id="L1266" class="ln">  1266  </span>	return datadog.Marshal(toSerialize)
+<span id="L1267" class="ln">  1267  </span>}
+<span id="L1268" class="ln">  1268  </span>
+<span id="L1269" class="ln">  1269  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L1270" class="ln">  1270  </span>func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L1271" class="ln">  1271  </span>	all := struct {
+<span id="L1272" class="ln">  1272  </span>		Aggregation            *MonitorOptionsAggregation                 `json:&#34;aggregation,omitempty&#34;`
+<span id="L1273" class="ln">  1273  </span>		DeviceIds              []MonitorDeviceID                          `json:&#34;device_ids,omitempty&#34;`
+<span id="L1274" class="ln">  1274  </span>		EnableLogsSample       *bool                                      `json:&#34;enable_logs_sample,omitempty&#34;`
+<span id="L1275" class="ln">  1275  </span>		EnableSamples          *bool                                      `json:&#34;enable_samples,omitempty&#34;`
+<span id="L1276" class="ln">  1276  </span>		EscalationMessage      *string                                    `json:&#34;escalation_message,omitempty&#34;`
+<span id="L1277" class="ln">  1277  </span>		EvaluationDelay        datadog.NullableInt64                      `json:&#34;evaluation_delay,omitempty&#34;`
+<span id="L1278" class="ln">  1278  </span>		GroupRetentionDuration *string                                    `json:&#34;group_retention_duration,omitempty&#34;`
+<span id="L1279" class="ln">  1279  </span>		GroupbySimpleMonitor   *bool                                      `json:&#34;groupby_simple_monitor,omitempty&#34;`
+<span id="L1280" class="ln">  1280  </span>		IncludeTags            *bool                                      `json:&#34;include_tags,omitempty&#34;`
+<span id="L1281" class="ln">  1281  </span>		Locked                 *bool                                      `json:&#34;locked,omitempty&#34;`
+<span id="L1282" class="ln">  1282  </span>		MinFailureDuration     datadog.NullableInt64                      `json:&#34;min_failure_duration,omitempty&#34;`
+<span id="L1283" class="ln">  1283  </span>		MinLocationFailed      datadog.NullableInt64                      `json:&#34;min_location_failed,omitempty&#34;`
+<span id="L1284" class="ln">  1284  </span>		NewGroupDelay          datadog.NullableInt64                      `json:&#34;new_group_delay,omitempty&#34;`
+<span id="L1285" class="ln">  1285  </span>		NewHostDelay           datadog.NullableInt64                      `json:&#34;new_host_delay,omitempty&#34;`
+<span id="L1286" class="ln">  1286  </span>		NoDataTimeframe        datadog.NullableInt64                      `json:&#34;no_data_timeframe,omitempty&#34;`
+<span id="L1287" class="ln">  1287  </span>		NotificationPresetName *MonitorOptionsNotificationPresets         `json:&#34;notification_preset_name,omitempty&#34;`
+<span id="L1288" class="ln">  1288  </span>		NotifyAudit            *bool                                      `json:&#34;notify_audit,omitempty&#34;`
+<span id="L1289" class="ln">  1289  </span>		NotifyBy               []string                                   `json:&#34;notify_by,omitempty&#34;`
+<span id="L1290" class="ln">  1290  </span>		NotifyNoData           *bool                                      `json:&#34;notify_no_data,omitempty&#34;`
+<span id="L1291" class="ln">  1291  </span>		OnMissingData          *OnMissingDataOption                       `json:&#34;on_missing_data,omitempty&#34;`
+<span id="L1292" class="ln">  1292  </span>		RenotifyInterval       datadog.NullableInt64                      `json:&#34;renotify_interval,omitempty&#34;`
+<span id="L1293" class="ln">  1293  </span>		RenotifyOccurrences    datadog.NullableInt64                      `json:&#34;renotify_occurrences,omitempty&#34;`
+<span id="L1294" class="ln">  1294  </span>		RenotifyStatuses       []MonitorRenotifyStatusType                `json:&#34;renotify_statuses,omitempty&#34;`
+<span id="L1295" class="ln">  1295  </span>		RequireFullWindow      *bool                                      `json:&#34;require_full_window,omitempty&#34;`
+<span id="L1296" class="ln">  1296  </span>		SchedulingOptions      *MonitorOptionsSchedulingOptions           `json:&#34;scheduling_options,omitempty&#34;`
+<span id="L1297" class="ln">  1297  </span>		Silenced               map[string]int64                           `json:&#34;silenced,omitempty&#34;`
+<span id="L1298" class="ln">  1298  </span>		SyntheticsCheckId      datadog.NullableString                     `json:&#34;synthetics_check_id,omitempty&#34;`
+<span id="L1299" class="ln">  1299  </span>		ThresholdWindows       *MonitorThresholdWindowOptions             `json:&#34;threshold_windows,omitempty&#34;`
+<span id="L1300" class="ln">  1300  </span>		Thresholds             *MonitorThresholds                         `json:&#34;thresholds,omitempty&#34;`
+<span id="L1301" class="ln">  1301  </span>		TimeoutH               datadog.NullableInt64                      `json:&#34;timeout_h,omitempty&#34;`
+<span id="L1302" class="ln">  1302  </span>		Variables              []MonitorFormulaAndFunctionQueryDefinition `json:&#34;variables,omitempty&#34;`
+<span id="L1303" class="ln">  1303  </span>	}{}
+<span id="L1304" class="ln">  1304  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L1305" class="ln">  1305  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L1306" class="ln">  1306  </span>	}
+<span id="L1307" class="ln">  1307  </span>	additionalProperties := make(map[string]interface{})
+<span id="L1308" class="ln">  1308  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L1309" class="ln">  1309  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;aggregation&#34;, &#34;device_ids&#34;, &#34;enable_logs_sample&#34;, &#34;enable_samples&#34;, &#34;escalation_message&#34;, &#34;evaluation_delay&#34;, &#34;group_retention_duration&#34;, &#34;groupby_simple_monitor&#34;, &#34;include_tags&#34;, &#34;locked&#34;, &#34;min_failure_duration&#34;, &#34;min_location_failed&#34;, &#34;new_group_delay&#34;, &#34;new_host_delay&#34;, &#34;no_data_timeframe&#34;, &#34;notification_preset_name&#34;, &#34;notify_audit&#34;, &#34;notify_by&#34;, &#34;notify_no_data&#34;, &#34;on_missing_data&#34;, &#34;renotify_interval&#34;, &#34;renotify_occurrences&#34;, &#34;renotify_statuses&#34;, &#34;require_full_window&#34;, &#34;scheduling_options&#34;, &#34;silenced&#34;, &#34;synthetics_check_id&#34;, &#34;threshold_windows&#34;, &#34;thresholds&#34;, &#34;timeout_h&#34;, &#34;variables&#34;})
+<span id="L1310" class="ln">  1310  </span>	} else {
+<span id="L1311" class="ln">  1311  </span>		return err
+<span id="L1312" class="ln">  1312  </span>	}
+<span id="L1313" class="ln">  1313  </span>
+<span id="L1314" class="ln">  1314  </span>	hasInvalidField := false
+<span id="L1315" class="ln">  1315  </span>	if all.Aggregation != nil &amp;&amp; all.Aggregation.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L1316" class="ln">  1316  </span>		hasInvalidField = true
+<span id="L1317" class="ln">  1317  </span>	}
+<span id="L1318" class="ln">  1318  </span>	o.Aggregation = all.Aggregation
+<span id="L1319" class="ln">  1319  </span>	o.DeviceIds = all.DeviceIds
+<span id="L1320" class="ln">  1320  </span>	o.EnableLogsSample = all.EnableLogsSample
+<span id="L1321" class="ln">  1321  </span>	o.EnableSamples = all.EnableSamples
+<span id="L1322" class="ln">  1322  </span>	o.EscalationMessage = all.EscalationMessage
+<span id="L1323" class="ln">  1323  </span>	o.EvaluationDelay = all.EvaluationDelay
+<span id="L1324" class="ln">  1324  </span>	o.GroupRetentionDuration = all.GroupRetentionDuration
+<span id="L1325" class="ln">  1325  </span>	o.GroupbySimpleMonitor = all.GroupbySimpleMonitor
+<span id="L1326" class="ln">  1326  </span>	o.IncludeTags = all.IncludeTags
+<span id="L1327" class="ln">  1327  </span>	o.Locked = all.Locked
+<span id="L1328" class="ln">  1328  </span>	o.MinFailureDuration = all.MinFailureDuration
+<span id="L1329" class="ln">  1329  </span>	o.MinLocationFailed = all.MinLocationFailed
+<span id="L1330" class="ln">  1330  </span>	o.NewGroupDelay = all.NewGroupDelay
+<span id="L1331" class="ln">  1331  </span>	o.NewHostDelay = all.NewHostDelay
+<span id="L1332" class="ln">  1332  </span>	o.NoDataTimeframe = all.NoDataTimeframe
+<span id="L1333" class="ln">  1333  </span>	if all.NotificationPresetName != nil &amp;&amp; !all.NotificationPresetName.IsValid() {
+<span id="L1334" class="ln">  1334  </span>		hasInvalidField = true
+<span id="L1335" class="ln">  1335  </span>	} else {
+<span id="L1336" class="ln">  1336  </span>		o.NotificationPresetName = all.NotificationPresetName
+<span id="L1337" class="ln">  1337  </span>	}
+<span id="L1338" class="ln">  1338  </span>	o.NotifyAudit = all.NotifyAudit
+<span id="L1339" class="ln">  1339  </span>	o.NotifyBy = all.NotifyBy
+<span id="L1340" class="ln">  1340  </span>	o.NotifyNoData = all.NotifyNoData
+<span id="L1341" class="ln">  1341  </span>	if all.OnMissingData != nil &amp;&amp; !all.OnMissingData.IsValid() {
+<span id="L1342" class="ln">  1342  </span>		hasInvalidField = true
+<span id="L1343" class="ln">  1343  </span>	} else {
+<span id="L1344" class="ln">  1344  </span>		o.OnMissingData = all.OnMissingData
+<span id="L1345" class="ln">  1345  </span>	}
+<span id="L1346" class="ln">  1346  </span>	o.RenotifyInterval = all.RenotifyInterval
+<span id="L1347" class="ln">  1347  </span>	o.RenotifyOccurrences = all.RenotifyOccurrences
+<span id="L1348" class="ln">  1348  </span>	o.RenotifyStatuses = all.RenotifyStatuses
+<span id="L1349" class="ln">  1349  </span>	o.RequireFullWindow = all.RequireFullWindow
+<span id="L1350" class="ln">  1350  </span>	if all.SchedulingOptions != nil &amp;&amp; all.SchedulingOptions.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L1351" class="ln">  1351  </span>		hasInvalidField = true
+<span id="L1352" class="ln">  1352  </span>	}
+<span id="L1353" class="ln">  1353  </span>	o.SchedulingOptions = all.SchedulingOptions
+<span id="L1354" class="ln">  1354  </span>	o.Silenced = all.Silenced
+<span id="L1355" class="ln">  1355  </span>	o.SyntheticsCheckId = all.SyntheticsCheckId
+<span id="L1356" class="ln">  1356  </span>	if all.ThresholdWindows != nil &amp;&amp; all.ThresholdWindows.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L1357" class="ln">  1357  </span>		hasInvalidField = true
+<span id="L1358" class="ln">  1358  </span>	}
+<span id="L1359" class="ln">  1359  </span>	o.ThresholdWindows = all.ThresholdWindows
+<span id="L1360" class="ln">  1360  </span>	if all.Thresholds != nil &amp;&amp; all.Thresholds.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L1361" class="ln">  1361  </span>		hasInvalidField = true
+<span id="L1362" class="ln">  1362  </span>	}
+<span id="L1363" class="ln">  1363  </span>	o.Thresholds = all.Thresholds
+<span id="L1364" class="ln">  1364  </span>	o.TimeoutH = all.TimeoutH
+<span id="L1365" class="ln">  1365  </span>	o.Variables = all.Variables
+<span id="L1366" class="ln">  1366  </span>
+<span id="L1367" class="ln">  1367  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L1368" class="ln">  1368  </span>		o.AdditionalProperties = additionalProperties
+<span id="L1369" class="ln">  1369  </span>	}
+<span id="L1370" class="ln">  1370  </span>
+<span id="L1371" class="ln">  1371  </span>	if hasInvalidField {
+<span id="L1372" class="ln">  1372  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L1373" class="ln">  1373  </span>	}
+<span id="L1374" class="ln">  1374  </span>
+<span id="L1375" class="ln">  1375  </span>	return nil
+<span id="L1376" class="ln">  1376  </span>}
+<span id="L1377" class="ln">  1377  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.19.13.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

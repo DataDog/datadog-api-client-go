@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>client - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer></script>
+
+
+
+
+<script>var goVersion = "go1.19.13";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer></script>
+
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package client
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/DataDog/datadog-api-client-go/v2"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+				<dd><a href="#pkg-subdirectories">Subdirectories</a></dd>
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				<p>Package datadog-api-client-go.
+<p>This repository contains a Go API client for the Datadog API (<a href="https://docs.datadoghq.com/api/">https://docs.datadoghq.com/api/</a>).
+<h3 id="hdr-Requirements">Requirements</h3>
+<p>• Go 1.19+
+<h3 id="hdr-Layout">Layout</h3>
+<p>This repository contains per-major-version API client packages. Right
+now, Datadog has two API versions,
+v1, v2 and the common package.
+<h3 id="hdr-The_API_v1_Client">The API v1 Client</h3>
+<p>The client library for Datadog API v1 is located in the api/datadogV1 directory. Import it with
+<pre>import &quot;github.com/DataDog/datadog-api-client-go/v2/api/datadogV1&quot;
+</pre>
+<h3 id="hdr-The_API_v2_Client">The API v2 Client</h3>
+<p>The client library for Datadog API v2 is located in the api/datadogV2 directory. Import it with
+<pre>import &quot;github.com/DataDog/datadog-api-client-go/v2/api/datadogV2&quot;
+</pre>
+<h3 id="hdr-The_Datadog_Package">The Datadog Package</h3>
+<p>The datadog package for Datadog API is located in the api/datadog directory. Import it with
+<pre>import &quot;github.com/DataDog/datadog-api-client-go/v2/api/datadog&quot;
+</pre>
+<h3 id="hdr-Getting_Started">Getting Started</h3>
+<p>Here&apos;s an example creating a user:
+<pre>package main
+
+import (
+    &quot;context&quot;
+    &quot;fmt&quot;
+    &quot;os&quot;
+
+    &quot;github.com/DataDog/datadog-api-client-go/v2/api/datadog&quot;
+    &quot;github.com/DataDog/datadog-api-client-go/v2/api/datadogV2&quot;
+)
+
+func main() {
+    ctx := context.WithValue(
+        context.Background(),
+        datadog.ContextAPIKeys,
+        map[string]datadog.APIKey{
+            &quot;apiKeyAuth&quot;: {
+                Key: os.Getenv(&quot;DD_CLIENT_API_KEY&quot;),
+            },
+            &quot;appKeyAuth&quot;: {
+                Key: os.Getenv(&quot;DD_CLIENT_APP_KEY&quot;),
+            },
+        },
+    )
+
+    body := *datadogV2.NewUserCreateRequest(*datadogV2.NewUserCreateData(*datadogV2.NewUserCreateAttributes(&quot;jane.doe@example.com&quot;), datadogV2.UsersType(&quot;users&quot;)))
+
+    configuration := datadog.NewConfiguration()
+    apiClient := datadog.NewAPIClient(configuration)
+    usersApi := datadogV2.NewUsersApi(apiClient)
+
+    resp, r, err := usersApi.CreateUser(ctx, body)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, &quot;Error creating user: %v\n&quot;, err)
+        fmt.Fprintf(os.Stderr, &quot;Full HTTP response: %v\n&quot;, r)
+    }
+    responseData := resp.GetData()
+    fmt.Fprintf(os.Stdout, &quot;User ID: %s&quot;, responseData.GetId())
+}
+</pre>
+<p>Save it to example.go, then run go get github.com/DataDog/datadog-api-client-go/v2.
+Set the
+DD_CLIENT_API_KEY and DD_CLIENT_APP_KEY to your Datadog
+credentials, and then run
+go run example.go.
+<h3 id="hdr-Unstable_Endpoints">Unstable Endpoints</h3>
+<p>This client includes access to Datadog API endpoints while they are in an unstable state and may undergo breaking changes. An extra configuration step is required to enable these endpoints:
+<pre>configuration.SetUnstableOperationEnabled(&quot;&lt;APIVersion&gt;.&lt;OperationName&gt;&quot;, true)
+</pre>
+<p>where &lt;OperationName&gt; is the name of the method used to interact with that endpoint. For example: GetLogsIndex, or UpdateLogsIndex
+<h3 id="hdr-Changing_Server">Changing Server</h3>
+<p>When talking to a different server, like the eu instance, change the ContextServerVariables:
+<pre>ctx = context.WithValue(ctx,
+    datadog.ContextServerVariables,
+    map[string]string{
+        &quot;site&quot;: &quot;datadoghq.eu&quot;,
+})
+</pre>
+<h3 id="hdr-Disable_compressed_payloads">Disable compressed payloads</h3>
+<p>If you want to disable GZIP compressed responses, set the compress flag
+on your configuration object:
+<pre>configuration.Compress = false
+</pre>
+<h3 id="hdr-Enable_requests_logging">Enable requests logging</h3>
+<p>If you want to enable requests logging, set the debug flag on your configuration object:
+<pre>configuration.Debug = true
+</pre>
+<h3 id="hdr-Enable_retry">Enable retry</h3>
+<p>If you want to enable retry when getting status code 429 rate-limited, set EnableRetry to true
+<pre>configuration.RetryConfiguration.EnableRetry = true
+</pre>
+<p>The default max retry is 3, you can change it with MaxRetries
+<pre>configuration.RetryConfiguration.MaxRetries = 3
+</pre>
+<h3 id="hdr-Configure_proxy">Configure proxy</h3>
+<p>If you want to configure proxy, set env var HTTP_PROXY, and HTTPS_PROXY or set custom
+HTTPClient with proxy configured on configuration object:
+<pre>proxyUrl, _ := url.Parse(&quot;http://127.0.0.1:80&quot;)
+configuration.HTTPClient = &amp;http.Client{
+    Transport: &amp;http.Transport{Proxy: http.ProxyURL(proxyUrl)}
+}
+</pre>
+<h3 id="hdr-Pagination">Pagination</h3>
+<p>Several listing operations have a pagination method to help consume all the items available.
+For example, to retrieve all your incidents:
+<pre>package main
+
+import (
+	&quot;context&quot;
+	&quot;fmt&quot;
+	&quot;os&quot;
+
+	&quot;github.com/DataDog/datadog-api-client-go/v2/api/datadog&quot;
+	&quot;github.com/DataDog/datadog-api-client-go/v2/api/datadogV2&quot;
+)
+
+func main() {
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled(&quot;v2.ListIncidents&quot;, true)
+	apiClient := datadog.NewAPIClient(configuration)
+	incidentsApi := datadogV2.NewIncidentsApi(apiClient)
+
+	resp, _ := incidentsApi.ListIncidentsWithPagination(ctx, *datadog.NewListIncidentsOptionalParameters())
+	for paginationResult := range resp {
+		if paginationResult.Error != nil {
+			fmt.Fprintf(os.Stderr, &quot;Error when calling `IncidentsApi.ListIncidentsWithPagination`: %v\n&quot;, paginationResult.Error)
+		}
+		responseContent, _ := json.MarshalIndent(paginationResult.Item, &quot;&quot;, &quot;  &quot;)
+		fmt.Fprintf(os.Stdout, &quot;%s\n&quot;, responseContent)
+	}
+
+}
+</pre>
+<p>Encoder/Decoder
+<p>By default, datadog-api-client-go uses the Go standard library enconding/json (<a href="https://pkg.go.dev/encoding/json">https://pkg.go.dev/encoding/json</a>) to encode and decode data. As an alternative users can opt in to use goccy/go-json (<a href="https://github.com/goccy/go-json">https://github.com/goccy/go-json</a>) by specifying the go build tag goccy_gojson.
+<p>In comparison, there was a significant decrease in cpu time with goccy/go-json with an increase in memory overhead. For further benchmark information, see goccy/go-json benchmark (<a href="https://github.com/goccy/go-json#benchmarks">https://github.com/goccy/go-json#benchmarks</a>) section.
+<h3 id="hdr-Documentation">Documentation</h3>
+<p>Developer documentation for API endpoints and models is available on Github pages (<a href="https://datadoghq.dev/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">https://datadoghq.dev/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/</a>).
+Released versions are available on
+pkg.go.dev (<a href="https://pkg.go.dev/github.com/DataDog/datadog-api-client-go/v2">https://pkg.go.dev/github.com/DataDog/datadog-api-client-go/v2</a>).
+<h3 id="hdr-Contributing">Contributing</h3>
+<p>As most of the code in this repository is generated, we will only accept PRs for files
+that are not modified by our code-generation machinery (changes to the generated files
+would get overwritten). We happily accept contributions to files that are not autogenerated,
+such as tests and development tooling.
+<h3 id="hdr-Author">Author</h3>
+<p>support@datadoghq.com
+
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="https://github.com/DataDog/datadog-api-client-go/blob/master/doc.go">doc.go</a>
+			
+				<a href="https://github.com/DataDog/datadog-api-client-go/blob/master/version.go">version.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<p>Version used in User-Agent header.
+
+				<pre>const <span id="Version">Version</span> = &#34;2.29.1+dev&#34;</pre>
+			
+		
+		
+		
+		
+	
+
+	
+
+
+
+
+
+	
+	
+		<h2 id="pkg-subdirectories">Subdirectories</h2>
+	
+	<div class="pkg-dir">
+		<table>
+			<tr>
+				<th class="pkg-name">Name</th>
+				<th class="pkg-synopsis">Synopsis</th>
+			</tr>
+
+			
+			<tr>
+				<td colspan="2"><a href="..">..</a></td>
+			</tr>
+			
+
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 0px;">
+						<a href="api/">api</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="api/datadog/">datadog</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="api/datadogV1/">datadogV1</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						List of APIs:
+					</td>
+				</tr>
+			
+				<tr>
+				
+					<td class="pkg-name" style="padding-left: 20px;">
+						<a href="api/datadogV2/">datadogV2</a>
+					</td>
+				
+					<td class="pkg-synopsis">
+						List of APIs:
+					</td>
+				</tr>
+			
+		</table>
+	</div>
+
+
+
+<div id="footer">
+Build version go1.19.13.<br>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

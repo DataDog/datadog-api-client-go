@@ -1,0 +1,954 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_ci_app_pipeline_event_pipeline.go - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.19.13";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_ci_app_pipeline_event_pipeline.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">github.com/DataDog/datadog-api-client-go/v2/api/datadogV2</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span><span class="comment">// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.</span>
+<span id="L2" class="ln">     2  </span><span class="comment">// This product includes software developed at Datadog (https://www.datadoghq.com/).</span>
+<span id="L3" class="ln">     3  </span><span class="comment">// Copyright 2019-Present Datadog, Inc.</span>
+<span id="L4" class="ln">     4  </span>
+<span id="L5" class="ln">     5  </span>package datadogV2
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>import (
+<span id="L8" class="ln">     8  </span>	&#34;fmt&#34;
+<span id="L9" class="ln">     9  </span>	&#34;time&#34;
+<span id="L10" class="ln">    10  </span>
+<span id="L11" class="ln">    11  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
+<span id="L12" class="ln">    12  </span>)
+<span id="L13" class="ln">    13  </span>
+<span id="L14" class="ln">    14  </span><span class="comment">// CIAppPipelineEventPipeline Details of the top level pipeline, build, or workflow of your CI.</span>
+<span id="L15" class="ln">    15  </span>type CIAppPipelineEventPipeline struct {
+<span id="L16" class="ln">    16  </span>	<span class="comment">// Time when the pipeline run finished. It cannot be older than 18 hours in the past from the current time. The time format must be RFC3339.</span>
+<span id="L17" class="ln">    17  </span>	End time.Time `json:&#34;end&#34;`
+<span id="L18" class="ln">    18  </span>	<span class="comment">// Contains information of the CI error.</span>
+<span id="L19" class="ln">    19  </span>	Error NullableCIAppCIError `json:&#34;error,omitempty&#34;`
+<span id="L20" class="ln">    20  </span>	<span class="comment">// If pipelines are triggered due to actions to a Git repository, then all payloads must contain this.</span>
+<span id="L21" class="ln">    21  </span>	<span class="comment">// Note that either `tag` or `branch` has to be provided, but not both.</span>
+<span id="L22" class="ln">    22  </span>	Git NullableCIAppGitInfo `json:&#34;git,omitempty&#34;`
+<span id="L23" class="ln">    23  </span>	<span class="comment">// Whether or not the pipeline was triggered manually by the user.</span>
+<span id="L24" class="ln">    24  </span>	IsManual datadog.NullableBool `json:&#34;is_manual,omitempty&#34;`
+<span id="L25" class="ln">    25  </span>	<span class="comment">// Whether or not the pipeline was resumed after being blocked.</span>
+<span id="L26" class="ln">    26  </span>	IsResumed datadog.NullableBool `json:&#34;is_resumed,omitempty&#34;`
+<span id="L27" class="ln">    27  </span>	<span class="comment">// Used to distinguish between pipelines, stages, jobs, and steps.</span>
+<span id="L28" class="ln">    28  </span>	Level CIAppPipelineEventPipelineLevel `json:&#34;level&#34;`
+<span id="L29" class="ln">    29  </span>	<span class="comment">// A list of user-defined metrics. The metrics must follow the `key:value` pattern and the value must be numeric.</span>
+<span id="L30" class="ln">    30  </span>	Metrics datadog.NullableList[string] `json:&#34;metrics,omitempty&#34;`
+<span id="L31" class="ln">    31  </span>	<span class="comment">// Name of the pipeline. All pipeline runs for the builds should have the same name.</span>
+<span id="L32" class="ln">    32  </span>	Name string `json:&#34;name&#34;`
+<span id="L33" class="ln">    33  </span>	<span class="comment">// Contains information of the host running the pipeline, stage, job, or step.</span>
+<span id="L34" class="ln">    34  </span>	Node NullableCIAppHostInfo `json:&#34;node,omitempty&#34;`
+<span id="L35" class="ln">    35  </span>	<span class="comment">// A map of key-value parameters or environment variables that were defined for the pipeline.</span>
+<span id="L36" class="ln">    36  </span>	Parameters map[string]string `json:&#34;parameters,omitempty&#34;`
+<span id="L37" class="ln">    37  </span>	<span class="comment">// If the pipeline is triggered as child of another pipeline, this should contain the details of the parent pipeline.</span>
+<span id="L38" class="ln">    38  </span>	ParentPipeline NullableCIAppPipelineEventParentPipeline `json:&#34;parent_pipeline,omitempty&#34;`
+<span id="L39" class="ln">    39  </span>	<span class="comment">// Whether or not the pipeline was a partial retry of a previous attempt. A partial retry is one</span>
+<span id="L40" class="ln">    40  </span>	<span class="comment">// which only runs a subset of the original jobs.</span>
+<span id="L41" class="ln">    41  </span>	PartialRetry bool `json:&#34;partial_retry&#34;`
+<span id="L42" class="ln">    42  </span>	<span class="comment">// Any ID used in the provider to identify the pipeline run even if it is not unique across retries.</span>
+<span id="L43" class="ln">    43  </span>	<span class="comment">// If the `pipeline_id` is unique, then both `unique_id` and `pipeline_id` can be set to the same value.</span>
+<span id="L44" class="ln">    44  </span>	PipelineId *string `json:&#34;pipeline_id,omitempty&#34;`
+<span id="L45" class="ln">    45  </span>	<span class="comment">// If the pipeline is a retry, this should contain the details of the previous attempt.</span>
+<span id="L46" class="ln">    46  </span>	PreviousAttempt NullableCIAppPipelineEventPreviousPipeline `json:&#34;previous_attempt,omitempty&#34;`
+<span id="L47" class="ln">    47  </span>	<span class="comment">// The queue time in milliseconds, if applicable.</span>
+<span id="L48" class="ln">    48  </span>	QueueTime datadog.NullableInt64 `json:&#34;queue_time,omitempty&#34;`
+<span id="L49" class="ln">    49  </span>	<span class="comment">// Time when the pipeline run started (it should not include any queue time). The time format must be RFC3339.</span>
+<span id="L50" class="ln">    50  </span>	Start time.Time `json:&#34;start&#34;`
+<span id="L51" class="ln">    51  </span>	<span class="comment">// The final status of the pipeline.</span>
+<span id="L52" class="ln">    52  </span>	Status CIAppPipelineEventPipelineStatus `json:&#34;status&#34;`
+<span id="L53" class="ln">    53  </span>	<span class="comment">// A list of user-defined tags. The tags must follow the `key:value` pattern.</span>
+<span id="L54" class="ln">    54  </span>	Tags datadog.NullableList[string] `json:&#34;tags,omitempty&#34;`
+<span id="L55" class="ln">    55  </span>	<span class="comment">// UUID of the pipeline run. The ID has to be unique across retries and pipelines,</span>
+<span id="L56" class="ln">    56  </span>	<span class="comment">// including partial retries.</span>
+<span id="L57" class="ln">    57  </span>	UniqueId string `json:&#34;unique_id&#34;`
+<span id="L58" class="ln">    58  </span>	<span class="comment">// The URL to look at the pipeline in the CI provider UI.</span>
+<span id="L59" class="ln">    59  </span>	Url string `json:&#34;url&#34;`
+<span id="L60" class="ln">    60  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L61" class="ln">    61  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L62" class="ln">    62  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L63" class="ln">    63  </span>}
+<span id="L64" class="ln">    64  </span>
+<span id="L65" class="ln">    65  </span><span class="comment">// NewCIAppPipelineEventPipeline instantiates a new CIAppPipelineEventPipeline object.</span>
+<span id="L66" class="ln">    66  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L67" class="ln">    67  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L68" class="ln">    68  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L69" class="ln">    69  </span>func NewCIAppPipelineEventPipeline(end time.Time, level CIAppPipelineEventPipelineLevel, name string, partialRetry bool, start time.Time, status CIAppPipelineEventPipelineStatus, uniqueId string, url string) *CIAppPipelineEventPipeline {
+<span id="L70" class="ln">    70  </span>	this := CIAppPipelineEventPipeline{}
+<span id="L71" class="ln">    71  </span>	this.End = end
+<span id="L72" class="ln">    72  </span>	this.Level = level
+<span id="L73" class="ln">    73  </span>	this.Name = name
+<span id="L74" class="ln">    74  </span>	this.PartialRetry = partialRetry
+<span id="L75" class="ln">    75  </span>	this.Start = start
+<span id="L76" class="ln">    76  </span>	this.Status = status
+<span id="L77" class="ln">    77  </span>	this.UniqueId = uniqueId
+<span id="L78" class="ln">    78  </span>	this.Url = url
+<span id="L79" class="ln">    79  </span>	return &amp;this
+<span id="L80" class="ln">    80  </span>}
+<span id="L81" class="ln">    81  </span>
+<span id="L82" class="ln">    82  </span><span class="comment">// NewCIAppPipelineEventPipelineWithDefaults instantiates a new CIAppPipelineEventPipeline object.</span>
+<span id="L83" class="ln">    83  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L84" class="ln">    84  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L85" class="ln">    85  </span>func NewCIAppPipelineEventPipelineWithDefaults() *CIAppPipelineEventPipeline {
+<span id="L86" class="ln">    86  </span>	this := CIAppPipelineEventPipeline{}
+<span id="L87" class="ln">    87  </span>	var level CIAppPipelineEventPipelineLevel = CIAPPPIPELINEEVENTPIPELINELEVEL_PIPELINE
+<span id="L88" class="ln">    88  </span>	this.Level = level
+<span id="L89" class="ln">    89  </span>	return &amp;this
+<span id="L90" class="ln">    90  </span>}
+<span id="L91" class="ln">    91  </span>
+<span id="L92" class="ln">    92  </span><span class="comment">// GetEnd returns the End field value.</span>
+<span id="L93" class="ln">    93  </span>func (o *CIAppPipelineEventPipeline) GetEnd() time.Time {
+<span id="L94" class="ln">    94  </span>	if o == nil {
+<span id="L95" class="ln">    95  </span>		var ret time.Time
+<span id="L96" class="ln">    96  </span>		return ret
+<span id="L97" class="ln">    97  </span>	}
+<span id="L98" class="ln">    98  </span>	return o.End
+<span id="L99" class="ln">    99  </span>}
+<span id="L100" class="ln">   100  </span>
+<span id="L101" class="ln">   101  </span><span class="comment">// GetEndOk returns a tuple with the End field value</span>
+<span id="L102" class="ln">   102  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L103" class="ln">   103  </span>func (o *CIAppPipelineEventPipeline) GetEndOk() (*time.Time, bool) {
+<span id="L104" class="ln">   104  </span>	if o == nil {
+<span id="L105" class="ln">   105  </span>		return nil, false
+<span id="L106" class="ln">   106  </span>	}
+<span id="L107" class="ln">   107  </span>	return &amp;o.End, true
+<span id="L108" class="ln">   108  </span>}
+<span id="L109" class="ln">   109  </span>
+<span id="L110" class="ln">   110  </span><span class="comment">// SetEnd sets field value.</span>
+<span id="L111" class="ln">   111  </span>func (o *CIAppPipelineEventPipeline) SetEnd(v time.Time) {
+<span id="L112" class="ln">   112  </span>	o.End = v
+<span id="L113" class="ln">   113  </span>}
+<span id="L114" class="ln">   114  </span>
+<span id="L115" class="ln">   115  </span><span class="comment">// GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L116" class="ln">   116  </span>func (o *CIAppPipelineEventPipeline) GetError() CIAppCIError {
+<span id="L117" class="ln">   117  </span>	if o == nil || o.Error.Get() == nil {
+<span id="L118" class="ln">   118  </span>		var ret CIAppCIError
+<span id="L119" class="ln">   119  </span>		return ret
+<span id="L120" class="ln">   120  </span>	}
+<span id="L121" class="ln">   121  </span>	return *o.Error.Get()
+<span id="L122" class="ln">   122  </span>}
+<span id="L123" class="ln">   123  </span>
+<span id="L124" class="ln">   124  </span><span class="comment">// GetErrorOk returns a tuple with the Error field value if set, nil otherwise</span>
+<span id="L125" class="ln">   125  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L126" class="ln">   126  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L127" class="ln">   127  </span>func (o *CIAppPipelineEventPipeline) GetErrorOk() (*CIAppCIError, bool) {
+<span id="L128" class="ln">   128  </span>	if o == nil {
+<span id="L129" class="ln">   129  </span>		return nil, false
+<span id="L130" class="ln">   130  </span>	}
+<span id="L131" class="ln">   131  </span>	return o.Error.Get(), o.Error.IsSet()
+<span id="L132" class="ln">   132  </span>}
+<span id="L133" class="ln">   133  </span>
+<span id="L134" class="ln">   134  </span><span class="comment">// HasError returns a boolean if a field has been set.</span>
+<span id="L135" class="ln">   135  </span>func (o *CIAppPipelineEventPipeline) HasError() bool {
+<span id="L136" class="ln">   136  </span>	return o != nil &amp;&amp; o.Error.IsSet()
+<span id="L137" class="ln">   137  </span>}
+<span id="L138" class="ln">   138  </span>
+<span id="L139" class="ln">   139  </span><span class="comment">// SetError gets a reference to the given NullableCIAppCIError and assigns it to the Error field.</span>
+<span id="L140" class="ln">   140  </span>func (o *CIAppPipelineEventPipeline) SetError(v CIAppCIError) {
+<span id="L141" class="ln">   141  </span>	o.Error.Set(&amp;v)
+<span id="L142" class="ln">   142  </span>}
+<span id="L143" class="ln">   143  </span>
+<span id="L144" class="ln">   144  </span><span class="comment">// SetErrorNil sets the value for Error to be an explicit nil.</span>
+<span id="L145" class="ln">   145  </span>func (o *CIAppPipelineEventPipeline) SetErrorNil() {
+<span id="L146" class="ln">   146  </span>	o.Error.Set(nil)
+<span id="L147" class="ln">   147  </span>}
+<span id="L148" class="ln">   148  </span>
+<span id="L149" class="ln">   149  </span><span class="comment">// UnsetError ensures that no value is present for Error, not even an explicit nil.</span>
+<span id="L150" class="ln">   150  </span>func (o *CIAppPipelineEventPipeline) UnsetError() {
+<span id="L151" class="ln">   151  </span>	o.Error.Unset()
+<span id="L152" class="ln">   152  </span>}
+<span id="L153" class="ln">   153  </span>
+<span id="L154" class="ln">   154  </span><span class="comment">// GetGit returns the Git field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L155" class="ln">   155  </span>func (o *CIAppPipelineEventPipeline) GetGit() CIAppGitInfo {
+<span id="L156" class="ln">   156  </span>	if o == nil || o.Git.Get() == nil {
+<span id="L157" class="ln">   157  </span>		var ret CIAppGitInfo
+<span id="L158" class="ln">   158  </span>		return ret
+<span id="L159" class="ln">   159  </span>	}
+<span id="L160" class="ln">   160  </span>	return *o.Git.Get()
+<span id="L161" class="ln">   161  </span>}
+<span id="L162" class="ln">   162  </span>
+<span id="L163" class="ln">   163  </span><span class="comment">// GetGitOk returns a tuple with the Git field value if set, nil otherwise</span>
+<span id="L164" class="ln">   164  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L165" class="ln">   165  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L166" class="ln">   166  </span>func (o *CIAppPipelineEventPipeline) GetGitOk() (*CIAppGitInfo, bool) {
+<span id="L167" class="ln">   167  </span>	if o == nil {
+<span id="L168" class="ln">   168  </span>		return nil, false
+<span id="L169" class="ln">   169  </span>	}
+<span id="L170" class="ln">   170  </span>	return o.Git.Get(), o.Git.IsSet()
+<span id="L171" class="ln">   171  </span>}
+<span id="L172" class="ln">   172  </span>
+<span id="L173" class="ln">   173  </span><span class="comment">// HasGit returns a boolean if a field has been set.</span>
+<span id="L174" class="ln">   174  </span>func (o *CIAppPipelineEventPipeline) HasGit() bool {
+<span id="L175" class="ln">   175  </span>	return o != nil &amp;&amp; o.Git.IsSet()
+<span id="L176" class="ln">   176  </span>}
+<span id="L177" class="ln">   177  </span>
+<span id="L178" class="ln">   178  </span><span class="comment">// SetGit gets a reference to the given NullableCIAppGitInfo and assigns it to the Git field.</span>
+<span id="L179" class="ln">   179  </span>func (o *CIAppPipelineEventPipeline) SetGit(v CIAppGitInfo) {
+<span id="L180" class="ln">   180  </span>	o.Git.Set(&amp;v)
+<span id="L181" class="ln">   181  </span>}
+<span id="L182" class="ln">   182  </span>
+<span id="L183" class="ln">   183  </span><span class="comment">// SetGitNil sets the value for Git to be an explicit nil.</span>
+<span id="L184" class="ln">   184  </span>func (o *CIAppPipelineEventPipeline) SetGitNil() {
+<span id="L185" class="ln">   185  </span>	o.Git.Set(nil)
+<span id="L186" class="ln">   186  </span>}
+<span id="L187" class="ln">   187  </span>
+<span id="L188" class="ln">   188  </span><span class="comment">// UnsetGit ensures that no value is present for Git, not even an explicit nil.</span>
+<span id="L189" class="ln">   189  </span>func (o *CIAppPipelineEventPipeline) UnsetGit() {
+<span id="L190" class="ln">   190  </span>	o.Git.Unset()
+<span id="L191" class="ln">   191  </span>}
+<span id="L192" class="ln">   192  </span>
+<span id="L193" class="ln">   193  </span><span class="comment">// GetIsManual returns the IsManual field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L194" class="ln">   194  </span>func (o *CIAppPipelineEventPipeline) GetIsManual() bool {
+<span id="L195" class="ln">   195  </span>	if o == nil || o.IsManual.Get() == nil {
+<span id="L196" class="ln">   196  </span>		var ret bool
+<span id="L197" class="ln">   197  </span>		return ret
+<span id="L198" class="ln">   198  </span>	}
+<span id="L199" class="ln">   199  </span>	return *o.IsManual.Get()
+<span id="L200" class="ln">   200  </span>}
+<span id="L201" class="ln">   201  </span>
+<span id="L202" class="ln">   202  </span><span class="comment">// GetIsManualOk returns a tuple with the IsManual field value if set, nil otherwise</span>
+<span id="L203" class="ln">   203  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L204" class="ln">   204  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L205" class="ln">   205  </span>func (o *CIAppPipelineEventPipeline) GetIsManualOk() (*bool, bool) {
+<span id="L206" class="ln">   206  </span>	if o == nil {
+<span id="L207" class="ln">   207  </span>		return nil, false
+<span id="L208" class="ln">   208  </span>	}
+<span id="L209" class="ln">   209  </span>	return o.IsManual.Get(), o.IsManual.IsSet()
+<span id="L210" class="ln">   210  </span>}
+<span id="L211" class="ln">   211  </span>
+<span id="L212" class="ln">   212  </span><span class="comment">// HasIsManual returns a boolean if a field has been set.</span>
+<span id="L213" class="ln">   213  </span>func (o *CIAppPipelineEventPipeline) HasIsManual() bool {
+<span id="L214" class="ln">   214  </span>	return o != nil &amp;&amp; o.IsManual.IsSet()
+<span id="L215" class="ln">   215  </span>}
+<span id="L216" class="ln">   216  </span>
+<span id="L217" class="ln">   217  </span><span class="comment">// SetIsManual gets a reference to the given datadog.NullableBool and assigns it to the IsManual field.</span>
+<span id="L218" class="ln">   218  </span>func (o *CIAppPipelineEventPipeline) SetIsManual(v bool) {
+<span id="L219" class="ln">   219  </span>	o.IsManual.Set(&amp;v)
+<span id="L220" class="ln">   220  </span>}
+<span id="L221" class="ln">   221  </span>
+<span id="L222" class="ln">   222  </span><span class="comment">// SetIsManualNil sets the value for IsManual to be an explicit nil.</span>
+<span id="L223" class="ln">   223  </span>func (o *CIAppPipelineEventPipeline) SetIsManualNil() {
+<span id="L224" class="ln">   224  </span>	o.IsManual.Set(nil)
+<span id="L225" class="ln">   225  </span>}
+<span id="L226" class="ln">   226  </span>
+<span id="L227" class="ln">   227  </span><span class="comment">// UnsetIsManual ensures that no value is present for IsManual, not even an explicit nil.</span>
+<span id="L228" class="ln">   228  </span>func (o *CIAppPipelineEventPipeline) UnsetIsManual() {
+<span id="L229" class="ln">   229  </span>	o.IsManual.Unset()
+<span id="L230" class="ln">   230  </span>}
+<span id="L231" class="ln">   231  </span>
+<span id="L232" class="ln">   232  </span><span class="comment">// GetIsResumed returns the IsResumed field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L233" class="ln">   233  </span>func (o *CIAppPipelineEventPipeline) GetIsResumed() bool {
+<span id="L234" class="ln">   234  </span>	if o == nil || o.IsResumed.Get() == nil {
+<span id="L235" class="ln">   235  </span>		var ret bool
+<span id="L236" class="ln">   236  </span>		return ret
+<span id="L237" class="ln">   237  </span>	}
+<span id="L238" class="ln">   238  </span>	return *o.IsResumed.Get()
+<span id="L239" class="ln">   239  </span>}
+<span id="L240" class="ln">   240  </span>
+<span id="L241" class="ln">   241  </span><span class="comment">// GetIsResumedOk returns a tuple with the IsResumed field value if set, nil otherwise</span>
+<span id="L242" class="ln">   242  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L243" class="ln">   243  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L244" class="ln">   244  </span>func (o *CIAppPipelineEventPipeline) GetIsResumedOk() (*bool, bool) {
+<span id="L245" class="ln">   245  </span>	if o == nil {
+<span id="L246" class="ln">   246  </span>		return nil, false
+<span id="L247" class="ln">   247  </span>	}
+<span id="L248" class="ln">   248  </span>	return o.IsResumed.Get(), o.IsResumed.IsSet()
+<span id="L249" class="ln">   249  </span>}
+<span id="L250" class="ln">   250  </span>
+<span id="L251" class="ln">   251  </span><span class="comment">// HasIsResumed returns a boolean if a field has been set.</span>
+<span id="L252" class="ln">   252  </span>func (o *CIAppPipelineEventPipeline) HasIsResumed() bool {
+<span id="L253" class="ln">   253  </span>	return o != nil &amp;&amp; o.IsResumed.IsSet()
+<span id="L254" class="ln">   254  </span>}
+<span id="L255" class="ln">   255  </span>
+<span id="L256" class="ln">   256  </span><span class="comment">// SetIsResumed gets a reference to the given datadog.NullableBool and assigns it to the IsResumed field.</span>
+<span id="L257" class="ln">   257  </span>func (o *CIAppPipelineEventPipeline) SetIsResumed(v bool) {
+<span id="L258" class="ln">   258  </span>	o.IsResumed.Set(&amp;v)
+<span id="L259" class="ln">   259  </span>}
+<span id="L260" class="ln">   260  </span>
+<span id="L261" class="ln">   261  </span><span class="comment">// SetIsResumedNil sets the value for IsResumed to be an explicit nil.</span>
+<span id="L262" class="ln">   262  </span>func (o *CIAppPipelineEventPipeline) SetIsResumedNil() {
+<span id="L263" class="ln">   263  </span>	o.IsResumed.Set(nil)
+<span id="L264" class="ln">   264  </span>}
+<span id="L265" class="ln">   265  </span>
+<span id="L266" class="ln">   266  </span><span class="comment">// UnsetIsResumed ensures that no value is present for IsResumed, not even an explicit nil.</span>
+<span id="L267" class="ln">   267  </span>func (o *CIAppPipelineEventPipeline) UnsetIsResumed() {
+<span id="L268" class="ln">   268  </span>	o.IsResumed.Unset()
+<span id="L269" class="ln">   269  </span>}
+<span id="L270" class="ln">   270  </span>
+<span id="L271" class="ln">   271  </span><span class="comment">// GetLevel returns the Level field value.</span>
+<span id="L272" class="ln">   272  </span>func (o *CIAppPipelineEventPipeline) GetLevel() CIAppPipelineEventPipelineLevel {
+<span id="L273" class="ln">   273  </span>	if o == nil {
+<span id="L274" class="ln">   274  </span>		var ret CIAppPipelineEventPipelineLevel
+<span id="L275" class="ln">   275  </span>		return ret
+<span id="L276" class="ln">   276  </span>	}
+<span id="L277" class="ln">   277  </span>	return o.Level
+<span id="L278" class="ln">   278  </span>}
+<span id="L279" class="ln">   279  </span>
+<span id="L280" class="ln">   280  </span><span class="comment">// GetLevelOk returns a tuple with the Level field value</span>
+<span id="L281" class="ln">   281  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L282" class="ln">   282  </span>func (o *CIAppPipelineEventPipeline) GetLevelOk() (*CIAppPipelineEventPipelineLevel, bool) {
+<span id="L283" class="ln">   283  </span>	if o == nil {
+<span id="L284" class="ln">   284  </span>		return nil, false
+<span id="L285" class="ln">   285  </span>	}
+<span id="L286" class="ln">   286  </span>	return &amp;o.Level, true
+<span id="L287" class="ln">   287  </span>}
+<span id="L288" class="ln">   288  </span>
+<span id="L289" class="ln">   289  </span><span class="comment">// SetLevel sets field value.</span>
+<span id="L290" class="ln">   290  </span>func (o *CIAppPipelineEventPipeline) SetLevel(v CIAppPipelineEventPipelineLevel) {
+<span id="L291" class="ln">   291  </span>	o.Level = v
+<span id="L292" class="ln">   292  </span>}
+<span id="L293" class="ln">   293  </span>
+<span id="L294" class="ln">   294  </span><span class="comment">// GetMetrics returns the Metrics field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L295" class="ln">   295  </span>func (o *CIAppPipelineEventPipeline) GetMetrics() []string {
+<span id="L296" class="ln">   296  </span>	if o == nil || o.Metrics.Get() == nil {
+<span id="L297" class="ln">   297  </span>		var ret []string
+<span id="L298" class="ln">   298  </span>		return ret
+<span id="L299" class="ln">   299  </span>	}
+<span id="L300" class="ln">   300  </span>	return *o.Metrics.Get()
+<span id="L301" class="ln">   301  </span>}
+<span id="L302" class="ln">   302  </span>
+<span id="L303" class="ln">   303  </span><span class="comment">// GetMetricsOk returns a tuple with the Metrics field value if set, nil otherwise</span>
+<span id="L304" class="ln">   304  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L305" class="ln">   305  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L306" class="ln">   306  </span>func (o *CIAppPipelineEventPipeline) GetMetricsOk() (*[]string, bool) {
+<span id="L307" class="ln">   307  </span>	if o == nil {
+<span id="L308" class="ln">   308  </span>		return nil, false
+<span id="L309" class="ln">   309  </span>	}
+<span id="L310" class="ln">   310  </span>	return o.Metrics.Get(), o.Metrics.IsSet()
+<span id="L311" class="ln">   311  </span>}
+<span id="L312" class="ln">   312  </span>
+<span id="L313" class="ln">   313  </span><span class="comment">// HasMetrics returns a boolean if a field has been set.</span>
+<span id="L314" class="ln">   314  </span>func (o *CIAppPipelineEventPipeline) HasMetrics() bool {
+<span id="L315" class="ln">   315  </span>	return o != nil &amp;&amp; o.Metrics.IsSet()
+<span id="L316" class="ln">   316  </span>}
+<span id="L317" class="ln">   317  </span>
+<span id="L318" class="ln">   318  </span><span class="comment">// SetMetrics gets a reference to the given datadog.NullableList[string] and assigns it to the Metrics field.</span>
+<span id="L319" class="ln">   319  </span>func (o *CIAppPipelineEventPipeline) SetMetrics(v []string) {
+<span id="L320" class="ln">   320  </span>	o.Metrics.Set(&amp;v)
+<span id="L321" class="ln">   321  </span>}
+<span id="L322" class="ln">   322  </span>
+<span id="L323" class="ln">   323  </span><span class="comment">// SetMetricsNil sets the value for Metrics to be an explicit nil.</span>
+<span id="L324" class="ln">   324  </span>func (o *CIAppPipelineEventPipeline) SetMetricsNil() {
+<span id="L325" class="ln">   325  </span>	o.Metrics.Set(nil)
+<span id="L326" class="ln">   326  </span>}
+<span id="L327" class="ln">   327  </span>
+<span id="L328" class="ln">   328  </span><span class="comment">// UnsetMetrics ensures that no value is present for Metrics, not even an explicit nil.</span>
+<span id="L329" class="ln">   329  </span>func (o *CIAppPipelineEventPipeline) UnsetMetrics() {
+<span id="L330" class="ln">   330  </span>	o.Metrics.Unset()
+<span id="L331" class="ln">   331  </span>}
+<span id="L332" class="ln">   332  </span>
+<span id="L333" class="ln">   333  </span><span class="comment">// GetName returns the Name field value.</span>
+<span id="L334" class="ln">   334  </span>func (o *CIAppPipelineEventPipeline) GetName() string {
+<span id="L335" class="ln">   335  </span>	if o == nil {
+<span id="L336" class="ln">   336  </span>		var ret string
+<span id="L337" class="ln">   337  </span>		return ret
+<span id="L338" class="ln">   338  </span>	}
+<span id="L339" class="ln">   339  </span>	return o.Name
+<span id="L340" class="ln">   340  </span>}
+<span id="L341" class="ln">   341  </span>
+<span id="L342" class="ln">   342  </span><span class="comment">// GetNameOk returns a tuple with the Name field value</span>
+<span id="L343" class="ln">   343  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L344" class="ln">   344  </span>func (o *CIAppPipelineEventPipeline) GetNameOk() (*string, bool) {
+<span id="L345" class="ln">   345  </span>	if o == nil {
+<span id="L346" class="ln">   346  </span>		return nil, false
+<span id="L347" class="ln">   347  </span>	}
+<span id="L348" class="ln">   348  </span>	return &amp;o.Name, true
+<span id="L349" class="ln">   349  </span>}
+<span id="L350" class="ln">   350  </span>
+<span id="L351" class="ln">   351  </span><span class="comment">// SetName sets field value.</span>
+<span id="L352" class="ln">   352  </span>func (o *CIAppPipelineEventPipeline) SetName(v string) {
+<span id="L353" class="ln">   353  </span>	o.Name = v
+<span id="L354" class="ln">   354  </span>}
+<span id="L355" class="ln">   355  </span>
+<span id="L356" class="ln">   356  </span><span class="comment">// GetNode returns the Node field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L357" class="ln">   357  </span>func (o *CIAppPipelineEventPipeline) GetNode() CIAppHostInfo {
+<span id="L358" class="ln">   358  </span>	if o == nil || o.Node.Get() == nil {
+<span id="L359" class="ln">   359  </span>		var ret CIAppHostInfo
+<span id="L360" class="ln">   360  </span>		return ret
+<span id="L361" class="ln">   361  </span>	}
+<span id="L362" class="ln">   362  </span>	return *o.Node.Get()
+<span id="L363" class="ln">   363  </span>}
+<span id="L364" class="ln">   364  </span>
+<span id="L365" class="ln">   365  </span><span class="comment">// GetNodeOk returns a tuple with the Node field value if set, nil otherwise</span>
+<span id="L366" class="ln">   366  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L367" class="ln">   367  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L368" class="ln">   368  </span>func (o *CIAppPipelineEventPipeline) GetNodeOk() (*CIAppHostInfo, bool) {
+<span id="L369" class="ln">   369  </span>	if o == nil {
+<span id="L370" class="ln">   370  </span>		return nil, false
+<span id="L371" class="ln">   371  </span>	}
+<span id="L372" class="ln">   372  </span>	return o.Node.Get(), o.Node.IsSet()
+<span id="L373" class="ln">   373  </span>}
+<span id="L374" class="ln">   374  </span>
+<span id="L375" class="ln">   375  </span><span class="comment">// HasNode returns a boolean if a field has been set.</span>
+<span id="L376" class="ln">   376  </span>func (o *CIAppPipelineEventPipeline) HasNode() bool {
+<span id="L377" class="ln">   377  </span>	return o != nil &amp;&amp; o.Node.IsSet()
+<span id="L378" class="ln">   378  </span>}
+<span id="L379" class="ln">   379  </span>
+<span id="L380" class="ln">   380  </span><span class="comment">// SetNode gets a reference to the given NullableCIAppHostInfo and assigns it to the Node field.</span>
+<span id="L381" class="ln">   381  </span>func (o *CIAppPipelineEventPipeline) SetNode(v CIAppHostInfo) {
+<span id="L382" class="ln">   382  </span>	o.Node.Set(&amp;v)
+<span id="L383" class="ln">   383  </span>}
+<span id="L384" class="ln">   384  </span>
+<span id="L385" class="ln">   385  </span><span class="comment">// SetNodeNil sets the value for Node to be an explicit nil.</span>
+<span id="L386" class="ln">   386  </span>func (o *CIAppPipelineEventPipeline) SetNodeNil() {
+<span id="L387" class="ln">   387  </span>	o.Node.Set(nil)
+<span id="L388" class="ln">   388  </span>}
+<span id="L389" class="ln">   389  </span>
+<span id="L390" class="ln">   390  </span><span class="comment">// UnsetNode ensures that no value is present for Node, not even an explicit nil.</span>
+<span id="L391" class="ln">   391  </span>func (o *CIAppPipelineEventPipeline) UnsetNode() {
+<span id="L392" class="ln">   392  </span>	o.Node.Unset()
+<span id="L393" class="ln">   393  </span>}
+<span id="L394" class="ln">   394  </span>
+<span id="L395" class="ln">   395  </span><span class="comment">// GetParameters returns the Parameters field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L396" class="ln">   396  </span>func (o *CIAppPipelineEventPipeline) GetParameters() map[string]string {
+<span id="L397" class="ln">   397  </span>	if o == nil {
+<span id="L398" class="ln">   398  </span>		var ret map[string]string
+<span id="L399" class="ln">   399  </span>		return ret
+<span id="L400" class="ln">   400  </span>	}
+<span id="L401" class="ln">   401  </span>	return o.Parameters
+<span id="L402" class="ln">   402  </span>}
+<span id="L403" class="ln">   403  </span>
+<span id="L404" class="ln">   404  </span><span class="comment">// GetParametersOk returns a tuple with the Parameters field value if set, nil otherwise</span>
+<span id="L405" class="ln">   405  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L406" class="ln">   406  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L407" class="ln">   407  </span>func (o *CIAppPipelineEventPipeline) GetParametersOk() (*map[string]string, bool) {
+<span id="L408" class="ln">   408  </span>	if o == nil || o.Parameters == nil {
+<span id="L409" class="ln">   409  </span>		return nil, false
+<span id="L410" class="ln">   410  </span>	}
+<span id="L411" class="ln">   411  </span>	return &amp;o.Parameters, true
+<span id="L412" class="ln">   412  </span>}
+<span id="L413" class="ln">   413  </span>
+<span id="L414" class="ln">   414  </span><span class="comment">// HasParameters returns a boolean if a field has been set.</span>
+<span id="L415" class="ln">   415  </span>func (o *CIAppPipelineEventPipeline) HasParameters() bool {
+<span id="L416" class="ln">   416  </span>	return o != nil &amp;&amp; o.Parameters != nil
+<span id="L417" class="ln">   417  </span>}
+<span id="L418" class="ln">   418  </span>
+<span id="L419" class="ln">   419  </span><span class="comment">// SetParameters gets a reference to the given map[string]string and assigns it to the Parameters field.</span>
+<span id="L420" class="ln">   420  </span>func (o *CIAppPipelineEventPipeline) SetParameters(v map[string]string) {
+<span id="L421" class="ln">   421  </span>	o.Parameters = v
+<span id="L422" class="ln">   422  </span>}
+<span id="L423" class="ln">   423  </span>
+<span id="L424" class="ln">   424  </span><span class="comment">// GetParentPipeline returns the ParentPipeline field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L425" class="ln">   425  </span>func (o *CIAppPipelineEventPipeline) GetParentPipeline() CIAppPipelineEventParentPipeline {
+<span id="L426" class="ln">   426  </span>	if o == nil || o.ParentPipeline.Get() == nil {
+<span id="L427" class="ln">   427  </span>		var ret CIAppPipelineEventParentPipeline
+<span id="L428" class="ln">   428  </span>		return ret
+<span id="L429" class="ln">   429  </span>	}
+<span id="L430" class="ln">   430  </span>	return *o.ParentPipeline.Get()
+<span id="L431" class="ln">   431  </span>}
+<span id="L432" class="ln">   432  </span>
+<span id="L433" class="ln">   433  </span><span class="comment">// GetParentPipelineOk returns a tuple with the ParentPipeline field value if set, nil otherwise</span>
+<span id="L434" class="ln">   434  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L435" class="ln">   435  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L436" class="ln">   436  </span>func (o *CIAppPipelineEventPipeline) GetParentPipelineOk() (*CIAppPipelineEventParentPipeline, bool) {
+<span id="L437" class="ln">   437  </span>	if o == nil {
+<span id="L438" class="ln">   438  </span>		return nil, false
+<span id="L439" class="ln">   439  </span>	}
+<span id="L440" class="ln">   440  </span>	return o.ParentPipeline.Get(), o.ParentPipeline.IsSet()
+<span id="L441" class="ln">   441  </span>}
+<span id="L442" class="ln">   442  </span>
+<span id="L443" class="ln">   443  </span><span class="comment">// HasParentPipeline returns a boolean if a field has been set.</span>
+<span id="L444" class="ln">   444  </span>func (o *CIAppPipelineEventPipeline) HasParentPipeline() bool {
+<span id="L445" class="ln">   445  </span>	return o != nil &amp;&amp; o.ParentPipeline.IsSet()
+<span id="L446" class="ln">   446  </span>}
+<span id="L447" class="ln">   447  </span>
+<span id="L448" class="ln">   448  </span><span class="comment">// SetParentPipeline gets a reference to the given NullableCIAppPipelineEventParentPipeline and assigns it to the ParentPipeline field.</span>
+<span id="L449" class="ln">   449  </span>func (o *CIAppPipelineEventPipeline) SetParentPipeline(v CIAppPipelineEventParentPipeline) {
+<span id="L450" class="ln">   450  </span>	o.ParentPipeline.Set(&amp;v)
+<span id="L451" class="ln">   451  </span>}
+<span id="L452" class="ln">   452  </span>
+<span id="L453" class="ln">   453  </span><span class="comment">// SetParentPipelineNil sets the value for ParentPipeline to be an explicit nil.</span>
+<span id="L454" class="ln">   454  </span>func (o *CIAppPipelineEventPipeline) SetParentPipelineNil() {
+<span id="L455" class="ln">   455  </span>	o.ParentPipeline.Set(nil)
+<span id="L456" class="ln">   456  </span>}
+<span id="L457" class="ln">   457  </span>
+<span id="L458" class="ln">   458  </span><span class="comment">// UnsetParentPipeline ensures that no value is present for ParentPipeline, not even an explicit nil.</span>
+<span id="L459" class="ln">   459  </span>func (o *CIAppPipelineEventPipeline) UnsetParentPipeline() {
+<span id="L460" class="ln">   460  </span>	o.ParentPipeline.Unset()
+<span id="L461" class="ln">   461  </span>}
+<span id="L462" class="ln">   462  </span>
+<span id="L463" class="ln">   463  </span><span class="comment">// GetPartialRetry returns the PartialRetry field value.</span>
+<span id="L464" class="ln">   464  </span>func (o *CIAppPipelineEventPipeline) GetPartialRetry() bool {
+<span id="L465" class="ln">   465  </span>	if o == nil {
+<span id="L466" class="ln">   466  </span>		var ret bool
+<span id="L467" class="ln">   467  </span>		return ret
+<span id="L468" class="ln">   468  </span>	}
+<span id="L469" class="ln">   469  </span>	return o.PartialRetry
+<span id="L470" class="ln">   470  </span>}
+<span id="L471" class="ln">   471  </span>
+<span id="L472" class="ln">   472  </span><span class="comment">// GetPartialRetryOk returns a tuple with the PartialRetry field value</span>
+<span id="L473" class="ln">   473  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L474" class="ln">   474  </span>func (o *CIAppPipelineEventPipeline) GetPartialRetryOk() (*bool, bool) {
+<span id="L475" class="ln">   475  </span>	if o == nil {
+<span id="L476" class="ln">   476  </span>		return nil, false
+<span id="L477" class="ln">   477  </span>	}
+<span id="L478" class="ln">   478  </span>	return &amp;o.PartialRetry, true
+<span id="L479" class="ln">   479  </span>}
+<span id="L480" class="ln">   480  </span>
+<span id="L481" class="ln">   481  </span><span class="comment">// SetPartialRetry sets field value.</span>
+<span id="L482" class="ln">   482  </span>func (o *CIAppPipelineEventPipeline) SetPartialRetry(v bool) {
+<span id="L483" class="ln">   483  </span>	o.PartialRetry = v
+<span id="L484" class="ln">   484  </span>}
+<span id="L485" class="ln">   485  </span>
+<span id="L486" class="ln">   486  </span><span class="comment">// GetPipelineId returns the PipelineId field value if set, zero value otherwise.</span>
+<span id="L487" class="ln">   487  </span>func (o *CIAppPipelineEventPipeline) GetPipelineId() string {
+<span id="L488" class="ln">   488  </span>	if o == nil || o.PipelineId == nil {
+<span id="L489" class="ln">   489  </span>		var ret string
+<span id="L490" class="ln">   490  </span>		return ret
+<span id="L491" class="ln">   491  </span>	}
+<span id="L492" class="ln">   492  </span>	return *o.PipelineId
+<span id="L493" class="ln">   493  </span>}
+<span id="L494" class="ln">   494  </span>
+<span id="L495" class="ln">   495  </span><span class="comment">// GetPipelineIdOk returns a tuple with the PipelineId field value if set, nil otherwise</span>
+<span id="L496" class="ln">   496  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L497" class="ln">   497  </span>func (o *CIAppPipelineEventPipeline) GetPipelineIdOk() (*string, bool) {
+<span id="L498" class="ln">   498  </span>	if o == nil || o.PipelineId == nil {
+<span id="L499" class="ln">   499  </span>		return nil, false
+<span id="L500" class="ln">   500  </span>	}
+<span id="L501" class="ln">   501  </span>	return o.PipelineId, true
+<span id="L502" class="ln">   502  </span>}
+<span id="L503" class="ln">   503  </span>
+<span id="L504" class="ln">   504  </span><span class="comment">// HasPipelineId returns a boolean if a field has been set.</span>
+<span id="L505" class="ln">   505  </span>func (o *CIAppPipelineEventPipeline) HasPipelineId() bool {
+<span id="L506" class="ln">   506  </span>	return o != nil &amp;&amp; o.PipelineId != nil
+<span id="L507" class="ln">   507  </span>}
+<span id="L508" class="ln">   508  </span>
+<span id="L509" class="ln">   509  </span><span class="comment">// SetPipelineId gets a reference to the given string and assigns it to the PipelineId field.</span>
+<span id="L510" class="ln">   510  </span>func (o *CIAppPipelineEventPipeline) SetPipelineId(v string) {
+<span id="L511" class="ln">   511  </span>	o.PipelineId = &amp;v
+<span id="L512" class="ln">   512  </span>}
+<span id="L513" class="ln">   513  </span>
+<span id="L514" class="ln">   514  </span><span class="comment">// GetPreviousAttempt returns the PreviousAttempt field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L515" class="ln">   515  </span>func (o *CIAppPipelineEventPipeline) GetPreviousAttempt() CIAppPipelineEventPreviousPipeline {
+<span id="L516" class="ln">   516  </span>	if o == nil || o.PreviousAttempt.Get() == nil {
+<span id="L517" class="ln">   517  </span>		var ret CIAppPipelineEventPreviousPipeline
+<span id="L518" class="ln">   518  </span>		return ret
+<span id="L519" class="ln">   519  </span>	}
+<span id="L520" class="ln">   520  </span>	return *o.PreviousAttempt.Get()
+<span id="L521" class="ln">   521  </span>}
+<span id="L522" class="ln">   522  </span>
+<span id="L523" class="ln">   523  </span><span class="comment">// GetPreviousAttemptOk returns a tuple with the PreviousAttempt field value if set, nil otherwise</span>
+<span id="L524" class="ln">   524  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L525" class="ln">   525  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L526" class="ln">   526  </span>func (o *CIAppPipelineEventPipeline) GetPreviousAttemptOk() (*CIAppPipelineEventPreviousPipeline, bool) {
+<span id="L527" class="ln">   527  </span>	if o == nil {
+<span id="L528" class="ln">   528  </span>		return nil, false
+<span id="L529" class="ln">   529  </span>	}
+<span id="L530" class="ln">   530  </span>	return o.PreviousAttempt.Get(), o.PreviousAttempt.IsSet()
+<span id="L531" class="ln">   531  </span>}
+<span id="L532" class="ln">   532  </span>
+<span id="L533" class="ln">   533  </span><span class="comment">// HasPreviousAttempt returns a boolean if a field has been set.</span>
+<span id="L534" class="ln">   534  </span>func (o *CIAppPipelineEventPipeline) HasPreviousAttempt() bool {
+<span id="L535" class="ln">   535  </span>	return o != nil &amp;&amp; o.PreviousAttempt.IsSet()
+<span id="L536" class="ln">   536  </span>}
+<span id="L537" class="ln">   537  </span>
+<span id="L538" class="ln">   538  </span><span class="comment">// SetPreviousAttempt gets a reference to the given NullableCIAppPipelineEventPreviousPipeline and assigns it to the PreviousAttempt field.</span>
+<span id="L539" class="ln">   539  </span>func (o *CIAppPipelineEventPipeline) SetPreviousAttempt(v CIAppPipelineEventPreviousPipeline) {
+<span id="L540" class="ln">   540  </span>	o.PreviousAttempt.Set(&amp;v)
+<span id="L541" class="ln">   541  </span>}
+<span id="L542" class="ln">   542  </span>
+<span id="L543" class="ln">   543  </span><span class="comment">// SetPreviousAttemptNil sets the value for PreviousAttempt to be an explicit nil.</span>
+<span id="L544" class="ln">   544  </span>func (o *CIAppPipelineEventPipeline) SetPreviousAttemptNil() {
+<span id="L545" class="ln">   545  </span>	o.PreviousAttempt.Set(nil)
+<span id="L546" class="ln">   546  </span>}
+<span id="L547" class="ln">   547  </span>
+<span id="L548" class="ln">   548  </span><span class="comment">// UnsetPreviousAttempt ensures that no value is present for PreviousAttempt, not even an explicit nil.</span>
+<span id="L549" class="ln">   549  </span>func (o *CIAppPipelineEventPipeline) UnsetPreviousAttempt() {
+<span id="L550" class="ln">   550  </span>	o.PreviousAttempt.Unset()
+<span id="L551" class="ln">   551  </span>}
+<span id="L552" class="ln">   552  </span>
+<span id="L553" class="ln">   553  </span><span class="comment">// GetQueueTime returns the QueueTime field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L554" class="ln">   554  </span>func (o *CIAppPipelineEventPipeline) GetQueueTime() int64 {
+<span id="L555" class="ln">   555  </span>	if o == nil || o.QueueTime.Get() == nil {
+<span id="L556" class="ln">   556  </span>		var ret int64
+<span id="L557" class="ln">   557  </span>		return ret
+<span id="L558" class="ln">   558  </span>	}
+<span id="L559" class="ln">   559  </span>	return *o.QueueTime.Get()
+<span id="L560" class="ln">   560  </span>}
+<span id="L561" class="ln">   561  </span>
+<span id="L562" class="ln">   562  </span><span class="comment">// GetQueueTimeOk returns a tuple with the QueueTime field value if set, nil otherwise</span>
+<span id="L563" class="ln">   563  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L564" class="ln">   564  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L565" class="ln">   565  </span>func (o *CIAppPipelineEventPipeline) GetQueueTimeOk() (*int64, bool) {
+<span id="L566" class="ln">   566  </span>	if o == nil {
+<span id="L567" class="ln">   567  </span>		return nil, false
+<span id="L568" class="ln">   568  </span>	}
+<span id="L569" class="ln">   569  </span>	return o.QueueTime.Get(), o.QueueTime.IsSet()
+<span id="L570" class="ln">   570  </span>}
+<span id="L571" class="ln">   571  </span>
+<span id="L572" class="ln">   572  </span><span class="comment">// HasQueueTime returns a boolean if a field has been set.</span>
+<span id="L573" class="ln">   573  </span>func (o *CIAppPipelineEventPipeline) HasQueueTime() bool {
+<span id="L574" class="ln">   574  </span>	return o != nil &amp;&amp; o.QueueTime.IsSet()
+<span id="L575" class="ln">   575  </span>}
+<span id="L576" class="ln">   576  </span>
+<span id="L577" class="ln">   577  </span><span class="comment">// SetQueueTime gets a reference to the given datadog.NullableInt64 and assigns it to the QueueTime field.</span>
+<span id="L578" class="ln">   578  </span>func (o *CIAppPipelineEventPipeline) SetQueueTime(v int64) {
+<span id="L579" class="ln">   579  </span>	o.QueueTime.Set(&amp;v)
+<span id="L580" class="ln">   580  </span>}
+<span id="L581" class="ln">   581  </span>
+<span id="L582" class="ln">   582  </span><span class="comment">// SetQueueTimeNil sets the value for QueueTime to be an explicit nil.</span>
+<span id="L583" class="ln">   583  </span>func (o *CIAppPipelineEventPipeline) SetQueueTimeNil() {
+<span id="L584" class="ln">   584  </span>	o.QueueTime.Set(nil)
+<span id="L585" class="ln">   585  </span>}
+<span id="L586" class="ln">   586  </span>
+<span id="L587" class="ln">   587  </span><span class="comment">// UnsetQueueTime ensures that no value is present for QueueTime, not even an explicit nil.</span>
+<span id="L588" class="ln">   588  </span>func (o *CIAppPipelineEventPipeline) UnsetQueueTime() {
+<span id="L589" class="ln">   589  </span>	o.QueueTime.Unset()
+<span id="L590" class="ln">   590  </span>}
+<span id="L591" class="ln">   591  </span>
+<span id="L592" class="ln">   592  </span><span class="comment">// GetStart returns the Start field value.</span>
+<span id="L593" class="ln">   593  </span>func (o *CIAppPipelineEventPipeline) GetStart() time.Time {
+<span id="L594" class="ln">   594  </span>	if o == nil {
+<span id="L595" class="ln">   595  </span>		var ret time.Time
+<span id="L596" class="ln">   596  </span>		return ret
+<span id="L597" class="ln">   597  </span>	}
+<span id="L598" class="ln">   598  </span>	return o.Start
+<span id="L599" class="ln">   599  </span>}
+<span id="L600" class="ln">   600  </span>
+<span id="L601" class="ln">   601  </span><span class="comment">// GetStartOk returns a tuple with the Start field value</span>
+<span id="L602" class="ln">   602  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L603" class="ln">   603  </span>func (o *CIAppPipelineEventPipeline) GetStartOk() (*time.Time, bool) {
+<span id="L604" class="ln">   604  </span>	if o == nil {
+<span id="L605" class="ln">   605  </span>		return nil, false
+<span id="L606" class="ln">   606  </span>	}
+<span id="L607" class="ln">   607  </span>	return &amp;o.Start, true
+<span id="L608" class="ln">   608  </span>}
+<span id="L609" class="ln">   609  </span>
+<span id="L610" class="ln">   610  </span><span class="comment">// SetStart sets field value.</span>
+<span id="L611" class="ln">   611  </span>func (o *CIAppPipelineEventPipeline) SetStart(v time.Time) {
+<span id="L612" class="ln">   612  </span>	o.Start = v
+<span id="L613" class="ln">   613  </span>}
+<span id="L614" class="ln">   614  </span>
+<span id="L615" class="ln">   615  </span><span class="comment">// GetStatus returns the Status field value.</span>
+<span id="L616" class="ln">   616  </span>func (o *CIAppPipelineEventPipeline) GetStatus() CIAppPipelineEventPipelineStatus {
+<span id="L617" class="ln">   617  </span>	if o == nil {
+<span id="L618" class="ln">   618  </span>		var ret CIAppPipelineEventPipelineStatus
+<span id="L619" class="ln">   619  </span>		return ret
+<span id="L620" class="ln">   620  </span>	}
+<span id="L621" class="ln">   621  </span>	return o.Status
+<span id="L622" class="ln">   622  </span>}
+<span id="L623" class="ln">   623  </span>
+<span id="L624" class="ln">   624  </span><span class="comment">// GetStatusOk returns a tuple with the Status field value</span>
+<span id="L625" class="ln">   625  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L626" class="ln">   626  </span>func (o *CIAppPipelineEventPipeline) GetStatusOk() (*CIAppPipelineEventPipelineStatus, bool) {
+<span id="L627" class="ln">   627  </span>	if o == nil {
+<span id="L628" class="ln">   628  </span>		return nil, false
+<span id="L629" class="ln">   629  </span>	}
+<span id="L630" class="ln">   630  </span>	return &amp;o.Status, true
+<span id="L631" class="ln">   631  </span>}
+<span id="L632" class="ln">   632  </span>
+<span id="L633" class="ln">   633  </span><span class="comment">// SetStatus sets field value.</span>
+<span id="L634" class="ln">   634  </span>func (o *CIAppPipelineEventPipeline) SetStatus(v CIAppPipelineEventPipelineStatus) {
+<span id="L635" class="ln">   635  </span>	o.Status = v
+<span id="L636" class="ln">   636  </span>}
+<span id="L637" class="ln">   637  </span>
+<span id="L638" class="ln">   638  </span><span class="comment">// GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L639" class="ln">   639  </span>func (o *CIAppPipelineEventPipeline) GetTags() []string {
+<span id="L640" class="ln">   640  </span>	if o == nil || o.Tags.Get() == nil {
+<span id="L641" class="ln">   641  </span>		var ret []string
+<span id="L642" class="ln">   642  </span>		return ret
+<span id="L643" class="ln">   643  </span>	}
+<span id="L644" class="ln">   644  </span>	return *o.Tags.Get()
+<span id="L645" class="ln">   645  </span>}
+<span id="L646" class="ln">   646  </span>
+<span id="L647" class="ln">   647  </span><span class="comment">// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise</span>
+<span id="L648" class="ln">   648  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L649" class="ln">   649  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L650" class="ln">   650  </span>func (o *CIAppPipelineEventPipeline) GetTagsOk() (*[]string, bool) {
+<span id="L651" class="ln">   651  </span>	if o == nil {
+<span id="L652" class="ln">   652  </span>		return nil, false
+<span id="L653" class="ln">   653  </span>	}
+<span id="L654" class="ln">   654  </span>	return o.Tags.Get(), o.Tags.IsSet()
+<span id="L655" class="ln">   655  </span>}
+<span id="L656" class="ln">   656  </span>
+<span id="L657" class="ln">   657  </span><span class="comment">// HasTags returns a boolean if a field has been set.</span>
+<span id="L658" class="ln">   658  </span>func (o *CIAppPipelineEventPipeline) HasTags() bool {
+<span id="L659" class="ln">   659  </span>	return o != nil &amp;&amp; o.Tags.IsSet()
+<span id="L660" class="ln">   660  </span>}
+<span id="L661" class="ln">   661  </span>
+<span id="L662" class="ln">   662  </span><span class="comment">// SetTags gets a reference to the given datadog.NullableList[string] and assigns it to the Tags field.</span>
+<span id="L663" class="ln">   663  </span>func (o *CIAppPipelineEventPipeline) SetTags(v []string) {
+<span id="L664" class="ln">   664  </span>	o.Tags.Set(&amp;v)
+<span id="L665" class="ln">   665  </span>}
+<span id="L666" class="ln">   666  </span>
+<span id="L667" class="ln">   667  </span><span class="comment">// SetTagsNil sets the value for Tags to be an explicit nil.</span>
+<span id="L668" class="ln">   668  </span>func (o *CIAppPipelineEventPipeline) SetTagsNil() {
+<span id="L669" class="ln">   669  </span>	o.Tags.Set(nil)
+<span id="L670" class="ln">   670  </span>}
+<span id="L671" class="ln">   671  </span>
+<span id="L672" class="ln">   672  </span><span class="comment">// UnsetTags ensures that no value is present for Tags, not even an explicit nil.</span>
+<span id="L673" class="ln">   673  </span>func (o *CIAppPipelineEventPipeline) UnsetTags() {
+<span id="L674" class="ln">   674  </span>	o.Tags.Unset()
+<span id="L675" class="ln">   675  </span>}
+<span id="L676" class="ln">   676  </span>
+<span id="L677" class="ln">   677  </span><span class="comment">// GetUniqueId returns the UniqueId field value.</span>
+<span id="L678" class="ln">   678  </span>func (o *CIAppPipelineEventPipeline) GetUniqueId() string {
+<span id="L679" class="ln">   679  </span>	if o == nil {
+<span id="L680" class="ln">   680  </span>		var ret string
+<span id="L681" class="ln">   681  </span>		return ret
+<span id="L682" class="ln">   682  </span>	}
+<span id="L683" class="ln">   683  </span>	return o.UniqueId
+<span id="L684" class="ln">   684  </span>}
+<span id="L685" class="ln">   685  </span>
+<span id="L686" class="ln">   686  </span><span class="comment">// GetUniqueIdOk returns a tuple with the UniqueId field value</span>
+<span id="L687" class="ln">   687  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L688" class="ln">   688  </span>func (o *CIAppPipelineEventPipeline) GetUniqueIdOk() (*string, bool) {
+<span id="L689" class="ln">   689  </span>	if o == nil {
+<span id="L690" class="ln">   690  </span>		return nil, false
+<span id="L691" class="ln">   691  </span>	}
+<span id="L692" class="ln">   692  </span>	return &amp;o.UniqueId, true
+<span id="L693" class="ln">   693  </span>}
+<span id="L694" class="ln">   694  </span>
+<span id="L695" class="ln">   695  </span><span class="comment">// SetUniqueId sets field value.</span>
+<span id="L696" class="ln">   696  </span>func (o *CIAppPipelineEventPipeline) SetUniqueId(v string) {
+<span id="L697" class="ln">   697  </span>	o.UniqueId = v
+<span id="L698" class="ln">   698  </span>}
+<span id="L699" class="ln">   699  </span>
+<span id="L700" class="ln">   700  </span><span class="comment">// GetUrl returns the Url field value.</span>
+<span id="L701" class="ln">   701  </span>func (o *CIAppPipelineEventPipeline) GetUrl() string {
+<span id="L702" class="ln">   702  </span>	if o == nil {
+<span id="L703" class="ln">   703  </span>		var ret string
+<span id="L704" class="ln">   704  </span>		return ret
+<span id="L705" class="ln">   705  </span>	}
+<span id="L706" class="ln">   706  </span>	return o.Url
+<span id="L707" class="ln">   707  </span>}
+<span id="L708" class="ln">   708  </span>
+<span id="L709" class="ln">   709  </span><span class="comment">// GetUrlOk returns a tuple with the Url field value</span>
+<span id="L710" class="ln">   710  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L711" class="ln">   711  </span>func (o *CIAppPipelineEventPipeline) GetUrlOk() (*string, bool) {
+<span id="L712" class="ln">   712  </span>	if o == nil {
+<span id="L713" class="ln">   713  </span>		return nil, false
+<span id="L714" class="ln">   714  </span>	}
+<span id="L715" class="ln">   715  </span>	return &amp;o.Url, true
+<span id="L716" class="ln">   716  </span>}
+<span id="L717" class="ln">   717  </span>
+<span id="L718" class="ln">   718  </span><span class="comment">// SetUrl sets field value.</span>
+<span id="L719" class="ln">   719  </span>func (o *CIAppPipelineEventPipeline) SetUrl(v string) {
+<span id="L720" class="ln">   720  </span>	o.Url = v
+<span id="L721" class="ln">   721  </span>}
+<span id="L722" class="ln">   722  </span>
+<span id="L723" class="ln">   723  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L724" class="ln">   724  </span>func (o CIAppPipelineEventPipeline) MarshalJSON() ([]byte, error) {
+<span id="L725" class="ln">   725  </span>	toSerialize := map[string]interface{}{}
+<span id="L726" class="ln">   726  </span>	if o.UnparsedObject != nil {
+<span id="L727" class="ln">   727  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L728" class="ln">   728  </span>	}
+<span id="L729" class="ln">   729  </span>	if o.End.Nanosecond() == 0 {
+<span id="L730" class="ln">   730  </span>		toSerialize[&#34;end&#34;] = o.End.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
+<span id="L731" class="ln">   731  </span>	} else {
+<span id="L732" class="ln">   732  </span>		toSerialize[&#34;end&#34;] = o.End.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
+<span id="L733" class="ln">   733  </span>	}
+<span id="L734" class="ln">   734  </span>	if o.Error.IsSet() {
+<span id="L735" class="ln">   735  </span>		toSerialize[&#34;error&#34;] = o.Error.Get()
+<span id="L736" class="ln">   736  </span>	}
+<span id="L737" class="ln">   737  </span>	if o.Git.IsSet() {
+<span id="L738" class="ln">   738  </span>		toSerialize[&#34;git&#34;] = o.Git.Get()
+<span id="L739" class="ln">   739  </span>	}
+<span id="L740" class="ln">   740  </span>	if o.IsManual.IsSet() {
+<span id="L741" class="ln">   741  </span>		toSerialize[&#34;is_manual&#34;] = o.IsManual.Get()
+<span id="L742" class="ln">   742  </span>	}
+<span id="L743" class="ln">   743  </span>	if o.IsResumed.IsSet() {
+<span id="L744" class="ln">   744  </span>		toSerialize[&#34;is_resumed&#34;] = o.IsResumed.Get()
+<span id="L745" class="ln">   745  </span>	}
+<span id="L746" class="ln">   746  </span>	toSerialize[&#34;level&#34;] = o.Level
+<span id="L747" class="ln">   747  </span>	if o.Metrics.IsSet() {
+<span id="L748" class="ln">   748  </span>		toSerialize[&#34;metrics&#34;] = o.Metrics.Get()
+<span id="L749" class="ln">   749  </span>	}
+<span id="L750" class="ln">   750  </span>	toSerialize[&#34;name&#34;] = o.Name
+<span id="L751" class="ln">   751  </span>	if o.Node.IsSet() {
+<span id="L752" class="ln">   752  </span>		toSerialize[&#34;node&#34;] = o.Node.Get()
+<span id="L753" class="ln">   753  </span>	}
+<span id="L754" class="ln">   754  </span>	if o.Parameters != nil {
+<span id="L755" class="ln">   755  </span>		toSerialize[&#34;parameters&#34;] = o.Parameters
+<span id="L756" class="ln">   756  </span>	}
+<span id="L757" class="ln">   757  </span>	if o.ParentPipeline.IsSet() {
+<span id="L758" class="ln">   758  </span>		toSerialize[&#34;parent_pipeline&#34;] = o.ParentPipeline.Get()
+<span id="L759" class="ln">   759  </span>	}
+<span id="L760" class="ln">   760  </span>	toSerialize[&#34;partial_retry&#34;] = o.PartialRetry
+<span id="L761" class="ln">   761  </span>	if o.PipelineId != nil {
+<span id="L762" class="ln">   762  </span>		toSerialize[&#34;pipeline_id&#34;] = o.PipelineId
+<span id="L763" class="ln">   763  </span>	}
+<span id="L764" class="ln">   764  </span>	if o.PreviousAttempt.IsSet() {
+<span id="L765" class="ln">   765  </span>		toSerialize[&#34;previous_attempt&#34;] = o.PreviousAttempt.Get()
+<span id="L766" class="ln">   766  </span>	}
+<span id="L767" class="ln">   767  </span>	if o.QueueTime.IsSet() {
+<span id="L768" class="ln">   768  </span>		toSerialize[&#34;queue_time&#34;] = o.QueueTime.Get()
+<span id="L769" class="ln">   769  </span>	}
+<span id="L770" class="ln">   770  </span>	if o.Start.Nanosecond() == 0 {
+<span id="L771" class="ln">   771  </span>		toSerialize[&#34;start&#34;] = o.Start.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
+<span id="L772" class="ln">   772  </span>	} else {
+<span id="L773" class="ln">   773  </span>		toSerialize[&#34;start&#34;] = o.Start.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
+<span id="L774" class="ln">   774  </span>	}
+<span id="L775" class="ln">   775  </span>	toSerialize[&#34;status&#34;] = o.Status
+<span id="L776" class="ln">   776  </span>	if o.Tags.IsSet() {
+<span id="L777" class="ln">   777  </span>		toSerialize[&#34;tags&#34;] = o.Tags.Get()
+<span id="L778" class="ln">   778  </span>	}
+<span id="L779" class="ln">   779  </span>	toSerialize[&#34;unique_id&#34;] = o.UniqueId
+<span id="L780" class="ln">   780  </span>	toSerialize[&#34;url&#34;] = o.Url
+<span id="L781" class="ln">   781  </span>
+<span id="L782" class="ln">   782  </span>	for key, value := range o.AdditionalProperties {
+<span id="L783" class="ln">   783  </span>		toSerialize[key] = value
+<span id="L784" class="ln">   784  </span>	}
+<span id="L785" class="ln">   785  </span>	return datadog.Marshal(toSerialize)
+<span id="L786" class="ln">   786  </span>}
+<span id="L787" class="ln">   787  </span>
+<span id="L788" class="ln">   788  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L789" class="ln">   789  </span>func (o *CIAppPipelineEventPipeline) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L790" class="ln">   790  </span>	all := struct {
+<span id="L791" class="ln">   791  </span>		End             *time.Time                                 `json:&#34;end&#34;`
+<span id="L792" class="ln">   792  </span>		Error           NullableCIAppCIError                       `json:&#34;error,omitempty&#34;`
+<span id="L793" class="ln">   793  </span>		Git             NullableCIAppGitInfo                       `json:&#34;git,omitempty&#34;`
+<span id="L794" class="ln">   794  </span>		IsManual        datadog.NullableBool                       `json:&#34;is_manual,omitempty&#34;`
+<span id="L795" class="ln">   795  </span>		IsResumed       datadog.NullableBool                       `json:&#34;is_resumed,omitempty&#34;`
+<span id="L796" class="ln">   796  </span>		Level           *CIAppPipelineEventPipelineLevel           `json:&#34;level&#34;`
+<span id="L797" class="ln">   797  </span>		Metrics         datadog.NullableList[string]               `json:&#34;metrics,omitempty&#34;`
+<span id="L798" class="ln">   798  </span>		Name            *string                                    `json:&#34;name&#34;`
+<span id="L799" class="ln">   799  </span>		Node            NullableCIAppHostInfo                      `json:&#34;node,omitempty&#34;`
+<span id="L800" class="ln">   800  </span>		Parameters      map[string]string                          `json:&#34;parameters,omitempty&#34;`
+<span id="L801" class="ln">   801  </span>		ParentPipeline  NullableCIAppPipelineEventParentPipeline   `json:&#34;parent_pipeline,omitempty&#34;`
+<span id="L802" class="ln">   802  </span>		PartialRetry    *bool                                      `json:&#34;partial_retry&#34;`
+<span id="L803" class="ln">   803  </span>		PipelineId      *string                                    `json:&#34;pipeline_id,omitempty&#34;`
+<span id="L804" class="ln">   804  </span>		PreviousAttempt NullableCIAppPipelineEventPreviousPipeline `json:&#34;previous_attempt,omitempty&#34;`
+<span id="L805" class="ln">   805  </span>		QueueTime       datadog.NullableInt64                      `json:&#34;queue_time,omitempty&#34;`
+<span id="L806" class="ln">   806  </span>		Start           *time.Time                                 `json:&#34;start&#34;`
+<span id="L807" class="ln">   807  </span>		Status          *CIAppPipelineEventPipelineStatus          `json:&#34;status&#34;`
+<span id="L808" class="ln">   808  </span>		Tags            datadog.NullableList[string]               `json:&#34;tags,omitempty&#34;`
+<span id="L809" class="ln">   809  </span>		UniqueId        *string                                    `json:&#34;unique_id&#34;`
+<span id="L810" class="ln">   810  </span>		Url             *string                                    `json:&#34;url&#34;`
+<span id="L811" class="ln">   811  </span>	}{}
+<span id="L812" class="ln">   812  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L813" class="ln">   813  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L814" class="ln">   814  </span>	}
+<span id="L815" class="ln">   815  </span>	if all.End == nil {
+<span id="L816" class="ln">   816  </span>		return fmt.Errorf(&#34;required field end missing&#34;)
+<span id="L817" class="ln">   817  </span>	}
+<span id="L818" class="ln">   818  </span>	if all.Level == nil {
+<span id="L819" class="ln">   819  </span>		return fmt.Errorf(&#34;required field level missing&#34;)
+<span id="L820" class="ln">   820  </span>	}
+<span id="L821" class="ln">   821  </span>	if all.Name == nil {
+<span id="L822" class="ln">   822  </span>		return fmt.Errorf(&#34;required field name missing&#34;)
+<span id="L823" class="ln">   823  </span>	}
+<span id="L824" class="ln">   824  </span>	if all.PartialRetry == nil {
+<span id="L825" class="ln">   825  </span>		return fmt.Errorf(&#34;required field partial_retry missing&#34;)
+<span id="L826" class="ln">   826  </span>	}
+<span id="L827" class="ln">   827  </span>	if all.Start == nil {
+<span id="L828" class="ln">   828  </span>		return fmt.Errorf(&#34;required field start missing&#34;)
+<span id="L829" class="ln">   829  </span>	}
+<span id="L830" class="ln">   830  </span>	if all.Status == nil {
+<span id="L831" class="ln">   831  </span>		return fmt.Errorf(&#34;required field status missing&#34;)
+<span id="L832" class="ln">   832  </span>	}
+<span id="L833" class="ln">   833  </span>	if all.UniqueId == nil {
+<span id="L834" class="ln">   834  </span>		return fmt.Errorf(&#34;required field unique_id missing&#34;)
+<span id="L835" class="ln">   835  </span>	}
+<span id="L836" class="ln">   836  </span>	if all.Url == nil {
+<span id="L837" class="ln">   837  </span>		return fmt.Errorf(&#34;required field url missing&#34;)
+<span id="L838" class="ln">   838  </span>	}
+<span id="L839" class="ln">   839  </span>	additionalProperties := make(map[string]interface{})
+<span id="L840" class="ln">   840  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L841" class="ln">   841  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;end&#34;, &#34;error&#34;, &#34;git&#34;, &#34;is_manual&#34;, &#34;is_resumed&#34;, &#34;level&#34;, &#34;metrics&#34;, &#34;name&#34;, &#34;node&#34;, &#34;parameters&#34;, &#34;parent_pipeline&#34;, &#34;partial_retry&#34;, &#34;pipeline_id&#34;, &#34;previous_attempt&#34;, &#34;queue_time&#34;, &#34;start&#34;, &#34;status&#34;, &#34;tags&#34;, &#34;unique_id&#34;, &#34;url&#34;})
+<span id="L842" class="ln">   842  </span>	} else {
+<span id="L843" class="ln">   843  </span>		return err
+<span id="L844" class="ln">   844  </span>	}
+<span id="L845" class="ln">   845  </span>
+<span id="L846" class="ln">   846  </span>	hasInvalidField := false
+<span id="L847" class="ln">   847  </span>	o.End = *all.End
+<span id="L848" class="ln">   848  </span>	o.Error = all.Error
+<span id="L849" class="ln">   849  </span>	o.Git = all.Git
+<span id="L850" class="ln">   850  </span>	o.IsManual = all.IsManual
+<span id="L851" class="ln">   851  </span>	o.IsResumed = all.IsResumed
+<span id="L852" class="ln">   852  </span>	if !all.Level.IsValid() {
+<span id="L853" class="ln">   853  </span>		hasInvalidField = true
+<span id="L854" class="ln">   854  </span>	} else {
+<span id="L855" class="ln">   855  </span>		o.Level = *all.Level
+<span id="L856" class="ln">   856  </span>	}
+<span id="L857" class="ln">   857  </span>	o.Metrics = all.Metrics
+<span id="L858" class="ln">   858  </span>	o.Name = *all.Name
+<span id="L859" class="ln">   859  </span>	o.Node = all.Node
+<span id="L860" class="ln">   860  </span>	o.Parameters = all.Parameters
+<span id="L861" class="ln">   861  </span>	o.ParentPipeline = all.ParentPipeline
+<span id="L862" class="ln">   862  </span>	o.PartialRetry = *all.PartialRetry
+<span id="L863" class="ln">   863  </span>	o.PipelineId = all.PipelineId
+<span id="L864" class="ln">   864  </span>	o.PreviousAttempt = all.PreviousAttempt
+<span id="L865" class="ln">   865  </span>	o.QueueTime = all.QueueTime
+<span id="L866" class="ln">   866  </span>	o.Start = *all.Start
+<span id="L867" class="ln">   867  </span>	if !all.Status.IsValid() {
+<span id="L868" class="ln">   868  </span>		hasInvalidField = true
+<span id="L869" class="ln">   869  </span>	} else {
+<span id="L870" class="ln">   870  </span>		o.Status = *all.Status
+<span id="L871" class="ln">   871  </span>	}
+<span id="L872" class="ln">   872  </span>	o.Tags = all.Tags
+<span id="L873" class="ln">   873  </span>	o.UniqueId = *all.UniqueId
+<span id="L874" class="ln">   874  </span>	o.Url = *all.Url
+<span id="L875" class="ln">   875  </span>
+<span id="L876" class="ln">   876  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L877" class="ln">   877  </span>		o.AdditionalProperties = additionalProperties
+<span id="L878" class="ln">   878  </span>	}
+<span id="L879" class="ln">   879  </span>
+<span id="L880" class="ln">   880  </span>	if hasInvalidField {
+<span id="L881" class="ln">   881  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L882" class="ln">   882  </span>	}
+<span id="L883" class="ln">   883  </span>
+<span id="L884" class="ln">   884  </span>	return nil
+<span id="L885" class="ln">   885  </span>}
+<span id="L886" class="ln">   886  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.19.13.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

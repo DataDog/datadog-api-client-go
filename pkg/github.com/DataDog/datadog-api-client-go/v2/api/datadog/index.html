@@ -1,0 +1,2490 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>datadog - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer></script>
+
+
+
+
+<script>var goVersion = "go1.19.13";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer></script>
+
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package datadog
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "github.com/DataDog/datadog-api-client-go/v2/api/datadog"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="#ContainsUnparsedObject">func ContainsUnparsedObject(i interface{}) (bool, interface{})</a></dd>
+			
+				
+				<dd><a href="#DeleteKeys">func DeleteKeys[V any](obj map[string]V, keysToDelete *[]string)</a></dd>
+			
+				
+				<dd><a href="#Marshal">func Marshal(v interface{}) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="#NewDecoder">func NewDecoder(r io.Reader) *json.Decoder</a></dd>
+			
+				
+				<dd><a href="#NewDefaultContext">func NewDefaultContext(ctx context.Context) context.Context</a></dd>
+			
+				
+				<dd><a href="#NewEncoder">func NewEncoder(w io.Writer) *json.Encoder</a></dd>
+			
+				
+				<dd><a href="#ParameterToString">func ParameterToString(obj interface{}, collectionFormat string) string</a></dd>
+			
+				
+				<dd><a href="#PtrBool">func PtrBool(v bool) *bool</a></dd>
+			
+				
+				<dd><a href="#PtrFloat32">func PtrFloat32(v float32) *float32</a></dd>
+			
+				
+				<dd><a href="#PtrFloat64">func PtrFloat64(v float64) *float64</a></dd>
+			
+				
+				<dd><a href="#PtrInt">func PtrInt(v int) *int</a></dd>
+			
+				
+				<dd><a href="#PtrInt32">func PtrInt32(v int32) *int32</a></dd>
+			
+				
+				<dd><a href="#PtrInt64">func PtrInt64(v int64) *int64</a></dd>
+			
+				
+				<dd><a href="#PtrString">func PtrString(v string) *string</a></dd>
+			
+				
+				<dd><a href="#PtrTime">func PtrTime(v time.Time) *time.Time</a></dd>
+			
+				
+				<dd><a href="#ReadBody">func ReadBody(response *http.Response) ([]byte, error)</a></dd>
+			
+				
+				<dd><a href="#ReportError">func ReportError(format string, a ...interface{}) error</a></dd>
+			
+				
+				<dd><a href="#SetAuthKeys">func SetAuthKeys(ctx context.Context, headerParams *map[string]string, keys ...[2]string)</a></dd>
+			
+				
+				<dd><a href="#Strlen">func Strlen(s string) int</a></dd>
+			
+				
+				<dd><a href="#Unmarshal">func Unmarshal(data []byte, v interface{}) error</a></dd>
+			
+			
+				
+				<dd><a href="#APIClient">type APIClient</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewAPIClient">func NewAPIClient(cfg *Configuration) *APIClient</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#APIClient.CallAPI">func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#APIClient.Decode">func (c *APIClient) Decode(v interface{}, b []byte, contentType string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#APIClient.GetConfig">func (c *APIClient) GetConfig() *Configuration</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#APIClient.PrepareRequest">func (c *APIClient) PrepareRequest(ctx context.Context, path string, method string, postBody interface{}, headerParams map[string]string, queryParams url.Values, formParams url.Values, formFile *FormFile) (localVarRequest *http.Request, err error)</a></dd>
+				
+			
+				
+				<dd><a href="#APIKey">type APIKey</a></dd>
+				
+				
+			
+				
+				<dd><a href="#BasicAuth">type BasicAuth</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Configuration">type Configuration</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewConfiguration">func NewConfiguration() *Configuration</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Configuration.AddDefaultHeader">func (c *Configuration) AddDefaultHeader(key string, value string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Configuration.GetUnstableOperations">func (c *Configuration) GetUnstableOperations() []string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Configuration.IsUnstableOperation">func (c *Configuration) IsUnstableOperation(operation string) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Configuration.IsUnstableOperationEnabled">func (c *Configuration) IsUnstableOperationEnabled(operation string) bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Configuration.ServerURL">func (c *Configuration) ServerURL(index int, variables map[string]string) (string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Configuration.ServerURLWithContext">func (c *Configuration) ServerURLWithContext(ctx context.Context, endpoint string) (string, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Configuration.SetUnstableOperationEnabled">func (c *Configuration) SetUnstableOperationEnabled(operation string, enabled bool) bool</a></dd>
+				
+			
+				
+				<dd><a href="#FormFile">type FormFile</a></dd>
+				
+				
+			
+				
+				<dd><a href="#GenericOpenAPIError">type GenericOpenAPIError</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#GenericOpenAPIError.Body">func (e GenericOpenAPIError) Body() []byte</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#GenericOpenAPIError.Error">func (e GenericOpenAPIError) Error() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#GenericOpenAPIError.Model">func (e GenericOpenAPIError) Model() interface{}</a></dd>
+				
+			
+				
+				<dd><a href="#NullableBool">type NullableBool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewNullableBool">func NewNullableBool(val *bool) *NullableBool</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableBool.Get">func (v NullableBool) Get() *bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableBool.IsSet">func (v NullableBool) IsSet() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableBool.MarshalJSON">func (v NullableBool) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableBool.Set">func (v *NullableBool) Set(val *bool)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableBool.UnmarshalJSON">func (v *NullableBool) UnmarshalJSON(src []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableBool.Unset">func (v *NullableBool) Unset()</a></dd>
+				
+			
+				
+				<dd><a href="#NullableFloat32">type NullableFloat32</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewNullableFloat32">func NewNullableFloat32(val *float32) *NullableFloat32</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableFloat32.Get">func (v NullableFloat32) Get() *float32</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableFloat32.IsSet">func (v NullableFloat32) IsSet() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableFloat32.MarshalJSON">func (v NullableFloat32) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableFloat32.Set">func (v *NullableFloat32) Set(val *float32)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableFloat32.UnmarshalJSON">func (v *NullableFloat32) UnmarshalJSON(src []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableFloat32.Unset">func (v *NullableFloat32) Unset()</a></dd>
+				
+			
+				
+				<dd><a href="#NullableFloat64">type NullableFloat64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewNullableFloat64">func NewNullableFloat64(val *float64) *NullableFloat64</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableFloat64.Get">func (v NullableFloat64) Get() *float64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableFloat64.IsSet">func (v NullableFloat64) IsSet() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableFloat64.MarshalJSON">func (v NullableFloat64) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableFloat64.Set">func (v *NullableFloat64) Set(val *float64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableFloat64.UnmarshalJSON">func (v *NullableFloat64) UnmarshalJSON(src []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableFloat64.Unset">func (v *NullableFloat64) Unset()</a></dd>
+				
+			
+				
+				<dd><a href="#NullableInt">type NullableInt</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewNullableInt">func NewNullableInt(val *int) *NullableInt</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt.Get">func (v NullableInt) Get() *int</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt.IsSet">func (v NullableInt) IsSet() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt.MarshalJSON">func (v NullableInt) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt.Set">func (v *NullableInt) Set(val *int)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt.UnmarshalJSON">func (v *NullableInt) UnmarshalJSON(src []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt.Unset">func (v *NullableInt) Unset()</a></dd>
+				
+			
+				
+				<dd><a href="#NullableInt32">type NullableInt32</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewNullableInt32">func NewNullableInt32(val *int32) *NullableInt32</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt32.Get">func (v NullableInt32) Get() *int32</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt32.IsSet">func (v NullableInt32) IsSet() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt32.MarshalJSON">func (v NullableInt32) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt32.Set">func (v *NullableInt32) Set(val *int32)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt32.UnmarshalJSON">func (v *NullableInt32) UnmarshalJSON(src []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt32.Unset">func (v *NullableInt32) Unset()</a></dd>
+				
+			
+				
+				<dd><a href="#NullableInt64">type NullableInt64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewNullableInt64">func NewNullableInt64(val *int64) *NullableInt64</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt64.Get">func (v NullableInt64) Get() *int64</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt64.IsSet">func (v NullableInt64) IsSet() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt64.MarshalJSON">func (v NullableInt64) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt64.Set">func (v *NullableInt64) Set(val *int64)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt64.UnmarshalJSON">func (v *NullableInt64) UnmarshalJSON(src []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableInt64.Unset">func (v *NullableInt64) Unset()</a></dd>
+				
+			
+				
+				<dd><a href="#NullableList">type NullableList</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewNullableList">func NewNullableList[T any](val *[]T) *NullableList[T]</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableList.Get">func (v NullableList[T]) Get() *[]T</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableList.IsSet">func (v NullableList[T]) IsSet() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableList.MarshalJSON">func (v NullableList[T]) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableList.Set">func (v *NullableList[T]) Set(val *[]T)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableList.UnmarshalJSON">func (v *NullableList[T]) UnmarshalJSON(src []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableList.Unset">func (v *NullableList[T]) Unset()</a></dd>
+				
+			
+				
+				<dd><a href="#NullableString">type NullableString</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewNullableString">func NewNullableString(val *string) *NullableString</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableString.Get">func (v NullableString) Get() *string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableString.IsSet">func (v NullableString) IsSet() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableString.MarshalJSON">func (v NullableString) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableString.Set">func (v *NullableString) Set(val *string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableString.UnmarshalJSON">func (v *NullableString) UnmarshalJSON(src []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableString.Unset">func (v *NullableString) Unset()</a></dd>
+				
+			
+				
+				<dd><a href="#NullableTime">type NullableTime</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewNullableTime">func NewNullableTime(val *time.Time) *NullableTime</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableTime.Get">func (v NullableTime) Get() *time.Time</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableTime.IsSet">func (v NullableTime) IsSet() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableTime.MarshalJSON">func (v NullableTime) MarshalJSON() ([]byte, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableTime.Set">func (v *NullableTime) Set(val *time.Time)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableTime.UnmarshalJSON">func (v *NullableTime) UnmarshalJSON(src []byte) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NullableTime.Unset">func (v *NullableTime) Unset()</a></dd>
+				
+			
+				
+				<dd><a href="#PaginationResult">type PaginationResult</a></dd>
+				
+				
+			
+				
+				<dd><a href="#RetryConfiguration">type RetryConfiguration</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ServerConfiguration">type ServerConfiguration</a></dd>
+				
+				
+			
+				
+				<dd><a href="#ServerConfigurations">type ServerConfigurations</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ServerConfigurations.URL">func (sc ServerConfigurations) URL(index int, variables map[string]string) (string, error)</a></dd>
+				
+			
+				
+				<dd><a href="#ServerVariable">type ServerVariable</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Service">type Service</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go">client.go</a>
+			
+				<a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go">configuration.go</a>
+			
+				<a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/encoding_json.go">encoding_json.go</a>
+			
+				<a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go">utils.go</a>
+			
+				<a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/zstd.go">zstd.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				
+				<pre>var (
+    <span class="comment">// ContextOAuth2 takes an oauth2.TokenSource as authentication for the request.</span>
+    <span id="ContextOAuth2">ContextOAuth2</span> = contextKey(&#34;token&#34;)
+
+    <span class="comment">// ContextBasicAuth takes BasicAuth as authentication for the request.</span>
+    <span id="ContextBasicAuth">ContextBasicAuth</span> = contextKey(&#34;basic&#34;)
+
+    <span class="comment">// ContextAccessToken takes a string oauth2 access token as authentication for the request.</span>
+    <span id="ContextAccessToken">ContextAccessToken</span> = contextKey(&#34;accesstoken&#34;)
+
+    <span class="comment">// ContextAPIKeys takes a string apikey as authentication for the request</span>
+    <span id="ContextAPIKeys">ContextAPIKeys</span> = contextKey(&#34;apiKeys&#34;)
+
+    <span class="comment">// ContextHttpSignatureAuth takes HttpSignatureAuth as authentication for the request.</span>
+    <span id="ContextHttpSignatureAuth">ContextHttpSignatureAuth</span> = contextKey(&#34;httpsignature&#34;)
+
+    <span class="comment">// ContextServerIndex uses a server configuration from the index.</span>
+    <span id="ContextServerIndex">ContextServerIndex</span> = contextKey(&#34;serverIndex&#34;)
+
+    <span class="comment">// ContextOperationServerIndices uses a server configuration from the index mapping.</span>
+    <span id="ContextOperationServerIndices">ContextOperationServerIndices</span> = contextKey(&#34;serverOperationIndices&#34;)
+
+    <span class="comment">// ContextServerVariables overrides a server configuration variables.</span>
+    <span id="ContextServerVariables">ContextServerVariables</span> = contextKey(&#34;serverVariables&#34;)
+
+    <span class="comment">// ContextOperationServerVariables overrides a server configuration variables using operation specific values.</span>
+    <span id="ContextOperationServerVariables">ContextOperationServerVariables</span> = contextKey(&#34;serverOperationVariables&#34;)
+)</pre>
+			
+		
+		
+			
+			
+			<h2 id="ContainsUnparsedObject">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L451">ContainsUnparsedObject</a>
+				<a class="permalink" href="#ContainsUnparsedObject">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ContainsUnparsedObject(i interface{}) (<a href="https://pkg.go.dev/builtin/#bool">bool</a>, interface{})</pre>
+			<p>ContainsUnparsedObject returns true if the given data contains an unparsed object from the API.
+
+			
+			
+
+		
+			
+			
+			<h2 id="DeleteKeys">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L444">DeleteKeys</a>
+				<a class="permalink" href="#DeleteKeys">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func DeleteKeys[V <a href="https://pkg.go.dev/builtin/#any">any</a>](obj map[<a href="https://pkg.go.dev/builtin/#string">string</a>]V, keysToDelete *[]<a href="https://pkg.go.dev/builtin/#string">string</a>)</pre>
+			<p>DeleteKeys helper method to delete keys from a map
+
+			
+			
+
+		
+			
+			
+			<h2 id="Marshal">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/encoding_json.go#L14">Marshal</a>
+				<a class="permalink" href="#Marshal">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Marshal(v interface{}) ([]<a href="https://pkg.go.dev/builtin/#byte">byte</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="NewDecoder">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/encoding_json.go#L26">NewDecoder</a>
+				<a class="permalink" href="#NewDecoder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewDecoder(r <a href="https://pkg.go.dev/io/">io</a>.<a href="https://pkg.go.dev/io/#Reader">Reader</a>) *<a href="https://pkg.go.dev/encoding/json/">json</a>.<a href="https://pkg.go.dev/encoding/json/#Decoder">Decoder</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="NewDefaultContext">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L553">NewDefaultContext</a>
+				<a class="permalink" href="#NewDefaultContext">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewDefaultContext(ctx <a href="https://pkg.go.dev/context/">context</a>.<a href="https://pkg.go.dev/context/#Context">Context</a>) <a href="https://pkg.go.dev/context/">context</a>.<a href="https://pkg.go.dev/context/#Context">Context</a></pre>
+			<p>NewDefaultContext returns a new context setup with environment variables.
+
+			
+			
+
+		
+			
+			
+			<h2 id="NewEncoder">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/encoding_json.go#L22">NewEncoder</a>
+				<a class="permalink" href="#NewEncoder">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func NewEncoder(w <a href="https://pkg.go.dev/io/">io</a>.<a href="https://pkg.go.dev/io/#Writer">Writer</a>) *<a href="https://pkg.go.dev/encoding/json/">json</a>.<a href="https://pkg.go.dev/encoding/json/#Encoder">Encoder</a></pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="ParameterToString">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L97">ParameterToString</a>
+				<a class="permalink" href="#ParameterToString">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ParameterToString(obj interface{}, collectionFormat <a href="https://pkg.go.dev/builtin/#string">string</a>) <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+			<p>ParameterToString convert interface{} parameters to string, using a delimiter if format is provided.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PtrBool">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L18">PtrBool</a>
+				<a class="permalink" href="#PtrBool">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PtrBool(v <a href="https://pkg.go.dev/builtin/#bool">bool</a>) *<a href="https://pkg.go.dev/builtin/#bool">bool</a></pre>
+			<p>PtrBool is a helper routine that returns a pointer to given boolean value.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PtrFloat32">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L30">PtrFloat32</a>
+				<a class="permalink" href="#PtrFloat32">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PtrFloat32(v <a href="https://pkg.go.dev/builtin/#float32">float32</a>) *<a href="https://pkg.go.dev/builtin/#float32">float32</a></pre>
+			<p>PtrFloat32 is a helper routine that returns a pointer to given float value.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PtrFloat64">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L33">PtrFloat64</a>
+				<a class="permalink" href="#PtrFloat64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PtrFloat64(v <a href="https://pkg.go.dev/builtin/#float64">float64</a>) *<a href="https://pkg.go.dev/builtin/#float64">float64</a></pre>
+			<p>PtrFloat64 is a helper routine that returns a pointer to given float value.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PtrInt">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L21">PtrInt</a>
+				<a class="permalink" href="#PtrInt">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PtrInt(v <a href="https://pkg.go.dev/builtin/#int">int</a>) *<a href="https://pkg.go.dev/builtin/#int">int</a></pre>
+			<p>PtrInt is a helper routine that returns a pointer to given integer value.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PtrInt32">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L24">PtrInt32</a>
+				<a class="permalink" href="#PtrInt32">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PtrInt32(v <a href="https://pkg.go.dev/builtin/#int32">int32</a>) *<a href="https://pkg.go.dev/builtin/#int32">int32</a></pre>
+			<p>PtrInt32 is a helper routine that returns a pointer to given integer value.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PtrInt64">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L27">PtrInt64</a>
+				<a class="permalink" href="#PtrInt64">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PtrInt64(v <a href="https://pkg.go.dev/builtin/#int64">int64</a>) *<a href="https://pkg.go.dev/builtin/#int64">int64</a></pre>
+			<p>PtrInt64 is a helper routine that returns a pointer to given integer value.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PtrString">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L36">PtrString</a>
+				<a class="permalink" href="#PtrString">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PtrString(v <a href="https://pkg.go.dev/builtin/#string">string</a>) *<a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+			<p>PtrString is a helper routine that returns a pointer to given string value.
+
+			
+			
+
+		
+			
+			
+			<h2 id="PtrTime">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L39">PtrTime</a>
+				<a class="permalink" href="#PtrTime">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func PtrTime(v <a href="https://pkg.go.dev/time/">time</a>.<a href="https://pkg.go.dev/time/#Time">Time</a>) *<a href="https://pkg.go.dev/time/">time</a>.<a href="https://pkg.go.dev/time/#Time">Time</a></pre>
+			<p>PtrTime is helper routine that returns a pointer to given Time value.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReadBody">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L71">ReadBody</a>
+				<a class="permalink" href="#ReadBody">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReadBody(response *<a href="https://pkg.go.dev/net/http/">http</a>.<a href="https://pkg.go.dev/net/http/#Response">Response</a>) ([]<a href="https://pkg.go.dev/builtin/#byte">byte</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+			<p>ReadBody returns the byte content of the response and make it available again on the response object.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReportError">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L457">ReportError</a>
+				<a class="permalink" href="#ReportError">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReportError(format <a href="https://pkg.go.dev/builtin/#string">string</a>, a ...interface{}) <a href="https://pkg.go.dev/builtin/#error">error</a></pre>
+			<p>ReportError Prevent trying to import &quot;fmt&quot;.
+
+			
+			
+
+		
+			
+			
+			<h2 id="SetAuthKeys">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L58">SetAuthKeys</a>
+				<a class="permalink" href="#SetAuthKeys">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func SetAuthKeys(ctx <a href="https://pkg.go.dev/context/">context</a>.<a href="https://pkg.go.dev/context/#Context">Context</a>, headerParams *map[<a href="https://pkg.go.dev/builtin/#string">string</a>]<a href="https://pkg.go.dev/builtin/#string">string</a>, keys ...[2]<a href="https://pkg.go.dev/builtin/#string">string</a>)</pre>
+			<p>SetAuthKeys sets the appropriate values in the headers parameter.
+
+			
+			
+
+		
+			
+			
+			<h2 id="Strlen">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L500">Strlen</a>
+				<a class="permalink" href="#Strlen">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Strlen(s <a href="https://pkg.go.dev/builtin/#string">string</a>) <a href="https://pkg.go.dev/builtin/#int">int</a></pre>
+			<p>Strlen returns number of runes in string
+
+			
+			
+
+		
+			
+			
+			<h2 id="Unmarshal">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/encoding_json.go#L18">Unmarshal</a>
+				<a class="permalink" href="#Unmarshal">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func Unmarshal(data []<a href="https://pkg.go.dev/builtin/#byte">byte</a>, v interface{}) <a href="https://pkg.go.dev/builtin/#error">error</a></pre>
+			
+			
+			
+
+		
+		
+			
+			
+			<h2 id="APIClient">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L41">APIClient</a>
+				<a class="permalink" href="#APIClient">&#xb6;</a>
+				
+				
+			</h2>
+			<p>APIClient manages communication with the Datadog API V2 Collection API v1.0.
+In most cases there should be only one, shared, APIClient.
+
+			<pre>type APIClient struct {
+<span id="APIClient.Cfg"></span>    Cfg *<a href="#Configuration">Configuration</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewAPIClient">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L80">NewAPIClient</a>
+					<a class="permalink" href="#NewAPIClient">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewAPIClient(cfg *<a href="#Configuration">Configuration</a>) *<a href="#APIClient">APIClient</a></pre>
+				<p>NewAPIClient creates a new API client. Requires a userAgent string describing your application.
+optionally a custom http.Client to allow for advanced features such as caching.
+
+				
+				
+			
+
+			
+				
+				<h3 id="APIClient.CallAPI">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L124">CallAPI</a>
+					<a class="permalink" href="#APIClient.CallAPI">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#APIClient">APIClient</a>) CallAPI(request *<a href="https://pkg.go.dev/net/http/">http</a>.<a href="https://pkg.go.dev/net/http/#Request">Request</a>) (*<a href="https://pkg.go.dev/net/http/">http</a>.<a href="https://pkg.go.dev/net/http/#Response">Response</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>CallAPI do the request.
+
+				
+				
+				
+			
+				
+				<h3 id="APIClient.Decode">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L411">Decode</a>
+					<a class="permalink" href="#APIClient.Decode">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#APIClient">APIClient</a>) Decode(v interface{}, b []<a href="https://pkg.go.dev/builtin/#byte">byte</a>, contentType <a href="https://pkg.go.dev/builtin/#string">string</a>) (err <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>Decode unmarshal bytes into an interface
+
+				
+				
+				
+			
+				
+				<h3 id="APIClient.GetConfig">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L214">GetConfig</a>
+					<a class="permalink" href="#APIClient.GetConfig">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#APIClient">APIClient</a>) GetConfig() *<a href="#Configuration">Configuration</a></pre>
+				<p>GetConfig allows modification of underlying config for alternate implementations and testing.
+Caution: modifying the configuration while live can cause data races and potentially unwanted behavior.
+
+				
+				
+				
+			
+				
+				<h3 id="APIClient.PrepareRequest">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L219">PrepareRequest</a>
+					<a class="permalink" href="#APIClient.PrepareRequest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#APIClient">APIClient</a>) PrepareRequest(
+    ctx <a href="https://pkg.go.dev/context/">context</a>.<a href="https://pkg.go.dev/context/#Context">Context</a>,
+    path <a href="https://pkg.go.dev/builtin/#string">string</a>, method <a href="https://pkg.go.dev/builtin/#string">string</a>,
+    postBody interface{},
+    headerParams map[<a href="https://pkg.go.dev/builtin/#string">string</a>]<a href="https://pkg.go.dev/builtin/#string">string</a>,
+    queryParams <a href="https://pkg.go.dev/net/url/">url</a>.<a href="https://pkg.go.dev/net/url/#Values">Values</a>,
+    formParams <a href="https://pkg.go.dev/net/url/">url</a>.<a href="https://pkg.go.dev/net/url/#Values">Values</a>,
+    formFile *<a href="#FormFile">FormFile</a>) (localVarRequest *<a href="https://pkg.go.dev/net/http/">http</a>.<a href="https://pkg.go.dev/net/http/#Request">Request</a>, err <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>PrepareRequest build the request.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="APIKey">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L66">APIKey</a>
+				<a class="permalink" href="#APIKey">&#xb6;</a>
+				
+				
+			</h2>
+			<p>APIKey provides API key based authentication to a request passed via context using ContextAPIKey.
+
+			<pre>type APIKey struct {
+<span id="APIKey.Key"></span>    Key    <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="APIKey.Prefix"></span>    Prefix <a href="https://pkg.go.dev/builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="BasicAuth">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L60">BasicAuth</a>
+				<a class="permalink" href="#BasicAuth">&#xb6;</a>
+				
+				
+			</h2>
+			<p>BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth.
+
+			<pre>type BasicAuth struct {
+<span id="BasicAuth.UserName"></span>    UserName <a href="https://pkg.go.dev/builtin/#string">string</a> `json:&#34;userName,omitempty&#34;`
+<span id="BasicAuth.Password"></span>    Password <a href="https://pkg.go.dev/builtin/#string">string</a> `json:&#34;password,omitempty&#34;`
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Configuration">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L89">Configuration</a>
+				<a class="permalink" href="#Configuration">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Configuration stores the configuration of the API client
+
+			<pre>type Configuration struct {
+<span id="Configuration.Host"></span>    Host             <a href="https://pkg.go.dev/builtin/#string">string</a>            `json:&#34;host,omitempty&#34;`
+<span id="Configuration.Scheme"></span>    Scheme           <a href="https://pkg.go.dev/builtin/#string">string</a>            `json:&#34;scheme,omitempty&#34;`
+<span id="Configuration.DefaultHeader"></span>    DefaultHeader    map[<a href="https://pkg.go.dev/builtin/#string">string</a>]<a href="https://pkg.go.dev/builtin/#string">string</a> `json:&#34;defaultHeader,omitempty&#34;`
+<span id="Configuration.UserAgent"></span>    UserAgent        <a href="https://pkg.go.dev/builtin/#string">string</a>            `json:&#34;userAgent,omitempty&#34;`
+<span id="Configuration.Debug"></span>    Debug            <a href="https://pkg.go.dev/builtin/#bool">bool</a>              `json:&#34;debug,omitempty&#34;`
+<span id="Configuration.Compress"></span>    Compress         <a href="https://pkg.go.dev/builtin/#bool">bool</a>              `json:&#34;compress,omitempty&#34;`
+<span id="Configuration.Servers"></span>    Servers          <a href="#ServerConfigurations">ServerConfigurations</a>
+<span id="Configuration.OperationServers"></span>    OperationServers map[<a href="https://pkg.go.dev/builtin/#string">string</a>]<a href="#ServerConfigurations">ServerConfigurations</a>
+<span id="Configuration.HTTPClient"></span>    HTTPClient       *<a href="https://pkg.go.dev/net/http/">http</a>.<a href="https://pkg.go.dev/net/http/#Client">Client</a>
+
+<span id="Configuration.RetryConfiguration"></span>    RetryConfiguration <a href="#RetryConfiguration">RetryConfiguration</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewConfiguration">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L113">NewConfiguration</a>
+					<a class="permalink" href="#NewConfiguration">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewConfiguration() *<a href="#Configuration">Configuration</a></pre>
+				<p>NewConfiguration returns a new Configuration object.
+
+				
+				
+			
+
+			
+				
+				<h3 id="Configuration.AddDefaultHeader">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L390">AddDefaultHeader</a>
+					<a class="permalink" href="#Configuration.AddDefaultHeader">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Configuration">Configuration</a>) AddDefaultHeader(key <a href="https://pkg.go.dev/builtin/#string">string</a>, value <a href="https://pkg.go.dev/builtin/#string">string</a>)</pre>
+				<p>AddDefaultHeader adds a new HTTP header to the default header in the request.
+
+				
+				
+				
+			
+				
+				<h3 id="Configuration.GetUnstableOperations">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L504">GetUnstableOperations</a>
+					<a class="permalink" href="#Configuration.GetUnstableOperations">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Configuration">Configuration</a>) GetUnstableOperations() []<a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				<p>GetUnstableOperations returns a slice with all unstable operation Ids.
+
+				
+				
+				
+			
+				
+				<h3 id="Configuration.IsUnstableOperation">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L526">IsUnstableOperation</a>
+					<a class="permalink" href="#Configuration.IsUnstableOperation">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Configuration">Configuration</a>) IsUnstableOperation(operation <a href="https://pkg.go.dev/builtin/#string">string</a>) <a href="https://pkg.go.dev/builtin/#bool">bool</a></pre>
+				<p>IsUnstableOperation determines whether an operation is an unstable operation.
+This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &quot;CreateFoo&quot;.
+
+				
+				
+				
+			
+				
+				<h3 id="Configuration.IsUnstableOperationEnabled">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L534">IsUnstableOperationEnabled</a>
+					<a class="permalink" href="#Configuration.IsUnstableOperationEnabled">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Configuration">Configuration</a>) IsUnstableOperationEnabled(operation <a href="https://pkg.go.dev/builtin/#string">string</a>) <a href="https://pkg.go.dev/builtin/#bool">bool</a></pre>
+				<p>IsUnstableOperationEnabled determines whether an unstable operation is enabled.
+This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &quot;CreateFoo&quot;
+Returns true if the operation is unstable and it is enabled, false otherwise.
+
+				
+				
+				
+			
+				
+				<h3 id="Configuration.ServerURL">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L423">ServerURL</a>
+					<a class="permalink" href="#Configuration.ServerURL">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Configuration">Configuration</a>) ServerURL(index <a href="https://pkg.go.dev/builtin/#int">int</a>, variables map[<a href="https://pkg.go.dev/builtin/#string">string</a>]<a href="https://pkg.go.dev/builtin/#string">string</a>) (<a href="https://pkg.go.dev/builtin/#string">string</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>ServerURL returns URL based on server settings.
+
+				
+				
+				
+			
+				
+				<h3 id="Configuration.ServerURLWithContext">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L480">ServerURLWithContext</a>
+					<a class="permalink" href="#Configuration.ServerURLWithContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Configuration">Configuration</a>) ServerURLWithContext(ctx <a href="https://pkg.go.dev/context/">context</a>.<a href="https://pkg.go.dev/context/#Context">Context</a>, endpoint <a href="https://pkg.go.dev/builtin/#string">string</a>) (<a href="https://pkg.go.dev/builtin/#string">string</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>ServerURLWithContext returns a new server URL given an endpoint.
+
+				
+				
+				
+			
+				
+				<h3 id="Configuration.SetUnstableOperationEnabled">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L515">SetUnstableOperationEnabled</a>
+					<a class="permalink" href="#Configuration.SetUnstableOperationEnabled">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#Configuration">Configuration</a>) SetUnstableOperationEnabled(operation <a href="https://pkg.go.dev/builtin/#string">string</a>, enabled <a href="https://pkg.go.dev/builtin/#bool">bool</a>) <a href="https://pkg.go.dev/builtin/#bool">bool</a></pre>
+				<p>SetUnstableOperationEnabled sets an unstable operation as enabled (true) or disabled (false).
+This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &quot;CreateFoo&quot;
+Returns true if the operation is marked as unstable and thus was enabled/disabled, false otherwise.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="FormFile">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L46">FormFile</a>
+				<a class="permalink" href="#FormFile">&#xb6;</a>
+				
+				
+			</h2>
+			<p>FormFile holds parameters for a file in multipart/form-data request.
+
+			<pre>type FormFile struct {
+<span id="FormFile.FormFileName"></span>    FormFileName <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="FormFile.FileName"></span>    FileName     <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="FormFile.FileBytes"></span>    FileBytes    []<a href="https://pkg.go.dev/builtin/#byte">byte</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="GenericOpenAPIError">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L519">GenericOpenAPIError</a>
+				<a class="permalink" href="#GenericOpenAPIError">&#xb6;</a>
+				
+				
+			</h2>
+			<p>GenericOpenAPIError Provides access to the body, error and model on returned errors.
+
+			<pre>type GenericOpenAPIError struct {
+<span id="GenericOpenAPIError.ErrorBody"></span>    ErrorBody    []<a href="https://pkg.go.dev/builtin/#byte">byte</a>
+<span id="GenericOpenAPIError.ErrorMessage"></span>    ErrorMessage <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="GenericOpenAPIError.ErrorModel"></span>    ErrorModel   interface{}
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="GenericOpenAPIError.Body">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L531">Body</a>
+					<a class="permalink" href="#GenericOpenAPIError.Body">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="#GenericOpenAPIError">GenericOpenAPIError</a>) Body() []<a href="https://pkg.go.dev/builtin/#byte">byte</a></pre>
+				<p>Body returns the raw bytes of the response.
+
+				
+				
+				
+			
+				
+				<h3 id="GenericOpenAPIError.Error">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L526">Error</a>
+					<a class="permalink" href="#GenericOpenAPIError.Error">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="#GenericOpenAPIError">GenericOpenAPIError</a>) Error() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				<p>Error returns non-empty string if there was an error.
+
+				
+				
+				
+			
+				
+				<h3 id="GenericOpenAPIError.Model">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L536">Model</a>
+					<a class="permalink" href="#GenericOpenAPIError.Model">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (e <a href="#GenericOpenAPIError">GenericOpenAPIError</a>) Model() interface{}</pre>
+				<p>Model returns the unpacked model of the error.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NullableBool">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L48">NullableBool</a>
+				<a class="permalink" href="#NullableBool">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NullableBool is a struct to hold a nullable boolean value.
+
+			<pre>type NullableBool struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewNullableBool">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L76">NewNullableBool</a>
+					<a class="permalink" href="#NewNullableBool">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNullableBool(val *<a href="https://pkg.go.dev/builtin/#bool">bool</a>) *<a href="#NullableBool">NullableBool</a></pre>
+				<p>NewNullableBool instantiates a new nullable bool.
+
+				
+				
+			
+
+			
+				
+				<h3 id="NullableBool.Get">func (NullableBool) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L54">Get</a>
+					<a class="permalink" href="#NullableBool.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableBool">NullableBool</a>) Get() *<a href="https://pkg.go.dev/builtin/#bool">bool</a></pre>
+				<p>Get returns the value associated with the nullable bool.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableBool.IsSet">func (NullableBool) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L65">IsSet</a>
+					<a class="permalink" href="#NullableBool.IsSet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableBool">NullableBool</a>) IsSet() <a href="https://pkg.go.dev/builtin/#bool">bool</a></pre>
+				<p>IsSet returns true if the value has been set.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableBool.MarshalJSON">func (NullableBool) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L81">MarshalJSON</a>
+					<a class="permalink" href="#NullableBool.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableBool">NullableBool</a>) MarshalJSON() ([]<a href="https://pkg.go.dev/builtin/#byte">byte</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>MarshalJSON serializes the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableBool.Set">func (*NullableBool) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L59">Set</a>
+					<a class="permalink" href="#NullableBool.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableBool">NullableBool</a>) Set(val *<a href="https://pkg.go.dev/builtin/#bool">bool</a>)</pre>
+				<p>Set sets the value associated with the nullable bool.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableBool.UnmarshalJSON">func (*NullableBool) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L86">UnmarshalJSON</a>
+					<a class="permalink" href="#NullableBool.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableBool">NullableBool</a>) UnmarshalJSON(src []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) <a href="https://pkg.go.dev/builtin/#error">error</a></pre>
+				<p>UnmarshalJSON deserializes to the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableBool.Unset">func (*NullableBool) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L70">Unset</a>
+					<a class="permalink" href="#NullableBool.Unset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableBool">NullableBool</a>) Unset()</pre>
+				<p>Unset resets fields of the nullable bool.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NullableFloat32">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L224">NullableFloat32</a>
+				<a class="permalink" href="#NullableFloat32">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NullableFloat32 is a struct to hold a nullable float32 value.
+
+			<pre>type NullableFloat32 struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewNullableFloat32">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L252">NewNullableFloat32</a>
+					<a class="permalink" href="#NewNullableFloat32">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNullableFloat32(val *<a href="https://pkg.go.dev/builtin/#float32">float32</a>) *<a href="#NullableFloat32">NullableFloat32</a></pre>
+				<p>NewNullableFloat32 instantiates a new nullable float32.
+
+				
+				
+			
+
+			
+				
+				<h3 id="NullableFloat32.Get">func (NullableFloat32) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L230">Get</a>
+					<a class="permalink" href="#NullableFloat32.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableFloat32">NullableFloat32</a>) Get() *<a href="https://pkg.go.dev/builtin/#float32">float32</a></pre>
+				<p>Get returns the value associated with the nullable float32.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableFloat32.IsSet">func (NullableFloat32) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L241">IsSet</a>
+					<a class="permalink" href="#NullableFloat32.IsSet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableFloat32">NullableFloat32</a>) IsSet() <a href="https://pkg.go.dev/builtin/#bool">bool</a></pre>
+				<p>IsSet returns true if the value has been set.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableFloat32.MarshalJSON">func (NullableFloat32) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L257">MarshalJSON</a>
+					<a class="permalink" href="#NullableFloat32.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableFloat32">NullableFloat32</a>) MarshalJSON() ([]<a href="https://pkg.go.dev/builtin/#byte">byte</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>MarshalJSON serializes the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableFloat32.Set">func (*NullableFloat32) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L235">Set</a>
+					<a class="permalink" href="#NullableFloat32.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableFloat32">NullableFloat32</a>) Set(val *<a href="https://pkg.go.dev/builtin/#float32">float32</a>)</pre>
+				<p>Set sets the value associated with the nullable float32.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableFloat32.UnmarshalJSON">func (*NullableFloat32) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L262">UnmarshalJSON</a>
+					<a class="permalink" href="#NullableFloat32.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableFloat32">NullableFloat32</a>) UnmarshalJSON(src []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) <a href="https://pkg.go.dev/builtin/#error">error</a></pre>
+				<p>UnmarshalJSON deserializes to the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableFloat32.Unset">func (*NullableFloat32) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L246">Unset</a>
+					<a class="permalink" href="#NullableFloat32.Unset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableFloat32">NullableFloat32</a>) Unset()</pre>
+				<p>Unset resets fields of the nullable float32.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NullableFloat64">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L268">NullableFloat64</a>
+				<a class="permalink" href="#NullableFloat64">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NullableFloat64 is a struct to hold a nullable float64 value.
+
+			<pre>type NullableFloat64 struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewNullableFloat64">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L296">NewNullableFloat64</a>
+					<a class="permalink" href="#NewNullableFloat64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNullableFloat64(val *<a href="https://pkg.go.dev/builtin/#float64">float64</a>) *<a href="#NullableFloat64">NullableFloat64</a></pre>
+				<p>NewNullableFloat64 instantiates a new nullable float64.
+
+				
+				
+			
+
+			
+				
+				<h3 id="NullableFloat64.Get">func (NullableFloat64) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L274">Get</a>
+					<a class="permalink" href="#NullableFloat64.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableFloat64">NullableFloat64</a>) Get() *<a href="https://pkg.go.dev/builtin/#float64">float64</a></pre>
+				<p>Get returns the value associated with the nullable float64.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableFloat64.IsSet">func (NullableFloat64) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L285">IsSet</a>
+					<a class="permalink" href="#NullableFloat64.IsSet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableFloat64">NullableFloat64</a>) IsSet() <a href="https://pkg.go.dev/builtin/#bool">bool</a></pre>
+				<p>IsSet returns true if the value has been set.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableFloat64.MarshalJSON">func (NullableFloat64) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L301">MarshalJSON</a>
+					<a class="permalink" href="#NullableFloat64.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableFloat64">NullableFloat64</a>) MarshalJSON() ([]<a href="https://pkg.go.dev/builtin/#byte">byte</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>MarshalJSON serializes the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableFloat64.Set">func (*NullableFloat64) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L279">Set</a>
+					<a class="permalink" href="#NullableFloat64.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableFloat64">NullableFloat64</a>) Set(val *<a href="https://pkg.go.dev/builtin/#float64">float64</a>)</pre>
+				<p>Set sets the value associated with the nullable float64.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableFloat64.UnmarshalJSON">func (*NullableFloat64) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L306">UnmarshalJSON</a>
+					<a class="permalink" href="#NullableFloat64.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableFloat64">NullableFloat64</a>) UnmarshalJSON(src []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) <a href="https://pkg.go.dev/builtin/#error">error</a></pre>
+				<p>UnmarshalJSON deserializes to the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableFloat64.Unset">func (*NullableFloat64) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L290">Unset</a>
+					<a class="permalink" href="#NullableFloat64.Unset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableFloat64">NullableFloat64</a>) Unset()</pre>
+				<p>Unset resets fields of the nullable float64.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NullableInt">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L92">NullableInt</a>
+				<a class="permalink" href="#NullableInt">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NullableInt is a struct to hold a nullable int value.
+
+			<pre>type NullableInt struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewNullableInt">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L120">NewNullableInt</a>
+					<a class="permalink" href="#NewNullableInt">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNullableInt(val *<a href="https://pkg.go.dev/builtin/#int">int</a>) *<a href="#NullableInt">NullableInt</a></pre>
+				<p>NewNullableInt instantiates a new nullable int.
+
+				
+				
+			
+
+			
+				
+				<h3 id="NullableInt.Get">func (NullableInt) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L98">Get</a>
+					<a class="permalink" href="#NullableInt.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableInt">NullableInt</a>) Get() *<a href="https://pkg.go.dev/builtin/#int">int</a></pre>
+				<p>Get returns the value associated with the nullable int.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt.IsSet">func (NullableInt) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L109">IsSet</a>
+					<a class="permalink" href="#NullableInt.IsSet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableInt">NullableInt</a>) IsSet() <a href="https://pkg.go.dev/builtin/#bool">bool</a></pre>
+				<p>IsSet returns true if the value has been set.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt.MarshalJSON">func (NullableInt) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L125">MarshalJSON</a>
+					<a class="permalink" href="#NullableInt.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableInt">NullableInt</a>) MarshalJSON() ([]<a href="https://pkg.go.dev/builtin/#byte">byte</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>MarshalJSON serializes the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt.Set">func (*NullableInt) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L103">Set</a>
+					<a class="permalink" href="#NullableInt.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableInt">NullableInt</a>) Set(val *<a href="https://pkg.go.dev/builtin/#int">int</a>)</pre>
+				<p>Set sets the value associated with the nullable int.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt.UnmarshalJSON">func (*NullableInt) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L130">UnmarshalJSON</a>
+					<a class="permalink" href="#NullableInt.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableInt">NullableInt</a>) UnmarshalJSON(src []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) <a href="https://pkg.go.dev/builtin/#error">error</a></pre>
+				<p>UnmarshalJSON deserializes to the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt.Unset">func (*NullableInt) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L114">Unset</a>
+					<a class="permalink" href="#NullableInt.Unset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableInt">NullableInt</a>) Unset()</pre>
+				<p>Unset resets fields of the nullable int.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NullableInt32">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L136">NullableInt32</a>
+				<a class="permalink" href="#NullableInt32">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NullableInt32 is a struct to hold a nullable int32 value.
+
+			<pre>type NullableInt32 struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewNullableInt32">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L164">NewNullableInt32</a>
+					<a class="permalink" href="#NewNullableInt32">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNullableInt32(val *<a href="https://pkg.go.dev/builtin/#int32">int32</a>) *<a href="#NullableInt32">NullableInt32</a></pre>
+				<p>NewNullableInt32 instantiates a new nullable int32.
+
+				
+				
+			
+
+			
+				
+				<h3 id="NullableInt32.Get">func (NullableInt32) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L142">Get</a>
+					<a class="permalink" href="#NullableInt32.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableInt32">NullableInt32</a>) Get() *<a href="https://pkg.go.dev/builtin/#int32">int32</a></pre>
+				<p>Get returns the value associated with the nullable int32.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt32.IsSet">func (NullableInt32) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L153">IsSet</a>
+					<a class="permalink" href="#NullableInt32.IsSet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableInt32">NullableInt32</a>) IsSet() <a href="https://pkg.go.dev/builtin/#bool">bool</a></pre>
+				<p>IsSet returns true if the value has been set.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt32.MarshalJSON">func (NullableInt32) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L169">MarshalJSON</a>
+					<a class="permalink" href="#NullableInt32.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableInt32">NullableInt32</a>) MarshalJSON() ([]<a href="https://pkg.go.dev/builtin/#byte">byte</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>MarshalJSON serializes the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt32.Set">func (*NullableInt32) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L147">Set</a>
+					<a class="permalink" href="#NullableInt32.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableInt32">NullableInt32</a>) Set(val *<a href="https://pkg.go.dev/builtin/#int32">int32</a>)</pre>
+				<p>Set sets the value associated with the nullable int32.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt32.UnmarshalJSON">func (*NullableInt32) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L174">UnmarshalJSON</a>
+					<a class="permalink" href="#NullableInt32.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableInt32">NullableInt32</a>) UnmarshalJSON(src []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) <a href="https://pkg.go.dev/builtin/#error">error</a></pre>
+				<p>UnmarshalJSON deserializes to the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt32.Unset">func (*NullableInt32) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L158">Unset</a>
+					<a class="permalink" href="#NullableInt32.Unset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableInt32">NullableInt32</a>) Unset()</pre>
+				<p>Unset resets fields of the nullable int32.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NullableInt64">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L180">NullableInt64</a>
+				<a class="permalink" href="#NullableInt64">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NullableInt64 is a struct to hold a nullable int64 value.
+
+			<pre>type NullableInt64 struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewNullableInt64">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L208">NewNullableInt64</a>
+					<a class="permalink" href="#NewNullableInt64">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNullableInt64(val *<a href="https://pkg.go.dev/builtin/#int64">int64</a>) *<a href="#NullableInt64">NullableInt64</a></pre>
+				<p>NewNullableInt64 instantiates a new nullable int64.
+
+				
+				
+			
+
+			
+				
+				<h3 id="NullableInt64.Get">func (NullableInt64) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L186">Get</a>
+					<a class="permalink" href="#NullableInt64.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableInt64">NullableInt64</a>) Get() *<a href="https://pkg.go.dev/builtin/#int64">int64</a></pre>
+				<p>Get returns the value associated with the nullable int64.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt64.IsSet">func (NullableInt64) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L197">IsSet</a>
+					<a class="permalink" href="#NullableInt64.IsSet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableInt64">NullableInt64</a>) IsSet() <a href="https://pkg.go.dev/builtin/#bool">bool</a></pre>
+				<p>IsSet returns true if the value has been set.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt64.MarshalJSON">func (NullableInt64) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L213">MarshalJSON</a>
+					<a class="permalink" href="#NullableInt64.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableInt64">NullableInt64</a>) MarshalJSON() ([]<a href="https://pkg.go.dev/builtin/#byte">byte</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>MarshalJSON serializes the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt64.Set">func (*NullableInt64) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L191">Set</a>
+					<a class="permalink" href="#NullableInt64.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableInt64">NullableInt64</a>) Set(val *<a href="https://pkg.go.dev/builtin/#int64">int64</a>)</pre>
+				<p>Set sets the value associated with the nullable int64.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt64.UnmarshalJSON">func (*NullableInt64) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L218">UnmarshalJSON</a>
+					<a class="permalink" href="#NullableInt64.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableInt64">NullableInt64</a>) UnmarshalJSON(src []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) <a href="https://pkg.go.dev/builtin/#error">error</a></pre>
+				<p>UnmarshalJSON deserializes to the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableInt64.Unset">func (*NullableInt64) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L202">Unset</a>
+					<a class="permalink" href="#NullableInt64.Unset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableInt64">NullableInt64</a>) Unset()</pre>
+				<p>Unset resets fields of the nullable int64.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NullableList">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L400">NullableList</a>
+				<a class="permalink" href="#NullableList">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NullableList struct to hold nullable list value.
+
+			<pre>type NullableList[T <a href="https://pkg.go.dev/builtin/#any">any</a>] struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewNullableList">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L428">NewNullableList</a>
+					<a class="permalink" href="#NewNullableList">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNullableList[T <a href="https://pkg.go.dev/builtin/#any">any</a>](val *[]T) *<a href="#NullableList">NullableList</a>[T]</pre>
+				<p>NewNullableList instantiates a new nullable list.
+
+				
+				
+			
+
+			
+				
+				<h3 id="NullableList.Get">func (NullableList[T]) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L406">Get</a>
+					<a class="permalink" href="#NullableList.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableList">NullableList</a>[T]) Get() *[]T</pre>
+				<p>Get returns the value associated with the nullable list.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableList.IsSet">func (NullableList[T]) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L417">IsSet</a>
+					<a class="permalink" href="#NullableList.IsSet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableList">NullableList</a>[T]) IsSet() <a href="https://pkg.go.dev/builtin/#bool">bool</a></pre>
+				<p>IsSet returns true if the value has been set.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableList.MarshalJSON">func (NullableList[T]) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L433">MarshalJSON</a>
+					<a class="permalink" href="#NullableList.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableList">NullableList</a>[T]) MarshalJSON() ([]<a href="https://pkg.go.dev/builtin/#byte">byte</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>MarshalJSON serializes the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableList.Set">func (*NullableList[T]) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L411">Set</a>
+					<a class="permalink" href="#NullableList.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableList">NullableList</a>[T]) Set(val *[]T)</pre>
+				<p>Set sets the value associated with the nullable list.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableList.UnmarshalJSON">func (*NullableList[T]) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L438">UnmarshalJSON</a>
+					<a class="permalink" href="#NullableList.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableList">NullableList</a>[T]) UnmarshalJSON(src []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) <a href="https://pkg.go.dev/builtin/#error">error</a></pre>
+				<p>UnmarshalJSON deserializes to the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableList.Unset">func (*NullableList[T]) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L422">Unset</a>
+					<a class="permalink" href="#NullableList.Unset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableList">NullableList</a>[T]) Unset()</pre>
+				<p>Unset resets fields of the nullable list.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NullableString">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L312">NullableString</a>
+				<a class="permalink" href="#NullableString">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NullableString is a struct to hold a nullable string value.
+
+			<pre>type NullableString struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewNullableString">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L340">NewNullableString</a>
+					<a class="permalink" href="#NewNullableString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNullableString(val *<a href="https://pkg.go.dev/builtin/#string">string</a>) *<a href="#NullableString">NullableString</a></pre>
+				<p>NewNullableString instantiates a new nullable string.
+
+				
+				
+			
+
+			
+				
+				<h3 id="NullableString.Get">func (NullableString) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L318">Get</a>
+					<a class="permalink" href="#NullableString.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableString">NullableString</a>) Get() *<a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+				<p>Get returns the value associated with the nullable string.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableString.IsSet">func (NullableString) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L329">IsSet</a>
+					<a class="permalink" href="#NullableString.IsSet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableString">NullableString</a>) IsSet() <a href="https://pkg.go.dev/builtin/#bool">bool</a></pre>
+				<p>IsSet returns true if the value has been set.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableString.MarshalJSON">func (NullableString) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L345">MarshalJSON</a>
+					<a class="permalink" href="#NullableString.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableString">NullableString</a>) MarshalJSON() ([]<a href="https://pkg.go.dev/builtin/#byte">byte</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>MarshalJSON serializes the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableString.Set">func (*NullableString) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L323">Set</a>
+					<a class="permalink" href="#NullableString.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableString">NullableString</a>) Set(val *<a href="https://pkg.go.dev/builtin/#string">string</a>)</pre>
+				<p>Set sets the value associated with the nullable string.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableString.UnmarshalJSON">func (*NullableString) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L350">UnmarshalJSON</a>
+					<a class="permalink" href="#NullableString.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableString">NullableString</a>) UnmarshalJSON(src []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) <a href="https://pkg.go.dev/builtin/#error">error</a></pre>
+				<p>UnmarshalJSON deserializes to the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableString.Unset">func (*NullableString) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L334">Unset</a>
+					<a class="permalink" href="#NullableString.Unset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableString">NullableString</a>) Unset()</pre>
+				<p>Unset resets fields of the nullable string.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="NullableTime">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L356">NullableTime</a>
+				<a class="permalink" href="#NullableTime">&#xb6;</a>
+				
+				
+			</h2>
+			<p>NullableTime is a struct to hold a nullable Time value.
+
+			<pre>type NullableTime struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewNullableTime">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L384">NewNullableTime</a>
+					<a class="permalink" href="#NewNullableTime">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewNullableTime(val *<a href="https://pkg.go.dev/time/">time</a>.<a href="https://pkg.go.dev/time/#Time">Time</a>) *<a href="#NullableTime">NullableTime</a></pre>
+				<p>NewNullableTime instantiates a new nullable Time.
+
+				
+				
+			
+
+			
+				
+				<h3 id="NullableTime.Get">func (NullableTime) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L362">Get</a>
+					<a class="permalink" href="#NullableTime.Get">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableTime">NullableTime</a>) Get() *<a href="https://pkg.go.dev/time/">time</a>.<a href="https://pkg.go.dev/time/#Time">Time</a></pre>
+				<p>Get returns the value associated with the nullable Time.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableTime.IsSet">func (NullableTime) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L373">IsSet</a>
+					<a class="permalink" href="#NullableTime.IsSet">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableTime">NullableTime</a>) IsSet() <a href="https://pkg.go.dev/builtin/#bool">bool</a></pre>
+				<p>IsSet returns true if the value has been set.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableTime.MarshalJSON">func (NullableTime) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L389">MarshalJSON</a>
+					<a class="permalink" href="#NullableTime.MarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v <a href="#NullableTime">NullableTime</a>) MarshalJSON() ([]<a href="https://pkg.go.dev/builtin/#byte">byte</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>MarshalJSON serializes the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableTime.Set">func (*NullableTime) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L367">Set</a>
+					<a class="permalink" href="#NullableTime.Set">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableTime">NullableTime</a>) Set(val *<a href="https://pkg.go.dev/time/">time</a>.<a href="https://pkg.go.dev/time/#Time">Time</a>)</pre>
+				<p>Set sets the value associated with the nullable Time.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableTime.UnmarshalJSON">func (*NullableTime) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L394">UnmarshalJSON</a>
+					<a class="permalink" href="#NullableTime.UnmarshalJSON">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableTime">NullableTime</a>) UnmarshalJSON(src []<a href="https://pkg.go.dev/builtin/#byte">byte</a>) <a href="https://pkg.go.dev/builtin/#error">error</a></pre>
+				<p>UnmarshalJSON deserializes to the associated value.
+
+				
+				
+				
+			
+				
+				<h3 id="NullableTime.Unset">func (*NullableTime) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L378">Unset</a>
+					<a class="permalink" href="#NullableTime.Unset">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (v *<a href="#NullableTime">NullableTime</a>) Unset()</pre>
+				<p>Unset resets fields of the nullable Time.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="PaginationResult">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/utils.go#L42">PaginationResult</a>
+				<a class="permalink" href="#PaginationResult">&#xb6;</a>
+				
+				
+			</h2>
+			<p>PaginationResult pagination item helper struct
+
+			<pre>type PaginationResult[T <a href="https://pkg.go.dev/builtin/#any">any</a>] struct {
+<span id="PaginationResult.Item"></span>    Item  T
+<span id="PaginationResult.Error"></span>    Error <a href="https://pkg.go.dev/builtin/#error">error</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="RetryConfiguration">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L104">RetryConfiguration</a>
+				<a class="permalink" href="#RetryConfiguration">&#xb6;</a>
+				
+				
+			</h2>
+			<p>RetryConfiguration stores the configuration of the retry behavior of the api client
+
+			<pre>type RetryConfiguration struct {
+<span id="RetryConfiguration.EnableRetry"></span>    EnableRetry       <a href="https://pkg.go.dev/builtin/#bool">bool</a>
+<span id="RetryConfiguration.BackOffMultiplier"></span>    BackOffMultiplier <a href="https://pkg.go.dev/builtin/#float64">float64</a>
+<span id="RetryConfiguration.BackOffBase"></span>    BackOffBase       <a href="https://pkg.go.dev/builtin/#float64">float64</a>
+<span id="RetryConfiguration.HTTPRetryTimeout"></span>    HTTPRetryTimeout  <a href="https://pkg.go.dev/time/">time</a>.<a href="https://pkg.go.dev/time/#Duration">Duration</a>
+<span id="RetryConfiguration.MaxRetries"></span>    MaxRetries        <a href="https://pkg.go.dev/builtin/#int">int</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ServerConfiguration">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L79">ServerConfiguration</a>
+				<a class="permalink" href="#ServerConfiguration">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerConfiguration stores the information about a server.
+
+			<pre>type ServerConfiguration struct {
+<span id="ServerConfiguration.URL"></span>    URL         <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="ServerConfiguration.Description"></span>    Description <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="ServerConfiguration.Variables"></span>    Variables   map[<a href="https://pkg.go.dev/builtin/#string">string</a>]<a href="#ServerVariable">ServerVariable</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="ServerConfigurations">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L86">ServerConfigurations</a>
+				<a class="permalink" href="#ServerConfigurations">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerConfigurations stores multiple ServerConfiguration items.
+
+			<pre>type ServerConfigurations []<a href="#ServerConfiguration">ServerConfiguration</a></pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="ServerConfigurations.URL">func (ServerConfigurations) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L395">URL</a>
+					<a class="permalink" href="#ServerConfigurations.URL">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (sc <a href="#ServerConfigurations">ServerConfigurations</a>) URL(index <a href="https://pkg.go.dev/builtin/#int">int</a>, variables map[<a href="https://pkg.go.dev/builtin/#string">string</a>]<a href="https://pkg.go.dev/builtin/#string">string</a>) (<a href="https://pkg.go.dev/builtin/#string">string</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>URL formats template on a index using given variables.
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="ServerVariable">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L72">ServerVariable</a>
+				<a class="permalink" href="#ServerVariable">&#xb6;</a>
+				
+				
+			</h2>
+			<p>ServerVariable stores the information about a server variable.
+
+			<pre>type ServerVariable struct {
+<span id="ServerVariable.Description"></span>    Description  <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="ServerVariable.DefaultValue"></span>    DefaultValue <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="ServerVariable.EnumValues"></span>    EnumValues   []<a href="https://pkg.go.dev/builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Service">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L53">Service</a>
+				<a class="permalink" href="#Service">&#xb6;</a>
+				
+				
+			</h2>
+			<p>Service holds APIClient
+
+			<pre>type Service struct {
+<span id="Service.Client"></span>    Client *<a href="#APIClient">APIClient</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.19.13.<br>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>

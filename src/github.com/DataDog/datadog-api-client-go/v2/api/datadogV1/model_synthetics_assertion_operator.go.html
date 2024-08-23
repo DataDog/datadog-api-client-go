@@ -1,0 +1,161 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV1/model_synthetics_assertion_operator.go - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.19.13";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV1">datadogV1</a>/<span class="text-muted">model_synthetics_assertion_operator.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/api/datadogV1">github.com/DataDog/datadog-api-client-go/v2/api/datadogV1</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span><span class="comment">// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.</span>
+<span id="L2" class="ln">     2  </span><span class="comment">// This product includes software developed at Datadog (https://www.datadoghq.com/).</span>
+<span id="L3" class="ln">     3  </span><span class="comment">// Copyright 2019-Present Datadog, Inc.</span>
+<span id="L4" class="ln">     4  </span>
+<span id="L5" class="ln">     5  </span>package datadogV1
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>import (
+<span id="L8" class="ln">     8  </span>	&#34;fmt&#34;
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
+<span id="L11" class="ln">    11  </span>)
+<span id="L12" class="ln">    12  </span>
+<span id="L13" class="ln">    13  </span><span class="comment">// SyntheticsAssertionOperator Assertion operator to apply.</span>
+<span id="L14" class="ln">    14  </span>type SyntheticsAssertionOperator string
+<span id="L15" class="ln">    15  </span>
+<span id="L16" class="ln">    16  </span><span class="comment">// List of SyntheticsAssertionOperator.</span>
+<span id="L17" class="ln">    17  </span>const (
+<span id="L18" class="ln">    18  </span>	SYNTHETICSASSERTIONOPERATOR_CONTAINS             SyntheticsAssertionOperator = &#34;contains&#34;
+<span id="L19" class="ln">    19  </span>	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_CONTAIN     SyntheticsAssertionOperator = &#34;doesNotContain&#34;
+<span id="L20" class="ln">    20  </span>	SYNTHETICSASSERTIONOPERATOR_IS                   SyntheticsAssertionOperator = &#34;is&#34;
+<span id="L21" class="ln">    21  </span>	SYNTHETICSASSERTIONOPERATOR_IS_NOT               SyntheticsAssertionOperator = &#34;isNot&#34;
+<span id="L22" class="ln">    22  </span>	SYNTHETICSASSERTIONOPERATOR_LESS_THAN            SyntheticsAssertionOperator = &#34;lessThan&#34;
+<span id="L23" class="ln">    23  </span>	SYNTHETICSASSERTIONOPERATOR_LESS_THAN_OR_EQUAL   SyntheticsAssertionOperator = &#34;lessThanOrEqual&#34;
+<span id="L24" class="ln">    24  </span>	SYNTHETICSASSERTIONOPERATOR_MORE_THAN            SyntheticsAssertionOperator = &#34;moreThan&#34;
+<span id="L25" class="ln">    25  </span>	SYNTHETICSASSERTIONOPERATOR_MORE_THAN_OR_EQUAL   SyntheticsAssertionOperator = &#34;moreThanOrEqual&#34;
+<span id="L26" class="ln">    26  </span>	SYNTHETICSASSERTIONOPERATOR_MATCHES              SyntheticsAssertionOperator = &#34;matches&#34;
+<span id="L27" class="ln">    27  </span>	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_MATCH       SyntheticsAssertionOperator = &#34;doesNotMatch&#34;
+<span id="L28" class="ln">    28  </span>	SYNTHETICSASSERTIONOPERATOR_VALIDATES            SyntheticsAssertionOperator = &#34;validates&#34;
+<span id="L29" class="ln">    29  </span>	SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN SyntheticsAssertionOperator = &#34;isInMoreThan&#34;
+<span id="L30" class="ln">    30  </span>	SYNTHETICSASSERTIONOPERATOR_IS_IN_LESS_DAYS_THAN SyntheticsAssertionOperator = &#34;isInLessThan&#34;
+<span id="L31" class="ln">    31  </span>	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_EXIST       SyntheticsAssertionOperator = &#34;doesNotExist&#34;
+<span id="L32" class="ln">    32  </span>	SYNTHETICSASSERTIONOPERATOR_IS_UNDEFINED         SyntheticsAssertionOperator = &#34;isUndefined&#34;
+<span id="L33" class="ln">    33  </span>)
+<span id="L34" class="ln">    34  </span>
+<span id="L35" class="ln">    35  </span>var allowedSyntheticsAssertionOperatorEnumValues = []SyntheticsAssertionOperator{
+<span id="L36" class="ln">    36  </span>	SYNTHETICSASSERTIONOPERATOR_CONTAINS,
+<span id="L37" class="ln">    37  </span>	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_CONTAIN,
+<span id="L38" class="ln">    38  </span>	SYNTHETICSASSERTIONOPERATOR_IS,
+<span id="L39" class="ln">    39  </span>	SYNTHETICSASSERTIONOPERATOR_IS_NOT,
+<span id="L40" class="ln">    40  </span>	SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
+<span id="L41" class="ln">    41  </span>	SYNTHETICSASSERTIONOPERATOR_LESS_THAN_OR_EQUAL,
+<span id="L42" class="ln">    42  </span>	SYNTHETICSASSERTIONOPERATOR_MORE_THAN,
+<span id="L43" class="ln">    43  </span>	SYNTHETICSASSERTIONOPERATOR_MORE_THAN_OR_EQUAL,
+<span id="L44" class="ln">    44  </span>	SYNTHETICSASSERTIONOPERATOR_MATCHES,
+<span id="L45" class="ln">    45  </span>	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_MATCH,
+<span id="L46" class="ln">    46  </span>	SYNTHETICSASSERTIONOPERATOR_VALIDATES,
+<span id="L47" class="ln">    47  </span>	SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN,
+<span id="L48" class="ln">    48  </span>	SYNTHETICSASSERTIONOPERATOR_IS_IN_LESS_DAYS_THAN,
+<span id="L49" class="ln">    49  </span>	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_EXIST,
+<span id="L50" class="ln">    50  </span>	SYNTHETICSASSERTIONOPERATOR_IS_UNDEFINED,
+<span id="L51" class="ln">    51  </span>}
+<span id="L52" class="ln">    52  </span>
+<span id="L53" class="ln">    53  </span><span class="comment">// GetAllowedValues reeturns the list of possible values.</span>
+<span id="L54" class="ln">    54  </span>func (v *SyntheticsAssertionOperator) GetAllowedValues() []SyntheticsAssertionOperator {
+<span id="L55" class="ln">    55  </span>	return allowedSyntheticsAssertionOperatorEnumValues
+<span id="L56" class="ln">    56  </span>}
+<span id="L57" class="ln">    57  </span>
+<span id="L58" class="ln">    58  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L59" class="ln">    59  </span>func (v *SyntheticsAssertionOperator) UnmarshalJSON(src []byte) error {
+<span id="L60" class="ln">    60  </span>	var value string
+<span id="L61" class="ln">    61  </span>	err := datadog.Unmarshal(src, &amp;value)
+<span id="L62" class="ln">    62  </span>	if err != nil {
+<span id="L63" class="ln">    63  </span>		return err
+<span id="L64" class="ln">    64  </span>	}
+<span id="L65" class="ln">    65  </span>	*v = SyntheticsAssertionOperator(value)
+<span id="L66" class="ln">    66  </span>	return nil
+<span id="L67" class="ln">    67  </span>}
+<span id="L68" class="ln">    68  </span>
+<span id="L69" class="ln">    69  </span><span class="comment">// NewSyntheticsAssertionOperatorFromValue returns a pointer to a valid SyntheticsAssertionOperator</span>
+<span id="L70" class="ln">    70  </span><span class="comment">// for the value passed as argument, or an error if the value passed is not allowed by the enum.</span>
+<span id="L71" class="ln">    71  </span>func NewSyntheticsAssertionOperatorFromValue(v string) (*SyntheticsAssertionOperator, error) {
+<span id="L72" class="ln">    72  </span>	ev := SyntheticsAssertionOperator(v)
+<span id="L73" class="ln">    73  </span>	if ev.IsValid() {
+<span id="L74" class="ln">    74  </span>		return &amp;ev, nil
+<span id="L75" class="ln">    75  </span>	}
+<span id="L76" class="ln">    76  </span>	return nil, fmt.Errorf(&#34;invalid value &#39;%v&#39; for SyntheticsAssertionOperator: valid values are %v&#34;, v, allowedSyntheticsAssertionOperatorEnumValues)
+<span id="L77" class="ln">    77  </span>}
+<span id="L78" class="ln">    78  </span>
+<span id="L79" class="ln">    79  </span><span class="comment">// IsValid return true if the value is valid for the enum, false otherwise.</span>
+<span id="L80" class="ln">    80  </span>func (v SyntheticsAssertionOperator) IsValid() bool {
+<span id="L81" class="ln">    81  </span>	for _, existing := range allowedSyntheticsAssertionOperatorEnumValues {
+<span id="L82" class="ln">    82  </span>		if existing == v {
+<span id="L83" class="ln">    83  </span>			return true
+<span id="L84" class="ln">    84  </span>		}
+<span id="L85" class="ln">    85  </span>	}
+<span id="L86" class="ln">    86  </span>	return false
+<span id="L87" class="ln">    87  </span>}
+<span id="L88" class="ln">    88  </span>
+<span id="L89" class="ln">    89  </span><span class="comment">// Ptr returns reference to SyntheticsAssertionOperator value.</span>
+<span id="L90" class="ln">    90  </span>func (v SyntheticsAssertionOperator) Ptr() *SyntheticsAssertionOperator {
+<span id="L91" class="ln">    91  </span>	return &amp;v
+<span id="L92" class="ln">    92  </span>}
+<span id="L93" class="ln">    93  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.19.13.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>
