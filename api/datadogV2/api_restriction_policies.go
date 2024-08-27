@@ -162,6 +162,7 @@ func (a *RestrictionPoliciesApi) GetRestrictionPolicy(ctx _context.Context, reso
 // - Synthetic Tests: `synthetics-test`
 // - Synthetic Private Locations: `synthetics-private-location`
 // - Monitors: `monitor`
+// - Suppression Rules: `suppression-rule`
 //
 // #### Supported relations for resources
 // Resource Type               | Supported Relations
@@ -175,6 +176,7 @@ func (a *RestrictionPoliciesApi) GetRestrictionPolicy(ctx _context.Context, reso
 // Synthetic Tests             | `viewer`, `editor`
 // Synthetic Private Locations | `viewer`, `editor`
 // Monitors                    | `viewer`, `editor`
+// Suppression Rules        | `viewer`, `editor`
 func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest) (RestrictionPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
