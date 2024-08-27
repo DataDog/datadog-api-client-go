@@ -32,8 +32,9 @@ func main() {
 		Filter: datadogV1.LogsFilter{
 			Query: datadog.PtrString("source:python"),
 		},
-		Name:             "main",
-		NumRetentionDays: datadog.PtrInt64(15),
+		Name:                     "main",
+		NumFlexLogsRetentionDays: datadog.PtrInt64(360),
+		NumRetentionDays:         datadog.PtrInt64(15),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
