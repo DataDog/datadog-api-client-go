@@ -62,6 +62,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "DowntimesApi": reflect.ValueOf(datadogV2.NewDowntimesApi),
 	    "EventsApi": reflect.ValueOf(datadogV2.NewEventsApi),
 	    "IncidentsApi": reflect.ValueOf(datadogV2.NewIncidentsApi),
+	    "AWSIntegrationApi": reflect.ValueOf(datadogV2.NewAWSIntegrationApi),
 	    "GCPIntegrationApi": reflect.ValueOf(datadogV2.NewGCPIntegrationApi),
 	    "OpsgenieIntegrationApi": reflect.ValueOf(datadogV2.NewOpsgenieIntegrationApi),
 	    "CloudflareIntegrationApi": reflect.ValueOf(datadogV2.NewCloudflareIntegrationApi),
