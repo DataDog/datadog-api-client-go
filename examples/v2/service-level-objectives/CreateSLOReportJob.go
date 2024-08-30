@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
@@ -16,8 +17,8 @@ func main() {
 	body := datadogV2.SloReportCreateRequest{
 		Data: datadogV2.SloReportCreateRequestData{
 			Attributes: datadogV2.SloReportCreateRequestAttributes{
-				FromTs:   1690901870,
-				ToTs:     1706803070,
+				FromTs:   time.Now().AddDate(0, 0, -40).Unix(),
+				ToTs:     time.Now().Unix(),
 				Query:    `slo_type:metric "SLO Reporting Test"`,
 				Interval: datadogV2.SLOREPORTINTERVAL_MONTHLY.Ptr(),
 				Timezone: datadog.PtrString("America/New_York"),
