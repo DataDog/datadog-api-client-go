@@ -395,34 +395,31 @@
 <span id="L338" class="ln">   338  </span>	}
 <span id="L339" class="ln">   339  </span>	o.Query = *all.Query
 <span id="L340" class="ln">   340  </span>	o.TagsExecution = all.TagsExecution
-<span id="L341" class="ln">   341  </span>	if all.Time != nil &amp;&amp; all.Time.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L342" class="ln">   342  </span>		hasInvalidField = true
-<span id="L343" class="ln">   343  </span>	}
-<span id="L344" class="ln">   344  </span>	o.Time = all.Time
-<span id="L345" class="ln">   345  </span>	o.Title = all.Title
-<span id="L346" class="ln">   346  </span>	if all.TitleAlign != nil &amp;&amp; !all.TitleAlign.IsValid() {
-<span id="L347" class="ln">   347  </span>		hasInvalidField = true
-<span id="L348" class="ln">   348  </span>	} else {
-<span id="L349" class="ln">   349  </span>		o.TitleAlign = all.TitleAlign
-<span id="L350" class="ln">   350  </span>	}
-<span id="L351" class="ln">   351  </span>	o.TitleSize = all.TitleSize
-<span id="L352" class="ln">   352  </span>	if !all.Type.IsValid() {
-<span id="L353" class="ln">   353  </span>		hasInvalidField = true
-<span id="L354" class="ln">   354  </span>	} else {
-<span id="L355" class="ln">   355  </span>		o.Type = *all.Type
-<span id="L356" class="ln">   356  </span>	}
-<span id="L357" class="ln">   357  </span>
-<span id="L358" class="ln">   358  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L359" class="ln">   359  </span>		o.AdditionalProperties = additionalProperties
-<span id="L360" class="ln">   360  </span>	}
-<span id="L361" class="ln">   361  </span>
-<span id="L362" class="ln">   362  </span>	if hasInvalidField {
-<span id="L363" class="ln">   363  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L364" class="ln">   364  </span>	}
+<span id="L341" class="ln">   341  </span>	o.Time = all.Time
+<span id="L342" class="ln">   342  </span>	o.Title = all.Title
+<span id="L343" class="ln">   343  </span>	if all.TitleAlign != nil &amp;&amp; !all.TitleAlign.IsValid() {
+<span id="L344" class="ln">   344  </span>		hasInvalidField = true
+<span id="L345" class="ln">   345  </span>	} else {
+<span id="L346" class="ln">   346  </span>		o.TitleAlign = all.TitleAlign
+<span id="L347" class="ln">   347  </span>	}
+<span id="L348" class="ln">   348  </span>	o.TitleSize = all.TitleSize
+<span id="L349" class="ln">   349  </span>	if !all.Type.IsValid() {
+<span id="L350" class="ln">   350  </span>		hasInvalidField = true
+<span id="L351" class="ln">   351  </span>	} else {
+<span id="L352" class="ln">   352  </span>		o.Type = *all.Type
+<span id="L353" class="ln">   353  </span>	}
+<span id="L354" class="ln">   354  </span>
+<span id="L355" class="ln">   355  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L356" class="ln">   356  </span>		o.AdditionalProperties = additionalProperties
+<span id="L357" class="ln">   357  </span>	}
+<span id="L358" class="ln">   358  </span>
+<span id="L359" class="ln">   359  </span>	if hasInvalidField {
+<span id="L360" class="ln">   360  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L361" class="ln">   361  </span>	}
+<span id="L362" class="ln">   362  </span>
+<span id="L363" class="ln">   363  </span>	return nil
+<span id="L364" class="ln">   364  </span>}
 <span id="L365" class="ln">   365  </span>
-<span id="L366" class="ln">   366  </span>	return nil
-<span id="L367" class="ln">   367  </span>}
-<span id="L368" class="ln">   368  </span>
 </pre><p></p>
 
 <div id="footer">

@@ -461,42 +461,39 @@
 <span id="L404" class="ln">   404  </span>		hasInvalidField = true
 <span id="L405" class="ln">   405  </span>	}
 <span id="L406" class="ln">   406  </span>	o.Requests = *all.Requests
-<span id="L407" class="ln">   407  </span>	if all.Time != nil &amp;&amp; all.Time.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L408" class="ln">   408  </span>		hasInvalidField = true
-<span id="L409" class="ln">   409  </span>	}
-<span id="L410" class="ln">   410  </span>	o.Time = all.Time
-<span id="L411" class="ln">   411  </span>	o.Title = all.Title
-<span id="L412" class="ln">   412  </span>	if all.TitleAlign != nil &amp;&amp; !all.TitleAlign.IsValid() {
-<span id="L413" class="ln">   413  </span>		hasInvalidField = true
-<span id="L414" class="ln">   414  </span>	} else {
-<span id="L415" class="ln">   415  </span>		o.TitleAlign = all.TitleAlign
-<span id="L416" class="ln">   416  </span>	}
-<span id="L417" class="ln">   417  </span>	o.TitleSize = all.TitleSize
-<span id="L418" class="ln">   418  </span>	if !all.Type.IsValid() {
-<span id="L419" class="ln">   419  </span>		hasInvalidField = true
-<span id="L420" class="ln">   420  </span>	} else {
-<span id="L421" class="ln">   421  </span>		o.Type = *all.Type
+<span id="L407" class="ln">   407  </span>	o.Time = all.Time
+<span id="L408" class="ln">   408  </span>	o.Title = all.Title
+<span id="L409" class="ln">   409  </span>	if all.TitleAlign != nil &amp;&amp; !all.TitleAlign.IsValid() {
+<span id="L410" class="ln">   410  </span>		hasInvalidField = true
+<span id="L411" class="ln">   411  </span>	} else {
+<span id="L412" class="ln">   412  </span>		o.TitleAlign = all.TitleAlign
+<span id="L413" class="ln">   413  </span>	}
+<span id="L414" class="ln">   414  </span>	o.TitleSize = all.TitleSize
+<span id="L415" class="ln">   415  </span>	if !all.Type.IsValid() {
+<span id="L416" class="ln">   416  </span>		hasInvalidField = true
+<span id="L417" class="ln">   417  </span>	} else {
+<span id="L418" class="ln">   418  </span>		o.Type = *all.Type
+<span id="L419" class="ln">   419  </span>	}
+<span id="L420" class="ln">   420  </span>	if all.Xaxis != nil &amp;&amp; all.Xaxis.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L421" class="ln">   421  </span>		hasInvalidField = true
 <span id="L422" class="ln">   422  </span>	}
-<span id="L423" class="ln">   423  </span>	if all.Xaxis != nil &amp;&amp; all.Xaxis.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L424" class="ln">   424  </span>		hasInvalidField = true
-<span id="L425" class="ln">   425  </span>	}
-<span id="L426" class="ln">   426  </span>	o.Xaxis = all.Xaxis
-<span id="L427" class="ln">   427  </span>	if all.Yaxis != nil &amp;&amp; all.Yaxis.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L428" class="ln">   428  </span>		hasInvalidField = true
-<span id="L429" class="ln">   429  </span>	}
-<span id="L430" class="ln">   430  </span>	o.Yaxis = all.Yaxis
-<span id="L431" class="ln">   431  </span>
-<span id="L432" class="ln">   432  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L433" class="ln">   433  </span>		o.AdditionalProperties = additionalProperties
-<span id="L434" class="ln">   434  </span>	}
-<span id="L435" class="ln">   435  </span>
-<span id="L436" class="ln">   436  </span>	if hasInvalidField {
-<span id="L437" class="ln">   437  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L438" class="ln">   438  </span>	}
+<span id="L423" class="ln">   423  </span>	o.Xaxis = all.Xaxis
+<span id="L424" class="ln">   424  </span>	if all.Yaxis != nil &amp;&amp; all.Yaxis.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L425" class="ln">   425  </span>		hasInvalidField = true
+<span id="L426" class="ln">   426  </span>	}
+<span id="L427" class="ln">   427  </span>	o.Yaxis = all.Yaxis
+<span id="L428" class="ln">   428  </span>
+<span id="L429" class="ln">   429  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L430" class="ln">   430  </span>		o.AdditionalProperties = additionalProperties
+<span id="L431" class="ln">   431  </span>	}
+<span id="L432" class="ln">   432  </span>
+<span id="L433" class="ln">   433  </span>	if hasInvalidField {
+<span id="L434" class="ln">   434  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L435" class="ln">   435  </span>	}
+<span id="L436" class="ln">   436  </span>
+<span id="L437" class="ln">   437  </span>	return nil
+<span id="L438" class="ln">   438  </span>}
 <span id="L439" class="ln">   439  </span>
-<span id="L440" class="ln">   440  </span>	return nil
-<span id="L441" class="ln">   441  </span>}
-<span id="L442" class="ln">   442  </span>
 </pre><p></p>
 
 <div id="footer">

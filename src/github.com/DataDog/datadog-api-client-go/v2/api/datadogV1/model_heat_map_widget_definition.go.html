@@ -494,38 +494,35 @@
 <span id="L437" class="ln">   437  </span>	o.LegendSize = all.LegendSize
 <span id="L438" class="ln">   438  </span>	o.Requests = *all.Requests
 <span id="L439" class="ln">   439  </span>	o.ShowLegend = all.ShowLegend
-<span id="L440" class="ln">   440  </span>	if all.Time != nil &amp;&amp; all.Time.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L441" class="ln">   441  </span>		hasInvalidField = true
-<span id="L442" class="ln">   442  </span>	}
-<span id="L443" class="ln">   443  </span>	o.Time = all.Time
-<span id="L444" class="ln">   444  </span>	o.Title = all.Title
-<span id="L445" class="ln">   445  </span>	if all.TitleAlign != nil &amp;&amp; !all.TitleAlign.IsValid() {
-<span id="L446" class="ln">   446  </span>		hasInvalidField = true
-<span id="L447" class="ln">   447  </span>	} else {
-<span id="L448" class="ln">   448  </span>		o.TitleAlign = all.TitleAlign
-<span id="L449" class="ln">   449  </span>	}
-<span id="L450" class="ln">   450  </span>	o.TitleSize = all.TitleSize
-<span id="L451" class="ln">   451  </span>	if !all.Type.IsValid() {
-<span id="L452" class="ln">   452  </span>		hasInvalidField = true
-<span id="L453" class="ln">   453  </span>	} else {
-<span id="L454" class="ln">   454  </span>		o.Type = *all.Type
+<span id="L440" class="ln">   440  </span>	o.Time = all.Time
+<span id="L441" class="ln">   441  </span>	o.Title = all.Title
+<span id="L442" class="ln">   442  </span>	if all.TitleAlign != nil &amp;&amp; !all.TitleAlign.IsValid() {
+<span id="L443" class="ln">   443  </span>		hasInvalidField = true
+<span id="L444" class="ln">   444  </span>	} else {
+<span id="L445" class="ln">   445  </span>		o.TitleAlign = all.TitleAlign
+<span id="L446" class="ln">   446  </span>	}
+<span id="L447" class="ln">   447  </span>	o.TitleSize = all.TitleSize
+<span id="L448" class="ln">   448  </span>	if !all.Type.IsValid() {
+<span id="L449" class="ln">   449  </span>		hasInvalidField = true
+<span id="L450" class="ln">   450  </span>	} else {
+<span id="L451" class="ln">   451  </span>		o.Type = *all.Type
+<span id="L452" class="ln">   452  </span>	}
+<span id="L453" class="ln">   453  </span>	if all.Yaxis != nil &amp;&amp; all.Yaxis.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L454" class="ln">   454  </span>		hasInvalidField = true
 <span id="L455" class="ln">   455  </span>	}
-<span id="L456" class="ln">   456  </span>	if all.Yaxis != nil &amp;&amp; all.Yaxis.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L457" class="ln">   457  </span>		hasInvalidField = true
-<span id="L458" class="ln">   458  </span>	}
-<span id="L459" class="ln">   459  </span>	o.Yaxis = all.Yaxis
-<span id="L460" class="ln">   460  </span>
-<span id="L461" class="ln">   461  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L462" class="ln">   462  </span>		o.AdditionalProperties = additionalProperties
-<span id="L463" class="ln">   463  </span>	}
-<span id="L464" class="ln">   464  </span>
-<span id="L465" class="ln">   465  </span>	if hasInvalidField {
-<span id="L466" class="ln">   466  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L467" class="ln">   467  </span>	}
+<span id="L456" class="ln">   456  </span>	o.Yaxis = all.Yaxis
+<span id="L457" class="ln">   457  </span>
+<span id="L458" class="ln">   458  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L459" class="ln">   459  </span>		o.AdditionalProperties = additionalProperties
+<span id="L460" class="ln">   460  </span>	}
+<span id="L461" class="ln">   461  </span>
+<span id="L462" class="ln">   462  </span>	if hasInvalidField {
+<span id="L463" class="ln">   463  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L464" class="ln">   464  </span>	}
+<span id="L465" class="ln">   465  </span>
+<span id="L466" class="ln">   466  </span>	return nil
+<span id="L467" class="ln">   467  </span>}
 <span id="L468" class="ln">   468  </span>
-<span id="L469" class="ln">   469  </span>	return nil
-<span id="L470" class="ln">   470  </span>}
-<span id="L471" class="ln">   471  </span>
 </pre><p></p>
 
 <div id="footer">

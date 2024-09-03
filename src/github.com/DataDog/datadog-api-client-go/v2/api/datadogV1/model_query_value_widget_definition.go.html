@@ -533,38 +533,35 @@
 <span id="L476" class="ln">   476  </span>	} else {
 <span id="L477" class="ln">   477  </span>		o.TextAlign = all.TextAlign
 <span id="L478" class="ln">   478  </span>	}
-<span id="L479" class="ln">   479  </span>	if all.Time != nil &amp;&amp; all.Time.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L480" class="ln">   480  </span>		hasInvalidField = true
-<span id="L481" class="ln">   481  </span>	}
-<span id="L482" class="ln">   482  </span>	o.Time = all.Time
-<span id="L483" class="ln">   483  </span>	if all.TimeseriesBackground != nil &amp;&amp; all.TimeseriesBackground.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L484" class="ln">   484  </span>		hasInvalidField = true
-<span id="L485" class="ln">   485  </span>	}
-<span id="L486" class="ln">   486  </span>	o.TimeseriesBackground = all.TimeseriesBackground
-<span id="L487" class="ln">   487  </span>	o.Title = all.Title
-<span id="L488" class="ln">   488  </span>	if all.TitleAlign != nil &amp;&amp; !all.TitleAlign.IsValid() {
-<span id="L489" class="ln">   489  </span>		hasInvalidField = true
-<span id="L490" class="ln">   490  </span>	} else {
-<span id="L491" class="ln">   491  </span>		o.TitleAlign = all.TitleAlign
-<span id="L492" class="ln">   492  </span>	}
-<span id="L493" class="ln">   493  </span>	o.TitleSize = all.TitleSize
-<span id="L494" class="ln">   494  </span>	if !all.Type.IsValid() {
-<span id="L495" class="ln">   495  </span>		hasInvalidField = true
-<span id="L496" class="ln">   496  </span>	} else {
-<span id="L497" class="ln">   497  </span>		o.Type = *all.Type
-<span id="L498" class="ln">   498  </span>	}
-<span id="L499" class="ln">   499  </span>
-<span id="L500" class="ln">   500  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L501" class="ln">   501  </span>		o.AdditionalProperties = additionalProperties
-<span id="L502" class="ln">   502  </span>	}
-<span id="L503" class="ln">   503  </span>
-<span id="L504" class="ln">   504  </span>	if hasInvalidField {
-<span id="L505" class="ln">   505  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L506" class="ln">   506  </span>	}
+<span id="L479" class="ln">   479  </span>	o.Time = all.Time
+<span id="L480" class="ln">   480  </span>	if all.TimeseriesBackground != nil &amp;&amp; all.TimeseriesBackground.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L481" class="ln">   481  </span>		hasInvalidField = true
+<span id="L482" class="ln">   482  </span>	}
+<span id="L483" class="ln">   483  </span>	o.TimeseriesBackground = all.TimeseriesBackground
+<span id="L484" class="ln">   484  </span>	o.Title = all.Title
+<span id="L485" class="ln">   485  </span>	if all.TitleAlign != nil &amp;&amp; !all.TitleAlign.IsValid() {
+<span id="L486" class="ln">   486  </span>		hasInvalidField = true
+<span id="L487" class="ln">   487  </span>	} else {
+<span id="L488" class="ln">   488  </span>		o.TitleAlign = all.TitleAlign
+<span id="L489" class="ln">   489  </span>	}
+<span id="L490" class="ln">   490  </span>	o.TitleSize = all.TitleSize
+<span id="L491" class="ln">   491  </span>	if !all.Type.IsValid() {
+<span id="L492" class="ln">   492  </span>		hasInvalidField = true
+<span id="L493" class="ln">   493  </span>	} else {
+<span id="L494" class="ln">   494  </span>		o.Type = *all.Type
+<span id="L495" class="ln">   495  </span>	}
+<span id="L496" class="ln">   496  </span>
+<span id="L497" class="ln">   497  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L498" class="ln">   498  </span>		o.AdditionalProperties = additionalProperties
+<span id="L499" class="ln">   499  </span>	}
+<span id="L500" class="ln">   500  </span>
+<span id="L501" class="ln">   501  </span>	if hasInvalidField {
+<span id="L502" class="ln">   502  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L503" class="ln">   503  </span>	}
+<span id="L504" class="ln">   504  </span>
+<span id="L505" class="ln">   505  </span>	return nil
+<span id="L506" class="ln">   506  </span>}
 <span id="L507" class="ln">   507  </span>
-<span id="L508" class="ln">   508  </span>	return nil
-<span id="L509" class="ln">   509  </span>}
-<span id="L510" class="ln">   510  </span>
 </pre><p></p>
 
 <div id="footer">
