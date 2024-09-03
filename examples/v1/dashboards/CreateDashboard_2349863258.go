@@ -29,8 +29,9 @@ func main() {
 						Title:      datadog.PtrString(""),
 						TitleSize:  datadog.PtrString("16"),
 						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Time:       &datadogV1.WidgetTime{},
-						Type:       datadogV1.QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE,
+						Time: &datadogV1.WidgetTime{
+							WidgetLegacyLiveSpan: &datadogV1.WidgetLegacyLiveSpan{}},
+						Type: datadogV1.QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE,
 						Requests: []datadogV1.QueryValueWidgetRequest{
 							{
 								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),

@@ -29,7 +29,8 @@ func main() {
 							datadogV1.TIMESERIESWIDGETLEGENDCOLUMN_VALUE,
 							datadogV1.TIMESERIESWIDGETLEGENDCOLUMN_SUM,
 						},
-						Time: &datadogV1.WidgetTime{},
+						Time: &datadogV1.WidgetTime{
+							WidgetLegacyLiveSpan: &datadogV1.WidgetLegacyLiveSpan{}},
 						Type: datadogV1.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
 						Requests: []datadogV1.TimeseriesWidgetRequest{
 							{

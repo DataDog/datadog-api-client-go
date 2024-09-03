@@ -26,8 +26,9 @@ func main() {
 				},
 				Definition: datadogV1.WidgetDefinition{
 					ServiceSummaryWidgetDefinition: &datadogV1.ServiceSummaryWidgetDefinition{
-						Title:            datadog.PtrString("Service Summary"),
-						Time:             &datadogV1.WidgetTime{},
+						Title: datadog.PtrString("Service Summary"),
+						Time: &datadogV1.WidgetTime{
+							WidgetLegacyLiveSpan: &datadogV1.WidgetLegacyLiveSpan{}},
 						Type:             datadogV1.SERVICESUMMARYWIDGETDEFINITIONTYPE_TRACE_SERVICE,
 						Env:              "none",
 						Service:          "",
