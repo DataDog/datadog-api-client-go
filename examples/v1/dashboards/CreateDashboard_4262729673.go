@@ -1,4 +1,4 @@
-// Create a new timeseries widget with ci_tests data source
+// Create a new timeseries widget with legacy live span time format
 
 package main
 
@@ -14,7 +14,7 @@ import (
 
 func main() {
 	body := datadogV1.Dashboard{
-		Title: "Example-Dashboard with ci_tests datasource",
+		Title: "Example-Dashboard with legacy live span time",
 		Widgets: []datadogV1.Widget{
 			{
 				Definition: datadogV1.WidgetDefinition{
@@ -30,7 +30,9 @@ func main() {
 							datadogV1.TIMESERIESWIDGETLEGENDCOLUMN_SUM,
 						},
 						Time: &datadogV1.WidgetTime{
-							WidgetLegacyLiveSpan: &datadogV1.WidgetLegacyLiveSpan{}},
+							WidgetLegacyLiveSpan: &datadogV1.WidgetLegacyLiveSpan{
+								LiveSpan: datadogV1.WIDGETLIVESPAN_PAST_FIVE_MINUTES.Ptr(),
+							}},
 						Type: datadogV1.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
 						Requests: []datadogV1.TimeseriesWidgetRequest{
 							{
@@ -42,16 +44,17 @@ func main() {
 								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
 									datadogV1.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionEventQueryDefinition: &datadogV1.FormulaAndFunctionEventQueryDefinition{
-											DataSource: datadogV1.FORMULAANDFUNCTIONEVENTSDATASOURCE_CI_TESTS,
+											DataSource: datadogV1.FORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES,
 											Name:       "query1",
 											Search: &datadogV1.FormulaAndFunctionEventQueryDefinitionSearch{
-												Query: "test_level:test",
+												Query: "ci_level:job",
 											},
 											Indexes: []string{
 												"*",
 											},
 											Compute: datadogV1.FormulaAndFunctionEventQueryDefinitionCompute{
 												Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+												Metric:      datadog.PtrString("@ci.queue_time"),
 											},
 											GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{},
 										}},

@@ -29,7 +29,8 @@ func main() {
 						Title:      datadog.PtrString("Run workflow title"),
 						TitleSize:  datadog.PtrString("16"),
 						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Time:       &datadogV1.WidgetTime{},
+						Time: &datadogV1.WidgetTime{
+							WidgetLegacyLiveSpan: &datadogV1.WidgetLegacyLiveSpan{}},
 						Type:       datadogV1.RUNWORKFLOWWIDGETDEFINITIONTYPE_RUN_WORKFLOW,
 						WorkflowId: "2e055f16-8b6a-4cdd-b452-17a34c44b160",
 						Inputs: []datadogV1.RunWorkflowWidgetInput{

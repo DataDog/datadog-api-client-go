@@ -29,8 +29,9 @@ func main() {
 						Title:      datadog.PtrString(""),
 						TitleSize:  datadog.PtrString("16"),
 						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Time:       &datadogV1.WidgetTime{},
-						Type:       datadogV1.SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT,
+						Time: &datadogV1.WidgetTime{
+							WidgetLegacyLiveSpan: &datadogV1.WidgetLegacyLiveSpan{}},
+						Type: datadogV1.SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT,
 						Requests: datadogV1.ScatterPlotWidgetDefinitionRequests{
 							Table: &datadogV1.ScatterplotTableRequest{
 								Formulas: []datadogV1.ScatterplotWidgetFormula{

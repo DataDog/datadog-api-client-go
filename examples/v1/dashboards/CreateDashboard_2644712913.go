@@ -24,8 +24,9 @@ func main() {
 						Title:      datadog.PtrString(""),
 						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Precision:  datadog.PtrInt64(2),
-						Time:       &datadogV1.WidgetTime{},
-						Autoscale:  datadog.PtrBool(true),
+						Time: &datadogV1.WidgetTime{
+							WidgetLegacyLiveSpan: &datadogV1.WidgetLegacyLiveSpan{}},
+						Autoscale: datadog.PtrBool(true),
 						Requests: []datadogV1.QueryValueWidgetRequest{
 							{
 								Formulas: []datadogV1.WidgetFormula{

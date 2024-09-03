@@ -48,8 +48,9 @@ func main() {
 							},
 						},
 						Time: &datadogV1.WidgetTime{
-							LiveSpan: datadogV1.WIDGETLIVESPAN_WEEK_TO_DATE.Ptr(),
-						},
+							WidgetLegacyLiveSpan: &datadogV1.WidgetLegacyLiveSpan{
+								LiveSpan: datadogV1.WIDGETLIVESPAN_WEEK_TO_DATE.Ptr(),
+							}},
 					}},
 			},
 		},

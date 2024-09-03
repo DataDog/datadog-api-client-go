@@ -29,7 +29,8 @@ func main() {
 						Title:      datadog.PtrString(""),
 						TitleSize:  datadog.PtrString("16"),
 						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Time:       &datadogV1.WidgetTime{},
+						Time: &datadogV1.WidgetTime{
+							WidgetLegacyLiveSpan: &datadogV1.WidgetLegacyLiveSpan{}},
 						Style: &datadogV1.ToplistWidgetStyle{
 							Display: &datadogV1.ToplistWidgetDisplay{
 								ToplistWidgetStacked: &datadogV1.ToplistWidgetStacked{
