@@ -67,7 +67,7 @@
 <span id="L10" class="ln">    10  </span>
 <span id="L11" class="ln">    11  </span><span class="comment">// SyntheticsParsingOptions Parsing options for variables to extract.</span>
 <span id="L12" class="ln">    12  </span>type SyntheticsParsingOptions struct {
-<span id="L13" class="ln">    13  </span>	<span class="comment">// When type is `http_header`, name of the header to use to extract the value.</span>
+<span id="L13" class="ln">    13  </span>	<span class="comment">// When type is `http_header` or `grpc_metadata`, name of the header or metadatum to extract.</span>
 <span id="L14" class="ln">    14  </span>	Field *string `json:&#34;field,omitempty&#34;`
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Name of the variable to extract.</span>
 <span id="L16" class="ln">    16  </span>	Name *string `json:&#34;name,omitempty&#34;`
@@ -75,8 +75,8 @@
 <span id="L18" class="ln">    18  </span>	Parser *SyntheticsVariableParser `json:&#34;parser,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// Determines whether or not the extracted value will be obfuscated.</span>
 <span id="L20" class="ln">    20  </span>	Secure *bool `json:&#34;secure,omitempty&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// Property of the Synthetic Test Response to use for a Synthetic global variable.</span>
-<span id="L22" class="ln">    22  </span>	Type *SyntheticsGlobalVariableParseTestOptionsType `json:&#34;type,omitempty&#34;`
+<span id="L21" class="ln">    21  </span>	<span class="comment">// Property of the Synthetic Test Response to extract into a local variable.</span>
+<span id="L22" class="ln">    22  </span>	Type *SyntheticsLocalVariableParsingOptionsType `json:&#34;type,omitempty&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L24" class="ln">    24  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L25" class="ln">    25  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -212,9 +212,9 @@
 <span id="L155" class="ln">   155  </span>}
 <span id="L156" class="ln">   156  </span>
 <span id="L157" class="ln">   157  </span><span class="comment">// GetType returns the Type field value if set, zero value otherwise.</span>
-<span id="L158" class="ln">   158  </span>func (o *SyntheticsParsingOptions) GetType() SyntheticsGlobalVariableParseTestOptionsType {
+<span id="L158" class="ln">   158  </span>func (o *SyntheticsParsingOptions) GetType() SyntheticsLocalVariableParsingOptionsType {
 <span id="L159" class="ln">   159  </span>	if o == nil || o.Type == nil {
-<span id="L160" class="ln">   160  </span>		var ret SyntheticsGlobalVariableParseTestOptionsType
+<span id="L160" class="ln">   160  </span>		var ret SyntheticsLocalVariableParsingOptionsType
 <span id="L161" class="ln">   161  </span>		return ret
 <span id="L162" class="ln">   162  </span>	}
 <span id="L163" class="ln">   163  </span>	return *o.Type
@@ -222,7 +222,7 @@
 <span id="L165" class="ln">   165  </span>
 <span id="L166" class="ln">   166  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value if set, nil otherwise</span>
 <span id="L167" class="ln">   167  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L168" class="ln">   168  </span>func (o *SyntheticsParsingOptions) GetTypeOk() (*SyntheticsGlobalVariableParseTestOptionsType, bool) {
+<span id="L168" class="ln">   168  </span>func (o *SyntheticsParsingOptions) GetTypeOk() (*SyntheticsLocalVariableParsingOptionsType, bool) {
 <span id="L169" class="ln">   169  </span>	if o == nil || o.Type == nil {
 <span id="L170" class="ln">   170  </span>		return nil, false
 <span id="L171" class="ln">   171  </span>	}
@@ -234,8 +234,8 @@
 <span id="L177" class="ln">   177  </span>	return o != nil &amp;&amp; o.Type != nil
 <span id="L178" class="ln">   178  </span>}
 <span id="L179" class="ln">   179  </span>
-<span id="L180" class="ln">   180  </span><span class="comment">// SetType gets a reference to the given SyntheticsGlobalVariableParseTestOptionsType and assigns it to the Type field.</span>
-<span id="L181" class="ln">   181  </span>func (o *SyntheticsParsingOptions) SetType(v SyntheticsGlobalVariableParseTestOptionsType) {
+<span id="L180" class="ln">   180  </span><span class="comment">// SetType gets a reference to the given SyntheticsLocalVariableParsingOptionsType and assigns it to the Type field.</span>
+<span id="L181" class="ln">   181  </span>func (o *SyntheticsParsingOptions) SetType(v SyntheticsLocalVariableParsingOptionsType) {
 <span id="L182" class="ln">   182  </span>	o.Type = &amp;v
 <span id="L183" class="ln">   183  </span>}
 <span id="L184" class="ln">   184  </span>
@@ -270,11 +270,11 @@
 <span id="L213" class="ln">   213  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L214" class="ln">   214  </span>func (o *SyntheticsParsingOptions) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L215" class="ln">   215  </span>	all := struct {
-<span id="L216" class="ln">   216  </span>		Field  *string                                       `json:&#34;field,omitempty&#34;`
-<span id="L217" class="ln">   217  </span>		Name   *string                                       `json:&#34;name,omitempty&#34;`
-<span id="L218" class="ln">   218  </span>		Parser *SyntheticsVariableParser                     `json:&#34;parser,omitempty&#34;`
-<span id="L219" class="ln">   219  </span>		Secure *bool                                         `json:&#34;secure,omitempty&#34;`
-<span id="L220" class="ln">   220  </span>		Type   *SyntheticsGlobalVariableParseTestOptionsType `json:&#34;type,omitempty&#34;`
+<span id="L216" class="ln">   216  </span>		Field  *string                                    `json:&#34;field,omitempty&#34;`
+<span id="L217" class="ln">   217  </span>		Name   *string                                    `json:&#34;name,omitempty&#34;`
+<span id="L218" class="ln">   218  </span>		Parser *SyntheticsVariableParser                  `json:&#34;parser,omitempty&#34;`
+<span id="L219" class="ln">   219  </span>		Secure *bool                                      `json:&#34;secure,omitempty&#34;`
+<span id="L220" class="ln">   220  </span>		Type   *SyntheticsLocalVariableParsingOptionsType `json:&#34;type,omitempty&#34;`
 <span id="L221" class="ln">   221  </span>	}{}
 <span id="L222" class="ln">   222  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L223" class="ln">   223  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
