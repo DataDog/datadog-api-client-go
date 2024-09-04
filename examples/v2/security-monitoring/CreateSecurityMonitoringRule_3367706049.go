@@ -36,7 +36,7 @@ func main() {
 			Options: datadogV2.SecurityMonitoringRuleOptions{
 				DetectionMethod:   datadogV2.SECURITYMONITORINGRULEDETECTIONMETHOD_THIRD_PARTY.Ptr(),
 				KeepAlive:         datadogV2.SECURITYMONITORINGRULEKEEPALIVE_ZERO_MINUTES.Ptr(),
-				MaxSignalDuration: datadogV2.SECURITYMONITORINGRULEMAXSIGNALDURATION_ZERO_MINUTES.Ptr(),
+				MaxSignalDuration: datadogV2.SECURITYMONITORINGRULEMAXSIGNALDURATION_TEN_MINUTES.Ptr(),
 				ThirdPartyRuleOptions: &datadogV2.SecurityMonitoringRuleThirdPartyOptions{
 					DefaultStatus: datadogV2.SECURITYMONITORINGRULESEVERITY_INFO.Ptr(),
 					RootQueries: []datadogV2.SecurityMonitoringThirdPartyRootQuery{
