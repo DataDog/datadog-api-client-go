@@ -76,6 +76,11 @@ func main() {
 						Target:   "a",
 						Type:     datadogV1.SYNTHETICSASSERTIONBODYHASHTYPE_BODY_HASH,
 					}},
+				datadogV1.SyntheticsAssertion{
+					SyntheticsAssertionJavascript: &datadogV1.SyntheticsAssertionJavascript{
+						Code: "const hello = 'world';",
+						Type: datadogV1.SYNTHETICSASSERTIONJAVASCRIPTTYPE_JAVASCRIPT,
+					}},
 			},
 			ConfigVariables: []datadogV1.SyntheticsConfigVariable{
 				{
