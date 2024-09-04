@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 2.30.0 / 2024-09-04
+
+### Fixed
+* Add `is_totp` and `is_fido` to Synthetic global variables by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2582
+### Added
+* Enable automerging for cloudflare routes. by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2631
+* Enable automerging for Fastly routes. by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2632
+* Enable automerging for opsgenie routes. by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2633
+* Enable auto-merging for keys routes. by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2634
+* Allow 4 group-bys for pattern viz by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2642
+* add url attribute to metrics assets v2 api by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2644
+* Add editable field to suppression rule by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2545
+* Add `num_flex_logs_retention_days` field to logs_indexes api spec by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2645
+* Software catalog openapi spec by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2641
+### Changed
+* allow variables in port by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2624
+* Fix VFTs and extracted local variables enum types by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2604
+* Extend Widget time schema with support for new fixed_span and live_span object by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2629
+### Deprecated
+* mark groupby_simple_monitor as deprecated by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2658
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.29.0...v2.30.0
+
 ## 2.29.0 / 2024-08-12
 
 ### Fixed
