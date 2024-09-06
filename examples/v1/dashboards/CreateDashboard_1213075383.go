@@ -38,6 +38,7 @@ func main() {
 									Legend: datadogV1.TOPLISTWIDGETLEGEND_INLINE,
 								}},
 							Scaling: datadogV1.TOPLISTWIDGETSCALING_RELATIVE.Ptr(),
+							Palette: datadog.PtrString("dog_classic"),
 						},
 						Type: datadogV1.TOPLISTWIDGETDEFINITIONTYPE_TOPLIST,
 						Requests: []datadogV1.ToplistWidgetRequest{
