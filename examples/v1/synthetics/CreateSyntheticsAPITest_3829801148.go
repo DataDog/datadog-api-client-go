@@ -33,7 +33,8 @@ func main() {
 			Request: &datadogV1.SyntheticsTestRequest{
 				Host:    datadog.PtrString("https://datadoghq.com"),
 				Message: datadog.PtrString("message"),
-				Port:    datadog.PtrString("443"),
+				Port: &datadogV1.SyntheticsTestRequestPort{
+					SyntheticsTestRequestNumericalPort: datadog.PtrInt64(443)},
 			},
 		},
 		Locations: []string{

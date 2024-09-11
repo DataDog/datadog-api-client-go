@@ -25,7 +25,8 @@ func main() {
 			},
 			Request: &datadogV1.SyntheticsTestRequest{
 				Host: datadog.PtrString("datadoghq.com"),
-				Port: datadog.PtrString("443"),
+				Port: &datadogV1.SyntheticsTestRequestPort{
+					SyntheticsTestRequestVariablePort: datadog.PtrString("{{ DATADOG_PORT }}")},
 			},
 		},
 		Locations: []string{

@@ -55,7 +55,7 @@ type SyntheticsTestRequest struct {
 	// Persist cookies across redirects.
 	PersistCookies *bool `json:"persistCookies,omitempty"`
 	// Port to use when performing the test.
-	Port *string `json:"port,omitempty"`
+	Port *SyntheticsTestRequestPort `json:"port,omitempty"`
 	// The proxy to perform the test.
 	Proxy *SyntheticsTestRequestProxy `json:"proxy,omitempty"`
 	// Query to use for the test.
@@ -711,9 +711,9 @@ func (o *SyntheticsTestRequest) SetPersistCookies(v bool) {
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
-func (o *SyntheticsTestRequest) GetPort() string {
+func (o *SyntheticsTestRequest) GetPort() SyntheticsTestRequestPort {
 	if o == nil || o.Port == nil {
-		var ret string
+		var ret SyntheticsTestRequestPort
 		return ret
 	}
 	return *o.Port
@@ -721,7 +721,7 @@ func (o *SyntheticsTestRequest) GetPort() string {
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestRequest) GetPortOk() (*string, bool) {
+func (o *SyntheticsTestRequest) GetPortOk() (*SyntheticsTestRequestPort, bool) {
 	if o == nil || o.Port == nil {
 		return nil, false
 	}
@@ -733,8 +733,8 @@ func (o *SyntheticsTestRequest) HasPort() bool {
 	return o != nil && o.Port != nil
 }
 
-// SetPort gets a reference to the given string and assigns it to the Port field.
-func (o *SyntheticsTestRequest) SetPort(v string) {
+// SetPort gets a reference to the given SyntheticsTestRequestPort and assigns it to the Port field.
+func (o *SyntheticsTestRequest) SetPort(v SyntheticsTestRequestPort) {
 	o.Port = &v
 }
 
@@ -1062,7 +1062,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		NoSavingResponseBody     *bool                             `json:"noSavingResponseBody,omitempty"`
 		NumberOfPackets          *int32                            `json:"numberOfPackets,omitempty"`
 		PersistCookies           *bool                             `json:"persistCookies,omitempty"`
-		Port                     *string                           `json:"port,omitempty"`
+		Port                     *SyntheticsTestRequestPort        `json:"port,omitempty"`
 		Proxy                    *SyntheticsTestRequestProxy       `json:"proxy,omitempty"`
 		Query                    interface{}                       `json:"query,omitempty"`
 		Servername               *string                           `json:"servername,omitempty"`
