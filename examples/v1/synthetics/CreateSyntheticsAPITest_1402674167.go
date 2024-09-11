@@ -37,8 +37,9 @@ func main() {
 					}},
 			},
 			Request: &datadogV1.SyntheticsTestRequest{
-				Host:     datadog.PtrString("localhost"),
-				Port:     datadog.PtrString("50051"),
+				Host: datadog.PtrString("localhost"),
+				Port: &datadogV1.SyntheticsTestRequestPort{
+					SyntheticsTestRequestNumericalPort: datadog.PtrInt64(50051)},
 				Service:  datadog.PtrString("Hello"),
 				Method:   datadog.PtrString("GET"),
 				Message:  datadog.PtrString(""),

@@ -86,8 +86,9 @@ func main() {
 								}},
 						},
 						Request: datadogV1.SyntheticsTestRequest{
-							Host:                     datadog.PtrString("grpcbin.test.k6.io"),
-							Port:                     datadog.PtrString("9000"),
+							Host: datadog.PtrString("grpcbin.test.k6.io"),
+							Port: &datadogV1.SyntheticsTestRequestPort{
+								SyntheticsTestRequestNumericalPort: datadog.PtrInt64(9000)},
 							Service:                  datadog.PtrString("grpcbin.GRPCBin"),
 							Method:                   datadog.PtrString("Index"),
 							Message:                  datadog.PtrString("{}"),
