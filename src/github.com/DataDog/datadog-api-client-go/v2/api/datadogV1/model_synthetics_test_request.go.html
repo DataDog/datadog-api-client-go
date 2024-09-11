@@ -112,7 +112,7 @@
 <span id="L55" class="ln">    55  </span>	<span class="comment">// Persist cookies across redirects.</span>
 <span id="L56" class="ln">    56  </span>	PersistCookies *bool `json:&#34;persistCookies,omitempty&#34;`
 <span id="L57" class="ln">    57  </span>	<span class="comment">// Port to use when performing the test.</span>
-<span id="L58" class="ln">    58  </span>	Port *string `json:&#34;port,omitempty&#34;`
+<span id="L58" class="ln">    58  </span>	Port *SyntheticsTestRequestPort `json:&#34;port,omitempty&#34;`
 <span id="L59" class="ln">    59  </span>	<span class="comment">// The proxy to perform the test.</span>
 <span id="L60" class="ln">    60  </span>	Proxy *SyntheticsTestRequestProxy `json:&#34;proxy,omitempty&#34;`
 <span id="L61" class="ln">    61  </span>	<span class="comment">// Query to use for the test.</span>
@@ -768,9 +768,9 @@
 <span id="L711" class="ln">   711  </span>}
 <span id="L712" class="ln">   712  </span>
 <span id="L713" class="ln">   713  </span><span class="comment">// GetPort returns the Port field value if set, zero value otherwise.</span>
-<span id="L714" class="ln">   714  </span>func (o *SyntheticsTestRequest) GetPort() string {
+<span id="L714" class="ln">   714  </span>func (o *SyntheticsTestRequest) GetPort() SyntheticsTestRequestPort {
 <span id="L715" class="ln">   715  </span>	if o == nil || o.Port == nil {
-<span id="L716" class="ln">   716  </span>		var ret string
+<span id="L716" class="ln">   716  </span>		var ret SyntheticsTestRequestPort
 <span id="L717" class="ln">   717  </span>		return ret
 <span id="L718" class="ln">   718  </span>	}
 <span id="L719" class="ln">   719  </span>	return *o.Port
@@ -778,7 +778,7 @@
 <span id="L721" class="ln">   721  </span>
 <span id="L722" class="ln">   722  </span><span class="comment">// GetPortOk returns a tuple with the Port field value if set, nil otherwise</span>
 <span id="L723" class="ln">   723  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L724" class="ln">   724  </span>func (o *SyntheticsTestRequest) GetPortOk() (*string, bool) {
+<span id="L724" class="ln">   724  </span>func (o *SyntheticsTestRequest) GetPortOk() (*SyntheticsTestRequestPort, bool) {
 <span id="L725" class="ln">   725  </span>	if o == nil || o.Port == nil {
 <span id="L726" class="ln">   726  </span>		return nil, false
 <span id="L727" class="ln">   727  </span>	}
@@ -790,8 +790,8 @@
 <span id="L733" class="ln">   733  </span>	return o != nil &amp;&amp; o.Port != nil
 <span id="L734" class="ln">   734  </span>}
 <span id="L735" class="ln">   735  </span>
-<span id="L736" class="ln">   736  </span><span class="comment">// SetPort gets a reference to the given string and assigns it to the Port field.</span>
-<span id="L737" class="ln">   737  </span>func (o *SyntheticsTestRequest) SetPort(v string) {
+<span id="L736" class="ln">   736  </span><span class="comment">// SetPort gets a reference to the given SyntheticsTestRequestPort and assigns it to the Port field.</span>
+<span id="L737" class="ln">   737  </span>func (o *SyntheticsTestRequest) SetPort(v SyntheticsTestRequestPort) {
 <span id="L738" class="ln">   738  </span>	o.Port = &amp;v
 <span id="L739" class="ln">   739  </span>}
 <span id="L740" class="ln">   740  </span>
@@ -1119,7 +1119,7 @@
 <span id="L1062" class="ln">  1062  </span>		NoSavingResponseBody     *bool                             `json:&#34;noSavingResponseBody,omitempty&#34;`
 <span id="L1063" class="ln">  1063  </span>		NumberOfPackets          *int32                            `json:&#34;numberOfPackets,omitempty&#34;`
 <span id="L1064" class="ln">  1064  </span>		PersistCookies           *bool                             `json:&#34;persistCookies,omitempty&#34;`
-<span id="L1065" class="ln">  1065  </span>		Port                     *string                           `json:&#34;port,omitempty&#34;`
+<span id="L1065" class="ln">  1065  </span>		Port                     *SyntheticsTestRequestPort        `json:&#34;port,omitempty&#34;`
 <span id="L1066" class="ln">  1066  </span>		Proxy                    *SyntheticsTestRequestProxy       `json:&#34;proxy,omitempty&#34;`
 <span id="L1067" class="ln">  1067  </span>		Query                    interface{}                       `json:&#34;query,omitempty&#34;`
 <span id="L1068" class="ln">  1068  </span>		Servername               *string                           `json:&#34;servername,omitempty&#34;`
