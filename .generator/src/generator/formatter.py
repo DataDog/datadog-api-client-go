@@ -448,6 +448,13 @@ def format_data_with_schema(
                     raise TypeError(f"{x} is not supported type {schema}")
                 return "true" if x else "false"
 
+            def format_int(x):
+                r = str(x)
+                if "{{" in r and "}}" in r:
+                    # workaround to stop matching templated strings
+                    raise TypeError(f"{x} is not supported type {schema}")
+                return r
+
             def format_uuid(x):
                 return f'uuid.MustParse("{x}")'
 
@@ -455,12 +462,12 @@ def format_data_with_schema(
                 return f"func() io.Reader {{ fp, _ := os.Open({format_string(x)}); return fp }}()"
 
             formatters = {
-                "int32": str,
-                "int64": str,
+                "int32": format_int,
+                "int64": format_int,
                 "double": format_double,
                 "date-time": format_datetime,
                 "number": format_number,
-                "integer": str,
+                "integer": format_int,
                 "boolean": format_bool,
                 "string": format_string,
                 "email": format_string,
