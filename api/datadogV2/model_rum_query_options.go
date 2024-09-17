@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RUMQueryOptions Global query options that are used during the query.
 // Note: Only supply timezone or time offset, not both. Otherwise, the query fails.
@@ -16,9 +22,10 @@ type RUMQueryOptions struct {
 	// The timezone can be specified as GMT, UTC, an offset from UTC (like UTC+1), or as a Timezone Database identifier (like America/New_York).
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRUMQueryOptions instantiates a new RUMQueryOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +47,6 @@ func NewRUMQueryOptionsWithDefaults() *RUMQueryOptions {
 	this.Timezone = &timezone
 	return &this
 }
-
 // GetTimeOffset returns the TimeOffset field value if set, zero value otherwise.
 func (o *RUMQueryOptions) GetTimeOffset() int64 {
 	if o == nil || o.TimeOffset == nil {
@@ -68,6 +74,7 @@ func (o *RUMQueryOptions) HasTimeOffset() bool {
 func (o *RUMQueryOptions) SetTimeOffset(v int64) {
 	o.TimeOffset = &v
 }
+
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *RUMQueryOptions) GetTimezone() string {
@@ -97,6 +104,8 @@ func (o *RUMQueryOptions) SetTimezone(v string) {
 	o.Timezone = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMQueryOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -119,15 +128,15 @@ func (o RUMQueryOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMQueryOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		TimeOffset *int64  `json:"time_offset,omitempty"`
-		Timezone   *string `json:"timezone,omitempty"`
+		TimeOffset *int64 `json:"time_offset,omitempty"`
+		Timezone *string `json:"timezone,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"time_offset", "timezone"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "time_offset", "timezone",  })
 	} else {
 		return err
 	}

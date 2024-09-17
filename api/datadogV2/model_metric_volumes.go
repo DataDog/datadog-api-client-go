@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricVolumes - Possible response objects for a metric's volume.
 type MetricVolumes struct {
-	MetricDistinctVolume        *MetricDistinctVolume
+	MetricDistinctVolume *MetricDistinctVolume
 	MetricIngestedIndexedVolume *MetricIngestedIndexedVolume
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj MetricVolumes) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.MetricDistinctVolume)
 	}
 
+
 	if obj.MetricIngestedIndexedVolume != nil {
 		return datadog.Marshal(&obj.MetricIngestedIndexedVolume)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj MetricVolumes) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *MetricVolumes) GetActualInstance() interface{} {
+func (obj *MetricVolumes) GetActualInstance() (interface{}) {
 	if obj.MetricDistinctVolume != nil {
 		return obj.MetricDistinctVolume
 	}
 
+
 	if obj.MetricIngestedIndexedVolume != nil {
 		return obj.MetricIngestedIndexedVolume
 	}
+
 
 	// all schemas are nil
 	return nil

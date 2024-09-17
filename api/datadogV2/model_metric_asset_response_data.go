@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricAssetResponseData Metric assets response data.
 type MetricAssetResponseData struct {
@@ -19,9 +23,10 @@ type MetricAssetResponseData struct {
 	// The metric resource type.
 	Type MetricType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricAssetResponseData instantiates a new MetricAssetResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewMetricAssetResponseDataWithDefaults() *MetricAssetResponseData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *MetricAssetResponseData) GetId() string {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *MetricAssetResponseData) GetIdOk() (*string, bool) {
 func (o *MetricAssetResponseData) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *MetricAssetResponseData) GetRelationships() MetricAssetResponseRelationships {
@@ -95,6 +100,7 @@ func (o *MetricAssetResponseData) SetRelationships(v MetricAssetResponseRelation
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *MetricAssetResponseData) GetType() MetricType {
 	if o == nil {
@@ -118,6 +124,8 @@ func (o *MetricAssetResponseData) SetType(v MetricType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricAssetResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -139,9 +147,9 @@ func (o MetricAssetResponseData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricAssetResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id            *string                           `json:"id"`
+		Id *string `json:"id"`
 		Relationships *MetricAssetResponseRelationships `json:"relationships,omitempty"`
-		Type          *MetricType                       `json:"type"`
+		Type *MetricType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -154,14 +162,14 @@ func (o *MetricAssetResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "relationships", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Id = *all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

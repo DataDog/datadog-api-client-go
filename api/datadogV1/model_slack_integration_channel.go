@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SlackIntegrationChannel The Slack channel configuration.
 type SlackIntegrationChannel struct {
@@ -15,9 +21,10 @@ type SlackIntegrationChannel struct {
 	// Your channel name.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSlackIntegrationChannel instantiates a new SlackIntegrationChannel object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSlackIntegrationChannelWithDefaults() *SlackIntegrationChannel {
 	this := SlackIntegrationChannel{}
 	return &this
 }
-
 // GetDisplay returns the Display field value if set, zero value otherwise.
 func (o *SlackIntegrationChannel) GetDisplay() SlackIntegrationChannelDisplay {
 	if o == nil || o.Display == nil {
@@ -63,6 +69,7 @@ func (o *SlackIntegrationChannel) HasDisplay() bool {
 func (o *SlackIntegrationChannel) SetDisplay(v SlackIntegrationChannelDisplay) {
 	o.Display = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SlackIntegrationChannel) GetName() string {
@@ -92,6 +99,8 @@ func (o *SlackIntegrationChannel) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SlackIntegrationChannel) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,20 +124,20 @@ func (o SlackIntegrationChannel) MarshalJSON() ([]byte, error) {
 func (o *SlackIntegrationChannel) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Display *SlackIntegrationChannelDisplay `json:"display,omitempty"`
-		Name    *string                         `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"display", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "display", "name",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Display != nil && all.Display.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Display != nil && all.Display.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Display = all.Display

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OutcomesBatchResponseAttributes The JSON:API attributes for an outcome.
 type OutcomesBatchResponseAttributes struct {
@@ -23,9 +27,10 @@ type OutcomesBatchResponseAttributes struct {
 	// The state of the rule evaluation.
 	State *State `json:"state,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOutcomesBatchResponseAttributes instantiates a new OutcomesBatchResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewOutcomesBatchResponseAttributesWithDefaults() *OutcomesBatchResponseAttr
 	this := OutcomesBatchResponseAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *OutcomesBatchResponseAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -71,6 +75,7 @@ func (o *OutcomesBatchResponseAttributes) HasCreatedAt() bool {
 func (o *OutcomesBatchResponseAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *OutcomesBatchResponseAttributes) GetModifiedAt() time.Time {
@@ -100,6 +105,7 @@ func (o *OutcomesBatchResponseAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
+
 // GetRemarks returns the Remarks field value if set, zero value otherwise.
 func (o *OutcomesBatchResponseAttributes) GetRemarks() string {
 	if o == nil || o.Remarks == nil {
@@ -127,6 +133,7 @@ func (o *OutcomesBatchResponseAttributes) HasRemarks() bool {
 func (o *OutcomesBatchResponseAttributes) SetRemarks(v string) {
 	o.Remarks = &v
 }
+
 
 // GetServiceName returns the ServiceName field value if set, zero value otherwise.
 func (o *OutcomesBatchResponseAttributes) GetServiceName() string {
@@ -156,6 +163,7 @@ func (o *OutcomesBatchResponseAttributes) SetServiceName(v string) {
 	o.ServiceName = &v
 }
 
+
 // GetState returns the State field value if set, zero value otherwise.
 func (o *OutcomesBatchResponseAttributes) GetState() State {
 	if o == nil || o.State == nil {
@@ -183,6 +191,8 @@ func (o *OutcomesBatchResponseAttributes) HasState() bool {
 func (o *OutcomesBatchResponseAttributes) SetState(v State) {
 	o.State = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o OutcomesBatchResponseAttributes) MarshalJSON() ([]byte, error) {
@@ -223,18 +233,18 @@ func (o OutcomesBatchResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OutcomesBatchResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt   *time.Time `json:"created_at,omitempty"`
-		ModifiedAt  *time.Time `json:"modified_at,omitempty"`
-		Remarks     *string    `json:"remarks,omitempty"`
-		ServiceName *string    `json:"service_name,omitempty"`
-		State       *State     `json:"state,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"`
+		Remarks *string `json:"remarks,omitempty"`
+		ServiceName *string `json:"service_name,omitempty"`
+		State *State `json:"state,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "modified_at", "remarks", "service_name", "state"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_at", "modified_at", "remarks", "service_name", "state",  })
 	} else {
 		return err
 	}
@@ -244,7 +254,7 @@ func (o *OutcomesBatchResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.ModifiedAt = all.ModifiedAt
 	o.Remarks = all.Remarks
 	o.ServiceName = all.ServiceName
-	if all.State != nil && !all.State.IsValid() {
+	if all.State != nil &&!all.State.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.State = all.State

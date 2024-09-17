@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CaseAssignRequest Case assign request
 type CaseAssignRequest struct {
 	// Case assign
 	Data CaseAssign `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCaseAssignRequest instantiates a new CaseAssignRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewCaseAssignRequestWithDefaults() *CaseAssignRequest {
 	this := CaseAssignRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *CaseAssignRequest) GetData() CaseAssign {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *CaseAssignRequest) GetDataOk() (*CaseAssign, bool) {
 func (o *CaseAssignRequest) SetData(v CaseAssign) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CaseAssignRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *CaseAssignRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

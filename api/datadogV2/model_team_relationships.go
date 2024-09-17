@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamRelationships Resources related to a team
 type TeamRelationships struct {
@@ -15,9 +21,10 @@ type TeamRelationships struct {
 	// Relationship between a user team permission and a team
 	UserTeamPermissions *RelationshipToUserTeamPermission `json:"user_team_permissions,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamRelationships instantiates a new TeamRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewTeamRelationshipsWithDefaults() *TeamRelationships {
 	this := TeamRelationships{}
 	return &this
 }
-
 // GetTeamLinks returns the TeamLinks field value if set, zero value otherwise.
 func (o *TeamRelationships) GetTeamLinks() RelationshipToTeamLinks {
 	if o == nil || o.TeamLinks == nil {
@@ -63,6 +69,7 @@ func (o *TeamRelationships) HasTeamLinks() bool {
 func (o *TeamRelationships) SetTeamLinks(v RelationshipToTeamLinks) {
 	o.TeamLinks = &v
 }
+
 
 // GetUserTeamPermissions returns the UserTeamPermissions field value if set, zero value otherwise.
 func (o *TeamRelationships) GetUserTeamPermissions() RelationshipToUserTeamPermission {
@@ -92,6 +99,8 @@ func (o *TeamRelationships) SetUserTeamPermissions(v RelationshipToUserTeamPermi
 	o.UserTeamPermissions = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o TeamRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		TeamLinks           *RelationshipToTeamLinks          `json:"team_links,omitempty"`
+		TeamLinks *RelationshipToTeamLinks `json:"team_links,omitempty"`
 		UserTeamPermissions *RelationshipToUserTeamPermission `json:"user_team_permissions,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,17 +131,17 @@ func (o *TeamRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"team_links", "user_team_permissions"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "team_links", "user_team_permissions",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.TeamLinks != nil && all.TeamLinks.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TeamLinks != nil && all.TeamLinks.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TeamLinks = all.TeamLinks
-	if all.UserTeamPermissions != nil && all.UserTeamPermissions.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.UserTeamPermissions != nil && all.UserTeamPermissions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.UserTeamPermissions = all.UserTeamPermissions

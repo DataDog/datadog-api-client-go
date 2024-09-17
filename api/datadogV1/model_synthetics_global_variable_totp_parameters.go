@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsGlobalVariableTOTPParameters Parameters for the TOTP/MFA variable
 type SyntheticsGlobalVariableTOTPParameters struct {
@@ -15,9 +21,10 @@ type SyntheticsGlobalVariableTOTPParameters struct {
 	// Interval for which to refresh the token (in seconds).
 	RefreshInterval *int32 `json:"refresh_interval,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsGlobalVariableTOTPParameters instantiates a new SyntheticsGlobalVariableTOTPParameters object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSyntheticsGlobalVariableTOTPParametersWithDefaults() *SyntheticsGlobalVa
 	this := SyntheticsGlobalVariableTOTPParameters{}
 	return &this
 }
-
 // GetDigits returns the Digits field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableTOTPParameters) GetDigits() int32 {
 	if o == nil || o.Digits == nil {
@@ -63,6 +69,7 @@ func (o *SyntheticsGlobalVariableTOTPParameters) HasDigits() bool {
 func (o *SyntheticsGlobalVariableTOTPParameters) SetDigits(v int32) {
 	o.Digits = &v
 }
+
 
 // GetRefreshInterval returns the RefreshInterval field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableTOTPParameters) GetRefreshInterval() int32 {
@@ -92,6 +99,8 @@ func (o *SyntheticsGlobalVariableTOTPParameters) SetRefreshInterval(v int32) {
 	o.RefreshInterval = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsGlobalVariableTOTPParameters) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o SyntheticsGlobalVariableTOTPParameters) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsGlobalVariableTOTPParameters) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Digits          *int32 `json:"digits,omitempty"`
+		Digits *int32 `json:"digits,omitempty"`
 		RefreshInterval *int32 `json:"refresh_interval,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *SyntheticsGlobalVariableTOTPParameters) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"digits", "refresh_interval"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "digits", "refresh_interval",  })
 	} else {
 		return err
 	}

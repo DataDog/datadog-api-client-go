@@ -2,21 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionSchemaVersions Schema versions
 type ServiceDefinitionSchemaVersions string
 
 // List of ServiceDefinitionSchemaVersions.
 const (
-	SERVICEDEFINITIONSCHEMAVERSIONS_V1   ServiceDefinitionSchemaVersions = "v1"
-	SERVICEDEFINITIONSCHEMAVERSIONS_V2   ServiceDefinitionSchemaVersions = "v2"
+	SERVICEDEFINITIONSCHEMAVERSIONS_V1 ServiceDefinitionSchemaVersions = "v1"
+	SERVICEDEFINITIONSCHEMAVERSIONS_V2 ServiceDefinitionSchemaVersions = "v2"
 	SERVICEDEFINITIONSCHEMAVERSIONS_V2_1 ServiceDefinitionSchemaVersions = "v2.1"
 	SERVICEDEFINITIONSCHEMAVERSIONS_V2_2 ServiceDefinitionSchemaVersions = "v2.2"
 )

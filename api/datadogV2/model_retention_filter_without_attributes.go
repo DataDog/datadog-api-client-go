@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RetentionFilterWithoutAttributes The retention filter object .
 type RetentionFilterWithoutAttributes struct {
@@ -17,9 +21,10 @@ type RetentionFilterWithoutAttributes struct {
 	// The type of the resource.
 	Type ApmRetentionFilterType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRetentionFilterWithoutAttributes instantiates a new RetentionFilterWithoutAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewRetentionFilterWithoutAttributesWithDefaults() *RetentionFilterWithoutAt
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *RetentionFilterWithoutAttributes) GetId() string {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *RetentionFilterWithoutAttributes) GetIdOk() (*string, bool) {
 func (o *RetentionFilterWithoutAttributes) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *RetentionFilterWithoutAttributes) GetType() ApmRetentionFilterType {
@@ -88,6 +93,8 @@ func (o *RetentionFilterWithoutAttributes) SetType(v ApmRetentionFilterType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RetentionFilterWithoutAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -106,7 +113,7 @@ func (o RetentionFilterWithoutAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RetentionFilterWithoutAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                 `json:"id"`
+		Id *string `json:"id"`
 		Type *ApmRetentionFilterType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -120,7 +127,7 @@ func (o *RetentionFilterWithoutAttributes) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOTimeSliceCondition The time-slice condition, composed of 3 parts: 1. the metric timeseries query, 2. the comparator,
 // and 3. the threshold. Optionally, a fourth part, the query interval, can be provided.
@@ -24,9 +28,10 @@ type SLOTimeSliceCondition struct {
 	// The threshold value to which each SLI value will be compared.
 	Threshold float64 `json:"threshold"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSLOTimeSliceCondition instantiates a new SLOTimeSliceCondition object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewSLOTimeSliceConditionWithDefaults() *SLOTimeSliceCondition {
 	this := SLOTimeSliceCondition{}
 	return &this
 }
-
 // GetComparator returns the Comparator field value.
 func (o *SLOTimeSliceCondition) GetComparator() SLOTimeSliceComparator {
 	if o == nil {
@@ -71,6 +75,7 @@ func (o *SLOTimeSliceCondition) SetComparator(v SLOTimeSliceComparator) {
 	o.Comparator = v
 }
 
+
 // GetQuery returns the Query field value.
 func (o *SLOTimeSliceCondition) GetQuery() SLOTimeSliceQuery {
 	if o == nil {
@@ -93,6 +98,7 @@ func (o *SLOTimeSliceCondition) GetQueryOk() (*SLOTimeSliceQuery, bool) {
 func (o *SLOTimeSliceCondition) SetQuery(v SLOTimeSliceQuery) {
 	o.Query = v
 }
+
 
 // GetQueryIntervalSeconds returns the QueryIntervalSeconds field value if set, zero value otherwise.
 func (o *SLOTimeSliceCondition) GetQueryIntervalSeconds() SLOTimeSliceInterval {
@@ -122,6 +128,7 @@ func (o *SLOTimeSliceCondition) SetQueryIntervalSeconds(v SLOTimeSliceInterval) 
 	o.QueryIntervalSeconds = &v
 }
 
+
 // GetThreshold returns the Threshold field value.
 func (o *SLOTimeSliceCondition) GetThreshold() float64 {
 	if o == nil {
@@ -145,6 +152,8 @@ func (o *SLOTimeSliceCondition) SetThreshold(v float64) {
 	o.Threshold = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOTimeSliceCondition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -167,10 +176,10 @@ func (o SLOTimeSliceCondition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOTimeSliceCondition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Comparator           *SLOTimeSliceComparator `json:"comparator"`
-		Query                *SLOTimeSliceQuery      `json:"query"`
-		QueryIntervalSeconds *SLOTimeSliceInterval   `json:"query_interval_seconds,omitempty"`
-		Threshold            *float64                `json:"threshold"`
+		Comparator *SLOTimeSliceComparator `json:"comparator"`
+		Query *SLOTimeSliceQuery `json:"query"`
+		QueryIntervalSeconds *SLOTimeSliceInterval `json:"query_interval_seconds,omitempty"`
+		Threshold *float64 `json:"threshold"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -186,7 +195,7 @@ func (o *SLOTimeSliceCondition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"comparator", "query", "query_interval_seconds", "threshold"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "comparator", "query", "query_interval_seconds", "threshold",  })
 	} else {
 		return err
 	}
@@ -201,7 +210,7 @@ func (o *SLOTimeSliceCondition) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Query = *all.Query
-	if all.QueryIntervalSeconds != nil && !all.QueryIntervalSeconds.IsValid() {
+	if all.QueryIntervalSeconds != nil &&!all.QueryIntervalSeconds.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.QueryIntervalSeconds = all.QueryIntervalSeconds

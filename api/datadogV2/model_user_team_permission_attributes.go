@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UserTeamPermissionAttributes User team permission attributes
 type UserTeamPermissionAttributes struct {
 	// Object of team permission actions and boolean values that a logged in user can perform on this team.
 	Permissions interface{} `json:"permissions,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUserTeamPermissionAttributes instantiates a new UserTeamPermissionAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewUserTeamPermissionAttributesWithDefaults() *UserTeamPermissionAttributes
 	this := UserTeamPermissionAttributes{}
 	return &this
 }
-
 // GetPermissions returns the Permissions field value if set, zero value otherwise.
 func (o *UserTeamPermissionAttributes) GetPermissions() interface{} {
 	if o == nil || o.Permissions == nil {
@@ -62,6 +68,8 @@ func (o *UserTeamPermissionAttributes) SetPermissions(v interface{}) {
 	o.Permissions = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UserTeamPermissionAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *UserTeamPermissionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"permissions"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "permissions",  })
 	} else {
 		return err
 	}

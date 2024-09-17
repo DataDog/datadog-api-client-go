@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricPayload The metrics' payload.
 type MetricPayload struct {
 	// A list of timeseries to submit to Datadog.
 	Series []MetricSeries `json:"series"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricPayload instantiates a new MetricPayload object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewMetricPayloadWithDefaults() *MetricPayload {
 	this := MetricPayload{}
 	return &this
 }
-
 // GetSeries returns the Series field value.
 func (o *MetricPayload) GetSeries() []MetricSeries {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *MetricPayload) GetSeriesOk() (*[]MetricSeries, bool) {
 func (o *MetricPayload) SetSeries(v []MetricSeries) {
 	o.Series = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricPayload) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *MetricPayload) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"series"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "series",  })
 	} else {
 		return err
 	}

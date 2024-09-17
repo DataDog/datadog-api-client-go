@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsCIBatchMetadataCI Description of the CI provider.
 type SyntheticsCIBatchMetadataCI struct {
@@ -15,9 +21,10 @@ type SyntheticsCIBatchMetadataCI struct {
 	// Description of the CI provider.
 	Provider *SyntheticsCIBatchMetadataProvider `json:"provider,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsCIBatchMetadataCI instantiates a new SyntheticsCIBatchMetadataCI object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSyntheticsCIBatchMetadataCIWithDefaults() *SyntheticsCIBatchMetadataCI {
 	this := SyntheticsCIBatchMetadataCI{}
 	return &this
 }
-
 // GetPipeline returns the Pipeline field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadataCI) GetPipeline() SyntheticsCIBatchMetadataPipeline {
 	if o == nil || o.Pipeline == nil {
@@ -64,6 +70,7 @@ func (o *SyntheticsCIBatchMetadataCI) SetPipeline(v SyntheticsCIBatchMetadataPip
 	o.Pipeline = &v
 }
 
+
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadataCI) GetProvider() SyntheticsCIBatchMetadataProvider {
 	if o == nil || o.Provider == nil {
@@ -91,6 +98,8 @@ func (o *SyntheticsCIBatchMetadataCI) HasProvider() bool {
 func (o *SyntheticsCIBatchMetadataCI) SetProvider(v SyntheticsCIBatchMetadataProvider) {
 	o.Provider = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsCIBatchMetadataCI) MarshalJSON() ([]byte, error) {
@@ -122,17 +131,17 @@ func (o *SyntheticsCIBatchMetadataCI) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"pipeline", "provider"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "pipeline", "provider",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Pipeline != nil && all.Pipeline.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Pipeline != nil && all.Pipeline.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Pipeline = all.Pipeline
-	if all.Provider != nil && all.Provider.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Provider != nil && all.Provider.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Provider = all.Provider

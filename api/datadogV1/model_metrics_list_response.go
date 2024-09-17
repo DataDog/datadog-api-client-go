@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricsListResponse Object listing all metric names stored by Datadog since a given time.
 type MetricsListResponse struct {
@@ -15,9 +21,10 @@ type MetricsListResponse struct {
 	// List of metric names.
 	Metrics []string `json:"metrics,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricsListResponse instantiates a new MetricsListResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewMetricsListResponseWithDefaults() *MetricsListResponse {
 	this := MetricsListResponse{}
 	return &this
 }
-
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *MetricsListResponse) GetFrom() string {
 	if o == nil || o.From == nil {
@@ -63,6 +69,7 @@ func (o *MetricsListResponse) HasFrom() bool {
 func (o *MetricsListResponse) SetFrom(v string) {
 	o.From = &v
 }
+
 
 // GetMetrics returns the Metrics field value if set, zero value otherwise.
 func (o *MetricsListResponse) GetMetrics() []string {
@@ -92,6 +99,8 @@ func (o *MetricsListResponse) SetMetrics(v []string) {
 	o.Metrics = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricsListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o MetricsListResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		From    *string  `json:"from,omitempty"`
+		From *string `json:"from,omitempty"`
 		Metrics []string `json:"metrics,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *MetricsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"from", "metrics"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "from", "metrics",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SpansAggregateRequestAttributes The object containing all the query parameters.
 type SpansAggregateRequestAttributes struct {
@@ -20,9 +26,10 @@ type SpansAggregateRequestAttributes struct {
 	// Note: You should only supply timezone or time offset but not both otherwise the query will fail.
 	Options *SpansQueryOptions `json:"options,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSpansAggregateRequestAttributes instantiates a new SpansAggregateRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +47,6 @@ func NewSpansAggregateRequestAttributesWithDefaults() *SpansAggregateRequestAttr
 	this := SpansAggregateRequestAttributes{}
 	return &this
 }
-
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *SpansAggregateRequestAttributes) GetCompute() []SpansCompute {
 	if o == nil || o.Compute == nil {
@@ -68,6 +74,7 @@ func (o *SpansAggregateRequestAttributes) HasCompute() bool {
 func (o *SpansAggregateRequestAttributes) SetCompute(v []SpansCompute) {
 	o.Compute = v
 }
+
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *SpansAggregateRequestAttributes) GetFilter() SpansQueryFilter {
@@ -97,6 +104,7 @@ func (o *SpansAggregateRequestAttributes) SetFilter(v SpansQueryFilter) {
 	o.Filter = &v
 }
 
+
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *SpansAggregateRequestAttributes) GetGroupBy() []SpansGroupBy {
 	if o == nil || o.GroupBy == nil {
@@ -124,6 +132,7 @@ func (o *SpansAggregateRequestAttributes) HasGroupBy() bool {
 func (o *SpansAggregateRequestAttributes) SetGroupBy(v []SpansGroupBy) {
 	o.GroupBy = v
 }
+
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *SpansAggregateRequestAttributes) GetOptions() SpansQueryOptions {
@@ -153,6 +162,8 @@ func (o *SpansAggregateRequestAttributes) SetOptions(v SpansQueryOptions) {
 	o.Options = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SpansAggregateRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -181,9 +192,9 @@ func (o SpansAggregateRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SpansAggregateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Compute []SpansCompute     `json:"compute,omitempty"`
-		Filter  *SpansQueryFilter  `json:"filter,omitempty"`
-		GroupBy []SpansGroupBy     `json:"group_by,omitempty"`
+		Compute []SpansCompute `json:"compute,omitempty"`
+		Filter *SpansQueryFilter `json:"filter,omitempty"`
+		GroupBy []SpansGroupBy `json:"group_by,omitempty"`
 		Options *SpansQueryOptions `json:"options,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -191,19 +202,19 @@ func (o *SpansAggregateRequestAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "filter", "group_by", "options"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "compute", "filter", "group_by", "options",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Compute = all.Compute
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter
 	o.GroupBy = all.GroupBy
-	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Options = all.Options

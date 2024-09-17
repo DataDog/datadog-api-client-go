@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricSearchResponse Object containing the list of metrics matching the search query.
 type MetricSearchResponse struct {
 	// Search result.
 	Results *MetricSearchResponseResults `json:"results,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricSearchResponse instantiates a new MetricSearchResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewMetricSearchResponseWithDefaults() *MetricSearchResponse {
 	this := MetricSearchResponse{}
 	return &this
 }
-
 // GetResults returns the Results field value if set, zero value otherwise.
 func (o *MetricSearchResponse) GetResults() MetricSearchResponseResults {
 	if o == nil || o.Results == nil {
@@ -62,6 +68,8 @@ func (o *MetricSearchResponse) SetResults(v MetricSearchResponseResults) {
 	o.Results = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricSearchResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *MetricSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"results"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "results",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Results != nil && all.Results.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Results != nil && all.Results.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Results = all.Results

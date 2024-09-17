@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OrgConfigRead A single Org Config.
 type OrgConfigRead struct {
@@ -19,9 +23,10 @@ type OrgConfigRead struct {
 	// Data type of an Org Config.
 	Type OrgConfigType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOrgConfigRead instantiates a new OrgConfigRead object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewOrgConfigReadWithDefaults() *OrgConfigRead {
 	this := OrgConfigRead{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *OrgConfigRead) GetAttributes() OrgConfigReadAttributes {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *OrgConfigRead) GetAttributesOk() (*OrgConfigReadAttributes, bool) {
 func (o *OrgConfigRead) SetAttributes(v OrgConfigReadAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *OrgConfigRead) GetId() string {
@@ -89,6 +94,7 @@ func (o *OrgConfigRead) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value.
 func (o *OrgConfigRead) GetType() OrgConfigType {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *OrgConfigRead) SetType(v OrgConfigType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OrgConfigRead) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -132,8 +140,8 @@ func (o OrgConfigRead) MarshalJSON() ([]byte, error) {
 func (o *OrgConfigRead) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *OrgConfigReadAttributes `json:"attributes"`
-		Id         *string                  `json:"id"`
-		Type       *OrgConfigType           `json:"type"`
+		Id *string `json:"id"`
+		Type *OrgConfigType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *OrgConfigRead) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

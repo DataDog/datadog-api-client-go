@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListAPIsResponseData Data envelope for `ListAPIsResponse`.
 type ListAPIsResponseData struct {
@@ -17,9 +21,10 @@ type ListAPIsResponseData struct {
 	// API identifier.
 	Id *uuid.UUID `json:"id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListAPIsResponseData instantiates a new ListAPIsResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewListAPIsResponseDataWithDefaults() *ListAPIsResponseData {
 	this := ListAPIsResponseData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *ListAPIsResponseData) GetAttributes() ListAPIsResponseDataAttributes {
 	if o == nil || o.Attributes == nil {
@@ -65,6 +69,7 @@ func (o *ListAPIsResponseData) HasAttributes() bool {
 func (o *ListAPIsResponseData) SetAttributes(v ListAPIsResponseDataAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ListAPIsResponseData) GetId() uuid.UUID {
@@ -94,6 +99,8 @@ func (o *ListAPIsResponseData) SetId(v uuid.UUID) {
 	o.Id = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListAPIsResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -117,20 +124,20 @@ func (o ListAPIsResponseData) MarshalJSON() ([]byte, error) {
 func (o *ListAPIsResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *ListAPIsResponseDataAttributes `json:"attributes,omitempty"`
-		Id         *uuid.UUID                      `json:"id,omitempty"`
+		Id *uuid.UUID `json:"id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

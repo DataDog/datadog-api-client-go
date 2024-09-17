@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeScheduleCurrentDowntimeResponse The most recent actual start and end dates for a recurring downtime. For a canceled downtime,
 // this is the previously occurring downtime. For active downtimes, this is the ongoing downtime, and for scheduled
@@ -19,9 +23,10 @@ type DowntimeScheduleCurrentDowntimeResponse struct {
 	// The start of the current downtime.
 	Start *time.Time `json:"start,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeScheduleCurrentDowntimeResponse instantiates a new DowntimeScheduleCurrentDowntimeResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewDowntimeScheduleCurrentDowntimeResponseWithDefaults() *DowntimeScheduleC
 	this := DowntimeScheduleCurrentDowntimeResponse{}
 	return &this
 }
-
 // GetEnd returns the End field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DowntimeScheduleCurrentDowntimeResponse) GetEnd() time.Time {
 	if o == nil || o.End.Get() == nil {
@@ -53,7 +57,7 @@ func (o *DowntimeScheduleCurrentDowntimeResponse) GetEnd() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeScheduleCurrentDowntimeResponse) GetEndOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.End.Get(), o.End.IsSet()
@@ -68,7 +72,6 @@ func (o *DowntimeScheduleCurrentDowntimeResponse) HasEnd() bool {
 func (o *DowntimeScheduleCurrentDowntimeResponse) SetEnd(v time.Time) {
 	o.End.Set(&v)
 }
-
 // SetEndNil sets the value for End to be an explicit nil.
 func (o *DowntimeScheduleCurrentDowntimeResponse) SetEndNil() {
 	o.End.Set(nil)
@@ -78,6 +81,7 @@ func (o *DowntimeScheduleCurrentDowntimeResponse) SetEndNil() {
 func (o *DowntimeScheduleCurrentDowntimeResponse) UnsetEnd() {
 	o.End.Unset()
 }
+
 
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *DowntimeScheduleCurrentDowntimeResponse) GetStart() time.Time {
@@ -107,6 +111,8 @@ func (o *DowntimeScheduleCurrentDowntimeResponse) SetStart(v time.Time) {
 	o.Start = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeScheduleCurrentDowntimeResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -133,15 +139,15 @@ func (o DowntimeScheduleCurrentDowntimeResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeScheduleCurrentDowntimeResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		End   datadog.NullableTime `json:"end,omitempty"`
-		Start *time.Time           `json:"start,omitempty"`
+		End datadog.NullableTime `json:"end,omitempty"`
+		Start *time.Time `json:"start,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"end", "start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "end", "start",  })
 	} else {
 		return err
 	}

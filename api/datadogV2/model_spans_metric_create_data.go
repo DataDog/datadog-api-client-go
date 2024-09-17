@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SpansMetricCreateData The new span-based metric properties.
 type SpansMetricCreateData struct {
@@ -19,9 +23,10 @@ type SpansMetricCreateData struct {
 	// The type of resource. The value should always be spans_metrics.
 	Type SpansMetricType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSpansMetricCreateData instantiates a new SpansMetricCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewSpansMetricCreateDataWithDefaults() *SpansMetricCreateData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *SpansMetricCreateData) GetAttributes() SpansMetricCreateAttributes {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *SpansMetricCreateData) GetAttributesOk() (*SpansMetricCreateAttributes,
 func (o *SpansMetricCreateData) SetAttributes(v SpansMetricCreateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *SpansMetricCreateData) GetId() string {
@@ -91,6 +96,7 @@ func (o *SpansMetricCreateData) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value.
 func (o *SpansMetricCreateData) GetType() SpansMetricType {
 	if o == nil {
@@ -114,6 +120,8 @@ func (o *SpansMetricCreateData) SetType(v SpansMetricType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SpansMetricCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -134,8 +142,8 @@ func (o SpansMetricCreateData) MarshalJSON() ([]byte, error) {
 func (o *SpansMetricCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *SpansMetricCreateAttributes `json:"attributes"`
-		Id         *string                      `json:"id"`
-		Type       *SpansMetricType             `json:"type"`
+		Id *string `json:"id"`
+		Type *SpansMetricType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -151,7 +159,7 @@ func (o *SpansMetricCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

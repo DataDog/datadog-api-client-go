@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentTeamCreateAttributes The incident team's attributes for a create request.
 type IncidentTeamCreateAttributes struct {
 	// Name of the incident team.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentTeamCreateAttributes instantiates a new IncidentTeamCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewIncidentTeamCreateAttributesWithDefaults() *IncidentTeamCreateAttributes
 	this := IncidentTeamCreateAttributes{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *IncidentTeamCreateAttributes) GetName() string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *IncidentTeamCreateAttributes) GetNameOk() (*string, bool) {
 func (o *IncidentTeamCreateAttributes) SetName(v string) {
 	o.Name = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentTeamCreateAttributes) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *IncidentTeamCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name",  })
 	} else {
 		return err
 	}

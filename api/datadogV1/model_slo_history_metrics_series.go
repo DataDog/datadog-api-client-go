@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOHistoryMetricsSeries A representation of `metric` based SLO timeseries for the provided queries.
 // This is the same response type from `batch_query` endpoint.
@@ -22,9 +26,10 @@ type SLOHistoryMetricsSeries struct {
 	// The query values for each metric.
 	Values []float64 `json:"values"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSLOHistoryMetricsSeries instantiates a new SLOHistoryMetricsSeries object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewSLOHistoryMetricsSeriesWithDefaults() *SLOHistoryMetricsSeries {
 	this := SLOHistoryMetricsSeries{}
 	return &this
 }
-
 // GetCount returns the Count field value.
 func (o *SLOHistoryMetricsSeries) GetCount() int64 {
 	if o == nil {
@@ -68,6 +72,7 @@ func (o *SLOHistoryMetricsSeries) GetCountOk() (*int64, bool) {
 func (o *SLOHistoryMetricsSeries) SetCount(v int64) {
 	o.Count = v
 }
+
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *SLOHistoryMetricsSeries) GetMetadata() SLOHistoryMetricsSeriesMetadata {
@@ -97,6 +102,7 @@ func (o *SLOHistoryMetricsSeries) SetMetadata(v SLOHistoryMetricsSeriesMetadata)
 	o.Metadata = &v
 }
 
+
 // GetSum returns the Sum field value.
 func (o *SLOHistoryMetricsSeries) GetSum() float64 {
 	if o == nil {
@@ -119,6 +125,7 @@ func (o *SLOHistoryMetricsSeries) GetSumOk() (*float64, bool) {
 func (o *SLOHistoryMetricsSeries) SetSum(v float64) {
 	o.Sum = v
 }
+
 
 // GetValues returns the Values field value.
 func (o *SLOHistoryMetricsSeries) GetValues() []float64 {
@@ -143,6 +150,8 @@ func (o *SLOHistoryMetricsSeries) SetValues(v []float64) {
 	o.Values = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOHistoryMetricsSeries) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -165,10 +174,10 @@ func (o SLOHistoryMetricsSeries) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Count    *int64                           `json:"count"`
+		Count *int64 `json:"count"`
 		Metadata *SLOHistoryMetricsSeriesMetadata `json:"metadata,omitempty"`
-		Sum      *float64                         `json:"sum"`
-		Values   *[]float64                       `json:"values"`
+		Sum *float64 `json:"sum"`
+		Values *[]float64 `json:"values"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -184,14 +193,14 @@ func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count", "metadata", "sum", "values"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "count", "metadata", "sum", "values",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Count = *all.Count
-	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Metadata = all.Metadata

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"bytes"
 	_context "context"
+	_fmt "fmt"
+	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -20,10 +24,12 @@ type CIVisibilityPipelinesApi datadog.Service
 // Use this API endpoint to aggregate CI Visibility pipeline events into buckets of computed metrics and timeseries.
 func (a *CIVisibilityPipelinesApi) AggregateCIAppPipelineEvents(ctx _context.Context, body CIAppPipelinesAggregateRequest) (CIAppPipelinesAnalyticsAggregateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue CIAppPipelinesAnalyticsAggregateResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  CIAppPipelinesAnalyticsAggregateResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CIVisibilityPipelinesApi.AggregateCIAppPipelineEvents")
 	if err != nil {
@@ -38,9 +44,11 @@ func (a *CIVisibilityPipelinesApi) AggregateCIAppPipelineEvents(ctx _context.Con
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -63,10 +71,11 @@ func (a *CIVisibilityPipelinesApi) AggregateCIAppPipelineEvents(ctx _context.Con
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -80,7 +89,7 @@ func (a *CIVisibilityPipelinesApi) AggregateCIAppPipelineEvents(ctx _context.Con
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -95,10 +104,12 @@ func (a *CIVisibilityPipelinesApi) AggregateCIAppPipelineEvents(ctx _context.Con
 // Pipeline events can be submitted with a timestamp that is up to 18 hours in the past.
 func (a *CIVisibilityPipelinesApi) CreateCIAppPipelineEvent(ctx _context.Context, body CIAppCreatePipelineEventRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CIVisibilityPipelinesApi.CreateCIAppPipelineEvent")
 	if err != nil {
@@ -113,9 +124,11 @@ func (a *CIVisibilityPipelinesApi) CreateCIAppPipelineEvent(ctx _context.Context
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -137,10 +150,11 @@ func (a *CIVisibilityPipelinesApi) CreateCIAppPipelineEvent(ctx _context.Context
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 408 || localVarHTTPResponse.StatusCode == 413 || localVarHTTPResponse.StatusCode == 429 || localVarHTTPResponse.StatusCode == 500 || localVarHTTPResponse.StatusCode == 503 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 408||localVarHTTPResponse.StatusCode == 413||localVarHTTPResponse.StatusCode == 429||localVarHTTPResponse.StatusCode == 500||localVarHTTPResponse.StatusCode == 503{
 			var v HTTPCIAppErrors
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -154,7 +168,7 @@ func (a *CIVisibilityPipelinesApi) CreateCIAppPipelineEvent(ctx _context.Context
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -166,11 +180,11 @@ func (a *CIVisibilityPipelinesApi) CreateCIAppPipelineEvent(ctx _context.Context
 // ListCIAppPipelineEventsOptionalParameters holds optional parameters for ListCIAppPipelineEvents.
 type ListCIAppPipelineEventsOptionalParameters struct {
 	FilterQuery *string
-	FilterFrom  *time.Time
-	FilterTo    *time.Time
-	Sort        *CIAppSort
-	PageCursor  *string
-	PageLimit   *int32
+	FilterFrom *time.Time
+	FilterTo *time.Time
+	Sort *CIAppSort
+	PageCursor *string
+	PageLimit *int32
 }
 
 // NewListCIAppPipelineEventsOptionalParameters creates an empty struct for parameters.
@@ -178,37 +192,31 @@ func NewListCIAppPipelineEventsOptionalParameters() *ListCIAppPipelineEventsOpti
 	this := ListCIAppPipelineEventsOptionalParameters{}
 	return &this
 }
-
 // WithFilterQuery sets the corresponding parameter name and returns the struct.
 func (r *ListCIAppPipelineEventsOptionalParameters) WithFilterQuery(filterQuery string) *ListCIAppPipelineEventsOptionalParameters {
 	r.FilterQuery = &filterQuery
 	return r
 }
-
 // WithFilterFrom sets the corresponding parameter name and returns the struct.
 func (r *ListCIAppPipelineEventsOptionalParameters) WithFilterFrom(filterFrom time.Time) *ListCIAppPipelineEventsOptionalParameters {
 	r.FilterFrom = &filterFrom
 	return r
 }
-
 // WithFilterTo sets the corresponding parameter name and returns the struct.
 func (r *ListCIAppPipelineEventsOptionalParameters) WithFilterTo(filterTo time.Time) *ListCIAppPipelineEventsOptionalParameters {
 	r.FilterTo = &filterTo
 	return r
 }
-
 // WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListCIAppPipelineEventsOptionalParameters) WithSort(sort CIAppSort) *ListCIAppPipelineEventsOptionalParameters {
 	r.Sort = &sort
 	return r
 }
-
 // WithPageCursor sets the corresponding parameter name and returns the struct.
 func (r *ListCIAppPipelineEventsOptionalParameters) WithPageCursor(pageCursor string) *ListCIAppPipelineEventsOptionalParameters {
 	r.PageCursor = &pageCursor
 	return r
 }
-
 // WithPageLimit sets the corresponding parameter name and returns the struct.
 func (r *ListCIAppPipelineEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListCIAppPipelineEventsOptionalParameters {
 	r.PageLimit = &pageLimit
@@ -222,18 +230,20 @@ func (r *ListCIAppPipelineEventsOptionalParameters) WithPageLimit(pageLimit int3
 // Use this endpoint to see your latest pipeline events.
 func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEvents(ctx _context.Context, o ...ListCIAppPipelineEventsOptionalParameters) (CIAppPipelineEventsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue CIAppPipelineEventsResponse
-		optionalParams      ListCIAppPipelineEventsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  CIAppPipelineEventsResponse
+		optionalParams ListCIAppPipelineEventsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListCIAppPipelineEventsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListCIAppPipelineEventsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CIVisibilityPipelinesApi.ListCIAppPipelineEvents")
 	if err != nil {
@@ -265,7 +275,8 @@ func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEvents(ctx _context.Context,
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -288,10 +299,11 @@ func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEvents(ctx _context.Context,
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -305,7 +317,7 @@ func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEvents(ctx _context.Context,
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -313,7 +325,6 @@ func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEvents(ctx _context.Context,
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 // ListCIAppPipelineEventsWithPagination provides a paginated version of ListCIAppPipelineEvents returning a channel with all items.
 func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEventsWithPagination(ctx _context.Context, o ...ListCIAppPipelineEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppPipelineEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -345,8 +356,8 @@ func (a *CIVisibilityPipelinesApi) ListCIAppPipelineEventsWithPagination(ctx _co
 				select {
 				case items <- datadog.PaginationResult[CIAppPipelineEvent]{Item: item, Error: nil}:
 				case <-ctx.Done():
-					close(items)
-					return
+				close(items)
+				return
 				}
 			}
 			if len(results) < int(pageSize_) {
@@ -382,7 +393,6 @@ func NewSearchCIAppPipelineEventsOptionalParameters() *SearchCIAppPipelineEvents
 	this := SearchCIAppPipelineEventsOptionalParameters{}
 	return &this
 }
-
 // WithBody sets the corresponding parameter name and returns the struct.
 func (r *SearchCIAppPipelineEventsOptionalParameters) WithBody(body CIAppPipelineEventsRequest) *SearchCIAppPipelineEventsOptionalParameters {
 	r.Body = &body
@@ -396,18 +406,20 @@ func (r *SearchCIAppPipelineEventsOptionalParameters) WithBody(body CIAppPipelin
 // Use this endpoint to build complex events filtering and search.
 func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEvents(ctx _context.Context, o ...SearchCIAppPipelineEventsOptionalParameters) (CIAppPipelineEventsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue CIAppPipelineEventsResponse
-		optionalParams      SearchCIAppPipelineEventsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  CIAppPipelineEventsResponse
+		optionalParams SearchCIAppPipelineEventsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type SearchCIAppPipelineEventsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type SearchCIAppPipelineEventsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CIVisibilityPipelinesApi.SearchCIAppPipelineEvents")
 	if err != nil {
@@ -422,11 +434,13 @@ func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEvents(ctx _context.Contex
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	if optionalParams.Body != nil {
 		localVarPostBody = &optionalParams.Body
 	}
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -449,10 +463,11 @@ func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEvents(ctx _context.Contex
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -466,7 +481,7 @@ func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEvents(ctx _context.Contex
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -474,7 +489,6 @@ func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEvents(ctx _context.Contex
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 // SearchCIAppPipelineEventsWithPagination provides a paginated version of SearchCIAppPipelineEvents returning a channel with all items.
 func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEventsWithPagination(ctx _context.Context, o ...SearchCIAppPipelineEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppPipelineEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -512,8 +526,8 @@ func (a *CIVisibilityPipelinesApi) SearchCIAppPipelineEventsWithPagination(ctx _
 				select {
 				case items <- datadog.PaginationResult[CIAppPipelineEvent]{Item: item, Error: nil}:
 				case <-ctx.Done():
-					close(items)
-					return
+				close(items)
+				return
 				}
 			}
 			if len(results) < int(pageSize_) {

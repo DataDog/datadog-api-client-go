@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomDestinationAttributeTagsRestrictionListType How `forward_tags_restriction_list` parameter should be interpreted.
 // If `ALLOW_LIST`, then only tags whose keys on the forwarded logs match the ones on the restriction list

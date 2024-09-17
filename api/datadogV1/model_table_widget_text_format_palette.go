@@ -2,30 +2,34 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TableWidgetTextFormatPalette Color-on-color palette to highlight replaced text.
 type TableWidgetTextFormatPalette string
 
 // List of TableWidgetTextFormatPalette.
 const (
-	TABLEWIDGETTEXTFORMATPALETTE_WHITE_ON_RED          TableWidgetTextFormatPalette = "white_on_red"
-	TABLEWIDGETTEXTFORMATPALETTE_WHITE_ON_YELLOW       TableWidgetTextFormatPalette = "white_on_yellow"
-	TABLEWIDGETTEXTFORMATPALETTE_WHITE_ON_GREEN        TableWidgetTextFormatPalette = "white_on_green"
-	TABLEWIDGETTEXTFORMATPALETTE_BLACK_ON_LIGHT_RED    TableWidgetTextFormatPalette = "black_on_light_red"
+	TABLEWIDGETTEXTFORMATPALETTE_WHITE_ON_RED TableWidgetTextFormatPalette = "white_on_red"
+	TABLEWIDGETTEXTFORMATPALETTE_WHITE_ON_YELLOW TableWidgetTextFormatPalette = "white_on_yellow"
+	TABLEWIDGETTEXTFORMATPALETTE_WHITE_ON_GREEN TableWidgetTextFormatPalette = "white_on_green"
+	TABLEWIDGETTEXTFORMATPALETTE_BLACK_ON_LIGHT_RED TableWidgetTextFormatPalette = "black_on_light_red"
 	TABLEWIDGETTEXTFORMATPALETTE_BLACK_ON_LIGHT_YELLOW TableWidgetTextFormatPalette = "black_on_light_yellow"
-	TABLEWIDGETTEXTFORMATPALETTE_BLACK_ON_LIGHT_GREEN  TableWidgetTextFormatPalette = "black_on_light_green"
-	TABLEWIDGETTEXTFORMATPALETTE_RED_ON_WHITE          TableWidgetTextFormatPalette = "red_on_white"
-	TABLEWIDGETTEXTFORMATPALETTE_YELLOW_ON_WHITE       TableWidgetTextFormatPalette = "yellow_on_white"
-	TABLEWIDGETTEXTFORMATPALETTE_GREEN_ON_WHITE        TableWidgetTextFormatPalette = "green_on_white"
-	TABLEWIDGETTEXTFORMATPALETTE_CUSTOM_BG             TableWidgetTextFormatPalette = "custom_bg"
-	TABLEWIDGETTEXTFORMATPALETTE_CUSTOM_TEXT           TableWidgetTextFormatPalette = "custom_text"
+	TABLEWIDGETTEXTFORMATPALETTE_BLACK_ON_LIGHT_GREEN TableWidgetTextFormatPalette = "black_on_light_green"
+	TABLEWIDGETTEXTFORMATPALETTE_RED_ON_WHITE TableWidgetTextFormatPalette = "red_on_white"
+	TABLEWIDGETTEXTFORMATPALETTE_YELLOW_ON_WHITE TableWidgetTextFormatPalette = "yellow_on_white"
+	TABLEWIDGETTEXTFORMATPALETTE_GREEN_ON_WHITE TableWidgetTextFormatPalette = "green_on_white"
+	TABLEWIDGETTEXTFORMATPALETTE_CUSTOM_BG TableWidgetTextFormatPalette = "custom_bg"
+	TABLEWIDGETTEXTFORMATPALETTE_CUSTOM_TEXT TableWidgetTextFormatPalette = "custom_text"
 )
 
 var allowedTableWidgetTextFormatPaletteEnumValues = []TableWidgetTextFormatPalette{

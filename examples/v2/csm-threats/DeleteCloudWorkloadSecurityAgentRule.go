@@ -2,24 +2,28 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	// there is a valid "agent_rule" in the system
 	AgentRuleDataID := os.Getenv("AGENT_RULE_DATA_ID")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCSMThreatsApi(apiClient)
-	r, err := api.DeleteCloudWorkloadSecurityAgentRule(ctx, AgentRuleDataID)
+	r, err := api.DeleteCloudWorkloadSecurityAgentRule(ctx, AgentRuleDataID, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.DeleteCloudWorkloadSecurityAgentRule`: %v\n", err)

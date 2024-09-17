@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorSearchResultNotification A notification triggered by the monitor.
 type MonitorSearchResultNotification struct {
@@ -15,9 +21,10 @@ type MonitorSearchResultNotification struct {
 	// The username receiving the notification
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorSearchResultNotification instantiates a new MonitorSearchResultNotification object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewMonitorSearchResultNotificationWithDefaults() *MonitorSearchResultNotifi
 	this := MonitorSearchResultNotification{}
 	return &this
 }
-
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *MonitorSearchResultNotification) GetHandle() string {
 	if o == nil || o.Handle == nil {
@@ -63,6 +69,7 @@ func (o *MonitorSearchResultNotification) HasHandle() bool {
 func (o *MonitorSearchResultNotification) SetHandle(v string) {
 	o.Handle = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MonitorSearchResultNotification) GetName() string {
@@ -92,6 +99,8 @@ func (o *MonitorSearchResultNotification) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorSearchResultNotification) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o MonitorSearchResultNotification) MarshalJSON() ([]byte, error) {
 func (o *MonitorSearchResultNotification) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Handle *string `json:"handle,omitempty"`
-		Name   *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"handle", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "handle", "name",  })
 	} else {
 		return err
 	}

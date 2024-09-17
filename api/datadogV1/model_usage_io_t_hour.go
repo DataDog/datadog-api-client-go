@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageIoTHour IoT usage for a given organization for a given hour.
 type UsageIoTHour struct {
@@ -21,9 +25,10 @@ type UsageIoTHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageIoTHour instantiates a new UsageIoTHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewUsageIoTHourWithDefaults() *UsageIoTHour {
 	this := UsageIoTHour{}
 	return &this
 }
-
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageIoTHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -70,6 +74,7 @@ func (o *UsageIoTHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetIotDeviceCount returns the IotDeviceCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageIoTHour) GetIotDeviceCount() int64 {
 	if o == nil || o.IotDeviceCount.Get() == nil {
@@ -83,7 +88,7 @@ func (o *UsageIoTHour) GetIotDeviceCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageIoTHour) GetIotDeviceCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.IotDeviceCount.Get(), o.IotDeviceCount.IsSet()
@@ -98,7 +103,6 @@ func (o *UsageIoTHour) HasIotDeviceCount() bool {
 func (o *UsageIoTHour) SetIotDeviceCount(v int64) {
 	o.IotDeviceCount.Set(&v)
 }
-
 // SetIotDeviceCountNil sets the value for IotDeviceCount to be an explicit nil.
 func (o *UsageIoTHour) SetIotDeviceCountNil() {
 	o.IotDeviceCount.Set(nil)
@@ -108,6 +112,7 @@ func (o *UsageIoTHour) SetIotDeviceCountNil() {
 func (o *UsageIoTHour) UnsetIotDeviceCount() {
 	o.IotDeviceCount.Unset()
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageIoTHour) GetOrgName() string {
@@ -137,6 +142,7 @@ func (o *UsageIoTHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageIoTHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -164,6 +170,8 @@ func (o *UsageIoTHour) HasPublicId() bool {
 func (o *UsageIoTHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageIoTHour) MarshalJSON() ([]byte, error) {
@@ -197,17 +205,17 @@ func (o UsageIoTHour) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageIoTHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Hour           *time.Time            `json:"hour,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
 		IotDeviceCount datadog.NullableInt64 `json:"iot_device_count,omitempty"`
-		OrgName        *string               `json:"org_name,omitempty"`
-		PublicId       *string               `json:"public_id,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"hour", "iot_device_count", "org_name", "public_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "hour", "iot_device_count", "org_name", "public_id",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerGetConfigResponseData Response data related to the scanning groups.
 type SensitiveDataScannerGetConfigResponseData struct {
@@ -19,9 +25,10 @@ type SensitiveDataScannerGetConfigResponseData struct {
 	// Sensitive Data Scanner configuration type.
 	Type *SensitiveDataScannerConfigurationType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerGetConfigResponseData instantiates a new SensitiveDataScannerGetConfigResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +50,6 @@ func NewSensitiveDataScannerGetConfigResponseDataWithDefaults() *SensitiveDataSc
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *SensitiveDataScannerGetConfigResponseData) GetAttributes() map[string]interface{} {
 	if o == nil || o.Attributes == nil {
@@ -71,6 +77,7 @@ func (o *SensitiveDataScannerGetConfigResponseData) HasAttributes() bool {
 func (o *SensitiveDataScannerGetConfigResponseData) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SensitiveDataScannerGetConfigResponseData) GetId() string {
@@ -100,6 +107,7 @@ func (o *SensitiveDataScannerGetConfigResponseData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *SensitiveDataScannerGetConfigResponseData) GetRelationships() SensitiveDataScannerConfigurationRelationships {
 	if o == nil || o.Relationships == nil {
@@ -127,6 +135,7 @@ func (o *SensitiveDataScannerGetConfigResponseData) HasRelationships() bool {
 func (o *SensitiveDataScannerGetConfigResponseData) SetRelationships(v SensitiveDataScannerConfigurationRelationships) {
 	o.Relationships = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SensitiveDataScannerGetConfigResponseData) GetType() SensitiveDataScannerConfigurationType {
@@ -156,6 +165,8 @@ func (o *SensitiveDataScannerGetConfigResponseData) SetType(v SensitiveDataScann
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerGetConfigResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -184,17 +195,17 @@ func (o SensitiveDataScannerGetConfigResponseData) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerGetConfigResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    map[string]interface{}                          `json:"attributes,omitempty"`
-		Id            *string                                         `json:"id,omitempty"`
+		Attributes map[string]interface{} `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Relationships *SensitiveDataScannerConfigurationRelationships `json:"relationships,omitempty"`
-		Type          *SensitiveDataScannerConfigurationType          `json:"type,omitempty"`
+		Type *SensitiveDataScannerConfigurationType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "relationships", "type",  })
 	} else {
 		return err
 	}
@@ -202,11 +213,11 @@ func (o *SensitiveDataScannerGetConfigResponseData) UnmarshalJSON(bytes []byte) 
 	hasInvalidField := false
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

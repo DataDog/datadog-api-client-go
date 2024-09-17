@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // JiraIntegrationMetadataIssuesItem Item in the Jira integration metadata issue array.
 type JiraIntegrationMetadataIssuesItem struct {
@@ -23,9 +27,10 @@ type JiraIntegrationMetadataIssuesItem struct {
 	// URL redirecting to the Jira issue.
 	RedirectUrl *string `json:"redirect_url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewJiraIntegrationMetadataIssuesItem instantiates a new JiraIntegrationMetadataIssuesItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewJiraIntegrationMetadataIssuesItemWithDefaults() *JiraIntegrationMetadata
 	this := JiraIntegrationMetadataIssuesItem{}
 	return &this
 }
-
 // GetAccount returns the Account field value.
 func (o *JiraIntegrationMetadataIssuesItem) GetAccount() string {
 	if o == nil {
@@ -68,6 +72,7 @@ func (o *JiraIntegrationMetadataIssuesItem) GetAccountOk() (*string, bool) {
 func (o *JiraIntegrationMetadataIssuesItem) SetAccount(v string) {
 	o.Account = v
 }
+
 
 // GetIssueKey returns the IssueKey field value if set, zero value otherwise.
 func (o *JiraIntegrationMetadataIssuesItem) GetIssueKey() string {
@@ -97,6 +102,7 @@ func (o *JiraIntegrationMetadataIssuesItem) SetIssueKey(v string) {
 	o.IssueKey = &v
 }
 
+
 // GetIssuetypeId returns the IssuetypeId field value if set, zero value otherwise.
 func (o *JiraIntegrationMetadataIssuesItem) GetIssuetypeId() string {
 	if o == nil || o.IssuetypeId == nil {
@@ -125,6 +131,7 @@ func (o *JiraIntegrationMetadataIssuesItem) SetIssuetypeId(v string) {
 	o.IssuetypeId = &v
 }
 
+
 // GetProjectKey returns the ProjectKey field value.
 func (o *JiraIntegrationMetadataIssuesItem) GetProjectKey() string {
 	if o == nil {
@@ -147,6 +154,7 @@ func (o *JiraIntegrationMetadataIssuesItem) GetProjectKeyOk() (*string, bool) {
 func (o *JiraIntegrationMetadataIssuesItem) SetProjectKey(v string) {
 	o.ProjectKey = v
 }
+
 
 // GetRedirectUrl returns the RedirectUrl field value if set, zero value otherwise.
 func (o *JiraIntegrationMetadataIssuesItem) GetRedirectUrl() string {
@@ -176,6 +184,8 @@ func (o *JiraIntegrationMetadataIssuesItem) SetRedirectUrl(v string) {
 	o.RedirectUrl = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o JiraIntegrationMetadataIssuesItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -203,10 +213,10 @@ func (o JiraIntegrationMetadataIssuesItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *JiraIntegrationMetadataIssuesItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Account     *string `json:"account"`
-		IssueKey    *string `json:"issue_key,omitempty"`
+		Account *string `json:"account"`
+		IssueKey *string `json:"issue_key,omitempty"`
 		IssuetypeId *string `json:"issuetype_id,omitempty"`
-		ProjectKey  *string `json:"project_key"`
+		ProjectKey *string `json:"project_key"`
 		RedirectUrl *string `json:"redirect_url,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -220,7 +230,7 @@ func (o *JiraIntegrationMetadataIssuesItem) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account", "issue_key", "issuetype_id", "project_key", "redirect_url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account", "issue_key", "issuetype_id", "project_key", "redirect_url",  })
 	} else {
 		return err
 	}

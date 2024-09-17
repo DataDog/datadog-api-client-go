@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorGroupSearchResponseCounts The counts of monitor groups per different criteria.
 type MonitorGroupSearchResponseCounts struct {
@@ -15,9 +21,10 @@ type MonitorGroupSearchResponseCounts struct {
 	// Search facets.
 	Type []MonitorSearchCountItem `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorGroupSearchResponseCounts instantiates a new MonitorGroupSearchResponseCounts object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewMonitorGroupSearchResponseCountsWithDefaults() *MonitorGroupSearchRespon
 	this := MonitorGroupSearchResponseCounts{}
 	return &this
 }
-
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *MonitorGroupSearchResponseCounts) GetStatus() []MonitorSearchCountItem {
 	if o == nil || o.Status == nil {
@@ -63,6 +69,7 @@ func (o *MonitorGroupSearchResponseCounts) HasStatus() bool {
 func (o *MonitorGroupSearchResponseCounts) SetStatus(v []MonitorSearchCountItem) {
 	o.Status = v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MonitorGroupSearchResponseCounts) GetType() []MonitorSearchCountItem {
@@ -92,6 +99,8 @@ func (o *MonitorGroupSearchResponseCounts) SetType(v []MonitorSearchCountItem) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorGroupSearchResponseCounts) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o MonitorGroupSearchResponseCounts) MarshalJSON() ([]byte, error) {
 func (o *MonitorGroupSearchResponseCounts) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Status []MonitorSearchCountItem `json:"status,omitempty"`
-		Type   []MonitorSearchCountItem `json:"type,omitempty"`
+		Type []MonitorSearchCountItem `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"status", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "status", "type",  })
 	} else {
 		return err
 	}

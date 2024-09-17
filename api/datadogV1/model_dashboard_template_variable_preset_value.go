@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DashboardTemplateVariablePresetValue Template variables saved views.
 type DashboardTemplateVariablePresetValue struct {
@@ -18,9 +24,10 @@ type DashboardTemplateVariablePresetValue struct {
 	// One or many template variable values within the saved view, which will be unioned together using `OR` if more than one is specified. Cannot be used in conjunction with `value`.
 	Values []string `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDashboardTemplateVariablePresetValue instantiates a new DashboardTemplateVariablePresetValue object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +45,6 @@ func NewDashboardTemplateVariablePresetValueWithDefaults() *DashboardTemplateVar
 	this := DashboardTemplateVariablePresetValue{}
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DashboardTemplateVariablePresetValue) GetName() string {
 	if o == nil || o.Name == nil {
@@ -66,6 +72,7 @@ func (o *DashboardTemplateVariablePresetValue) HasName() bool {
 func (o *DashboardTemplateVariablePresetValue) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetValue returns the Value field value if set, zero value otherwise.
 // Deprecated
@@ -98,6 +105,7 @@ func (o *DashboardTemplateVariablePresetValue) SetValue(v string) {
 	o.Value = &v
 }
 
+
 // GetValues returns the Values field value if set, zero value otherwise.
 func (o *DashboardTemplateVariablePresetValue) GetValues() []string {
 	if o == nil || o.Values == nil {
@@ -126,6 +134,8 @@ func (o *DashboardTemplateVariablePresetValue) SetValues(v []string) {
 	o.Values = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DashboardTemplateVariablePresetValue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -151,8 +161,8 @@ func (o DashboardTemplateVariablePresetValue) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DashboardTemplateVariablePresetValue) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name   *string  `json:"name,omitempty"`
-		Value  *string  `json:"value,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Value *string `json:"value,omitempty"`
 		Values []string `json:"values,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -160,7 +170,7 @@ func (o *DashboardTemplateVariablePresetValue) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "value", "values"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "value", "values",  })
 	} else {
 		return err
 	}

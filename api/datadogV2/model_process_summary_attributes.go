@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ProcessSummaryAttributes Attributes for a process summary.
 type ProcessSummaryAttributes struct {
@@ -27,9 +33,10 @@ type ProcessSummaryAttributes struct {
 	// Process owner.
 	User *string `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewProcessSummaryAttributes instantiates a new ProcessSummaryAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +54,6 @@ func NewProcessSummaryAttributesWithDefaults() *ProcessSummaryAttributes {
 	this := ProcessSummaryAttributes{}
 	return &this
 }
-
 // GetCmdline returns the Cmdline field value if set, zero value otherwise.
 func (o *ProcessSummaryAttributes) GetCmdline() string {
 	if o == nil || o.Cmdline == nil {
@@ -75,6 +81,7 @@ func (o *ProcessSummaryAttributes) HasCmdline() bool {
 func (o *ProcessSummaryAttributes) SetCmdline(v string) {
 	o.Cmdline = &v
 }
+
 
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *ProcessSummaryAttributes) GetHost() string {
@@ -104,6 +111,7 @@ func (o *ProcessSummaryAttributes) SetHost(v string) {
 	o.Host = &v
 }
 
+
 // GetPid returns the Pid field value if set, zero value otherwise.
 func (o *ProcessSummaryAttributes) GetPid() int64 {
 	if o == nil || o.Pid == nil {
@@ -131,6 +139,7 @@ func (o *ProcessSummaryAttributes) HasPid() bool {
 func (o *ProcessSummaryAttributes) SetPid(v int64) {
 	o.Pid = &v
 }
+
 
 // GetPpid returns the Ppid field value if set, zero value otherwise.
 func (o *ProcessSummaryAttributes) GetPpid() int64 {
@@ -160,6 +169,7 @@ func (o *ProcessSummaryAttributes) SetPpid(v int64) {
 	o.Ppid = &v
 }
 
+
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *ProcessSummaryAttributes) GetStart() string {
 	if o == nil || o.Start == nil {
@@ -187,6 +197,7 @@ func (o *ProcessSummaryAttributes) HasStart() bool {
 func (o *ProcessSummaryAttributes) SetStart(v string) {
 	o.Start = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ProcessSummaryAttributes) GetTags() []string {
@@ -216,6 +227,7 @@ func (o *ProcessSummaryAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *ProcessSummaryAttributes) GetTimestamp() string {
 	if o == nil || o.Timestamp == nil {
@@ -244,6 +256,7 @@ func (o *ProcessSummaryAttributes) SetTimestamp(v string) {
 	o.Timestamp = &v
 }
 
+
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *ProcessSummaryAttributes) GetUser() string {
 	if o == nil || o.User == nil {
@@ -271,6 +284,8 @@ func (o *ProcessSummaryAttributes) HasUser() bool {
 func (o *ProcessSummaryAttributes) SetUser(v string) {
 	o.User = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ProcessSummaryAttributes) MarshalJSON() ([]byte, error) {
@@ -312,21 +327,21 @@ func (o ProcessSummaryAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ProcessSummaryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Cmdline   *string  `json:"cmdline,omitempty"`
-		Host      *string  `json:"host,omitempty"`
-		Pid       *int64   `json:"pid,omitempty"`
-		Ppid      *int64   `json:"ppid,omitempty"`
-		Start     *string  `json:"start,omitempty"`
-		Tags      []string `json:"tags,omitempty"`
-		Timestamp *string  `json:"timestamp,omitempty"`
-		User      *string  `json:"user,omitempty"`
+		Cmdline *string `json:"cmdline,omitempty"`
+		Host *string `json:"host,omitempty"`
+		Pid *int64 `json:"pid,omitempty"`
+		Ppid *int64 `json:"ppid,omitempty"`
+		Start *string `json:"start,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Timestamp *string `json:"timestamp,omitempty"`
+		User *string `json:"user,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cmdline", "host", "pid", "ppid", "start", "tags", "timestamp", "user"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cmdline", "host", "pid", "ppid", "start", "tags", "timestamp", "user",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorOptionsCustomScheduleRecurrence Configuration for a recurrence set on the monitor options for custom schedule.
 type MonitorOptionsCustomScheduleRecurrence struct {
@@ -17,9 +23,10 @@ type MonitorOptionsCustomScheduleRecurrence struct {
 	// Defines the timezone the schedule runs on.
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorOptionsCustomScheduleRecurrence instantiates a new MonitorOptionsCustomScheduleRecurrence object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewMonitorOptionsCustomScheduleRecurrenceWithDefaults() *MonitorOptionsCust
 	this := MonitorOptionsCustomScheduleRecurrence{}
 	return &this
 }
-
 // GetRrule returns the Rrule field value if set, zero value otherwise.
 func (o *MonitorOptionsCustomScheduleRecurrence) GetRrule() string {
 	if o == nil || o.Rrule == nil {
@@ -65,6 +71,7 @@ func (o *MonitorOptionsCustomScheduleRecurrence) HasRrule() bool {
 func (o *MonitorOptionsCustomScheduleRecurrence) SetRrule(v string) {
 	o.Rrule = &v
 }
+
 
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *MonitorOptionsCustomScheduleRecurrence) GetStart() string {
@@ -94,6 +101,7 @@ func (o *MonitorOptionsCustomScheduleRecurrence) SetStart(v string) {
 	o.Start = &v
 }
 
+
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *MonitorOptionsCustomScheduleRecurrence) GetTimezone() string {
 	if o == nil || o.Timezone == nil {
@@ -122,6 +130,8 @@ func (o *MonitorOptionsCustomScheduleRecurrence) SetTimezone(v string) {
 	o.Timezone = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorOptionsCustomScheduleRecurrence) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,8 +157,8 @@ func (o MonitorOptionsCustomScheduleRecurrence) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorOptionsCustomScheduleRecurrence) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Rrule    *string `json:"rrule,omitempty"`
-		Start    *string `json:"start,omitempty"`
+		Rrule *string `json:"rrule,omitempty"`
+		Start *string `json:"start,omitempty"`
 		Timezone *string `json:"timezone,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,7 +166,7 @@ func (o *MonitorOptionsCustomScheduleRecurrence) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"rrule", "start", "timezone"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "rrule", "start", "timezone",  })
 	} else {
 		return err
 	}

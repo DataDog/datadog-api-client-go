@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"bytes"
 	_context "context"
 	_fmt "fmt"
+	_io "io"
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -22,16 +24,18 @@ type UsageMeteringApi datadog.Service
 // Get active billing dimensions for cost attribution. Cost data for a given month becomes available no later than the 19th of the following month.
 func (a *UsageMeteringApi) GetActiveBillingDimensions(ctx _context.Context) (ActiveBillingDimensionsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue ActiveBillingDimensionsResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  ActiveBillingDimensionsResponse
 	)
+
+    
 
 	operationId := "v2.GetActiveBillingDimensions"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetActiveBillingDimensions")
@@ -44,9 +48,10 @@ func (a *UsageMeteringApi) GetActiveBillingDimensions(ctx _context.Context) (Act
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] =  "application/json;datetime-format=rfc3339"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -69,10 +74,11 @@ func (a *UsageMeteringApi) GetActiveBillingDimensions(ctx _context.Context) (Act
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -86,7 +92,7 @@ func (a *UsageMeteringApi) GetActiveBillingDimensions(ctx _context.Context) (Act
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -105,7 +111,6 @@ func NewGetCostByOrgOptionalParameters() *GetCostByOrgOptionalParameters {
 	this := GetCostByOrgOptionalParameters{}
 	return &this
 }
-
 // WithEndMonth sets the corresponding parameter name and returns the struct.
 func (r *GetCostByOrgOptionalParameters) WithEndMonth(endMonth time.Time) *GetCostByOrgOptionalParameters {
 	r.EndMonth = &endMonth
@@ -124,18 +129,20 @@ func (r *GetCostByOrgOptionalParameters) WithEndMonth(endMonth time.Time) *GetCo
 // Deprecated: This API is deprecated.
 func (a *UsageMeteringApi) GetCostByOrg(ctx _context.Context, startMonth time.Time, o ...GetCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue CostByOrgResponse
-		optionalParams      GetCostByOrgOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  CostByOrgResponse
+		optionalParams GetCostByOrgOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetCostByOrgOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetCostByOrgOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetCostByOrg")
 	if err != nil {
@@ -151,9 +158,10 @@ func (a *UsageMeteringApi) GetCostByOrg(ctx _context.Context, startMonth time.Ti
 	if optionalParams.EndMonth != nil {
 		localVarQueryParams.Add("end_month", datadog.ParameterToString(*optionalParams.EndMonth, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] =  "application/json;datetime-format=rfc3339"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -176,10 +184,11 @@ func (a *UsageMeteringApi) GetCostByOrg(ctx _context.Context, startMonth time.Ti
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -193,7 +202,7 @@ func (a *UsageMeteringApi) GetCostByOrg(ctx _context.Context, startMonth time.Ti
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -204,11 +213,11 @@ func (a *UsageMeteringApi) GetCostByOrg(ctx _context.Context, startMonth time.Ti
 
 // GetEstimatedCostByOrgOptionalParameters holds optional parameters for GetEstimatedCostByOrg.
 type GetEstimatedCostByOrgOptionalParameters struct {
-	View                     *string
-	StartMonth               *time.Time
-	EndMonth                 *time.Time
-	StartDate                *time.Time
-	EndDate                  *time.Time
+	View *string
+	StartMonth *time.Time
+	EndMonth *time.Time
+	StartDate *time.Time
+	EndDate *time.Time
 	IncludeConnectedAccounts *bool
 }
 
@@ -217,37 +226,31 @@ func NewGetEstimatedCostByOrgOptionalParameters() *GetEstimatedCostByOrgOptional
 	this := GetEstimatedCostByOrgOptionalParameters{}
 	return &this
 }
-
 // WithView sets the corresponding parameter name and returns the struct.
 func (r *GetEstimatedCostByOrgOptionalParameters) WithView(view string) *GetEstimatedCostByOrgOptionalParameters {
 	r.View = &view
 	return r
 }
-
 // WithStartMonth sets the corresponding parameter name and returns the struct.
 func (r *GetEstimatedCostByOrgOptionalParameters) WithStartMonth(startMonth time.Time) *GetEstimatedCostByOrgOptionalParameters {
 	r.StartMonth = &startMonth
 	return r
 }
-
 // WithEndMonth sets the corresponding parameter name and returns the struct.
 func (r *GetEstimatedCostByOrgOptionalParameters) WithEndMonth(endMonth time.Time) *GetEstimatedCostByOrgOptionalParameters {
 	r.EndMonth = &endMonth
 	return r
 }
-
 // WithStartDate sets the corresponding parameter name and returns the struct.
 func (r *GetEstimatedCostByOrgOptionalParameters) WithStartDate(startDate time.Time) *GetEstimatedCostByOrgOptionalParameters {
 	r.StartDate = &startDate
 	return r
 }
-
 // WithEndDate sets the corresponding parameter name and returns the struct.
 func (r *GetEstimatedCostByOrgOptionalParameters) WithEndDate(endDate time.Time) *GetEstimatedCostByOrgOptionalParameters {
 	r.EndDate = &endDate
 	return r
 }
-
 // WithIncludeConnectedAccounts sets the corresponding parameter name and returns the struct.
 func (r *GetEstimatedCostByOrgOptionalParameters) WithIncludeConnectedAccounts(includeConnectedAccounts bool) *GetEstimatedCostByOrgOptionalParameters {
 	r.IncludeConnectedAccounts = &includeConnectedAccounts
@@ -263,18 +266,20 @@ func (r *GetEstimatedCostByOrgOptionalParameters) WithIncludeConnectedAccounts(i
 // This endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/).
 func (a *UsageMeteringApi) GetEstimatedCostByOrg(ctx _context.Context, o ...GetEstimatedCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue CostByOrgResponse
-		optionalParams      GetEstimatedCostByOrgOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  CostByOrgResponse
+		optionalParams GetEstimatedCostByOrgOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetEstimatedCostByOrgOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetEstimatedCostByOrgOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetEstimatedCostByOrg")
 	if err != nil {
@@ -304,9 +309,10 @@ func (a *UsageMeteringApi) GetEstimatedCostByOrg(ctx _context.Context, o ...GetE
 	if optionalParams.IncludeConnectedAccounts != nil {
 		localVarQueryParams.Add("include_connected_accounts", datadog.ParameterToString(*optionalParams.IncludeConnectedAccounts, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] =  "application/json;datetime-format=rfc3339"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -329,10 +335,11 @@ func (a *UsageMeteringApi) GetEstimatedCostByOrg(ctx _context.Context, o ...GetE
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -346,7 +353,7 @@ func (a *UsageMeteringApi) GetEstimatedCostByOrg(ctx _context.Context, o ...GetE
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -357,8 +364,8 @@ func (a *UsageMeteringApi) GetEstimatedCostByOrg(ctx _context.Context, o ...GetE
 
 // GetHistoricalCostByOrgOptionalParameters holds optional parameters for GetHistoricalCostByOrg.
 type GetHistoricalCostByOrgOptionalParameters struct {
-	View                     *string
-	EndMonth                 *time.Time
+	View *string
+	EndMonth *time.Time
 	IncludeConnectedAccounts *bool
 }
 
@@ -367,19 +374,16 @@ func NewGetHistoricalCostByOrgOptionalParameters() *GetHistoricalCostByOrgOption
 	this := GetHistoricalCostByOrgOptionalParameters{}
 	return &this
 }
-
 // WithView sets the corresponding parameter name and returns the struct.
 func (r *GetHistoricalCostByOrgOptionalParameters) WithView(view string) *GetHistoricalCostByOrgOptionalParameters {
 	r.View = &view
 	return r
 }
-
 // WithEndMonth sets the corresponding parameter name and returns the struct.
 func (r *GetHistoricalCostByOrgOptionalParameters) WithEndMonth(endMonth time.Time) *GetHistoricalCostByOrgOptionalParameters {
 	r.EndMonth = &endMonth
 	return r
 }
-
 // WithIncludeConnectedAccounts sets the corresponding parameter name and returns the struct.
 func (r *GetHistoricalCostByOrgOptionalParameters) WithIncludeConnectedAccounts(includeConnectedAccounts bool) *GetHistoricalCostByOrgOptionalParameters {
 	r.IncludeConnectedAccounts = &includeConnectedAccounts
@@ -393,18 +397,20 @@ func (r *GetHistoricalCostByOrgOptionalParameters) WithIncludeConnectedAccounts(
 // This endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/).
 func (a *UsageMeteringApi) GetHistoricalCostByOrg(ctx _context.Context, startMonth time.Time, o ...GetHistoricalCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue CostByOrgResponse
-		optionalParams      GetHistoricalCostByOrgOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  CostByOrgResponse
+		optionalParams GetHistoricalCostByOrgOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetHistoricalCostByOrgOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetHistoricalCostByOrgOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetHistoricalCostByOrg")
 	if err != nil {
@@ -426,9 +432,10 @@ func (a *UsageMeteringApi) GetHistoricalCostByOrg(ctx _context.Context, startMon
 	if optionalParams.IncludeConnectedAccounts != nil {
 		localVarQueryParams.Add("include_connected_accounts", datadog.ParameterToString(*optionalParams.IncludeConnectedAccounts, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] =  "application/json;datetime-format=rfc3339"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -451,10 +458,11 @@ func (a *UsageMeteringApi) GetHistoricalCostByOrg(ctx _context.Context, startMon
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -468,7 +476,7 @@ func (a *UsageMeteringApi) GetHistoricalCostByOrg(ctx _context.Context, startMon
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -479,13 +487,13 @@ func (a *UsageMeteringApi) GetHistoricalCostByOrg(ctx _context.Context, startMon
 
 // GetHourlyUsageOptionalParameters holds optional parameters for GetHourlyUsage.
 type GetHourlyUsageOptionalParameters struct {
-	FilterTimestampEnd             *time.Time
-	FilterIncludeDescendants       *bool
+	FilterTimestampEnd *time.Time
+	FilterIncludeDescendants *bool
 	FilterIncludeConnectedAccounts *bool
-	FilterIncludeBreakdown         *bool
-	FilterVersions                 *string
-	PageLimit                      *int32
-	PageNextRecordId               *string
+	FilterIncludeBreakdown *bool
+	FilterVersions *string
+	PageLimit *int32
+	PageNextRecordId *string
 }
 
 // NewGetHourlyUsageOptionalParameters creates an empty struct for parameters.
@@ -493,43 +501,36 @@ func NewGetHourlyUsageOptionalParameters() *GetHourlyUsageOptionalParameters {
 	this := GetHourlyUsageOptionalParameters{}
 	return &this
 }
-
 // WithFilterTimestampEnd sets the corresponding parameter name and returns the struct.
 func (r *GetHourlyUsageOptionalParameters) WithFilterTimestampEnd(filterTimestampEnd time.Time) *GetHourlyUsageOptionalParameters {
 	r.FilterTimestampEnd = &filterTimestampEnd
 	return r
 }
-
 // WithFilterIncludeDescendants sets the corresponding parameter name and returns the struct.
 func (r *GetHourlyUsageOptionalParameters) WithFilterIncludeDescendants(filterIncludeDescendants bool) *GetHourlyUsageOptionalParameters {
 	r.FilterIncludeDescendants = &filterIncludeDescendants
 	return r
 }
-
 // WithFilterIncludeConnectedAccounts sets the corresponding parameter name and returns the struct.
 func (r *GetHourlyUsageOptionalParameters) WithFilterIncludeConnectedAccounts(filterIncludeConnectedAccounts bool) *GetHourlyUsageOptionalParameters {
 	r.FilterIncludeConnectedAccounts = &filterIncludeConnectedAccounts
 	return r
 }
-
 // WithFilterIncludeBreakdown sets the corresponding parameter name and returns the struct.
 func (r *GetHourlyUsageOptionalParameters) WithFilterIncludeBreakdown(filterIncludeBreakdown bool) *GetHourlyUsageOptionalParameters {
 	r.FilterIncludeBreakdown = &filterIncludeBreakdown
 	return r
 }
-
 // WithFilterVersions sets the corresponding parameter name and returns the struct.
 func (r *GetHourlyUsageOptionalParameters) WithFilterVersions(filterVersions string) *GetHourlyUsageOptionalParameters {
 	r.FilterVersions = &filterVersions
 	return r
 }
-
 // WithPageLimit sets the corresponding parameter name and returns the struct.
 func (r *GetHourlyUsageOptionalParameters) WithPageLimit(pageLimit int32) *GetHourlyUsageOptionalParameters {
 	r.PageLimit = &pageLimit
 	return r
 }
-
 // WithPageNextRecordId sets the corresponding parameter name and returns the struct.
 func (r *GetHourlyUsageOptionalParameters) WithPageNextRecordId(pageNextRecordId string) *GetHourlyUsageOptionalParameters {
 	r.PageNextRecordId = &pageNextRecordId
@@ -540,18 +541,20 @@ func (r *GetHourlyUsageOptionalParameters) WithPageNextRecordId(pageNextRecordId
 // Get hourly usage by product family.
 func (a *UsageMeteringApi) GetHourlyUsage(ctx _context.Context, filterTimestampStart time.Time, filterProductFamilies string, o ...GetHourlyUsageOptionalParameters) (HourlyUsageResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue HourlyUsageResponse
-		optionalParams      GetHourlyUsageOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  HourlyUsageResponse
+		optionalParams GetHourlyUsageOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetHourlyUsageOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetHourlyUsageOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetHourlyUsage")
 	if err != nil {
@@ -586,9 +589,10 @@ func (a *UsageMeteringApi) GetHourlyUsage(ctx _context.Context, filterTimestampS
 	if optionalParams.PageNextRecordId != nil {
 		localVarQueryParams.Add("page[next_record_id]", datadog.ParameterToString(*optionalParams.PageNextRecordId, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] =  "application/json;datetime-format=rfc3339"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -611,10 +615,11 @@ func (a *UsageMeteringApi) GetHourlyUsage(ctx _context.Context, filterTimestampS
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -628,7 +633,7 @@ func (a *UsageMeteringApi) GetHourlyUsage(ctx _context.Context, filterTimestampS
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -639,10 +644,10 @@ func (a *UsageMeteringApi) GetHourlyUsage(ctx _context.Context, filterTimestampS
 
 // GetMonthlyCostAttributionOptionalParameters holds optional parameters for GetMonthlyCostAttribution.
 type GetMonthlyCostAttributionOptionalParameters struct {
-	SortDirection      *SortDirection
-	SortName           *string
-	TagBreakdownKeys   *string
-	NextRecordId       *string
+	SortDirection *SortDirection
+	SortName *string
+	TagBreakdownKeys *string
+	NextRecordId *string
 	IncludeDescendants *bool
 }
 
@@ -651,31 +656,26 @@ func NewGetMonthlyCostAttributionOptionalParameters() *GetMonthlyCostAttribution
 	this := GetMonthlyCostAttributionOptionalParameters{}
 	return &this
 }
-
 // WithSortDirection sets the corresponding parameter name and returns the struct.
 func (r *GetMonthlyCostAttributionOptionalParameters) WithSortDirection(sortDirection SortDirection) *GetMonthlyCostAttributionOptionalParameters {
 	r.SortDirection = &sortDirection
 	return r
 }
-
 // WithSortName sets the corresponding parameter name and returns the struct.
 func (r *GetMonthlyCostAttributionOptionalParameters) WithSortName(sortName string) *GetMonthlyCostAttributionOptionalParameters {
 	r.SortName = &sortName
 	return r
 }
-
 // WithTagBreakdownKeys sets the corresponding parameter name and returns the struct.
 func (r *GetMonthlyCostAttributionOptionalParameters) WithTagBreakdownKeys(tagBreakdownKeys string) *GetMonthlyCostAttributionOptionalParameters {
 	r.TagBreakdownKeys = &tagBreakdownKeys
 	return r
 }
-
 // WithNextRecordId sets the corresponding parameter name and returns the struct.
 func (r *GetMonthlyCostAttributionOptionalParameters) WithNextRecordId(nextRecordId string) *GetMonthlyCostAttributionOptionalParameters {
 	r.NextRecordId = &nextRecordId
 	return r
 }
-
 // WithIncludeDescendants sets the corresponding parameter name and returns the struct.
 func (r *GetMonthlyCostAttributionOptionalParameters) WithIncludeDescendants(includeDescendants bool) *GetMonthlyCostAttributionOptionalParameters {
 	r.IncludeDescendants = &includeDescendants
@@ -692,35 +692,35 @@ func (r *GetMonthlyCostAttributionOptionalParameters) WithIncludeDescendants(inc
 // response := GetMonthlyCostAttribution(start_month, end_month)
 // cursor := response.metadata.pagination.next_record_id
 // WHILE cursor != null BEGIN
-//
-//	sleep(5 seconds)  # Avoid running into rate limit
-//	response := GetMonthlyCostAttribution(start_month, end_month, next_record_id=cursor)
-//	cursor := response.metadata.pagination.next_record_id
-//
+//   sleep(5 seconds)  # Avoid running into rate limit
+//   response := GetMonthlyCostAttribution(start_month, end_month, next_record_id=cursor)
+//   cursor := response.metadata.pagination.next_record_id
 // END
 // ```
 //
 // This endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/).
 func (a *UsageMeteringApi) GetMonthlyCostAttribution(ctx _context.Context, startMonth time.Time, endMonth time.Time, fields string, o ...GetMonthlyCostAttributionOptionalParameters) (MonthlyCostAttributionResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue MonthlyCostAttributionResponse
-		optionalParams      GetMonthlyCostAttributionOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  MonthlyCostAttributionResponse
+		optionalParams GetMonthlyCostAttributionOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetMonthlyCostAttributionOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetMonthlyCostAttributionOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	operationId := "v2.GetMonthlyCostAttribution"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetMonthlyCostAttribution")
@@ -751,9 +751,10 @@ func (a *UsageMeteringApi) GetMonthlyCostAttribution(ctx _context.Context, start
 	if optionalParams.IncludeDescendants != nil {
 		localVarQueryParams.Add("include_descendants", datadog.ParameterToString(*optionalParams.IncludeDescendants, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] =  "application/json;datetime-format=rfc3339"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -776,10 +777,11 @@ func (a *UsageMeteringApi) GetMonthlyCostAttribution(ctx _context.Context, start
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -793,7 +795,7 @@ func (a *UsageMeteringApi) GetMonthlyCostAttribution(ctx _context.Context, start
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -804,7 +806,7 @@ func (a *UsageMeteringApi) GetMonthlyCostAttribution(ctx _context.Context, start
 
 // GetProjectedCostOptionalParameters holds optional parameters for GetProjectedCost.
 type GetProjectedCostOptionalParameters struct {
-	View                     *string
+	View *string
 	IncludeConnectedAccounts *bool
 }
 
@@ -813,13 +815,11 @@ func NewGetProjectedCostOptionalParameters() *GetProjectedCostOptionalParameters
 	this := GetProjectedCostOptionalParameters{}
 	return &this
 }
-
 // WithView sets the corresponding parameter name and returns the struct.
 func (r *GetProjectedCostOptionalParameters) WithView(view string) *GetProjectedCostOptionalParameters {
 	r.View = &view
 	return r
 }
-
 // WithIncludeConnectedAccounts sets the corresponding parameter name and returns the struct.
 func (r *GetProjectedCostOptionalParameters) WithIncludeConnectedAccounts(includeConnectedAccounts bool) *GetProjectedCostOptionalParameters {
 	r.IncludeConnectedAccounts = &includeConnectedAccounts
@@ -833,18 +833,20 @@ func (r *GetProjectedCostOptionalParameters) WithIncludeConnectedAccounts(includ
 // This endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/).
 func (a *UsageMeteringApi) GetProjectedCost(ctx _context.Context, o ...GetProjectedCostOptionalParameters) (ProjectedCostResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue ProjectedCostResponse
-		optionalParams      GetProjectedCostOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  ProjectedCostResponse
+		optionalParams GetProjectedCostOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetProjectedCostOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetProjectedCostOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetProjectedCost")
 	if err != nil {
@@ -862,9 +864,10 @@ func (a *UsageMeteringApi) GetProjectedCost(ctx _context.Context, o ...GetProjec
 	if optionalParams.IncludeConnectedAccounts != nil {
 		localVarQueryParams.Add("include_connected_accounts", datadog.ParameterToString(*optionalParams.IncludeConnectedAccounts, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] =  "application/json;datetime-format=rfc3339"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -887,10 +890,11 @@ func (a *UsageMeteringApi) GetProjectedCost(ctx _context.Context, o ...GetProjec
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -904,7 +908,7 @@ func (a *UsageMeteringApi) GetProjectedCost(ctx _context.Context, o ...GetProjec
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -923,7 +927,6 @@ func NewGetUsageApplicationSecurityMonitoringOptionalParameters() *GetUsageAppli
 	this := GetUsageApplicationSecurityMonitoringOptionalParameters{}
 	return &this
 }
-
 // WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageApplicationSecurityMonitoringOptionalParameters) WithEndHr(endHr time.Time) *GetUsageApplicationSecurityMonitoringOptionalParameters {
 	r.EndHr = &endHr
@@ -937,18 +940,20 @@ func (r *GetUsageApplicationSecurityMonitoringOptionalParameters) WithEndHr(endH
 // Deprecated: This API is deprecated.
 func (a *UsageMeteringApi) GetUsageApplicationSecurityMonitoring(ctx _context.Context, startHr time.Time, o ...GetUsageApplicationSecurityMonitoringOptionalParameters) (UsageApplicationSecurityMonitoringResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue UsageApplicationSecurityMonitoringResponse
-		optionalParams      GetUsageApplicationSecurityMonitoringOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  UsageApplicationSecurityMonitoringResponse
+		optionalParams GetUsageApplicationSecurityMonitoringOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetUsageApplicationSecurityMonitoringOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetUsageApplicationSecurityMonitoringOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetUsageApplicationSecurityMonitoring")
 	if err != nil {
@@ -964,9 +969,10 @@ func (a *UsageMeteringApi) GetUsageApplicationSecurityMonitoring(ctx _context.Co
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] =  "application/json;datetime-format=rfc3339"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -989,10 +995,11 @@ func (a *UsageMeteringApi) GetUsageApplicationSecurityMonitoring(ctx _context.Co
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1006,7 +1013,7 @@ func (a *UsageMeteringApi) GetUsageApplicationSecurityMonitoring(ctx _context.Co
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1025,7 +1032,6 @@ func NewGetUsageLambdaTracedInvocationsOptionalParameters() *GetUsageLambdaTrace
 	this := GetUsageLambdaTracedInvocationsOptionalParameters{}
 	return &this
 }
-
 // WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageLambdaTracedInvocationsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageLambdaTracedInvocationsOptionalParameters {
 	r.EndHr = &endHr
@@ -1039,18 +1045,20 @@ func (r *GetUsageLambdaTracedInvocationsOptionalParameters) WithEndHr(endHr time
 // Deprecated: This API is deprecated.
 func (a *UsageMeteringApi) GetUsageLambdaTracedInvocations(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaTracedInvocationsOptionalParameters) (UsageLambdaTracedInvocationsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue UsageLambdaTracedInvocationsResponse
-		optionalParams      GetUsageLambdaTracedInvocationsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  UsageLambdaTracedInvocationsResponse
+		optionalParams GetUsageLambdaTracedInvocationsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetUsageLambdaTracedInvocationsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetUsageLambdaTracedInvocationsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetUsageLambdaTracedInvocations")
 	if err != nil {
@@ -1066,9 +1074,10 @@ func (a *UsageMeteringApi) GetUsageLambdaTracedInvocations(ctx _context.Context,
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] =  "application/json;datetime-format=rfc3339"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -1091,10 +1100,11 @@ func (a *UsageMeteringApi) GetUsageLambdaTracedInvocations(ctx _context.Context,
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1108,7 +1118,7 @@ func (a *UsageMeteringApi) GetUsageLambdaTracedInvocations(ctx _context.Context,
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1127,7 +1137,6 @@ func NewGetUsageObservabilityPipelinesOptionalParameters() *GetUsageObservabilit
 	this := GetUsageObservabilityPipelinesOptionalParameters{}
 	return &this
 }
-
 // WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageObservabilityPipelinesOptionalParameters) WithEndHr(endHr time.Time) *GetUsageObservabilityPipelinesOptionalParameters {
 	r.EndHr = &endHr
@@ -1141,18 +1150,20 @@ func (r *GetUsageObservabilityPipelinesOptionalParameters) WithEndHr(endHr time.
 // Deprecated: This API is deprecated.
 func (a *UsageMeteringApi) GetUsageObservabilityPipelines(ctx _context.Context, startHr time.Time, o ...GetUsageObservabilityPipelinesOptionalParameters) (UsageObservabilityPipelinesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue UsageObservabilityPipelinesResponse
-		optionalParams      GetUsageObservabilityPipelinesOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  UsageObservabilityPipelinesResponse
+		optionalParams GetUsageObservabilityPipelinesOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetUsageObservabilityPipelinesOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetUsageObservabilityPipelinesOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetUsageObservabilityPipelines")
 	if err != nil {
@@ -1168,9 +1179,10 @@ func (a *UsageMeteringApi) GetUsageObservabilityPipelines(ctx _context.Context, 
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] =  "application/json;datetime-format=rfc3339"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -1193,10 +1205,11 @@ func (a *UsageMeteringApi) GetUsageObservabilityPipelines(ctx _context.Context, 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1210,7 +1223,7 @@ func (a *UsageMeteringApi) GetUsageObservabilityPipelines(ctx _context.Context, 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

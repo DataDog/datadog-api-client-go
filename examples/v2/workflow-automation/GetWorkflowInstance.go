@@ -2,14 +2,15 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -17,7 +18,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewWorkflowAutomationApi(apiClient)
-	resp, r, err := api.GetWorkflowInstance(ctx, "ccf73164-1998-4785-a7a3-8d06c7e5f558", "305a472b-71ab-4ce8-8f8d-75db635627b5")
+	resp, r, err := api.GetWorkflowInstance(ctx, "ccf73164-1998-4785-a7a3-8d06c7e5f558", "305a472b-71ab-4ce8-8f8d-75db635627b5", )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkflowAutomationApi.GetWorkflowInstance`: %v\n", err)

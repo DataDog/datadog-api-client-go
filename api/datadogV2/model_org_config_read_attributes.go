@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OrgConfigReadAttributes Readable attributes of an Org Config.
 type OrgConfigReadAttributes struct {
@@ -24,9 +27,10 @@ type OrgConfigReadAttributes struct {
 	// The type of an Org Config value.
 	ValueType string `json:"value_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOrgConfigReadAttributes instantiates a new OrgConfigReadAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +52,6 @@ func NewOrgConfigReadAttributesWithDefaults() *OrgConfigReadAttributes {
 	this := OrgConfigReadAttributes{}
 	return &this
 }
-
 // GetDescription returns the Description field value.
 func (o *OrgConfigReadAttributes) GetDescription() string {
 	if o == nil {
@@ -72,6 +75,7 @@ func (o *OrgConfigReadAttributes) SetDescription(v string) {
 	o.Description = v
 }
 
+
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OrgConfigReadAttributes) GetModifiedAt() time.Time {
 	if o == nil || o.ModifiedAt.Get() == nil {
@@ -85,7 +89,7 @@ func (o *OrgConfigReadAttributes) GetModifiedAt() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *OrgConfigReadAttributes) GetModifiedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ModifiedAt.Get(), o.ModifiedAt.IsSet()
@@ -100,7 +104,6 @@ func (o *OrgConfigReadAttributes) HasModifiedAt() bool {
 func (o *OrgConfigReadAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt.Set(&v)
 }
-
 // SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil.
 func (o *OrgConfigReadAttributes) SetModifiedAtNil() {
 	o.ModifiedAt.Set(nil)
@@ -110,6 +113,7 @@ func (o *OrgConfigReadAttributes) SetModifiedAtNil() {
 func (o *OrgConfigReadAttributes) UnsetModifiedAt() {
 	o.ModifiedAt.Unset()
 }
+
 
 // GetName returns the Name field value.
 func (o *OrgConfigReadAttributes) GetName() string {
@@ -134,6 +138,7 @@ func (o *OrgConfigReadAttributes) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetValue returns the Value field value.
 func (o *OrgConfigReadAttributes) GetValue() interface{} {
 	if o == nil {
@@ -156,6 +161,7 @@ func (o *OrgConfigReadAttributes) GetValueOk() (*interface{}, bool) {
 func (o *OrgConfigReadAttributes) SetValue(v interface{}) {
 	o.Value = v
 }
+
 
 // GetValueType returns the ValueType field value.
 func (o *OrgConfigReadAttributes) GetValueType() string {
@@ -180,6 +186,8 @@ func (o *OrgConfigReadAttributes) SetValueType(v string) {
 	o.ValueType = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OrgConfigReadAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -203,11 +211,11 @@ func (o OrgConfigReadAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OrgConfigReadAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description *string              `json:"description"`
-		ModifiedAt  datadog.NullableTime `json:"modified_at,omitempty"`
-		Name        *string              `json:"name"`
-		Value       *interface{}         `json:"value"`
-		ValueType   *string              `json:"value_type"`
+		Description *string `json:"description"`
+		ModifiedAt datadog.NullableTime `json:"modified_at,omitempty"`
+		Name *string `json:"name"`
+		Value *interface{} `json:"value"`
+		ValueType *string `json:"value_type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -226,7 +234,7 @@ func (o *OrgConfigReadAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "modified_at", "name", "value", "value_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "modified_at", "name", "value", "value_type",  })
 	} else {
 		return err
 	}

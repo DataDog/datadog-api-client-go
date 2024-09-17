@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotebookResponseData The data for a notebook.
 type NotebookResponseData struct {
@@ -19,9 +23,10 @@ type NotebookResponseData struct {
 	// Type of the Notebook resource.
 	Type NotebookResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewNotebookResponseData instantiates a new NotebookResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewNotebookResponseDataWithDefaults() *NotebookResponseData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *NotebookResponseData) GetAttributes() NotebookResponseDataAttributes {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *NotebookResponseData) GetAttributesOk() (*NotebookResponseDataAttribute
 func (o *NotebookResponseData) SetAttributes(v NotebookResponseDataAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *NotebookResponseData) GetId() int64 {
@@ -91,6 +96,7 @@ func (o *NotebookResponseData) SetId(v int64) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value.
 func (o *NotebookResponseData) GetType() NotebookResourceType {
 	if o == nil {
@@ -114,6 +120,8 @@ func (o *NotebookResponseData) SetType(v NotebookResourceType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -134,8 +142,8 @@ func (o NotebookResponseData) MarshalJSON() ([]byte, error) {
 func (o *NotebookResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *NotebookResponseDataAttributes `json:"attributes"`
-		Id         *int64                          `json:"id"`
-		Type       *NotebookResourceType           `json:"type"`
+		Id *int64 `json:"id"`
+		Type *NotebookResourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -151,7 +159,7 @@ func (o *NotebookResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

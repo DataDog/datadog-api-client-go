@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetColorPreference Which color to use on the widget.
 type WidgetColorPreference string
@@ -16,7 +20,7 @@ type WidgetColorPreference string
 // List of WidgetColorPreference.
 const (
 	WIDGETCOLORPREFERENCE_BACKGROUND WidgetColorPreference = "background"
-	WIDGETCOLORPREFERENCE_TEXT       WidgetColorPreference = "text"
+	WIDGETCOLORPREFERENCE_TEXT WidgetColorPreference = "text"
 )
 
 var allowedWidgetColorPreferenceEnumValues = []WidgetColorPreference{

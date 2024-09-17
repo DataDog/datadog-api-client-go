@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ContainersResponseLinks Pagination links.
 type ContainersResponseLinks struct {
@@ -21,9 +27,10 @@ type ContainersResponseLinks struct {
 	// Link to current page.
 	Self *string `json:"self,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewContainersResponseLinks instantiates a new ContainersResponseLinks object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewContainersResponseLinksWithDefaults() *ContainersResponseLinks {
 	this := ContainersResponseLinks{}
 	return &this
 }
-
 // GetFirst returns the First field value if set, zero value otherwise.
 func (o *ContainersResponseLinks) GetFirst() string {
 	if o == nil || o.First == nil {
@@ -70,6 +76,7 @@ func (o *ContainersResponseLinks) SetFirst(v string) {
 	o.First = &v
 }
 
+
 // GetLast returns the Last field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContainersResponseLinks) GetLast() string {
 	if o == nil || o.Last.Get() == nil {
@@ -83,7 +90,7 @@ func (o *ContainersResponseLinks) GetLast() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *ContainersResponseLinks) GetLastOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Last.Get(), o.Last.IsSet()
@@ -98,7 +105,6 @@ func (o *ContainersResponseLinks) HasLast() bool {
 func (o *ContainersResponseLinks) SetLast(v string) {
 	o.Last.Set(&v)
 }
-
 // SetLastNil sets the value for Last to be an explicit nil.
 func (o *ContainersResponseLinks) SetLastNil() {
 	o.Last.Set(nil)
@@ -108,6 +114,7 @@ func (o *ContainersResponseLinks) SetLastNil() {
 func (o *ContainersResponseLinks) UnsetLast() {
 	o.Last.Unset()
 }
+
 
 // GetNext returns the Next field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContainersResponseLinks) GetNext() string {
@@ -122,7 +129,7 @@ func (o *ContainersResponseLinks) GetNext() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *ContainersResponseLinks) GetNextOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Next.Get(), o.Next.IsSet()
@@ -137,7 +144,6 @@ func (o *ContainersResponseLinks) HasNext() bool {
 func (o *ContainersResponseLinks) SetNext(v string) {
 	o.Next.Set(&v)
 }
-
 // SetNextNil sets the value for Next to be an explicit nil.
 func (o *ContainersResponseLinks) SetNextNil() {
 	o.Next.Set(nil)
@@ -147,6 +153,7 @@ func (o *ContainersResponseLinks) SetNextNil() {
 func (o *ContainersResponseLinks) UnsetNext() {
 	o.Next.Unset()
 }
+
 
 // GetPrev returns the Prev field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContainersResponseLinks) GetPrev() string {
@@ -161,7 +168,7 @@ func (o *ContainersResponseLinks) GetPrev() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *ContainersResponseLinks) GetPrevOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Prev.Get(), o.Prev.IsSet()
@@ -176,7 +183,6 @@ func (o *ContainersResponseLinks) HasPrev() bool {
 func (o *ContainersResponseLinks) SetPrev(v string) {
 	o.Prev.Set(&v)
 }
-
 // SetPrevNil sets the value for Prev to be an explicit nil.
 func (o *ContainersResponseLinks) SetPrevNil() {
 	o.Prev.Set(nil)
@@ -186,6 +192,7 @@ func (o *ContainersResponseLinks) SetPrevNil() {
 func (o *ContainersResponseLinks) UnsetPrev() {
 	o.Prev.Unset()
 }
+
 
 // GetSelf returns the Self field value if set, zero value otherwise.
 func (o *ContainersResponseLinks) GetSelf() string {
@@ -214,6 +221,8 @@ func (o *ContainersResponseLinks) HasSelf() bool {
 func (o *ContainersResponseLinks) SetSelf(v string) {
 	o.Self = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ContainersResponseLinks) MarshalJSON() ([]byte, error) {
@@ -246,18 +255,18 @@ func (o ContainersResponseLinks) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ContainersResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		First *string                `json:"first,omitempty"`
-		Last  datadog.NullableString `json:"last,omitempty"`
-		Next  datadog.NullableString `json:"next,omitempty"`
-		Prev  datadog.NullableString `json:"prev,omitempty"`
-		Self  *string                `json:"self,omitempty"`
+		First *string `json:"first,omitempty"`
+		Last datadog.NullableString `json:"last,omitempty"`
+		Next datadog.NullableString `json:"next,omitempty"`
+		Prev datadog.NullableString `json:"prev,omitempty"`
+		Self *string `json:"self,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"first", "last", "next", "prev", "self"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "first", "last", "next", "prev", "self",  })
 	} else {
 		return err
 	}

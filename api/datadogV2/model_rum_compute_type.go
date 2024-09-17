@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RUMComputeType The type of compute.
 type RUMComputeType string
@@ -16,7 +20,7 @@ type RUMComputeType string
 // List of RUMComputeType.
 const (
 	RUMCOMPUTETYPE_TIMESERIES RUMComputeType = "timeseries"
-	RUMCOMPUTETYPE_TOTAL      RUMComputeType = "total"
+	RUMCOMPUTETYPE_TOTAL RUMComputeType = "total"
 )
 
 var allowedRUMComputeTypeEnumValues = []RUMComputeType{

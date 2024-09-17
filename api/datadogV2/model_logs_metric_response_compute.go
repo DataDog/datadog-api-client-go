@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsMetricResponseCompute The compute rule to compute the log-based metric.
 type LogsMetricResponseCompute struct {
@@ -18,9 +24,10 @@ type LogsMetricResponseCompute struct {
 	// The path to the value the log-based metric will aggregate on (only used if the aggregation type is a "distribution").
 	Path *string `json:"path,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsMetricResponseCompute instantiates a new LogsMetricResponseCompute object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +45,6 @@ func NewLogsMetricResponseComputeWithDefaults() *LogsMetricResponseCompute {
 	this := LogsMetricResponseCompute{}
 	return &this
 }
-
 // GetAggregationType returns the AggregationType field value if set, zero value otherwise.
 func (o *LogsMetricResponseCompute) GetAggregationType() LogsMetricResponseComputeAggregationType {
 	if o == nil || o.AggregationType == nil {
@@ -66,6 +72,7 @@ func (o *LogsMetricResponseCompute) HasAggregationType() bool {
 func (o *LogsMetricResponseCompute) SetAggregationType(v LogsMetricResponseComputeAggregationType) {
 	o.AggregationType = &v
 }
+
 
 // GetIncludePercentiles returns the IncludePercentiles field value if set, zero value otherwise.
 func (o *LogsMetricResponseCompute) GetIncludePercentiles() bool {
@@ -95,6 +102,7 @@ func (o *LogsMetricResponseCompute) SetIncludePercentiles(v bool) {
 	o.IncludePercentiles = &v
 }
 
+
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *LogsMetricResponseCompute) GetPath() string {
 	if o == nil || o.Path == nil {
@@ -123,6 +131,8 @@ func (o *LogsMetricResponseCompute) SetPath(v string) {
 	o.Path = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsMetricResponseCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,22 +158,22 @@ func (o LogsMetricResponseCompute) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsMetricResponseCompute) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AggregationType    *LogsMetricResponseComputeAggregationType `json:"aggregation_type,omitempty"`
-		IncludePercentiles *bool                                     `json:"include_percentiles,omitempty"`
-		Path               *string                                   `json:"path,omitempty"`
+		AggregationType *LogsMetricResponseComputeAggregationType `json:"aggregation_type,omitempty"`
+		IncludePercentiles *bool `json:"include_percentiles,omitempty"`
+		Path *string `json:"path,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation_type", "include_percentiles", "path"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation_type", "include_percentiles", "path",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.AggregationType != nil && !all.AggregationType.IsValid() {
+	if all.AggregationType != nil &&!all.AggregationType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.AggregationType = all.AggregationType

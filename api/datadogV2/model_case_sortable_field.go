@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CaseSortableField Case field that can be sorted on
 type CaseSortableField string
@@ -16,8 +20,8 @@ type CaseSortableField string
 // List of CaseSortableField.
 const (
 	CASESORTABLEFIELD_CREATED_AT CaseSortableField = "created_at"
-	CASESORTABLEFIELD_PRIORITY   CaseSortableField = "priority"
-	CASESORTABLEFIELD_STATUS     CaseSortableField = "status"
+	CASESORTABLEFIELD_PRIORITY CaseSortableField = "priority"
+	CASESORTABLEFIELD_STATUS CaseSortableField = "status"
 )
 
 var allowedCaseSortableFieldEnumValues = []CaseSortableField{

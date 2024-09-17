@@ -2,17 +2,23 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleCreatePayload - Create a new rule.
 type SecurityMonitoringRuleCreatePayload struct {
 	SecurityMonitoringStandardRuleCreatePayload *SecurityMonitoringStandardRuleCreatePayload
-	SecurityMonitoringSignalRuleCreatePayload   *SecurityMonitoringSignalRuleCreatePayload
-	CloudConfigurationRuleCreatePayload         *CloudConfigurationRuleCreatePayload
+	SecurityMonitoringSignalRuleCreatePayload *SecurityMonitoringSignalRuleCreatePayload
+	CloudConfigurationRuleCreatePayload *CloudConfigurationRuleCreatePayload
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -104,13 +110,16 @@ func (obj SecurityMonitoringRuleCreatePayload) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SecurityMonitoringStandardRuleCreatePayload)
 	}
 
+
 	if obj.SecurityMonitoringSignalRuleCreatePayload != nil {
 		return datadog.Marshal(&obj.SecurityMonitoringSignalRuleCreatePayload)
 	}
 
+
 	if obj.CloudConfigurationRuleCreatePayload != nil {
 		return datadog.Marshal(&obj.CloudConfigurationRuleCreatePayload)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj SecurityMonitoringRuleCreatePayload) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SecurityMonitoringRuleCreatePayload) GetActualInstance() interface{} {
+func (obj *SecurityMonitoringRuleCreatePayload) GetActualInstance() (interface{}) {
 	if obj.SecurityMonitoringStandardRuleCreatePayload != nil {
 		return obj.SecurityMonitoringStandardRuleCreatePayload
 	}
+
 
 	if obj.SecurityMonitoringSignalRuleCreatePayload != nil {
 		return obj.SecurityMonitoringSignalRuleCreatePayload
 	}
 
+
 	if obj.CloudConfigurationRuleCreatePayload != nil {
 		return obj.CloudConfigurationRuleCreatePayload
 	}
+
 
 	// all schemas are nil
 	return nil

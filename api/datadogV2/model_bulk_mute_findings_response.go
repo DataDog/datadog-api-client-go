@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // BulkMuteFindingsResponse The expected response schema.
 type BulkMuteFindingsResponse struct {
 	// Data object containing the ID of the request that was updated.
 	Data BulkMuteFindingsResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewBulkMuteFindingsResponse instantiates a new BulkMuteFindingsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewBulkMuteFindingsResponseWithDefaults() *BulkMuteFindingsResponse {
 	this := BulkMuteFindingsResponse{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *BulkMuteFindingsResponse) GetData() BulkMuteFindingsResponseData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *BulkMuteFindingsResponse) GetDataOk() (*BulkMuteFindingsResponseData, b
 func (o *BulkMuteFindingsResponse) SetData(v BulkMuteFindingsResponseData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o BulkMuteFindingsResponse) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *BulkMuteFindingsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

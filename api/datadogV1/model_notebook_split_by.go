@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotebookSplitBy Object describing how to split the graph to display multiple visualizations per request.
 type NotebookSplitBy struct {
@@ -17,9 +21,10 @@ type NotebookSplitBy struct {
 	// Tags to split on.
 	Tags []string `json:"tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewNotebookSplitBy instantiates a new NotebookSplitBy object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewNotebookSplitByWithDefaults() *NotebookSplitBy {
 	this := NotebookSplitBy{}
 	return &this
 }
-
 // GetKeys returns the Keys field value.
 func (o *NotebookSplitBy) GetKeys() []string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *NotebookSplitBy) SetKeys(v []string) {
 	o.Keys = v
 }
 
+
 // GetTags returns the Tags field value.
 func (o *NotebookSplitBy) GetTags() []string {
 	if o == nil {
@@ -85,6 +90,8 @@ func (o *NotebookSplitBy) GetTagsOk() (*[]string, bool) {
 func (o *NotebookSplitBy) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookSplitBy) MarshalJSON() ([]byte, error) {
@@ -118,7 +125,7 @@ func (o *NotebookSplitBy) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"keys", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "keys", "tags",  })
 	} else {
 		return err
 	}

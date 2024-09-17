@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricSeries A metric to submit to Datadog.
 // See [Datadog metrics](https://docs.datadoghq.com/developers/metrics/#custom-metrics-properties).
@@ -32,9 +36,10 @@ type MetricSeries struct {
 	// The unit of point value.
 	Unit *string `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricSeries instantiates a new MetricSeries object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewMetricSeriesWithDefaults() *MetricSeries {
 	this := MetricSeries{}
 	return &this
 }
-
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *MetricSeries) GetInterval() int64 {
 	if o == nil || o.Interval == nil {
@@ -82,6 +86,7 @@ func (o *MetricSeries) HasInterval() bool {
 func (o *MetricSeries) SetInterval(v int64) {
 	o.Interval = &v
 }
+
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *MetricSeries) GetMetadata() MetricMetadata {
@@ -111,6 +116,7 @@ func (o *MetricSeries) SetMetadata(v MetricMetadata) {
 	o.Metadata = &v
 }
 
+
 // GetMetric returns the Metric field value.
 func (o *MetricSeries) GetMetric() string {
 	if o == nil {
@@ -134,6 +140,7 @@ func (o *MetricSeries) SetMetric(v string) {
 	o.Metric = v
 }
 
+
 // GetPoints returns the Points field value.
 func (o *MetricSeries) GetPoints() []MetricPoint {
 	if o == nil {
@@ -156,6 +163,7 @@ func (o *MetricSeries) GetPointsOk() (*[]MetricPoint, bool) {
 func (o *MetricSeries) SetPoints(v []MetricPoint) {
 	o.Points = v
 }
+
 
 // GetResources returns the Resources field value if set, zero value otherwise.
 func (o *MetricSeries) GetResources() []MetricResource {
@@ -185,6 +193,7 @@ func (o *MetricSeries) SetResources(v []MetricResource) {
 	o.Resources = v
 }
 
+
 // GetSourceTypeName returns the SourceTypeName field value if set, zero value otherwise.
 func (o *MetricSeries) GetSourceTypeName() string {
 	if o == nil || o.SourceTypeName == nil {
@@ -212,6 +221,7 @@ func (o *MetricSeries) HasSourceTypeName() bool {
 func (o *MetricSeries) SetSourceTypeName(v string) {
 	o.SourceTypeName = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MetricSeries) GetTags() []string {
@@ -241,6 +251,7 @@ func (o *MetricSeries) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MetricSeries) GetType() MetricIntakeType {
 	if o == nil || o.Type == nil {
@@ -269,6 +280,7 @@ func (o *MetricSeries) SetType(v MetricIntakeType) {
 	o.Type = &v
 }
 
+
 // GetUnit returns the Unit field value if set, zero value otherwise.
 func (o *MetricSeries) GetUnit() string {
 	if o == nil || o.Unit == nil {
@@ -296,6 +308,8 @@ func (o *MetricSeries) HasUnit() bool {
 func (o *MetricSeries) SetUnit(v string) {
 	o.Unit = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricSeries) MarshalJSON() ([]byte, error) {
@@ -336,15 +350,15 @@ func (o MetricSeries) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricSeries) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Interval       *int64            `json:"interval,omitempty"`
-		Metadata       *MetricMetadata   `json:"metadata,omitempty"`
-		Metric         *string           `json:"metric"`
-		Points         *[]MetricPoint    `json:"points"`
-		Resources      []MetricResource  `json:"resources,omitempty"`
-		SourceTypeName *string           `json:"source_type_name,omitempty"`
-		Tags           []string          `json:"tags,omitempty"`
-		Type           *MetricIntakeType `json:"type,omitempty"`
-		Unit           *string           `json:"unit,omitempty"`
+		Interval *int64 `json:"interval,omitempty"`
+		Metadata *MetricMetadata `json:"metadata,omitempty"`
+		Metric *string `json:"metric"`
+		Points *[]MetricPoint `json:"points"`
+		Resources []MetricResource `json:"resources,omitempty"`
+		SourceTypeName *string `json:"source_type_name,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Type *MetricIntakeType `json:"type,omitempty"`
+		Unit *string `json:"unit,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -357,14 +371,14 @@ func (o *MetricSeries) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"interval", "metadata", "metric", "points", "resources", "source_type_name", "tags", "type", "unit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "interval", "metadata", "metric", "points", "resources", "source_type_name", "tags", "type", "unit",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Interval = all.Interval
-	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Metadata = all.Metadata
@@ -373,7 +387,7 @@ func (o *MetricSeries) UnmarshalJSON(bytes []byte) (err error) {
 	o.Resources = all.Resources
 	o.SourceTypeName = all.SourceTypeName
 	o.Tags = all.Tags
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ContainerImageGroupRelationships Relationships inside a Container Image Group.
 type ContainerImageGroupRelationships struct {
 	// Relationships to Container Images inside a Container Image Group.
 	ContainerImages *ContainerImageGroupImagesRelationshipsLink `json:"container_images,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewContainerImageGroupRelationships instantiates a new ContainerImageGroupRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewContainerImageGroupRelationshipsWithDefaults() *ContainerImageGroupRelat
 	this := ContainerImageGroupRelationships{}
 	return &this
 }
-
 // GetContainerImages returns the ContainerImages field value if set, zero value otherwise.
 func (o *ContainerImageGroupRelationships) GetContainerImages() ContainerImageGroupImagesRelationshipsLink {
 	if o == nil || o.ContainerImages == nil {
@@ -62,6 +68,8 @@ func (o *ContainerImageGroupRelationships) SetContainerImages(v ContainerImageGr
 	o.ContainerImages = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ContainerImageGroupRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *ContainerImageGroupRelationships) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"container_images"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "container_images",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.ContainerImages != nil && all.ContainerImages.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ContainerImages != nil && all.ContainerImages.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ContainerImages = all.ContainerImages

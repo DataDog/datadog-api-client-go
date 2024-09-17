@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorDowntimeMatchResponseData A downtime match.
 type MonitorDowntimeMatchResponseData struct {
@@ -17,9 +23,10 @@ type MonitorDowntimeMatchResponseData struct {
 	// Monitor Downtime Match resource type.
 	Type *MonitorDowntimeMatchResourceType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorDowntimeMatchResponseData instantiates a new MonitorDowntimeMatchResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewMonitorDowntimeMatchResponseDataWithDefaults() *MonitorDowntimeMatchResp
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *MonitorDowntimeMatchResponseData) GetAttributes() MonitorDowntimeMatchResponseAttributes {
 	if o == nil || o.Attributes == nil {
@@ -70,6 +76,7 @@ func (o *MonitorDowntimeMatchResponseData) SetAttributes(v MonitorDowntimeMatchR
 	o.Attributes = &v
 }
 
+
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorDowntimeMatchResponseData) GetId() string {
 	if o == nil || o.Id.Get() == nil {
@@ -83,7 +90,7 @@ func (o *MonitorDowntimeMatchResponseData) GetId() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorDowntimeMatchResponseData) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Id.Get(), o.Id.IsSet()
@@ -98,7 +105,6 @@ func (o *MonitorDowntimeMatchResponseData) HasId() bool {
 func (o *MonitorDowntimeMatchResponseData) SetId(v string) {
 	o.Id.Set(&v)
 }
-
 // SetIdNil sets the value for Id to be an explicit nil.
 func (o *MonitorDowntimeMatchResponseData) SetIdNil() {
 	o.Id.Set(nil)
@@ -108,6 +114,7 @@ func (o *MonitorDowntimeMatchResponseData) SetIdNil() {
 func (o *MonitorDowntimeMatchResponseData) UnsetId() {
 	o.Id.Unset()
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MonitorDowntimeMatchResponseData) GetType() MonitorDowntimeMatchResourceType {
@@ -137,6 +144,8 @@ func (o *MonitorDowntimeMatchResponseData) SetType(v MonitorDowntimeMatchResourc
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorDowntimeMatchResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -163,26 +172,26 @@ func (o MonitorDowntimeMatchResponseData) MarshalJSON() ([]byte, error) {
 func (o *MonitorDowntimeMatchResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *MonitorDowntimeMatchResponseAttributes `json:"attributes,omitempty"`
-		Id         datadog.NullableString                  `json:"id,omitempty"`
-		Type       *MonitorDowntimeMatchResourceType       `json:"type,omitempty"`
+		Id datadog.NullableString `json:"id,omitempty"`
+		Type *MonitorDowntimeMatchResourceType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

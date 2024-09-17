@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudflareAccountUpdateRequestData Data object for updating a Cloudflare account.
 type CloudflareAccountUpdateRequestData struct {
@@ -15,9 +21,10 @@ type CloudflareAccountUpdateRequestData struct {
 	// The JSON:API type for this API. Should always be `cloudflare-accounts`.
 	Type *CloudflareAccountType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudflareAccountUpdateRequestData instantiates a new CloudflareAccountUpdateRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewCloudflareAccountUpdateRequestDataWithDefaults() *CloudflareAccountUpdat
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *CloudflareAccountUpdateRequestData) GetAttributes() CloudflareAccountUpdateRequestAttributes {
 	if o == nil || o.Attributes == nil {
@@ -67,6 +73,7 @@ func (o *CloudflareAccountUpdateRequestData) HasAttributes() bool {
 func (o *CloudflareAccountUpdateRequestData) SetAttributes(v CloudflareAccountUpdateRequestAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CloudflareAccountUpdateRequestData) GetType() CloudflareAccountType {
@@ -96,6 +103,8 @@ func (o *CloudflareAccountUpdateRequestData) SetType(v CloudflareAccountType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudflareAccountUpdateRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -119,24 +128,24 @@ func (o CloudflareAccountUpdateRequestData) MarshalJSON() ([]byte, error) {
 func (o *CloudflareAccountUpdateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *CloudflareAccountUpdateRequestAttributes `json:"attributes,omitempty"`
-		Type       *CloudflareAccountType                    `json:"type,omitempty"`
+		Type *CloudflareAccountType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

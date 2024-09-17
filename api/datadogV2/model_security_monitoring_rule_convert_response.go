@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleConvertResponse Result of the convert rule request containing Terraform content.
 type SecurityMonitoringRuleConvertResponse struct {
 	// Terraform string as a result of converting the rule from JSON.
 	TerraformContent *string `json:"terraformContent,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringRuleConvertResponse instantiates a new SecurityMonitoringRuleConvertResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewSecurityMonitoringRuleConvertResponseWithDefaults() *SecurityMonitoringR
 	this := SecurityMonitoringRuleConvertResponse{}
 	return &this
 }
-
 // GetTerraformContent returns the TerraformContent field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleConvertResponse) GetTerraformContent() string {
 	if o == nil || o.TerraformContent == nil {
@@ -62,6 +68,8 @@ func (o *SecurityMonitoringRuleConvertResponse) SetTerraformContent(v string) {
 	o.TerraformContent = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleConvertResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *SecurityMonitoringRuleConvertResponse) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"terraformContent"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "terraformContent",  })
 	} else {
 		return err
 	}

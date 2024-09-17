@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IPPrefixesSyntheticsPrivateLocations Available prefix information for the Synthetics Private Locations endpoints.
 type IPPrefixesSyntheticsPrivateLocations struct {
@@ -15,9 +21,10 @@ type IPPrefixesSyntheticsPrivateLocations struct {
 	// List of IPv6 prefixes.
 	PrefixesIpv6 []string `json:"prefixes_ipv6,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIPPrefixesSyntheticsPrivateLocations instantiates a new IPPrefixesSyntheticsPrivateLocations object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewIPPrefixesSyntheticsPrivateLocationsWithDefaults() *IPPrefixesSynthetics
 	this := IPPrefixesSyntheticsPrivateLocations{}
 	return &this
 }
-
 // GetPrefixesIpv4 returns the PrefixesIpv4 field value if set, zero value otherwise.
 func (o *IPPrefixesSyntheticsPrivateLocations) GetPrefixesIpv4() []string {
 	if o == nil || o.PrefixesIpv4 == nil {
@@ -64,6 +70,7 @@ func (o *IPPrefixesSyntheticsPrivateLocations) SetPrefixesIpv4(v []string) {
 	o.PrefixesIpv4 = v
 }
 
+
 // GetPrefixesIpv6 returns the PrefixesIpv6 field value if set, zero value otherwise.
 func (o *IPPrefixesSyntheticsPrivateLocations) GetPrefixesIpv6() []string {
 	if o == nil || o.PrefixesIpv6 == nil {
@@ -91,6 +98,8 @@ func (o *IPPrefixesSyntheticsPrivateLocations) HasPrefixesIpv6() bool {
 func (o *IPPrefixesSyntheticsPrivateLocations) SetPrefixesIpv6(v []string) {
 	o.PrefixesIpv6 = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IPPrefixesSyntheticsPrivateLocations) MarshalJSON() ([]byte, error) {
@@ -122,7 +131,7 @@ func (o *IPPrefixesSyntheticsPrivateLocations) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"prefixes_ipv4", "prefixes_ipv6"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "prefixes_ipv4", "prefixes_ipv6",  })
 	} else {
 		return err
 	}

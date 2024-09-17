@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FastlyAccountUpdateRequestData Data object for updating a Fastly account.
 type FastlyAccountUpdateRequestData struct {
@@ -15,9 +21,10 @@ type FastlyAccountUpdateRequestData struct {
 	// The JSON:API type for this API. Should always be `fastly-accounts`.
 	Type *FastlyAccountType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFastlyAccountUpdateRequestData instantiates a new FastlyAccountUpdateRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewFastlyAccountUpdateRequestDataWithDefaults() *FastlyAccountUpdateRequest
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *FastlyAccountUpdateRequestData) GetAttributes() FastlyAccountUpdateRequestAttributes {
 	if o == nil || o.Attributes == nil {
@@ -67,6 +73,7 @@ func (o *FastlyAccountUpdateRequestData) HasAttributes() bool {
 func (o *FastlyAccountUpdateRequestData) SetAttributes(v FastlyAccountUpdateRequestAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *FastlyAccountUpdateRequestData) GetType() FastlyAccountType {
@@ -96,6 +103,8 @@ func (o *FastlyAccountUpdateRequestData) SetType(v FastlyAccountType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FastlyAccountUpdateRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -119,24 +128,24 @@ func (o FastlyAccountUpdateRequestData) MarshalJSON() ([]byte, error) {
 func (o *FastlyAccountUpdateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *FastlyAccountUpdateRequestAttributes `json:"attributes,omitempty"`
-		Type       *FastlyAccountType                    `json:"type,omitempty"`
+		Type *FastlyAccountType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

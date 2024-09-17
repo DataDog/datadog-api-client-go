@@ -2,83 +2,86 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV1.SyntheticsAPITest{
-		Config: datadogV1.SyntheticsAPITestConfig{
-			Assertions: []datadogV1.SyntheticsAssertion{
-				datadogV1.SyntheticsAssertion{
-					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
-						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
-						Target:   1000,
-						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
-					}},
-			},
-			Request: &datadogV1.SyntheticsTestRequest{
-				Method: datadog.PtrString("GET"),
-				Url:    datadog.PtrString("https://example.com"),
-			},
-		},
-		Locations: []string{
-			"aws:eu-west-3",
-		},
-		Message: "Notification message",
-		Name:    "Example test name",
-		Options: datadogV1.SyntheticsTestOptions{
-			Ci: &datadogV1.SyntheticsTestCiOptions{
-				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_BLOCKING.Ptr(),
-			},
-			DeviceIds: []datadogV1.SyntheticsDeviceID{
-				datadogV1.SYNTHETICSDEVICEID_CHROME_LAPTOP_LARGE,
-			},
-			HttpVersion:    datadogV1.SYNTHETICSTESTOPTIONSHTTPVERSION_HTTP1.Ptr(),
-			MonitorOptions: &datadogV1.SyntheticsTestOptionsMonitorOptions{},
-			RestrictedRoles: []string{
-				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-			},
-			Retry: &datadogV1.SyntheticsTestOptionsRetry{},
-			RumSettings: &datadogV1.SyntheticsBrowserTestRumSettings{
-				ApplicationId: datadog.PtrString("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
-				ClientTokenId: datadog.PtrInt64(12345),
-				IsEnabled:     true,
-			},
-			Scheduling: &datadogV1.SyntheticsTestOptionsScheduling{
-				Timeframes: []datadogV1.SyntheticsTestOptionsSchedulingTimeframe{
-					{
-						Day:  datadog.PtrInt32(1),
-						From: datadog.PtrString("07:00"),
-						To:   datadog.PtrString("16:00"),
-					},
-					{
-						Day:  datadog.PtrInt32(3),
-						From: datadog.PtrString("07:00"),
-						To:   datadog.PtrString("16:00"),
-					},
-				},
-				Timezone: datadog.PtrString("America/New_York"),
-			},
-		},
-		Status:  datadogV1.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
-		Subtype: datadogV1.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
-		Tags: []string{
-			"env:production",
-		},
-		Type: datadogV1.SYNTHETICSAPITESTTYPE_API,
-	}
+Config: datadogV1.SyntheticsAPITestConfig{
+Assertions: []datadogV1.SyntheticsAssertion{
+datadogV1.SyntheticsAssertion{
+SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
+Target: 1000,
+Type: datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+}},
+},
+Request: &datadogV1.SyntheticsTestRequest{
+Method: datadog.PtrString("GET"),
+Url: datadog.PtrString("https://example.com"),
+},
+},
+Locations: []string{
+"aws:eu-west-3",
+},
+Message: "Notification message",
+Name: "Example test name",
+Options: datadogV1.SyntheticsTestOptions{
+Ci: &datadogV1.SyntheticsTestCiOptions{
+ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_BLOCKING.Ptr(),
+},
+DeviceIds: []datadogV1.SyntheticsDeviceID{
+datadogV1.SYNTHETICSDEVICEID_CHROME_LAPTOP_LARGE,
+},
+HttpVersion: datadogV1.SYNTHETICSTESTOPTIONSHTTPVERSION_HTTP1.Ptr(),
+MonitorOptions: &datadogV1.SyntheticsTestOptionsMonitorOptions{
+},
+RestrictedRoles: []string{
+"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+},
+Retry: &datadogV1.SyntheticsTestOptionsRetry{
+},
+RumSettings: &datadogV1.SyntheticsBrowserTestRumSettings{
+ApplicationId: datadog.PtrString("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+ClientTokenId: datadog.PtrInt64(12345),
+IsEnabled: true,
+},
+Scheduling: &datadogV1.SyntheticsTestOptionsScheduling{
+Timeframes: []datadogV1.SyntheticsTestOptionsSchedulingTimeframe{
+{
+Day: datadog.PtrInt32(1),
+From: datadog.PtrString("07:00"),
+To: datadog.PtrString("16:00"),
+},
+{
+Day: datadog.PtrInt32(3),
+From: datadog.PtrString("07:00"),
+To: datadog.PtrString("16:00"),
+},
+},
+Timezone: datadog.PtrString("America/New_York"),
+},
+},
+Status: datadogV1.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
+Subtype: datadogV1.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
+Tags: []string{
+"env:production",
+},
+Type: datadogV1.SYNTHETICSAPITESTTYPE_API,
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewSyntheticsApi(apiClient)
-	resp, r, err := api.CreateSyntheticsAPITest(ctx, body)
+	resp, r, err := api.CreateSyntheticsAPITest(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsAPITest`: %v\n", err)

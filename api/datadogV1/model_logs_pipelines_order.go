@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsPipelinesOrder Object containing the ordered list of pipeline IDs.
 type LogsPipelinesOrder struct {
@@ -16,9 +20,10 @@ type LogsPipelinesOrder struct {
 	// define the overall Pipelines order for Datadog.
 	PipelineIds []string `json:"pipeline_ids"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsPipelinesOrder instantiates a new LogsPipelinesOrder object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewLogsPipelinesOrderWithDefaults() *LogsPipelinesOrder {
 	this := LogsPipelinesOrder{}
 	return &this
 }
-
 // GetPipelineIds returns the PipelineIds field value.
 func (o *LogsPipelinesOrder) GetPipelineIds() []string {
 	if o == nil {
@@ -60,6 +64,8 @@ func (o *LogsPipelinesOrder) GetPipelineIdsOk() (*[]string, bool) {
 func (o *LogsPipelinesOrder) SetPipelineIds(v []string) {
 	o.PipelineIds = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsPipelinesOrder) MarshalJSON() ([]byte, error) {
@@ -88,7 +94,7 @@ func (o *LogsPipelinesOrder) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"pipeline_ids"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "pipeline_ids",  })
 	} else {
 		return err
 	}

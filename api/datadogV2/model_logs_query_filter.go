@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsQueryFilter The search and filter query settings
 type LogsQueryFilter struct {
@@ -21,9 +27,10 @@ type LogsQueryFilter struct {
 	// The maximum time for the requested logs, supports date math and regular timestamps (milliseconds).
 	To *string `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsQueryFilter instantiates a new LogsQueryFilter object.
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +64,6 @@ func NewLogsQueryFilterWithDefaults() *LogsQueryFilter {
 	this.To = &to
 	return &this
 }
-
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *LogsQueryFilter) GetFrom() string {
 	if o == nil || o.From == nil {
@@ -85,6 +91,7 @@ func (o *LogsQueryFilter) HasFrom() bool {
 func (o *LogsQueryFilter) SetFrom(v string) {
 	o.From = &v
 }
+
 
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
 func (o *LogsQueryFilter) GetIndexes() []string {
@@ -114,6 +121,7 @@ func (o *LogsQueryFilter) SetIndexes(v []string) {
 	o.Indexes = v
 }
 
+
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *LogsQueryFilter) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -141,6 +149,7 @@ func (o *LogsQueryFilter) HasQuery() bool {
 func (o *LogsQueryFilter) SetQuery(v string) {
 	o.Query = &v
 }
+
 
 // GetStorageTier returns the StorageTier field value if set, zero value otherwise.
 func (o *LogsQueryFilter) GetStorageTier() LogsStorageTier {
@@ -170,6 +179,7 @@ func (o *LogsQueryFilter) SetStorageTier(v LogsStorageTier) {
 	o.StorageTier = &v
 }
 
+
 // GetTo returns the To field value if set, zero value otherwise.
 func (o *LogsQueryFilter) GetTo() string {
 	if o == nil || o.To == nil {
@@ -197,6 +207,8 @@ func (o *LogsQueryFilter) HasTo() bool {
 func (o *LogsQueryFilter) SetTo(v string) {
 	o.To = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsQueryFilter) MarshalJSON() ([]byte, error) {
@@ -229,18 +241,18 @@ func (o LogsQueryFilter) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		From        *string          `json:"from,omitempty"`
-		Indexes     []string         `json:"indexes,omitempty"`
-		Query       *string          `json:"query,omitempty"`
+		From *string `json:"from,omitempty"`
+		Indexes []string `json:"indexes,omitempty"`
+		Query *string `json:"query,omitempty"`
 		StorageTier *LogsStorageTier `json:"storage_tier,omitempty"`
-		To          *string          `json:"to,omitempty"`
+		To *string `json:"to,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"from", "indexes", "query", "storage_tier", "to"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "from", "indexes", "query", "storage_tier", "to",  })
 	} else {
 		return err
 	}
@@ -249,7 +261,7 @@ func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	o.From = all.From
 	o.Indexes = all.Indexes
 	o.Query = all.Query
-	if all.StorageTier != nil && !all.StorageTier.IsValid() {
+	if all.StorageTier != nil &&!all.StorageTier.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.StorageTier = all.StorageTier

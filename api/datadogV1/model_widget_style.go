@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetStyle Widget style definition.
 type WidgetStyle struct {
 	// Color palette to apply to the widget.
 	Palette *string `json:"palette,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWidgetStyle instantiates a new WidgetStyle object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewWidgetStyleWithDefaults() *WidgetStyle {
 	this := WidgetStyle{}
 	return &this
 }
-
 // GetPalette returns the Palette field value if set, zero value otherwise.
 func (o *WidgetStyle) GetPalette() string {
 	if o == nil || o.Palette == nil {
@@ -62,6 +68,8 @@ func (o *WidgetStyle) SetPalette(v string) {
 	o.Palette = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WidgetStyle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *WidgetStyle) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"palette"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "palette",  })
 	} else {
 		return err
 	}

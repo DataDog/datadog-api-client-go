@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityResponseIncludedRelatedEntityAttributes Related entity attributes.
 type EntityResponseIncludedRelatedEntityAttributes struct {
@@ -19,9 +25,10 @@ type EntityResponseIncludedRelatedEntityAttributes struct {
 	// Entity relation type to the associated entity.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityResponseIncludedRelatedEntityAttributes instantiates a new EntityResponseIncludedRelatedEntityAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewEntityResponseIncludedRelatedEntityAttributesWithDefaults() *EntityRespo
 	this := EntityResponseIncludedRelatedEntityAttributes{}
 	return &this
 }
-
 // GetKind returns the Kind field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedEntityAttributes) GetKind() string {
 	if o == nil || o.Kind == nil {
@@ -67,6 +73,7 @@ func (o *EntityResponseIncludedRelatedEntityAttributes) HasKind() bool {
 func (o *EntityResponseIncludedRelatedEntityAttributes) SetKind(v string) {
 	o.Kind = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedEntityAttributes) GetName() string {
@@ -96,6 +103,7 @@ func (o *EntityResponseIncludedRelatedEntityAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedEntityAttributes) GetNamespace() string {
 	if o == nil || o.Namespace == nil {
@@ -123,6 +131,7 @@ func (o *EntityResponseIncludedRelatedEntityAttributes) HasNamespace() bool {
 func (o *EntityResponseIncludedRelatedEntityAttributes) SetNamespace(v string) {
 	o.Namespace = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedEntityAttributes) GetType() string {
@@ -152,6 +161,8 @@ func (o *EntityResponseIncludedRelatedEntityAttributes) SetType(v string) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityResponseIncludedRelatedEntityAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,17 +191,17 @@ func (o EntityResponseIncludedRelatedEntityAttributes) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityResponseIncludedRelatedEntityAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Kind      *string `json:"kind,omitempty"`
-		Name      *string `json:"name,omitempty"`
+		Kind *string `json:"kind,omitempty"`
+		Name *string `json:"name,omitempty"`
 		Namespace *string `json:"namespace,omitempty"`
-		Type      *string `json:"type,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"kind", "name", "namespace", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "kind", "name", "namespace", "type",  })
 	} else {
 		return err
 	}

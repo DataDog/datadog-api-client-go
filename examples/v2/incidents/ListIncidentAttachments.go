@@ -2,14 +2,15 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -18,7 +19,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.ListIncidentAttachments", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewIncidentsApi(apiClient)
-	resp, r, err := api.ListIncidentAttachments(ctx, "incident_id", *datadogV2.NewListIncidentAttachmentsOptionalParameters())
+	resp, r, err := api.ListIncidentAttachments(ctx, "incident_id", *datadogV2.NewListIncidentAttachmentsOptionalParameters(), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.ListIncidentAttachments`: %v\n", err)

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentTodoRelationships The incident's relationships from a response.
 type IncidentTodoRelationships struct {
@@ -15,9 +21,10 @@ type IncidentTodoRelationships struct {
 	// Relationship to user.
 	LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentTodoRelationships instantiates a new IncidentTodoRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewIncidentTodoRelationshipsWithDefaults() *IncidentTodoRelationships {
 	this := IncidentTodoRelationships{}
 	return &this
 }
-
 // GetCreatedByUser returns the CreatedByUser field value if set, zero value otherwise.
 func (o *IncidentTodoRelationships) GetCreatedByUser() RelationshipToUser {
 	if o == nil || o.CreatedByUser == nil {
@@ -63,6 +69,7 @@ func (o *IncidentTodoRelationships) HasCreatedByUser() bool {
 func (o *IncidentTodoRelationships) SetCreatedByUser(v RelationshipToUser) {
 	o.CreatedByUser = &v
 }
+
 
 // GetLastModifiedByUser returns the LastModifiedByUser field value if set, zero value otherwise.
 func (o *IncidentTodoRelationships) GetLastModifiedByUser() RelationshipToUser {
@@ -92,6 +99,8 @@ func (o *IncidentTodoRelationships) SetLastModifiedByUser(v RelationshipToUser) 
 	o.LastModifiedByUser = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentTodoRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o IncidentTodoRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTodoRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedByUser      *RelationshipToUser `json:"created_by_user,omitempty"`
+		CreatedByUser *RelationshipToUser `json:"created_by_user,omitempty"`
 		LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,17 +131,17 @@ func (o *IncidentTodoRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_by_user", "last_modified_by_user"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_by_user", "last_modified_by_user",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.CreatedByUser != nil && all.CreatedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CreatedByUser != nil && all.CreatedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CreatedByUser = all.CreatedByUser
-	if all.LastModifiedByUser != nil && all.LastModifiedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LastModifiedByUser != nil && all.LastModifiedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LastModifiedByUser = all.LastModifiedByUser

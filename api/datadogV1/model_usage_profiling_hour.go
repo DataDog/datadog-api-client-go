@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageProfilingHour The number of profiled hosts for each hour for a given organization.
 type UsageProfilingHour struct {
@@ -25,9 +29,10 @@ type UsageProfilingHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageProfilingHour instantiates a new UsageProfilingHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewUsageProfilingHourWithDefaults() *UsageProfilingHour {
 	this := UsageProfilingHour{}
 	return &this
 }
-
 // GetAasCount returns the AasCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageProfilingHour) GetAasCount() int64 {
 	if o == nil || o.AasCount.Get() == nil {
@@ -59,7 +63,7 @@ func (o *UsageProfilingHour) GetAasCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageProfilingHour) GetAasCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.AasCount.Get(), o.AasCount.IsSet()
@@ -74,7 +78,6 @@ func (o *UsageProfilingHour) HasAasCount() bool {
 func (o *UsageProfilingHour) SetAasCount(v int64) {
 	o.AasCount.Set(&v)
 }
-
 // SetAasCountNil sets the value for AasCount to be an explicit nil.
 func (o *UsageProfilingHour) SetAasCountNil() {
 	o.AasCount.Set(nil)
@@ -84,6 +87,7 @@ func (o *UsageProfilingHour) SetAasCountNil() {
 func (o *UsageProfilingHour) UnsetAasCount() {
 	o.AasCount.Unset()
 }
+
 
 // GetAvgContainerAgentCount returns the AvgContainerAgentCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageProfilingHour) GetAvgContainerAgentCount() int64 {
@@ -98,7 +102,7 @@ func (o *UsageProfilingHour) GetAvgContainerAgentCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageProfilingHour) GetAvgContainerAgentCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.AvgContainerAgentCount.Get(), o.AvgContainerAgentCount.IsSet()
@@ -113,7 +117,6 @@ func (o *UsageProfilingHour) HasAvgContainerAgentCount() bool {
 func (o *UsageProfilingHour) SetAvgContainerAgentCount(v int64) {
 	o.AvgContainerAgentCount.Set(&v)
 }
-
 // SetAvgContainerAgentCountNil sets the value for AvgContainerAgentCount to be an explicit nil.
 func (o *UsageProfilingHour) SetAvgContainerAgentCountNil() {
 	o.AvgContainerAgentCount.Set(nil)
@@ -123,6 +126,7 @@ func (o *UsageProfilingHour) SetAvgContainerAgentCountNil() {
 func (o *UsageProfilingHour) UnsetAvgContainerAgentCount() {
 	o.AvgContainerAgentCount.Unset()
 }
+
 
 // GetHostCount returns the HostCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageProfilingHour) GetHostCount() int64 {
@@ -137,7 +141,7 @@ func (o *UsageProfilingHour) GetHostCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageProfilingHour) GetHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.HostCount.Get(), o.HostCount.IsSet()
@@ -152,7 +156,6 @@ func (o *UsageProfilingHour) HasHostCount() bool {
 func (o *UsageProfilingHour) SetHostCount(v int64) {
 	o.HostCount.Set(&v)
 }
-
 // SetHostCountNil sets the value for HostCount to be an explicit nil.
 func (o *UsageProfilingHour) SetHostCountNil() {
 	o.HostCount.Set(nil)
@@ -162,6 +165,7 @@ func (o *UsageProfilingHour) SetHostCountNil() {
 func (o *UsageProfilingHour) UnsetHostCount() {
 	o.HostCount.Unset()
 }
+
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageProfilingHour) GetHour() time.Time {
@@ -191,6 +195,7 @@ func (o *UsageProfilingHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageProfilingHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -219,6 +224,7 @@ func (o *UsageProfilingHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageProfilingHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -246,6 +252,8 @@ func (o *UsageProfilingHour) HasPublicId() bool {
 func (o *UsageProfilingHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageProfilingHour) MarshalJSON() ([]byte, error) {
@@ -285,19 +293,19 @@ func (o UsageProfilingHour) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageProfilingHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AasCount               datadog.NullableInt64 `json:"aas_count,omitempty"`
+		AasCount datadog.NullableInt64 `json:"aas_count,omitempty"`
 		AvgContainerAgentCount datadog.NullableInt64 `json:"avg_container_agent_count,omitempty"`
-		HostCount              datadog.NullableInt64 `json:"host_count,omitempty"`
-		Hour                   *time.Time            `json:"hour,omitempty"`
-		OrgName                *string               `json:"org_name,omitempty"`
-		PublicId               *string               `json:"public_id,omitempty"`
+		HostCount datadog.NullableInt64 `json:"host_count,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aas_count", "avg_container_agent_count", "host_count", "hour", "org_name", "public_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aas_count", "avg_container_agent_count", "host_count", "hour", "org_name", "public_id",  })
 	} else {
 		return err
 	}

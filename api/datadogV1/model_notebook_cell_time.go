@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotebookCellTime - Timeframe for the notebook cell. When 'null', the notebook global time is used.
 type NotebookCellTime struct {
@@ -80,9 +86,11 @@ func (obj NotebookCellTime) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.NotebookRelativeTime)
 	}
 
+
 	if obj.NotebookAbsoluteTime != nil {
 		return datadog.Marshal(&obj.NotebookAbsoluteTime)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,19 +99,20 @@ func (obj NotebookCellTime) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *NotebookCellTime) GetActualInstance() interface{} {
+func (obj *NotebookCellTime) GetActualInstance() (interface{}) {
 	if obj.NotebookRelativeTime != nil {
 		return obj.NotebookRelativeTime
 	}
+
 
 	if obj.NotebookAbsoluteTime != nil {
 		return obj.NotebookAbsoluteTime
 	}
 
+
 	// all schemas are nil
 	return nil
 }
-
 // NullableNotebookCellTime handles when a null is used for NotebookCellTime.
 type NullableNotebookCellTime struct {
 	value *NotebookCellTime

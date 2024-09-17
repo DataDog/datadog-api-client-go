@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DistributionWidgetDefinition The Distribution visualization is another way of showing metrics
 // aggregated across one or several tags, such as hosts.
@@ -44,9 +48,10 @@ type DistributionWidgetDefinition struct {
 	// Y Axis controls for the distribution widget.
 	Yaxis *DistributionWidgetYAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDistributionWidgetDefinition instantiates a new DistributionWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -68,7 +73,6 @@ func NewDistributionWidgetDefinitionWithDefaults() *DistributionWidgetDefinition
 	this.Type = typeVar
 	return &this
 }
-
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 	if o == nil || o.CustomLinks == nil {
@@ -96,6 +100,7 @@ func (o *DistributionWidgetDefinition) HasCustomLinks() bool {
 func (o *DistributionWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
+
 
 // GetLegendSize returns the LegendSize field value if set, zero value otherwise.
 // Deprecated
@@ -128,6 +133,7 @@ func (o *DistributionWidgetDefinition) SetLegendSize(v string) {
 	o.LegendSize = &v
 }
 
+
 // GetMarkers returns the Markers field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetMarkers() []WidgetMarker {
 	if o == nil || o.Markers == nil {
@@ -156,6 +162,7 @@ func (o *DistributionWidgetDefinition) SetMarkers(v []WidgetMarker) {
 	o.Markers = v
 }
 
+
 // GetRequests returns the Requests field value.
 func (o *DistributionWidgetDefinition) GetRequests() []DistributionWidgetRequest {
 	if o == nil {
@@ -178,6 +185,7 @@ func (o *DistributionWidgetDefinition) GetRequestsOk() (*[]DistributionWidgetReq
 func (o *DistributionWidgetDefinition) SetRequests(v []DistributionWidgetRequest) {
 	o.Requests = v
 }
+
 
 // GetShowLegend returns the ShowLegend field value if set, zero value otherwise.
 // Deprecated
@@ -210,6 +218,7 @@ func (o *DistributionWidgetDefinition) SetShowLegend(v bool) {
 	o.ShowLegend = &v
 }
 
+
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetTime() WidgetTime {
 	if o == nil || o.Time == nil {
@@ -237,6 +246,7 @@ func (o *DistributionWidgetDefinition) HasTime() bool {
 func (o *DistributionWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetTitle() string {
@@ -266,6 +276,7 @@ func (o *DistributionWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -293,6 +304,7 @@ func (o *DistributionWidgetDefinition) HasTitleAlign() bool {
 func (o *DistributionWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
+
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetTitleSize() string {
@@ -322,6 +334,7 @@ func (o *DistributionWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *DistributionWidgetDefinition) GetType() DistributionWidgetDefinitionType {
 	if o == nil {
@@ -344,6 +357,7 @@ func (o *DistributionWidgetDefinition) GetTypeOk() (*DistributionWidgetDefinitio
 func (o *DistributionWidgetDefinition) SetType(v DistributionWidgetDefinitionType) {
 	o.Type = v
 }
+
 
 // GetXaxis returns the Xaxis field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetXaxis() DistributionWidgetXAxis {
@@ -373,6 +387,7 @@ func (o *DistributionWidgetDefinition) SetXaxis(v DistributionWidgetXAxis) {
 	o.Xaxis = &v
 }
 
+
 // GetYaxis returns the Yaxis field value if set, zero value otherwise.
 func (o *DistributionWidgetDefinition) GetYaxis() DistributionWidgetYAxis {
 	if o == nil || o.Yaxis == nil {
@@ -400,6 +415,8 @@ func (o *DistributionWidgetDefinition) HasYaxis() bool {
 func (o *DistributionWidgetDefinition) SetYaxis(v DistributionWidgetYAxis) {
 	o.Yaxis = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DistributionWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -449,18 +466,18 @@ func (o DistributionWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomLinks []WidgetCustomLink                `json:"custom_links,omitempty"`
-		LegendSize  *string                           `json:"legend_size,omitempty"`
-		Markers     []WidgetMarker                    `json:"markers,omitempty"`
-		Requests    *[]DistributionWidgetRequest      `json:"requests"`
-		ShowLegend  *bool                             `json:"show_legend,omitempty"`
-		Time        *WidgetTime                       `json:"time,omitempty"`
-		Title       *string                           `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign                  `json:"title_align,omitempty"`
-		TitleSize   *string                           `json:"title_size,omitempty"`
-		Type        *DistributionWidgetDefinitionType `json:"type"`
-		Xaxis       *DistributionWidgetXAxis          `json:"xaxis,omitempty"`
-		Yaxis       *DistributionWidgetYAxis          `json:"yaxis,omitempty"`
+		CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
+		LegendSize *string `json:"legend_size,omitempty"`
+		Markers []WidgetMarker `json:"markers,omitempty"`
+		Requests *[]DistributionWidgetRequest `json:"requests"`
+		ShowLegend *bool `json:"show_legend,omitempty"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type *DistributionWidgetDefinitionType `json:"type"`
+		Xaxis *DistributionWidgetXAxis `json:"xaxis,omitempty"`
+		Yaxis *DistributionWidgetYAxis `json:"yaxis,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -473,7 +490,7 @@ func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "legend_size", "markers", "requests", "show_legend", "time", "title", "title_align", "title_size", "type", "xaxis", "yaxis"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "custom_links", "legend_size", "markers", "requests", "show_legend", "time", "title", "title_align", "title_size", "type", "xaxis", "yaxis",  })
 	} else {
 		return err
 	}
@@ -486,7 +503,7 @@ func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.ShowLegend = all.ShowLegend
 	o.Time = all.Time
 	o.Title = all.Title
-	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign
@@ -497,11 +514,11 @@ func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.Type = *all.Type
 	}
-	if all.Xaxis != nil && all.Xaxis.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Xaxis != nil && all.Xaxis.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Xaxis = all.Xaxis
-	if all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Yaxis = all.Yaxis

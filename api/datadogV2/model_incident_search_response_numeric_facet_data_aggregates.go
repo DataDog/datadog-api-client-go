@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentSearchResponseNumericFacetDataAggregates Aggregate information for numeric incident data.
 type IncidentSearchResponseNumericFacetDataAggregates struct {
@@ -15,9 +21,10 @@ type IncidentSearchResponseNumericFacetDataAggregates struct {
 	// Minimum value of the numeric aggregates.
 	Min datadog.NullableFloat64 `json:"min,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentSearchResponseNumericFacetDataAggregates instantiates a new IncidentSearchResponseNumericFacetDataAggregates object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewIncidentSearchResponseNumericFacetDataAggregatesWithDefaults() *Incident
 	this := IncidentSearchResponseNumericFacetDataAggregates{}
 	return &this
 }
-
 // GetMax returns the Max field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentSearchResponseNumericFacetDataAggregates) GetMax() float64 {
 	if o == nil || o.Max.Get() == nil {
@@ -49,7 +55,7 @@ func (o *IncidentSearchResponseNumericFacetDataAggregates) GetMax() float64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentSearchResponseNumericFacetDataAggregates) GetMaxOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Max.Get(), o.Max.IsSet()
@@ -64,7 +70,6 @@ func (o *IncidentSearchResponseNumericFacetDataAggregates) HasMax() bool {
 func (o *IncidentSearchResponseNumericFacetDataAggregates) SetMax(v float64) {
 	o.Max.Set(&v)
 }
-
 // SetMaxNil sets the value for Max to be an explicit nil.
 func (o *IncidentSearchResponseNumericFacetDataAggregates) SetMaxNil() {
 	o.Max.Set(nil)
@@ -74,6 +79,7 @@ func (o *IncidentSearchResponseNumericFacetDataAggregates) SetMaxNil() {
 func (o *IncidentSearchResponseNumericFacetDataAggregates) UnsetMax() {
 	o.Max.Unset()
 }
+
 
 // GetMin returns the Min field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentSearchResponseNumericFacetDataAggregates) GetMin() float64 {
@@ -88,7 +94,7 @@ func (o *IncidentSearchResponseNumericFacetDataAggregates) GetMin() float64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentSearchResponseNumericFacetDataAggregates) GetMinOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Min.Get(), o.Min.IsSet()
@@ -103,7 +109,6 @@ func (o *IncidentSearchResponseNumericFacetDataAggregates) HasMin() bool {
 func (o *IncidentSearchResponseNumericFacetDataAggregates) SetMin(v float64) {
 	o.Min.Set(&v)
 }
-
 // SetMinNil sets the value for Min to be an explicit nil.
 func (o *IncidentSearchResponseNumericFacetDataAggregates) SetMinNil() {
 	o.Min.Set(nil)
@@ -113,6 +118,8 @@ func (o *IncidentSearchResponseNumericFacetDataAggregates) SetMinNil() {
 func (o *IncidentSearchResponseNumericFacetDataAggregates) UnsetMin() {
 	o.Min.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentSearchResponseNumericFacetDataAggregates) MarshalJSON() ([]byte, error) {
@@ -144,7 +151,7 @@ func (o *IncidentSearchResponseNumericFacetDataAggregates) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"max", "min"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "max", "min",  })
 	} else {
 		return err
 	}
