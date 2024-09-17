@@ -1,5 +1,9 @@
 name: Prepare release
 
+permissions:
+  contents: write
+  pull-requests: write
+
 env:
   GIT_AUTHOR_EMAIL: "packages@datadoghq.com"
   GIT_AUTHOR_NAME: "ci.datadog-api-spec"
