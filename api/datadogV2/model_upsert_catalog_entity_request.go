@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpsertCatalogEntityRequest - Create / Update entity request.
 type UpsertCatalogEntityRequest struct {
-	EntityV3  *EntityV3
+	EntityV3 *EntityV3
 	EntityRaw *string
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj UpsertCatalogEntityRequest) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.EntityV3)
 	}
 
+
 	if obj.EntityRaw != nil {
 		return datadog.Marshal(&obj.EntityRaw)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj UpsertCatalogEntityRequest) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *UpsertCatalogEntityRequest) GetActualInstance() interface{} {
+func (obj *UpsertCatalogEntityRequest) GetActualInstance() (interface{}) {
 	if obj.EntityV3 != nil {
 		return obj.EntityV3
 	}
 
+
 	if obj.EntityRaw != nil {
 		return obj.EntityRaw
 	}
+
 
 	// all schemas are nil
 	return nil

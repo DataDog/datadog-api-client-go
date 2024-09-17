@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsBasicAuthOauthTokenApiAuthentication Type of token to use when performing the authentication.
 type SyntheticsBasicAuthOauthTokenApiAuthentication string
@@ -16,7 +20,7 @@ type SyntheticsBasicAuthOauthTokenApiAuthentication string
 // List of SyntheticsBasicAuthOauthTokenApiAuthentication.
 const (
 	SYNTHETICSBASICAUTHOAUTHTOKENAPIAUTHENTICATION_HEADER SyntheticsBasicAuthOauthTokenApiAuthentication = "header"
-	SYNTHETICSBASICAUTHOAUTHTOKENAPIAUTHENTICATION_BODY   SyntheticsBasicAuthOauthTokenApiAuthentication = "body"
+	SYNTHETICSBASICAUTHOAUTHTOKENAPIAUTHENTICATION_BODY SyntheticsBasicAuthOauthTokenApiAuthentication = "body"
 )
 
 var allowedSyntheticsBasicAuthOauthTokenApiAuthenticationEnumValues = []SyntheticsBasicAuthOauthTokenApiAuthentication{

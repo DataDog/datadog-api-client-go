@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"bytes"
 	_context "context"
+	_fmt "fmt"
+	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -26,7 +30,6 @@ func NewCreateHostTagsOptionalParameters() *CreateHostTagsOptionalParameters {
 	this := CreateHostTagsOptionalParameters{}
 	return &this
 }
-
 // WithSource sets the corresponding parameter name and returns the struct.
 func (r *CreateHostTagsOptionalParameters) WithSource(source string) *CreateHostTagsOptionalParameters {
 	r.Source = &source
@@ -38,18 +41,20 @@ func (r *CreateHostTagsOptionalParameters) WithSource(source string) *CreateHost
 // optionally specifying where these tags come from.
 func (a *TagsApi) CreateHostTags(ctx _context.Context, hostName string, body HostTags, o ...CreateHostTagsOptionalParameters) (HostTags, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue HostTags
-		optionalParams      CreateHostTagsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  HostTags
+		optionalParams CreateHostTagsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type CreateHostTagsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type CreateHostTagsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.TagsApi.CreateHostTags")
 	if err != nil {
@@ -68,9 +73,11 @@ func (a *TagsApi) CreateHostTags(ctx _context.Context, hostName string, body Hos
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -93,10 +100,11 @@ func (a *TagsApi) CreateHostTags(ctx _context.Context, hostName string, body Hos
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -110,7 +118,7 @@ func (a *TagsApi) CreateHostTags(ctx _context.Context, hostName string, body Hos
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -129,7 +137,6 @@ func NewDeleteHostTagsOptionalParameters() *DeleteHostTagsOptionalParameters {
 	this := DeleteHostTagsOptionalParameters{}
 	return &this
 }
-
 // WithSource sets the corresponding parameter name and returns the struct.
 func (r *DeleteHostTagsOptionalParameters) WithSource(source string) *DeleteHostTagsOptionalParameters {
 	r.Source = &source
@@ -141,17 +148,19 @@ func (r *DeleteHostTagsOptionalParameters) WithSource(source string) *DeleteHost
 // for a single host.
 func (a *TagsApi) DeleteHostTags(ctx _context.Context, hostName string, o ...DeleteHostTagsOptionalParameters) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
-		optionalParams     DeleteHostTagsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		optionalParams DeleteHostTagsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return nil, datadog.ReportError("only one argument of type DeleteHostTagsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return nil, datadog.ReportError("only one argument of type DeleteHostTagsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.TagsApi.DeleteHostTags")
 	if err != nil {
@@ -167,9 +176,10 @@ func (a *TagsApi) DeleteHostTags(ctx _context.Context, hostName string, o ...Del
 	if optionalParams.Source != nil {
 		localVarQueryParams.Add("source", datadog.ParameterToString(*optionalParams.Source, ""))
 	}
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] =  "*/*"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -192,10 +202,11 @@ func (a *TagsApi) DeleteHostTags(ctx _context.Context, hostName string, o ...Del
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -219,7 +230,6 @@ func NewGetHostTagsOptionalParameters() *GetHostTagsOptionalParameters {
 	this := GetHostTagsOptionalParameters{}
 	return &this
 }
-
 // WithSource sets the corresponding parameter name and returns the struct.
 func (r *GetHostTagsOptionalParameters) WithSource(source string) *GetHostTagsOptionalParameters {
 	r.Source = &source
@@ -230,18 +240,20 @@ func (r *GetHostTagsOptionalParameters) WithSource(source string) *GetHostTagsOp
 // Return the list of tags that apply to a given host.
 func (a *TagsApi) GetHostTags(ctx _context.Context, hostName string, o ...GetHostTagsOptionalParameters) (HostTags, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue HostTags
-		optionalParams      GetHostTagsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  HostTags
+		optionalParams GetHostTagsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetHostTagsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetHostTagsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.TagsApi.GetHostTags")
 	if err != nil {
@@ -259,7 +271,8 @@ func (a *TagsApi) GetHostTags(ctx _context.Context, hostName string, o ...GetHos
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -282,10 +295,11 @@ func (a *TagsApi) GetHostTags(ctx _context.Context, hostName string, o ...GetHos
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -299,7 +313,7 @@ func (a *TagsApi) GetHostTags(ctx _context.Context, hostName string, o ...GetHos
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -318,7 +332,6 @@ func NewListHostTagsOptionalParameters() *ListHostTagsOptionalParameters {
 	this := ListHostTagsOptionalParameters{}
 	return &this
 }
-
 // WithSource sets the corresponding parameter name and returns the struct.
 func (r *ListHostTagsOptionalParameters) WithSource(source string) *ListHostTagsOptionalParameters {
 	r.Source = &source
@@ -329,18 +342,20 @@ func (r *ListHostTagsOptionalParameters) WithSource(source string) *ListHostTags
 // Return a mapping of tags to hosts for your whole infrastructure.
 func (a *TagsApi) ListHostTags(ctx _context.Context, o ...ListHostTagsOptionalParameters) (TagToHosts, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue TagToHosts
-		optionalParams      ListHostTagsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  TagToHosts
+		optionalParams ListHostTagsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListHostTagsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListHostTagsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.TagsApi.ListHostTags")
 	if err != nil {
@@ -357,7 +372,8 @@ func (a *TagsApi) ListHostTags(ctx _context.Context, o ...ListHostTagsOptionalPa
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -380,10 +396,11 @@ func (a *TagsApi) ListHostTags(ctx _context.Context, o ...ListHostTagsOptionalPa
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -397,7 +414,7 @@ func (a *TagsApi) ListHostTags(ctx _context.Context, o ...ListHostTagsOptionalPa
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -416,7 +433,6 @@ func NewUpdateHostTagsOptionalParameters() *UpdateHostTagsOptionalParameters {
 	this := UpdateHostTagsOptionalParameters{}
 	return &this
 }
-
 // WithSource sets the corresponding parameter name and returns the struct.
 func (r *UpdateHostTagsOptionalParameters) WithSource(source string) *UpdateHostTagsOptionalParameters {
 	r.Source = &source
@@ -428,18 +444,20 @@ func (r *UpdateHostTagsOptionalParameters) WithSource(source string) *UpdateHost
 // an integration source with those supplied in the request.
 func (a *TagsApi) UpdateHostTags(ctx _context.Context, hostName string, body HostTags, o ...UpdateHostTagsOptionalParameters) (HostTags, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue HostTags
-		optionalParams      UpdateHostTagsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  HostTags
+		optionalParams UpdateHostTagsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type UpdateHostTagsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type UpdateHostTagsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.TagsApi.UpdateHostTags")
 	if err != nil {
@@ -458,9 +476,11 @@ func (a *TagsApi) UpdateHostTags(ctx _context.Context, hostName string, body Hos
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -483,10 +503,11 @@ func (a *TagsApi) UpdateHostTags(ctx _context.Context, hostName string, body Hos
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -500,7 +521,7 @@ func (a *TagsApi) UpdateHostTags(ctx _context.Context, hostName string, body Hos
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerProduct Datadog product onto which Sensitive Data Scanner can be activated.
 type SensitiveDataScannerProduct string
 
 // List of SensitiveDataScannerProduct.
 const (
-	SENSITIVEDATASCANNERPRODUCT_LOGS   SensitiveDataScannerProduct = "logs"
-	SENSITIVEDATASCANNERPRODUCT_RUM    SensitiveDataScannerProduct = "rum"
+	SENSITIVEDATASCANNERPRODUCT_LOGS SensitiveDataScannerProduct = "logs"
+	SENSITIVEDATASCANNERPRODUCT_RUM SensitiveDataScannerProduct = "rum"
 	SENSITIVEDATASCANNERPRODUCT_EVENTS SensitiveDataScannerProduct = "events"
-	SENSITIVEDATASCANNERPRODUCT_APM    SensitiveDataScannerProduct = "apm"
+	SENSITIVEDATASCANNERPRODUCT_APM SensitiveDataScannerProduct = "apm"
 )
 
 var allowedSensitiveDataScannerProductEnumValues = []SensitiveDataScannerProduct{

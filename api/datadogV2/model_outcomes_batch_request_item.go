@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OutcomesBatchRequestItem Scorecard outcome for a specific rule, for a given service within a batched update.
 type OutcomesBatchRequestItem struct {
@@ -21,9 +25,10 @@ type OutcomesBatchRequestItem struct {
 	// The state of the rule evaluation.
 	State State `json:"state"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOutcomesBatchRequestItem instantiates a new OutcomesBatchRequestItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewOutcomesBatchRequestItemWithDefaults() *OutcomesBatchRequestItem {
 	this := OutcomesBatchRequestItem{}
 	return &this
 }
-
 // GetRemarks returns the Remarks field value if set, zero value otherwise.
 func (o *OutcomesBatchRequestItem) GetRemarks() string {
 	if o == nil || o.Remarks == nil {
@@ -73,6 +77,7 @@ func (o *OutcomesBatchRequestItem) SetRemarks(v string) {
 	o.Remarks = &v
 }
 
+
 // GetRuleId returns the RuleId field value.
 func (o *OutcomesBatchRequestItem) GetRuleId() string {
 	if o == nil {
@@ -95,6 +100,7 @@ func (o *OutcomesBatchRequestItem) GetRuleIdOk() (*string, bool) {
 func (o *OutcomesBatchRequestItem) SetRuleId(v string) {
 	o.RuleId = v
 }
+
 
 // GetServiceName returns the ServiceName field value.
 func (o *OutcomesBatchRequestItem) GetServiceName() string {
@@ -119,6 +125,7 @@ func (o *OutcomesBatchRequestItem) SetServiceName(v string) {
 	o.ServiceName = v
 }
 
+
 // GetState returns the State field value.
 func (o *OutcomesBatchRequestItem) GetState() State {
 	if o == nil {
@@ -142,6 +149,8 @@ func (o *OutcomesBatchRequestItem) SetState(v State) {
 	o.State = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OutcomesBatchRequestItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -164,10 +173,10 @@ func (o OutcomesBatchRequestItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OutcomesBatchRequestItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Remarks     *string `json:"remarks,omitempty"`
-		RuleId      *string `json:"rule_id"`
+		Remarks *string `json:"remarks,omitempty"`
+		RuleId *string `json:"rule_id"`
 		ServiceName *string `json:"service_name"`
-		State       *State  `json:"state"`
+		State *State `json:"state"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -183,7 +192,7 @@ func (o *OutcomesBatchRequestItem) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"remarks", "rule_id", "service_name", "state"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "remarks", "rule_id", "service_name", "state",  })
 	} else {
 		return err
 	}

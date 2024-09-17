@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // APIKeysResponseMetaPage Additional information related to the API keys response.
 type APIKeysResponseMetaPage struct {
 	// Total filtered application key count.
 	TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAPIKeysResponseMetaPage instantiates a new APIKeysResponseMetaPage object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewAPIKeysResponseMetaPageWithDefaults() *APIKeysResponseMetaPage {
 	this := APIKeysResponseMetaPage{}
 	return &this
 }
-
 // GetTotalFilteredCount returns the TotalFilteredCount field value if set, zero value otherwise.
 func (o *APIKeysResponseMetaPage) GetTotalFilteredCount() int64 {
 	if o == nil || o.TotalFilteredCount == nil {
@@ -62,6 +68,8 @@ func (o *APIKeysResponseMetaPage) SetTotalFilteredCount(v int64) {
 	o.TotalFilteredCount = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o APIKeysResponseMetaPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *APIKeysResponseMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"total_filtered_count"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "total_filtered_count",  })
 	} else {
 		return err
 	}

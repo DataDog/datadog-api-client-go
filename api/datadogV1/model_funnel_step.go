@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FunnelStep The funnel step.
 type FunnelStep struct {
@@ -17,9 +21,10 @@ type FunnelStep struct {
 	// The value of the step.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFunnelStep instantiates a new FunnelStep object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewFunnelStepWithDefaults() *FunnelStep {
 	this := FunnelStep{}
 	return &this
 }
-
 // GetFacet returns the Facet field value.
 func (o *FunnelStep) GetFacet() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *FunnelStep) SetFacet(v string) {
 	o.Facet = v
 }
 
+
 // GetValue returns the Value field value.
 func (o *FunnelStep) GetValue() string {
 	if o == nil {
@@ -85,6 +90,8 @@ func (o *FunnelStep) GetValueOk() (*string, bool) {
 func (o *FunnelStep) SetValue(v string) {
 	o.Value = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FunnelStep) MarshalJSON() ([]byte, error) {
@@ -118,7 +125,7 @@ func (o *FunnelStep) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"facet", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "facet", "value",  })
 	} else {
 		return err
 	}

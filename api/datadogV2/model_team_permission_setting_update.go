@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamPermissionSettingUpdate Team permission setting update
 type TeamPermissionSettingUpdate struct {
@@ -17,9 +21,10 @@ type TeamPermissionSettingUpdate struct {
 	// Team permission setting type
 	Type TeamPermissionSettingType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamPermissionSettingUpdate instantiates a new TeamPermissionSettingUpdate object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewTeamPermissionSettingUpdateWithDefaults() *TeamPermissionSettingUpdate {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *TeamPermissionSettingUpdate) GetAttributes() TeamPermissionSettingUpdateAttributes {
 	if o == nil || o.Attributes == nil {
@@ -69,6 +73,7 @@ func (o *TeamPermissionSettingUpdate) SetAttributes(v TeamPermissionSettingUpdat
 	o.Attributes = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *TeamPermissionSettingUpdate) GetType() TeamPermissionSettingType {
 	if o == nil {
@@ -92,6 +97,8 @@ func (o *TeamPermissionSettingUpdate) SetType(v TeamPermissionSettingType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamPermissionSettingUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -113,7 +120,7 @@ func (o TeamPermissionSettingUpdate) MarshalJSON() ([]byte, error) {
 func (o *TeamPermissionSettingUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *TeamPermissionSettingUpdateAttributes `json:"attributes,omitempty"`
-		Type       *TeamPermissionSettingType             `json:"type"`
+		Type *TeamPermissionSettingType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -123,13 +130,13 @@ func (o *TeamPermissionSettingUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

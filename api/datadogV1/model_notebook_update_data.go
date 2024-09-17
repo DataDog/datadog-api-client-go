@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotebookUpdateData The data for a notebook update request.
 type NotebookUpdateData struct {
@@ -17,9 +21,10 @@ type NotebookUpdateData struct {
 	// Type of the Notebook resource.
 	Type NotebookResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewNotebookUpdateData instantiates a new NotebookUpdateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewNotebookUpdateDataWithDefaults() *NotebookUpdateData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *NotebookUpdateData) GetAttributes() NotebookUpdateDataAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *NotebookUpdateData) GetAttributesOk() (*NotebookUpdateDataAttributes, b
 func (o *NotebookUpdateData) SetAttributes(v NotebookUpdateDataAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *NotebookUpdateData) GetType() NotebookResourceType {
@@ -88,6 +93,8 @@ func (o *NotebookUpdateData) SetType(v NotebookResourceType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o NotebookUpdateData) MarshalJSON() ([]byte, error) {
 func (o *NotebookUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *NotebookUpdateDataAttributes `json:"attributes"`
-		Type       *NotebookResourceType         `json:"type"`
+		Type *NotebookResourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *NotebookUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

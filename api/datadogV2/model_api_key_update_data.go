@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // APIKeyUpdateData Object used to update an API key.
 type APIKeyUpdateData struct {
@@ -19,9 +23,10 @@ type APIKeyUpdateData struct {
 	// API Keys resource type.
 	Type APIKeysType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAPIKeyUpdateData instantiates a new APIKeyUpdateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewAPIKeyUpdateDataWithDefaults() *APIKeyUpdateData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *APIKeyUpdateData) GetAttributes() APIKeyUpdateAttributes {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *APIKeyUpdateData) GetAttributesOk() (*APIKeyUpdateAttributes, bool) {
 func (o *APIKeyUpdateData) SetAttributes(v APIKeyUpdateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *APIKeyUpdateData) GetId() string {
@@ -91,6 +96,7 @@ func (o *APIKeyUpdateData) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value.
 func (o *APIKeyUpdateData) GetType() APIKeysType {
 	if o == nil {
@@ -114,6 +120,8 @@ func (o *APIKeyUpdateData) SetType(v APIKeysType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o APIKeyUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -134,8 +142,8 @@ func (o APIKeyUpdateData) MarshalJSON() ([]byte, error) {
 func (o *APIKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *APIKeyUpdateAttributes `json:"attributes"`
-		Id         *string                 `json:"id"`
-		Type       *APIKeysType            `json:"type"`
+		Id *string `json:"id"`
+		Type *APIKeysType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -151,7 +159,7 @@ func (o *APIKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

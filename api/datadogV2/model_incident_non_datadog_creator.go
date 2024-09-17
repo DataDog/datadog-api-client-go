@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNonDatadogCreator Incident's non Datadog creator.
 type IncidentNonDatadogCreator struct {
@@ -15,9 +21,10 @@ type IncidentNonDatadogCreator struct {
 	// Non Datadog creator name.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentNonDatadogCreator instantiates a new IncidentNonDatadogCreator object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewIncidentNonDatadogCreatorWithDefaults() *IncidentNonDatadogCreator {
 	this := IncidentNonDatadogCreator{}
 	return &this
 }
-
 // GetImage48Px returns the Image48Px field value if set, zero value otherwise.
 func (o *IncidentNonDatadogCreator) GetImage48Px() string {
 	if o == nil || o.Image48Px == nil {
@@ -63,6 +69,7 @@ func (o *IncidentNonDatadogCreator) HasImage48Px() bool {
 func (o *IncidentNonDatadogCreator) SetImage48Px(v string) {
 	o.Image48Px = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *IncidentNonDatadogCreator) GetName() string {
@@ -92,6 +99,8 @@ func (o *IncidentNonDatadogCreator) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentNonDatadogCreator) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o IncidentNonDatadogCreator) MarshalJSON() ([]byte, error) {
 func (o *IncidentNonDatadogCreator) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Image48Px *string `json:"image_48_px,omitempty"`
-		Name      *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"image_48_px", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "image_48_px", "name",  })
 	} else {
 		return err
 	}
@@ -135,7 +144,6 @@ func (o *IncidentNonDatadogCreator) UnmarshalJSON(bytes []byte) (err error) {
 
 	return nil
 }
-
 // NullableIncidentNonDatadogCreator handles when a null is used for IncidentNonDatadogCreator.
 type NullableIncidentNonDatadogCreator struct {
 	value *IncidentNonDatadogCreator

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestDetailsSubType The subtype of the Synthetic API test, `http`, `ssl`, `tcp`,
 // `dns`, `icmp`, `udp`, `websocket`, `grpc` or `multi`.
@@ -16,15 +20,15 @@ type SyntheticsTestDetailsSubType string
 
 // List of SyntheticsTestDetailsSubType.
 const (
-	SYNTHETICSTESTDETAILSSUBTYPE_HTTP      SyntheticsTestDetailsSubType = "http"
-	SYNTHETICSTESTDETAILSSUBTYPE_SSL       SyntheticsTestDetailsSubType = "ssl"
-	SYNTHETICSTESTDETAILSSUBTYPE_TCP       SyntheticsTestDetailsSubType = "tcp"
-	SYNTHETICSTESTDETAILSSUBTYPE_DNS       SyntheticsTestDetailsSubType = "dns"
-	SYNTHETICSTESTDETAILSSUBTYPE_MULTI     SyntheticsTestDetailsSubType = "multi"
-	SYNTHETICSTESTDETAILSSUBTYPE_ICMP      SyntheticsTestDetailsSubType = "icmp"
-	SYNTHETICSTESTDETAILSSUBTYPE_UDP       SyntheticsTestDetailsSubType = "udp"
+	SYNTHETICSTESTDETAILSSUBTYPE_HTTP SyntheticsTestDetailsSubType = "http"
+	SYNTHETICSTESTDETAILSSUBTYPE_SSL SyntheticsTestDetailsSubType = "ssl"
+	SYNTHETICSTESTDETAILSSUBTYPE_TCP SyntheticsTestDetailsSubType = "tcp"
+	SYNTHETICSTESTDETAILSSUBTYPE_DNS SyntheticsTestDetailsSubType = "dns"
+	SYNTHETICSTESTDETAILSSUBTYPE_MULTI SyntheticsTestDetailsSubType = "multi"
+	SYNTHETICSTESTDETAILSSUBTYPE_ICMP SyntheticsTestDetailsSubType = "icmp"
+	SYNTHETICSTESTDETAILSSUBTYPE_UDP SyntheticsTestDetailsSubType = "udp"
 	SYNTHETICSTESTDETAILSSUBTYPE_WEBSOCKET SyntheticsTestDetailsSubType = "websocket"
-	SYNTHETICSTESTDETAILSSUBTYPE_GRPC      SyntheticsTestDetailsSubType = "grpc"
+	SYNTHETICSTESTDETAILSSUBTYPE_GRPC SyntheticsTestDetailsSubType = "grpc"
 )
 
 var allowedSyntheticsTestDetailsSubTypeEnumValues = []SyntheticsTestDetailsSubType{

@@ -2,37 +2,37 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
-	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV2.MetricPayload{
-		Series: []datadogV2.MetricSeries{
-			{
-				Metric: "system.load.1",
-				Type:   datadogV2.METRICINTAKETYPE_UNSPECIFIED.Ptr(),
-				Points: []datadogV2.MetricPoint{
-					{
-						Timestamp: datadog.PtrInt64(time.Now().Unix()),
-						Value:     datadog.PtrFloat64(0.7),
-					},
-				},
-			},
-		},
-	}
+Series: []datadogV2.MetricSeries{
+{
+Metric: "system.load.1",
+Type: datadogV2.METRICINTAKETYPE_UNSPECIFIED.Ptr(),
+Points: []datadogV2.MetricPoint{
+{
+Timestamp: datadog.PtrInt64(time.Now().Unix()),
+Value: datadog.PtrFloat64(0.7),
+},
+},
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMetricsApi(apiClient)
-	resp, r, err := api.SubmitMetrics(ctx, body, *datadogV2.NewSubmitMetricsOptionalParameters().WithContentEncoding(datadogV2.METRICCONTENTENCODING_ZSTD1))
+	resp, r, err := api.SubmitMetrics(ctx, body, *datadogV2.NewSubmitMetricsOptionalParameters().WithContentEncoding(datadogV2.METRICCONTENTENCODING_ZSTD1), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.SubmitMetrics`: %v\n", err)

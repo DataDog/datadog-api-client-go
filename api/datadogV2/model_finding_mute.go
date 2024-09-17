@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FindingMute Information about the mute status of this finding.
 type FindingMute struct {
@@ -26,6 +32,7 @@ type FindingMute struct {
 	UnparsedObject map[string]interface{} `json:"-"`
 }
 
+
 // NewFindingMute instantiates a new FindingMute object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -42,7 +49,6 @@ func NewFindingMuteWithDefaults() *FindingMute {
 	this := FindingMute{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *FindingMute) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -70,6 +76,7 @@ func (o *FindingMute) HasDescription() bool {
 func (o *FindingMute) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
 func (o *FindingMute) GetExpirationDate() int64 {
@@ -99,6 +106,7 @@ func (o *FindingMute) SetExpirationDate(v int64) {
 	o.ExpirationDate = &v
 }
 
+
 // GetMuted returns the Muted field value if set, zero value otherwise.
 func (o *FindingMute) GetMuted() bool {
 	if o == nil || o.Muted == nil {
@@ -126,6 +134,7 @@ func (o *FindingMute) HasMuted() bool {
 func (o *FindingMute) SetMuted(v bool) {
 	o.Muted = &v
 }
+
 
 // GetReason returns the Reason field value if set, zero value otherwise.
 func (o *FindingMute) GetReason() FindingMuteReason {
@@ -155,6 +164,7 @@ func (o *FindingMute) SetReason(v FindingMuteReason) {
 	o.Reason = &v
 }
 
+
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *FindingMute) GetStartDate() int64 {
 	if o == nil || o.StartDate == nil {
@@ -183,6 +193,7 @@ func (o *FindingMute) SetStartDate(v int64) {
 	o.StartDate = &v
 }
 
+
 // GetUuid returns the Uuid field value if set, zero value otherwise.
 func (o *FindingMute) GetUuid() string {
 	if o == nil || o.Uuid == nil {
@@ -210,6 +221,8 @@ func (o *FindingMute) HasUuid() bool {
 func (o *FindingMute) SetUuid(v string) {
 	o.Uuid = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FindingMute) MarshalJSON() ([]byte, error) {
@@ -241,12 +254,12 @@ func (o FindingMute) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FindingMute) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description    *string            `json:"description,omitempty"`
-		ExpirationDate *int64             `json:"expiration_date,omitempty"`
-		Muted          *bool              `json:"muted,omitempty"`
-		Reason         *FindingMuteReason `json:"reason,omitempty"`
-		StartDate      *int64             `json:"start_date,omitempty"`
-		Uuid           *string            `json:"uuid,omitempty"`
+		Description *string `json:"description,omitempty"`
+		ExpirationDate *int64 `json:"expiration_date,omitempty"`
+		Muted *bool `json:"muted,omitempty"`
+		Reason *FindingMuteReason `json:"reason,omitempty"`
+		StartDate *int64 `json:"start_date,omitempty"`
+		Uuid *string `json:"uuid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -256,7 +269,7 @@ func (o *FindingMute) UnmarshalJSON(bytes []byte) (err error) {
 	o.Description = all.Description
 	o.ExpirationDate = all.ExpirationDate
 	o.Muted = all.Muted
-	if all.Reason != nil && !all.Reason.IsValid() {
+	if all.Reason != nil &&!all.Reason.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Reason = all.Reason

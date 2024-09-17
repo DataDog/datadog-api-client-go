@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamCreateAttributes Team creation attributes
 type TeamCreateAttributes struct {
@@ -27,9 +31,10 @@ type TeamCreateAttributes struct {
 	// Collection of visible modules for the team
 	VisibleModules []string `json:"visible_modules,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamCreateAttributes instantiates a new TeamCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func NewTeamCreateAttributesWithDefaults() *TeamCreateAttributes {
 	this := TeamCreateAttributes{}
 	return &this
 }
-
 // GetAvatar returns the Avatar field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TeamCreateAttributes) GetAvatar() string {
 	if o == nil || o.Avatar.Get() == nil {
@@ -63,7 +67,7 @@ func (o *TeamCreateAttributes) GetAvatar() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *TeamCreateAttributes) GetAvatarOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Avatar.Get(), o.Avatar.IsSet()
@@ -78,7 +82,6 @@ func (o *TeamCreateAttributes) HasAvatar() bool {
 func (o *TeamCreateAttributes) SetAvatar(v string) {
 	o.Avatar.Set(&v)
 }
-
 // SetAvatarNil sets the value for Avatar to be an explicit nil.
 func (o *TeamCreateAttributes) SetAvatarNil() {
 	o.Avatar.Set(nil)
@@ -88,6 +91,7 @@ func (o *TeamCreateAttributes) SetAvatarNil() {
 func (o *TeamCreateAttributes) UnsetAvatar() {
 	o.Avatar.Unset()
 }
+
 
 // GetBanner returns the Banner field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TeamCreateAttributes) GetBanner() int64 {
@@ -102,7 +106,7 @@ func (o *TeamCreateAttributes) GetBanner() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *TeamCreateAttributes) GetBannerOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Banner.Get(), o.Banner.IsSet()
@@ -117,7 +121,6 @@ func (o *TeamCreateAttributes) HasBanner() bool {
 func (o *TeamCreateAttributes) SetBanner(v int64) {
 	o.Banner.Set(&v)
 }
-
 // SetBannerNil sets the value for Banner to be an explicit nil.
 func (o *TeamCreateAttributes) SetBannerNil() {
 	o.Banner.Set(nil)
@@ -127,6 +130,7 @@ func (o *TeamCreateAttributes) SetBannerNil() {
 func (o *TeamCreateAttributes) UnsetBanner() {
 	o.Banner.Unset()
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *TeamCreateAttributes) GetDescription() string {
@@ -156,6 +160,7 @@ func (o *TeamCreateAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetHandle returns the Handle field value.
 func (o *TeamCreateAttributes) GetHandle() string {
 	if o == nil {
@@ -178,6 +183,7 @@ func (o *TeamCreateAttributes) GetHandleOk() (*string, bool) {
 func (o *TeamCreateAttributes) SetHandle(v string) {
 	o.Handle = v
 }
+
 
 // GetHiddenModules returns the HiddenModules field value if set, zero value otherwise.
 func (o *TeamCreateAttributes) GetHiddenModules() []string {
@@ -207,6 +213,7 @@ func (o *TeamCreateAttributes) SetHiddenModules(v []string) {
 	o.HiddenModules = v
 }
 
+
 // GetName returns the Name field value.
 func (o *TeamCreateAttributes) GetName() string {
 	if o == nil {
@@ -229,6 +236,7 @@ func (o *TeamCreateAttributes) GetNameOk() (*string, bool) {
 func (o *TeamCreateAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetVisibleModules returns the VisibleModules field value if set, zero value otherwise.
 func (o *TeamCreateAttributes) GetVisibleModules() []string {
@@ -257,6 +265,8 @@ func (o *TeamCreateAttributes) HasVisibleModules() bool {
 func (o *TeamCreateAttributes) SetVisibleModules(v []string) {
 	o.VisibleModules = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamCreateAttributes) MarshalJSON() ([]byte, error) {
@@ -291,13 +301,13 @@ func (o TeamCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Avatar         datadog.NullableString `json:"avatar,omitempty"`
-		Banner         datadog.NullableInt64  `json:"banner,omitempty"`
-		Description    *string                `json:"description,omitempty"`
-		Handle         *string                `json:"handle"`
-		HiddenModules  []string               `json:"hidden_modules,omitempty"`
-		Name           *string                `json:"name"`
-		VisibleModules []string               `json:"visible_modules,omitempty"`
+		Avatar datadog.NullableString `json:"avatar,omitempty"`
+		Banner datadog.NullableInt64 `json:"banner,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Handle *string `json:"handle"`
+		HiddenModules []string `json:"hidden_modules,omitempty"`
+		Name *string `json:"name"`
+		VisibleModules []string `json:"visible_modules,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -310,7 +320,7 @@ func (o *TeamCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"avatar", "banner", "description", "handle", "hidden_modules", "name", "visible_modules"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "avatar", "banner", "description", "handle", "hidden_modules", "name", "visible_modules",  })
 	} else {
 		return err
 	}

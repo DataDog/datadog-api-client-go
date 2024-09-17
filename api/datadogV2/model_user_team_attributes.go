@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UserTeamAttributes Team membership attributes
 type UserTeamAttributes struct {
@@ -18,9 +24,10 @@ type UserTeamAttributes struct {
 	// The user's role within the team
 	Role NullableUserTeamRole `json:"role,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUserTeamAttributes instantiates a new UserTeamAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +45,6 @@ func NewUserTeamAttributesWithDefaults() *UserTeamAttributes {
 	this := UserTeamAttributes{}
 	return &this
 }
-
 // GetProvisionedBy returns the ProvisionedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UserTeamAttributes) GetProvisionedBy() string {
 	if o == nil || o.ProvisionedBy.Get() == nil {
@@ -52,7 +58,7 @@ func (o *UserTeamAttributes) GetProvisionedBy() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UserTeamAttributes) GetProvisionedByOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ProvisionedBy.Get(), o.ProvisionedBy.IsSet()
@@ -67,7 +73,6 @@ func (o *UserTeamAttributes) HasProvisionedBy() bool {
 func (o *UserTeamAttributes) SetProvisionedBy(v string) {
 	o.ProvisionedBy.Set(&v)
 }
-
 // SetProvisionedByNil sets the value for ProvisionedBy to be an explicit nil.
 func (o *UserTeamAttributes) SetProvisionedByNil() {
 	o.ProvisionedBy.Set(nil)
@@ -77,6 +82,7 @@ func (o *UserTeamAttributes) SetProvisionedByNil() {
 func (o *UserTeamAttributes) UnsetProvisionedBy() {
 	o.ProvisionedBy.Unset()
 }
+
 
 // GetProvisionedById returns the ProvisionedById field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UserTeamAttributes) GetProvisionedById() string {
@@ -91,7 +97,7 @@ func (o *UserTeamAttributes) GetProvisionedById() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UserTeamAttributes) GetProvisionedByIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ProvisionedById.Get(), o.ProvisionedById.IsSet()
@@ -106,7 +112,6 @@ func (o *UserTeamAttributes) HasProvisionedById() bool {
 func (o *UserTeamAttributes) SetProvisionedById(v string) {
 	o.ProvisionedById.Set(&v)
 }
-
 // SetProvisionedByIdNil sets the value for ProvisionedById to be an explicit nil.
 func (o *UserTeamAttributes) SetProvisionedByIdNil() {
 	o.ProvisionedById.Set(nil)
@@ -116,6 +121,7 @@ func (o *UserTeamAttributes) SetProvisionedByIdNil() {
 func (o *UserTeamAttributes) UnsetProvisionedById() {
 	o.ProvisionedById.Unset()
 }
+
 
 // GetRole returns the Role field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UserTeamAttributes) GetRole() UserTeamRole {
@@ -130,7 +136,7 @@ func (o *UserTeamAttributes) GetRole() UserTeamRole {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UserTeamAttributes) GetRoleOk() (*UserTeamRole, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Role.Get(), o.Role.IsSet()
@@ -145,7 +151,6 @@ func (o *UserTeamAttributes) HasRole() bool {
 func (o *UserTeamAttributes) SetRole(v UserTeamRole) {
 	o.Role.Set(&v)
 }
-
 // SetRoleNil sets the value for Role to be an explicit nil.
 func (o *UserTeamAttributes) SetRoleNil() {
 	o.Role.Set(nil)
@@ -155,6 +160,8 @@ func (o *UserTeamAttributes) SetRoleNil() {
 func (o *UserTeamAttributes) UnsetRole() {
 	o.Role.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UserTeamAttributes) MarshalJSON() ([]byte, error) {
@@ -181,16 +188,16 @@ func (o UserTeamAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UserTeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ProvisionedBy   datadog.NullableString `json:"provisioned_by,omitempty"`
+		ProvisionedBy datadog.NullableString `json:"provisioned_by,omitempty"`
 		ProvisionedById datadog.NullableString `json:"provisioned_by_id,omitempty"`
-		Role            NullableUserTeamRole   `json:"role,omitempty"`
+		Role NullableUserTeamRole `json:"role,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"provisioned_by", "provisioned_by_id", "role"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "provisioned_by", "provisioned_by_id", "role",  })
 	} else {
 		return err
 	}

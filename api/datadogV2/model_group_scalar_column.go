@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GroupScalarColumn A column containing the tag keys and values in a group.
 type GroupScalarColumn struct {
@@ -17,9 +23,10 @@ type GroupScalarColumn struct {
 	// The array of tag values for each group found for the results of the formulas or queries.
 	Values [][]string `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGroupScalarColumn instantiates a new GroupScalarColumn object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewGroupScalarColumnWithDefaults() *GroupScalarColumn {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GroupScalarColumn) GetName() string {
 	if o == nil || o.Name == nil {
@@ -69,6 +75,7 @@ func (o *GroupScalarColumn) HasName() bool {
 func (o *GroupScalarColumn) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GroupScalarColumn) GetType() ScalarColumnTypeGroup {
@@ -98,6 +105,7 @@ func (o *GroupScalarColumn) SetType(v ScalarColumnTypeGroup) {
 	o.Type = &v
 }
 
+
 // GetValues returns the Values field value if set, zero value otherwise.
 func (o *GroupScalarColumn) GetValues() [][]string {
 	if o == nil || o.Values == nil {
@@ -126,6 +134,8 @@ func (o *GroupScalarColumn) SetValues(v [][]string) {
 	o.Values = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GroupScalarColumn) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -151,23 +161,23 @@ func (o GroupScalarColumn) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GroupScalarColumn) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name   *string                `json:"name,omitempty"`
-		Type   *ScalarColumnTypeGroup `json:"type,omitempty"`
-		Values [][]string             `json:"values,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Type *ScalarColumnTypeGroup `json:"type,omitempty"`
+		Values [][]string `json:"values,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "type", "values"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "type", "values",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Name = all.Name
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

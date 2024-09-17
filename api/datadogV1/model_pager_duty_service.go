@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PagerDutyService The PagerDuty service that is available for integration with Datadog.
 type PagerDutyService struct {
@@ -17,9 +21,10 @@ type PagerDutyService struct {
 	// Your service name associated with a service key in PagerDuty.
 	ServiceName string `json:"service_name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPagerDutyService instantiates a new PagerDutyService object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewPagerDutyServiceWithDefaults() *PagerDutyService {
 	this := PagerDutyService{}
 	return &this
 }
-
 // GetServiceKey returns the ServiceKey field value.
 func (o *PagerDutyService) GetServiceKey() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *PagerDutyService) GetServiceKeyOk() (*string, bool) {
 func (o *PagerDutyService) SetServiceKey(v string) {
 	o.ServiceKey = v
 }
+
 
 // GetServiceName returns the ServiceName field value.
 func (o *PagerDutyService) GetServiceName() string {
@@ -86,6 +91,8 @@ func (o *PagerDutyService) SetServiceName(v string) {
 	o.ServiceName = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o PagerDutyService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o PagerDutyService) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PagerDutyService) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ServiceKey  *string `json:"service_key"`
+		ServiceKey *string `json:"service_key"`
 		ServiceName *string `json:"service_name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *PagerDutyService) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"service_key", "service_name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "service_key", "service_name",  })
 	} else {
 		return err
 	}

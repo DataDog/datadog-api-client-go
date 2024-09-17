@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AzureAccountMetricsConfig Dictionary containing the key `excluded_resource_providers` which has to be a list of Microsoft Azure Resource Provider names.
 // This feature is currently being beta tested.
@@ -16,9 +22,10 @@ type AzureAccountMetricsConfig struct {
 	// List of Microsoft Azure Resource Providers to exclude from metric collection.
 	ExcludedResourceProviders []string `json:"excluded_resource_providers,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAzureAccountMetricsConfig instantiates a new AzureAccountMetricsConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +43,6 @@ func NewAzureAccountMetricsConfigWithDefaults() *AzureAccountMetricsConfig {
 	this := AzureAccountMetricsConfig{}
 	return &this
 }
-
 // GetExcludedResourceProviders returns the ExcludedResourceProviders field value if set, zero value otherwise.
 func (o *AzureAccountMetricsConfig) GetExcludedResourceProviders() []string {
 	if o == nil || o.ExcludedResourceProviders == nil {
@@ -65,6 +71,8 @@ func (o *AzureAccountMetricsConfig) SetExcludedResourceProviders(v []string) {
 	o.ExcludedResourceProviders = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AzureAccountMetricsConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -91,7 +99,7 @@ func (o *AzureAccountMetricsConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"excluded_resource_providers"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "excluded_resource_providers",  })
 	} else {
 		return err
 	}

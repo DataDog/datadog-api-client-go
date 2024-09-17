@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityResponseIncludedRawSchemaAttributes Included raw schema attributes.
 type EntityResponseIncludedRawSchemaAttributes struct {
 	// Schema from user input in base64 encoding.
 	RawSchema *string `json:"rawSchema,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityResponseIncludedRawSchemaAttributes instantiates a new EntityResponseIncludedRawSchemaAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewEntityResponseIncludedRawSchemaAttributesWithDefaults() *EntityResponseI
 	this := EntityResponseIncludedRawSchemaAttributes{}
 	return &this
 }
-
 // GetRawSchema returns the RawSchema field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRawSchemaAttributes) GetRawSchema() string {
 	if o == nil || o.RawSchema == nil {
@@ -62,6 +68,8 @@ func (o *EntityResponseIncludedRawSchemaAttributes) SetRawSchema(v string) {
 	o.RawSchema = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityResponseIncludedRawSchemaAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *EntityResponseIncludedRawSchemaAttributes) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"rawSchema"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "rawSchema",  })
 	} else {
 		return err
 	}

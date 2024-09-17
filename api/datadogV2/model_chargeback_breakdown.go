@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ChargebackBreakdown Charges breakdown.
 type ChargebackBreakdown struct {
@@ -17,9 +23,10 @@ type ChargebackBreakdown struct {
 	// The product for which cost is being reported.
 	ProductName *string `json:"product_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewChargebackBreakdown instantiates a new ChargebackBreakdown object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewChargebackBreakdownWithDefaults() *ChargebackBreakdown {
 	this := ChargebackBreakdown{}
 	return &this
 }
-
 // GetChargeType returns the ChargeType field value if set, zero value otherwise.
 func (o *ChargebackBreakdown) GetChargeType() string {
 	if o == nil || o.ChargeType == nil {
@@ -65,6 +71,7 @@ func (o *ChargebackBreakdown) HasChargeType() bool {
 func (o *ChargebackBreakdown) SetChargeType(v string) {
 	o.ChargeType = &v
 }
+
 
 // GetCost returns the Cost field value if set, zero value otherwise.
 func (o *ChargebackBreakdown) GetCost() float64 {
@@ -94,6 +101,7 @@ func (o *ChargebackBreakdown) SetCost(v float64) {
 	o.Cost = &v
 }
 
+
 // GetProductName returns the ProductName field value if set, zero value otherwise.
 func (o *ChargebackBreakdown) GetProductName() string {
 	if o == nil || o.ProductName == nil {
@@ -122,6 +130,8 @@ func (o *ChargebackBreakdown) SetProductName(v string) {
 	o.ProductName = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ChargebackBreakdown) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o ChargebackBreakdown) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ChargebackBreakdown) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ChargeType  *string  `json:"charge_type,omitempty"`
-		Cost        *float64 `json:"cost,omitempty"`
-		ProductName *string  `json:"product_name,omitempty"`
+		ChargeType *string `json:"charge_type,omitempty"`
+		Cost *float64 `json:"cost,omitempty"`
+		ProductName *string `json:"product_name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"charge_type", "cost", "product_name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "charge_type", "cost", "product_name",  })
 	} else {
 		return err
 	}

@@ -2,24 +2,28 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionV2Dot1LinkType Link type.
 type ServiceDefinitionV2Dot1LinkType string
 
 // List of ServiceDefinitionV2Dot1LinkType.
 const (
-	SERVICEDEFINITIONV2DOT1LINKTYPE_DOC       ServiceDefinitionV2Dot1LinkType = "doc"
-	SERVICEDEFINITIONV2DOT1LINKTYPE_REPO      ServiceDefinitionV2Dot1LinkType = "repo"
-	SERVICEDEFINITIONV2DOT1LINKTYPE_RUNBOOK   ServiceDefinitionV2Dot1LinkType = "runbook"
+	SERVICEDEFINITIONV2DOT1LINKTYPE_DOC ServiceDefinitionV2Dot1LinkType = "doc"
+	SERVICEDEFINITIONV2DOT1LINKTYPE_REPO ServiceDefinitionV2Dot1LinkType = "repo"
+	SERVICEDEFINITIONV2DOT1LINKTYPE_RUNBOOK ServiceDefinitionV2Dot1LinkType = "runbook"
 	SERVICEDEFINITIONV2DOT1LINKTYPE_DASHBOARD ServiceDefinitionV2Dot1LinkType = "dashboard"
-	SERVICEDEFINITIONV2DOT1LINKTYPE_OTHER     ServiceDefinitionV2Dot1LinkType = "other"
+	SERVICEDEFINITIONV2DOT1LINKTYPE_OTHER ServiceDefinitionV2Dot1LinkType = "other"
 )
 
 var allowedServiceDefinitionV2Dot1LinkTypeEnumValues = []ServiceDefinitionV2Dot1LinkType{

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OpenAPIEndpoint Endpoint info extracted from an `OpenAPI` specification.
 type OpenAPIEndpoint struct {
@@ -15,9 +21,10 @@ type OpenAPIEndpoint struct {
 	// The endpoint path.
 	Path *string `json:"path,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOpenAPIEndpoint instantiates a new OpenAPIEndpoint object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewOpenAPIEndpointWithDefaults() *OpenAPIEndpoint {
 	this := OpenAPIEndpoint{}
 	return &this
 }
-
 // GetMethod returns the Method field value if set, zero value otherwise.
 func (o *OpenAPIEndpoint) GetMethod() string {
 	if o == nil || o.Method == nil {
@@ -63,6 +69,7 @@ func (o *OpenAPIEndpoint) HasMethod() bool {
 func (o *OpenAPIEndpoint) SetMethod(v string) {
 	o.Method = &v
 }
+
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *OpenAPIEndpoint) GetPath() string {
@@ -92,6 +99,8 @@ func (o *OpenAPIEndpoint) SetPath(v string) {
 	o.Path = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OpenAPIEndpoint) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o OpenAPIEndpoint) MarshalJSON() ([]byte, error) {
 func (o *OpenAPIEndpoint) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Method *string `json:"method,omitempty"`
-		Path   *string `json:"path,omitempty"`
+		Path *string `json:"path,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"method", "path"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "method", "path",  })
 	} else {
 		return err
 	}

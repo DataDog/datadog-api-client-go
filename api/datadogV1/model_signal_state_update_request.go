@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SignalStateUpdateRequest Attributes describing the change of state for a given state.
 type SignalStateUpdateRequest struct {
@@ -21,9 +25,10 @@ type SignalStateUpdateRequest struct {
 	// Version of the updated signal. If server side version is higher, update will be rejected.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSignalStateUpdateRequest instantiates a new SignalStateUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewSignalStateUpdateRequestWithDefaults() *SignalStateUpdateRequest {
 	this := SignalStateUpdateRequest{}
 	return &this
 }
-
 // GetArchiveComment returns the ArchiveComment field value if set, zero value otherwise.
 func (o *SignalStateUpdateRequest) GetArchiveComment() string {
 	if o == nil || o.ArchiveComment == nil {
@@ -70,6 +74,7 @@ func (o *SignalStateUpdateRequest) HasArchiveComment() bool {
 func (o *SignalStateUpdateRequest) SetArchiveComment(v string) {
 	o.ArchiveComment = &v
 }
+
 
 // GetArchiveReason returns the ArchiveReason field value if set, zero value otherwise.
 func (o *SignalStateUpdateRequest) GetArchiveReason() SignalArchiveReason {
@@ -99,6 +104,7 @@ func (o *SignalStateUpdateRequest) SetArchiveReason(v SignalArchiveReason) {
 	o.ArchiveReason = &v
 }
 
+
 // GetState returns the State field value.
 func (o *SignalStateUpdateRequest) GetState() SignalTriageState {
 	if o == nil {
@@ -121,6 +127,7 @@ func (o *SignalStateUpdateRequest) GetStateOk() (*SignalTriageState, bool) {
 func (o *SignalStateUpdateRequest) SetState(v SignalTriageState) {
 	o.State = v
 }
+
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *SignalStateUpdateRequest) GetVersion() int64 {
@@ -150,6 +157,8 @@ func (o *SignalStateUpdateRequest) SetVersion(v int64) {
 	o.Version = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SignalStateUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -176,10 +185,10 @@ func (o SignalStateUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SignalStateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ArchiveComment *string              `json:"archiveComment,omitempty"`
-		ArchiveReason  *SignalArchiveReason `json:"archiveReason,omitempty"`
-		State          *SignalTriageState   `json:"state"`
-		Version        *int64               `json:"version,omitempty"`
+		ArchiveComment *string `json:"archiveComment,omitempty"`
+		ArchiveReason *SignalArchiveReason `json:"archiveReason,omitempty"`
+		State *SignalTriageState `json:"state"`
+		Version *int64 `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -189,14 +198,14 @@ func (o *SignalStateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archiveComment", "archiveReason", "state", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "archiveComment", "archiveReason", "state", "version",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.ArchiveComment = all.ArchiveComment
-	if all.ArchiveReason != nil && !all.ArchiveReason.IsValid() {
+	if all.ArchiveReason != nil &&!all.ArchiveReason.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ArchiveReason = all.ArchiveReason

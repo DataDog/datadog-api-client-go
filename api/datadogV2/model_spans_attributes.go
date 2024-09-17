@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SpansAttributes JSON object containing all span attributes and their associated values.
 type SpansAttributes struct {
@@ -49,9 +53,10 @@ type SpansAttributes struct {
 	// The type of the span.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSpansAttributes instantiates a new SpansAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -69,7 +74,6 @@ func NewSpansAttributesWithDefaults() *SpansAttributes {
 	this := SpansAttributes{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *SpansAttributes) GetAttributes() map[string]interface{} {
 	if o == nil || o.Attributes == nil {
@@ -97,6 +101,7 @@ func (o *SpansAttributes) HasAttributes() bool {
 func (o *SpansAttributes) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
+
 
 // GetCustom returns the Custom field value if set, zero value otherwise.
 func (o *SpansAttributes) GetCustom() map[string]interface{} {
@@ -126,6 +131,7 @@ func (o *SpansAttributes) SetCustom(v map[string]interface{}) {
 	o.Custom = v
 }
 
+
 // GetEndTimestamp returns the EndTimestamp field value if set, zero value otherwise.
 func (o *SpansAttributes) GetEndTimestamp() time.Time {
 	if o == nil || o.EndTimestamp == nil {
@@ -153,6 +159,7 @@ func (o *SpansAttributes) HasEndTimestamp() bool {
 func (o *SpansAttributes) SetEndTimestamp(v time.Time) {
 	o.EndTimestamp = &v
 }
+
 
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *SpansAttributes) GetEnv() string {
@@ -182,6 +189,7 @@ func (o *SpansAttributes) SetEnv(v string) {
 	o.Env = &v
 }
 
+
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *SpansAttributes) GetHost() string {
 	if o == nil || o.Host == nil {
@@ -209,6 +217,7 @@ func (o *SpansAttributes) HasHost() bool {
 func (o *SpansAttributes) SetHost(v string) {
 	o.Host = &v
 }
+
 
 // GetIngestionReason returns the IngestionReason field value if set, zero value otherwise.
 func (o *SpansAttributes) GetIngestionReason() string {
@@ -238,6 +247,7 @@ func (o *SpansAttributes) SetIngestionReason(v string) {
 	o.IngestionReason = &v
 }
 
+
 // GetParentId returns the ParentId field value if set, zero value otherwise.
 func (o *SpansAttributes) GetParentId() string {
 	if o == nil || o.ParentId == nil {
@@ -265,6 +275,7 @@ func (o *SpansAttributes) HasParentId() bool {
 func (o *SpansAttributes) SetParentId(v string) {
 	o.ParentId = &v
 }
+
 
 // GetResourceHash returns the ResourceHash field value if set, zero value otherwise.
 func (o *SpansAttributes) GetResourceHash() string {
@@ -294,6 +305,7 @@ func (o *SpansAttributes) SetResourceHash(v string) {
 	o.ResourceHash = &v
 }
 
+
 // GetResourceName returns the ResourceName field value if set, zero value otherwise.
 func (o *SpansAttributes) GetResourceName() string {
 	if o == nil || o.ResourceName == nil {
@@ -321,6 +333,7 @@ func (o *SpansAttributes) HasResourceName() bool {
 func (o *SpansAttributes) SetResourceName(v string) {
 	o.ResourceName = &v
 }
+
 
 // GetRetainedBy returns the RetainedBy field value if set, zero value otherwise.
 func (o *SpansAttributes) GetRetainedBy() string {
@@ -350,6 +363,7 @@ func (o *SpansAttributes) SetRetainedBy(v string) {
 	o.RetainedBy = &v
 }
 
+
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *SpansAttributes) GetService() string {
 	if o == nil || o.Service == nil {
@@ -377,6 +391,7 @@ func (o *SpansAttributes) HasService() bool {
 func (o *SpansAttributes) SetService(v string) {
 	o.Service = &v
 }
+
 
 // GetSingleSpan returns the SingleSpan field value if set, zero value otherwise.
 func (o *SpansAttributes) GetSingleSpan() bool {
@@ -406,6 +421,7 @@ func (o *SpansAttributes) SetSingleSpan(v bool) {
 	o.SingleSpan = &v
 }
 
+
 // GetSpanId returns the SpanId field value if set, zero value otherwise.
 func (o *SpansAttributes) GetSpanId() string {
 	if o == nil || o.SpanId == nil {
@@ -433,6 +449,7 @@ func (o *SpansAttributes) HasSpanId() bool {
 func (o *SpansAttributes) SetSpanId(v string) {
 	o.SpanId = &v
 }
+
 
 // GetStartTimestamp returns the StartTimestamp field value if set, zero value otherwise.
 func (o *SpansAttributes) GetStartTimestamp() time.Time {
@@ -462,6 +479,7 @@ func (o *SpansAttributes) SetStartTimestamp(v time.Time) {
 	o.StartTimestamp = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SpansAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -489,6 +507,7 @@ func (o *SpansAttributes) HasTags() bool {
 func (o *SpansAttributes) SetTags(v []string) {
 	o.Tags = v
 }
+
 
 // GetTraceId returns the TraceId field value if set, zero value otherwise.
 func (o *SpansAttributes) GetTraceId() string {
@@ -518,6 +537,7 @@ func (o *SpansAttributes) SetTraceId(v string) {
 	o.TraceId = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SpansAttributes) GetType() string {
 	if o == nil || o.Type == nil {
@@ -545,6 +565,8 @@ func (o *SpansAttributes) HasType() bool {
 func (o *SpansAttributes) SetType(v string) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SpansAttributes) MarshalJSON() ([]byte, error) {
@@ -621,30 +643,30 @@ func (o SpansAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SpansAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes      map[string]interface{} `json:"attributes,omitempty"`
-		Custom          map[string]interface{} `json:"custom,omitempty"`
-		EndTimestamp    *time.Time             `json:"end_timestamp,omitempty"`
-		Env             *string                `json:"env,omitempty"`
-		Host            *string                `json:"host,omitempty"`
-		IngestionReason *string                `json:"ingestion_reason,omitempty"`
-		ParentId        *string                `json:"parent_id,omitempty"`
-		ResourceHash    *string                `json:"resource_hash,omitempty"`
-		ResourceName    *string                `json:"resource_name,omitempty"`
-		RetainedBy      *string                `json:"retained_by,omitempty"`
-		Service         *string                `json:"service,omitempty"`
-		SingleSpan      *bool                  `json:"single_span,omitempty"`
-		SpanId          *string                `json:"span_id,omitempty"`
-		StartTimestamp  *time.Time             `json:"start_timestamp,omitempty"`
-		Tags            []string               `json:"tags,omitempty"`
-		TraceId         *string                `json:"trace_id,omitempty"`
-		Type            *string                `json:"type,omitempty"`
+		Attributes map[string]interface{} `json:"attributes,omitempty"`
+		Custom map[string]interface{} `json:"custom,omitempty"`
+		EndTimestamp *time.Time `json:"end_timestamp,omitempty"`
+		Env *string `json:"env,omitempty"`
+		Host *string `json:"host,omitempty"`
+		IngestionReason *string `json:"ingestion_reason,omitempty"`
+		ParentId *string `json:"parent_id,omitempty"`
+		ResourceHash *string `json:"resource_hash,omitempty"`
+		ResourceName *string `json:"resource_name,omitempty"`
+		RetainedBy *string `json:"retained_by,omitempty"`
+		Service *string `json:"service,omitempty"`
+		SingleSpan *bool `json:"single_span,omitempty"`
+		SpanId *string `json:"span_id,omitempty"`
+		StartTimestamp *time.Time `json:"start_timestamp,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		TraceId *string `json:"trace_id,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "custom", "end_timestamp", "env", "host", "ingestion_reason", "parent_id", "resource_hash", "resource_name", "retained_by", "service", "single_span", "span_id", "start_timestamp", "tags", "trace_id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "custom", "end_timestamp", "env", "host", "ingestion_reason", "parent_id", "resource_hash", "resource_name", "retained_by", "service", "single_span", "span_id", "start_timestamp", "tags", "trace_id", "type",  })
 	} else {
 		return err
 	}

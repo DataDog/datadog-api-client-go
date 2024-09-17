@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PowerpackAttributes Powerpack attribute object.
 type PowerpackAttributes struct {
@@ -23,9 +27,10 @@ type PowerpackAttributes struct {
 	// List of template variables for this powerpack.
 	TemplateVariables []PowerpackTemplateVariable `json:"template_variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPowerpackAttributes instantiates a new PowerpackAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewPowerpackAttributesWithDefaults() *PowerpackAttributes {
 	this := PowerpackAttributes{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *PowerpackAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -74,6 +78,7 @@ func (o *PowerpackAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetGroupWidget returns the GroupWidget field value.
 func (o *PowerpackAttributes) GetGroupWidget() PowerpackGroupWidget {
 	if o == nil {
@@ -97,6 +102,7 @@ func (o *PowerpackAttributes) SetGroupWidget(v PowerpackGroupWidget) {
 	o.GroupWidget = v
 }
 
+
 // GetName returns the Name field value.
 func (o *PowerpackAttributes) GetName() string {
 	if o == nil {
@@ -119,6 +125,7 @@ func (o *PowerpackAttributes) GetNameOk() (*string, bool) {
 func (o *PowerpackAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *PowerpackAttributes) GetTags() []string {
@@ -148,6 +155,7 @@ func (o *PowerpackAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTemplateVariables returns the TemplateVariables field value if set, zero value otherwise.
 func (o *PowerpackAttributes) GetTemplateVariables() []PowerpackTemplateVariable {
 	if o == nil || o.TemplateVariables == nil {
@@ -176,6 +184,8 @@ func (o *PowerpackAttributes) SetTemplateVariables(v []PowerpackTemplateVariable
 	o.TemplateVariables = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o PowerpackAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -203,10 +213,10 @@ func (o PowerpackAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PowerpackAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description       *string                     `json:"description,omitempty"`
-		GroupWidget       *PowerpackGroupWidget       `json:"group_widget"`
-		Name              *string                     `json:"name"`
-		Tags              []string                    `json:"tags,omitempty"`
+		Description *string `json:"description,omitempty"`
+		GroupWidget *PowerpackGroupWidget `json:"group_widget"`
+		Name *string `json:"name"`
+		Tags []string `json:"tags,omitempty"`
 		TemplateVariables []PowerpackTemplateVariable `json:"template_variables,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -220,7 +230,7 @@ func (o *PowerpackAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "group_widget", "name", "tags", "template_variables"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "group_widget", "name", "tags", "template_variables",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SearchSLOThreshold SLO thresholds (target and optionally warning) for a single time window.
 type SearchSLOThreshold struct {
@@ -32,9 +36,10 @@ type SearchSLOThreshold struct {
 	// Ignored in create/update requests.
 	WarningDisplay datadog.NullableString `json:"warning_display,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSearchSLOThreshold instantiates a new SearchSLOThreshold object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewSearchSLOThresholdWithDefaults() *SearchSLOThreshold {
 	this := SearchSLOThreshold{}
 	return &this
 }
-
 // GetTarget returns the Target field value.
 func (o *SearchSLOThreshold) GetTarget() float64 {
 	if o == nil {
@@ -77,6 +81,7 @@ func (o *SearchSLOThreshold) GetTargetOk() (*float64, bool) {
 func (o *SearchSLOThreshold) SetTarget(v float64) {
 	o.Target = v
 }
+
 
 // GetTargetDisplay returns the TargetDisplay field value if set, zero value otherwise.
 func (o *SearchSLOThreshold) GetTargetDisplay() string {
@@ -106,6 +111,7 @@ func (o *SearchSLOThreshold) SetTargetDisplay(v string) {
 	o.TargetDisplay = &v
 }
 
+
 // GetTimeframe returns the Timeframe field value.
 func (o *SearchSLOThreshold) GetTimeframe() SearchSLOTimeframe {
 	if o == nil {
@@ -129,6 +135,7 @@ func (o *SearchSLOThreshold) SetTimeframe(v SearchSLOTimeframe) {
 	o.Timeframe = v
 }
 
+
 // GetWarning returns the Warning field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchSLOThreshold) GetWarning() float64 {
 	if o == nil || o.Warning.Get() == nil {
@@ -142,7 +149,7 @@ func (o *SearchSLOThreshold) GetWarning() float64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SearchSLOThreshold) GetWarningOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Warning.Get(), o.Warning.IsSet()
@@ -157,7 +164,6 @@ func (o *SearchSLOThreshold) HasWarning() bool {
 func (o *SearchSLOThreshold) SetWarning(v float64) {
 	o.Warning.Set(&v)
 }
-
 // SetWarningNil sets the value for Warning to be an explicit nil.
 func (o *SearchSLOThreshold) SetWarningNil() {
 	o.Warning.Set(nil)
@@ -167,6 +173,7 @@ func (o *SearchSLOThreshold) SetWarningNil() {
 func (o *SearchSLOThreshold) UnsetWarning() {
 	o.Warning.Unset()
 }
+
 
 // GetWarningDisplay returns the WarningDisplay field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchSLOThreshold) GetWarningDisplay() string {
@@ -181,7 +188,7 @@ func (o *SearchSLOThreshold) GetWarningDisplay() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SearchSLOThreshold) GetWarningDisplayOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.WarningDisplay.Get(), o.WarningDisplay.IsSet()
@@ -196,7 +203,6 @@ func (o *SearchSLOThreshold) HasWarningDisplay() bool {
 func (o *SearchSLOThreshold) SetWarningDisplay(v string) {
 	o.WarningDisplay.Set(&v)
 }
-
 // SetWarningDisplayNil sets the value for WarningDisplay to be an explicit nil.
 func (o *SearchSLOThreshold) SetWarningDisplayNil() {
 	o.WarningDisplay.Set(nil)
@@ -206,6 +212,8 @@ func (o *SearchSLOThreshold) SetWarningDisplayNil() {
 func (o *SearchSLOThreshold) UnsetWarningDisplay() {
 	o.WarningDisplay.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SearchSLOThreshold) MarshalJSON() ([]byte, error) {
@@ -234,11 +242,11 @@ func (o SearchSLOThreshold) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SearchSLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Target         *float64                `json:"target"`
-		TargetDisplay  *string                 `json:"target_display,omitempty"`
-		Timeframe      *SearchSLOTimeframe     `json:"timeframe"`
-		Warning        datadog.NullableFloat64 `json:"warning,omitempty"`
-		WarningDisplay datadog.NullableString  `json:"warning_display,omitempty"`
+		Target *float64 `json:"target"`
+		TargetDisplay *string `json:"target_display,omitempty"`
+		Timeframe *SearchSLOTimeframe `json:"timeframe"`
+		Warning datadog.NullableFloat64 `json:"warning,omitempty"`
+		WarningDisplay datadog.NullableString `json:"warning_display,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -251,7 +259,7 @@ func (o *SearchSLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"target", "target_display", "timeframe", "warning", "warning_display"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "target", "target_display", "timeframe", "warning", "warning_display",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApmStatsQueryDefinition The APM stats query for table and distributions widgets.
 type ApmStatsQueryDefinition struct {
@@ -27,9 +31,10 @@ type ApmStatsQueryDefinition struct {
 	// Service name.
 	Service string `json:"service"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApmStatsQueryDefinition instantiates a new ApmStatsQueryDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewApmStatsQueryDefinitionWithDefaults() *ApmStatsQueryDefinition {
 	this := ApmStatsQueryDefinition{}
 	return &this
 }
-
 // GetColumns returns the Columns field value if set, zero value otherwise.
 func (o *ApmStatsQueryDefinition) GetColumns() []ApmStatsQueryColumnType {
 	if o == nil || o.Columns == nil {
@@ -81,6 +85,7 @@ func (o *ApmStatsQueryDefinition) SetColumns(v []ApmStatsQueryColumnType) {
 	o.Columns = v
 }
 
+
 // GetEnv returns the Env field value.
 func (o *ApmStatsQueryDefinition) GetEnv() string {
 	if o == nil {
@@ -103,6 +108,7 @@ func (o *ApmStatsQueryDefinition) GetEnvOk() (*string, bool) {
 func (o *ApmStatsQueryDefinition) SetEnv(v string) {
 	o.Env = v
 }
+
 
 // GetName returns the Name field value.
 func (o *ApmStatsQueryDefinition) GetName() string {
@@ -127,6 +133,7 @@ func (o *ApmStatsQueryDefinition) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetPrimaryTag returns the PrimaryTag field value.
 func (o *ApmStatsQueryDefinition) GetPrimaryTag() string {
 	if o == nil {
@@ -149,6 +156,7 @@ func (o *ApmStatsQueryDefinition) GetPrimaryTagOk() (*string, bool) {
 func (o *ApmStatsQueryDefinition) SetPrimaryTag(v string) {
 	o.PrimaryTag = v
 }
+
 
 // GetResource returns the Resource field value if set, zero value otherwise.
 func (o *ApmStatsQueryDefinition) GetResource() string {
@@ -178,6 +186,7 @@ func (o *ApmStatsQueryDefinition) SetResource(v string) {
 	o.Resource = &v
 }
 
+
 // GetRowType returns the RowType field value.
 func (o *ApmStatsQueryDefinition) GetRowType() ApmStatsQueryRowType {
 	if o == nil {
@@ -201,6 +210,7 @@ func (o *ApmStatsQueryDefinition) SetRowType(v ApmStatsQueryRowType) {
 	o.RowType = v
 }
 
+
 // GetService returns the Service field value.
 func (o *ApmStatsQueryDefinition) GetService() string {
 	if o == nil {
@@ -223,6 +233,8 @@ func (o *ApmStatsQueryDefinition) GetServiceOk() (*string, bool) {
 func (o *ApmStatsQueryDefinition) SetService(v string) {
 	o.Service = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ApmStatsQueryDefinition) MarshalJSON() ([]byte, error) {
@@ -251,13 +263,13 @@ func (o ApmStatsQueryDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Columns    []ApmStatsQueryColumnType `json:"columns,omitempty"`
-		Env        *string                   `json:"env"`
-		Name       *string                   `json:"name"`
-		PrimaryTag *string                   `json:"primary_tag"`
-		Resource   *string                   `json:"resource,omitempty"`
-		RowType    *ApmStatsQueryRowType     `json:"row_type"`
-		Service    *string                   `json:"service"`
+		Columns []ApmStatsQueryColumnType `json:"columns,omitempty"`
+		Env *string `json:"env"`
+		Name *string `json:"name"`
+		PrimaryTag *string `json:"primary_tag"`
+		Resource *string `json:"resource,omitempty"`
+		RowType *ApmStatsQueryRowType `json:"row_type"`
+		Service *string `json:"service"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -279,7 +291,7 @@ func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"columns", "env", "name", "primary_tag", "resource", "row_type", "service"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "columns", "env", "name", "primary_tag", "resource", "row_type", "service",  })
 	} else {
 		return err
 	}

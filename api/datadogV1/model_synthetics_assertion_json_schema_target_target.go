@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAssertionJSONSchemaTargetTarget Composed target for `validatesJSONSchema` operator.
 type SyntheticsAssertionJSONSchemaTargetTarget struct {
@@ -15,9 +21,10 @@ type SyntheticsAssertionJSONSchemaTargetTarget struct {
 	// The JSON Schema meta-schema version used in the assertion.
 	MetaSchema *SyntheticsAssertionJSONSchemaMetaSchema `json:"metaSchema,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsAssertionJSONSchemaTargetTarget instantiates a new SyntheticsAssertionJSONSchemaTargetTarget object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSyntheticsAssertionJSONSchemaTargetTargetWithDefaults() *SyntheticsAsser
 	this := SyntheticsAssertionJSONSchemaTargetTarget{}
 	return &this
 }
-
 // GetJsonSchema returns the JsonSchema field value if set, zero value otherwise.
 func (o *SyntheticsAssertionJSONSchemaTargetTarget) GetJsonSchema() string {
 	if o == nil || o.JsonSchema == nil {
@@ -63,6 +69,7 @@ func (o *SyntheticsAssertionJSONSchemaTargetTarget) HasJsonSchema() bool {
 func (o *SyntheticsAssertionJSONSchemaTargetTarget) SetJsonSchema(v string) {
 	o.JsonSchema = &v
 }
+
 
 // GetMetaSchema returns the MetaSchema field value if set, zero value otherwise.
 func (o *SyntheticsAssertionJSONSchemaTargetTarget) GetMetaSchema() SyntheticsAssertionJSONSchemaMetaSchema {
@@ -92,6 +99,8 @@ func (o *SyntheticsAssertionJSONSchemaTargetTarget) SetMetaSchema(v SyntheticsAs
 	o.MetaSchema = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAssertionJSONSchemaTargetTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o SyntheticsAssertionJSONSchemaTargetTarget) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAssertionJSONSchemaTargetTarget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		JsonSchema *string                                  `json:"jsonSchema,omitempty"`
+		JsonSchema *string `json:"jsonSchema,omitempty"`
 		MetaSchema *SyntheticsAssertionJSONSchemaMetaSchema `json:"metaSchema,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,14 +131,14 @@ func (o *SyntheticsAssertionJSONSchemaTargetTarget) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"jsonSchema", "metaSchema"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "jsonSchema", "metaSchema",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.JsonSchema = all.JsonSchema
-	if all.MetaSchema != nil && !all.MetaSchema.IsValid() {
+	if all.MetaSchema != nil &&!all.MetaSchema.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.MetaSchema = all.MetaSchema

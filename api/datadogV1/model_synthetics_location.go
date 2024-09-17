@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsLocation Synthetic location that can be used when creating or editing a
 // test.
@@ -16,9 +22,10 @@ type SyntheticsLocation struct {
 	// Name of the location.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsLocation instantiates a new SyntheticsLocation object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +43,6 @@ func NewSyntheticsLocationWithDefaults() *SyntheticsLocation {
 	this := SyntheticsLocation{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SyntheticsLocation) GetId() string {
 	if o == nil || o.Id == nil {
@@ -64,6 +70,7 @@ func (o *SyntheticsLocation) HasId() bool {
 func (o *SyntheticsLocation) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SyntheticsLocation) GetName() string {
@@ -93,6 +100,8 @@ func (o *SyntheticsLocation) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsLocation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,7 +124,7 @@ func (o SyntheticsLocation) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsLocation) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -123,7 +132,7 @@ func (o *SyntheticsLocation) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "name",  })
 	} else {
 		return err
 	}

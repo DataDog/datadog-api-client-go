@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DeviceAttributesInterfaceStatuses Count of the device interfaces by status
 type DeviceAttributesInterfaceStatuses struct {
@@ -19,9 +25,10 @@ type DeviceAttributesInterfaceStatuses struct {
 	// The number of interfaces that are in a warning state
 	Warning *int64 `json:"warning,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDeviceAttributesInterfaceStatuses instantiates a new DeviceAttributesInterfaceStatuses object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewDeviceAttributesInterfaceStatusesWithDefaults() *DeviceAttributesInterfa
 	this := DeviceAttributesInterfaceStatuses{}
 	return &this
 }
-
 // GetDown returns the Down field value if set, zero value otherwise.
 func (o *DeviceAttributesInterfaceStatuses) GetDown() int64 {
 	if o == nil || o.Down == nil {
@@ -67,6 +73,7 @@ func (o *DeviceAttributesInterfaceStatuses) HasDown() bool {
 func (o *DeviceAttributesInterfaceStatuses) SetDown(v int64) {
 	o.Down = &v
 }
+
 
 // GetOff returns the Off field value if set, zero value otherwise.
 func (o *DeviceAttributesInterfaceStatuses) GetOff() int64 {
@@ -96,6 +103,7 @@ func (o *DeviceAttributesInterfaceStatuses) SetOff(v int64) {
 	o.Off = &v
 }
 
+
 // GetUp returns the Up field value if set, zero value otherwise.
 func (o *DeviceAttributesInterfaceStatuses) GetUp() int64 {
 	if o == nil || o.Up == nil {
@@ -123,6 +131,7 @@ func (o *DeviceAttributesInterfaceStatuses) HasUp() bool {
 func (o *DeviceAttributesInterfaceStatuses) SetUp(v int64) {
 	o.Up = &v
 }
+
 
 // GetWarning returns the Warning field value if set, zero value otherwise.
 func (o *DeviceAttributesInterfaceStatuses) GetWarning() int64 {
@@ -152,6 +161,8 @@ func (o *DeviceAttributesInterfaceStatuses) SetWarning(v int64) {
 	o.Warning = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DeviceAttributesInterfaceStatuses) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,9 +191,9 @@ func (o DeviceAttributesInterfaceStatuses) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DeviceAttributesInterfaceStatuses) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Down    *int64 `json:"down,omitempty"`
-		Off     *int64 `json:"off,omitempty"`
-		Up      *int64 `json:"up,omitempty"`
+		Down *int64 `json:"down,omitempty"`
+		Off *int64 `json:"off,omitempty"`
+		Up *int64 `json:"up,omitempty"`
 		Warning *int64 `json:"warning,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -190,7 +201,7 @@ func (o *DeviceAttributesInterfaceStatuses) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"down", "off", "up", "warning"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "down", "off", "up", "warning",  })
 	} else {
 		return err
 	}

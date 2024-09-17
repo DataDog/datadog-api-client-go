@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RunWorkflowWidgetInput Object to map a dashboard template variable to a workflow input.
 type RunWorkflowWidgetInput struct {
@@ -17,9 +21,10 @@ type RunWorkflowWidgetInput struct {
 	// Dashboard template variable. Can be suffixed with '.value' or '.key'.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRunWorkflowWidgetInput instantiates a new RunWorkflowWidgetInput object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewRunWorkflowWidgetInputWithDefaults() *RunWorkflowWidgetInput {
 	this := RunWorkflowWidgetInput{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *RunWorkflowWidgetInput) GetName() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *RunWorkflowWidgetInput) GetNameOk() (*string, bool) {
 func (o *RunWorkflowWidgetInput) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetValue returns the Value field value.
 func (o *RunWorkflowWidgetInput) GetValue() string {
@@ -86,6 +91,8 @@ func (o *RunWorkflowWidgetInput) SetValue(v string) {
 	o.Value = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RunWorkflowWidgetInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o RunWorkflowWidgetInput) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RunWorkflowWidgetInput) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name  *string `json:"name"`
+		Name *string `json:"name"`
 		Value *string `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *RunWorkflowWidgetInput) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "value",  })
 	} else {
 		return err
 	}

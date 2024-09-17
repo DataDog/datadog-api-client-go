@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotebooksResponse Notebooks get all response.
 type NotebooksResponse struct {
@@ -15,9 +21,10 @@ type NotebooksResponse struct {
 	// Searches metadata returned by the API.
 	Meta *NotebooksResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewNotebooksResponse instantiates a new NotebooksResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewNotebooksResponseWithDefaults() *NotebooksResponse {
 	this := NotebooksResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *NotebooksResponse) GetData() []NotebooksResponseData {
 	if o == nil || o.Data == nil {
@@ -63,6 +69,7 @@ func (o *NotebooksResponse) HasData() bool {
 func (o *NotebooksResponse) SetData(v []NotebooksResponseData) {
 	o.Data = v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *NotebooksResponse) GetMeta() NotebooksResponseMeta {
@@ -92,6 +99,8 @@ func (o *NotebooksResponse) SetMeta(v NotebooksResponseMeta) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebooksResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,21 +124,21 @@ func (o NotebooksResponse) MarshalJSON() ([]byte, error) {
 func (o *NotebooksResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data []NotebooksResponseData `json:"data,omitempty"`
-		Meta *NotebooksResponseMeta  `json:"meta,omitempty"`
+		Meta *NotebooksResponseMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

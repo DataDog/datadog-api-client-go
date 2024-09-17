@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FastlyAccountCreateRequest Payload schema when adding a Fastly account.
 type FastlyAccountCreateRequest struct {
 	// Data object for creating a Fastly account.
 	Data FastlyAccountCreateRequestData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFastlyAccountCreateRequest instantiates a new FastlyAccountCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewFastlyAccountCreateRequestWithDefaults() *FastlyAccountCreateRequest {
 	this := FastlyAccountCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *FastlyAccountCreateRequest) GetData() FastlyAccountCreateRequestData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *FastlyAccountCreateRequest) GetDataOk() (*FastlyAccountCreateRequestDat
 func (o *FastlyAccountCreateRequest) SetData(v FastlyAccountCreateRequestData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FastlyAccountCreateRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *FastlyAccountCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

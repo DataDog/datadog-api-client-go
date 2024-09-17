@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsExclusionFilter Exclusion filter is defined by a query, a sampling rule, and a active/inactive toggle.
 type LogsExclusionFilter struct {
@@ -19,9 +23,10 @@ type LogsExclusionFilter struct {
 	// a value of 1.0 excludes all logs matching the query.
 	SampleRate float64 `json:"sample_rate"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsExclusionFilter instantiates a new LogsExclusionFilter object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewLogsExclusionFilterWithDefaults() *LogsExclusionFilter {
 	this := LogsExclusionFilter{}
 	return &this
 }
-
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *LogsExclusionFilter) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -69,6 +73,7 @@ func (o *LogsExclusionFilter) SetQuery(v string) {
 	o.Query = &v
 }
 
+
 // GetSampleRate returns the SampleRate field value.
 func (o *LogsExclusionFilter) GetSampleRate() float64 {
 	if o == nil {
@@ -92,6 +97,8 @@ func (o *LogsExclusionFilter) SetSampleRate(v float64) {
 	o.SampleRate = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsExclusionFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -112,7 +119,7 @@ func (o LogsExclusionFilter) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Query      *string  `json:"query,omitempty"`
+		Query *string `json:"query,omitempty"`
 		SampleRate *float64 `json:"sample_rate"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -123,7 +130,7 @@ func (o *LogsExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"query", "sample_rate"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "query", "sample_rate",  })
 	} else {
 		return err
 	}

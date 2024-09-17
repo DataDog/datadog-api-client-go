@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SpansAggregateSortType The type of sorting algorithm.
 type SpansAggregateSortType string
@@ -16,7 +20,7 @@ type SpansAggregateSortType string
 // List of SpansAggregateSortType.
 const (
 	SPANSAGGREGATESORTTYPE_ALPHABETICAL SpansAggregateSortType = "alphabetical"
-	SPANSAGGREGATESORTTYPE_MEASURE      SpansAggregateSortType = "measure"
+	SPANSAGGREGATESORTTYPE_MEASURE SpansAggregateSortType = "measure"
 )
 
 var allowedSpansAggregateSortTypeEnumValues = []SpansAggregateSortType{

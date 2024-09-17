@@ -2,26 +2,30 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FindingMuteReason The reason why this finding is muted or unmuted.
 type FindingMuteReason string
 
 // List of FindingMuteReason.
 const (
-	FINDINGMUTEREASON_PENDING_FIX             FindingMuteReason = "PENDING_FIX"
-	FINDINGMUTEREASON_FALSE_POSITIVE          FindingMuteReason = "FALSE_POSITIVE"
-	FINDINGMUTEREASON_ACCEPTED_RISK           FindingMuteReason = "ACCEPTED_RISK"
-	FINDINGMUTEREASON_NO_PENDING_FIX          FindingMuteReason = "NO_PENDING_FIX"
-	FINDINGMUTEREASON_HUMAN_ERROR             FindingMuteReason = "HUMAN_ERROR"
+	FINDINGMUTEREASON_PENDING_FIX FindingMuteReason = "PENDING_FIX"
+	FINDINGMUTEREASON_FALSE_POSITIVE FindingMuteReason = "FALSE_POSITIVE"
+	FINDINGMUTEREASON_ACCEPTED_RISK FindingMuteReason = "ACCEPTED_RISK"
+	FINDINGMUTEREASON_NO_PENDING_FIX FindingMuteReason = "NO_PENDING_FIX"
+	FINDINGMUTEREASON_HUMAN_ERROR FindingMuteReason = "HUMAN_ERROR"
 	FINDINGMUTEREASON_NO_LONGER_ACCEPTED_RISK FindingMuteReason = "NO_LONGER_ACCEPTED_RISK"
-	FINDINGMUTEREASON_OTHER                   FindingMuteReason = "OTHER"
+	FINDINGMUTEREASON_OTHER FindingMuteReason = "OTHER"
 )
 
 var allowedFindingMuteReasonEnumValues = []FindingMuteReason{

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerRuleResponse Response data related to the creation of a rule.
 type SensitiveDataScannerRuleResponse struct {
@@ -19,9 +25,10 @@ type SensitiveDataScannerRuleResponse struct {
 	// Sensitive Data Scanner rule type.
 	Type *SensitiveDataScannerRuleType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerRuleResponse instantiates a new SensitiveDataScannerRuleResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +50,6 @@ func NewSensitiveDataScannerRuleResponseWithDefaults() *SensitiveDataScannerRule
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleResponse) GetAttributes() SensitiveDataScannerRuleAttributes {
 	if o == nil || o.Attributes == nil {
@@ -71,6 +77,7 @@ func (o *SensitiveDataScannerRuleResponse) HasAttributes() bool {
 func (o *SensitiveDataScannerRuleResponse) SetAttributes(v SensitiveDataScannerRuleAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleResponse) GetId() string {
@@ -100,6 +107,7 @@ func (o *SensitiveDataScannerRuleResponse) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleResponse) GetRelationships() SensitiveDataScannerRuleRelationships {
 	if o == nil || o.Relationships == nil {
@@ -127,6 +135,7 @@ func (o *SensitiveDataScannerRuleResponse) HasRelationships() bool {
 func (o *SensitiveDataScannerRuleResponse) SetRelationships(v SensitiveDataScannerRuleRelationships) {
 	o.Relationships = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleResponse) GetType() SensitiveDataScannerRuleType {
@@ -156,6 +165,8 @@ func (o *SensitiveDataScannerRuleResponse) SetType(v SensitiveDataScannerRuleTyp
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerRuleResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -184,32 +195,32 @@ func (o SensitiveDataScannerRuleResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *SensitiveDataScannerRuleAttributes    `json:"attributes,omitempty"`
-		Id            *string                                `json:"id,omitempty"`
+		Attributes *SensitiveDataScannerRuleAttributes `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Relationships *SensitiveDataScannerRuleRelationships `json:"relationships,omitempty"`
-		Type          *SensitiveDataScannerRuleType          `json:"type,omitempty"`
+		Type *SensitiveDataScannerRuleType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "relationships", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

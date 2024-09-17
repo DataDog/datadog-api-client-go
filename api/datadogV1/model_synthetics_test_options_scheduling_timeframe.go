@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestOptionsSchedulingTimeframe Object describing a timeframe.
 type SyntheticsTestOptionsSchedulingTimeframe struct {
@@ -17,9 +23,10 @@ type SyntheticsTestOptionsSchedulingTimeframe struct {
 	// The hour of the day on which scheduling ends.
 	To *string `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsTestOptionsSchedulingTimeframe instantiates a new SyntheticsTestOptionsSchedulingTimeframe object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewSyntheticsTestOptionsSchedulingTimeframeWithDefaults() *SyntheticsTestOp
 	this := SyntheticsTestOptionsSchedulingTimeframe{}
 	return &this
 }
-
 // GetDay returns the Day field value if set, zero value otherwise.
 func (o *SyntheticsTestOptionsSchedulingTimeframe) GetDay() int32 {
 	if o == nil || o.Day == nil {
@@ -65,6 +71,7 @@ func (o *SyntheticsTestOptionsSchedulingTimeframe) HasDay() bool {
 func (o *SyntheticsTestOptionsSchedulingTimeframe) SetDay(v int32) {
 	o.Day = &v
 }
+
 
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *SyntheticsTestOptionsSchedulingTimeframe) GetFrom() string {
@@ -94,6 +101,7 @@ func (o *SyntheticsTestOptionsSchedulingTimeframe) SetFrom(v string) {
 	o.From = &v
 }
 
+
 // GetTo returns the To field value if set, zero value otherwise.
 func (o *SyntheticsTestOptionsSchedulingTimeframe) GetTo() string {
 	if o == nil || o.To == nil {
@@ -122,6 +130,8 @@ func (o *SyntheticsTestOptionsSchedulingTimeframe) SetTo(v string) {
 	o.To = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestOptionsSchedulingTimeframe) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o SyntheticsTestOptionsSchedulingTimeframe) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestOptionsSchedulingTimeframe) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Day  *int32  `json:"day,omitempty"`
+		Day *int32 `json:"day,omitempty"`
 		From *string `json:"from,omitempty"`
-		To   *string `json:"to,omitempty"`
+		To *string `json:"to,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"day", "from", "to"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "day", "from", "to",  })
 	} else {
 		return err
 	}

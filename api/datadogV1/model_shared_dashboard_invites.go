@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SharedDashboardInvites Invitations data and metadata that exists for a shared dashboard returned by the API.
 type SharedDashboardInvites struct {
@@ -17,9 +21,10 @@ type SharedDashboardInvites struct {
 	// Pagination metadata returned by the API.
 	Meta *SharedDashboardInvitesMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSharedDashboardInvites instantiates a new SharedDashboardInvites object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewSharedDashboardInvitesWithDefaults() *SharedDashboardInvites {
 	this := SharedDashboardInvites{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *SharedDashboardInvites) GetData() SharedDashboardInvitesData {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *SharedDashboardInvites) GetDataOk() (*SharedDashboardInvitesData, bool)
 func (o *SharedDashboardInvites) SetData(v SharedDashboardInvitesData) {
 	o.Data = v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *SharedDashboardInvites) GetMeta() SharedDashboardInvitesMeta {
@@ -89,6 +94,8 @@ func (o *SharedDashboardInvites) HasMeta() bool {
 func (o *SharedDashboardInvites) SetMeta(v SharedDashboardInvitesMeta) {
 	o.Meta = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SharedDashboardInvites) MarshalJSON() ([]byte, error) {
@@ -121,14 +128,14 @@ func (o *SharedDashboardInvites) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = *all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

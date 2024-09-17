@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleNewValueOptionsLearningMethod The learning method used to determine when signals should be generated for values that weren't learned.
 type SecurityMonitoringRuleNewValueOptionsLearningMethod string
 
 // List of SecurityMonitoringRuleNewValueOptionsLearningMethod.
 const (
-	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGMETHOD_DURATION  SecurityMonitoringRuleNewValueOptionsLearningMethod = "duration"
+	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGMETHOD_DURATION SecurityMonitoringRuleNewValueOptionsLearningMethod = "duration"
 	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGMETHOD_THRESHOLD SecurityMonitoringRuleNewValueOptionsLearningMethod = "threshold"
 )
 

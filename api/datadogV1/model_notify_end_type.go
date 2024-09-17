@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotifyEndType A notification end type.
 type NotifyEndType string
@@ -16,7 +20,7 @@ type NotifyEndType string
 // List of NotifyEndType.
 const (
 	NOTIFYENDTYPE_CANCELED NotifyEndType = "canceled"
-	NOTIFYENDTYPE_EXPIRED  NotifyEndType = "expired"
+	NOTIFYENDTYPE_EXPIRED NotifyEndType = "expired"
 )
 
 var allowedNotifyEndTypeEnumValues = []NotifyEndType{

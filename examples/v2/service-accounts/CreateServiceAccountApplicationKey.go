@@ -2,33 +2,35 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	// there is a valid "service_account_user" in the system
 	ServiceAccountUserDataID := os.Getenv("SERVICE_ACCOUNT_USER_DATA_ID")
 
+
 	body := datadogV2.ApplicationKeyCreateRequest{
-		Data: datadogV2.ApplicationKeyCreateData{
-			Attributes: datadogV2.ApplicationKeyCreateAttributes{
-				Name: "Example-Service-Account",
-			},
-			Type: datadogV2.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
-		},
-	}
+Data: datadogV2.ApplicationKeyCreateData{
+Attributes: datadogV2.ApplicationKeyCreateAttributes{
+Name: "Example-Service-Account",
+},
+Type: datadogV2.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewServiceAccountsApi(apiClient)
-	resp, r, err := api.CreateServiceAccountApplicationKey(ctx, ServiceAccountUserDataID, body)
+	resp, r, err := api.CreateServiceAccountApplicationKey(ctx, ServiceAccountUserDataID, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.CreateServiceAccountApplicationKey`: %v\n", err)

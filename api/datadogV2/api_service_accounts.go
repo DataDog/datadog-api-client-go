@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"bytes"
 	_context "context"
+	_fmt "fmt"
+	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -20,10 +24,12 @@ type ServiceAccountsApi datadog.Service
 // Create a service account for your organization.
 func (a *ServiceAccountsApi) CreateServiceAccount(ctx _context.Context, body ServiceAccountCreateRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue UserResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  UserResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceAccountsApi.CreateServiceAccount")
 	if err != nil {
@@ -38,9 +44,11 @@ func (a *ServiceAccountsApi) CreateServiceAccount(ctx _context.Context, body Ser
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -63,10 +71,11 @@ func (a *ServiceAccountsApi) CreateServiceAccount(ctx _context.Context, body Ser
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -80,7 +89,7 @@ func (a *ServiceAccountsApi) CreateServiceAccount(ctx _context.Context, body Ser
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -93,10 +102,12 @@ func (a *ServiceAccountsApi) CreateServiceAccount(ctx _context.Context, body Ser
 // Create an application key for this service account.
 func (a *ServiceAccountsApi) CreateServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, body ApplicationKeyCreateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue ApplicationKeyResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  ApplicationKeyResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceAccountsApi.CreateServiceAccountApplicationKey")
 	if err != nil {
@@ -112,9 +123,11 @@ func (a *ServiceAccountsApi) CreateServiceAccountApplicationKey(ctx _context.Con
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -137,10 +150,11 @@ func (a *ServiceAccountsApi) CreateServiceAccountApplicationKey(ctx _context.Con
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -154,7 +168,7 @@ func (a *ServiceAccountsApi) CreateServiceAccountApplicationKey(ctx _context.Con
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -167,9 +181,11 @@ func (a *ServiceAccountsApi) CreateServiceAccountApplicationKey(ctx _context.Con
 // Delete an application key owned by this service account.
 func (a *ServiceAccountsApi) DeleteServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceAccountsApi.DeleteServiceAccountApplicationKey")
 	if err != nil {
@@ -183,9 +199,10 @@ func (a *ServiceAccountsApi) DeleteServiceAccountApplicationKey(ctx _context.Con
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] =  "*/*"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -208,10 +225,11 @@ func (a *ServiceAccountsApi) DeleteServiceAccountApplicationKey(ctx _context.Con
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -229,10 +247,12 @@ func (a *ServiceAccountsApi) DeleteServiceAccountApplicationKey(ctx _context.Con
 // Get an application key owned by this service account.
 func (a *ServiceAccountsApi) GetServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue PartialApplicationKeyResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  PartialApplicationKeyResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceAccountsApi.GetServiceAccountApplicationKey")
 	if err != nil {
@@ -248,7 +268,8 @@ func (a *ServiceAccountsApi) GetServiceAccountApplicationKey(ctx _context.Contex
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -271,10 +292,11 @@ func (a *ServiceAccountsApi) GetServiceAccountApplicationKey(ctx _context.Contex
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -288,7 +310,7 @@ func (a *ServiceAccountsApi) GetServiceAccountApplicationKey(ctx _context.Contex
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -299,12 +321,12 @@ func (a *ServiceAccountsApi) GetServiceAccountApplicationKey(ctx _context.Contex
 
 // ListServiceAccountApplicationKeysOptionalParameters holds optional parameters for ListServiceAccountApplicationKeys.
 type ListServiceAccountApplicationKeysOptionalParameters struct {
-	PageSize             *int64
-	PageNumber           *int64
-	Sort                 *ApplicationKeysSort
-	Filter               *string
+	PageSize *int64
+	PageNumber *int64
+	Sort *ApplicationKeysSort
+	Filter *string
 	FilterCreatedAtStart *string
-	FilterCreatedAtEnd   *string
+	FilterCreatedAtEnd *string
 }
 
 // NewListServiceAccountApplicationKeysOptionalParameters creates an empty struct for parameters.
@@ -312,37 +334,31 @@ func NewListServiceAccountApplicationKeysOptionalParameters() *ListServiceAccoun
 	this := ListServiceAccountApplicationKeysOptionalParameters{}
 	return &this
 }
-
 // WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListServiceAccountApplicationKeysOptionalParameters) WithPageSize(pageSize int64) *ListServiceAccountApplicationKeysOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-
 // WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *ListServiceAccountApplicationKeysOptionalParameters) WithPageNumber(pageNumber int64) *ListServiceAccountApplicationKeysOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
-
 // WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListServiceAccountApplicationKeysOptionalParameters) WithSort(sort ApplicationKeysSort) *ListServiceAccountApplicationKeysOptionalParameters {
 	r.Sort = &sort
 	return r
 }
-
 // WithFilter sets the corresponding parameter name and returns the struct.
 func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilter(filter string) *ListServiceAccountApplicationKeysOptionalParameters {
 	r.Filter = &filter
 	return r
 }
-
 // WithFilterCreatedAtStart sets the corresponding parameter name and returns the struct.
 func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilterCreatedAtStart(filterCreatedAtStart string) *ListServiceAccountApplicationKeysOptionalParameters {
 	r.FilterCreatedAtStart = &filterCreatedAtStart
 	return r
 }
-
 // WithFilterCreatedAtEnd sets the corresponding parameter name and returns the struct.
 func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilterCreatedAtEnd(filterCreatedAtEnd string) *ListServiceAccountApplicationKeysOptionalParameters {
 	r.FilterCreatedAtEnd = &filterCreatedAtEnd
@@ -353,18 +369,20 @@ func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilterCreatedA
 // List all application keys available for this service account.
 func (a *ServiceAccountsApi) ListServiceAccountApplicationKeys(ctx _context.Context, serviceAccountId string, o ...ListServiceAccountApplicationKeysOptionalParameters) (ListApplicationKeysResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue ListApplicationKeysResponse
-		optionalParams      ListServiceAccountApplicationKeysOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  ListApplicationKeysResponse
+		optionalParams ListServiceAccountApplicationKeysOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListServiceAccountApplicationKeysOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListServiceAccountApplicationKeysOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceAccountsApi.ListServiceAccountApplicationKeys")
 	if err != nil {
@@ -397,7 +415,8 @@ func (a *ServiceAccountsApi) ListServiceAccountApplicationKeys(ctx _context.Cont
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -420,10 +439,11 @@ func (a *ServiceAccountsApi) ListServiceAccountApplicationKeys(ctx _context.Cont
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -437,7 +457,7 @@ func (a *ServiceAccountsApi) ListServiceAccountApplicationKeys(ctx _context.Cont
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -450,10 +470,12 @@ func (a *ServiceAccountsApi) ListServiceAccountApplicationKeys(ctx _context.Cont
 // Edit an application key owned by this service account.
 func (a *ServiceAccountsApi) UpdateServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string, body ApplicationKeyUpdateRequest) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPatch
-		localVarPostBody    interface{}
-		localVarReturnValue PartialApplicationKeyResponse
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarReturnValue  PartialApplicationKeyResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceAccountsApi.UpdateServiceAccountApplicationKey")
 	if err != nil {
@@ -470,9 +492,11 @@ func (a *ServiceAccountsApi) UpdateServiceAccountApplicationKey(ctx _context.Con
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -495,10 +519,11 @@ func (a *ServiceAccountsApi) UpdateServiceAccountApplicationKey(ctx _context.Con
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -512,7 +537,7 @@ func (a *ServiceAccountsApi) UpdateServiceAccountApplicationKey(ctx _context.Con
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AbbreviatedTeam The definition of `AbbreviatedTeam` object.
 type AbbreviatedTeam struct {
@@ -19,9 +23,10 @@ type AbbreviatedTeam struct {
 	// The definition of `AbbreviatedTeamType` object.
 	Type AbbreviatedTeamType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAbbreviatedTeam instantiates a new AbbreviatedTeam object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewAbbreviatedTeamWithDefaults() *AbbreviatedTeam {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *AbbreviatedTeam) GetAttributes() AbbreviatedTeamAttributes {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *AbbreviatedTeam) GetAttributesOk() (*AbbreviatedTeamAttributes, bool) {
 func (o *AbbreviatedTeam) SetAttributes(v AbbreviatedTeamAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AbbreviatedTeam) GetId() string {
@@ -95,6 +100,7 @@ func (o *AbbreviatedTeam) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *AbbreviatedTeam) GetType() AbbreviatedTeamType {
 	if o == nil {
@@ -118,6 +124,8 @@ func (o *AbbreviatedTeam) SetType(v AbbreviatedTeamType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AbbreviatedTeam) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -140,8 +148,8 @@ func (o AbbreviatedTeam) MarshalJSON() ([]byte, error) {
 func (o *AbbreviatedTeam) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *AbbreviatedTeamAttributes `json:"attributes"`
-		Id         *string                    `json:"id,omitempty"`
-		Type       *AbbreviatedTeamType       `json:"type"`
+		Id *string `json:"id,omitempty"`
+		Type *AbbreviatedTeamType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -154,7 +162,7 @@ func (o *AbbreviatedTeam) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

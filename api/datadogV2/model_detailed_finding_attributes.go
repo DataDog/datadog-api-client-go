@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DetailedFindingAttributes The JSON:API attributes of the detailed finding.
 type DetailedFindingAttributes struct {
@@ -33,9 +39,10 @@ type DetailedFindingAttributes struct {
 	// The tags associated with this finding.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDetailedFindingAttributes instantiates a new DetailedFindingAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +60,6 @@ func NewDetailedFindingAttributesWithDefaults() *DetailedFindingAttributes {
 	this := DetailedFindingAttributes{}
 	return &this
 }
-
 // GetEvaluation returns the Evaluation field value if set, zero value otherwise.
 func (o *DetailedFindingAttributes) GetEvaluation() FindingEvaluation {
 	if o == nil || o.Evaluation == nil {
@@ -81,6 +87,7 @@ func (o *DetailedFindingAttributes) HasEvaluation() bool {
 func (o *DetailedFindingAttributes) SetEvaluation(v FindingEvaluation) {
 	o.Evaluation = &v
 }
+
 
 // GetEvaluationChangedAt returns the EvaluationChangedAt field value if set, zero value otherwise.
 func (o *DetailedFindingAttributes) GetEvaluationChangedAt() int64 {
@@ -110,6 +117,7 @@ func (o *DetailedFindingAttributes) SetEvaluationChangedAt(v int64) {
 	o.EvaluationChangedAt = &v
 }
 
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *DetailedFindingAttributes) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -137,6 +145,7 @@ func (o *DetailedFindingAttributes) HasMessage() bool {
 func (o *DetailedFindingAttributes) SetMessage(v string) {
 	o.Message = &v
 }
+
 
 // GetMute returns the Mute field value if set, zero value otherwise.
 func (o *DetailedFindingAttributes) GetMute() FindingMute {
@@ -166,6 +175,7 @@ func (o *DetailedFindingAttributes) SetMute(v FindingMute) {
 	o.Mute = &v
 }
 
+
 // GetResource returns the Resource field value if set, zero value otherwise.
 func (o *DetailedFindingAttributes) GetResource() string {
 	if o == nil || o.Resource == nil {
@@ -193,6 +203,7 @@ func (o *DetailedFindingAttributes) HasResource() bool {
 func (o *DetailedFindingAttributes) SetResource(v string) {
 	o.Resource = &v
 }
+
 
 // GetResourceConfiguration returns the ResourceConfiguration field value if set, zero value otherwise.
 func (o *DetailedFindingAttributes) GetResourceConfiguration() interface{} {
@@ -222,6 +233,7 @@ func (o *DetailedFindingAttributes) SetResourceConfiguration(v interface{}) {
 	o.ResourceConfiguration = v
 }
 
+
 // GetResourceDiscoveryDate returns the ResourceDiscoveryDate field value if set, zero value otherwise.
 func (o *DetailedFindingAttributes) GetResourceDiscoveryDate() int64 {
 	if o == nil || o.ResourceDiscoveryDate == nil {
@@ -249,6 +261,7 @@ func (o *DetailedFindingAttributes) HasResourceDiscoveryDate() bool {
 func (o *DetailedFindingAttributes) SetResourceDiscoveryDate(v int64) {
 	o.ResourceDiscoveryDate = &v
 }
+
 
 // GetResourceType returns the ResourceType field value if set, zero value otherwise.
 func (o *DetailedFindingAttributes) GetResourceType() string {
@@ -278,6 +291,7 @@ func (o *DetailedFindingAttributes) SetResourceType(v string) {
 	o.ResourceType = &v
 }
 
+
 // GetRule returns the Rule field value if set, zero value otherwise.
 func (o *DetailedFindingAttributes) GetRule() FindingRule {
 	if o == nil || o.Rule == nil {
@@ -305,6 +319,7 @@ func (o *DetailedFindingAttributes) HasRule() bool {
 func (o *DetailedFindingAttributes) SetRule(v FindingRule) {
 	o.Rule = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *DetailedFindingAttributes) GetStatus() FindingStatus {
@@ -334,6 +349,7 @@ func (o *DetailedFindingAttributes) SetStatus(v FindingStatus) {
 	o.Status = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *DetailedFindingAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -361,6 +377,8 @@ func (o *DetailedFindingAttributes) HasTags() bool {
 func (o *DetailedFindingAttributes) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DetailedFindingAttributes) MarshalJSON() ([]byte, error) {
@@ -411,37 +429,37 @@ func (o DetailedFindingAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DetailedFindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Evaluation            *FindingEvaluation `json:"evaluation,omitempty"`
-		EvaluationChangedAt   *int64             `json:"evaluation_changed_at,omitempty"`
-		Message               *string            `json:"message,omitempty"`
-		Mute                  *FindingMute       `json:"mute,omitempty"`
-		Resource              *string            `json:"resource,omitempty"`
-		ResourceConfiguration interface{}        `json:"resource_configuration,omitempty"`
-		ResourceDiscoveryDate *int64             `json:"resource_discovery_date,omitempty"`
-		ResourceType          *string            `json:"resource_type,omitempty"`
-		Rule                  *FindingRule       `json:"rule,omitempty"`
-		Status                *FindingStatus     `json:"status,omitempty"`
-		Tags                  []string           `json:"tags,omitempty"`
+		Evaluation *FindingEvaluation `json:"evaluation,omitempty"`
+		EvaluationChangedAt *int64 `json:"evaluation_changed_at,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Mute *FindingMute `json:"mute,omitempty"`
+		Resource *string `json:"resource,omitempty"`
+		ResourceConfiguration interface{} `json:"resource_configuration,omitempty"`
+		ResourceDiscoveryDate *int64 `json:"resource_discovery_date,omitempty"`
+		ResourceType *string `json:"resource_type,omitempty"`
+		Rule *FindingRule `json:"rule,omitempty"`
+		Status *FindingStatus `json:"status,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"evaluation", "evaluation_changed_at", "message", "mute", "resource", "resource_configuration", "resource_discovery_date", "resource_type", "rule", "status", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "evaluation", "evaluation_changed_at", "message", "mute", "resource", "resource_configuration", "resource_discovery_date", "resource_type", "rule", "status", "tags",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Evaluation != nil && !all.Evaluation.IsValid() {
+	if all.Evaluation != nil &&!all.Evaluation.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Evaluation = all.Evaluation
 	}
 	o.EvaluationChangedAt = all.EvaluationChangedAt
 	o.Message = all.Message
-	if all.Mute != nil && all.Mute.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Mute != nil && all.Mute.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Mute = all.Mute
@@ -449,11 +467,11 @@ func (o *DetailedFindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.ResourceConfiguration = all.ResourceConfiguration
 	o.ResourceDiscoveryDate = all.ResourceDiscoveryDate
 	o.ResourceType = all.ResourceType
-	if all.Rule != nil && all.Rule.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Rule != nil && all.Rule.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Rule = all.Rule
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

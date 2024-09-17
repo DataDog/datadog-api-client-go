@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DORAGitInfo Git info for DORA Metrics events.
 type DORAGitInfo struct {
@@ -17,9 +21,10 @@ type DORAGitInfo struct {
 	// Git Repository URL
 	RepositoryUrl string `json:"repository_url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDORAGitInfo instantiates a new DORAGitInfo object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewDORAGitInfoWithDefaults() *DORAGitInfo {
 	this := DORAGitInfo{}
 	return &this
 }
-
 // GetCommitSha returns the CommitSha field value.
 func (o *DORAGitInfo) GetCommitSha() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *DORAGitInfo) GetCommitShaOk() (*string, bool) {
 func (o *DORAGitInfo) SetCommitSha(v string) {
 	o.CommitSha = v
 }
+
 
 // GetRepositoryUrl returns the RepositoryUrl field value.
 func (o *DORAGitInfo) GetRepositoryUrl() string {
@@ -86,6 +91,8 @@ func (o *DORAGitInfo) SetRepositoryUrl(v string) {
 	o.RepositoryUrl = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DORAGitInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o DORAGitInfo) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DORAGitInfo) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CommitSha     *string `json:"commit_sha"`
+		CommitSha *string `json:"commit_sha"`
 		RepositoryUrl *string `json:"repository_url"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *DORAGitInfo) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"commit_sha", "repository_url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "commit_sha", "repository_url",  })
 	} else {
 		return err
 	}

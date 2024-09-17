@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RUMApplicationCreateRequest RUM application creation request attributes.
 type RUMApplicationCreateRequest struct {
 	// RUM application creation.
 	Data RUMApplicationCreate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRUMApplicationCreateRequest instantiates a new RUMApplicationCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewRUMApplicationCreateRequestWithDefaults() *RUMApplicationCreateRequest {
 	this := RUMApplicationCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *RUMApplicationCreateRequest) GetData() RUMApplicationCreate {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *RUMApplicationCreateRequest) GetDataOk() (*RUMApplicationCreate, bool) 
 func (o *RUMApplicationCreateRequest) SetData(v RUMApplicationCreate) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMApplicationCreateRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *RUMApplicationCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

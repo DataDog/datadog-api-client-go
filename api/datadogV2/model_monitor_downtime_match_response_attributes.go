@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorDowntimeMatchResponseAttributes Downtime match details.
 type MonitorDowntimeMatchResponseAttributes struct {
@@ -21,9 +25,10 @@ type MonitorDowntimeMatchResponseAttributes struct {
 	// The start of the downtime.
 	Start *time.Time `json:"start,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorDowntimeMatchResponseAttributes instantiates a new MonitorDowntimeMatchResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewMonitorDowntimeMatchResponseAttributesWithDefaults() *MonitorDowntimeMat
 	this := MonitorDowntimeMatchResponseAttributes{}
 	return &this
 }
-
 // GetEnd returns the End field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorDowntimeMatchResponseAttributes) GetEnd() time.Time {
 	if o == nil || o.End.Get() == nil {
@@ -55,7 +59,7 @@ func (o *MonitorDowntimeMatchResponseAttributes) GetEnd() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorDowntimeMatchResponseAttributes) GetEndOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.End.Get(), o.End.IsSet()
@@ -70,7 +74,6 @@ func (o *MonitorDowntimeMatchResponseAttributes) HasEnd() bool {
 func (o *MonitorDowntimeMatchResponseAttributes) SetEnd(v time.Time) {
 	o.End.Set(&v)
 }
-
 // SetEndNil sets the value for End to be an explicit nil.
 func (o *MonitorDowntimeMatchResponseAttributes) SetEndNil() {
 	o.End.Set(nil)
@@ -80,6 +83,7 @@ func (o *MonitorDowntimeMatchResponseAttributes) SetEndNil() {
 func (o *MonitorDowntimeMatchResponseAttributes) UnsetEnd() {
 	o.End.Unset()
 }
+
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *MonitorDowntimeMatchResponseAttributes) GetGroups() []string {
@@ -109,6 +113,7 @@ func (o *MonitorDowntimeMatchResponseAttributes) SetGroups(v []string) {
 	o.Groups = v
 }
 
+
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *MonitorDowntimeMatchResponseAttributes) GetScope() string {
 	if o == nil || o.Scope == nil {
@@ -137,6 +142,7 @@ func (o *MonitorDowntimeMatchResponseAttributes) SetScope(v string) {
 	o.Scope = &v
 }
 
+
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *MonitorDowntimeMatchResponseAttributes) GetStart() time.Time {
 	if o == nil || o.Start == nil {
@@ -164,6 +170,8 @@ func (o *MonitorDowntimeMatchResponseAttributes) HasStart() bool {
 func (o *MonitorDowntimeMatchResponseAttributes) SetStart(v time.Time) {
 	o.Start = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorDowntimeMatchResponseAttributes) MarshalJSON() ([]byte, error) {
@@ -197,17 +205,17 @@ func (o MonitorDowntimeMatchResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorDowntimeMatchResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		End    datadog.NullableTime `json:"end,omitempty"`
-		Groups []string             `json:"groups,omitempty"`
-		Scope  *string              `json:"scope,omitempty"`
-		Start  *time.Time           `json:"start,omitempty"`
+		End datadog.NullableTime `json:"end,omitempty"`
+		Groups []string `json:"groups,omitempty"`
+		Scope *string `json:"scope,omitempty"`
+		Start *time.Time `json:"start,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"end", "groups", "scope", "start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "end", "groups", "scope", "start",  })
 	} else {
 		return err
 	}

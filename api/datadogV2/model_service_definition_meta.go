@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionMeta Metadata about a service definition.
 type ServiceDefinitionMeta struct {
@@ -25,9 +31,10 @@ type ServiceDefinitionMeta struct {
 	// A list of schema validation warnings.
 	Warnings []ServiceDefinitionMetaWarnings `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceDefinitionMeta instantiates a new ServiceDefinitionMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +52,6 @@ func NewServiceDefinitionMetaWithDefaults() *ServiceDefinitionMeta {
 	this := ServiceDefinitionMeta{}
 	return &this
 }
-
 // GetGithubHtmlUrl returns the GithubHtmlUrl field value if set, zero value otherwise.
 func (o *ServiceDefinitionMeta) GetGithubHtmlUrl() string {
 	if o == nil || o.GithubHtmlUrl == nil {
@@ -73,6 +79,7 @@ func (o *ServiceDefinitionMeta) HasGithubHtmlUrl() bool {
 func (o *ServiceDefinitionMeta) SetGithubHtmlUrl(v string) {
 	o.GithubHtmlUrl = &v
 }
+
 
 // GetIngestedSchemaVersion returns the IngestedSchemaVersion field value if set, zero value otherwise.
 func (o *ServiceDefinitionMeta) GetIngestedSchemaVersion() string {
@@ -102,6 +109,7 @@ func (o *ServiceDefinitionMeta) SetIngestedSchemaVersion(v string) {
 	o.IngestedSchemaVersion = &v
 }
 
+
 // GetIngestionSource returns the IngestionSource field value if set, zero value otherwise.
 func (o *ServiceDefinitionMeta) GetIngestionSource() string {
 	if o == nil || o.IngestionSource == nil {
@@ -129,6 +137,7 @@ func (o *ServiceDefinitionMeta) HasIngestionSource() bool {
 func (o *ServiceDefinitionMeta) SetIngestionSource(v string) {
 	o.IngestionSource = &v
 }
+
 
 // GetLastModifiedTime returns the LastModifiedTime field value if set, zero value otherwise.
 func (o *ServiceDefinitionMeta) GetLastModifiedTime() string {
@@ -158,6 +167,7 @@ func (o *ServiceDefinitionMeta) SetLastModifiedTime(v string) {
 	o.LastModifiedTime = &v
 }
 
+
 // GetOrigin returns the Origin field value if set, zero value otherwise.
 func (o *ServiceDefinitionMeta) GetOrigin() string {
 	if o == nil || o.Origin == nil {
@@ -185,6 +195,7 @@ func (o *ServiceDefinitionMeta) HasOrigin() bool {
 func (o *ServiceDefinitionMeta) SetOrigin(v string) {
 	o.Origin = &v
 }
+
 
 // GetOriginDetail returns the OriginDetail field value if set, zero value otherwise.
 func (o *ServiceDefinitionMeta) GetOriginDetail() string {
@@ -214,6 +225,7 @@ func (o *ServiceDefinitionMeta) SetOriginDetail(v string) {
 	o.OriginDetail = &v
 }
 
+
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
 func (o *ServiceDefinitionMeta) GetWarnings() []ServiceDefinitionMetaWarnings {
 	if o == nil || o.Warnings == nil {
@@ -241,6 +253,8 @@ func (o *ServiceDefinitionMeta) HasWarnings() bool {
 func (o *ServiceDefinitionMeta) SetWarnings(v []ServiceDefinitionMetaWarnings) {
 	o.Warnings = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionMeta) MarshalJSON() ([]byte, error) {
@@ -279,20 +293,20 @@ func (o ServiceDefinitionMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		GithubHtmlUrl         *string                         `json:"github-html-url,omitempty"`
-		IngestedSchemaVersion *string                         `json:"ingested-schema-version,omitempty"`
-		IngestionSource       *string                         `json:"ingestion-source,omitempty"`
-		LastModifiedTime      *string                         `json:"last-modified-time,omitempty"`
-		Origin                *string                         `json:"origin,omitempty"`
-		OriginDetail          *string                         `json:"origin-detail,omitempty"`
-		Warnings              []ServiceDefinitionMetaWarnings `json:"warnings,omitempty"`
+		GithubHtmlUrl *string `json:"github-html-url,omitempty"`
+		IngestedSchemaVersion *string `json:"ingested-schema-version,omitempty"`
+		IngestionSource *string `json:"ingestion-source,omitempty"`
+		LastModifiedTime *string `json:"last-modified-time,omitempty"`
+		Origin *string `json:"origin,omitempty"`
+		OriginDetail *string `json:"origin-detail,omitempty"`
+		Warnings []ServiceDefinitionMetaWarnings `json:"warnings,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"github-html-url", "ingested-schema-version", "ingestion-source", "last-modified-time", "origin", "origin-detail", "warnings"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "github-html-url", "ingested-schema-version", "ingestion-source", "last-modified-time", "origin", "origin-detail", "warnings",  })
 	} else {
 		return err
 	}

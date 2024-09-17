@@ -2,18 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeScheduleResponse - The schedule that defines when the monitor starts, stops, and recurs. There are two types of schedules:
 // one-time and recurring. Recurring schedules may have up to five RRULE-based recurrences. If no schedules are
 // provided, the downtime will begin immediately and never end.
 type DowntimeScheduleResponse struct {
 	DowntimeScheduleRecurrencesResponse *DowntimeScheduleRecurrencesResponse
-	DowntimeScheduleOneTimeResponse     *DowntimeScheduleOneTimeResponse
+	DowntimeScheduleOneTimeResponse *DowntimeScheduleOneTimeResponse
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -82,9 +88,11 @@ func (obj DowntimeScheduleResponse) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.DowntimeScheduleRecurrencesResponse)
 	}
 
+
 	if obj.DowntimeScheduleOneTimeResponse != nil {
 		return datadog.Marshal(&obj.DowntimeScheduleOneTimeResponse)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -93,14 +101,16 @@ func (obj DowntimeScheduleResponse) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *DowntimeScheduleResponse) GetActualInstance() interface{} {
+func (obj *DowntimeScheduleResponse) GetActualInstance() (interface{}) {
 	if obj.DowntimeScheduleRecurrencesResponse != nil {
 		return obj.DowntimeScheduleRecurrencesResponse
 	}
 
+
 	if obj.DowntimeScheduleOneTimeResponse != nil {
 		return obj.DowntimeScheduleOneTimeResponse
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventsScalarQuery An individual scalar events query.
 type EventsScalarQuery struct {
@@ -25,9 +29,10 @@ type EventsScalarQuery struct {
 	// Configuration of the search/filter for an events query.
 	Search *EventsSearch `json:"search,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEventsScalarQuery instantiates a new EventsScalarQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func NewEventsScalarQueryWithDefaults() *EventsScalarQuery {
 	this.DataSource = dataSource
 	return &this
 }
-
 // GetCompute returns the Compute field value.
 func (o *EventsScalarQuery) GetCompute() EventsCompute {
 	if o == nil {
@@ -73,6 +77,7 @@ func (o *EventsScalarQuery) SetCompute(v EventsCompute) {
 	o.Compute = v
 }
 
+
 // GetDataSource returns the DataSource field value.
 func (o *EventsScalarQuery) GetDataSource() EventsDataSource {
 	if o == nil {
@@ -95,6 +100,7 @@ func (o *EventsScalarQuery) GetDataSourceOk() (*EventsDataSource, bool) {
 func (o *EventsScalarQuery) SetDataSource(v EventsDataSource) {
 	o.DataSource = v
 }
+
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *EventsScalarQuery) GetGroupBy() []EventsGroupBy {
@@ -124,6 +130,7 @@ func (o *EventsScalarQuery) SetGroupBy(v []EventsGroupBy) {
 	o.GroupBy = v
 }
 
+
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
 func (o *EventsScalarQuery) GetIndexes() []string {
 	if o == nil || o.Indexes == nil {
@@ -151,6 +158,7 @@ func (o *EventsScalarQuery) HasIndexes() bool {
 func (o *EventsScalarQuery) SetIndexes(v []string) {
 	o.Indexes = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *EventsScalarQuery) GetName() string {
@@ -180,6 +188,7 @@ func (o *EventsScalarQuery) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSearch returns the Search field value if set, zero value otherwise.
 func (o *EventsScalarQuery) GetSearch() EventsSearch {
 	if o == nil || o.Search == nil {
@@ -207,6 +216,8 @@ func (o *EventsScalarQuery) HasSearch() bool {
 func (o *EventsScalarQuery) SetSearch(v EventsSearch) {
 	o.Search = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EventsScalarQuery) MarshalJSON() ([]byte, error) {
@@ -238,12 +249,12 @@ func (o EventsScalarQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventsScalarQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Compute    *EventsCompute    `json:"compute"`
+		Compute *EventsCompute `json:"compute"`
 		DataSource *EventsDataSource `json:"data_source"`
-		GroupBy    []EventsGroupBy   `json:"group_by,omitempty"`
-		Indexes    []string          `json:"indexes,omitempty"`
-		Name       *string           `json:"name,omitempty"`
-		Search     *EventsSearch     `json:"search,omitempty"`
+		GroupBy []EventsGroupBy `json:"group_by,omitempty"`
+		Indexes []string `json:"indexes,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Search *EventsSearch `json:"search,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -256,7 +267,7 @@ func (o *EventsScalarQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "data_source", "group_by", "indexes", "name", "search"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "compute", "data_source", "group_by", "indexes", "name", "search",  })
 	} else {
 		return err
 	}
@@ -274,7 +285,7 @@ func (o *EventsScalarQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupBy = all.GroupBy
 	o.Indexes = all.Indexes
 	o.Name = all.Name
-	if all.Search != nil && all.Search.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Search != nil && all.Search.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Search = all.Search

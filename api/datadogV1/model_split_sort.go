@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SplitSort Controls the order in which graphs appear in the split.
 type SplitSort struct {
@@ -17,9 +21,10 @@ type SplitSort struct {
 	// Widget sorting methods.
 	Order WidgetSort `json:"order"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSplitSort instantiates a new SplitSort object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewSplitSortWithDefaults() *SplitSort {
 	this := SplitSort{}
 	return &this
 }
-
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *SplitSort) GetCompute() SplitConfigSortCompute {
 	if o == nil || o.Compute == nil {
@@ -67,6 +71,7 @@ func (o *SplitSort) SetCompute(v SplitConfigSortCompute) {
 	o.Compute = &v
 }
 
+
 // GetOrder returns the Order field value.
 func (o *SplitSort) GetOrder() WidgetSort {
 	if o == nil {
@@ -90,6 +95,8 @@ func (o *SplitSort) SetOrder(v WidgetSort) {
 	o.Order = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SplitSort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o SplitSort) MarshalJSON() ([]byte, error) {
 func (o *SplitSort) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Compute *SplitConfigSortCompute `json:"compute,omitempty"`
-		Order   *WidgetSort             `json:"order"`
+		Order *WidgetSort `json:"order"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,13 +128,13 @@ func (o *SplitSort) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "order"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "compute", "order",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Compute != nil && all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Compute != nil && all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Compute = all.Compute

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSAccountAndLambdaRequest AWS account ID and Lambda ARN.
 type AWSAccountAndLambdaRequest struct {
@@ -17,9 +21,10 @@ type AWSAccountAndLambdaRequest struct {
 	// ARN of the Datadog Lambda created during the Datadog-Amazon Web services Log collection setup.
 	LambdaArn string `json:"lambda_arn"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSAccountAndLambdaRequest instantiates a new AWSAccountAndLambdaRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewAWSAccountAndLambdaRequestWithDefaults() *AWSAccountAndLambdaRequest {
 	this := AWSAccountAndLambdaRequest{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value.
 func (o *AWSAccountAndLambdaRequest) GetAccountId() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *AWSAccountAndLambdaRequest) SetAccountId(v string) {
 	o.AccountId = v
 }
 
+
 // GetLambdaArn returns the LambdaArn field value.
 func (o *AWSAccountAndLambdaRequest) GetLambdaArn() string {
 	if o == nil {
@@ -85,6 +90,8 @@ func (o *AWSAccountAndLambdaRequest) GetLambdaArnOk() (*string, bool) {
 func (o *AWSAccountAndLambdaRequest) SetLambdaArn(v string) {
 	o.LambdaArn = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
@@ -118,7 +125,7 @@ func (o *AWSAccountAndLambdaRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "lambda_arn"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account_id", "lambda_arn",  })
 	} else {
 		return err
 	}

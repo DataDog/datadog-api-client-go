@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DashboardListItem A dashboard within a list.
 type DashboardListItem struct {
@@ -42,9 +45,10 @@ type DashboardListItem struct {
 	// URL path to the dashboard.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDashboardListItem instantiates a new DashboardListItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -64,7 +68,6 @@ func NewDashboardListItemWithDefaults() *DashboardListItem {
 	this := DashboardListItem{}
 	return &this
 }
-
 // GetAuthor returns the Author field value if set, zero value otherwise.
 func (o *DashboardListItem) GetAuthor() Creator {
 	if o == nil || o.Author == nil {
@@ -92,6 +95,7 @@ func (o *DashboardListItem) HasAuthor() bool {
 func (o *DashboardListItem) SetAuthor(v Creator) {
 	o.Author = &v
 }
+
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *DashboardListItem) GetCreated() time.Time {
@@ -121,6 +125,7 @@ func (o *DashboardListItem) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
+
 // GetIcon returns the Icon field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DashboardListItem) GetIcon() string {
 	if o == nil || o.Icon.Get() == nil {
@@ -134,7 +139,7 @@ func (o *DashboardListItem) GetIcon() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DashboardListItem) GetIconOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Icon.Get(), o.Icon.IsSet()
@@ -149,7 +154,6 @@ func (o *DashboardListItem) HasIcon() bool {
 func (o *DashboardListItem) SetIcon(v string) {
 	o.Icon.Set(&v)
 }
-
 // SetIconNil sets the value for Icon to be an explicit nil.
 func (o *DashboardListItem) SetIconNil() {
 	o.Icon.Set(nil)
@@ -159,6 +163,7 @@ func (o *DashboardListItem) SetIconNil() {
 func (o *DashboardListItem) UnsetIcon() {
 	o.Icon.Unset()
 }
+
 
 // GetId returns the Id field value.
 func (o *DashboardListItem) GetId() string {
@@ -183,6 +188,7 @@ func (o *DashboardListItem) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetIntegrationId returns the IntegrationId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DashboardListItem) GetIntegrationId() string {
 	if o == nil || o.IntegrationId.Get() == nil {
@@ -196,7 +202,7 @@ func (o *DashboardListItem) GetIntegrationId() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DashboardListItem) GetIntegrationIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.IntegrationId.Get(), o.IntegrationId.IsSet()
@@ -211,7 +217,6 @@ func (o *DashboardListItem) HasIntegrationId() bool {
 func (o *DashboardListItem) SetIntegrationId(v string) {
 	o.IntegrationId.Set(&v)
 }
-
 // SetIntegrationIdNil sets the value for IntegrationId to be an explicit nil.
 func (o *DashboardListItem) SetIntegrationIdNil() {
 	o.IntegrationId.Set(nil)
@@ -221,6 +226,7 @@ func (o *DashboardListItem) SetIntegrationIdNil() {
 func (o *DashboardListItem) UnsetIntegrationId() {
 	o.IntegrationId.Unset()
 }
+
 
 // GetIsFavorite returns the IsFavorite field value if set, zero value otherwise.
 func (o *DashboardListItem) GetIsFavorite() bool {
@@ -250,6 +256,7 @@ func (o *DashboardListItem) SetIsFavorite(v bool) {
 	o.IsFavorite = &v
 }
 
+
 // GetIsReadOnly returns the IsReadOnly field value if set, zero value otherwise.
 func (o *DashboardListItem) GetIsReadOnly() bool {
 	if o == nil || o.IsReadOnly == nil {
@@ -277,6 +284,7 @@ func (o *DashboardListItem) HasIsReadOnly() bool {
 func (o *DashboardListItem) SetIsReadOnly(v bool) {
 	o.IsReadOnly = &v
 }
+
 
 // GetIsShared returns the IsShared field value if set, zero value otherwise.
 func (o *DashboardListItem) GetIsShared() bool {
@@ -306,6 +314,7 @@ func (o *DashboardListItem) SetIsShared(v bool) {
 	o.IsShared = &v
 }
 
+
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *DashboardListItem) GetModified() time.Time {
 	if o == nil || o.Modified == nil {
@@ -333,6 +342,7 @@ func (o *DashboardListItem) HasModified() bool {
 func (o *DashboardListItem) SetModified(v time.Time) {
 	o.Modified = &v
 }
+
 
 // GetPopularity returns the Popularity field value if set, zero value otherwise.
 func (o *DashboardListItem) GetPopularity() int32 {
@@ -362,6 +372,7 @@ func (o *DashboardListItem) SetPopularity(v int32) {
 	o.Popularity = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DashboardListItem) GetTags() []string {
 	if o == nil || o.Tags.Get() == nil {
@@ -375,7 +386,7 @@ func (o *DashboardListItem) GetTags() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DashboardListItem) GetTagsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Tags.Get(), o.Tags.IsSet()
@@ -390,7 +401,6 @@ func (o *DashboardListItem) HasTags() bool {
 func (o *DashboardListItem) SetTags(v []string) {
 	o.Tags.Set(&v)
 }
-
 // SetTagsNil sets the value for Tags to be an explicit nil.
 func (o *DashboardListItem) SetTagsNil() {
 	o.Tags.Set(nil)
@@ -400,6 +410,7 @@ func (o *DashboardListItem) SetTagsNil() {
 func (o *DashboardListItem) UnsetTags() {
 	o.Tags.Unset()
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *DashboardListItem) GetTitle() string {
@@ -429,6 +440,7 @@ func (o *DashboardListItem) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *DashboardListItem) GetType() DashboardType {
 	if o == nil {
@@ -451,6 +463,7 @@ func (o *DashboardListItem) GetTypeOk() (*DashboardType, bool) {
 func (o *DashboardListItem) SetType(v DashboardType) {
 	o.Type = v
 }
+
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *DashboardListItem) GetUrl() string {
@@ -479,6 +492,8 @@ func (o *DashboardListItem) HasUrl() bool {
 func (o *DashboardListItem) SetUrl(v string) {
 	o.Url = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DashboardListItem) MarshalJSON() ([]byte, error) {
@@ -542,20 +557,20 @@ func (o DashboardListItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Author        *Creator                     `json:"author,omitempty"`
-		Created       *time.Time                   `json:"created,omitempty"`
-		Icon          datadog.NullableString       `json:"icon,omitempty"`
-		Id            *string                      `json:"id"`
-		IntegrationId datadog.NullableString       `json:"integration_id,omitempty"`
-		IsFavorite    *bool                        `json:"is_favorite,omitempty"`
-		IsReadOnly    *bool                        `json:"is_read_only,omitempty"`
-		IsShared      *bool                        `json:"is_shared,omitempty"`
-		Modified      *time.Time                   `json:"modified,omitempty"`
-		Popularity    *int32                       `json:"popularity,omitempty"`
-		Tags          datadog.NullableList[string] `json:"tags,omitempty"`
-		Title         *string                      `json:"title,omitempty"`
-		Type          *DashboardType               `json:"type"`
-		Url           *string                      `json:"url,omitempty"`
+		Author *Creator `json:"author,omitempty"`
+		Created *time.Time `json:"created,omitempty"`
+		Icon datadog.NullableString `json:"icon,omitempty"`
+		Id *string `json:"id"`
+		IntegrationId datadog.NullableString `json:"integration_id,omitempty"`
+		IsFavorite *bool `json:"is_favorite,omitempty"`
+		IsReadOnly *bool `json:"is_read_only,omitempty"`
+		IsShared *bool `json:"is_shared,omitempty"`
+		Modified *time.Time `json:"modified,omitempty"`
+		Popularity *int32 `json:"popularity,omitempty"`
+		Tags datadog.NullableList[string] `json:"tags,omitempty"`
+		Title *string `json:"title,omitempty"`
+		Type *DashboardType `json:"type"`
+		Url *string `json:"url,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -568,13 +583,13 @@ func (o *DashboardListItem) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"author", "created", "icon", "id", "integration_id", "is_favorite", "is_read_only", "is_shared", "modified", "popularity", "tags", "title", "type", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "author", "created", "icon", "id", "integration_id", "is_favorite", "is_read_only", "is_shared", "modified", "popularity", "tags", "title", "type", "url",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Author = all.Author

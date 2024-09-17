@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HourlyUsage Hourly usage for a product family for an org.
 type HourlyUsage struct {
@@ -17,9 +23,10 @@ type HourlyUsage struct {
 	// Type of usage data.
 	Type *UsageTimeSeriesType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHourlyUsage instantiates a new HourlyUsage object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewHourlyUsageWithDefaults() *HourlyUsage {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *HourlyUsage) GetAttributes() HourlyUsageAttributes {
 	if o == nil || o.Attributes == nil {
@@ -69,6 +75,7 @@ func (o *HourlyUsage) HasAttributes() bool {
 func (o *HourlyUsage) SetAttributes(v HourlyUsageAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *HourlyUsage) GetId() string {
@@ -98,6 +105,7 @@ func (o *HourlyUsage) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *HourlyUsage) GetType() UsageTimeSeriesType {
 	if o == nil || o.Type == nil {
@@ -126,6 +134,8 @@ func (o *HourlyUsage) SetType(v UsageTimeSeriesType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o HourlyUsage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -152,26 +162,26 @@ func (o HourlyUsage) MarshalJSON() ([]byte, error) {
 func (o *HourlyUsage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *HourlyUsageAttributes `json:"attributes,omitempty"`
-		Id         *string                `json:"id,omitempty"`
-		Type       *UsageTimeSeriesType   `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *UsageTimeSeriesType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetSort Widget sorting methods.
 type WidgetSort string
 
 // List of WidgetSort.
 const (
-	WIDGETSORT_ASCENDING  WidgetSort = "asc"
+	WIDGETSORT_ASCENDING WidgetSort = "asc"
 	WIDGETSORT_DESCENDING WidgetSort = "desc"
 )
 

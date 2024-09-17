@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentSearchResponseFieldFacetData Facet value and number of occurrences for a property field of an incident.
 type IncidentSearchResponseFieldFacetData struct {
@@ -15,9 +21,10 @@ type IncidentSearchResponseFieldFacetData struct {
 	// The facet value appearing in search results.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentSearchResponseFieldFacetData instantiates a new IncidentSearchResponseFieldFacetData object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewIncidentSearchResponseFieldFacetDataWithDefaults() *IncidentSearchRespon
 	this := IncidentSearchResponseFieldFacetData{}
 	return &this
 }
-
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *IncidentSearchResponseFieldFacetData) GetCount() int32 {
 	if o == nil || o.Count == nil {
@@ -63,6 +69,7 @@ func (o *IncidentSearchResponseFieldFacetData) HasCount() bool {
 func (o *IncidentSearchResponseFieldFacetData) SetCount(v int32) {
 	o.Count = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *IncidentSearchResponseFieldFacetData) GetName() string {
@@ -92,6 +99,8 @@ func (o *IncidentSearchResponseFieldFacetData) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentSearchResponseFieldFacetData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,15 +123,15 @@ func (o IncidentSearchResponseFieldFacetData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentSearchResponseFieldFacetData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Count *int32  `json:"count,omitempty"`
-		Name  *string `json:"name,omitempty"`
+		Count *int32 `json:"count,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "count", "name",  })
 	} else {
 		return err
 	}

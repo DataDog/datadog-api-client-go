@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TagToHosts In this object, the key is the tag, the value is a list of host names that are reporting that tag.
 type TagToHosts struct {
 	// A list of tags to apply to the host.
 	Tags map[string][]string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTagToHosts instantiates a new TagToHosts object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewTagToHostsWithDefaults() *TagToHosts {
 	this := TagToHosts{}
 	return &this
 }
-
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *TagToHosts) GetTags() map[string][]string {
 	if o == nil || o.Tags == nil {
@@ -62,6 +68,8 @@ func (o *TagToHosts) SetTags(v map[string][]string) {
 	o.Tags = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TagToHosts) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *TagToHosts) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "tags",  })
 	} else {
 		return err
 	}

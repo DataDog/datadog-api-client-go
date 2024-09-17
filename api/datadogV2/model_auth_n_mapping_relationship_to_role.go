@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AuthNMappingRelationshipToRole Relationship of AuthN Mapping to a Role.
 type AuthNMappingRelationshipToRole struct {
 	// Relationship to role.
 	Role RelationshipToRole `json:"role"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAuthNMappingRelationshipToRole instantiates a new AuthNMappingRelationshipToRole object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewAuthNMappingRelationshipToRoleWithDefaults() *AuthNMappingRelationshipTo
 	this := AuthNMappingRelationshipToRole{}
 	return &this
 }
-
 // GetRole returns the Role field value.
 func (o *AuthNMappingRelationshipToRole) GetRole() RelationshipToRole {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *AuthNMappingRelationshipToRole) GetRoleOk() (*RelationshipToRole, bool)
 func (o *AuthNMappingRelationshipToRole) SetRole(v RelationshipToRole) {
 	o.Role = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AuthNMappingRelationshipToRole) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *AuthNMappingRelationshipToRole) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"role"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "role",  })
 	} else {
 		return err
 	}

@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentTodoAttributes Incident todo's attributes.
 type IncidentTodoAttributes struct {
@@ -28,9 +31,10 @@ type IncidentTodoAttributes struct {
 	// Timestamp when the incident todo was last modified.
 	Modified *time.Time `json:"modified,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentTodoAttributes instantiates a new IncidentTodoAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +54,6 @@ func NewIncidentTodoAttributesWithDefaults() *IncidentTodoAttributes {
 	this := IncidentTodoAttributes{}
 	return &this
 }
-
 // GetAssignees returns the Assignees field value.
 func (o *IncidentTodoAttributes) GetAssignees() []IncidentTodoAssignee {
 	if o == nil {
@@ -74,6 +77,7 @@ func (o *IncidentTodoAttributes) SetAssignees(v []IncidentTodoAssignee) {
 	o.Assignees = v
 }
 
+
 // GetCompleted returns the Completed field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentTodoAttributes) GetCompleted() string {
 	if o == nil || o.Completed.Get() == nil {
@@ -87,7 +91,7 @@ func (o *IncidentTodoAttributes) GetCompleted() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentTodoAttributes) GetCompletedOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Completed.Get(), o.Completed.IsSet()
@@ -102,7 +106,6 @@ func (o *IncidentTodoAttributes) HasCompleted() bool {
 func (o *IncidentTodoAttributes) SetCompleted(v string) {
 	o.Completed.Set(&v)
 }
-
 // SetCompletedNil sets the value for Completed to be an explicit nil.
 func (o *IncidentTodoAttributes) SetCompletedNil() {
 	o.Completed.Set(nil)
@@ -112,6 +115,7 @@ func (o *IncidentTodoAttributes) SetCompletedNil() {
 func (o *IncidentTodoAttributes) UnsetCompleted() {
 	o.Completed.Unset()
 }
+
 
 // GetContent returns the Content field value.
 func (o *IncidentTodoAttributes) GetContent() string {
@@ -135,6 +139,7 @@ func (o *IncidentTodoAttributes) GetContentOk() (*string, bool) {
 func (o *IncidentTodoAttributes) SetContent(v string) {
 	o.Content = v
 }
+
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *IncidentTodoAttributes) GetCreated() time.Time {
@@ -164,6 +169,7 @@ func (o *IncidentTodoAttributes) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
+
 // GetDueDate returns the DueDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentTodoAttributes) GetDueDate() string {
 	if o == nil || o.DueDate.Get() == nil {
@@ -177,7 +183,7 @@ func (o *IncidentTodoAttributes) GetDueDate() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentTodoAttributes) GetDueDateOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.DueDate.Get(), o.DueDate.IsSet()
@@ -192,7 +198,6 @@ func (o *IncidentTodoAttributes) HasDueDate() bool {
 func (o *IncidentTodoAttributes) SetDueDate(v string) {
 	o.DueDate.Set(&v)
 }
-
 // SetDueDateNil sets the value for DueDate to be an explicit nil.
 func (o *IncidentTodoAttributes) SetDueDateNil() {
 	o.DueDate.Set(nil)
@@ -202,6 +207,7 @@ func (o *IncidentTodoAttributes) SetDueDateNil() {
 func (o *IncidentTodoAttributes) UnsetDueDate() {
 	o.DueDate.Unset()
 }
+
 
 // GetIncidentId returns the IncidentId field value if set, zero value otherwise.
 func (o *IncidentTodoAttributes) GetIncidentId() string {
@@ -231,6 +237,7 @@ func (o *IncidentTodoAttributes) SetIncidentId(v string) {
 	o.IncidentId = &v
 }
 
+
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *IncidentTodoAttributes) GetModified() time.Time {
 	if o == nil || o.Modified == nil {
@@ -258,6 +265,8 @@ func (o *IncidentTodoAttributes) HasModified() bool {
 func (o *IncidentTodoAttributes) SetModified(v time.Time) {
 	o.Modified = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentTodoAttributes) MarshalJSON() ([]byte, error) {
@@ -300,13 +309,13 @@ func (o IncidentTodoAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTodoAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Assignees  *[]IncidentTodoAssignee `json:"assignees"`
-		Completed  datadog.NullableString  `json:"completed,omitempty"`
-		Content    *string                 `json:"content"`
-		Created    *time.Time              `json:"created,omitempty"`
-		DueDate    datadog.NullableString  `json:"due_date,omitempty"`
-		IncidentId *string                 `json:"incident_id,omitempty"`
-		Modified   *time.Time              `json:"modified,omitempty"`
+		Assignees *[]IncidentTodoAssignee `json:"assignees"`
+		Completed datadog.NullableString `json:"completed,omitempty"`
+		Content *string `json:"content"`
+		Created *time.Time `json:"created,omitempty"`
+		DueDate datadog.NullableString `json:"due_date,omitempty"`
+		IncidentId *string `json:"incident_id,omitempty"`
+		Modified *time.Time `json:"modified,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -319,7 +328,7 @@ func (o *IncidentTodoAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assignees", "completed", "content", "created", "due_date", "incident_id", "modified"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "assignees", "completed", "content", "created", "due_date", "incident_id", "modified",  })
 	} else {
 		return err
 	}

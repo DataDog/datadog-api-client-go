@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PowerpackWidgetDefinition The powerpack widget allows you to keep similar graphs together on your timeboard. Each group has a custom header, can hold one to many graphs, and is collapsible.
 type PowerpackWidgetDefinition struct {
@@ -27,9 +31,10 @@ type PowerpackWidgetDefinition struct {
 	// Type of the powerpack widget.
 	Type PowerpackWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPowerpackWidgetDefinition instantiates a new PowerpackWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +60,6 @@ func NewPowerpackWidgetDefinitionWithDefaults() *PowerpackWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetBackgroundColor returns the BackgroundColor field value if set, zero value otherwise.
 func (o *PowerpackWidgetDefinition) GetBackgroundColor() string {
 	if o == nil || o.BackgroundColor == nil {
@@ -83,6 +87,7 @@ func (o *PowerpackWidgetDefinition) HasBackgroundColor() bool {
 func (o *PowerpackWidgetDefinition) SetBackgroundColor(v string) {
 	o.BackgroundColor = &v
 }
+
 
 // GetBannerImg returns the BannerImg field value if set, zero value otherwise.
 func (o *PowerpackWidgetDefinition) GetBannerImg() string {
@@ -112,6 +117,7 @@ func (o *PowerpackWidgetDefinition) SetBannerImg(v string) {
 	o.BannerImg = &v
 }
 
+
 // GetPowerpackId returns the PowerpackId field value.
 func (o *PowerpackWidgetDefinition) GetPowerpackId() string {
 	if o == nil {
@@ -134,6 +140,7 @@ func (o *PowerpackWidgetDefinition) GetPowerpackIdOk() (*string, bool) {
 func (o *PowerpackWidgetDefinition) SetPowerpackId(v string) {
 	o.PowerpackId = v
 }
+
 
 // GetShowTitle returns the ShowTitle field value if set, zero value otherwise.
 func (o *PowerpackWidgetDefinition) GetShowTitle() bool {
@@ -163,6 +170,7 @@ func (o *PowerpackWidgetDefinition) SetShowTitle(v bool) {
 	o.ShowTitle = &v
 }
 
+
 // GetTemplateVariables returns the TemplateVariables field value if set, zero value otherwise.
 func (o *PowerpackWidgetDefinition) GetTemplateVariables() PowerpackTemplateVariables {
 	if o == nil || o.TemplateVariables == nil {
@@ -190,6 +198,7 @@ func (o *PowerpackWidgetDefinition) HasTemplateVariables() bool {
 func (o *PowerpackWidgetDefinition) SetTemplateVariables(v PowerpackTemplateVariables) {
 	o.TemplateVariables = &v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *PowerpackWidgetDefinition) GetTitle() string {
@@ -219,6 +228,7 @@ func (o *PowerpackWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *PowerpackWidgetDefinition) GetType() PowerpackWidgetDefinitionType {
 	if o == nil {
@@ -241,6 +251,8 @@ func (o *PowerpackWidgetDefinition) GetTypeOk() (*PowerpackWidgetDefinitionType,
 func (o *PowerpackWidgetDefinition) SetType(v PowerpackWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o PowerpackWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -275,13 +287,13 @@ func (o PowerpackWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PowerpackWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BackgroundColor   *string                        `json:"background_color,omitempty"`
-		BannerImg         *string                        `json:"banner_img,omitempty"`
-		PowerpackId       *string                        `json:"powerpack_id"`
-		ShowTitle         *bool                          `json:"show_title,omitempty"`
-		TemplateVariables *PowerpackTemplateVariables    `json:"template_variables,omitempty"`
-		Title             *string                        `json:"title,omitempty"`
-		Type              *PowerpackWidgetDefinitionType `json:"type"`
+		BackgroundColor *string `json:"background_color,omitempty"`
+		BannerImg *string `json:"banner_img,omitempty"`
+		PowerpackId *string `json:"powerpack_id"`
+		ShowTitle *bool `json:"show_title,omitempty"`
+		TemplateVariables *PowerpackTemplateVariables `json:"template_variables,omitempty"`
+		Title *string `json:"title,omitempty"`
+		Type *PowerpackWidgetDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -294,7 +306,7 @@ func (o *PowerpackWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"background_color", "banner_img", "powerpack_id", "show_title", "template_variables", "title", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "background_color", "banner_img", "powerpack_id", "show_title", "template_variables", "title", "type",  })
 	} else {
 		return err
 	}
@@ -304,7 +316,7 @@ func (o *PowerpackWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.BannerImg = all.BannerImg
 	o.PowerpackId = *all.PowerpackId
 	o.ShowTitle = all.ShowTitle
-	if all.TemplateVariables != nil && all.TemplateVariables.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TemplateVariables != nil && all.TemplateVariables.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TemplateVariables = all.TemplateVariables

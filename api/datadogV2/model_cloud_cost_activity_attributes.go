@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudCostActivityAttributes Attributes for Cloud Cost activity.
 type CloudCostActivityAttributes struct {
 	// Whether or not the cloud account is enabled.
 	IsEnabled bool `json:"is_enabled"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudCostActivityAttributes instantiates a new CloudCostActivityAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewCloudCostActivityAttributesWithDefaults() *CloudCostActivityAttributes {
 	this := CloudCostActivityAttributes{}
 	return &this
 }
-
 // GetIsEnabled returns the IsEnabled field value.
 func (o *CloudCostActivityAttributes) GetIsEnabled() bool {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *CloudCostActivityAttributes) GetIsEnabledOk() (*bool, bool) {
 func (o *CloudCostActivityAttributes) SetIsEnabled(v bool) {
 	o.IsEnabled = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudCostActivityAttributes) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *CloudCostActivityAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"is_enabled"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "is_enabled",  })
 	} else {
 		return err
 	}

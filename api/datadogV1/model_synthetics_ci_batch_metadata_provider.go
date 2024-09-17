@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsCIBatchMetadataProvider Description of the CI provider.
 type SyntheticsCIBatchMetadataProvider struct {
 	// Name of the CI provider.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsCIBatchMetadataProvider instantiates a new SyntheticsCIBatchMetadataProvider object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewSyntheticsCIBatchMetadataProviderWithDefaults() *SyntheticsCIBatchMetada
 	this := SyntheticsCIBatchMetadataProvider{}
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadataProvider) GetName() string {
 	if o == nil || o.Name == nil {
@@ -62,6 +68,8 @@ func (o *SyntheticsCIBatchMetadataProvider) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsCIBatchMetadataProvider) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *SyntheticsCIBatchMetadataProvider) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name",  })
 	} else {
 		return err
 	}

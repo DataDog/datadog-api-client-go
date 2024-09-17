@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HostMetaInstallMethod Agent install method.
 type HostMetaInstallMethod struct {
@@ -17,9 +23,10 @@ type HostMetaInstallMethod struct {
 	// The tool version.
 	ToolVersion *string `json:"tool_version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHostMetaInstallMethod instantiates a new HostMetaInstallMethod object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewHostMetaInstallMethodWithDefaults() *HostMetaInstallMethod {
 	this := HostMetaInstallMethod{}
 	return &this
 }
-
 // GetInstallerVersion returns the InstallerVersion field value if set, zero value otherwise.
 func (o *HostMetaInstallMethod) GetInstallerVersion() string {
 	if o == nil || o.InstallerVersion == nil {
@@ -65,6 +71,7 @@ func (o *HostMetaInstallMethod) HasInstallerVersion() bool {
 func (o *HostMetaInstallMethod) SetInstallerVersion(v string) {
 	o.InstallerVersion = &v
 }
+
 
 // GetTool returns the Tool field value if set, zero value otherwise.
 func (o *HostMetaInstallMethod) GetTool() string {
@@ -94,6 +101,7 @@ func (o *HostMetaInstallMethod) SetTool(v string) {
 	o.Tool = &v
 }
 
+
 // GetToolVersion returns the ToolVersion field value if set, zero value otherwise.
 func (o *HostMetaInstallMethod) GetToolVersion() string {
 	if o == nil || o.ToolVersion == nil {
@@ -122,6 +130,8 @@ func (o *HostMetaInstallMethod) SetToolVersion(v string) {
 	o.ToolVersion = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o HostMetaInstallMethod) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,15 +158,15 @@ func (o HostMetaInstallMethod) MarshalJSON() ([]byte, error) {
 func (o *HostMetaInstallMethod) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		InstallerVersion *string `json:"installer_version,omitempty"`
-		Tool             *string `json:"tool,omitempty"`
-		ToolVersion      *string `json:"tool_version,omitempty"`
+		Tool *string `json:"tool,omitempty"`
+		ToolVersion *string `json:"tool_version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"installer_version", "tool", "tool_version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "installer_version", "tool", "tool_version",  })
 	} else {
 		return err
 	}

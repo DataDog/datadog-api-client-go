@@ -2,14 +2,15 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -17,7 +18,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewServiceLevelObjectiveCorrectionsApi(apiClient)
-	resp, r, err := api.ListSLOCorrection(ctx, *datadogV1.NewListSLOCorrectionOptionalParameters().WithOffset(1).WithLimit(1))
+	resp, r, err := api.ListSLOCorrection(ctx, *datadogV1.NewListSLOCorrectionOptionalParameters().WithOffset(1).WithLimit(1), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.ListSLOCorrection`: %v\n", err)

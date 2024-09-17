@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageOnlineArchiveHour Online Archive usage in a given hour.
 type UsageOnlineArchiveHour struct {
@@ -21,9 +25,10 @@ type UsageOnlineArchiveHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageOnlineArchiveHour instantiates a new UsageOnlineArchiveHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewUsageOnlineArchiveHourWithDefaults() *UsageOnlineArchiveHour {
 	this := UsageOnlineArchiveHour{}
 	return &this
 }
-
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageOnlineArchiveHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -70,6 +74,7 @@ func (o *UsageOnlineArchiveHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetOnlineArchiveEventsCount returns the OnlineArchiveEventsCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCount() int64 {
 	if o == nil || o.OnlineArchiveEventsCount.Get() == nil {
@@ -83,7 +88,7 @@ func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageOnlineArchiveHour) GetOnlineArchiveEventsCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.OnlineArchiveEventsCount.Get(), o.OnlineArchiveEventsCount.IsSet()
@@ -98,7 +103,6 @@ func (o *UsageOnlineArchiveHour) HasOnlineArchiveEventsCount() bool {
 func (o *UsageOnlineArchiveHour) SetOnlineArchiveEventsCount(v int64) {
 	o.OnlineArchiveEventsCount.Set(&v)
 }
-
 // SetOnlineArchiveEventsCountNil sets the value for OnlineArchiveEventsCount to be an explicit nil.
 func (o *UsageOnlineArchiveHour) SetOnlineArchiveEventsCountNil() {
 	o.OnlineArchiveEventsCount.Set(nil)
@@ -108,6 +112,7 @@ func (o *UsageOnlineArchiveHour) SetOnlineArchiveEventsCountNil() {
 func (o *UsageOnlineArchiveHour) UnsetOnlineArchiveEventsCount() {
 	o.OnlineArchiveEventsCount.Unset()
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageOnlineArchiveHour) GetOrgName() string {
@@ -137,6 +142,7 @@ func (o *UsageOnlineArchiveHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageOnlineArchiveHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -164,6 +170,8 @@ func (o *UsageOnlineArchiveHour) HasPublicId() bool {
 func (o *UsageOnlineArchiveHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageOnlineArchiveHour) MarshalJSON() ([]byte, error) {
@@ -197,17 +205,17 @@ func (o UsageOnlineArchiveHour) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageOnlineArchiveHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Hour                     *time.Time            `json:"hour,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
 		OnlineArchiveEventsCount datadog.NullableInt64 `json:"online_archive_events_count,omitempty"`
-		OrgName                  *string               `json:"org_name,omitempty"`
-		PublicId                 *string               `json:"public_id,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"hour", "online_archive_events_count", "org_name", "public_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "hour", "online_archive_events_count", "org_name", "public_id",  })
 	} else {
 		return err
 	}

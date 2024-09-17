@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SearchSLOResponseMetaPage Pagination metadata returned by the API.
 type SearchSLOResponseMetaPage struct {
@@ -27,9 +33,10 @@ type SearchSLOResponseMetaPage struct {
 	// Type of pagination.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSearchSLOResponseMetaPage instantiates a new SearchSLOResponseMetaPage object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +54,6 @@ func NewSearchSLOResponseMetaPageWithDefaults() *SearchSLOResponseMetaPage {
 	this := SearchSLOResponseMetaPage{}
 	return &this
 }
-
 // GetFirstNumber returns the FirstNumber field value if set, zero value otherwise.
 func (o *SearchSLOResponseMetaPage) GetFirstNumber() int64 {
 	if o == nil || o.FirstNumber == nil {
@@ -75,6 +81,7 @@ func (o *SearchSLOResponseMetaPage) HasFirstNumber() bool {
 func (o *SearchSLOResponseMetaPage) SetFirstNumber(v int64) {
 	o.FirstNumber = &v
 }
+
 
 // GetLastNumber returns the LastNumber field value if set, zero value otherwise.
 func (o *SearchSLOResponseMetaPage) GetLastNumber() int64 {
@@ -104,6 +111,7 @@ func (o *SearchSLOResponseMetaPage) SetLastNumber(v int64) {
 	o.LastNumber = &v
 }
 
+
 // GetNextNumber returns the NextNumber field value if set, zero value otherwise.
 func (o *SearchSLOResponseMetaPage) GetNextNumber() int64 {
 	if o == nil || o.NextNumber == nil {
@@ -131,6 +139,7 @@ func (o *SearchSLOResponseMetaPage) HasNextNumber() bool {
 func (o *SearchSLOResponseMetaPage) SetNextNumber(v int64) {
 	o.NextNumber = &v
 }
+
 
 // GetNumber returns the Number field value if set, zero value otherwise.
 func (o *SearchSLOResponseMetaPage) GetNumber() int64 {
@@ -160,6 +169,7 @@ func (o *SearchSLOResponseMetaPage) SetNumber(v int64) {
 	o.Number = &v
 }
 
+
 // GetPrevNumber returns the PrevNumber field value if set, zero value otherwise.
 func (o *SearchSLOResponseMetaPage) GetPrevNumber() int64 {
 	if o == nil || o.PrevNumber == nil {
@@ -187,6 +197,7 @@ func (o *SearchSLOResponseMetaPage) HasPrevNumber() bool {
 func (o *SearchSLOResponseMetaPage) SetPrevNumber(v int64) {
 	o.PrevNumber = &v
 }
+
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *SearchSLOResponseMetaPage) GetSize() int64 {
@@ -216,6 +227,7 @@ func (o *SearchSLOResponseMetaPage) SetSize(v int64) {
 	o.Size = &v
 }
 
+
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *SearchSLOResponseMetaPage) GetTotal() int64 {
 	if o == nil || o.Total == nil {
@@ -244,6 +256,7 @@ func (o *SearchSLOResponseMetaPage) SetTotal(v int64) {
 	o.Total = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SearchSLOResponseMetaPage) GetType() string {
 	if o == nil || o.Type == nil {
@@ -271,6 +284,8 @@ func (o *SearchSLOResponseMetaPage) HasType() bool {
 func (o *SearchSLOResponseMetaPage) SetType(v string) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SearchSLOResponseMetaPage) MarshalJSON() ([]byte, error) {
@@ -312,21 +327,21 @@ func (o SearchSLOResponseMetaPage) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SearchSLOResponseMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FirstNumber *int64  `json:"first_number,omitempty"`
-		LastNumber  *int64  `json:"last_number,omitempty"`
-		NextNumber  *int64  `json:"next_number,omitempty"`
-		Number      *int64  `json:"number,omitempty"`
-		PrevNumber  *int64  `json:"prev_number,omitempty"`
-		Size        *int64  `json:"size,omitempty"`
-		Total       *int64  `json:"total,omitempty"`
-		Type        *string `json:"type,omitempty"`
+		FirstNumber *int64 `json:"first_number,omitempty"`
+		LastNumber *int64 `json:"last_number,omitempty"`
+		NextNumber *int64 `json:"next_number,omitempty"`
+		Number *int64 `json:"number,omitempty"`
+		PrevNumber *int64 `json:"prev_number,omitempty"`
+		Size *int64 `json:"size,omitempty"`
+		Total *int64 `json:"total,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"first_number", "last_number", "next_number", "number", "prev_number", "size", "total", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "first_number", "last_number", "next_number", "number", "prev_number", "size", "total", "type",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeScheduleRecurrenceResponse An RRULE-based recurring downtime.
 type DowntimeScheduleRecurrenceResponse struct {
@@ -23,9 +29,10 @@ type DowntimeScheduleRecurrenceResponse struct {
 	// downtime starts the moment it is created.
 	Start *string `json:"start,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeScheduleRecurrenceResponse instantiates a new DowntimeScheduleRecurrenceResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +50,6 @@ func NewDowntimeScheduleRecurrenceResponseWithDefaults() *DowntimeScheduleRecurr
 	this := DowntimeScheduleRecurrenceResponse{}
 	return &this
 }
-
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *DowntimeScheduleRecurrenceResponse) GetDuration() string {
 	if o == nil || o.Duration == nil {
@@ -71,6 +77,7 @@ func (o *DowntimeScheduleRecurrenceResponse) HasDuration() bool {
 func (o *DowntimeScheduleRecurrenceResponse) SetDuration(v string) {
 	o.Duration = &v
 }
+
 
 // GetRrule returns the Rrule field value if set, zero value otherwise.
 func (o *DowntimeScheduleRecurrenceResponse) GetRrule() string {
@@ -100,6 +107,7 @@ func (o *DowntimeScheduleRecurrenceResponse) SetRrule(v string) {
 	o.Rrule = &v
 }
 
+
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *DowntimeScheduleRecurrenceResponse) GetStart() string {
 	if o == nil || o.Start == nil {
@@ -128,6 +136,8 @@ func (o *DowntimeScheduleRecurrenceResponse) SetStart(v string) {
 	o.Start = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeScheduleRecurrenceResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -154,15 +164,15 @@ func (o DowntimeScheduleRecurrenceResponse) MarshalJSON() ([]byte, error) {
 func (o *DowntimeScheduleRecurrenceResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Duration *string `json:"duration,omitempty"`
-		Rrule    *string `json:"rrule,omitempty"`
-		Start    *string `json:"start,omitempty"`
+		Rrule *string `json:"rrule,omitempty"`
+		Start *string `json:"start,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"duration", "rrule", "start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "duration", "rrule", "start",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TopologyQuery Query to service-based topology data sources like the service map or data streams.
 type TopologyQuery struct {
@@ -17,9 +23,10 @@ type TopologyQuery struct {
 	// Name of the service
 	Service *string `json:"service,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTopologyQuery instantiates a new TopologyQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewTopologyQueryWithDefaults() *TopologyQuery {
 	this := TopologyQuery{}
 	return &this
 }
-
 // GetDataSource returns the DataSource field value if set, zero value otherwise.
 func (o *TopologyQuery) GetDataSource() TopologyQueryDataSource {
 	if o == nil || o.DataSource == nil {
@@ -65,6 +71,7 @@ func (o *TopologyQuery) HasDataSource() bool {
 func (o *TopologyQuery) SetDataSource(v TopologyQueryDataSource) {
 	o.DataSource = &v
 }
+
 
 // GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *TopologyQuery) GetFilters() []string {
@@ -94,6 +101,7 @@ func (o *TopologyQuery) SetFilters(v []string) {
 	o.Filters = v
 }
 
+
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *TopologyQuery) GetService() string {
 	if o == nil || o.Service == nil {
@@ -122,6 +130,8 @@ func (o *TopologyQuery) SetService(v string) {
 	o.Service = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TopologyQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,21 +158,21 @@ func (o TopologyQuery) MarshalJSON() ([]byte, error) {
 func (o *TopologyQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DataSource *TopologyQueryDataSource `json:"data_source,omitempty"`
-		Filters    []string                 `json:"filters,omitempty"`
-		Service    *string                  `json:"service,omitempty"`
+		Filters []string `json:"filters,omitempty"`
+		Service *string `json:"service,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data_source", "filters", "service"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data_source", "filters", "service",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.DataSource != nil && !all.DataSource.IsValid() {
+	if all.DataSource != nil &&!all.DataSource.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DataSource = all.DataSource
