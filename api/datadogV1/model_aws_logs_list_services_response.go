@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // AWSLogsListServicesResponse The list of current AWS services for which Datadog offers automatic log collection.
 type AWSLogsListServicesResponse struct {
@@ -21,10 +15,9 @@ type AWSLogsListServicesResponse struct {
 	// Name of service available for configuration with Datadog logs.
 	Label *string `json:"label,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewAWSLogsListServicesResponse instantiates a new AWSLogsListServicesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewAWSLogsListServicesResponseWithDefaults() *AWSLogsListServicesResponse {
 	this := AWSLogsListServicesResponse{}
 	return &this
 }
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AWSLogsListServicesResponse) GetId() string {
 	if o == nil || o.Id == nil {
@@ -69,7 +63,6 @@ func (o *AWSLogsListServicesResponse) HasId() bool {
 func (o *AWSLogsListServicesResponse) SetId(v string) {
 	o.Id = &v
 }
-
 
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *AWSLogsListServicesResponse) GetLabel() string {
@@ -99,8 +92,6 @@ func (o *AWSLogsListServicesResponse) SetLabel(v string) {
 	o.Label = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSLogsListServicesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -123,7 +114,7 @@ func (o AWSLogsListServicesResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSLogsListServicesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id *string `json:"id,omitempty"`
+		Id    *string `json:"id,omitempty"`
 		Label *string `json:"label,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -131,7 +122,7 @@ func (o *AWSLogsListServicesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "label",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"id", "label"})
 	} else {
 		return err
 	}

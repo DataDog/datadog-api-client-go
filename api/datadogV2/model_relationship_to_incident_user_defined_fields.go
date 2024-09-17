@@ -2,27 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // RelationshipToIncidentUserDefinedFields Relationship to incident user defined fields.
 type RelationshipToIncidentUserDefinedFields struct {
 	// An array of user defined fields.
 	Data []RelationshipToIncidentUserDefinedFieldData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewRelationshipToIncidentUserDefinedFields instantiates a new RelationshipToIncidentUserDefinedFields object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,6 +36,7 @@ func NewRelationshipToIncidentUserDefinedFieldsWithDefaults() *RelationshipToInc
 	this := RelationshipToIncidentUserDefinedFields{}
 	return &this
 }
+
 // GetData returns the Data field value.
 func (o *RelationshipToIncidentUserDefinedFields) GetData() []RelationshipToIncidentUserDefinedFieldData {
 	if o == nil {
@@ -63,8 +59,6 @@ func (o *RelationshipToIncidentUserDefinedFields) GetDataOk() (*[]RelationshipTo
 func (o *RelationshipToIncidentUserDefinedFields) SetData(v []RelationshipToIncidentUserDefinedFieldData) {
 	o.Data = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationshipToIncidentUserDefinedFields) MarshalJSON() ([]byte, error) {
@@ -93,7 +87,7 @@ func (o *RelationshipToIncidentUserDefinedFields) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}

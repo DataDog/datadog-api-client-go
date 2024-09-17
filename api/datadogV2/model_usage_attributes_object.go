@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // UsageAttributesObject Usage attributes data.
 type UsageAttributesObject struct {
@@ -29,10 +23,9 @@ type UsageAttributesObject struct {
 	// Usage type that is being measured.
 	UsageType *HourlyUsageType `json:"usage_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewUsageAttributesObject instantiates a new UsageAttributesObject object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +43,7 @@ func NewUsageAttributesObjectWithDefaults() *UsageAttributesObject {
 	this := UsageAttributesObject{}
 	return &this
 }
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageAttributesObject) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -77,7 +71,6 @@ func (o *UsageAttributesObject) HasOrgName() bool {
 func (o *UsageAttributesObject) SetOrgName(v string) {
 	o.OrgName = &v
 }
-
 
 // GetProductFamily returns the ProductFamily field value if set, zero value otherwise.
 func (o *UsageAttributesObject) GetProductFamily() string {
@@ -107,7 +100,6 @@ func (o *UsageAttributesObject) SetProductFamily(v string) {
 	o.ProductFamily = &v
 }
 
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageAttributesObject) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -135,7 +127,6 @@ func (o *UsageAttributesObject) HasPublicId() bool {
 func (o *UsageAttributesObject) SetPublicId(v string) {
 	o.PublicId = &v
 }
-
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *UsageAttributesObject) GetRegion() string {
@@ -165,7 +156,6 @@ func (o *UsageAttributesObject) SetRegion(v string) {
 	o.Region = &v
 }
 
-
 // GetTimeseries returns the Timeseries field value if set, zero value otherwise.
 func (o *UsageAttributesObject) GetTimeseries() []UsageTimeSeriesObject {
 	if o == nil || o.Timeseries == nil {
@@ -194,7 +184,6 @@ func (o *UsageAttributesObject) SetTimeseries(v []UsageTimeSeriesObject) {
 	o.Timeseries = v
 }
 
-
 // GetUsageType returns the UsageType field value if set, zero value otherwise.
 func (o *UsageAttributesObject) GetUsageType() HourlyUsageType {
 	if o == nil || o.UsageType == nil {
@@ -222,8 +211,6 @@ func (o *UsageAttributesObject) HasUsageType() bool {
 func (o *UsageAttributesObject) SetUsageType(v HourlyUsageType) {
 	o.UsageType = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageAttributesObject) MarshalJSON() ([]byte, error) {
@@ -259,19 +246,19 @@ func (o UsageAttributesObject) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageAttributesObject) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		OrgName *string `json:"org_name,omitempty"`
-		ProductFamily *string `json:"product_family,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
-		Region *string `json:"region,omitempty"`
-		Timeseries []UsageTimeSeriesObject `json:"timeseries,omitempty"`
-		UsageType *HourlyUsageType `json:"usage_type,omitempty"`
+		OrgName       *string                 `json:"org_name,omitempty"`
+		ProductFamily *string                 `json:"product_family,omitempty"`
+		PublicId      *string                 `json:"public_id,omitempty"`
+		Region        *string                 `json:"region,omitempty"`
+		Timeseries    []UsageTimeSeriesObject `json:"timeseries,omitempty"`
+		UsageType     *HourlyUsageType        `json:"usage_type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "org_name", "product_family", "public_id", "region", "timeseries", "usage_type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"org_name", "product_family", "public_id", "region", "timeseries", "usage_type"})
 	} else {
 		return err
 	}
@@ -282,7 +269,7 @@ func (o *UsageAttributesObject) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	o.Region = all.Region
 	o.Timeseries = all.Timeseries
-	if all.UsageType != nil &&!all.UsageType.IsValid() {
+	if all.UsageType != nil && !all.UsageType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.UsageType = all.UsageType

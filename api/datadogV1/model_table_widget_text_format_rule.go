@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // TableWidgetTextFormatRule Text format rules.
 type TableWidgetTextFormatRule struct {
@@ -27,10 +23,9 @@ type TableWidgetTextFormatRule struct {
 	// Replace rule for the table widget text format.
 	Replace *TableWidgetTextFormatReplace `json:"replace,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewTableWidgetTextFormatRule instantiates a new TableWidgetTextFormatRule object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,6 +48,7 @@ func NewTableWidgetTextFormatRuleWithDefaults() *TableWidgetTextFormatRule {
 	this.Palette = &palette
 	return &this
 }
+
 // GetCustomBgColor returns the CustomBgColor field value if set, zero value otherwise.
 func (o *TableWidgetTextFormatRule) GetCustomBgColor() string {
 	if o == nil || o.CustomBgColor == nil {
@@ -80,7 +76,6 @@ func (o *TableWidgetTextFormatRule) HasCustomBgColor() bool {
 func (o *TableWidgetTextFormatRule) SetCustomBgColor(v string) {
 	o.CustomBgColor = &v
 }
-
 
 // GetCustomFgColor returns the CustomFgColor field value if set, zero value otherwise.
 func (o *TableWidgetTextFormatRule) GetCustomFgColor() string {
@@ -110,7 +105,6 @@ func (o *TableWidgetTextFormatRule) SetCustomFgColor(v string) {
 	o.CustomFgColor = &v
 }
 
-
 // GetMatch returns the Match field value.
 func (o *TableWidgetTextFormatRule) GetMatch() TableWidgetTextFormatMatch {
 	if o == nil {
@@ -133,7 +127,6 @@ func (o *TableWidgetTextFormatRule) GetMatchOk() (*TableWidgetTextFormatMatch, b
 func (o *TableWidgetTextFormatRule) SetMatch(v TableWidgetTextFormatMatch) {
 	o.Match = v
 }
-
 
 // GetPalette returns the Palette field value if set, zero value otherwise.
 func (o *TableWidgetTextFormatRule) GetPalette() TableWidgetTextFormatPalette {
@@ -163,7 +156,6 @@ func (o *TableWidgetTextFormatRule) SetPalette(v TableWidgetTextFormatPalette) {
 	o.Palette = &v
 }
 
-
 // GetReplace returns the Replace field value if set, zero value otherwise.
 func (o *TableWidgetTextFormatRule) GetReplace() TableWidgetTextFormatReplace {
 	if o == nil || o.Replace == nil {
@@ -191,8 +183,6 @@ func (o *TableWidgetTextFormatRule) HasReplace() bool {
 func (o *TableWidgetTextFormatRule) SetReplace(v TableWidgetTextFormatReplace) {
 	o.Replace = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TableWidgetTextFormatRule) MarshalJSON() ([]byte, error) {
@@ -223,11 +213,11 @@ func (o TableWidgetTextFormatRule) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TableWidgetTextFormatRule) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomBgColor *string `json:"custom_bg_color,omitempty"`
-		CustomFgColor *string `json:"custom_fg_color,omitempty"`
-		Match *TableWidgetTextFormatMatch `json:"match"`
-		Palette *TableWidgetTextFormatPalette `json:"palette,omitempty"`
-		Replace *TableWidgetTextFormatReplace `json:"replace,omitempty"`
+		CustomBgColor *string                       `json:"custom_bg_color,omitempty"`
+		CustomFgColor *string                       `json:"custom_fg_color,omitempty"`
+		Match         *TableWidgetTextFormatMatch   `json:"match"`
+		Palette       *TableWidgetTextFormatPalette `json:"palette,omitempty"`
+		Replace       *TableWidgetTextFormatReplace `json:"replace,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -237,7 +227,7 @@ func (o *TableWidgetTextFormatRule) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "custom_bg_color", "custom_fg_color", "match", "palette", "replace",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_bg_color", "custom_fg_color", "match", "palette", "replace"})
 	} else {
 		return err
 	}
@@ -249,7 +239,7 @@ func (o *TableWidgetTextFormatRule) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Match = *all.Match
-	if all.Palette != nil &&!all.Palette.IsValid() {
+	if all.Palette != nil && !all.Palette.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Palette = all.Palette

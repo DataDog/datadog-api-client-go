@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SensitiveDataScannerGroupCreateRequest Create group request.
 type SensitiveDataScannerGroupCreateRequest struct {
@@ -21,10 +15,9 @@ type SensitiveDataScannerGroupCreateRequest struct {
 	// Meta payload containing information about the API.
 	Meta *SensitiveDataScannerMetaVersionOnly `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSensitiveDataScannerGroupCreateRequest instantiates a new SensitiveDataScannerGroupCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewSensitiveDataScannerGroupCreateRequestWithDefaults() *SensitiveDataScann
 	this := SensitiveDataScannerGroupCreateRequest{}
 	return &this
 }
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SensitiveDataScannerGroupCreateRequest) GetData() SensitiveDataScannerGroupCreate {
 	if o == nil || o.Data == nil {
@@ -69,7 +63,6 @@ func (o *SensitiveDataScannerGroupCreateRequest) HasData() bool {
 func (o *SensitiveDataScannerGroupCreateRequest) SetData(v SensitiveDataScannerGroupCreate) {
 	o.Data = &v
 }
-
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *SensitiveDataScannerGroupCreateRequest) GetMeta() SensitiveDataScannerMetaVersionOnly {
@@ -99,8 +92,6 @@ func (o *SensitiveDataScannerGroupCreateRequest) SetMeta(v SensitiveDataScannerM
 	o.Meta = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerGroupCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -123,7 +114,7 @@ func (o SensitiveDataScannerGroupCreateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerGroupCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *SensitiveDataScannerGroupCreate `json:"data,omitempty"`
+		Data *SensitiveDataScannerGroupCreate     `json:"data,omitempty"`
 		Meta *SensitiveDataScannerMetaVersionOnly `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -131,17 +122,17 @@ func (o *SensitiveDataScannerGroupCreateRequest) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data
-	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

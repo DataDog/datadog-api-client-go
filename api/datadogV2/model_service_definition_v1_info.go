@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ServiceDefinitionV1Info Basic information about a service.
 type ServiceDefinitionV1Info struct {
@@ -25,10 +21,9 @@ type ServiceDefinitionV1Info struct {
 	// Service tier.
 	ServiceTier *string `json:"service-tier,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewServiceDefinitionV1Info instantiates a new ServiceDefinitionV1Info object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,6 +42,7 @@ func NewServiceDefinitionV1InfoWithDefaults() *ServiceDefinitionV1Info {
 	this := ServiceDefinitionV1Info{}
 	return &this
 }
+
 // GetDdService returns the DdService field value.
 func (o *ServiceDefinitionV1Info) GetDdService() string {
 	if o == nil {
@@ -69,7 +65,6 @@ func (o *ServiceDefinitionV1Info) GetDdServiceOk() (*string, bool) {
 func (o *ServiceDefinitionV1Info) SetDdService(v string) {
 	o.DdService = v
 }
-
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ServiceDefinitionV1Info) GetDescription() string {
@@ -99,7 +94,6 @@ func (o *ServiceDefinitionV1Info) SetDescription(v string) {
 	o.Description = &v
 }
 
-
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *ServiceDefinitionV1Info) GetDisplayName() string {
 	if o == nil || o.DisplayName == nil {
@@ -127,7 +121,6 @@ func (o *ServiceDefinitionV1Info) HasDisplayName() bool {
 func (o *ServiceDefinitionV1Info) SetDisplayName(v string) {
 	o.DisplayName = &v
 }
-
 
 // GetServiceTier returns the ServiceTier field value if set, zero value otherwise.
 func (o *ServiceDefinitionV1Info) GetServiceTier() string {
@@ -157,8 +150,6 @@ func (o *ServiceDefinitionV1Info) SetServiceTier(v string) {
 	o.ServiceTier = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionV1Info) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -185,7 +176,7 @@ func (o ServiceDefinitionV1Info) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV1Info) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DdService *string `json:"dd-service"`
+		DdService   *string `json:"dd-service"`
 		Description *string `json:"description,omitempty"`
 		DisplayName *string `json:"display-name,omitempty"`
 		ServiceTier *string `json:"service-tier,omitempty"`
@@ -198,7 +189,7 @@ func (o *ServiceDefinitionV1Info) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "dd-service", "description", "display-name", "service-tier",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"dd-service", "description", "display-name", "service-tier"})
 	} else {
 		return err
 	}

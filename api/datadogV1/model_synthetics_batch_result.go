@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsBatchResult Object with the results of a Synthetic batch.
 type SyntheticsBatchResult struct {
@@ -37,10 +31,9 @@ type SyntheticsBatchResult struct {
 	// Type of the Synthetic test, either `api` or `browser`.
 	TestType *SyntheticsTestDetailsType `json:"test_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsBatchResult instantiates a new SyntheticsBatchResult object.
 // This constructor will assign default values to properties that have it defined,
@@ -58,6 +51,7 @@ func NewSyntheticsBatchResultWithDefaults() *SyntheticsBatchResult {
 	this := SyntheticsBatchResult{}
 	return &this
 }
+
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetDevice() SyntheticsDeviceID {
 	if o == nil || o.Device == nil {
@@ -85,7 +79,6 @@ func (o *SyntheticsBatchResult) HasDevice() bool {
 func (o *SyntheticsBatchResult) SetDevice(v SyntheticsDeviceID) {
 	o.Device = &v
 }
-
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetDuration() float64 {
@@ -115,7 +108,6 @@ func (o *SyntheticsBatchResult) SetDuration(v float64) {
 	o.Duration = &v
 }
 
-
 // GetExecutionRule returns the ExecutionRule field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetExecutionRule() SyntheticsTestExecutionRule {
 	if o == nil || o.ExecutionRule == nil {
@@ -143,7 +135,6 @@ func (o *SyntheticsBatchResult) HasExecutionRule() bool {
 func (o *SyntheticsBatchResult) SetExecutionRule(v SyntheticsTestExecutionRule) {
 	o.ExecutionRule = &v
 }
-
 
 // GetLocation returns the Location field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetLocation() string {
@@ -173,7 +164,6 @@ func (o *SyntheticsBatchResult) SetLocation(v string) {
 	o.Location = &v
 }
 
-
 // GetResultId returns the ResultId field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetResultId() string {
 	if o == nil || o.ResultId == nil {
@@ -201,7 +191,6 @@ func (o *SyntheticsBatchResult) HasResultId() bool {
 func (o *SyntheticsBatchResult) SetResultId(v string) {
 	o.ResultId = &v
 }
-
 
 // GetRetries returns the Retries field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetRetries() float64 {
@@ -231,7 +220,6 @@ func (o *SyntheticsBatchResult) SetRetries(v float64) {
 	o.Retries = &v
 }
 
-
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetStatus() SyntheticsStatus {
 	if o == nil || o.Status == nil {
@@ -259,7 +247,6 @@ func (o *SyntheticsBatchResult) HasStatus() bool {
 func (o *SyntheticsBatchResult) SetStatus(v SyntheticsStatus) {
 	o.Status = &v
 }
-
 
 // GetTestName returns the TestName field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetTestName() string {
@@ -289,7 +276,6 @@ func (o *SyntheticsBatchResult) SetTestName(v string) {
 	o.TestName = &v
 }
 
-
 // GetTestPublicId returns the TestPublicId field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetTestPublicId() string {
 	if o == nil || o.TestPublicId == nil {
@@ -318,7 +304,6 @@ func (o *SyntheticsBatchResult) SetTestPublicId(v string) {
 	o.TestPublicId = &v
 }
 
-
 // GetTestType returns the TestType field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetTestType() SyntheticsTestDetailsType {
 	if o == nil || o.TestType == nil {
@@ -346,8 +331,6 @@ func (o *SyntheticsBatchResult) HasTestType() bool {
 func (o *SyntheticsBatchResult) SetTestType(v SyntheticsTestDetailsType) {
 	o.TestType = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBatchResult) MarshalJSON() ([]byte, error) {
@@ -395,35 +378,35 @@ func (o SyntheticsBatchResult) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Device *SyntheticsDeviceID `json:"device,omitempty"`
-		Duration *float64 `json:"duration,omitempty"`
+		Device        *SyntheticsDeviceID          `json:"device,omitempty"`
+		Duration      *float64                     `json:"duration,omitempty"`
 		ExecutionRule *SyntheticsTestExecutionRule `json:"execution_rule,omitempty"`
-		Location *string `json:"location,omitempty"`
-		ResultId *string `json:"result_id,omitempty"`
-		Retries *float64 `json:"retries,omitempty"`
-		Status *SyntheticsStatus `json:"status,omitempty"`
-		TestName *string `json:"test_name,omitempty"`
-		TestPublicId *string `json:"test_public_id,omitempty"`
-		TestType *SyntheticsTestDetailsType `json:"test_type,omitempty"`
+		Location      *string                      `json:"location,omitempty"`
+		ResultId      *string                      `json:"result_id,omitempty"`
+		Retries       *float64                     `json:"retries,omitempty"`
+		Status        *SyntheticsStatus            `json:"status,omitempty"`
+		TestName      *string                      `json:"test_name,omitempty"`
+		TestPublicId  *string                      `json:"test_public_id,omitempty"`
+		TestType      *SyntheticsTestDetailsType   `json:"test_type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "device", "duration", "execution_rule", "location", "result_id", "retries", "status", "test_name", "test_public_id", "test_type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"device", "duration", "execution_rule", "location", "result_id", "retries", "status", "test_name", "test_public_id", "test_type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Device != nil &&!all.Device.IsValid() {
+	if all.Device != nil && !all.Device.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Device = all.Device
 	}
 	o.Duration = all.Duration
-	if all.ExecutionRule != nil &&!all.ExecutionRule.IsValid() {
+	if all.ExecutionRule != nil && !all.ExecutionRule.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ExecutionRule = all.ExecutionRule
@@ -431,14 +414,14 @@ func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 	o.Location = all.Location
 	o.ResultId = all.ResultId
 	o.Retries = all.Retries
-	if all.Status != nil &&!all.Status.IsValid() {
+	if all.Status != nil && !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status
 	}
 	o.TestName = all.TestName
 	o.TestPublicId = all.TestPublicId
-	if all.TestType != nil &&!all.TestType.IsValid() {
+	if all.TestType != nil && !all.TestType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TestType = all.TestType

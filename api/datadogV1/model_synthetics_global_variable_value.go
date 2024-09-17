@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsGlobalVariableValue Value of the global variable.
 type SyntheticsGlobalVariableValue struct {
@@ -24,10 +18,9 @@ type SyntheticsGlobalVariableValue struct {
 	// the value will not be present if the variable is hidden with the `secure` property.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsGlobalVariableValue instantiates a new SyntheticsGlobalVariableValue object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,6 +38,7 @@ func NewSyntheticsGlobalVariableValueWithDefaults() *SyntheticsGlobalVariableVal
 	this := SyntheticsGlobalVariableValue{}
 	return &this
 }
+
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableValue) GetOptions() SyntheticsGlobalVariableOptions {
 	if o == nil || o.Options == nil {
@@ -72,7 +66,6 @@ func (o *SyntheticsGlobalVariableValue) HasOptions() bool {
 func (o *SyntheticsGlobalVariableValue) SetOptions(v SyntheticsGlobalVariableOptions) {
 	o.Options = &v
 }
-
 
 // GetSecure returns the Secure field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableValue) GetSecure() bool {
@@ -102,7 +95,6 @@ func (o *SyntheticsGlobalVariableValue) SetSecure(v bool) {
 	o.Secure = &v
 }
 
-
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableValue) GetValue() string {
 	if o == nil || o.Value == nil {
@@ -131,8 +123,6 @@ func (o *SyntheticsGlobalVariableValue) SetValue(v string) {
 	o.Value = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsGlobalVariableValue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -159,21 +149,21 @@ func (o SyntheticsGlobalVariableValue) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsGlobalVariableValue) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Options *SyntheticsGlobalVariableOptions `json:"options,omitempty"`
-		Secure *bool `json:"secure,omitempty"`
-		Value *string `json:"value,omitempty"`
+		Secure  *bool                            `json:"secure,omitempty"`
+		Value   *string                          `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "options", "secure", "value",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"options", "secure", "value"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Options = all.Options

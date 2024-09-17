@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ConfluentAccountCreateRequestAttributes Attributes associated with the account creation request.
 type ConfluentAccountCreateRequestAttributes struct {
@@ -25,10 +21,9 @@ type ConfluentAccountCreateRequestAttributes struct {
 	// A list of strings representing tags. Can be a single key, or key-value pairs separated by a colon.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewConfluentAccountCreateRequestAttributes instantiates a new ConfluentAccountCreateRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +43,7 @@ func NewConfluentAccountCreateRequestAttributesWithDefaults() *ConfluentAccountC
 	this := ConfluentAccountCreateRequestAttributes{}
 	return &this
 }
+
 // GetApiKey returns the ApiKey field value.
 func (o *ConfluentAccountCreateRequestAttributes) GetApiKey() string {
 	if o == nil {
@@ -71,7 +67,6 @@ func (o *ConfluentAccountCreateRequestAttributes) SetApiKey(v string) {
 	o.ApiKey = v
 }
 
-
 // GetApiSecret returns the ApiSecret field value.
 func (o *ConfluentAccountCreateRequestAttributes) GetApiSecret() string {
 	if o == nil {
@@ -94,7 +89,6 @@ func (o *ConfluentAccountCreateRequestAttributes) GetApiSecretOk() (*string, boo
 func (o *ConfluentAccountCreateRequestAttributes) SetApiSecret(v string) {
 	o.ApiSecret = v
 }
-
 
 // GetResources returns the Resources field value if set, zero value otherwise.
 func (o *ConfluentAccountCreateRequestAttributes) GetResources() []ConfluentAccountResourceAttributes {
@@ -124,7 +118,6 @@ func (o *ConfluentAccountCreateRequestAttributes) SetResources(v []ConfluentAcco
 	o.Resources = v
 }
 
-
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ConfluentAccountCreateRequestAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -153,8 +146,6 @@ func (o *ConfluentAccountCreateRequestAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ConfluentAccountCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -179,10 +170,10 @@ func (o ConfluentAccountCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ConfluentAccountCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string `json:"api_key"`
-		ApiSecret *string `json:"api_secret"`
+		ApiKey    *string                              `json:"api_key"`
+		ApiSecret *string                              `json:"api_secret"`
 		Resources []ConfluentAccountResourceAttributes `json:"resources,omitempty"`
-		Tags []string `json:"tags,omitempty"`
+		Tags      []string                             `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -195,7 +186,7 @@ func (o *ConfluentAccountCreateRequestAttributes) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "api_key", "api_secret", "resources", "tags",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "api_secret", "resources", "tags"})
 	} else {
 		return err
 	}

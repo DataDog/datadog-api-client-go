@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // CustomCostsFileListResponse Response for List Custom Costs files.
 type CustomCostsFileListResponse struct {
@@ -21,10 +15,9 @@ type CustomCostsFileListResponse struct {
 	// Meta for the response from the List Custom Costs endpoints.
 	Meta *CustomCostListResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewCustomCostsFileListResponse instantiates a new CustomCostsFileListResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewCustomCostsFileListResponseWithDefaults() *CustomCostsFileListResponse {
 	this := CustomCostsFileListResponse{}
 	return &this
 }
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *CustomCostsFileListResponse) GetData() []CustomCostsFileMetadataHighLevel {
 	if o == nil || o.Data == nil {
@@ -69,7 +63,6 @@ func (o *CustomCostsFileListResponse) HasData() bool {
 func (o *CustomCostsFileListResponse) SetData(v []CustomCostsFileMetadataHighLevel) {
 	o.Data = v
 }
-
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *CustomCostsFileListResponse) GetMeta() CustomCostListResponseMeta {
@@ -99,8 +92,6 @@ func (o *CustomCostsFileListResponse) SetMeta(v CustomCostListResponseMeta) {
 	o.Meta = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomCostsFileListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -124,21 +115,21 @@ func (o CustomCostsFileListResponse) MarshalJSON() ([]byte, error) {
 func (o *CustomCostsFileListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data []CustomCostsFileMetadataHighLevel `json:"data,omitempty"`
-		Meta *CustomCostListResponseMeta `json:"meta,omitempty"`
+		Meta *CustomCostListResponseMeta        `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = all.Data
-	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

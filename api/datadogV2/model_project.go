@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // Project A Project
 type Project struct {
@@ -25,10 +21,9 @@ type Project struct {
 	// Project resource type
 	Type ProjectResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewProject instantiates a new Project object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,6 +46,7 @@ func NewProjectWithDefaults() *Project {
 	this.Type = typeVar
 	return &this
 }
+
 // GetAttributes returns the Attributes field value.
 func (o *Project) GetAttributes() ProjectAttributes {
 	if o == nil {
@@ -74,7 +70,6 @@ func (o *Project) SetAttributes(v ProjectAttributes) {
 	o.Attributes = v
 }
 
-
 // GetId returns the Id field value.
 func (o *Project) GetId() string {
 	if o == nil {
@@ -97,7 +92,6 @@ func (o *Project) GetIdOk() (*string, bool) {
 func (o *Project) SetId(v string) {
 	o.Id = v
 }
-
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *Project) GetRelationships() ProjectRelationships {
@@ -127,7 +121,6 @@ func (o *Project) SetRelationships(v ProjectRelationships) {
 	o.Relationships = &v
 }
 
-
 // GetType returns the Type field value.
 func (o *Project) GetType() ProjectResourceType {
 	if o == nil {
@@ -151,8 +144,6 @@ func (o *Project) SetType(v ProjectResourceType) {
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o Project) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -175,10 +166,10 @@ func (o Project) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Project) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *ProjectAttributes `json:"attributes"`
-		Id *string `json:"id"`
+		Attributes    *ProjectAttributes    `json:"attributes"`
+		Id            *string               `json:"id"`
 		Relationships *ProjectRelationships `json:"relationships,omitempty"`
-		Type *ProjectResourceType `json:"type"`
+		Type          *ProjectResourceType  `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -194,7 +185,7 @@ func (o *Project) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "relationships", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
 	} else {
 		return err
 	}
@@ -205,7 +196,7 @@ func (o *Project) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = *all.Attributes
 	o.Id = *all.Id
-	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // RUMSearchEventsRequest The request for a RUM events list.
 type RUMSearchEventsRequest struct {
@@ -26,10 +20,9 @@ type RUMSearchEventsRequest struct {
 	// Sort parameters when querying events.
 	Sort *RUMSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewRUMSearchEventsRequest instantiates a new RUMSearchEventsRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,6 +40,7 @@ func NewRUMSearchEventsRequestWithDefaults() *RUMSearchEventsRequest {
 	this := RUMSearchEventsRequest{}
 	return &this
 }
+
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *RUMSearchEventsRequest) GetFilter() RUMQueryFilter {
 	if o == nil || o.Filter == nil {
@@ -74,7 +68,6 @@ func (o *RUMSearchEventsRequest) HasFilter() bool {
 func (o *RUMSearchEventsRequest) SetFilter(v RUMQueryFilter) {
 	o.Filter = &v
 }
-
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *RUMSearchEventsRequest) GetOptions() RUMQueryOptions {
@@ -104,7 +97,6 @@ func (o *RUMSearchEventsRequest) SetOptions(v RUMQueryOptions) {
 	o.Options = &v
 }
 
-
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *RUMSearchEventsRequest) GetPage() RUMQueryPageOptions {
 	if o == nil || o.Page == nil {
@@ -132,7 +124,6 @@ func (o *RUMSearchEventsRequest) HasPage() bool {
 func (o *RUMSearchEventsRequest) SetPage(v RUMQueryPageOptions) {
 	o.Page = &v
 }
-
 
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *RUMSearchEventsRequest) GetSort() RUMSort {
@@ -162,8 +153,6 @@ func (o *RUMSearchEventsRequest) SetSort(v RUMSort) {
 	o.Sort = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMSearchEventsRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -192,35 +181,35 @@ func (o RUMSearchEventsRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMSearchEventsRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Filter *RUMQueryFilter `json:"filter,omitempty"`
-		Options *RUMQueryOptions `json:"options,omitempty"`
-		Page *RUMQueryPageOptions `json:"page,omitempty"`
-		Sort *RUMSort `json:"sort,omitempty"`
+		Filter  *RUMQueryFilter      `json:"filter,omitempty"`
+		Options *RUMQueryOptions     `json:"options,omitempty"`
+		Page    *RUMQueryPageOptions `json:"page,omitempty"`
+		Sort    *RUMSort             `json:"sort,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "filter", "options", "page", "sort",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "options", "page", "sort"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter
-	if  all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Options = all.Options
-	if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Page = all.Page
-	if all.Sort != nil &&!all.Sort.IsValid() {
+	if all.Sort != nil && !all.Sort.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Sort = all.Sort

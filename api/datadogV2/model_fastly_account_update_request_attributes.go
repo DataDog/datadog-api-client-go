@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // FastlyAccountUpdateRequestAttributes Attributes object for updating a Fastly account.
 type FastlyAccountUpdateRequestAttributes struct {
@@ -21,10 +15,9 @@ type FastlyAccountUpdateRequestAttributes struct {
 	// The name of the Fastly account.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewFastlyAccountUpdateRequestAttributes instantiates a new FastlyAccountUpdateRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewFastlyAccountUpdateRequestAttributesWithDefaults() *FastlyAccountUpdateR
 	this := FastlyAccountUpdateRequestAttributes{}
 	return &this
 }
+
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
 func (o *FastlyAccountUpdateRequestAttributes) GetApiKey() string {
 	if o == nil || o.ApiKey == nil {
@@ -69,7 +63,6 @@ func (o *FastlyAccountUpdateRequestAttributes) HasApiKey() bool {
 func (o *FastlyAccountUpdateRequestAttributes) SetApiKey(v string) {
 	o.ApiKey = &v
 }
-
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FastlyAccountUpdateRequestAttributes) GetName() string {
@@ -99,8 +92,6 @@ func (o *FastlyAccountUpdateRequestAttributes) SetName(v string) {
 	o.Name = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o FastlyAccountUpdateRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -124,14 +115,14 @@ func (o FastlyAccountUpdateRequestAttributes) MarshalJSON() ([]byte, error) {
 func (o *FastlyAccountUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ApiKey *string `json:"api_key,omitempty"`
-		Name *string `json:"name,omitempty"`
+		Name   *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "api_key", "name",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "name"})
 	} else {
 		return err
 	}

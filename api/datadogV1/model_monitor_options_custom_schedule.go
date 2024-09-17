@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // MonitorOptionsCustomSchedule Configuration options for the custom schedule. **This feature is in private beta.**
 type MonitorOptionsCustomSchedule struct {
 	// Array of custom schedule recurrences.
 	Recurrences []MonitorOptionsCustomScheduleRecurrence `json:"recurrences,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewMonitorOptionsCustomSchedule instantiates a new MonitorOptionsCustomSchedule object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewMonitorOptionsCustomScheduleWithDefaults() *MonitorOptionsCustomSchedule
 	this := MonitorOptionsCustomSchedule{}
 	return &this
 }
+
 // GetRecurrences returns the Recurrences field value if set, zero value otherwise.
 func (o *MonitorOptionsCustomSchedule) GetRecurrences() []MonitorOptionsCustomScheduleRecurrence {
 	if o == nil || o.Recurrences == nil {
@@ -68,8 +62,6 @@ func (o *MonitorOptionsCustomSchedule) SetRecurrences(v []MonitorOptionsCustomSc
 	o.Recurrences = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorOptionsCustomSchedule) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +88,7 @@ func (o *MonitorOptionsCustomSchedule) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "recurrences",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"recurrences"})
 	} else {
 		return err
 	}

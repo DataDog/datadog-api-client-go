@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ServiceNowTicketResult ServiceNow ticket information
 type ServiceNowTicketResult struct {
 	// Link to the Incident created on ServiceNow
 	SysTargetLink *string `json:"sys_target_link,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewServiceNowTicketResult instantiates a new ServiceNowTicketResult object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewServiceNowTicketResultWithDefaults() *ServiceNowTicketResult {
 	this := ServiceNowTicketResult{}
 	return &this
 }
+
 // GetSysTargetLink returns the SysTargetLink field value if set, zero value otherwise.
 func (o *ServiceNowTicketResult) GetSysTargetLink() string {
 	if o == nil || o.SysTargetLink == nil {
@@ -68,8 +62,6 @@ func (o *ServiceNowTicketResult) SetSysTargetLink(v string) {
 	o.SysTargetLink = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceNowTicketResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +88,7 @@ func (o *ServiceNowTicketResult) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "sys_target_link",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"sys_target_link"})
 	} else {
 		return err
 	}

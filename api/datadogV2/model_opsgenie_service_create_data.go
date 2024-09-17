@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // OpsgenieServiceCreateData Opsgenie service data for a create request.
 type OpsgenieServiceCreateData struct {
@@ -21,10 +17,9 @@ type OpsgenieServiceCreateData struct {
 	// Opsgenie service resource type.
 	Type OpsgenieServiceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewOpsgenieServiceCreateData instantiates a new OpsgenieServiceCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewOpsgenieServiceCreateDataWithDefaults() *OpsgenieServiceCreateData {
 	this.Type = typeVar
 	return &this
 }
+
 // GetAttributes returns the Attributes field value.
 func (o *OpsgenieServiceCreateData) GetAttributes() OpsgenieServiceCreateAttributes {
 	if o == nil {
@@ -68,7 +64,6 @@ func (o *OpsgenieServiceCreateData) GetAttributesOk() (*OpsgenieServiceCreateAtt
 func (o *OpsgenieServiceCreateData) SetAttributes(v OpsgenieServiceCreateAttributes) {
 	o.Attributes = v
 }
-
 
 // GetType returns the Type field value.
 func (o *OpsgenieServiceCreateData) GetType() OpsgenieServiceType {
@@ -93,8 +88,6 @@ func (o *OpsgenieServiceCreateData) SetType(v OpsgenieServiceType) {
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o OpsgenieServiceCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +107,7 @@ func (o OpsgenieServiceCreateData) MarshalJSON() ([]byte, error) {
 func (o *OpsgenieServiceCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *OpsgenieServiceCreateAttributes `json:"attributes"`
-		Type *OpsgenieServiceType `json:"type"`
+		Type       *OpsgenieServiceType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -127,7 +120,7 @@ func (o *OpsgenieServiceCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
 	} else {
 		return err
 	}

@@ -2,17 +2,14 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // LogsListRequestTime Timeframe to retrieve the log from.
 type LogsListRequestTime struct {
@@ -24,10 +21,9 @@ type LogsListRequestTime struct {
 	// Maximum timestamp for requested logs.
 	To time.Time `json:"to"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewLogsListRequestTime instantiates a new LogsListRequestTime object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,6 +43,7 @@ func NewLogsListRequestTimeWithDefaults() *LogsListRequestTime {
 	this := LogsListRequestTime{}
 	return &this
 }
+
 // GetFrom returns the From field value.
 func (o *LogsListRequestTime) GetFrom() time.Time {
 	if o == nil {
@@ -69,7 +66,6 @@ func (o *LogsListRequestTime) GetFromOk() (*time.Time, bool) {
 func (o *LogsListRequestTime) SetFrom(v time.Time) {
 	o.From = v
 }
-
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *LogsListRequestTime) GetTimezone() string {
@@ -99,7 +95,6 @@ func (o *LogsListRequestTime) SetTimezone(v string) {
 	o.Timezone = &v
 }
 
-
 // GetTo returns the To field value.
 func (o *LogsListRequestTime) GetTo() time.Time {
 	if o == nil {
@@ -122,8 +117,6 @@ func (o *LogsListRequestTime) GetToOk() (*time.Time, bool) {
 func (o *LogsListRequestTime) SetTo(v time.Time) {
 	o.To = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsListRequestTime) MarshalJSON() ([]byte, error) {
@@ -154,9 +147,9 @@ func (o LogsListRequestTime) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsListRequestTime) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		From *time.Time `json:"from"`
-		Timezone *string `json:"timezone,omitempty"`
-		To *time.Time `json:"to"`
+		From     *time.Time `json:"from"`
+		Timezone *string    `json:"timezone,omitempty"`
+		To       *time.Time `json:"to"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -169,7 +162,7 @@ func (o *LogsListRequestTime) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "from", "timezone", "to",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"from", "timezone", "to"})
 	} else {
 		return err
 	}

@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // UserInvitationData Object to create a user invitation.
 type UserInvitationData struct {
@@ -21,10 +17,9 @@ type UserInvitationData struct {
 	// User invitations type.
 	Type UserInvitationsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewUserInvitationData instantiates a new UserInvitationData object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewUserInvitationDataWithDefaults() *UserInvitationData {
 	this.Type = typeVar
 	return &this
 }
+
 // GetRelationships returns the Relationships field value.
 func (o *UserInvitationData) GetRelationships() UserInvitationRelationships {
 	if o == nil {
@@ -68,7 +64,6 @@ func (o *UserInvitationData) GetRelationshipsOk() (*UserInvitationRelationships,
 func (o *UserInvitationData) SetRelationships(v UserInvitationRelationships) {
 	o.Relationships = v
 }
-
 
 // GetType returns the Type field value.
 func (o *UserInvitationData) GetType() UserInvitationsType {
@@ -93,8 +88,6 @@ func (o *UserInvitationData) SetType(v UserInvitationsType) {
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o UserInvitationData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +107,7 @@ func (o UserInvitationData) MarshalJSON() ([]byte, error) {
 func (o *UserInvitationData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Relationships *UserInvitationRelationships `json:"relationships"`
-		Type *UserInvitationsType `json:"type"`
+		Type          *UserInvitationsType         `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -127,7 +120,7 @@ func (o *UserInvitationData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "relationships", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"relationships", "type"})
 	} else {
 		return err
 	}

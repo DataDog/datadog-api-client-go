@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // PowerpackTemplateVariableContents Powerpack template variable contents.
 type PowerpackTemplateVariableContents struct {
@@ -23,10 +19,9 @@ type PowerpackTemplateVariableContents struct {
 	// One or many template variable values within the saved view, which will be unioned together using `OR` if more than one is specified.
 	Values []string `json:"values"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewPowerpackTemplateVariableContents instantiates a new PowerpackTemplateVariableContents object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewPowerpackTemplateVariableContentsWithDefaults() *PowerpackTemplateVariab
 	this := PowerpackTemplateVariableContents{}
 	return &this
 }
+
 // GetName returns the Name field value.
 func (o *PowerpackTemplateVariableContents) GetName() string {
 	if o == nil {
@@ -68,7 +64,6 @@ func (o *PowerpackTemplateVariableContents) GetNameOk() (*string, bool) {
 func (o *PowerpackTemplateVariableContents) SetName(v string) {
 	o.Name = v
 }
-
 
 // GetPrefix returns the Prefix field value if set, zero value otherwise.
 func (o *PowerpackTemplateVariableContents) GetPrefix() string {
@@ -98,7 +93,6 @@ func (o *PowerpackTemplateVariableContents) SetPrefix(v string) {
 	o.Prefix = &v
 }
 
-
 // GetValues returns the Values field value.
 func (o *PowerpackTemplateVariableContents) GetValues() []string {
 	if o == nil {
@@ -122,8 +116,6 @@ func (o *PowerpackTemplateVariableContents) SetValues(v []string) {
 	o.Values = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o PowerpackTemplateVariableContents) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -145,8 +137,8 @@ func (o PowerpackTemplateVariableContents) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PowerpackTemplateVariableContents) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name *string `json:"name"`
-		Prefix *string `json:"prefix,omitempty"`
+		Name   *string   `json:"name"`
+		Prefix *string   `json:"prefix,omitempty"`
 		Values *[]string `json:"values"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -160,7 +152,7 @@ func (o *PowerpackTemplateVariableContents) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "prefix", "values",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"name", "prefix", "values"})
 	} else {
 		return err
 	}

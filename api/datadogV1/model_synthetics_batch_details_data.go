@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsBatchDetailsData Wrapper object that contains the details of a batch.
 type SyntheticsBatchDetailsData struct {
@@ -23,10 +17,9 @@ type SyntheticsBatchDetailsData struct {
 	// Determines whether or not the batch has passed, failed, or is in progress.
 	Status *SyntheticsStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsBatchDetailsData instantiates a new SyntheticsBatchDetailsData object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +37,7 @@ func NewSyntheticsBatchDetailsDataWithDefaults() *SyntheticsBatchDetailsData {
 	this := SyntheticsBatchDetailsData{}
 	return &this
 }
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *SyntheticsBatchDetailsData) GetMetadata() SyntheticsCIBatchMetadata {
 	if o == nil || o.Metadata == nil {
@@ -71,7 +65,6 @@ func (o *SyntheticsBatchDetailsData) HasMetadata() bool {
 func (o *SyntheticsBatchDetailsData) SetMetadata(v SyntheticsCIBatchMetadata) {
 	o.Metadata = &v
 }
-
 
 // GetResults returns the Results field value if set, zero value otherwise.
 func (o *SyntheticsBatchDetailsData) GetResults() []SyntheticsBatchResult {
@@ -101,7 +94,6 @@ func (o *SyntheticsBatchDetailsData) SetResults(v []SyntheticsBatchResult) {
 	o.Results = v
 }
 
-
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SyntheticsBatchDetailsData) GetStatus() SyntheticsStatus {
 	if o == nil || o.Status == nil {
@@ -130,8 +122,6 @@ func (o *SyntheticsBatchDetailsData) SetStatus(v SyntheticsStatus) {
 	o.Status = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBatchDetailsData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -158,26 +148,26 @@ func (o SyntheticsBatchDetailsData) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBatchDetailsData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
-		Results []SyntheticsBatchResult `json:"results,omitempty"`
-		Status *SyntheticsStatus `json:"status,omitempty"`
+		Results  []SyntheticsBatchResult    `json:"results,omitempty"`
+		Status   *SyntheticsStatus          `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "metadata", "results", "status",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"metadata", "results", "status"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Metadata = all.Metadata
 	o.Results = all.Results
-	if all.Status != nil &&!all.Status.IsValid() {
+	if all.Status != nil && !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

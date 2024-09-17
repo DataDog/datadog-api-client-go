@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SearchSLOResponseDataAttributes Attributes
 type SearchSLOResponseDataAttributes struct {
@@ -21,10 +15,9 @@ type SearchSLOResponseDataAttributes struct {
 	// SLOs
 	Slos []SearchServiceLevelObjective `json:"slos,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSearchSLOResponseDataAttributes instantiates a new SearchSLOResponseDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewSearchSLOResponseDataAttributesWithDefaults() *SearchSLOResponseDataAttr
 	this := SearchSLOResponseDataAttributes{}
 	return &this
 }
+
 // GetFacets returns the Facets field value if set, zero value otherwise.
 func (o *SearchSLOResponseDataAttributes) GetFacets() SearchSLOResponseDataAttributesFacets {
 	if o == nil || o.Facets == nil {
@@ -69,7 +63,6 @@ func (o *SearchSLOResponseDataAttributes) HasFacets() bool {
 func (o *SearchSLOResponseDataAttributes) SetFacets(v SearchSLOResponseDataAttributesFacets) {
 	o.Facets = &v
 }
-
 
 // GetSlos returns the Slos field value if set, zero value otherwise.
 func (o *SearchSLOResponseDataAttributes) GetSlos() []SearchServiceLevelObjective {
@@ -99,8 +92,6 @@ func (o *SearchSLOResponseDataAttributes) SetSlos(v []SearchServiceLevelObjectiv
 	o.Slos = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SearchSLOResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -124,20 +115,20 @@ func (o SearchSLOResponseDataAttributes) MarshalJSON() ([]byte, error) {
 func (o *SearchSLOResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Facets *SearchSLOResponseDataAttributesFacets `json:"facets,omitempty"`
-		Slos []SearchServiceLevelObjective `json:"slos,omitempty"`
+		Slos   []SearchServiceLevelObjective          `json:"slos,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "facets", "slos",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"facets", "slos"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.Facets != nil && all.Facets.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Facets != nil && all.Facets.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Facets = all.Facets

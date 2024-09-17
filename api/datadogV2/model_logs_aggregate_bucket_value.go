@@ -2,23 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // LogsAggregateBucketValue - A bucket value, can be either a timeseries or a single value
 type LogsAggregateBucketValue struct {
 	LogsAggregateBucketValueSingleString *string
 	LogsAggregateBucketValueSingleNumber *float64
-	LogsAggregateBucketValueTimeseries *LogsAggregateBucketValueTimeseries
+	LogsAggregateBucketValueTimeseries   *LogsAggregateBucketValueTimeseries
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -110,16 +104,13 @@ func (obj LogsAggregateBucketValue) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.LogsAggregateBucketValueSingleString)
 	}
 
-
 	if obj.LogsAggregateBucketValueSingleNumber != nil {
 		return datadog.Marshal(&obj.LogsAggregateBucketValueSingleNumber)
 	}
 
-
 	if obj.LogsAggregateBucketValueTimeseries != nil {
 		return datadog.Marshal(&obj.LogsAggregateBucketValueTimeseries)
 	}
-
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -128,21 +119,18 @@ func (obj LogsAggregateBucketValue) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *LogsAggregateBucketValue) GetActualInstance() (interface{}) {
+func (obj *LogsAggregateBucketValue) GetActualInstance() interface{} {
 	if obj.LogsAggregateBucketValueSingleString != nil {
 		return obj.LogsAggregateBucketValueSingleString
 	}
-
 
 	if obj.LogsAggregateBucketValueSingleNumber != nil {
 		return obj.LogsAggregateBucketValueSingleNumber
 	}
 
-
 	if obj.LogsAggregateBucketValueTimeseries != nil {
 		return obj.LogsAggregateBucketValueTimeseries
 	}
-
 
 	// all schemas are nil
 	return nil

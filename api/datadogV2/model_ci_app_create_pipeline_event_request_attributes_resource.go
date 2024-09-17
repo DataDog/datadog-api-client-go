@@ -2,24 +2,18 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // CIAppCreatePipelineEventRequestAttributesResource - Details of the CI pipeline event.
 type CIAppCreatePipelineEventRequestAttributesResource struct {
 	CIAppPipelineEventPipeline *CIAppPipelineEventPipeline
-	CIAppPipelineEventStage *CIAppPipelineEventStage
-	CIAppPipelineEventJob *CIAppPipelineEventJob
-	CIAppPipelineEventStep *CIAppPipelineEventStep
+	CIAppPipelineEventStage    *CIAppPipelineEventStage
+	CIAppPipelineEventJob      *CIAppPipelineEventJob
+	CIAppPipelineEventStep     *CIAppPipelineEventStep
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -134,21 +128,17 @@ func (obj CIAppCreatePipelineEventRequestAttributesResource) MarshalJSON() ([]by
 		return datadog.Marshal(&obj.CIAppPipelineEventPipeline)
 	}
 
-
 	if obj.CIAppPipelineEventStage != nil {
 		return datadog.Marshal(&obj.CIAppPipelineEventStage)
 	}
-
 
 	if obj.CIAppPipelineEventJob != nil {
 		return datadog.Marshal(&obj.CIAppPipelineEventJob)
 	}
 
-
 	if obj.CIAppPipelineEventStep != nil {
 		return datadog.Marshal(&obj.CIAppPipelineEventStep)
 	}
-
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -157,26 +147,22 @@ func (obj CIAppCreatePipelineEventRequestAttributesResource) MarshalJSON() ([]by
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *CIAppCreatePipelineEventRequestAttributesResource) GetActualInstance() (interface{}) {
+func (obj *CIAppCreatePipelineEventRequestAttributesResource) GetActualInstance() interface{} {
 	if obj.CIAppPipelineEventPipeline != nil {
 		return obj.CIAppPipelineEventPipeline
 	}
-
 
 	if obj.CIAppPipelineEventStage != nil {
 		return obj.CIAppPipelineEventStage
 	}
 
-
 	if obj.CIAppPipelineEventJob != nil {
 		return obj.CIAppPipelineEventJob
 	}
 
-
 	if obj.CIAppPipelineEventStep != nil {
 		return obj.CIAppPipelineEventStep
 	}
-
 
 	// all schemas are nil
 	return nil

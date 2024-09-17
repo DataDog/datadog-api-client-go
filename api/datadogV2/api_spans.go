@@ -2,15 +2,10 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"bytes"
 	_context "context"
-	_fmt "fmt"
-	_io "io"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -25,12 +20,10 @@ type SpansApi datadog.Service
 // This endpoint is rate limited to `300` requests per hour.
 func (a *SpansApi) AggregateSpans(ctx _context.Context, body SpansAggregateRequest) (SpansAggregateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  SpansAggregateResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SpansAggregateResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SpansApi.AggregateSpans")
 	if err != nil {
@@ -45,11 +38,9 @@ func (a *SpansApi) AggregateSpans(ctx _context.Context, body SpansAggregateReque
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -72,11 +63,10 @@ func (a *SpansApi) AggregateSpans(ctx _context.Context, body SpansAggregateReque
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -90,7 +80,7 @@ func (a *SpansApi) AggregateSpans(ctx _context.Context, body SpansAggregateReque
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -109,12 +99,10 @@ func (a *SpansApi) AggregateSpans(ctx _context.Context, body SpansAggregateReque
 // [1]: /logs/guide/collect-multiple-logs-with-pagination?tab=v2api
 func (a *SpansApi) ListSpans(ctx _context.Context, body SpansListRequest) (SpansListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  SpansListResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SpansListResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SpansApi.ListSpans")
 	if err != nil {
@@ -129,11 +117,9 @@ func (a *SpansApi) ListSpans(ctx _context.Context, body SpansListRequest) (Spans
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -156,11 +142,10 @@ func (a *SpansApi) ListSpans(ctx _context.Context, body SpansListRequest) (Spans
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 422||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 422 || localVarHTTPResponse.StatusCode == 429 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -174,7 +159,7 @@ func (a *SpansApi) ListSpans(ctx _context.Context, body SpansListRequest) (Spans
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -182,6 +167,7 @@ func (a *SpansApi) ListSpans(ctx _context.Context, body SpansListRequest) (Spans
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 // ListSpansWithPagination provides a paginated version of ListSpans returning a channel with all items.
 func (a *SpansApi) ListSpansWithPagination(ctx _context.Context, body SpansListRequest) (<-chan datadog.PaginationResult[Span], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -221,8 +207,8 @@ func (a *SpansApi) ListSpansWithPagination(ctx _context.Context, body SpansListR
 				select {
 				case items <- datadog.PaginationResult[Span]{Item: item, Error: nil}:
 				case <-ctx.Done():
-				close(items)
-				return
+					close(items)
+					return
 				}
 			}
 			if len(results) < int(pageSize_) {
@@ -251,11 +237,11 @@ func (a *SpansApi) ListSpansWithPagination(ctx _context.Context, body SpansListR
 // ListSpansGetOptionalParameters holds optional parameters for ListSpansGet.
 type ListSpansGetOptionalParameters struct {
 	FilterQuery *string
-	FilterFrom *string
-	FilterTo *string
-	Sort *SpansSort
-	PageCursor *string
-	PageLimit *int32
+	FilterFrom  *string
+	FilterTo    *string
+	Sort        *SpansSort
+	PageCursor  *string
+	PageLimit   *int32
 }
 
 // NewListSpansGetOptionalParameters creates an empty struct for parameters.
@@ -263,31 +249,37 @@ func NewListSpansGetOptionalParameters() *ListSpansGetOptionalParameters {
 	this := ListSpansGetOptionalParameters{}
 	return &this
 }
+
 // WithFilterQuery sets the corresponding parameter name and returns the struct.
 func (r *ListSpansGetOptionalParameters) WithFilterQuery(filterQuery string) *ListSpansGetOptionalParameters {
 	r.FilterQuery = &filterQuery
 	return r
 }
+
 // WithFilterFrom sets the corresponding parameter name and returns the struct.
 func (r *ListSpansGetOptionalParameters) WithFilterFrom(filterFrom string) *ListSpansGetOptionalParameters {
 	r.FilterFrom = &filterFrom
 	return r
 }
+
 // WithFilterTo sets the corresponding parameter name and returns the struct.
 func (r *ListSpansGetOptionalParameters) WithFilterTo(filterTo string) *ListSpansGetOptionalParameters {
 	r.FilterTo = &filterTo
 	return r
 }
+
 // WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListSpansGetOptionalParameters) WithSort(sort SpansSort) *ListSpansGetOptionalParameters {
 	r.Sort = &sort
 	return r
 }
+
 // WithPageCursor sets the corresponding parameter name and returns the struct.
 func (r *ListSpansGetOptionalParameters) WithPageCursor(pageCursor string) *ListSpansGetOptionalParameters {
 	r.PageCursor = &pageCursor
 	return r
 }
+
 // WithPageLimit sets the corresponding parameter name and returns the struct.
 func (r *ListSpansGetOptionalParameters) WithPageLimit(pageLimit int32) *ListSpansGetOptionalParameters {
 	r.PageLimit = &pageLimit
@@ -304,20 +296,18 @@ func (r *ListSpansGetOptionalParameters) WithPageLimit(pageLimit int32) *ListSpa
 // [1]: /logs/guide/collect-multiple-logs-with-pagination?tab=v2api
 func (a *SpansApi) ListSpansGet(ctx _context.Context, o ...ListSpansGetOptionalParameters) (SpansListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  SpansListResponse
-		optionalParams ListSpansGetOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SpansListResponse
+		optionalParams      ListSpansGetOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListSpansGetOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListSpansGetOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SpansApi.ListSpansGet")
 	if err != nil {
@@ -349,8 +339,7 @@ func (a *SpansApi) ListSpansGet(ctx _context.Context, o ...ListSpansGetOptionalP
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -373,11 +362,10 @@ func (a *SpansApi) ListSpansGet(ctx _context.Context, o ...ListSpansGetOptionalP
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 422||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 422 || localVarHTTPResponse.StatusCode == 429 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -391,7 +379,7 @@ func (a *SpansApi) ListSpansGet(ctx _context.Context, o ...ListSpansGetOptionalP
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -399,6 +387,7 @@ func (a *SpansApi) ListSpansGet(ctx _context.Context, o ...ListSpansGetOptionalP
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 // ListSpansGetWithPagination provides a paginated version of ListSpansGet returning a channel with all items.
 func (a *SpansApi) ListSpansGetWithPagination(ctx _context.Context, o ...ListSpansGetOptionalParameters) (<-chan datadog.PaginationResult[Span], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -430,8 +419,8 @@ func (a *SpansApi) ListSpansGetWithPagination(ctx _context.Context, o ...ListSpa
 				select {
 				case items <- datadog.PaginationResult[Span]{Item: item, Error: nil}:
 				case <-ctx.Done():
-				close(items)
-				return
+					close(items)
+					return
 				}
 			}
 			if len(results) < int(pageSize_) {

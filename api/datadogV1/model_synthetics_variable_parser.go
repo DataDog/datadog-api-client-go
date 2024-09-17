@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsVariableParser Details of the parser to use for the global variable.
 type SyntheticsVariableParser struct {
@@ -21,10 +17,9 @@ type SyntheticsVariableParser struct {
 	// Regex or JSON path used for the parser. Not used with type `raw`.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsVariableParser instantiates a new SyntheticsVariableParser object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewSyntheticsVariableParserWithDefaults() *SyntheticsVariableParser {
 	this := SyntheticsVariableParser{}
 	return &this
 }
+
 // GetType returns the Type field value.
 func (o *SyntheticsVariableParser) GetType() SyntheticsGlobalVariableParserType {
 	if o == nil {
@@ -65,7 +61,6 @@ func (o *SyntheticsVariableParser) GetTypeOk() (*SyntheticsGlobalVariableParserT
 func (o *SyntheticsVariableParser) SetType(v SyntheticsGlobalVariableParserType) {
 	o.Type = v
 }
-
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *SyntheticsVariableParser) GetValue() string {
@@ -95,8 +90,6 @@ func (o *SyntheticsVariableParser) SetValue(v string) {
 	o.Value = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsVariableParser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -117,8 +110,8 @@ func (o SyntheticsVariableParser) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsVariableParser) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Type *SyntheticsGlobalVariableParserType `json:"type"`
-		Value *string `json:"value,omitempty"`
+		Type  *SyntheticsGlobalVariableParserType `json:"type"`
+		Value *string                             `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -128,7 +121,7 @@ func (o *SyntheticsVariableParser) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "type", "value",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"type", "value"})
 	} else {
 		return err
 	}

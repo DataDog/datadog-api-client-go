@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"bytes"
 	_context "context"
-	_fmt "fmt"
-	_io "io"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -24,12 +20,10 @@ type ConfluentCloudApi datadog.Service
 // Create a Confluent account.
 func (a *ConfluentCloudApi) CreateConfluentAccount(ctx _context.Context, body ConfluentAccountCreateRequest) (ConfluentAccountResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  ConfluentAccountResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue ConfluentAccountResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ConfluentCloudApi.CreateConfluentAccount")
 	if err != nil {
@@ -44,11 +38,9 @@ func (a *ConfluentCloudApi) CreateConfluentAccount(ctx _context.Context, body Co
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -71,11 +63,10 @@ func (a *ConfluentCloudApi) CreateConfluentAccount(ctx _context.Context, body Co
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -89,7 +80,7 @@ func (a *ConfluentCloudApi) CreateConfluentAccount(ctx _context.Context, body Co
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -102,12 +93,10 @@ func (a *ConfluentCloudApi) CreateConfluentAccount(ctx _context.Context, body Co
 // Create a Confluent resource for the account associated with the provided ID.
 func (a *ConfluentCloudApi) CreateConfluentResource(ctx _context.Context, accountId string, body ConfluentResourceRequest) (ConfluentResourceResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  ConfluentResourceResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue ConfluentResourceResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ConfluentCloudApi.CreateConfluentResource")
 	if err != nil {
@@ -123,11 +112,9 @@ func (a *ConfluentCloudApi) CreateConfluentResource(ctx _context.Context, accoun
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -150,11 +137,10 @@ func (a *ConfluentCloudApi) CreateConfluentResource(ctx _context.Context, accoun
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -168,7 +154,7 @@ func (a *ConfluentCloudApi) CreateConfluentResource(ctx _context.Context, accoun
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -181,11 +167,9 @@ func (a *ConfluentCloudApi) CreateConfluentResource(ctx _context.Context, accoun
 // Delete a Confluent account with the provided account ID.
 func (a *ConfluentCloudApi) DeleteConfluentAccount(ctx _context.Context, accountId string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ConfluentCloudApi.DeleteConfluentAccount")
 	if err != nil {
@@ -198,10 +182,9 @@ func (a *ConfluentCloudApi) DeleteConfluentAccount(ctx _context.Context, account
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] =  "*/*"
+	localVarHeaderParams["Accept"] = "*/*"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -224,11 +207,10 @@ func (a *ConfluentCloudApi) DeleteConfluentAccount(ctx _context.Context, account
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -246,11 +228,9 @@ func (a *ConfluentCloudApi) DeleteConfluentAccount(ctx _context.Context, account
 // Delete a Confluent resource with the provided resource id for the account associated with the provided account ID.
 func (a *ConfluentCloudApi) DeleteConfluentResource(ctx _context.Context, accountId string, resourceId string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ConfluentCloudApi.DeleteConfluentResource")
 	if err != nil {
@@ -264,10 +244,9 @@ func (a *ConfluentCloudApi) DeleteConfluentResource(ctx _context.Context, accoun
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] =  "*/*"
+	localVarHeaderParams["Accept"] = "*/*"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -290,11 +269,10 @@ func (a *ConfluentCloudApi) DeleteConfluentResource(ctx _context.Context, accoun
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -312,12 +290,10 @@ func (a *ConfluentCloudApi) DeleteConfluentResource(ctx _context.Context, accoun
 // Get the Confluent account with the provided account ID.
 func (a *ConfluentCloudApi) GetConfluentAccount(ctx _context.Context, accountId string) (ConfluentAccountResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  ConfluentAccountResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue ConfluentAccountResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ConfluentCloudApi.GetConfluentAccount")
 	if err != nil {
@@ -332,8 +308,7 @@ func (a *ConfluentCloudApi) GetConfluentAccount(ctx _context.Context, accountId 
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -356,11 +331,10 @@ func (a *ConfluentCloudApi) GetConfluentAccount(ctx _context.Context, accountId 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -374,7 +348,7 @@ func (a *ConfluentCloudApi) GetConfluentAccount(ctx _context.Context, accountId 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -387,12 +361,10 @@ func (a *ConfluentCloudApi) GetConfluentAccount(ctx _context.Context, accountId 
 // Get a Confluent resource with the provided resource id for the account associated with the provided account ID.
 func (a *ConfluentCloudApi) GetConfluentResource(ctx _context.Context, accountId string, resourceId string) (ConfluentResourceResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  ConfluentResourceResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue ConfluentResourceResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ConfluentCloudApi.GetConfluentResource")
 	if err != nil {
@@ -408,8 +380,7 @@ func (a *ConfluentCloudApi) GetConfluentResource(ctx _context.Context, accountId
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -432,11 +403,10 @@ func (a *ConfluentCloudApi) GetConfluentResource(ctx _context.Context, accountId
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -450,7 +420,7 @@ func (a *ConfluentCloudApi) GetConfluentResource(ctx _context.Context, accountId
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -463,12 +433,10 @@ func (a *ConfluentCloudApi) GetConfluentResource(ctx _context.Context, accountId
 // List Confluent accounts.
 func (a *ConfluentCloudApi) ListConfluentAccount(ctx _context.Context) (ConfluentAccountsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  ConfluentAccountsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue ConfluentAccountsResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ConfluentCloudApi.ListConfluentAccount")
 	if err != nil {
@@ -482,8 +450,7 @@ func (a *ConfluentCloudApi) ListConfluentAccount(ctx _context.Context) (Confluen
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -506,11 +473,10 @@ func (a *ConfluentCloudApi) ListConfluentAccount(ctx _context.Context) (Confluen
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -524,7 +490,7 @@ func (a *ConfluentCloudApi) ListConfluentAccount(ctx _context.Context) (Confluen
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -537,12 +503,10 @@ func (a *ConfluentCloudApi) ListConfluentAccount(ctx _context.Context) (Confluen
 // Get a Confluent resource for the account associated with the provided ID.
 func (a *ConfluentCloudApi) ListConfluentResource(ctx _context.Context, accountId string) (ConfluentResourcesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  ConfluentResourcesResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue ConfluentResourcesResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ConfluentCloudApi.ListConfluentResource")
 	if err != nil {
@@ -557,8 +521,7 @@ func (a *ConfluentCloudApi) ListConfluentResource(ctx _context.Context, accountI
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -581,11 +544,10 @@ func (a *ConfluentCloudApi) ListConfluentResource(ctx _context.Context, accountI
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -599,7 +561,7 @@ func (a *ConfluentCloudApi) ListConfluentResource(ctx _context.Context, accountI
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -612,12 +574,10 @@ func (a *ConfluentCloudApi) ListConfluentResource(ctx _context.Context, accountI
 // Update the Confluent account with the provided account ID.
 func (a *ConfluentCloudApi) UpdateConfluentAccount(ctx _context.Context, accountId string, body ConfluentAccountUpdateRequest) (ConfluentAccountResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarReturnValue  ConfluentAccountResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue ConfluentAccountResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ConfluentCloudApi.UpdateConfluentAccount")
 	if err != nil {
@@ -633,11 +593,9 @@ func (a *ConfluentCloudApi) UpdateConfluentAccount(ctx _context.Context, account
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -660,11 +618,10 @@ func (a *ConfluentCloudApi) UpdateConfluentAccount(ctx _context.Context, account
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -678,7 +635,7 @@ func (a *ConfluentCloudApi) UpdateConfluentAccount(ctx _context.Context, account
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -691,12 +648,10 @@ func (a *ConfluentCloudApi) UpdateConfluentAccount(ctx _context.Context, account
 // Update a Confluent resource with the provided resource id for the account associated with the provided account ID.
 func (a *ConfluentCloudApi) UpdateConfluentResource(ctx _context.Context, accountId string, resourceId string, body ConfluentResourceRequest) (ConfluentResourceResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarReturnValue  ConfluentResourceResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue ConfluentResourceResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ConfluentCloudApi.UpdateConfluentResource")
 	if err != nil {
@@ -713,11 +668,9 @@ func (a *ConfluentCloudApi) UpdateConfluentResource(ctx _context.Context, accoun
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -740,11 +693,10 @@ func (a *ConfluentCloudApi) UpdateConfluentResource(ctx _context.Context, accoun
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -758,7 +710,7 @@ func (a *ConfluentCloudApi) UpdateConfluentResource(ctx _context.Context, accoun
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

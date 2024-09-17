@@ -2,15 +2,10 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"bytes"
 	_context "context"
-	_fmt "fmt"
-	_io "io"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -23,11 +18,11 @@ type EventsApi datadog.Service
 // ListEventsOptionalParameters holds optional parameters for ListEvents.
 type ListEventsOptionalParameters struct {
 	FilterQuery *string
-	FilterFrom *string
-	FilterTo *string
-	Sort *EventsSort
-	PageCursor *string
-	PageLimit *int32
+	FilterFrom  *string
+	FilterTo    *string
+	Sort        *EventsSort
+	PageCursor  *string
+	PageLimit   *int32
 }
 
 // NewListEventsOptionalParameters creates an empty struct for parameters.
@@ -35,31 +30,37 @@ func NewListEventsOptionalParameters() *ListEventsOptionalParameters {
 	this := ListEventsOptionalParameters{}
 	return &this
 }
+
 // WithFilterQuery sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithFilterQuery(filterQuery string) *ListEventsOptionalParameters {
 	r.FilterQuery = &filterQuery
 	return r
 }
+
 // WithFilterFrom sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithFilterFrom(filterFrom string) *ListEventsOptionalParameters {
 	r.FilterFrom = &filterFrom
 	return r
 }
+
 // WithFilterTo sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithFilterTo(filterTo string) *ListEventsOptionalParameters {
 	r.FilterTo = &filterTo
 	return r
 }
+
 // WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithSort(sort EventsSort) *ListEventsOptionalParameters {
 	r.Sort = &sort
 	return r
 }
+
 // WithPageCursor sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithPageCursor(pageCursor string) *ListEventsOptionalParameters {
 	r.PageCursor = &pageCursor
 	return r
 }
+
 // WithPageLimit sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListEventsOptionalParameters {
 	r.PageLimit = &pageLimit
@@ -73,20 +74,18 @@ func (r *ListEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListEvent
 // Use this endpoint to see your latest events.
 func (a *EventsApi) ListEvents(ctx _context.Context, o ...ListEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  EventsListResponse
-		optionalParams ListEventsOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue EventsListResponse
+		optionalParams      ListEventsOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListEventsOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListEventsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.EventsApi.ListEvents")
 	if err != nil {
@@ -118,8 +117,7 @@ func (a *EventsApi) ListEvents(ctx _context.Context, o ...ListEventsOptionalPara
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -142,11 +140,10 @@ func (a *EventsApi) ListEvents(ctx _context.Context, o ...ListEventsOptionalPara
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -160,7 +157,7 @@ func (a *EventsApi) ListEvents(ctx _context.Context, o ...ListEventsOptionalPara
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -168,6 +165,7 @@ func (a *EventsApi) ListEvents(ctx _context.Context, o ...ListEventsOptionalPara
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 // ListEventsWithPagination provides a paginated version of ListEvents returning a channel with all items.
 func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEventsOptionalParameters) (<-chan datadog.PaginationResult[EventResponse], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -199,8 +197,8 @@ func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEven
 				select {
 				case items <- datadog.PaginationResult[EventResponse]{Item: item, Error: nil}:
 				case <-ctx.Done():
-				close(items)
-				return
+					close(items)
+					return
 				}
 			}
 			if len(results) < int(pageSize_) {
@@ -236,6 +234,7 @@ func NewSearchEventsOptionalParameters() *SearchEventsOptionalParameters {
 	this := SearchEventsOptionalParameters{}
 	return &this
 }
+
 // WithBody sets the corresponding parameter name and returns the struct.
 func (r *SearchEventsOptionalParameters) WithBody(body EventsListRequest) *SearchEventsOptionalParameters {
 	r.Body = &body
@@ -249,20 +248,18 @@ func (r *SearchEventsOptionalParameters) WithBody(body EventsListRequest) *Searc
 // Use this endpoint to build complex events filtering and search.
 func (a *EventsApi) SearchEvents(ctx _context.Context, o ...SearchEventsOptionalParameters) (EventsListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  EventsListResponse
-		optionalParams SearchEventsOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue EventsListResponse
+		optionalParams      SearchEventsOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type SearchEventsOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type SearchEventsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.EventsApi.SearchEvents")
 	if err != nil {
@@ -277,13 +274,11 @@ func (a *EventsApi) SearchEvents(ctx _context.Context, o ...SearchEventsOptional
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	if optionalParams.Body != nil {
 		localVarPostBody = &optionalParams.Body
 	}
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -306,11 +301,10 @@ func (a *EventsApi) SearchEvents(ctx _context.Context, o ...SearchEventsOptional
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -324,7 +318,7 @@ func (a *EventsApi) SearchEvents(ctx _context.Context, o ...SearchEventsOptional
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -332,6 +326,7 @@ func (a *EventsApi) SearchEvents(ctx _context.Context, o ...SearchEventsOptional
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 // SearchEventsWithPagination provides a paginated version of SearchEvents returning a channel with all items.
 func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...SearchEventsOptionalParameters) (<-chan datadog.PaginationResult[EventResponse], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -369,8 +364,8 @@ func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...Search
 				select {
 				case items <- datadog.PaginationResult[EventResponse]{Item: item, Error: nil}:
 				case <-ctx.Done():
-				close(items)
-				return
+					close(items)
+					return
 				}
 			}
 			if len(results) < int(pageSize_) {

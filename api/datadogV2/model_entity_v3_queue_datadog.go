@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // EntityV3QueueDatadog Datadog product integrations for the datastore entity
 type EntityV3QueueDatadog struct {
@@ -25,7 +19,6 @@ type EntityV3QueueDatadog struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
-
 
 // NewEntityV3QueueDatadog instantiates a new EntityV3QueueDatadog object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +36,7 @@ func NewEntityV3QueueDatadogWithDefaults() *EntityV3QueueDatadog {
 	this := EntityV3QueueDatadog{}
 	return &this
 }
+
 // GetEvents returns the Events field value if set, zero value otherwise.
 func (o *EntityV3QueueDatadog) GetEvents() []EntityV3DatadogEventItem {
 	if o == nil || o.Events == nil {
@@ -70,7 +64,6 @@ func (o *EntityV3QueueDatadog) HasEvents() bool {
 func (o *EntityV3QueueDatadog) SetEvents(v []EntityV3DatadogEventItem) {
 	o.Events = v
 }
-
 
 // GetLogs returns the Logs field value if set, zero value otherwise.
 func (o *EntityV3QueueDatadog) GetLogs() []EntityV3DatadogLogItem {
@@ -100,7 +93,6 @@ func (o *EntityV3QueueDatadog) SetLogs(v []EntityV3DatadogLogItem) {
 	o.Logs = v
 }
 
-
 // GetPerformanceData returns the PerformanceData field value if set, zero value otherwise.
 func (o *EntityV3QueueDatadog) GetPerformanceData() EntityV3DatadogPerformance {
 	if o == nil || o.PerformanceData == nil {
@@ -129,8 +121,6 @@ func (o *EntityV3QueueDatadog) SetPerformanceData(v EntityV3DatadogPerformance) 
 	o.PerformanceData = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3QueueDatadog) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -152,8 +142,8 @@ func (o EntityV3QueueDatadog) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityV3QueueDatadog) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Events []EntityV3DatadogEventItem `json:"events,omitempty"`
-		Logs []EntityV3DatadogLogItem `json:"logs,omitempty"`
+		Events          []EntityV3DatadogEventItem  `json:"events,omitempty"`
+		Logs            []EntityV3DatadogLogItem    `json:"logs,omitempty"`
 		PerformanceData *EntityV3DatadogPerformance `json:"performanceData,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -163,7 +153,7 @@ func (o *EntityV3QueueDatadog) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Events = all.Events
 	o.Logs = all.Logs
-	if  all.PerformanceData != nil && all.PerformanceData.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.PerformanceData != nil && all.PerformanceData.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.PerformanceData = all.PerformanceData

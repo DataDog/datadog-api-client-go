@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // EventsSortType The type of sort to use on the calculated value.
 type EventsSortType string
@@ -20,7 +16,7 @@ type EventsSortType string
 // List of EventsSortType.
 const (
 	EVENTSSORTTYPE_ALPHABETICAL EventsSortType = "alphabetical"
-	EVENTSSORTTYPE_MEASURE EventsSortType = "measure"
+	EVENTSSORTTYPE_MEASURE      EventsSortType = "measure"
 )
 
 var allowedEventsSortTypeEnumValues = []EventsSortType{

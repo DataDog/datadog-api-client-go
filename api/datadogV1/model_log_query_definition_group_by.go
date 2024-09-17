@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // LogQueryDefinitionGroupBy Defined items in the group.
 type LogQueryDefinitionGroupBy struct {
@@ -23,10 +19,9 @@ type LogQueryDefinitionGroupBy struct {
 	// Define a sorting method.
 	Sort *LogQueryDefinitionGroupBySort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewLogQueryDefinitionGroupBy instantiates a new LogQueryDefinitionGroupBy object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,6 +40,7 @@ func NewLogQueryDefinitionGroupByWithDefaults() *LogQueryDefinitionGroupBy {
 	this := LogQueryDefinitionGroupBy{}
 	return &this
 }
+
 // GetFacet returns the Facet field value.
 func (o *LogQueryDefinitionGroupBy) GetFacet() string {
 	if o == nil {
@@ -67,7 +63,6 @@ func (o *LogQueryDefinitionGroupBy) GetFacetOk() (*string, bool) {
 func (o *LogQueryDefinitionGroupBy) SetFacet(v string) {
 	o.Facet = v
 }
-
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *LogQueryDefinitionGroupBy) GetLimit() int64 {
@@ -97,7 +92,6 @@ func (o *LogQueryDefinitionGroupBy) SetLimit(v int64) {
 	o.Limit = &v
 }
 
-
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *LogQueryDefinitionGroupBy) GetSort() LogQueryDefinitionGroupBySort {
 	if o == nil || o.Sort == nil {
@@ -126,8 +120,6 @@ func (o *LogQueryDefinitionGroupBy) SetSort(v LogQueryDefinitionGroupBySort) {
 	o.Sort = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o LogQueryDefinitionGroupBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -151,9 +143,9 @@ func (o LogQueryDefinitionGroupBy) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogQueryDefinitionGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Facet *string `json:"facet"`
-		Limit *int64 `json:"limit,omitempty"`
-		Sort *LogQueryDefinitionGroupBySort `json:"sort,omitempty"`
+		Facet *string                        `json:"facet"`
+		Limit *int64                         `json:"limit,omitempty"`
+		Sort  *LogQueryDefinitionGroupBySort `json:"sort,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -163,7 +155,7 @@ func (o *LogQueryDefinitionGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "facet", "limit", "sort",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"facet", "limit", "sort"})
 	} else {
 		return err
 	}
@@ -171,7 +163,7 @@ func (o *LogQueryDefinitionGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Facet = *all.Facet
 	o.Limit = all.Limit
-	if  all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Sort = all.Sort

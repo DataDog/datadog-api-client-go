@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // DashboardListAddItemsResponse Response containing a list of added dashboards.
 type DashboardListAddItemsResponse struct {
 	// List of dashboards added to the dashboard list.
 	AddedDashboardsToList []DashboardListItemResponse `json:"added_dashboards_to_list,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewDashboardListAddItemsResponse instantiates a new DashboardListAddItemsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewDashboardListAddItemsResponseWithDefaults() *DashboardListAddItemsRespon
 	this := DashboardListAddItemsResponse{}
 	return &this
 }
+
 // GetAddedDashboardsToList returns the AddedDashboardsToList field value if set, zero value otherwise.
 func (o *DashboardListAddItemsResponse) GetAddedDashboardsToList() []DashboardListItemResponse {
 	if o == nil || o.AddedDashboardsToList == nil {
@@ -68,8 +62,6 @@ func (o *DashboardListAddItemsResponse) SetAddedDashboardsToList(v []DashboardLi
 	o.AddedDashboardsToList = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o DashboardListAddItemsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +88,7 @@ func (o *DashboardListAddItemsResponse) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "added_dashboards_to_list",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"added_dashboards_to_list"})
 	} else {
 		return err
 	}

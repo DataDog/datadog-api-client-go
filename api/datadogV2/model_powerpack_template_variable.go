@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // PowerpackTemplateVariable Powerpack template variables.
 type PowerpackTemplateVariable struct {
@@ -21,10 +17,9 @@ type PowerpackTemplateVariable struct {
 	// The name of the variable.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewPowerpackTemplateVariable instantiates a new PowerpackTemplateVariable object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewPowerpackTemplateVariableWithDefaults() *PowerpackTemplateVariable {
 	this := PowerpackTemplateVariable{}
 	return &this
 }
+
 // GetDefaults returns the Defaults field value if set, zero value otherwise.
 func (o *PowerpackTemplateVariable) GetDefaults() []string {
 	if o == nil || o.Defaults == nil {
@@ -71,7 +67,6 @@ func (o *PowerpackTemplateVariable) SetDefaults(v []string) {
 	o.Defaults = v
 }
 
-
 // GetName returns the Name field value.
 func (o *PowerpackTemplateVariable) GetName() string {
 	if o == nil {
@@ -95,8 +90,6 @@ func (o *PowerpackTemplateVariable) SetName(v string) {
 	o.Name = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o PowerpackTemplateVariable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -118,7 +111,7 @@ func (o PowerpackTemplateVariable) MarshalJSON() ([]byte, error) {
 func (o *PowerpackTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Defaults []string `json:"defaults,omitempty"`
-		Name *string `json:"name"`
+		Name     *string  `json:"name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -128,7 +121,7 @@ func (o *PowerpackTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "defaults", "name",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"defaults", "name"})
 	} else {
 		return err
 	}

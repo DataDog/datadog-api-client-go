@@ -2,21 +2,16 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ListStreamWidgetDefinition The list stream visualization displays a table of recent events in your application that
 // match a search criteria using user-defined columns.
-//
 type ListStreamWidgetDefinition struct {
 	// Available legend sizes for a widget. Should be one of "0", "2", "4", "8", "16", or "auto".
 	LegendSize *string `json:"legend_size,omitempty"`
@@ -35,10 +30,9 @@ type ListStreamWidgetDefinition struct {
 	// Type of the list stream widget.
 	Type ListStreamWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewListStreamWidgetDefinition instantiates a new ListStreamWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -60,6 +54,7 @@ func NewListStreamWidgetDefinitionWithDefaults() *ListStreamWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
+
 // GetLegendSize returns the LegendSize field value if set, zero value otherwise.
 func (o *ListStreamWidgetDefinition) GetLegendSize() string {
 	if o == nil || o.LegendSize == nil {
@@ -88,7 +83,6 @@ func (o *ListStreamWidgetDefinition) SetLegendSize(v string) {
 	o.LegendSize = &v
 }
 
-
 // GetRequests returns the Requests field value.
 func (o *ListStreamWidgetDefinition) GetRequests() []ListStreamWidgetRequest {
 	if o == nil {
@@ -111,7 +105,6 @@ func (o *ListStreamWidgetDefinition) GetRequestsOk() (*[]ListStreamWidgetRequest
 func (o *ListStreamWidgetDefinition) SetRequests(v []ListStreamWidgetRequest) {
 	o.Requests = v
 }
-
 
 // GetShowLegend returns the ShowLegend field value if set, zero value otherwise.
 func (o *ListStreamWidgetDefinition) GetShowLegend() bool {
@@ -141,7 +134,6 @@ func (o *ListStreamWidgetDefinition) SetShowLegend(v bool) {
 	o.ShowLegend = &v
 }
 
-
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *ListStreamWidgetDefinition) GetTime() WidgetTime {
 	if o == nil || o.Time == nil {
@@ -169,7 +161,6 @@ func (o *ListStreamWidgetDefinition) HasTime() bool {
 func (o *ListStreamWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
-
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *ListStreamWidgetDefinition) GetTitle() string {
@@ -199,7 +190,6 @@ func (o *ListStreamWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
-
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *ListStreamWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -227,7 +217,6 @@ func (o *ListStreamWidgetDefinition) HasTitleAlign() bool {
 func (o *ListStreamWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
-
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *ListStreamWidgetDefinition) GetTitleSize() string {
@@ -257,7 +246,6 @@ func (o *ListStreamWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-
 // GetType returns the Type field value.
 func (o *ListStreamWidgetDefinition) GetType() ListStreamWidgetDefinitionType {
 	if o == nil {
@@ -280,8 +268,6 @@ func (o *ListStreamWidgetDefinition) GetTypeOk() (*ListStreamWidgetDefinitionTyp
 func (o *ListStreamWidgetDefinition) SetType(v ListStreamWidgetDefinitionType) {
 	o.Type = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ListStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -319,14 +305,14 @@ func (o ListStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		LegendSize *string `json:"legend_size,omitempty"`
-		Requests *[]ListStreamWidgetRequest `json:"requests"`
-		ShowLegend *bool `json:"show_legend,omitempty"`
-		Time *WidgetTime `json:"time,omitempty"`
-		Title *string `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-		TitleSize *string `json:"title_size,omitempty"`
-		Type *ListStreamWidgetDefinitionType `json:"type"`
+		LegendSize *string                         `json:"legend_size,omitempty"`
+		Requests   *[]ListStreamWidgetRequest      `json:"requests"`
+		ShowLegend *bool                           `json:"show_legend,omitempty"`
+		Time       *WidgetTime                     `json:"time,omitempty"`
+		Title      *string                         `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign                `json:"title_align,omitempty"`
+		TitleSize  *string                         `json:"title_size,omitempty"`
+		Type       *ListStreamWidgetDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -339,7 +325,7 @@ func (o *ListStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "legend_size", "requests", "show_legend", "time", "title", "title_align", "title_size", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"legend_size", "requests", "show_legend", "time", "title", "title_align", "title_size", "type"})
 	} else {
 		return err
 	}
@@ -350,7 +336,7 @@ func (o *ListStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.ShowLegend = all.ShowLegend
 	o.Time = all.Time
 	o.Title = all.Title
-	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign

@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SecurityMonitoringRuleOptions Options on rules.
 type SecurityMonitoringRuleOptions struct {
@@ -44,10 +38,9 @@ type SecurityMonitoringRuleOptions struct {
 	// Options on third party rules.
 	ThirdPartyRuleOptions *SecurityMonitoringRuleThirdPartyOptions `json:"thirdPartyRuleOptions,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSecurityMonitoringRuleOptions instantiates a new SecurityMonitoringRuleOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -65,6 +58,7 @@ func NewSecurityMonitoringRuleOptionsWithDefaults() *SecurityMonitoringRuleOptio
 	this := SecurityMonitoringRuleOptions{}
 	return &this
 }
+
 // GetComplianceRuleOptions returns the ComplianceRuleOptions field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetComplianceRuleOptions() CloudConfigurationComplianceRuleOptions {
 	if o == nil || o.ComplianceRuleOptions == nil {
@@ -92,7 +86,6 @@ func (o *SecurityMonitoringRuleOptions) HasComplianceRuleOptions() bool {
 func (o *SecurityMonitoringRuleOptions) SetComplianceRuleOptions(v CloudConfigurationComplianceRuleOptions) {
 	o.ComplianceRuleOptions = &v
 }
-
 
 // GetDecreaseCriticalityBasedOnEnv returns the DecreaseCriticalityBasedOnEnv field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetDecreaseCriticalityBasedOnEnv() bool {
@@ -122,7 +115,6 @@ func (o *SecurityMonitoringRuleOptions) SetDecreaseCriticalityBasedOnEnv(v bool)
 	o.DecreaseCriticalityBasedOnEnv = &v
 }
 
-
 // GetDetectionMethod returns the DetectionMethod field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetDetectionMethod() SecurityMonitoringRuleDetectionMethod {
 	if o == nil || o.DetectionMethod == nil {
@@ -150,7 +142,6 @@ func (o *SecurityMonitoringRuleOptions) HasDetectionMethod() bool {
 func (o *SecurityMonitoringRuleOptions) SetDetectionMethod(v SecurityMonitoringRuleDetectionMethod) {
 	o.DetectionMethod = &v
 }
-
 
 // GetEvaluationWindow returns the EvaluationWindow field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetEvaluationWindow() SecurityMonitoringRuleEvaluationWindow {
@@ -180,7 +171,6 @@ func (o *SecurityMonitoringRuleOptions) SetEvaluationWindow(v SecurityMonitoring
 	o.EvaluationWindow = &v
 }
 
-
 // GetHardcodedEvaluatorType returns the HardcodedEvaluatorType field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetHardcodedEvaluatorType() SecurityMonitoringRuleHardcodedEvaluatorType {
 	if o == nil || o.HardcodedEvaluatorType == nil {
@@ -208,7 +198,6 @@ func (o *SecurityMonitoringRuleOptions) HasHardcodedEvaluatorType() bool {
 func (o *SecurityMonitoringRuleOptions) SetHardcodedEvaluatorType(v SecurityMonitoringRuleHardcodedEvaluatorType) {
 	o.HardcodedEvaluatorType = &v
 }
-
 
 // GetImpossibleTravelOptions returns the ImpossibleTravelOptions field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetImpossibleTravelOptions() SecurityMonitoringRuleImpossibleTravelOptions {
@@ -238,7 +227,6 @@ func (o *SecurityMonitoringRuleOptions) SetImpossibleTravelOptions(v SecurityMon
 	o.ImpossibleTravelOptions = &v
 }
 
-
 // GetKeepAlive returns the KeepAlive field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetKeepAlive() SecurityMonitoringRuleKeepAlive {
 	if o == nil || o.KeepAlive == nil {
@@ -266,7 +254,6 @@ func (o *SecurityMonitoringRuleOptions) HasKeepAlive() bool {
 func (o *SecurityMonitoringRuleOptions) SetKeepAlive(v SecurityMonitoringRuleKeepAlive) {
 	o.KeepAlive = &v
 }
-
 
 // GetMaxSignalDuration returns the MaxSignalDuration field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetMaxSignalDuration() SecurityMonitoringRuleMaxSignalDuration {
@@ -296,7 +283,6 @@ func (o *SecurityMonitoringRuleOptions) SetMaxSignalDuration(v SecurityMonitorin
 	o.MaxSignalDuration = &v
 }
 
-
 // GetNewValueOptions returns the NewValueOptions field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetNewValueOptions() SecurityMonitoringRuleNewValueOptions {
 	if o == nil || o.NewValueOptions == nil {
@@ -325,7 +311,6 @@ func (o *SecurityMonitoringRuleOptions) SetNewValueOptions(v SecurityMonitoringR
 	o.NewValueOptions = &v
 }
 
-
 // GetThirdPartyRuleOptions returns the ThirdPartyRuleOptions field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetThirdPartyRuleOptions() SecurityMonitoringRuleThirdPartyOptions {
 	if o == nil || o.ThirdPartyRuleOptions == nil {
@@ -353,8 +338,6 @@ func (o *SecurityMonitoringRuleOptions) HasThirdPartyRuleOptions() bool {
 func (o *SecurityMonitoringRuleOptions) SetThirdPartyRuleOptions(v SecurityMonitoringRuleThirdPartyOptions) {
 	o.ThirdPartyRuleOptions = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
@@ -402,67 +385,67 @@ func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ComplianceRuleOptions *CloudConfigurationComplianceRuleOptions `json:"complianceRuleOptions,omitempty"`
-		DecreaseCriticalityBasedOnEnv *bool `json:"decreaseCriticalityBasedOnEnv,omitempty"`
-		DetectionMethod *SecurityMonitoringRuleDetectionMethod `json:"detectionMethod,omitempty"`
-		EvaluationWindow *SecurityMonitoringRuleEvaluationWindow `json:"evaluationWindow,omitempty"`
-		HardcodedEvaluatorType *SecurityMonitoringRuleHardcodedEvaluatorType `json:"hardcodedEvaluatorType,omitempty"`
-		ImpossibleTravelOptions *SecurityMonitoringRuleImpossibleTravelOptions `json:"impossibleTravelOptions,omitempty"`
-		KeepAlive *SecurityMonitoringRuleKeepAlive `json:"keepAlive,omitempty"`
-		MaxSignalDuration *SecurityMonitoringRuleMaxSignalDuration `json:"maxSignalDuration,omitempty"`
-		NewValueOptions *SecurityMonitoringRuleNewValueOptions `json:"newValueOptions,omitempty"`
-		ThirdPartyRuleOptions *SecurityMonitoringRuleThirdPartyOptions `json:"thirdPartyRuleOptions,omitempty"`
+		ComplianceRuleOptions         *CloudConfigurationComplianceRuleOptions       `json:"complianceRuleOptions,omitempty"`
+		DecreaseCriticalityBasedOnEnv *bool                                          `json:"decreaseCriticalityBasedOnEnv,omitempty"`
+		DetectionMethod               *SecurityMonitoringRuleDetectionMethod         `json:"detectionMethod,omitempty"`
+		EvaluationWindow              *SecurityMonitoringRuleEvaluationWindow        `json:"evaluationWindow,omitempty"`
+		HardcodedEvaluatorType        *SecurityMonitoringRuleHardcodedEvaluatorType  `json:"hardcodedEvaluatorType,omitempty"`
+		ImpossibleTravelOptions       *SecurityMonitoringRuleImpossibleTravelOptions `json:"impossibleTravelOptions,omitempty"`
+		KeepAlive                     *SecurityMonitoringRuleKeepAlive               `json:"keepAlive,omitempty"`
+		MaxSignalDuration             *SecurityMonitoringRuleMaxSignalDuration       `json:"maxSignalDuration,omitempty"`
+		NewValueOptions               *SecurityMonitoringRuleNewValueOptions         `json:"newValueOptions,omitempty"`
+		ThirdPartyRuleOptions         *SecurityMonitoringRuleThirdPartyOptions       `json:"thirdPartyRuleOptions,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "complianceRuleOptions", "decreaseCriticalityBasedOnEnv", "detectionMethod", "evaluationWindow", "hardcodedEvaluatorType", "impossibleTravelOptions", "keepAlive", "maxSignalDuration", "newValueOptions", "thirdPartyRuleOptions",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"complianceRuleOptions", "decreaseCriticalityBasedOnEnv", "detectionMethod", "evaluationWindow", "hardcodedEvaluatorType", "impossibleTravelOptions", "keepAlive", "maxSignalDuration", "newValueOptions", "thirdPartyRuleOptions"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.ComplianceRuleOptions != nil && all.ComplianceRuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.ComplianceRuleOptions != nil && all.ComplianceRuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ComplianceRuleOptions = all.ComplianceRuleOptions
 	o.DecreaseCriticalityBasedOnEnv = all.DecreaseCriticalityBasedOnEnv
-	if all.DetectionMethod != nil &&!all.DetectionMethod.IsValid() {
+	if all.DetectionMethod != nil && !all.DetectionMethod.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DetectionMethod = all.DetectionMethod
 	}
-	if all.EvaluationWindow != nil &&!all.EvaluationWindow.IsValid() {
+	if all.EvaluationWindow != nil && !all.EvaluationWindow.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.EvaluationWindow = all.EvaluationWindow
 	}
-	if all.HardcodedEvaluatorType != nil &&!all.HardcodedEvaluatorType.IsValid() {
+	if all.HardcodedEvaluatorType != nil && !all.HardcodedEvaluatorType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.HardcodedEvaluatorType = all.HardcodedEvaluatorType
 	}
-	if  all.ImpossibleTravelOptions != nil && all.ImpossibleTravelOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.ImpossibleTravelOptions != nil && all.ImpossibleTravelOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ImpossibleTravelOptions = all.ImpossibleTravelOptions
-	if all.KeepAlive != nil &&!all.KeepAlive.IsValid() {
+	if all.KeepAlive != nil && !all.KeepAlive.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.KeepAlive = all.KeepAlive
 	}
-	if all.MaxSignalDuration != nil &&!all.MaxSignalDuration.IsValid() {
+	if all.MaxSignalDuration != nil && !all.MaxSignalDuration.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.MaxSignalDuration = all.MaxSignalDuration
 	}
-	if  all.NewValueOptions != nil && all.NewValueOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.NewValueOptions != nil && all.NewValueOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.NewValueOptions = all.NewValueOptions
-	if  all.ThirdPartyRuleOptions != nil && all.ThirdPartyRuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.ThirdPartyRuleOptions != nil && all.ThirdPartyRuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ThirdPartyRuleOptions = all.ThirdPartyRuleOptions

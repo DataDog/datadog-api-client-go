@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // DeletedMonitor Response from the delete monitor call.
 type DeletedMonitor struct {
 	// ID of the deleted monitor.
 	DeletedMonitorId *int64 `json:"deleted_monitor_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewDeletedMonitor instantiates a new DeletedMonitor object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewDeletedMonitorWithDefaults() *DeletedMonitor {
 	this := DeletedMonitor{}
 	return &this
 }
+
 // GetDeletedMonitorId returns the DeletedMonitorId field value if set, zero value otherwise.
 func (o *DeletedMonitor) GetDeletedMonitorId() int64 {
 	if o == nil || o.DeletedMonitorId == nil {
@@ -68,8 +62,6 @@ func (o *DeletedMonitor) SetDeletedMonitorId(v int64) {
 	o.DeletedMonitorId = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o DeletedMonitor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +88,7 @@ func (o *DeletedMonitor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "deleted_monitor_id",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"deleted_monitor_id"})
 	} else {
 		return err
 	}

@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // UsageFargateHour Number of Fargate tasks run and hourly usage.
 type UsageFargateHour struct {
@@ -31,10 +27,9 @@ type UsageFargateHour struct {
 	// The number of Fargate tasks run.
 	TasksCount datadog.NullableInt64 `json:"tasks_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewUsageFargateHour instantiates a new UsageFargateHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,6 +47,7 @@ func NewUsageFargateHourWithDefaults() *UsageFargateHour {
 	this := UsageFargateHour{}
 	return &this
 }
+
 // GetApmFargateCount returns the ApmFargateCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageFargateHour) GetApmFargateCount() int64 {
 	if o == nil || o.ApmFargateCount.Get() == nil {
@@ -65,7 +61,7 @@ func (o *UsageFargateHour) GetApmFargateCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageFargateHour) GetApmFargateCountOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.ApmFargateCount.Get(), o.ApmFargateCount.IsSet()
@@ -80,6 +76,7 @@ func (o *UsageFargateHour) HasApmFargateCount() bool {
 func (o *UsageFargateHour) SetApmFargateCount(v int64) {
 	o.ApmFargateCount.Set(&v)
 }
+
 // SetApmFargateCountNil sets the value for ApmFargateCount to be an explicit nil.
 func (o *UsageFargateHour) SetApmFargateCountNil() {
 	o.ApmFargateCount.Set(nil)
@@ -89,7 +86,6 @@ func (o *UsageFargateHour) SetApmFargateCountNil() {
 func (o *UsageFargateHour) UnsetApmFargateCount() {
 	o.ApmFargateCount.Unset()
 }
-
 
 // GetAppsecFargateCount returns the AppsecFargateCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageFargateHour) GetAppsecFargateCount() int64 {
@@ -104,7 +100,7 @@ func (o *UsageFargateHour) GetAppsecFargateCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageFargateHour) GetAppsecFargateCountOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.AppsecFargateCount.Get(), o.AppsecFargateCount.IsSet()
@@ -119,6 +115,7 @@ func (o *UsageFargateHour) HasAppsecFargateCount() bool {
 func (o *UsageFargateHour) SetAppsecFargateCount(v int64) {
 	o.AppsecFargateCount.Set(&v)
 }
+
 // SetAppsecFargateCountNil sets the value for AppsecFargateCount to be an explicit nil.
 func (o *UsageFargateHour) SetAppsecFargateCountNil() {
 	o.AppsecFargateCount.Set(nil)
@@ -128,7 +125,6 @@ func (o *UsageFargateHour) SetAppsecFargateCountNil() {
 func (o *UsageFargateHour) UnsetAppsecFargateCount() {
 	o.AppsecFargateCount.Unset()
 }
-
 
 // GetAvgProfiledFargateTasks returns the AvgProfiledFargateTasks field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageFargateHour) GetAvgProfiledFargateTasks() int64 {
@@ -143,7 +139,7 @@ func (o *UsageFargateHour) GetAvgProfiledFargateTasks() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageFargateHour) GetAvgProfiledFargateTasksOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.AvgProfiledFargateTasks.Get(), o.AvgProfiledFargateTasks.IsSet()
@@ -158,6 +154,7 @@ func (o *UsageFargateHour) HasAvgProfiledFargateTasks() bool {
 func (o *UsageFargateHour) SetAvgProfiledFargateTasks(v int64) {
 	o.AvgProfiledFargateTasks.Set(&v)
 }
+
 // SetAvgProfiledFargateTasksNil sets the value for AvgProfiledFargateTasks to be an explicit nil.
 func (o *UsageFargateHour) SetAvgProfiledFargateTasksNil() {
 	o.AvgProfiledFargateTasks.Set(nil)
@@ -167,7 +164,6 @@ func (o *UsageFargateHour) SetAvgProfiledFargateTasksNil() {
 func (o *UsageFargateHour) UnsetAvgProfiledFargateTasks() {
 	o.AvgProfiledFargateTasks.Unset()
 }
-
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetHour() time.Time {
@@ -197,7 +193,6 @@ func (o *UsageFargateHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -225,7 +220,6 @@ func (o *UsageFargateHour) HasOrgName() bool {
 func (o *UsageFargateHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
-
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageFargateHour) GetPublicId() string {
@@ -255,7 +249,6 @@ func (o *UsageFargateHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-
 // GetTasksCount returns the TasksCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageFargateHour) GetTasksCount() int64 {
 	if o == nil || o.TasksCount.Get() == nil {
@@ -269,7 +262,7 @@ func (o *UsageFargateHour) GetTasksCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageFargateHour) GetTasksCountOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.TasksCount.Get(), o.TasksCount.IsSet()
@@ -284,6 +277,7 @@ func (o *UsageFargateHour) HasTasksCount() bool {
 func (o *UsageFargateHour) SetTasksCount(v int64) {
 	o.TasksCount.Set(&v)
 }
+
 // SetTasksCountNil sets the value for TasksCount to be an explicit nil.
 func (o *UsageFargateHour) SetTasksCountNil() {
 	o.TasksCount.Set(nil)
@@ -293,8 +287,6 @@ func (o *UsageFargateHour) SetTasksCountNil() {
 func (o *UsageFargateHour) UnsetTasksCount() {
 	o.TasksCount.Unset()
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageFargateHour) MarshalJSON() ([]byte, error) {
@@ -337,20 +329,20 @@ func (o UsageFargateHour) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageFargateHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApmFargateCount datadog.NullableInt64 `json:"apm_fargate_count,omitempty"`
-		AppsecFargateCount datadog.NullableInt64 `json:"appsec_fargate_count,omitempty"`
+		ApmFargateCount         datadog.NullableInt64 `json:"apm_fargate_count,omitempty"`
+		AppsecFargateCount      datadog.NullableInt64 `json:"appsec_fargate_count,omitempty"`
 		AvgProfiledFargateTasks datadog.NullableInt64 `json:"avg_profiled_fargate_tasks,omitempty"`
-		Hour *time.Time `json:"hour,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
-		TasksCount datadog.NullableInt64 `json:"tasks_count,omitempty"`
+		Hour                    *time.Time            `json:"hour,omitempty"`
+		OrgName                 *string               `json:"org_name,omitempty"`
+		PublicId                *string               `json:"public_id,omitempty"`
+		TasksCount              datadog.NullableInt64 `json:"tasks_count,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "apm_fargate_count", "appsec_fargate_count", "avg_profiled_fargate_tasks", "hour", "org_name", "public_id", "tasks_count",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"apm_fargate_count", "appsec_fargate_count", "avg_profiled_fargate_tasks", "hour", "org_name", "public_id", "tasks_count"})
 	} else {
 		return err
 	}

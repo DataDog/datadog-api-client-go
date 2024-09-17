@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // EntityMeta Entity metadata.
 type EntityMeta struct {
@@ -25,10 +19,9 @@ type EntityMeta struct {
 	// The origin.
 	Origin *string `json:"origin,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewEntityMeta instantiates a new EntityMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +39,7 @@ func NewEntityMetaWithDefaults() *EntityMeta {
 	this := EntityMeta{}
 	return &this
 }
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *EntityMeta) GetCreatedAt() string {
 	if o == nil || o.CreatedAt == nil {
@@ -73,7 +67,6 @@ func (o *EntityMeta) HasCreatedAt() bool {
 func (o *EntityMeta) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
-
 
 // GetIngestionSource returns the IngestionSource field value if set, zero value otherwise.
 func (o *EntityMeta) GetIngestionSource() string {
@@ -103,7 +96,6 @@ func (o *EntityMeta) SetIngestionSource(v string) {
 	o.IngestionSource = &v
 }
 
-
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *EntityMeta) GetModifiedAt() string {
 	if o == nil || o.ModifiedAt == nil {
@@ -131,7 +123,6 @@ func (o *EntityMeta) HasModifiedAt() bool {
 func (o *EntityMeta) SetModifiedAt(v string) {
 	o.ModifiedAt = &v
 }
-
 
 // GetOrigin returns the Origin field value if set, zero value otherwise.
 func (o *EntityMeta) GetOrigin() string {
@@ -161,8 +152,6 @@ func (o *EntityMeta) SetOrigin(v string) {
 	o.Origin = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -191,17 +180,17 @@ func (o EntityMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt *string `json:"createdAt,omitempty"`
+		CreatedAt       *string `json:"createdAt,omitempty"`
 		IngestionSource *string `json:"ingestionSource,omitempty"`
-		ModifiedAt *string `json:"modifiedAt,omitempty"`
-		Origin *string `json:"origin,omitempty"`
+		ModifiedAt      *string `json:"modifiedAt,omitempty"`
+		Origin          *string `json:"origin,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "createdAt", "ingestionSource", "modifiedAt", "origin",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "ingestionSource", "modifiedAt", "origin"})
 	} else {
 		return err
 	}

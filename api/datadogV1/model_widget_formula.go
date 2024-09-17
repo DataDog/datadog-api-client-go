@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // WidgetFormula Formula to be used in a widget query.
 type WidgetFormula struct {
@@ -29,10 +25,9 @@ type WidgetFormula struct {
 	// Styling options for widget formulas.
 	Style *WidgetFormulaStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewWidgetFormula instantiates a new WidgetFormula object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,6 +46,7 @@ func NewWidgetFormulaWithDefaults() *WidgetFormula {
 	this := WidgetFormula{}
 	return &this
 }
+
 // GetAlias returns the Alias field value if set, zero value otherwise.
 func (o *WidgetFormula) GetAlias() string {
 	if o == nil || o.Alias == nil {
@@ -78,7 +74,6 @@ func (o *WidgetFormula) HasAlias() bool {
 func (o *WidgetFormula) SetAlias(v string) {
 	o.Alias = &v
 }
-
 
 // GetCellDisplayMode returns the CellDisplayMode field value if set, zero value otherwise.
 func (o *WidgetFormula) GetCellDisplayMode() TableWidgetCellDisplayMode {
@@ -108,7 +103,6 @@ func (o *WidgetFormula) SetCellDisplayMode(v TableWidgetCellDisplayMode) {
 	o.CellDisplayMode = &v
 }
 
-
 // GetConditionalFormats returns the ConditionalFormats field value if set, zero value otherwise.
 func (o *WidgetFormula) GetConditionalFormats() []WidgetConditionalFormat {
 	if o == nil || o.ConditionalFormats == nil {
@@ -137,7 +131,6 @@ func (o *WidgetFormula) SetConditionalFormats(v []WidgetConditionalFormat) {
 	o.ConditionalFormats = v
 }
 
-
 // GetFormula returns the Formula field value.
 func (o *WidgetFormula) GetFormula() string {
 	if o == nil {
@@ -160,7 +153,6 @@ func (o *WidgetFormula) GetFormulaOk() (*string, bool) {
 func (o *WidgetFormula) SetFormula(v string) {
 	o.Formula = v
 }
-
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *WidgetFormula) GetLimit() WidgetFormulaLimit {
@@ -190,7 +182,6 @@ func (o *WidgetFormula) SetLimit(v WidgetFormulaLimit) {
 	o.Limit = &v
 }
 
-
 // GetStyle returns the Style field value if set, zero value otherwise.
 func (o *WidgetFormula) GetStyle() WidgetFormulaStyle {
 	if o == nil || o.Style == nil {
@@ -218,8 +209,6 @@ func (o *WidgetFormula) HasStyle() bool {
 func (o *WidgetFormula) SetStyle(v WidgetFormulaStyle) {
 	o.Style = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o WidgetFormula) MarshalJSON() ([]byte, error) {
@@ -253,12 +242,12 @@ func (o WidgetFormula) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Alias *string `json:"alias,omitempty"`
-		CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
-		ConditionalFormats []WidgetConditionalFormat `json:"conditional_formats,omitempty"`
-		Formula *string `json:"formula"`
-		Limit *WidgetFormulaLimit `json:"limit,omitempty"`
-		Style *WidgetFormulaStyle `json:"style,omitempty"`
+		Alias              *string                     `json:"alias,omitempty"`
+		CellDisplayMode    *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
+		ConditionalFormats []WidgetConditionalFormat   `json:"conditional_formats,omitempty"`
+		Formula            *string                     `json:"formula"`
+		Limit              *WidgetFormulaLimit         `json:"limit,omitempty"`
+		Style              *WidgetFormulaStyle         `json:"style,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -268,25 +257,25 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "alias", "cell_display_mode", "conditional_formats", "formula", "limit", "style",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"alias", "cell_display_mode", "conditional_formats", "formula", "limit", "style"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Alias = all.Alias
-	if all.CellDisplayMode != nil &&!all.CellDisplayMode.IsValid() {
+	if all.CellDisplayMode != nil && !all.CellDisplayMode.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.CellDisplayMode = all.CellDisplayMode
 	}
 	o.ConditionalFormats = all.ConditionalFormats
 	o.Formula = *all.Formula
-	if  all.Limit != nil && all.Limit.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Limit != nil && all.Limit.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Limit = all.Limit
-	if  all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Style = all.Style

@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // CIAppPipelineEventParentPipeline If the pipeline is triggered as child of another pipeline, this should contain the details of the parent pipeline.
 type CIAppPipelineEventParentPipeline struct {
@@ -21,10 +17,9 @@ type CIAppPipelineEventParentPipeline struct {
 	// The URL to look at the pipeline in the CI provider UI.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewCIAppPipelineEventParentPipeline instantiates a new CIAppPipelineEventParentPipeline object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewCIAppPipelineEventParentPipelineWithDefaults() *CIAppPipelineEventParent
 	this := CIAppPipelineEventParentPipeline{}
 	return &this
 }
+
 // GetId returns the Id field value.
 func (o *CIAppPipelineEventParentPipeline) GetId() string {
 	if o == nil {
@@ -65,7 +61,6 @@ func (o *CIAppPipelineEventParentPipeline) GetIdOk() (*string, bool) {
 func (o *CIAppPipelineEventParentPipeline) SetId(v string) {
 	o.Id = v
 }
-
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *CIAppPipelineEventParentPipeline) GetUrl() string {
@@ -95,8 +90,6 @@ func (o *CIAppPipelineEventParentPipeline) SetUrl(v string) {
 	o.Url = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppPipelineEventParentPipeline) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -117,7 +110,7 @@ func (o CIAppPipelineEventParentPipeline) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppPipelineEventParentPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id *string `json:"id"`
+		Id  *string `json:"id"`
 		Url *string `json:"url,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -128,7 +121,7 @@ func (o *CIAppPipelineEventParentPipeline) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "url",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"id", "url"})
 	} else {
 		return err
 	}
@@ -141,6 +134,7 @@ func (o *CIAppPipelineEventParentPipeline) UnmarshalJSON(bytes []byte) (err erro
 
 	return nil
 }
+
 // NullableCIAppPipelineEventParentPipeline handles when a null is used for CIAppPipelineEventParentPipeline.
 type NullableCIAppPipelineEventParentPipeline struct {
 	value *CIAppPipelineEventParentPipeline

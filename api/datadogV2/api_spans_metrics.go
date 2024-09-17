@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"bytes"
 	_context "context"
-	_fmt "fmt"
-	_io "io"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -25,12 +21,10 @@ type SpansMetricsApi datadog.Service
 // Returns the span-based metric object from the request body when the request is successful.
 func (a *SpansMetricsApi) CreateSpansMetric(ctx _context.Context, body SpansMetricCreateRequest) (SpansMetricResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  SpansMetricResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SpansMetricResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SpansMetricsApi.CreateSpansMetric")
 	if err != nil {
@@ -45,11 +39,9 @@ func (a *SpansMetricsApi) CreateSpansMetric(ctx _context.Context, body SpansMetr
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -72,11 +64,10 @@ func (a *SpansMetricsApi) CreateSpansMetric(ctx _context.Context, body SpansMetr
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 409||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -90,7 +81,7 @@ func (a *SpansMetricsApi) CreateSpansMetric(ctx _context.Context, body SpansMetr
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -103,11 +94,9 @@ func (a *SpansMetricsApi) CreateSpansMetric(ctx _context.Context, body SpansMetr
 // Delete a specific span-based metric from your organization.
 func (a *SpansMetricsApi) DeleteSpansMetric(ctx _context.Context, metricId string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SpansMetricsApi.DeleteSpansMetric")
 	if err != nil {
@@ -120,10 +109,9 @@ func (a *SpansMetricsApi) DeleteSpansMetric(ctx _context.Context, metricId strin
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] =  "*/*"
+	localVarHeaderParams["Accept"] = "*/*"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -146,11 +134,10 @@ func (a *SpansMetricsApi) DeleteSpansMetric(ctx _context.Context, metricId strin
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -168,12 +155,10 @@ func (a *SpansMetricsApi) DeleteSpansMetric(ctx _context.Context, metricId strin
 // Get a specific span-based metric from your organization.
 func (a *SpansMetricsApi) GetSpansMetric(ctx _context.Context, metricId string) (SpansMetricResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  SpansMetricResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SpansMetricResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SpansMetricsApi.GetSpansMetric")
 	if err != nil {
@@ -188,8 +173,7 @@ func (a *SpansMetricsApi) GetSpansMetric(ctx _context.Context, metricId string) 
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -212,11 +196,10 @@ func (a *SpansMetricsApi) GetSpansMetric(ctx _context.Context, metricId string) 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -230,7 +213,7 @@ func (a *SpansMetricsApi) GetSpansMetric(ctx _context.Context, metricId string) 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -243,12 +226,10 @@ func (a *SpansMetricsApi) GetSpansMetric(ctx _context.Context, metricId string) 
 // Get the list of configured span-based metrics with their definitions.
 func (a *SpansMetricsApi) ListSpansMetrics(ctx _context.Context) (SpansMetricsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  SpansMetricsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SpansMetricsResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SpansMetricsApi.ListSpansMetrics")
 	if err != nil {
@@ -262,8 +243,7 @@ func (a *SpansMetricsApi) ListSpansMetrics(ctx _context.Context) (SpansMetricsRe
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -286,11 +266,10 @@ func (a *SpansMetricsApi) ListSpansMetrics(ctx _context.Context) (SpansMetricsRe
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -304,7 +283,7 @@ func (a *SpansMetricsApi) ListSpansMetrics(ctx _context.Context) (SpansMetricsRe
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -318,12 +297,10 @@ func (a *SpansMetricsApi) ListSpansMetrics(ctx _context.Context) (SpansMetricsRe
 // Returns the span-based metric object from the request body when the request is successful.
 func (a *SpansMetricsApi) UpdateSpansMetric(ctx _context.Context, metricId string, body SpansMetricUpdateRequest) (SpansMetricResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarReturnValue  SpansMetricResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue SpansMetricResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SpansMetricsApi.UpdateSpansMetric")
 	if err != nil {
@@ -339,11 +316,9 @@ func (a *SpansMetricsApi) UpdateSpansMetric(ctx _context.Context, metricId strin
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -366,11 +341,10 @@ func (a *SpansMetricsApi) UpdateSpansMetric(ctx _context.Context, metricId strin
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -384,7 +358,7 @@ func (a *SpansMetricsApi) UpdateSpansMetric(ctx _context.Context, metricId strin
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

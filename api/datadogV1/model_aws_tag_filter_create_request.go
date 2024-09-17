@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // AWSTagFilterCreateRequest The objects used to set an AWS tag filter.
 type AWSTagFilterCreateRequest struct {
@@ -23,10 +17,9 @@ type AWSTagFilterCreateRequest struct {
 	// The tag filter string.
 	TagFilterStr *string `json:"tag_filter_str,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewAWSTagFilterCreateRequest instantiates a new AWSTagFilterCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +37,7 @@ func NewAWSTagFilterCreateRequestWithDefaults() *AWSTagFilterCreateRequest {
 	this := AWSTagFilterCreateRequest{}
 	return &this
 }
+
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
 func (o *AWSTagFilterCreateRequest) GetAccountId() string {
 	if o == nil || o.AccountId == nil {
@@ -71,7 +65,6 @@ func (o *AWSTagFilterCreateRequest) HasAccountId() bool {
 func (o *AWSTagFilterCreateRequest) SetAccountId(v string) {
 	o.AccountId = &v
 }
-
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *AWSTagFilterCreateRequest) GetNamespace() AWSNamespace {
@@ -101,7 +94,6 @@ func (o *AWSTagFilterCreateRequest) SetNamespace(v AWSNamespace) {
 	o.Namespace = &v
 }
 
-
 // GetTagFilterStr returns the TagFilterStr field value if set, zero value otherwise.
 func (o *AWSTagFilterCreateRequest) GetTagFilterStr() string {
 	if o == nil || o.TagFilterStr == nil {
@@ -130,8 +122,6 @@ func (o *AWSTagFilterCreateRequest) SetTagFilterStr(v string) {
 	o.TagFilterStr = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSTagFilterCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -157,23 +147,23 @@ func (o AWSTagFilterCreateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSTagFilterCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountId *string `json:"account_id,omitempty"`
-		Namespace *AWSNamespace `json:"namespace,omitempty"`
-		TagFilterStr *string `json:"tag_filter_str,omitempty"`
+		AccountId    *string       `json:"account_id,omitempty"`
+		Namespace    *AWSNamespace `json:"namespace,omitempty"`
+		TagFilterStr *string       `json:"tag_filter_str,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "account_id", "namespace", "tag_filter_str",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "namespace", "tag_filter_str"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.AccountId = all.AccountId
-	if all.Namespace != nil &&!all.Namespace.IsValid() {
+	if all.Namespace != nil && !all.Namespace.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Namespace = all.Namespace

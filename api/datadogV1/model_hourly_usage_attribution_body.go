@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // HourlyUsageAttributionBody The usage for one set of tags for one hour.
 type HourlyUsageAttributionBody struct {
@@ -39,10 +35,9 @@ type HourlyUsageAttributionBody struct {
 	// Supported products for hourly usage attribution requests.
 	UsageType *HourlyUsageAttributionUsageType `json:"usage_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewHourlyUsageAttributionBody instantiates a new HourlyUsageAttributionBody object.
 // This constructor will assign default values to properties that have it defined,
@@ -60,6 +55,7 @@ func NewHourlyUsageAttributionBodyWithDefaults() *HourlyUsageAttributionBody {
 	this := HourlyUsageAttributionBody{}
 	return &this
 }
+
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *HourlyUsageAttributionBody) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -87,7 +83,6 @@ func (o *HourlyUsageAttributionBody) HasHour() bool {
 func (o *HourlyUsageAttributionBody) SetHour(v time.Time) {
 	o.Hour = &v
 }
-
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *HourlyUsageAttributionBody) GetOrgName() string {
@@ -117,7 +112,6 @@ func (o *HourlyUsageAttributionBody) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *HourlyUsageAttributionBody) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -145,7 +139,6 @@ func (o *HourlyUsageAttributionBody) HasPublicId() bool {
 func (o *HourlyUsageAttributionBody) SetPublicId(v string) {
 	o.PublicId = &v
 }
-
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *HourlyUsageAttributionBody) GetRegion() string {
@@ -175,7 +168,6 @@ func (o *HourlyUsageAttributionBody) SetRegion(v string) {
 	o.Region = &v
 }
 
-
 // GetTagConfigSource returns the TagConfigSource field value if set, zero value otherwise.
 func (o *HourlyUsageAttributionBody) GetTagConfigSource() string {
 	if o == nil || o.TagConfigSource == nil {
@@ -204,10 +196,9 @@ func (o *HourlyUsageAttributionBody) SetTagConfigSource(v string) {
 	o.TagConfigSource = &v
 }
 
-
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *HourlyUsageAttributionBody) GetTags() map[string][]string {
-	if o == nil  {
+	if o == nil {
 		var ret map[string][]string
 		return ret
 	}
@@ -233,7 +224,6 @@ func (o *HourlyUsageAttributionBody) HasTags() bool {
 func (o *HourlyUsageAttributionBody) SetTags(v map[string][]string) {
 	o.Tags = v
 }
-
 
 // GetTotalUsageSum returns the TotalUsageSum field value if set, zero value otherwise.
 func (o *HourlyUsageAttributionBody) GetTotalUsageSum() float64 {
@@ -263,7 +253,6 @@ func (o *HourlyUsageAttributionBody) SetTotalUsageSum(v float64) {
 	o.TotalUsageSum = &v
 }
 
-
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *HourlyUsageAttributionBody) GetUpdatedAt() string {
 	if o == nil || o.UpdatedAt == nil {
@@ -292,7 +281,6 @@ func (o *HourlyUsageAttributionBody) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
-
 // GetUsageType returns the UsageType field value if set, zero value otherwise.
 func (o *HourlyUsageAttributionBody) GetUsageType() HourlyUsageAttributionUsageType {
 	if o == nil || o.UsageType == nil {
@@ -320,8 +308,6 @@ func (o *HourlyUsageAttributionBody) HasUsageType() bool {
 func (o *HourlyUsageAttributionBody) SetUsageType(v HourlyUsageAttributionUsageType) {
 	o.UsageType = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o HourlyUsageAttributionBody) MarshalJSON() ([]byte, error) {
@@ -370,22 +356,22 @@ func (o HourlyUsageAttributionBody) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HourlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Hour *time.Time `json:"hour,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
-		Region *string `json:"region,omitempty"`
-		TagConfigSource *string `json:"tag_config_source,omitempty"`
-		Tags map[string][]string `json:"tags,omitempty"`
-		TotalUsageSum *float64 `json:"total_usage_sum,omitempty"`
-		UpdatedAt *string `json:"updated_at,omitempty"`
-		UsageType *HourlyUsageAttributionUsageType `json:"usage_type,omitempty"`
+		Hour            *time.Time                       `json:"hour,omitempty"`
+		OrgName         *string                          `json:"org_name,omitempty"`
+		PublicId        *string                          `json:"public_id,omitempty"`
+		Region          *string                          `json:"region,omitempty"`
+		TagConfigSource *string                          `json:"tag_config_source,omitempty"`
+		Tags            map[string][]string              `json:"tags,omitempty"`
+		TotalUsageSum   *float64                         `json:"total_usage_sum,omitempty"`
+		UpdatedAt       *string                          `json:"updated_at,omitempty"`
+		UsageType       *HourlyUsageAttributionUsageType `json:"usage_type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "hour", "org_name", "public_id", "region", "tag_config_source", "tags", "total_usage_sum", "updated_at", "usage_type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"hour", "org_name", "public_id", "region", "tag_config_source", "tags", "total_usage_sum", "updated_at", "usage_type"})
 	} else {
 		return err
 	}
@@ -399,7 +385,7 @@ func (o *HourlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	o.TotalUsageSum = all.TotalUsageSum
 	o.UpdatedAt = all.UpdatedAt
-	if all.UsageType != nil &&!all.UsageType.IsValid() {
+	if all.UsageType != nil && !all.UsageType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.UsageType = all.UsageType

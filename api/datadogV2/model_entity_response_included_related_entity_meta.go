@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // EntityResponseIncludedRelatedEntityMeta Included related entity meta.
 type EntityResponseIncludedRelatedEntityMeta struct {
@@ -25,10 +21,9 @@ type EntityResponseIncludedRelatedEntityMeta struct {
 	// Entity relation source.
 	Source *string `json:"source,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewEntityResponseIncludedRelatedEntityMeta instantiates a new EntityResponseIncludedRelatedEntityMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewEntityResponseIncludedRelatedEntityMetaWithDefaults() *EntityResponseInc
 	this := EntityResponseIncludedRelatedEntityMeta{}
 	return &this
 }
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedEntityMeta) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -73,7 +69,6 @@ func (o *EntityResponseIncludedRelatedEntityMeta) HasCreatedAt() bool {
 func (o *EntityResponseIncludedRelatedEntityMeta) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
-
 
 // GetDefinedBy returns the DefinedBy field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedEntityMeta) GetDefinedBy() string {
@@ -103,7 +98,6 @@ func (o *EntityResponseIncludedRelatedEntityMeta) SetDefinedBy(v string) {
 	o.DefinedBy = &v
 }
 
-
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedEntityMeta) GetModifiedAt() time.Time {
 	if o == nil || o.ModifiedAt == nil {
@@ -132,7 +126,6 @@ func (o *EntityResponseIncludedRelatedEntityMeta) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
-
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedEntityMeta) GetSource() string {
 	if o == nil || o.Source == nil {
@@ -160,8 +153,6 @@ func (o *EntityResponseIncludedRelatedEntityMeta) HasSource() bool {
 func (o *EntityResponseIncludedRelatedEntityMeta) SetSource(v string) {
 	o.Source = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityResponseIncludedRelatedEntityMeta) MarshalJSON() ([]byte, error) {
@@ -199,17 +190,17 @@ func (o EntityResponseIncludedRelatedEntityMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityResponseIncludedRelatedEntityMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt *time.Time `json:"createdAt,omitempty"`
-		DefinedBy *string `json:"defined_by,omitempty"`
+		CreatedAt  *time.Time `json:"createdAt,omitempty"`
+		DefinedBy  *string    `json:"defined_by,omitempty"`
 		ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
-		Source *string `json:"source,omitempty"`
+		Source     *string    `json:"source,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "createdAt", "defined_by", "modifiedAt", "source",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "defined_by", "modifiedAt", "source"})
 	} else {
 		return err
 	}

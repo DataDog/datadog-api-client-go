@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SecurityFilterUpdateAttributes The security filters properties to be updated.
 type SecurityFilterUpdateAttributes struct {
@@ -29,10 +23,9 @@ type SecurityFilterUpdateAttributes struct {
 	// The version of the security filter to update.
 	Version *int32 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSecurityFilterUpdateAttributes instantiates a new SecurityFilterUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +43,7 @@ func NewSecurityFilterUpdateAttributesWithDefaults() *SecurityFilterUpdateAttrib
 	this := SecurityFilterUpdateAttributes{}
 	return &this
 }
+
 // GetExclusionFilters returns the ExclusionFilters field value if set, zero value otherwise.
 func (o *SecurityFilterUpdateAttributes) GetExclusionFilters() []SecurityFilterExclusionFilter {
 	if o == nil || o.ExclusionFilters == nil {
@@ -77,7 +71,6 @@ func (o *SecurityFilterUpdateAttributes) HasExclusionFilters() bool {
 func (o *SecurityFilterUpdateAttributes) SetExclusionFilters(v []SecurityFilterExclusionFilter) {
 	o.ExclusionFilters = v
 }
-
 
 // GetFilteredDataType returns the FilteredDataType field value if set, zero value otherwise.
 func (o *SecurityFilterUpdateAttributes) GetFilteredDataType() SecurityFilterFilteredDataType {
@@ -107,7 +100,6 @@ func (o *SecurityFilterUpdateAttributes) SetFilteredDataType(v SecurityFilterFil
 	o.FilteredDataType = &v
 }
 
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *SecurityFilterUpdateAttributes) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -135,7 +127,6 @@ func (o *SecurityFilterUpdateAttributes) HasIsEnabled() bool {
 func (o *SecurityFilterUpdateAttributes) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
-
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SecurityFilterUpdateAttributes) GetName() string {
@@ -165,7 +156,6 @@ func (o *SecurityFilterUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *SecurityFilterUpdateAttributes) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -194,7 +184,6 @@ func (o *SecurityFilterUpdateAttributes) SetQuery(v string) {
 	o.Query = &v
 }
 
-
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *SecurityFilterUpdateAttributes) GetVersion() int32 {
 	if o == nil || o.Version == nil {
@@ -222,8 +211,6 @@ func (o *SecurityFilterUpdateAttributes) HasVersion() bool {
 func (o *SecurityFilterUpdateAttributes) SetVersion(v int32) {
 	o.Version = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityFilterUpdateAttributes) MarshalJSON() ([]byte, error) {
@@ -261,24 +248,24 @@ func (o *SecurityFilterUpdateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	all := struct {
 		ExclusionFilters []SecurityFilterExclusionFilter `json:"exclusion_filters,omitempty"`
 		FilteredDataType *SecurityFilterFilteredDataType `json:"filtered_data_type,omitempty"`
-		IsEnabled *bool `json:"is_enabled,omitempty"`
-		Name *string `json:"name,omitempty"`
-		Query *string `json:"query,omitempty"`
-		Version *int32 `json:"version,omitempty"`
+		IsEnabled        *bool                           `json:"is_enabled,omitempty"`
+		Name             *string                         `json:"name,omitempty"`
+		Query            *string                         `json:"query,omitempty"`
+		Version          *int32                          `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "exclusion_filters", "filtered_data_type", "is_enabled", "name", "query", "version",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"exclusion_filters", "filtered_data_type", "is_enabled", "name", "query", "version"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.ExclusionFilters = all.ExclusionFilters
-	if all.FilteredDataType != nil &&!all.FilteredDataType.IsValid() {
+	if all.FilteredDataType != nil && !all.FilteredDataType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.FilteredDataType = all.FilteredDataType

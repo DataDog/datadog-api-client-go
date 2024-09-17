@@ -2,30 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ServiceDefinitionV2Dot2Type The type of service.
 type ServiceDefinitionV2Dot2Type string
 
 // List of ServiceDefinitionV2Dot2Type.
 const (
-	SERVICEDEFINITIONV2DOT2TYPE_WEB ServiceDefinitionV2Dot2Type = "web"
-	SERVICEDEFINITIONV2DOT2TYPE_DB ServiceDefinitionV2Dot2Type = "db"
-	SERVICEDEFINITIONV2DOT2TYPE_CACHE ServiceDefinitionV2Dot2Type = "cache"
+	SERVICEDEFINITIONV2DOT2TYPE_WEB      ServiceDefinitionV2Dot2Type = "web"
+	SERVICEDEFINITIONV2DOT2TYPE_DB       ServiceDefinitionV2Dot2Type = "db"
+	SERVICEDEFINITIONV2DOT2TYPE_CACHE    ServiceDefinitionV2Dot2Type = "cache"
 	SERVICEDEFINITIONV2DOT2TYPE_FUNCTION ServiceDefinitionV2Dot2Type = "function"
-	SERVICEDEFINITIONV2DOT2TYPE_BROSWER ServiceDefinitionV2Dot2Type = "browser"
-	SERVICEDEFINITIONV2DOT2TYPE_MOBILE ServiceDefinitionV2Dot2Type = "mobile"
-	SERVICEDEFINITIONV2DOT2TYPE_CUSTOM ServiceDefinitionV2Dot2Type = "custom"
+	SERVICEDEFINITIONV2DOT2TYPE_BROSWER  ServiceDefinitionV2Dot2Type = "browser"
+	SERVICEDEFINITIONV2DOT2TYPE_MOBILE   ServiceDefinitionV2Dot2Type = "mobile"
+	SERVICEDEFINITIONV2DOT2TYPE_CUSTOM   ServiceDefinitionV2Dot2Type = "custom"
 )
 
 var allowedServiceDefinitionV2Dot2TypeEnumValues = []ServiceDefinitionV2Dot2Type{

@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // HostTags Set of tags to associate with your host.
 type HostTags struct {
@@ -21,10 +15,9 @@ type HostTags struct {
 	// A list of tags to apply to the host.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewHostTags instantiates a new HostTags object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewHostTagsWithDefaults() *HostTags {
 	this := HostTags{}
 	return &this
 }
+
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *HostTags) GetHost() string {
 	if o == nil || o.Host == nil {
@@ -69,7 +63,6 @@ func (o *HostTags) HasHost() bool {
 func (o *HostTags) SetHost(v string) {
 	o.Host = &v
 }
-
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *HostTags) GetTags() []string {
@@ -99,8 +92,6 @@ func (o *HostTags) SetTags(v []string) {
 	o.Tags = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o HostTags) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -123,7 +114,7 @@ func (o HostTags) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HostTags) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Host *string `json:"host,omitempty"`
+		Host *string  `json:"host,omitempty"`
 		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -131,7 +122,7 @@ func (o *HostTags) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "host", "tags",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"host", "tags"})
 	} else {
 		return err
 	}

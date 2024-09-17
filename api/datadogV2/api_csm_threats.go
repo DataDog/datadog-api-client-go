@@ -2,17 +2,14 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"bytes"
 	_context "context"
-	_fmt "fmt"
 	_io "io"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -24,12 +21,10 @@ type CSMThreatsApi datadog.Service
 // Create a new Cloud Security Management Threats Agent rule with the given parameters.
 func (a *CSMThreatsApi) CreateCSMThreatsAgentRule(ctx _context.Context, body CloudWorkloadSecurityAgentRuleCreateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  CloudWorkloadSecurityAgentRuleResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.CreateCSMThreatsAgentRule")
 	if err != nil {
@@ -44,11 +39,9 @@ func (a *CSMThreatsApi) CreateCSMThreatsAgentRule(ctx _context.Context, body Clo
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -71,11 +64,10 @@ func (a *CSMThreatsApi) CreateCSMThreatsAgentRule(ctx _context.Context, body Clo
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 409||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -89,7 +81,7 @@ func (a *CSMThreatsApi) CreateCSMThreatsAgentRule(ctx _context.Context, body Clo
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -102,12 +94,10 @@ func (a *CSMThreatsApi) CreateCSMThreatsAgentRule(ctx _context.Context, body Clo
 // Create a new Agent rule with the given parameters.
 func (a *CSMThreatsApi) CreateCloudWorkloadSecurityAgentRule(ctx _context.Context, body CloudWorkloadSecurityAgentRuleCreateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  CloudWorkloadSecurityAgentRuleResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.CreateCloudWorkloadSecurityAgentRule")
 	if err != nil {
@@ -122,11 +112,9 @@ func (a *CSMThreatsApi) CreateCloudWorkloadSecurityAgentRule(ctx _context.Contex
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -149,11 +137,10 @@ func (a *CSMThreatsApi) CreateCloudWorkloadSecurityAgentRule(ctx _context.Contex
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 409||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -167,7 +154,7 @@ func (a *CSMThreatsApi) CreateCloudWorkloadSecurityAgentRule(ctx _context.Contex
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -180,11 +167,9 @@ func (a *CSMThreatsApi) CreateCloudWorkloadSecurityAgentRule(ctx _context.Contex
 // Delete a specific Cloud Security Management Threats Agent rule.
 func (a *CSMThreatsApi) DeleteCSMThreatsAgentRule(ctx _context.Context, agentRuleId string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.DeleteCSMThreatsAgentRule")
 	if err != nil {
@@ -197,10 +182,9 @@ func (a *CSMThreatsApi) DeleteCSMThreatsAgentRule(ctx _context.Context, agentRul
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] =  "*/*"
+	localVarHeaderParams["Accept"] = "*/*"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -223,11 +207,10 @@ func (a *CSMThreatsApi) DeleteCSMThreatsAgentRule(ctx _context.Context, agentRul
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -245,11 +228,9 @@ func (a *CSMThreatsApi) DeleteCSMThreatsAgentRule(ctx _context.Context, agentRul
 // Delete a specific Agent rule.
 func (a *CSMThreatsApi) DeleteCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.DeleteCloudWorkloadSecurityAgentRule")
 	if err != nil {
@@ -262,10 +243,9 @@ func (a *CSMThreatsApi) DeleteCloudWorkloadSecurityAgentRule(ctx _context.Contex
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] =  "*/*"
+	localVarHeaderParams["Accept"] = "*/*"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -288,11 +268,10 @@ func (a *CSMThreatsApi) DeleteCloudWorkloadSecurityAgentRule(ctx _context.Contex
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -312,12 +291,10 @@ func (a *CSMThreatsApi) DeleteCloudWorkloadSecurityAgentRule(ctx _context.Contex
 // your Agents to update the policy running in your environment.
 func (a *CSMThreatsApi) DownloadCSMThreatsPolicy(ctx _context.Context) (_io.Reader, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  _io.Reader
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue _io.Reader
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.DownloadCSMThreatsPolicy")
 	if err != nil {
@@ -331,8 +308,7 @@ func (a *CSMThreatsApi) DownloadCSMThreatsPolicy(ctx _context.Context) (_io.Read
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -355,11 +331,10 @@ func (a *CSMThreatsApi) DownloadCSMThreatsPolicy(ctx _context.Context) (_io.Read
 			return localVarReturnValue, localVarHTTPResponse, err
 		}
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -380,12 +355,10 @@ func (a *CSMThreatsApi) DownloadCSMThreatsPolicy(ctx _context.Context) (_io.Read
 // your Agents to update the policy running in your environment.
 func (a *CSMThreatsApi) DownloadCloudWorkloadPolicyFile(ctx _context.Context) (_io.Reader, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  _io.Reader
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue _io.Reader
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.DownloadCloudWorkloadPolicyFile")
 	if err != nil {
@@ -399,8 +372,7 @@ func (a *CSMThreatsApi) DownloadCloudWorkloadPolicyFile(ctx _context.Context) (_
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -423,11 +395,10 @@ func (a *CSMThreatsApi) DownloadCloudWorkloadPolicyFile(ctx _context.Context) (_
 			return localVarReturnValue, localVarHTTPResponse, err
 		}
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -446,12 +417,10 @@ func (a *CSMThreatsApi) DownloadCloudWorkloadPolicyFile(ctx _context.Context) (_
 // Get the details of a specific Cloud Security Management Threats Agent rule.
 func (a *CSMThreatsApi) GetCSMThreatsAgentRule(ctx _context.Context, agentRuleId string) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  CloudWorkloadSecurityAgentRuleResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.GetCSMThreatsAgentRule")
 	if err != nil {
@@ -466,8 +435,7 @@ func (a *CSMThreatsApi) GetCSMThreatsAgentRule(ctx _context.Context, agentRuleId
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -490,11 +458,10 @@ func (a *CSMThreatsApi) GetCSMThreatsAgentRule(ctx _context.Context, agentRuleId
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -508,7 +475,7 @@ func (a *CSMThreatsApi) GetCSMThreatsAgentRule(ctx _context.Context, agentRuleId
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -521,12 +488,10 @@ func (a *CSMThreatsApi) GetCSMThreatsAgentRule(ctx _context.Context, agentRuleId
 // Get the details of a specific Agent rule.
 func (a *CSMThreatsApi) GetCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  CloudWorkloadSecurityAgentRuleResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.GetCloudWorkloadSecurityAgentRule")
 	if err != nil {
@@ -541,8 +506,7 @@ func (a *CSMThreatsApi) GetCloudWorkloadSecurityAgentRule(ctx _context.Context, 
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -565,11 +529,10 @@ func (a *CSMThreatsApi) GetCloudWorkloadSecurityAgentRule(ctx _context.Context, 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -583,7 +546,7 @@ func (a *CSMThreatsApi) GetCloudWorkloadSecurityAgentRule(ctx _context.Context, 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -596,12 +559,10 @@ func (a *CSMThreatsApi) GetCloudWorkloadSecurityAgentRule(ctx _context.Context, 
 // Get the list of Cloud Security Management Threats Agent rules.
 func (a *CSMThreatsApi) ListCSMThreatsAgentRules(ctx _context.Context) (CloudWorkloadSecurityAgentRulesListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  CloudWorkloadSecurityAgentRulesListResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CloudWorkloadSecurityAgentRulesListResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.ListCSMThreatsAgentRules")
 	if err != nil {
@@ -615,8 +576,7 @@ func (a *CSMThreatsApi) ListCSMThreatsAgentRules(ctx _context.Context) (CloudWor
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -639,11 +599,10 @@ func (a *CSMThreatsApi) ListCSMThreatsAgentRules(ctx _context.Context) (CloudWor
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -657,7 +616,7 @@ func (a *CSMThreatsApi) ListCSMThreatsAgentRules(ctx _context.Context) (CloudWor
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -670,12 +629,10 @@ func (a *CSMThreatsApi) ListCSMThreatsAgentRules(ctx _context.Context) (CloudWor
 // Get the list of Agent rules.
 func (a *CSMThreatsApi) ListCloudWorkloadSecurityAgentRules(ctx _context.Context) (CloudWorkloadSecurityAgentRulesListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  CloudWorkloadSecurityAgentRulesListResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CloudWorkloadSecurityAgentRulesListResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.ListCloudWorkloadSecurityAgentRules")
 	if err != nil {
@@ -689,8 +646,7 @@ func (a *CSMThreatsApi) ListCloudWorkloadSecurityAgentRules(ctx _context.Context
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -713,11 +669,10 @@ func (a *CSMThreatsApi) ListCloudWorkloadSecurityAgentRules(ctx _context.Context
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -731,7 +686,7 @@ func (a *CSMThreatsApi) ListCloudWorkloadSecurityAgentRules(ctx _context.Context
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -745,12 +700,10 @@ func (a *CSMThreatsApi) ListCloudWorkloadSecurityAgentRules(ctx _context.Context
 // Returns the Agent rule object when the request is successful.
 func (a *CSMThreatsApi) UpdateCSMThreatsAgentRule(ctx _context.Context, agentRuleId string, body CloudWorkloadSecurityAgentRuleUpdateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarReturnValue  CloudWorkloadSecurityAgentRuleResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.UpdateCSMThreatsAgentRule")
 	if err != nil {
@@ -766,11 +719,9 @@ func (a *CSMThreatsApi) UpdateCSMThreatsAgentRule(ctx _context.Context, agentRul
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -793,11 +744,10 @@ func (a *CSMThreatsApi) UpdateCSMThreatsAgentRule(ctx _context.Context, agentRul
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 409||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -811,7 +761,7 @@ func (a *CSMThreatsApi) UpdateCSMThreatsAgentRule(ctx _context.Context, agentRul
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -825,12 +775,10 @@ func (a *CSMThreatsApi) UpdateCSMThreatsAgentRule(ctx _context.Context, agentRul
 // Returns the Agent rule object when the request is successful.
 func (a *CSMThreatsApi) UpdateCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string, body CloudWorkloadSecurityAgentRuleUpdateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarReturnValue  CloudWorkloadSecurityAgentRuleResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMThreatsApi.UpdateCloudWorkloadSecurityAgentRule")
 	if err != nil {
@@ -846,11 +794,9 @@ func (a *CSMThreatsApi) UpdateCloudWorkloadSecurityAgentRule(ctx _context.Contex
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -873,11 +819,10 @@ func (a *CSMThreatsApi) UpdateCloudWorkloadSecurityAgentRule(ctx _context.Contex
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 409||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -891,7 +836,7 @@ func (a *CSMThreatsApi) UpdateCloudWorkloadSecurityAgentRule(ctx _context.Contex
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

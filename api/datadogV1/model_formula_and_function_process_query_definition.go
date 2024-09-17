@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // FormulaAndFunctionProcessQueryDefinition Process query using formulas and functions.
 type FormulaAndFunctionProcessQueryDefinition struct {
@@ -37,10 +33,9 @@ type FormulaAndFunctionProcessQueryDefinition struct {
 	// Text to use as filter.
 	TextFilter *string `json:"text_filter,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewFormulaAndFunctionProcessQueryDefinition instantiates a new FormulaAndFunctionProcessQueryDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -65,6 +60,7 @@ func NewFormulaAndFunctionProcessQueryDefinitionWithDefaults() *FormulaAndFuncti
 	this.Sort = &sort
 	return &this
 }
+
 // GetAggregator returns the Aggregator field value if set, zero value otherwise.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetAggregator() FormulaAndFunctionMetricAggregation {
 	if o == nil || o.Aggregator == nil {
@@ -92,7 +88,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) HasAggregator() bool {
 func (o *FormulaAndFunctionProcessQueryDefinition) SetAggregator(v FormulaAndFunctionMetricAggregation) {
 	o.Aggregator = &v
 }
-
 
 // GetCrossOrgUuids returns the CrossOrgUuids field value if set, zero value otherwise.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetCrossOrgUuids() []string {
@@ -122,7 +117,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetCrossOrgUuids(v []string) 
 	o.CrossOrgUuids = v
 }
 
-
 // GetDataSource returns the DataSource field value.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetDataSource() FormulaAndFunctionProcessQueryDataSource {
 	if o == nil {
@@ -145,7 +139,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetDataSourceOk() (*FormulaAn
 func (o *FormulaAndFunctionProcessQueryDefinition) SetDataSource(v FormulaAndFunctionProcessQueryDataSource) {
 	o.DataSource = v
 }
-
 
 // GetIsNormalizedCpu returns the IsNormalizedCpu field value if set, zero value otherwise.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetIsNormalizedCpu() bool {
@@ -175,7 +168,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetIsNormalizedCpu(v bool) {
 	o.IsNormalizedCpu = &v
 }
 
-
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
@@ -204,7 +196,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetLimit(v int64) {
 	o.Limit = &v
 }
 
-
 // GetMetric returns the Metric field value.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetMetric() string {
 	if o == nil {
@@ -228,7 +219,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetMetric(v string) {
 	o.Metric = v
 }
 
-
 // GetName returns the Name field value.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetName() string {
 	if o == nil {
@@ -251,7 +241,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetNameOk() (*string, bool) {
 func (o *FormulaAndFunctionProcessQueryDefinition) SetName(v string) {
 	o.Name = v
 }
-
 
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetSort() QuerySortOrder {
@@ -281,7 +270,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetSort(v QuerySortOrder) {
 	o.Sort = &v
 }
 
-
 // GetTagFilters returns the TagFilters field value if set, zero value otherwise.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetTagFilters() []string {
 	if o == nil || o.TagFilters == nil {
@@ -310,7 +298,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetTagFilters(v []string) {
 	o.TagFilters = v
 }
 
-
 // GetTextFilter returns the TextFilter field value if set, zero value otherwise.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetTextFilter() string {
 	if o == nil || o.TextFilter == nil {
@@ -338,8 +325,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) HasTextFilter() bool {
 func (o *FormulaAndFunctionProcessQueryDefinition) SetTextFilter(v string) {
 	o.TextFilter = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) {
@@ -381,16 +366,16 @@ func (o FormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"`
-		CrossOrgUuids []string `json:"cross_org_uuids,omitempty"`
-		DataSource *FormulaAndFunctionProcessQueryDataSource `json:"data_source"`
-		IsNormalizedCpu *bool `json:"is_normalized_cpu,omitempty"`
-		Limit *int64 `json:"limit,omitempty"`
-		Metric *string `json:"metric"`
-		Name *string `json:"name"`
-		Sort *QuerySortOrder `json:"sort,omitempty"`
-		TagFilters []string `json:"tag_filters,omitempty"`
-		TextFilter *string `json:"text_filter,omitempty"`
+		Aggregator      *FormulaAndFunctionMetricAggregation      `json:"aggregator,omitempty"`
+		CrossOrgUuids   []string                                  `json:"cross_org_uuids,omitempty"`
+		DataSource      *FormulaAndFunctionProcessQueryDataSource `json:"data_source"`
+		IsNormalizedCpu *bool                                     `json:"is_normalized_cpu,omitempty"`
+		Limit           *int64                                    `json:"limit,omitempty"`
+		Metric          *string                                   `json:"metric"`
+		Name            *string                                   `json:"name"`
+		Sort            *QuerySortOrder                           `json:"sort,omitempty"`
+		TagFilters      []string                                  `json:"tag_filters,omitempty"`
+		TextFilter      *string                                   `json:"text_filter,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -406,13 +391,13 @@ func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregator", "cross_org_uuids", "data_source", "is_normalized_cpu", "limit", "metric", "name", "sort", "tag_filters", "text_filter",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregator", "cross_org_uuids", "data_source", "is_normalized_cpu", "limit", "metric", "name", "sort", "tag_filters", "text_filter"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Aggregator != nil &&!all.Aggregator.IsValid() {
+	if all.Aggregator != nil && !all.Aggregator.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Aggregator = all.Aggregator
@@ -427,7 +412,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (
 	o.Limit = all.Limit
 	o.Metric = *all.Metric
 	o.Name = *all.Name
-	if all.Sort != nil &&!all.Sort.IsValid() {
+	if all.Sort != nil && !all.Sort.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Sort = all.Sort

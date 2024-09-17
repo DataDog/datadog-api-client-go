@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // UsageSyntheticsBrowserResponse Response containing the number of Synthetics Browser tests run for each hour for a given organization.
 type UsageSyntheticsBrowserResponse struct {
 	// Get hourly usage for Synthetics Browser tests.
 	Usage []UsageSyntheticsBrowserHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewUsageSyntheticsBrowserResponse instantiates a new UsageSyntheticsBrowserResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewUsageSyntheticsBrowserResponseWithDefaults() *UsageSyntheticsBrowserResp
 	this := UsageSyntheticsBrowserResponse{}
 	return &this
 }
+
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageSyntheticsBrowserResponse) GetUsage() []UsageSyntheticsBrowserHour {
 	if o == nil || o.Usage == nil {
@@ -68,8 +62,6 @@ func (o *UsageSyntheticsBrowserResponse) SetUsage(v []UsageSyntheticsBrowserHour
 	o.Usage = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageSyntheticsBrowserResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +88,7 @@ func (o *UsageSyntheticsBrowserResponse) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "usage",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"usage"})
 	} else {
 		return err
 	}

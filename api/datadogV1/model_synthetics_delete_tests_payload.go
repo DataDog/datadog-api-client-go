@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsDeleteTestsPayload A JSON list of the ID or IDs of the Synthetic tests that you want
 // to delete.
@@ -23,10 +17,9 @@ type SyntheticsDeleteTestsPayload struct {
 	// An array of Synthetic test IDs you want to delete.
 	PublicIds []string `json:"public_ids,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsDeleteTestsPayload instantiates a new SyntheticsDeleteTestsPayload object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +37,7 @@ func NewSyntheticsDeleteTestsPayloadWithDefaults() *SyntheticsDeleteTestsPayload
 	this := SyntheticsDeleteTestsPayload{}
 	return &this
 }
+
 // GetForceDeleteDependencies returns the ForceDeleteDependencies field value if set, zero value otherwise.
 func (o *SyntheticsDeleteTestsPayload) GetForceDeleteDependencies() bool {
 	if o == nil || o.ForceDeleteDependencies == nil {
@@ -71,7 +65,6 @@ func (o *SyntheticsDeleteTestsPayload) HasForceDeleteDependencies() bool {
 func (o *SyntheticsDeleteTestsPayload) SetForceDeleteDependencies(v bool) {
 	o.ForceDeleteDependencies = &v
 }
-
 
 // GetPublicIds returns the PublicIds field value if set, zero value otherwise.
 func (o *SyntheticsDeleteTestsPayload) GetPublicIds() []string {
@@ -101,8 +94,6 @@ func (o *SyntheticsDeleteTestsPayload) SetPublicIds(v []string) {
 	o.PublicIds = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsDeleteTestsPayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -125,15 +116,15 @@ func (o SyntheticsDeleteTestsPayload) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsDeleteTestsPayload) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ForceDeleteDependencies *bool `json:"force_delete_dependencies,omitempty"`
-		PublicIds []string `json:"public_ids,omitempty"`
+		ForceDeleteDependencies *bool    `json:"force_delete_dependencies,omitempty"`
+		PublicIds               []string `json:"public_ids,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "force_delete_dependencies", "public_ids",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"force_delete_dependencies", "public_ids"})
 	} else {
 		return err
 	}

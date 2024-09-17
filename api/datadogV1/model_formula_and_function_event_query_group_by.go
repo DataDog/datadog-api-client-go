@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // FormulaAndFunctionEventQueryGroupBy List of objects used to group by.
 type FormulaAndFunctionEventQueryGroupBy struct {
@@ -23,10 +19,9 @@ type FormulaAndFunctionEventQueryGroupBy struct {
 	// Options for sorting group by results.
 	Sort *FormulaAndFunctionEventQueryGroupBySort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewFormulaAndFunctionEventQueryGroupBy instantiates a new FormulaAndFunctionEventQueryGroupBy object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,6 +40,7 @@ func NewFormulaAndFunctionEventQueryGroupByWithDefaults() *FormulaAndFunctionEve
 	this := FormulaAndFunctionEventQueryGroupBy{}
 	return &this
 }
+
 // GetFacet returns the Facet field value.
 func (o *FormulaAndFunctionEventQueryGroupBy) GetFacet() string {
 	if o == nil {
@@ -67,7 +63,6 @@ func (o *FormulaAndFunctionEventQueryGroupBy) GetFacetOk() (*string, bool) {
 func (o *FormulaAndFunctionEventQueryGroupBy) SetFacet(v string) {
 	o.Facet = v
 }
-
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *FormulaAndFunctionEventQueryGroupBy) GetLimit() int64 {
@@ -97,7 +92,6 @@ func (o *FormulaAndFunctionEventQueryGroupBy) SetLimit(v int64) {
 	o.Limit = &v
 }
 
-
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *FormulaAndFunctionEventQueryGroupBy) GetSort() FormulaAndFunctionEventQueryGroupBySort {
 	if o == nil || o.Sort == nil {
@@ -126,8 +120,6 @@ func (o *FormulaAndFunctionEventQueryGroupBy) SetSort(v FormulaAndFunctionEventQ
 	o.Sort = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o FormulaAndFunctionEventQueryGroupBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -151,9 +143,9 @@ func (o FormulaAndFunctionEventQueryGroupBy) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionEventQueryGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Facet *string `json:"facet"`
-		Limit *int64 `json:"limit,omitempty"`
-		Sort *FormulaAndFunctionEventQueryGroupBySort `json:"sort,omitempty"`
+		Facet *string                                  `json:"facet"`
+		Limit *int64                                   `json:"limit,omitempty"`
+		Sort  *FormulaAndFunctionEventQueryGroupBySort `json:"sort,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -163,7 +155,7 @@ func (o *FormulaAndFunctionEventQueryGroupBy) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "facet", "limit", "sort",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"facet", "limit", "sort"})
 	} else {
 		return err
 	}
@@ -171,7 +163,7 @@ func (o *FormulaAndFunctionEventQueryGroupBy) UnmarshalJSON(bytes []byte) (err e
 	hasInvalidField := false
 	o.Facet = *all.Facet
 	o.Limit = all.Limit
-	if  all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Sort = all.Sort

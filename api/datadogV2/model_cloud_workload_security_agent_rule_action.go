@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // CloudWorkloadSecurityAgentRuleAction The action the rule can perform if triggered.
 type CloudWorkloadSecurityAgentRuleAction struct {
@@ -21,10 +15,9 @@ type CloudWorkloadSecurityAgentRuleAction struct {
 	// Kill system call applied on the container matching the rule
 	Kill *CloudWorkloadSecurityAgentRuleKill `json:"kill,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewCloudWorkloadSecurityAgentRuleAction instantiates a new CloudWorkloadSecurityAgentRuleAction object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewCloudWorkloadSecurityAgentRuleActionWithDefaults() *CloudWorkloadSecurit
 	this := CloudWorkloadSecurityAgentRuleAction{}
 	return &this
 }
+
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAction) GetFilter() string {
 	if o == nil || o.Filter == nil {
@@ -69,7 +63,6 @@ func (o *CloudWorkloadSecurityAgentRuleAction) HasFilter() bool {
 func (o *CloudWorkloadSecurityAgentRuleAction) SetFilter(v string) {
 	o.Filter = &v
 }
-
 
 // GetKill returns the Kill field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAction) GetKill() CloudWorkloadSecurityAgentRuleKill {
@@ -99,8 +92,6 @@ func (o *CloudWorkloadSecurityAgentRuleAction) SetKill(v CloudWorkloadSecurityAg
 	o.Kill = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudWorkloadSecurityAgentRuleAction) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -123,22 +114,22 @@ func (o CloudWorkloadSecurityAgentRuleAction) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleAction) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Filter *string `json:"filter,omitempty"`
-		Kill *CloudWorkloadSecurityAgentRuleKill `json:"kill,omitempty"`
+		Filter *string                             `json:"filter,omitempty"`
+		Kill   *CloudWorkloadSecurityAgentRuleKill `json:"kill,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "filter", "kill",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "kill"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Filter = all.Filter
-	if  all.Kill != nil && all.Kill.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Kill != nil && all.Kill.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Kill = all.Kill

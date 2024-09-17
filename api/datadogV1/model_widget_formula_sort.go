@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // WidgetFormulaSort The formula to sort the widget by.
 type WidgetFormulaSort struct {
@@ -23,10 +19,9 @@ type WidgetFormulaSort struct {
 	// Set the sort type to formula.
 	Type FormulaType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewWidgetFormulaSort instantiates a new WidgetFormulaSort object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,6 +42,7 @@ func NewWidgetFormulaSortWithDefaults() *WidgetFormulaSort {
 	this := WidgetFormulaSort{}
 	return &this
 }
+
 // GetIndex returns the Index field value.
 func (o *WidgetFormulaSort) GetIndex() int64 {
 	if o == nil {
@@ -69,7 +65,6 @@ func (o *WidgetFormulaSort) GetIndexOk() (*int64, bool) {
 func (o *WidgetFormulaSort) SetIndex(v int64) {
 	o.Index = v
 }
-
 
 // GetOrder returns the Order field value.
 func (o *WidgetFormulaSort) GetOrder() WidgetSort {
@@ -94,7 +89,6 @@ func (o *WidgetFormulaSort) SetOrder(v WidgetSort) {
 	o.Order = v
 }
 
-
 // GetType returns the Type field value.
 func (o *WidgetFormulaSort) GetType() FormulaType {
 	if o == nil {
@@ -118,8 +112,6 @@ func (o *WidgetFormulaSort) SetType(v FormulaType) {
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o WidgetFormulaSort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -139,9 +131,9 @@ func (o WidgetFormulaSort) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetFormulaSort) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Index *int64 `json:"index"`
-		Order *WidgetSort `json:"order"`
-		Type *FormulaType `json:"type"`
+		Index *int64       `json:"index"`
+		Order *WidgetSort  `json:"order"`
+		Type  *FormulaType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -157,7 +149,7 @@ func (o *WidgetFormulaSort) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "index", "order", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"index", "order", "type"})
 	} else {
 		return err
 	}

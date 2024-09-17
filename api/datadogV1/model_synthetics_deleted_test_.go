@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsDeletedTest Object containing a deleted Synthetic test ID with the associated
 // deletion timestamp.
@@ -22,10 +18,9 @@ type SyntheticsDeletedTest struct {
 	// The Synthetic test ID deleted.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsDeletedTest instantiates a new SyntheticsDeletedTest object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewSyntheticsDeletedTestWithDefaults() *SyntheticsDeletedTest {
 	this := SyntheticsDeletedTest{}
 	return &this
 }
+
 // GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
 func (o *SyntheticsDeletedTest) GetDeletedAt() time.Time {
 	if o == nil || o.DeletedAt == nil {
@@ -70,7 +66,6 @@ func (o *SyntheticsDeletedTest) HasDeletedAt() bool {
 func (o *SyntheticsDeletedTest) SetDeletedAt(v time.Time) {
 	o.DeletedAt = &v
 }
-
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *SyntheticsDeletedTest) GetPublicId() string {
@@ -100,8 +95,6 @@ func (o *SyntheticsDeletedTest) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsDeletedTest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -129,14 +122,14 @@ func (o SyntheticsDeletedTest) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsDeletedTest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DeletedAt *time.Time `json:"deleted_at,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
+		PublicId  *string    `json:"public_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "deleted_at", "public_id",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"deleted_at", "public_id"})
 	} else {
 		return err
 	}

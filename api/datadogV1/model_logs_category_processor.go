@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // LogsCategoryProcessor Use the Category Processor to add a new attribute (without spaces or special characters in the new attribute name)
 // to a log matching a provided search query. Use categories to create groups for an analytical view.
@@ -20,13 +16,13 @@ import (
 //
 // **Notes**:
 //
-// - The syntax of the query is the one of Logs Explorer search bar.
-//   The query can be done on any log attribute or tag, whether it is a facet or not.
-//   Wildcards can also be used inside your query.
-// - Once the log has matched one of the Processor queries, it stops.
-//   Make sure they are properly ordered in case a log could match several queries.
-// - The names of the categories must be unique.
-// - Once defined in the Category Processor, you can map categories to log status using the Log Status Remapper.
+//   - The syntax of the query is the one of Logs Explorer search bar.
+//     The query can be done on any log attribute or tag, whether it is a facet or not.
+//     Wildcards can also be used inside your query.
+//   - Once the log has matched one of the Processor queries, it stops.
+//     Make sure they are properly ordered in case a log could match several queries.
+//   - The names of the categories must be unique.
+//   - Once defined in the Category Processor, you can map categories to log status using the Log Status Remapper.
 type LogsCategoryProcessor struct {
 	// Array of filters to match or not a log and their
 	// corresponding `name` to assign a custom value to the log.
@@ -40,10 +36,9 @@ type LogsCategoryProcessor struct {
 	// Type of logs category processor.
 	Type LogsCategoryProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewLogsCategoryProcessor instantiates a new LogsCategoryProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -70,6 +65,7 @@ func NewLogsCategoryProcessorWithDefaults() *LogsCategoryProcessor {
 	this.Type = typeVar
 	return &this
 }
+
 // GetCategories returns the Categories field value.
 func (o *LogsCategoryProcessor) GetCategories() []LogsCategoryProcessorCategory {
 	if o == nil {
@@ -92,7 +88,6 @@ func (o *LogsCategoryProcessor) GetCategoriesOk() (*[]LogsCategoryProcessorCateg
 func (o *LogsCategoryProcessor) SetCategories(v []LogsCategoryProcessorCategory) {
 	o.Categories = v
 }
-
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsCategoryProcessor) GetIsEnabled() bool {
@@ -122,7 +117,6 @@ func (o *LogsCategoryProcessor) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsCategoryProcessor) GetName() string {
 	if o == nil || o.Name == nil {
@@ -151,7 +145,6 @@ func (o *LogsCategoryProcessor) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetTarget returns the Target field value.
 func (o *LogsCategoryProcessor) GetTarget() string {
 	if o == nil {
@@ -175,7 +168,6 @@ func (o *LogsCategoryProcessor) SetTarget(v string) {
 	o.Target = v
 }
 
-
 // GetType returns the Type field value.
 func (o *LogsCategoryProcessor) GetType() LogsCategoryProcessorType {
 	if o == nil {
@@ -198,8 +190,6 @@ func (o *LogsCategoryProcessor) GetTypeOk() (*LogsCategoryProcessorType, bool) {
 func (o *LogsCategoryProcessor) SetType(v LogsCategoryProcessorType) {
 	o.Type = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsCategoryProcessor) MarshalJSON() ([]byte, error) {
@@ -227,10 +217,10 @@ func (o LogsCategoryProcessor) MarshalJSON() ([]byte, error) {
 func (o *LogsCategoryProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Categories *[]LogsCategoryProcessorCategory `json:"categories"`
-		IsEnabled *bool `json:"is_enabled,omitempty"`
-		Name *string `json:"name,omitempty"`
-		Target *string `json:"target"`
-		Type *LogsCategoryProcessorType `json:"type"`
+		IsEnabled  *bool                            `json:"is_enabled,omitempty"`
+		Name       *string                          `json:"name,omitempty"`
+		Target     *string                          `json:"target"`
+		Type       *LogsCategoryProcessorType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -246,7 +236,7 @@ func (o *LogsCategoryProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "categories", "is_enabled", "name", "target", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"categories", "is_enabled", "name", "target", "type"})
 	} else {
 		return err
 	}

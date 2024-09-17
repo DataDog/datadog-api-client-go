@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // UsageAnalyzedLogsHour The number of analyzed logs for each hour for a given organization.
 type UsageAnalyzedLogsHour struct {
@@ -25,10 +21,9 @@ type UsageAnalyzedLogsHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewUsageAnalyzedLogsHour instantiates a new UsageAnalyzedLogsHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewUsageAnalyzedLogsHourWithDefaults() *UsageAnalyzedLogsHour {
 	this := UsageAnalyzedLogsHour{}
 	return &this
 }
+
 // GetAnalyzedLogs returns the AnalyzedLogs field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageAnalyzedLogsHour) GetAnalyzedLogs() int64 {
 	if o == nil || o.AnalyzedLogs.Get() == nil {
@@ -59,7 +55,7 @@ func (o *UsageAnalyzedLogsHour) GetAnalyzedLogs() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageAnalyzedLogsHour) GetAnalyzedLogsOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.AnalyzedLogs.Get(), o.AnalyzedLogs.IsSet()
@@ -74,6 +70,7 @@ func (o *UsageAnalyzedLogsHour) HasAnalyzedLogs() bool {
 func (o *UsageAnalyzedLogsHour) SetAnalyzedLogs(v int64) {
 	o.AnalyzedLogs.Set(&v)
 }
+
 // SetAnalyzedLogsNil sets the value for AnalyzedLogs to be an explicit nil.
 func (o *UsageAnalyzedLogsHour) SetAnalyzedLogsNil() {
 	o.AnalyzedLogs.Set(nil)
@@ -83,7 +80,6 @@ func (o *UsageAnalyzedLogsHour) SetAnalyzedLogsNil() {
 func (o *UsageAnalyzedLogsHour) UnsetAnalyzedLogs() {
 	o.AnalyzedLogs.Unset()
 }
-
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageAnalyzedLogsHour) GetHour() time.Time {
@@ -113,7 +109,6 @@ func (o *UsageAnalyzedLogsHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageAnalyzedLogsHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -142,7 +137,6 @@ func (o *UsageAnalyzedLogsHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageAnalyzedLogsHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -170,8 +164,6 @@ func (o *UsageAnalyzedLogsHour) HasPublicId() bool {
 func (o *UsageAnalyzedLogsHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageAnalyzedLogsHour) MarshalJSON() ([]byte, error) {
@@ -206,16 +198,16 @@ func (o UsageAnalyzedLogsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageAnalyzedLogsHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AnalyzedLogs datadog.NullableInt64 `json:"analyzed_logs,omitempty"`
-		Hour *time.Time `json:"hour,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
+		Hour         *time.Time            `json:"hour,omitempty"`
+		OrgName      *string               `json:"org_name,omitempty"`
+		PublicId     *string               `json:"public_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "analyzed_logs", "hour", "org_name", "public_id",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"analyzed_logs", "hour", "org_name", "public_id"})
 	} else {
 		return err
 	}

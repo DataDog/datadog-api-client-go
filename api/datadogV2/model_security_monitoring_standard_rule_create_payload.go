@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SecurityMonitoringStandardRuleCreatePayload Create a new rule.
 type SecurityMonitoringStandardRuleCreatePayload struct {
@@ -39,10 +35,9 @@ type SecurityMonitoringStandardRuleCreatePayload struct {
 	// The rule type.
 	Type *SecurityMonitoringRuleTypeCreate `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSecurityMonitoringStandardRuleCreatePayload instantiates a new SecurityMonitoringStandardRuleCreatePayload object.
 // This constructor will assign default values to properties that have it defined,
@@ -66,6 +61,7 @@ func NewSecurityMonitoringStandardRuleCreatePayloadWithDefaults() *SecurityMonit
 	this := SecurityMonitoringStandardRuleCreatePayload{}
 	return &this
 }
+
 // GetCases returns the Cases field value.
 func (o *SecurityMonitoringStandardRuleCreatePayload) GetCases() []SecurityMonitoringRuleCaseCreate {
 	if o == nil {
@@ -88,7 +84,6 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) GetCasesOk() (*[]SecurityM
 func (o *SecurityMonitoringStandardRuleCreatePayload) SetCases(v []SecurityMonitoringRuleCaseCreate) {
 	o.Cases = v
 }
-
 
 // GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleCreatePayload) GetFilters() []SecurityMonitoringFilter {
@@ -118,7 +113,6 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) SetFilters(v []SecurityMon
 	o.Filters = v
 }
 
-
 // GetHasExtendedTitle returns the HasExtendedTitle field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleCreatePayload) GetHasExtendedTitle() bool {
 	if o == nil || o.HasExtendedTitle == nil {
@@ -147,7 +141,6 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) SetHasExtendedTitle(v bool
 	o.HasExtendedTitle = &v
 }
 
-
 // GetIsEnabled returns the IsEnabled field value.
 func (o *SecurityMonitoringStandardRuleCreatePayload) GetIsEnabled() bool {
 	if o == nil {
@@ -170,7 +163,6 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) GetIsEnabledOk() (*bool, b
 func (o *SecurityMonitoringStandardRuleCreatePayload) SetIsEnabled(v bool) {
 	o.IsEnabled = v
 }
-
 
 // GetMessage returns the Message field value.
 func (o *SecurityMonitoringStandardRuleCreatePayload) GetMessage() string {
@@ -195,7 +187,6 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) SetMessage(v string) {
 	o.Message = v
 }
 
-
 // GetName returns the Name field value.
 func (o *SecurityMonitoringStandardRuleCreatePayload) GetName() string {
 	if o == nil {
@@ -218,7 +209,6 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) GetNameOk() (*string, bool
 func (o *SecurityMonitoringStandardRuleCreatePayload) SetName(v string) {
 	o.Name = v
 }
-
 
 // GetOptions returns the Options field value.
 func (o *SecurityMonitoringStandardRuleCreatePayload) GetOptions() SecurityMonitoringRuleOptions {
@@ -243,7 +233,6 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) SetOptions(v SecurityMonit
 	o.Options = v
 }
 
-
 // GetQueries returns the Queries field value.
 func (o *SecurityMonitoringStandardRuleCreatePayload) GetQueries() []SecurityMonitoringStandardRuleQuery {
 	if o == nil {
@@ -266,7 +255,6 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) GetQueriesOk() (*[]Securit
 func (o *SecurityMonitoringStandardRuleCreatePayload) SetQueries(v []SecurityMonitoringStandardRuleQuery) {
 	o.Queries = v
 }
-
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleCreatePayload) GetTags() []string {
@@ -296,7 +284,6 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) SetTags(v []string) {
 	o.Tags = v
 }
 
-
 // GetThirdPartyCases returns the ThirdPartyCases field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleCreatePayload) GetThirdPartyCases() []SecurityMonitoringThirdPartyRuleCaseCreate {
 	if o == nil || o.ThirdPartyCases == nil {
@@ -325,7 +312,6 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) SetThirdPartyCases(v []Sec
 	o.ThirdPartyCases = v
 }
 
-
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleCreatePayload) GetType() SecurityMonitoringRuleTypeCreate {
 	if o == nil || o.Type == nil {
@@ -353,8 +339,6 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) HasType() bool {
 func (o *SecurityMonitoringStandardRuleCreatePayload) SetType(v SecurityMonitoringRuleTypeCreate) {
 	o.Type = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringStandardRuleCreatePayload) MarshalJSON() ([]byte, error) {
@@ -393,17 +377,17 @@ func (o SecurityMonitoringStandardRuleCreatePayload) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringStandardRuleCreatePayload) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Cases *[]SecurityMonitoringRuleCaseCreate `json:"cases"`
-		Filters []SecurityMonitoringFilter `json:"filters,omitempty"`
-		HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
-		IsEnabled *bool `json:"isEnabled"`
-		Message *string `json:"message"`
-		Name *string `json:"name"`
-		Options *SecurityMonitoringRuleOptions `json:"options"`
-		Queries *[]SecurityMonitoringStandardRuleQuery `json:"queries"`
-		Tags []string `json:"tags,omitempty"`
-		ThirdPartyCases []SecurityMonitoringThirdPartyRuleCaseCreate `json:"thirdPartyCases,omitempty"`
-		Type *SecurityMonitoringRuleTypeCreate `json:"type,omitempty"`
+		Cases            *[]SecurityMonitoringRuleCaseCreate          `json:"cases"`
+		Filters          []SecurityMonitoringFilter                   `json:"filters,omitempty"`
+		HasExtendedTitle *bool                                        `json:"hasExtendedTitle,omitempty"`
+		IsEnabled        *bool                                        `json:"isEnabled"`
+		Message          *string                                      `json:"message"`
+		Name             *string                                      `json:"name"`
+		Options          *SecurityMonitoringRuleOptions               `json:"options"`
+		Queries          *[]SecurityMonitoringStandardRuleQuery       `json:"queries"`
+		Tags             []string                                     `json:"tags,omitempty"`
+		ThirdPartyCases  []SecurityMonitoringThirdPartyRuleCaseCreate `json:"thirdPartyCases,omitempty"`
+		Type             *SecurityMonitoringRuleTypeCreate            `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -428,7 +412,7 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "cases", "filters", "hasExtendedTitle", "isEnabled", "message", "name", "options", "queries", "tags", "thirdPartyCases", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"cases", "filters", "hasExtendedTitle", "isEnabled", "message", "name", "options", "queries", "tags", "thirdPartyCases", "type"})
 	} else {
 		return err
 	}
@@ -447,7 +431,7 @@ func (o *SecurityMonitoringStandardRuleCreatePayload) UnmarshalJSON(bytes []byte
 	o.Queries = *all.Queries
 	o.Tags = all.Tags
 	o.ThirdPartyCases = all.ThirdPartyCases
-	if all.Type != nil &&!all.Type.IsValid() {
+	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

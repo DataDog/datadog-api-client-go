@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // MetricIntakeType The type of metric. The available types are `0` (unspecified), `1` (count), `2` (rate), and `3` (gauge).
 type MetricIntakeType int32
@@ -20,9 +16,9 @@ type MetricIntakeType int32
 // List of MetricIntakeType.
 const (
 	METRICINTAKETYPE_UNSPECIFIED MetricIntakeType = 0
-	METRICINTAKETYPE_COUNT MetricIntakeType = 1
-	METRICINTAKETYPE_RATE MetricIntakeType = 2
-	METRICINTAKETYPE_GAUGE MetricIntakeType = 3
+	METRICINTAKETYPE_COUNT       MetricIntakeType = 1
+	METRICINTAKETYPE_RATE        MetricIntakeType = 2
+	METRICINTAKETYPE_GAUGE       MetricIntakeType = 3
 )
 
 var allowedMetricIntakeTypeEnumValues = []MetricIntakeType{

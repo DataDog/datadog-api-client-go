@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SLOListWidgetDefinition Use the SLO List widget to track your SLOs (Service Level Objectives) on dashboards.
 type SLOListWidgetDefinition struct {
@@ -27,10 +23,9 @@ type SLOListWidgetDefinition struct {
 	// Type of the SLO List widget.
 	Type SLOListWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSLOListWidgetDefinition instantiates a new SLOListWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,6 +47,7 @@ func NewSLOListWidgetDefinitionWithDefaults() *SLOListWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
+
 // GetRequests returns the Requests field value.
 func (o *SLOListWidgetDefinition) GetRequests() []SLOListWidgetRequest {
 	if o == nil {
@@ -74,7 +70,6 @@ func (o *SLOListWidgetDefinition) GetRequestsOk() (*[]SLOListWidgetRequest, bool
 func (o *SLOListWidgetDefinition) SetRequests(v []SLOListWidgetRequest) {
 	o.Requests = v
 }
-
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *SLOListWidgetDefinition) GetTitle() string {
@@ -104,7 +99,6 @@ func (o *SLOListWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
-
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *SLOListWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -132,7 +126,6 @@ func (o *SLOListWidgetDefinition) HasTitleAlign() bool {
 func (o *SLOListWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
-
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *SLOListWidgetDefinition) GetTitleSize() string {
@@ -162,7 +155,6 @@ func (o *SLOListWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-
 // GetType returns the Type field value.
 func (o *SLOListWidgetDefinition) GetType() SLOListWidgetDefinitionType {
 	if o == nil {
@@ -185,8 +177,6 @@ func (o *SLOListWidgetDefinition) GetTypeOk() (*SLOListWidgetDefinitionType, boo
 func (o *SLOListWidgetDefinition) SetType(v SLOListWidgetDefinitionType) {
 	o.Type = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOListWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -215,11 +205,11 @@ func (o SLOListWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOListWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Requests *[]SLOListWidgetRequest `json:"requests"`
-		Title *string `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-		TitleSize *string `json:"title_size,omitempty"`
-		Type *SLOListWidgetDefinitionType `json:"type"`
+		Requests   *[]SLOListWidgetRequest      `json:"requests"`
+		Title      *string                      `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign             `json:"title_align,omitempty"`
+		TitleSize  *string                      `json:"title_size,omitempty"`
+		Type       *SLOListWidgetDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -232,7 +222,7 @@ func (o *SLOListWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "requests", "title", "title_align", "title_size", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"requests", "title", "title_align", "title_size", "type"})
 	} else {
 		return err
 	}
@@ -240,7 +230,7 @@ func (o *SLOListWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Requests = *all.Requests
 	o.Title = all.Title
-	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign

@@ -2,24 +2,18 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // UserTeamIncluded - Included resources related to the team membership
 type UserTeamIncluded struct {
-	User *User
-	Team *Team
+	User            *User
+	Team            *Team
 	AbbreviatedTeam *AbbreviatedTeam
-	UserTeamUser *UserTeamUser
+	UserTeamUser    *UserTeamUser
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -134,21 +128,17 @@ func (obj UserTeamIncluded) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.User)
 	}
 
-
 	if obj.Team != nil {
 		return datadog.Marshal(&obj.Team)
 	}
-
 
 	if obj.AbbreviatedTeam != nil {
 		return datadog.Marshal(&obj.AbbreviatedTeam)
 	}
 
-
 	if obj.UserTeamUser != nil {
 		return datadog.Marshal(&obj.UserTeamUser)
 	}
-
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -157,26 +147,22 @@ func (obj UserTeamIncluded) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *UserTeamIncluded) GetActualInstance() (interface{}) {
+func (obj *UserTeamIncluded) GetActualInstance() interface{} {
 	if obj.User != nil {
 		return obj.User
 	}
-
 
 	if obj.Team != nil {
 		return obj.Team
 	}
 
-
 	if obj.AbbreviatedTeam != nil {
 		return obj.AbbreviatedTeam
 	}
 
-
 	if obj.UserTeamUser != nil {
 		return obj.UserTeamUser
 	}
-
 
 	// all schemas are nil
 	return nil

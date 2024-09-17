@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // AlertValueWidgetDefinition Alert values are query values showing the current value of the metric in any monitor defined on your system.
 type AlertValueWidgetDefinition struct {
@@ -33,10 +29,9 @@ type AlertValueWidgetDefinition struct {
 	// Unit to display with the value.
 	Unit *string `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewAlertValueWidgetDefinition instantiates a new AlertValueWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -58,6 +53,7 @@ func NewAlertValueWidgetDefinitionWithDefaults() *AlertValueWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
+
 // GetAlertId returns the AlertId field value.
 func (o *AlertValueWidgetDefinition) GetAlertId() string {
 	if o == nil {
@@ -80,7 +76,6 @@ func (o *AlertValueWidgetDefinition) GetAlertIdOk() (*string, bool) {
 func (o *AlertValueWidgetDefinition) SetAlertId(v string) {
 	o.AlertId = v
 }
-
 
 // GetPrecision returns the Precision field value if set, zero value otherwise.
 func (o *AlertValueWidgetDefinition) GetPrecision() int64 {
@@ -110,7 +105,6 @@ func (o *AlertValueWidgetDefinition) SetPrecision(v int64) {
 	o.Precision = &v
 }
 
-
 // GetTextAlign returns the TextAlign field value if set, zero value otherwise.
 func (o *AlertValueWidgetDefinition) GetTextAlign() WidgetTextAlign {
 	if o == nil || o.TextAlign == nil {
@@ -138,7 +132,6 @@ func (o *AlertValueWidgetDefinition) HasTextAlign() bool {
 func (o *AlertValueWidgetDefinition) SetTextAlign(v WidgetTextAlign) {
 	o.TextAlign = &v
 }
-
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *AlertValueWidgetDefinition) GetTitle() string {
@@ -168,7 +161,6 @@ func (o *AlertValueWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
-
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *AlertValueWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -196,7 +188,6 @@ func (o *AlertValueWidgetDefinition) HasTitleAlign() bool {
 func (o *AlertValueWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
-
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *AlertValueWidgetDefinition) GetTitleSize() string {
@@ -226,7 +217,6 @@ func (o *AlertValueWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-
 // GetType returns the Type field value.
 func (o *AlertValueWidgetDefinition) GetType() AlertValueWidgetDefinitionType {
 	if o == nil {
@@ -249,7 +239,6 @@ func (o *AlertValueWidgetDefinition) GetTypeOk() (*AlertValueWidgetDefinitionTyp
 func (o *AlertValueWidgetDefinition) SetType(v AlertValueWidgetDefinitionType) {
 	o.Type = v
 }
-
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
 func (o *AlertValueWidgetDefinition) GetUnit() string {
@@ -278,8 +267,6 @@ func (o *AlertValueWidgetDefinition) HasUnit() bool {
 func (o *AlertValueWidgetDefinition) SetUnit(v string) {
 	o.Unit = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AlertValueWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -317,14 +304,14 @@ func (o AlertValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AlertValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AlertId *string `json:"alert_id"`
-		Precision *int64 `json:"precision,omitempty"`
-		TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
-		Title *string `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-		TitleSize *string `json:"title_size,omitempty"`
-		Type *AlertValueWidgetDefinitionType `json:"type"`
-		Unit *string `json:"unit,omitempty"`
+		AlertId    *string                         `json:"alert_id"`
+		Precision  *int64                          `json:"precision,omitempty"`
+		TextAlign  *WidgetTextAlign                `json:"text_align,omitempty"`
+		Title      *string                         `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign                `json:"title_align,omitempty"`
+		TitleSize  *string                         `json:"title_size,omitempty"`
+		Type       *AlertValueWidgetDefinitionType `json:"type"`
+		Unit       *string                         `json:"unit,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -337,7 +324,7 @@ func (o *AlertValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "alert_id", "precision", "text_align", "title", "title_align", "title_size", "type", "unit",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"alert_id", "precision", "text_align", "title", "title_align", "title_size", "type", "unit"})
 	} else {
 		return err
 	}
@@ -345,13 +332,13 @@ func (o *AlertValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.AlertId = *all.AlertId
 	o.Precision = all.Precision
-	if all.TextAlign != nil &&!all.TextAlign.IsValid() {
+	if all.TextAlign != nil && !all.TextAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TextAlign = all.TextAlign
 	}
 	o.Title = all.Title
-	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign

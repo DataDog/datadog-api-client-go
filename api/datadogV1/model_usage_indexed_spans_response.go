@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // UsageIndexedSpansResponse A response containing indexed spans usage.
 type UsageIndexedSpansResponse struct {
 	// Array with the number of hourly traces indexed for a given organization.
 	Usage []UsageIndexedSpansHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewUsageIndexedSpansResponse instantiates a new UsageIndexedSpansResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewUsageIndexedSpansResponseWithDefaults() *UsageIndexedSpansResponse {
 	this := UsageIndexedSpansResponse{}
 	return &this
 }
+
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageIndexedSpansResponse) GetUsage() []UsageIndexedSpansHour {
 	if o == nil || o.Usage == nil {
@@ -68,8 +62,6 @@ func (o *UsageIndexedSpansResponse) SetUsage(v []UsageIndexedSpansHour) {
 	o.Usage = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageIndexedSpansResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +88,7 @@ func (o *UsageIndexedSpansResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "usage",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"usage"})
 	} else {
 		return err
 	}

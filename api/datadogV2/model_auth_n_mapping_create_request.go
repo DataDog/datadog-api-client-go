@@ -2,27 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // AuthNMappingCreateRequest Request for creating an AuthN Mapping.
 type AuthNMappingCreateRequest struct {
 	// Data for creating an AuthN Mapping.
 	Data AuthNMappingCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewAuthNMappingCreateRequest instantiates a new AuthNMappingCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,6 +36,7 @@ func NewAuthNMappingCreateRequestWithDefaults() *AuthNMappingCreateRequest {
 	this := AuthNMappingCreateRequest{}
 	return &this
 }
+
 // GetData returns the Data field value.
 func (o *AuthNMappingCreateRequest) GetData() AuthNMappingCreateData {
 	if o == nil {
@@ -63,8 +59,6 @@ func (o *AuthNMappingCreateRequest) GetDataOk() (*AuthNMappingCreateData, bool) 
 func (o *AuthNMappingCreateRequest) SetData(v AuthNMappingCreateData) {
 	o.Data = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AuthNMappingCreateRequest) MarshalJSON() ([]byte, error) {
@@ -93,7 +87,7 @@ func (o *AuthNMappingCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}

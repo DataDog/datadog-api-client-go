@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SLOListWidgetQuery Updated SLO List widget.
 type SLOListWidgetQuery struct {
@@ -23,10 +19,9 @@ type SLOListWidgetQuery struct {
 	// Options for sorting results.
 	Sort []WidgetFieldSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSLOListWidgetQuery instantiates a new SLOListWidgetQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,6 +44,7 @@ func NewSLOListWidgetQueryWithDefaults() *SLOListWidgetQuery {
 	this.Limit = &limit
 	return &this
 }
+
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *SLOListWidgetQuery) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
@@ -77,7 +73,6 @@ func (o *SLOListWidgetQuery) SetLimit(v int64) {
 	o.Limit = &v
 }
 
-
 // GetQueryString returns the QueryString field value.
 func (o *SLOListWidgetQuery) GetQueryString() string {
 	if o == nil {
@@ -100,7 +95,6 @@ func (o *SLOListWidgetQuery) GetQueryStringOk() (*string, bool) {
 func (o *SLOListWidgetQuery) SetQueryString(v string) {
 	o.QueryString = v
 }
-
 
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *SLOListWidgetQuery) GetSort() []WidgetFieldSort {
@@ -130,8 +124,6 @@ func (o *SLOListWidgetQuery) SetSort(v []WidgetFieldSort) {
 	o.Sort = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOListWidgetQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -155,9 +147,9 @@ func (o SLOListWidgetQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOListWidgetQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Limit *int64 `json:"limit,omitempty"`
-		QueryString *string `json:"query_string"`
-		Sort []WidgetFieldSort `json:"sort,omitempty"`
+		Limit       *int64            `json:"limit,omitempty"`
+		QueryString *string           `json:"query_string"`
+		Sort        []WidgetFieldSort `json:"sort,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -167,7 +159,7 @@ func (o *SLOListWidgetQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "limit", "query_string", "sort",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"limit", "query_string", "sort"})
 	} else {
 		return err
 	}

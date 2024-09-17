@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // TimeseriesFormulaRequestAttributes The object describing a timeseries formula request.
 type TimeseriesFormulaRequestAttributes struct {
@@ -30,10 +26,9 @@ type TimeseriesFormulaRequestAttributes struct {
 	// End date (exclusive) of the query in milliseconds since the Unix epoch.
 	To int64 `json:"to"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewTimeseriesFormulaRequestAttributes instantiates a new TimeseriesFormulaRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,6 +49,7 @@ func NewTimeseriesFormulaRequestAttributesWithDefaults() *TimeseriesFormulaReque
 	this := TimeseriesFormulaRequestAttributes{}
 	return &this
 }
+
 // GetFormulas returns the Formulas field value if set, zero value otherwise.
 func (o *TimeseriesFormulaRequestAttributes) GetFormulas() []QueryFormula {
 	if o == nil || o.Formulas == nil {
@@ -82,7 +78,6 @@ func (o *TimeseriesFormulaRequestAttributes) SetFormulas(v []QueryFormula) {
 	o.Formulas = v
 }
 
-
 // GetFrom returns the From field value.
 func (o *TimeseriesFormulaRequestAttributes) GetFrom() int64 {
 	if o == nil {
@@ -105,7 +100,6 @@ func (o *TimeseriesFormulaRequestAttributes) GetFromOk() (*int64, bool) {
 func (o *TimeseriesFormulaRequestAttributes) SetFrom(v int64) {
 	o.From = v
 }
-
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *TimeseriesFormulaRequestAttributes) GetInterval() int64 {
@@ -135,7 +129,6 @@ func (o *TimeseriesFormulaRequestAttributes) SetInterval(v int64) {
 	o.Interval = &v
 }
 
-
 // GetQueries returns the Queries field value.
 func (o *TimeseriesFormulaRequestAttributes) GetQueries() []TimeseriesQuery {
 	if o == nil {
@@ -159,7 +152,6 @@ func (o *TimeseriesFormulaRequestAttributes) SetQueries(v []TimeseriesQuery) {
 	o.Queries = v
 }
 
-
 // GetTo returns the To field value.
 func (o *TimeseriesFormulaRequestAttributes) GetTo() int64 {
 	if o == nil {
@@ -182,8 +174,6 @@ func (o *TimeseriesFormulaRequestAttributes) GetToOk() (*int64, bool) {
 func (o *TimeseriesFormulaRequestAttributes) SetTo(v int64) {
 	o.To = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TimeseriesFormulaRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -210,11 +200,11 @@ func (o TimeseriesFormulaRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TimeseriesFormulaRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Formulas []QueryFormula `json:"formulas,omitempty"`
-		From *int64 `json:"from"`
-		Interval *int64 `json:"interval,omitempty"`
-		Queries *[]TimeseriesQuery `json:"queries"`
-		To *int64 `json:"to"`
+		Formulas []QueryFormula     `json:"formulas,omitempty"`
+		From     *int64             `json:"from"`
+		Interval *int64             `json:"interval,omitempty"`
+		Queries  *[]TimeseriesQuery `json:"queries"`
+		To       *int64             `json:"to"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -230,7 +220,7 @@ func (o *TimeseriesFormulaRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "formulas", "from", "interval", "queries", "to",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"formulas", "from", "interval", "queries", "to"})
 	} else {
 		return err
 	}

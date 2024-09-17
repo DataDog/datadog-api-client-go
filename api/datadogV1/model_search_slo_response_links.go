@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SearchSLOResponseLinks Pagination links.
 type SearchSLOResponseLinks struct {
@@ -27,10 +21,9 @@ type SearchSLOResponseLinks struct {
 	// Link to current page.
 	Self *string `json:"self,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSearchSLOResponseLinks instantiates a new SearchSLOResponseLinks object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +41,7 @@ func NewSearchSLOResponseLinksWithDefaults() *SearchSLOResponseLinks {
 	this := SearchSLOResponseLinks{}
 	return &this
 }
+
 // GetFirst returns the First field value if set, zero value otherwise.
 func (o *SearchSLOResponseLinks) GetFirst() string {
 	if o == nil || o.First == nil {
@@ -76,7 +70,6 @@ func (o *SearchSLOResponseLinks) SetFirst(v string) {
 	o.First = &v
 }
 
-
 // GetLast returns the Last field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchSLOResponseLinks) GetLast() string {
 	if o == nil || o.Last.Get() == nil {
@@ -90,7 +83,7 @@ func (o *SearchSLOResponseLinks) GetLast() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SearchSLOResponseLinks) GetLastOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Last.Get(), o.Last.IsSet()
@@ -105,6 +98,7 @@ func (o *SearchSLOResponseLinks) HasLast() bool {
 func (o *SearchSLOResponseLinks) SetLast(v string) {
 	o.Last.Set(&v)
 }
+
 // SetLastNil sets the value for Last to be an explicit nil.
 func (o *SearchSLOResponseLinks) SetLastNil() {
 	o.Last.Set(nil)
@@ -114,7 +108,6 @@ func (o *SearchSLOResponseLinks) SetLastNil() {
 func (o *SearchSLOResponseLinks) UnsetLast() {
 	o.Last.Unset()
 }
-
 
 // GetNext returns the Next field value if set, zero value otherwise.
 func (o *SearchSLOResponseLinks) GetNext() string {
@@ -144,7 +137,6 @@ func (o *SearchSLOResponseLinks) SetNext(v string) {
 	o.Next = &v
 }
 
-
 // GetPrev returns the Prev field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchSLOResponseLinks) GetPrev() string {
 	if o == nil || o.Prev.Get() == nil {
@@ -158,7 +150,7 @@ func (o *SearchSLOResponseLinks) GetPrev() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SearchSLOResponseLinks) GetPrevOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Prev.Get(), o.Prev.IsSet()
@@ -173,6 +165,7 @@ func (o *SearchSLOResponseLinks) HasPrev() bool {
 func (o *SearchSLOResponseLinks) SetPrev(v string) {
 	o.Prev.Set(&v)
 }
+
 // SetPrevNil sets the value for Prev to be an explicit nil.
 func (o *SearchSLOResponseLinks) SetPrevNil() {
 	o.Prev.Set(nil)
@@ -182,7 +175,6 @@ func (o *SearchSLOResponseLinks) SetPrevNil() {
 func (o *SearchSLOResponseLinks) UnsetPrev() {
 	o.Prev.Unset()
 }
-
 
 // GetSelf returns the Self field value if set, zero value otherwise.
 func (o *SearchSLOResponseLinks) GetSelf() string {
@@ -211,8 +203,6 @@ func (o *SearchSLOResponseLinks) HasSelf() bool {
 func (o *SearchSLOResponseLinks) SetSelf(v string) {
 	o.Self = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SearchSLOResponseLinks) MarshalJSON() ([]byte, error) {
@@ -245,18 +235,18 @@ func (o SearchSLOResponseLinks) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SearchSLOResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		First *string `json:"first,omitempty"`
-		Last datadog.NullableString `json:"last,omitempty"`
-		Next *string `json:"next,omitempty"`
-		Prev datadog.NullableString `json:"prev,omitempty"`
-		Self *string `json:"self,omitempty"`
+		First *string                `json:"first,omitempty"`
+		Last  datadog.NullableString `json:"last,omitempty"`
+		Next  *string                `json:"next,omitempty"`
+		Prev  datadog.NullableString `json:"prev,omitempty"`
+		Self  *string                `json:"self,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "first", "last", "next", "prev", "self",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"first", "last", "next", "prev", "self"})
 	} else {
 		return err
 	}

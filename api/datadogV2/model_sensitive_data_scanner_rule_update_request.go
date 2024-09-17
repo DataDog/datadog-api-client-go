@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SensitiveDataScannerRuleUpdateRequest Update rule request.
 type SensitiveDataScannerRuleUpdateRequest struct {
@@ -21,10 +17,9 @@ type SensitiveDataScannerRuleUpdateRequest struct {
 	// Meta payload containing information about the API.
 	Meta SensitiveDataScannerMetaVersionOnly `json:"meta"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSensitiveDataScannerRuleUpdateRequest instantiates a new SensitiveDataScannerRuleUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewSensitiveDataScannerRuleUpdateRequestWithDefaults() *SensitiveDataScanne
 	this := SensitiveDataScannerRuleUpdateRequest{}
 	return &this
 }
+
 // GetData returns the Data field value.
 func (o *SensitiveDataScannerRuleUpdateRequest) GetData() SensitiveDataScannerRuleUpdate {
 	if o == nil {
@@ -66,7 +62,6 @@ func (o *SensitiveDataScannerRuleUpdateRequest) GetDataOk() (*SensitiveDataScann
 func (o *SensitiveDataScannerRuleUpdateRequest) SetData(v SensitiveDataScannerRuleUpdate) {
 	o.Data = v
 }
-
 
 // GetMeta returns the Meta field value.
 func (o *SensitiveDataScannerRuleUpdateRequest) GetMeta() SensitiveDataScannerMetaVersionOnly {
@@ -91,8 +86,6 @@ func (o *SensitiveDataScannerRuleUpdateRequest) SetMeta(v SensitiveDataScannerMe
 	o.Meta = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerRuleUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +104,7 @@ func (o SensitiveDataScannerRuleUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *SensitiveDataScannerRuleUpdate `json:"data"`
+		Data *SensitiveDataScannerRuleUpdate      `json:"data"`
 		Meta *SensitiveDataScannerMetaVersionOnly `json:"meta"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -125,7 +118,7 @@ func (o *SensitiveDataScannerRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
 	} else {
 		return err
 	}

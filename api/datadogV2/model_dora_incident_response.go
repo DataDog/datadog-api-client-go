@@ -2,27 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // DORAIncidentResponse Response after receiving a DORA incident event.
 type DORAIncidentResponse struct {
 	// Response after receiving a DORA incident event.
 	Data DORAIncidentResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewDORAIncidentResponse instantiates a new DORAIncidentResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,6 +36,7 @@ func NewDORAIncidentResponseWithDefaults() *DORAIncidentResponse {
 	this := DORAIncidentResponse{}
 	return &this
 }
+
 // GetData returns the Data field value.
 func (o *DORAIncidentResponse) GetData() DORAIncidentResponseData {
 	if o == nil {
@@ -63,8 +59,6 @@ func (o *DORAIncidentResponse) GetDataOk() (*DORAIncidentResponseData, bool) {
 func (o *DORAIncidentResponse) SetData(v DORAIncidentResponseData) {
 	o.Data = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DORAIncidentResponse) MarshalJSON() ([]byte, error) {
@@ -93,7 +87,7 @@ func (o *DORAIncidentResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}

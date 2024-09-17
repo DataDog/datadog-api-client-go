@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // TreeMapWidgetDefinition The treemap visualization enables you to display hierarchical and nested data. It is well suited for queries that describe part-whole relationships, such as resource usage by availability zone, data center, or team.
 type TreeMapWidgetDefinition struct {
@@ -36,10 +32,9 @@ type TreeMapWidgetDefinition struct {
 	// Type of the treemap widget.
 	Type TreeMapWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewTreeMapWidgetDefinition instantiates a new TreeMapWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -65,6 +60,7 @@ func NewTreeMapWidgetDefinitionWithDefaults() *TreeMapWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
+
 // GetColorBy returns the ColorBy field value if set, zero value otherwise.
 // Deprecated
 func (o *TreeMapWidgetDefinition) GetColorBy() TreeMapColorBy {
@@ -96,7 +92,6 @@ func (o *TreeMapWidgetDefinition) SetColorBy(v TreeMapColorBy) {
 	o.ColorBy = &v
 }
 
-
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *TreeMapWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 	if o == nil || o.CustomLinks == nil {
@@ -124,7 +119,6 @@ func (o *TreeMapWidgetDefinition) HasCustomLinks() bool {
 func (o *TreeMapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
-
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 // Deprecated
@@ -157,7 +151,6 @@ func (o *TreeMapWidgetDefinition) SetGroupBy(v TreeMapGroupBy) {
 	o.GroupBy = &v
 }
 
-
 // GetRequests returns the Requests field value.
 func (o *TreeMapWidgetDefinition) GetRequests() []TreeMapWidgetRequest {
 	if o == nil {
@@ -180,7 +173,6 @@ func (o *TreeMapWidgetDefinition) GetRequestsOk() (*[]TreeMapWidgetRequest, bool
 func (o *TreeMapWidgetDefinition) SetRequests(v []TreeMapWidgetRequest) {
 	o.Requests = v
 }
-
 
 // GetSizeBy returns the SizeBy field value if set, zero value otherwise.
 // Deprecated
@@ -213,7 +205,6 @@ func (o *TreeMapWidgetDefinition) SetSizeBy(v TreeMapSizeBy) {
 	o.SizeBy = &v
 }
 
-
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *TreeMapWidgetDefinition) GetTime() WidgetTime {
 	if o == nil || o.Time == nil {
@@ -241,7 +232,6 @@ func (o *TreeMapWidgetDefinition) HasTime() bool {
 func (o *TreeMapWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
-
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *TreeMapWidgetDefinition) GetTitle() string {
@@ -271,7 +261,6 @@ func (o *TreeMapWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
-
 // GetType returns the Type field value.
 func (o *TreeMapWidgetDefinition) GetType() TreeMapWidgetDefinitionType {
 	if o == nil {
@@ -294,8 +283,6 @@ func (o *TreeMapWidgetDefinition) GetTypeOk() (*TreeMapWidgetDefinitionType, boo
 func (o *TreeMapWidgetDefinition) SetType(v TreeMapWidgetDefinitionType) {
 	o.Type = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TreeMapWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -333,14 +320,14 @@ func (o TreeMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ColorBy *TreeMapColorBy `json:"color_by,omitempty"`
-		CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
-		GroupBy *TreeMapGroupBy `json:"group_by,omitempty"`
-		Requests *[]TreeMapWidgetRequest `json:"requests"`
-		SizeBy *TreeMapSizeBy `json:"size_by,omitempty"`
-		Time *WidgetTime `json:"time,omitempty"`
-		Title *string `json:"title,omitempty"`
-		Type *TreeMapWidgetDefinitionType `json:"type"`
+		ColorBy     *TreeMapColorBy              `json:"color_by,omitempty"`
+		CustomLinks []WidgetCustomLink           `json:"custom_links,omitempty"`
+		GroupBy     *TreeMapGroupBy              `json:"group_by,omitempty"`
+		Requests    *[]TreeMapWidgetRequest      `json:"requests"`
+		SizeBy      *TreeMapSizeBy               `json:"size_by,omitempty"`
+		Time        *WidgetTime                  `json:"time,omitempty"`
+		Title       *string                      `json:"title,omitempty"`
+		Type        *TreeMapWidgetDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -353,25 +340,25 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "color_by", "custom_links", "group_by", "requests", "size_by", "time", "title", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"color_by", "custom_links", "group_by", "requests", "size_by", "time", "title", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.ColorBy != nil &&!all.ColorBy.IsValid() {
+	if all.ColorBy != nil && !all.ColorBy.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ColorBy = all.ColorBy
 	}
 	o.CustomLinks = all.CustomLinks
-	if all.GroupBy != nil &&!all.GroupBy.IsValid() {
+	if all.GroupBy != nil && !all.GroupBy.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.GroupBy = all.GroupBy
 	}
 	o.Requests = *all.Requests
-	if all.SizeBy != nil &&!all.SizeBy.IsValid() {
+	if all.SizeBy != nil && !all.SizeBy.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.SizeBy = all.SizeBy

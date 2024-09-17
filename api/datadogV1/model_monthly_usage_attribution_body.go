@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // MonthlyUsageAttributionBody Usage Summary by tag for a given organization.
 type MonthlyUsageAttributionBody struct {
@@ -37,10 +33,9 @@ type MonthlyUsageAttributionBody struct {
 	// Fields in Usage Summary by tag(s).
 	Values *MonthlyUsageAttributionValues `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewMonthlyUsageAttributionBody instantiates a new MonthlyUsageAttributionBody object.
 // This constructor will assign default values to properties that have it defined,
@@ -58,6 +53,7 @@ func NewMonthlyUsageAttributionBodyWithDefaults() *MonthlyUsageAttributionBody {
 	this := MonthlyUsageAttributionBody{}
 	return &this
 }
+
 // GetMonth returns the Month field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionBody) GetMonth() time.Time {
 	if o == nil || o.Month == nil {
@@ -85,7 +81,6 @@ func (o *MonthlyUsageAttributionBody) HasMonth() bool {
 func (o *MonthlyUsageAttributionBody) SetMonth(v time.Time) {
 	o.Month = &v
 }
-
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionBody) GetOrgName() string {
@@ -115,7 +110,6 @@ func (o *MonthlyUsageAttributionBody) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionBody) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -143,7 +137,6 @@ func (o *MonthlyUsageAttributionBody) HasPublicId() bool {
 func (o *MonthlyUsageAttributionBody) SetPublicId(v string) {
 	o.PublicId = &v
 }
-
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionBody) GetRegion() string {
@@ -173,7 +166,6 @@ func (o *MonthlyUsageAttributionBody) SetRegion(v string) {
 	o.Region = &v
 }
 
-
 // GetTagConfigSource returns the TagConfigSource field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionBody) GetTagConfigSource() string {
 	if o == nil || o.TagConfigSource == nil {
@@ -202,10 +194,9 @@ func (o *MonthlyUsageAttributionBody) SetTagConfigSource(v string) {
 	o.TagConfigSource = &v
 }
 
-
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonthlyUsageAttributionBody) GetTags() map[string][]string {
-	if o == nil  {
+	if o == nil {
 		var ret map[string][]string
 		return ret
 	}
@@ -231,7 +222,6 @@ func (o *MonthlyUsageAttributionBody) HasTags() bool {
 func (o *MonthlyUsageAttributionBody) SetTags(v map[string][]string) {
 	o.Tags = v
 }
-
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionBody) GetUpdatedAt() time.Time {
@@ -261,7 +251,6 @@ func (o *MonthlyUsageAttributionBody) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
-
 // GetValues returns the Values field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionBody) GetValues() MonthlyUsageAttributionValues {
 	if o == nil || o.Values == nil {
@@ -289,8 +278,6 @@ func (o *MonthlyUsageAttributionBody) HasValues() bool {
 func (o *MonthlyUsageAttributionBody) SetValues(v MonthlyUsageAttributionValues) {
 	o.Values = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonthlyUsageAttributionBody) MarshalJSON() ([]byte, error) {
@@ -340,21 +327,21 @@ func (o MonthlyUsageAttributionBody) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonthlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Month *time.Time `json:"month,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
-		Region *string `json:"region,omitempty"`
-		TagConfigSource *string `json:"tag_config_source,omitempty"`
-		Tags map[string][]string `json:"tags,omitempty"`
-		UpdatedAt *time.Time `json:"updated_at,omitempty"`
-		Values *MonthlyUsageAttributionValues `json:"values,omitempty"`
+		Month           *time.Time                     `json:"month,omitempty"`
+		OrgName         *string                        `json:"org_name,omitempty"`
+		PublicId        *string                        `json:"public_id,omitempty"`
+		Region          *string                        `json:"region,omitempty"`
+		TagConfigSource *string                        `json:"tag_config_source,omitempty"`
+		Tags            map[string][]string            `json:"tags,omitempty"`
+		UpdatedAt       *time.Time                     `json:"updated_at,omitempty"`
+		Values          *MonthlyUsageAttributionValues `json:"values,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "month", "org_name", "public_id", "region", "tag_config_source", "tags", "updated_at", "values",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"month", "org_name", "public_id", "region", "tag_config_source", "tags", "updated_at", "values"})
 	} else {
 		return err
 	}
@@ -367,7 +354,7 @@ func (o *MonthlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.TagConfigSource = all.TagConfigSource
 	o.Tags = all.Tags
 	o.UpdatedAt = all.UpdatedAt
-	if  all.Values != nil && all.Values.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Values != nil && all.Values.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Values = all.Values

@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // UsageNetworkFlowsResponse Response containing the number of netflow events indexed for each hour for a given organization.
 type UsageNetworkFlowsResponse struct {
 	// Get hourly usage for Network Flows.
 	Usage []UsageNetworkFlowsHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewUsageNetworkFlowsResponse instantiates a new UsageNetworkFlowsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewUsageNetworkFlowsResponseWithDefaults() *UsageNetworkFlowsResponse {
 	this := UsageNetworkFlowsResponse{}
 	return &this
 }
+
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageNetworkFlowsResponse) GetUsage() []UsageNetworkFlowsHour {
 	if o == nil || o.Usage == nil {
@@ -68,8 +62,6 @@ func (o *UsageNetworkFlowsResponse) SetUsage(v []UsageNetworkFlowsHour) {
 	o.Usage = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageNetworkFlowsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +88,7 @@ func (o *UsageNetworkFlowsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "usage",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"usage"})
 	} else {
 		return err
 	}

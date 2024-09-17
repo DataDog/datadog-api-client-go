@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // TeamLinkCreate Team link create
 type TeamLinkCreate struct {
@@ -21,10 +17,9 @@ type TeamLinkCreate struct {
 	// Team link type
 	Type TeamLinkType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewTeamLinkCreate instantiates a new TeamLinkCreate object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewTeamLinkCreateWithDefaults() *TeamLinkCreate {
 	this.Type = typeVar
 	return &this
 }
+
 // GetAttributes returns the Attributes field value.
 func (o *TeamLinkCreate) GetAttributes() TeamLinkAttributes {
 	if o == nil {
@@ -68,7 +64,6 @@ func (o *TeamLinkCreate) GetAttributesOk() (*TeamLinkAttributes, bool) {
 func (o *TeamLinkCreate) SetAttributes(v TeamLinkAttributes) {
 	o.Attributes = v
 }
-
 
 // GetType returns the Type field value.
 func (o *TeamLinkCreate) GetType() TeamLinkType {
@@ -93,8 +88,6 @@ func (o *TeamLinkCreate) SetType(v TeamLinkType) {
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamLinkCreate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +107,7 @@ func (o TeamLinkCreate) MarshalJSON() ([]byte, error) {
 func (o *TeamLinkCreate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *TeamLinkAttributes `json:"attributes"`
-		Type *TeamLinkType `json:"type"`
+		Type       *TeamLinkType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -127,7 +120,7 @@ func (o *TeamLinkCreate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
 	} else {
 		return err
 	}

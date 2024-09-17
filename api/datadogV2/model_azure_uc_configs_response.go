@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // AzureUCConfigsResponse List of Azure accounts with configs.
 type AzureUCConfigsResponse struct {
 	// An Azure config pair.
 	Data []AzureUCConfigPair `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewAzureUCConfigsResponse instantiates a new AzureUCConfigsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewAzureUCConfigsResponseWithDefaults() *AzureUCConfigsResponse {
 	this := AzureUCConfigsResponse{}
 	return &this
 }
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *AzureUCConfigsResponse) GetData() []AzureUCConfigPair {
 	if o == nil || o.Data == nil {
@@ -68,8 +62,6 @@ func (o *AzureUCConfigsResponse) SetData(v []AzureUCConfigPair) {
 	o.Data = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o AzureUCConfigsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +88,7 @@ func (o *AzureUCConfigsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}

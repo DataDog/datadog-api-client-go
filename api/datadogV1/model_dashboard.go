@@ -2,17 +2,14 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // Dashboard A dashboard is Datadog’s tool for visually tracking, analyzing, and displaying
 // key performance metrics, which enable you to monitor the health of your infrastructure.
@@ -60,10 +57,9 @@ type Dashboard struct {
 	// List of widgets to display on the dashboard.
 	Widgets []Widget `json:"widgets"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewDashboard instantiates a new Dashboard object.
 // This constructor will assign default values to properties that have it defined,
@@ -88,6 +84,7 @@ func NewDashboardWithDefaults() *Dashboard {
 	this.IsReadOnly = &isReadOnly
 	return &this
 }
+
 // GetAuthorHandle returns the AuthorHandle field value if set, zero value otherwise.
 func (o *Dashboard) GetAuthorHandle() string {
 	if o == nil || o.AuthorHandle == nil {
@@ -116,7 +113,6 @@ func (o *Dashboard) SetAuthorHandle(v string) {
 	o.AuthorHandle = &v
 }
 
-
 // GetAuthorName returns the AuthorName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetAuthorName() string {
 	if o == nil || o.AuthorName.Get() == nil {
@@ -130,7 +126,7 @@ func (o *Dashboard) GetAuthorName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Dashboard) GetAuthorNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.AuthorName.Get(), o.AuthorName.IsSet()
@@ -145,6 +141,7 @@ func (o *Dashboard) HasAuthorName() bool {
 func (o *Dashboard) SetAuthorName(v string) {
 	o.AuthorName.Set(&v)
 }
+
 // SetAuthorNameNil sets the value for AuthorName to be an explicit nil.
 func (o *Dashboard) SetAuthorNameNil() {
 	o.AuthorName.Set(nil)
@@ -154,7 +151,6 @@ func (o *Dashboard) SetAuthorNameNil() {
 func (o *Dashboard) UnsetAuthorName() {
 	o.AuthorName.Unset()
 }
-
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Dashboard) GetCreatedAt() time.Time {
@@ -184,7 +180,6 @@ func (o *Dashboard) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
-
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetDescription() string {
 	if o == nil || o.Description.Get() == nil {
@@ -198,7 +193,7 @@ func (o *Dashboard) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Dashboard) GetDescriptionOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -213,6 +208,7 @@ func (o *Dashboard) HasDescription() bool {
 func (o *Dashboard) SetDescription(v string) {
 	o.Description.Set(&v)
 }
+
 // SetDescriptionNil sets the value for Description to be an explicit nil.
 func (o *Dashboard) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -222,7 +218,6 @@ func (o *Dashboard) SetDescriptionNil() {
 func (o *Dashboard) UnsetDescription() {
 	o.Description.Unset()
 }
-
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Dashboard) GetId() string {
@@ -251,7 +246,6 @@ func (o *Dashboard) HasId() bool {
 func (o *Dashboard) SetId(v string) {
 	o.Id = &v
 }
-
 
 // GetIsReadOnly returns the IsReadOnly field value if set, zero value otherwise.
 // Deprecated
@@ -284,7 +278,6 @@ func (o *Dashboard) SetIsReadOnly(v bool) {
 	o.IsReadOnly = &v
 }
 
-
 // GetLayoutType returns the LayoutType field value.
 func (o *Dashboard) GetLayoutType() DashboardLayoutType {
 	if o == nil {
@@ -307,7 +300,6 @@ func (o *Dashboard) GetLayoutTypeOk() (*DashboardLayoutType, bool) {
 func (o *Dashboard) SetLayoutType(v DashboardLayoutType) {
 	o.LayoutType = v
 }
-
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *Dashboard) GetModifiedAt() time.Time {
@@ -337,7 +329,6 @@ func (o *Dashboard) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
-
 // GetNotifyList returns the NotifyList field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetNotifyList() []string {
 	if o == nil || o.NotifyList.Get() == nil {
@@ -351,7 +342,7 @@ func (o *Dashboard) GetNotifyList() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Dashboard) GetNotifyListOk() (*[]string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.NotifyList.Get(), o.NotifyList.IsSet()
@@ -366,6 +357,7 @@ func (o *Dashboard) HasNotifyList() bool {
 func (o *Dashboard) SetNotifyList(v []string) {
 	o.NotifyList.Set(&v)
 }
+
 // SetNotifyListNil sets the value for NotifyList to be an explicit nil.
 func (o *Dashboard) SetNotifyListNil() {
 	o.NotifyList.Set(nil)
@@ -375,7 +367,6 @@ func (o *Dashboard) SetNotifyListNil() {
 func (o *Dashboard) UnsetNotifyList() {
 	o.NotifyList.Unset()
 }
-
 
 // GetReflowType returns the ReflowType field value if set, zero value otherwise.
 func (o *Dashboard) GetReflowType() DashboardReflowType {
@@ -404,7 +395,6 @@ func (o *Dashboard) HasReflowType() bool {
 func (o *Dashboard) SetReflowType(v DashboardReflowType) {
 	o.ReflowType = &v
 }
-
 
 // GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.
 // Deprecated
@@ -437,7 +427,6 @@ func (o *Dashboard) SetRestrictedRoles(v []string) {
 	o.RestrictedRoles = v
 }
 
-
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetTags() []string {
 	if o == nil || o.Tags.Get() == nil {
@@ -451,7 +440,7 @@ func (o *Dashboard) GetTags() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Dashboard) GetTagsOk() (*[]string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Tags.Get(), o.Tags.IsSet()
@@ -466,6 +455,7 @@ func (o *Dashboard) HasTags() bool {
 func (o *Dashboard) SetTags(v []string) {
 	o.Tags.Set(&v)
 }
+
 // SetTagsNil sets the value for Tags to be an explicit nil.
 func (o *Dashboard) SetTagsNil() {
 	o.Tags.Set(nil)
@@ -476,10 +466,9 @@ func (o *Dashboard) UnsetTags() {
 	o.Tags.Unset()
 }
 
-
 // GetTemplateVariablePresets returns the TemplateVariablePresets field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetTemplateVariablePresets() []DashboardTemplateVariablePreset {
-	if o == nil  {
+	if o == nil {
 		var ret []DashboardTemplateVariablePreset
 		return ret
 	}
@@ -506,10 +495,9 @@ func (o *Dashboard) SetTemplateVariablePresets(v []DashboardTemplateVariablePres
 	o.TemplateVariablePresets = v
 }
 
-
 // GetTemplateVariables returns the TemplateVariables field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetTemplateVariables() []DashboardTemplateVariable {
-	if o == nil  {
+	if o == nil {
 		var ret []DashboardTemplateVariable
 		return ret
 	}
@@ -536,7 +524,6 @@ func (o *Dashboard) SetTemplateVariables(v []DashboardTemplateVariable) {
 	o.TemplateVariables = v
 }
 
-
 // GetTitle returns the Title field value.
 func (o *Dashboard) GetTitle() string {
 	if o == nil {
@@ -559,7 +546,6 @@ func (o *Dashboard) GetTitleOk() (*string, bool) {
 func (o *Dashboard) SetTitle(v string) {
 	o.Title = v
 }
-
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *Dashboard) GetUrl() string {
@@ -589,7 +575,6 @@ func (o *Dashboard) SetUrl(v string) {
 	o.Url = &v
 }
 
-
 // GetWidgets returns the Widgets field value.
 func (o *Dashboard) GetWidgets() []Widget {
 	if o == nil {
@@ -612,8 +597,6 @@ func (o *Dashboard) GetWidgetsOk() (*[]Widget, bool) {
 func (o *Dashboard) SetWidgets(v []Widget) {
 	o.Widgets = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o Dashboard) MarshalJSON() ([]byte, error) {
@@ -684,23 +667,23 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AuthorHandle *string `json:"author_handle,omitempty"`
-		AuthorName datadog.NullableString `json:"author_name,omitempty"`
-		CreatedAt *time.Time `json:"created_at,omitempty"`
-		Description datadog.NullableString `json:"description,omitempty"`
-		Id *string `json:"id,omitempty"`
-		IsReadOnly *bool `json:"is_read_only,omitempty"`
-		LayoutType *DashboardLayoutType `json:"layout_type"`
-		ModifiedAt *time.Time `json:"modified_at,omitempty"`
-		NotifyList datadog.NullableList[string] `json:"notify_list,omitempty"`
-		ReflowType *DashboardReflowType `json:"reflow_type,omitempty"`
-		RestrictedRoles []string `json:"restricted_roles,omitempty"`
-		Tags datadog.NullableList[string] `json:"tags,omitempty"`
+		AuthorHandle            *string                           `json:"author_handle,omitempty"`
+		AuthorName              datadog.NullableString            `json:"author_name,omitempty"`
+		CreatedAt               *time.Time                        `json:"created_at,omitempty"`
+		Description             datadog.NullableString            `json:"description,omitempty"`
+		Id                      *string                           `json:"id,omitempty"`
+		IsReadOnly              *bool                             `json:"is_read_only,omitempty"`
+		LayoutType              *DashboardLayoutType              `json:"layout_type"`
+		ModifiedAt              *time.Time                        `json:"modified_at,omitempty"`
+		NotifyList              datadog.NullableList[string]      `json:"notify_list,omitempty"`
+		ReflowType              *DashboardReflowType              `json:"reflow_type,omitempty"`
+		RestrictedRoles         []string                          `json:"restricted_roles,omitempty"`
+		Tags                    datadog.NullableList[string]      `json:"tags,omitempty"`
 		TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
-		TemplateVariables []DashboardTemplateVariable `json:"template_variables,omitempty"`
-		Title *string `json:"title"`
-		Url *string `json:"url,omitempty"`
-		Widgets *[]Widget `json:"widgets"`
+		TemplateVariables       []DashboardTemplateVariable       `json:"template_variables,omitempty"`
+		Title                   *string                           `json:"title"`
+		Url                     *string                           `json:"url,omitempty"`
+		Widgets                 *[]Widget                         `json:"widgets"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -716,7 +699,7 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "author_handle", "author_name", "created_at", "description", "id", "is_read_only", "layout_type", "modified_at", "notify_list", "reflow_type", "restricted_roles", "tags", "template_variable_presets", "template_variables", "title", "url", "widgets",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"author_handle", "author_name", "created_at", "description", "id", "is_read_only", "layout_type", "modified_at", "notify_list", "reflow_type", "restricted_roles", "tags", "template_variable_presets", "template_variables", "title", "url", "widgets"})
 	} else {
 		return err
 	}
@@ -735,7 +718,7 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.ModifiedAt = all.ModifiedAt
 	o.NotifyList = all.NotifyList
-	if all.ReflowType != nil &&!all.ReflowType.IsValid() {
+	if all.ReflowType != nil && !all.ReflowType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ReflowType = all.ReflowType

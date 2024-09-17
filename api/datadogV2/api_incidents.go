@@ -2,17 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"bytes"
 	_context "context"
 	_fmt "fmt"
-	_io "io"
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -24,18 +22,16 @@ type IncidentsApi datadog.Service
 // Create an incident.
 func (a *IncidentsApi) CreateIncident(ctx _context.Context, body IncidentCreateRequest) (IncidentResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentResponse
 	)
-
-    
 
 	operationId := "v2.CreateIncident"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.CreateIncident")
@@ -51,11 +47,9 @@ func (a *IncidentsApi) CreateIncident(ctx _context.Context, body IncidentCreateR
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -78,11 +72,10 @@ func (a *IncidentsApi) CreateIncident(ctx _context.Context, body IncidentCreateR
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -96,7 +89,7 @@ func (a *IncidentsApi) CreateIncident(ctx _context.Context, body IncidentCreateR
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -109,18 +102,16 @@ func (a *IncidentsApi) CreateIncident(ctx _context.Context, body IncidentCreateR
 // Create an incident integration metadata.
 func (a *IncidentsApi) CreateIncidentIntegration(ctx _context.Context, incidentId string, body IncidentIntegrationMetadataCreateRequest) (IncidentIntegrationMetadataResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentIntegrationMetadataResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentIntegrationMetadataResponse
 	)
-
-    
 
 	operationId := "v2.CreateIncidentIntegration"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.CreateIncidentIntegration")
@@ -137,11 +128,9 @@ func (a *IncidentsApi) CreateIncidentIntegration(ctx _context.Context, incidentI
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -164,11 +153,10 @@ func (a *IncidentsApi) CreateIncidentIntegration(ctx _context.Context, incidentI
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -182,7 +170,7 @@ func (a *IncidentsApi) CreateIncidentIntegration(ctx _context.Context, incidentI
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -195,18 +183,16 @@ func (a *IncidentsApi) CreateIncidentIntegration(ctx _context.Context, incidentI
 // Create an incident todo.
 func (a *IncidentsApi) CreateIncidentTodo(ctx _context.Context, incidentId string, body IncidentTodoCreateRequest) (IncidentTodoResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentTodoResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentTodoResponse
 	)
-
-    
 
 	operationId := "v2.CreateIncidentTodo"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.CreateIncidentTodo")
@@ -223,11 +209,9 @@ func (a *IncidentsApi) CreateIncidentTodo(ctx _context.Context, incidentId strin
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -250,11 +234,10 @@ func (a *IncidentsApi) CreateIncidentTodo(ctx _context.Context, incidentId strin
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -268,7 +251,7 @@ func (a *IncidentsApi) CreateIncidentTodo(ctx _context.Context, incidentId strin
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -281,15 +264,13 @@ func (a *IncidentsApi) CreateIncidentTodo(ctx _context.Context, incidentId strin
 // Deletes an existing incident from the users organization.
 func (a *IncidentsApi) DeleteIncident(ctx _context.Context, incidentId string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
-
-    
 
 	operationId := "v2.DeleteIncident"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
@@ -305,10 +286,9 @@ func (a *IncidentsApi) DeleteIncident(ctx _context.Context, incidentId string) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] =  "*/*"
+	localVarHeaderParams["Accept"] = "*/*"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -331,11 +311,10 @@ func (a *IncidentsApi) DeleteIncident(ctx _context.Context, incidentId string) (
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -353,15 +332,13 @@ func (a *IncidentsApi) DeleteIncident(ctx _context.Context, incidentId string) (
 // Delete an incident integration metadata.
 func (a *IncidentsApi) DeleteIncidentIntegration(ctx _context.Context, incidentId string, integrationMetadataId string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
-
-    
 
 	operationId := "v2.DeleteIncidentIntegration"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
@@ -378,10 +355,9 @@ func (a *IncidentsApi) DeleteIncidentIntegration(ctx _context.Context, incidentI
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] =  "*/*"
+	localVarHeaderParams["Accept"] = "*/*"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -404,11 +380,10 @@ func (a *IncidentsApi) DeleteIncidentIntegration(ctx _context.Context, incidentI
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -426,15 +401,13 @@ func (a *IncidentsApi) DeleteIncidentIntegration(ctx _context.Context, incidentI
 // Delete an incident todo.
 func (a *IncidentsApi) DeleteIncidentTodo(ctx _context.Context, incidentId string, todoId string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
-
-    
 
 	operationId := "v2.DeleteIncidentTodo"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
@@ -451,10 +424,9 @@ func (a *IncidentsApi) DeleteIncidentTodo(ctx _context.Context, incidentId strin
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] =  "*/*"
+	localVarHeaderParams["Accept"] = "*/*"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -477,11 +449,10 @@ func (a *IncidentsApi) DeleteIncidentTodo(ctx _context.Context, incidentId strin
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -505,6 +476,7 @@ func NewGetIncidentOptionalParameters() *GetIncidentOptionalParameters {
 	this := GetIncidentOptionalParameters{}
 	return &this
 }
+
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *GetIncidentOptionalParameters) WithInclude(include []IncidentRelatedObject) *GetIncidentOptionalParameters {
 	r.Include = &include
@@ -515,26 +487,24 @@ func (r *GetIncidentOptionalParameters) WithInclude(include []IncidentRelatedObj
 // Get the details of an incident by `incident_id`.
 func (a *IncidentsApi) GetIncident(ctx _context.Context, incidentId string, o ...GetIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentResponse
-		optionalParams GetIncidentOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentResponse
+		optionalParams      GetIncidentOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetIncidentOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetIncidentOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.GetIncident"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.GetIncident")
@@ -553,8 +523,7 @@ func (a *IncidentsApi) GetIncident(ctx _context.Context, incidentId string, o ..
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -577,11 +546,10 @@ func (a *IncidentsApi) GetIncident(ctx _context.Context, incidentId string, o ..
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -595,7 +563,7 @@ func (a *IncidentsApi) GetIncident(ctx _context.Context, incidentId string, o ..
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -608,18 +576,16 @@ func (a *IncidentsApi) GetIncident(ctx _context.Context, incidentId string, o ..
 // Get incident integration metadata details.
 func (a *IncidentsApi) GetIncidentIntegration(ctx _context.Context, incidentId string, integrationMetadataId string) (IncidentIntegrationMetadataResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentIntegrationMetadataResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentIntegrationMetadataResponse
 	)
-
-    
 
 	operationId := "v2.GetIncidentIntegration"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.GetIncidentIntegration")
@@ -636,8 +602,7 @@ func (a *IncidentsApi) GetIncidentIntegration(ctx _context.Context, incidentId s
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -660,11 +625,10 @@ func (a *IncidentsApi) GetIncidentIntegration(ctx _context.Context, incidentId s
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -678,7 +642,7 @@ func (a *IncidentsApi) GetIncidentIntegration(ctx _context.Context, incidentId s
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -691,18 +655,16 @@ func (a *IncidentsApi) GetIncidentIntegration(ctx _context.Context, incidentId s
 // Get incident todo details.
 func (a *IncidentsApi) GetIncidentTodo(ctx _context.Context, incidentId string, todoId string) (IncidentTodoResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentTodoResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentTodoResponse
 	)
-
-    
 
 	operationId := "v2.GetIncidentTodo"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.GetIncidentTodo")
@@ -719,8 +681,7 @@ func (a *IncidentsApi) GetIncidentTodo(ctx _context.Context, incidentId string, 
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -743,11 +704,10 @@ func (a *IncidentsApi) GetIncidentTodo(ctx _context.Context, incidentId string, 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -761,7 +721,7 @@ func (a *IncidentsApi) GetIncidentTodo(ctx _context.Context, incidentId string, 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -772,7 +732,7 @@ func (a *IncidentsApi) GetIncidentTodo(ctx _context.Context, incidentId string, 
 
 // ListIncidentAttachmentsOptionalParameters holds optional parameters for ListIncidentAttachments.
 type ListIncidentAttachmentsOptionalParameters struct {
-	Include *[]IncidentAttachmentRelatedObject
+	Include              *[]IncidentAttachmentRelatedObject
 	FilterAttachmentType *[]IncidentAttachmentAttachmentType
 }
 
@@ -781,11 +741,13 @@ func NewListIncidentAttachmentsOptionalParameters() *ListIncidentAttachmentsOpti
 	this := ListIncidentAttachmentsOptionalParameters{}
 	return &this
 }
+
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *ListIncidentAttachmentsOptionalParameters) WithInclude(include []IncidentAttachmentRelatedObject) *ListIncidentAttachmentsOptionalParameters {
 	r.Include = &include
 	return r
 }
+
 // WithFilterAttachmentType sets the corresponding parameter name and returns the struct.
 func (r *ListIncidentAttachmentsOptionalParameters) WithFilterAttachmentType(filterAttachmentType []IncidentAttachmentAttachmentType) *ListIncidentAttachmentsOptionalParameters {
 	r.FilterAttachmentType = &filterAttachmentType
@@ -796,26 +758,24 @@ func (r *ListIncidentAttachmentsOptionalParameters) WithFilterAttachmentType(fil
 // Get all attachments for a given incident.
 func (a *IncidentsApi) ListIncidentAttachments(ctx _context.Context, incidentId string, o ...ListIncidentAttachmentsOptionalParameters) (IncidentAttachmentsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentAttachmentsResponse
-		optionalParams ListIncidentAttachmentsOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentAttachmentsResponse
+		optionalParams      ListIncidentAttachmentsOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListIncidentAttachmentsOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListIncidentAttachmentsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.ListIncidentAttachments"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.ListIncidentAttachments")
@@ -837,8 +797,7 @@ func (a *IncidentsApi) ListIncidentAttachments(ctx _context.Context, incidentId 
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -861,11 +820,10 @@ func (a *IncidentsApi) ListIncidentAttachments(ctx _context.Context, incidentId 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -879,7 +837,7 @@ func (a *IncidentsApi) ListIncidentAttachments(ctx _context.Context, incidentId 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -892,18 +850,16 @@ func (a *IncidentsApi) ListIncidentAttachments(ctx _context.Context, incidentId 
 // Get all integration metadata for an incident.
 func (a *IncidentsApi) ListIncidentIntegrations(ctx _context.Context, incidentId string) (IncidentIntegrationMetadataListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentIntegrationMetadataListResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentIntegrationMetadataListResponse
 	)
-
-    
 
 	operationId := "v2.ListIncidentIntegrations"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.ListIncidentIntegrations")
@@ -919,8 +875,7 @@ func (a *IncidentsApi) ListIncidentIntegrations(ctx _context.Context, incidentId
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -943,11 +898,10 @@ func (a *IncidentsApi) ListIncidentIntegrations(ctx _context.Context, incidentId
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -961,7 +915,7 @@ func (a *IncidentsApi) ListIncidentIntegrations(ctx _context.Context, incidentId
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -974,18 +928,16 @@ func (a *IncidentsApi) ListIncidentIntegrations(ctx _context.Context, incidentId
 // Get all todos for an incident.
 func (a *IncidentsApi) ListIncidentTodos(ctx _context.Context, incidentId string) (IncidentTodoListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentTodoListResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentTodoListResponse
 	)
-
-    
 
 	operationId := "v2.ListIncidentTodos"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.ListIncidentTodos")
@@ -1001,8 +953,7 @@ func (a *IncidentsApi) ListIncidentTodos(ctx _context.Context, incidentId string
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -1025,11 +976,10 @@ func (a *IncidentsApi) ListIncidentTodos(ctx _context.Context, incidentId string
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1043,7 +993,7 @@ func (a *IncidentsApi) ListIncidentTodos(ctx _context.Context, incidentId string
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1054,8 +1004,8 @@ func (a *IncidentsApi) ListIncidentTodos(ctx _context.Context, incidentId string
 
 // ListIncidentsOptionalParameters holds optional parameters for ListIncidents.
 type ListIncidentsOptionalParameters struct {
-	Include *[]IncidentRelatedObject
-	PageSize *int64
+	Include    *[]IncidentRelatedObject
+	PageSize   *int64
 	PageOffset *int64
 }
 
@@ -1064,16 +1014,19 @@ func NewListIncidentsOptionalParameters() *ListIncidentsOptionalParameters {
 	this := ListIncidentsOptionalParameters{}
 	return &this
 }
+
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *ListIncidentsOptionalParameters) WithInclude(include []IncidentRelatedObject) *ListIncidentsOptionalParameters {
 	r.Include = &include
 	return r
 }
+
 // WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListIncidentsOptionalParameters) WithPageSize(pageSize int64) *ListIncidentsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
+
 // WithPageOffset sets the corresponding parameter name and returns the struct.
 func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *ListIncidentsOptionalParameters {
 	r.PageOffset = &pageOffset
@@ -1084,26 +1037,24 @@ func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *List
 // Get all incidents for the user's organization.
 func (a *IncidentsApi) ListIncidents(ctx _context.Context, o ...ListIncidentsOptionalParameters) (IncidentsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentsResponse
-		optionalParams ListIncidentsOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentsResponse
+		optionalParams      ListIncidentsOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListIncidentsOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListIncidentsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.ListIncidents"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.ListIncidents")
@@ -1127,8 +1078,7 @@ func (a *IncidentsApi) ListIncidents(ctx _context.Context, o ...ListIncidentsOpt
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -1151,11 +1101,10 @@ func (a *IncidentsApi) ListIncidents(ctx _context.Context, o ...ListIncidentsOpt
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1169,7 +1118,7 @@ func (a *IncidentsApi) ListIncidents(ctx _context.Context, o ...ListIncidentsOpt
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1177,6 +1126,7 @@ func (a *IncidentsApi) ListIncidents(ctx _context.Context, o ...ListIncidentsOpt
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 // ListIncidentsWithPagination provides a paginated version of ListIncidents returning a channel with all items.
 func (a *IncidentsApi) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (<-chan datadog.PaginationResult[IncidentResponseData], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -1208,8 +1158,8 @@ func (a *IncidentsApi) ListIncidentsWithPagination(ctx _context.Context, o ...Li
 				select {
 				case items <- datadog.PaginationResult[IncidentResponseData]{Item: item, Error: nil}:
 				case <-ctx.Done():
-				close(items)
-				return
+					close(items)
+					return
 				}
 			}
 			if len(results) < int(pageSize_) {
@@ -1229,9 +1179,9 @@ func (a *IncidentsApi) ListIncidentsWithPagination(ctx _context.Context, o ...Li
 
 // SearchIncidentsOptionalParameters holds optional parameters for SearchIncidents.
 type SearchIncidentsOptionalParameters struct {
-	Include *IncidentRelatedObject
-	Sort *IncidentSearchSortOrder
-	PageSize *int64
+	Include    *IncidentRelatedObject
+	Sort       *IncidentSearchSortOrder
+	PageSize   *int64
 	PageOffset *int64
 }
 
@@ -1240,21 +1190,25 @@ func NewSearchIncidentsOptionalParameters() *SearchIncidentsOptionalParameters {
 	this := SearchIncidentsOptionalParameters{}
 	return &this
 }
+
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *SearchIncidentsOptionalParameters) WithInclude(include IncidentRelatedObject) *SearchIncidentsOptionalParameters {
 	r.Include = &include
 	return r
 }
+
 // WithSort sets the corresponding parameter name and returns the struct.
 func (r *SearchIncidentsOptionalParameters) WithSort(sort IncidentSearchSortOrder) *SearchIncidentsOptionalParameters {
 	r.Sort = &sort
 	return r
 }
+
 // WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *SearchIncidentsOptionalParameters) WithPageSize(pageSize int64) *SearchIncidentsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
+
 // WithPageOffset sets the corresponding parameter name and returns the struct.
 func (r *SearchIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *SearchIncidentsOptionalParameters {
 	r.PageOffset = &pageOffset
@@ -1265,26 +1219,24 @@ func (r *SearchIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *Se
 // Search for incidents matching a certain query.
 func (a *IncidentsApi) SearchIncidents(ctx _context.Context, query string, o ...SearchIncidentsOptionalParameters) (IncidentSearchResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentSearchResponse
-		optionalParams SearchIncidentsOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentSearchResponse
+		optionalParams      SearchIncidentsOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type SearchIncidentsOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type SearchIncidentsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.SearchIncidents"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.SearchIncidents")
@@ -1312,8 +1264,7 @@ func (a *IncidentsApi) SearchIncidents(ctx _context.Context, query string, o ...
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -1336,11 +1287,10 @@ func (a *IncidentsApi) SearchIncidents(ctx _context.Context, query string, o ...
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1354,7 +1304,7 @@ func (a *IncidentsApi) SearchIncidents(ctx _context.Context, query string, o ...
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1362,6 +1312,7 @@ func (a *IncidentsApi) SearchIncidents(ctx _context.Context, query string, o ...
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 // SearchIncidentsWithPagination provides a paginated version of SearchIncidents returning a channel with all items.
 func (a *IncidentsApi) SearchIncidentsWithPagination(ctx _context.Context, query string, o ...SearchIncidentsOptionalParameters) (<-chan datadog.PaginationResult[IncidentSearchResponseIncidentsData], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -1401,8 +1352,8 @@ func (a *IncidentsApi) SearchIncidentsWithPagination(ctx _context.Context, query
 				select {
 				case items <- datadog.PaginationResult[IncidentSearchResponseIncidentsData]{Item: item, Error: nil}:
 				case <-ctx.Done():
-				close(items)
-				return
+					close(items)
+					return
 				}
 			}
 			if len(results) < int(pageSize_) {
@@ -1430,6 +1381,7 @@ func NewUpdateIncidentOptionalParameters() *UpdateIncidentOptionalParameters {
 	this := UpdateIncidentOptionalParameters{}
 	return &this
 }
+
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *UpdateIncidentOptionalParameters) WithInclude(include []IncidentRelatedObject) *UpdateIncidentOptionalParameters {
 	r.Include = &include
@@ -1440,26 +1392,24 @@ func (r *UpdateIncidentOptionalParameters) WithInclude(include []IncidentRelated
 // Updates an incident. Provide only the attributes that should be updated as this request is a partial update.
 func (a *IncidentsApi) UpdateIncident(ctx _context.Context, incidentId string, body IncidentUpdateRequest, o ...UpdateIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentResponse
-		optionalParams UpdateIncidentOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentResponse
+		optionalParams      UpdateIncidentOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type UpdateIncidentOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type UpdateIncidentOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.UpdateIncident"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.UpdateIncident")
@@ -1479,11 +1429,9 @@ func (a *IncidentsApi) UpdateIncident(ctx _context.Context, incidentId string, b
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -1506,11 +1454,10 @@ func (a *IncidentsApi) UpdateIncident(ctx _context.Context, incidentId string, b
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1524,7 +1471,7 @@ func (a *IncidentsApi) UpdateIncident(ctx _context.Context, incidentId string, b
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1543,6 +1490,7 @@ func NewUpdateIncidentAttachmentsOptionalParameters() *UpdateIncidentAttachments
 	this := UpdateIncidentAttachmentsOptionalParameters{}
 	return &this
 }
+
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *UpdateIncidentAttachmentsOptionalParameters) WithInclude(include []IncidentAttachmentRelatedObject) *UpdateIncidentAttachmentsOptionalParameters {
 	r.Include = &include
@@ -1553,26 +1501,24 @@ func (r *UpdateIncidentAttachmentsOptionalParameters) WithInclude(include []Inci
 // The bulk update endpoint for creating, updating, and deleting attachments for a given incident.
 func (a *IncidentsApi) UpdateIncidentAttachments(ctx _context.Context, incidentId string, body IncidentAttachmentUpdateRequest, o ...UpdateIncidentAttachmentsOptionalParameters) (IncidentAttachmentUpdateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentAttachmentUpdateResponse
-		optionalParams UpdateIncidentAttachmentsOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentAttachmentUpdateResponse
+		optionalParams      UpdateIncidentAttachmentsOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type UpdateIncidentAttachmentsOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type UpdateIncidentAttachmentsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.UpdateIncidentAttachments"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.UpdateIncidentAttachments")
@@ -1592,11 +1538,9 @@ func (a *IncidentsApi) UpdateIncidentAttachments(ctx _context.Context, incidentI
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -1619,11 +1563,10 @@ func (a *IncidentsApi) UpdateIncidentAttachments(ctx _context.Context, incidentI
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1637,7 +1580,7 @@ func (a *IncidentsApi) UpdateIncidentAttachments(ctx _context.Context, incidentI
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1650,18 +1593,16 @@ func (a *IncidentsApi) UpdateIncidentAttachments(ctx _context.Context, incidentI
 // Update an existing incident integration metadata.
 func (a *IncidentsApi) UpdateIncidentIntegration(ctx _context.Context, incidentId string, integrationMetadataId string, body IncidentIntegrationMetadataPatchRequest) (IncidentIntegrationMetadataResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentIntegrationMetadataResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentIntegrationMetadataResponse
 	)
-
-    
 
 	operationId := "v2.UpdateIncidentIntegration"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.UpdateIncidentIntegration")
@@ -1679,11 +1620,9 @@ func (a *IncidentsApi) UpdateIncidentIntegration(ctx _context.Context, incidentI
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -1706,11 +1645,10 @@ func (a *IncidentsApi) UpdateIncidentIntegration(ctx _context.Context, incidentI
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1724,7 +1662,7 @@ func (a *IncidentsApi) UpdateIncidentIntegration(ctx _context.Context, incidentI
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1737,18 +1675,16 @@ func (a *IncidentsApi) UpdateIncidentIntegration(ctx _context.Context, incidentI
 // Update an incident todo.
 func (a *IncidentsApi) UpdateIncidentTodo(ctx _context.Context, incidentId string, todoId string, body IncidentTodoPatchRequest) (IncidentTodoResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarReturnValue  IncidentTodoResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentTodoResponse
 	)
-
-    
 
 	operationId := "v2.UpdateIncidentTodo"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentsApi.UpdateIncidentTodo")
@@ -1766,11 +1702,9 @@ func (a *IncidentsApi) UpdateIncidentTodo(ctx _context.Context, incidentId strin
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -1793,11 +1727,10 @@ func (a *IncidentsApi) UpdateIncidentTodo(ctx _context.Context, incidentId strin
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1811,7 +1744,7 @@ func (a *IncidentsApi) UpdateIncidentTodo(ctx _context.Context, incidentId strin
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

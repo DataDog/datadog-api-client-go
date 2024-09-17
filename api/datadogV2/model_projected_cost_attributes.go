@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ProjectedCostAttributes Projected Cost attributes data.
 type ProjectedCostAttributes struct {
@@ -33,10 +29,9 @@ type ProjectedCostAttributes struct {
 	// The region of the Datadog instance that the organization belongs to.
 	Region *string `json:"region,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewProjectedCostAttributes instantiates a new ProjectedCostAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,6 +49,7 @@ func NewProjectedCostAttributesWithDefaults() *ProjectedCostAttributes {
 	this := ProjectedCostAttributes{}
 	return &this
 }
+
 // GetAccountName returns the AccountName field value if set, zero value otherwise.
 func (o *ProjectedCostAttributes) GetAccountName() string {
 	if o == nil || o.AccountName == nil {
@@ -81,7 +77,6 @@ func (o *ProjectedCostAttributes) HasAccountName() bool {
 func (o *ProjectedCostAttributes) SetAccountName(v string) {
 	o.AccountName = &v
 }
-
 
 // GetAccountPublicId returns the AccountPublicId field value if set, zero value otherwise.
 func (o *ProjectedCostAttributes) GetAccountPublicId() string {
@@ -111,7 +106,6 @@ func (o *ProjectedCostAttributes) SetAccountPublicId(v string) {
 	o.AccountPublicId = &v
 }
 
-
 // GetCharges returns the Charges field value if set, zero value otherwise.
 func (o *ProjectedCostAttributes) GetCharges() []ChargebackBreakdown {
 	if o == nil || o.Charges == nil {
@@ -139,7 +133,6 @@ func (o *ProjectedCostAttributes) HasCharges() bool {
 func (o *ProjectedCostAttributes) SetCharges(v []ChargebackBreakdown) {
 	o.Charges = v
 }
-
 
 // GetDate returns the Date field value if set, zero value otherwise.
 func (o *ProjectedCostAttributes) GetDate() time.Time {
@@ -169,7 +162,6 @@ func (o *ProjectedCostAttributes) SetDate(v time.Time) {
 	o.Date = &v
 }
 
-
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *ProjectedCostAttributes) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -197,7 +189,6 @@ func (o *ProjectedCostAttributes) HasOrgName() bool {
 func (o *ProjectedCostAttributes) SetOrgName(v string) {
 	o.OrgName = &v
 }
-
 
 // GetProjectedTotalCost returns the ProjectedTotalCost field value if set, zero value otherwise.
 func (o *ProjectedCostAttributes) GetProjectedTotalCost() float64 {
@@ -227,7 +218,6 @@ func (o *ProjectedCostAttributes) SetProjectedTotalCost(v float64) {
 	o.ProjectedTotalCost = &v
 }
 
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *ProjectedCostAttributes) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -256,7 +246,6 @@ func (o *ProjectedCostAttributes) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *ProjectedCostAttributes) GetRegion() string {
 	if o == nil || o.Region == nil {
@@ -284,8 +273,6 @@ func (o *ProjectedCostAttributes) HasRegion() bool {
 func (o *ProjectedCostAttributes) SetRegion(v string) {
 	o.Region = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ProjectedCostAttributes) MarshalJSON() ([]byte, error) {
@@ -331,21 +318,21 @@ func (o ProjectedCostAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ProjectedCostAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountName *string `json:"account_name,omitempty"`
-		AccountPublicId *string `json:"account_public_id,omitempty"`
-		Charges []ChargebackBreakdown `json:"charges,omitempty"`
-		Date *time.Time `json:"date,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		ProjectedTotalCost *float64 `json:"projected_total_cost,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
-		Region *string `json:"region,omitempty"`
+		AccountName        *string               `json:"account_name,omitempty"`
+		AccountPublicId    *string               `json:"account_public_id,omitempty"`
+		Charges            []ChargebackBreakdown `json:"charges,omitempty"`
+		Date               *time.Time            `json:"date,omitempty"`
+		OrgName            *string               `json:"org_name,omitempty"`
+		ProjectedTotalCost *float64              `json:"projected_total_cost,omitempty"`
+		PublicId           *string               `json:"public_id,omitempty"`
+		Region             *string               `json:"region,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "account_name", "account_public_id", "charges", "date", "org_name", "projected_total_cost", "public_id", "region",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_name", "account_public_id", "charges", "date", "org_name", "projected_total_cost", "public_id", "region"})
 	} else {
 		return err
 	}

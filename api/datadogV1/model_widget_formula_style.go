@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // WidgetFormulaStyle Styling options for widget formulas.
 type WidgetFormulaStyle struct {
@@ -21,10 +15,9 @@ type WidgetFormulaStyle struct {
 	// Index specifying which color to use within the palette.
 	PaletteIndex *int64 `json:"palette_index,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewWidgetFormulaStyle instantiates a new WidgetFormulaStyle object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewWidgetFormulaStyleWithDefaults() *WidgetFormulaStyle {
 	this := WidgetFormulaStyle{}
 	return &this
 }
+
 // GetPalette returns the Palette field value if set, zero value otherwise.
 func (o *WidgetFormulaStyle) GetPalette() string {
 	if o == nil || o.Palette == nil {
@@ -69,7 +63,6 @@ func (o *WidgetFormulaStyle) HasPalette() bool {
 func (o *WidgetFormulaStyle) SetPalette(v string) {
 	o.Palette = &v
 }
-
 
 // GetPaletteIndex returns the PaletteIndex field value if set, zero value otherwise.
 func (o *WidgetFormulaStyle) GetPaletteIndex() int64 {
@@ -99,8 +92,6 @@ func (o *WidgetFormulaStyle) SetPaletteIndex(v int64) {
 	o.PaletteIndex = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o WidgetFormulaStyle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -123,15 +114,15 @@ func (o WidgetFormulaStyle) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetFormulaStyle) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Palette *string `json:"palette,omitempty"`
-		PaletteIndex *int64 `json:"palette_index,omitempty"`
+		Palette      *string `json:"palette,omitempty"`
+		PaletteIndex *int64  `json:"palette_index,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "palette", "palette_index",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"palette", "palette_index"})
 	} else {
 		return err
 	}

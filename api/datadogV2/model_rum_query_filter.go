@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // RUMQueryFilter The search and filter query settings.
 type RUMQueryFilter struct {
@@ -23,10 +17,9 @@ type RUMQueryFilter struct {
 	// The maximum time for the requested events; supports date (in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format with full date, hours, minutes, and the `Z` UTC indicator - seconds and fractional seconds are optional), math, and regular timestamps (in milliseconds).
 	To *string `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewRUMQueryFilter instantiates a new RUMQueryFilter object.
 // This constructor will assign default values to properties that have it defined,
@@ -56,6 +49,7 @@ func NewRUMQueryFilterWithDefaults() *RUMQueryFilter {
 	this.To = &to
 	return &this
 }
+
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *RUMQueryFilter) GetFrom() string {
 	if o == nil || o.From == nil {
@@ -83,7 +77,6 @@ func (o *RUMQueryFilter) HasFrom() bool {
 func (o *RUMQueryFilter) SetFrom(v string) {
 	o.From = &v
 }
-
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *RUMQueryFilter) GetQuery() string {
@@ -113,7 +106,6 @@ func (o *RUMQueryFilter) SetQuery(v string) {
 	o.Query = &v
 }
 
-
 // GetTo returns the To field value if set, zero value otherwise.
 func (o *RUMQueryFilter) GetTo() string {
 	if o == nil || o.To == nil {
@@ -142,8 +134,6 @@ func (o *RUMQueryFilter) SetTo(v string) {
 	o.To = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMQueryFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -169,16 +159,16 @@ func (o RUMQueryFilter) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		From *string `json:"from,omitempty"`
+		From  *string `json:"from,omitempty"`
 		Query *string `json:"query,omitempty"`
-		To *string `json:"to,omitempty"`
+		To    *string `json:"to,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "from", "query", "to",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"from", "query", "to"})
 	} else {
 		return err
 	}

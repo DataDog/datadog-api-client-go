@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // Event The metadata associated with a request.
 type Event struct {
@@ -25,10 +19,9 @@ type Event struct {
 	// Event type.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewEvent instantiates a new Event object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +39,7 @@ func NewEventWithDefaults() *Event {
 	this := Event{}
 	return &this
 }
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Event) GetId() string {
 	if o == nil || o.Id == nil {
@@ -73,7 +67,6 @@ func (o *Event) HasId() bool {
 func (o *Event) SetId(v string) {
 	o.Id = &v
 }
-
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Event) GetName() string {
@@ -103,7 +96,6 @@ func (o *Event) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetSourceId returns the SourceId field value if set, zero value otherwise.
 func (o *Event) GetSourceId() int64 {
 	if o == nil || o.SourceId == nil {
@@ -131,7 +123,6 @@ func (o *Event) HasSourceId() bool {
 func (o *Event) SetSourceId(v int64) {
 	o.SourceId = &v
 }
-
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Event) GetType() string {
@@ -161,8 +152,6 @@ func (o *Event) SetType(v string) {
 	o.Type = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o Event) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -191,17 +180,17 @@ func (o Event) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id *string `json:"id,omitempty"`
-		Name *string `json:"name,omitempty"`
-		SourceId *int64 `json:"source_id,omitempty"`
-		Type *string `json:"type,omitempty"`
+		Id       *string `json:"id,omitempty"`
+		Name     *string `json:"name,omitempty"`
+		SourceId *int64  `json:"source_id,omitempty"`
+		Type     *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "name", "source_id", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"id", "name", "source_id", "type"})
 	} else {
 		return err
 	}

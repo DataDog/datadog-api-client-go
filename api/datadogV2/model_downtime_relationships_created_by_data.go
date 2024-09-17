@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // DowntimeRelationshipsCreatedByData Data for the user who created the downtime.
 type DowntimeRelationshipsCreatedByData struct {
@@ -21,10 +15,9 @@ type DowntimeRelationshipsCreatedByData struct {
 	// Users resource type.
 	Type *UsersType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewDowntimeRelationshipsCreatedByData instantiates a new DowntimeRelationshipsCreatedByData object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +39,7 @@ func NewDowntimeRelationshipsCreatedByDataWithDefaults() *DowntimeRelationshipsC
 	this.Type = &typeVar
 	return &this
 }
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DowntimeRelationshipsCreatedByData) GetId() string {
 	if o == nil || o.Id == nil {
@@ -73,7 +67,6 @@ func (o *DowntimeRelationshipsCreatedByData) HasId() bool {
 func (o *DowntimeRelationshipsCreatedByData) SetId(v string) {
 	o.Id = &v
 }
-
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *DowntimeRelationshipsCreatedByData) GetType() UsersType {
@@ -103,8 +96,6 @@ func (o *DowntimeRelationshipsCreatedByData) SetType(v UsersType) {
 	o.Type = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeRelationshipsCreatedByData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -127,7 +118,7 @@ func (o DowntimeRelationshipsCreatedByData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeRelationshipsCreatedByData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id *string `json:"id,omitempty"`
+		Id   *string    `json:"id,omitempty"`
 		Type *UsersType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -135,14 +126,14 @@ func (o *DowntimeRelationshipsCreatedByData) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Id = all.Id
-	if all.Type != nil &&!all.Type.IsValid() {
+	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type
@@ -158,6 +149,7 @@ func (o *DowntimeRelationshipsCreatedByData) UnmarshalJSON(bytes []byte) (err er
 
 	return nil
 }
+
 // NullableDowntimeRelationshipsCreatedByData handles when a null is used for DowntimeRelationshipsCreatedByData.
 type NullableDowntimeRelationshipsCreatedByData struct {
 	value *DowntimeRelationshipsCreatedByData

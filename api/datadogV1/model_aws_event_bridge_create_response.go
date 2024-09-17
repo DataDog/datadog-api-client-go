@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // AWSEventBridgeCreateResponse A created EventBridge source.
 type AWSEventBridgeCreateResponse struct {
@@ -25,10 +19,9 @@ type AWSEventBridgeCreateResponse struct {
 	// The event source status "created".
 	Status *AWSEventBridgeCreateStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewAWSEventBridgeCreateResponse instantiates a new AWSEventBridgeCreateResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +39,7 @@ func NewAWSEventBridgeCreateResponseWithDefaults() *AWSEventBridgeCreateResponse
 	this := AWSEventBridgeCreateResponse{}
 	return &this
 }
+
 // GetEventSourceName returns the EventSourceName field value if set, zero value otherwise.
 func (o *AWSEventBridgeCreateResponse) GetEventSourceName() string {
 	if o == nil || o.EventSourceName == nil {
@@ -73,7 +67,6 @@ func (o *AWSEventBridgeCreateResponse) HasEventSourceName() bool {
 func (o *AWSEventBridgeCreateResponse) SetEventSourceName(v string) {
 	o.EventSourceName = &v
 }
-
 
 // GetHasBus returns the HasBus field value if set, zero value otherwise.
 func (o *AWSEventBridgeCreateResponse) GetHasBus() bool {
@@ -103,7 +96,6 @@ func (o *AWSEventBridgeCreateResponse) SetHasBus(v bool) {
 	o.HasBus = &v
 }
 
-
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *AWSEventBridgeCreateResponse) GetRegion() string {
 	if o == nil || o.Region == nil {
@@ -131,7 +123,6 @@ func (o *AWSEventBridgeCreateResponse) HasRegion() bool {
 func (o *AWSEventBridgeCreateResponse) SetRegion(v string) {
 	o.Region = &v
 }
-
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *AWSEventBridgeCreateResponse) GetStatus() AWSEventBridgeCreateStatus {
@@ -161,8 +152,6 @@ func (o *AWSEventBridgeCreateResponse) SetStatus(v AWSEventBridgeCreateStatus) {
 	o.Status = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSEventBridgeCreateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -191,17 +180,17 @@ func (o AWSEventBridgeCreateResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSEventBridgeCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EventSourceName *string `json:"event_source_name,omitempty"`
-		HasBus *bool `json:"has_bus,omitempty"`
-		Region *string `json:"region,omitempty"`
-		Status *AWSEventBridgeCreateStatus `json:"status,omitempty"`
+		EventSourceName *string                     `json:"event_source_name,omitempty"`
+		HasBus          *bool                       `json:"has_bus,omitempty"`
+		Region          *string                     `json:"region,omitempty"`
+		Status          *AWSEventBridgeCreateStatus `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "event_source_name", "has_bus", "region", "status",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"event_source_name", "has_bus", "region", "status"})
 	} else {
 		return err
 	}
@@ -210,7 +199,7 @@ func (o *AWSEventBridgeCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.EventSourceName = all.EventSourceName
 	o.HasBus = all.HasBus
 	o.Region = all.Region
-	if all.Status != nil &&!all.Status.IsValid() {
+	if all.Status != nil && !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

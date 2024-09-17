@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // MonitorState Wrapper object with the different monitor states.
 type MonitorState struct {
@@ -20,10 +14,9 @@ type MonitorState struct {
 	// the list of groups your monitor is broken down on.
 	Groups map[string]MonitorStateGroup `json:"groups,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewMonitorState instantiates a new MonitorState object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,6 +34,7 @@ func NewMonitorStateWithDefaults() *MonitorState {
 	this := MonitorState{}
 	return &this
 }
+
 // GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *MonitorState) GetGroups() map[string]MonitorStateGroup {
 	if o == nil || o.Groups == nil {
@@ -69,8 +63,6 @@ func (o *MonitorState) SetGroups(v map[string]MonitorStateGroup) {
 	o.Groups = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorState) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -97,7 +89,7 @@ func (o *MonitorState) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "groups",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"groups"})
 	} else {
 		return err
 	}

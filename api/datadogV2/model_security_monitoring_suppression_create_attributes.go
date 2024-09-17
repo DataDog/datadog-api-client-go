@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SecurityMonitoringSuppressionCreateAttributes Object containing the attributes of the suppression rule to be created.
 type SecurityMonitoringSuppressionCreateAttributes struct {
@@ -31,10 +27,9 @@ type SecurityMonitoringSuppressionCreateAttributes struct {
 	// The suppression query of the suppression rule. If a signal matches this query, it is suppressed and is not triggered. It uses the same syntax as the queries to search signals in the Signals Explorer.
 	SuppressionQuery *string `json:"suppression_query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSecurityMonitoringSuppressionCreateAttributes instantiates a new SecurityMonitoringSuppressionCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -55,6 +50,7 @@ func NewSecurityMonitoringSuppressionCreateAttributesWithDefaults() *SecurityMon
 	this := SecurityMonitoringSuppressionCreateAttributes{}
 	return &this
 }
+
 // GetDataExclusionQuery returns the DataExclusionQuery field value if set, zero value otherwise.
 func (o *SecurityMonitoringSuppressionCreateAttributes) GetDataExclusionQuery() string {
 	if o == nil || o.DataExclusionQuery == nil {
@@ -82,7 +78,6 @@ func (o *SecurityMonitoringSuppressionCreateAttributes) HasDataExclusionQuery() 
 func (o *SecurityMonitoringSuppressionCreateAttributes) SetDataExclusionQuery(v string) {
 	o.DataExclusionQuery = &v
 }
-
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *SecurityMonitoringSuppressionCreateAttributes) GetDescription() string {
@@ -112,7 +107,6 @@ func (o *SecurityMonitoringSuppressionCreateAttributes) SetDescription(v string)
 	o.Description = &v
 }
 
-
 // GetEnabled returns the Enabled field value.
 func (o *SecurityMonitoringSuppressionCreateAttributes) GetEnabled() bool {
 	if o == nil {
@@ -135,7 +129,6 @@ func (o *SecurityMonitoringSuppressionCreateAttributes) GetEnabledOk() (*bool, b
 func (o *SecurityMonitoringSuppressionCreateAttributes) SetEnabled(v bool) {
 	o.Enabled = v
 }
-
 
 // GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
 func (o *SecurityMonitoringSuppressionCreateAttributes) GetExpirationDate() int64 {
@@ -165,7 +158,6 @@ func (o *SecurityMonitoringSuppressionCreateAttributes) SetExpirationDate(v int6
 	o.ExpirationDate = &v
 }
 
-
 // GetName returns the Name field value.
 func (o *SecurityMonitoringSuppressionCreateAttributes) GetName() string {
 	if o == nil {
@@ -189,7 +181,6 @@ func (o *SecurityMonitoringSuppressionCreateAttributes) SetName(v string) {
 	o.Name = v
 }
 
-
 // GetRuleQuery returns the RuleQuery field value.
 func (o *SecurityMonitoringSuppressionCreateAttributes) GetRuleQuery() string {
 	if o == nil {
@@ -212,7 +203,6 @@ func (o *SecurityMonitoringSuppressionCreateAttributes) GetRuleQueryOk() (*strin
 func (o *SecurityMonitoringSuppressionCreateAttributes) SetRuleQuery(v string) {
 	o.RuleQuery = v
 }
-
 
 // GetSuppressionQuery returns the SuppressionQuery field value if set, zero value otherwise.
 func (o *SecurityMonitoringSuppressionCreateAttributes) GetSuppressionQuery() string {
@@ -241,8 +231,6 @@ func (o *SecurityMonitoringSuppressionCreateAttributes) HasSuppressionQuery() bo
 func (o *SecurityMonitoringSuppressionCreateAttributes) SetSuppressionQuery(v string) {
 	o.SuppressionQuery = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringSuppressionCreateAttributes) MarshalJSON() ([]byte, error) {
@@ -276,12 +264,12 @@ func (o SecurityMonitoringSuppressionCreateAttributes) MarshalJSON() ([]byte, er
 func (o *SecurityMonitoringSuppressionCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DataExclusionQuery *string `json:"data_exclusion_query,omitempty"`
-		Description *string `json:"description,omitempty"`
-		Enabled *bool `json:"enabled"`
-		ExpirationDate *int64 `json:"expiration_date,omitempty"`
-		Name *string `json:"name"`
-		RuleQuery *string `json:"rule_query"`
-		SuppressionQuery *string `json:"suppression_query,omitempty"`
+		Description        *string `json:"description,omitempty"`
+		Enabled            *bool   `json:"enabled"`
+		ExpirationDate     *int64  `json:"expiration_date,omitempty"`
+		Name               *string `json:"name"`
+		RuleQuery          *string `json:"rule_query"`
+		SuppressionQuery   *string `json:"suppression_query,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -297,7 +285,7 @@ func (o *SecurityMonitoringSuppressionCreateAttributes) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "data_exclusion_query", "description", "enabled", "expiration_date", "name", "rule_query", "suppression_query",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"data_exclusion_query", "description", "enabled", "expiration_date", "name", "rule_query", "suppression_query"})
 	} else {
 		return err
 	}

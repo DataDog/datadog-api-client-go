@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsBasicAuthOauthROP Object to handle `oauth rop` authentication when performing the test.
 type SyntheticsBasicAuthOauthROP struct {
@@ -37,10 +33,9 @@ type SyntheticsBasicAuthOauthROP struct {
 	// Username to use when performing the authentication.
 	Username string `json:"username"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsBasicAuthOauthROP instantiates a new SyntheticsBasicAuthOauthROP object.
 // This constructor will assign default values to properties that have it defined,
@@ -65,6 +60,7 @@ func NewSyntheticsBasicAuthOauthROPWithDefaults() *SyntheticsBasicAuthOauthROP {
 	this.Type = typeVar
 	return &this
 }
+
 // GetAccessTokenUrl returns the AccessTokenUrl field value.
 func (o *SyntheticsBasicAuthOauthROP) GetAccessTokenUrl() string {
 	if o == nil {
@@ -87,7 +83,6 @@ func (o *SyntheticsBasicAuthOauthROP) GetAccessTokenUrlOk() (*string, bool) {
 func (o *SyntheticsBasicAuthOauthROP) SetAccessTokenUrl(v string) {
 	o.AccessTokenUrl = v
 }
-
 
 // GetAudience returns the Audience field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthOauthROP) GetAudience() string {
@@ -117,7 +112,6 @@ func (o *SyntheticsBasicAuthOauthROP) SetAudience(v string) {
 	o.Audience = &v
 }
 
-
 // GetClientId returns the ClientId field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthOauthROP) GetClientId() string {
 	if o == nil || o.ClientId == nil {
@@ -145,7 +139,6 @@ func (o *SyntheticsBasicAuthOauthROP) HasClientId() bool {
 func (o *SyntheticsBasicAuthOauthROP) SetClientId(v string) {
 	o.ClientId = &v
 }
-
 
 // GetClientSecret returns the ClientSecret field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthOauthROP) GetClientSecret() string {
@@ -175,7 +168,6 @@ func (o *SyntheticsBasicAuthOauthROP) SetClientSecret(v string) {
 	o.ClientSecret = &v
 }
 
-
 // GetPassword returns the Password field value.
 func (o *SyntheticsBasicAuthOauthROP) GetPassword() string {
 	if o == nil {
@@ -198,7 +190,6 @@ func (o *SyntheticsBasicAuthOauthROP) GetPasswordOk() (*string, bool) {
 func (o *SyntheticsBasicAuthOauthROP) SetPassword(v string) {
 	o.Password = v
 }
-
 
 // GetResource returns the Resource field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthOauthROP) GetResource() string {
@@ -228,7 +219,6 @@ func (o *SyntheticsBasicAuthOauthROP) SetResource(v string) {
 	o.Resource = &v
 }
 
-
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthOauthROP) GetScope() string {
 	if o == nil || o.Scope == nil {
@@ -257,7 +247,6 @@ func (o *SyntheticsBasicAuthOauthROP) SetScope(v string) {
 	o.Scope = &v
 }
 
-
 // GetTokenApiAuthentication returns the TokenApiAuthentication field value.
 func (o *SyntheticsBasicAuthOauthROP) GetTokenApiAuthentication() SyntheticsBasicAuthOauthTokenApiAuthentication {
 	if o == nil {
@@ -280,7 +269,6 @@ func (o *SyntheticsBasicAuthOauthROP) GetTokenApiAuthenticationOk() (*Synthetics
 func (o *SyntheticsBasicAuthOauthROP) SetTokenApiAuthentication(v SyntheticsBasicAuthOauthTokenApiAuthentication) {
 	o.TokenApiAuthentication = v
 }
-
 
 // GetType returns the Type field value.
 func (o *SyntheticsBasicAuthOauthROP) GetType() SyntheticsBasicAuthOauthROPType {
@@ -305,7 +293,6 @@ func (o *SyntheticsBasicAuthOauthROP) SetType(v SyntheticsBasicAuthOauthROPType)
 	o.Type = v
 }
 
-
 // GetUsername returns the Username field value.
 func (o *SyntheticsBasicAuthOauthROP) GetUsername() string {
 	if o == nil {
@@ -328,8 +315,6 @@ func (o *SyntheticsBasicAuthOauthROP) GetUsernameOk() (*string, bool) {
 func (o *SyntheticsBasicAuthOauthROP) SetUsername(v string) {
 	o.Username = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBasicAuthOauthROP) MarshalJSON() ([]byte, error) {
@@ -367,16 +352,16 @@ func (o SyntheticsBasicAuthOauthROP) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccessTokenUrl *string `json:"accessTokenUrl"`
-		Audience *string `json:"audience,omitempty"`
-		ClientId *string `json:"clientId,omitempty"`
-		ClientSecret *string `json:"clientSecret,omitempty"`
-		Password *string `json:"password"`
-		Resource *string `json:"resource,omitempty"`
-		Scope *string `json:"scope,omitempty"`
+		AccessTokenUrl         *string                                         `json:"accessTokenUrl"`
+		Audience               *string                                         `json:"audience,omitempty"`
+		ClientId               *string                                         `json:"clientId,omitempty"`
+		ClientSecret           *string                                         `json:"clientSecret,omitempty"`
+		Password               *string                                         `json:"password"`
+		Resource               *string                                         `json:"resource,omitempty"`
+		Scope                  *string                                         `json:"scope,omitempty"`
 		TokenApiAuthentication *SyntheticsBasicAuthOauthTokenApiAuthentication `json:"tokenApiAuthentication"`
-		Type *SyntheticsBasicAuthOauthROPType `json:"type"`
-		Username *string `json:"username"`
+		Type                   *SyntheticsBasicAuthOauthROPType                `json:"type"`
+		Username               *string                                         `json:"username"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -398,7 +383,7 @@ func (o *SyntheticsBasicAuthOauthROP) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "accessTokenUrl", "audience", "clientId", "clientSecret", "password", "resource", "scope", "tokenApiAuthentication", "type", "username",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"accessTokenUrl", "audience", "clientId", "clientSecret", "password", "resource", "scope", "tokenApiAuthentication", "type", "username"})
 	} else {
 		return err
 	}

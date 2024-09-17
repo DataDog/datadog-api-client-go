@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // EventsTimeseriesQuery An individual timeseries events query.
 type EventsTimeseriesQuery struct {
@@ -29,10 +25,9 @@ type EventsTimeseriesQuery struct {
 	// Configuration of the search/filter for an events query.
 	Search *EventsSearch `json:"search,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewEventsTimeseriesQuery instantiates a new EventsTimeseriesQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,6 +49,7 @@ func NewEventsTimeseriesQueryWithDefaults() *EventsTimeseriesQuery {
 	this.DataSource = dataSource
 	return &this
 }
+
 // GetCompute returns the Compute field value.
 func (o *EventsTimeseriesQuery) GetCompute() EventsCompute {
 	if o == nil {
@@ -77,7 +73,6 @@ func (o *EventsTimeseriesQuery) SetCompute(v EventsCompute) {
 	o.Compute = v
 }
 
-
 // GetDataSource returns the DataSource field value.
 func (o *EventsTimeseriesQuery) GetDataSource() EventsDataSource {
 	if o == nil {
@@ -100,7 +95,6 @@ func (o *EventsTimeseriesQuery) GetDataSourceOk() (*EventsDataSource, bool) {
 func (o *EventsTimeseriesQuery) SetDataSource(v EventsDataSource) {
 	o.DataSource = v
 }
-
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *EventsTimeseriesQuery) GetGroupBy() []EventsGroupBy {
@@ -130,7 +124,6 @@ func (o *EventsTimeseriesQuery) SetGroupBy(v []EventsGroupBy) {
 	o.GroupBy = v
 }
 
-
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
 func (o *EventsTimeseriesQuery) GetIndexes() []string {
 	if o == nil || o.Indexes == nil {
@@ -158,7 +151,6 @@ func (o *EventsTimeseriesQuery) HasIndexes() bool {
 func (o *EventsTimeseriesQuery) SetIndexes(v []string) {
 	o.Indexes = v
 }
-
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *EventsTimeseriesQuery) GetName() string {
@@ -188,7 +180,6 @@ func (o *EventsTimeseriesQuery) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetSearch returns the Search field value if set, zero value otherwise.
 func (o *EventsTimeseriesQuery) GetSearch() EventsSearch {
 	if o == nil || o.Search == nil {
@@ -216,8 +207,6 @@ func (o *EventsTimeseriesQuery) HasSearch() bool {
 func (o *EventsTimeseriesQuery) SetSearch(v EventsSearch) {
 	o.Search = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EventsTimeseriesQuery) MarshalJSON() ([]byte, error) {
@@ -249,12 +238,12 @@ func (o EventsTimeseriesQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventsTimeseriesQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Compute *EventsCompute `json:"compute"`
+		Compute    *EventsCompute    `json:"compute"`
 		DataSource *EventsDataSource `json:"data_source"`
-		GroupBy []EventsGroupBy `json:"group_by,omitempty"`
-		Indexes []string `json:"indexes,omitempty"`
-		Name *string `json:"name,omitempty"`
-		Search *EventsSearch `json:"search,omitempty"`
+		GroupBy    []EventsGroupBy   `json:"group_by,omitempty"`
+		Indexes    []string          `json:"indexes,omitempty"`
+		Name       *string           `json:"name,omitempty"`
+		Search     *EventsSearch     `json:"search,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -267,7 +256,7 @@ func (o *EventsTimeseriesQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "compute", "data_source", "group_by", "indexes", "name", "search",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "data_source", "group_by", "indexes", "name", "search"})
 	} else {
 		return err
 	}
@@ -285,7 +274,7 @@ func (o *EventsTimeseriesQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupBy = all.GroupBy
 	o.Indexes = all.Indexes
 	o.Name = all.Name
-	if  all.Search != nil && all.Search.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Search != nil && all.Search.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Search = all.Search

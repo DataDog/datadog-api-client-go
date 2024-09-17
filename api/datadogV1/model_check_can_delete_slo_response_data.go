@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // CheckCanDeleteSLOResponseData An array of service level objective objects.
 type CheckCanDeleteSLOResponseData struct {
 	// An array of of SLO IDs that can be safely deleted.
 	Ok []string `json:"ok,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewCheckCanDeleteSLOResponseData instantiates a new CheckCanDeleteSLOResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewCheckCanDeleteSLOResponseDataWithDefaults() *CheckCanDeleteSLOResponseDa
 	this := CheckCanDeleteSLOResponseData{}
 	return &this
 }
+
 // GetOk returns the Ok field value if set, zero value otherwise.
 func (o *CheckCanDeleteSLOResponseData) GetOk() []string {
 	if o == nil || o.Ok == nil {
@@ -68,8 +62,6 @@ func (o *CheckCanDeleteSLOResponseData) SetOk(v []string) {
 	o.Ok = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o CheckCanDeleteSLOResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +88,7 @@ func (o *CheckCanDeleteSLOResponseData) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "ok",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"ok"})
 	} else {
 		return err
 	}

@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // MonitorStateGroup Monitor state for a single group.
 type MonitorStateGroup struct {
@@ -29,10 +23,9 @@ type MonitorStateGroup struct {
 	// The different states your monitor can be in.
 	Status *MonitorOverallStates `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewMonitorStateGroup instantiates a new MonitorStateGroup object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +43,7 @@ func NewMonitorStateGroupWithDefaults() *MonitorStateGroup {
 	this := MonitorStateGroup{}
 	return &this
 }
+
 // GetLastNodataTs returns the LastNodataTs field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetLastNodataTs() int64 {
 	if o == nil || o.LastNodataTs == nil {
@@ -77,7 +71,6 @@ func (o *MonitorStateGroup) HasLastNodataTs() bool {
 func (o *MonitorStateGroup) SetLastNodataTs(v int64) {
 	o.LastNodataTs = &v
 }
-
 
 // GetLastNotifiedTs returns the LastNotifiedTs field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetLastNotifiedTs() int64 {
@@ -107,7 +100,6 @@ func (o *MonitorStateGroup) SetLastNotifiedTs(v int64) {
 	o.LastNotifiedTs = &v
 }
 
-
 // GetLastResolvedTs returns the LastResolvedTs field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetLastResolvedTs() int64 {
 	if o == nil || o.LastResolvedTs == nil {
@@ -135,7 +127,6 @@ func (o *MonitorStateGroup) HasLastResolvedTs() bool {
 func (o *MonitorStateGroup) SetLastResolvedTs(v int64) {
 	o.LastResolvedTs = &v
 }
-
 
 // GetLastTriggeredTs returns the LastTriggeredTs field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetLastTriggeredTs() int64 {
@@ -165,7 +156,6 @@ func (o *MonitorStateGroup) SetLastTriggeredTs(v int64) {
 	o.LastTriggeredTs = &v
 }
 
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetName() string {
 	if o == nil || o.Name == nil {
@@ -194,7 +184,6 @@ func (o *MonitorStateGroup) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetStatus() MonitorOverallStates {
 	if o == nil || o.Status == nil {
@@ -222,8 +211,6 @@ func (o *MonitorStateGroup) HasStatus() bool {
 func (o *MonitorStateGroup) SetStatus(v MonitorOverallStates) {
 	o.Status = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorStateGroup) MarshalJSON() ([]byte, error) {
@@ -259,19 +246,19 @@ func (o MonitorStateGroup) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorStateGroup) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		LastNodataTs *int64 `json:"last_nodata_ts,omitempty"`
-		LastNotifiedTs *int64 `json:"last_notified_ts,omitempty"`
-		LastResolvedTs *int64 `json:"last_resolved_ts,omitempty"`
-		LastTriggeredTs *int64 `json:"last_triggered_ts,omitempty"`
-		Name *string `json:"name,omitempty"`
-		Status *MonitorOverallStates `json:"status,omitempty"`
+		LastNodataTs    *int64                `json:"last_nodata_ts,omitempty"`
+		LastNotifiedTs  *int64                `json:"last_notified_ts,omitempty"`
+		LastResolvedTs  *int64                `json:"last_resolved_ts,omitempty"`
+		LastTriggeredTs *int64                `json:"last_triggered_ts,omitempty"`
+		Name            *string               `json:"name,omitempty"`
+		Status          *MonitorOverallStates `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "last_nodata_ts", "last_notified_ts", "last_resolved_ts", "last_triggered_ts", "name", "status",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"last_nodata_ts", "last_notified_ts", "last_resolved_ts", "last_triggered_ts", "name", "status"})
 	} else {
 		return err
 	}
@@ -282,7 +269,7 @@ func (o *MonitorStateGroup) UnmarshalJSON(bytes []byte) (err error) {
 	o.LastResolvedTs = all.LastResolvedTs
 	o.LastTriggeredTs = all.LastTriggeredTs
 	o.Name = all.Name
-	if all.Status != nil &&!all.Status.IsValid() {
+	if all.Status != nil && !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

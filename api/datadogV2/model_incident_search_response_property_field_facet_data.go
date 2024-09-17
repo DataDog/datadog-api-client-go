@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // IncidentSearchResponsePropertyFieldFacetData Facet data for the incident property fields.
 type IncidentSearchResponsePropertyFieldFacetData struct {
@@ -23,10 +19,9 @@ type IncidentSearchResponsePropertyFieldFacetData struct {
 	// Name of the incident property field.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewIncidentSearchResponsePropertyFieldFacetData instantiates a new IncidentSearchResponsePropertyFieldFacetData object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewIncidentSearchResponsePropertyFieldFacetDataWithDefaults() *IncidentSear
 	this := IncidentSearchResponsePropertyFieldFacetData{}
 	return &this
 }
+
 // GetAggregates returns the Aggregates field value if set, zero value otherwise.
 func (o *IncidentSearchResponsePropertyFieldFacetData) GetAggregates() IncidentSearchResponseNumericFacetDataAggregates {
 	if o == nil || o.Aggregates == nil {
@@ -74,7 +70,6 @@ func (o *IncidentSearchResponsePropertyFieldFacetData) SetAggregates(v IncidentS
 	o.Aggregates = &v
 }
 
-
 // GetFacets returns the Facets field value.
 func (o *IncidentSearchResponsePropertyFieldFacetData) GetFacets() []IncidentSearchResponseFieldFacetData {
 	if o == nil {
@@ -97,7 +92,6 @@ func (o *IncidentSearchResponsePropertyFieldFacetData) GetFacetsOk() (*[]Inciden
 func (o *IncidentSearchResponsePropertyFieldFacetData) SetFacets(v []IncidentSearchResponseFieldFacetData) {
 	o.Facets = v
 }
-
 
 // GetName returns the Name field value.
 func (o *IncidentSearchResponsePropertyFieldFacetData) GetName() string {
@@ -122,8 +116,6 @@ func (o *IncidentSearchResponsePropertyFieldFacetData) SetName(v string) {
 	o.Name = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentSearchResponsePropertyFieldFacetData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -146,8 +138,8 @@ func (o IncidentSearchResponsePropertyFieldFacetData) MarshalJSON() ([]byte, err
 func (o *IncidentSearchResponsePropertyFieldFacetData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Aggregates *IncidentSearchResponseNumericFacetDataAggregates `json:"aggregates,omitempty"`
-		Facets *[]IncidentSearchResponseFieldFacetData `json:"facets"`
-		Name *string `json:"name"`
+		Facets     *[]IncidentSearchResponseFieldFacetData           `json:"facets"`
+		Name       *string                                           `json:"name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -160,13 +152,13 @@ func (o *IncidentSearchResponsePropertyFieldFacetData) UnmarshalJSON(bytes []byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregates", "facets", "name",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregates", "facets", "name"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.Aggregates != nil && all.Aggregates.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Aggregates != nil && all.Aggregates.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Aggregates = all.Aggregates

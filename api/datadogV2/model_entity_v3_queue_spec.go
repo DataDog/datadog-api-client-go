@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // EntityV3QueueSpec The definition of Entity V3 Queue Spec object.
 type EntityV3QueueSpec struct {
@@ -25,7 +19,6 @@ type EntityV3QueueSpec struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
-
 
 // NewEntityV3QueueSpec instantiates a new EntityV3QueueSpec object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +36,7 @@ func NewEntityV3QueueSpecWithDefaults() *EntityV3QueueSpec {
 	this := EntityV3QueueSpec{}
 	return &this
 }
+
 // GetLifecycle returns the Lifecycle field value if set, zero value otherwise.
 func (o *EntityV3QueueSpec) GetLifecycle() string {
 	if o == nil || o.Lifecycle == nil {
@@ -70,7 +64,6 @@ func (o *EntityV3QueueSpec) HasLifecycle() bool {
 func (o *EntityV3QueueSpec) SetLifecycle(v string) {
 	o.Lifecycle = &v
 }
-
 
 // GetTier returns the Tier field value if set, zero value otherwise.
 func (o *EntityV3QueueSpec) GetTier() string {
@@ -100,7 +93,6 @@ func (o *EntityV3QueueSpec) SetTier(v string) {
 	o.Tier = &v
 }
 
-
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *EntityV3QueueSpec) GetType() string {
 	if o == nil || o.Type == nil {
@@ -129,8 +121,6 @@ func (o *EntityV3QueueSpec) SetType(v string) {
 	o.Type = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3QueueSpec) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -153,8 +143,8 @@ func (o EntityV3QueueSpec) MarshalJSON() ([]byte, error) {
 func (o *EntityV3QueueSpec) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Lifecycle *string `json:"lifecycle,omitempty"`
-		Tier *string `json:"tier,omitempty"`
-		Type *string `json:"type,omitempty"`
+		Tier      *string `json:"tier,omitempty"`
+		Type      *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

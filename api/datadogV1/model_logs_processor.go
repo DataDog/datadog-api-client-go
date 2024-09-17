@@ -2,36 +2,30 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // LogsProcessor - Definition of a logs processor.
 type LogsProcessor struct {
-	LogsGrokParser *LogsGrokParser
-	LogsDateRemapper *LogsDateRemapper
-	LogsStatusRemapper *LogsStatusRemapper
-	LogsServiceRemapper *LogsServiceRemapper
-	LogsMessageRemapper *LogsMessageRemapper
-	LogsAttributeRemapper *LogsAttributeRemapper
-	LogsURLParser *LogsURLParser
-	LogsUserAgentParser *LogsUserAgentParser
-	LogsCategoryProcessor *LogsCategoryProcessor
-	LogsArithmeticProcessor *LogsArithmeticProcessor
-	LogsStringBuilderProcessor *LogsStringBuilderProcessor
-	LogsPipelineProcessor *LogsPipelineProcessor
-	LogsGeoIPParser *LogsGeoIPParser
-	LogsLookupProcessor *LogsLookupProcessor
+	LogsGrokParser                    *LogsGrokParser
+	LogsDateRemapper                  *LogsDateRemapper
+	LogsStatusRemapper                *LogsStatusRemapper
+	LogsServiceRemapper               *LogsServiceRemapper
+	LogsMessageRemapper               *LogsMessageRemapper
+	LogsAttributeRemapper             *LogsAttributeRemapper
+	LogsURLParser                     *LogsURLParser
+	LogsUserAgentParser               *LogsUserAgentParser
+	LogsCategoryProcessor             *LogsCategoryProcessor
+	LogsArithmeticProcessor           *LogsArithmeticProcessor
+	LogsStringBuilderProcessor        *LogsStringBuilderProcessor
+	LogsPipelineProcessor             *LogsPipelineProcessor
+	LogsGeoIPParser                   *LogsGeoIPParser
+	LogsLookupProcessor               *LogsLookupProcessor
 	ReferenceTableLogsLookupProcessor *ReferenceTableLogsLookupProcessor
-	LogsTraceRemapper *LogsTraceRemapper
+	LogsTraceRemapper                 *LogsTraceRemapper
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -422,81 +416,65 @@ func (obj LogsProcessor) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.LogsGrokParser)
 	}
 
-
 	if obj.LogsDateRemapper != nil {
 		return datadog.Marshal(&obj.LogsDateRemapper)
 	}
-
 
 	if obj.LogsStatusRemapper != nil {
 		return datadog.Marshal(&obj.LogsStatusRemapper)
 	}
 
-
 	if obj.LogsServiceRemapper != nil {
 		return datadog.Marshal(&obj.LogsServiceRemapper)
 	}
-
 
 	if obj.LogsMessageRemapper != nil {
 		return datadog.Marshal(&obj.LogsMessageRemapper)
 	}
 
-
 	if obj.LogsAttributeRemapper != nil {
 		return datadog.Marshal(&obj.LogsAttributeRemapper)
 	}
-
 
 	if obj.LogsURLParser != nil {
 		return datadog.Marshal(&obj.LogsURLParser)
 	}
 
-
 	if obj.LogsUserAgentParser != nil {
 		return datadog.Marshal(&obj.LogsUserAgentParser)
 	}
-
 
 	if obj.LogsCategoryProcessor != nil {
 		return datadog.Marshal(&obj.LogsCategoryProcessor)
 	}
 
-
 	if obj.LogsArithmeticProcessor != nil {
 		return datadog.Marshal(&obj.LogsArithmeticProcessor)
 	}
-
 
 	if obj.LogsStringBuilderProcessor != nil {
 		return datadog.Marshal(&obj.LogsStringBuilderProcessor)
 	}
 
-
 	if obj.LogsPipelineProcessor != nil {
 		return datadog.Marshal(&obj.LogsPipelineProcessor)
 	}
-
 
 	if obj.LogsGeoIPParser != nil {
 		return datadog.Marshal(&obj.LogsGeoIPParser)
 	}
 
-
 	if obj.LogsLookupProcessor != nil {
 		return datadog.Marshal(&obj.LogsLookupProcessor)
 	}
-
 
 	if obj.ReferenceTableLogsLookupProcessor != nil {
 		return datadog.Marshal(&obj.ReferenceTableLogsLookupProcessor)
 	}
 
-
 	if obj.LogsTraceRemapper != nil {
 		return datadog.Marshal(&obj.LogsTraceRemapper)
 	}
-
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -505,86 +483,70 @@ func (obj LogsProcessor) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *LogsProcessor) GetActualInstance() (interface{}) {
+func (obj *LogsProcessor) GetActualInstance() interface{} {
 	if obj.LogsGrokParser != nil {
 		return obj.LogsGrokParser
 	}
-
 
 	if obj.LogsDateRemapper != nil {
 		return obj.LogsDateRemapper
 	}
 
-
 	if obj.LogsStatusRemapper != nil {
 		return obj.LogsStatusRemapper
 	}
-
 
 	if obj.LogsServiceRemapper != nil {
 		return obj.LogsServiceRemapper
 	}
 
-
 	if obj.LogsMessageRemapper != nil {
 		return obj.LogsMessageRemapper
 	}
-
 
 	if obj.LogsAttributeRemapper != nil {
 		return obj.LogsAttributeRemapper
 	}
 
-
 	if obj.LogsURLParser != nil {
 		return obj.LogsURLParser
 	}
-
 
 	if obj.LogsUserAgentParser != nil {
 		return obj.LogsUserAgentParser
 	}
 
-
 	if obj.LogsCategoryProcessor != nil {
 		return obj.LogsCategoryProcessor
 	}
-
 
 	if obj.LogsArithmeticProcessor != nil {
 		return obj.LogsArithmeticProcessor
 	}
 
-
 	if obj.LogsStringBuilderProcessor != nil {
 		return obj.LogsStringBuilderProcessor
 	}
-
 
 	if obj.LogsPipelineProcessor != nil {
 		return obj.LogsPipelineProcessor
 	}
 
-
 	if obj.LogsGeoIPParser != nil {
 		return obj.LogsGeoIPParser
 	}
-
 
 	if obj.LogsLookupProcessor != nil {
 		return obj.LogsLookupProcessor
 	}
 
-
 	if obj.ReferenceTableLogsLookupProcessor != nil {
 		return obj.ReferenceTableLogsLookupProcessor
 	}
 
-
 	if obj.LogsTraceRemapper != nil {
 		return obj.LogsTraceRemapper
 	}
-
 
 	// all schemas are nil
 	return nil

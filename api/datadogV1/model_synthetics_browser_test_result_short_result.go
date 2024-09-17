@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsBrowserTestResultShortResult Object with the result of the last browser test run.
 type SyntheticsBrowserTestResultShortResult struct {
@@ -27,10 +21,9 @@ type SyntheticsBrowserTestResultShortResult struct {
 	// Total amount of browser test steps.
 	StepCountTotal *int64 `json:"stepCountTotal,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsBrowserTestResultShortResult instantiates a new SyntheticsBrowserTestResultShortResult object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +41,7 @@ func NewSyntheticsBrowserTestResultShortResultWithDefaults() *SyntheticsBrowserT
 	this := SyntheticsBrowserTestResultShortResult{}
 	return &this
 }
+
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultShortResult) GetDevice() SyntheticsDevice {
 	if o == nil || o.Device == nil {
@@ -75,7 +69,6 @@ func (o *SyntheticsBrowserTestResultShortResult) HasDevice() bool {
 func (o *SyntheticsBrowserTestResultShortResult) SetDevice(v SyntheticsDevice) {
 	o.Device = &v
 }
-
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultShortResult) GetDuration() float64 {
@@ -105,7 +98,6 @@ func (o *SyntheticsBrowserTestResultShortResult) SetDuration(v float64) {
 	o.Duration = &v
 }
 
-
 // GetErrorCount returns the ErrorCount field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultShortResult) GetErrorCount() int64 {
 	if o == nil || o.ErrorCount == nil {
@@ -133,7 +125,6 @@ func (o *SyntheticsBrowserTestResultShortResult) HasErrorCount() bool {
 func (o *SyntheticsBrowserTestResultShortResult) SetErrorCount(v int64) {
 	o.ErrorCount = &v
 }
-
 
 // GetStepCountCompleted returns the StepCountCompleted field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultShortResult) GetStepCountCompleted() int64 {
@@ -163,7 +154,6 @@ func (o *SyntheticsBrowserTestResultShortResult) SetStepCountCompleted(v int64) 
 	o.StepCountCompleted = &v
 }
 
-
 // GetStepCountTotal returns the StepCountTotal field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultShortResult) GetStepCountTotal() int64 {
 	if o == nil || o.StepCountTotal == nil {
@@ -191,8 +181,6 @@ func (o *SyntheticsBrowserTestResultShortResult) HasStepCountTotal() bool {
 func (o *SyntheticsBrowserTestResultShortResult) SetStepCountTotal(v int64) {
 	o.StepCountTotal = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBrowserTestResultShortResult) MarshalJSON() ([]byte, error) {
@@ -225,24 +213,24 @@ func (o SyntheticsBrowserTestResultShortResult) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBrowserTestResultShortResult) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Device *SyntheticsDevice `json:"device,omitempty"`
-		Duration *float64 `json:"duration,omitempty"`
-		ErrorCount *int64 `json:"errorCount,omitempty"`
-		StepCountCompleted *int64 `json:"stepCountCompleted,omitempty"`
-		StepCountTotal *int64 `json:"stepCountTotal,omitempty"`
+		Device             *SyntheticsDevice `json:"device,omitempty"`
+		Duration           *float64          `json:"duration,omitempty"`
+		ErrorCount         *int64            `json:"errorCount,omitempty"`
+		StepCountCompleted *int64            `json:"stepCountCompleted,omitempty"`
+		StepCountTotal     *int64            `json:"stepCountTotal,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "device", "duration", "errorCount", "stepCountCompleted", "stepCountTotal",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"device", "duration", "errorCount", "stepCountCompleted", "stepCountTotal"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.Device != nil && all.Device.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Device != nil && all.Device.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Device = all.Device

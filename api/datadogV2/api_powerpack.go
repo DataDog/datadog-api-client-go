@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"bytes"
 	_context "context"
-	_fmt "fmt"
-	_io "io"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -24,12 +20,10 @@ type PowerpackApi datadog.Service
 // Create a powerpack.
 func (a *PowerpackApi) CreatePowerpack(ctx _context.Context, body Powerpack) (PowerpackResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  PowerpackResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue PowerpackResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.PowerpackApi.CreatePowerpack")
 	if err != nil {
@@ -44,11 +38,9 @@ func (a *PowerpackApi) CreatePowerpack(ctx _context.Context, body Powerpack) (Po
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -71,11 +63,10 @@ func (a *PowerpackApi) CreatePowerpack(ctx _context.Context, body Powerpack) (Po
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -89,7 +80,7 @@ func (a *PowerpackApi) CreatePowerpack(ctx _context.Context, body Powerpack) (Po
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -102,11 +93,9 @@ func (a *PowerpackApi) CreatePowerpack(ctx _context.Context, body Powerpack) (Po
 // Delete a powerpack.
 func (a *PowerpackApi) DeletePowerpack(ctx _context.Context, powerpackId string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.PowerpackApi.DeletePowerpack")
 	if err != nil {
@@ -119,10 +108,9 @@ func (a *PowerpackApi) DeletePowerpack(ctx _context.Context, powerpackId string)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] =  "*/*"
+	localVarHeaderParams["Accept"] = "*/*"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -145,11 +133,10 @@ func (a *PowerpackApi) DeletePowerpack(ctx _context.Context, powerpackId string)
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -167,12 +154,10 @@ func (a *PowerpackApi) DeletePowerpack(ctx _context.Context, powerpackId string)
 // Get a powerpack.
 func (a *PowerpackApi) GetPowerpack(ctx _context.Context, powerpackId string) (PowerpackResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  PowerpackResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue PowerpackResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.PowerpackApi.GetPowerpack")
 	if err != nil {
@@ -187,8 +172,7 @@ func (a *PowerpackApi) GetPowerpack(ctx _context.Context, powerpackId string) (P
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -211,11 +195,10 @@ func (a *PowerpackApi) GetPowerpack(ctx _context.Context, powerpackId string) (P
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -229,7 +212,7 @@ func (a *PowerpackApi) GetPowerpack(ctx _context.Context, powerpackId string) (P
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -240,7 +223,7 @@ func (a *PowerpackApi) GetPowerpack(ctx _context.Context, powerpackId string) (P
 
 // ListPowerpacksOptionalParameters holds optional parameters for ListPowerpacks.
 type ListPowerpacksOptionalParameters struct {
-	PageLimit *int64
+	PageLimit  *int64
 	PageOffset *int64
 }
 
@@ -249,11 +232,13 @@ func NewListPowerpacksOptionalParameters() *ListPowerpacksOptionalParameters {
 	this := ListPowerpacksOptionalParameters{}
 	return &this
 }
+
 // WithPageLimit sets the corresponding parameter name and returns the struct.
 func (r *ListPowerpacksOptionalParameters) WithPageLimit(pageLimit int64) *ListPowerpacksOptionalParameters {
 	r.PageLimit = &pageLimit
 	return r
 }
+
 // WithPageOffset sets the corresponding parameter name and returns the struct.
 func (r *ListPowerpacksOptionalParameters) WithPageOffset(pageOffset int64) *ListPowerpacksOptionalParameters {
 	r.PageOffset = &pageOffset
@@ -264,20 +249,18 @@ func (r *ListPowerpacksOptionalParameters) WithPageOffset(pageOffset int64) *Lis
 // Get a list of all powerpacks.
 func (a *PowerpackApi) ListPowerpacks(ctx _context.Context, o ...ListPowerpacksOptionalParameters) (ListPowerpacksResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  ListPowerpacksResponse
-		optionalParams ListPowerpacksOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue ListPowerpacksResponse
+		optionalParams      ListPowerpacksOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListPowerpacksOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListPowerpacksOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.PowerpackApi.ListPowerpacks")
 	if err != nil {
@@ -297,8 +280,7 @@ func (a *PowerpackApi) ListPowerpacks(ctx _context.Context, o ...ListPowerpacksO
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -321,11 +303,10 @@ func (a *PowerpackApi) ListPowerpacks(ctx _context.Context, o ...ListPowerpacksO
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -339,7 +320,7 @@ func (a *PowerpackApi) ListPowerpacks(ctx _context.Context, o ...ListPowerpacksO
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -347,6 +328,7 @@ func (a *PowerpackApi) ListPowerpacks(ctx _context.Context, o ...ListPowerpacksO
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 // ListPowerpacksWithPagination provides a paginated version of ListPowerpacks returning a channel with all items.
 func (a *PowerpackApi) ListPowerpacksWithPagination(ctx _context.Context, o ...ListPowerpacksOptionalParameters) (<-chan datadog.PaginationResult[PowerpackData], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -378,8 +360,8 @@ func (a *PowerpackApi) ListPowerpacksWithPagination(ctx _context.Context, o ...L
 				select {
 				case items <- datadog.PaginationResult[PowerpackData]{Item: item, Error: nil}:
 				case <-ctx.Done():
-				close(items)
-				return
+					close(items)
+					return
 				}
 			}
 			if len(results) < int(pageSize_) {
@@ -401,12 +383,10 @@ func (a *PowerpackApi) ListPowerpacksWithPagination(ctx _context.Context, o ...L
 // Update a powerpack.
 func (a *PowerpackApi) UpdatePowerpack(ctx _context.Context, powerpackId string, body Powerpack) (PowerpackResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarReturnValue  PowerpackResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue PowerpackResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.PowerpackApi.UpdatePowerpack")
 	if err != nil {
@@ -422,11 +402,9 @@ func (a *PowerpackApi) UpdatePowerpack(ctx _context.Context, powerpackId string,
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -449,11 +427,10 @@ func (a *PowerpackApi) UpdatePowerpack(ctx _context.Context, powerpackId string,
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -467,7 +444,7 @@ func (a *PowerpackApi) UpdatePowerpack(ctx _context.Context, powerpackId string,
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

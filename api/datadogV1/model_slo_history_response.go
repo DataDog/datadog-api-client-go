@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SLOHistoryResponse A service level objective history response.
 type SLOHistoryResponse struct {
@@ -21,10 +15,9 @@ type SLOHistoryResponse struct {
 	// A list of errors while querying the history data for the service level objective.
 	Errors []SLOHistoryResponseError `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSLOHistoryResponse instantiates a new SLOHistoryResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewSLOHistoryResponseWithDefaults() *SLOHistoryResponse {
 	this := SLOHistoryResponse{}
 	return &this
 }
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SLOHistoryResponse) GetData() SLOHistoryResponseData {
 	if o == nil || o.Data == nil {
@@ -70,10 +64,9 @@ func (o *SLOHistoryResponse) SetData(v SLOHistoryResponseData) {
 	o.Data = &v
 }
 
-
 // GetErrors returns the Errors field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOHistoryResponse) GetErrors() []SLOHistoryResponseError {
-	if o == nil  {
+	if o == nil {
 		var ret []SLOHistoryResponseError
 		return ret
 	}
@@ -100,8 +93,6 @@ func (o *SLOHistoryResponse) SetErrors(v []SLOHistoryResponseError) {
 	o.Errors = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOHistoryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -124,7 +115,7 @@ func (o SLOHistoryResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOHistoryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *SLOHistoryResponseData `json:"data,omitempty"`
+		Data   *SLOHistoryResponseData   `json:"data,omitempty"`
 		Errors []SLOHistoryResponseError `json:"errors,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -132,13 +123,13 @@ func (o *SLOHistoryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "errors",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "errors"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data

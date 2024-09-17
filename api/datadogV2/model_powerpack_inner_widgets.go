@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // PowerpackInnerWidgets Powerpack group widget definition of individual widgets.
 type PowerpackInnerWidgets struct {
@@ -21,10 +17,9 @@ type PowerpackInnerWidgets struct {
 	// Powerpack inner widget layout.
 	Layout *PowerpackInnerWidgetLayout `json:"layout,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewPowerpackInnerWidgets instantiates a new PowerpackInnerWidgets object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewPowerpackInnerWidgetsWithDefaults() *PowerpackInnerWidgets {
 	this := PowerpackInnerWidgets{}
 	return &this
 }
+
 // GetDefinition returns the Definition field value.
 func (o *PowerpackInnerWidgets) GetDefinition() map[string]interface{} {
 	if o == nil {
@@ -65,7 +61,6 @@ func (o *PowerpackInnerWidgets) GetDefinitionOk() (*map[string]interface{}, bool
 func (o *PowerpackInnerWidgets) SetDefinition(v map[string]interface{}) {
 	o.Definition = v
 }
-
 
 // GetLayout returns the Layout field value if set, zero value otherwise.
 func (o *PowerpackInnerWidgets) GetLayout() PowerpackInnerWidgetLayout {
@@ -95,8 +90,6 @@ func (o *PowerpackInnerWidgets) SetLayout(v PowerpackInnerWidgetLayout) {
 	o.Layout = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o PowerpackInnerWidgets) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -117,8 +110,8 @@ func (o PowerpackInnerWidgets) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PowerpackInnerWidgets) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Definition *map[string]interface{} `json:"definition"`
-		Layout *PowerpackInnerWidgetLayout `json:"layout,omitempty"`
+		Definition *map[string]interface{}     `json:"definition"`
+		Layout     *PowerpackInnerWidgetLayout `json:"layout,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -128,14 +121,14 @@ func (o *PowerpackInnerWidgets) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "definition", "layout",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"definition", "layout"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Definition = *all.Definition
-	if  all.Layout != nil && all.Layout.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Layout != nil && all.Layout.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Layout = all.Layout

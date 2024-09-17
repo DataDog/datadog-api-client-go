@@ -2,22 +2,16 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SecurityMonitoringRuleResponse - Create a new rule.
 type SecurityMonitoringRuleResponse struct {
 	SecurityMonitoringStandardRuleResponse *SecurityMonitoringStandardRuleResponse
-	SecurityMonitoringSignalRuleResponse *SecurityMonitoringSignalRuleResponse
+	SecurityMonitoringSignalRuleResponse   *SecurityMonitoringSignalRuleResponse
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -86,11 +80,9 @@ func (obj SecurityMonitoringRuleResponse) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SecurityMonitoringStandardRuleResponse)
 	}
 
-
 	if obj.SecurityMonitoringSignalRuleResponse != nil {
 		return datadog.Marshal(&obj.SecurityMonitoringSignalRuleResponse)
 	}
-
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -99,16 +91,14 @@ func (obj SecurityMonitoringRuleResponse) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SecurityMonitoringRuleResponse) GetActualInstance() (interface{}) {
+func (obj *SecurityMonitoringRuleResponse) GetActualInstance() interface{} {
 	if obj.SecurityMonitoringStandardRuleResponse != nil {
 		return obj.SecurityMonitoringStandardRuleResponse
 	}
 
-
 	if obj.SecurityMonitoringSignalRuleResponse != nil {
 		return obj.SecurityMonitoringSignalRuleResponse
 	}
-
 
 	// all schemas are nil
 	return nil

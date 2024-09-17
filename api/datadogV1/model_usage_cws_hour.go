@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // UsageCWSHour Cloud Workload Security usage for a given organization for a given hour.
 type UsageCWSHour struct {
@@ -27,10 +23,9 @@ type UsageCWSHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewUsageCWSHour instantiates a new UsageCWSHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +43,7 @@ func NewUsageCWSHourWithDefaults() *UsageCWSHour {
 	this := UsageCWSHour{}
 	return &this
 }
+
 // GetCwsContainerCount returns the CwsContainerCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageCWSHour) GetCwsContainerCount() int64 {
 	if o == nil || o.CwsContainerCount.Get() == nil {
@@ -61,7 +57,7 @@ func (o *UsageCWSHour) GetCwsContainerCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageCWSHour) GetCwsContainerCountOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CwsContainerCount.Get(), o.CwsContainerCount.IsSet()
@@ -76,6 +72,7 @@ func (o *UsageCWSHour) HasCwsContainerCount() bool {
 func (o *UsageCWSHour) SetCwsContainerCount(v int64) {
 	o.CwsContainerCount.Set(&v)
 }
+
 // SetCwsContainerCountNil sets the value for CwsContainerCount to be an explicit nil.
 func (o *UsageCWSHour) SetCwsContainerCountNil() {
 	o.CwsContainerCount.Set(nil)
@@ -85,7 +82,6 @@ func (o *UsageCWSHour) SetCwsContainerCountNil() {
 func (o *UsageCWSHour) UnsetCwsContainerCount() {
 	o.CwsContainerCount.Unset()
 }
-
 
 // GetCwsHostCount returns the CwsHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageCWSHour) GetCwsHostCount() int64 {
@@ -100,7 +96,7 @@ func (o *UsageCWSHour) GetCwsHostCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageCWSHour) GetCwsHostCountOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CwsHostCount.Get(), o.CwsHostCount.IsSet()
@@ -115,6 +111,7 @@ func (o *UsageCWSHour) HasCwsHostCount() bool {
 func (o *UsageCWSHour) SetCwsHostCount(v int64) {
 	o.CwsHostCount.Set(&v)
 }
+
 // SetCwsHostCountNil sets the value for CwsHostCount to be an explicit nil.
 func (o *UsageCWSHour) SetCwsHostCountNil() {
 	o.CwsHostCount.Set(nil)
@@ -124,7 +121,6 @@ func (o *UsageCWSHour) SetCwsHostCountNil() {
 func (o *UsageCWSHour) UnsetCwsHostCount() {
 	o.CwsHostCount.Unset()
 }
-
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageCWSHour) GetHour() time.Time {
@@ -154,7 +150,6 @@ func (o *UsageCWSHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageCWSHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -183,7 +178,6 @@ func (o *UsageCWSHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageCWSHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -211,8 +205,6 @@ func (o *UsageCWSHour) HasPublicId() bool {
 func (o *UsageCWSHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageCWSHour) MarshalJSON() ([]byte, error) {
@@ -250,17 +242,17 @@ func (o UsageCWSHour) MarshalJSON() ([]byte, error) {
 func (o *UsageCWSHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CwsContainerCount datadog.NullableInt64 `json:"cws_container_count,omitempty"`
-		CwsHostCount datadog.NullableInt64 `json:"cws_host_count,omitempty"`
-		Hour *time.Time `json:"hour,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
+		CwsHostCount      datadog.NullableInt64 `json:"cws_host_count,omitempty"`
+		Hour              *time.Time            `json:"hour,omitempty"`
+		OrgName           *string               `json:"org_name,omitempty"`
+		PublicId          *string               `json:"public_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "cws_container_count", "cws_host_count", "hour", "org_name", "public_id",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"cws_container_count", "cws_host_count", "hour", "org_name", "public_id"})
 	} else {
 		return err
 	}

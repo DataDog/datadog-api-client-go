@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // EntityV3MetadataLinksItems The definition of Entity V3 Metadata Links Items object.
 type EntityV3MetadataLinksItems struct {
@@ -27,7 +23,6 @@ type EntityV3MetadataLinksItems struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
-
 
 // NewEntityV3MetadataLinksItems instantiates a new EntityV3MetadataLinksItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +45,7 @@ func NewEntityV3MetadataLinksItemsWithDefaults() *EntityV3MetadataLinksItems {
 	this.Type = typeVar
 	return &this
 }
+
 // GetName returns the Name field value.
 func (o *EntityV3MetadataLinksItems) GetName() string {
 	if o == nil {
@@ -72,7 +68,6 @@ func (o *EntityV3MetadataLinksItems) GetNameOk() (*string, bool) {
 func (o *EntityV3MetadataLinksItems) SetName(v string) {
 	o.Name = v
 }
-
 
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *EntityV3MetadataLinksItems) GetProvider() string {
@@ -102,7 +97,6 @@ func (o *EntityV3MetadataLinksItems) SetProvider(v string) {
 	o.Provider = &v
 }
 
-
 // GetType returns the Type field value.
 func (o *EntityV3MetadataLinksItems) GetType() string {
 	if o == nil {
@@ -125,7 +119,6 @@ func (o *EntityV3MetadataLinksItems) GetTypeOk() (*string, bool) {
 func (o *EntityV3MetadataLinksItems) SetType(v string) {
 	o.Type = v
 }
-
 
 // GetUrl returns the Url field value.
 func (o *EntityV3MetadataLinksItems) GetUrl() string {
@@ -150,8 +143,6 @@ func (o *EntityV3MetadataLinksItems) SetUrl(v string) {
 	o.Url = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3MetadataLinksItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -170,10 +161,10 @@ func (o EntityV3MetadataLinksItems) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityV3MetadataLinksItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name *string `json:"name"`
+		Name     *string `json:"name"`
 		Provider *string `json:"provider,omitempty"`
-		Type *string `json:"type"`
-		Url *string `json:"url"`
+		Type     *string `json:"type"`
+		Url      *string `json:"url"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

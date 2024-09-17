@@ -2,27 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // OrgConfigWriteAttributes Writable attributes of an Org Config.
 type OrgConfigWriteAttributes struct {
 	// The value of an Org Config.
 	Value interface{} `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewOrgConfigWriteAttributes instantiates a new OrgConfigWriteAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,6 +36,7 @@ func NewOrgConfigWriteAttributesWithDefaults() *OrgConfigWriteAttributes {
 	this := OrgConfigWriteAttributes{}
 	return &this
 }
+
 // GetValue returns the Value field value.
 func (o *OrgConfigWriteAttributes) GetValue() interface{} {
 	if o == nil {
@@ -63,8 +59,6 @@ func (o *OrgConfigWriteAttributes) GetValueOk() (*interface{}, bool) {
 func (o *OrgConfigWriteAttributes) SetValue(v interface{}) {
 	o.Value = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o OrgConfigWriteAttributes) MarshalJSON() ([]byte, error) {
@@ -93,7 +87,7 @@ func (o *OrgConfigWriteAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "value",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"value"})
 	} else {
 		return err
 	}

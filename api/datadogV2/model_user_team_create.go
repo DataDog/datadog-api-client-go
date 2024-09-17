@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // UserTeamCreate A user's relationship with a team
 type UserTeamCreate struct {
@@ -23,10 +19,9 @@ type UserTeamCreate struct {
 	// Team membership type
 	Type UserTeamType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewUserTeamCreate instantiates a new UserTeamCreate object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,6 +42,7 @@ func NewUserTeamCreateWithDefaults() *UserTeamCreate {
 	this.Type = typeVar
 	return &this
 }
+
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *UserTeamCreate) GetAttributes() UserTeamAttributes {
 	if o == nil || o.Attributes == nil {
@@ -74,7 +70,6 @@ func (o *UserTeamCreate) HasAttributes() bool {
 func (o *UserTeamCreate) SetAttributes(v UserTeamAttributes) {
 	o.Attributes = &v
 }
-
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *UserTeamCreate) GetRelationships() UserTeamRelationships {
@@ -104,7 +99,6 @@ func (o *UserTeamCreate) SetRelationships(v UserTeamRelationships) {
 	o.Relationships = &v
 }
 
-
 // GetType returns the Type field value.
 func (o *UserTeamCreate) GetType() UserTeamType {
 	if o == nil {
@@ -127,8 +121,6 @@ func (o *UserTeamCreate) GetTypeOk() (*UserTeamType, bool) {
 func (o *UserTeamCreate) SetType(v UserTeamType) {
 	o.Type = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UserTeamCreate) MarshalJSON() ([]byte, error) {
@@ -153,9 +145,9 @@ func (o UserTeamCreate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UserTeamCreate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *UserTeamAttributes `json:"attributes,omitempty"`
+		Attributes    *UserTeamAttributes    `json:"attributes,omitempty"`
 		Relationships *UserTeamRelationships `json:"relationships,omitempty"`
-		Type *UserTeamType `json:"type"`
+		Type          *UserTeamType          `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -165,17 +157,17 @@ func (o *UserTeamCreate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "relationships", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "relationships", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
-	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

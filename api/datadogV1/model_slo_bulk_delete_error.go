@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SLOBulkDeleteError Object describing the error.
 type SLOBulkDeleteError struct {
@@ -25,10 +21,9 @@ type SLOBulkDeleteError struct {
 	// or "all" if all thresholds are affected.
 	Timeframe SLOErrorTimeframe `json:"timeframe"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSLOBulkDeleteError instantiates a new SLOBulkDeleteError object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,6 +44,7 @@ func NewSLOBulkDeleteErrorWithDefaults() *SLOBulkDeleteError {
 	this := SLOBulkDeleteError{}
 	return &this
 }
+
 // GetId returns the Id field value.
 func (o *SLOBulkDeleteError) GetId() string {
 	if o == nil {
@@ -71,7 +67,6 @@ func (o *SLOBulkDeleteError) GetIdOk() (*string, bool) {
 func (o *SLOBulkDeleteError) SetId(v string) {
 	o.Id = v
 }
-
 
 // GetMessage returns the Message field value.
 func (o *SLOBulkDeleteError) GetMessage() string {
@@ -96,7 +91,6 @@ func (o *SLOBulkDeleteError) SetMessage(v string) {
 	o.Message = v
 }
 
-
 // GetTimeframe returns the Timeframe field value.
 func (o *SLOBulkDeleteError) GetTimeframe() SLOErrorTimeframe {
 	if o == nil {
@@ -120,8 +114,6 @@ func (o *SLOBulkDeleteError) SetTimeframe(v SLOErrorTimeframe) {
 	o.Timeframe = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOBulkDeleteError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -141,8 +133,8 @@ func (o SLOBulkDeleteError) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id *string `json:"id"`
-		Message *string `json:"message"`
+		Id        *string            `json:"id"`
+		Message   *string            `json:"message"`
 		Timeframe *SLOErrorTimeframe `json:"timeframe"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -159,7 +151,7 @@ func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "message", "timeframe",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"id", "message", "timeframe"})
 	} else {
 		return err
 	}

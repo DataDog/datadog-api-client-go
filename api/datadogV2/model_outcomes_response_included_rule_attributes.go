@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // OutcomesResponseIncludedRuleAttributes Details of a rule.
 type OutcomesResponseIncludedRuleAttributes struct {
@@ -21,10 +15,9 @@ type OutcomesResponseIncludedRuleAttributes struct {
 	// The scorecard name to which this rule must belong.
 	ScorecardName *string `json:"scorecard_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewOutcomesResponseIncludedRuleAttributes instantiates a new OutcomesResponseIncludedRuleAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewOutcomesResponseIncludedRuleAttributesWithDefaults() *OutcomesResponseIn
 	this := OutcomesResponseIncludedRuleAttributes{}
 	return &this
 }
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *OutcomesResponseIncludedRuleAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -69,7 +63,6 @@ func (o *OutcomesResponseIncludedRuleAttributes) HasName() bool {
 func (o *OutcomesResponseIncludedRuleAttributes) SetName(v string) {
 	o.Name = &v
 }
-
 
 // GetScorecardName returns the ScorecardName field value if set, zero value otherwise.
 func (o *OutcomesResponseIncludedRuleAttributes) GetScorecardName() string {
@@ -99,8 +92,6 @@ func (o *OutcomesResponseIncludedRuleAttributes) SetScorecardName(v string) {
 	o.ScorecardName = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o OutcomesResponseIncludedRuleAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -123,7 +114,7 @@ func (o OutcomesResponseIncludedRuleAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OutcomesResponseIncludedRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name *string `json:"name,omitempty"`
+		Name          *string `json:"name,omitempty"`
 		ScorecardName *string `json:"scorecard_name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -131,7 +122,7 @@ func (o *OutcomesResponseIncludedRuleAttributes) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "scorecard_name",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"name", "scorecard_name"})
 	} else {
 		return err
 	}

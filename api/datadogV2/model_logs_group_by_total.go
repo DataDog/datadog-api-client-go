@@ -2,23 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // LogsGroupByTotal - A resulting object to put the given computes in over all the matching records.
 type LogsGroupByTotal struct {
 	LogsGroupByTotalBoolean *bool
-	LogsGroupByTotalString *string
-	LogsGroupByTotalNumber *float64
+	LogsGroupByTotalString  *string
+	LogsGroupByTotalNumber  *float64
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -110,16 +104,13 @@ func (obj LogsGroupByTotal) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.LogsGroupByTotalBoolean)
 	}
 
-
 	if obj.LogsGroupByTotalString != nil {
 		return datadog.Marshal(&obj.LogsGroupByTotalString)
 	}
 
-
 	if obj.LogsGroupByTotalNumber != nil {
 		return datadog.Marshal(&obj.LogsGroupByTotalNumber)
 	}
-
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -128,21 +119,18 @@ func (obj LogsGroupByTotal) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *LogsGroupByTotal) GetActualInstance() (interface{}) {
+func (obj *LogsGroupByTotal) GetActualInstance() interface{} {
 	if obj.LogsGroupByTotalBoolean != nil {
 		return obj.LogsGroupByTotalBoolean
 	}
-
 
 	if obj.LogsGroupByTotalString != nil {
 		return obj.LogsGroupByTotalString
 	}
 
-
 	if obj.LogsGroupByTotalNumber != nil {
 		return obj.LogsGroupByTotalNumber
 	}
-
 
 	// all schemas are nil
 	return nil

@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // TeamPermissionSettingAttributes Team permission setting attributes
 type TeamPermissionSettingAttributes struct {
@@ -27,10 +21,9 @@ type TeamPermissionSettingAttributes struct {
 	// What type of user is allowed to perform the specified action
 	Value *TeamPermissionSettingValue `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewTeamPermissionSettingAttributes instantiates a new TeamPermissionSettingAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +41,7 @@ func NewTeamPermissionSettingAttributesWithDefaults() *TeamPermissionSettingAttr
 	this := TeamPermissionSettingAttributes{}
 	return &this
 }
+
 // GetAction returns the Action field value if set, zero value otherwise.
 func (o *TeamPermissionSettingAttributes) GetAction() TeamPermissionSettingSerializerAction {
 	if o == nil || o.Action == nil {
@@ -75,7 +69,6 @@ func (o *TeamPermissionSettingAttributes) HasAction() bool {
 func (o *TeamPermissionSettingAttributes) SetAction(v TeamPermissionSettingSerializerAction) {
 	o.Action = &v
 }
-
 
 // GetEditable returns the Editable field value if set, zero value otherwise.
 func (o *TeamPermissionSettingAttributes) GetEditable() bool {
@@ -105,7 +98,6 @@ func (o *TeamPermissionSettingAttributes) SetEditable(v bool) {
 	o.Editable = &v
 }
 
-
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *TeamPermissionSettingAttributes) GetOptions() []TeamPermissionSettingValue {
 	if o == nil || o.Options == nil {
@@ -133,7 +125,6 @@ func (o *TeamPermissionSettingAttributes) HasOptions() bool {
 func (o *TeamPermissionSettingAttributes) SetOptions(v []TeamPermissionSettingValue) {
 	o.Options = v
 }
-
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *TeamPermissionSettingAttributes) GetTitle() string {
@@ -163,7 +154,6 @@ func (o *TeamPermissionSettingAttributes) SetTitle(v string) {
 	o.Title = &v
 }
 
-
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *TeamPermissionSettingAttributes) GetValue() TeamPermissionSettingValue {
 	if o == nil || o.Value == nil {
@@ -191,8 +181,6 @@ func (o *TeamPermissionSettingAttributes) HasValue() bool {
 func (o *TeamPermissionSettingAttributes) SetValue(v TeamPermissionSettingValue) {
 	o.Value = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamPermissionSettingAttributes) MarshalJSON() ([]byte, error) {
@@ -225,24 +213,24 @@ func (o TeamPermissionSettingAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamPermissionSettingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Action *TeamPermissionSettingSerializerAction `json:"action,omitempty"`
-		Editable *bool `json:"editable,omitempty"`
-		Options []TeamPermissionSettingValue `json:"options,omitempty"`
-		Title *string `json:"title,omitempty"`
-		Value *TeamPermissionSettingValue `json:"value,omitempty"`
+		Action   *TeamPermissionSettingSerializerAction `json:"action,omitempty"`
+		Editable *bool                                  `json:"editable,omitempty"`
+		Options  []TeamPermissionSettingValue           `json:"options,omitempty"`
+		Title    *string                                `json:"title,omitempty"`
+		Value    *TeamPermissionSettingValue            `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "action", "editable", "options", "title", "value",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"action", "editable", "options", "title", "value"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Action != nil &&!all.Action.IsValid() {
+	if all.Action != nil && !all.Action.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Action = all.Action
@@ -250,7 +238,7 @@ func (o *TeamPermissionSettingAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.Editable = all.Editable
 	o.Options = all.Options
 	o.Title = all.Title
-	if all.Value != nil &&!all.Value.IsValid() {
+	if all.Value != nil && !all.Value.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Value = all.Value

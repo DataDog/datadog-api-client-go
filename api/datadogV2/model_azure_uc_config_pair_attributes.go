@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // AzureUCConfigPairAttributes Attributes for Azure config pair.
 type AzureUCConfigPairAttributes struct {
@@ -21,10 +17,9 @@ type AzureUCConfigPairAttributes struct {
 	// The ID of the Azure config pair.
 	Id *int64 `json:"id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewAzureUCConfigPairAttributes instantiates a new AzureUCConfigPairAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewAzureUCConfigPairAttributesWithDefaults() *AzureUCConfigPairAttributes {
 	this := AzureUCConfigPairAttributes{}
 	return &this
 }
+
 // GetConfigs returns the Configs field value.
 func (o *AzureUCConfigPairAttributes) GetConfigs() []AzureUCConfig {
 	if o == nil {
@@ -65,7 +61,6 @@ func (o *AzureUCConfigPairAttributes) GetConfigsOk() (*[]AzureUCConfig, bool) {
 func (o *AzureUCConfigPairAttributes) SetConfigs(v []AzureUCConfig) {
 	o.Configs = v
 }
-
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AzureUCConfigPairAttributes) GetId() int64 {
@@ -95,8 +90,6 @@ func (o *AzureUCConfigPairAttributes) SetId(v int64) {
 	o.Id = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o AzureUCConfigPairAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -118,7 +111,7 @@ func (o AzureUCConfigPairAttributes) MarshalJSON() ([]byte, error) {
 func (o *AzureUCConfigPairAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Configs *[]AzureUCConfig `json:"configs"`
-		Id *int64 `json:"id,omitempty"`
+		Id      *int64           `json:"id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -128,7 +121,7 @@ func (o *AzureUCConfigPairAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "configs", "id",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"configs", "id"})
 	} else {
 		return err
 	}

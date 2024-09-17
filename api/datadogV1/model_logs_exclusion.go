@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // LogsExclusion Represents the index exclusion filter object from configuration API.
 type LogsExclusion struct {
@@ -23,10 +19,9 @@ type LogsExclusion struct {
 	// Name of the index exclusion filter.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewLogsExclusion instantiates a new LogsExclusion object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,6 +40,7 @@ func NewLogsExclusionWithDefaults() *LogsExclusion {
 	this := LogsExclusion{}
 	return &this
 }
+
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsExclusion) GetFilter() LogsExclusionFilter {
 	if o == nil || o.Filter == nil {
@@ -72,7 +68,6 @@ func (o *LogsExclusion) HasFilter() bool {
 func (o *LogsExclusion) SetFilter(v LogsExclusionFilter) {
 	o.Filter = &v
 }
-
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsExclusion) GetIsEnabled() bool {
@@ -102,7 +97,6 @@ func (o *LogsExclusion) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
-
 // GetName returns the Name field value.
 func (o *LogsExclusion) GetName() string {
 	if o == nil {
@@ -125,8 +119,6 @@ func (o *LogsExclusion) GetNameOk() (*string, bool) {
 func (o *LogsExclusion) SetName(v string) {
 	o.Name = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsExclusion) MarshalJSON() ([]byte, error) {
@@ -151,9 +143,9 @@ func (o LogsExclusion) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsExclusion) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Filter *LogsExclusionFilter `json:"filter,omitempty"`
-		IsEnabled *bool `json:"is_enabled,omitempty"`
-		Name *string `json:"name"`
+		Filter    *LogsExclusionFilter `json:"filter,omitempty"`
+		IsEnabled *bool                `json:"is_enabled,omitempty"`
+		Name      *string              `json:"name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -163,13 +155,13 @@ func (o *LogsExclusion) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "filter", "is_enabled", "name",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "is_enabled", "name"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter

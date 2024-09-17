@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // EntityV3MetadataAdditionalOwnersItems The definition of Entity V3 Metadata Additional Owners Items object.
 type EntityV3MetadataAdditionalOwnersItems struct {
@@ -21,10 +17,9 @@ type EntityV3MetadataAdditionalOwnersItems struct {
 	// Team type
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewEntityV3MetadataAdditionalOwnersItems instantiates a new EntityV3MetadataAdditionalOwnersItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewEntityV3MetadataAdditionalOwnersItemsWithDefaults() *EntityV3MetadataAdd
 	this := EntityV3MetadataAdditionalOwnersItems{}
 	return &this
 }
+
 // GetName returns the Name field value.
 func (o *EntityV3MetadataAdditionalOwnersItems) GetName() string {
 	if o == nil {
@@ -65,7 +61,6 @@ func (o *EntityV3MetadataAdditionalOwnersItems) GetNameOk() (*string, bool) {
 func (o *EntityV3MetadataAdditionalOwnersItems) SetName(v string) {
 	o.Name = v
 }
-
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *EntityV3MetadataAdditionalOwnersItems) GetType() string {
@@ -94,8 +89,6 @@ func (o *EntityV3MetadataAdditionalOwnersItems) HasType() bool {
 func (o *EntityV3MetadataAdditionalOwnersItems) SetType(v string) {
 	o.Type = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3MetadataAdditionalOwnersItems) MarshalJSON() ([]byte, error) {
@@ -128,7 +121,7 @@ func (o *EntityV3MetadataAdditionalOwnersItems) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"name", "type"})
 	} else {
 		return err
 	}

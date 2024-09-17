@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // IncidentTeamResponseAttributes The incident team's attributes from a response.
 type IncidentTeamResponseAttributes struct {
@@ -23,10 +19,9 @@ type IncidentTeamResponseAttributes struct {
 	// Name of the incident team.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewIncidentTeamResponseAttributes instantiates a new IncidentTeamResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewIncidentTeamResponseAttributesWithDefaults() *IncidentTeamResponseAttrib
 	this := IncidentTeamResponseAttributes{}
 	return &this
 }
+
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *IncidentTeamResponseAttributes) GetCreated() time.Time {
 	if o == nil || o.Created == nil {
@@ -71,7 +67,6 @@ func (o *IncidentTeamResponseAttributes) HasCreated() bool {
 func (o *IncidentTeamResponseAttributes) SetCreated(v time.Time) {
 	o.Created = &v
 }
-
 
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *IncidentTeamResponseAttributes) GetModified() time.Time {
@@ -101,7 +96,6 @@ func (o *IncidentTeamResponseAttributes) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *IncidentTeamResponseAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -129,8 +123,6 @@ func (o *IncidentTeamResponseAttributes) HasName() bool {
 func (o *IncidentTeamResponseAttributes) SetName(v string) {
 	o.Name = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentTeamResponseAttributes) MarshalJSON() ([]byte, error) {
@@ -165,16 +157,16 @@ func (o IncidentTeamResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTeamResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Created *time.Time `json:"created,omitempty"`
+		Created  *time.Time `json:"created,omitempty"`
 		Modified *time.Time `json:"modified,omitempty"`
-		Name *string `json:"name,omitempty"`
+		Name     *string    `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "created", "modified", "name",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"created", "modified", "name"})
 	} else {
 		return err
 	}

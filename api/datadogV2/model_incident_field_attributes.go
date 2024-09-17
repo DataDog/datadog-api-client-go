@@ -2,21 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // IncidentFieldAttributes - Dynamic fields for which selections can be made, with field names as keys.
 type IncidentFieldAttributes struct {
-	IncidentFieldAttributesSingleValue *IncidentFieldAttributesSingleValue
+	IncidentFieldAttributesSingleValue   *IncidentFieldAttributesSingleValue
 	IncidentFieldAttributesMultipleValue *IncidentFieldAttributesMultipleValue
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -86,11 +80,9 @@ func (obj IncidentFieldAttributes) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.IncidentFieldAttributesSingleValue)
 	}
 
-
 	if obj.IncidentFieldAttributesMultipleValue != nil {
 		return datadog.Marshal(&obj.IncidentFieldAttributesMultipleValue)
 	}
-
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -99,16 +91,14 @@ func (obj IncidentFieldAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *IncidentFieldAttributes) GetActualInstance() (interface{}) {
+func (obj *IncidentFieldAttributes) GetActualInstance() interface{} {
 	if obj.IncidentFieldAttributesSingleValue != nil {
 		return obj.IncidentFieldAttributesSingleValue
 	}
 
-
 	if obj.IncidentFieldAttributesMultipleValue != nil {
 		return obj.IncidentFieldAttributesMultipleValue
 	}
-
 
 	// all schemas are nil
 	return nil

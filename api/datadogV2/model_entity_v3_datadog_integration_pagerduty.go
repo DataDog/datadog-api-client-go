@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // EntityV3DatadogIntegrationPagerduty An PagerDuty integration schema
 type EntityV3DatadogIntegrationPagerduty struct {
@@ -21,7 +17,6 @@ type EntityV3DatadogIntegrationPagerduty struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
-
 
 // NewEntityV3DatadogIntegrationPagerduty instantiates a new EntityV3DatadogIntegrationPagerduty object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +35,7 @@ func NewEntityV3DatadogIntegrationPagerdutyWithDefaults() *EntityV3DatadogIntegr
 	this := EntityV3DatadogIntegrationPagerduty{}
 	return &this
 }
+
 // GetServiceUrl returns the ServiceUrl field value.
 func (o *EntityV3DatadogIntegrationPagerduty) GetServiceUrl() string {
 	if o == nil {
@@ -62,8 +58,6 @@ func (o *EntityV3DatadogIntegrationPagerduty) GetServiceUrlOk() (*string, bool) 
 func (o *EntityV3DatadogIntegrationPagerduty) SetServiceUrl(v string) {
 	o.ServiceUrl = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3DatadogIntegrationPagerduty) MarshalJSON() ([]byte, error) {

@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // RelationshipToIncidentUserDefinedFieldData Relationship to impact object.
 type RelationshipToIncidentUserDefinedFieldData struct {
@@ -21,10 +17,9 @@ type RelationshipToIncidentUserDefinedFieldData struct {
 	// The incident user defined fields type.
 	Type IncidentUserDefinedFieldType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewRelationshipToIncidentUserDefinedFieldData instantiates a new RelationshipToIncidentUserDefinedFieldData object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewRelationshipToIncidentUserDefinedFieldDataWithDefaults() *RelationshipTo
 	this := RelationshipToIncidentUserDefinedFieldData{}
 	return &this
 }
+
 // GetId returns the Id field value.
 func (o *RelationshipToIncidentUserDefinedFieldData) GetId() string {
 	if o == nil {
@@ -66,7 +62,6 @@ func (o *RelationshipToIncidentUserDefinedFieldData) GetIdOk() (*string, bool) {
 func (o *RelationshipToIncidentUserDefinedFieldData) SetId(v string) {
 	o.Id = v
 }
-
 
 // GetType returns the Type field value.
 func (o *RelationshipToIncidentUserDefinedFieldData) GetType() IncidentUserDefinedFieldType {
@@ -91,8 +86,6 @@ func (o *RelationshipToIncidentUserDefinedFieldData) SetType(v IncidentUserDefin
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationshipToIncidentUserDefinedFieldData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +104,7 @@ func (o RelationshipToIncidentUserDefinedFieldData) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *RelationshipToIncidentUserDefinedFieldData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id *string `json:"id"`
+		Id   *string                       `json:"id"`
 		Type *IncidentUserDefinedFieldType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -125,7 +118,7 @@ func (o *RelationshipToIncidentUserDefinedFieldData) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
 	} else {
 		return err
 	}

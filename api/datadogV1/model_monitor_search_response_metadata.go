@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // MonitorSearchResponseMetadata Metadata about the response.
 type MonitorSearchResponseMetadata struct {
@@ -25,10 +19,9 @@ type MonitorSearchResponseMetadata struct {
 	// The total number of monitors.
 	TotalCount *int64 `json:"total_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewMonitorSearchResponseMetadata instantiates a new MonitorSearchResponseMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +39,7 @@ func NewMonitorSearchResponseMetadataWithDefaults() *MonitorSearchResponseMetada
 	this := MonitorSearchResponseMetadata{}
 	return &this
 }
+
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *MonitorSearchResponseMetadata) GetPage() int64 {
 	if o == nil || o.Page == nil {
@@ -73,7 +67,6 @@ func (o *MonitorSearchResponseMetadata) HasPage() bool {
 func (o *MonitorSearchResponseMetadata) SetPage(v int64) {
 	o.Page = &v
 }
-
 
 // GetPageCount returns the PageCount field value if set, zero value otherwise.
 func (o *MonitorSearchResponseMetadata) GetPageCount() int64 {
@@ -103,7 +96,6 @@ func (o *MonitorSearchResponseMetadata) SetPageCount(v int64) {
 	o.PageCount = &v
 }
 
-
 // GetPerPage returns the PerPage field value if set, zero value otherwise.
 func (o *MonitorSearchResponseMetadata) GetPerPage() int64 {
 	if o == nil || o.PerPage == nil {
@@ -131,7 +123,6 @@ func (o *MonitorSearchResponseMetadata) HasPerPage() bool {
 func (o *MonitorSearchResponseMetadata) SetPerPage(v int64) {
 	o.PerPage = &v
 }
-
 
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
 func (o *MonitorSearchResponseMetadata) GetTotalCount() int64 {
@@ -161,8 +152,6 @@ func (o *MonitorSearchResponseMetadata) SetTotalCount(v int64) {
 	o.TotalCount = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorSearchResponseMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -191,9 +180,9 @@ func (o MonitorSearchResponseMetadata) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorSearchResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Page *int64 `json:"page,omitempty"`
-		PageCount *int64 `json:"page_count,omitempty"`
-		PerPage *int64 `json:"per_page,omitempty"`
+		Page       *int64 `json:"page,omitempty"`
+		PageCount  *int64 `json:"page_count,omitempty"`
+		PerPage    *int64 `json:"per_page,omitempty"`
 		TotalCount *int64 `json:"total_count,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -201,7 +190,7 @@ func (o *MonitorSearchResponseMetadata) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "page", "page_count", "per_page", "total_count",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"page", "page_count", "per_page", "total_count"})
 	} else {
 		return err
 	}

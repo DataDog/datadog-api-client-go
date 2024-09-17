@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // NotebookToplistCellAttributes The attributes of a notebook `toplist` cell.
 type NotebookToplistCellAttributes struct {
@@ -25,10 +21,9 @@ type NotebookToplistCellAttributes struct {
 	// Timeframe for the notebook cell. When 'null', the notebook global time is used.
 	Time NullableNotebookCellTime `json:"time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewNotebookToplistCellAttributes instantiates a new NotebookToplistCellAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,6 +42,7 @@ func NewNotebookToplistCellAttributesWithDefaults() *NotebookToplistCellAttribut
 	this := NotebookToplistCellAttributes{}
 	return &this
 }
+
 // GetDefinition returns the Definition field value.
 func (o *NotebookToplistCellAttributes) GetDefinition() ToplistWidgetDefinition {
 	if o == nil {
@@ -69,7 +65,6 @@ func (o *NotebookToplistCellAttributes) GetDefinitionOk() (*ToplistWidgetDefinit
 func (o *NotebookToplistCellAttributes) SetDefinition(v ToplistWidgetDefinition) {
 	o.Definition = v
 }
-
 
 // GetGraphSize returns the GraphSize field value if set, zero value otherwise.
 func (o *NotebookToplistCellAttributes) GetGraphSize() NotebookGraphSize {
@@ -99,7 +94,6 @@ func (o *NotebookToplistCellAttributes) SetGraphSize(v NotebookGraphSize) {
 	o.GraphSize = &v
 }
 
-
 // GetSplitBy returns the SplitBy field value if set, zero value otherwise.
 func (o *NotebookToplistCellAttributes) GetSplitBy() NotebookSplitBy {
 	if o == nil || o.SplitBy == nil {
@@ -128,7 +122,6 @@ func (o *NotebookToplistCellAttributes) SetSplitBy(v NotebookSplitBy) {
 	o.SplitBy = &v
 }
 
-
 // GetTime returns the Time field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NotebookToplistCellAttributes) GetTime() NotebookCellTime {
 	if o == nil || o.Time.Get() == nil {
@@ -142,7 +135,7 @@ func (o *NotebookToplistCellAttributes) GetTime() NotebookCellTime {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *NotebookToplistCellAttributes) GetTimeOk() (*NotebookCellTime, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Time.Get(), o.Time.IsSet()
@@ -157,6 +150,7 @@ func (o *NotebookToplistCellAttributes) HasTime() bool {
 func (o *NotebookToplistCellAttributes) SetTime(v NotebookCellTime) {
 	o.Time.Set(&v)
 }
+
 // SetTimeNil sets the value for Time to be an explicit nil.
 func (o *NotebookToplistCellAttributes) SetTimeNil() {
 	o.Time.Set(nil)
@@ -166,8 +160,6 @@ func (o *NotebookToplistCellAttributes) SetTimeNil() {
 func (o *NotebookToplistCellAttributes) UnsetTime() {
 	o.Time.Unset()
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookToplistCellAttributes) MarshalJSON() ([]byte, error) {
@@ -196,9 +188,9 @@ func (o NotebookToplistCellAttributes) MarshalJSON() ([]byte, error) {
 func (o *NotebookToplistCellAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Definition *ToplistWidgetDefinition `json:"definition"`
-		GraphSize *NotebookGraphSize `json:"graph_size,omitempty"`
-		SplitBy *NotebookSplitBy `json:"split_by,omitempty"`
-		Time NullableNotebookCellTime `json:"time,omitempty"`
+		GraphSize  *NotebookGraphSize       `json:"graph_size,omitempty"`
+		SplitBy    *NotebookSplitBy         `json:"split_by,omitempty"`
+		Time       NullableNotebookCellTime `json:"time,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -208,7 +200,7 @@ func (o *NotebookToplistCellAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "definition", "graph_size", "split_by", "time",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"definition", "graph_size", "split_by", "time"})
 	} else {
 		return err
 	}
@@ -218,12 +210,12 @@ func (o *NotebookToplistCellAttributes) UnmarshalJSON(bytes []byte) (err error) 
 		hasInvalidField = true
 	}
 	o.Definition = *all.Definition
-	if all.GraphSize != nil &&!all.GraphSize.IsValid() {
+	if all.GraphSize != nil && !all.GraphSize.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.GraphSize = all.GraphSize
 	}
-	if  all.SplitBy != nil && all.SplitBy.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.SplitBy != nil && all.SplitBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SplitBy = all.SplitBy

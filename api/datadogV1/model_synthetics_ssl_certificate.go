@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsSSLCertificate Object describing the SSL certificate used for a Synthetic test.
 type SyntheticsSSLCertificate struct {
@@ -41,10 +37,9 @@ type SyntheticsSSLCertificate struct {
 	// Date until which the SSL certificate is valid.
 	ValidTo *time.Time `json:"validTo,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsSSLCertificate instantiates a new SyntheticsSSLCertificate object.
 // This constructor will assign default values to properties that have it defined,
@@ -62,6 +57,7 @@ func NewSyntheticsSSLCertificateWithDefaults() *SyntheticsSSLCertificate {
 	this := SyntheticsSSLCertificate{}
 	return &this
 }
+
 // GetCipher returns the Cipher field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificate) GetCipher() string {
 	if o == nil || o.Cipher == nil {
@@ -89,7 +85,6 @@ func (o *SyntheticsSSLCertificate) HasCipher() bool {
 func (o *SyntheticsSSLCertificate) SetCipher(v string) {
 	o.Cipher = &v
 }
-
 
 // GetExponent returns the Exponent field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificate) GetExponent() float64 {
@@ -119,7 +114,6 @@ func (o *SyntheticsSSLCertificate) SetExponent(v float64) {
 	o.Exponent = &v
 }
 
-
 // GetExtKeyUsage returns the ExtKeyUsage field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificate) GetExtKeyUsage() []string {
 	if o == nil || o.ExtKeyUsage == nil {
@@ -147,7 +141,6 @@ func (o *SyntheticsSSLCertificate) HasExtKeyUsage() bool {
 func (o *SyntheticsSSLCertificate) SetExtKeyUsage(v []string) {
 	o.ExtKeyUsage = v
 }
-
 
 // GetFingerprint returns the Fingerprint field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificate) GetFingerprint() string {
@@ -177,7 +170,6 @@ func (o *SyntheticsSSLCertificate) SetFingerprint(v string) {
 	o.Fingerprint = &v
 }
 
-
 // GetFingerprint256 returns the Fingerprint256 field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificate) GetFingerprint256() string {
 	if o == nil || o.Fingerprint256 == nil {
@@ -205,7 +197,6 @@ func (o *SyntheticsSSLCertificate) HasFingerprint256() bool {
 func (o *SyntheticsSSLCertificate) SetFingerprint256(v string) {
 	o.Fingerprint256 = &v
 }
-
 
 // GetIssuer returns the Issuer field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificate) GetIssuer() SyntheticsSSLCertificateIssuer {
@@ -235,7 +226,6 @@ func (o *SyntheticsSSLCertificate) SetIssuer(v SyntheticsSSLCertificateIssuer) {
 	o.Issuer = &v
 }
 
-
 // GetModulus returns the Modulus field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificate) GetModulus() string {
 	if o == nil || o.Modulus == nil {
@@ -263,7 +253,6 @@ func (o *SyntheticsSSLCertificate) HasModulus() bool {
 func (o *SyntheticsSSLCertificate) SetModulus(v string) {
 	o.Modulus = &v
 }
-
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificate) GetProtocol() string {
@@ -293,7 +282,6 @@ func (o *SyntheticsSSLCertificate) SetProtocol(v string) {
 	o.Protocol = &v
 }
 
-
 // GetSerialNumber returns the SerialNumber field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificate) GetSerialNumber() string {
 	if o == nil || o.SerialNumber == nil {
@@ -321,7 +309,6 @@ func (o *SyntheticsSSLCertificate) HasSerialNumber() bool {
 func (o *SyntheticsSSLCertificate) SetSerialNumber(v string) {
 	o.SerialNumber = &v
 }
-
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificate) GetSubject() SyntheticsSSLCertificateSubject {
@@ -351,7 +338,6 @@ func (o *SyntheticsSSLCertificate) SetSubject(v SyntheticsSSLCertificateSubject)
 	o.Subject = &v
 }
 
-
 // GetValidFrom returns the ValidFrom field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificate) GetValidFrom() time.Time {
 	if o == nil || o.ValidFrom == nil {
@@ -380,7 +366,6 @@ func (o *SyntheticsSSLCertificate) SetValidFrom(v time.Time) {
 	o.ValidFrom = &v
 }
 
-
 // GetValidTo returns the ValidTo field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificate) GetValidTo() time.Time {
 	if o == nil || o.ValidTo == nil {
@@ -408,8 +393,6 @@ func (o *SyntheticsSSLCertificate) HasValidTo() bool {
 func (o *SyntheticsSSLCertificate) SetValidTo(v time.Time) {
 	o.ValidTo = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsSSLCertificate) MarshalJSON() ([]byte, error) {
@@ -471,25 +454,25 @@ func (o SyntheticsSSLCertificate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsSSLCertificate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Cipher *string `json:"cipher,omitempty"`
-		Exponent *float64 `json:"exponent,omitempty"`
-		ExtKeyUsage []string `json:"extKeyUsage,omitempty"`
-		Fingerprint *string `json:"fingerprint,omitempty"`
-		Fingerprint256 *string `json:"fingerprint256,omitempty"`
-		Issuer *SyntheticsSSLCertificateIssuer `json:"issuer,omitempty"`
-		Modulus *string `json:"modulus,omitempty"`
-		Protocol *string `json:"protocol,omitempty"`
-		SerialNumber *string `json:"serialNumber,omitempty"`
-		Subject *SyntheticsSSLCertificateSubject `json:"subject,omitempty"`
-		ValidFrom *time.Time `json:"validFrom,omitempty"`
-		ValidTo *time.Time `json:"validTo,omitempty"`
+		Cipher         *string                          `json:"cipher,omitempty"`
+		Exponent       *float64                         `json:"exponent,omitempty"`
+		ExtKeyUsage    []string                         `json:"extKeyUsage,omitempty"`
+		Fingerprint    *string                          `json:"fingerprint,omitempty"`
+		Fingerprint256 *string                          `json:"fingerprint256,omitempty"`
+		Issuer         *SyntheticsSSLCertificateIssuer  `json:"issuer,omitempty"`
+		Modulus        *string                          `json:"modulus,omitempty"`
+		Protocol       *string                          `json:"protocol,omitempty"`
+		SerialNumber   *string                          `json:"serialNumber,omitempty"`
+		Subject        *SyntheticsSSLCertificateSubject `json:"subject,omitempty"`
+		ValidFrom      *time.Time                       `json:"validFrom,omitempty"`
+		ValidTo        *time.Time                       `json:"validTo,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "cipher", "exponent", "extKeyUsage", "fingerprint", "fingerprint256", "issuer", "modulus", "protocol", "serialNumber", "subject", "validFrom", "validTo",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"cipher", "exponent", "extKeyUsage", "fingerprint", "fingerprint256", "issuer", "modulus", "protocol", "serialNumber", "subject", "validFrom", "validTo"})
 	} else {
 		return err
 	}
@@ -500,14 +483,14 @@ func (o *SyntheticsSSLCertificate) UnmarshalJSON(bytes []byte) (err error) {
 	o.ExtKeyUsage = all.ExtKeyUsage
 	o.Fingerprint = all.Fingerprint
 	o.Fingerprint256 = all.Fingerprint256
-	if  all.Issuer != nil && all.Issuer.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Issuer != nil && all.Issuer.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Issuer = all.Issuer
 	o.Modulus = all.Modulus
 	o.Protocol = all.Protocol
 	o.SerialNumber = all.SerialNumber
-	if  all.Subject != nil && all.Subject.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Subject != nil && all.Subject.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Subject = all.Subject

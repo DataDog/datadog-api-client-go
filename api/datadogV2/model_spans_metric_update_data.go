@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SpansMetricUpdateData The new span-based metric properties.
 type SpansMetricUpdateData struct {
@@ -21,10 +17,9 @@ type SpansMetricUpdateData struct {
 	// The type of resource. The value should always be spans_metrics.
 	Type SpansMetricType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSpansMetricUpdateData instantiates a new SpansMetricUpdateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewSpansMetricUpdateDataWithDefaults() *SpansMetricUpdateData {
 	this.Type = typeVar
 	return &this
 }
+
 // GetAttributes returns the Attributes field value.
 func (o *SpansMetricUpdateData) GetAttributes() SpansMetricUpdateAttributes {
 	if o == nil {
@@ -68,7 +64,6 @@ func (o *SpansMetricUpdateData) GetAttributesOk() (*SpansMetricUpdateAttributes,
 func (o *SpansMetricUpdateData) SetAttributes(v SpansMetricUpdateAttributes) {
 	o.Attributes = v
 }
-
 
 // GetType returns the Type field value.
 func (o *SpansMetricUpdateData) GetType() SpansMetricType {
@@ -93,8 +88,6 @@ func (o *SpansMetricUpdateData) SetType(v SpansMetricType) {
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SpansMetricUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +107,7 @@ func (o SpansMetricUpdateData) MarshalJSON() ([]byte, error) {
 func (o *SpansMetricUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *SpansMetricUpdateAttributes `json:"attributes"`
-		Type *SpansMetricType `json:"type"`
+		Type       *SpansMetricType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -127,7 +120,7 @@ func (o *SpansMetricUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
 	} else {
 		return err
 	}

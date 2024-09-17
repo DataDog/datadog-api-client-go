@@ -2,23 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // LogsArchiveCreateRequestDestination - An archive's destination.
 type LogsArchiveCreateRequestDestination struct {
 	LogsArchiveDestinationAzure *LogsArchiveDestinationAzure
-	LogsArchiveDestinationGCS *LogsArchiveDestinationGCS
-	LogsArchiveDestinationS3 *LogsArchiveDestinationS3
+	LogsArchiveDestinationGCS   *LogsArchiveDestinationGCS
+	LogsArchiveDestinationS3    *LogsArchiveDestinationS3
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -110,16 +104,13 @@ func (obj LogsArchiveCreateRequestDestination) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.LogsArchiveDestinationAzure)
 	}
 
-
 	if obj.LogsArchiveDestinationGCS != nil {
 		return datadog.Marshal(&obj.LogsArchiveDestinationGCS)
 	}
 
-
 	if obj.LogsArchiveDestinationS3 != nil {
 		return datadog.Marshal(&obj.LogsArchiveDestinationS3)
 	}
-
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -128,21 +119,18 @@ func (obj LogsArchiveCreateRequestDestination) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *LogsArchiveCreateRequestDestination) GetActualInstance() (interface{}) {
+func (obj *LogsArchiveCreateRequestDestination) GetActualInstance() interface{} {
 	if obj.LogsArchiveDestinationAzure != nil {
 		return obj.LogsArchiveDestinationAzure
 	}
-
 
 	if obj.LogsArchiveDestinationGCS != nil {
 		return obj.LogsArchiveDestinationGCS
 	}
 
-
 	if obj.LogsArchiveDestinationS3 != nil {
 		return obj.LogsArchiveDestinationS3
 	}
-
 
 	// all schemas are nil
 	return nil

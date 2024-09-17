@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SecurityMonitoringRuleCaseCreate Case when signal is generated.
 type SecurityMonitoringRuleCaseCreate struct {
@@ -26,10 +22,9 @@ type SecurityMonitoringRuleCaseCreate struct {
 	// Severity of the Security Signal.
 	Status SecurityMonitoringRuleSeverity `json:"status"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSecurityMonitoringRuleCaseCreate instantiates a new SecurityMonitoringRuleCaseCreate object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +43,7 @@ func NewSecurityMonitoringRuleCaseCreateWithDefaults() *SecurityMonitoringRuleCa
 	this := SecurityMonitoringRuleCaseCreate{}
 	return &this
 }
+
 // GetCondition returns the Condition field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleCaseCreate) GetCondition() string {
 	if o == nil || o.Condition == nil {
@@ -75,7 +71,6 @@ func (o *SecurityMonitoringRuleCaseCreate) HasCondition() bool {
 func (o *SecurityMonitoringRuleCaseCreate) SetCondition(v string) {
 	o.Condition = &v
 }
-
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleCaseCreate) GetName() string {
@@ -105,7 +100,6 @@ func (o *SecurityMonitoringRuleCaseCreate) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetNotifications returns the Notifications field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleCaseCreate) GetNotifications() []string {
 	if o == nil || o.Notifications == nil {
@@ -134,7 +128,6 @@ func (o *SecurityMonitoringRuleCaseCreate) SetNotifications(v []string) {
 	o.Notifications = v
 }
 
-
 // GetStatus returns the Status field value.
 func (o *SecurityMonitoringRuleCaseCreate) GetStatus() SecurityMonitoringRuleSeverity {
 	if o == nil {
@@ -157,8 +150,6 @@ func (o *SecurityMonitoringRuleCaseCreate) GetStatusOk() (*SecurityMonitoringRul
 func (o *SecurityMonitoringRuleCaseCreate) SetStatus(v SecurityMonitoringRuleSeverity) {
 	o.Status = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleCaseCreate) MarshalJSON() ([]byte, error) {
@@ -186,10 +177,10 @@ func (o SecurityMonitoringRuleCaseCreate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Condition *string `json:"condition,omitempty"`
-		Name *string `json:"name,omitempty"`
-		Notifications []string `json:"notifications,omitempty"`
-		Status *SecurityMonitoringRuleSeverity `json:"status"`
+		Condition     *string                         `json:"condition,omitempty"`
+		Name          *string                         `json:"name,omitempty"`
+		Notifications []string                        `json:"notifications,omitempty"`
+		Status        *SecurityMonitoringRuleSeverity `json:"status"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -199,7 +190,7 @@ func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "condition", "name", "notifications", "status",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"condition", "name", "notifications", "status"})
 	} else {
 		return err
 	}

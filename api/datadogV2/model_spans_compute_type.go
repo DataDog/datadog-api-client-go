@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SpansComputeType The type of compute.
 type SpansComputeType string
@@ -20,7 +16,7 @@ type SpansComputeType string
 // List of SpansComputeType.
 const (
 	SPANSCOMPUTETYPE_TIMESERIES SpansComputeType = "timeseries"
-	SPANSCOMPUTETYPE_TOTAL SpansComputeType = "total"
+	SPANSCOMPUTETYPE_TOTAL      SpansComputeType = "total"
 )
 
 var allowedSpansComputeTypeEnumValues = []SpansComputeType{

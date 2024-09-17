@@ -2,17 +2,14 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // NotebookAbsoluteTime Absolute timeframe.
 type NotebookAbsoluteTime struct {
@@ -23,10 +20,9 @@ type NotebookAbsoluteTime struct {
 	// The start time.
 	Start time.Time `json:"start"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewNotebookAbsoluteTime instantiates a new NotebookAbsoluteTime object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +42,7 @@ func NewNotebookAbsoluteTimeWithDefaults() *NotebookAbsoluteTime {
 	this := NotebookAbsoluteTime{}
 	return &this
 }
+
 // GetEnd returns the End field value.
 func (o *NotebookAbsoluteTime) GetEnd() time.Time {
 	if o == nil {
@@ -68,7 +65,6 @@ func (o *NotebookAbsoluteTime) GetEndOk() (*time.Time, bool) {
 func (o *NotebookAbsoluteTime) SetEnd(v time.Time) {
 	o.End = v
 }
-
 
 // GetLive returns the Live field value if set, zero value otherwise.
 func (o *NotebookAbsoluteTime) GetLive() bool {
@@ -98,7 +94,6 @@ func (o *NotebookAbsoluteTime) SetLive(v bool) {
 	o.Live = &v
 }
 
-
 // GetStart returns the Start field value.
 func (o *NotebookAbsoluteTime) GetStart() time.Time {
 	if o == nil {
@@ -121,8 +116,6 @@ func (o *NotebookAbsoluteTime) GetStartOk() (*time.Time, bool) {
 func (o *NotebookAbsoluteTime) SetStart(v time.Time) {
 	o.Start = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookAbsoluteTime) MarshalJSON() ([]byte, error) {
@@ -153,8 +146,8 @@ func (o NotebookAbsoluteTime) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookAbsoluteTime) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		End *time.Time `json:"end"`
-		Live *bool `json:"live,omitempty"`
+		End   *time.Time `json:"end"`
+		Live  *bool      `json:"live,omitempty"`
 		Start *time.Time `json:"start"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -168,7 +161,7 @@ func (o *NotebookAbsoluteTime) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "end", "live", "start",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"end", "live", "start"})
 	} else {
 		return err
 	}

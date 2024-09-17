@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // UsageSyntheticsAPIHour Number of Synthetics API tests run for each hour for a given organization.
 type UsageSyntheticsAPIHour struct {
@@ -25,10 +21,9 @@ type UsageSyntheticsAPIHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewUsageSyntheticsAPIHour instantiates a new UsageSyntheticsAPIHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewUsageSyntheticsAPIHourWithDefaults() *UsageSyntheticsAPIHour {
 	this := UsageSyntheticsAPIHour{}
 	return &this
 }
+
 // GetCheckCallsCount returns the CheckCallsCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageSyntheticsAPIHour) GetCheckCallsCount() int64 {
 	if o == nil || o.CheckCallsCount.Get() == nil {
@@ -59,7 +55,7 @@ func (o *UsageSyntheticsAPIHour) GetCheckCallsCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSyntheticsAPIHour) GetCheckCallsCountOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CheckCallsCount.Get(), o.CheckCallsCount.IsSet()
@@ -74,6 +70,7 @@ func (o *UsageSyntheticsAPIHour) HasCheckCallsCount() bool {
 func (o *UsageSyntheticsAPIHour) SetCheckCallsCount(v int64) {
 	o.CheckCallsCount.Set(&v)
 }
+
 // SetCheckCallsCountNil sets the value for CheckCallsCount to be an explicit nil.
 func (o *UsageSyntheticsAPIHour) SetCheckCallsCountNil() {
 	o.CheckCallsCount.Set(nil)
@@ -83,7 +80,6 @@ func (o *UsageSyntheticsAPIHour) SetCheckCallsCountNil() {
 func (o *UsageSyntheticsAPIHour) UnsetCheckCallsCount() {
 	o.CheckCallsCount.Unset()
 }
-
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageSyntheticsAPIHour) GetHour() time.Time {
@@ -113,7 +109,6 @@ func (o *UsageSyntheticsAPIHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageSyntheticsAPIHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -142,7 +137,6 @@ func (o *UsageSyntheticsAPIHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageSyntheticsAPIHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -170,8 +164,6 @@ func (o *UsageSyntheticsAPIHour) HasPublicId() bool {
 func (o *UsageSyntheticsAPIHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageSyntheticsAPIHour) MarshalJSON() ([]byte, error) {
@@ -206,16 +198,16 @@ func (o UsageSyntheticsAPIHour) MarshalJSON() ([]byte, error) {
 func (o *UsageSyntheticsAPIHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CheckCallsCount datadog.NullableInt64 `json:"check_calls_count,omitempty"`
-		Hour *time.Time `json:"hour,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
+		Hour            *time.Time            `json:"hour,omitempty"`
+		OrgName         *string               `json:"org_name,omitempty"`
+		PublicId        *string               `json:"public_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "check_calls_count", "hour", "org_name", "public_id",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"check_calls_count", "hour", "org_name", "public_id"})
 	} else {
 		return err
 	}

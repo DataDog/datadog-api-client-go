@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SecurityMonitoringSignalAssigneeUpdateAttributes Attributes describing the new assignee of a security signal.
 type SecurityMonitoringSignalAssigneeUpdateAttributes struct {
@@ -21,10 +17,9 @@ type SecurityMonitoringSignalAssigneeUpdateAttributes struct {
 	// Version of the updated signal. If server side version is higher, update will be rejected.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSecurityMonitoringSignalAssigneeUpdateAttributes instantiates a new SecurityMonitoringSignalAssigneeUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewSecurityMonitoringSignalAssigneeUpdateAttributesWithDefaults() *Security
 	this := SecurityMonitoringSignalAssigneeUpdateAttributes{}
 	return &this
 }
+
 // GetAssignee returns the Assignee field value.
 func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) GetAssignee() SecurityMonitoringTriageUser {
 	if o == nil {
@@ -65,7 +61,6 @@ func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) GetAssigneeOk() (*Sec
 func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) SetAssignee(v SecurityMonitoringTriageUser) {
 	o.Assignee = v
 }
-
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) GetVersion() int64 {
@@ -95,8 +90,6 @@ func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) SetVersion(v int64) {
 	o.Version = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringSignalAssigneeUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -118,7 +111,7 @@ func (o SecurityMonitoringSignalAssigneeUpdateAttributes) MarshalJSON() ([]byte,
 func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Assignee *SecurityMonitoringTriageUser `json:"assignee"`
-		Version *int64 `json:"version,omitempty"`
+		Version  *int64                        `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -128,7 +121,7 @@ func (o *SecurityMonitoringSignalAssigneeUpdateAttributes) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "assignee", "version",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"assignee", "version"})
 	} else {
 		return err
 	}

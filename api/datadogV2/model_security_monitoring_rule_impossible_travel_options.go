@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SecurityMonitoringRuleImpossibleTravelOptions Options on impossible travel rules.
 type SecurityMonitoringRuleImpossibleTravelOptions struct {
@@ -20,10 +14,9 @@ type SecurityMonitoringRuleImpossibleTravelOptions struct {
 	// access locations. This can be helpful to reduce noise and infer VPN usage or credentialed API access.
 	BaselineUserLocations *bool `json:"baselineUserLocations,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSecurityMonitoringRuleImpossibleTravelOptions instantiates a new SecurityMonitoringRuleImpossibleTravelOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,6 +34,7 @@ func NewSecurityMonitoringRuleImpossibleTravelOptionsWithDefaults() *SecurityMon
 	this := SecurityMonitoringRuleImpossibleTravelOptions{}
 	return &this
 }
+
 // GetBaselineUserLocations returns the BaselineUserLocations field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleImpossibleTravelOptions) GetBaselineUserLocations() bool {
 	if o == nil || o.BaselineUserLocations == nil {
@@ -69,8 +63,6 @@ func (o *SecurityMonitoringRuleImpossibleTravelOptions) SetBaselineUserLocations
 	o.BaselineUserLocations = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleImpossibleTravelOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -97,7 +89,7 @@ func (o *SecurityMonitoringRuleImpossibleTravelOptions) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "baselineUserLocations",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"baselineUserLocations"})
 	} else {
 		return err
 	}

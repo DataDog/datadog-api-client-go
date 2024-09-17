@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // DORAIncidentRequestAttributes Attributes to create a DORA incident event.
 type DORAIncidentRequestAttributes struct {
@@ -37,10 +33,9 @@ type DORAIncidentRequestAttributes struct {
 	// Version to correlate with [APM Deployment Tracking](https://docs.datadoghq.com/tracing/services/deployment_tracking/).
 	Version *string `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewDORAIncidentRequestAttributes instantiates a new DORAIncidentRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -59,6 +54,7 @@ func NewDORAIncidentRequestAttributesWithDefaults() *DORAIncidentRequestAttribut
 	this := DORAIncidentRequestAttributes{}
 	return &this
 }
+
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *DORAIncidentRequestAttributes) GetEnv() string {
 	if o == nil || o.Env == nil {
@@ -86,7 +82,6 @@ func (o *DORAIncidentRequestAttributes) HasEnv() bool {
 func (o *DORAIncidentRequestAttributes) SetEnv(v string) {
 	o.Env = &v
 }
-
 
 // GetFinishedAt returns the FinishedAt field value if set, zero value otherwise.
 func (o *DORAIncidentRequestAttributes) GetFinishedAt() int64 {
@@ -116,7 +111,6 @@ func (o *DORAIncidentRequestAttributes) SetFinishedAt(v int64) {
 	o.FinishedAt = &v
 }
 
-
 // GetGit returns the Git field value if set, zero value otherwise.
 func (o *DORAIncidentRequestAttributes) GetGit() DORAGitInfo {
 	if o == nil || o.Git == nil {
@@ -144,7 +138,6 @@ func (o *DORAIncidentRequestAttributes) HasGit() bool {
 func (o *DORAIncidentRequestAttributes) SetGit(v DORAGitInfo) {
 	o.Git = &v
 }
-
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DORAIncidentRequestAttributes) GetId() string {
@@ -174,7 +167,6 @@ func (o *DORAIncidentRequestAttributes) SetId(v string) {
 	o.Id = &v
 }
 
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DORAIncidentRequestAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -202,7 +194,6 @@ func (o *DORAIncidentRequestAttributes) HasName() bool {
 func (o *DORAIncidentRequestAttributes) SetName(v string) {
 	o.Name = &v
 }
-
 
 // GetServices returns the Services field value if set, zero value otherwise.
 func (o *DORAIncidentRequestAttributes) GetServices() []string {
@@ -232,7 +223,6 @@ func (o *DORAIncidentRequestAttributes) SetServices(v []string) {
 	o.Services = v
 }
 
-
 // GetSeverity returns the Severity field value if set, zero value otherwise.
 func (o *DORAIncidentRequestAttributes) GetSeverity() string {
 	if o == nil || o.Severity == nil {
@@ -261,7 +251,6 @@ func (o *DORAIncidentRequestAttributes) SetSeverity(v string) {
 	o.Severity = &v
 }
 
-
 // GetStartedAt returns the StartedAt field value.
 func (o *DORAIncidentRequestAttributes) GetStartedAt() int64 {
 	if o == nil {
@@ -284,7 +273,6 @@ func (o *DORAIncidentRequestAttributes) GetStartedAtOk() (*int64, bool) {
 func (o *DORAIncidentRequestAttributes) SetStartedAt(v int64) {
 	o.StartedAt = v
 }
-
 
 // GetTeam returns the Team field value if set, zero value otherwise.
 func (o *DORAIncidentRequestAttributes) GetTeam() string {
@@ -314,7 +302,6 @@ func (o *DORAIncidentRequestAttributes) SetTeam(v string) {
 	o.Team = &v
 }
 
-
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *DORAIncidentRequestAttributes) GetVersion() string {
 	if o == nil || o.Version == nil {
@@ -342,8 +329,6 @@ func (o *DORAIncidentRequestAttributes) HasVersion() bool {
 func (o *DORAIncidentRequestAttributes) SetVersion(v string) {
 	o.Version = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DORAIncidentRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -389,16 +374,16 @@ func (o DORAIncidentRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DORAIncidentRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Env *string `json:"env,omitempty"`
-		FinishedAt *int64 `json:"finished_at,omitempty"`
-		Git *DORAGitInfo `json:"git,omitempty"`
-		Id *string `json:"id,omitempty"`
-		Name *string `json:"name,omitempty"`
-		Services []string `json:"services,omitempty"`
-		Severity *string `json:"severity,omitempty"`
-		StartedAt *int64 `json:"started_at"`
-		Team *string `json:"team,omitempty"`
-		Version *string `json:"version,omitempty"`
+		Env        *string      `json:"env,omitempty"`
+		FinishedAt *int64       `json:"finished_at,omitempty"`
+		Git        *DORAGitInfo `json:"git,omitempty"`
+		Id         *string      `json:"id,omitempty"`
+		Name       *string      `json:"name,omitempty"`
+		Services   []string     `json:"services,omitempty"`
+		Severity   *string      `json:"severity,omitempty"`
+		StartedAt  *int64       `json:"started_at"`
+		Team       *string      `json:"team,omitempty"`
+		Version    *string      `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -408,7 +393,7 @@ func (o *DORAIncidentRequestAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "env", "finished_at", "git", "id", "name", "services", "severity", "started_at", "team", "version",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"env", "finished_at", "git", "id", "name", "services", "severity", "started_at", "team", "version"})
 	} else {
 		return err
 	}
@@ -416,7 +401,7 @@ func (o *DORAIncidentRequestAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	hasInvalidField := false
 	o.Env = all.Env
 	o.FinishedAt = all.FinishedAt
-	if  all.Git != nil && all.Git.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Git != nil && all.Git.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Git = all.Git

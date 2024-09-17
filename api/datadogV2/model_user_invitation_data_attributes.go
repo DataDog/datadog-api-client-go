@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // UserInvitationDataAttributes Attributes of a user invitation.
 type UserInvitationDataAttributes struct {
@@ -25,10 +21,9 @@ type UserInvitationDataAttributes struct {
 	// UUID of the user invitation.
 	Uuid *string `json:"uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewUserInvitationDataAttributes instantiates a new UserInvitationDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewUserInvitationDataAttributesWithDefaults() *UserInvitationDataAttributes
 	this := UserInvitationDataAttributes{}
 	return &this
 }
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *UserInvitationDataAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -73,7 +69,6 @@ func (o *UserInvitationDataAttributes) HasCreatedAt() bool {
 func (o *UserInvitationDataAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
-
 
 // GetExpiresAt returns the ExpiresAt field value if set, zero value otherwise.
 func (o *UserInvitationDataAttributes) GetExpiresAt() time.Time {
@@ -103,7 +98,6 @@ func (o *UserInvitationDataAttributes) SetExpiresAt(v time.Time) {
 	o.ExpiresAt = &v
 }
 
-
 // GetInviteType returns the InviteType field value if set, zero value otherwise.
 func (o *UserInvitationDataAttributes) GetInviteType() string {
 	if o == nil || o.InviteType == nil {
@@ -132,7 +126,6 @@ func (o *UserInvitationDataAttributes) SetInviteType(v string) {
 	o.InviteType = &v
 }
 
-
 // GetUuid returns the Uuid field value if set, zero value otherwise.
 func (o *UserInvitationDataAttributes) GetUuid() string {
 	if o == nil || o.Uuid == nil {
@@ -160,8 +153,6 @@ func (o *UserInvitationDataAttributes) HasUuid() bool {
 func (o *UserInvitationDataAttributes) SetUuid(v string) {
 	o.Uuid = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UserInvitationDataAttributes) MarshalJSON() ([]byte, error) {
@@ -199,17 +190,17 @@ func (o UserInvitationDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UserInvitationDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt *time.Time `json:"created_at,omitempty"`
-		ExpiresAt *time.Time `json:"expires_at,omitempty"`
-		InviteType *string `json:"invite_type,omitempty"`
-		Uuid *string `json:"uuid,omitempty"`
+		CreatedAt  *time.Time `json:"created_at,omitempty"`
+		ExpiresAt  *time.Time `json:"expires_at,omitempty"`
+		InviteType *string    `json:"invite_type,omitempty"`
+		Uuid       *string    `json:"uuid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "created_at", "expires_at", "invite_type", "uuid",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "expires_at", "invite_type", "uuid"})
 	} else {
 		return err
 	}

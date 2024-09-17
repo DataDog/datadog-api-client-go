@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // DistributionWidgetYAxis Y Axis controls for the distribution widget.
 type DistributionWidgetYAxis struct {
@@ -27,10 +21,9 @@ type DistributionWidgetYAxis struct {
 	// Specifies the scale type. Possible values are `linear` or `log`.
 	Scale *string `json:"scale,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewDistributionWidgetYAxis instantiates a new DistributionWidgetYAxis object.
 // This constructor will assign default values to properties that have it defined,
@@ -60,6 +53,7 @@ func NewDistributionWidgetYAxisWithDefaults() *DistributionWidgetYAxis {
 	this.Scale = &scale
 	return &this
 }
+
 // GetIncludeZero returns the IncludeZero field value if set, zero value otherwise.
 func (o *DistributionWidgetYAxis) GetIncludeZero() bool {
 	if o == nil || o.IncludeZero == nil {
@@ -87,7 +81,6 @@ func (o *DistributionWidgetYAxis) HasIncludeZero() bool {
 func (o *DistributionWidgetYAxis) SetIncludeZero(v bool) {
 	o.IncludeZero = &v
 }
-
 
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *DistributionWidgetYAxis) GetLabel() string {
@@ -117,7 +110,6 @@ func (o *DistributionWidgetYAxis) SetLabel(v string) {
 	o.Label = &v
 }
 
-
 // GetMax returns the Max field value if set, zero value otherwise.
 func (o *DistributionWidgetYAxis) GetMax() string {
 	if o == nil || o.Max == nil {
@@ -145,7 +137,6 @@ func (o *DistributionWidgetYAxis) HasMax() bool {
 func (o *DistributionWidgetYAxis) SetMax(v string) {
 	o.Max = &v
 }
-
 
 // GetMin returns the Min field value if set, zero value otherwise.
 func (o *DistributionWidgetYAxis) GetMin() string {
@@ -175,7 +166,6 @@ func (o *DistributionWidgetYAxis) SetMin(v string) {
 	o.Min = &v
 }
 
-
 // GetScale returns the Scale field value if set, zero value otherwise.
 func (o *DistributionWidgetYAxis) GetScale() string {
 	if o == nil || o.Scale == nil {
@@ -203,8 +193,6 @@ func (o *DistributionWidgetYAxis) HasScale() bool {
 func (o *DistributionWidgetYAxis) SetScale(v string) {
 	o.Scale = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DistributionWidgetYAxis) MarshalJSON() ([]byte, error) {
@@ -237,18 +225,18 @@ func (o DistributionWidgetYAxis) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DistributionWidgetYAxis) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IncludeZero *bool `json:"include_zero,omitempty"`
-		Label *string `json:"label,omitempty"`
-		Max *string `json:"max,omitempty"`
-		Min *string `json:"min,omitempty"`
-		Scale *string `json:"scale,omitempty"`
+		IncludeZero *bool   `json:"include_zero,omitempty"`
+		Label       *string `json:"label,omitempty"`
+		Max         *string `json:"max,omitempty"`
+		Min         *string `json:"min,omitempty"`
+		Scale       *string `json:"scale,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "include_zero", "label", "max", "min", "scale",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"include_zero", "label", "max", "min", "scale"})
 	} else {
 		return err
 	}

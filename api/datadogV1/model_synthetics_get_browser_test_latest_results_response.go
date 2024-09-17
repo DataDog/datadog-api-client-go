@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsGetBrowserTestLatestResultsResponse Object with the latest Synthetic browser test run.
 type SyntheticsGetBrowserTestLatestResultsResponse struct {
@@ -21,10 +15,9 @@ type SyntheticsGetBrowserTestLatestResultsResponse struct {
 	// Result of the latest browser test run.
 	Results []SyntheticsBrowserTestResultShort `json:"results,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsGetBrowserTestLatestResultsResponse instantiates a new SyntheticsGetBrowserTestLatestResultsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewSyntheticsGetBrowserTestLatestResultsResponseWithDefaults() *SyntheticsG
 	this := SyntheticsGetBrowserTestLatestResultsResponse{}
 	return &this
 }
+
 // GetLastTimestampFetched returns the LastTimestampFetched field value if set, zero value otherwise.
 func (o *SyntheticsGetBrowserTestLatestResultsResponse) GetLastTimestampFetched() int64 {
 	if o == nil || o.LastTimestampFetched == nil {
@@ -69,7 +63,6 @@ func (o *SyntheticsGetBrowserTestLatestResultsResponse) HasLastTimestampFetched(
 func (o *SyntheticsGetBrowserTestLatestResultsResponse) SetLastTimestampFetched(v int64) {
 	o.LastTimestampFetched = &v
 }
-
 
 // GetResults returns the Results field value if set, zero value otherwise.
 func (o *SyntheticsGetBrowserTestLatestResultsResponse) GetResults() []SyntheticsBrowserTestResultShort {
@@ -99,8 +92,6 @@ func (o *SyntheticsGetBrowserTestLatestResultsResponse) SetResults(v []Synthetic
 	o.Results = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsGetBrowserTestLatestResultsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -123,15 +114,15 @@ func (o SyntheticsGetBrowserTestLatestResultsResponse) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsGetBrowserTestLatestResultsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		LastTimestampFetched *int64 `json:"last_timestamp_fetched,omitempty"`
-		Results []SyntheticsBrowserTestResultShort `json:"results,omitempty"`
+		LastTimestampFetched *int64                             `json:"last_timestamp_fetched,omitempty"`
+		Results              []SyntheticsBrowserTestResultShort `json:"results,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "last_timestamp_fetched", "results",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"last_timestamp_fetched", "results"})
 	} else {
 		return err
 	}

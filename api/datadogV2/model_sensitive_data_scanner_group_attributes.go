@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SensitiveDataScannerGroupAttributes Attributes of the Sensitive Data Scanner group.
 type SensitiveDataScannerGroupAttributes struct {
@@ -27,10 +21,9 @@ type SensitiveDataScannerGroupAttributes struct {
 	// List of products the scanning group applies.
 	ProductList []SensitiveDataScannerProduct `json:"product_list,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSensitiveDataScannerGroupAttributes instantiates a new SensitiveDataScannerGroupAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +41,7 @@ func NewSensitiveDataScannerGroupAttributesWithDefaults() *SensitiveDataScannerG
 	this := SensitiveDataScannerGroupAttributes{}
 	return &this
 }
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *SensitiveDataScannerGroupAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -75,7 +69,6 @@ func (o *SensitiveDataScannerGroupAttributes) HasDescription() bool {
 func (o *SensitiveDataScannerGroupAttributes) SetDescription(v string) {
 	o.Description = &v
 }
-
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *SensitiveDataScannerGroupAttributes) GetFilter() SensitiveDataScannerFilter {
@@ -105,7 +98,6 @@ func (o *SensitiveDataScannerGroupAttributes) SetFilter(v SensitiveDataScannerFi
 	o.Filter = &v
 }
 
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *SensitiveDataScannerGroupAttributes) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -133,7 +125,6 @@ func (o *SensitiveDataScannerGroupAttributes) HasIsEnabled() bool {
 func (o *SensitiveDataScannerGroupAttributes) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
-
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SensitiveDataScannerGroupAttributes) GetName() string {
@@ -163,7 +154,6 @@ func (o *SensitiveDataScannerGroupAttributes) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetProductList returns the ProductList field value if set, zero value otherwise.
 func (o *SensitiveDataScannerGroupAttributes) GetProductList() []SensitiveDataScannerProduct {
 	if o == nil || o.ProductList == nil {
@@ -191,8 +181,6 @@ func (o *SensitiveDataScannerGroupAttributes) HasProductList() bool {
 func (o *SensitiveDataScannerGroupAttributes) SetProductList(v []SensitiveDataScannerProduct) {
 	o.ProductList = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerGroupAttributes) MarshalJSON() ([]byte, error) {
@@ -225,10 +213,10 @@ func (o SensitiveDataScannerGroupAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerGroupAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description *string `json:"description,omitempty"`
-		Filter *SensitiveDataScannerFilter `json:"filter,omitempty"`
-		IsEnabled *bool `json:"is_enabled,omitempty"`
-		Name *string `json:"name,omitempty"`
+		Description *string                       `json:"description,omitempty"`
+		Filter      *SensitiveDataScannerFilter   `json:"filter,omitempty"`
+		IsEnabled   *bool                         `json:"is_enabled,omitempty"`
+		Name        *string                       `json:"name,omitempty"`
 		ProductList []SensitiveDataScannerProduct `json:"product_list,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -236,14 +224,14 @@ func (o *SensitiveDataScannerGroupAttributes) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "filter", "is_enabled", "name", "product_list",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "filter", "is_enabled", "name", "product_list"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Description = all.Description
-	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter

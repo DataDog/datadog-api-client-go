@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ApplicationKeyRelationships Resources related to the application key.
 type ApplicationKeyRelationships struct {
 	// Relationship to user.
 	OwnedBy *RelationshipToUser `json:"owned_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewApplicationKeyRelationships instantiates a new ApplicationKeyRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewApplicationKeyRelationshipsWithDefaults() *ApplicationKeyRelationships {
 	this := ApplicationKeyRelationships{}
 	return &this
 }
+
 // GetOwnedBy returns the OwnedBy field value if set, zero value otherwise.
 func (o *ApplicationKeyRelationships) GetOwnedBy() RelationshipToUser {
 	if o == nil || o.OwnedBy == nil {
@@ -68,8 +62,6 @@ func (o *ApplicationKeyRelationships) SetOwnedBy(v RelationshipToUser) {
 	o.OwnedBy = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationKeyRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,13 +88,13 @@ func (o *ApplicationKeyRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "owned_by",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"owned_by"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.OwnedBy != nil && all.OwnedBy.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.OwnedBy != nil && all.OwnedBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.OwnedBy = all.OwnedBy

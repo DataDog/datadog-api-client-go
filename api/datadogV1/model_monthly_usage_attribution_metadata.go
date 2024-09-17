@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // MonthlyUsageAttributionMetadata The object containing document metadata.
 type MonthlyUsageAttributionMetadata struct {
@@ -21,10 +15,9 @@ type MonthlyUsageAttributionMetadata struct {
 	// The metadata for the current pagination.
 	Pagination *MonthlyUsageAttributionPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewMonthlyUsageAttributionMetadata instantiates a new MonthlyUsageAttributionMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewMonthlyUsageAttributionMetadataWithDefaults() *MonthlyUsageAttributionMe
 	this := MonthlyUsageAttributionMetadata{}
 	return &this
 }
+
 // GetAggregates returns the Aggregates field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionMetadata) GetAggregates() []UsageAttributionAggregatesBody {
 	if o == nil || o.Aggregates == nil {
@@ -69,7 +63,6 @@ func (o *MonthlyUsageAttributionMetadata) HasAggregates() bool {
 func (o *MonthlyUsageAttributionMetadata) SetAggregates(v []UsageAttributionAggregatesBody) {
 	o.Aggregates = v
 }
-
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionMetadata) GetPagination() MonthlyUsageAttributionPagination {
@@ -99,8 +92,6 @@ func (o *MonthlyUsageAttributionMetadata) SetPagination(v MonthlyUsageAttributio
 	o.Pagination = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o MonthlyUsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -123,7 +114,7 @@ func (o MonthlyUsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonthlyUsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aggregates []UsageAttributionAggregatesBody `json:"aggregates,omitempty"`
+		Aggregates []UsageAttributionAggregatesBody   `json:"aggregates,omitempty"`
 		Pagination *MonthlyUsageAttributionPagination `json:"pagination,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -131,14 +122,14 @@ func (o *MonthlyUsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregates", "pagination",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregates", "pagination"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Aggregates = all.Aggregates
-	if  all.Pagination != nil && all.Pagination.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Pagination != nil && all.Pagination.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Pagination = all.Pagination

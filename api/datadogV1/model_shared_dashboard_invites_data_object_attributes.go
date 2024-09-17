@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SharedDashboardInvitesDataObjectAttributes Attributes of the shared dashboard invitation
 type SharedDashboardInvitesDataObjectAttributes struct {
@@ -29,10 +25,9 @@ type SharedDashboardInvitesDataObjectAttributes struct {
 	// The unique token of the shared dashboard that was (or is to be) shared.
 	ShareToken *string `json:"share_token,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSharedDashboardInvitesDataObjectAttributes instantiates a new SharedDashboardInvitesDataObjectAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +45,7 @@ func NewSharedDashboardInvitesDataObjectAttributesWithDefaults() *SharedDashboar
 	this := SharedDashboardInvitesDataObjectAttributes{}
 	return &this
 }
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *SharedDashboardInvitesDataObjectAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -77,7 +73,6 @@ func (o *SharedDashboardInvitesDataObjectAttributes) HasCreatedAt() bool {
 func (o *SharedDashboardInvitesDataObjectAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
-
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *SharedDashboardInvitesDataObjectAttributes) GetEmail() string {
@@ -107,7 +102,6 @@ func (o *SharedDashboardInvitesDataObjectAttributes) SetEmail(v string) {
 	o.Email = &v
 }
 
-
 // GetHasSession returns the HasSession field value if set, zero value otherwise.
 func (o *SharedDashboardInvitesDataObjectAttributes) GetHasSession() bool {
 	if o == nil || o.HasSession == nil {
@@ -135,7 +129,6 @@ func (o *SharedDashboardInvitesDataObjectAttributes) HasHasSession() bool {
 func (o *SharedDashboardInvitesDataObjectAttributes) SetHasSession(v bool) {
 	o.HasSession = &v
 }
-
 
 // GetInvitationExpiry returns the InvitationExpiry field value if set, zero value otherwise.
 func (o *SharedDashboardInvitesDataObjectAttributes) GetInvitationExpiry() time.Time {
@@ -165,7 +158,6 @@ func (o *SharedDashboardInvitesDataObjectAttributes) SetInvitationExpiry(v time.
 	o.InvitationExpiry = &v
 }
 
-
 // GetSessionExpiry returns the SessionExpiry field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SharedDashboardInvitesDataObjectAttributes) GetSessionExpiry() time.Time {
 	if o == nil || o.SessionExpiry.Get() == nil {
@@ -179,7 +171,7 @@ func (o *SharedDashboardInvitesDataObjectAttributes) GetSessionExpiry() time.Tim
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SharedDashboardInvitesDataObjectAttributes) GetSessionExpiryOk() (*time.Time, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.SessionExpiry.Get(), o.SessionExpiry.IsSet()
@@ -194,6 +186,7 @@ func (o *SharedDashboardInvitesDataObjectAttributes) HasSessionExpiry() bool {
 func (o *SharedDashboardInvitesDataObjectAttributes) SetSessionExpiry(v time.Time) {
 	o.SessionExpiry.Set(&v)
 }
+
 // SetSessionExpiryNil sets the value for SessionExpiry to be an explicit nil.
 func (o *SharedDashboardInvitesDataObjectAttributes) SetSessionExpiryNil() {
 	o.SessionExpiry.Set(nil)
@@ -203,7 +196,6 @@ func (o *SharedDashboardInvitesDataObjectAttributes) SetSessionExpiryNil() {
 func (o *SharedDashboardInvitesDataObjectAttributes) UnsetSessionExpiry() {
 	o.SessionExpiry.Unset()
 }
-
 
 // GetShareToken returns the ShareToken field value if set, zero value otherwise.
 func (o *SharedDashboardInvitesDataObjectAttributes) GetShareToken() string {
@@ -232,8 +224,6 @@ func (o *SharedDashboardInvitesDataObjectAttributes) HasShareToken() bool {
 func (o *SharedDashboardInvitesDataObjectAttributes) SetShareToken(v string) {
 	o.ShareToken = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SharedDashboardInvitesDataObjectAttributes) MarshalJSON() ([]byte, error) {
@@ -277,19 +267,19 @@ func (o SharedDashboardInvitesDataObjectAttributes) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *SharedDashboardInvitesDataObjectAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt *time.Time `json:"created_at,omitempty"`
-		Email *string `json:"email,omitempty"`
-		HasSession *bool `json:"has_session,omitempty"`
-		InvitationExpiry *time.Time `json:"invitation_expiry,omitempty"`
-		SessionExpiry datadog.NullableTime `json:"session_expiry,omitempty"`
-		ShareToken *string `json:"share_token,omitempty"`
+		CreatedAt        *time.Time           `json:"created_at,omitempty"`
+		Email            *string              `json:"email,omitempty"`
+		HasSession       *bool                `json:"has_session,omitempty"`
+		InvitationExpiry *time.Time           `json:"invitation_expiry,omitempty"`
+		SessionExpiry    datadog.NullableTime `json:"session_expiry,omitempty"`
+		ShareToken       *string              `json:"share_token,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "created_at", "email", "has_session", "invitation_expiry", "session_expiry", "share_token",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "email", "has_session", "invitation_expiry", "session_expiry", "share_token"})
 	} else {
 		return err
 	}

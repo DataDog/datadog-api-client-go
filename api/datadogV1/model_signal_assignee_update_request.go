@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SignalAssigneeUpdateRequest Attributes describing an assignee update operation over a security signal.
 type SignalAssigneeUpdateRequest struct {
@@ -21,10 +17,9 @@ type SignalAssigneeUpdateRequest struct {
 	// Version of the updated signal. If server side version is higher, update will be rejected.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSignalAssigneeUpdateRequest instantiates a new SignalAssigneeUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewSignalAssigneeUpdateRequestWithDefaults() *SignalAssigneeUpdateRequest {
 	this := SignalAssigneeUpdateRequest{}
 	return &this
 }
+
 // GetAssignee returns the Assignee field value.
 func (o *SignalAssigneeUpdateRequest) GetAssignee() string {
 	if o == nil {
@@ -65,7 +61,6 @@ func (o *SignalAssigneeUpdateRequest) GetAssigneeOk() (*string, bool) {
 func (o *SignalAssigneeUpdateRequest) SetAssignee(v string) {
 	o.Assignee = v
 }
-
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *SignalAssigneeUpdateRequest) GetVersion() int64 {
@@ -95,8 +90,6 @@ func (o *SignalAssigneeUpdateRequest) SetVersion(v int64) {
 	o.Version = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SignalAssigneeUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -118,7 +111,7 @@ func (o SignalAssigneeUpdateRequest) MarshalJSON() ([]byte, error) {
 func (o *SignalAssigneeUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Assignee *string `json:"assignee"`
-		Version *int64 `json:"version,omitempty"`
+		Version  *int64  `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -128,7 +121,7 @@ func (o *SignalAssigneeUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "assignee", "version",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"assignee", "version"})
 	} else {
 		return err
 	}

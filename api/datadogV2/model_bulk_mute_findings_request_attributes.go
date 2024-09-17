@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // BulkMuteFindingsRequestAttributes The mute properties to be updated.
 type BulkMuteFindingsRequestAttributes struct {
@@ -21,7 +17,6 @@ type BulkMuteFindingsRequestAttributes struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
-
 
 // NewBulkMuteFindingsRequestAttributes instantiates a new BulkMuteFindingsRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +35,7 @@ func NewBulkMuteFindingsRequestAttributesWithDefaults() *BulkMuteFindingsRequest
 	this := BulkMuteFindingsRequestAttributes{}
 	return &this
 }
+
 // GetMute returns the Mute field value.
 func (o *BulkMuteFindingsRequestAttributes) GetMute() BulkMuteFindingsRequestProperties {
 	if o == nil {
@@ -62,8 +58,6 @@ func (o *BulkMuteFindingsRequestAttributes) GetMuteOk() (*BulkMuteFindingsReques
 func (o *BulkMuteFindingsRequestAttributes) SetMute(v BulkMuteFindingsRequestProperties) {
 	o.Mute = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o BulkMuteFindingsRequestAttributes) MarshalJSON() ([]byte, error) {

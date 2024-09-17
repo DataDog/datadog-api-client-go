@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SecurityFiltersResponse All the available security filters objects.
 type SecurityFiltersResponse struct {
@@ -21,10 +15,9 @@ type SecurityFiltersResponse struct {
 	// Optional metadata associated to the response.
 	Meta *SecurityFilterMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSecurityFiltersResponse instantiates a new SecurityFiltersResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewSecurityFiltersResponseWithDefaults() *SecurityFiltersResponse {
 	this := SecurityFiltersResponse{}
 	return &this
 }
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SecurityFiltersResponse) GetData() []SecurityFilter {
 	if o == nil || o.Data == nil {
@@ -69,7 +63,6 @@ func (o *SecurityFiltersResponse) HasData() bool {
 func (o *SecurityFiltersResponse) SetData(v []SecurityFilter) {
 	o.Data = v
 }
-
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *SecurityFiltersResponse) GetMeta() SecurityFilterMeta {
@@ -99,8 +92,6 @@ func (o *SecurityFiltersResponse) SetMeta(v SecurityFilterMeta) {
 	o.Meta = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityFiltersResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -123,7 +114,7 @@ func (o SecurityFiltersResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityFiltersResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []SecurityFilter `json:"data,omitempty"`
+		Data []SecurityFilter    `json:"data,omitempty"`
 		Meta *SecurityFilterMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -131,14 +122,14 @@ func (o *SecurityFiltersResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = all.Data
-	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

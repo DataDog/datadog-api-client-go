@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ProcessSummariesMetaPage Paging attributes.
 type ProcessSummariesMetaPage struct {
@@ -22,10 +16,9 @@ type ProcessSummariesMetaPage struct {
 	// Number of results returned.
 	Size *int32 `json:"size,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewProcessSummariesMetaPage instantiates a new ProcessSummariesMetaPage object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +36,7 @@ func NewProcessSummariesMetaPageWithDefaults() *ProcessSummariesMetaPage {
 	this := ProcessSummariesMetaPage{}
 	return &this
 }
+
 // GetAfter returns the After field value if set, zero value otherwise.
 func (o *ProcessSummariesMetaPage) GetAfter() string {
 	if o == nil || o.After == nil {
@@ -70,7 +64,6 @@ func (o *ProcessSummariesMetaPage) HasAfter() bool {
 func (o *ProcessSummariesMetaPage) SetAfter(v string) {
 	o.After = &v
 }
-
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *ProcessSummariesMetaPage) GetSize() int32 {
@@ -100,8 +93,6 @@ func (o *ProcessSummariesMetaPage) SetSize(v int32) {
 	o.Size = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ProcessSummariesMetaPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -125,14 +116,14 @@ func (o ProcessSummariesMetaPage) MarshalJSON() ([]byte, error) {
 func (o *ProcessSummariesMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		After *string `json:"after,omitempty"`
-		Size *int32 `json:"size,omitempty"`
+		Size  *int32  `json:"size,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "after", "size",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"after", "size"})
 	} else {
 		return err
 	}

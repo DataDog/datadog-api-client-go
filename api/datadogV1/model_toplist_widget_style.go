@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ToplistWidgetStyle Style customization for a top list widget.
 type ToplistWidgetStyle struct {
@@ -23,10 +17,9 @@ type ToplistWidgetStyle struct {
 	// Top list widget scaling definition.
 	Scaling *ToplistWidgetScaling `json:"scaling,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewToplistWidgetStyle instantiates a new ToplistWidgetStyle object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +37,7 @@ func NewToplistWidgetStyleWithDefaults() *ToplistWidgetStyle {
 	this := ToplistWidgetStyle{}
 	return &this
 }
+
 // GetDisplay returns the Display field value if set, zero value otherwise.
 func (o *ToplistWidgetStyle) GetDisplay() ToplistWidgetDisplay {
 	if o == nil || o.Display == nil {
@@ -71,7 +65,6 @@ func (o *ToplistWidgetStyle) HasDisplay() bool {
 func (o *ToplistWidgetStyle) SetDisplay(v ToplistWidgetDisplay) {
 	o.Display = &v
 }
-
 
 // GetPalette returns the Palette field value if set, zero value otherwise.
 func (o *ToplistWidgetStyle) GetPalette() string {
@@ -101,7 +94,6 @@ func (o *ToplistWidgetStyle) SetPalette(v string) {
 	o.Palette = &v
 }
 
-
 // GetScaling returns the Scaling field value if set, zero value otherwise.
 func (o *ToplistWidgetStyle) GetScaling() ToplistWidgetScaling {
 	if o == nil || o.Scaling == nil {
@@ -130,8 +122,6 @@ func (o *ToplistWidgetStyle) SetScaling(v ToplistWidgetScaling) {
 	o.Scaling = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ToplistWidgetStyle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -158,7 +148,7 @@ func (o ToplistWidgetStyle) MarshalJSON() ([]byte, error) {
 func (o *ToplistWidgetStyle) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Display *ToplistWidgetDisplay `json:"display,omitempty"`
-		Palette *string `json:"palette,omitempty"`
+		Palette *string               `json:"palette,omitempty"`
 		Scaling *ToplistWidgetScaling `json:"scaling,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -166,7 +156,7 @@ func (o *ToplistWidgetStyle) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "display", "palette", "scaling",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"display", "palette", "scaling"})
 	} else {
 		return err
 	}
@@ -174,7 +164,7 @@ func (o *ToplistWidgetStyle) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Display = all.Display
 	o.Palette = all.Palette
-	if all.Scaling != nil &&!all.Scaling.IsValid() {
+	if all.Scaling != nil && !all.Scaling.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Scaling = all.Scaling

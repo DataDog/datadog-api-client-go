@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // AbbreviatedTeamAttributes The definition of `AbbreviatedTeamAttributes` object.
 type AbbreviatedTeamAttributes struct {
@@ -31,10 +27,9 @@ type AbbreviatedTeamAttributes struct {
 	// A brief summary of the team
 	Summary *string `json:"summary,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewAbbreviatedTeamAttributes instantiates a new AbbreviatedTeamAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,6 +49,7 @@ func NewAbbreviatedTeamAttributesWithDefaults() *AbbreviatedTeamAttributes {
 	this := AbbreviatedTeamAttributes{}
 	return &this
 }
+
 // GetAvatar returns the Avatar field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AbbreviatedTeamAttributes) GetAvatar() string {
 	if o == nil || o.Avatar.Get() == nil {
@@ -67,7 +63,7 @@ func (o *AbbreviatedTeamAttributes) GetAvatar() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *AbbreviatedTeamAttributes) GetAvatarOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Avatar.Get(), o.Avatar.IsSet()
@@ -82,6 +78,7 @@ func (o *AbbreviatedTeamAttributes) HasAvatar() bool {
 func (o *AbbreviatedTeamAttributes) SetAvatar(v string) {
 	o.Avatar.Set(&v)
 }
+
 // SetAvatarNil sets the value for Avatar to be an explicit nil.
 func (o *AbbreviatedTeamAttributes) SetAvatarNil() {
 	o.Avatar.Set(nil)
@@ -91,7 +88,6 @@ func (o *AbbreviatedTeamAttributes) SetAvatarNil() {
 func (o *AbbreviatedTeamAttributes) UnsetAvatar() {
 	o.Avatar.Unset()
 }
-
 
 // GetBanner returns the Banner field value if set, zero value otherwise.
 func (o *AbbreviatedTeamAttributes) GetBanner() int64 {
@@ -121,7 +117,6 @@ func (o *AbbreviatedTeamAttributes) SetBanner(v int64) {
 	o.Banner = &v
 }
 
-
 // GetHandle returns the Handle field value.
 func (o *AbbreviatedTeamAttributes) GetHandle() string {
 	if o == nil {
@@ -144,7 +139,6 @@ func (o *AbbreviatedTeamAttributes) GetHandleOk() (*string, bool) {
 func (o *AbbreviatedTeamAttributes) SetHandle(v string) {
 	o.Handle = v
 }
-
 
 // GetHandles returns the Handles field value if set, zero value otherwise.
 func (o *AbbreviatedTeamAttributes) GetHandles() string {
@@ -174,7 +168,6 @@ func (o *AbbreviatedTeamAttributes) SetHandles(v string) {
 	o.Handles = &v
 }
 
-
 // GetIsOpenMembership returns the IsOpenMembership field value if set, zero value otherwise.
 func (o *AbbreviatedTeamAttributes) GetIsOpenMembership() bool {
 	if o == nil || o.IsOpenMembership == nil {
@@ -203,7 +196,6 @@ func (o *AbbreviatedTeamAttributes) SetIsOpenMembership(v bool) {
 	o.IsOpenMembership = &v
 }
 
-
 // GetName returns the Name field value.
 func (o *AbbreviatedTeamAttributes) GetName() string {
 	if o == nil {
@@ -226,7 +218,6 @@ func (o *AbbreviatedTeamAttributes) GetNameOk() (*string, bool) {
 func (o *AbbreviatedTeamAttributes) SetName(v string) {
 	o.Name = v
 }
-
 
 // GetSummary returns the Summary field value if set, zero value otherwise.
 func (o *AbbreviatedTeamAttributes) GetSummary() string {
@@ -255,8 +246,6 @@ func (o *AbbreviatedTeamAttributes) HasSummary() bool {
 func (o *AbbreviatedTeamAttributes) SetSummary(v string) {
 	o.Summary = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AbbreviatedTeamAttributes) MarshalJSON() ([]byte, error) {
@@ -291,13 +280,13 @@ func (o AbbreviatedTeamAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AbbreviatedTeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Avatar datadog.NullableString `json:"avatar,omitempty"`
-		Banner *int64 `json:"banner,omitempty"`
-		Handle *string `json:"handle"`
-		Handles *string `json:"handles,omitempty"`
-		IsOpenMembership *bool `json:"is_open_membership,omitempty"`
-		Name *string `json:"name"`
-		Summary *string `json:"summary,omitempty"`
+		Avatar           datadog.NullableString `json:"avatar,omitempty"`
+		Banner           *int64                 `json:"banner,omitempty"`
+		Handle           *string                `json:"handle"`
+		Handles          *string                `json:"handles,omitempty"`
+		IsOpenMembership *bool                  `json:"is_open_membership,omitempty"`
+		Name             *string                `json:"name"`
+		Summary          *string                `json:"summary,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -310,7 +299,7 @@ func (o *AbbreviatedTeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "avatar", "banner", "handle", "handles", "is_open_membership", "name", "summary",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"avatar", "banner", "handle", "handles", "is_open_membership", "name", "summary"})
 	} else {
 		return err
 	}

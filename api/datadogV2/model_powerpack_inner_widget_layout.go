@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // PowerpackInnerWidgetLayout Powerpack inner widget layout.
 type PowerpackInnerWidgetLayout struct {
@@ -25,10 +21,9 @@ type PowerpackInnerWidgetLayout struct {
 	// The position of the widget on the y (vertical) axis. Should be a non-negative integer.
 	Y int64 `json:"y"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewPowerpackInnerWidgetLayout instantiates a new PowerpackInnerWidgetLayout object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +45,7 @@ func NewPowerpackInnerWidgetLayoutWithDefaults() *PowerpackInnerWidgetLayout {
 	this := PowerpackInnerWidgetLayout{}
 	return &this
 }
+
 // GetHeight returns the Height field value.
 func (o *PowerpackInnerWidgetLayout) GetHeight() int64 {
 	if o == nil {
@@ -72,7 +68,6 @@ func (o *PowerpackInnerWidgetLayout) GetHeightOk() (*int64, bool) {
 func (o *PowerpackInnerWidgetLayout) SetHeight(v int64) {
 	o.Height = v
 }
-
 
 // GetWidth returns the Width field value.
 func (o *PowerpackInnerWidgetLayout) GetWidth() int64 {
@@ -97,7 +92,6 @@ func (o *PowerpackInnerWidgetLayout) SetWidth(v int64) {
 	o.Width = v
 }
 
-
 // GetX returns the X field value.
 func (o *PowerpackInnerWidgetLayout) GetX() int64 {
 	if o == nil {
@@ -120,7 +114,6 @@ func (o *PowerpackInnerWidgetLayout) GetXOk() (*int64, bool) {
 func (o *PowerpackInnerWidgetLayout) SetX(v int64) {
 	o.X = v
 }
-
 
 // GetY returns the Y field value.
 func (o *PowerpackInnerWidgetLayout) GetY() int64 {
@@ -145,8 +138,6 @@ func (o *PowerpackInnerWidgetLayout) SetY(v int64) {
 	o.Y = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o PowerpackInnerWidgetLayout) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -168,9 +159,9 @@ func (o PowerpackInnerWidgetLayout) MarshalJSON() ([]byte, error) {
 func (o *PowerpackInnerWidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Height *int64 `json:"height"`
-		Width *int64 `json:"width"`
-		X *int64 `json:"x"`
-		Y *int64 `json:"y"`
+		Width  *int64 `json:"width"`
+		X      *int64 `json:"x"`
+		Y      *int64 `json:"y"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -189,7 +180,7 @@ func (o *PowerpackInnerWidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "height", "width", "x", "y",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"height", "width", "x", "y"})
 	} else {
 		return err
 	}

@@ -2,22 +2,16 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SecurityMonitoringRuleConvertPayload - Convert a rule from JSON to Terraform.
 type SecurityMonitoringRuleConvertPayload struct {
 	SecurityMonitoringStandardRulePayload *SecurityMonitoringStandardRulePayload
-	SecurityMonitoringSignalRulePayload *SecurityMonitoringSignalRulePayload
+	SecurityMonitoringSignalRulePayload   *SecurityMonitoringSignalRulePayload
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -86,11 +80,9 @@ func (obj SecurityMonitoringRuleConvertPayload) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SecurityMonitoringStandardRulePayload)
 	}
 
-
 	if obj.SecurityMonitoringSignalRulePayload != nil {
 		return datadog.Marshal(&obj.SecurityMonitoringSignalRulePayload)
 	}
-
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -99,16 +91,14 @@ func (obj SecurityMonitoringRuleConvertPayload) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SecurityMonitoringRuleConvertPayload) GetActualInstance() (interface{}) {
+func (obj *SecurityMonitoringRuleConvertPayload) GetActualInstance() interface{} {
 	if obj.SecurityMonitoringStandardRulePayload != nil {
 		return obj.SecurityMonitoringStandardRulePayload
 	}
 
-
 	if obj.SecurityMonitoringSignalRulePayload != nil {
 		return obj.SecurityMonitoringSignalRulePayload
 	}
-
 
 	// all schemas are nil
 	return nil

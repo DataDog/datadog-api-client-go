@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // FormulaAndFunctionEventQueryDefinition A formula and functions events query.
 type FormulaAndFunctionEventQueryDefinition struct {
@@ -33,10 +29,9 @@ type FormulaAndFunctionEventQueryDefinition struct {
 	// Option for storage location. Feature in Private Beta.
 	Storage *string `json:"storage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewFormulaAndFunctionEventQueryDefinition instantiates a new FormulaAndFunctionEventQueryDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -57,6 +52,7 @@ func NewFormulaAndFunctionEventQueryDefinitionWithDefaults() *FormulaAndFunction
 	this := FormulaAndFunctionEventQueryDefinition{}
 	return &this
 }
+
 // GetCompute returns the Compute field value.
 func (o *FormulaAndFunctionEventQueryDefinition) GetCompute() FormulaAndFunctionEventQueryDefinitionCompute {
 	if o == nil {
@@ -79,7 +75,6 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetComputeOk() (*FormulaAndFunc
 func (o *FormulaAndFunctionEventQueryDefinition) SetCompute(v FormulaAndFunctionEventQueryDefinitionCompute) {
 	o.Compute = v
 }
-
 
 // GetCrossOrgUuids returns the CrossOrgUuids field value if set, zero value otherwise.
 func (o *FormulaAndFunctionEventQueryDefinition) GetCrossOrgUuids() []string {
@@ -109,7 +104,6 @@ func (o *FormulaAndFunctionEventQueryDefinition) SetCrossOrgUuids(v []string) {
 	o.CrossOrgUuids = v
 }
 
-
 // GetDataSource returns the DataSource field value.
 func (o *FormulaAndFunctionEventQueryDefinition) GetDataSource() FormulaAndFunctionEventsDataSource {
 	if o == nil {
@@ -132,7 +126,6 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetDataSourceOk() (*FormulaAndF
 func (o *FormulaAndFunctionEventQueryDefinition) SetDataSource(v FormulaAndFunctionEventsDataSource) {
 	o.DataSource = v
 }
-
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *FormulaAndFunctionEventQueryDefinition) GetGroupBy() []FormulaAndFunctionEventQueryGroupBy {
@@ -162,7 +155,6 @@ func (o *FormulaAndFunctionEventQueryDefinition) SetGroupBy(v []FormulaAndFuncti
 	o.GroupBy = v
 }
 
-
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
 func (o *FormulaAndFunctionEventQueryDefinition) GetIndexes() []string {
 	if o == nil || o.Indexes == nil {
@@ -191,7 +183,6 @@ func (o *FormulaAndFunctionEventQueryDefinition) SetIndexes(v []string) {
 	o.Indexes = v
 }
 
-
 // GetName returns the Name field value.
 func (o *FormulaAndFunctionEventQueryDefinition) GetName() string {
 	if o == nil {
@@ -214,7 +205,6 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetNameOk() (*string, bool) {
 func (o *FormulaAndFunctionEventQueryDefinition) SetName(v string) {
 	o.Name = v
 }
-
 
 // GetSearch returns the Search field value if set, zero value otherwise.
 func (o *FormulaAndFunctionEventQueryDefinition) GetSearch() FormulaAndFunctionEventQueryDefinitionSearch {
@@ -244,7 +234,6 @@ func (o *FormulaAndFunctionEventQueryDefinition) SetSearch(v FormulaAndFunctionE
 	o.Search = &v
 }
 
-
 // GetStorage returns the Storage field value if set, zero value otherwise.
 func (o *FormulaAndFunctionEventQueryDefinition) GetStorage() string {
 	if o == nil || o.Storage == nil {
@@ -272,8 +261,6 @@ func (o *FormulaAndFunctionEventQueryDefinition) HasStorage() bool {
 func (o *FormulaAndFunctionEventQueryDefinition) SetStorage(v string) {
 	o.Storage = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, error) {
@@ -309,14 +296,14 @@ func (o FormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Compute *FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
-		CrossOrgUuids []string `json:"cross_org_uuids,omitempty"`
-		DataSource *FormulaAndFunctionEventsDataSource `json:"data_source"`
-		GroupBy []FormulaAndFunctionEventQueryGroupBy `json:"group_by,omitempty"`
-		Indexes []string `json:"indexes,omitempty"`
-		Name *string `json:"name"`
-		Search *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
-		Storage *string `json:"storage,omitempty"`
+		Compute       *FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+		CrossOrgUuids []string                                       `json:"cross_org_uuids,omitempty"`
+		DataSource    *FormulaAndFunctionEventsDataSource            `json:"data_source"`
+		GroupBy       []FormulaAndFunctionEventQueryGroupBy          `json:"group_by,omitempty"`
+		Indexes       []string                                       `json:"indexes,omitempty"`
+		Name          *string                                        `json:"name"`
+		Search        *FormulaAndFunctionEventQueryDefinitionSearch  `json:"search,omitempty"`
+		Storage       *string                                        `json:"storage,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -332,7 +319,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "compute", "cross_org_uuids", "data_source", "group_by", "indexes", "name", "search", "storage",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "cross_org_uuids", "data_source", "group_by", "indexes", "name", "search", "storage"})
 	} else {
 		return err
 	}
@@ -351,7 +338,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (er
 	o.GroupBy = all.GroupBy
 	o.Indexes = all.Indexes
 	o.Name = *all.Name
-	if  all.Search != nil && all.Search.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Search != nil && all.Search.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Search = all.Search

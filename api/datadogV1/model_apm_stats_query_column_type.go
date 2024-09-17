@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ApmStatsQueryColumnType Column properties.
 type ApmStatsQueryColumnType struct {
@@ -25,10 +21,9 @@ type ApmStatsQueryColumnType struct {
 	// Widget sorting methods.
 	Order *WidgetSort `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewApmStatsQueryColumnType instantiates a new ApmStatsQueryColumnType object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,6 +42,7 @@ func NewApmStatsQueryColumnTypeWithDefaults() *ApmStatsQueryColumnType {
 	this := ApmStatsQueryColumnType{}
 	return &this
 }
+
 // GetAlias returns the Alias field value if set, zero value otherwise.
 func (o *ApmStatsQueryColumnType) GetAlias() string {
 	if o == nil || o.Alias == nil {
@@ -74,7 +70,6 @@ func (o *ApmStatsQueryColumnType) HasAlias() bool {
 func (o *ApmStatsQueryColumnType) SetAlias(v string) {
 	o.Alias = &v
 }
-
 
 // GetCellDisplayMode returns the CellDisplayMode field value if set, zero value otherwise.
 func (o *ApmStatsQueryColumnType) GetCellDisplayMode() TableWidgetCellDisplayMode {
@@ -104,7 +99,6 @@ func (o *ApmStatsQueryColumnType) SetCellDisplayMode(v TableWidgetCellDisplayMod
 	o.CellDisplayMode = &v
 }
 
-
 // GetName returns the Name field value.
 func (o *ApmStatsQueryColumnType) GetName() string {
 	if o == nil {
@@ -127,7 +121,6 @@ func (o *ApmStatsQueryColumnType) GetNameOk() (*string, bool) {
 func (o *ApmStatsQueryColumnType) SetName(v string) {
 	o.Name = v
 }
-
 
 // GetOrder returns the Order field value if set, zero value otherwise.
 func (o *ApmStatsQueryColumnType) GetOrder() WidgetSort {
@@ -157,8 +150,6 @@ func (o *ApmStatsQueryColumnType) SetOrder(v WidgetSort) {
 	o.Order = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ApmStatsQueryColumnType) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -185,10 +176,10 @@ func (o ApmStatsQueryColumnType) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ApmStatsQueryColumnType) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Alias *string `json:"alias,omitempty"`
+		Alias           *string                     `json:"alias,omitempty"`
 		CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
-		Name *string `json:"name"`
-		Order *WidgetSort `json:"order,omitempty"`
+		Name            *string                     `json:"name"`
+		Order           *WidgetSort                 `json:"order,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -198,20 +189,20 @@ func (o *ApmStatsQueryColumnType) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "alias", "cell_display_mode", "name", "order",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"alias", "cell_display_mode", "name", "order"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Alias = all.Alias
-	if all.CellDisplayMode != nil &&!all.CellDisplayMode.IsValid() {
+	if all.CellDisplayMode != nil && !all.CellDisplayMode.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.CellDisplayMode = all.CellDisplayMode
 	}
 	o.Name = *all.Name
-	if all.Order != nil &&!all.Order.IsValid() {
+	if all.Order != nil && !all.Order.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Order = all.Order

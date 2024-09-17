@@ -2,27 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SecurityMonitoringSuppressionCreateRequest Request object that includes the suppression rule that you would like to create.
 type SecurityMonitoringSuppressionCreateRequest struct {
 	// Object for a single suppression rule.
 	Data SecurityMonitoringSuppressionCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSecurityMonitoringSuppressionCreateRequest instantiates a new SecurityMonitoringSuppressionCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,6 +36,7 @@ func NewSecurityMonitoringSuppressionCreateRequestWithDefaults() *SecurityMonito
 	this := SecurityMonitoringSuppressionCreateRequest{}
 	return &this
 }
+
 // GetData returns the Data field value.
 func (o *SecurityMonitoringSuppressionCreateRequest) GetData() SecurityMonitoringSuppressionCreateData {
 	if o == nil {
@@ -63,8 +59,6 @@ func (o *SecurityMonitoringSuppressionCreateRequest) GetDataOk() (*SecurityMonit
 func (o *SecurityMonitoringSuppressionCreateRequest) SetData(v SecurityMonitoringSuppressionCreateData) {
 	o.Data = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringSuppressionCreateRequest) MarshalJSON() ([]byte, error) {
@@ -93,7 +87,7 @@ func (o *SecurityMonitoringSuppressionCreateRequest) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}

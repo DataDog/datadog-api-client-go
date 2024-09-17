@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // LogsMetricGroupBy A group by rule.
 type LogsMetricGroupBy struct {
@@ -21,10 +17,9 @@ type LogsMetricGroupBy struct {
 	// Eventual name of the tag that gets created. By default, the path attribute is used as the tag name.
 	TagName *string `json:"tag_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewLogsMetricGroupBy instantiates a new LogsMetricGroupBy object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewLogsMetricGroupByWithDefaults() *LogsMetricGroupBy {
 	this := LogsMetricGroupBy{}
 	return &this
 }
+
 // GetPath returns the Path field value.
 func (o *LogsMetricGroupBy) GetPath() string {
 	if o == nil {
@@ -65,7 +61,6 @@ func (o *LogsMetricGroupBy) GetPathOk() (*string, bool) {
 func (o *LogsMetricGroupBy) SetPath(v string) {
 	o.Path = v
 }
-
 
 // GetTagName returns the TagName field value if set, zero value otherwise.
 func (o *LogsMetricGroupBy) GetTagName() string {
@@ -95,8 +90,6 @@ func (o *LogsMetricGroupBy) SetTagName(v string) {
 	o.TagName = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsMetricGroupBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -117,7 +110,7 @@ func (o LogsMetricGroupBy) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsMetricGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Path *string `json:"path"`
+		Path    *string `json:"path"`
 		TagName *string `json:"tag_name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -128,7 +121,7 @@ func (o *LogsMetricGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "path", "tag_name",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"path", "tag_name"})
 	} else {
 		return err
 	}

@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ProjectRelationships Project relationships
 type ProjectRelationships struct {
@@ -21,10 +15,9 @@ type ProjectRelationships struct {
 	// Relationship to users.
 	MemberUser *UsersRelationship `json:"member_user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewProjectRelationships instantiates a new ProjectRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewProjectRelationshipsWithDefaults() *ProjectRelationships {
 	this := ProjectRelationships{}
 	return &this
 }
+
 // GetMemberTeam returns the MemberTeam field value if set, zero value otherwise.
 func (o *ProjectRelationships) GetMemberTeam() RelationshipToTeamLinks {
 	if o == nil || o.MemberTeam == nil {
@@ -69,7 +63,6 @@ func (o *ProjectRelationships) HasMemberTeam() bool {
 func (o *ProjectRelationships) SetMemberTeam(v RelationshipToTeamLinks) {
 	o.MemberTeam = &v
 }
-
 
 // GetMemberUser returns the MemberUser field value if set, zero value otherwise.
 func (o *ProjectRelationships) GetMemberUser() UsersRelationship {
@@ -99,8 +92,6 @@ func (o *ProjectRelationships) SetMemberUser(v UsersRelationship) {
 	o.MemberUser = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ProjectRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -124,24 +115,24 @@ func (o ProjectRelationships) MarshalJSON() ([]byte, error) {
 func (o *ProjectRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		MemberTeam *RelationshipToTeamLinks `json:"member_team,omitempty"`
-		MemberUser *UsersRelationship `json:"member_user,omitempty"`
+		MemberUser *UsersRelationship       `json:"member_user,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "member_team", "member_user",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"member_team", "member_user"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.MemberTeam != nil && all.MemberTeam.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.MemberTeam != nil && all.MemberTeam.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.MemberTeam = all.MemberTeam
-	if  all.MemberUser != nil && all.MemberUser.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.MemberUser != nil && all.MemberUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.MemberUser = all.MemberUser

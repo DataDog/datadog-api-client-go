@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // CustomDestinationCreateRequestDefinition The definition of a custom destination.
 type CustomDestinationCreateRequestDefinition struct {
@@ -21,10 +17,9 @@ type CustomDestinationCreateRequestDefinition struct {
 	// The type of the resource. The value should always be `custom_destination`.
 	Type CustomDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewCustomDestinationCreateRequestDefinition instantiates a new CustomDestinationCreateRequestDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewCustomDestinationCreateRequestDefinitionWithDefaults() *CustomDestinatio
 	this.Type = typeVar
 	return &this
 }
+
 // GetAttributes returns the Attributes field value.
 func (o *CustomDestinationCreateRequestDefinition) GetAttributes() CustomDestinationCreateRequestAttributes {
 	if o == nil {
@@ -68,7 +64,6 @@ func (o *CustomDestinationCreateRequestDefinition) GetAttributesOk() (*CustomDes
 func (o *CustomDestinationCreateRequestDefinition) SetAttributes(v CustomDestinationCreateRequestAttributes) {
 	o.Attributes = v
 }
-
 
 // GetType returns the Type field value.
 func (o *CustomDestinationCreateRequestDefinition) GetType() CustomDestinationType {
@@ -93,8 +88,6 @@ func (o *CustomDestinationCreateRequestDefinition) SetType(v CustomDestinationTy
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomDestinationCreateRequestDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +107,7 @@ func (o CustomDestinationCreateRequestDefinition) MarshalJSON() ([]byte, error) 
 func (o *CustomDestinationCreateRequestDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *CustomDestinationCreateRequestAttributes `json:"attributes"`
-		Type *CustomDestinationType `json:"type"`
+		Type       *CustomDestinationType                    `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -127,7 +120,7 @@ func (o *CustomDestinationCreateRequestDefinition) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
 	} else {
 		return err
 	}

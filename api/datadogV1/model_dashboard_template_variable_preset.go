@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // DashboardTemplateVariablePreset Template variables saved views.
 type DashboardTemplateVariablePreset struct {
@@ -21,10 +15,9 @@ type DashboardTemplateVariablePreset struct {
 	// List of variables.
 	TemplateVariables []DashboardTemplateVariablePresetValue `json:"template_variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewDashboardTemplateVariablePreset instantiates a new DashboardTemplateVariablePreset object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewDashboardTemplateVariablePresetWithDefaults() *DashboardTemplateVariable
 	this := DashboardTemplateVariablePreset{}
 	return &this
 }
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DashboardTemplateVariablePreset) GetName() string {
 	if o == nil || o.Name == nil {
@@ -69,7 +63,6 @@ func (o *DashboardTemplateVariablePreset) HasName() bool {
 func (o *DashboardTemplateVariablePreset) SetName(v string) {
 	o.Name = &v
 }
-
 
 // GetTemplateVariables returns the TemplateVariables field value if set, zero value otherwise.
 func (o *DashboardTemplateVariablePreset) GetTemplateVariables() []DashboardTemplateVariablePresetValue {
@@ -99,8 +92,6 @@ func (o *DashboardTemplateVariablePreset) SetTemplateVariables(v []DashboardTemp
 	o.TemplateVariables = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o DashboardTemplateVariablePreset) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -123,7 +114,7 @@ func (o DashboardTemplateVariablePreset) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DashboardTemplateVariablePreset) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name *string `json:"name,omitempty"`
+		Name              *string                                `json:"name,omitempty"`
 		TemplateVariables []DashboardTemplateVariablePresetValue `json:"template_variables,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -131,7 +122,7 @@ func (o *DashboardTemplateVariablePreset) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "template_variables",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"name", "template_variables"})
 	} else {
 		return err
 	}

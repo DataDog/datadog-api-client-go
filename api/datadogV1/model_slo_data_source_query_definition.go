@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SLODataSourceQueryDefinition - A formula and function query.
 type SLODataSourceQueryDefinition struct {
@@ -62,7 +56,6 @@ func (obj SLODataSourceQueryDefinition) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.FormulaAndFunctionMetricQueryDefinition)
 	}
 
-
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -70,11 +63,10 @@ func (obj SLODataSourceQueryDefinition) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SLODataSourceQueryDefinition) GetActualInstance() (interface{}) {
+func (obj *SLODataSourceQueryDefinition) GetActualInstance() interface{} {
 	if obj.FormulaAndFunctionMetricQueryDefinition != nil {
 		return obj.FormulaAndFunctionMetricQueryDefinition
 	}
-
 
 	// all schemas are nil
 	return nil

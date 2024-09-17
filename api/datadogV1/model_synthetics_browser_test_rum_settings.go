@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsBrowserTestRumSettings The RUM data collection settings for the Synthetic browser test.
 // **Note:** There are 3 ways to format RUM settings:
@@ -33,10 +29,9 @@ type SyntheticsBrowserTestRumSettings struct {
 	// Determines whether RUM data is collected during test runs.
 	IsEnabled bool `json:"isEnabled"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsBrowserTestRumSettings instantiates a new SyntheticsBrowserTestRumSettings object.
 // This constructor will assign default values to properties that have it defined,
@@ -55,6 +50,7 @@ func NewSyntheticsBrowserTestRumSettingsWithDefaults() *SyntheticsBrowserTestRum
 	this := SyntheticsBrowserTestRumSettings{}
 	return &this
 }
+
 // GetApplicationId returns the ApplicationId field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestRumSettings) GetApplicationId() string {
 	if o == nil || o.ApplicationId == nil {
@@ -82,7 +78,6 @@ func (o *SyntheticsBrowserTestRumSettings) HasApplicationId() bool {
 func (o *SyntheticsBrowserTestRumSettings) SetApplicationId(v string) {
 	o.ApplicationId = &v
 }
-
 
 // GetClientTokenId returns the ClientTokenId field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestRumSettings) GetClientTokenId() int64 {
@@ -112,7 +107,6 @@ func (o *SyntheticsBrowserTestRumSettings) SetClientTokenId(v int64) {
 	o.ClientTokenId = &v
 }
 
-
 // GetIsEnabled returns the IsEnabled field value.
 func (o *SyntheticsBrowserTestRumSettings) GetIsEnabled() bool {
 	if o == nil {
@@ -135,8 +129,6 @@ func (o *SyntheticsBrowserTestRumSettings) GetIsEnabledOk() (*bool, bool) {
 func (o *SyntheticsBrowserTestRumSettings) SetIsEnabled(v bool) {
 	o.IsEnabled = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBrowserTestRumSettings) MarshalJSON() ([]byte, error) {
@@ -162,8 +154,8 @@ func (o SyntheticsBrowserTestRumSettings) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBrowserTestRumSettings) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ApplicationId *string `json:"applicationId,omitempty"`
-		ClientTokenId *int64 `json:"clientTokenId,omitempty"`
-		IsEnabled *bool `json:"isEnabled"`
+		ClientTokenId *int64  `json:"clientTokenId,omitempty"`
+		IsEnabled     *bool   `json:"isEnabled"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -173,7 +165,7 @@ func (o *SyntheticsBrowserTestRumSettings) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "applicationId", "clientTokenId", "isEnabled",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"applicationId", "clientTokenId", "isEnabled"})
 	} else {
 		return err
 	}

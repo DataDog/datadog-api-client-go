@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsPrivateLocationCreationResponse Object that contains the new private location, the public key for result encryption, and the configuration skeleton.
 type SyntheticsPrivateLocationCreationResponse struct {
@@ -23,10 +17,9 @@ type SyntheticsPrivateLocationCreationResponse struct {
 	// Public key for the result encryption.
 	ResultEncryption *SyntheticsPrivateLocationCreationResponseResultEncryption `json:"result_encryption,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsPrivateLocationCreationResponse instantiates a new SyntheticsPrivateLocationCreationResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +37,7 @@ func NewSyntheticsPrivateLocationCreationResponseWithDefaults() *SyntheticsPriva
 	this := SyntheticsPrivateLocationCreationResponse{}
 	return &this
 }
+
 // GetConfig returns the Config field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationCreationResponse) GetConfig() interface{} {
 	if o == nil || o.Config == nil {
@@ -71,7 +65,6 @@ func (o *SyntheticsPrivateLocationCreationResponse) HasConfig() bool {
 func (o *SyntheticsPrivateLocationCreationResponse) SetConfig(v interface{}) {
 	o.Config = v
 }
-
 
 // GetPrivateLocation returns the PrivateLocation field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationCreationResponse) GetPrivateLocation() SyntheticsPrivateLocation {
@@ -101,7 +94,6 @@ func (o *SyntheticsPrivateLocationCreationResponse) SetPrivateLocation(v Synthet
 	o.PrivateLocation = &v
 }
 
-
 // GetResultEncryption returns the ResultEncryption field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationCreationResponse) GetResultEncryption() SyntheticsPrivateLocationCreationResponseResultEncryption {
 	if o == nil || o.ResultEncryption == nil {
@@ -130,8 +122,6 @@ func (o *SyntheticsPrivateLocationCreationResponse) SetResultEncryption(v Synthe
 	o.ResultEncryption = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsPrivateLocationCreationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -157,8 +147,8 @@ func (o SyntheticsPrivateLocationCreationResponse) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsPrivateLocationCreationResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Config interface{} `json:"config,omitempty"`
-		PrivateLocation *SyntheticsPrivateLocation `json:"private_location,omitempty"`
+		Config           interface{}                                                `json:"config,omitempty"`
+		PrivateLocation  *SyntheticsPrivateLocation                                 `json:"private_location,omitempty"`
 		ResultEncryption *SyntheticsPrivateLocationCreationResponseResultEncryption `json:"result_encryption,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -166,18 +156,18 @@ func (o *SyntheticsPrivateLocationCreationResponse) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "config", "private_location", "result_encryption",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"config", "private_location", "result_encryption"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Config = all.Config
-	if  all.PrivateLocation != nil && all.PrivateLocation.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.PrivateLocation != nil && all.PrivateLocation.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.PrivateLocation = all.PrivateLocation
-	if  all.ResultEncryption != nil && all.ResultEncryption.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.ResultEncryption != nil && all.ResultEncryption.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ResultEncryption = all.ResultEncryption

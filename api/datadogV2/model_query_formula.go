@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // QueryFormula A formula for calculation based on one or more queries.
 type QueryFormula struct {
@@ -22,10 +18,9 @@ type QueryFormula struct {
 	// This limit is only for scalar queries and has no effect on timeseries queries.
 	Limit *FormulaLimit `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewQueryFormula instantiates a new QueryFormula object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewQueryFormulaWithDefaults() *QueryFormula {
 	this := QueryFormula{}
 	return &this
 }
+
 // GetFormula returns the Formula field value.
 func (o *QueryFormula) GetFormula() string {
 	if o == nil {
@@ -66,7 +62,6 @@ func (o *QueryFormula) GetFormulaOk() (*string, bool) {
 func (o *QueryFormula) SetFormula(v string) {
 	o.Formula = v
 }
-
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *QueryFormula) GetLimit() FormulaLimit {
@@ -96,8 +91,6 @@ func (o *QueryFormula) SetLimit(v FormulaLimit) {
 	o.Limit = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o QueryFormula) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -118,8 +111,8 @@ func (o QueryFormula) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *QueryFormula) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Formula *string `json:"formula"`
-		Limit *FormulaLimit `json:"limit,omitempty"`
+		Formula *string       `json:"formula"`
+		Limit   *FormulaLimit `json:"limit,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -129,14 +122,14 @@ func (o *QueryFormula) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "formula", "limit",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"formula", "limit"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Formula = *all.Formula
-	if  all.Limit != nil && all.Limit.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Limit != nil && all.Limit.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Limit = all.Limit

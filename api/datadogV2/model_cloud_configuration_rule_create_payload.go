@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // CloudConfigurationRuleCreatePayload Create a new cloud configuration rule.
 type CloudConfigurationRuleCreatePayload struct {
@@ -36,10 +32,9 @@ type CloudConfigurationRuleCreatePayload struct {
 	// The rule type.
 	Type *CloudConfigurationRuleType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewCloudConfigurationRuleCreatePayload instantiates a new CloudConfigurationRuleCreatePayload object.
 // This constructor will assign default values to properties that have it defined,
@@ -63,6 +58,7 @@ func NewCloudConfigurationRuleCreatePayloadWithDefaults() *CloudConfigurationRul
 	this := CloudConfigurationRuleCreatePayload{}
 	return &this
 }
+
 // GetCases returns the Cases field value.
 func (o *CloudConfigurationRuleCreatePayload) GetCases() []CloudConfigurationRuleCaseCreate {
 	if o == nil {
@@ -86,7 +82,6 @@ func (o *CloudConfigurationRuleCreatePayload) SetCases(v []CloudConfigurationRul
 	o.Cases = v
 }
 
-
 // GetComplianceSignalOptions returns the ComplianceSignalOptions field value.
 func (o *CloudConfigurationRuleCreatePayload) GetComplianceSignalOptions() CloudConfigurationRuleComplianceSignalOptions {
 	if o == nil {
@@ -109,7 +104,6 @@ func (o *CloudConfigurationRuleCreatePayload) GetComplianceSignalOptionsOk() (*C
 func (o *CloudConfigurationRuleCreatePayload) SetComplianceSignalOptions(v CloudConfigurationRuleComplianceSignalOptions) {
 	o.ComplianceSignalOptions = v
 }
-
 
 // GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *CloudConfigurationRuleCreatePayload) GetFilters() []SecurityMonitoringFilter {
@@ -139,7 +133,6 @@ func (o *CloudConfigurationRuleCreatePayload) SetFilters(v []SecurityMonitoringF
 	o.Filters = v
 }
 
-
 // GetIsEnabled returns the IsEnabled field value.
 func (o *CloudConfigurationRuleCreatePayload) GetIsEnabled() bool {
 	if o == nil {
@@ -162,7 +155,6 @@ func (o *CloudConfigurationRuleCreatePayload) GetIsEnabledOk() (*bool, bool) {
 func (o *CloudConfigurationRuleCreatePayload) SetIsEnabled(v bool) {
 	o.IsEnabled = v
 }
-
 
 // GetMessage returns the Message field value.
 func (o *CloudConfigurationRuleCreatePayload) GetMessage() string {
@@ -187,7 +179,6 @@ func (o *CloudConfigurationRuleCreatePayload) SetMessage(v string) {
 	o.Message = v
 }
 
-
 // GetName returns the Name field value.
 func (o *CloudConfigurationRuleCreatePayload) GetName() string {
 	if o == nil {
@@ -211,7 +202,6 @@ func (o *CloudConfigurationRuleCreatePayload) SetName(v string) {
 	o.Name = v
 }
 
-
 // GetOptions returns the Options field value.
 func (o *CloudConfigurationRuleCreatePayload) GetOptions() CloudConfigurationRuleOptions {
 	if o == nil {
@@ -234,7 +224,6 @@ func (o *CloudConfigurationRuleCreatePayload) GetOptionsOk() (*CloudConfiguratio
 func (o *CloudConfigurationRuleCreatePayload) SetOptions(v CloudConfigurationRuleOptions) {
 	o.Options = v
 }
-
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CloudConfigurationRuleCreatePayload) GetTags() []string {
@@ -264,7 +253,6 @@ func (o *CloudConfigurationRuleCreatePayload) SetTags(v []string) {
 	o.Tags = v
 }
 
-
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CloudConfigurationRuleCreatePayload) GetType() CloudConfigurationRuleType {
 	if o == nil || o.Type == nil {
@@ -292,8 +280,6 @@ func (o *CloudConfigurationRuleCreatePayload) HasType() bool {
 func (o *CloudConfigurationRuleCreatePayload) SetType(v CloudConfigurationRuleType) {
 	o.Type = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudConfigurationRuleCreatePayload) MarshalJSON() ([]byte, error) {
@@ -326,15 +312,15 @@ func (o CloudConfigurationRuleCreatePayload) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudConfigurationRuleCreatePayload) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Cases *[]CloudConfigurationRuleCaseCreate `json:"cases"`
+		Cases                   *[]CloudConfigurationRuleCaseCreate            `json:"cases"`
 		ComplianceSignalOptions *CloudConfigurationRuleComplianceSignalOptions `json:"complianceSignalOptions"`
-		Filters []SecurityMonitoringFilter `json:"filters,omitempty"`
-		IsEnabled *bool `json:"isEnabled"`
-		Message *string `json:"message"`
-		Name *string `json:"name"`
-		Options *CloudConfigurationRuleOptions `json:"options"`
-		Tags []string `json:"tags,omitempty"`
-		Type *CloudConfigurationRuleType `json:"type,omitempty"`
+		Filters                 []SecurityMonitoringFilter                     `json:"filters,omitempty"`
+		IsEnabled               *bool                                          `json:"isEnabled"`
+		Message                 *string                                        `json:"message"`
+		Name                    *string                                        `json:"name"`
+		Options                 *CloudConfigurationRuleOptions                 `json:"options"`
+		Tags                    []string                                       `json:"tags,omitempty"`
+		Type                    *CloudConfigurationRuleType                    `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -359,7 +345,7 @@ func (o *CloudConfigurationRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "cases", "complianceSignalOptions", "filters", "isEnabled", "message", "name", "options", "tags", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"cases", "complianceSignalOptions", "filters", "isEnabled", "message", "name", "options", "tags", "type"})
 	} else {
 		return err
 	}
@@ -379,7 +365,7 @@ func (o *CloudConfigurationRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 	}
 	o.Options = *all.Options
 	o.Tags = all.Tags
-	if all.Type != nil &&!all.Type.IsValid() {
+	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

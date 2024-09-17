@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsAssertionJSONPathTarget An assertion for the `validatesJSONPath` operator.
 type SyntheticsAssertionJSONPathTarget struct {
@@ -25,10 +21,9 @@ type SyntheticsAssertionJSONPathTarget struct {
 	// Type of the assertion.
 	Type SyntheticsAssertionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsAssertionJSONPathTarget instantiates a new SyntheticsAssertionJSONPathTarget object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +43,7 @@ func NewSyntheticsAssertionJSONPathTargetWithDefaults() *SyntheticsAssertionJSON
 	this := SyntheticsAssertionJSONPathTarget{}
 	return &this
 }
+
 // GetOperator returns the Operator field value.
 func (o *SyntheticsAssertionJSONPathTarget) GetOperator() SyntheticsAssertionJSONPathOperator {
 	if o == nil {
@@ -70,7 +66,6 @@ func (o *SyntheticsAssertionJSONPathTarget) GetOperatorOk() (*SyntheticsAssertio
 func (o *SyntheticsAssertionJSONPathTarget) SetOperator(v SyntheticsAssertionJSONPathOperator) {
 	o.Operator = v
 }
-
 
 // GetProperty returns the Property field value if set, zero value otherwise.
 func (o *SyntheticsAssertionJSONPathTarget) GetProperty() string {
@@ -100,7 +95,6 @@ func (o *SyntheticsAssertionJSONPathTarget) SetProperty(v string) {
 	o.Property = &v
 }
 
-
 // GetTarget returns the Target field value if set, zero value otherwise.
 func (o *SyntheticsAssertionJSONPathTarget) GetTarget() SyntheticsAssertionJSONPathTargetTarget {
 	if o == nil || o.Target == nil {
@@ -129,7 +123,6 @@ func (o *SyntheticsAssertionJSONPathTarget) SetTarget(v SyntheticsAssertionJSONP
 	o.Target = &v
 }
 
-
 // GetType returns the Type field value.
 func (o *SyntheticsAssertionJSONPathTarget) GetType() SyntheticsAssertionType {
 	if o == nil {
@@ -152,8 +145,6 @@ func (o *SyntheticsAssertionJSONPathTarget) GetTypeOk() (*SyntheticsAssertionTyp
 func (o *SyntheticsAssertionJSONPathTarget) SetType(v SyntheticsAssertionType) {
 	o.Type = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAssertionJSONPathTarget) MarshalJSON() ([]byte, error) {
@@ -179,10 +170,10 @@ func (o SyntheticsAssertionJSONPathTarget) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAssertionJSONPathTarget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Operator *SyntheticsAssertionJSONPathOperator `json:"operator"`
-		Property *string `json:"property,omitempty"`
-		Target *SyntheticsAssertionJSONPathTargetTarget `json:"target,omitempty"`
-		Type *SyntheticsAssertionType `json:"type"`
+		Operator *SyntheticsAssertionJSONPathOperator     `json:"operator"`
+		Property *string                                  `json:"property,omitempty"`
+		Target   *SyntheticsAssertionJSONPathTargetTarget `json:"target,omitempty"`
+		Type     *SyntheticsAssertionType                 `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -195,7 +186,7 @@ func (o *SyntheticsAssertionJSONPathTarget) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "operator", "property", "target", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"operator", "property", "target", "type"})
 	} else {
 		return err
 	}
@@ -207,7 +198,7 @@ func (o *SyntheticsAssertionJSONPathTarget) UnmarshalJSON(bytes []byte) (err err
 		o.Operator = *all.Operator
 	}
 	o.Property = all.Property
-	if  all.Target != nil && all.Target.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Target != nil && all.Target.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Target = all.Target

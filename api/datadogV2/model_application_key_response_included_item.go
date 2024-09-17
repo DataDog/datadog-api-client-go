@@ -2,22 +2,16 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ApplicationKeyResponseIncludedItem - An object related to an application key.
 type ApplicationKeyResponseIncludedItem struct {
-	User *User
-	Role *Role
+	User      *User
+	Role      *Role
 	LeakedKey *LeakedKey
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -110,16 +104,13 @@ func (obj ApplicationKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.User)
 	}
 
-
 	if obj.Role != nil {
 		return datadog.Marshal(&obj.Role)
 	}
 
-
 	if obj.LeakedKey != nil {
 		return datadog.Marshal(&obj.LeakedKey)
 	}
-
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -128,21 +119,18 @@ func (obj ApplicationKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ApplicationKeyResponseIncludedItem) GetActualInstance() (interface{}) {
+func (obj *ApplicationKeyResponseIncludedItem) GetActualInstance() interface{} {
 	if obj.User != nil {
 		return obj.User
 	}
-
 
 	if obj.Role != nil {
 		return obj.Role
 	}
 
-
 	if obj.LeakedKey != nil {
 		return obj.LeakedKey
 	}
-
 
 	// all schemas are nil
 	return nil

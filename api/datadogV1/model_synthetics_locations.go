@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsLocations List of Synthetic locations.
 type SyntheticsLocations struct {
 	// List of Synthetic locations.
 	Locations []SyntheticsLocation `json:"locations,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsLocations instantiates a new SyntheticsLocations object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewSyntheticsLocationsWithDefaults() *SyntheticsLocations {
 	this := SyntheticsLocations{}
 	return &this
 }
+
 // GetLocations returns the Locations field value if set, zero value otherwise.
 func (o *SyntheticsLocations) GetLocations() []SyntheticsLocation {
 	if o == nil || o.Locations == nil {
@@ -68,8 +62,6 @@ func (o *SyntheticsLocations) SetLocations(v []SyntheticsLocation) {
 	o.Locations = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsLocations) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +88,7 @@ func (o *SyntheticsLocations) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "locations",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"locations"})
 	} else {
 		return err
 	}

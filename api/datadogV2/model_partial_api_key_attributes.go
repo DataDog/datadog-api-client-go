@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // PartialAPIKeyAttributes Attributes of a partial API key.
 type PartialAPIKeyAttributes struct {
@@ -29,10 +23,9 @@ type PartialAPIKeyAttributes struct {
 	// The remote config read enabled status.
 	RemoteConfigReadEnabled *bool `json:"remote_config_read_enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewPartialAPIKeyAttributes instantiates a new PartialAPIKeyAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +43,7 @@ func NewPartialAPIKeyAttributesWithDefaults() *PartialAPIKeyAttributes {
 	this := PartialAPIKeyAttributes{}
 	return &this
 }
+
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *PartialAPIKeyAttributes) GetCategory() string {
 	if o == nil || o.Category == nil {
@@ -77,7 +71,6 @@ func (o *PartialAPIKeyAttributes) HasCategory() bool {
 func (o *PartialAPIKeyAttributes) SetCategory(v string) {
 	o.Category = &v
 }
-
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *PartialAPIKeyAttributes) GetCreatedAt() string {
@@ -107,7 +100,6 @@ func (o *PartialAPIKeyAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
 
-
 // GetLast4 returns the Last4 field value if set, zero value otherwise.
 func (o *PartialAPIKeyAttributes) GetLast4() string {
 	if o == nil || o.Last4 == nil {
@@ -135,7 +127,6 @@ func (o *PartialAPIKeyAttributes) HasLast4() bool {
 func (o *PartialAPIKeyAttributes) SetLast4(v string) {
 	o.Last4 = &v
 }
-
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *PartialAPIKeyAttributes) GetModifiedAt() string {
@@ -165,7 +156,6 @@ func (o *PartialAPIKeyAttributes) SetModifiedAt(v string) {
 	o.ModifiedAt = &v
 }
 
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PartialAPIKeyAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -194,7 +184,6 @@ func (o *PartialAPIKeyAttributes) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetRemoteConfigReadEnabled returns the RemoteConfigReadEnabled field value if set, zero value otherwise.
 func (o *PartialAPIKeyAttributes) GetRemoteConfigReadEnabled() bool {
 	if o == nil || o.RemoteConfigReadEnabled == nil {
@@ -222,8 +211,6 @@ func (o *PartialAPIKeyAttributes) HasRemoteConfigReadEnabled() bool {
 func (o *PartialAPIKeyAttributes) SetRemoteConfigReadEnabled(v bool) {
 	o.RemoteConfigReadEnabled = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o PartialAPIKeyAttributes) MarshalJSON() ([]byte, error) {
@@ -259,19 +246,19 @@ func (o PartialAPIKeyAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PartialAPIKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Category *string `json:"category,omitempty"`
-		CreatedAt *string `json:"created_at,omitempty"`
-		Last4 *string `json:"last4,omitempty"`
-		ModifiedAt *string `json:"modified_at,omitempty"`
-		Name *string `json:"name,omitempty"`
-		RemoteConfigReadEnabled *bool `json:"remote_config_read_enabled,omitempty"`
+		Category                *string `json:"category,omitempty"`
+		CreatedAt               *string `json:"created_at,omitempty"`
+		Last4                   *string `json:"last4,omitempty"`
+		ModifiedAt              *string `json:"modified_at,omitempty"`
+		Name                    *string `json:"name,omitempty"`
+		RemoteConfigReadEnabled *bool   `json:"remote_config_read_enabled,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "category", "created_at", "last4", "modified_at", "name", "remote_config_read_enabled",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"category", "created_at", "last4", "modified_at", "name", "remote_config_read_enabled"})
 	} else {
 		return err
 	}

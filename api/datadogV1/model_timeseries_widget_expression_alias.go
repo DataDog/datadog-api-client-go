@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // TimeseriesWidgetExpressionAlias Define an expression alias.
 type TimeseriesWidgetExpressionAlias struct {
@@ -21,10 +17,9 @@ type TimeseriesWidgetExpressionAlias struct {
 	// Expression name.
 	Expression string `json:"expression"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewTimeseriesWidgetExpressionAlias instantiates a new TimeseriesWidgetExpressionAlias object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewTimeseriesWidgetExpressionAliasWithDefaults() *TimeseriesWidgetExpressio
 	this := TimeseriesWidgetExpressionAlias{}
 	return &this
 }
+
 // GetAliasName returns the AliasName field value if set, zero value otherwise.
 func (o *TimeseriesWidgetExpressionAlias) GetAliasName() string {
 	if o == nil || o.AliasName == nil {
@@ -71,7 +67,6 @@ func (o *TimeseriesWidgetExpressionAlias) SetAliasName(v string) {
 	o.AliasName = &v
 }
 
-
 // GetExpression returns the Expression field value.
 func (o *TimeseriesWidgetExpressionAlias) GetExpression() string {
 	if o == nil {
@@ -95,8 +90,6 @@ func (o *TimeseriesWidgetExpressionAlias) SetExpression(v string) {
 	o.Expression = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o TimeseriesWidgetExpressionAlias) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -117,7 +110,7 @@ func (o TimeseriesWidgetExpressionAlias) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AliasName *string `json:"alias_name,omitempty"`
+		AliasName  *string `json:"alias_name,omitempty"`
 		Expression *string `json:"expression"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -128,7 +121,7 @@ func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "alias_name", "expression",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"alias_name", "expression"})
 	} else {
 		return err
 	}

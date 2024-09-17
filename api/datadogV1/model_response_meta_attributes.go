@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ResponseMetaAttributes Object describing meta attributes of response.
 type ResponseMetaAttributes struct {
 	// Pagination object.
 	Page *Pagination `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewResponseMetaAttributes instantiates a new ResponseMetaAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewResponseMetaAttributesWithDefaults() *ResponseMetaAttributes {
 	this := ResponseMetaAttributes{}
 	return &this
 }
+
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *ResponseMetaAttributes) GetPage() Pagination {
 	if o == nil || o.Page == nil {
@@ -68,8 +62,6 @@ func (o *ResponseMetaAttributes) SetPage(v Pagination) {
 	o.Page = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ResponseMetaAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,13 +88,13 @@ func (o *ResponseMetaAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "page",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"page"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Page = all.Page

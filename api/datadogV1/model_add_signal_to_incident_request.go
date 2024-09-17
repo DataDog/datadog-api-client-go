@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // AddSignalToIncidentRequest Attributes describing which incident to add the signal to.
 type AddSignalToIncidentRequest struct {
@@ -23,10 +19,9 @@ type AddSignalToIncidentRequest struct {
 	// Version of the updated signal. If server side version is higher, update will be rejected.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewAddSignalToIncidentRequest instantiates a new AddSignalToIncidentRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,6 +40,7 @@ func NewAddSignalToIncidentRequestWithDefaults() *AddSignalToIncidentRequest {
 	this := AddSignalToIncidentRequest{}
 	return &this
 }
+
 // GetAddToSignalTimeline returns the AddToSignalTimeline field value if set, zero value otherwise.
 func (o *AddSignalToIncidentRequest) GetAddToSignalTimeline() bool {
 	if o == nil || o.AddToSignalTimeline == nil {
@@ -73,7 +69,6 @@ func (o *AddSignalToIncidentRequest) SetAddToSignalTimeline(v bool) {
 	o.AddToSignalTimeline = &v
 }
 
-
 // GetIncidentId returns the IncidentId field value.
 func (o *AddSignalToIncidentRequest) GetIncidentId() int64 {
 	if o == nil {
@@ -96,7 +91,6 @@ func (o *AddSignalToIncidentRequest) GetIncidentIdOk() (*int64, bool) {
 func (o *AddSignalToIncidentRequest) SetIncidentId(v int64) {
 	o.IncidentId = v
 }
-
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *AddSignalToIncidentRequest) GetVersion() int64 {
@@ -126,8 +120,6 @@ func (o *AddSignalToIncidentRequest) SetVersion(v int64) {
 	o.Version = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o AddSignalToIncidentRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -151,9 +143,9 @@ func (o AddSignalToIncidentRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AddSignalToIncidentRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AddToSignalTimeline *bool `json:"add_to_signal_timeline,omitempty"`
-		IncidentId *int64 `json:"incident_id"`
-		Version *int64 `json:"version,omitempty"`
+		AddToSignalTimeline *bool  `json:"add_to_signal_timeline,omitempty"`
+		IncidentId          *int64 `json:"incident_id"`
+		Version             *int64 `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -163,7 +155,7 @@ func (o *AddSignalToIncidentRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "add_to_signal_timeline", "incident_id", "version",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"add_to_signal_timeline", "incident_id", "version"})
 	} else {
 		return err
 	}

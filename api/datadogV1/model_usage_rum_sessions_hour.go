@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // UsageRumSessionsHour Number of RUM sessions recorded for each hour for a given organization.
 type UsageRumSessionsHour struct {
@@ -35,10 +31,9 @@ type UsageRumSessionsHour struct {
 	// Contains the number of mobile RUM sessions on React Native (data available beginning May 1, 2022).
 	SessionCountReactnative datadog.NullableInt64 `json:"session_count_reactnative,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewUsageRumSessionsHour instantiates a new UsageRumSessionsHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -56,6 +51,7 @@ func NewUsageRumSessionsHourWithDefaults() *UsageRumSessionsHour {
 	this := UsageRumSessionsHour{}
 	return &this
 }
+
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageRumSessionsHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -83,7 +79,6 @@ func (o *UsageRumSessionsHour) HasHour() bool {
 func (o *UsageRumSessionsHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
-
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageRumSessionsHour) GetOrgName() string {
@@ -113,7 +108,6 @@ func (o *UsageRumSessionsHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageRumSessionsHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -141,7 +135,6 @@ func (o *UsageRumSessionsHour) HasPublicId() bool {
 func (o *UsageRumSessionsHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
-
 
 // GetReplaySessionCount returns the ReplaySessionCount field value if set, zero value otherwise.
 func (o *UsageRumSessionsHour) GetReplaySessionCount() int64 {
@@ -171,7 +164,6 @@ func (o *UsageRumSessionsHour) SetReplaySessionCount(v int64) {
 	o.ReplaySessionCount = &v
 }
 
-
 // GetSessionCount returns the SessionCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageRumSessionsHour) GetSessionCount() int64 {
 	if o == nil || o.SessionCount.Get() == nil {
@@ -185,7 +177,7 @@ func (o *UsageRumSessionsHour) GetSessionCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageRumSessionsHour) GetSessionCountOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.SessionCount.Get(), o.SessionCount.IsSet()
@@ -200,6 +192,7 @@ func (o *UsageRumSessionsHour) HasSessionCount() bool {
 func (o *UsageRumSessionsHour) SetSessionCount(v int64) {
 	o.SessionCount.Set(&v)
 }
+
 // SetSessionCountNil sets the value for SessionCount to be an explicit nil.
 func (o *UsageRumSessionsHour) SetSessionCountNil() {
 	o.SessionCount.Set(nil)
@@ -209,7 +202,6 @@ func (o *UsageRumSessionsHour) SetSessionCountNil() {
 func (o *UsageRumSessionsHour) UnsetSessionCount() {
 	o.SessionCount.Unset()
 }
-
 
 // GetSessionCountAndroid returns the SessionCountAndroid field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageRumSessionsHour) GetSessionCountAndroid() int64 {
@@ -224,7 +216,7 @@ func (o *UsageRumSessionsHour) GetSessionCountAndroid() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageRumSessionsHour) GetSessionCountAndroidOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.SessionCountAndroid.Get(), o.SessionCountAndroid.IsSet()
@@ -239,6 +231,7 @@ func (o *UsageRumSessionsHour) HasSessionCountAndroid() bool {
 func (o *UsageRumSessionsHour) SetSessionCountAndroid(v int64) {
 	o.SessionCountAndroid.Set(&v)
 }
+
 // SetSessionCountAndroidNil sets the value for SessionCountAndroid to be an explicit nil.
 func (o *UsageRumSessionsHour) SetSessionCountAndroidNil() {
 	o.SessionCountAndroid.Set(nil)
@@ -248,7 +241,6 @@ func (o *UsageRumSessionsHour) SetSessionCountAndroidNil() {
 func (o *UsageRumSessionsHour) UnsetSessionCountAndroid() {
 	o.SessionCountAndroid.Unset()
 }
-
 
 // GetSessionCountFlutter returns the SessionCountFlutter field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageRumSessionsHour) GetSessionCountFlutter() int64 {
@@ -263,7 +255,7 @@ func (o *UsageRumSessionsHour) GetSessionCountFlutter() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageRumSessionsHour) GetSessionCountFlutterOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.SessionCountFlutter.Get(), o.SessionCountFlutter.IsSet()
@@ -278,6 +270,7 @@ func (o *UsageRumSessionsHour) HasSessionCountFlutter() bool {
 func (o *UsageRumSessionsHour) SetSessionCountFlutter(v int64) {
 	o.SessionCountFlutter.Set(&v)
 }
+
 // SetSessionCountFlutterNil sets the value for SessionCountFlutter to be an explicit nil.
 func (o *UsageRumSessionsHour) SetSessionCountFlutterNil() {
 	o.SessionCountFlutter.Set(nil)
@@ -287,7 +280,6 @@ func (o *UsageRumSessionsHour) SetSessionCountFlutterNil() {
 func (o *UsageRumSessionsHour) UnsetSessionCountFlutter() {
 	o.SessionCountFlutter.Unset()
 }
-
 
 // GetSessionCountIos returns the SessionCountIos field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageRumSessionsHour) GetSessionCountIos() int64 {
@@ -302,7 +294,7 @@ func (o *UsageRumSessionsHour) GetSessionCountIos() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageRumSessionsHour) GetSessionCountIosOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.SessionCountIos.Get(), o.SessionCountIos.IsSet()
@@ -317,6 +309,7 @@ func (o *UsageRumSessionsHour) HasSessionCountIos() bool {
 func (o *UsageRumSessionsHour) SetSessionCountIos(v int64) {
 	o.SessionCountIos.Set(&v)
 }
+
 // SetSessionCountIosNil sets the value for SessionCountIos to be an explicit nil.
 func (o *UsageRumSessionsHour) SetSessionCountIosNil() {
 	o.SessionCountIos.Set(nil)
@@ -326,7 +319,6 @@ func (o *UsageRumSessionsHour) SetSessionCountIosNil() {
 func (o *UsageRumSessionsHour) UnsetSessionCountIos() {
 	o.SessionCountIos.Unset()
 }
-
 
 // GetSessionCountReactnative returns the SessionCountReactnative field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageRumSessionsHour) GetSessionCountReactnative() int64 {
@@ -341,7 +333,7 @@ func (o *UsageRumSessionsHour) GetSessionCountReactnative() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageRumSessionsHour) GetSessionCountReactnativeOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.SessionCountReactnative.Get(), o.SessionCountReactnative.IsSet()
@@ -356,6 +348,7 @@ func (o *UsageRumSessionsHour) HasSessionCountReactnative() bool {
 func (o *UsageRumSessionsHour) SetSessionCountReactnative(v int64) {
 	o.SessionCountReactnative.Set(&v)
 }
+
 // SetSessionCountReactnativeNil sets the value for SessionCountReactnative to be an explicit nil.
 func (o *UsageRumSessionsHour) SetSessionCountReactnativeNil() {
 	o.SessionCountReactnative.Set(nil)
@@ -365,8 +358,6 @@ func (o *UsageRumSessionsHour) SetSessionCountReactnativeNil() {
 func (o *UsageRumSessionsHour) UnsetSessionCountReactnative() {
 	o.SessionCountReactnative.Unset()
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageRumSessionsHour) MarshalJSON() ([]byte, error) {
@@ -415,14 +406,14 @@ func (o UsageRumSessionsHour) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageRumSessionsHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Hour *time.Time `json:"hour,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
-		ReplaySessionCount *int64 `json:"replay_session_count,omitempty"`
-		SessionCount datadog.NullableInt64 `json:"session_count,omitempty"`
-		SessionCountAndroid datadog.NullableInt64 `json:"session_count_android,omitempty"`
-		SessionCountFlutter datadog.NullableInt64 `json:"session_count_flutter,omitempty"`
-		SessionCountIos datadog.NullableInt64 `json:"session_count_ios,omitempty"`
+		Hour                    *time.Time            `json:"hour,omitempty"`
+		OrgName                 *string               `json:"org_name,omitempty"`
+		PublicId                *string               `json:"public_id,omitempty"`
+		ReplaySessionCount      *int64                `json:"replay_session_count,omitempty"`
+		SessionCount            datadog.NullableInt64 `json:"session_count,omitempty"`
+		SessionCountAndroid     datadog.NullableInt64 `json:"session_count_android,omitempty"`
+		SessionCountFlutter     datadog.NullableInt64 `json:"session_count_flutter,omitempty"`
+		SessionCountIos         datadog.NullableInt64 `json:"session_count_ios,omitempty"`
 		SessionCountReactnative datadog.NullableInt64 `json:"session_count_reactnative,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -430,7 +421,7 @@ func (o *UsageRumSessionsHour) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "hour", "org_name", "public_id", "replay_session_count", "session_count", "session_count_android", "session_count_flutter", "session_count_ios", "session_count_reactnative",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"hour", "org_name", "public_id", "replay_session_count", "session_count", "session_count_android", "session_count_flutter", "session_count_ios", "session_count_reactnative"})
 	} else {
 		return err
 	}

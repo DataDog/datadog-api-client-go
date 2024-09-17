@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // IncidentIntegrationMetadataResponseIncludedItem - An object related to an incident integration metadata that is included in the response.
 type IncidentIntegrationMetadataResponseIncludedItem struct {
@@ -62,7 +56,6 @@ func (obj IncidentIntegrationMetadataResponseIncludedItem) MarshalJSON() ([]byte
 		return datadog.Marshal(&obj.User)
 	}
 
-
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -70,11 +63,10 @@ func (obj IncidentIntegrationMetadataResponseIncludedItem) MarshalJSON() ([]byte
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *IncidentIntegrationMetadataResponseIncludedItem) GetActualInstance() (interface{}) {
+func (obj *IncidentIntegrationMetadataResponseIncludedItem) GetActualInstance() interface{} {
 	if obj.User != nil {
 		return obj.User
 	}
-
 
 	// all schemas are nil
 	return nil

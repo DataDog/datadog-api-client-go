@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // WorklflowCancelInstanceResponseData Data about the canceled instance.
 type WorklflowCancelInstanceResponseData struct {
 	// The id of the canceled instance
 	Id *string `json:"id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewWorklflowCancelInstanceResponseData instantiates a new WorklflowCancelInstanceResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewWorklflowCancelInstanceResponseDataWithDefaults() *WorklflowCancelInstan
 	this := WorklflowCancelInstanceResponseData{}
 	return &this
 }
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *WorklflowCancelInstanceResponseData) GetId() string {
 	if o == nil || o.Id == nil {
@@ -68,8 +62,6 @@ func (o *WorklflowCancelInstanceResponseData) SetId(v string) {
 	o.Id = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o WorklflowCancelInstanceResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +88,7 @@ func (o *WorklflowCancelInstanceResponseData) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "id",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"id"})
 	} else {
 		return err
 	}

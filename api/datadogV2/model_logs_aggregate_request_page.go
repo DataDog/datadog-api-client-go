@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // LogsAggregateRequestPage Paging settings
 type LogsAggregateRequestPage struct {
 	// The returned paging point to use to get the next results. Note: at most 1000 results can be paged.
 	Cursor *string `json:"cursor,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewLogsAggregateRequestPage instantiates a new LogsAggregateRequestPage object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewLogsAggregateRequestPageWithDefaults() *LogsAggregateRequestPage {
 	this := LogsAggregateRequestPage{}
 	return &this
 }
+
 // GetCursor returns the Cursor field value if set, zero value otherwise.
 func (o *LogsAggregateRequestPage) GetCursor() string {
 	if o == nil || o.Cursor == nil {
@@ -68,8 +62,6 @@ func (o *LogsAggregateRequestPage) SetCursor(v string) {
 	o.Cursor = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsAggregateRequestPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +88,7 @@ func (o *LogsAggregateRequestPage) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "cursor",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"cursor"})
 	} else {
 		return err
 	}

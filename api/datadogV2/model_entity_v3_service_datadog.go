@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // EntityV3ServiceDatadog Datadog product integrations for the service entity
 type EntityV3ServiceDatadog struct {
@@ -30,7 +24,6 @@ type EntityV3ServiceDatadog struct {
 	UnparsedObject map[string]interface{} `json:"-"`
 }
 
-
 // NewEntityV3ServiceDatadog instantiates a new EntityV3ServiceDatadog object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -47,6 +40,7 @@ func NewEntityV3ServiceDatadogWithDefaults() *EntityV3ServiceDatadog {
 	this := EntityV3ServiceDatadog{}
 	return &this
 }
+
 // GetCodeLocations returns the CodeLocations field value if set, zero value otherwise.
 func (o *EntityV3ServiceDatadog) GetCodeLocations() []EntityV3DatadogCodeLocationItem {
 	if o == nil || o.CodeLocations == nil {
@@ -74,7 +68,6 @@ func (o *EntityV3ServiceDatadog) HasCodeLocations() bool {
 func (o *EntityV3ServiceDatadog) SetCodeLocations(v []EntityV3DatadogCodeLocationItem) {
 	o.CodeLocations = v
 }
-
 
 // GetEvents returns the Events field value if set, zero value otherwise.
 func (o *EntityV3ServiceDatadog) GetEvents() []EntityV3DatadogEventItem {
@@ -104,7 +97,6 @@ func (o *EntityV3ServiceDatadog) SetEvents(v []EntityV3DatadogEventItem) {
 	o.Events = v
 }
 
-
 // GetLogs returns the Logs field value if set, zero value otherwise.
 func (o *EntityV3ServiceDatadog) GetLogs() []EntityV3DatadogLogItem {
 	if o == nil || o.Logs == nil {
@@ -132,7 +124,6 @@ func (o *EntityV3ServiceDatadog) HasLogs() bool {
 func (o *EntityV3ServiceDatadog) SetLogs(v []EntityV3DatadogLogItem) {
 	o.Logs = v
 }
-
 
 // GetPerformanceData returns the PerformanceData field value if set, zero value otherwise.
 func (o *EntityV3ServiceDatadog) GetPerformanceData() EntityV3DatadogPerformance {
@@ -162,7 +153,6 @@ func (o *EntityV3ServiceDatadog) SetPerformanceData(v EntityV3DatadogPerformance
 	o.PerformanceData = &v
 }
 
-
 // GetPipelines returns the Pipelines field value if set, zero value otherwise.
 func (o *EntityV3ServiceDatadog) GetPipelines() EntityV3DatadogPipelines {
 	if o == nil || o.Pipelines == nil {
@@ -191,8 +181,6 @@ func (o *EntityV3ServiceDatadog) SetPipelines(v EntityV3DatadogPipelines) {
 	o.Pipelines = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3ServiceDatadog) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -220,11 +208,11 @@ func (o EntityV3ServiceDatadog) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityV3ServiceDatadog) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CodeLocations []EntityV3DatadogCodeLocationItem `json:"codeLocations,omitempty"`
-		Events []EntityV3DatadogEventItem `json:"events,omitempty"`
-		Logs []EntityV3DatadogLogItem `json:"logs,omitempty"`
-		PerformanceData *EntityV3DatadogPerformance `json:"performanceData,omitempty"`
-		Pipelines *EntityV3DatadogPipelines `json:"pipelines,omitempty"`
+		CodeLocations   []EntityV3DatadogCodeLocationItem `json:"codeLocations,omitempty"`
+		Events          []EntityV3DatadogEventItem        `json:"events,omitempty"`
+		Logs            []EntityV3DatadogLogItem          `json:"logs,omitempty"`
+		PerformanceData *EntityV3DatadogPerformance       `json:"performanceData,omitempty"`
+		Pipelines       *EntityV3DatadogPipelines         `json:"pipelines,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -234,11 +222,11 @@ func (o *EntityV3ServiceDatadog) UnmarshalJSON(bytes []byte) (err error) {
 	o.CodeLocations = all.CodeLocations
 	o.Events = all.Events
 	o.Logs = all.Logs
-	if  all.PerformanceData != nil && all.PerformanceData.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.PerformanceData != nil && all.PerformanceData.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.PerformanceData = all.PerformanceData
-	if  all.Pipelines != nil && all.Pipelines.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Pipelines != nil && all.Pipelines.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Pipelines = all.Pipelines

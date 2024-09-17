@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // EventsCompute The instructions for what to compute for this query.
 type EventsCompute struct {
@@ -23,10 +19,9 @@ type EventsCompute struct {
 	// The "measure" attribute on which to perform the computation.
 	Metric *string `json:"metric,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewEventsCompute instantiates a new EventsCompute object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,6 +42,7 @@ func NewEventsComputeWithDefaults() *EventsCompute {
 	this.Aggregation = aggregation
 	return &this
 }
+
 // GetAggregation returns the Aggregation field value.
 func (o *EventsCompute) GetAggregation() EventsAggregation {
 	if o == nil {
@@ -69,7 +65,6 @@ func (o *EventsCompute) GetAggregationOk() (*EventsAggregation, bool) {
 func (o *EventsCompute) SetAggregation(v EventsAggregation) {
 	o.Aggregation = v
 }
-
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *EventsCompute) GetInterval() int64 {
@@ -99,7 +94,6 @@ func (o *EventsCompute) SetInterval(v int64) {
 	o.Interval = &v
 }
 
-
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *EventsCompute) GetMetric() string {
 	if o == nil || o.Metric == nil {
@@ -128,8 +122,6 @@ func (o *EventsCompute) SetMetric(v string) {
 	o.Metric = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o EventsCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -154,8 +146,8 @@ func (o EventsCompute) MarshalJSON() ([]byte, error) {
 func (o *EventsCompute) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Aggregation *EventsAggregation `json:"aggregation"`
-		Interval *int64 `json:"interval,omitempty"`
-		Metric *string `json:"metric,omitempty"`
+		Interval    *int64             `json:"interval,omitempty"`
+		Metric      *string            `json:"metric,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -165,7 +157,7 @@ func (o *EventsCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation", "interval", "metric",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "interval", "metric"})
 	} else {
 		return err
 	}

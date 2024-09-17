@@ -2,27 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	_io "io"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // IdPMetadataFormData The form data submitted to upload IdP metadata
 type IdPMetadataFormData struct {
 	// The IdP metadata XML file
 	IdpFile *_io.Reader `json:"idp_file,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewIdPMetadataFormData instantiates a new IdPMetadataFormData object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +35,7 @@ func NewIdPMetadataFormDataWithDefaults() *IdPMetadataFormData {
 	this := IdPMetadataFormData{}
 	return &this
 }
+
 // GetIdpFile returns the IdpFile field value if set, zero value otherwise.
 func (o *IdPMetadataFormData) GetIdpFile() _io.Reader {
 	if o == nil || o.IdpFile == nil {
@@ -68,8 +64,6 @@ func (o *IdPMetadataFormData) SetIdpFile(v _io.Reader) {
 	o.IdpFile = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o IdPMetadataFormData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +90,7 @@ func (o *IdPMetadataFormData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "idp_file",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"idp_file"})
 	} else {
 		return err
 	}

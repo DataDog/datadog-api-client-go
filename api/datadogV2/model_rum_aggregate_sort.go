@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // RUMAggregateSort A sort rule.
 type RUMAggregateSort struct {
@@ -25,10 +19,9 @@ type RUMAggregateSort struct {
 	// The type of sorting algorithm.
 	Type *RUMAggregateSortType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewRUMAggregateSort instantiates a new RUMAggregateSort object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +43,7 @@ func NewRUMAggregateSortWithDefaults() *RUMAggregateSort {
 	this.Type = &typeVar
 	return &this
 }
+
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
 func (o *RUMAggregateSort) GetAggregation() RUMAggregationFunction {
 	if o == nil || o.Aggregation == nil {
@@ -77,7 +71,6 @@ func (o *RUMAggregateSort) HasAggregation() bool {
 func (o *RUMAggregateSort) SetAggregation(v RUMAggregationFunction) {
 	o.Aggregation = &v
 }
-
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *RUMAggregateSort) GetMetric() string {
@@ -107,7 +100,6 @@ func (o *RUMAggregateSort) SetMetric(v string) {
 	o.Metric = &v
 }
 
-
 // GetOrder returns the Order field value if set, zero value otherwise.
 func (o *RUMAggregateSort) GetOrder() RUMSortOrder {
 	if o == nil || o.Order == nil {
@@ -136,7 +128,6 @@ func (o *RUMAggregateSort) SetOrder(v RUMSortOrder) {
 	o.Order = &v
 }
 
-
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *RUMAggregateSort) GetType() RUMAggregateSortType {
 	if o == nil || o.Type == nil {
@@ -164,8 +155,6 @@ func (o *RUMAggregateSort) HasType() bool {
 func (o *RUMAggregateSort) SetType(v RUMAggregateSortType) {
 	o.Type = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMAggregateSort) MarshalJSON() ([]byte, error) {
@@ -196,33 +185,33 @@ func (o RUMAggregateSort) MarshalJSON() ([]byte, error) {
 func (o *RUMAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Aggregation *RUMAggregationFunction `json:"aggregation,omitempty"`
-		Metric *string `json:"metric,omitempty"`
-		Order *RUMSortOrder `json:"order,omitempty"`
-		Type *RUMAggregateSortType `json:"type,omitempty"`
+		Metric      *string                 `json:"metric,omitempty"`
+		Order       *RUMSortOrder           `json:"order,omitempty"`
+		Type        *RUMAggregateSortType   `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation", "metric", "order", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "metric", "order", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Aggregation != nil &&!all.Aggregation.IsValid() {
+	if all.Aggregation != nil && !all.Aggregation.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Aggregation = all.Aggregation
 	}
 	o.Metric = all.Metric
-	if all.Order != nil &&!all.Order.IsValid() {
+	if all.Order != nil && !all.Order.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Order = all.Order
 	}
-	if all.Type != nil &&!all.Type.IsValid() {
+	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

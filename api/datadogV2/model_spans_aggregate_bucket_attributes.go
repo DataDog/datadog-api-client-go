@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SpansAggregateBucketAttributes A bucket values.
 type SpansAggregateBucketAttributes struct {
@@ -23,10 +17,9 @@ type SpansAggregateBucketAttributes struct {
 	// A map of the metric name -> value for regular compute or list of values for a timeseries.
 	Computes map[string]SpansAggregateBucketValue `json:"computes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSpansAggregateBucketAttributes instantiates a new SpansAggregateBucketAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +37,7 @@ func NewSpansAggregateBucketAttributesWithDefaults() *SpansAggregateBucketAttrib
 	this := SpansAggregateBucketAttributes{}
 	return &this
 }
+
 // GetBy returns the By field value if set, zero value otherwise.
 func (o *SpansAggregateBucketAttributes) GetBy() map[string]interface{} {
 	if o == nil || o.By == nil {
@@ -71,7 +65,6 @@ func (o *SpansAggregateBucketAttributes) HasBy() bool {
 func (o *SpansAggregateBucketAttributes) SetBy(v map[string]interface{}) {
 	o.By = v
 }
-
 
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *SpansAggregateBucketAttributes) GetCompute() interface{} {
@@ -101,7 +94,6 @@ func (o *SpansAggregateBucketAttributes) SetCompute(v interface{}) {
 	o.Compute = v
 }
 
-
 // GetComputes returns the Computes field value if set, zero value otherwise.
 func (o *SpansAggregateBucketAttributes) GetComputes() map[string]SpansAggregateBucketValue {
 	if o == nil || o.Computes == nil {
@@ -130,8 +122,6 @@ func (o *SpansAggregateBucketAttributes) SetComputes(v map[string]SpansAggregate
 	o.Computes = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SpansAggregateBucketAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -157,8 +147,8 @@ func (o SpansAggregateBucketAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SpansAggregateBucketAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		By map[string]interface{} `json:"by,omitempty"`
-		Compute interface{} `json:"compute,omitempty"`
+		By       map[string]interface{}               `json:"by,omitempty"`
+		Compute  interface{}                          `json:"compute,omitempty"`
 		Computes map[string]SpansAggregateBucketValue `json:"computes,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -166,7 +156,7 @@ func (o *SpansAggregateBucketAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "by", "compute", "computes",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"by", "compute", "computes"})
 	} else {
 		return err
 	}

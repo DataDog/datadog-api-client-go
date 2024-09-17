@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // DistributionWidgetRequest Updated distribution widget.
 type DistributionWidgetRequest struct {
@@ -43,10 +37,9 @@ type DistributionWidgetRequest struct {
 	// Widget style definition.
 	Style *WidgetStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewDistributionWidgetRequest instantiates a new DistributionWidgetRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -64,6 +57,7 @@ func NewDistributionWidgetRequestWithDefaults() *DistributionWidgetRequest {
 	this := DistributionWidgetRequest{}
 	return &this
 }
+
 // GetApmQuery returns the ApmQuery field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetApmQuery() LogQueryDefinition {
 	if o == nil || o.ApmQuery == nil {
@@ -91,7 +85,6 @@ func (o *DistributionWidgetRequest) HasApmQuery() bool {
 func (o *DistributionWidgetRequest) SetApmQuery(v LogQueryDefinition) {
 	o.ApmQuery = &v
 }
-
 
 // GetApmStatsQuery returns the ApmStatsQuery field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetApmStatsQuery() ApmStatsQueryDefinition {
@@ -121,7 +114,6 @@ func (o *DistributionWidgetRequest) SetApmStatsQuery(v ApmStatsQueryDefinition) 
 	o.ApmStatsQuery = &v
 }
 
-
 // GetEventQuery returns the EventQuery field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetEventQuery() LogQueryDefinition {
 	if o == nil || o.EventQuery == nil {
@@ -149,7 +141,6 @@ func (o *DistributionWidgetRequest) HasEventQuery() bool {
 func (o *DistributionWidgetRequest) SetEventQuery(v LogQueryDefinition) {
 	o.EventQuery = &v
 }
-
 
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetLogQuery() LogQueryDefinition {
@@ -179,7 +170,6 @@ func (o *DistributionWidgetRequest) SetLogQuery(v LogQueryDefinition) {
 	o.LogQuery = &v
 }
 
-
 // GetNetworkQuery returns the NetworkQuery field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetNetworkQuery() LogQueryDefinition {
 	if o == nil || o.NetworkQuery == nil {
@@ -207,7 +197,6 @@ func (o *DistributionWidgetRequest) HasNetworkQuery() bool {
 func (o *DistributionWidgetRequest) SetNetworkQuery(v LogQueryDefinition) {
 	o.NetworkQuery = &v
 }
-
 
 // GetProcessQuery returns the ProcessQuery field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetProcessQuery() ProcessQueryDefinition {
@@ -237,7 +226,6 @@ func (o *DistributionWidgetRequest) SetProcessQuery(v ProcessQueryDefinition) {
 	o.ProcessQuery = &v
 }
 
-
 // GetProfileMetricsQuery returns the ProfileMetricsQuery field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetProfileMetricsQuery() LogQueryDefinition {
 	if o == nil || o.ProfileMetricsQuery == nil {
@@ -265,7 +253,6 @@ func (o *DistributionWidgetRequest) HasProfileMetricsQuery() bool {
 func (o *DistributionWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
 	o.ProfileMetricsQuery = &v
 }
-
 
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetQ() string {
@@ -295,7 +282,6 @@ func (o *DistributionWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
 
-
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetQuery() DistributionWidgetHistogramRequestQuery {
 	if o == nil || o.Query == nil {
@@ -323,7 +309,6 @@ func (o *DistributionWidgetRequest) HasQuery() bool {
 func (o *DistributionWidgetRequest) SetQuery(v DistributionWidgetHistogramRequestQuery) {
 	o.Query = &v
 }
-
 
 // GetRequestType returns the RequestType field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetRequestType() DistributionWidgetHistogramRequestType {
@@ -353,7 +338,6 @@ func (o *DistributionWidgetRequest) SetRequestType(v DistributionWidgetHistogram
 	o.RequestType = &v
 }
 
-
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetRumQuery() LogQueryDefinition {
 	if o == nil || o.RumQuery == nil {
@@ -381,7 +365,6 @@ func (o *DistributionWidgetRequest) HasRumQuery() bool {
 func (o *DistributionWidgetRequest) SetRumQuery(v LogQueryDefinition) {
 	o.RumQuery = &v
 }
-
 
 // GetSecurityQuery returns the SecurityQuery field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetSecurityQuery() LogQueryDefinition {
@@ -411,7 +394,6 @@ func (o *DistributionWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 	o.SecurityQuery = &v
 }
 
-
 // GetStyle returns the Style field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetStyle() WidgetStyle {
 	if o == nil || o.Style == nil {
@@ -439,8 +421,6 @@ func (o *DistributionWidgetRequest) HasStyle() bool {
 func (o *DistributionWidgetRequest) SetStyle(v WidgetStyle) {
 	o.Style = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DistributionWidgetRequest) MarshalJSON() ([]byte, error) {
@@ -497,75 +477,75 @@ func (o DistributionWidgetRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DistributionWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
-		ApmStatsQuery *ApmStatsQueryDefinition `json:"apm_stats_query,omitempty"`
-		EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
-		LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
-		NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
-		ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
-		Q *string `json:"q,omitempty"`
-		Query *DistributionWidgetHistogramRequestQuery `json:"query,omitempty"`
-		RequestType *DistributionWidgetHistogramRequestType `json:"request_type,omitempty"`
-		RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
-		SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
-		Style *WidgetStyle `json:"style,omitempty"`
+		ApmQuery            *LogQueryDefinition                      `json:"apm_query,omitempty"`
+		ApmStatsQuery       *ApmStatsQueryDefinition                 `json:"apm_stats_query,omitempty"`
+		EventQuery          *LogQueryDefinition                      `json:"event_query,omitempty"`
+		LogQuery            *LogQueryDefinition                      `json:"log_query,omitempty"`
+		NetworkQuery        *LogQueryDefinition                      `json:"network_query,omitempty"`
+		ProcessQuery        *ProcessQueryDefinition                  `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition                      `json:"profile_metrics_query,omitempty"`
+		Q                   *string                                  `json:"q,omitempty"`
+		Query               *DistributionWidgetHistogramRequestQuery `json:"query,omitempty"`
+		RequestType         *DistributionWidgetHistogramRequestType  `json:"request_type,omitempty"`
+		RumQuery            *LogQueryDefinition                      `json:"rum_query,omitempty"`
+		SecurityQuery       *LogQueryDefinition                      `json:"security_query,omitempty"`
+		Style               *WidgetStyle                             `json:"style,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "apm_query", "apm_stats_query", "event_query", "log_query", "network_query", "process_query", "profile_metrics_query", "q", "query", "request_type", "rum_query", "security_query", "style",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"apm_query", "apm_stats_query", "event_query", "log_query", "network_query", "process_query", "profile_metrics_query", "q", "query", "request_type", "rum_query", "security_query", "style"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.ApmQuery != nil && all.ApmQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.ApmQuery != nil && all.ApmQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApmQuery = all.ApmQuery
-	if  all.ApmStatsQuery != nil && all.ApmStatsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.ApmStatsQuery != nil && all.ApmStatsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApmStatsQuery = all.ApmStatsQuery
-	if  all.EventQuery != nil && all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.EventQuery != nil && all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.EventQuery = all.EventQuery
-	if  all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogQuery = all.LogQuery
-	if  all.NetworkQuery != nil && all.NetworkQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.NetworkQuery != nil && all.NetworkQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.NetworkQuery = all.NetworkQuery
-	if  all.ProcessQuery != nil && all.ProcessQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.ProcessQuery != nil && all.ProcessQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ProcessQuery = all.ProcessQuery
-	if  all.ProfileMetricsQuery != nil && all.ProfileMetricsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.ProfileMetricsQuery != nil && all.ProfileMetricsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ProfileMetricsQuery = all.ProfileMetricsQuery
 	o.Q = all.Q
 	o.Query = all.Query
-	if all.RequestType != nil &&!all.RequestType.IsValid() {
+	if all.RequestType != nil && !all.RequestType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.RequestType = all.RequestType
 	}
-	if  all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RumQuery = all.RumQuery
-	if  all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SecurityQuery = all.SecurityQuery
-	if  all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Style = all.Style

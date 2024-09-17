@@ -2,22 +2,16 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SharedDashboardInvitesData - An object or list of objects containing the information for an invitation to a shared dashboard.
 type SharedDashboardInvitesData struct {
 	SharedDashboardInvitesDataObject *SharedDashboardInvitesDataObject
-	SharedDashboardInvitesDataList *[]SharedDashboardInvitesDataObject
+	SharedDashboardInvitesDataList   *[]SharedDashboardInvitesDataObject
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -86,11 +80,9 @@ func (obj SharedDashboardInvitesData) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SharedDashboardInvitesDataObject)
 	}
 
-
 	if obj.SharedDashboardInvitesDataList != nil {
 		return datadog.Marshal(&obj.SharedDashboardInvitesDataList)
 	}
-
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -99,16 +91,14 @@ func (obj SharedDashboardInvitesData) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SharedDashboardInvitesData) GetActualInstance() (interface{}) {
+func (obj *SharedDashboardInvitesData) GetActualInstance() interface{} {
 	if obj.SharedDashboardInvitesDataObject != nil {
 		return obj.SharedDashboardInvitesDataObject
 	}
 
-
 	if obj.SharedDashboardInvitesDataList != nil {
 		return obj.SharedDashboardInvitesDataList
 	}
-
 
 	// all schemas are nil
 	return nil

@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // RelationshipToSAMLAssertionAttributeData Data of AuthN Mapping relationship to SAML Assertion Attribute.
 type RelationshipToSAMLAssertionAttributeData struct {
@@ -21,10 +17,9 @@ type RelationshipToSAMLAssertionAttributeData struct {
 	// SAML assertion attributes resource type.
 	Type SAMLAssertionAttributesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewRelationshipToSAMLAssertionAttributeData instantiates a new RelationshipToSAMLAssertionAttributeData object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewRelationshipToSAMLAssertionAttributeDataWithDefaults() *RelationshipToSA
 	this.Type = typeVar
 	return &this
 }
+
 // GetId returns the Id field value.
 func (o *RelationshipToSAMLAssertionAttributeData) GetId() string {
 	if o == nil {
@@ -68,7 +64,6 @@ func (o *RelationshipToSAMLAssertionAttributeData) GetIdOk() (*string, bool) {
 func (o *RelationshipToSAMLAssertionAttributeData) SetId(v string) {
 	o.Id = v
 }
-
 
 // GetType returns the Type field value.
 func (o *RelationshipToSAMLAssertionAttributeData) GetType() SAMLAssertionAttributesType {
@@ -93,8 +88,6 @@ func (o *RelationshipToSAMLAssertionAttributeData) SetType(v SAMLAssertionAttrib
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationshipToSAMLAssertionAttributeData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -113,7 +106,7 @@ func (o RelationshipToSAMLAssertionAttributeData) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *RelationshipToSAMLAssertionAttributeData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id *string `json:"id"`
+		Id   *string                      `json:"id"`
 		Type *SAMLAssertionAttributesType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -127,7 +120,7 @@ func (o *RelationshipToSAMLAssertionAttributeData) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
 	} else {
 		return err
 	}

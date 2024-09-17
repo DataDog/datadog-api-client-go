@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"bytes"
 	_context "context"
-	_fmt "fmt"
-	_io "io"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -24,11 +20,9 @@ type DowntimesApi datadog.Service
 // Cancel a downtime.
 func (a *DowntimesApi) CancelDowntime(ctx _context.Context, downtimeId string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DowntimesApi.CancelDowntime")
 	if err != nil {
@@ -41,10 +35,9 @@ func (a *DowntimesApi) CancelDowntime(ctx _context.Context, downtimeId string) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] =  "*/*"
+	localVarHeaderParams["Accept"] = "*/*"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -67,11 +60,10 @@ func (a *DowntimesApi) CancelDowntime(ctx _context.Context, downtimeId string) (
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -89,12 +81,10 @@ func (a *DowntimesApi) CancelDowntime(ctx _context.Context, downtimeId string) (
 // Schedule a downtime.
 func (a *DowntimesApi) CreateDowntime(ctx _context.Context, body DowntimeCreateRequest) (DowntimeResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  DowntimeResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue DowntimeResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DowntimesApi.CreateDowntime")
 	if err != nil {
@@ -109,11 +99,9 @@ func (a *DowntimesApi) CreateDowntime(ctx _context.Context, body DowntimeCreateR
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -136,11 +124,10 @@ func (a *DowntimesApi) CreateDowntime(ctx _context.Context, body DowntimeCreateR
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -154,7 +141,7 @@ func (a *DowntimesApi) CreateDowntime(ctx _context.Context, body DowntimeCreateR
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -173,6 +160,7 @@ func NewGetDowntimeOptionalParameters() *GetDowntimeOptionalParameters {
 	this := GetDowntimeOptionalParameters{}
 	return &this
 }
+
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *GetDowntimeOptionalParameters) WithInclude(include string) *GetDowntimeOptionalParameters {
 	r.Include = &include
@@ -183,20 +171,18 @@ func (r *GetDowntimeOptionalParameters) WithInclude(include string) *GetDowntime
 // Get downtime detail by `downtime_id`.
 func (a *DowntimesApi) GetDowntime(ctx _context.Context, downtimeId string, o ...GetDowntimeOptionalParameters) (DowntimeResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  DowntimeResponse
-		optionalParams GetDowntimeOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue DowntimeResponse
+		optionalParams      GetDowntimeOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetDowntimeOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetDowntimeOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DowntimesApi.GetDowntime")
 	if err != nil {
@@ -214,8 +200,7 @@ func (a *DowntimesApi) GetDowntime(ctx _context.Context, downtimeId string, o ..
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -238,11 +223,10 @@ func (a *DowntimesApi) GetDowntime(ctx _context.Context, downtimeId string, o ..
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -256,7 +240,7 @@ func (a *DowntimesApi) GetDowntime(ctx _context.Context, downtimeId string, o ..
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -268,9 +252,9 @@ func (a *DowntimesApi) GetDowntime(ctx _context.Context, downtimeId string, o ..
 // ListDowntimesOptionalParameters holds optional parameters for ListDowntimes.
 type ListDowntimesOptionalParameters struct {
 	CurrentOnly *bool
-	Include *string
-	PageOffset *int64
-	PageLimit *int64
+	Include     *string
+	PageOffset  *int64
+	PageLimit   *int64
 }
 
 // NewListDowntimesOptionalParameters creates an empty struct for parameters.
@@ -278,21 +262,25 @@ func NewListDowntimesOptionalParameters() *ListDowntimesOptionalParameters {
 	this := ListDowntimesOptionalParameters{}
 	return &this
 }
+
 // WithCurrentOnly sets the corresponding parameter name and returns the struct.
 func (r *ListDowntimesOptionalParameters) WithCurrentOnly(currentOnly bool) *ListDowntimesOptionalParameters {
 	r.CurrentOnly = &currentOnly
 	return r
 }
+
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *ListDowntimesOptionalParameters) WithInclude(include string) *ListDowntimesOptionalParameters {
 	r.Include = &include
 	return r
 }
+
 // WithPageOffset sets the corresponding parameter name and returns the struct.
 func (r *ListDowntimesOptionalParameters) WithPageOffset(pageOffset int64) *ListDowntimesOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
+
 // WithPageLimit sets the corresponding parameter name and returns the struct.
 func (r *ListDowntimesOptionalParameters) WithPageLimit(pageLimit int64) *ListDowntimesOptionalParameters {
 	r.PageLimit = &pageLimit
@@ -303,20 +291,18 @@ func (r *ListDowntimesOptionalParameters) WithPageLimit(pageLimit int64) *ListDo
 // Get all scheduled downtimes.
 func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOptionalParameters) (ListDowntimesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  ListDowntimesResponse
-		optionalParams ListDowntimesOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue ListDowntimesResponse
+		optionalParams      ListDowntimesOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListDowntimesOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListDowntimesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DowntimesApi.ListDowntimes")
 	if err != nil {
@@ -342,8 +328,7 @@ func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOpt
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -366,11 +351,10 @@ func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOpt
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -384,7 +368,7 @@ func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOpt
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -392,6 +376,7 @@ func (a *DowntimesApi) ListDowntimes(ctx _context.Context, o ...ListDowntimesOpt
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 // ListDowntimesWithPagination provides a paginated version of ListDowntimes returning a channel with all items.
 func (a *DowntimesApi) ListDowntimesWithPagination(ctx _context.Context, o ...ListDowntimesOptionalParameters) (<-chan datadog.PaginationResult[DowntimeResponseData], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -423,8 +408,8 @@ func (a *DowntimesApi) ListDowntimesWithPagination(ctx _context.Context, o ...Li
 				select {
 				case items <- datadog.PaginationResult[DowntimeResponseData]{Item: item, Error: nil}:
 				case <-ctx.Done():
-				close(items)
-				return
+					close(items)
+					return
 				}
 			}
 			if len(results) < int(pageSize_) {
@@ -445,7 +430,7 @@ func (a *DowntimesApi) ListDowntimesWithPagination(ctx _context.Context, o ...Li
 // ListMonitorDowntimesOptionalParameters holds optional parameters for ListMonitorDowntimes.
 type ListMonitorDowntimesOptionalParameters struct {
 	PageOffset *int64
-	PageLimit *int64
+	PageLimit  *int64
 }
 
 // NewListMonitorDowntimesOptionalParameters creates an empty struct for parameters.
@@ -453,11 +438,13 @@ func NewListMonitorDowntimesOptionalParameters() *ListMonitorDowntimesOptionalPa
 	this := ListMonitorDowntimesOptionalParameters{}
 	return &this
 }
+
 // WithPageOffset sets the corresponding parameter name and returns the struct.
 func (r *ListMonitorDowntimesOptionalParameters) WithPageOffset(pageOffset int64) *ListMonitorDowntimesOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
+
 // WithPageLimit sets the corresponding parameter name and returns the struct.
 func (r *ListMonitorDowntimesOptionalParameters) WithPageLimit(pageLimit int64) *ListMonitorDowntimesOptionalParameters {
 	r.PageLimit = &pageLimit
@@ -468,20 +455,18 @@ func (r *ListMonitorDowntimesOptionalParameters) WithPageLimit(pageLimit int64) 
 // Get all active downtimes for the specified monitor.
 func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int64, o ...ListMonitorDowntimesOptionalParameters) (MonitorDowntimeMatchResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  MonitorDowntimeMatchResponse
-		optionalParams ListMonitorDowntimesOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MonitorDowntimeMatchResponse
+		optionalParams      ListMonitorDowntimesOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListMonitorDowntimesOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListMonitorDowntimesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DowntimesApi.ListMonitorDowntimes")
 	if err != nil {
@@ -502,8 +487,7 @@ func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int6
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -526,11 +510,10 @@ func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int6
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -544,7 +527,7 @@ func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int6
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -552,6 +535,7 @@ func (a *DowntimesApi) ListMonitorDowntimes(ctx _context.Context, monitorId int6
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 // ListMonitorDowntimesWithPagination provides a paginated version of ListMonitorDowntimes returning a channel with all items.
 func (a *DowntimesApi) ListMonitorDowntimesWithPagination(ctx _context.Context, monitorId int64, o ...ListMonitorDowntimesOptionalParameters) (<-chan datadog.PaginationResult[MonitorDowntimeMatchResponseData], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -583,8 +567,8 @@ func (a *DowntimesApi) ListMonitorDowntimesWithPagination(ctx _context.Context, 
 				select {
 				case items <- datadog.PaginationResult[MonitorDowntimeMatchResponseData]{Item: item, Error: nil}:
 				case <-ctx.Done():
-				close(items)
-				return
+					close(items)
+					return
 				}
 			}
 			if len(results) < int(pageSize_) {
@@ -606,12 +590,10 @@ func (a *DowntimesApi) ListMonitorDowntimesWithPagination(ctx _context.Context, 
 // Update a downtime by `downtime_id`.
 func (a *DowntimesApi) UpdateDowntime(ctx _context.Context, downtimeId string, body DowntimeUpdateRequest) (DowntimeResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarReturnValue  DowntimeResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue DowntimeResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DowntimesApi.UpdateDowntime")
 	if err != nil {
@@ -627,11 +609,9 @@ func (a *DowntimesApi) UpdateDowntime(ctx _context.Context, downtimeId string, b
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -654,11 +634,10 @@ func (a *DowntimesApi) UpdateDowntime(ctx _context.Context, downtimeId string, b
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -672,7 +651,7 @@ func (a *DowntimesApi) UpdateDowntime(ctx _context.Context, downtimeId string, b
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

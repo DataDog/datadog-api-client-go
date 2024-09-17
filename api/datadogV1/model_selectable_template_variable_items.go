@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SelectableTemplateVariableItems Object containing the template variable's name, associated tag/attribute, default value and selectable values.
 type SelectableTemplateVariableItems struct {
@@ -25,10 +19,9 @@ type SelectableTemplateVariableItems struct {
 	// List of visible tag values on the shared dashboard.
 	VisibleTags datadog.NullableList[string] `json:"visible_tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSelectableTemplateVariableItems instantiates a new SelectableTemplateVariableItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +39,7 @@ func NewSelectableTemplateVariableItemsWithDefaults() *SelectableTemplateVariabl
 	this := SelectableTemplateVariableItems{}
 	return &this
 }
+
 // GetDefaultValue returns the DefaultValue field value if set, zero value otherwise.
 func (o *SelectableTemplateVariableItems) GetDefaultValue() string {
 	if o == nil || o.DefaultValue == nil {
@@ -73,7 +67,6 @@ func (o *SelectableTemplateVariableItems) HasDefaultValue() bool {
 func (o *SelectableTemplateVariableItems) SetDefaultValue(v string) {
 	o.DefaultValue = &v
 }
-
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SelectableTemplateVariableItems) GetName() string {
@@ -103,7 +96,6 @@ func (o *SelectableTemplateVariableItems) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetPrefix returns the Prefix field value if set, zero value otherwise.
 func (o *SelectableTemplateVariableItems) GetPrefix() string {
 	if o == nil || o.Prefix == nil {
@@ -132,7 +124,6 @@ func (o *SelectableTemplateVariableItems) SetPrefix(v string) {
 	o.Prefix = &v
 }
 
-
 // GetVisibleTags returns the VisibleTags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SelectableTemplateVariableItems) GetVisibleTags() []string {
 	if o == nil || o.VisibleTags.Get() == nil {
@@ -146,7 +137,7 @@ func (o *SelectableTemplateVariableItems) GetVisibleTags() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SelectableTemplateVariableItems) GetVisibleTagsOk() (*[]string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.VisibleTags.Get(), o.VisibleTags.IsSet()
@@ -161,6 +152,7 @@ func (o *SelectableTemplateVariableItems) HasVisibleTags() bool {
 func (o *SelectableTemplateVariableItems) SetVisibleTags(v []string) {
 	o.VisibleTags.Set(&v)
 }
+
 // SetVisibleTagsNil sets the value for VisibleTags to be an explicit nil.
 func (o *SelectableTemplateVariableItems) SetVisibleTagsNil() {
 	o.VisibleTags.Set(nil)
@@ -170,8 +162,6 @@ func (o *SelectableTemplateVariableItems) SetVisibleTagsNil() {
 func (o *SelectableTemplateVariableItems) UnsetVisibleTags() {
 	o.VisibleTags.Unset()
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SelectableTemplateVariableItems) MarshalJSON() ([]byte, error) {
@@ -201,17 +191,17 @@ func (o SelectableTemplateVariableItems) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SelectableTemplateVariableItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DefaultValue *string `json:"default_value,omitempty"`
-		Name *string `json:"name,omitempty"`
-		Prefix *string `json:"prefix,omitempty"`
-		VisibleTags datadog.NullableList[string] `json:"visible_tags,omitempty"`
+		DefaultValue *string                      `json:"default_value,omitempty"`
+		Name         *string                      `json:"name,omitempty"`
+		Prefix       *string                      `json:"prefix,omitempty"`
+		VisibleTags  datadog.NullableList[string] `json:"visible_tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "default_value", "name", "prefix", "visible_tags",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"default_value", "name", "prefix", "visible_tags"})
 	} else {
 		return err
 	}

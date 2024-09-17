@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // FastlyServicesResponse The expected response schema when getting Fastly services.
 type FastlyServicesResponse struct {
 	// The JSON:API data schema.
 	Data []FastlyServiceResponse `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewFastlyServicesResponse instantiates a new FastlyServicesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewFastlyServicesResponseWithDefaults() *FastlyServicesResponse {
 	this := FastlyServicesResponse{}
 	return &this
 }
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *FastlyServicesResponse) GetData() []FastlyServiceResponse {
 	if o == nil || o.Data == nil {
@@ -68,8 +62,6 @@ func (o *FastlyServicesResponse) SetData(v []FastlyServiceResponse) {
 	o.Data = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o FastlyServicesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +88,7 @@ func (o *FastlyServicesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}

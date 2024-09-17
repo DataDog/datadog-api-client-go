@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // MonitorOptionsSchedulingOptionsEvaluationWindow Configuration options for the evaluation window. If `hour_starts` is set, no other fields may be set. Otherwise, `day_starts` and `month_starts` must be set together.
 type MonitorOptionsSchedulingOptionsEvaluationWindow struct {
@@ -23,10 +17,9 @@ type MonitorOptionsSchedulingOptionsEvaluationWindow struct {
 	// The day of the month at which a one month cumulative evaluation window starts.
 	MonthStarts *int32 `json:"month_starts,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewMonitorOptionsSchedulingOptionsEvaluationWindow instantiates a new MonitorOptionsSchedulingOptionsEvaluationWindow object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +37,7 @@ func NewMonitorOptionsSchedulingOptionsEvaluationWindowWithDefaults() *MonitorOp
 	this := MonitorOptionsSchedulingOptionsEvaluationWindow{}
 	return &this
 }
+
 // GetDayStarts returns the DayStarts field value if set, zero value otherwise.
 func (o *MonitorOptionsSchedulingOptionsEvaluationWindow) GetDayStarts() string {
 	if o == nil || o.DayStarts == nil {
@@ -71,7 +65,6 @@ func (o *MonitorOptionsSchedulingOptionsEvaluationWindow) HasDayStarts() bool {
 func (o *MonitorOptionsSchedulingOptionsEvaluationWindow) SetDayStarts(v string) {
 	o.DayStarts = &v
 }
-
 
 // GetHourStarts returns the HourStarts field value if set, zero value otherwise.
 func (o *MonitorOptionsSchedulingOptionsEvaluationWindow) GetHourStarts() int32 {
@@ -101,7 +94,6 @@ func (o *MonitorOptionsSchedulingOptionsEvaluationWindow) SetHourStarts(v int32)
 	o.HourStarts = &v
 }
 
-
 // GetMonthStarts returns the MonthStarts field value if set, zero value otherwise.
 func (o *MonitorOptionsSchedulingOptionsEvaluationWindow) GetMonthStarts() int32 {
 	if o == nil || o.MonthStarts == nil {
@@ -130,8 +122,6 @@ func (o *MonitorOptionsSchedulingOptionsEvaluationWindow) SetMonthStarts(v int32
 	o.MonthStarts = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorOptionsSchedulingOptionsEvaluationWindow) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -157,16 +147,16 @@ func (o MonitorOptionsSchedulingOptionsEvaluationWindow) MarshalJSON() ([]byte, 
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorOptionsSchedulingOptionsEvaluationWindow) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DayStarts *string `json:"day_starts,omitempty"`
-		HourStarts *int32 `json:"hour_starts,omitempty"`
-		MonthStarts *int32 `json:"month_starts,omitempty"`
+		DayStarts   *string `json:"day_starts,omitempty"`
+		HourStarts  *int32  `json:"hour_starts,omitempty"`
+		MonthStarts *int32  `json:"month_starts,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "day_starts", "hour_starts", "month_starts",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"day_starts", "hour_starts", "month_starts"})
 	} else {
 		return err
 	}

@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // OpsgenieServiceCreateAttributes The Opsgenie service attributes for a create request.
 type OpsgenieServiceCreateAttributes struct {
@@ -25,10 +21,9 @@ type OpsgenieServiceCreateAttributes struct {
 	// The region for the Opsgenie service.
 	Region OpsgenieServiceRegionType `json:"region"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewOpsgenieServiceCreateAttributes instantiates a new OpsgenieServiceCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,6 +44,7 @@ func NewOpsgenieServiceCreateAttributesWithDefaults() *OpsgenieServiceCreateAttr
 	this := OpsgenieServiceCreateAttributes{}
 	return &this
 }
+
 // GetCustomUrl returns the CustomUrl field value if set, zero value otherwise.
 func (o *OpsgenieServiceCreateAttributes) GetCustomUrl() string {
 	if o == nil || o.CustomUrl == nil {
@@ -77,7 +73,6 @@ func (o *OpsgenieServiceCreateAttributes) SetCustomUrl(v string) {
 	o.CustomUrl = &v
 }
 
-
 // GetName returns the Name field value.
 func (o *OpsgenieServiceCreateAttributes) GetName() string {
 	if o == nil {
@@ -100,7 +95,6 @@ func (o *OpsgenieServiceCreateAttributes) GetNameOk() (*string, bool) {
 func (o *OpsgenieServiceCreateAttributes) SetName(v string) {
 	o.Name = v
 }
-
 
 // GetOpsgenieApiKey returns the OpsgenieApiKey field value.
 func (o *OpsgenieServiceCreateAttributes) GetOpsgenieApiKey() string {
@@ -125,7 +119,6 @@ func (o *OpsgenieServiceCreateAttributes) SetOpsgenieApiKey(v string) {
 	o.OpsgenieApiKey = v
 }
 
-
 // GetRegion returns the Region field value.
 func (o *OpsgenieServiceCreateAttributes) GetRegion() OpsgenieServiceRegionType {
 	if o == nil {
@@ -149,8 +142,6 @@ func (o *OpsgenieServiceCreateAttributes) SetRegion(v OpsgenieServiceRegionType)
 	o.Region = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o OpsgenieServiceCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -173,10 +164,10 @@ func (o OpsgenieServiceCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OpsgenieServiceCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomUrl *string `json:"custom_url,omitempty"`
-		Name *string `json:"name"`
-		OpsgenieApiKey *string `json:"opsgenie_api_key"`
-		Region *OpsgenieServiceRegionType `json:"region"`
+		CustomUrl      *string                    `json:"custom_url,omitempty"`
+		Name           *string                    `json:"name"`
+		OpsgenieApiKey *string                    `json:"opsgenie_api_key"`
+		Region         *OpsgenieServiceRegionType `json:"region"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -192,7 +183,7 @@ func (o *OpsgenieServiceCreateAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "custom_url", "name", "opsgenie_api_key", "region",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_url", "name", "opsgenie_api_key", "region"})
 	} else {
 		return err
 	}

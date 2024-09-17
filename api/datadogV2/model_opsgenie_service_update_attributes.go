@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // OpsgenieServiceUpdateAttributes The Opsgenie service attributes for an update request.
 type OpsgenieServiceUpdateAttributes struct {
@@ -25,10 +19,9 @@ type OpsgenieServiceUpdateAttributes struct {
 	// The region for the Opsgenie service.
 	Region *OpsgenieServiceRegionType `json:"region,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewOpsgenieServiceUpdateAttributes instantiates a new OpsgenieServiceUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +39,7 @@ func NewOpsgenieServiceUpdateAttributesWithDefaults() *OpsgenieServiceUpdateAttr
 	this := OpsgenieServiceUpdateAttributes{}
 	return &this
 }
+
 // GetCustomUrl returns the CustomUrl field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OpsgenieServiceUpdateAttributes) GetCustomUrl() string {
 	if o == nil || o.CustomUrl.Get() == nil {
@@ -59,7 +53,7 @@ func (o *OpsgenieServiceUpdateAttributes) GetCustomUrl() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *OpsgenieServiceUpdateAttributes) GetCustomUrlOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CustomUrl.Get(), o.CustomUrl.IsSet()
@@ -74,6 +68,7 @@ func (o *OpsgenieServiceUpdateAttributes) HasCustomUrl() bool {
 func (o *OpsgenieServiceUpdateAttributes) SetCustomUrl(v string) {
 	o.CustomUrl.Set(&v)
 }
+
 // SetCustomUrlNil sets the value for CustomUrl to be an explicit nil.
 func (o *OpsgenieServiceUpdateAttributes) SetCustomUrlNil() {
 	o.CustomUrl.Set(nil)
@@ -83,7 +78,6 @@ func (o *OpsgenieServiceUpdateAttributes) SetCustomUrlNil() {
 func (o *OpsgenieServiceUpdateAttributes) UnsetCustomUrl() {
 	o.CustomUrl.Unset()
 }
-
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *OpsgenieServiceUpdateAttributes) GetName() string {
@@ -113,7 +107,6 @@ func (o *OpsgenieServiceUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetOpsgenieApiKey returns the OpsgenieApiKey field value if set, zero value otherwise.
 func (o *OpsgenieServiceUpdateAttributes) GetOpsgenieApiKey() string {
 	if o == nil || o.OpsgenieApiKey == nil {
@@ -141,7 +134,6 @@ func (o *OpsgenieServiceUpdateAttributes) HasOpsgenieApiKey() bool {
 func (o *OpsgenieServiceUpdateAttributes) SetOpsgenieApiKey(v string) {
 	o.OpsgenieApiKey = &v
 }
-
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *OpsgenieServiceUpdateAttributes) GetRegion() OpsgenieServiceRegionType {
@@ -171,8 +163,6 @@ func (o *OpsgenieServiceUpdateAttributes) SetRegion(v OpsgenieServiceRegionType)
 	o.Region = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o OpsgenieServiceUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -201,17 +191,17 @@ func (o OpsgenieServiceUpdateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OpsgenieServiceUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomUrl datadog.NullableString `json:"custom_url,omitempty"`
-		Name *string `json:"name,omitempty"`
-		OpsgenieApiKey *string `json:"opsgenie_api_key,omitempty"`
-		Region *OpsgenieServiceRegionType `json:"region,omitempty"`
+		CustomUrl      datadog.NullableString     `json:"custom_url,omitempty"`
+		Name           *string                    `json:"name,omitempty"`
+		OpsgenieApiKey *string                    `json:"opsgenie_api_key,omitempty"`
+		Region         *OpsgenieServiceRegionType `json:"region,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "custom_url", "name", "opsgenie_api_key", "region",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_url", "name", "opsgenie_api_key", "region"})
 	} else {
 		return err
 	}
@@ -220,7 +210,7 @@ func (o *OpsgenieServiceUpdateAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.CustomUrl = all.CustomUrl
 	o.Name = all.Name
 	o.OpsgenieApiKey = all.OpsgenieApiKey
-	if all.Region != nil &&!all.Region.IsValid() {
+	if all.Region != nil && !all.Region.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Region = all.Region

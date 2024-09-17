@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // RUMWarning A warning message indicating something that went wrong with the query.
 type RUMWarning struct {
@@ -23,10 +17,9 @@ type RUMWarning struct {
 	// A short human-readable summary of the warning.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewRUMWarning instantiates a new RUMWarning object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +37,7 @@ func NewRUMWarningWithDefaults() *RUMWarning {
 	this := RUMWarning{}
 	return &this
 }
+
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *RUMWarning) GetCode() string {
 	if o == nil || o.Code == nil {
@@ -71,7 +65,6 @@ func (o *RUMWarning) HasCode() bool {
 func (o *RUMWarning) SetCode(v string) {
 	o.Code = &v
 }
-
 
 // GetDetail returns the Detail field value if set, zero value otherwise.
 func (o *RUMWarning) GetDetail() string {
@@ -101,7 +94,6 @@ func (o *RUMWarning) SetDetail(v string) {
 	o.Detail = &v
 }
 
-
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *RUMWarning) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -130,8 +122,6 @@ func (o *RUMWarning) SetTitle(v string) {
 	o.Title = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMWarning) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -157,16 +147,16 @@ func (o RUMWarning) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMWarning) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Code *string `json:"code,omitempty"`
+		Code   *string `json:"code,omitempty"`
 		Detail *string `json:"detail,omitempty"`
-		Title *string `json:"title,omitempty"`
+		Title  *string `json:"title,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "code", "detail", "title",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"code", "detail", "title"})
 	} else {
 		return err
 	}

@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"bytes"
 	_context "context"
-	_fmt "fmt"
-	_io "io"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -24,12 +20,10 @@ type NotebooksApi datadog.Service
 // Create a notebook using the specified options.
 func (a *NotebooksApi) CreateNotebook(ctx _context.Context, body NotebookCreateRequest) (NotebookResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  NotebookResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue NotebookResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.NotebooksApi.CreateNotebook")
 	if err != nil {
@@ -44,11 +38,9 @@ func (a *NotebooksApi) CreateNotebook(ctx _context.Context, body NotebookCreateR
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -71,11 +63,10 @@ func (a *NotebooksApi) CreateNotebook(ctx _context.Context, body NotebookCreateR
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -89,7 +80,7 @@ func (a *NotebooksApi) CreateNotebook(ctx _context.Context, body NotebookCreateR
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -102,11 +93,9 @@ func (a *NotebooksApi) CreateNotebook(ctx _context.Context, body NotebookCreateR
 // Delete a notebook using the specified ID.
 func (a *NotebooksApi) DeleteNotebook(ctx _context.Context, notebookId int64) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.NotebooksApi.DeleteNotebook")
 	if err != nil {
@@ -119,10 +108,9 @@ func (a *NotebooksApi) DeleteNotebook(ctx _context.Context, notebookId int64) (*
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] =  "*/*"
+	localVarHeaderParams["Accept"] = "*/*"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -145,11 +133,10 @@ func (a *NotebooksApi) DeleteNotebook(ctx _context.Context, notebookId int64) (*
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -167,12 +154,10 @@ func (a *NotebooksApi) DeleteNotebook(ctx _context.Context, notebookId int64) (*
 // Get a notebook using the specified notebook ID.
 func (a *NotebooksApi) GetNotebook(ctx _context.Context, notebookId int64) (NotebookResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  NotebookResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue NotebookResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.NotebooksApi.GetNotebook")
 	if err != nil {
@@ -187,8 +172,7 @@ func (a *NotebooksApi) GetNotebook(ctx _context.Context, notebookId int64) (Note
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -211,11 +195,10 @@ func (a *NotebooksApi) GetNotebook(ctx _context.Context, notebookId int64) (Note
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -229,7 +212,7 @@ func (a *NotebooksApi) GetNotebook(ctx _context.Context, notebookId int64) (Note
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -240,16 +223,16 @@ func (a *NotebooksApi) GetNotebook(ctx _context.Context, notebookId int64) (Note
 
 // ListNotebooksOptionalParameters holds optional parameters for ListNotebooks.
 type ListNotebooksOptionalParameters struct {
-	AuthorHandle *string
+	AuthorHandle        *string
 	ExcludeAuthorHandle *string
-	Start *int64
-	Count *int64
-	SortField *string
-	SortDir *string
-	Query *string
-	IncludeCells *bool
-	IsTemplate *bool
-	Type *string
+	Start               *int64
+	Count               *int64
+	SortField           *string
+	SortDir             *string
+	Query               *string
+	IncludeCells        *bool
+	IsTemplate          *bool
+	Type                *string
 }
 
 // NewListNotebooksOptionalParameters creates an empty struct for parameters.
@@ -257,51 +240,61 @@ func NewListNotebooksOptionalParameters() *ListNotebooksOptionalParameters {
 	this := ListNotebooksOptionalParameters{}
 	return &this
 }
+
 // WithAuthorHandle sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithAuthorHandle(authorHandle string) *ListNotebooksOptionalParameters {
 	r.AuthorHandle = &authorHandle
 	return r
 }
+
 // WithExcludeAuthorHandle sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithExcludeAuthorHandle(excludeAuthorHandle string) *ListNotebooksOptionalParameters {
 	r.ExcludeAuthorHandle = &excludeAuthorHandle
 	return r
 }
+
 // WithStart sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithStart(start int64) *ListNotebooksOptionalParameters {
 	r.Start = &start
 	return r
 }
+
 // WithCount sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithCount(count int64) *ListNotebooksOptionalParameters {
 	r.Count = &count
 	return r
 }
+
 // WithSortField sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithSortField(sortField string) *ListNotebooksOptionalParameters {
 	r.SortField = &sortField
 	return r
 }
+
 // WithSortDir sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithSortDir(sortDir string) *ListNotebooksOptionalParameters {
 	r.SortDir = &sortDir
 	return r
 }
+
 // WithQuery sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithQuery(query string) *ListNotebooksOptionalParameters {
 	r.Query = &query
 	return r
 }
+
 // WithIncludeCells sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithIncludeCells(includeCells bool) *ListNotebooksOptionalParameters {
 	r.IncludeCells = &includeCells
 	return r
 }
+
 // WithIsTemplate sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithIsTemplate(isTemplate bool) *ListNotebooksOptionalParameters {
 	r.IsTemplate = &isTemplate
 	return r
 }
+
 // WithType sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithType(typeVar string) *ListNotebooksOptionalParameters {
 	r.Type = &typeVar
@@ -313,20 +306,18 @@ func (r *ListNotebooksOptionalParameters) WithType(typeVar string) *ListNotebook
 // `name` or author `handle`.
 func (a *NotebooksApi) ListNotebooks(ctx _context.Context, o ...ListNotebooksOptionalParameters) (NotebooksResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  NotebooksResponse
-		optionalParams ListNotebooksOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue NotebooksResponse
+		optionalParams      ListNotebooksOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListNotebooksOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListNotebooksOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.NotebooksApi.ListNotebooks")
 	if err != nil {
@@ -370,8 +361,7 @@ func (a *NotebooksApi) ListNotebooks(ctx _context.Context, o ...ListNotebooksOpt
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -394,11 +384,10 @@ func (a *NotebooksApi) ListNotebooks(ctx _context.Context, o ...ListNotebooksOpt
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -412,7 +401,7 @@ func (a *NotebooksApi) ListNotebooks(ctx _context.Context, o ...ListNotebooksOpt
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -420,6 +409,7 @@ func (a *NotebooksApi) ListNotebooks(ctx _context.Context, o ...ListNotebooksOpt
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 // ListNotebooksWithPagination provides a paginated version of ListNotebooks returning a channel with all items.
 func (a *NotebooksApi) ListNotebooksWithPagination(ctx _context.Context, o ...ListNotebooksOptionalParameters) (<-chan datadog.PaginationResult[NotebooksResponseData], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -451,8 +441,8 @@ func (a *NotebooksApi) ListNotebooksWithPagination(ctx _context.Context, o ...Li
 				select {
 				case items <- datadog.PaginationResult[NotebooksResponseData]{Item: item, Error: nil}:
 				case <-ctx.Done():
-				close(items)
-				return
+					close(items)
+					return
 				}
 			}
 			if len(results) < int(pageSize_) {
@@ -474,12 +464,10 @@ func (a *NotebooksApi) ListNotebooksWithPagination(ctx _context.Context, o ...Li
 // Update a notebook using the specified ID.
 func (a *NotebooksApi) UpdateNotebook(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (NotebookResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarReturnValue  NotebookResponse
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue NotebookResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.NotebooksApi.UpdateNotebook")
 	if err != nil {
@@ -495,11 +483,9 @@ func (a *NotebooksApi) UpdateNotebook(ctx _context.Context, notebookId int64, bo
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -522,11 +508,10 @@ func (a *NotebooksApi) UpdateNotebook(ctx _context.Context, notebookId int64, bo
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 409||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -540,7 +525,7 @@ func (a *NotebooksApi) UpdateNotebook(ctx _context.Context, notebookId int64, bo
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

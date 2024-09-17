@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ScalarFormulaRequest A single scalar query to be executed.
 type ScalarFormulaRequest struct {
@@ -21,10 +17,9 @@ type ScalarFormulaRequest struct {
 	// The type of the resource. The value should always be scalar_request.
 	Type ScalarFormulaRequestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewScalarFormulaRequest instantiates a new ScalarFormulaRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewScalarFormulaRequestWithDefaults() *ScalarFormulaRequest {
 	this.Type = typeVar
 	return &this
 }
+
 // GetAttributes returns the Attributes field value.
 func (o *ScalarFormulaRequest) GetAttributes() ScalarFormulaRequestAttributes {
 	if o == nil {
@@ -68,7 +64,6 @@ func (o *ScalarFormulaRequest) GetAttributesOk() (*ScalarFormulaRequestAttribute
 func (o *ScalarFormulaRequest) SetAttributes(v ScalarFormulaRequestAttributes) {
 	o.Attributes = v
 }
-
 
 // GetType returns the Type field value.
 func (o *ScalarFormulaRequest) GetType() ScalarFormulaRequestType {
@@ -93,8 +88,6 @@ func (o *ScalarFormulaRequest) SetType(v ScalarFormulaRequestType) {
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ScalarFormulaRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +107,7 @@ func (o ScalarFormulaRequest) MarshalJSON() ([]byte, error) {
 func (o *ScalarFormulaRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *ScalarFormulaRequestAttributes `json:"attributes"`
-		Type *ScalarFormulaRequestType `json:"type"`
+		Type       *ScalarFormulaRequestType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -127,7 +120,7 @@ func (o *ScalarFormulaRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
 	} else {
 		return err
 	}

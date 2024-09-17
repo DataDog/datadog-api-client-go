@@ -2,14 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadog
 
 import (
 	"bytes"
-	"context"
-	"compress/zlib"
 	"compress/gzip"
+	"compress/zlib"
+	"context"
 	"encoding/xml"
 	"errors"
 	"fmt"
@@ -27,7 +26,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"unicode/utf8"
 
 	"golang.org/x/oauth2"
 )
@@ -41,14 +39,14 @@ var (
 // APIClient manages communication with the Datadog API V2 Collection API v1.0.
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
-	Cfg    *Configuration
+	Cfg *Configuration
 }
 
 // FormFile holds parameters for a file in multipart/form-data request.
 type FormFile struct {
 	FormFileName string
-	FileName string
-	FileBytes []byte
+	FileName     string
+	FileBytes    []byte
 }
 
 // Service holds APIClient
@@ -182,7 +180,7 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 	}
 }
 
-// Determine if a request should be retried 
+// Determine if a request should be retried
 func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) (*time.Duration, bool) {
 	enableRetry := c.Cfg.RetryConfiguration.EnableRetry
 	maxRetries := c.Cfg.RetryConfiguration.MaxRetries
@@ -519,9 +517,9 @@ func detectContentType(body interface{}) string {
 
 // GenericOpenAPIError Provides access to the body, error and model on returned errors.
 type GenericOpenAPIError struct {
-	ErrorBody  []byte
+	ErrorBody    []byte
 	ErrorMessage string
-	ErrorModel interface{}
+	ErrorModel   interface{}
 }
 
 // Error returns non-empty string if there was an error.

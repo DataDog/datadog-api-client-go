@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // HostListResponse Response with Host information from Datadog.
 type HostListResponse struct {
@@ -23,10 +17,9 @@ type HostListResponse struct {
 	// Number of host returned.
 	TotalReturned *int64 `json:"total_returned,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewHostListResponse instantiates a new HostListResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +37,7 @@ func NewHostListResponseWithDefaults() *HostListResponse {
 	this := HostListResponse{}
 	return &this
 }
+
 // GetHostList returns the HostList field value if set, zero value otherwise.
 func (o *HostListResponse) GetHostList() []Host {
 	if o == nil || o.HostList == nil {
@@ -71,7 +65,6 @@ func (o *HostListResponse) HasHostList() bool {
 func (o *HostListResponse) SetHostList(v []Host) {
 	o.HostList = v
 }
-
 
 // GetTotalMatching returns the TotalMatching field value if set, zero value otherwise.
 func (o *HostListResponse) GetTotalMatching() int64 {
@@ -101,7 +94,6 @@ func (o *HostListResponse) SetTotalMatching(v int64) {
 	o.TotalMatching = &v
 }
 
-
 // GetTotalReturned returns the TotalReturned field value if set, zero value otherwise.
 func (o *HostListResponse) GetTotalReturned() int64 {
 	if o == nil || o.TotalReturned == nil {
@@ -130,8 +122,6 @@ func (o *HostListResponse) SetTotalReturned(v int64) {
 	o.TotalReturned = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o HostListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -157,7 +147,7 @@ func (o HostListResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HostListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		HostList []Host `json:"host_list,omitempty"`
+		HostList      []Host `json:"host_list,omitempty"`
 		TotalMatching *int64 `json:"total_matching,omitempty"`
 		TotalReturned *int64 `json:"total_returned,omitempty"`
 	}{}
@@ -166,7 +156,7 @@ func (o *HostListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "host_list", "total_matching", "total_returned",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"host_list", "total_matching", "total_returned"})
 	} else {
 		return err
 	}

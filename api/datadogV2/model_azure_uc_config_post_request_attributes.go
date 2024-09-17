@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // AzureUCConfigPostRequestAttributes Attributes for Azure config Post Request.
 type AzureUCConfigPostRequestAttributes struct {
@@ -29,10 +25,9 @@ type AzureUCConfigPostRequestAttributes struct {
 	// The scope of your observed subscription.
 	Scope string `json:"scope"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewAzureUCConfigPostRequestAttributes instantiates a new AzureUCConfigPostRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -55,6 +50,7 @@ func NewAzureUCConfigPostRequestAttributesWithDefaults() *AzureUCConfigPostReque
 	this := AzureUCConfigPostRequestAttributes{}
 	return &this
 }
+
 // GetAccountId returns the AccountId field value.
 func (o *AzureUCConfigPostRequestAttributes) GetAccountId() string {
 	if o == nil {
@@ -77,7 +73,6 @@ func (o *AzureUCConfigPostRequestAttributes) GetAccountIdOk() (*string, bool) {
 func (o *AzureUCConfigPostRequestAttributes) SetAccountId(v string) {
 	o.AccountId = v
 }
-
 
 // GetActualBillConfig returns the ActualBillConfig field value.
 func (o *AzureUCConfigPostRequestAttributes) GetActualBillConfig() BillConfig {
@@ -102,7 +97,6 @@ func (o *AzureUCConfigPostRequestAttributes) SetActualBillConfig(v BillConfig) {
 	o.ActualBillConfig = v
 }
 
-
 // GetAmortizedBillConfig returns the AmortizedBillConfig field value.
 func (o *AzureUCConfigPostRequestAttributes) GetAmortizedBillConfig() BillConfig {
 	if o == nil {
@@ -126,7 +120,6 @@ func (o *AzureUCConfigPostRequestAttributes) SetAmortizedBillConfig(v BillConfig
 	o.AmortizedBillConfig = v
 }
 
-
 // GetClientId returns the ClientId field value.
 func (o *AzureUCConfigPostRequestAttributes) GetClientId() string {
 	if o == nil {
@@ -149,7 +142,6 @@ func (o *AzureUCConfigPostRequestAttributes) GetClientIdOk() (*string, bool) {
 func (o *AzureUCConfigPostRequestAttributes) SetClientId(v string) {
 	o.ClientId = v
 }
-
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *AzureUCConfigPostRequestAttributes) GetIsEnabled() bool {
@@ -179,7 +171,6 @@ func (o *AzureUCConfigPostRequestAttributes) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
-
 // GetScope returns the Scope field value.
 func (o *AzureUCConfigPostRequestAttributes) GetScope() string {
 	if o == nil {
@@ -202,8 +193,6 @@ func (o *AzureUCConfigPostRequestAttributes) GetScopeOk() (*string, bool) {
 func (o *AzureUCConfigPostRequestAttributes) SetScope(v string) {
 	o.Scope = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AzureUCConfigPostRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -229,12 +218,12 @@ func (o AzureUCConfigPostRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AzureUCConfigPostRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountId *string `json:"account_id"`
-		ActualBillConfig *BillConfig `json:"actual_bill_config"`
+		AccountId           *string     `json:"account_id"`
+		ActualBillConfig    *BillConfig `json:"actual_bill_config"`
 		AmortizedBillConfig *BillConfig `json:"amortized_bill_config"`
-		ClientId *string `json:"client_id"`
-		IsEnabled *bool `json:"is_enabled,omitempty"`
-		Scope *string `json:"scope"`
+		ClientId            *string     `json:"client_id"`
+		IsEnabled           *bool       `json:"is_enabled,omitempty"`
+		Scope               *string     `json:"scope"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -256,7 +245,7 @@ func (o *AzureUCConfigPostRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "account_id", "actual_bill_config", "amortized_bill_config", "client_id", "is_enabled", "scope",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "actual_bill_config", "amortized_bill_config", "client_id", "is_enabled", "scope"})
 	} else {
 		return err
 	}

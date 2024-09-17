@@ -2,27 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsTriggerBody Object describing the Synthetic tests to trigger.
 type SyntheticsTriggerBody struct {
 	// Individual Synthetic test.
 	Tests []SyntheticsTriggerTest `json:"tests"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsTriggerBody instantiates a new SyntheticsTriggerBody object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,6 +36,7 @@ func NewSyntheticsTriggerBodyWithDefaults() *SyntheticsTriggerBody {
 	this := SyntheticsTriggerBody{}
 	return &this
 }
+
 // GetTests returns the Tests field value.
 func (o *SyntheticsTriggerBody) GetTests() []SyntheticsTriggerTest {
 	if o == nil {
@@ -63,8 +59,6 @@ func (o *SyntheticsTriggerBody) GetTestsOk() (*[]SyntheticsTriggerTest, bool) {
 func (o *SyntheticsTriggerBody) SetTests(v []SyntheticsTriggerTest) {
 	o.Tests = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTriggerBody) MarshalJSON() ([]byte, error) {
@@ -93,7 +87,7 @@ func (o *SyntheticsTriggerBody) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "tests",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"tests"})
 	} else {
 		return err
 	}

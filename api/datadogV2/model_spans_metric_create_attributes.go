@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SpansMetricCreateAttributes The object describing the Datadog span-based metric to create.
 type SpansMetricCreateAttributes struct {
@@ -23,10 +19,9 @@ type SpansMetricCreateAttributes struct {
 	// The rules for the group by.
 	GroupBy []SpansMetricGroupBy `json:"group_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSpansMetricCreateAttributes instantiates a new SpansMetricCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,6 +40,7 @@ func NewSpansMetricCreateAttributesWithDefaults() *SpansMetricCreateAttributes {
 	this := SpansMetricCreateAttributes{}
 	return &this
 }
+
 // GetCompute returns the Compute field value.
 func (o *SpansMetricCreateAttributes) GetCompute() SpansMetricCompute {
 	if o == nil {
@@ -67,7 +63,6 @@ func (o *SpansMetricCreateAttributes) GetComputeOk() (*SpansMetricCompute, bool)
 func (o *SpansMetricCreateAttributes) SetCompute(v SpansMetricCompute) {
 	o.Compute = v
 }
-
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *SpansMetricCreateAttributes) GetFilter() SpansMetricFilter {
@@ -97,7 +92,6 @@ func (o *SpansMetricCreateAttributes) SetFilter(v SpansMetricFilter) {
 	o.Filter = &v
 }
 
-
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *SpansMetricCreateAttributes) GetGroupBy() []SpansMetricGroupBy {
 	if o == nil || o.GroupBy == nil {
@@ -126,8 +120,6 @@ func (o *SpansMetricCreateAttributes) SetGroupBy(v []SpansMetricGroupBy) {
 	o.GroupBy = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SpansMetricCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -151,8 +143,8 @@ func (o SpansMetricCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SpansMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Compute *SpansMetricCompute `json:"compute"`
-		Filter *SpansMetricFilter `json:"filter,omitempty"`
+		Compute *SpansMetricCompute  `json:"compute"`
+		Filter  *SpansMetricFilter   `json:"filter,omitempty"`
 		GroupBy []SpansMetricGroupBy `json:"group_by,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -163,7 +155,7 @@ func (o *SpansMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "compute", "filter", "group_by",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "filter", "group_by"})
 	} else {
 		return err
 	}
@@ -173,7 +165,7 @@ func (o *SpansMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Compute = *all.Compute
-	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter

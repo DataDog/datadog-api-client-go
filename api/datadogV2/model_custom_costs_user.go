@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // CustomCostsUser Metadata of the user that has uploaded the Custom Costs file.
 type CustomCostsUser struct {
@@ -23,10 +17,9 @@ type CustomCostsUser struct {
 	// Name of the user.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewCustomCostsUser instantiates a new CustomCostsUser object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +37,7 @@ func NewCustomCostsUserWithDefaults() *CustomCostsUser {
 	this := CustomCostsUser{}
 	return &this
 }
+
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *CustomCostsUser) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -71,7 +65,6 @@ func (o *CustomCostsUser) HasEmail() bool {
 func (o *CustomCostsUser) SetEmail(v string) {
 	o.Email = &v
 }
-
 
 // GetIcon returns the Icon field value if set, zero value otherwise.
 func (o *CustomCostsUser) GetIcon() string {
@@ -101,7 +94,6 @@ func (o *CustomCostsUser) SetIcon(v string) {
 	o.Icon = &v
 }
 
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CustomCostsUser) GetName() string {
 	if o == nil || o.Name == nil {
@@ -130,8 +122,6 @@ func (o *CustomCostsUser) SetName(v string) {
 	o.Name = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomCostsUser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -158,15 +148,15 @@ func (o CustomCostsUser) MarshalJSON() ([]byte, error) {
 func (o *CustomCostsUser) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Email *string `json:"email,omitempty"`
-		Icon *string `json:"icon,omitempty"`
-		Name *string `json:"name,omitempty"`
+		Icon  *string `json:"icon,omitempty"`
+		Name  *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "email", "icon", "name",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"email", "icon", "name"})
 	} else {
 		return err
 	}

@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // AuditLogsEventAttributes JSON object containing all event attributes and their associated values.
 type AuditLogsEventAttributes struct {
@@ -29,10 +25,9 @@ type AuditLogsEventAttributes struct {
 	// Timestamp of your event.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewAuditLogsEventAttributes instantiates a new AuditLogsEventAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +45,7 @@ func NewAuditLogsEventAttributesWithDefaults() *AuditLogsEventAttributes {
 	this := AuditLogsEventAttributes{}
 	return &this
 }
+
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *AuditLogsEventAttributes) GetAttributes() map[string]interface{} {
 	if o == nil || o.Attributes == nil {
@@ -77,7 +73,6 @@ func (o *AuditLogsEventAttributes) HasAttributes() bool {
 func (o *AuditLogsEventAttributes) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
-
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *AuditLogsEventAttributes) GetMessage() string {
@@ -107,7 +102,6 @@ func (o *AuditLogsEventAttributes) SetMessage(v string) {
 	o.Message = &v
 }
 
-
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *AuditLogsEventAttributes) GetService() string {
 	if o == nil || o.Service == nil {
@@ -135,7 +129,6 @@ func (o *AuditLogsEventAttributes) HasService() bool {
 func (o *AuditLogsEventAttributes) SetService(v string) {
 	o.Service = &v
 }
-
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *AuditLogsEventAttributes) GetTags() []string {
@@ -165,7 +158,6 @@ func (o *AuditLogsEventAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
-
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *AuditLogsEventAttributes) GetTimestamp() time.Time {
 	if o == nil || o.Timestamp == nil {
@@ -193,8 +185,6 @@ func (o *AuditLogsEventAttributes) HasTimestamp() bool {
 func (o *AuditLogsEventAttributes) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AuditLogsEventAttributes) MarshalJSON() ([]byte, error) {
@@ -232,17 +222,17 @@ func (o AuditLogsEventAttributes) MarshalJSON() ([]byte, error) {
 func (o *AuditLogsEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes map[string]interface{} `json:"attributes,omitempty"`
-		Message *string `json:"message,omitempty"`
-		Service *string `json:"service,omitempty"`
-		Tags []string `json:"tags,omitempty"`
-		Timestamp *time.Time `json:"timestamp,omitempty"`
+		Message    *string                `json:"message,omitempty"`
+		Service    *string                `json:"service,omitempty"`
+		Tags       []string               `json:"tags,omitempty"`
+		Timestamp  *time.Time             `json:"timestamp,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "message", "service", "tags", "timestamp",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "message", "service", "tags", "timestamp"})
 	} else {
 		return err
 	}

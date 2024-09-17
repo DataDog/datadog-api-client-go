@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // EntityV3MetadataOwner The owner of the entity, usually a team
 type EntityV3MetadataOwner struct {
@@ -21,7 +15,6 @@ type EntityV3MetadataOwner struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
-
 
 // NewEntityV3MetadataOwner instantiates a new EntityV3MetadataOwner object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,6 +32,7 @@ func NewEntityV3MetadataOwnerWithDefaults() *EntityV3MetadataOwner {
 	this := EntityV3MetadataOwner{}
 	return &this
 }
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *EntityV3MetadataOwner) GetName() string {
 	if o == nil || o.Name == nil {
@@ -66,8 +60,6 @@ func (o *EntityV3MetadataOwner) HasName() bool {
 func (o *EntityV3MetadataOwner) SetName(v string) {
 	o.Name = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3MetadataOwner) MarshalJSON() ([]byte, error) {

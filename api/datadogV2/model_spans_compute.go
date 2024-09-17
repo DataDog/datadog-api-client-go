@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SpansCompute A compute rule to compute metrics or timeseries.
 type SpansCompute struct {
@@ -26,10 +22,9 @@ type SpansCompute struct {
 	// The type of compute.
 	Type *SpansComputeType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSpansCompute instantiates a new SpansCompute object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,6 +47,7 @@ func NewSpansComputeWithDefaults() *SpansCompute {
 	this.Type = &typeVar
 	return &this
 }
+
 // GetAggregation returns the Aggregation field value.
 func (o *SpansCompute) GetAggregation() SpansAggregationFunction {
 	if o == nil {
@@ -74,7 +70,6 @@ func (o *SpansCompute) GetAggregationOk() (*SpansAggregationFunction, bool) {
 func (o *SpansCompute) SetAggregation(v SpansAggregationFunction) {
 	o.Aggregation = v
 }
-
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *SpansCompute) GetInterval() string {
@@ -104,7 +99,6 @@ func (o *SpansCompute) SetInterval(v string) {
 	o.Interval = &v
 }
 
-
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *SpansCompute) GetMetric() string {
 	if o == nil || o.Metric == nil {
@@ -132,7 +126,6 @@ func (o *SpansCompute) HasMetric() bool {
 func (o *SpansCompute) SetMetric(v string) {
 	o.Metric = &v
 }
-
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SpansCompute) GetType() SpansComputeType {
@@ -162,8 +155,6 @@ func (o *SpansCompute) SetType(v SpansComputeType) {
 	o.Type = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SpansCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -191,9 +182,9 @@ func (o SpansCompute) MarshalJSON() ([]byte, error) {
 func (o *SpansCompute) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Aggregation *SpansAggregationFunction `json:"aggregation"`
-		Interval *string `json:"interval,omitempty"`
-		Metric *string `json:"metric,omitempty"`
-		Type *SpansComputeType `json:"type,omitempty"`
+		Interval    *string                   `json:"interval,omitempty"`
+		Metric      *string                   `json:"metric,omitempty"`
+		Type        *SpansComputeType         `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -203,7 +194,7 @@ func (o *SpansCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation", "interval", "metric", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "interval", "metric", "type"})
 	} else {
 		return err
 	}
@@ -216,7 +207,7 @@ func (o *SpansCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Interval = all.Interval
 	o.Metric = all.Metric
-	if all.Type != nil &&!all.Type.IsValid() {
+	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // RestrictionPolicyBinding Specifies which principals are associated with a relation.
 type RestrictionPolicyBinding struct {
@@ -24,10 +20,9 @@ type RestrictionPolicyBinding struct {
 	// The role/level of access.
 	Relation string `json:"relation"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewRestrictionPolicyBinding instantiates a new RestrictionPolicyBinding object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,6 +42,7 @@ func NewRestrictionPolicyBindingWithDefaults() *RestrictionPolicyBinding {
 	this := RestrictionPolicyBinding{}
 	return &this
 }
+
 // GetPrincipals returns the Principals field value.
 func (o *RestrictionPolicyBinding) GetPrincipals() []string {
 	if o == nil {
@@ -69,7 +65,6 @@ func (o *RestrictionPolicyBinding) GetPrincipalsOk() (*[]string, bool) {
 func (o *RestrictionPolicyBinding) SetPrincipals(v []string) {
 	o.Principals = v
 }
-
 
 // GetRelation returns the Relation field value.
 func (o *RestrictionPolicyBinding) GetRelation() string {
@@ -94,8 +89,6 @@ func (o *RestrictionPolicyBinding) SetRelation(v string) {
 	o.Relation = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o RestrictionPolicyBinding) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,7 +108,7 @@ func (o RestrictionPolicyBinding) MarshalJSON() ([]byte, error) {
 func (o *RestrictionPolicyBinding) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Principals *[]string `json:"principals"`
-		Relation *string `json:"relation"`
+		Relation   *string   `json:"relation"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -128,7 +121,7 @@ func (o *RestrictionPolicyBinding) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "principals", "relation",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"principals", "relation"})
 	} else {
 		return err
 	}

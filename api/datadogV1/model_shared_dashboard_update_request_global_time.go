@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SharedDashboardUpdateRequestGlobalTime Timeframe setting for the shared dashboard.
 type SharedDashboardUpdateRequestGlobalTime struct {
 	// Dashboard global time live_span selection
 	LiveSpan *DashboardGlobalTimeLiveSpan `json:"live_span,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSharedDashboardUpdateRequestGlobalTime instantiates a new SharedDashboardUpdateRequestGlobalTime object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewSharedDashboardUpdateRequestGlobalTimeWithDefaults() *SharedDashboardUpd
 	this := SharedDashboardUpdateRequestGlobalTime{}
 	return &this
 }
+
 // GetLiveSpan returns the LiveSpan field value if set, zero value otherwise.
 func (o *SharedDashboardUpdateRequestGlobalTime) GetLiveSpan() DashboardGlobalTimeLiveSpan {
 	if o == nil || o.LiveSpan == nil {
@@ -68,8 +62,6 @@ func (o *SharedDashboardUpdateRequestGlobalTime) SetLiveSpan(v DashboardGlobalTi
 	o.LiveSpan = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SharedDashboardUpdateRequestGlobalTime) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,13 +88,13 @@ func (o *SharedDashboardUpdateRequestGlobalTime) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "live_span",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"live_span"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.LiveSpan != nil &&!all.LiveSpan.IsValid() {
+	if all.LiveSpan != nil && !all.LiveSpan.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.LiveSpan = all.LiveSpan
@@ -118,6 +110,7 @@ func (o *SharedDashboardUpdateRequestGlobalTime) UnmarshalJSON(bytes []byte) (er
 
 	return nil
 }
+
 // NullableSharedDashboardUpdateRequestGlobalTime handles when a null is used for SharedDashboardUpdateRequestGlobalTime.
 type NullableSharedDashboardUpdateRequestGlobalTime struct {
 	value *SharedDashboardUpdateRequestGlobalTime

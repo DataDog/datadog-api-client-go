@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // EntityV3DatadogPipelines CI Pipelines association
 type EntityV3DatadogPipelines struct {
@@ -21,7 +15,6 @@ type EntityV3DatadogPipelines struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
-
 
 // NewEntityV3DatadogPipelines instantiates a new EntityV3DatadogPipelines object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,6 +32,7 @@ func NewEntityV3DatadogPipelinesWithDefaults() *EntityV3DatadogPipelines {
 	this := EntityV3DatadogPipelines{}
 	return &this
 }
+
 // GetFingerprints returns the Fingerprints field value if set, zero value otherwise.
 func (o *EntityV3DatadogPipelines) GetFingerprints() []string {
 	if o == nil || o.Fingerprints == nil {
@@ -66,8 +60,6 @@ func (o *EntityV3DatadogPipelines) HasFingerprints() bool {
 func (o *EntityV3DatadogPipelines) SetFingerprints(v []string) {
 	o.Fingerprints = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3DatadogPipelines) MarshalJSON() ([]byte, error) {

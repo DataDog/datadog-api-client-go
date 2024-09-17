@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // RUMResponseMetadata The metadata associated with a request.
 type RUMResponseMetadata struct {
@@ -28,10 +22,9 @@ type RUMResponseMetadata struct {
 	// warnings are present in the response.
 	Warnings []RUMWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewRUMResponseMetadata instantiates a new RUMResponseMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,6 +42,7 @@ func NewRUMResponseMetadataWithDefaults() *RUMResponseMetadata {
 	this := RUMResponseMetadata{}
 	return &this
 }
+
 // GetElapsed returns the Elapsed field value if set, zero value otherwise.
 func (o *RUMResponseMetadata) GetElapsed() int64 {
 	if o == nil || o.Elapsed == nil {
@@ -76,7 +70,6 @@ func (o *RUMResponseMetadata) HasElapsed() bool {
 func (o *RUMResponseMetadata) SetElapsed(v int64) {
 	o.Elapsed = &v
 }
-
 
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *RUMResponseMetadata) GetPage() RUMResponsePage {
@@ -106,7 +99,6 @@ func (o *RUMResponseMetadata) SetPage(v RUMResponsePage) {
 	o.Page = &v
 }
 
-
 // GetRequestId returns the RequestId field value if set, zero value otherwise.
 func (o *RUMResponseMetadata) GetRequestId() string {
 	if o == nil || o.RequestId == nil {
@@ -134,7 +126,6 @@ func (o *RUMResponseMetadata) HasRequestId() bool {
 func (o *RUMResponseMetadata) SetRequestId(v string) {
 	o.RequestId = &v
 }
-
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *RUMResponseMetadata) GetStatus() RUMResponseStatus {
@@ -164,7 +155,6 @@ func (o *RUMResponseMetadata) SetStatus(v RUMResponseStatus) {
 	o.Status = &v
 }
 
-
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
 func (o *RUMResponseMetadata) GetWarnings() []RUMWarning {
 	if o == nil || o.Warnings == nil {
@@ -192,8 +182,6 @@ func (o *RUMResponseMetadata) HasWarnings() bool {
 func (o *RUMResponseMetadata) SetWarnings(v []RUMWarning) {
 	o.Warnings = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMResponseMetadata) MarshalJSON() ([]byte, error) {
@@ -226,30 +214,30 @@ func (o RUMResponseMetadata) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Elapsed *int64 `json:"elapsed,omitempty"`
-		Page *RUMResponsePage `json:"page,omitempty"`
-		RequestId *string `json:"request_id,omitempty"`
-		Status *RUMResponseStatus `json:"status,omitempty"`
-		Warnings []RUMWarning `json:"warnings,omitempty"`
+		Elapsed   *int64             `json:"elapsed,omitempty"`
+		Page      *RUMResponsePage   `json:"page,omitempty"`
+		RequestId *string            `json:"request_id,omitempty"`
+		Status    *RUMResponseStatus `json:"status,omitempty"`
+		Warnings  []RUMWarning       `json:"warnings,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "elapsed", "page", "request_id", "status", "warnings",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"elapsed", "page", "request_id", "status", "warnings"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Elapsed = all.Elapsed
-	if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Page = all.Page
 	o.RequestId = all.RequestId
-	if all.Status != nil &&!all.Status.IsValid() {
+	if all.Status != nil && !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

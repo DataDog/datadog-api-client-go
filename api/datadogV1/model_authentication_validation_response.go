@@ -2,27 +2,20 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // AuthenticationValidationResponse Represent validation endpoint responses.
 type AuthenticationValidationResponse struct {
 	// Return `true` if the authentication response is valid.
 	Valid *bool `json:"valid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewAuthenticationValidationResponse instantiates a new AuthenticationValidationResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,6 +33,7 @@ func NewAuthenticationValidationResponseWithDefaults() *AuthenticationValidation
 	this := AuthenticationValidationResponse{}
 	return &this
 }
+
 // GetValid returns the Valid field value if set, zero value otherwise.
 func (o *AuthenticationValidationResponse) GetValid() bool {
 	if o == nil || o.Valid == nil {
@@ -68,8 +62,6 @@ func (o *AuthenticationValidationResponse) SetValid(v bool) {
 	o.Valid = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o AuthenticationValidationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -96,7 +88,7 @@ func (o *AuthenticationValidationResponse) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "valid",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"valid"})
 	} else {
 		return err
 	}

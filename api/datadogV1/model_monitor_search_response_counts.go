@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // MonitorSearchResponseCounts The counts of monitors per different criteria.
 type MonitorSearchResponseCounts struct {
@@ -25,10 +19,9 @@ type MonitorSearchResponseCounts struct {
 	// Search facets.
 	Type []MonitorSearchCountItem `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewMonitorSearchResponseCounts instantiates a new MonitorSearchResponseCounts object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +39,7 @@ func NewMonitorSearchResponseCountsWithDefaults() *MonitorSearchResponseCounts {
 	this := MonitorSearchResponseCounts{}
 	return &this
 }
+
 // GetMuted returns the Muted field value if set, zero value otherwise.
 func (o *MonitorSearchResponseCounts) GetMuted() []MonitorSearchCountItem {
 	if o == nil || o.Muted == nil {
@@ -73,7 +67,6 @@ func (o *MonitorSearchResponseCounts) HasMuted() bool {
 func (o *MonitorSearchResponseCounts) SetMuted(v []MonitorSearchCountItem) {
 	o.Muted = v
 }
-
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *MonitorSearchResponseCounts) GetStatus() []MonitorSearchCountItem {
@@ -103,7 +96,6 @@ func (o *MonitorSearchResponseCounts) SetStatus(v []MonitorSearchCountItem) {
 	o.Status = v
 }
 
-
 // GetTag returns the Tag field value if set, zero value otherwise.
 func (o *MonitorSearchResponseCounts) GetTag() []MonitorSearchCountItem {
 	if o == nil || o.Tag == nil {
@@ -131,7 +123,6 @@ func (o *MonitorSearchResponseCounts) HasTag() bool {
 func (o *MonitorSearchResponseCounts) SetTag(v []MonitorSearchCountItem) {
 	o.Tag = v
 }
-
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MonitorSearchResponseCounts) GetType() []MonitorSearchCountItem {
@@ -161,8 +152,6 @@ func (o *MonitorSearchResponseCounts) SetType(v []MonitorSearchCountItem) {
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorSearchResponseCounts) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -191,17 +180,17 @@ func (o MonitorSearchResponseCounts) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorSearchResponseCounts) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Muted []MonitorSearchCountItem `json:"muted,omitempty"`
+		Muted  []MonitorSearchCountItem `json:"muted,omitempty"`
 		Status []MonitorSearchCountItem `json:"status,omitempty"`
-		Tag []MonitorSearchCountItem `json:"tag,omitempty"`
-		Type []MonitorSearchCountItem `json:"type,omitempty"`
+		Tag    []MonitorSearchCountItem `json:"tag,omitempty"`
+		Type   []MonitorSearchCountItem `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "muted", "status", "tag", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"muted", "status", "tag", "type"})
 	} else {
 		return err
 	}

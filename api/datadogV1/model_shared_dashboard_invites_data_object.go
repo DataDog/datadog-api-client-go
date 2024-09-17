@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SharedDashboardInvitesDataObject Object containing the information for an invitation to a shared dashboard.
 type SharedDashboardInvitesDataObject struct {
@@ -21,10 +17,9 @@ type SharedDashboardInvitesDataObject struct {
 	// Type for shared dashboard invitation request body.
 	Type DashboardInviteType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSharedDashboardInvitesDataObject instantiates a new SharedDashboardInvitesDataObject object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewSharedDashboardInvitesDataObjectWithDefaults() *SharedDashboardInvitesDa
 	this := SharedDashboardInvitesDataObject{}
 	return &this
 }
+
 // GetAttributes returns the Attributes field value.
 func (o *SharedDashboardInvitesDataObject) GetAttributes() SharedDashboardInvitesDataObjectAttributes {
 	if o == nil {
@@ -66,7 +62,6 @@ func (o *SharedDashboardInvitesDataObject) GetAttributesOk() (*SharedDashboardIn
 func (o *SharedDashboardInvitesDataObject) SetAttributes(v SharedDashboardInvitesDataObjectAttributes) {
 	o.Attributes = v
 }
-
 
 // GetType returns the Type field value.
 func (o *SharedDashboardInvitesDataObject) GetType() DashboardInviteType {
@@ -91,8 +86,6 @@ func (o *SharedDashboardInvitesDataObject) SetType(v DashboardInviteType) {
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SharedDashboardInvitesDataObject) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -112,7 +105,7 @@ func (o SharedDashboardInvitesDataObject) MarshalJSON() ([]byte, error) {
 func (o *SharedDashboardInvitesDataObject) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *SharedDashboardInvitesDataObjectAttributes `json:"attributes"`
-		Type *DashboardInviteType `json:"type"`
+		Type       *DashboardInviteType                        `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -125,7 +118,7 @@ func (o *SharedDashboardInvitesDataObject) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
 	} else {
 		return err
 	}

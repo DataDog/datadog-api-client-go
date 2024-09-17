@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"bytes"
 	_context "context"
-	_fmt "fmt"
-	_io "io"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -24,11 +20,9 @@ type SoftwareCatalogApi datadog.Service
 // Delete a single entity in Software Catalog.
 func (a *SoftwareCatalogApi) DeleteCatalogEntity(ctx _context.Context, entityId string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SoftwareCatalogApi.DeleteCatalogEntity")
 	if err != nil {
@@ -41,10 +35,9 @@ func (a *SoftwareCatalogApi) DeleteCatalogEntity(ctx _context.Context, entityId 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] =  "*/*"
+	localVarHeaderParams["Accept"] = "*/*"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -67,11 +60,10 @@ func (a *SoftwareCatalogApi) DeleteCatalogEntity(ctx _context.Context, entityId 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -87,16 +79,16 @@ func (a *SoftwareCatalogApi) DeleteCatalogEntity(ctx _context.Context, entityId 
 
 // ListCatalogEntityOptionalParameters holds optional parameters for ListCatalogEntity.
 type ListCatalogEntityOptionalParameters struct {
-	PageOffset *int64
-	PageLimit *int64
-	FitlerId *string
-	FitlerRef *string
-	FitlerName *string
-	FitlerKind *string
-	FitlerOwner *string
-	FitlerRelationType *RelationType
+	PageOffset            *int64
+	PageLimit             *int64
+	FitlerId              *string
+	FitlerRef             *string
+	FitlerName            *string
+	FitlerKind            *string
+	FitlerOwner           *string
+	FitlerRelationType    *RelationType
 	FitlerExcludeSnapshot *string
-	Include *IncludeType
+	Include               *IncludeType
 }
 
 // NewListCatalogEntityOptionalParameters creates an empty struct for parameters.
@@ -104,51 +96,61 @@ func NewListCatalogEntityOptionalParameters() *ListCatalogEntityOptionalParamete
 	this := ListCatalogEntityOptionalParameters{}
 	return &this
 }
+
 // WithPageOffset sets the corresponding parameter name and returns the struct.
 func (r *ListCatalogEntityOptionalParameters) WithPageOffset(pageOffset int64) *ListCatalogEntityOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
+
 // WithPageLimit sets the corresponding parameter name and returns the struct.
 func (r *ListCatalogEntityOptionalParameters) WithPageLimit(pageLimit int64) *ListCatalogEntityOptionalParameters {
 	r.PageLimit = &pageLimit
 	return r
 }
+
 // WithFitlerId sets the corresponding parameter name and returns the struct.
 func (r *ListCatalogEntityOptionalParameters) WithFitlerId(fitlerId string) *ListCatalogEntityOptionalParameters {
 	r.FitlerId = &fitlerId
 	return r
 }
+
 // WithFitlerRef sets the corresponding parameter name and returns the struct.
 func (r *ListCatalogEntityOptionalParameters) WithFitlerRef(fitlerRef string) *ListCatalogEntityOptionalParameters {
 	r.FitlerRef = &fitlerRef
 	return r
 }
+
 // WithFitlerName sets the corresponding parameter name and returns the struct.
 func (r *ListCatalogEntityOptionalParameters) WithFitlerName(fitlerName string) *ListCatalogEntityOptionalParameters {
 	r.FitlerName = &fitlerName
 	return r
 }
+
 // WithFitlerKind sets the corresponding parameter name and returns the struct.
 func (r *ListCatalogEntityOptionalParameters) WithFitlerKind(fitlerKind string) *ListCatalogEntityOptionalParameters {
 	r.FitlerKind = &fitlerKind
 	return r
 }
+
 // WithFitlerOwner sets the corresponding parameter name and returns the struct.
 func (r *ListCatalogEntityOptionalParameters) WithFitlerOwner(fitlerOwner string) *ListCatalogEntityOptionalParameters {
 	r.FitlerOwner = &fitlerOwner
 	return r
 }
+
 // WithFitlerRelationType sets the corresponding parameter name and returns the struct.
 func (r *ListCatalogEntityOptionalParameters) WithFitlerRelationType(fitlerRelationType RelationType) *ListCatalogEntityOptionalParameters {
 	r.FitlerRelationType = &fitlerRelationType
 	return r
 }
+
 // WithFitlerExcludeSnapshot sets the corresponding parameter name and returns the struct.
 func (r *ListCatalogEntityOptionalParameters) WithFitlerExcludeSnapshot(fitlerExcludeSnapshot string) *ListCatalogEntityOptionalParameters {
 	r.FitlerExcludeSnapshot = &fitlerExcludeSnapshot
 	return r
 }
+
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *ListCatalogEntityOptionalParameters) WithInclude(include IncludeType) *ListCatalogEntityOptionalParameters {
 	r.Include = &include
@@ -159,20 +161,18 @@ func (r *ListCatalogEntityOptionalParameters) WithInclude(include IncludeType) *
 // Get a list of entities from Software Catalog.
 func (a *SoftwareCatalogApi) ListCatalogEntity(ctx _context.Context, o ...ListCatalogEntityOptionalParameters) (ListEntityCatalogResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarReturnValue  ListEntityCatalogResponse
-		optionalParams ListCatalogEntityOptionalParameters
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue ListEntityCatalogResponse
+		optionalParams      ListCatalogEntityOptionalParameters
 	)
 
-    
-    if len(o) > 1 {
-        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListCatalogEntityOptionalParameters is allowed")
-    }
-    if len(o) == 1 {
-        optionalParams = o[0]
-    }
-    
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListCatalogEntityOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SoftwareCatalogApi.ListCatalogEntity")
 	if err != nil {
@@ -216,8 +216,7 @@ func (a *SoftwareCatalogApi) ListCatalogEntity(ctx _context.Context, o ...ListCa
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -240,11 +239,10 @@ func (a *SoftwareCatalogApi) ListCatalogEntity(ctx _context.Context, o ...ListCa
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -258,7 +256,7 @@ func (a *SoftwareCatalogApi) ListCatalogEntity(ctx _context.Context, o ...ListCa
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -266,6 +264,7 @@ func (a *SoftwareCatalogApi) ListCatalogEntity(ctx _context.Context, o ...ListCa
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
+
 // ListCatalogEntityWithPagination provides a paginated version of ListCatalogEntity returning a channel with all items.
 func (a *SoftwareCatalogApi) ListCatalogEntityWithPagination(ctx _context.Context, o ...ListCatalogEntityOptionalParameters) (<-chan datadog.PaginationResult[EntityData], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -277,7 +276,7 @@ func (a *SoftwareCatalogApi) ListCatalogEntityWithPagination(ctx _context.Contex
 		pageSize_ = *o[0].PageLimit
 	}
 	o[0].PageLimit = &pageSize_
-        page_ := int64(0)
+	page_ := int64(0)
 	o[0].PageOffset = &page_
 
 	items := make(chan datadog.PaginationResult[EntityData], pageSize_)
@@ -299,8 +298,8 @@ func (a *SoftwareCatalogApi) ListCatalogEntityWithPagination(ctx _context.Contex
 				select {
 				case items <- datadog.PaginationResult[EntityData]{Item: item, Error: nil}:
 				case <-ctx.Done():
-				close(items)
-				return
+					close(items)
+					return
 				}
 			}
 			if len(results) < int(pageSize_) {
@@ -318,12 +317,10 @@ func (a *SoftwareCatalogApi) ListCatalogEntityWithPagination(ctx _context.Contex
 // Create or update entities in Software Catalog.
 func (a *SoftwareCatalogApi) UpsertCatalogEntity(ctx _context.Context, body UpsertCatalogEntityRequest) (UpsertCatalogEntityResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarReturnValue  UpsertCatalogEntityResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue UpsertCatalogEntityResponse
 	)
-
-    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SoftwareCatalogApi.UpsertCatalogEntity")
 	if err != nil {
@@ -338,11 +335,9 @@ func (a *SoftwareCatalogApi) UpsertCatalogEntity(ctx _context.Context, body Upse
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	
-
 	// body params
 	localVarPostBody = &body
-        datadog.SetAuthKeys(
+	datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -365,11 +360,10 @@ func (a *SoftwareCatalogApi) UpsertCatalogEntity(ctx _context.Context, body Upse
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if
-		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -383,7 +377,7 @@ func (a *SoftwareCatalogApi) UpsertCatalogEntity(ctx _context.Context, body Upse
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:  localVarBody,
+			ErrorBody:    localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

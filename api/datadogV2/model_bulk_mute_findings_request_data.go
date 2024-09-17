@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // BulkMuteFindingsRequestData Data object containing the new bulk mute properties of the finding.
 type BulkMuteFindingsRequestData struct {
@@ -25,10 +21,9 @@ type BulkMuteFindingsRequestData struct {
 	// The JSON:API type for findings.
 	Type FindingType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewBulkMuteFindingsRequestData instantiates a new BulkMuteFindingsRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,6 +47,7 @@ func NewBulkMuteFindingsRequestDataWithDefaults() *BulkMuteFindingsRequestData {
 	this.Type = typeVar
 	return &this
 }
+
 // GetAttributes returns the Attributes field value.
 func (o *BulkMuteFindingsRequestData) GetAttributes() BulkMuteFindingsRequestAttributes {
 	if o == nil {
@@ -74,7 +70,6 @@ func (o *BulkMuteFindingsRequestData) GetAttributesOk() (*BulkMuteFindingsReques
 func (o *BulkMuteFindingsRequestData) SetAttributes(v BulkMuteFindingsRequestAttributes) {
 	o.Attributes = v
 }
-
 
 // GetId returns the Id field value.
 func (o *BulkMuteFindingsRequestData) GetId() string {
@@ -99,7 +94,6 @@ func (o *BulkMuteFindingsRequestData) SetId(v string) {
 	o.Id = v
 }
 
-
 // GetMeta returns the Meta field value.
 func (o *BulkMuteFindingsRequestData) GetMeta() BulkMuteFindingsRequestMeta {
 	if o == nil {
@@ -122,7 +116,6 @@ func (o *BulkMuteFindingsRequestData) GetMetaOk() (*BulkMuteFindingsRequestMeta,
 func (o *BulkMuteFindingsRequestData) SetMeta(v BulkMuteFindingsRequestMeta) {
 	o.Meta = v
 }
-
 
 // GetType returns the Type field value.
 func (o *BulkMuteFindingsRequestData) GetType() FindingType {
@@ -147,8 +140,6 @@ func (o *BulkMuteFindingsRequestData) SetType(v FindingType) {
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o BulkMuteFindingsRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -170,9 +161,9 @@ func (o BulkMuteFindingsRequestData) MarshalJSON() ([]byte, error) {
 func (o *BulkMuteFindingsRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *BulkMuteFindingsRequestAttributes `json:"attributes"`
-		Id *string `json:"id"`
-		Meta *BulkMuteFindingsRequestMeta `json:"meta"`
-		Type *FindingType `json:"type"`
+		Id         *string                            `json:"id"`
+		Meta       *BulkMuteFindingsRequestMeta       `json:"meta"`
+		Type       *FindingType                       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -191,7 +182,7 @@ func (o *BulkMuteFindingsRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "meta", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "meta", "type"})
 	} else {
 		return err
 	}

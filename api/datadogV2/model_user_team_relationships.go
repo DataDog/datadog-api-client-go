@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // UserTeamRelationships Relationship between membership and a user
 type UserTeamRelationships struct {
@@ -21,10 +15,9 @@ type UserTeamRelationships struct {
 	// Relationship between team membership and user
 	User *RelationshipToUserTeamUser `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewUserTeamRelationships instantiates a new UserTeamRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewUserTeamRelationshipsWithDefaults() *UserTeamRelationships {
 	this := UserTeamRelationships{}
 	return &this
 }
+
 // GetTeam returns the Team field value if set, zero value otherwise.
 func (o *UserTeamRelationships) GetTeam() RelationshipToUserTeamTeam {
 	if o == nil || o.Team == nil {
@@ -70,7 +64,6 @@ func (o *UserTeamRelationships) SetTeam(v RelationshipToUserTeamTeam) {
 	o.Team = &v
 }
 
-
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *UserTeamRelationships) GetUser() RelationshipToUserTeamUser {
 	if o == nil || o.User == nil {
@@ -98,8 +91,6 @@ func (o *UserTeamRelationships) HasUser() bool {
 func (o *UserTeamRelationships) SetUser(v RelationshipToUserTeamUser) {
 	o.User = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UserTeamRelationships) MarshalJSON() ([]byte, error) {
@@ -131,17 +122,17 @@ func (o *UserTeamRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "team", "user",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"team", "user"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.Team != nil && all.Team.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Team != nil && all.Team.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Team = all.Team
-	if  all.User != nil && all.User.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.User != nil && all.User.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.User = all.User

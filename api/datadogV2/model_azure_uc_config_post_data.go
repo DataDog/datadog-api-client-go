@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // AzureUCConfigPostData Azure config Post data.
 type AzureUCConfigPostData struct {
@@ -21,10 +17,9 @@ type AzureUCConfigPostData struct {
 	// Type of Azure config Post Request.
 	Type AzureUCConfigPostRequestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewAzureUCConfigPostData instantiates a new AzureUCConfigPostData object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewAzureUCConfigPostDataWithDefaults() *AzureUCConfigPostData {
 	this.Type = typeVar
 	return &this
 }
+
 // GetAttributes returns the Attributes field value.
 func (o *AzureUCConfigPostData) GetAttributes() AzureUCConfigPostRequestAttributes {
 	if o == nil {
@@ -68,7 +64,6 @@ func (o *AzureUCConfigPostData) GetAttributesOk() (*AzureUCConfigPostRequestAttr
 func (o *AzureUCConfigPostData) SetAttributes(v AzureUCConfigPostRequestAttributes) {
 	o.Attributes = v
 }
-
 
 // GetType returns the Type field value.
 func (o *AzureUCConfigPostData) GetType() AzureUCConfigPostRequestType {
@@ -93,8 +88,6 @@ func (o *AzureUCConfigPostData) SetType(v AzureUCConfigPostRequestType) {
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o AzureUCConfigPostData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +107,7 @@ func (o AzureUCConfigPostData) MarshalJSON() ([]byte, error) {
 func (o *AzureUCConfigPostData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *AzureUCConfigPostRequestAttributes `json:"attributes"`
-		Type *AzureUCConfigPostRequestType `json:"type"`
+		Type       *AzureUCConfigPostRequestType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -127,7 +120,7 @@ func (o *AzureUCConfigPostData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
 	} else {
 		return err
 	}

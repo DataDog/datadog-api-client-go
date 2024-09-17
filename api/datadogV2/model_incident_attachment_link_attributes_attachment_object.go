@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // IncidentAttachmentLinkAttributesAttachmentObject The link attachment.
 type IncidentAttachmentLinkAttributesAttachmentObject struct {
@@ -21,10 +17,9 @@ type IncidentAttachmentLinkAttributesAttachmentObject struct {
 	// The title of this link attachment.
 	Title string `json:"title"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewIncidentAttachmentLinkAttributesAttachmentObject instantiates a new IncidentAttachmentLinkAttributesAttachmentObject object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewIncidentAttachmentLinkAttributesAttachmentObjectWithDefaults() *Incident
 	this := IncidentAttachmentLinkAttributesAttachmentObject{}
 	return &this
 }
+
 // GetDocumentUrl returns the DocumentUrl field value.
 func (o *IncidentAttachmentLinkAttributesAttachmentObject) GetDocumentUrl() string {
 	if o == nil {
@@ -66,7 +62,6 @@ func (o *IncidentAttachmentLinkAttributesAttachmentObject) GetDocumentUrlOk() (*
 func (o *IncidentAttachmentLinkAttributesAttachmentObject) SetDocumentUrl(v string) {
 	o.DocumentUrl = v
 }
-
 
 // GetTitle returns the Title field value.
 func (o *IncidentAttachmentLinkAttributesAttachmentObject) GetTitle() string {
@@ -91,8 +86,6 @@ func (o *IncidentAttachmentLinkAttributesAttachmentObject) SetTitle(v string) {
 	o.Title = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentAttachmentLinkAttributesAttachmentObject) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -112,7 +105,7 @@ func (o IncidentAttachmentLinkAttributesAttachmentObject) MarshalJSON() ([]byte,
 func (o *IncidentAttachmentLinkAttributesAttachmentObject) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DocumentUrl *string `json:"documentUrl"`
-		Title *string `json:"title"`
+		Title       *string `json:"title"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -125,7 +118,7 @@ func (o *IncidentAttachmentLinkAttributesAttachmentObject) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "documentUrl", "title",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"documentUrl", "title"})
 	} else {
 		return err
 	}

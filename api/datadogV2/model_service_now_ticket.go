@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ServiceNowTicket ServiceNow ticket attached to case
 type ServiceNowTicket struct {
@@ -21,10 +15,9 @@ type ServiceNowTicket struct {
 	// Case status
 	Status *Case3rdPartyTicketStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewServiceNowTicket instantiates a new ServiceNowTicket object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewServiceNowTicketWithDefaults() *ServiceNowTicket {
 	this := ServiceNowTicket{}
 	return &this
 }
+
 // GetResult returns the Result field value if set, zero value otherwise.
 func (o *ServiceNowTicket) GetResult() ServiceNowTicketResult {
 	if o == nil || o.Result == nil {
@@ -69,7 +63,6 @@ func (o *ServiceNowTicket) HasResult() bool {
 func (o *ServiceNowTicket) SetResult(v ServiceNowTicketResult) {
 	o.Result = &v
 }
-
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *ServiceNowTicket) GetStatus() Case3rdPartyTicketStatus {
@@ -99,8 +92,6 @@ func (o *ServiceNowTicket) SetStatus(v Case3rdPartyTicketStatus) {
 	o.Status = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceNowTicket) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -123,7 +114,7 @@ func (o ServiceNowTicket) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceNowTicket) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Result *ServiceNowTicketResult `json:"result,omitempty"`
+		Result *ServiceNowTicketResult   `json:"result,omitempty"`
 		Status *Case3rdPartyTicketStatus `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -131,17 +122,17 @@ func (o *ServiceNowTicket) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "result", "status",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"result", "status"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if  all.Result != nil && all.Result.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Result != nil && all.Result.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Result = all.Result
-	if all.Status != nil &&!all.Status.IsValid() {
+	if all.Status != nil && !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status
@@ -157,6 +148,7 @@ func (o *ServiceNowTicket) UnmarshalJSON(bytes []byte) (err error) {
 
 	return nil
 }
+
 // NullableServiceNowTicket handles when a null is used for ServiceNowTicket.
 type NullableServiceNowTicket struct {
 	value *ServiceNowTicket

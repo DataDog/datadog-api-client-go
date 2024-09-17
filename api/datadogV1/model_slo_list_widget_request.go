@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SLOListWidgetRequest Updated SLO List widget.
 type SLOListWidgetRequest struct {
@@ -21,10 +17,9 @@ type SLOListWidgetRequest struct {
 	// Widget request type.
 	RequestType SLOListWidgetRequestType `json:"request_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSLOListWidgetRequest instantiates a new SLOListWidgetRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewSLOListWidgetRequestWithDefaults() *SLOListWidgetRequest {
 	this := SLOListWidgetRequest{}
 	return &this
 }
+
 // GetQuery returns the Query field value.
 func (o *SLOListWidgetRequest) GetQuery() SLOListWidgetQuery {
 	if o == nil {
@@ -66,7 +62,6 @@ func (o *SLOListWidgetRequest) GetQueryOk() (*SLOListWidgetQuery, bool) {
 func (o *SLOListWidgetRequest) SetQuery(v SLOListWidgetQuery) {
 	o.Query = v
 }
-
 
 // GetRequestType returns the RequestType field value.
 func (o *SLOListWidgetRequest) GetRequestType() SLOListWidgetRequestType {
@@ -91,8 +86,6 @@ func (o *SLOListWidgetRequest) SetRequestType(v SLOListWidgetRequestType) {
 	o.RequestType = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOListWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +104,7 @@ func (o SLOListWidgetRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOListWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Query *SLOListWidgetQuery `json:"query"`
+		Query       *SLOListWidgetQuery       `json:"query"`
 		RequestType *SLOListWidgetRequestType `json:"request_type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -125,7 +118,7 @@ func (o *SLOListWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "query", "request_type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"query", "request_type"})
 	} else {
 		return err
 	}

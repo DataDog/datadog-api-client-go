@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // LogsUserAgentParser The User-Agent parser takes a User-Agent attribute and extracts the OS, browser, device, and other user data.
 // It recognizes major bots like the Google Bot, Yahoo Slurp, and Bing.
@@ -30,10 +26,9 @@ type LogsUserAgentParser struct {
 	// Type of logs User-Agent parser.
 	Type LogsUserAgentParserType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewLogsUserAgentParser instantiates a new LogsUserAgentParser object.
 // This constructor will assign default values to properties that have it defined,
@@ -66,6 +61,7 @@ func NewLogsUserAgentParserWithDefaults() *LogsUserAgentParser {
 	this.Type = typeVar
 	return &this
 }
+
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsUserAgentParser) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -93,7 +89,6 @@ func (o *LogsUserAgentParser) HasIsEnabled() bool {
 func (o *LogsUserAgentParser) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
-
 
 // GetIsEncoded returns the IsEncoded field value if set, zero value otherwise.
 func (o *LogsUserAgentParser) GetIsEncoded() bool {
@@ -123,7 +118,6 @@ func (o *LogsUserAgentParser) SetIsEncoded(v bool) {
 	o.IsEncoded = &v
 }
 
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsUserAgentParser) GetName() string {
 	if o == nil || o.Name == nil {
@@ -152,7 +146,6 @@ func (o *LogsUserAgentParser) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetSources returns the Sources field value.
 func (o *LogsUserAgentParser) GetSources() []string {
 	if o == nil {
@@ -175,7 +168,6 @@ func (o *LogsUserAgentParser) GetSourcesOk() (*[]string, bool) {
 func (o *LogsUserAgentParser) SetSources(v []string) {
 	o.Sources = v
 }
-
 
 // GetTarget returns the Target field value.
 func (o *LogsUserAgentParser) GetTarget() string {
@@ -200,7 +192,6 @@ func (o *LogsUserAgentParser) SetTarget(v string) {
 	o.Target = v
 }
 
-
 // GetType returns the Type field value.
 func (o *LogsUserAgentParser) GetType() LogsUserAgentParserType {
 	if o == nil {
@@ -223,8 +214,6 @@ func (o *LogsUserAgentParser) GetTypeOk() (*LogsUserAgentParserType, bool) {
 func (o *LogsUserAgentParser) SetType(v LogsUserAgentParserType) {
 	o.Type = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsUserAgentParser) MarshalJSON() ([]byte, error) {
@@ -254,12 +243,12 @@ func (o LogsUserAgentParser) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsUserAgentParser) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IsEnabled *bool `json:"is_enabled,omitempty"`
-		IsEncoded *bool `json:"is_encoded,omitempty"`
-		Name *string `json:"name,omitempty"`
-		Sources *[]string `json:"sources"`
-		Target *string `json:"target"`
-		Type *LogsUserAgentParserType `json:"type"`
+		IsEnabled *bool                    `json:"is_enabled,omitempty"`
+		IsEncoded *bool                    `json:"is_encoded,omitempty"`
+		Name      *string                  `json:"name,omitempty"`
+		Sources   *[]string                `json:"sources"`
+		Target    *string                  `json:"target"`
+		Type      *LogsUserAgentParserType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -275,7 +264,7 @@ func (o *LogsUserAgentParser) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "is_enabled", "is_encoded", "name", "sources", "target", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"is_enabled", "is_encoded", "name", "sources", "target", "type"})
 	} else {
 		return err
 	}

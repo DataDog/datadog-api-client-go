@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // SyntheticsAPITest Object containing details about a Synthetic API test.
 type SyntheticsAPITest struct {
@@ -41,10 +37,9 @@ type SyntheticsAPITest struct {
 	// Type of the Synthetic test, `api`.
 	Type SyntheticsAPITestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewSyntheticsAPITest instantiates a new SyntheticsAPITest object.
 // This constructor will assign default values to properties that have it defined,
@@ -70,6 +65,7 @@ func NewSyntheticsAPITestWithDefaults() *SyntheticsAPITest {
 	this.Type = typeVar
 	return &this
 }
+
 // GetConfig returns the Config field value.
 func (o *SyntheticsAPITest) GetConfig() SyntheticsAPITestConfig {
 	if o == nil {
@@ -92,7 +88,6 @@ func (o *SyntheticsAPITest) GetConfigOk() (*SyntheticsAPITestConfig, bool) {
 func (o *SyntheticsAPITest) SetConfig(v SyntheticsAPITestConfig) {
 	o.Config = v
 }
-
 
 // GetLocations returns the Locations field value.
 func (o *SyntheticsAPITest) GetLocations() []string {
@@ -117,7 +112,6 @@ func (o *SyntheticsAPITest) SetLocations(v []string) {
 	o.Locations = v
 }
 
-
 // GetMessage returns the Message field value.
 func (o *SyntheticsAPITest) GetMessage() string {
 	if o == nil {
@@ -140,7 +134,6 @@ func (o *SyntheticsAPITest) GetMessageOk() (*string, bool) {
 func (o *SyntheticsAPITest) SetMessage(v string) {
 	o.Message = v
 }
-
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise.
 func (o *SyntheticsAPITest) GetMonitorId() int64 {
@@ -170,7 +163,6 @@ func (o *SyntheticsAPITest) SetMonitorId(v int64) {
 	o.MonitorId = &v
 }
 
-
 // GetName returns the Name field value.
 func (o *SyntheticsAPITest) GetName() string {
 	if o == nil {
@@ -194,7 +186,6 @@ func (o *SyntheticsAPITest) SetName(v string) {
 	o.Name = v
 }
 
-
 // GetOptions returns the Options field value.
 func (o *SyntheticsAPITest) GetOptions() SyntheticsTestOptions {
 	if o == nil {
@@ -217,7 +208,6 @@ func (o *SyntheticsAPITest) GetOptionsOk() (*SyntheticsTestOptions, bool) {
 func (o *SyntheticsAPITest) SetOptions(v SyntheticsTestOptions) {
 	o.Options = v
 }
-
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *SyntheticsAPITest) GetPublicId() string {
@@ -247,7 +237,6 @@ func (o *SyntheticsAPITest) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SyntheticsAPITest) GetStatus() SyntheticsTestPauseStatus {
 	if o == nil || o.Status == nil {
@@ -275,7 +264,6 @@ func (o *SyntheticsAPITest) HasStatus() bool {
 func (o *SyntheticsAPITest) SetStatus(v SyntheticsTestPauseStatus) {
 	o.Status = &v
 }
-
 
 // GetSubtype returns the Subtype field value if set, zero value otherwise.
 func (o *SyntheticsAPITest) GetSubtype() SyntheticsTestDetailsSubType {
@@ -305,7 +293,6 @@ func (o *SyntheticsAPITest) SetSubtype(v SyntheticsTestDetailsSubType) {
 	o.Subtype = &v
 }
 
-
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SyntheticsAPITest) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -334,7 +321,6 @@ func (o *SyntheticsAPITest) SetTags(v []string) {
 	o.Tags = v
 }
 
-
 // GetType returns the Type field value.
 func (o *SyntheticsAPITest) GetType() SyntheticsAPITestType {
 	if o == nil {
@@ -357,8 +343,6 @@ func (o *SyntheticsAPITest) GetTypeOk() (*SyntheticsAPITestType, bool) {
 func (o *SyntheticsAPITest) SetType(v SyntheticsAPITestType) {
 	o.Type = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAPITest) MarshalJSON() ([]byte, error) {
@@ -397,17 +381,17 @@ func (o SyntheticsAPITest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Config *SyntheticsAPITestConfig `json:"config"`
-		Locations *[]string `json:"locations"`
-		Message *string `json:"message"`
-		MonitorId *int64 `json:"monitor_id,omitempty"`
-		Name *string `json:"name"`
-		Options *SyntheticsTestOptions `json:"options"`
-		PublicId *string `json:"public_id,omitempty"`
-		Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
-		Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
-		Tags []string `json:"tags,omitempty"`
-		Type *SyntheticsAPITestType `json:"type"`
+		Config    *SyntheticsAPITestConfig      `json:"config"`
+		Locations *[]string                     `json:"locations"`
+		Message   *string                       `json:"message"`
+		MonitorId *int64                        `json:"monitor_id,omitempty"`
+		Name      *string                       `json:"name"`
+		Options   *SyntheticsTestOptions        `json:"options"`
+		PublicId  *string                       `json:"public_id,omitempty"`
+		Status    *SyntheticsTestPauseStatus    `json:"status,omitempty"`
+		Subtype   *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
+		Tags      []string                      `json:"tags,omitempty"`
+		Type      *SyntheticsAPITestType        `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -432,7 +416,7 @@ func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "config", "locations", "message", "monitor_id", "name", "options", "public_id", "status", "subtype", "tags", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"config", "locations", "message", "monitor_id", "name", "options", "public_id", "status", "subtype", "tags", "type"})
 	} else {
 		return err
 	}
@@ -451,12 +435,12 @@ func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Options = *all.Options
 	o.PublicId = all.PublicId
-	if all.Status != nil &&!all.Status.IsValid() {
+	if all.Status != nil && !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status
 	}
-	if all.Subtype != nil &&!all.Subtype.IsValid() {
+	if all.Subtype != nil && !all.Subtype.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Subtype = all.Subtype

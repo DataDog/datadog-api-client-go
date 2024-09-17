@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // IncidentServiceIncludedItems - An object related to an incident service which is present in the included payload.
 type IncidentServiceIncludedItems struct {
@@ -62,7 +56,6 @@ func (obj IncidentServiceIncludedItems) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.User)
 	}
 
-
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -70,11 +63,10 @@ func (obj IncidentServiceIncludedItems) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *IncidentServiceIncludedItems) GetActualInstance() (interface{}) {
+func (obj *IncidentServiceIncludedItems) GetActualInstance() interface{} {
 	if obj.User != nil {
 		return obj.User
 	}
-
 
 	// all schemas are nil
 	return nil

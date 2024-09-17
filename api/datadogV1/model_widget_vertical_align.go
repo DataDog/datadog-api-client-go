@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // WidgetVerticalAlign Vertical alignment.
 type WidgetVerticalAlign string
@@ -20,7 +16,7 @@ type WidgetVerticalAlign string
 // List of WidgetVerticalAlign.
 const (
 	WIDGETVERTICALALIGN_CENTER WidgetVerticalAlign = "center"
-	WIDGETVERTICALALIGN_TOP WidgetVerticalAlign = "top"
+	WIDGETVERTICALALIGN_TOP    WidgetVerticalAlign = "top"
 	WIDGETVERTICALALIGN_BOTTOM WidgetVerticalAlign = "bottom"
 )
 

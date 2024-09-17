@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // IncidentUpdateAttributes The incident's attributes for an update request.
 type IncidentUpdateAttributes struct {
@@ -33,10 +29,9 @@ type IncidentUpdateAttributes struct {
 	// The title of the incident, which summarizes what happened.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewIncidentUpdateAttributes instantiates a new IncidentUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,6 +49,7 @@ func NewIncidentUpdateAttributesWithDefaults() *IncidentUpdateAttributes {
 	this := IncidentUpdateAttributes{}
 	return &this
 }
+
 // GetCustomerImpactEnd returns the CustomerImpactEnd field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentUpdateAttributes) GetCustomerImpactEnd() time.Time {
 	if o == nil || o.CustomerImpactEnd.Get() == nil {
@@ -67,7 +63,7 @@ func (o *IncidentUpdateAttributes) GetCustomerImpactEnd() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentUpdateAttributes) GetCustomerImpactEndOk() (*time.Time, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CustomerImpactEnd.Get(), o.CustomerImpactEnd.IsSet()
@@ -82,6 +78,7 @@ func (o *IncidentUpdateAttributes) HasCustomerImpactEnd() bool {
 func (o *IncidentUpdateAttributes) SetCustomerImpactEnd(v time.Time) {
 	o.CustomerImpactEnd.Set(&v)
 }
+
 // SetCustomerImpactEndNil sets the value for CustomerImpactEnd to be an explicit nil.
 func (o *IncidentUpdateAttributes) SetCustomerImpactEndNil() {
 	o.CustomerImpactEnd.Set(nil)
@@ -91,7 +88,6 @@ func (o *IncidentUpdateAttributes) SetCustomerImpactEndNil() {
 func (o *IncidentUpdateAttributes) UnsetCustomerImpactEnd() {
 	o.CustomerImpactEnd.Unset()
 }
-
 
 // GetCustomerImpactScope returns the CustomerImpactScope field value if set, zero value otherwise.
 func (o *IncidentUpdateAttributes) GetCustomerImpactScope() string {
@@ -121,7 +117,6 @@ func (o *IncidentUpdateAttributes) SetCustomerImpactScope(v string) {
 	o.CustomerImpactScope = &v
 }
 
-
 // GetCustomerImpactStart returns the CustomerImpactStart field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentUpdateAttributes) GetCustomerImpactStart() time.Time {
 	if o == nil || o.CustomerImpactStart.Get() == nil {
@@ -135,7 +130,7 @@ func (o *IncidentUpdateAttributes) GetCustomerImpactStart() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentUpdateAttributes) GetCustomerImpactStartOk() (*time.Time, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.CustomerImpactStart.Get(), o.CustomerImpactStart.IsSet()
@@ -150,6 +145,7 @@ func (o *IncidentUpdateAttributes) HasCustomerImpactStart() bool {
 func (o *IncidentUpdateAttributes) SetCustomerImpactStart(v time.Time) {
 	o.CustomerImpactStart.Set(&v)
 }
+
 // SetCustomerImpactStartNil sets the value for CustomerImpactStart to be an explicit nil.
 func (o *IncidentUpdateAttributes) SetCustomerImpactStartNil() {
 	o.CustomerImpactStart.Set(nil)
@@ -159,7 +155,6 @@ func (o *IncidentUpdateAttributes) SetCustomerImpactStartNil() {
 func (o *IncidentUpdateAttributes) UnsetCustomerImpactStart() {
 	o.CustomerImpactStart.Unset()
 }
-
 
 // GetCustomerImpacted returns the CustomerImpacted field value if set, zero value otherwise.
 func (o *IncidentUpdateAttributes) GetCustomerImpacted() bool {
@@ -189,7 +184,6 @@ func (o *IncidentUpdateAttributes) SetCustomerImpacted(v bool) {
 	o.CustomerImpacted = &v
 }
 
-
 // GetDetected returns the Detected field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentUpdateAttributes) GetDetected() time.Time {
 	if o == nil || o.Detected.Get() == nil {
@@ -203,7 +197,7 @@ func (o *IncidentUpdateAttributes) GetDetected() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentUpdateAttributes) GetDetectedOk() (*time.Time, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Detected.Get(), o.Detected.IsSet()
@@ -218,6 +212,7 @@ func (o *IncidentUpdateAttributes) HasDetected() bool {
 func (o *IncidentUpdateAttributes) SetDetected(v time.Time) {
 	o.Detected.Set(&v)
 }
+
 // SetDetectedNil sets the value for Detected to be an explicit nil.
 func (o *IncidentUpdateAttributes) SetDetectedNil() {
 	o.Detected.Set(nil)
@@ -227,7 +222,6 @@ func (o *IncidentUpdateAttributes) SetDetectedNil() {
 func (o *IncidentUpdateAttributes) UnsetDetected() {
 	o.Detected.Unset()
 }
-
 
 // GetFields returns the Fields field value if set, zero value otherwise.
 func (o *IncidentUpdateAttributes) GetFields() map[string]IncidentFieldAttributes {
@@ -257,7 +251,6 @@ func (o *IncidentUpdateAttributes) SetFields(v map[string]IncidentFieldAttribute
 	o.Fields = v
 }
 
-
 // GetNotificationHandles returns the NotificationHandles field value if set, zero value otherwise.
 func (o *IncidentUpdateAttributes) GetNotificationHandles() []IncidentNotificationHandle {
 	if o == nil || o.NotificationHandles == nil {
@@ -286,7 +279,6 @@ func (o *IncidentUpdateAttributes) SetNotificationHandles(v []IncidentNotificati
 	o.NotificationHandles = v
 }
 
-
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *IncidentUpdateAttributes) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -314,8 +306,6 @@ func (o *IncidentUpdateAttributes) HasTitle() bool {
 func (o *IncidentUpdateAttributes) SetTitle(v string) {
 	o.Title = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentUpdateAttributes) MarshalJSON() ([]byte, error) {
@@ -357,21 +347,21 @@ func (o IncidentUpdateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomerImpactEnd datadog.NullableTime `json:"customer_impact_end,omitempty"`
-		CustomerImpactScope *string `json:"customer_impact_scope,omitempty"`
-		CustomerImpactStart datadog.NullableTime `json:"customer_impact_start,omitempty"`
-		CustomerImpacted *bool `json:"customer_impacted,omitempty"`
-		Detected datadog.NullableTime `json:"detected,omitempty"`
-		Fields map[string]IncidentFieldAttributes `json:"fields,omitempty"`
-		NotificationHandles []IncidentNotificationHandle `json:"notification_handles,omitempty"`
-		Title *string `json:"title,omitempty"`
+		CustomerImpactEnd   datadog.NullableTime               `json:"customer_impact_end,omitempty"`
+		CustomerImpactScope *string                            `json:"customer_impact_scope,omitempty"`
+		CustomerImpactStart datadog.NullableTime               `json:"customer_impact_start,omitempty"`
+		CustomerImpacted    *bool                              `json:"customer_impacted,omitempty"`
+		Detected            datadog.NullableTime               `json:"detected,omitempty"`
+		Fields              map[string]IncidentFieldAttributes `json:"fields,omitempty"`
+		NotificationHandles []IncidentNotificationHandle       `json:"notification_handles,omitempty"`
+		Title               *string                            `json:"title,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "customer_impact_end", "customer_impact_scope", "customer_impact_start", "customer_impacted", "detected", "fields", "notification_handles", "title",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"customer_impact_end", "customer_impact_scope", "customer_impact_start", "customer_impacted", "detected", "fields", "notification_handles", "title"})
 	} else {
 		return err
 	}

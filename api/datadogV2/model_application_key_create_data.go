@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ApplicationKeyCreateData Object used to create an application key.
 type ApplicationKeyCreateData struct {
@@ -21,10 +17,9 @@ type ApplicationKeyCreateData struct {
 	// Application Keys resource type.
 	Type ApplicationKeysType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewApplicationKeyCreateData instantiates a new ApplicationKeyCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewApplicationKeyCreateDataWithDefaults() *ApplicationKeyCreateData {
 	this.Type = typeVar
 	return &this
 }
+
 // GetAttributes returns the Attributes field value.
 func (o *ApplicationKeyCreateData) GetAttributes() ApplicationKeyCreateAttributes {
 	if o == nil {
@@ -68,7 +64,6 @@ func (o *ApplicationKeyCreateData) GetAttributesOk() (*ApplicationKeyCreateAttri
 func (o *ApplicationKeyCreateData) SetAttributes(v ApplicationKeyCreateAttributes) {
 	o.Attributes = v
 }
-
 
 // GetType returns the Type field value.
 func (o *ApplicationKeyCreateData) GetType() ApplicationKeysType {
@@ -93,8 +88,6 @@ func (o *ApplicationKeyCreateData) SetType(v ApplicationKeysType) {
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationKeyCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +107,7 @@ func (o ApplicationKeyCreateData) MarshalJSON() ([]byte, error) {
 func (o *ApplicationKeyCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *ApplicationKeyCreateAttributes `json:"attributes"`
-		Type *ApplicationKeysType `json:"type"`
+		Type       *ApplicationKeysType            `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -127,7 +120,7 @@ func (o *ApplicationKeyCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
 	} else {
 		return err
 	}

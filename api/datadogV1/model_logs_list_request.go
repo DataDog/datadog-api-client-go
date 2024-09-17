@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // LogsListRequest Object to send with the request to retrieve a list of logs from your Organization.
 type LogsListRequest struct {
@@ -34,10 +30,9 @@ type LogsListRequest struct {
 	// Timeframe to retrieve the log from.
 	Time LogsListRequestTime `json:"time"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewLogsListRequest instantiates a new LogsListRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -56,6 +51,7 @@ func NewLogsListRequestWithDefaults() *LogsListRequest {
 	this := LogsListRequest{}
 	return &this
 }
+
 // GetIndex returns the Index field value if set, zero value otherwise.
 func (o *LogsListRequest) GetIndex() string {
 	if o == nil || o.Index == nil {
@@ -83,7 +79,6 @@ func (o *LogsListRequest) HasIndex() bool {
 func (o *LogsListRequest) SetIndex(v string) {
 	o.Index = &v
 }
-
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *LogsListRequest) GetLimit() int32 {
@@ -113,7 +108,6 @@ func (o *LogsListRequest) SetLimit(v int32) {
 	o.Limit = &v
 }
 
-
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *LogsListRequest) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -141,7 +135,6 @@ func (o *LogsListRequest) HasQuery() bool {
 func (o *LogsListRequest) SetQuery(v string) {
 	o.Query = &v
 }
-
 
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *LogsListRequest) GetSort() LogsSort {
@@ -171,7 +164,6 @@ func (o *LogsListRequest) SetSort(v LogsSort) {
 	o.Sort = &v
 }
 
-
 // GetStartAt returns the StartAt field value if set, zero value otherwise.
 func (o *LogsListRequest) GetStartAt() string {
 	if o == nil || o.StartAt == nil {
@@ -200,7 +192,6 @@ func (o *LogsListRequest) SetStartAt(v string) {
 	o.StartAt = &v
 }
 
-
 // GetTime returns the Time field value.
 func (o *LogsListRequest) GetTime() LogsListRequestTime {
 	if o == nil {
@@ -223,8 +214,6 @@ func (o *LogsListRequest) GetTimeOk() (*LogsListRequestTime, bool) {
 func (o *LogsListRequest) SetTime(v LogsListRequestTime) {
 	o.Time = v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsListRequest) MarshalJSON() ([]byte, error) {
@@ -258,12 +247,12 @@ func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Index *string `json:"index,omitempty"`
-		Limit *int32 `json:"limit,omitempty"`
-		Query *string `json:"query,omitempty"`
-		Sort *LogsSort `json:"sort,omitempty"`
-		StartAt *string `json:"startAt,omitempty"`
-		Time *LogsListRequestTime `json:"time"`
+		Index   *string              `json:"index,omitempty"`
+		Limit   *int32               `json:"limit,omitempty"`
+		Query   *string              `json:"query,omitempty"`
+		Sort    *LogsSort            `json:"sort,omitempty"`
+		StartAt *string              `json:"startAt,omitempty"`
+		Time    *LogsListRequestTime `json:"time"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -273,7 +262,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "index", "limit", "query", "sort", "startAt", "time",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"index", "limit", "query", "sort", "startAt", "time"})
 	} else {
 		return err
 	}
@@ -282,7 +271,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Index = all.Index
 	o.Limit = all.Limit
 	o.Query = all.Query
-	if all.Sort != nil &&!all.Sort.IsValid() {
+	if all.Sort != nil && !all.Sort.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Sort = all.Sort

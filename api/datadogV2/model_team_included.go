@@ -2,22 +2,16 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // TeamIncluded - Included resources related to the team
 type TeamIncluded struct {
-	User *User
-	TeamLink *TeamLink
+	User               *User
+	TeamLink           *TeamLink
 	UserTeamPermission *UserTeamPermission
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -110,16 +104,13 @@ func (obj TeamIncluded) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.User)
 	}
 
-
 	if obj.TeamLink != nil {
 		return datadog.Marshal(&obj.TeamLink)
 	}
 
-
 	if obj.UserTeamPermission != nil {
 		return datadog.Marshal(&obj.UserTeamPermission)
 	}
-
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -128,21 +119,18 @@ func (obj TeamIncluded) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *TeamIncluded) GetActualInstance() (interface{}) {
+func (obj *TeamIncluded) GetActualInstance() interface{} {
 	if obj.User != nil {
 		return obj.User
 	}
-
 
 	if obj.TeamLink != nil {
 		return obj.TeamLink
 	}
 
-
 	if obj.UserTeamPermission != nil {
 		return obj.UserTeamPermission
 	}
-
 
 	// all schemas are nil
 	return nil

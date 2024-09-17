@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // ListStreamQuery Updated list stream widget.
 type ListStreamQuery struct {
@@ -33,10 +29,9 @@ type ListStreamQuery struct {
 	// Option for storage location. Feature in Private Beta.
 	Storage *string `json:"storage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewListStreamQuery instantiates a new ListStreamQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -58,6 +53,7 @@ func NewListStreamQueryWithDefaults() *ListStreamQuery {
 	this.DataSource = dataSource
 	return &this
 }
+
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *ListStreamQuery) GetCompute() []ListStreamComputeItems {
 	if o == nil || o.Compute == nil {
@@ -86,7 +82,6 @@ func (o *ListStreamQuery) SetCompute(v []ListStreamComputeItems) {
 	o.Compute = v
 }
 
-
 // GetDataSource returns the DataSource field value.
 func (o *ListStreamQuery) GetDataSource() ListStreamSource {
 	if o == nil {
@@ -109,7 +104,6 @@ func (o *ListStreamQuery) GetDataSourceOk() (*ListStreamSource, bool) {
 func (o *ListStreamQuery) SetDataSource(v ListStreamSource) {
 	o.DataSource = v
 }
-
 
 // GetEventSize returns the EventSize field value if set, zero value otherwise.
 func (o *ListStreamQuery) GetEventSize() WidgetEventSize {
@@ -139,7 +133,6 @@ func (o *ListStreamQuery) SetEventSize(v WidgetEventSize) {
 	o.EventSize = &v
 }
 
-
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *ListStreamQuery) GetGroupBy() []ListStreamGroupByItems {
 	if o == nil || o.GroupBy == nil {
@@ -167,7 +160,6 @@ func (o *ListStreamQuery) HasGroupBy() bool {
 func (o *ListStreamQuery) SetGroupBy(v []ListStreamGroupByItems) {
 	o.GroupBy = v
 }
-
 
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
 func (o *ListStreamQuery) GetIndexes() []string {
@@ -197,7 +189,6 @@ func (o *ListStreamQuery) SetIndexes(v []string) {
 	o.Indexes = v
 }
 
-
 // GetQueryString returns the QueryString field value.
 func (o *ListStreamQuery) GetQueryString() string {
 	if o == nil {
@@ -220,7 +211,6 @@ func (o *ListStreamQuery) GetQueryStringOk() (*string, bool) {
 func (o *ListStreamQuery) SetQueryString(v string) {
 	o.QueryString = v
 }
-
 
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *ListStreamQuery) GetSort() WidgetFieldSort {
@@ -250,7 +240,6 @@ func (o *ListStreamQuery) SetSort(v WidgetFieldSort) {
 	o.Sort = &v
 }
 
-
 // GetStorage returns the Storage field value if set, zero value otherwise.
 func (o *ListStreamQuery) GetStorage() string {
 	if o == nil || o.Storage == nil {
@@ -278,8 +267,6 @@ func (o *ListStreamQuery) HasStorage() bool {
 func (o *ListStreamQuery) SetStorage(v string) {
 	o.Storage = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
@@ -317,14 +304,14 @@ func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Compute []ListStreamComputeItems `json:"compute,omitempty"`
-		DataSource *ListStreamSource `json:"data_source"`
-		EventSize *WidgetEventSize `json:"event_size,omitempty"`
-		GroupBy []ListStreamGroupByItems `json:"group_by,omitempty"`
-		Indexes []string `json:"indexes,omitempty"`
-		QueryString *string `json:"query_string"`
-		Sort *WidgetFieldSort `json:"sort,omitempty"`
-		Storage *string `json:"storage,omitempty"`
+		Compute     []ListStreamComputeItems `json:"compute,omitempty"`
+		DataSource  *ListStreamSource        `json:"data_source"`
+		EventSize   *WidgetEventSize         `json:"event_size,omitempty"`
+		GroupBy     []ListStreamGroupByItems `json:"group_by,omitempty"`
+		Indexes     []string                 `json:"indexes,omitempty"`
+		QueryString *string                  `json:"query_string"`
+		Sort        *WidgetFieldSort         `json:"sort,omitempty"`
+		Storage     *string                  `json:"storage,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -337,7 +324,7 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "compute", "data_source", "event_size", "group_by", "indexes", "query_string", "sort", "storage",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "data_source", "event_size", "group_by", "indexes", "query_string", "sort", "storage"})
 	} else {
 		return err
 	}
@@ -349,7 +336,7 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.DataSource = *all.DataSource
 	}
-	if all.EventSize != nil &&!all.EventSize.IsValid() {
+	if all.EventSize != nil && !all.EventSize.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.EventSize = all.EventSize
@@ -357,7 +344,7 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupBy = all.GroupBy
 	o.Indexes = all.Indexes
 	o.QueryString = *all.QueryString
-	if  all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Sort = all.Sort

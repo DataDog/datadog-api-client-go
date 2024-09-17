@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // OutcomesBatchResponseMeta Metadata pertaining to the bulk operation.
 type OutcomesBatchResponseMeta struct {
@@ -21,10 +15,9 @@ type OutcomesBatchResponseMeta struct {
 	// Total number of scorecard results modified during the bulk operation.
 	TotalUpdated *int64 `json:"total_updated,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewOutcomesBatchResponseMeta instantiates a new OutcomesBatchResponseMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewOutcomesBatchResponseMetaWithDefaults() *OutcomesBatchResponseMeta {
 	this := OutcomesBatchResponseMeta{}
 	return &this
 }
+
 // GetTotalReceived returns the TotalReceived field value if set, zero value otherwise.
 func (o *OutcomesBatchResponseMeta) GetTotalReceived() int64 {
 	if o == nil || o.TotalReceived == nil {
@@ -69,7 +63,6 @@ func (o *OutcomesBatchResponseMeta) HasTotalReceived() bool {
 func (o *OutcomesBatchResponseMeta) SetTotalReceived(v int64) {
 	o.TotalReceived = &v
 }
-
 
 // GetTotalUpdated returns the TotalUpdated field value if set, zero value otherwise.
 func (o *OutcomesBatchResponseMeta) GetTotalUpdated() int64 {
@@ -99,8 +92,6 @@ func (o *OutcomesBatchResponseMeta) SetTotalUpdated(v int64) {
 	o.TotalUpdated = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o OutcomesBatchResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -124,14 +115,14 @@ func (o OutcomesBatchResponseMeta) MarshalJSON() ([]byte, error) {
 func (o *OutcomesBatchResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		TotalReceived *int64 `json:"total_received,omitempty"`
-		TotalUpdated *int64 `json:"total_updated,omitempty"`
+		TotalUpdated  *int64 `json:"total_updated,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "total_received", "total_updated",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"total_received", "total_updated"})
 	} else {
 		return err
 	}

@@ -2,17 +2,13 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // LogsArchiveOrderDefinition The definition of an archive order.
 type LogsArchiveOrderDefinition struct {
@@ -21,10 +17,9 @@ type LogsArchiveOrderDefinition struct {
 	// Type of the archive order definition.
 	Type LogsArchiveOrderDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewLogsArchiveOrderDefinition instantiates a new LogsArchiveOrderDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewLogsArchiveOrderDefinitionWithDefaults() *LogsArchiveOrderDefinition {
 	this.Type = typeVar
 	return &this
 }
+
 // GetAttributes returns the Attributes field value.
 func (o *LogsArchiveOrderDefinition) GetAttributes() LogsArchiveOrderAttributes {
 	if o == nil {
@@ -68,7 +64,6 @@ func (o *LogsArchiveOrderDefinition) GetAttributesOk() (*LogsArchiveOrderAttribu
 func (o *LogsArchiveOrderDefinition) SetAttributes(v LogsArchiveOrderAttributes) {
 	o.Attributes = v
 }
-
 
 // GetType returns the Type field value.
 func (o *LogsArchiveOrderDefinition) GetType() LogsArchiveOrderDefinitionType {
@@ -93,8 +88,6 @@ func (o *LogsArchiveOrderDefinition) SetType(v LogsArchiveOrderDefinitionType) {
 	o.Type = v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsArchiveOrderDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -113,8 +106,8 @@ func (o LogsArchiveOrderDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveOrderDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *LogsArchiveOrderAttributes `json:"attributes"`
-		Type *LogsArchiveOrderDefinitionType `json:"type"`
+		Attributes *LogsArchiveOrderAttributes     `json:"attributes"`
+		Type       *LogsArchiveOrderDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -127,7 +120,7 @@ func (o *LogsArchiveOrderDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
 	} else {
 		return err
 	}

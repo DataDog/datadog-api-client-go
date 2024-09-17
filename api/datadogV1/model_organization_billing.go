@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // OrganizationBilling A JSON array of billing type.
 //
@@ -21,10 +15,9 @@ type OrganizationBilling struct {
 	// The type of billing. Only `parent_billing` is supported.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewOrganizationBilling instantiates a new OrganizationBilling object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +35,7 @@ func NewOrganizationBillingWithDefaults() *OrganizationBilling {
 	this := OrganizationBilling{}
 	return &this
 }
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *OrganizationBilling) GetType() string {
 	if o == nil || o.Type == nil {
@@ -70,8 +64,6 @@ func (o *OrganizationBilling) SetType(v string) {
 	o.Type = &v
 }
 
-
-
 // MarshalJSON serializes the struct using spec logic.
 func (o OrganizationBilling) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -98,7 +90,7 @@ func (o *OrganizationBilling) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "type",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"type"})
 	} else {
 		return err
 	}

@@ -2,17 +2,11 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // GCPSTSServiceAccountAttributes Attributes associated with your service account.
 type GCPSTSServiceAccountAttributes struct {
@@ -34,10 +28,9 @@ type GCPSTSServiceAccountAttributes struct {
 	// When enabled, Datadog scans for all resources in your GCP environment.
 	ResourceCollectionEnabled *bool `json:"resource_collection_enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:"-"`
+	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
-
 
 // NewGCPSTSServiceAccountAttributes instantiates a new GCPSTSServiceAccountAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -59,6 +52,7 @@ func NewGCPSTSServiceAccountAttributesWithDefaults() *GCPSTSServiceAccountAttrib
 	this.IsSecurityCommandCenterEnabled = &isSecurityCommandCenterEnabled
 	return &this
 }
+
 // GetAccountTags returns the AccountTags field value if set, zero value otherwise.
 func (o *GCPSTSServiceAccountAttributes) GetAccountTags() []string {
 	if o == nil || o.AccountTags == nil {
@@ -86,7 +80,6 @@ func (o *GCPSTSServiceAccountAttributes) HasAccountTags() bool {
 func (o *GCPSTSServiceAccountAttributes) SetAccountTags(v []string) {
 	o.AccountTags = v
 }
-
 
 // GetAutomute returns the Automute field value if set, zero value otherwise.
 func (o *GCPSTSServiceAccountAttributes) GetAutomute() bool {
@@ -116,7 +109,6 @@ func (o *GCPSTSServiceAccountAttributes) SetAutomute(v bool) {
 	o.Automute = &v
 }
 
-
 // GetClientEmail returns the ClientEmail field value if set, zero value otherwise.
 func (o *GCPSTSServiceAccountAttributes) GetClientEmail() string {
 	if o == nil || o.ClientEmail == nil {
@@ -144,7 +136,6 @@ func (o *GCPSTSServiceAccountAttributes) HasClientEmail() bool {
 func (o *GCPSTSServiceAccountAttributes) SetClientEmail(v string) {
 	o.ClientEmail = &v
 }
-
 
 // GetCloudRunRevisionFilters returns the CloudRunRevisionFilters field value if set, zero value otherwise.
 func (o *GCPSTSServiceAccountAttributes) GetCloudRunRevisionFilters() []string {
@@ -174,7 +165,6 @@ func (o *GCPSTSServiceAccountAttributes) SetCloudRunRevisionFilters(v []string) 
 	o.CloudRunRevisionFilters = v
 }
 
-
 // GetHostFilters returns the HostFilters field value if set, zero value otherwise.
 func (o *GCPSTSServiceAccountAttributes) GetHostFilters() []string {
 	if o == nil || o.HostFilters == nil {
@@ -202,7 +192,6 @@ func (o *GCPSTSServiceAccountAttributes) HasHostFilters() bool {
 func (o *GCPSTSServiceAccountAttributes) SetHostFilters(v []string) {
 	o.HostFilters = v
 }
-
 
 // GetIsCspmEnabled returns the IsCspmEnabled field value if set, zero value otherwise.
 func (o *GCPSTSServiceAccountAttributes) GetIsCspmEnabled() bool {
@@ -232,7 +221,6 @@ func (o *GCPSTSServiceAccountAttributes) SetIsCspmEnabled(v bool) {
 	o.IsCspmEnabled = &v
 }
 
-
 // GetIsSecurityCommandCenterEnabled returns the IsSecurityCommandCenterEnabled field value if set, zero value otherwise.
 func (o *GCPSTSServiceAccountAttributes) GetIsSecurityCommandCenterEnabled() bool {
 	if o == nil || o.IsSecurityCommandCenterEnabled == nil {
@@ -261,7 +249,6 @@ func (o *GCPSTSServiceAccountAttributes) SetIsSecurityCommandCenterEnabled(v boo
 	o.IsSecurityCommandCenterEnabled = &v
 }
 
-
 // GetResourceCollectionEnabled returns the ResourceCollectionEnabled field value if set, zero value otherwise.
 func (o *GCPSTSServiceAccountAttributes) GetResourceCollectionEnabled() bool {
 	if o == nil || o.ResourceCollectionEnabled == nil {
@@ -289,8 +276,6 @@ func (o *GCPSTSServiceAccountAttributes) HasResourceCollectionEnabled() bool {
 func (o *GCPSTSServiceAccountAttributes) SetResourceCollectionEnabled(v bool) {
 	o.ResourceCollectionEnabled = &v
 }
-
-
 
 // MarshalJSON serializes the struct using spec logic.
 func (o GCPSTSServiceAccountAttributes) MarshalJSON() ([]byte, error) {
@@ -332,21 +317,21 @@ func (o GCPSTSServiceAccountAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GCPSTSServiceAccountAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountTags []string `json:"account_tags,omitempty"`
-		Automute *bool `json:"automute,omitempty"`
-		ClientEmail *string `json:"client_email,omitempty"`
-		CloudRunRevisionFilters []string `json:"cloud_run_revision_filters,omitempty"`
-		HostFilters []string `json:"host_filters,omitempty"`
-		IsCspmEnabled *bool `json:"is_cspm_enabled,omitempty"`
-		IsSecurityCommandCenterEnabled *bool `json:"is_security_command_center_enabled,omitempty"`
-		ResourceCollectionEnabled *bool `json:"resource_collection_enabled,omitempty"`
+		AccountTags                    []string `json:"account_tags,omitempty"`
+		Automute                       *bool    `json:"automute,omitempty"`
+		ClientEmail                    *string  `json:"client_email,omitempty"`
+		CloudRunRevisionFilters        []string `json:"cloud_run_revision_filters,omitempty"`
+		HostFilters                    []string `json:"host_filters,omitempty"`
+		IsCspmEnabled                  *bool    `json:"is_cspm_enabled,omitempty"`
+		IsSecurityCommandCenterEnabled *bool    `json:"is_security_command_center_enabled,omitempty"`
+		ResourceCollectionEnabled      *bool    `json:"resource_collection_enabled,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{ "account_tags", "automute", "client_email", "cloud_run_revision_filters", "host_filters", "is_cspm_enabled", "is_security_command_center_enabled", "resource_collection_enabled",  })
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_tags", "automute", "client_email", "cloud_run_revision_filters", "host_filters", "is_cspm_enabled", "is_security_command_center_enabled", "resource_collection_enabled"})
 	} else {
 		return err
 	}

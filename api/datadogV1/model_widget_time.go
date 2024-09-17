@@ -2,23 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-
 package datadogV1
 
 import (
-	"github.com/google/uuid"
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-
 )
-
 
 // WidgetTime - Time setting for the widget.
 type WidgetTime struct {
 	WidgetLegacyLiveSpan *WidgetLegacyLiveSpan
-	WidgetNewLiveSpan *WidgetNewLiveSpan
-	WidgetNewFixedSpan *WidgetNewFixedSpan
+	WidgetNewLiveSpan    *WidgetNewLiveSpan
+	WidgetNewFixedSpan   *WidgetNewFixedSpan
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -110,16 +104,13 @@ func (obj WidgetTime) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.WidgetLegacyLiveSpan)
 	}
 
-
 	if obj.WidgetNewLiveSpan != nil {
 		return datadog.Marshal(&obj.WidgetNewLiveSpan)
 	}
 
-
 	if obj.WidgetNewFixedSpan != nil {
 		return datadog.Marshal(&obj.WidgetNewFixedSpan)
 	}
-
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -128,21 +119,18 @@ func (obj WidgetTime) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *WidgetTime) GetActualInstance() (interface{}) {
+func (obj *WidgetTime) GetActualInstance() interface{} {
 	if obj.WidgetLegacyLiveSpan != nil {
 		return obj.WidgetLegacyLiveSpan
 	}
-
 
 	if obj.WidgetNewLiveSpan != nil {
 		return obj.WidgetNewLiveSpan
 	}
 
-
 	if obj.WidgetNewFixedSpan != nil {
 		return obj.WidgetNewFixedSpan
 	}
-
 
 	// all schemas are nil
 	return nil
