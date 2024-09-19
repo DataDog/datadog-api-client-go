@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageLambdaHour Number of Lambda functions and sum of the invocations of all Lambda functions
 // for each hour for a given organization.
@@ -24,9 +28,10 @@ type UsageLambdaHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageLambdaHour instantiates a new UsageLambdaHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewUsageLambdaHourWithDefaults() *UsageLambdaHour {
 	this := UsageLambdaHour{}
 	return &this
 }
-
 // GetFuncCount returns the FuncCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageLambdaHour) GetFuncCount() int64 {
 	if o == nil || o.FuncCount.Get() == nil {
@@ -58,7 +62,7 @@ func (o *UsageLambdaHour) GetFuncCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLambdaHour) GetFuncCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.FuncCount.Get(), o.FuncCount.IsSet()
@@ -73,7 +77,6 @@ func (o *UsageLambdaHour) HasFuncCount() bool {
 func (o *UsageLambdaHour) SetFuncCount(v int64) {
 	o.FuncCount.Set(&v)
 }
-
 // SetFuncCountNil sets the value for FuncCount to be an explicit nil.
 func (o *UsageLambdaHour) SetFuncCountNil() {
 	o.FuncCount.Set(nil)
@@ -83,6 +86,7 @@ func (o *UsageLambdaHour) SetFuncCountNil() {
 func (o *UsageLambdaHour) UnsetFuncCount() {
 	o.FuncCount.Unset()
 }
+
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageLambdaHour) GetHour() time.Time {
@@ -112,6 +116,7 @@ func (o *UsageLambdaHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetInvocationsSum returns the InvocationsSum field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageLambdaHour) GetInvocationsSum() int64 {
 	if o == nil || o.InvocationsSum.Get() == nil {
@@ -125,7 +130,7 @@ func (o *UsageLambdaHour) GetInvocationsSum() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLambdaHour) GetInvocationsSumOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.InvocationsSum.Get(), o.InvocationsSum.IsSet()
@@ -140,7 +145,6 @@ func (o *UsageLambdaHour) HasInvocationsSum() bool {
 func (o *UsageLambdaHour) SetInvocationsSum(v int64) {
 	o.InvocationsSum.Set(&v)
 }
-
 // SetInvocationsSumNil sets the value for InvocationsSum to be an explicit nil.
 func (o *UsageLambdaHour) SetInvocationsSumNil() {
 	o.InvocationsSum.Set(nil)
@@ -150,6 +154,7 @@ func (o *UsageLambdaHour) SetInvocationsSumNil() {
 func (o *UsageLambdaHour) UnsetInvocationsSum() {
 	o.InvocationsSum.Unset()
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageLambdaHour) GetOrgName() string {
@@ -179,6 +184,7 @@ func (o *UsageLambdaHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageLambdaHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -206,6 +212,8 @@ func (o *UsageLambdaHour) HasPublicId() bool {
 func (o *UsageLambdaHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageLambdaHour) MarshalJSON() ([]byte, error) {
@@ -242,18 +250,18 @@ func (o UsageLambdaHour) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageLambdaHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FuncCount      datadog.NullableInt64 `json:"func_count,omitempty"`
-		Hour           *time.Time            `json:"hour,omitempty"`
+		FuncCount datadog.NullableInt64 `json:"func_count,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
 		InvocationsSum datadog.NullableInt64 `json:"invocations_sum,omitempty"`
-		OrgName        *string               `json:"org_name,omitempty"`
-		PublicId       *string               `json:"public_id,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"func_count", "hour", "invocations_sum", "org_name", "public_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "func_count", "hour", "invocations_sum", "org_name", "public_id",  })
 	} else {
 		return err
 	}

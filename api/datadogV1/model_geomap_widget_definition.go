@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GeomapWidgetDefinition This visualization displays a series of values by country on a world map.
 type GeomapWidgetDefinition struct {
@@ -34,9 +38,10 @@ type GeomapWidgetDefinition struct {
 	// The view of the world that the map should render.
 	View GeomapWidgetDefinitionView `json:"view"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGeomapWidgetDefinition instantiates a new GeomapWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -60,7 +65,6 @@ func NewGeomapWidgetDefinitionWithDefaults() *GeomapWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *GeomapWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 	if o == nil || o.CustomLinks == nil {
@@ -89,6 +93,7 @@ func (o *GeomapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
 
+
 // GetRequests returns the Requests field value.
 func (o *GeomapWidgetDefinition) GetRequests() []GeomapWidgetRequest {
 	if o == nil {
@@ -112,6 +117,7 @@ func (o *GeomapWidgetDefinition) SetRequests(v []GeomapWidgetRequest) {
 	o.Requests = v
 }
 
+
 // GetStyle returns the Style field value.
 func (o *GeomapWidgetDefinition) GetStyle() GeomapWidgetDefinitionStyle {
 	if o == nil {
@@ -134,6 +140,7 @@ func (o *GeomapWidgetDefinition) GetStyleOk() (*GeomapWidgetDefinitionStyle, boo
 func (o *GeomapWidgetDefinition) SetStyle(v GeomapWidgetDefinitionStyle) {
 	o.Style = v
 }
+
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *GeomapWidgetDefinition) GetTime() WidgetTime {
@@ -163,6 +170,7 @@ func (o *GeomapWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *GeomapWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -190,6 +198,7 @@ func (o *GeomapWidgetDefinition) HasTitle() bool {
 func (o *GeomapWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
+
 
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *GeomapWidgetDefinition) GetTitleAlign() WidgetTextAlign {
@@ -219,6 +228,7 @@ func (o *GeomapWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
 
+
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *GeomapWidgetDefinition) GetTitleSize() string {
 	if o == nil || o.TitleSize == nil {
@@ -247,6 +257,7 @@ func (o *GeomapWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *GeomapWidgetDefinition) GetType() GeomapWidgetDefinitionType {
 	if o == nil {
@@ -270,6 +281,7 @@ func (o *GeomapWidgetDefinition) SetType(v GeomapWidgetDefinitionType) {
 	o.Type = v
 }
 
+
 // GetView returns the View field value.
 func (o *GeomapWidgetDefinition) GetView() GeomapWidgetDefinitionView {
 	if o == nil {
@@ -292,6 +304,8 @@ func (o *GeomapWidgetDefinition) GetViewOk() (*GeomapWidgetDefinitionView, bool)
 func (o *GeomapWidgetDefinition) SetView(v GeomapWidgetDefinitionView) {
 	o.View = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o GeomapWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -328,15 +342,15 @@ func (o GeomapWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomLinks []WidgetCustomLink           `json:"custom_links,omitempty"`
-		Requests    *[]GeomapWidgetRequest       `json:"requests"`
-		Style       *GeomapWidgetDefinitionStyle `json:"style"`
-		Time        *WidgetTime                  `json:"time,omitempty"`
-		Title       *string                      `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign             `json:"title_align,omitempty"`
-		TitleSize   *string                      `json:"title_size,omitempty"`
-		Type        *GeomapWidgetDefinitionType  `json:"type"`
-		View        *GeomapWidgetDefinitionView  `json:"view"`
+		CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
+		Requests *[]GeomapWidgetRequest `json:"requests"`
+		Style *GeomapWidgetDefinitionStyle `json:"style"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type *GeomapWidgetDefinitionType `json:"type"`
+		View *GeomapWidgetDefinitionView `json:"view"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -355,7 +369,7 @@ func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "requests", "style", "time", "title", "title_align", "title_size", "type", "view"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "custom_links", "requests", "style", "time", "title", "title_align", "title_size", "type", "view",  })
 	} else {
 		return err
 	}
@@ -369,7 +383,7 @@ func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Style = *all.Style
 	o.Time = all.Time
 	o.Title = all.Title
-	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign

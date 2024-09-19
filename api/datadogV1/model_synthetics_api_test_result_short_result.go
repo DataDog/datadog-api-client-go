@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAPITestResultShortResult Result of the last API test run.
 type SyntheticsAPITestResultShortResult struct {
@@ -16,9 +22,10 @@ type SyntheticsAPITestResultShortResult struct {
 	// See the [Synthetic Monitoring Metrics documentation](https://docs.datadoghq.com/synthetics/metrics/).
 	Timings *SyntheticsTiming `json:"timings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsAPITestResultShortResult instantiates a new SyntheticsAPITestResultShortResult object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +43,6 @@ func NewSyntheticsAPITestResultShortResultWithDefaults() *SyntheticsAPITestResul
 	this := SyntheticsAPITestResultShortResult{}
 	return &this
 }
-
 // GetPassed returns the Passed field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultShortResult) GetPassed() bool {
 	if o == nil || o.Passed == nil {
@@ -64,6 +70,7 @@ func (o *SyntheticsAPITestResultShortResult) HasPassed() bool {
 func (o *SyntheticsAPITestResultShortResult) SetPassed(v bool) {
 	o.Passed = &v
 }
+
 
 // GetTimings returns the Timings field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultShortResult) GetTimings() SyntheticsTiming {
@@ -93,6 +100,8 @@ func (o *SyntheticsAPITestResultShortResult) SetTimings(v SyntheticsTiming) {
 	o.Timings = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAPITestResultShortResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,7 +124,7 @@ func (o SyntheticsAPITestResultShortResult) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAPITestResultShortResult) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Passed  *bool             `json:"passed,omitempty"`
+		Passed *bool `json:"passed,omitempty"`
 		Timings *SyntheticsTiming `json:"timings,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -123,14 +132,14 @@ func (o *SyntheticsAPITestResultShortResult) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"passed", "timings"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "passed", "timings",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Passed = all.Passed
-	if all.Timings != nil && all.Timings.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Timings != nil && all.Timings.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Timings = all.Timings

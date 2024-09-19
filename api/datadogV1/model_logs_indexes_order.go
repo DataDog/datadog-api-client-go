@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsIndexesOrder Object containing the ordered list of log index names.
 type LogsIndexesOrder struct {
@@ -17,9 +21,10 @@ type LogsIndexesOrder struct {
 	// Logs are eventually stored in the first matching index.
 	IndexNames []string `json:"index_names"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsIndexesOrder instantiates a new LogsIndexesOrder object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewLogsIndexesOrderWithDefaults() *LogsIndexesOrder {
 	this := LogsIndexesOrder{}
 	return &this
 }
-
 // GetIndexNames returns the IndexNames field value.
 func (o *LogsIndexesOrder) GetIndexNames() []string {
 	if o == nil {
@@ -61,6 +65,8 @@ func (o *LogsIndexesOrder) GetIndexNamesOk() (*[]string, bool) {
 func (o *LogsIndexesOrder) SetIndexNames(v []string) {
 	o.IndexNames = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsIndexesOrder) MarshalJSON() ([]byte, error) {
@@ -89,7 +95,7 @@ func (o *LogsIndexesOrder) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"index_names"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "index_names",  })
 	} else {
 		return err
 	}

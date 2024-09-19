@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionV1 Deprecated - Service definition V1 for providing additional service metadata and integrations.
 //
@@ -31,9 +35,10 @@ type ServiceDefinitionV1 struct {
 	// A set of custom tags.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceDefinitionV1 instantiates a new ServiceDefinitionV1 object.
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +60,6 @@ func NewServiceDefinitionV1WithDefaults() *ServiceDefinitionV1 {
 	this.SchemaVersion = schemaVersion
 	return &this
 }
-
 // GetContact returns the Contact field value if set, zero value otherwise.
 func (o *ServiceDefinitionV1) GetContact() ServiceDefinitionV1Contact {
 	if o == nil || o.Contact == nil {
@@ -83,6 +87,7 @@ func (o *ServiceDefinitionV1) HasContact() bool {
 func (o *ServiceDefinitionV1) SetContact(v ServiceDefinitionV1Contact) {
 	o.Contact = &v
 }
+
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
 func (o *ServiceDefinitionV1) GetExtensions() map[string]interface{} {
@@ -112,6 +117,7 @@ func (o *ServiceDefinitionV1) SetExtensions(v map[string]interface{}) {
 	o.Extensions = v
 }
 
+
 // GetExternalResources returns the ExternalResources field value if set, zero value otherwise.
 func (o *ServiceDefinitionV1) GetExternalResources() []ServiceDefinitionV1Resource {
 	if o == nil || o.ExternalResources == nil {
@@ -140,6 +146,7 @@ func (o *ServiceDefinitionV1) SetExternalResources(v []ServiceDefinitionV1Resour
 	o.ExternalResources = v
 }
 
+
 // GetInfo returns the Info field value.
 func (o *ServiceDefinitionV1) GetInfo() ServiceDefinitionV1Info {
 	if o == nil {
@@ -162,6 +169,7 @@ func (o *ServiceDefinitionV1) GetInfoOk() (*ServiceDefinitionV1Info, bool) {
 func (o *ServiceDefinitionV1) SetInfo(v ServiceDefinitionV1Info) {
 	o.Info = v
 }
+
 
 // GetIntegrations returns the Integrations field value if set, zero value otherwise.
 func (o *ServiceDefinitionV1) GetIntegrations() ServiceDefinitionV1Integrations {
@@ -191,6 +199,7 @@ func (o *ServiceDefinitionV1) SetIntegrations(v ServiceDefinitionV1Integrations)
 	o.Integrations = &v
 }
 
+
 // GetOrg returns the Org field value if set, zero value otherwise.
 func (o *ServiceDefinitionV1) GetOrg() ServiceDefinitionV1Org {
 	if o == nil || o.Org == nil {
@@ -219,6 +228,7 @@ func (o *ServiceDefinitionV1) SetOrg(v ServiceDefinitionV1Org) {
 	o.Org = &v
 }
 
+
 // GetSchemaVersion returns the SchemaVersion field value.
 func (o *ServiceDefinitionV1) GetSchemaVersion() ServiceDefinitionV1Version {
 	if o == nil {
@@ -241,6 +251,7 @@ func (o *ServiceDefinitionV1) GetSchemaVersionOk() (*ServiceDefinitionV1Version,
 func (o *ServiceDefinitionV1) SetSchemaVersion(v ServiceDefinitionV1Version) {
 	o.SchemaVersion = v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ServiceDefinitionV1) GetTags() []string {
@@ -269,6 +280,8 @@ func (o *ServiceDefinitionV1) HasTags() bool {
 func (o *ServiceDefinitionV1) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionV1) MarshalJSON() ([]byte, error) {
@@ -306,14 +319,14 @@ func (o ServiceDefinitionV1) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV1) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Contact           *ServiceDefinitionV1Contact      `json:"contact,omitempty"`
-		Extensions        map[string]interface{}           `json:"extensions,omitempty"`
-		ExternalResources []ServiceDefinitionV1Resource    `json:"external-resources,omitempty"`
-		Info              *ServiceDefinitionV1Info         `json:"info"`
-		Integrations      *ServiceDefinitionV1Integrations `json:"integrations,omitempty"`
-		Org               *ServiceDefinitionV1Org          `json:"org,omitempty"`
-		SchemaVersion     *ServiceDefinitionV1Version      `json:"schema-version"`
-		Tags              []string                         `json:"tags,omitempty"`
+		Contact *ServiceDefinitionV1Contact `json:"contact,omitempty"`
+		Extensions map[string]interface{} `json:"extensions,omitempty"`
+		ExternalResources []ServiceDefinitionV1Resource `json:"external-resources,omitempty"`
+		Info *ServiceDefinitionV1Info `json:"info"`
+		Integrations *ServiceDefinitionV1Integrations `json:"integrations,omitempty"`
+		Org *ServiceDefinitionV1Org `json:"org,omitempty"`
+		SchemaVersion *ServiceDefinitionV1Version `json:"schema-version"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -326,13 +339,13 @@ func (o *ServiceDefinitionV1) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"contact", "extensions", "external-resources", "info", "integrations", "org", "schema-version", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "contact", "extensions", "external-resources", "info", "integrations", "org", "schema-version", "tags",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Contact != nil && all.Contact.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Contact != nil && all.Contact.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Contact = all.Contact
@@ -342,11 +355,11 @@ func (o *ServiceDefinitionV1) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Info = *all.Info
-	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Integrations = all.Integrations
-	if all.Org != nil && all.Org.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Org != nil && all.Org.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Org = all.Org

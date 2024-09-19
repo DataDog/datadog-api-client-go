@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SearchSLOResponseDataAttributesFacetsObjectInt Facet
 type SearchSLOResponseDataAttributesFacetsObjectInt struct {
@@ -15,9 +21,10 @@ type SearchSLOResponseDataAttributesFacetsObjectInt struct {
 	// Facet
 	Name *float64 `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSearchSLOResponseDataAttributesFacetsObjectInt instantiates a new SearchSLOResponseDataAttributesFacetsObjectInt object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSearchSLOResponseDataAttributesFacetsObjectIntWithDefaults() *SearchSLOR
 	this := SearchSLOResponseDataAttributesFacetsObjectInt{}
 	return &this
 }
-
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *SearchSLOResponseDataAttributesFacetsObjectInt) GetCount() int64 {
 	if o == nil || o.Count == nil {
@@ -63,6 +69,7 @@ func (o *SearchSLOResponseDataAttributesFacetsObjectInt) HasCount() bool {
 func (o *SearchSLOResponseDataAttributesFacetsObjectInt) SetCount(v int64) {
 	o.Count = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SearchSLOResponseDataAttributesFacetsObjectInt) GetName() float64 {
@@ -92,6 +99,8 @@ func (o *SearchSLOResponseDataAttributesFacetsObjectInt) SetName(v float64) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SearchSLOResponseDataAttributesFacetsObjectInt) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,15 +123,15 @@ func (o SearchSLOResponseDataAttributesFacetsObjectInt) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *SearchSLOResponseDataAttributesFacetsObjectInt) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Count *int64   `json:"count,omitempty"`
-		Name  *float64 `json:"name,omitempty"`
+		Count *int64 `json:"count,omitempty"`
+		Name *float64 `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "count", "name",  })
 	} else {
 		return err
 	}

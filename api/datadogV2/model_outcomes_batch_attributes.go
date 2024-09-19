@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OutcomesBatchAttributes The JSON:API attributes for a batched set of scorecard outcomes.
 type OutcomesBatchAttributes struct {
 	// Set of scorecard outcomes to update.
 	Results []OutcomesBatchRequestItem `json:"results,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOutcomesBatchAttributes instantiates a new OutcomesBatchAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewOutcomesBatchAttributesWithDefaults() *OutcomesBatchAttributes {
 	this := OutcomesBatchAttributes{}
 	return &this
 }
-
 // GetResults returns the Results field value if set, zero value otherwise.
 func (o *OutcomesBatchAttributes) GetResults() []OutcomesBatchRequestItem {
 	if o == nil || o.Results == nil {
@@ -62,6 +68,8 @@ func (o *OutcomesBatchAttributes) SetResults(v []OutcomesBatchRequestItem) {
 	o.Results = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OutcomesBatchAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *OutcomesBatchAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"results"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "results",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudWorkloadSecurityAgentRuleCreateAttributes Create a new Cloud Workload Security Agent rule.
 type CloudWorkloadSecurityAgentRuleCreateAttributes struct {
@@ -23,9 +27,10 @@ type CloudWorkloadSecurityAgentRuleCreateAttributes struct {
 	// The name of the Agent rule.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudWorkloadSecurityAgentRuleCreateAttributes instantiates a new CloudWorkloadSecurityAgentRuleCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewCloudWorkloadSecurityAgentRuleCreateAttributesWithDefaults() *CloudWorkl
 	this := CloudWorkloadSecurityAgentRuleCreateAttributes{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -73,6 +77,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) HasDescription() bool {
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetEnabled() bool {
@@ -102,6 +107,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
 // GetExpression returns the Expression field value.
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetExpression() string {
 	if o == nil {
@@ -124,6 +130,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetExpressionOk() (*str
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) SetExpression(v string) {
 	o.Expression = v
 }
+
 
 // GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetFilters() []string {
@@ -153,6 +160,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) SetFilters(v []string) 
 	o.Filters = v
 }
 
+
 // GetName returns the Name field value.
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetName() string {
 	if o == nil {
@@ -175,6 +183,8 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetNameOk() (*string, b
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) SetName(v string) {
 	o.Name = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudWorkloadSecurityAgentRuleCreateAttributes) MarshalJSON() ([]byte, error) {
@@ -203,11 +213,11 @@ func (o CloudWorkloadSecurityAgentRuleCreateAttributes) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description *string  `json:"description,omitempty"`
-		Enabled     *bool    `json:"enabled,omitempty"`
-		Expression  *string  `json:"expression"`
-		Filters     []string `json:"filters,omitempty"`
-		Name        *string  `json:"name"`
+		Description *string `json:"description,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
+		Expression *string `json:"expression"`
+		Filters []string `json:"filters,omitempty"`
+		Name *string `json:"name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -220,7 +230,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) UnmarshalJSON(bytes []b
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "enabled", "expression", "filters", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "enabled", "expression", "filters", "name",  })
 	} else {
 		return err
 	}

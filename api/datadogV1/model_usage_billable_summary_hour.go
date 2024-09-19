@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageBillableSummaryHour Response with monthly summary of data billed by Datadog.
 type UsageBillableSummaryHour struct {
@@ -35,9 +39,10 @@ type UsageBillableSummaryHour struct {
 	// Response with aggregated usage types.
 	Usage *UsageBillableSummaryKeys `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageBillableSummaryHour instantiates a new UsageBillableSummaryHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +60,6 @@ func NewUsageBillableSummaryHourWithDefaults() *UsageBillableSummaryHour {
 	this := UsageBillableSummaryHour{}
 	return &this
 }
-
 // GetAccountName returns the AccountName field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetAccountName() string {
 	if o == nil || o.AccountName == nil {
@@ -83,6 +87,7 @@ func (o *UsageBillableSummaryHour) HasAccountName() bool {
 func (o *UsageBillableSummaryHour) SetAccountName(v string) {
 	o.AccountName = &v
 }
+
 
 // GetAccountPublicId returns the AccountPublicId field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetAccountPublicId() string {
@@ -112,6 +117,7 @@ func (o *UsageBillableSummaryHour) SetAccountPublicId(v string) {
 	o.AccountPublicId = &v
 }
 
+
 // GetBillingPlan returns the BillingPlan field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetBillingPlan() string {
 	if o == nil || o.BillingPlan == nil {
@@ -139,6 +145,7 @@ func (o *UsageBillableSummaryHour) HasBillingPlan() bool {
 func (o *UsageBillableSummaryHour) SetBillingPlan(v string) {
 	o.BillingPlan = &v
 }
+
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetEndDate() time.Time {
@@ -168,6 +175,7 @@ func (o *UsageBillableSummaryHour) SetEndDate(v time.Time) {
 	o.EndDate = &v
 }
 
+
 // GetNumOrgs returns the NumOrgs field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetNumOrgs() int64 {
 	if o == nil || o.NumOrgs == nil {
@@ -195,6 +203,7 @@ func (o *UsageBillableSummaryHour) HasNumOrgs() bool {
 func (o *UsageBillableSummaryHour) SetNumOrgs(v int64) {
 	o.NumOrgs = &v
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetOrgName() string {
@@ -224,6 +233,7 @@ func (o *UsageBillableSummaryHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -251,6 +261,7 @@ func (o *UsageBillableSummaryHour) HasPublicId() bool {
 func (o *UsageBillableSummaryHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
 
 // GetRatioInMonth returns the RatioInMonth field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetRatioInMonth() float64 {
@@ -280,6 +291,7 @@ func (o *UsageBillableSummaryHour) SetRatioInMonth(v float64) {
 	o.RatioInMonth = &v
 }
 
+
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetRegion() string {
 	if o == nil || o.Region == nil {
@@ -307,6 +319,7 @@ func (o *UsageBillableSummaryHour) HasRegion() bool {
 func (o *UsageBillableSummaryHour) SetRegion(v string) {
 	o.Region = &v
 }
+
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetStartDate() time.Time {
@@ -336,6 +349,7 @@ func (o *UsageBillableSummaryHour) SetStartDate(v time.Time) {
 	o.StartDate = &v
 }
 
+
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetUsage() UsageBillableSummaryKeys {
 	if o == nil || o.Usage == nil {
@@ -363,6 +377,8 @@ func (o *UsageBillableSummaryHour) HasUsage() bool {
 func (o *UsageBillableSummaryHour) SetUsage(v UsageBillableSummaryKeys) {
 	o.Usage = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageBillableSummaryHour) MarshalJSON() ([]byte, error) {
@@ -421,24 +437,24 @@ func (o UsageBillableSummaryHour) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountName     *string                   `json:"account_name,omitempty"`
-		AccountPublicId *string                   `json:"account_public_id,omitempty"`
-		BillingPlan     *string                   `json:"billing_plan,omitempty"`
-		EndDate         *time.Time                `json:"end_date,omitempty"`
-		NumOrgs         *int64                    `json:"num_orgs,omitempty"`
-		OrgName         *string                   `json:"org_name,omitempty"`
-		PublicId        *string                   `json:"public_id,omitempty"`
-		RatioInMonth    *float64                  `json:"ratio_in_month,omitempty"`
-		Region          *string                   `json:"region,omitempty"`
-		StartDate       *time.Time                `json:"start_date,omitempty"`
-		Usage           *UsageBillableSummaryKeys `json:"usage,omitempty"`
+		AccountName *string `json:"account_name,omitempty"`
+		AccountPublicId *string `json:"account_public_id,omitempty"`
+		BillingPlan *string `json:"billing_plan,omitempty"`
+		EndDate *time.Time `json:"end_date,omitempty"`
+		NumOrgs *int64 `json:"num_orgs,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		RatioInMonth *float64 `json:"ratio_in_month,omitempty"`
+		Region *string `json:"region,omitempty"`
+		StartDate *time.Time `json:"start_date,omitempty"`
+		Usage *UsageBillableSummaryKeys `json:"usage,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_name", "account_public_id", "billing_plan", "end_date", "num_orgs", "org_name", "public_id", "ratio_in_month", "region", "start_date", "usage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account_name", "account_public_id", "billing_plan", "end_date", "num_orgs", "org_name", "public_id", "ratio_in_month", "region", "start_date", "usage",  })
 	} else {
 		return err
 	}
@@ -454,7 +470,7 @@ func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.RatioInMonth = all.RatioInMonth
 	o.Region = all.Region
 	o.StartDate = all.StartDate
-	if all.Usage != nil && all.Usage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Usage != nil && all.Usage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Usage = all.Usage

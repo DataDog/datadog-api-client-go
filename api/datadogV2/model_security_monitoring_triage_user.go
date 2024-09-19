@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringTriageUser Object representing a given user entity.
 type SecurityMonitoringTriageUser struct {
@@ -23,9 +27,10 @@ type SecurityMonitoringTriageUser struct {
 	// UUID assigned by Datadog to this user account.
 	Uuid string `json:"uuid"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringTriageUser instantiates a new SecurityMonitoringTriageUser object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewSecurityMonitoringTriageUserWithDefaults() *SecurityMonitoringTriageUser
 	this := SecurityMonitoringTriageUser{}
 	return &this
 }
-
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *SecurityMonitoringTriageUser) GetHandle() string {
 	if o == nil || o.Handle == nil {
@@ -72,6 +76,7 @@ func (o *SecurityMonitoringTriageUser) HasHandle() bool {
 func (o *SecurityMonitoringTriageUser) SetHandle(v string) {
 	o.Handle = &v
 }
+
 
 // GetIcon returns the Icon field value if set, zero value otherwise.
 func (o *SecurityMonitoringTriageUser) GetIcon() string {
@@ -101,6 +106,7 @@ func (o *SecurityMonitoringTriageUser) SetIcon(v string) {
 	o.Icon = &v
 }
 
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SecurityMonitoringTriageUser) GetId() int64 {
 	if o == nil || o.Id == nil {
@@ -129,6 +135,7 @@ func (o *SecurityMonitoringTriageUser) SetId(v int64) {
 	o.Id = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SecurityMonitoringTriageUser) GetName() string {
 	if o == nil || o.Name.Get() == nil {
@@ -142,7 +149,7 @@ func (o *SecurityMonitoringTriageUser) GetName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SecurityMonitoringTriageUser) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Name.Get(), o.Name.IsSet()
@@ -157,7 +164,6 @@ func (o *SecurityMonitoringTriageUser) HasName() bool {
 func (o *SecurityMonitoringTriageUser) SetName(v string) {
 	o.Name.Set(&v)
 }
-
 // SetNameNil sets the value for Name to be an explicit nil.
 func (o *SecurityMonitoringTriageUser) SetNameNil() {
 	o.Name.Set(nil)
@@ -167,6 +173,7 @@ func (o *SecurityMonitoringTriageUser) SetNameNil() {
 func (o *SecurityMonitoringTriageUser) UnsetName() {
 	o.Name.Unset()
 }
+
 
 // GetUuid returns the Uuid field value.
 func (o *SecurityMonitoringTriageUser) GetUuid() string {
@@ -190,6 +197,8 @@ func (o *SecurityMonitoringTriageUser) GetUuidOk() (*string, bool) {
 func (o *SecurityMonitoringTriageUser) SetUuid(v string) {
 	o.Uuid = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringTriageUser) MarshalJSON() ([]byte, error) {
@@ -220,11 +229,11 @@ func (o SecurityMonitoringTriageUser) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringTriageUser) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Handle *string                `json:"handle,omitempty"`
-		Icon   *string                `json:"icon,omitempty"`
-		Id     *int64                 `json:"id,omitempty"`
-		Name   datadog.NullableString `json:"name,omitempty"`
-		Uuid   *string                `json:"uuid"`
+		Handle *string `json:"handle,omitempty"`
+		Icon *string `json:"icon,omitempty"`
+		Id *int64 `json:"id,omitempty"`
+		Name datadog.NullableString `json:"name,omitempty"`
+		Uuid *string `json:"uuid"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -234,7 +243,7 @@ func (o *SecurityMonitoringTriageUser) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"handle", "icon", "id", "name", "uuid"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "handle", "icon", "id", "name", "uuid",  })
 	} else {
 		return err
 	}

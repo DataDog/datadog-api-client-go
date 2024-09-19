@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApmStatsQueryRowType The level of detail for the request.
 type ApmStatsQueryRowType string
 
 // List of ApmStatsQueryRowType.
 const (
-	APMSTATSQUERYROWTYPE_SERVICE  ApmStatsQueryRowType = "service"
+	APMSTATSQUERYROWTYPE_SERVICE ApmStatsQueryRowType = "service"
 	APMSTATSQUERYROWTYPE_RESOURCE ApmStatsQueryRowType = "resource"
-	APMSTATSQUERYROWTYPE_SPAN     ApmStatsQueryRowType = "span"
+	APMSTATSQUERYROWTYPE_SPAN ApmStatsQueryRowType = "span"
 )
 
 var allowedApmStatsQueryRowTypeEnumValues = []ApmStatsQueryRowType{

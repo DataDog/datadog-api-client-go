@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomDestinationHttpDestinationAuthBasic Basic access authentication.
 type CustomDestinationHttpDestinationAuthBasic struct {
@@ -19,9 +23,10 @@ type CustomDestinationHttpDestinationAuthBasic struct {
 	// The username of the authentication. This field is not returned by the API.
 	Username string `json:"username"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomDestinationHttpDestinationAuthBasic instantiates a new CustomDestinationHttpDestinationAuthBasic object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewCustomDestinationHttpDestinationAuthBasicWithDefaults() *CustomDestinati
 	this.Type = typeVar
 	return &this
 }
-
 // GetPassword returns the Password field value.
 func (o *CustomDestinationHttpDestinationAuthBasic) GetPassword() string {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *CustomDestinationHttpDestinationAuthBasic) GetPasswordOk() (*string, bo
 func (o *CustomDestinationHttpDestinationAuthBasic) SetPassword(v string) {
 	o.Password = v
 }
+
 
 // GetType returns the Type field value.
 func (o *CustomDestinationHttpDestinationAuthBasic) GetType() CustomDestinationHttpDestinationAuthBasicType {
@@ -91,6 +96,7 @@ func (o *CustomDestinationHttpDestinationAuthBasic) SetType(v CustomDestinationH
 	o.Type = v
 }
 
+
 // GetUsername returns the Username field value.
 func (o *CustomDestinationHttpDestinationAuthBasic) GetUsername() string {
 	if o == nil {
@@ -114,6 +120,8 @@ func (o *CustomDestinationHttpDestinationAuthBasic) SetUsername(v string) {
 	o.Username = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomDestinationHttpDestinationAuthBasic) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -133,9 +141,9 @@ func (o CustomDestinationHttpDestinationAuthBasic) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomDestinationHttpDestinationAuthBasic) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Password *string                                        `json:"password"`
-		Type     *CustomDestinationHttpDestinationAuthBasicType `json:"type"`
-		Username *string                                        `json:"username"`
+		Password *string `json:"password"`
+		Type *CustomDestinationHttpDestinationAuthBasicType `json:"type"`
+		Username *string `json:"username"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -151,7 +159,7 @@ func (o *CustomDestinationHttpDestinationAuthBasic) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"password", "type", "username"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "password", "type", "username",  })
 	} else {
 		return err
 	}

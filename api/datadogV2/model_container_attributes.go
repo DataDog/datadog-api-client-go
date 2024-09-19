@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ContainerAttributes Attributes for a container.
 type ContainerAttributes struct {
@@ -31,9 +37,10 @@ type ContainerAttributes struct {
 	// List of tags associated with the container.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewContainerAttributes instantiates a new ContainerAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +58,6 @@ func NewContainerAttributesWithDefaults() *ContainerAttributes {
 	this := ContainerAttributes{}
 	return &this
 }
-
 // GetContainerId returns the ContainerId field value if set, zero value otherwise.
 func (o *ContainerAttributes) GetContainerId() string {
 	if o == nil || o.ContainerId == nil {
@@ -79,6 +85,7 @@ func (o *ContainerAttributes) HasContainerId() bool {
 func (o *ContainerAttributes) SetContainerId(v string) {
 	o.ContainerId = &v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *ContainerAttributes) GetCreatedAt() string {
@@ -108,6 +115,7 @@ func (o *ContainerAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
 
+
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *ContainerAttributes) GetHost() string {
 	if o == nil || o.Host == nil {
@@ -136,6 +144,7 @@ func (o *ContainerAttributes) SetHost(v string) {
 	o.Host = &v
 }
 
+
 // GetImageDigest returns the ImageDigest field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContainerAttributes) GetImageDigest() string {
 	if o == nil || o.ImageDigest.Get() == nil {
@@ -149,7 +158,7 @@ func (o *ContainerAttributes) GetImageDigest() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *ContainerAttributes) GetImageDigestOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ImageDigest.Get(), o.ImageDigest.IsSet()
@@ -164,7 +173,6 @@ func (o *ContainerAttributes) HasImageDigest() bool {
 func (o *ContainerAttributes) SetImageDigest(v string) {
 	o.ImageDigest.Set(&v)
 }
-
 // SetImageDigestNil sets the value for ImageDigest to be an explicit nil.
 func (o *ContainerAttributes) SetImageDigestNil() {
 	o.ImageDigest.Set(nil)
@@ -174,6 +182,7 @@ func (o *ContainerAttributes) SetImageDigestNil() {
 func (o *ContainerAttributes) UnsetImageDigest() {
 	o.ImageDigest.Unset()
 }
+
 
 // GetImageName returns the ImageName field value if set, zero value otherwise.
 func (o *ContainerAttributes) GetImageName() string {
@@ -203,6 +212,7 @@ func (o *ContainerAttributes) SetImageName(v string) {
 	o.ImageName = &v
 }
 
+
 // GetImageTags returns the ImageTags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContainerAttributes) GetImageTags() []string {
 	if o == nil || o.ImageTags.Get() == nil {
@@ -216,7 +226,7 @@ func (o *ContainerAttributes) GetImageTags() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *ContainerAttributes) GetImageTagsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ImageTags.Get(), o.ImageTags.IsSet()
@@ -231,7 +241,6 @@ func (o *ContainerAttributes) HasImageTags() bool {
 func (o *ContainerAttributes) SetImageTags(v []string) {
 	o.ImageTags.Set(&v)
 }
-
 // SetImageTagsNil sets the value for ImageTags to be an explicit nil.
 func (o *ContainerAttributes) SetImageTagsNil() {
 	o.ImageTags.Set(nil)
@@ -241,6 +250,7 @@ func (o *ContainerAttributes) SetImageTagsNil() {
 func (o *ContainerAttributes) UnsetImageTags() {
 	o.ImageTags.Unset()
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ContainerAttributes) GetName() string {
@@ -270,6 +280,7 @@ func (o *ContainerAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetStartedAt returns the StartedAt field value if set, zero value otherwise.
 func (o *ContainerAttributes) GetStartedAt() string {
 	if o == nil || o.StartedAt == nil {
@@ -297,6 +308,7 @@ func (o *ContainerAttributes) HasStartedAt() bool {
 func (o *ContainerAttributes) SetStartedAt(v string) {
 	o.StartedAt = &v
 }
+
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *ContainerAttributes) GetState() string {
@@ -326,6 +338,7 @@ func (o *ContainerAttributes) SetState(v string) {
 	o.State = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ContainerAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -353,6 +366,8 @@ func (o *ContainerAttributes) HasTags() bool {
 func (o *ContainerAttributes) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ContainerAttributes) MarshalJSON() ([]byte, error) {
@@ -400,23 +415,23 @@ func (o ContainerAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ContainerAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ContainerId *string                      `json:"container_id,omitempty"`
-		CreatedAt   *string                      `json:"created_at,omitempty"`
-		Host        *string                      `json:"host,omitempty"`
-		ImageDigest datadog.NullableString       `json:"image_digest,omitempty"`
-		ImageName   *string                      `json:"image_name,omitempty"`
-		ImageTags   datadog.NullableList[string] `json:"image_tags,omitempty"`
-		Name        *string                      `json:"name,omitempty"`
-		StartedAt   *string                      `json:"started_at,omitempty"`
-		State       *string                      `json:"state,omitempty"`
-		Tags        []string                     `json:"tags,omitempty"`
+		ContainerId *string `json:"container_id,omitempty"`
+		CreatedAt *string `json:"created_at,omitempty"`
+		Host *string `json:"host,omitempty"`
+		ImageDigest datadog.NullableString `json:"image_digest,omitempty"`
+		ImageName *string `json:"image_name,omitempty"`
+		ImageTags datadog.NullableList[string] `json:"image_tags,omitempty"`
+		Name *string `json:"name,omitempty"`
+		StartedAt *string `json:"started_at,omitempty"`
+		State *string `json:"state,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"container_id", "created_at", "host", "image_digest", "image_name", "image_tags", "name", "started_at", "state", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "container_id", "created_at", "host", "image_digest", "image_name", "image_tags", "name", "started_at", "state", "tags",  })
 	} else {
 		return err
 	}

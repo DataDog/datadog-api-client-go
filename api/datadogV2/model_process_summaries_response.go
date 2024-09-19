@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ProcessSummariesResponse List of process summaries.
 type ProcessSummariesResponse struct {
@@ -15,9 +21,10 @@ type ProcessSummariesResponse struct {
 	// Response metadata object.
 	Meta *ProcessSummariesMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewProcessSummariesResponse instantiates a new ProcessSummariesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewProcessSummariesResponseWithDefaults() *ProcessSummariesResponse {
 	this := ProcessSummariesResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *ProcessSummariesResponse) GetData() []ProcessSummary {
 	if o == nil || o.Data == nil {
@@ -63,6 +69,7 @@ func (o *ProcessSummariesResponse) HasData() bool {
 func (o *ProcessSummariesResponse) SetData(v []ProcessSummary) {
 	o.Data = v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *ProcessSummariesResponse) GetMeta() ProcessSummariesMeta {
@@ -92,6 +99,8 @@ func (o *ProcessSummariesResponse) SetMeta(v ProcessSummariesMeta) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ProcessSummariesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o ProcessSummariesResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ProcessSummariesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []ProcessSummary      `json:"data,omitempty"`
+		Data []ProcessSummary `json:"data,omitempty"`
 		Meta *ProcessSummariesMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,14 +131,14 @@ func (o *ProcessSummariesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

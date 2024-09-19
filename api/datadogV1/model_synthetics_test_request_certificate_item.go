@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestRequestCertificateItem Define a request certificate.
 type SyntheticsTestRequestCertificateItem struct {
@@ -17,9 +23,10 @@ type SyntheticsTestRequestCertificateItem struct {
 	// Date of update of the certificate or key, ISO format.
 	UpdatedAt *string `json:"updatedAt,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsTestRequestCertificateItem instantiates a new SyntheticsTestRequestCertificateItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewSyntheticsTestRequestCertificateItemWithDefaults() *SyntheticsTestReques
 	this := SyntheticsTestRequestCertificateItem{}
 	return &this
 }
-
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *SyntheticsTestRequestCertificateItem) GetContent() string {
 	if o == nil || o.Content == nil {
@@ -65,6 +71,7 @@ func (o *SyntheticsTestRequestCertificateItem) HasContent() bool {
 func (o *SyntheticsTestRequestCertificateItem) SetContent(v string) {
 	o.Content = &v
 }
+
 
 // GetFilename returns the Filename field value if set, zero value otherwise.
 func (o *SyntheticsTestRequestCertificateItem) GetFilename() string {
@@ -94,6 +101,7 @@ func (o *SyntheticsTestRequestCertificateItem) SetFilename(v string) {
 	o.Filename = &v
 }
 
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *SyntheticsTestRequestCertificateItem) GetUpdatedAt() string {
 	if o == nil || o.UpdatedAt == nil {
@@ -122,6 +130,8 @@ func (o *SyntheticsTestRequestCertificateItem) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestRequestCertificateItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,8 +157,8 @@ func (o SyntheticsTestRequestCertificateItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestRequestCertificateItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Content   *string `json:"content,omitempty"`
-		Filename  *string `json:"filename,omitempty"`
+		Content *string `json:"content,omitempty"`
+		Filename *string `json:"filename,omitempty"`
 		UpdatedAt *string `json:"updatedAt,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,7 +166,7 @@ func (o *SyntheticsTestRequestCertificateItem) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"content", "filename", "updatedAt"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "content", "filename", "updatedAt",  })
 	} else {
 		return err
 	}

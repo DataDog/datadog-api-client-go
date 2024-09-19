@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsAggregateResponse The response object for the logs aggregate API endpoint
 type LogsAggregateResponse struct {
@@ -15,9 +21,10 @@ type LogsAggregateResponse struct {
 	// The metadata associated with a request
 	Meta *LogsResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsAggregateResponse instantiates a new LogsAggregateResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewLogsAggregateResponseWithDefaults() *LogsAggregateResponse {
 	this := LogsAggregateResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *LogsAggregateResponse) GetData() LogsAggregateResponseData {
 	if o == nil || o.Data == nil {
@@ -63,6 +69,7 @@ func (o *LogsAggregateResponse) HasData() bool {
 func (o *LogsAggregateResponse) SetData(v LogsAggregateResponseData) {
 	o.Data = &v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *LogsAggregateResponse) GetMeta() LogsResponseMetadata {
@@ -92,6 +99,8 @@ func (o *LogsAggregateResponse) SetMeta(v LogsResponseMetadata) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsAggregateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,24 +124,24 @@ func (o LogsAggregateResponse) MarshalJSON() ([]byte, error) {
 func (o *LogsAggregateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data *LogsAggregateResponseData `json:"data,omitempty"`
-		Meta *LogsResponseMetadata      `json:"meta,omitempty"`
+		Meta *LogsResponseMetadata `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

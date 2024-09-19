@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SplitVectorEntryItem The split graph list contains a graph for each value of the split dimension.
 type SplitVectorEntryItem struct {
@@ -17,9 +21,10 @@ type SplitVectorEntryItem struct {
 	// The tag values.
 	TagValues []string `json:"tag_values"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSplitVectorEntryItem instantiates a new SplitVectorEntryItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSplitVectorEntryItemWithDefaults() *SplitVectorEntryItem {
 	this := SplitVectorEntryItem{}
 	return &this
 }
-
 // GetTagKey returns the TagKey field value.
 func (o *SplitVectorEntryItem) GetTagKey() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *SplitVectorEntryItem) GetTagKeyOk() (*string, bool) {
 func (o *SplitVectorEntryItem) SetTagKey(v string) {
 	o.TagKey = v
 }
+
 
 // GetTagValues returns the TagValues field value.
 func (o *SplitVectorEntryItem) GetTagValues() []string {
@@ -86,6 +91,8 @@ func (o *SplitVectorEntryItem) SetTagValues(v []string) {
 	o.TagValues = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SplitVectorEntryItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o SplitVectorEntryItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SplitVectorEntryItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		TagKey    *string   `json:"tag_key"`
+		TagKey *string `json:"tag_key"`
 		TagValues *[]string `json:"tag_values"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *SplitVectorEntryItem) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"tag_key", "tag_values"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "tag_key", "tag_values",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringSignalTriageAttributes Attributes describing a triage state update operation over a security signal.
 type SecurityMonitoringSignalTriageAttributes struct {
@@ -31,9 +35,10 @@ type SecurityMonitoringSignalTriageAttributes struct {
 	// Object representing a given user entity.
 	StateUpdateUser *SecurityMonitoringTriageUser `json:"state_update_user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringSignalTriageAttributes instantiates a new SecurityMonitoringSignalTriageAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewSecurityMonitoringSignalTriageAttributesWithDefaults() *SecurityMonitori
 	this := SecurityMonitoringSignalTriageAttributes{}
 	return &this
 }
-
 // GetArchiveComment returns the ArchiveComment field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalTriageAttributes) GetArchiveComment() string {
 	if o == nil || o.ArchiveComment == nil {
@@ -82,6 +86,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) HasArchiveComment() bool {
 func (o *SecurityMonitoringSignalTriageAttributes) SetArchiveComment(v string) {
 	o.ArchiveComment = &v
 }
+
 
 // GetArchiveCommentTimestamp returns the ArchiveCommentTimestamp field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalTriageAttributes) GetArchiveCommentTimestamp() int64 {
@@ -111,6 +116,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) SetArchiveCommentTimestamp(v 
 	o.ArchiveCommentTimestamp = &v
 }
 
+
 // GetArchiveCommentUser returns the ArchiveCommentUser field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalTriageAttributes) GetArchiveCommentUser() SecurityMonitoringTriageUser {
 	if o == nil || o.ArchiveCommentUser == nil {
@@ -138,6 +144,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) HasArchiveCommentUser() bool 
 func (o *SecurityMonitoringSignalTriageAttributes) SetArchiveCommentUser(v SecurityMonitoringTriageUser) {
 	o.ArchiveCommentUser = &v
 }
+
 
 // GetArchiveReason returns the ArchiveReason field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalTriageAttributes) GetArchiveReason() SecurityMonitoringSignalArchiveReason {
@@ -167,6 +174,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) SetArchiveReason(v SecurityMo
 	o.ArchiveReason = &v
 }
 
+
 // GetAssignee returns the Assignee field value.
 func (o *SecurityMonitoringSignalTriageAttributes) GetAssignee() SecurityMonitoringTriageUser {
 	if o == nil {
@@ -189,6 +197,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) GetAssigneeOk() (*SecurityMon
 func (o *SecurityMonitoringSignalTriageAttributes) SetAssignee(v SecurityMonitoringTriageUser) {
 	o.Assignee = v
 }
+
 
 // GetIncidentIds returns the IncidentIds field value.
 func (o *SecurityMonitoringSignalTriageAttributes) GetIncidentIds() []int64 {
@@ -213,6 +222,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) SetIncidentIds(v []int64) {
 	o.IncidentIds = v
 }
 
+
 // GetState returns the State field value.
 func (o *SecurityMonitoringSignalTriageAttributes) GetState() SecurityMonitoringSignalState {
 	if o == nil {
@@ -235,6 +245,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) GetStateOk() (*SecurityMonito
 func (o *SecurityMonitoringSignalTriageAttributes) SetState(v SecurityMonitoringSignalState) {
 	o.State = v
 }
+
 
 // GetStateUpdateTimestamp returns the StateUpdateTimestamp field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalTriageAttributes) GetStateUpdateTimestamp() int64 {
@@ -264,6 +275,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) SetStateUpdateTimestamp(v int
 	o.StateUpdateTimestamp = &v
 }
 
+
 // GetStateUpdateUser returns the StateUpdateUser field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalTriageAttributes) GetStateUpdateUser() SecurityMonitoringTriageUser {
 	if o == nil || o.StateUpdateUser == nil {
@@ -291,6 +303,8 @@ func (o *SecurityMonitoringSignalTriageAttributes) HasStateUpdateUser() bool {
 func (o *SecurityMonitoringSignalTriageAttributes) SetStateUpdateUser(v SecurityMonitoringTriageUser) {
 	o.StateUpdateUser = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringSignalTriageAttributes) MarshalJSON() ([]byte, error) {
@@ -329,15 +343,15 @@ func (o SecurityMonitoringSignalTriageAttributes) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ArchiveComment          *string                                `json:"archive_comment,omitempty"`
-		ArchiveCommentTimestamp *int64                                 `json:"archive_comment_timestamp,omitempty"`
-		ArchiveCommentUser      *SecurityMonitoringTriageUser          `json:"archive_comment_user,omitempty"`
-		ArchiveReason           *SecurityMonitoringSignalArchiveReason `json:"archive_reason,omitempty"`
-		Assignee                *SecurityMonitoringTriageUser          `json:"assignee"`
-		IncidentIds             *[]int64                               `json:"incident_ids"`
-		State                   *SecurityMonitoringSignalState         `json:"state"`
-		StateUpdateTimestamp    *int64                                 `json:"state_update_timestamp,omitempty"`
-		StateUpdateUser         *SecurityMonitoringTriageUser          `json:"state_update_user,omitempty"`
+		ArchiveComment *string `json:"archive_comment,omitempty"`
+		ArchiveCommentTimestamp *int64 `json:"archive_comment_timestamp,omitempty"`
+		ArchiveCommentUser *SecurityMonitoringTriageUser `json:"archive_comment_user,omitempty"`
+		ArchiveReason *SecurityMonitoringSignalArchiveReason `json:"archive_reason,omitempty"`
+		Assignee *SecurityMonitoringTriageUser `json:"assignee"`
+		IncidentIds *[]int64 `json:"incident_ids"`
+		State *SecurityMonitoringSignalState `json:"state"`
+		StateUpdateTimestamp *int64 `json:"state_update_timestamp,omitempty"`
+		StateUpdateUser *SecurityMonitoringTriageUser `json:"state_update_user,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -353,7 +367,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archive_comment", "archive_comment_timestamp", "archive_comment_user", "archive_reason", "assignee", "incident_ids", "state", "state_update_timestamp", "state_update_user"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "archive_comment", "archive_comment_timestamp", "archive_comment_user", "archive_reason", "assignee", "incident_ids", "state", "state_update_timestamp", "state_update_user",  })
 	} else {
 		return err
 	}
@@ -361,11 +375,11 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 	hasInvalidField := false
 	o.ArchiveComment = all.ArchiveComment
 	o.ArchiveCommentTimestamp = all.ArchiveCommentTimestamp
-	if all.ArchiveCommentUser != nil && all.ArchiveCommentUser.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ArchiveCommentUser != nil && all.ArchiveCommentUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ArchiveCommentUser = all.ArchiveCommentUser
-	if all.ArchiveReason != nil && !all.ArchiveReason.IsValid() {
+	if all.ArchiveReason != nil &&!all.ArchiveReason.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ArchiveReason = all.ArchiveReason
@@ -381,7 +395,7 @@ func (o *SecurityMonitoringSignalTriageAttributes) UnmarshalJSON(bytes []byte) (
 		o.State = *all.State
 	}
 	o.StateUpdateTimestamp = all.StateUpdateTimestamp
-	if all.StateUpdateUser != nil && all.StateUpdateUser.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.StateUpdateUser != nil && all.StateUpdateUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.StateUpdateUser = all.StateUpdateUser

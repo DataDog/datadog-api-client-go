@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IPPrefixesRemoteConfiguration Available prefix information for the Remote Configuration endpoints.
 type IPPrefixesRemoteConfiguration struct {
@@ -15,9 +21,10 @@ type IPPrefixesRemoteConfiguration struct {
 	// List of IPv6 prefixes.
 	PrefixesIpv6 []string `json:"prefixes_ipv6,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIPPrefixesRemoteConfiguration instantiates a new IPPrefixesRemoteConfiguration object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewIPPrefixesRemoteConfigurationWithDefaults() *IPPrefixesRemoteConfigurati
 	this := IPPrefixesRemoteConfiguration{}
 	return &this
 }
-
 // GetPrefixesIpv4 returns the PrefixesIpv4 field value if set, zero value otherwise.
 func (o *IPPrefixesRemoteConfiguration) GetPrefixesIpv4() []string {
 	if o == nil || o.PrefixesIpv4 == nil {
@@ -64,6 +70,7 @@ func (o *IPPrefixesRemoteConfiguration) SetPrefixesIpv4(v []string) {
 	o.PrefixesIpv4 = v
 }
 
+
 // GetPrefixesIpv6 returns the PrefixesIpv6 field value if set, zero value otherwise.
 func (o *IPPrefixesRemoteConfiguration) GetPrefixesIpv6() []string {
 	if o == nil || o.PrefixesIpv6 == nil {
@@ -91,6 +98,8 @@ func (o *IPPrefixesRemoteConfiguration) HasPrefixesIpv6() bool {
 func (o *IPPrefixesRemoteConfiguration) SetPrefixesIpv6(v []string) {
 	o.PrefixesIpv6 = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IPPrefixesRemoteConfiguration) MarshalJSON() ([]byte, error) {
@@ -122,7 +131,7 @@ func (o *IPPrefixesRemoteConfiguration) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"prefixes_ipv4", "prefixes_ipv6"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "prefixes_ipv4", "prefixes_ipv6",  })
 	} else {
 		return err
 	}

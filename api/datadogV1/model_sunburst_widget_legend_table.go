@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SunburstWidgetLegendTable Configuration of table-based legend.
 type SunburstWidgetLegendTable struct {
 	// Whether or not to show a table legend.
 	Type SunburstWidgetLegendTableType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSunburstWidgetLegendTable instantiates a new SunburstWidgetLegendTable object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewSunburstWidgetLegendTableWithDefaults() *SunburstWidgetLegendTable {
 	this := SunburstWidgetLegendTable{}
 	return &this
 }
-
 // GetType returns the Type field value.
 func (o *SunburstWidgetLegendTable) GetType() SunburstWidgetLegendTableType {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *SunburstWidgetLegendTable) GetTypeOk() (*SunburstWidgetLegendTableType,
 func (o *SunburstWidgetLegendTable) SetType(v SunburstWidgetLegendTableType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SunburstWidgetLegendTable) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *SunburstWidgetLegendTable) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "type",  })
 	} else {
 		return err
 	}

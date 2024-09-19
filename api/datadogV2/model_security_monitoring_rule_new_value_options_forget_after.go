@@ -2,25 +2,29 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleNewValueOptionsForgetAfter The duration in days after which a learned value is forgotten.
 type SecurityMonitoringRuleNewValueOptionsForgetAfter int32
 
 // List of SecurityMonitoringRuleNewValueOptionsForgetAfter.
 const (
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_ONE_DAY     SecurityMonitoringRuleNewValueOptionsForgetAfter = 1
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_TWO_DAYS    SecurityMonitoringRuleNewValueOptionsForgetAfter = 2
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_ONE_WEEK    SecurityMonitoringRuleNewValueOptionsForgetAfter = 7
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_TWO_WEEKS   SecurityMonitoringRuleNewValueOptionsForgetAfter = 14
+	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_ONE_DAY SecurityMonitoringRuleNewValueOptionsForgetAfter = 1
+	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_TWO_DAYS SecurityMonitoringRuleNewValueOptionsForgetAfter = 2
+	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_ONE_WEEK SecurityMonitoringRuleNewValueOptionsForgetAfter = 7
+	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_TWO_WEEKS SecurityMonitoringRuleNewValueOptionsForgetAfter = 14
 	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_THREE_WEEKS SecurityMonitoringRuleNewValueOptionsForgetAfter = 21
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_FOUR_WEEKS  SecurityMonitoringRuleNewValueOptionsForgetAfter = 28
+	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_FOUR_WEEKS SecurityMonitoringRuleNewValueOptionsForgetAfter = 28
 )
 
 var allowedSecurityMonitoringRuleNewValueOptionsForgetAfterEnumValues = []SecurityMonitoringRuleNewValueOptionsForgetAfter{

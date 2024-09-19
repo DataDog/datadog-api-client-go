@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityFilterExclusionFilter Exclusion filter for the security filter.
 type SecurityFilterExclusionFilter struct {
@@ -17,9 +21,10 @@ type SecurityFilterExclusionFilter struct {
 	// Exclusion filter query. Logs that match this query are excluded from the security filter.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityFilterExclusionFilter instantiates a new SecurityFilterExclusionFilter object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSecurityFilterExclusionFilterWithDefaults() *SecurityFilterExclusionFilt
 	this := SecurityFilterExclusionFilter{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *SecurityFilterExclusionFilter) GetName() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *SecurityFilterExclusionFilter) GetNameOk() (*string, bool) {
 func (o *SecurityFilterExclusionFilter) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetQuery returns the Query field value.
 func (o *SecurityFilterExclusionFilter) GetQuery() string {
@@ -86,6 +91,8 @@ func (o *SecurityFilterExclusionFilter) SetQuery(v string) {
 	o.Query = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityFilterExclusionFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o SecurityFilterExclusionFilter) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityFilterExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name  *string `json:"name"`
+		Name *string `json:"name"`
 		Query *string `json:"query"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *SecurityFilterExclusionFilter) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "query",  })
 	} else {
 		return err
 	}

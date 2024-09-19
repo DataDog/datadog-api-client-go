@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OktaAccountUpdateRequestAttributes Attributes object for updating an Okta account.
 type OktaAccountUpdateRequestAttributes struct {
@@ -23,9 +27,10 @@ type OktaAccountUpdateRequestAttributes struct {
 	// The domain associated with an Okta account.
 	Domain string `json:"domain"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOktaAccountUpdateRequestAttributes instantiates a new OktaAccountUpdateRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewOktaAccountUpdateRequestAttributesWithDefaults() *OktaAccountUpdateReque
 	this := OktaAccountUpdateRequestAttributes{}
 	return &this
 }
-
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
 func (o *OktaAccountUpdateRequestAttributes) GetApiKey() string {
 	if o == nil || o.ApiKey == nil {
@@ -74,6 +78,7 @@ func (o *OktaAccountUpdateRequestAttributes) SetApiKey(v string) {
 	o.ApiKey = &v
 }
 
+
 // GetAuthMethod returns the AuthMethod field value.
 func (o *OktaAccountUpdateRequestAttributes) GetAuthMethod() string {
 	if o == nil {
@@ -96,6 +101,7 @@ func (o *OktaAccountUpdateRequestAttributes) GetAuthMethodOk() (*string, bool) {
 func (o *OktaAccountUpdateRequestAttributes) SetAuthMethod(v string) {
 	o.AuthMethod = v
 }
+
 
 // GetClientId returns the ClientId field value if set, zero value otherwise.
 func (o *OktaAccountUpdateRequestAttributes) GetClientId() string {
@@ -125,6 +131,7 @@ func (o *OktaAccountUpdateRequestAttributes) SetClientId(v string) {
 	o.ClientId = &v
 }
 
+
 // GetClientSecret returns the ClientSecret field value if set, zero value otherwise.
 func (o *OktaAccountUpdateRequestAttributes) GetClientSecret() string {
 	if o == nil || o.ClientSecret == nil {
@@ -153,6 +160,7 @@ func (o *OktaAccountUpdateRequestAttributes) SetClientSecret(v string) {
 	o.ClientSecret = &v
 }
 
+
 // GetDomain returns the Domain field value.
 func (o *OktaAccountUpdateRequestAttributes) GetDomain() string {
 	if o == nil {
@@ -175,6 +183,8 @@ func (o *OktaAccountUpdateRequestAttributes) GetDomainOk() (*string, bool) {
 func (o *OktaAccountUpdateRequestAttributes) SetDomain(v string) {
 	o.Domain = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o OktaAccountUpdateRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -203,11 +213,11 @@ func (o OktaAccountUpdateRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OktaAccountUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey       *string `json:"api_key,omitempty"`
-		AuthMethod   *string `json:"auth_method"`
-		ClientId     *string `json:"client_id,omitempty"`
+		ApiKey *string `json:"api_key,omitempty"`
+		AuthMethod *string `json:"auth_method"`
+		ClientId *string `json:"client_id,omitempty"`
 		ClientSecret *string `json:"client_secret,omitempty"`
-		Domain       *string `json:"domain"`
+		Domain *string `json:"domain"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -220,7 +230,7 @@ func (o *OktaAccountUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "auth_method", "client_id", "client_secret", "domain"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_key", "auth_method", "client_id", "client_secret", "domain",  })
 	} else {
 		return err
 	}

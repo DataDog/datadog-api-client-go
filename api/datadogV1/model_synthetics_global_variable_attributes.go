@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsGlobalVariableAttributes Attributes of the global variable.
 type SyntheticsGlobalVariableAttributes struct {
 	// A list of role identifiers that can be pulled from the Roles API, for restricting read and write access.
 	RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsGlobalVariableAttributes instantiates a new SyntheticsGlobalVariableAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewSyntheticsGlobalVariableAttributesWithDefaults() *SyntheticsGlobalVariab
 	this := SyntheticsGlobalVariableAttributes{}
 	return &this
 }
-
 // GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableAttributes) GetRestrictedRoles() []string {
 	if o == nil || o.RestrictedRoles == nil {
@@ -62,6 +68,8 @@ func (o *SyntheticsGlobalVariableAttributes) SetRestrictedRoles(v []string) {
 	o.RestrictedRoles = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsGlobalVariableAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *SyntheticsGlobalVariableAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"restricted_roles"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "restricted_roles",  })
 	} else {
 		return err
 	}

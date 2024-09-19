@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OktaAccountAttributes Attributes object for an Okta account.
 type OktaAccountAttributes struct {
@@ -25,9 +29,10 @@ type OktaAccountAttributes struct {
 	// The name of the Okta account.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOktaAccountAttributes instantiates a new OktaAccountAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewOktaAccountAttributesWithDefaults() *OktaAccountAttributes {
 	this := OktaAccountAttributes{}
 	return &this
 }
-
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
 func (o *OktaAccountAttributes) GetApiKey() string {
 	if o == nil || o.ApiKey == nil {
@@ -77,6 +81,7 @@ func (o *OktaAccountAttributes) SetApiKey(v string) {
 	o.ApiKey = &v
 }
 
+
 // GetAuthMethod returns the AuthMethod field value.
 func (o *OktaAccountAttributes) GetAuthMethod() string {
 	if o == nil {
@@ -99,6 +104,7 @@ func (o *OktaAccountAttributes) GetAuthMethodOk() (*string, bool) {
 func (o *OktaAccountAttributes) SetAuthMethod(v string) {
 	o.AuthMethod = v
 }
+
 
 // GetClientId returns the ClientId field value if set, zero value otherwise.
 func (o *OktaAccountAttributes) GetClientId() string {
@@ -128,6 +134,7 @@ func (o *OktaAccountAttributes) SetClientId(v string) {
 	o.ClientId = &v
 }
 
+
 // GetClientSecret returns the ClientSecret field value if set, zero value otherwise.
 func (o *OktaAccountAttributes) GetClientSecret() string {
 	if o == nil || o.ClientSecret == nil {
@@ -156,6 +163,7 @@ func (o *OktaAccountAttributes) SetClientSecret(v string) {
 	o.ClientSecret = &v
 }
 
+
 // GetDomain returns the Domain field value.
 func (o *OktaAccountAttributes) GetDomain() string {
 	if o == nil {
@@ -179,6 +187,7 @@ func (o *OktaAccountAttributes) SetDomain(v string) {
 	o.Domain = v
 }
 
+
 // GetName returns the Name field value.
 func (o *OktaAccountAttributes) GetName() string {
 	if o == nil {
@@ -201,6 +210,8 @@ func (o *OktaAccountAttributes) GetNameOk() (*string, bool) {
 func (o *OktaAccountAttributes) SetName(v string) {
 	o.Name = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o OktaAccountAttributes) MarshalJSON() ([]byte, error) {
@@ -230,12 +241,12 @@ func (o OktaAccountAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OktaAccountAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey       *string `json:"api_key,omitempty"`
-		AuthMethod   *string `json:"auth_method"`
-		ClientId     *string `json:"client_id,omitempty"`
+		ApiKey *string `json:"api_key,omitempty"`
+		AuthMethod *string `json:"auth_method"`
+		ClientId *string `json:"client_id,omitempty"`
 		ClientSecret *string `json:"client_secret,omitempty"`
-		Domain       *string `json:"domain"`
-		Name         *string `json:"name"`
+		Domain *string `json:"domain"`
+		Name *string `json:"name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -251,7 +262,7 @@ func (o *OktaAccountAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "auth_method", "client_id", "client_secret", "domain", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_key", "auth_method", "client_id", "client_secret", "domain", "name",  })
 	} else {
 		return err
 	}

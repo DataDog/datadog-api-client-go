@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventResponse Object containing an event response.
 type EventResponse struct {
@@ -15,9 +21,10 @@ type EventResponse struct {
 	// A status.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEventResponse instantiates a new EventResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewEventResponseWithDefaults() *EventResponse {
 	this := EventResponse{}
 	return &this
 }
-
 // GetEvent returns the Event field value if set, zero value otherwise.
 func (o *EventResponse) GetEvent() Event {
 	if o == nil || o.Event == nil {
@@ -63,6 +69,7 @@ func (o *EventResponse) HasEvent() bool {
 func (o *EventResponse) SetEvent(v Event) {
 	o.Event = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *EventResponse) GetStatus() string {
@@ -92,6 +99,8 @@ func (o *EventResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EventResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o EventResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Event  *Event  `json:"event,omitempty"`
+		Event *Event `json:"event,omitempty"`
 		Status *string `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,13 +131,13 @@ func (o *EventResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"event", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "event", "status",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Event != nil && all.Event.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Event != nil && all.Event.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Event = all.Event

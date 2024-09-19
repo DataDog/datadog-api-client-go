@@ -2,13 +2,16 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -16,7 +19,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRestrictionPoliciesApi(apiClient)
-	r, err := api.DeleteRestrictionPolicy(ctx, "dashboard:test-delete")
+	r, err := api.DeleteRestrictionPolicy(ctx, "dashboard:test-delete", )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RestrictionPoliciesApi.DeleteRestrictionPolicy`: %v\n", err)

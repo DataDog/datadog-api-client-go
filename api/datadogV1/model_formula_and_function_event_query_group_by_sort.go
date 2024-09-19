@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FormulaAndFunctionEventQueryGroupBySort Options for sorting group by results.
 type FormulaAndFunctionEventQueryGroupBySort struct {
@@ -19,9 +23,10 @@ type FormulaAndFunctionEventQueryGroupBySort struct {
 	// Direction of sort.
 	Order *QuerySortOrder `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFormulaAndFunctionEventQueryGroupBySort instantiates a new FormulaAndFunctionEventQueryGroupBySort object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewFormulaAndFunctionEventQueryGroupBySortWithDefaults() *FormulaAndFunctio
 	this.Order = &order
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value.
 func (o *FormulaAndFunctionEventQueryGroupBySort) GetAggregation() FormulaAndFunctionEventAggregation {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *FormulaAndFunctionEventQueryGroupBySort) GetAggregationOk() (*FormulaAn
 func (o *FormulaAndFunctionEventQueryGroupBySort) SetAggregation(v FormulaAndFunctionEventAggregation) {
 	o.Aggregation = v
 }
+
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *FormulaAndFunctionEventQueryGroupBySort) GetMetric() string {
@@ -96,6 +101,7 @@ func (o *FormulaAndFunctionEventQueryGroupBySort) SetMetric(v string) {
 	o.Metric = &v
 }
 
+
 // GetOrder returns the Order field value if set, zero value otherwise.
 func (o *FormulaAndFunctionEventQueryGroupBySort) GetOrder() QuerySortOrder {
 	if o == nil || o.Order == nil {
@@ -124,6 +130,8 @@ func (o *FormulaAndFunctionEventQueryGroupBySort) SetOrder(v QuerySortOrder) {
 	o.Order = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FormulaAndFunctionEventQueryGroupBySort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,8 +156,8 @@ func (o FormulaAndFunctionEventQueryGroupBySort) MarshalJSON() ([]byte, error) {
 func (o *FormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Aggregation *FormulaAndFunctionEventAggregation `json:"aggregation"`
-		Metric      *string                             `json:"metric,omitempty"`
-		Order       *QuerySortOrder                     `json:"order,omitempty"`
+		Metric *string `json:"metric,omitempty"`
+		Order *QuerySortOrder `json:"order,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -159,7 +167,7 @@ func (o *FormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "metric", "order"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation", "metric", "order",  })
 	} else {
 		return err
 	}
@@ -171,7 +179,7 @@ func (o *FormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []byte) (e
 		o.Aggregation = *all.Aggregation
 	}
 	o.Metric = all.Metric
-	if all.Order != nil && !all.Order.IsValid() {
+	if all.Order != nil &&!all.Order.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Order = all.Order

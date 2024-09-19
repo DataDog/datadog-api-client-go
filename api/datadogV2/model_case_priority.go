@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CasePriority Case priority
 type CasePriority string
@@ -16,11 +20,11 @@ type CasePriority string
 // List of CasePriority.
 const (
 	CASEPRIORITY_NOT_DEFINED CasePriority = "NOT_DEFINED"
-	CASEPRIORITY_P1          CasePriority = "P1"
-	CASEPRIORITY_P2          CasePriority = "P2"
-	CASEPRIORITY_P3          CasePriority = "P3"
-	CASEPRIORITY_P4          CasePriority = "P4"
-	CASEPRIORITY_P5          CasePriority = "P5"
+	CASEPRIORITY_P1 CasePriority = "P1"
+	CASEPRIORITY_P2 CasePriority = "P2"
+	CASEPRIORITY_P3 CasePriority = "P3"
+	CASEPRIORITY_P4 CasePriority = "P4"
+	CASEPRIORITY_P5 CasePriority = "P5"
 )
 
 var allowedCasePriorityEnumValues = []CasePriority{

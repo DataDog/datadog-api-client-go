@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentResponseAttributes The incident's attributes from a response.
 type IncidentResponseAttributes struct {
@@ -62,9 +65,10 @@ type IncidentResponseAttributes struct {
 	// The incident visibility status.
 	Visibility datadog.NullableString `json:"visibility,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentResponseAttributes instantiates a new IncidentResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -83,7 +87,6 @@ func NewIncidentResponseAttributesWithDefaults() *IncidentResponseAttributes {
 	this := IncidentResponseAttributes{}
 	return &this
 }
-
 // GetArchived returns the Archived field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentResponseAttributes) GetArchived() time.Time {
 	if o == nil || o.Archived.Get() == nil {
@@ -97,7 +100,7 @@ func (o *IncidentResponseAttributes) GetArchived() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetArchivedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Archived.Get(), o.Archived.IsSet()
@@ -112,7 +115,6 @@ func (o *IncidentResponseAttributes) HasArchived() bool {
 func (o *IncidentResponseAttributes) SetArchived(v time.Time) {
 	o.Archived.Set(&v)
 }
-
 // SetArchivedNil sets the value for Archived to be an explicit nil.
 func (o *IncidentResponseAttributes) SetArchivedNil() {
 	o.Archived.Set(nil)
@@ -122,6 +124,7 @@ func (o *IncidentResponseAttributes) SetArchivedNil() {
 func (o *IncidentResponseAttributes) UnsetArchived() {
 	o.Archived.Unset()
 }
+
 
 // GetCaseId returns the CaseId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentResponseAttributes) GetCaseId() int64 {
@@ -136,7 +139,7 @@ func (o *IncidentResponseAttributes) GetCaseId() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetCaseIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.CaseId.Get(), o.CaseId.IsSet()
@@ -151,7 +154,6 @@ func (o *IncidentResponseAttributes) HasCaseId() bool {
 func (o *IncidentResponseAttributes) SetCaseId(v int64) {
 	o.CaseId.Set(&v)
 }
-
 // SetCaseIdNil sets the value for CaseId to be an explicit nil.
 func (o *IncidentResponseAttributes) SetCaseIdNil() {
 	o.CaseId.Set(nil)
@@ -161,6 +163,7 @@ func (o *IncidentResponseAttributes) SetCaseIdNil() {
 func (o *IncidentResponseAttributes) UnsetCaseId() {
 	o.CaseId.Unset()
 }
+
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *IncidentResponseAttributes) GetCreated() time.Time {
@@ -190,6 +193,7 @@ func (o *IncidentResponseAttributes) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
+
 // GetCustomerImpactDuration returns the CustomerImpactDuration field value if set, zero value otherwise.
 func (o *IncidentResponseAttributes) GetCustomerImpactDuration() int64 {
 	if o == nil || o.CustomerImpactDuration == nil {
@@ -218,6 +222,7 @@ func (o *IncidentResponseAttributes) SetCustomerImpactDuration(v int64) {
 	o.CustomerImpactDuration = &v
 }
 
+
 // GetCustomerImpactEnd returns the CustomerImpactEnd field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentResponseAttributes) GetCustomerImpactEnd() time.Time {
 	if o == nil || o.CustomerImpactEnd.Get() == nil {
@@ -231,7 +236,7 @@ func (o *IncidentResponseAttributes) GetCustomerImpactEnd() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetCustomerImpactEndOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.CustomerImpactEnd.Get(), o.CustomerImpactEnd.IsSet()
@@ -246,7 +251,6 @@ func (o *IncidentResponseAttributes) HasCustomerImpactEnd() bool {
 func (o *IncidentResponseAttributes) SetCustomerImpactEnd(v time.Time) {
 	o.CustomerImpactEnd.Set(&v)
 }
-
 // SetCustomerImpactEndNil sets the value for CustomerImpactEnd to be an explicit nil.
 func (o *IncidentResponseAttributes) SetCustomerImpactEndNil() {
 	o.CustomerImpactEnd.Set(nil)
@@ -256,6 +260,7 @@ func (o *IncidentResponseAttributes) SetCustomerImpactEndNil() {
 func (o *IncidentResponseAttributes) UnsetCustomerImpactEnd() {
 	o.CustomerImpactEnd.Unset()
 }
+
 
 // GetCustomerImpactScope returns the CustomerImpactScope field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentResponseAttributes) GetCustomerImpactScope() string {
@@ -270,7 +275,7 @@ func (o *IncidentResponseAttributes) GetCustomerImpactScope() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetCustomerImpactScopeOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.CustomerImpactScope.Get(), o.CustomerImpactScope.IsSet()
@@ -285,7 +290,6 @@ func (o *IncidentResponseAttributes) HasCustomerImpactScope() bool {
 func (o *IncidentResponseAttributes) SetCustomerImpactScope(v string) {
 	o.CustomerImpactScope.Set(&v)
 }
-
 // SetCustomerImpactScopeNil sets the value for CustomerImpactScope to be an explicit nil.
 func (o *IncidentResponseAttributes) SetCustomerImpactScopeNil() {
 	o.CustomerImpactScope.Set(nil)
@@ -295,6 +299,7 @@ func (o *IncidentResponseAttributes) SetCustomerImpactScopeNil() {
 func (o *IncidentResponseAttributes) UnsetCustomerImpactScope() {
 	o.CustomerImpactScope.Unset()
 }
+
 
 // GetCustomerImpactStart returns the CustomerImpactStart field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentResponseAttributes) GetCustomerImpactStart() time.Time {
@@ -309,7 +314,7 @@ func (o *IncidentResponseAttributes) GetCustomerImpactStart() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetCustomerImpactStartOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.CustomerImpactStart.Get(), o.CustomerImpactStart.IsSet()
@@ -324,7 +329,6 @@ func (o *IncidentResponseAttributes) HasCustomerImpactStart() bool {
 func (o *IncidentResponseAttributes) SetCustomerImpactStart(v time.Time) {
 	o.CustomerImpactStart.Set(&v)
 }
-
 // SetCustomerImpactStartNil sets the value for CustomerImpactStart to be an explicit nil.
 func (o *IncidentResponseAttributes) SetCustomerImpactStartNil() {
 	o.CustomerImpactStart.Set(nil)
@@ -334,6 +338,7 @@ func (o *IncidentResponseAttributes) SetCustomerImpactStartNil() {
 func (o *IncidentResponseAttributes) UnsetCustomerImpactStart() {
 	o.CustomerImpactStart.Unset()
 }
+
 
 // GetCustomerImpacted returns the CustomerImpacted field value if set, zero value otherwise.
 func (o *IncidentResponseAttributes) GetCustomerImpacted() bool {
@@ -363,6 +368,7 @@ func (o *IncidentResponseAttributes) SetCustomerImpacted(v bool) {
 	o.CustomerImpacted = &v
 }
 
+
 // GetDetected returns the Detected field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentResponseAttributes) GetDetected() time.Time {
 	if o == nil || o.Detected.Get() == nil {
@@ -376,7 +382,7 @@ func (o *IncidentResponseAttributes) GetDetected() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetDetectedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Detected.Get(), o.Detected.IsSet()
@@ -391,7 +397,6 @@ func (o *IncidentResponseAttributes) HasDetected() bool {
 func (o *IncidentResponseAttributes) SetDetected(v time.Time) {
 	o.Detected.Set(&v)
 }
-
 // SetDetectedNil sets the value for Detected to be an explicit nil.
 func (o *IncidentResponseAttributes) SetDetectedNil() {
 	o.Detected.Set(nil)
@@ -401,6 +406,7 @@ func (o *IncidentResponseAttributes) SetDetectedNil() {
 func (o *IncidentResponseAttributes) UnsetDetected() {
 	o.Detected.Unset()
 }
+
 
 // GetFields returns the Fields field value if set, zero value otherwise.
 func (o *IncidentResponseAttributes) GetFields() map[string]IncidentFieldAttributes {
@@ -430,6 +436,7 @@ func (o *IncidentResponseAttributes) SetFields(v map[string]IncidentFieldAttribu
 	o.Fields = v
 }
 
+
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *IncidentResponseAttributes) GetModified() time.Time {
 	if o == nil || o.Modified == nil {
@@ -458,6 +465,7 @@ func (o *IncidentResponseAttributes) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
+
 // GetNonDatadogCreator returns the NonDatadogCreator field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentResponseAttributes) GetNonDatadogCreator() IncidentNonDatadogCreator {
 	if o == nil || o.NonDatadogCreator.Get() == nil {
@@ -471,7 +479,7 @@ func (o *IncidentResponseAttributes) GetNonDatadogCreator() IncidentNonDatadogCr
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetNonDatadogCreatorOk() (*IncidentNonDatadogCreator, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.NonDatadogCreator.Get(), o.NonDatadogCreator.IsSet()
@@ -486,7 +494,6 @@ func (o *IncidentResponseAttributes) HasNonDatadogCreator() bool {
 func (o *IncidentResponseAttributes) SetNonDatadogCreator(v IncidentNonDatadogCreator) {
 	o.NonDatadogCreator.Set(&v)
 }
-
 // SetNonDatadogCreatorNil sets the value for NonDatadogCreator to be an explicit nil.
 func (o *IncidentResponseAttributes) SetNonDatadogCreatorNil() {
 	o.NonDatadogCreator.Set(nil)
@@ -497,9 +504,10 @@ func (o *IncidentResponseAttributes) UnsetNonDatadogCreator() {
 	o.NonDatadogCreator.Unset()
 }
 
+
 // GetNotificationHandles returns the NotificationHandles field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentResponseAttributes) GetNotificationHandles() []IncidentNotificationHandle {
-	if o == nil {
+	if o == nil  {
 		var ret []IncidentNotificationHandle
 		return ret
 	}
@@ -525,6 +533,7 @@ func (o *IncidentResponseAttributes) HasNotificationHandles() bool {
 func (o *IncidentResponseAttributes) SetNotificationHandles(v []IncidentNotificationHandle) {
 	o.NotificationHandles = v
 }
+
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *IncidentResponseAttributes) GetPublicId() int64 {
@@ -554,6 +563,7 @@ func (o *IncidentResponseAttributes) SetPublicId(v int64) {
 	o.PublicId = &v
 }
 
+
 // GetResolved returns the Resolved field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentResponseAttributes) GetResolved() time.Time {
 	if o == nil || o.Resolved.Get() == nil {
@@ -567,7 +577,7 @@ func (o *IncidentResponseAttributes) GetResolved() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetResolvedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Resolved.Get(), o.Resolved.IsSet()
@@ -582,7 +592,6 @@ func (o *IncidentResponseAttributes) HasResolved() bool {
 func (o *IncidentResponseAttributes) SetResolved(v time.Time) {
 	o.Resolved.Set(&v)
 }
-
 // SetResolvedNil sets the value for Resolved to be an explicit nil.
 func (o *IncidentResponseAttributes) SetResolvedNil() {
 	o.Resolved.Set(nil)
@@ -592,6 +601,7 @@ func (o *IncidentResponseAttributes) SetResolvedNil() {
 func (o *IncidentResponseAttributes) UnsetResolved() {
 	o.Resolved.Unset()
 }
+
 
 // GetSeverity returns the Severity field value if set, zero value otherwise.
 func (o *IncidentResponseAttributes) GetSeverity() IncidentSeverity {
@@ -621,6 +631,7 @@ func (o *IncidentResponseAttributes) SetSeverity(v IncidentSeverity) {
 	o.Severity = &v
 }
 
+
 // GetState returns the State field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentResponseAttributes) GetState() string {
 	if o == nil || o.State.Get() == nil {
@@ -634,7 +645,7 @@ func (o *IncidentResponseAttributes) GetState() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetStateOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.State.Get(), o.State.IsSet()
@@ -649,7 +660,6 @@ func (o *IncidentResponseAttributes) HasState() bool {
 func (o *IncidentResponseAttributes) SetState(v string) {
 	o.State.Set(&v)
 }
-
 // SetStateNil sets the value for State to be an explicit nil.
 func (o *IncidentResponseAttributes) SetStateNil() {
 	o.State.Set(nil)
@@ -659,6 +669,7 @@ func (o *IncidentResponseAttributes) SetStateNil() {
 func (o *IncidentResponseAttributes) UnsetState() {
 	o.State.Unset()
 }
+
 
 // GetTimeToDetect returns the TimeToDetect field value if set, zero value otherwise.
 func (o *IncidentResponseAttributes) GetTimeToDetect() int64 {
@@ -688,6 +699,7 @@ func (o *IncidentResponseAttributes) SetTimeToDetect(v int64) {
 	o.TimeToDetect = &v
 }
 
+
 // GetTimeToInternalResponse returns the TimeToInternalResponse field value if set, zero value otherwise.
 func (o *IncidentResponseAttributes) GetTimeToInternalResponse() int64 {
 	if o == nil || o.TimeToInternalResponse == nil {
@@ -715,6 +727,7 @@ func (o *IncidentResponseAttributes) HasTimeToInternalResponse() bool {
 func (o *IncidentResponseAttributes) SetTimeToInternalResponse(v int64) {
 	o.TimeToInternalResponse = &v
 }
+
 
 // GetTimeToRepair returns the TimeToRepair field value if set, zero value otherwise.
 func (o *IncidentResponseAttributes) GetTimeToRepair() int64 {
@@ -744,6 +757,7 @@ func (o *IncidentResponseAttributes) SetTimeToRepair(v int64) {
 	o.TimeToRepair = &v
 }
 
+
 // GetTimeToResolve returns the TimeToResolve field value if set, zero value otherwise.
 func (o *IncidentResponseAttributes) GetTimeToResolve() int64 {
 	if o == nil || o.TimeToResolve == nil {
@@ -772,6 +786,7 @@ func (o *IncidentResponseAttributes) SetTimeToResolve(v int64) {
 	o.TimeToResolve = &v
 }
 
+
 // GetTitle returns the Title field value.
 func (o *IncidentResponseAttributes) GetTitle() string {
 	if o == nil {
@@ -795,6 +810,7 @@ func (o *IncidentResponseAttributes) SetTitle(v string) {
 	o.Title = v
 }
 
+
 // GetVisibility returns the Visibility field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentResponseAttributes) GetVisibility() string {
 	if o == nil || o.Visibility.Get() == nil {
@@ -808,7 +824,7 @@ func (o *IncidentResponseAttributes) GetVisibility() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetVisibilityOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Visibility.Get(), o.Visibility.IsSet()
@@ -823,7 +839,6 @@ func (o *IncidentResponseAttributes) HasVisibility() bool {
 func (o *IncidentResponseAttributes) SetVisibility(v string) {
 	o.Visibility.Set(&v)
 }
-
 // SetVisibilityNil sets the value for Visibility to be an explicit nil.
 func (o *IncidentResponseAttributes) SetVisibilityNil() {
 	o.Visibility.Set(nil)
@@ -833,6 +848,8 @@ func (o *IncidentResponseAttributes) SetVisibilityNil() {
 func (o *IncidentResponseAttributes) UnsetVisibility() {
 	o.Visibility.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
@@ -925,29 +942,29 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Archived               datadog.NullableTime               `json:"archived,omitempty"`
-		CaseId                 datadog.NullableInt64              `json:"case_id,omitempty"`
-		Created                *time.Time                         `json:"created,omitempty"`
-		CustomerImpactDuration *int64                             `json:"customer_impact_duration,omitempty"`
-		CustomerImpactEnd      datadog.NullableTime               `json:"customer_impact_end,omitempty"`
-		CustomerImpactScope    datadog.NullableString             `json:"customer_impact_scope,omitempty"`
-		CustomerImpactStart    datadog.NullableTime               `json:"customer_impact_start,omitempty"`
-		CustomerImpacted       *bool                              `json:"customer_impacted,omitempty"`
-		Detected               datadog.NullableTime               `json:"detected,omitempty"`
-		Fields                 map[string]IncidentFieldAttributes `json:"fields,omitempty"`
-		Modified               *time.Time                         `json:"modified,omitempty"`
-		NonDatadogCreator      NullableIncidentNonDatadogCreator  `json:"non_datadog_creator,omitempty"`
-		NotificationHandles    []IncidentNotificationHandle       `json:"notification_handles,omitempty"`
-		PublicId               *int64                             `json:"public_id,omitempty"`
-		Resolved               datadog.NullableTime               `json:"resolved,omitempty"`
-		Severity               *IncidentSeverity                  `json:"severity,omitempty"`
-		State                  datadog.NullableString             `json:"state,omitempty"`
-		TimeToDetect           *int64                             `json:"time_to_detect,omitempty"`
-		TimeToInternalResponse *int64                             `json:"time_to_internal_response,omitempty"`
-		TimeToRepair           *int64                             `json:"time_to_repair,omitempty"`
-		TimeToResolve          *int64                             `json:"time_to_resolve,omitempty"`
-		Title                  *string                            `json:"title"`
-		Visibility             datadog.NullableString             `json:"visibility,omitempty"`
+		Archived datadog.NullableTime `json:"archived,omitempty"`
+		CaseId datadog.NullableInt64 `json:"case_id,omitempty"`
+		Created *time.Time `json:"created,omitempty"`
+		CustomerImpactDuration *int64 `json:"customer_impact_duration,omitempty"`
+		CustomerImpactEnd datadog.NullableTime `json:"customer_impact_end,omitempty"`
+		CustomerImpactScope datadog.NullableString `json:"customer_impact_scope,omitempty"`
+		CustomerImpactStart datadog.NullableTime `json:"customer_impact_start,omitempty"`
+		CustomerImpacted *bool `json:"customer_impacted,omitempty"`
+		Detected datadog.NullableTime `json:"detected,omitempty"`
+		Fields map[string]IncidentFieldAttributes `json:"fields,omitempty"`
+		Modified *time.Time `json:"modified,omitempty"`
+		NonDatadogCreator NullableIncidentNonDatadogCreator `json:"non_datadog_creator,omitempty"`
+		NotificationHandles []IncidentNotificationHandle `json:"notification_handles,omitempty"`
+		PublicId *int64 `json:"public_id,omitempty"`
+		Resolved datadog.NullableTime `json:"resolved,omitempty"`
+		Severity *IncidentSeverity `json:"severity,omitempty"`
+		State datadog.NullableString `json:"state,omitempty"`
+		TimeToDetect *int64 `json:"time_to_detect,omitempty"`
+		TimeToInternalResponse *int64 `json:"time_to_internal_response,omitempty"`
+		TimeToRepair *int64 `json:"time_to_repair,omitempty"`
+		TimeToResolve *int64 `json:"time_to_resolve,omitempty"`
+		Title *string `json:"title"`
+		Visibility datadog.NullableString `json:"visibility,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -957,7 +974,7 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archived", "case_id", "created", "customer_impact_duration", "customer_impact_end", "customer_impact_scope", "customer_impact_start", "customer_impacted", "detected", "fields", "modified", "non_datadog_creator", "notification_handles", "public_id", "resolved", "severity", "state", "time_to_detect", "time_to_internal_response", "time_to_repair", "time_to_resolve", "title", "visibility"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "archived", "case_id", "created", "customer_impact_duration", "customer_impact_end", "customer_impact_scope", "customer_impact_start", "customer_impacted", "detected", "fields", "modified", "non_datadog_creator", "notification_handles", "public_id", "resolved", "severity", "state", "time_to_detect", "time_to_internal_response", "time_to_repair", "time_to_resolve", "title", "visibility",  })
 	} else {
 		return err
 	}
@@ -978,7 +995,7 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.NotificationHandles = all.NotificationHandles
 	o.PublicId = all.PublicId
 	o.Resolved = all.Resolved
-	if all.Severity != nil && !all.Severity.IsValid() {
+	if all.Severity != nil &&!all.Severity.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Severity = all.Severity

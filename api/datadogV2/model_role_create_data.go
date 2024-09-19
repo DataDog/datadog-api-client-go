@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RoleCreateData Data related to the creation of a role.
 type RoleCreateData struct {
@@ -19,9 +23,10 @@ type RoleCreateData struct {
 	// Roles type.
 	Type *RolesType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRoleCreateData instantiates a new RoleCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewRoleCreateDataWithDefaults() *RoleCreateData {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *RoleCreateData) GetAttributes() RoleCreateAttributes {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *RoleCreateData) GetAttributesOk() (*RoleCreateAttributes, bool) {
 func (o *RoleCreateData) SetAttributes(v RoleCreateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *RoleCreateData) GetRelationships() RoleRelationships {
@@ -96,6 +101,7 @@ func (o *RoleCreateData) SetRelationships(v RoleRelationships) {
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *RoleCreateData) GetType() RolesType {
 	if o == nil || o.Type == nil {
@@ -124,6 +130,8 @@ func (o *RoleCreateData) SetType(v RolesType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RoleCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,9 +155,9 @@ func (o RoleCreateData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RoleCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *RoleCreateAttributes `json:"attributes"`
-		Relationships *RoleRelationships    `json:"relationships,omitempty"`
-		Type          *RolesType            `json:"type,omitempty"`
+		Attributes *RoleCreateAttributes `json:"attributes"`
+		Relationships *RoleRelationships `json:"relationships,omitempty"`
+		Type *RolesType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -159,7 +167,7 @@ func (o *RoleCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "relationships", "type",  })
 	} else {
 		return err
 	}
@@ -169,11 +177,11 @@ func (o *RoleCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

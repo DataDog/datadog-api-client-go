@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WorklflowGetInstanceResponseDataAttributes The attributes of the instance response data.
 type WorklflowGetInstanceResponseDataAttributes struct {
 	// The id of the instance.
 	Id *string `json:"id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWorklflowGetInstanceResponseDataAttributes instantiates a new WorklflowGetInstanceResponseDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewWorklflowGetInstanceResponseDataAttributesWithDefaults() *WorklflowGetIn
 	this := WorklflowGetInstanceResponseDataAttributes{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *WorklflowGetInstanceResponseDataAttributes) GetId() string {
 	if o == nil || o.Id == nil {
@@ -62,6 +68,8 @@ func (o *WorklflowGetInstanceResponseDataAttributes) SetId(v string) {
 	o.Id = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WorklflowGetInstanceResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *WorklflowGetInstanceResponseDataAttributes) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id",  })
 	} else {
 		return err
 	}

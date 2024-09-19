@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotebookUpdateRequest The description of a notebook update request.
 type NotebookUpdateRequest struct {
 	// The data for a notebook update request.
 	Data NotebookUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewNotebookUpdateRequest instantiates a new NotebookUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewNotebookUpdateRequestWithDefaults() *NotebookUpdateRequest {
 	this := NotebookUpdateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *NotebookUpdateRequest) GetData() NotebookUpdateData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *NotebookUpdateRequest) GetDataOk() (*NotebookUpdateData, bool) {
 func (o *NotebookUpdateRequest) SetData(v NotebookUpdateData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *NotebookUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

@@ -2,38 +2,42 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetPalette Color palette to apply.
 type WidgetPalette string
 
 // List of WidgetPalette.
 const (
-	WIDGETPALETTE_BLUE                  WidgetPalette = "blue"
-	WIDGETPALETTE_CUSTOM_BACKGROUND     WidgetPalette = "custom_bg"
-	WIDGETPALETTE_CUSTOM_IMAGE          WidgetPalette = "custom_image"
-	WIDGETPALETTE_CUSTOM_TEXT           WidgetPalette = "custom_text"
-	WIDGETPALETTE_GRAY_ON_WHITE         WidgetPalette = "gray_on_white"
-	WIDGETPALETTE_GREY                  WidgetPalette = "grey"
-	WIDGETPALETTE_GREEN                 WidgetPalette = "green"
-	WIDGETPALETTE_ORANGE                WidgetPalette = "orange"
-	WIDGETPALETTE_RED                   WidgetPalette = "red"
-	WIDGETPALETTE_RED_ON_WHITE          WidgetPalette = "red_on_white"
-	WIDGETPALETTE_WHITE_ON_GRAY         WidgetPalette = "white_on_gray"
-	WIDGETPALETTE_WHITE_ON_GREEN        WidgetPalette = "white_on_green"
-	WIDGETPALETTE_GREEN_ON_WHITE        WidgetPalette = "green_on_white"
-	WIDGETPALETTE_WHITE_ON_RED          WidgetPalette = "white_on_red"
-	WIDGETPALETTE_WHITE_ON_YELLOW       WidgetPalette = "white_on_yellow"
-	WIDGETPALETTE_YELLOW_ON_WHITE       WidgetPalette = "yellow_on_white"
+	WIDGETPALETTE_BLUE WidgetPalette = "blue"
+	WIDGETPALETTE_CUSTOM_BACKGROUND WidgetPalette = "custom_bg"
+	WIDGETPALETTE_CUSTOM_IMAGE WidgetPalette = "custom_image"
+	WIDGETPALETTE_CUSTOM_TEXT WidgetPalette = "custom_text"
+	WIDGETPALETTE_GRAY_ON_WHITE WidgetPalette = "gray_on_white"
+	WIDGETPALETTE_GREY WidgetPalette = "grey"
+	WIDGETPALETTE_GREEN WidgetPalette = "green"
+	WIDGETPALETTE_ORANGE WidgetPalette = "orange"
+	WIDGETPALETTE_RED WidgetPalette = "red"
+	WIDGETPALETTE_RED_ON_WHITE WidgetPalette = "red_on_white"
+	WIDGETPALETTE_WHITE_ON_GRAY WidgetPalette = "white_on_gray"
+	WIDGETPALETTE_WHITE_ON_GREEN WidgetPalette = "white_on_green"
+	WIDGETPALETTE_GREEN_ON_WHITE WidgetPalette = "green_on_white"
+	WIDGETPALETTE_WHITE_ON_RED WidgetPalette = "white_on_red"
+	WIDGETPALETTE_WHITE_ON_YELLOW WidgetPalette = "white_on_yellow"
+	WIDGETPALETTE_YELLOW_ON_WHITE WidgetPalette = "yellow_on_white"
 	WIDGETPALETTE_BLACK_ON_LIGHT_YELLOW WidgetPalette = "black_on_light_yellow"
-	WIDGETPALETTE_BLACK_ON_LIGHT_GREEN  WidgetPalette = "black_on_light_green"
-	WIDGETPALETTE_BLACK_ON_LIGHT_RED    WidgetPalette = "black_on_light_red"
+	WIDGETPALETTE_BLACK_ON_LIGHT_GREEN WidgetPalette = "black_on_light_green"
+	WIDGETPALETTE_BLACK_ON_LIGHT_RED WidgetPalette = "black_on_light_red"
 )
 
 var allowedWidgetPaletteEnumValues = []WidgetPalette{

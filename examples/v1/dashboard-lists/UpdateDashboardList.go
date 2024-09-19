@@ -2,29 +2,30 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
-	"strconv"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+	"github.com/google/uuid"
 )
 
 func main() {
 	// there is a valid "dashboard_list" in the system
 	DashboardListID, _ := strconv.ParseInt(os.Getenv("DASHBOARD_LIST_ID"), 10, 64)
 
+
 	body := datadogV1.DashboardList{
-		Name: "updated Example-Dashboard-List",
-	}
+Name: "updated Example-Dashboard-List",
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewDashboardListsApi(apiClient)
-	resp, r, err := api.UpdateDashboardList(ctx, DashboardListID, body)
+	resp, r, err := api.UpdateDashboardList(ctx, DashboardListID, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardList`: %v\n", err)

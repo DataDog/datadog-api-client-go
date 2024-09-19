@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TableWidgetRequest Updated table widget.
 type TableWidgetRequest struct {
@@ -53,9 +59,10 @@ type TableWidgetRequest struct {
 	// List of text formats for columns produced by tags.
 	TextFormats [][]TableWidgetTextFormatRule `json:"text_formats,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTableWidgetRequest instantiates a new TableWidgetRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -73,7 +80,6 @@ func NewTableWidgetRequestWithDefaults() *TableWidgetRequest {
 	this := TableWidgetRequest{}
 	return &this
 }
-
 // GetAggregator returns the Aggregator field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetAggregator() WidgetAggregator {
 	if o == nil || o.Aggregator == nil {
@@ -101,6 +107,7 @@ func (o *TableWidgetRequest) HasAggregator() bool {
 func (o *TableWidgetRequest) SetAggregator(v WidgetAggregator) {
 	o.Aggregator = &v
 }
+
 
 // GetAlias returns the Alias field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetAlias() string {
@@ -130,6 +137,7 @@ func (o *TableWidgetRequest) SetAlias(v string) {
 	o.Alias = &v
 }
 
+
 // GetApmQuery returns the ApmQuery field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetApmQuery() LogQueryDefinition {
 	if o == nil || o.ApmQuery == nil {
@@ -157,6 +165,7 @@ func (o *TableWidgetRequest) HasApmQuery() bool {
 func (o *TableWidgetRequest) SetApmQuery(v LogQueryDefinition) {
 	o.ApmQuery = &v
 }
+
 
 // GetApmStatsQuery returns the ApmStatsQuery field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetApmStatsQuery() ApmStatsQueryDefinition {
@@ -186,6 +195,7 @@ func (o *TableWidgetRequest) SetApmStatsQuery(v ApmStatsQueryDefinition) {
 	o.ApmStatsQuery = &v
 }
 
+
 // GetCellDisplayMode returns the CellDisplayMode field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetCellDisplayMode() []TableWidgetCellDisplayMode {
 	if o == nil || o.CellDisplayMode == nil {
@@ -213,6 +223,7 @@ func (o *TableWidgetRequest) HasCellDisplayMode() bool {
 func (o *TableWidgetRequest) SetCellDisplayMode(v []TableWidgetCellDisplayMode) {
 	o.CellDisplayMode = v
 }
+
 
 // GetConditionalFormats returns the ConditionalFormats field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetConditionalFormats() []WidgetConditionalFormat {
@@ -242,6 +253,7 @@ func (o *TableWidgetRequest) SetConditionalFormats(v []WidgetConditionalFormat) 
 	o.ConditionalFormats = v
 }
 
+
 // GetEventQuery returns the EventQuery field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetEventQuery() LogQueryDefinition {
 	if o == nil || o.EventQuery == nil {
@@ -269,6 +281,7 @@ func (o *TableWidgetRequest) HasEventQuery() bool {
 func (o *TableWidgetRequest) SetEventQuery(v LogQueryDefinition) {
 	o.EventQuery = &v
 }
+
 
 // GetFormulas returns the Formulas field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetFormulas() []WidgetFormula {
@@ -298,6 +311,7 @@ func (o *TableWidgetRequest) SetFormulas(v []WidgetFormula) {
 	o.Formulas = v
 }
 
+
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
@@ -325,6 +339,7 @@ func (o *TableWidgetRequest) HasLimit() bool {
 func (o *TableWidgetRequest) SetLimit(v int64) {
 	o.Limit = &v
 }
+
 
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetLogQuery() LogQueryDefinition {
@@ -354,6 +369,7 @@ func (o *TableWidgetRequest) SetLogQuery(v LogQueryDefinition) {
 	o.LogQuery = &v
 }
 
+
 // GetNetworkQuery returns the NetworkQuery field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetNetworkQuery() LogQueryDefinition {
 	if o == nil || o.NetworkQuery == nil {
@@ -381,6 +397,7 @@ func (o *TableWidgetRequest) HasNetworkQuery() bool {
 func (o *TableWidgetRequest) SetNetworkQuery(v LogQueryDefinition) {
 	o.NetworkQuery = &v
 }
+
 
 // GetOrder returns the Order field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetOrder() WidgetSort {
@@ -410,6 +427,7 @@ func (o *TableWidgetRequest) SetOrder(v WidgetSort) {
 	o.Order = &v
 }
 
+
 // GetProcessQuery returns the ProcessQuery field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetProcessQuery() ProcessQueryDefinition {
 	if o == nil || o.ProcessQuery == nil {
@@ -437,6 +455,7 @@ func (o *TableWidgetRequest) HasProcessQuery() bool {
 func (o *TableWidgetRequest) SetProcessQuery(v ProcessQueryDefinition) {
 	o.ProcessQuery = &v
 }
+
 
 // GetProfileMetricsQuery returns the ProfileMetricsQuery field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetProfileMetricsQuery() LogQueryDefinition {
@@ -466,6 +485,7 @@ func (o *TableWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
 	o.ProfileMetricsQuery = &v
 }
 
+
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetQ() string {
 	if o == nil || o.Q == nil {
@@ -493,6 +513,7 @@ func (o *TableWidgetRequest) HasQ() bool {
 func (o *TableWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
+
 
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
@@ -522,6 +543,7 @@ func (o *TableWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) {
 	o.Queries = v
 }
 
+
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
 	if o == nil || o.ResponseFormat == nil {
@@ -549,6 +571,7 @@ func (o *TableWidgetRequest) HasResponseFormat() bool {
 func (o *TableWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFormat) {
 	o.ResponseFormat = &v
 }
+
 
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetRumQuery() LogQueryDefinition {
@@ -578,6 +601,7 @@ func (o *TableWidgetRequest) SetRumQuery(v LogQueryDefinition) {
 	o.RumQuery = &v
 }
 
+
 // GetSecurityQuery returns the SecurityQuery field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetSecurityQuery() LogQueryDefinition {
 	if o == nil || o.SecurityQuery == nil {
@@ -605,6 +629,7 @@ func (o *TableWidgetRequest) HasSecurityQuery() bool {
 func (o *TableWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 	o.SecurityQuery = &v
 }
+
 
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetSort() WidgetSortBy {
@@ -634,6 +659,7 @@ func (o *TableWidgetRequest) SetSort(v WidgetSortBy) {
 	o.Sort = &v
 }
 
+
 // GetTextFormats returns the TextFormats field value if set, zero value otherwise.
 func (o *TableWidgetRequest) GetTextFormats() [][]TableWidgetTextFormatRule {
 	if o == nil || o.TextFormats == nil {
@@ -661,6 +687,8 @@ func (o *TableWidgetRequest) HasTextFormats() bool {
 func (o *TableWidgetRequest) SetTextFormats(v [][]TableWidgetTextFormatRule) {
 	o.TextFormats = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TableWidgetRequest) MarshalJSON() ([]byte, error) {
@@ -741,98 +769,98 @@ func (o TableWidgetRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TableWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aggregator          *WidgetAggregator                   `json:"aggregator,omitempty"`
-		Alias               *string                             `json:"alias,omitempty"`
-		ApmQuery            *LogQueryDefinition                 `json:"apm_query,omitempty"`
-		ApmStatsQuery       *ApmStatsQueryDefinition            `json:"apm_stats_query,omitempty"`
-		CellDisplayMode     []TableWidgetCellDisplayMode        `json:"cell_display_mode,omitempty"`
-		ConditionalFormats  []WidgetConditionalFormat           `json:"conditional_formats,omitempty"`
-		EventQuery          *LogQueryDefinition                 `json:"event_query,omitempty"`
-		Formulas            []WidgetFormula                     `json:"formulas,omitempty"`
-		Limit               *int64                              `json:"limit,omitempty"`
-		LogQuery            *LogQueryDefinition                 `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition                 `json:"network_query,omitempty"`
-		Order               *WidgetSort                         `json:"order,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition             `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition                 `json:"profile_metrics_query,omitempty"`
-		Q                   *string                             `json:"q,omitempty"`
-		Queries             []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat      *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
-		RumQuery            *LogQueryDefinition                 `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition                 `json:"security_query,omitempty"`
-		Sort                *WidgetSortBy                       `json:"sort,omitempty"`
-		TextFormats         [][]TableWidgetTextFormatRule       `json:"text_formats,omitempty"`
+		Aggregator *WidgetAggregator `json:"aggregator,omitempty"`
+		Alias *string `json:"alias,omitempty"`
+		ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+		ApmStatsQuery *ApmStatsQueryDefinition `json:"apm_stats_query,omitempty"`
+		CellDisplayMode []TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
+		ConditionalFormats []WidgetConditionalFormat `json:"conditional_formats,omitempty"`
+		EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
+		Formulas []WidgetFormula `json:"formulas,omitempty"`
+		Limit *int64 `json:"limit,omitempty"`
+		LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+		NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+		Order *WidgetSort `json:"order,omitempty"`
+		ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
+		Q *string `json:"q,omitempty"`
+		Queries []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+		RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+		SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+		Sort *WidgetSortBy `json:"sort,omitempty"`
+		TextFormats [][]TableWidgetTextFormatRule `json:"text_formats,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregator", "alias", "apm_query", "apm_stats_query", "cell_display_mode", "conditional_formats", "event_query", "formulas", "limit", "log_query", "network_query", "order", "process_query", "profile_metrics_query", "q", "queries", "response_format", "rum_query", "security_query", "sort", "text_formats"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregator", "alias", "apm_query", "apm_stats_query", "cell_display_mode", "conditional_formats", "event_query", "formulas", "limit", "log_query", "network_query", "order", "process_query", "profile_metrics_query", "q", "queries", "response_format", "rum_query", "security_query", "sort", "text_formats",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Aggregator != nil && !all.Aggregator.IsValid() {
+	if all.Aggregator != nil &&!all.Aggregator.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Aggregator = all.Aggregator
 	}
 	o.Alias = all.Alias
-	if all.ApmQuery != nil && all.ApmQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApmQuery != nil && all.ApmQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApmQuery = all.ApmQuery
-	if all.ApmStatsQuery != nil && all.ApmStatsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApmStatsQuery != nil && all.ApmStatsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApmStatsQuery = all.ApmStatsQuery
 	o.CellDisplayMode = all.CellDisplayMode
 	o.ConditionalFormats = all.ConditionalFormats
-	if all.EventQuery != nil && all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.EventQuery != nil && all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.EventQuery = all.EventQuery
 	o.Formulas = all.Formulas
 	o.Limit = all.Limit
-	if all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogQuery = all.LogQuery
-	if all.NetworkQuery != nil && all.NetworkQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.NetworkQuery != nil && all.NetworkQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.NetworkQuery = all.NetworkQuery
-	if all.Order != nil && !all.Order.IsValid() {
+	if all.Order != nil &&!all.Order.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Order = all.Order
 	}
-	if all.ProcessQuery != nil && all.ProcessQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ProcessQuery != nil && all.ProcessQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ProcessQuery = all.ProcessQuery
-	if all.ProfileMetricsQuery != nil && all.ProfileMetricsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ProfileMetricsQuery != nil && all.ProfileMetricsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ProfileMetricsQuery = all.ProfileMetricsQuery
 	o.Q = all.Q
 	o.Queries = all.Queries
-	if all.ResponseFormat != nil && !all.ResponseFormat.IsValid() {
+	if all.ResponseFormat != nil &&!all.ResponseFormat.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ResponseFormat = all.ResponseFormat
 	}
-	if all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RumQuery = all.RumQuery
-	if all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SecurityQuery = all.SecurityQuery
-	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Sort = all.Sort

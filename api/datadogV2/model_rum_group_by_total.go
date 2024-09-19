@@ -2,17 +2,23 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RUMGroupByTotal - A resulting object to put the given computes in over all the matching records.
 type RUMGroupByTotal struct {
 	RUMGroupByTotalBoolean *bool
-	RUMGroupByTotalString  *string
-	RUMGroupByTotalNumber  *float64
+	RUMGroupByTotalString *string
+	RUMGroupByTotalNumber *float64
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -104,13 +110,16 @@ func (obj RUMGroupByTotal) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.RUMGroupByTotalBoolean)
 	}
 
+
 	if obj.RUMGroupByTotalString != nil {
 		return datadog.Marshal(&obj.RUMGroupByTotalString)
 	}
 
+
 	if obj.RUMGroupByTotalNumber != nil {
 		return datadog.Marshal(&obj.RUMGroupByTotalNumber)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj RUMGroupByTotal) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *RUMGroupByTotal) GetActualInstance() interface{} {
+func (obj *RUMGroupByTotal) GetActualInstance() (interface{}) {
 	if obj.RUMGroupByTotalBoolean != nil {
 		return obj.RUMGroupByTotalBoolean
 	}
+
 
 	if obj.RUMGroupByTotalString != nil {
 		return obj.RUMGroupByTotalString
 	}
 
+
 	if obj.RUMGroupByTotalNumber != nil {
 		return obj.RUMGroupByTotalNumber
 	}
+
 
 	// all schemas are nil
 	return nil

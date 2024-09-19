@@ -2,28 +2,31 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	// there is a valid "scanning_group" in the system
 	GroupDataID := os.Getenv("GROUP_DATA_ID")
 
+
 	body := datadogV2.SensitiveDataScannerGroupDeleteRequest{
-		Meta: datadogV2.SensitiveDataScannerMetaVersionOnly{},
-	}
+Meta: datadogV2.SensitiveDataScannerMetaVersionOnly{
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSensitiveDataScannerApi(apiClient)
-	resp, r, err := api.DeleteScanningGroup(ctx, GroupDataID, body)
+	resp, r, err := api.DeleteScanningGroup(ctx, GroupDataID, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SensitiveDataScannerApi.DeleteScanningGroup`: %v\n", err)

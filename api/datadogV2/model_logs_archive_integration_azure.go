@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsArchiveIntegrationAzure The Azure archive's integration destination.
 type LogsArchiveIntegrationAzure struct {
@@ -17,9 +21,10 @@ type LogsArchiveIntegrationAzure struct {
 	// A tenant ID.
 	TenantId string `json:"tenant_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsArchiveIntegrationAzure instantiates a new LogsArchiveIntegrationAzure object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewLogsArchiveIntegrationAzureWithDefaults() *LogsArchiveIntegrationAzure {
 	this := LogsArchiveIntegrationAzure{}
 	return &this
 }
-
 // GetClientId returns the ClientId field value.
 func (o *LogsArchiveIntegrationAzure) GetClientId() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *LogsArchiveIntegrationAzure) SetClientId(v string) {
 	o.ClientId = v
 }
 
+
 // GetTenantId returns the TenantId field value.
 func (o *LogsArchiveIntegrationAzure) GetTenantId() string {
 	if o == nil {
@@ -85,6 +90,8 @@ func (o *LogsArchiveIntegrationAzure) GetTenantIdOk() (*string, bool) {
 func (o *LogsArchiveIntegrationAzure) SetTenantId(v string) {
 	o.TenantId = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsArchiveIntegrationAzure) MarshalJSON() ([]byte, error) {
@@ -118,7 +125,7 @@ func (o *LogsArchiveIntegrationAzure) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"client_id", "tenant_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "client_id", "tenant_id",  })
 	} else {
 		return err
 	}

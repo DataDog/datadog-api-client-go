@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HostTotals Total number of host currently monitored by Datadog.
 type HostTotals struct {
@@ -15,9 +21,10 @@ type HostTotals struct {
 	// Number of host that are UP and reporting to Datadog.
 	TotalUp *int64 `json:"total_up,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHostTotals instantiates a new HostTotals object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewHostTotalsWithDefaults() *HostTotals {
 	this := HostTotals{}
 	return &this
 }
-
 // GetTotalActive returns the TotalActive field value if set, zero value otherwise.
 func (o *HostTotals) GetTotalActive() int64 {
 	if o == nil || o.TotalActive == nil {
@@ -63,6 +69,7 @@ func (o *HostTotals) HasTotalActive() bool {
 func (o *HostTotals) SetTotalActive(v int64) {
 	o.TotalActive = &v
 }
+
 
 // GetTotalUp returns the TotalUp field value if set, zero value otherwise.
 func (o *HostTotals) GetTotalUp() int64 {
@@ -92,6 +99,8 @@ func (o *HostTotals) SetTotalUp(v int64) {
 	o.TotalUp = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o HostTotals) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o HostTotals) MarshalJSON() ([]byte, error) {
 func (o *HostTotals) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		TotalActive *int64 `json:"total_active,omitempty"`
-		TotalUp     *int64 `json:"total_up,omitempty"`
+		TotalUp *int64 `json:"total_up,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"total_active", "total_up"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "total_active", "total_up",  })
 	} else {
 		return err
 	}

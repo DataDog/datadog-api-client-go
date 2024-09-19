@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestRequestPort - Port to use when performing the test.
 type SyntheticsTestRequestPort struct {
 	SyntheticsTestRequestNumericalPort *int64
-	SyntheticsTestRequestVariablePort  *string
+	SyntheticsTestRequestVariablePort *string
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -80,9 +86,11 @@ func (obj SyntheticsTestRequestPort) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SyntheticsTestRequestNumericalPort)
 	}
 
+
 	if obj.SyntheticsTestRequestVariablePort != nil {
 		return datadog.Marshal(&obj.SyntheticsTestRequestVariablePort)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj SyntheticsTestRequestPort) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SyntheticsTestRequestPort) GetActualInstance() interface{} {
+func (obj *SyntheticsTestRequestPort) GetActualInstance() (interface{}) {
 	if obj.SyntheticsTestRequestNumericalPort != nil {
 		return obj.SyntheticsTestRequestNumericalPort
 	}
 
+
 	if obj.SyntheticsTestRequestVariablePort != nil {
 		return obj.SyntheticsTestRequestVariablePort
 	}
+
 
 	// all schemas are nil
 	return nil

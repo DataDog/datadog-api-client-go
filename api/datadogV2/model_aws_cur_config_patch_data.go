@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AwsCURConfigPatchData AWS CUR config Patch data.
 type AwsCURConfigPatchData struct {
@@ -17,9 +21,10 @@ type AwsCURConfigPatchData struct {
 	// Type of AWS CUR config Patch Request.
 	Type AwsCURConfigPatchRequestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAwsCURConfigPatchData instantiates a new AwsCURConfigPatchData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewAwsCURConfigPatchDataWithDefaults() *AwsCURConfigPatchData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *AwsCURConfigPatchData) GetAttributes() AwsCURConfigPatchRequestAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *AwsCURConfigPatchData) GetAttributesOk() (*AwsCURConfigPatchRequestAttr
 func (o *AwsCURConfigPatchData) SetAttributes(v AwsCURConfigPatchRequestAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *AwsCURConfigPatchData) GetType() AwsCURConfigPatchRequestType {
@@ -88,6 +93,8 @@ func (o *AwsCURConfigPatchData) SetType(v AwsCURConfigPatchRequestType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AwsCURConfigPatchData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o AwsCURConfigPatchData) MarshalJSON() ([]byte, error) {
 func (o *AwsCURConfigPatchData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *AwsCURConfigPatchRequestAttributes `json:"attributes"`
-		Type       *AwsCURConfigPatchRequestType       `json:"type"`
+		Type *AwsCURConfigPatchRequestType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *AwsCURConfigPatchData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

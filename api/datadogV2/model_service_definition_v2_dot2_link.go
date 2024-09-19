@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionV2Dot2Link Service's external links.
 type ServiceDefinitionV2Dot2Link struct {
@@ -21,9 +25,10 @@ type ServiceDefinitionV2Dot2Link struct {
 	// Link URL.
 	Url string `json:"url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceDefinitionV2Dot2Link instantiates a new ServiceDefinitionV2Dot2Link object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewServiceDefinitionV2Dot2LinkWithDefaults() *ServiceDefinitionV2Dot2Link {
 	this := ServiceDefinitionV2Dot2Link{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *ServiceDefinitionV2Dot2Link) GetName() string {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *ServiceDefinitionV2Dot2Link) GetNameOk() (*string, bool) {
 func (o *ServiceDefinitionV2Dot2Link) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2Link) GetProvider() string {
@@ -96,6 +101,7 @@ func (o *ServiceDefinitionV2Dot2Link) SetProvider(v string) {
 	o.Provider = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ServiceDefinitionV2Dot2Link) GetType() string {
 	if o == nil {
@@ -118,6 +124,7 @@ func (o *ServiceDefinitionV2Dot2Link) GetTypeOk() (*string, bool) {
 func (o *ServiceDefinitionV2Dot2Link) SetType(v string) {
 	o.Type = v
 }
+
 
 // GetUrl returns the Url field value.
 func (o *ServiceDefinitionV2Dot2Link) GetUrl() string {
@@ -142,6 +149,8 @@ func (o *ServiceDefinitionV2Dot2Link) SetUrl(v string) {
 	o.Url = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionV2Dot2Link) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -164,10 +173,10 @@ func (o ServiceDefinitionV2Dot2Link) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV2Dot2Link) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name     *string `json:"name"`
+		Name *string `json:"name"`
 		Provider *string `json:"provider,omitempty"`
-		Type     *string `json:"type"`
-		Url      *string `json:"url"`
+		Type *string `json:"type"`
+		Url *string `json:"url"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -183,7 +192,7 @@ func (o *ServiceDefinitionV2Dot2Link) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "provider", "type", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "provider", "type", "url",  })
 	} else {
 		return err
 	}

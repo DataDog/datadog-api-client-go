@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CaseCreateAttributes Case creation attributes
 type CaseCreateAttributes struct {
@@ -21,9 +25,10 @@ type CaseCreateAttributes struct {
 	// Case type
 	Type CaseType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCaseCreateAttributes instantiates a new CaseCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewCaseCreateAttributesWithDefaults() *CaseCreateAttributes {
 	this.Priority = &priority
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CaseCreateAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -75,6 +79,7 @@ func (o *CaseCreateAttributes) HasDescription() bool {
 func (o *CaseCreateAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
 func (o *CaseCreateAttributes) GetPriority() CasePriority {
@@ -104,6 +109,7 @@ func (o *CaseCreateAttributes) SetPriority(v CasePriority) {
 	o.Priority = &v
 }
 
+
 // GetTitle returns the Title field value.
 func (o *CaseCreateAttributes) GetTitle() string {
 	if o == nil {
@@ -127,6 +133,7 @@ func (o *CaseCreateAttributes) SetTitle(v string) {
 	o.Title = v
 }
 
+
 // GetType returns the Type field value.
 func (o *CaseCreateAttributes) GetType() CaseType {
 	if o == nil {
@@ -149,6 +156,8 @@ func (o *CaseCreateAttributes) GetTypeOk() (*CaseType, bool) {
 func (o *CaseCreateAttributes) SetType(v CaseType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CaseCreateAttributes) MarshalJSON() ([]byte, error) {
@@ -174,10 +183,10 @@ func (o CaseCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CaseCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description *string       `json:"description,omitempty"`
-		Priority    *CasePriority `json:"priority,omitempty"`
-		Title       *string       `json:"title"`
-		Type        *CaseType     `json:"type"`
+		Description *string `json:"description,omitempty"`
+		Priority *CasePriority `json:"priority,omitempty"`
+		Title *string `json:"title"`
+		Type *CaseType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -190,14 +199,14 @@ func (o *CaseCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "priority", "title", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "priority", "title", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Description = all.Description
-	if all.Priority != nil && !all.Priority.IsValid() {
+	if all.Priority != nil &&!all.Priority.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Priority = all.Priority

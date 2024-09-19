@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageOnlineArchiveResponse Online Archive usage response.
 type UsageOnlineArchiveResponse struct {
 	// Response containing Online Archive usage.
 	Usage []UsageOnlineArchiveHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageOnlineArchiveResponse instantiates a new UsageOnlineArchiveResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewUsageOnlineArchiveResponseWithDefaults() *UsageOnlineArchiveResponse {
 	this := UsageOnlineArchiveResponse{}
 	return &this
 }
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageOnlineArchiveResponse) GetUsage() []UsageOnlineArchiveHour {
 	if o == nil || o.Usage == nil {
@@ -62,6 +68,8 @@ func (o *UsageOnlineArchiveResponse) SetUsage(v []UsageOnlineArchiveHour) {
 	o.Usage = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageOnlineArchiveResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *UsageOnlineArchiveResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"usage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "usage",  })
 	} else {
 		return err
 	}

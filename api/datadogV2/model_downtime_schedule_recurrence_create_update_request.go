@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeScheduleRecurrenceCreateUpdateRequest An object defining the recurrence of the downtime.
 type DowntimeScheduleRecurrenceCreateUpdateRequest struct {
@@ -25,9 +29,10 @@ type DowntimeScheduleRecurrenceCreateUpdateRequest struct {
 	// downtime starts the moment it is created.
 	Start datadog.NullableString `json:"start,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeScheduleRecurrenceCreateUpdateRequest instantiates a new DowntimeScheduleRecurrenceCreateUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewDowntimeScheduleRecurrenceCreateUpdateRequestWithDefaults() *DowntimeSch
 	this := DowntimeScheduleRecurrenceCreateUpdateRequest{}
 	return &this
 }
-
 // GetDuration returns the Duration field value.
 func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) GetDuration() string {
 	if o == nil {
@@ -70,6 +74,7 @@ func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) GetDurationOk() (*string
 func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) SetDuration(v string) {
 	o.Duration = v
 }
+
 
 // GetRrule returns the Rrule field value.
 func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) GetRrule() string {
@@ -94,6 +99,7 @@ func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) SetRrule(v string) {
 	o.Rrule = v
 }
 
+
 // GetStart returns the Start field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) GetStart() string {
 	if o == nil || o.Start.Get() == nil {
@@ -107,7 +113,7 @@ func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) GetStart() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) GetStartOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Start.Get(), o.Start.IsSet()
@@ -122,7 +128,6 @@ func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) HasStart() bool {
 func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) SetStart(v string) {
 	o.Start.Set(&v)
 }
-
 // SetStartNil sets the value for Start to be an explicit nil.
 func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) SetStartNil() {
 	o.Start.Set(nil)
@@ -132,6 +137,8 @@ func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) SetStartNil() {
 func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) UnsetStart() {
 	o.Start.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeScheduleRecurrenceCreateUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -154,9 +161,9 @@ func (o DowntimeScheduleRecurrenceCreateUpdateRequest) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Duration *string                `json:"duration"`
-		Rrule    *string                `json:"rrule"`
-		Start    datadog.NullableString `json:"start,omitempty"`
+		Duration *string `json:"duration"`
+		Rrule *string `json:"rrule"`
+		Start datadog.NullableString `json:"start,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -169,7 +176,7 @@ func (o *DowntimeScheduleRecurrenceCreateUpdateRequest) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"duration", "rrule", "start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "duration", "rrule", "start",  })
 	} else {
 		return err
 	}

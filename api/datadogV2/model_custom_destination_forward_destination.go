@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomDestinationForwardDestination - A custom destination's location to forward logs.
 type CustomDestinationForwardDestination struct {
-	CustomDestinationForwardDestinationHttp          *CustomDestinationForwardDestinationHttp
-	CustomDestinationForwardDestinationSplunk        *CustomDestinationForwardDestinationSplunk
+	CustomDestinationForwardDestinationHttp *CustomDestinationForwardDestinationHttp
+	CustomDestinationForwardDestinationSplunk *CustomDestinationForwardDestinationSplunk
 	CustomDestinationForwardDestinationElasticsearch *CustomDestinationForwardDestinationElasticsearch
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -104,13 +110,16 @@ func (obj CustomDestinationForwardDestination) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.CustomDestinationForwardDestinationHttp)
 	}
 
+
 	if obj.CustomDestinationForwardDestinationSplunk != nil {
 		return datadog.Marshal(&obj.CustomDestinationForwardDestinationSplunk)
 	}
 
+
 	if obj.CustomDestinationForwardDestinationElasticsearch != nil {
 		return datadog.Marshal(&obj.CustomDestinationForwardDestinationElasticsearch)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj CustomDestinationForwardDestination) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *CustomDestinationForwardDestination) GetActualInstance() interface{} {
+func (obj *CustomDestinationForwardDestination) GetActualInstance() (interface{}) {
 	if obj.CustomDestinationForwardDestinationHttp != nil {
 		return obj.CustomDestinationForwardDestinationHttp
 	}
+
 
 	if obj.CustomDestinationForwardDestinationSplunk != nil {
 		return obj.CustomDestinationForwardDestinationSplunk
 	}
 
+
 	if obj.CustomDestinationForwardDestinationElasticsearch != nil {
 		return obj.CustomDestinationForwardDestinationElasticsearch
 	}
+
 
 	// all schemas are nil
 	return nil

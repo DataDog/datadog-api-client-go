@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeNotifyEndStateActions Action that will trigger a monitor notification if the downtime is in the `notify_end_types` state.
 type DowntimeNotifyEndStateActions string
@@ -16,7 +20,7 @@ type DowntimeNotifyEndStateActions string
 // List of DowntimeNotifyEndStateActions.
 const (
 	DOWNTIMENOTIFYENDSTATEACTIONS_CANCELED DowntimeNotifyEndStateActions = "canceled"
-	DOWNTIMENOTIFYENDSTATEACTIONS_EXPIRED  DowntimeNotifyEndStateActions = "expired"
+	DOWNTIMENOTIFYENDSTATEACTIONS_EXPIRED DowntimeNotifyEndStateActions = "expired"
 )
 
 var allowedDowntimeNotifyEndStateActionsEnumValues = []DowntimeNotifyEndStateActions{

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAPITestConfig Configuration object for a Synthetic API test.
 type SyntheticsAPITestConfig struct {
@@ -21,9 +27,10 @@ type SyntheticsAPITestConfig struct {
 	// Variables defined from JavaScript code.
 	VariablesFromScript *string `json:"variablesFromScript,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsAPITestConfig instantiates a new SyntheticsAPITestConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewSyntheticsAPITestConfigWithDefaults() *SyntheticsAPITestConfig {
 	this := SyntheticsAPITestConfig{}
 	return &this
 }
-
 // GetAssertions returns the Assertions field value if set, zero value otherwise.
 func (o *SyntheticsAPITestConfig) GetAssertions() []SyntheticsAssertion {
 	if o == nil || o.Assertions == nil {
@@ -69,6 +75,7 @@ func (o *SyntheticsAPITestConfig) HasAssertions() bool {
 func (o *SyntheticsAPITestConfig) SetAssertions(v []SyntheticsAssertion) {
 	o.Assertions = v
 }
+
 
 // GetConfigVariables returns the ConfigVariables field value if set, zero value otherwise.
 func (o *SyntheticsAPITestConfig) GetConfigVariables() []SyntheticsConfigVariable {
@@ -98,6 +105,7 @@ func (o *SyntheticsAPITestConfig) SetConfigVariables(v []SyntheticsConfigVariabl
 	o.ConfigVariables = v
 }
 
+
 // GetRequest returns the Request field value if set, zero value otherwise.
 func (o *SyntheticsAPITestConfig) GetRequest() SyntheticsTestRequest {
 	if o == nil || o.Request == nil {
@@ -125,6 +133,7 @@ func (o *SyntheticsAPITestConfig) HasRequest() bool {
 func (o *SyntheticsAPITestConfig) SetRequest(v SyntheticsTestRequest) {
 	o.Request = &v
 }
+
 
 // GetSteps returns the Steps field value if set, zero value otherwise.
 func (o *SyntheticsAPITestConfig) GetSteps() []SyntheticsAPIStep {
@@ -154,6 +163,7 @@ func (o *SyntheticsAPITestConfig) SetSteps(v []SyntheticsAPIStep) {
 	o.Steps = v
 }
 
+
 // GetVariablesFromScript returns the VariablesFromScript field value if set, zero value otherwise.
 func (o *SyntheticsAPITestConfig) GetVariablesFromScript() string {
 	if o == nil || o.VariablesFromScript == nil {
@@ -181,6 +191,8 @@ func (o *SyntheticsAPITestConfig) HasVariablesFromScript() bool {
 func (o *SyntheticsAPITestConfig) SetVariablesFromScript(v string) {
 	o.VariablesFromScript = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAPITestConfig) MarshalJSON() ([]byte, error) {
@@ -213,18 +225,18 @@ func (o SyntheticsAPITestConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAPITestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Assertions          []SyntheticsAssertion      `json:"assertions,omitempty"`
-		ConfigVariables     []SyntheticsConfigVariable `json:"configVariables,omitempty"`
-		Request             *SyntheticsTestRequest     `json:"request,omitempty"`
-		Steps               []SyntheticsAPIStep        `json:"steps,omitempty"`
-		VariablesFromScript *string                    `json:"variablesFromScript,omitempty"`
+		Assertions []SyntheticsAssertion `json:"assertions,omitempty"`
+		ConfigVariables []SyntheticsConfigVariable `json:"configVariables,omitempty"`
+		Request *SyntheticsTestRequest `json:"request,omitempty"`
+		Steps []SyntheticsAPIStep `json:"steps,omitempty"`
+		VariablesFromScript *string `json:"variablesFromScript,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assertions", "configVariables", "request", "steps", "variablesFromScript"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "assertions", "configVariables", "request", "steps", "variablesFromScript",  })
 	} else {
 		return err
 	}
@@ -232,7 +244,7 @@ func (o *SyntheticsAPITestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Assertions = all.Assertions
 	o.ConfigVariables = all.ConfigVariables
-	if all.Request != nil && all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Request != nil && all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Request = all.Request

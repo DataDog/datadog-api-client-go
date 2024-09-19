@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SpansFilter The spans filter used to index spans.
 type SpansFilter struct {
 	// The search query - following the [span search syntax](https://docs.datadoghq.com/tracing/trace_explorer/query_syntax/).
 	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSpansFilter instantiates a new SpansFilter object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewSpansFilterWithDefaults() *SpansFilter {
 	this := SpansFilter{}
 	return &this
 }
-
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *SpansFilter) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -62,6 +68,8 @@ func (o *SpansFilter) SetQuery(v string) {
 	o.Query = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SpansFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *SpansFilter) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "query",  })
 	} else {
 		return err
 	}

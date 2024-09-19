@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TimeseriesWidgetDefinition The timeseries visualization allows you to display the evolution of one or more metrics, log events, or Indexed Spans over time.
 type TimeseriesWidgetDefinition struct {
@@ -43,9 +47,10 @@ type TimeseriesWidgetDefinition struct {
 	// Axis controls for the widget.
 	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTimeseriesWidgetDefinition instantiates a new TimeseriesWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -67,7 +72,6 @@ func NewTimeseriesWidgetDefinitionWithDefaults() *TimeseriesWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *TimeseriesWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 	if o == nil || o.CustomLinks == nil {
@@ -95,6 +99,7 @@ func (o *TimeseriesWidgetDefinition) HasCustomLinks() bool {
 func (o *TimeseriesWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
+
 
 // GetEvents returns the Events field value if set, zero value otherwise.
 func (o *TimeseriesWidgetDefinition) GetEvents() []WidgetEvent {
@@ -124,6 +129,7 @@ func (o *TimeseriesWidgetDefinition) SetEvents(v []WidgetEvent) {
 	o.Events = v
 }
 
+
 // GetLegendColumns returns the LegendColumns field value if set, zero value otherwise.
 func (o *TimeseriesWidgetDefinition) GetLegendColumns() []TimeseriesWidgetLegendColumn {
 	if o == nil || o.LegendColumns == nil {
@@ -151,6 +157,7 @@ func (o *TimeseriesWidgetDefinition) HasLegendColumns() bool {
 func (o *TimeseriesWidgetDefinition) SetLegendColumns(v []TimeseriesWidgetLegendColumn) {
 	o.LegendColumns = v
 }
+
 
 // GetLegendLayout returns the LegendLayout field value if set, zero value otherwise.
 func (o *TimeseriesWidgetDefinition) GetLegendLayout() TimeseriesWidgetLegendLayout {
@@ -180,6 +187,7 @@ func (o *TimeseriesWidgetDefinition) SetLegendLayout(v TimeseriesWidgetLegendLay
 	o.LegendLayout = &v
 }
 
+
 // GetLegendSize returns the LegendSize field value if set, zero value otherwise.
 func (o *TimeseriesWidgetDefinition) GetLegendSize() string {
 	if o == nil || o.LegendSize == nil {
@@ -207,6 +215,7 @@ func (o *TimeseriesWidgetDefinition) HasLegendSize() bool {
 func (o *TimeseriesWidgetDefinition) SetLegendSize(v string) {
 	o.LegendSize = &v
 }
+
 
 // GetMarkers returns the Markers field value if set, zero value otherwise.
 func (o *TimeseriesWidgetDefinition) GetMarkers() []WidgetMarker {
@@ -236,6 +245,7 @@ func (o *TimeseriesWidgetDefinition) SetMarkers(v []WidgetMarker) {
 	o.Markers = v
 }
 
+
 // GetRequests returns the Requests field value.
 func (o *TimeseriesWidgetDefinition) GetRequests() []TimeseriesWidgetRequest {
 	if o == nil {
@@ -258,6 +268,7 @@ func (o *TimeseriesWidgetDefinition) GetRequestsOk() (*[]TimeseriesWidgetRequest
 func (o *TimeseriesWidgetDefinition) SetRequests(v []TimeseriesWidgetRequest) {
 	o.Requests = v
 }
+
 
 // GetRightYaxis returns the RightYaxis field value if set, zero value otherwise.
 func (o *TimeseriesWidgetDefinition) GetRightYaxis() WidgetAxis {
@@ -287,6 +298,7 @@ func (o *TimeseriesWidgetDefinition) SetRightYaxis(v WidgetAxis) {
 	o.RightYaxis = &v
 }
 
+
 // GetShowLegend returns the ShowLegend field value if set, zero value otherwise.
 func (o *TimeseriesWidgetDefinition) GetShowLegend() bool {
 	if o == nil || o.ShowLegend == nil {
@@ -314,6 +326,7 @@ func (o *TimeseriesWidgetDefinition) HasShowLegend() bool {
 func (o *TimeseriesWidgetDefinition) SetShowLegend(v bool) {
 	o.ShowLegend = &v
 }
+
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *TimeseriesWidgetDefinition) GetTime() WidgetTime {
@@ -343,6 +356,7 @@ func (o *TimeseriesWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *TimeseriesWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -370,6 +384,7 @@ func (o *TimeseriesWidgetDefinition) HasTitle() bool {
 func (o *TimeseriesWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
+
 
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *TimeseriesWidgetDefinition) GetTitleAlign() WidgetTextAlign {
@@ -399,6 +414,7 @@ func (o *TimeseriesWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
 
+
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *TimeseriesWidgetDefinition) GetTitleSize() string {
 	if o == nil || o.TitleSize == nil {
@@ -427,6 +443,7 @@ func (o *TimeseriesWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *TimeseriesWidgetDefinition) GetType() TimeseriesWidgetDefinitionType {
 	if o == nil {
@@ -449,6 +466,7 @@ func (o *TimeseriesWidgetDefinition) GetTypeOk() (*TimeseriesWidgetDefinitionTyp
 func (o *TimeseriesWidgetDefinition) SetType(v TimeseriesWidgetDefinitionType) {
 	o.Type = v
 }
+
 
 // GetYaxis returns the Yaxis field value if set, zero value otherwise.
 func (o *TimeseriesWidgetDefinition) GetYaxis() WidgetAxis {
@@ -477,6 +495,8 @@ func (o *TimeseriesWidgetDefinition) HasYaxis() bool {
 func (o *TimeseriesWidgetDefinition) SetYaxis(v WidgetAxis) {
 	o.Yaxis = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TimeseriesWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -535,21 +555,21 @@ func (o TimeseriesWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomLinks   []WidgetCustomLink              `json:"custom_links,omitempty"`
-		Events        []WidgetEvent                   `json:"events,omitempty"`
-		LegendColumns []TimeseriesWidgetLegendColumn  `json:"legend_columns,omitempty"`
-		LegendLayout  *TimeseriesWidgetLegendLayout   `json:"legend_layout,omitempty"`
-		LegendSize    *string                         `json:"legend_size,omitempty"`
-		Markers       []WidgetMarker                  `json:"markers,omitempty"`
-		Requests      *[]TimeseriesWidgetRequest      `json:"requests"`
-		RightYaxis    *WidgetAxis                     `json:"right_yaxis,omitempty"`
-		ShowLegend    *bool                           `json:"show_legend,omitempty"`
-		Time          *WidgetTime                     `json:"time,omitempty"`
-		Title         *string                         `json:"title,omitempty"`
-		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"`
-		TitleSize     *string                         `json:"title_size,omitempty"`
-		Type          *TimeseriesWidgetDefinitionType `json:"type"`
-		Yaxis         *WidgetAxis                     `json:"yaxis,omitempty"`
+		CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
+		Events []WidgetEvent `json:"events,omitempty"`
+		LegendColumns []TimeseriesWidgetLegendColumn `json:"legend_columns,omitempty"`
+		LegendLayout *TimeseriesWidgetLegendLayout `json:"legend_layout,omitempty"`
+		LegendSize *string `json:"legend_size,omitempty"`
+		Markers []WidgetMarker `json:"markers,omitempty"`
+		Requests *[]TimeseriesWidgetRequest `json:"requests"`
+		RightYaxis *WidgetAxis `json:"right_yaxis,omitempty"`
+		ShowLegend *bool `json:"show_legend,omitempty"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type *TimeseriesWidgetDefinitionType `json:"type"`
+		Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -562,7 +582,7 @@ func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "events", "legend_columns", "legend_layout", "legend_size", "markers", "requests", "right_yaxis", "show_legend", "time", "title", "title_align", "title_size", "type", "yaxis"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "custom_links", "events", "legend_columns", "legend_layout", "legend_size", "markers", "requests", "right_yaxis", "show_legend", "time", "title", "title_align", "title_size", "type", "yaxis",  })
 	} else {
 		return err
 	}
@@ -571,7 +591,7 @@ func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.CustomLinks = all.CustomLinks
 	o.Events = all.Events
 	o.LegendColumns = all.LegendColumns
-	if all.LegendLayout != nil && !all.LegendLayout.IsValid() {
+	if all.LegendLayout != nil &&!all.LegendLayout.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.LegendLayout = all.LegendLayout
@@ -579,14 +599,14 @@ func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.LegendSize = all.LegendSize
 	o.Markers = all.Markers
 	o.Requests = *all.Requests
-	if all.RightYaxis != nil && all.RightYaxis.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RightYaxis != nil && all.RightYaxis.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RightYaxis = all.RightYaxis
 	o.ShowLegend = all.ShowLegend
 	o.Time = all.Time
 	o.Title = all.Title
-	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign
@@ -597,7 +617,7 @@ func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.Type = *all.Type
 	}
-	if all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Yaxis = all.Yaxis

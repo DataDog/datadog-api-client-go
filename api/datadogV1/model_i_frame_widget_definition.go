@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IFrameWidgetDefinition The iframe widget allows you to embed a portion of any other web page on your dashboard. Only available on FREE layout dashboards.
 type IFrameWidgetDefinition struct {
@@ -17,9 +21,10 @@ type IFrameWidgetDefinition struct {
 	// URL of the iframe.
 	Url string `json:"url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIFrameWidgetDefinition instantiates a new IFrameWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewIFrameWidgetDefinitionWithDefaults() *IFrameWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetType returns the Type field value.
 func (o *IFrameWidgetDefinition) GetType() IFrameWidgetDefinitionType {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *IFrameWidgetDefinition) GetTypeOk() (*IFrameWidgetDefinitionType, bool)
 func (o *IFrameWidgetDefinition) SetType(v IFrameWidgetDefinitionType) {
 	o.Type = v
 }
+
 
 // GetUrl returns the Url field value.
 func (o *IFrameWidgetDefinition) GetUrl() string {
@@ -88,6 +93,8 @@ func (o *IFrameWidgetDefinition) SetUrl(v string) {
 	o.Url = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IFrameWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o IFrameWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *IFrameWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Type *IFrameWidgetDefinitionType `json:"type"`
-		Url  *string                     `json:"url"`
+		Url *string `json:"url"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *IFrameWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"type", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "type", "url",  })
 	} else {
 		return err
 	}

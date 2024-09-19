@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SlackIntegrationMetadataChannelItem Item in the Slack integration metadata channel array.
 type SlackIntegrationMetadataChannelItem struct {
@@ -21,9 +25,10 @@ type SlackIntegrationMetadataChannelItem struct {
 	// Slack team ID.
 	TeamId *string `json:"team_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSlackIntegrationMetadataChannelItem instantiates a new SlackIntegrationMetadataChannelItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewSlackIntegrationMetadataChannelItemWithDefaults() *SlackIntegrationMetad
 	this := SlackIntegrationMetadataChannelItem{}
 	return &this
 }
-
 // GetChannelId returns the ChannelId field value.
 func (o *SlackIntegrationMetadataChannelItem) GetChannelId() string {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *SlackIntegrationMetadataChannelItem) GetChannelIdOk() (*string, bool) {
 func (o *SlackIntegrationMetadataChannelItem) SetChannelId(v string) {
 	o.ChannelId = v
 }
+
 
 // GetChannelName returns the ChannelName field value.
 func (o *SlackIntegrationMetadataChannelItem) GetChannelName() string {
@@ -91,6 +96,7 @@ func (o *SlackIntegrationMetadataChannelItem) SetChannelName(v string) {
 	o.ChannelName = v
 }
 
+
 // GetRedirectUrl returns the RedirectUrl field value.
 func (o *SlackIntegrationMetadataChannelItem) GetRedirectUrl() string {
 	if o == nil {
@@ -113,6 +119,7 @@ func (o *SlackIntegrationMetadataChannelItem) GetRedirectUrlOk() (*string, bool)
 func (o *SlackIntegrationMetadataChannelItem) SetRedirectUrl(v string) {
 	o.RedirectUrl = v
 }
+
 
 // GetTeamId returns the TeamId field value if set, zero value otherwise.
 func (o *SlackIntegrationMetadataChannelItem) GetTeamId() string {
@@ -142,6 +149,8 @@ func (o *SlackIntegrationMetadataChannelItem) SetTeamId(v string) {
 	o.TeamId = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SlackIntegrationMetadataChannelItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -164,10 +173,10 @@ func (o SlackIntegrationMetadataChannelItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SlackIntegrationMetadataChannelItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ChannelId   *string `json:"channel_id"`
+		ChannelId *string `json:"channel_id"`
 		ChannelName *string `json:"channel_name"`
 		RedirectUrl *string `json:"redirect_url"`
-		TeamId      *string `json:"team_id,omitempty"`
+		TeamId *string `json:"team_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -183,7 +192,7 @@ func (o *SlackIntegrationMetadataChannelItem) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"channel_id", "channel_name", "redirect_url", "team_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "channel_id", "channel_name", "redirect_url", "team_id",  })
 	} else {
 		return err
 	}

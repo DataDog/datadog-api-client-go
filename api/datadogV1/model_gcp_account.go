@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GCPAccount Your Google Cloud Platform Account.
 type GCPAccount struct {
@@ -48,9 +54,10 @@ type GCPAccount struct {
 	// The value for service_account found in your JSON service account key.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGCPAccount instantiates a new GCPAccount object.
 // This constructor will assign default values to properties that have it defined,
@@ -72,7 +79,6 @@ func NewGCPAccountWithDefaults() *GCPAccount {
 	this.IsSecurityCommandCenterEnabled = &isSecurityCommandCenterEnabled
 	return &this
 }
-
 // GetAuthProviderX509CertUrl returns the AuthProviderX509CertUrl field value if set, zero value otherwise.
 func (o *GCPAccount) GetAuthProviderX509CertUrl() string {
 	if o == nil || o.AuthProviderX509CertUrl == nil {
@@ -100,6 +106,7 @@ func (o *GCPAccount) HasAuthProviderX509CertUrl() bool {
 func (o *GCPAccount) SetAuthProviderX509CertUrl(v string) {
 	o.AuthProviderX509CertUrl = &v
 }
+
 
 // GetAuthUri returns the AuthUri field value if set, zero value otherwise.
 func (o *GCPAccount) GetAuthUri() string {
@@ -129,6 +136,7 @@ func (o *GCPAccount) SetAuthUri(v string) {
 	o.AuthUri = &v
 }
 
+
 // GetAutomute returns the Automute field value if set, zero value otherwise.
 func (o *GCPAccount) GetAutomute() bool {
 	if o == nil || o.Automute == nil {
@@ -156,6 +164,7 @@ func (o *GCPAccount) HasAutomute() bool {
 func (o *GCPAccount) SetAutomute(v bool) {
 	o.Automute = &v
 }
+
 
 // GetClientEmail returns the ClientEmail field value if set, zero value otherwise.
 func (o *GCPAccount) GetClientEmail() string {
@@ -185,6 +194,7 @@ func (o *GCPAccount) SetClientEmail(v string) {
 	o.ClientEmail = &v
 }
 
+
 // GetClientId returns the ClientId field value if set, zero value otherwise.
 func (o *GCPAccount) GetClientId() string {
 	if o == nil || o.ClientId == nil {
@@ -212,6 +222,7 @@ func (o *GCPAccount) HasClientId() bool {
 func (o *GCPAccount) SetClientId(v string) {
 	o.ClientId = &v
 }
+
 
 // GetClientX509CertUrl returns the ClientX509CertUrl field value if set, zero value otherwise.
 func (o *GCPAccount) GetClientX509CertUrl() string {
@@ -241,6 +252,7 @@ func (o *GCPAccount) SetClientX509CertUrl(v string) {
 	o.ClientX509CertUrl = &v
 }
 
+
 // GetCloudRunRevisionFilters returns the CloudRunRevisionFilters field value if set, zero value otherwise.
 func (o *GCPAccount) GetCloudRunRevisionFilters() []string {
 	if o == nil || o.CloudRunRevisionFilters == nil {
@@ -268,6 +280,7 @@ func (o *GCPAccount) HasCloudRunRevisionFilters() bool {
 func (o *GCPAccount) SetCloudRunRevisionFilters(v []string) {
 	o.CloudRunRevisionFilters = v
 }
+
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *GCPAccount) GetErrors() []string {
@@ -297,6 +310,7 @@ func (o *GCPAccount) SetErrors(v []string) {
 	o.Errors = v
 }
 
+
 // GetHostFilters returns the HostFilters field value if set, zero value otherwise.
 func (o *GCPAccount) GetHostFilters() string {
 	if o == nil || o.HostFilters == nil {
@@ -324,6 +338,7 @@ func (o *GCPAccount) HasHostFilters() bool {
 func (o *GCPAccount) SetHostFilters(v string) {
 	o.HostFilters = &v
 }
+
 
 // GetIsCspmEnabled returns the IsCspmEnabled field value if set, zero value otherwise.
 func (o *GCPAccount) GetIsCspmEnabled() bool {
@@ -353,6 +368,7 @@ func (o *GCPAccount) SetIsCspmEnabled(v bool) {
 	o.IsCspmEnabled = &v
 }
 
+
 // GetIsSecurityCommandCenterEnabled returns the IsSecurityCommandCenterEnabled field value if set, zero value otherwise.
 func (o *GCPAccount) GetIsSecurityCommandCenterEnabled() bool {
 	if o == nil || o.IsSecurityCommandCenterEnabled == nil {
@@ -380,6 +396,7 @@ func (o *GCPAccount) HasIsSecurityCommandCenterEnabled() bool {
 func (o *GCPAccount) SetIsSecurityCommandCenterEnabled(v bool) {
 	o.IsSecurityCommandCenterEnabled = &v
 }
+
 
 // GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.
 func (o *GCPAccount) GetPrivateKey() string {
@@ -409,6 +426,7 @@ func (o *GCPAccount) SetPrivateKey(v string) {
 	o.PrivateKey = &v
 }
 
+
 // GetPrivateKeyId returns the PrivateKeyId field value if set, zero value otherwise.
 func (o *GCPAccount) GetPrivateKeyId() string {
 	if o == nil || o.PrivateKeyId == nil {
@@ -436,6 +454,7 @@ func (o *GCPAccount) HasPrivateKeyId() bool {
 func (o *GCPAccount) SetPrivateKeyId(v string) {
 	o.PrivateKeyId = &v
 }
+
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *GCPAccount) GetProjectId() string {
@@ -465,6 +484,7 @@ func (o *GCPAccount) SetProjectId(v string) {
 	o.ProjectId = &v
 }
 
+
 // GetResourceCollectionEnabled returns the ResourceCollectionEnabled field value if set, zero value otherwise.
 func (o *GCPAccount) GetResourceCollectionEnabled() bool {
 	if o == nil || o.ResourceCollectionEnabled == nil {
@@ -492,6 +512,7 @@ func (o *GCPAccount) HasResourceCollectionEnabled() bool {
 func (o *GCPAccount) SetResourceCollectionEnabled(v bool) {
 	o.ResourceCollectionEnabled = &v
 }
+
 
 // GetTokenUri returns the TokenUri field value if set, zero value otherwise.
 func (o *GCPAccount) GetTokenUri() string {
@@ -521,6 +542,7 @@ func (o *GCPAccount) SetTokenUri(v string) {
 	o.TokenUri = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GCPAccount) GetType() string {
 	if o == nil || o.Type == nil {
@@ -548,6 +570,8 @@ func (o *GCPAccount) HasType() bool {
 func (o *GCPAccount) SetType(v string) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o GCPAccount) MarshalJSON() ([]byte, error) {
@@ -616,30 +640,30 @@ func (o GCPAccount) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AuthProviderX509CertUrl        *string  `json:"auth_provider_x509_cert_url,omitempty"`
-		AuthUri                        *string  `json:"auth_uri,omitempty"`
-		Automute                       *bool    `json:"automute,omitempty"`
-		ClientEmail                    *string  `json:"client_email,omitempty"`
-		ClientId                       *string  `json:"client_id,omitempty"`
-		ClientX509CertUrl              *string  `json:"client_x509_cert_url,omitempty"`
-		CloudRunRevisionFilters        []string `json:"cloud_run_revision_filters,omitempty"`
-		Errors                         []string `json:"errors,omitempty"`
-		HostFilters                    *string  `json:"host_filters,omitempty"`
-		IsCspmEnabled                  *bool    `json:"is_cspm_enabled,omitempty"`
-		IsSecurityCommandCenterEnabled *bool    `json:"is_security_command_center_enabled,omitempty"`
-		PrivateKey                     *string  `json:"private_key,omitempty"`
-		PrivateKeyId                   *string  `json:"private_key_id,omitempty"`
-		ProjectId                      *string  `json:"project_id,omitempty"`
-		ResourceCollectionEnabled      *bool    `json:"resource_collection_enabled,omitempty"`
-		TokenUri                       *string  `json:"token_uri,omitempty"`
-		Type                           *string  `json:"type,omitempty"`
+		AuthProviderX509CertUrl *string `json:"auth_provider_x509_cert_url,omitempty"`
+		AuthUri *string `json:"auth_uri,omitempty"`
+		Automute *bool `json:"automute,omitempty"`
+		ClientEmail *string `json:"client_email,omitempty"`
+		ClientId *string `json:"client_id,omitempty"`
+		ClientX509CertUrl *string `json:"client_x509_cert_url,omitempty"`
+		CloudRunRevisionFilters []string `json:"cloud_run_revision_filters,omitempty"`
+		Errors []string `json:"errors,omitempty"`
+		HostFilters *string `json:"host_filters,omitempty"`
+		IsCspmEnabled *bool `json:"is_cspm_enabled,omitempty"`
+		IsSecurityCommandCenterEnabled *bool `json:"is_security_command_center_enabled,omitempty"`
+		PrivateKey *string `json:"private_key,omitempty"`
+		PrivateKeyId *string `json:"private_key_id,omitempty"`
+		ProjectId *string `json:"project_id,omitempty"`
+		ResourceCollectionEnabled *bool `json:"resource_collection_enabled,omitempty"`
+		TokenUri *string `json:"token_uri,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth_provider_x509_cert_url", "auth_uri", "automute", "client_email", "client_id", "client_x509_cert_url", "cloud_run_revision_filters", "errors", "host_filters", "is_cspm_enabled", "is_security_command_center_enabled", "private_key", "private_key_id", "project_id", "resource_collection_enabled", "token_uri", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auth_provider_x509_cert_url", "auth_uri", "automute", "client_email", "client_id", "client_x509_cert_url", "cloud_run_revision_filters", "errors", "host_filters", "is_cspm_enabled", "is_security_command_center_enabled", "private_key", "private_key_id", "project_id", "resource_collection_enabled", "token_uri", "type",  })
 	} else {
 		return err
 	}

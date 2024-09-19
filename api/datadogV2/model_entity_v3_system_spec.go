@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityV3SystemSpec The definition of Entity V3 System Spec object.
 type EntityV3SystemSpec struct {
@@ -19,6 +25,7 @@ type EntityV3SystemSpec struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityV3SystemSpec instantiates a new EntityV3SystemSpec object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +43,6 @@ func NewEntityV3SystemSpecWithDefaults() *EntityV3SystemSpec {
 	this := EntityV3SystemSpec{}
 	return &this
 }
-
 // GetComponents returns the Components field value if set, zero value otherwise.
 func (o *EntityV3SystemSpec) GetComponents() []string {
 	if o == nil || o.Components == nil {
@@ -64,6 +70,7 @@ func (o *EntityV3SystemSpec) HasComponents() bool {
 func (o *EntityV3SystemSpec) SetComponents(v []string) {
 	o.Components = v
 }
+
 
 // GetLifecycle returns the Lifecycle field value if set, zero value otherwise.
 func (o *EntityV3SystemSpec) GetLifecycle() string {
@@ -93,6 +100,7 @@ func (o *EntityV3SystemSpec) SetLifecycle(v string) {
 	o.Lifecycle = &v
 }
 
+
 // GetTier returns the Tier field value if set, zero value otherwise.
 func (o *EntityV3SystemSpec) GetTier() string {
 	if o == nil || o.Tier == nil {
@@ -121,6 +129,8 @@ func (o *EntityV3SystemSpec) SetTier(v string) {
 	o.Tier = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3SystemSpec) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -143,8 +153,8 @@ func (o EntityV3SystemSpec) MarshalJSON() ([]byte, error) {
 func (o *EntityV3SystemSpec) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Components []string `json:"components,omitempty"`
-		Lifecycle  *string  `json:"lifecycle,omitempty"`
-		Tier       *string  `json:"tier,omitempty"`
+		Lifecycle *string `json:"lifecycle,omitempty"`
+		Tier *string `json:"tier,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsersResponse Response containing information about multiple users.
 type UsersResponse struct {
@@ -17,9 +23,10 @@ type UsersResponse struct {
 	// Object describing meta attributes of response.
 	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsersResponse instantiates a new UsersResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewUsersResponseWithDefaults() *UsersResponse {
 	this := UsersResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *UsersResponse) GetData() []User {
 	if o == nil || o.Data == nil {
@@ -65,6 +71,7 @@ func (o *UsersResponse) HasData() bool {
 func (o *UsersResponse) SetData(v []User) {
 	o.Data = v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *UsersResponse) GetIncluded() []UserResponseIncludedItem {
@@ -94,6 +101,7 @@ func (o *UsersResponse) SetIncluded(v []UserResponseIncludedItem) {
 	o.Included = v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *UsersResponse) GetMeta() ResponseMetaAttributes {
 	if o == nil || o.Meta == nil {
@@ -122,6 +130,8 @@ func (o *UsersResponse) SetMeta(v ResponseMetaAttributes) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UsersResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o UsersResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsersResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     []User                     `json:"data,omitempty"`
+		Data []User `json:"data,omitempty"`
 		Included []UserResponseIncludedItem `json:"included,omitempty"`
-		Meta     *ResponseMetaAttributes    `json:"meta,omitempty"`
+		Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "included", "meta",  })
 	} else {
 		return err
 	}
@@ -164,7 +174,7 @@ func (o *UsersResponse) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Data = all.Data
 	o.Included = all.Included
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

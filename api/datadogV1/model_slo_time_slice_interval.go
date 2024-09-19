@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOTimeSliceInterval The interval used when querying data, which defines the size of a time slice.
 // Two values are allowed: 60 (1 minute) and 300 (5 minutes).
@@ -17,7 +21,7 @@ type SLOTimeSliceInterval int32
 
 // List of SLOTimeSliceInterval.
 const (
-	SLOTIMESLICEINTERVAL_ONE_MINUTE   SLOTimeSliceInterval = 60
+	SLOTIMESLICEINTERVAL_ONE_MINUTE SLOTimeSliceInterval = 60
 	SLOTIMESLICEINTERVAL_FIVE_MINUTES SLOTimeSliceInterval = 300
 )
 

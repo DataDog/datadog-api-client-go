@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSEventBridgeCreateRequest An object used to create an EventBridge source.
 type AWSEventBridgeCreateRequest struct {
@@ -21,9 +27,10 @@ type AWSEventBridgeCreateRequest struct {
 	// The event source's [AWS region](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
 	Region *string `json:"region,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSEventBridgeCreateRequest instantiates a new AWSEventBridgeCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewAWSEventBridgeCreateRequestWithDefaults() *AWSEventBridgeCreateRequest {
 	this := AWSEventBridgeCreateRequest{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
 func (o *AWSEventBridgeCreateRequest) GetAccountId() string {
 	if o == nil || o.AccountId == nil {
@@ -69,6 +75,7 @@ func (o *AWSEventBridgeCreateRequest) HasAccountId() bool {
 func (o *AWSEventBridgeCreateRequest) SetAccountId(v string) {
 	o.AccountId = &v
 }
+
 
 // GetCreateEventBus returns the CreateEventBus field value if set, zero value otherwise.
 func (o *AWSEventBridgeCreateRequest) GetCreateEventBus() bool {
@@ -98,6 +105,7 @@ func (o *AWSEventBridgeCreateRequest) SetCreateEventBus(v bool) {
 	o.CreateEventBus = &v
 }
 
+
 // GetEventGeneratorName returns the EventGeneratorName field value if set, zero value otherwise.
 func (o *AWSEventBridgeCreateRequest) GetEventGeneratorName() string {
 	if o == nil || o.EventGeneratorName == nil {
@@ -125,6 +133,7 @@ func (o *AWSEventBridgeCreateRequest) HasEventGeneratorName() bool {
 func (o *AWSEventBridgeCreateRequest) SetEventGeneratorName(v string) {
 	o.EventGeneratorName = &v
 }
+
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *AWSEventBridgeCreateRequest) GetRegion() string {
@@ -154,6 +163,8 @@ func (o *AWSEventBridgeCreateRequest) SetRegion(v string) {
 	o.Region = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSEventBridgeCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -182,17 +193,17 @@ func (o AWSEventBridgeCreateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSEventBridgeCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountId          *string `json:"account_id,omitempty"`
-		CreateEventBus     *bool   `json:"create_event_bus,omitempty"`
+		AccountId *string `json:"account_id,omitempty"`
+		CreateEventBus *bool `json:"create_event_bus,omitempty"`
 		EventGeneratorName *string `json:"event_generator_name,omitempty"`
-		Region             *string `json:"region,omitempty"`
+		Region *string `json:"region,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "create_event_bus", "event_generator_name", "region"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account_id", "create_event_bus", "event_generator_name", "region",  })
 	} else {
 		return err
 	}

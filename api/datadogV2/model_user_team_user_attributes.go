@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UserTeamUserAttributes The definition of `UserTeamUserAttributes` object.
 type UserTeamUserAttributes struct {
@@ -23,9 +29,10 @@ type UserTeamUserAttributes struct {
 	// The `UserTeamUserAttributes` `service_account`.
 	ServiceAccount *bool `json:"service_account,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUserTeamUserAttributes instantiates a new UserTeamUserAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +50,6 @@ func NewUserTeamUserAttributesWithDefaults() *UserTeamUserAttributes {
 	this := UserTeamUserAttributes{}
 	return &this
 }
-
 // GetDisabled returns the Disabled field value if set, zero value otherwise.
 func (o *UserTeamUserAttributes) GetDisabled() bool {
 	if o == nil || o.Disabled == nil {
@@ -71,6 +77,7 @@ func (o *UserTeamUserAttributes) HasDisabled() bool {
 func (o *UserTeamUserAttributes) SetDisabled(v bool) {
 	o.Disabled = &v
 }
+
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *UserTeamUserAttributes) GetEmail() string {
@@ -100,6 +107,7 @@ func (o *UserTeamUserAttributes) SetEmail(v string) {
 	o.Email = &v
 }
 
+
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *UserTeamUserAttributes) GetHandle() string {
 	if o == nil || o.Handle == nil {
@@ -127,6 +135,7 @@ func (o *UserTeamUserAttributes) HasHandle() bool {
 func (o *UserTeamUserAttributes) SetHandle(v string) {
 	o.Handle = &v
 }
+
 
 // GetIcon returns the Icon field value if set, zero value otherwise.
 func (o *UserTeamUserAttributes) GetIcon() string {
@@ -156,6 +165,7 @@ func (o *UserTeamUserAttributes) SetIcon(v string) {
 	o.Icon = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UserTeamUserAttributes) GetName() string {
 	if o == nil || o.Name.Get() == nil {
@@ -169,7 +179,7 @@ func (o *UserTeamUserAttributes) GetName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UserTeamUserAttributes) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Name.Get(), o.Name.IsSet()
@@ -184,7 +194,6 @@ func (o *UserTeamUserAttributes) HasName() bool {
 func (o *UserTeamUserAttributes) SetName(v string) {
 	o.Name.Set(&v)
 }
-
 // SetNameNil sets the value for Name to be an explicit nil.
 func (o *UserTeamUserAttributes) SetNameNil() {
 	o.Name.Set(nil)
@@ -194,6 +203,7 @@ func (o *UserTeamUserAttributes) SetNameNil() {
 func (o *UserTeamUserAttributes) UnsetName() {
 	o.Name.Unset()
 }
+
 
 // GetServiceAccount returns the ServiceAccount field value if set, zero value otherwise.
 func (o *UserTeamUserAttributes) GetServiceAccount() bool {
@@ -222,6 +232,8 @@ func (o *UserTeamUserAttributes) HasServiceAccount() bool {
 func (o *UserTeamUserAttributes) SetServiceAccount(v bool) {
 	o.ServiceAccount = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UserTeamUserAttributes) MarshalJSON() ([]byte, error) {
@@ -257,19 +269,19 @@ func (o UserTeamUserAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UserTeamUserAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Disabled       *bool                  `json:"disabled,omitempty"`
-		Email          *string                `json:"email,omitempty"`
-		Handle         *string                `json:"handle,omitempty"`
-		Icon           *string                `json:"icon,omitempty"`
-		Name           datadog.NullableString `json:"name,omitempty"`
-		ServiceAccount *bool                  `json:"service_account,omitempty"`
+		Disabled *bool `json:"disabled,omitempty"`
+		Email *string `json:"email,omitempty"`
+		Handle *string `json:"handle,omitempty"`
+		Icon *string `json:"icon,omitempty"`
+		Name datadog.NullableString `json:"name,omitempty"`
+		ServiceAccount *bool `json:"service_account,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"disabled", "email", "handle", "icon", "name", "service_account"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "disabled", "email", "handle", "icon", "name", "service_account",  })
 	} else {
 		return err
 	}

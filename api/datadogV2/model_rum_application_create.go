@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RUMApplicationCreate RUM application creation.
 type RUMApplicationCreate struct {
@@ -17,9 +21,10 @@ type RUMApplicationCreate struct {
 	// RUM application creation type.
 	Type RUMApplicationCreateType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRUMApplicationCreate instantiates a new RUMApplicationCreate object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewRUMApplicationCreateWithDefaults() *RUMApplicationCreate {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *RUMApplicationCreate) GetAttributes() RUMApplicationCreateAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *RUMApplicationCreate) GetAttributesOk() (*RUMApplicationCreateAttribute
 func (o *RUMApplicationCreate) SetAttributes(v RUMApplicationCreateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *RUMApplicationCreate) GetType() RUMApplicationCreateType {
@@ -88,6 +93,8 @@ func (o *RUMApplicationCreate) SetType(v RUMApplicationCreateType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMApplicationCreate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o RUMApplicationCreate) MarshalJSON() ([]byte, error) {
 func (o *RUMApplicationCreate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *RUMApplicationCreateAttributes `json:"attributes"`
-		Type       *RUMApplicationCreateType       `json:"type"`
+		Type *RUMApplicationCreateType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *RUMApplicationCreate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RuleAttributes Details of a rule.
 type RuleAttributes struct {
@@ -32,9 +36,10 @@ type RuleAttributes struct {
 	// The scorecard name to which this rule must belong.
 	ScorecardName *string `json:"scorecard_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRuleAttributes instantiates a new RuleAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewRuleAttributesWithDefaults() *RuleAttributes {
 	this := RuleAttributes{}
 	return &this
 }
-
 // GetCategory returns the Category field value if set, zero value otherwise.
 // Deprecated
 func (o *RuleAttributes) GetCategory() string {
@@ -84,6 +88,7 @@ func (o *RuleAttributes) SetCategory(v string) {
 	o.Category = &v
 }
 
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *RuleAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -111,6 +116,7 @@ func (o *RuleAttributes) HasCreatedAt() bool {
 func (o *RuleAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
+
 
 // GetCustom returns the Custom field value if set, zero value otherwise.
 func (o *RuleAttributes) GetCustom() bool {
@@ -140,6 +146,7 @@ func (o *RuleAttributes) SetCustom(v bool) {
 	o.Custom = &v
 }
 
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *RuleAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -167,6 +174,7 @@ func (o *RuleAttributes) HasDescription() bool {
 func (o *RuleAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *RuleAttributes) GetEnabled() bool {
@@ -196,6 +204,7 @@ func (o *RuleAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *RuleAttributes) GetModifiedAt() time.Time {
 	if o == nil || o.ModifiedAt == nil {
@@ -223,6 +232,7 @@ func (o *RuleAttributes) HasModifiedAt() bool {
 func (o *RuleAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *RuleAttributes) GetName() string {
@@ -252,6 +262,7 @@ func (o *RuleAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetOwner returns the Owner field value if set, zero value otherwise.
 func (o *RuleAttributes) GetOwner() string {
 	if o == nil || o.Owner == nil {
@@ -280,6 +291,7 @@ func (o *RuleAttributes) SetOwner(v string) {
 	o.Owner = &v
 }
 
+
 // GetScorecardName returns the ScorecardName field value if set, zero value otherwise.
 func (o *RuleAttributes) GetScorecardName() string {
 	if o == nil || o.ScorecardName == nil {
@@ -307,6 +319,8 @@ func (o *RuleAttributes) HasScorecardName() bool {
 func (o *RuleAttributes) SetScorecardName(v string) {
 	o.ScorecardName = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RuleAttributes) MarshalJSON() ([]byte, error) {
@@ -359,22 +373,22 @@ func (o RuleAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Category      *string    `json:"category,omitempty"`
-		CreatedAt     *time.Time `json:"created_at,omitempty"`
-		Custom        *bool      `json:"custom,omitempty"`
-		Description   *string    `json:"description,omitempty"`
-		Enabled       *bool      `json:"enabled,omitempty"`
-		ModifiedAt    *time.Time `json:"modified_at,omitempty"`
-		Name          *string    `json:"name,omitempty"`
-		Owner         *string    `json:"owner,omitempty"`
-		ScorecardName *string    `json:"scorecard_name,omitempty"`
+		Category *string `json:"category,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		Custom *bool `json:"custom,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Owner *string `json:"owner,omitempty"`
+		ScorecardName *string `json:"scorecard_name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"category", "created_at", "custom", "description", "enabled", "modified_at", "name", "owner", "scorecard_name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "category", "created_at", "custom", "description", "enabled", "modified_at", "name", "owner", "scorecard_name",  })
 	} else {
 		return err
 	}

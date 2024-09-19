@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetSummaryType Which summary type should be used.
 type WidgetSummaryType string
@@ -16,7 +20,7 @@ type WidgetSummaryType string
 // List of WidgetSummaryType.
 const (
 	WIDGETSUMMARYTYPE_MONITORS WidgetSummaryType = "monitors"
-	WIDGETSUMMARYTYPE_GROUPS   WidgetSummaryType = "groups"
+	WIDGETSUMMARYTYPE_GROUPS WidgetSummaryType = "groups"
 	WIDGETSUMMARYTYPE_COMBINED WidgetSummaryType = "combined"
 )
 

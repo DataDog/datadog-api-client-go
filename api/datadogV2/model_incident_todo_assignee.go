@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentTodoAssignee - A todo assignee.
 type IncidentTodoAssignee struct {
-	IncidentTodoAssigneeHandle    *string
+	IncidentTodoAssigneeHandle *string
 	IncidentTodoAnonymousAssignee *IncidentTodoAnonymousAssignee
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj IncidentTodoAssignee) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.IncidentTodoAssigneeHandle)
 	}
 
+
 	if obj.IncidentTodoAnonymousAssignee != nil {
 		return datadog.Marshal(&obj.IncidentTodoAnonymousAssignee)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj IncidentTodoAssignee) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *IncidentTodoAssignee) GetActualInstance() interface{} {
+func (obj *IncidentTodoAssignee) GetActualInstance() (interface{}) {
 	if obj.IncidentTodoAssigneeHandle != nil {
 		return obj.IncidentTodoAssigneeHandle
 	}
 
+
 	if obj.IncidentTodoAnonymousAssignee != nil {
 		return obj.IncidentTodoAnonymousAssignee
 	}
+
 
 	// all schemas are nil
 	return nil

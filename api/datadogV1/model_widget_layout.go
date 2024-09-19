@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetLayout The layout for a widget on a `free` or **new dashboard layout** dashboard.
 type WidgetLayout struct {
@@ -24,9 +28,10 @@ type WidgetLayout struct {
 	// The position of the widget on the y (vertical) axis. Should be a non-negative integer.
 	Y int64 `json:"y"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWidgetLayout instantiates a new WidgetLayout object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewWidgetLayoutWithDefaults() *WidgetLayout {
 	this := WidgetLayout{}
 	return &this
 }
-
 // GetHeight returns the Height field value.
 func (o *WidgetLayout) GetHeight() int64 {
 	if o == nil {
@@ -71,6 +75,7 @@ func (o *WidgetLayout) GetHeightOk() (*int64, bool) {
 func (o *WidgetLayout) SetHeight(v int64) {
 	o.Height = v
 }
+
 
 // GetIsColumnBreak returns the IsColumnBreak field value if set, zero value otherwise.
 func (o *WidgetLayout) GetIsColumnBreak() bool {
@@ -100,6 +105,7 @@ func (o *WidgetLayout) SetIsColumnBreak(v bool) {
 	o.IsColumnBreak = &v
 }
 
+
 // GetWidth returns the Width field value.
 func (o *WidgetLayout) GetWidth() int64 {
 	if o == nil {
@@ -122,6 +128,7 @@ func (o *WidgetLayout) GetWidthOk() (*int64, bool) {
 func (o *WidgetLayout) SetWidth(v int64) {
 	o.Width = v
 }
+
 
 // GetX returns the X field value.
 func (o *WidgetLayout) GetX() int64 {
@@ -146,6 +153,7 @@ func (o *WidgetLayout) SetX(v int64) {
 	o.X = v
 }
 
+
 // GetY returns the Y field value.
 func (o *WidgetLayout) GetY() int64 {
 	if o == nil {
@@ -168,6 +176,8 @@ func (o *WidgetLayout) GetYOk() (*int64, bool) {
 func (o *WidgetLayout) SetY(v int64) {
 	o.Y = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o WidgetLayout) MarshalJSON() ([]byte, error) {
@@ -192,11 +202,11 @@ func (o WidgetLayout) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Height        *int64 `json:"height"`
-		IsColumnBreak *bool  `json:"is_column_break,omitempty"`
-		Width         *int64 `json:"width"`
-		X             *int64 `json:"x"`
-		Y             *int64 `json:"y"`
+		Height *int64 `json:"height"`
+		IsColumnBreak *bool `json:"is_column_break,omitempty"`
+		Width *int64 `json:"width"`
+		X *int64 `json:"x"`
+		Y *int64 `json:"y"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -215,7 +225,7 @@ func (o *WidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"height", "is_column_break", "width", "x", "y"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "height", "is_column_break", "width", "x", "y",  })
 	} else {
 		return err
 	}

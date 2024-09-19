@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FindingRule The rule that triggered this finding.
 type FindingRule struct {
@@ -17,6 +23,7 @@ type FindingRule struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewFindingRule instantiates a new FindingRule object.
 // This constructor will assign default values to properties that have it defined,
@@ -34,7 +41,6 @@ func NewFindingRuleWithDefaults() *FindingRule {
 	this := FindingRule{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *FindingRule) GetId() string {
 	if o == nil || o.Id == nil {
@@ -62,6 +68,7 @@ func (o *FindingRule) HasId() bool {
 func (o *FindingRule) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FindingRule) GetName() string {
@@ -91,6 +98,8 @@ func (o *FindingRule) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FindingRule) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -109,7 +118,7 @@ func (o FindingRule) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FindingRule) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {

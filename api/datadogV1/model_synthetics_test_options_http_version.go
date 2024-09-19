@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestOptionsHTTPVersion HTTP version to use for a Synthetic test.
 type SyntheticsTestOptionsHTTPVersion string
@@ -17,7 +21,7 @@ type SyntheticsTestOptionsHTTPVersion string
 const (
 	SYNTHETICSTESTOPTIONSHTTPVERSION_HTTP1 SyntheticsTestOptionsHTTPVersion = "http1"
 	SYNTHETICSTESTOPTIONSHTTPVERSION_HTTP2 SyntheticsTestOptionsHTTPVersion = "http2"
-	SYNTHETICSTESTOPTIONSHTTPVERSION_ANY   SyntheticsTestOptionsHTTPVersion = "any"
+	SYNTHETICSTESTOPTIONSHTTPVERSION_ANY SyntheticsTestOptionsHTTPVersion = "any"
 )
 
 var allowedSyntheticsTestOptionsHTTPVersionEnumValues = []SyntheticsTestOptionsHTTPVersion{

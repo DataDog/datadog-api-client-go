@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventsWarning A warning message indicating something is wrong with the query.
 type EventsWarning struct {
@@ -17,9 +23,10 @@ type EventsWarning struct {
 	// A short human-readable summary of the warning.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEventsWarning instantiates a new EventsWarning object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewEventsWarningWithDefaults() *EventsWarning {
 	this := EventsWarning{}
 	return &this
 }
-
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *EventsWarning) GetCode() string {
 	if o == nil || o.Code == nil {
@@ -65,6 +71,7 @@ func (o *EventsWarning) HasCode() bool {
 func (o *EventsWarning) SetCode(v string) {
 	o.Code = &v
 }
+
 
 // GetDetail returns the Detail field value if set, zero value otherwise.
 func (o *EventsWarning) GetDetail() string {
@@ -94,6 +101,7 @@ func (o *EventsWarning) SetDetail(v string) {
 	o.Detail = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *EventsWarning) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -122,6 +130,8 @@ func (o *EventsWarning) SetTitle(v string) {
 	o.Title = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EventsWarning) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o EventsWarning) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventsWarning) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Code   *string `json:"code,omitempty"`
+		Code *string `json:"code,omitempty"`
 		Detail *string `json:"detail,omitempty"`
-		Title  *string `json:"title,omitempty"`
+		Title *string `json:"title,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"code", "detail", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "code", "detail", "title",  })
 	} else {
 		return err
 	}

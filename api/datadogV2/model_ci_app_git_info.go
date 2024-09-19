@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppGitInfo If pipelines are triggered due to actions to a Git repository, then all payloads must contain this.
 // Note that either `tag` or `branch` has to be provided, but not both.
@@ -38,9 +42,10 @@ type CIAppGitInfo struct {
 	// The tag name (if a branch use the branch parameter).
 	Tag datadog.NullableString `json:"tag,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCIAppGitInfo instantiates a new CIAppGitInfo object.
 // This constructor will assign default values to properties that have it defined,
@@ -61,7 +66,6 @@ func NewCIAppGitInfoWithDefaults() *CIAppGitInfo {
 	this := CIAppGitInfo{}
 	return &this
 }
-
 // GetAuthorEmail returns the AuthorEmail field value.
 func (o *CIAppGitInfo) GetAuthorEmail() string {
 	if o == nil {
@@ -85,6 +89,7 @@ func (o *CIAppGitInfo) SetAuthorEmail(v string) {
 	o.AuthorEmail = v
 }
 
+
 // GetAuthorName returns the AuthorName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppGitInfo) GetAuthorName() string {
 	if o == nil || o.AuthorName.Get() == nil {
@@ -98,7 +103,7 @@ func (o *CIAppGitInfo) GetAuthorName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppGitInfo) GetAuthorNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.AuthorName.Get(), o.AuthorName.IsSet()
@@ -113,7 +118,6 @@ func (o *CIAppGitInfo) HasAuthorName() bool {
 func (o *CIAppGitInfo) SetAuthorName(v string) {
 	o.AuthorName.Set(&v)
 }
-
 // SetAuthorNameNil sets the value for AuthorName to be an explicit nil.
 func (o *CIAppGitInfo) SetAuthorNameNil() {
 	o.AuthorName.Set(nil)
@@ -123,6 +127,7 @@ func (o *CIAppGitInfo) SetAuthorNameNil() {
 func (o *CIAppGitInfo) UnsetAuthorName() {
 	o.AuthorName.Unset()
 }
+
 
 // GetAuthorTime returns the AuthorTime field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppGitInfo) GetAuthorTime() string {
@@ -137,7 +142,7 @@ func (o *CIAppGitInfo) GetAuthorTime() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppGitInfo) GetAuthorTimeOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.AuthorTime.Get(), o.AuthorTime.IsSet()
@@ -152,7 +157,6 @@ func (o *CIAppGitInfo) HasAuthorTime() bool {
 func (o *CIAppGitInfo) SetAuthorTime(v string) {
 	o.AuthorTime.Set(&v)
 }
-
 // SetAuthorTimeNil sets the value for AuthorTime to be an explicit nil.
 func (o *CIAppGitInfo) SetAuthorTimeNil() {
 	o.AuthorTime.Set(nil)
@@ -162,6 +166,7 @@ func (o *CIAppGitInfo) SetAuthorTimeNil() {
 func (o *CIAppGitInfo) UnsetAuthorTime() {
 	o.AuthorTime.Unset()
 }
+
 
 // GetBranch returns the Branch field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppGitInfo) GetBranch() string {
@@ -176,7 +181,7 @@ func (o *CIAppGitInfo) GetBranch() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppGitInfo) GetBranchOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Branch.Get(), o.Branch.IsSet()
@@ -191,7 +196,6 @@ func (o *CIAppGitInfo) HasBranch() bool {
 func (o *CIAppGitInfo) SetBranch(v string) {
 	o.Branch.Set(&v)
 }
-
 // SetBranchNil sets the value for Branch to be an explicit nil.
 func (o *CIAppGitInfo) SetBranchNil() {
 	o.Branch.Set(nil)
@@ -201,6 +205,7 @@ func (o *CIAppGitInfo) SetBranchNil() {
 func (o *CIAppGitInfo) UnsetBranch() {
 	o.Branch.Unset()
 }
+
 
 // GetCommitTime returns the CommitTime field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppGitInfo) GetCommitTime() string {
@@ -215,7 +220,7 @@ func (o *CIAppGitInfo) GetCommitTime() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppGitInfo) GetCommitTimeOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.CommitTime.Get(), o.CommitTime.IsSet()
@@ -230,7 +235,6 @@ func (o *CIAppGitInfo) HasCommitTime() bool {
 func (o *CIAppGitInfo) SetCommitTime(v string) {
 	o.CommitTime.Set(&v)
 }
-
 // SetCommitTimeNil sets the value for CommitTime to be an explicit nil.
 func (o *CIAppGitInfo) SetCommitTimeNil() {
 	o.CommitTime.Set(nil)
@@ -240,6 +244,7 @@ func (o *CIAppGitInfo) SetCommitTimeNil() {
 func (o *CIAppGitInfo) UnsetCommitTime() {
 	o.CommitTime.Unset()
 }
+
 
 // GetCommitterEmail returns the CommitterEmail field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppGitInfo) GetCommitterEmail() string {
@@ -254,7 +259,7 @@ func (o *CIAppGitInfo) GetCommitterEmail() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppGitInfo) GetCommitterEmailOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.CommitterEmail.Get(), o.CommitterEmail.IsSet()
@@ -269,7 +274,6 @@ func (o *CIAppGitInfo) HasCommitterEmail() bool {
 func (o *CIAppGitInfo) SetCommitterEmail(v string) {
 	o.CommitterEmail.Set(&v)
 }
-
 // SetCommitterEmailNil sets the value for CommitterEmail to be an explicit nil.
 func (o *CIAppGitInfo) SetCommitterEmailNil() {
 	o.CommitterEmail.Set(nil)
@@ -279,6 +283,7 @@ func (o *CIAppGitInfo) SetCommitterEmailNil() {
 func (o *CIAppGitInfo) UnsetCommitterEmail() {
 	o.CommitterEmail.Unset()
 }
+
 
 // GetCommitterName returns the CommitterName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppGitInfo) GetCommitterName() string {
@@ -293,7 +298,7 @@ func (o *CIAppGitInfo) GetCommitterName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppGitInfo) GetCommitterNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.CommitterName.Get(), o.CommitterName.IsSet()
@@ -308,7 +313,6 @@ func (o *CIAppGitInfo) HasCommitterName() bool {
 func (o *CIAppGitInfo) SetCommitterName(v string) {
 	o.CommitterName.Set(&v)
 }
-
 // SetCommitterNameNil sets the value for CommitterName to be an explicit nil.
 func (o *CIAppGitInfo) SetCommitterNameNil() {
 	o.CommitterName.Set(nil)
@@ -318,6 +322,7 @@ func (o *CIAppGitInfo) SetCommitterNameNil() {
 func (o *CIAppGitInfo) UnsetCommitterName() {
 	o.CommitterName.Unset()
 }
+
 
 // GetDefaultBranch returns the DefaultBranch field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppGitInfo) GetDefaultBranch() string {
@@ -332,7 +337,7 @@ func (o *CIAppGitInfo) GetDefaultBranch() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppGitInfo) GetDefaultBranchOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.DefaultBranch.Get(), o.DefaultBranch.IsSet()
@@ -347,7 +352,6 @@ func (o *CIAppGitInfo) HasDefaultBranch() bool {
 func (o *CIAppGitInfo) SetDefaultBranch(v string) {
 	o.DefaultBranch.Set(&v)
 }
-
 // SetDefaultBranchNil sets the value for DefaultBranch to be an explicit nil.
 func (o *CIAppGitInfo) SetDefaultBranchNil() {
 	o.DefaultBranch.Set(nil)
@@ -357,6 +361,7 @@ func (o *CIAppGitInfo) SetDefaultBranchNil() {
 func (o *CIAppGitInfo) UnsetDefaultBranch() {
 	o.DefaultBranch.Unset()
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppGitInfo) GetMessage() string {
@@ -371,7 +376,7 @@ func (o *CIAppGitInfo) GetMessage() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppGitInfo) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Message.Get(), o.Message.IsSet()
@@ -386,7 +391,6 @@ func (o *CIAppGitInfo) HasMessage() bool {
 func (o *CIAppGitInfo) SetMessage(v string) {
 	o.Message.Set(&v)
 }
-
 // SetMessageNil sets the value for Message to be an explicit nil.
 func (o *CIAppGitInfo) SetMessageNil() {
 	o.Message.Set(nil)
@@ -396,6 +400,7 @@ func (o *CIAppGitInfo) SetMessageNil() {
 func (o *CIAppGitInfo) UnsetMessage() {
 	o.Message.Unset()
 }
+
 
 // GetRepositoryUrl returns the RepositoryUrl field value.
 func (o *CIAppGitInfo) GetRepositoryUrl() string {
@@ -420,6 +425,7 @@ func (o *CIAppGitInfo) SetRepositoryUrl(v string) {
 	o.RepositoryUrl = v
 }
 
+
 // GetSha returns the Sha field value.
 func (o *CIAppGitInfo) GetSha() string {
 	if o == nil {
@@ -443,6 +449,7 @@ func (o *CIAppGitInfo) SetSha(v string) {
 	o.Sha = v
 }
 
+
 // GetTag returns the Tag field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppGitInfo) GetTag() string {
 	if o == nil || o.Tag.Get() == nil {
@@ -456,7 +463,7 @@ func (o *CIAppGitInfo) GetTag() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppGitInfo) GetTagOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Tag.Get(), o.Tag.IsSet()
@@ -471,7 +478,6 @@ func (o *CIAppGitInfo) HasTag() bool {
 func (o *CIAppGitInfo) SetTag(v string) {
 	o.Tag.Set(&v)
 }
-
 // SetTagNil sets the value for Tag to be an explicit nil.
 func (o *CIAppGitInfo) SetTagNil() {
 	o.Tag.Set(nil)
@@ -481,6 +487,8 @@ func (o *CIAppGitInfo) SetTagNil() {
 func (o *CIAppGitInfo) UnsetTag() {
 	o.Tag.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppGitInfo) MarshalJSON() ([]byte, error) {
@@ -528,18 +536,18 @@ func (o CIAppGitInfo) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppGitInfo) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AuthorEmail    *string                `json:"author_email"`
-		AuthorName     datadog.NullableString `json:"author_name,omitempty"`
-		AuthorTime     datadog.NullableString `json:"author_time,omitempty"`
-		Branch         datadog.NullableString `json:"branch,omitempty"`
-		CommitTime     datadog.NullableString `json:"commit_time,omitempty"`
+		AuthorEmail *string `json:"author_email"`
+		AuthorName datadog.NullableString `json:"author_name,omitempty"`
+		AuthorTime datadog.NullableString `json:"author_time,omitempty"`
+		Branch datadog.NullableString `json:"branch,omitempty"`
+		CommitTime datadog.NullableString `json:"commit_time,omitempty"`
 		CommitterEmail datadog.NullableString `json:"committer_email,omitempty"`
-		CommitterName  datadog.NullableString `json:"committer_name,omitempty"`
-		DefaultBranch  datadog.NullableString `json:"default_branch,omitempty"`
-		Message        datadog.NullableString `json:"message,omitempty"`
-		RepositoryUrl  *string                `json:"repository_url"`
-		Sha            *string                `json:"sha"`
-		Tag            datadog.NullableString `json:"tag,omitempty"`
+		CommitterName datadog.NullableString `json:"committer_name,omitempty"`
+		DefaultBranch datadog.NullableString `json:"default_branch,omitempty"`
+		Message datadog.NullableString `json:"message,omitempty"`
+		RepositoryUrl *string `json:"repository_url"`
+		Sha *string `json:"sha"`
+		Tag datadog.NullableString `json:"tag,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -555,7 +563,7 @@ func (o *CIAppGitInfo) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"author_email", "author_name", "author_time", "branch", "commit_time", "committer_email", "committer_name", "default_branch", "message", "repository_url", "sha", "tag"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "author_email", "author_name", "author_time", "branch", "commit_time", "committer_email", "committer_name", "default_branch", "message", "repository_url", "sha", "tag",  })
 	} else {
 		return err
 	}
@@ -578,7 +586,6 @@ func (o *CIAppGitInfo) UnmarshalJSON(bytes []byte) (err error) {
 
 	return nil
 }
-
 // NullableCIAppGitInfo handles when a null is used for CIAppGitInfo.
 type NullableCIAppGitInfo struct {
 	value *CIAppGitInfo

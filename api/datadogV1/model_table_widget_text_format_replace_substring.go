@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TableWidgetTextFormatReplaceSubstring Match Sub-string definition.
 type TableWidgetTextFormatReplaceSubstring struct {
@@ -19,9 +23,10 @@ type TableWidgetTextFormatReplaceSubstring struct {
 	// Text that will replace original sub-string.
 	With string `json:"with"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTableWidgetTextFormatReplaceSubstring instantiates a new TableWidgetTextFormatReplaceSubstring object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewTableWidgetTextFormatReplaceSubstringWithDefaults() *TableWidgetTextForm
 	this := TableWidgetTextFormatReplaceSubstring{}
 	return &this
 }
-
 // GetSubstring returns the Substring field value.
 func (o *TableWidgetTextFormatReplaceSubstring) GetSubstring() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *TableWidgetTextFormatReplaceSubstring) GetSubstringOk() (*string, bool)
 func (o *TableWidgetTextFormatReplaceSubstring) SetSubstring(v string) {
 	o.Substring = v
 }
+
 
 // GetType returns the Type field value.
 func (o *TableWidgetTextFormatReplaceSubstring) GetType() TableWidgetTextFormatReplaceSubstringType {
@@ -89,6 +94,7 @@ func (o *TableWidgetTextFormatReplaceSubstring) SetType(v TableWidgetTextFormatR
 	o.Type = v
 }
 
+
 // GetWith returns the With field value.
 func (o *TableWidgetTextFormatReplaceSubstring) GetWith() string {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *TableWidgetTextFormatReplaceSubstring) SetWith(v string) {
 	o.With = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TableWidgetTextFormatReplaceSubstring) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o TableWidgetTextFormatReplaceSubstring) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TableWidgetTextFormatReplaceSubstring) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Substring *string                                    `json:"substring"`
-		Type      *TableWidgetTextFormatReplaceSubstringType `json:"type"`
-		With      *string                                    `json:"with"`
+		Substring *string `json:"substring"`
+		Type *TableWidgetTextFormatReplaceSubstringType `json:"type"`
+		With *string `json:"with"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *TableWidgetTextFormatReplaceSubstring) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"substring", "type", "with"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "substring", "type", "with",  })
 	} else {
 		return err
 	}

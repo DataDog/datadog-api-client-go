@@ -2,31 +2,35 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RUMAggregationFunction An aggregation function.
 type RUMAggregationFunction string
 
 // List of RUMAggregationFunction.
 const (
-	RUMAGGREGATIONFUNCTION_COUNT         RUMAggregationFunction = "count"
-	RUMAGGREGATIONFUNCTION_CARDINALITY   RUMAggregationFunction = "cardinality"
+	RUMAGGREGATIONFUNCTION_COUNT RUMAggregationFunction = "count"
+	RUMAGGREGATIONFUNCTION_CARDINALITY RUMAggregationFunction = "cardinality"
 	RUMAGGREGATIONFUNCTION_PERCENTILE_75 RUMAggregationFunction = "pc75"
 	RUMAGGREGATIONFUNCTION_PERCENTILE_90 RUMAggregationFunction = "pc90"
 	RUMAGGREGATIONFUNCTION_PERCENTILE_95 RUMAggregationFunction = "pc95"
 	RUMAGGREGATIONFUNCTION_PERCENTILE_98 RUMAggregationFunction = "pc98"
 	RUMAGGREGATIONFUNCTION_PERCENTILE_99 RUMAggregationFunction = "pc99"
-	RUMAGGREGATIONFUNCTION_SUM           RUMAggregationFunction = "sum"
-	RUMAGGREGATIONFUNCTION_MIN           RUMAggregationFunction = "min"
-	RUMAGGREGATIONFUNCTION_MAX           RUMAggregationFunction = "max"
-	RUMAGGREGATIONFUNCTION_AVG           RUMAggregationFunction = "avg"
-	RUMAGGREGATIONFUNCTION_MEDIAN        RUMAggregationFunction = "median"
+	RUMAGGREGATIONFUNCTION_SUM RUMAggregationFunction = "sum"
+	RUMAGGREGATIONFUNCTION_MIN RUMAggregationFunction = "min"
+	RUMAGGREGATIONFUNCTION_MAX RUMAggregationFunction = "max"
+	RUMAGGREGATIONFUNCTION_AVG RUMAggregationFunction = "avg"
+	RUMAGGREGATIONFUNCTION_MEDIAN RUMAggregationFunction = "median"
 )
 
 var allowedRUMAggregationFunctionEnumValues = []RUMAggregationFunction{

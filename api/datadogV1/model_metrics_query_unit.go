@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricsQueryUnit Object containing the metric unit family, scale factor, name, and short name.
 type MetricsQueryUnit struct {
@@ -21,9 +27,10 @@ type MetricsQueryUnit struct {
 	// Abbreviation of the unit.
 	ShortName *string `json:"short_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricsQueryUnit instantiates a new MetricsQueryUnit object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewMetricsQueryUnitWithDefaults() *MetricsQueryUnit {
 	this := MetricsQueryUnit{}
 	return &this
 }
-
 // GetFamily returns the Family field value if set, zero value otherwise.
 func (o *MetricsQueryUnit) GetFamily() string {
 	if o == nil || o.Family == nil {
@@ -69,6 +75,7 @@ func (o *MetricsQueryUnit) HasFamily() bool {
 func (o *MetricsQueryUnit) SetFamily(v string) {
 	o.Family = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MetricsQueryUnit) GetName() string {
@@ -98,6 +105,7 @@ func (o *MetricsQueryUnit) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetPlural returns the Plural field value if set, zero value otherwise.
 func (o *MetricsQueryUnit) GetPlural() string {
 	if o == nil || o.Plural == nil {
@@ -125,6 +133,7 @@ func (o *MetricsQueryUnit) HasPlural() bool {
 func (o *MetricsQueryUnit) SetPlural(v string) {
 	o.Plural = &v
 }
+
 
 // GetScaleFactor returns the ScaleFactor field value if set, zero value otherwise.
 func (o *MetricsQueryUnit) GetScaleFactor() float64 {
@@ -154,6 +163,7 @@ func (o *MetricsQueryUnit) SetScaleFactor(v float64) {
 	o.ScaleFactor = &v
 }
 
+
 // GetShortName returns the ShortName field value if set, zero value otherwise.
 func (o *MetricsQueryUnit) GetShortName() string {
 	if o == nil || o.ShortName == nil {
@@ -181,6 +191,8 @@ func (o *MetricsQueryUnit) HasShortName() bool {
 func (o *MetricsQueryUnit) SetShortName(v string) {
 	o.ShortName = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricsQueryUnit) MarshalJSON() ([]byte, error) {
@@ -213,18 +225,18 @@ func (o MetricsQueryUnit) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricsQueryUnit) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Family      *string  `json:"family,omitempty"`
-		Name        *string  `json:"name,omitempty"`
-		Plural      *string  `json:"plural,omitempty"`
+		Family *string `json:"family,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Plural *string `json:"plural,omitempty"`
 		ScaleFactor *float64 `json:"scale_factor,omitempty"`
-		ShortName   *string  `json:"short_name,omitempty"`
+		ShortName *string `json:"short_name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"family", "name", "plural", "scale_factor", "short_name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "family", "name", "plural", "scale_factor", "short_name",  })
 	} else {
 		return err
 	}
@@ -240,7 +252,6 @@ func (o *MetricsQueryUnit) UnmarshalJSON(bytes []byte) (err error) {
 
 	return nil
 }
-
 // NullableMetricsQueryUnit handles when a null is used for MetricsQueryUnit.
 type NullableMetricsQueryUnit struct {
 	value *MetricsQueryUnit

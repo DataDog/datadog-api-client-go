@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventTimelineWidgetDefinition The event timeline is a widget version of the timeline that appears at the top of the Event Stream view. Only available on FREE layout dashboards.
 type EventTimelineWidgetDefinition struct {
@@ -27,9 +31,10 @@ type EventTimelineWidgetDefinition struct {
 	// Type of the event timeline widget.
 	Type EventTimelineWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEventTimelineWidgetDefinition instantiates a new EventTimelineWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +56,6 @@ func NewEventTimelineWidgetDefinitionWithDefaults() *EventTimelineWidgetDefiniti
 	this.Type = typeVar
 	return &this
 }
-
 // GetQuery returns the Query field value.
 func (o *EventTimelineWidgetDefinition) GetQuery() string {
 	if o == nil {
@@ -74,6 +78,7 @@ func (o *EventTimelineWidgetDefinition) GetQueryOk() (*string, bool) {
 func (o *EventTimelineWidgetDefinition) SetQuery(v string) {
 	o.Query = v
 }
+
 
 // GetTagsExecution returns the TagsExecution field value if set, zero value otherwise.
 func (o *EventTimelineWidgetDefinition) GetTagsExecution() string {
@@ -103,6 +108,7 @@ func (o *EventTimelineWidgetDefinition) SetTagsExecution(v string) {
 	o.TagsExecution = &v
 }
 
+
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *EventTimelineWidgetDefinition) GetTime() WidgetTime {
 	if o == nil || o.Time == nil {
@@ -130,6 +136,7 @@ func (o *EventTimelineWidgetDefinition) HasTime() bool {
 func (o *EventTimelineWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *EventTimelineWidgetDefinition) GetTitle() string {
@@ -159,6 +166,7 @@ func (o *EventTimelineWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *EventTimelineWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -186,6 +194,7 @@ func (o *EventTimelineWidgetDefinition) HasTitleAlign() bool {
 func (o *EventTimelineWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
+
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *EventTimelineWidgetDefinition) GetTitleSize() string {
@@ -215,6 +224,7 @@ func (o *EventTimelineWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *EventTimelineWidgetDefinition) GetType() EventTimelineWidgetDefinitionType {
 	if o == nil {
@@ -237,6 +247,8 @@ func (o *EventTimelineWidgetDefinition) GetTypeOk() (*EventTimelineWidgetDefinit
 func (o *EventTimelineWidgetDefinition) SetType(v EventTimelineWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EventTimelineWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -271,13 +283,13 @@ func (o EventTimelineWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventTimelineWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Query         *string                            `json:"query"`
-		TagsExecution *string                            `json:"tags_execution,omitempty"`
-		Time          *WidgetTime                        `json:"time,omitempty"`
-		Title         *string                            `json:"title,omitempty"`
-		TitleAlign    *WidgetTextAlign                   `json:"title_align,omitempty"`
-		TitleSize     *string                            `json:"title_size,omitempty"`
-		Type          *EventTimelineWidgetDefinitionType `json:"type"`
+		Query *string `json:"query"`
+		TagsExecution *string `json:"tags_execution,omitempty"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type *EventTimelineWidgetDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -290,7 +302,7 @@ func (o *EventTimelineWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"query", "tags_execution", "time", "title", "title_align", "title_size", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "query", "tags_execution", "time", "title", "title_align", "title_size", "type",  })
 	} else {
 		return err
 	}
@@ -300,7 +312,7 @@ func (o *EventTimelineWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) 
 	o.TagsExecution = all.TagsExecution
 	o.Time = all.Time
 	o.Title = all.Title
-	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign

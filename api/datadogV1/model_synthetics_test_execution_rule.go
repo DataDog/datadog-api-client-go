@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestExecutionRule Execution rule for a Synthetic test.
 type SyntheticsTestExecutionRule string
 
 // List of SyntheticsTestExecutionRule.
 const (
-	SYNTHETICSTESTEXECUTIONRULE_BLOCKING     SyntheticsTestExecutionRule = "blocking"
+	SYNTHETICSTESTEXECUTIONRULE_BLOCKING SyntheticsTestExecutionRule = "blocking"
 	SYNTHETICSTESTEXECUTIONRULE_NON_BLOCKING SyntheticsTestExecutionRule = "non_blocking"
-	SYNTHETICSTESTEXECUTIONRULE_SKIPPED      SyntheticsTestExecutionRule = "skipped"
+	SYNTHETICSTESTEXECUTIONRULE_SKIPPED SyntheticsTestExecutionRule = "skipped"
 )
 
 var allowedSyntheticsTestExecutionRuleEnumValues = []SyntheticsTestExecutionRule{

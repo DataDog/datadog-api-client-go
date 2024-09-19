@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorOptionsNotificationPresets Toggles the display of additional content sent in the monitor notification.
 type MonitorOptionsNotificationPresets string
 
 // List of MonitorOptionsNotificationPresets.
 const (
-	MONITOROPTIONSNOTIFICATIONPRESETS_SHOW_ALL     MonitorOptionsNotificationPresets = "show_all"
-	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_QUERY   MonitorOptionsNotificationPresets = "hide_query"
+	MONITOROPTIONSNOTIFICATIONPRESETS_SHOW_ALL MonitorOptionsNotificationPresets = "show_all"
+	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_QUERY MonitorOptionsNotificationPresets = "hide_query"
 	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_HANDLES MonitorOptionsNotificationPresets = "hide_handles"
-	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_ALL     MonitorOptionsNotificationPresets = "hide_all"
+	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_ALL MonitorOptionsNotificationPresets = "hide_all"
 )
 
 var allowedMonitorOptionsNotificationPresetsEnumValues = []MonitorOptionsNotificationPresets{
