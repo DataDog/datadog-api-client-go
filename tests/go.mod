@@ -1,6 +1,6 @@
 module github.com/DataDog/datadog-api-client-go/v2/tests
 
-go 1.19
+go 1.22
 
 require (
 	github.com/DataDog/datadog-api-client-go/v2 v2.14.0
