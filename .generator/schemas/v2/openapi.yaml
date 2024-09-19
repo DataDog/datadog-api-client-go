@@ -8097,7 +8097,6 @@ components:
           description: Custom extensions. This is the free-formed field to send client
             side metadata. No Datadog features are affected by this field.
           type: object
-          x-ignore-duplicate-object: true
         integrations:
           $ref: '#/components/schemas/EntityV3Integrations'
         kind:
@@ -8122,7 +8121,6 @@ components:
         performanceData:
           $ref: '#/components/schemas/EntityV3DatadogPerformance'
       type: object
-      x-ignore-duplicate-object: true
     EntityV3DatastoreKind:
       description: The definition of Entity V3 Datastore Kind object.
       enum:
@@ -8302,7 +8300,6 @@ components:
           description: Custom extensions. This is the free-formed field to send client
             side metadata. No Datadog features are affected by this field.
           type: object
-          x-ignore-duplicate-object: true
         integrations:
           $ref: '#/components/schemas/EntityV3Integrations'
         kind:
@@ -8327,7 +8324,6 @@ components:
         performanceData:
           $ref: '#/components/schemas/EntityV3DatadogPerformance'
       type: object
-      x-ignore-duplicate-object: true
     EntityV3QueueKind:
       description: The definition of Entity V3 Queue Kind object.
       enum:
@@ -8365,7 +8361,6 @@ components:
           description: Custom extensions. This is the free-formed field to send client
             side metadata. No Datadog features are affected by this field.
           type: object
-          x-ignore-duplicate-object: true
         integrations:
           $ref: '#/components/schemas/EntityV3Integrations'
         kind:
@@ -8441,7 +8436,6 @@ components:
           description: Custom extensions. This is the free-formed field to send client
             side metadata. No Datadog features are affected by this field.
           type: object
-          x-ignore-duplicate-object: true
         integrations:
           $ref: '#/components/schemas/EntityV3Integrations'
         kind:
@@ -22209,7 +22203,6 @@ components:
           example: https://my-org.pagerduty.com/service-directory/PMyService
           type: string
       type: object
-      x-ignore-duplicate-object: true
     ServiceDefinitionV2Dot1Slack:
       description: Service owner's Slack channel.
       properties:
@@ -22415,7 +22408,6 @@ components:
           example: https://my-org.pagerduty.com/service-directory/PMyService
           type: string
       type: object
-      x-ignore-duplicate-object: true
     ServiceDefinitionV2Dot2Type:
       description: The type of service.
       enum:
