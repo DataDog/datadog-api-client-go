@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Case3rdPartyTicketStatus Case status
 type Case3rdPartyTicketStatus string
@@ -16,8 +20,8 @@ type Case3rdPartyTicketStatus string
 // List of Case3rdPartyTicketStatus.
 const (
 	CASE3RDPARTYTICKETSTATUS_IN_PROGRESS Case3rdPartyTicketStatus = "IN_PROGRESS"
-	CASE3RDPARTYTICKETSTATUS_COMPLETED   Case3rdPartyTicketStatus = "COMPLETED"
-	CASE3RDPARTYTICKETSTATUS_FAILED      Case3rdPartyTicketStatus = "FAILED"
+	CASE3RDPARTYTICKETSTATUS_COMPLETED Case3rdPartyTicketStatus = "COMPLETED"
+	CASE3RDPARTYTICKETSTATUS_FAILED Case3rdPartyTicketStatus = "FAILED"
 )
 
 var allowedCase3rdPartyTicketStatusEnumValues = []Case3rdPartyTicketStatus{

@@ -2,24 +2,28 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppPipelineEventPipelineStatus The final status of the pipeline.
 type CIAppPipelineEventPipelineStatus string
 
 // List of CIAppPipelineEventPipelineStatus.
 const (
-	CIAPPPIPELINEEVENTPIPELINESTATUS_SUCCESS  CIAppPipelineEventPipelineStatus = "success"
-	CIAPPPIPELINEEVENTPIPELINESTATUS_ERROR    CIAppPipelineEventPipelineStatus = "error"
+	CIAPPPIPELINEEVENTPIPELINESTATUS_SUCCESS CIAppPipelineEventPipelineStatus = "success"
+	CIAPPPIPELINEEVENTPIPELINESTATUS_ERROR CIAppPipelineEventPipelineStatus = "error"
 	CIAPPPIPELINEEVENTPIPELINESTATUS_CANCELED CIAppPipelineEventPipelineStatus = "canceled"
-	CIAPPPIPELINEEVENTPIPELINESTATUS_SKIPPED  CIAppPipelineEventPipelineStatus = "skipped"
-	CIAPPPIPELINEEVENTPIPELINESTATUS_BLOCKED  CIAppPipelineEventPipelineStatus = "blocked"
+	CIAPPPIPELINEEVENTPIPELINESTATUS_SKIPPED CIAppPipelineEventPipelineStatus = "skipped"
+	CIAPPPIPELINEEVENTPIPELINESTATUS_BLOCKED CIAppPipelineEventPipelineStatus = "blocked"
 )
 
 var allowedCIAppPipelineEventPipelineStatusEnumValues = []CIAppPipelineEventPipelineStatus{

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ContainerImageFlavor Container Image breakdown by supported platform.
 type ContainerImageFlavor struct {
@@ -21,9 +27,10 @@ type ContainerImageFlavor struct {
 	// Size of the platform-specific Container Image.
 	Size *int64 `json:"size,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewContainerImageFlavor instantiates a new ContainerImageFlavor object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewContainerImageFlavorWithDefaults() *ContainerImageFlavor {
 	this := ContainerImageFlavor{}
 	return &this
 }
-
 // GetBuiltAt returns the BuiltAt field value if set, zero value otherwise.
 func (o *ContainerImageFlavor) GetBuiltAt() string {
 	if o == nil || o.BuiltAt == nil {
@@ -69,6 +75,7 @@ func (o *ContainerImageFlavor) HasBuiltAt() bool {
 func (o *ContainerImageFlavor) SetBuiltAt(v string) {
 	o.BuiltAt = &v
 }
+
 
 // GetOsArchitecture returns the OsArchitecture field value if set, zero value otherwise.
 func (o *ContainerImageFlavor) GetOsArchitecture() string {
@@ -98,6 +105,7 @@ func (o *ContainerImageFlavor) SetOsArchitecture(v string) {
 	o.OsArchitecture = &v
 }
 
+
 // GetOsName returns the OsName field value if set, zero value otherwise.
 func (o *ContainerImageFlavor) GetOsName() string {
 	if o == nil || o.OsName == nil {
@@ -125,6 +133,7 @@ func (o *ContainerImageFlavor) HasOsName() bool {
 func (o *ContainerImageFlavor) SetOsName(v string) {
 	o.OsName = &v
 }
+
 
 // GetOsVersion returns the OsVersion field value if set, zero value otherwise.
 func (o *ContainerImageFlavor) GetOsVersion() string {
@@ -154,6 +163,7 @@ func (o *ContainerImageFlavor) SetOsVersion(v string) {
 	o.OsVersion = &v
 }
 
+
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *ContainerImageFlavor) GetSize() int64 {
 	if o == nil || o.Size == nil {
@@ -181,6 +191,8 @@ func (o *ContainerImageFlavor) HasSize() bool {
 func (o *ContainerImageFlavor) SetSize(v int64) {
 	o.Size = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ContainerImageFlavor) MarshalJSON() ([]byte, error) {
@@ -213,18 +225,18 @@ func (o ContainerImageFlavor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ContainerImageFlavor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BuiltAt        *string `json:"built_at,omitempty"`
+		BuiltAt *string `json:"built_at,omitempty"`
 		OsArchitecture *string `json:"os_architecture,omitempty"`
-		OsName         *string `json:"os_name,omitempty"`
-		OsVersion      *string `json:"os_version,omitempty"`
-		Size           *int64  `json:"size,omitempty"`
+		OsName *string `json:"os_name,omitempty"`
+		OsVersion *string `json:"os_version,omitempty"`
+		Size *int64 `json:"size,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"built_at", "os_architecture", "os_name", "os_version", "size"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "built_at", "os_architecture", "os_name", "os_version", "size",  })
 	} else {
 		return err
 	}

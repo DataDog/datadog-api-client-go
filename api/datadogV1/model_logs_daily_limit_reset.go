@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsDailyLimitReset Object containing options to override the default daily limit reset time.
 type LogsDailyLimitReset struct {
@@ -15,9 +21,10 @@ type LogsDailyLimitReset struct {
 	// String in `(-|+)HH:00` format representing the UTC offset to apply to the given reset time. The hours must be between -12 and +14 (inclusive).
 	ResetUtcOffset *string `json:"reset_utc_offset,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsDailyLimitReset instantiates a new LogsDailyLimitReset object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewLogsDailyLimitResetWithDefaults() *LogsDailyLimitReset {
 	this := LogsDailyLimitReset{}
 	return &this
 }
-
 // GetResetTime returns the ResetTime field value if set, zero value otherwise.
 func (o *LogsDailyLimitReset) GetResetTime() string {
 	if o == nil || o.ResetTime == nil {
@@ -63,6 +69,7 @@ func (o *LogsDailyLimitReset) HasResetTime() bool {
 func (o *LogsDailyLimitReset) SetResetTime(v string) {
 	o.ResetTime = &v
 }
+
 
 // GetResetUtcOffset returns the ResetUtcOffset field value if set, zero value otherwise.
 func (o *LogsDailyLimitReset) GetResetUtcOffset() string {
@@ -92,6 +99,8 @@ func (o *LogsDailyLimitReset) SetResetUtcOffset(v string) {
 	o.ResetUtcOffset = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsDailyLimitReset) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o LogsDailyLimitReset) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsDailyLimitReset) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ResetTime      *string `json:"reset_time,omitempty"`
+		ResetTime *string `json:"reset_time,omitempty"`
 		ResetUtcOffset *string `json:"reset_utc_offset,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *LogsDailyLimitReset) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"reset_time", "reset_utc_offset"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "reset_time", "reset_utc_offset",  })
 	} else {
 		return err
 	}

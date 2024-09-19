@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CasesResponseMetaPagination Pagination metadata
 type CasesResponseMetaPagination struct {
@@ -17,9 +23,10 @@ type CasesResponseMetaPagination struct {
 	// Total number of pages
 	Total *int64 `json:"total,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCasesResponseMetaPagination instantiates a new CasesResponseMetaPagination object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewCasesResponseMetaPaginationWithDefaults() *CasesResponseMetaPagination {
 	this := CasesResponseMetaPagination{}
 	return &this
 }
-
 // GetCurrent returns the Current field value if set, zero value otherwise.
 func (o *CasesResponseMetaPagination) GetCurrent() int64 {
 	if o == nil || o.Current == nil {
@@ -65,6 +71,7 @@ func (o *CasesResponseMetaPagination) HasCurrent() bool {
 func (o *CasesResponseMetaPagination) SetCurrent(v int64) {
 	o.Current = &v
 }
+
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *CasesResponseMetaPagination) GetSize() int64 {
@@ -94,6 +101,7 @@ func (o *CasesResponseMetaPagination) SetSize(v int64) {
 	o.Size = &v
 }
 
+
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *CasesResponseMetaPagination) GetTotal() int64 {
 	if o == nil || o.Total == nil {
@@ -122,6 +130,8 @@ func (o *CasesResponseMetaPagination) SetTotal(v int64) {
 	o.Total = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CasesResponseMetaPagination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,15 +158,15 @@ func (o CasesResponseMetaPagination) MarshalJSON() ([]byte, error) {
 func (o *CasesResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Current *int64 `json:"current,omitempty"`
-		Size    *int64 `json:"size,omitempty"`
-		Total   *int64 `json:"total,omitempty"`
+		Size *int64 `json:"size,omitempty"`
+		Total *int64 `json:"total,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"current", "size", "total"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "current", "size", "total",  })
 	} else {
 		return err
 	}

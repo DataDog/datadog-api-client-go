@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsBrowserTestConfig Configuration object for a Synthetic browser test.
 type SyntheticsBrowserTestConfig struct {
@@ -23,9 +27,10 @@ type SyntheticsBrowserTestConfig struct {
 	// Array of variables used for the test steps.
 	Variables []SyntheticsBrowserVariable `json:"variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsBrowserTestConfig instantiates a new SyntheticsBrowserTestConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewSyntheticsBrowserTestConfigWithDefaults() *SyntheticsBrowserTestConfig {
 	this := SyntheticsBrowserTestConfig{}
 	return &this
 }
-
 // GetAssertions returns the Assertions field value.
 func (o *SyntheticsBrowserTestConfig) GetAssertions() []SyntheticsAssertion {
 	if o == nil {
@@ -68,6 +72,7 @@ func (o *SyntheticsBrowserTestConfig) GetAssertionsOk() (*[]SyntheticsAssertion,
 func (o *SyntheticsBrowserTestConfig) SetAssertions(v []SyntheticsAssertion) {
 	o.Assertions = v
 }
+
 
 // GetConfigVariables returns the ConfigVariables field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestConfig) GetConfigVariables() []SyntheticsConfigVariable {
@@ -97,6 +102,7 @@ func (o *SyntheticsBrowserTestConfig) SetConfigVariables(v []SyntheticsConfigVar
 	o.ConfigVariables = v
 }
 
+
 // GetRequest returns the Request field value.
 func (o *SyntheticsBrowserTestConfig) GetRequest() SyntheticsTestRequest {
 	if o == nil {
@@ -119,6 +125,7 @@ func (o *SyntheticsBrowserTestConfig) GetRequestOk() (*SyntheticsTestRequest, bo
 func (o *SyntheticsBrowserTestConfig) SetRequest(v SyntheticsTestRequest) {
 	o.Request = v
 }
+
 
 // GetSetCookie returns the SetCookie field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestConfig) GetSetCookie() string {
@@ -148,6 +155,7 @@ func (o *SyntheticsBrowserTestConfig) SetSetCookie(v string) {
 	o.SetCookie = &v
 }
 
+
 // GetVariables returns the Variables field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestConfig) GetVariables() []SyntheticsBrowserVariable {
 	if o == nil || o.Variables == nil {
@@ -176,6 +184,8 @@ func (o *SyntheticsBrowserTestConfig) SetVariables(v []SyntheticsBrowserVariable
 	o.Variables = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBrowserTestConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -203,11 +213,11 @@ func (o SyntheticsBrowserTestConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Assertions      *[]SyntheticsAssertion      `json:"assertions"`
-		ConfigVariables []SyntheticsConfigVariable  `json:"configVariables,omitempty"`
-		Request         *SyntheticsTestRequest      `json:"request"`
-		SetCookie       *string                     `json:"setCookie,omitempty"`
-		Variables       []SyntheticsBrowserVariable `json:"variables,omitempty"`
+		Assertions *[]SyntheticsAssertion `json:"assertions"`
+		ConfigVariables []SyntheticsConfigVariable `json:"configVariables,omitempty"`
+		Request *SyntheticsTestRequest `json:"request"`
+		SetCookie *string `json:"setCookie,omitempty"`
+		Variables []SyntheticsBrowserVariable `json:"variables,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -220,7 +230,7 @@ func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assertions", "configVariables", "request", "setCookie", "variables"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "assertions", "configVariables", "request", "setCookie", "variables",  })
 	} else {
 		return err
 	}

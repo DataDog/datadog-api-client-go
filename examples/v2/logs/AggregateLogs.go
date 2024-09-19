@@ -2,32 +2,33 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV2.LogsAggregateRequest{
-		Filter: &datadogV2.LogsQueryFilter{
-			From: datadog.PtrString("now-15m"),
-			Indexes: []string{
-				"main",
-			},
-			Query: datadog.PtrString("*"),
-			To:    datadog.PtrString("now"),
-		},
-	}
+Filter: &datadogV2.LogsQueryFilter{
+From: datadog.PtrString("now-15m"),
+Indexes: []string{
+"main",
+},
+Query: datadog.PtrString("*"),
+To: datadog.PtrString("now"),
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewLogsApi(apiClient)
-	resp, r, err := api.AggregateLogs(ctx, body)
+	resp, r, err := api.AggregateLogs(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.AggregateLogs`: %v\n", err)

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"bytes"
 	_context "context"
+	_fmt "fmt"
+	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -20,10 +24,12 @@ type UsersApi datadog.Service
 // Create a user for your organization.
 func (a *UsersApi) CreateUser(ctx _context.Context, body UserCreateRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue UserResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  UserResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsersApi.CreateUser")
 	if err != nil {
@@ -38,9 +44,11 @@ func (a *UsersApi) CreateUser(ctx _context.Context, body UserCreateRequest) (Use
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -63,10 +71,11 @@ func (a *UsersApi) CreateUser(ctx _context.Context, body UserCreateRequest) (Use
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -80,7 +89,7 @@ func (a *UsersApi) CreateUser(ctx _context.Context, body UserCreateRequest) (Use
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -94,9 +103,11 @@ func (a *UsersApi) CreateUser(ctx _context.Context, body UserCreateRequest) (Use
 // to an administrator user.
 func (a *UsersApi) DisableUser(ctx _context.Context, userId string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsersApi.DisableUser")
 	if err != nil {
@@ -109,9 +120,10 @@ func (a *UsersApi) DisableUser(ctx _context.Context, userId string) (*_nethttp.R
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] =  "*/*"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -134,10 +146,11 @@ func (a *UsersApi) DisableUser(ctx _context.Context, userId string) (*_nethttp.R
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -155,10 +168,12 @@ func (a *UsersApi) DisableUser(ctx _context.Context, userId string) (*_nethttp.R
 // Returns a single user invitation by its UUID.
 func (a *UsersApi) GetInvitation(ctx _context.Context, userInvitationUuid string) (UserInvitationResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue UserInvitationResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  UserInvitationResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsersApi.GetInvitation")
 	if err != nil {
@@ -173,7 +188,8 @@ func (a *UsersApi) GetInvitation(ctx _context.Context, userInvitationUuid string
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -196,10 +212,11 @@ func (a *UsersApi) GetInvitation(ctx _context.Context, userInvitationUuid string
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -213,7 +230,7 @@ func (a *UsersApi) GetInvitation(ctx _context.Context, userInvitationUuid string
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -226,10 +243,12 @@ func (a *UsersApi) GetInvitation(ctx _context.Context, userInvitationUuid string
 // Get a user in the organization specified by the user’s `user_id`.
 func (a *UsersApi) GetUser(ctx _context.Context, userId string) (UserResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue UserResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  UserResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsersApi.GetUser")
 	if err != nil {
@@ -244,7 +263,8 @@ func (a *UsersApi) GetUser(ctx _context.Context, userId string) (UserResponse, *
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -267,10 +287,11 @@ func (a *UsersApi) GetUser(ctx _context.Context, userId string) (UserResponse, *
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -284,7 +305,7 @@ func (a *UsersApi) GetUser(ctx _context.Context, userId string) (UserResponse, *
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -298,10 +319,12 @@ func (a *UsersApi) GetUser(ctx _context.Context, userId string) (UserResponse, *
 // joined by this user.
 func (a *UsersApi) ListUserOrganizations(ctx _context.Context, userId string) (UserResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue UserResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  UserResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsersApi.ListUserOrganizations")
 	if err != nil {
@@ -316,7 +339,8 @@ func (a *UsersApi) ListUserOrganizations(ctx _context.Context, userId string) (U
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -339,10 +363,11 @@ func (a *UsersApi) ListUserOrganizations(ctx _context.Context, userId string) (U
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -356,7 +381,7 @@ func (a *UsersApi) ListUserOrganizations(ctx _context.Context, userId string) (U
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -370,10 +395,12 @@ func (a *UsersApi) ListUserOrganizations(ctx _context.Context, userId string) (U
 // granted by the associated user's roles.
 func (a *UsersApi) ListUserPermissions(ctx _context.Context, userId string) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue PermissionsResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  PermissionsResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsersApi.ListUserPermissions")
 	if err != nil {
@@ -388,7 +415,8 @@ func (a *UsersApi) ListUserPermissions(ctx _context.Context, userId string) (Per
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -411,10 +439,11 @@ func (a *UsersApi) ListUserPermissions(ctx _context.Context, userId string) (Per
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -428,7 +457,7 @@ func (a *UsersApi) ListUserPermissions(ctx _context.Context, userId string) (Per
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -439,11 +468,11 @@ func (a *UsersApi) ListUserPermissions(ctx _context.Context, userId string) (Per
 
 // ListUsersOptionalParameters holds optional parameters for ListUsers.
 type ListUsersOptionalParameters struct {
-	PageSize     *int64
-	PageNumber   *int64
-	Sort         *string
-	SortDir      *QuerySortOrder
-	Filter       *string
+	PageSize *int64
+	PageNumber *int64
+	Sort *string
+	SortDir *QuerySortOrder
+	Filter *string
 	FilterStatus *string
 }
 
@@ -452,37 +481,31 @@ func NewListUsersOptionalParameters() *ListUsersOptionalParameters {
 	this := ListUsersOptionalParameters{}
 	return &this
 }
-
 // WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListUsersOptionalParameters) WithPageSize(pageSize int64) *ListUsersOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-
 // WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *ListUsersOptionalParameters) WithPageNumber(pageNumber int64) *ListUsersOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
-
 // WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListUsersOptionalParameters) WithSort(sort string) *ListUsersOptionalParameters {
 	r.Sort = &sort
 	return r
 }
-
 // WithSortDir sets the corresponding parameter name and returns the struct.
 func (r *ListUsersOptionalParameters) WithSortDir(sortDir QuerySortOrder) *ListUsersOptionalParameters {
 	r.SortDir = &sortDir
 	return r
 }
-
 // WithFilter sets the corresponding parameter name and returns the struct.
 func (r *ListUsersOptionalParameters) WithFilter(filter string) *ListUsersOptionalParameters {
 	r.Filter = &filter
 	return r
 }
-
 // WithFilterStatus sets the corresponding parameter name and returns the struct.
 func (r *ListUsersOptionalParameters) WithFilterStatus(filterStatus string) *ListUsersOptionalParameters {
 	r.FilterStatus = &filterStatus
@@ -494,18 +517,20 @@ func (r *ListUsersOptionalParameters) WithFilterStatus(filterStatus string) *Lis
 // all users even if they are deactivated or unverified.
 func (a *UsersApi) ListUsers(ctx _context.Context, o ...ListUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue UsersResponse
-		optionalParams      ListUsersOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  UsersResponse
+		optionalParams ListUsersOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListUsersOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListUsersOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsersApi.ListUsers")
 	if err != nil {
@@ -537,7 +562,8 @@ func (a *UsersApi) ListUsers(ctx _context.Context, o ...ListUsersOptionalParamet
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -560,10 +586,11 @@ func (a *UsersApi) ListUsers(ctx _context.Context, o ...ListUsersOptionalParamet
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -577,7 +604,7 @@ func (a *UsersApi) ListUsers(ctx _context.Context, o ...ListUsersOptionalParamet
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -585,7 +612,6 @@ func (a *UsersApi) ListUsers(ctx _context.Context, o ...ListUsersOptionalParamet
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 // ListUsersWithPagination provides a paginated version of ListUsers returning a channel with all items.
 func (a *UsersApi) ListUsersWithPagination(ctx _context.Context, o ...ListUsersOptionalParameters) (<-chan datadog.PaginationResult[User], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -597,7 +623,7 @@ func (a *UsersApi) ListUsersWithPagination(ctx _context.Context, o ...ListUsersO
 		pageSize_ = *o[0].PageSize
 	}
 	o[0].PageSize = &pageSize_
-	page_ := int64(0)
+        page_ := int64(0)
 	o[0].PageNumber = &page_
 
 	items := make(chan datadog.PaginationResult[User], pageSize_)
@@ -619,8 +645,8 @@ func (a *UsersApi) ListUsersWithPagination(ctx _context.Context, o ...ListUsersO
 				select {
 				case items <- datadog.PaginationResult[User]{Item: item, Error: nil}:
 				case <-ctx.Done():
-					close(items)
-					return
+				close(items)
+				return
 				}
 			}
 			if len(results) < int(pageSize_) {
@@ -638,10 +664,12 @@ func (a *UsersApi) ListUsersWithPagination(ctx _context.Context, o ...ListUsersO
 // Sends emails to one or more users inviting them to join the organization.
 func (a *UsersApi) SendInvitations(ctx _context.Context, body UserInvitationsRequest) (UserInvitationsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue UserInvitationsResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  UserInvitationsResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsersApi.SendInvitations")
 	if err != nil {
@@ -656,9 +684,11 @@ func (a *UsersApi) SendInvitations(ctx _context.Context, body UserInvitationsReq
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -681,10 +711,11 @@ func (a *UsersApi) SendInvitations(ctx _context.Context, body UserInvitationsReq
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -698,7 +729,7 @@ func (a *UsersApi) SendInvitations(ctx _context.Context, body UserInvitationsReq
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -712,10 +743,12 @@ func (a *UsersApi) SendInvitations(ctx _context.Context, body UserInvitationsReq
 // to an administrator user.
 func (a *UsersApi) UpdateUser(ctx _context.Context, userId string, body UserUpdateRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPatch
-		localVarPostBody    interface{}
-		localVarReturnValue UserResponse
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarReturnValue  UserResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsersApi.UpdateUser")
 	if err != nil {
@@ -731,9 +764,11 @@ func (a *UsersApi) UpdateUser(ctx _context.Context, userId string, body UserUpda
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -756,10 +791,11 @@ func (a *UsersApi) UpdateUser(ctx _context.Context, userId string, body UserUpda
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 422 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 422||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -773,7 +809,7 @@ func (a *UsersApi) UpdateUser(ctx _context.Context, userId string, body UserUpda
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

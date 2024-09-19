@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppAggregateSortType The type of sorting algorithm.
 type CIAppAggregateSortType string
@@ -16,7 +20,7 @@ type CIAppAggregateSortType string
 // List of CIAppAggregateSortType.
 const (
 	CIAPPAGGREGATESORTTYPE_ALPHABETICAL CIAppAggregateSortType = "alphabetical"
-	CIAPPAGGREGATESORTTYPE_MEASURE      CIAppAggregateSortType = "measure"
+	CIAPPAGGREGATESORTTYPE_MEASURE CIAppAggregateSortType = "measure"
 )
 
 var allowedCIAppAggregateSortTypeEnumValues = []CIAppAggregateSortType{

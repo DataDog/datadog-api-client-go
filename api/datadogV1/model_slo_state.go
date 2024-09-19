@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOState State of the SLO.
 type SLOState string
@@ -16,9 +20,9 @@ type SLOState string
 // List of SLOState.
 const (
 	SLOSTATE_BREACHED SLOState = "breached"
-	SLOSTATE_WARNING  SLOState = "warning"
-	SLOSTATE_OK       SLOState = "ok"
-	SLOSTATE_NO_DATA  SLOState = "no_data"
+	SLOSTATE_WARNING SLOState = "warning"
+	SLOSTATE_OK SLOState = "ok"
+	SLOSTATE_NO_DATA SLOState = "no_data"
 )
 
 var allowedSLOStateEnumValues = []SLOState{

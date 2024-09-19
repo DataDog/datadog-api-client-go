@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TimeseriesResponse A message containing the response to a timeseries query.
 type TimeseriesResponse struct {
@@ -15,9 +21,10 @@ type TimeseriesResponse struct {
 	// The type of the resource. The value should always be timeseries_response.
 	Type *TimeseriesFormulaResponseType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTimeseriesResponse instantiates a new TimeseriesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewTimeseriesResponseWithDefaults() *TimeseriesResponse {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *TimeseriesResponse) GetAttributes() TimeseriesResponseAttributes {
 	if o == nil || o.Attributes == nil {
@@ -67,6 +73,7 @@ func (o *TimeseriesResponse) HasAttributes() bool {
 func (o *TimeseriesResponse) SetAttributes(v TimeseriesResponseAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *TimeseriesResponse) GetType() TimeseriesFormulaResponseType {
@@ -96,6 +103,8 @@ func (o *TimeseriesResponse) SetType(v TimeseriesFormulaResponseType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TimeseriesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -118,25 +127,25 @@ func (o TimeseriesResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TimeseriesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *TimeseriesResponseAttributes  `json:"attributes,omitempty"`
-		Type       *TimeseriesFormulaResponseType `json:"type,omitempty"`
+		Attributes *TimeseriesResponseAttributes `json:"attributes,omitempty"`
+		Type *TimeseriesFormulaResponseType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

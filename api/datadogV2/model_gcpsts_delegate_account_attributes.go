@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GCPSTSDelegateAccountAttributes Your delegate account attributes.
 type GCPSTSDelegateAccountAttributes struct {
 	// Your organization's Datadog principal email address.
 	DelegateAccountEmail *string `json:"delegate_account_email,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGCPSTSDelegateAccountAttributes instantiates a new GCPSTSDelegateAccountAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewGCPSTSDelegateAccountAttributesWithDefaults() *GCPSTSDelegateAccountAttr
 	this := GCPSTSDelegateAccountAttributes{}
 	return &this
 }
-
 // GetDelegateAccountEmail returns the DelegateAccountEmail field value if set, zero value otherwise.
 func (o *GCPSTSDelegateAccountAttributes) GetDelegateAccountEmail() string {
 	if o == nil || o.DelegateAccountEmail == nil {
@@ -62,6 +68,8 @@ func (o *GCPSTSDelegateAccountAttributes) SetDelegateAccountEmail(v string) {
 	o.DelegateAccountEmail = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GCPSTSDelegateAccountAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *GCPSTSDelegateAccountAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"delegate_account_email"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "delegate_account_email",  })
 	} else {
 		return err
 	}

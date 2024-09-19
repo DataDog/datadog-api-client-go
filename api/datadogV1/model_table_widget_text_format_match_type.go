@@ -2,25 +2,29 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TableWidgetTextFormatMatchType Match or compare option.
 type TableWidgetTextFormatMatchType string
 
 // List of TableWidgetTextFormatMatchType.
 const (
-	TABLEWIDGETTEXTFORMATMATCHTYPE_IS               TableWidgetTextFormatMatchType = "is"
-	TABLEWIDGETTEXTFORMATMATCHTYPE_IS_NOT           TableWidgetTextFormatMatchType = "is_not"
-	TABLEWIDGETTEXTFORMATMATCHTYPE_CONTAINS         TableWidgetTextFormatMatchType = "contains"
+	TABLEWIDGETTEXTFORMATMATCHTYPE_IS TableWidgetTextFormatMatchType = "is"
+	TABLEWIDGETTEXTFORMATMATCHTYPE_IS_NOT TableWidgetTextFormatMatchType = "is_not"
+	TABLEWIDGETTEXTFORMATMATCHTYPE_CONTAINS TableWidgetTextFormatMatchType = "contains"
 	TABLEWIDGETTEXTFORMATMATCHTYPE_DOES_NOT_CONTAIN TableWidgetTextFormatMatchType = "does_not_contain"
-	TABLEWIDGETTEXTFORMATMATCHTYPE_STARTS_WITH      TableWidgetTextFormatMatchType = "starts_with"
-	TABLEWIDGETTEXTFORMATMATCHTYPE_ENDS_WITH        TableWidgetTextFormatMatchType = "ends_with"
+	TABLEWIDGETTEXTFORMATMATCHTYPE_STARTS_WITH TableWidgetTextFormatMatchType = "starts_with"
+	TABLEWIDGETTEXTFORMATMATCHTYPE_ENDS_WITH TableWidgetTextFormatMatchType = "ends_with"
 )
 
 var allowedTableWidgetTextFormatMatchTypeEnumValues = []TableWidgetTextFormatMatchType{

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestOptionsMonitorOptions Object containing the options for a Synthetic test as a monitor
 // (for example, renotification).
@@ -15,9 +21,10 @@ type SyntheticsTestOptionsMonitorOptions struct {
 	// (in minutes).
 	RenotifyInterval *int64 `json:"renotify_interval,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsTestOptionsMonitorOptions instantiates a new SyntheticsTestOptionsMonitorOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSyntheticsTestOptionsMonitorOptionsWithDefaults() *SyntheticsTestOptions
 	this := SyntheticsTestOptionsMonitorOptions{}
 	return &this
 }
-
 // GetRenotifyInterval returns the RenotifyInterval field value if set, zero value otherwise.
 func (o *SyntheticsTestOptionsMonitorOptions) GetRenotifyInterval() int64 {
 	if o == nil || o.RenotifyInterval == nil {
@@ -64,6 +70,8 @@ func (o *SyntheticsTestOptionsMonitorOptions) SetRenotifyInterval(v int64) {
 	o.RenotifyInterval = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestOptionsMonitorOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -90,7 +98,7 @@ func (o *SyntheticsTestOptionsMonitorOptions) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"renotify_interval"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "renotify_interval",  })
 	} else {
 		return err
 	}

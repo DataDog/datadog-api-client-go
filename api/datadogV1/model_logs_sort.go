@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsSort Time-ascending `asc` or time-descending `desc` results.
 type LogsSort string
 
 // List of LogsSort.
 const (
-	LOGSSORT_TIME_ASCENDING  LogsSort = "asc"
+	LOGSSORT_TIME_ASCENDING LogsSort = "asc"
 	LOGSSORT_TIME_DESCENDING LogsSort = "desc"
 )
 

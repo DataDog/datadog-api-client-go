@@ -2,21 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FormulaAndFunctionQueryDefinition - A formula and function query.
 type FormulaAndFunctionQueryDefinition struct {
-	FormulaAndFunctionMetricQueryDefinition             *FormulaAndFunctionMetricQueryDefinition
-	FormulaAndFunctionEventQueryDefinition              *FormulaAndFunctionEventQueryDefinition
-	FormulaAndFunctionProcessQueryDefinition            *FormulaAndFunctionProcessQueryDefinition
+	FormulaAndFunctionMetricQueryDefinition *FormulaAndFunctionMetricQueryDefinition
+	FormulaAndFunctionEventQueryDefinition *FormulaAndFunctionEventQueryDefinition
+	FormulaAndFunctionProcessQueryDefinition *FormulaAndFunctionProcessQueryDefinition
 	FormulaAndFunctionApmDependencyStatsQueryDefinition *FormulaAndFunctionApmDependencyStatsQueryDefinition
-	FormulaAndFunctionApmResourceStatsQueryDefinition   *FormulaAndFunctionApmResourceStatsQueryDefinition
-	FormulaAndFunctionSLOQueryDefinition                *FormulaAndFunctionSLOQueryDefinition
-	FormulaAndFunctionCloudCostQueryDefinition          *FormulaAndFunctionCloudCostQueryDefinition
+	FormulaAndFunctionApmResourceStatsQueryDefinition *FormulaAndFunctionApmResourceStatsQueryDefinition
+	FormulaAndFunctionSLOQueryDefinition *FormulaAndFunctionSLOQueryDefinition
+	FormulaAndFunctionCloudCostQueryDefinition *FormulaAndFunctionCloudCostQueryDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -200,29 +206,36 @@ func (obj FormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.FormulaAndFunctionMetricQueryDefinition)
 	}
 
+
 	if obj.FormulaAndFunctionEventQueryDefinition != nil {
 		return datadog.Marshal(&obj.FormulaAndFunctionEventQueryDefinition)
 	}
+
 
 	if obj.FormulaAndFunctionProcessQueryDefinition != nil {
 		return datadog.Marshal(&obj.FormulaAndFunctionProcessQueryDefinition)
 	}
 
+
 	if obj.FormulaAndFunctionApmDependencyStatsQueryDefinition != nil {
 		return datadog.Marshal(&obj.FormulaAndFunctionApmDependencyStatsQueryDefinition)
 	}
+
 
 	if obj.FormulaAndFunctionApmResourceStatsQueryDefinition != nil {
 		return datadog.Marshal(&obj.FormulaAndFunctionApmResourceStatsQueryDefinition)
 	}
 
+
 	if obj.FormulaAndFunctionSLOQueryDefinition != nil {
 		return datadog.Marshal(&obj.FormulaAndFunctionSLOQueryDefinition)
 	}
 
+
 	if obj.FormulaAndFunctionCloudCostQueryDefinition != nil {
 		return datadog.Marshal(&obj.FormulaAndFunctionCloudCostQueryDefinition)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -231,34 +244,41 @@ func (obj FormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *FormulaAndFunctionQueryDefinition) GetActualInstance() interface{} {
+func (obj *FormulaAndFunctionQueryDefinition) GetActualInstance() (interface{}) {
 	if obj.FormulaAndFunctionMetricQueryDefinition != nil {
 		return obj.FormulaAndFunctionMetricQueryDefinition
 	}
+
 
 	if obj.FormulaAndFunctionEventQueryDefinition != nil {
 		return obj.FormulaAndFunctionEventQueryDefinition
 	}
 
+
 	if obj.FormulaAndFunctionProcessQueryDefinition != nil {
 		return obj.FormulaAndFunctionProcessQueryDefinition
 	}
+
 
 	if obj.FormulaAndFunctionApmDependencyStatsQueryDefinition != nil {
 		return obj.FormulaAndFunctionApmDependencyStatsQueryDefinition
 	}
 
+
 	if obj.FormulaAndFunctionApmResourceStatsQueryDefinition != nil {
 		return obj.FormulaAndFunctionApmResourceStatsQueryDefinition
 	}
+
 
 	if obj.FormulaAndFunctionSLOQueryDefinition != nil {
 		return obj.FormulaAndFunctionSLOQueryDefinition
 	}
 
+
 	if obj.FormulaAndFunctionCloudCostQueryDefinition != nil {
 		return obj.FormulaAndFunctionCloudCostQueryDefinition
 	}
+
 
 	// all schemas are nil
 	return nil

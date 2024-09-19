@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppGroupByMissing - The value to use for logs that don't have the facet used to group-by.
 type CIAppGroupByMissing struct {
@@ -80,9 +86,11 @@ func (obj CIAppGroupByMissing) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.CIAppGroupByMissingString)
 	}
 
+
 	if obj.CIAppGroupByMissingNumber != nil {
 		return datadog.Marshal(&obj.CIAppGroupByMissingNumber)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj CIAppGroupByMissing) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *CIAppGroupByMissing) GetActualInstance() interface{} {
+func (obj *CIAppGroupByMissing) GetActualInstance() (interface{}) {
 	if obj.CIAppGroupByMissingString != nil {
 		return obj.CIAppGroupByMissingString
 	}
 
+
 	if obj.CIAppGroupByMissingNumber != nil {
 		return obj.CIAppGroupByMissingNumber
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // APIKeyResponseIncludedItem - An object related to an API key.
 type APIKeyResponseIncludedItem struct {
-	User      *User
+	User *User
 	LeakedKey *LeakedKey
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj APIKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.User)
 	}
 
+
 	if obj.LeakedKey != nil {
 		return datadog.Marshal(&obj.LeakedKey)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj APIKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *APIKeyResponseIncludedItem) GetActualInstance() interface{} {
+func (obj *APIKeyResponseIncludedItem) GetActualInstance() (interface{}) {
 	if obj.User != nil {
 		return obj.User
 	}
 
+
 	if obj.LeakedKey != nil {
 		return obj.LeakedKey
 	}
+
 
 	// all schemas are nil
 	return nil

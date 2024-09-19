@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionV1Integrations Third party integrations that Datadog supports.
 type ServiceDefinitionV1Integrations struct {
 	// PagerDuty service URL for the service.
 	Pagerduty *string `json:"pagerduty,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceDefinitionV1Integrations instantiates a new ServiceDefinitionV1Integrations object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewServiceDefinitionV1IntegrationsWithDefaults() *ServiceDefinitionV1Integr
 	this := ServiceDefinitionV1Integrations{}
 	return &this
 }
-
 // GetPagerduty returns the Pagerduty field value if set, zero value otherwise.
 func (o *ServiceDefinitionV1Integrations) GetPagerduty() string {
 	if o == nil || o.Pagerduty == nil {
@@ -62,6 +68,8 @@ func (o *ServiceDefinitionV1Integrations) SetPagerduty(v string) {
 	o.Pagerduty = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionV1Integrations) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *ServiceDefinitionV1Integrations) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"pagerduty"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "pagerduty",  })
 	} else {
 		return err
 	}

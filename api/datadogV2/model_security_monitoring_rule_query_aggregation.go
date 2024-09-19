@@ -2,27 +2,31 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleQueryAggregation The aggregation type.
 type SecurityMonitoringRuleQueryAggregation string
 
 // List of SecurityMonitoringRuleQueryAggregation.
 const (
-	SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT       SecurityMonitoringRuleQueryAggregation = "count"
+	SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT SecurityMonitoringRuleQueryAggregation = "count"
 	SECURITYMONITORINGRULEQUERYAGGREGATION_CARDINALITY SecurityMonitoringRuleQueryAggregation = "cardinality"
-	SECURITYMONITORINGRULEQUERYAGGREGATION_SUM         SecurityMonitoringRuleQueryAggregation = "sum"
-	SECURITYMONITORINGRULEQUERYAGGREGATION_MAX         SecurityMonitoringRuleQueryAggregation = "max"
-	SECURITYMONITORINGRULEQUERYAGGREGATION_NEW_VALUE   SecurityMonitoringRuleQueryAggregation = "new_value"
-	SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA    SecurityMonitoringRuleQueryAggregation = "geo_data"
+	SECURITYMONITORINGRULEQUERYAGGREGATION_SUM SecurityMonitoringRuleQueryAggregation = "sum"
+	SECURITYMONITORINGRULEQUERYAGGREGATION_MAX SecurityMonitoringRuleQueryAggregation = "max"
+	SECURITYMONITORINGRULEQUERYAGGREGATION_NEW_VALUE SecurityMonitoringRuleQueryAggregation = "new_value"
+	SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA SecurityMonitoringRuleQueryAggregation = "geo_data"
 	SECURITYMONITORINGRULEQUERYAGGREGATION_EVENT_COUNT SecurityMonitoringRuleQueryAggregation = "event_count"
-	SECURITYMONITORINGRULEQUERYAGGREGATION_NONE        SecurityMonitoringRuleQueryAggregation = "none"
+	SECURITYMONITORINGRULEQUERYAGGREGATION_NONE SecurityMonitoringRuleQueryAggregation = "none"
 )
 
 var allowedSecurityMonitoringRuleQueryAggregationEnumValues = []SecurityMonitoringRuleQueryAggregation{

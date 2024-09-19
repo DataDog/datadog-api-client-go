@@ -2,17 +2,23 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UserResponseIncludedItem - An object related to a user.
 type UserResponseIncludedItem struct {
 	Organization *Organization
-	Permission   *Permission
-	Role         *Role
+	Permission *Permission
+	Role *Role
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -104,13 +110,16 @@ func (obj UserResponseIncludedItem) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.Organization)
 	}
 
+
 	if obj.Permission != nil {
 		return datadog.Marshal(&obj.Permission)
 	}
 
+
 	if obj.Role != nil {
 		return datadog.Marshal(&obj.Role)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj UserResponseIncludedItem) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *UserResponseIncludedItem) GetActualInstance() interface{} {
+func (obj *UserResponseIncludedItem) GetActualInstance() (interface{}) {
 	if obj.Organization != nil {
 		return obj.Organization
 	}
+
 
 	if obj.Permission != nil {
 		return obj.Permission
 	}
 
+
 	if obj.Role != nil {
 		return obj.Role
 	}
+
 
 	// all schemas are nil
 	return nil

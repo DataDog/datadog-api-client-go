@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetRequestStyle Define request widget style.
 type WidgetRequestStyle struct {
@@ -17,9 +23,10 @@ type WidgetRequestStyle struct {
 	// Color palette to apply to the widget.
 	Palette *string `json:"palette,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWidgetRequestStyle instantiates a new WidgetRequestStyle object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewWidgetRequestStyleWithDefaults() *WidgetRequestStyle {
 	this := WidgetRequestStyle{}
 	return &this
 }
-
 // GetLineType returns the LineType field value if set, zero value otherwise.
 func (o *WidgetRequestStyle) GetLineType() WidgetLineType {
 	if o == nil || o.LineType == nil {
@@ -65,6 +71,7 @@ func (o *WidgetRequestStyle) HasLineType() bool {
 func (o *WidgetRequestStyle) SetLineType(v WidgetLineType) {
 	o.LineType = &v
 }
+
 
 // GetLineWidth returns the LineWidth field value if set, zero value otherwise.
 func (o *WidgetRequestStyle) GetLineWidth() WidgetLineWidth {
@@ -94,6 +101,7 @@ func (o *WidgetRequestStyle) SetLineWidth(v WidgetLineWidth) {
 	o.LineWidth = &v
 }
 
+
 // GetPalette returns the Palette field value if set, zero value otherwise.
 func (o *WidgetRequestStyle) GetPalette() string {
 	if o == nil || o.Palette == nil {
@@ -122,6 +130,8 @@ func (o *WidgetRequestStyle) SetPalette(v string) {
 	o.Palette = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WidgetRequestStyle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,27 +157,27 @@ func (o WidgetRequestStyle) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetRequestStyle) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		LineType  *WidgetLineType  `json:"line_type,omitempty"`
+		LineType *WidgetLineType `json:"line_type,omitempty"`
 		LineWidth *WidgetLineWidth `json:"line_width,omitempty"`
-		Palette   *string          `json:"palette,omitempty"`
+		Palette *string `json:"palette,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"line_type", "line_width", "palette"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "line_type", "line_width", "palette",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.LineType != nil && !all.LineType.IsValid() {
+	if all.LineType != nil &&!all.LineType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.LineType = all.LineType
 	}
-	if all.LineWidth != nil && !all.LineWidth.IsValid() {
+	if all.LineWidth != nil &&!all.LineWidth.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.LineWidth = all.LineWidth

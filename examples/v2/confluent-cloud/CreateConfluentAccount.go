@@ -2,46 +2,47 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV2.ConfluentAccountCreateRequest{
-		Data: datadogV2.ConfluentAccountCreateRequestData{
-			Attributes: datadogV2.ConfluentAccountCreateRequestAttributes{
-				ApiKey:    "TESTAPIKEY123",
-				ApiSecret: "test-api-secret-123",
-				Resources: []datadogV2.ConfluentAccountResourceAttributes{
-					{
-						EnableCustomMetrics: datadog.PtrBool(false),
-						Id:                  datadog.PtrString("resource-id-123"),
-						ResourceType:        "kafka",
-						Tags: []string{
-							"myTag",
-							"myTag2:myValue",
-						},
-					},
-				},
-				Tags: []string{
-					"myTag",
-					"myTag2:myValue",
-				},
-			},
-			Type: datadogV2.CONFLUENTACCOUNTTYPE_CONFLUENT_CLOUD_ACCOUNTS,
-		},
-	}
+Data: datadogV2.ConfluentAccountCreateRequestData{
+Attributes: datadogV2.ConfluentAccountCreateRequestAttributes{
+ApiKey: "TESTAPIKEY123",
+ApiSecret: "test-api-secret-123",
+Resources: []datadogV2.ConfluentAccountResourceAttributes{
+{
+EnableCustomMetrics: datadog.PtrBool(false),
+Id: datadog.PtrString("resource-id-123"),
+ResourceType: "kafka",
+Tags: []string{
+"myTag",
+"myTag2:myValue",
+},
+},
+},
+Tags: []string{
+"myTag",
+"myTag2:myValue",
+},
+},
+Type: datadogV2.CONFLUENTACCOUNTTYPE_CONFLUENT_CLOUD_ACCOUNTS,
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewConfluentCloudApi(apiClient)
-	resp, r, err := api.CreateConfluentAccount(ctx, body)
+	resp, r, err := api.CreateConfluentAccount(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConfluentCloudApi.CreateConfluentAccount`: %v\n", err)

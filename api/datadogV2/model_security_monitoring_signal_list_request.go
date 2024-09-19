@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringSignalListRequest The request for a security signal list.
 type SecurityMonitoringSignalListRequest struct {
@@ -17,9 +23,10 @@ type SecurityMonitoringSignalListRequest struct {
 	// The sort parameters used for querying security signals.
 	Sort *SecurityMonitoringSignalsSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringSignalListRequest instantiates a new SecurityMonitoringSignalListRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewSecurityMonitoringSignalListRequestWithDefaults() *SecurityMonitoringSig
 	this := SecurityMonitoringSignalListRequest{}
 	return &this
 }
-
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequest) GetFilter() SecurityMonitoringSignalListRequestFilter {
 	if o == nil || o.Filter == nil {
@@ -65,6 +71,7 @@ func (o *SecurityMonitoringSignalListRequest) HasFilter() bool {
 func (o *SecurityMonitoringSignalListRequest) SetFilter(v SecurityMonitoringSignalListRequestFilter) {
 	o.Filter = &v
 }
+
 
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequest) GetPage() SecurityMonitoringSignalListRequestPage {
@@ -94,6 +101,7 @@ func (o *SecurityMonitoringSignalListRequest) SetPage(v SecurityMonitoringSignal
 	o.Page = &v
 }
 
+
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequest) GetSort() SecurityMonitoringSignalsSort {
 	if o == nil || o.Sort == nil {
@@ -122,6 +130,8 @@ func (o *SecurityMonitoringSignalListRequest) SetSort(v SecurityMonitoringSignal
 	o.Sort = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringSignalListRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,29 +158,29 @@ func (o SecurityMonitoringSignalListRequest) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringSignalListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Filter *SecurityMonitoringSignalListRequestFilter `json:"filter,omitempty"`
-		Page   *SecurityMonitoringSignalListRequestPage   `json:"page,omitempty"`
-		Sort   *SecurityMonitoringSignalsSort             `json:"sort,omitempty"`
+		Page *SecurityMonitoringSignalListRequestPage `json:"page,omitempty"`
+		Sort *SecurityMonitoringSignalsSort `json:"sort,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "page", "sort"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "filter", "page", "sort",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Page = all.Page
-	if all.Sort != nil && !all.Sort.IsValid() {
+	if all.Sort != nil &&!all.Sort.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Sort = all.Sort

@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WorklflowGetInstanceResponseData The data of the instance response.
 type WorklflowGetInstanceResponseData struct {
 	// The attributes of the instance response data.
 	Attributes *WorklflowGetInstanceResponseDataAttributes `json:"attributes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWorklflowGetInstanceResponseData instantiates a new WorklflowGetInstanceResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewWorklflowGetInstanceResponseDataWithDefaults() *WorklflowGetInstanceResp
 	this := WorklflowGetInstanceResponseData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *WorklflowGetInstanceResponseData) GetAttributes() WorklflowGetInstanceResponseDataAttributes {
 	if o == nil || o.Attributes == nil {
@@ -62,6 +68,8 @@ func (o *WorklflowGetInstanceResponseData) SetAttributes(v WorklflowGetInstanceR
 	o.Attributes = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WorklflowGetInstanceResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *WorklflowGetInstanceResponseData) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RelationshipToUserTeamUser Relationship between team membership and user
 type RelationshipToUserTeamUser struct {
 	// A user's relationship with a team
 	Data RelationshipToUserTeamUserData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRelationshipToUserTeamUser instantiates a new RelationshipToUserTeamUser object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewRelationshipToUserTeamUserWithDefaults() *RelationshipToUserTeamUser {
 	this := RelationshipToUserTeamUser{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *RelationshipToUserTeamUser) GetData() RelationshipToUserTeamUserData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *RelationshipToUserTeamUser) GetDataOk() (*RelationshipToUserTeamUserDat
 func (o *RelationshipToUserTeamUser) SetData(v RelationshipToUserTeamUserData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationshipToUserTeamUser) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *RelationshipToUserTeamUser) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

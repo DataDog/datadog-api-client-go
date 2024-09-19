@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentTodoCreateData Incident todo data for a create request.
 type IncidentTodoCreateData struct {
@@ -17,9 +21,10 @@ type IncidentTodoCreateData struct {
 	// Todo resource type.
 	Type IncidentTodoType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentTodoCreateData instantiates a new IncidentTodoCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewIncidentTodoCreateDataWithDefaults() *IncidentTodoCreateData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *IncidentTodoCreateData) GetAttributes() IncidentTodoAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *IncidentTodoCreateData) GetAttributesOk() (*IncidentTodoAttributes, boo
 func (o *IncidentTodoCreateData) SetAttributes(v IncidentTodoAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *IncidentTodoCreateData) GetType() IncidentTodoType {
@@ -88,6 +93,8 @@ func (o *IncidentTodoCreateData) SetType(v IncidentTodoType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentTodoCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o IncidentTodoCreateData) MarshalJSON() ([]byte, error) {
 func (o *IncidentTodoCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *IncidentTodoAttributes `json:"attributes"`
-		Type       *IncidentTodoType       `json:"type"`
+		Type *IncidentTodoType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *IncidentTodoCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

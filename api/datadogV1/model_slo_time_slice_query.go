@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOTimeSliceQuery The queries and formula used to calculate the SLI value.
 type SLOTimeSliceQuery struct {
@@ -17,9 +21,10 @@ type SLOTimeSliceQuery struct {
 	// A list of queries that are used to calculate the SLI value.
 	Queries []SLODataSourceQueryDefinition `json:"queries"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSLOTimeSliceQuery instantiates a new SLOTimeSliceQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSLOTimeSliceQueryWithDefaults() *SLOTimeSliceQuery {
 	this := SLOTimeSliceQuery{}
 	return &this
 }
-
 // GetFormulas returns the Formulas field value.
 func (o *SLOTimeSliceQuery) GetFormulas() []SLOFormula {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *SLOTimeSliceQuery) GetFormulasOk() (*[]SLOFormula, bool) {
 func (o *SLOTimeSliceQuery) SetFormulas(v []SLOFormula) {
 	o.Formulas = v
 }
+
 
 // GetQueries returns the Queries field value.
 func (o *SLOTimeSliceQuery) GetQueries() []SLODataSourceQueryDefinition {
@@ -86,6 +91,8 @@ func (o *SLOTimeSliceQuery) SetQueries(v []SLODataSourceQueryDefinition) {
 	o.Queries = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOTimeSliceQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o SLOTimeSliceQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOTimeSliceQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Formulas *[]SLOFormula                   `json:"formulas"`
-		Queries  *[]SLODataSourceQueryDefinition `json:"queries"`
+		Formulas *[]SLOFormula `json:"formulas"`
+		Queries *[]SLODataSourceQueryDefinition `json:"queries"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *SLOTimeSliceQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"formulas", "queries"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "formulas", "queries",  })
 	} else {
 		return err
 	}

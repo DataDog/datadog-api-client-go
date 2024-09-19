@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricPoint A point object is of the form `{POSIX_timestamp, numeric_value}`.
 type MetricPoint struct {
@@ -16,9 +22,10 @@ type MetricPoint struct {
 	// The numeric value format should be a 64bit float gauge-type value.
 	Value *float64 `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricPoint instantiates a new MetricPoint object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +43,6 @@ func NewMetricPointWithDefaults() *MetricPoint {
 	this := MetricPoint{}
 	return &this
 }
-
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *MetricPoint) GetTimestamp() int64 {
 	if o == nil || o.Timestamp == nil {
@@ -64,6 +70,7 @@ func (o *MetricPoint) HasTimestamp() bool {
 func (o *MetricPoint) SetTimestamp(v int64) {
 	o.Timestamp = &v
 }
+
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *MetricPoint) GetValue() float64 {
@@ -93,6 +100,8 @@ func (o *MetricPoint) SetValue(v float64) {
 	o.Value = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricPoint) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,15 +124,15 @@ func (o MetricPoint) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricPoint) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Timestamp *int64   `json:"timestamp,omitempty"`
-		Value     *float64 `json:"value,omitempty"`
+		Timestamp *int64 `json:"timestamp,omitempty"`
+		Value *float64 `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"timestamp", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "timestamp", "value",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSLogsAsyncError Description of errors.
 type AWSLogsAsyncError struct {
@@ -15,9 +21,10 @@ type AWSLogsAsyncError struct {
 	// Message content.
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSLogsAsyncError instantiates a new AWSLogsAsyncError object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewAWSLogsAsyncErrorWithDefaults() *AWSLogsAsyncError {
 	this := AWSLogsAsyncError{}
 	return &this
 }
-
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *AWSLogsAsyncError) GetCode() string {
 	if o == nil || o.Code == nil {
@@ -63,6 +69,7 @@ func (o *AWSLogsAsyncError) HasCode() bool {
 func (o *AWSLogsAsyncError) SetCode(v string) {
 	o.Code = &v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *AWSLogsAsyncError) GetMessage() string {
@@ -92,6 +99,8 @@ func (o *AWSLogsAsyncError) SetMessage(v string) {
 	o.Message = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSLogsAsyncError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o AWSLogsAsyncError) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSLogsAsyncError) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Code    *string `json:"code,omitempty"`
+		Code *string `json:"code,omitempty"`
 		Message *string `json:"message,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *AWSLogsAsyncError) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"code", "message"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "code", "message",  })
 	} else {
 		return err
 	}

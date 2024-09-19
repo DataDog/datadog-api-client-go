@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ConfluentResourceRequestAttributes Attributes object for updating a Confluent resource.
 type ConfluentResourceRequestAttributes struct {
@@ -19,9 +23,10 @@ type ConfluentResourceRequestAttributes struct {
 	// A list of strings representing tags. Can be a single key, or key-value pairs separated by a colon.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewConfluentResourceRequestAttributes instantiates a new ConfluentResourceRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewConfluentResourceRequestAttributesWithDefaults() *ConfluentResourceReque
 	this.EnableCustomMetrics = &enableCustomMetrics
 	return &this
 }
-
 // GetEnableCustomMetrics returns the EnableCustomMetrics field value if set, zero value otherwise.
 func (o *ConfluentResourceRequestAttributes) GetEnableCustomMetrics() bool {
 	if o == nil || o.EnableCustomMetrics == nil {
@@ -73,6 +77,7 @@ func (o *ConfluentResourceRequestAttributes) SetEnableCustomMetrics(v bool) {
 	o.EnableCustomMetrics = &v
 }
 
+
 // GetResourceType returns the ResourceType field value.
 func (o *ConfluentResourceRequestAttributes) GetResourceType() string {
 	if o == nil {
@@ -95,6 +100,7 @@ func (o *ConfluentResourceRequestAttributes) GetResourceTypeOk() (*string, bool)
 func (o *ConfluentResourceRequestAttributes) SetResourceType(v string) {
 	o.ResourceType = v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ConfluentResourceRequestAttributes) GetTags() []string {
@@ -124,6 +130,8 @@ func (o *ConfluentResourceRequestAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ConfluentResourceRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,9 +155,9 @@ func (o ConfluentResourceRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ConfluentResourceRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EnableCustomMetrics *bool    `json:"enable_custom_metrics,omitempty"`
-		ResourceType        *string  `json:"resource_type"`
-		Tags                []string `json:"tags,omitempty"`
+		EnableCustomMetrics *bool `json:"enable_custom_metrics,omitempty"`
+		ResourceType *string `json:"resource_type"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -159,7 +167,7 @@ func (o *ConfluentResourceRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enable_custom_metrics", "resource_type", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "enable_custom_metrics", "resource_type", "tags",  })
 	} else {
 		return err
 	}

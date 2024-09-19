@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HTTPLogErrors Invalid query performed.
 type HTTPLogErrors struct {
 	// Structured errors.
 	Errors []HTTPLogError `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHTTPLogErrors instantiates a new HTTPLogErrors object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewHTTPLogErrorsWithDefaults() *HTTPLogErrors {
 	this := HTTPLogErrors{}
 	return &this
 }
-
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *HTTPLogErrors) GetErrors() []HTTPLogError {
 	if o == nil || o.Errors == nil {
@@ -62,6 +68,8 @@ func (o *HTTPLogErrors) SetErrors(v []HTTPLogError) {
 	o.Errors = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o HTTPLogErrors) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *HTTPLogErrors) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"errors"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "errors",  })
 	} else {
 		return err
 	}

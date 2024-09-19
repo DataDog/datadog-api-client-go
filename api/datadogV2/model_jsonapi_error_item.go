@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // JSONAPIErrorItem API error response body
 type JSONAPIErrorItem struct {
@@ -17,9 +23,10 @@ type JSONAPIErrorItem struct {
 	// Short human-readable summary of the error.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewJSONAPIErrorItem instantiates a new JSONAPIErrorItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewJSONAPIErrorItemWithDefaults() *JSONAPIErrorItem {
 	this := JSONAPIErrorItem{}
 	return &this
 }
-
 // GetDetail returns the Detail field value if set, zero value otherwise.
 func (o *JSONAPIErrorItem) GetDetail() string {
 	if o == nil || o.Detail == nil {
@@ -65,6 +71,7 @@ func (o *JSONAPIErrorItem) HasDetail() bool {
 func (o *JSONAPIErrorItem) SetDetail(v string) {
 	o.Detail = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *JSONAPIErrorItem) GetStatus() string {
@@ -94,6 +101,7 @@ func (o *JSONAPIErrorItem) SetStatus(v string) {
 	o.Status = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *JSONAPIErrorItem) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -122,6 +130,8 @@ func (o *JSONAPIErrorItem) SetTitle(v string) {
 	o.Title = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o JSONAPIErrorItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -149,14 +159,14 @@ func (o *JSONAPIErrorItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Detail *string `json:"detail,omitempty"`
 		Status *string `json:"status,omitempty"`
-		Title  *string `json:"title,omitempty"`
+		Title *string `json:"title,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"detail", "status", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "detail", "status", "title",  })
 	} else {
 		return err
 	}

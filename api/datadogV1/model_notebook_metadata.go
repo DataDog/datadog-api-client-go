@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotebookMetadata Metadata associated with the notebook.
 type NotebookMetadata struct {
@@ -17,9 +23,10 @@ type NotebookMetadata struct {
 	// Metadata type of the notebook.
 	Type NullableNotebookMetadataType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewNotebookMetadata instantiates a new NotebookMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +52,6 @@ func NewNotebookMetadataWithDefaults() *NotebookMetadata {
 	this.TakeSnapshots = &takeSnapshots
 	return &this
 }
-
 // GetIsTemplate returns the IsTemplate field value if set, zero value otherwise.
 func (o *NotebookMetadata) GetIsTemplate() bool {
 	if o == nil || o.IsTemplate == nil {
@@ -73,6 +79,7 @@ func (o *NotebookMetadata) HasIsTemplate() bool {
 func (o *NotebookMetadata) SetIsTemplate(v bool) {
 	o.IsTemplate = &v
 }
+
 
 // GetTakeSnapshots returns the TakeSnapshots field value if set, zero value otherwise.
 func (o *NotebookMetadata) GetTakeSnapshots() bool {
@@ -102,6 +109,7 @@ func (o *NotebookMetadata) SetTakeSnapshots(v bool) {
 	o.TakeSnapshots = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NotebookMetadata) GetType() NotebookMetadataType {
 	if o == nil || o.Type.Get() == nil {
@@ -115,7 +123,7 @@ func (o *NotebookMetadata) GetType() NotebookMetadataType {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *NotebookMetadata) GetTypeOk() (*NotebookMetadataType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Type.Get(), o.Type.IsSet()
@@ -130,7 +138,6 @@ func (o *NotebookMetadata) HasType() bool {
 func (o *NotebookMetadata) SetType(v NotebookMetadataType) {
 	o.Type.Set(&v)
 }
-
 // SetTypeNil sets the value for Type to be an explicit nil.
 func (o *NotebookMetadata) SetTypeNil() {
 	o.Type.Set(nil)
@@ -140,6 +147,8 @@ func (o *NotebookMetadata) SetTypeNil() {
 func (o *NotebookMetadata) UnsetType() {
 	o.Type.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookMetadata) MarshalJSON() ([]byte, error) {
@@ -166,16 +175,16 @@ func (o NotebookMetadata) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IsTemplate    *bool                        `json:"is_template,omitempty"`
-		TakeSnapshots *bool                        `json:"take_snapshots,omitempty"`
-		Type          NullableNotebookMetadataType `json:"type,omitempty"`
+		IsTemplate *bool `json:"is_template,omitempty"`
+		TakeSnapshots *bool `json:"take_snapshots,omitempty"`
+		Type NullableNotebookMetadataType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"is_template", "take_snapshots", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "is_template", "take_snapshots", "type",  })
 	} else {
 		return err
 	}

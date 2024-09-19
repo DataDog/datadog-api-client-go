@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventStreamWidgetDefinition The event stream is a widget version of the stream of events
 // on the Event Stream view. Only available on FREE layout dashboards.
@@ -30,9 +34,10 @@ type EventStreamWidgetDefinition struct {
 	// Type of the event stream widget.
 	Type EventStreamWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEventStreamWidgetDefinition instantiates a new EventStreamWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewEventStreamWidgetDefinitionWithDefaults() *EventStreamWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetEventSize returns the EventSize field value if set, zero value otherwise.
 func (o *EventStreamWidgetDefinition) GetEventSize() WidgetEventSize {
 	if o == nil || o.EventSize == nil {
@@ -83,6 +87,7 @@ func (o *EventStreamWidgetDefinition) SetEventSize(v WidgetEventSize) {
 	o.EventSize = &v
 }
 
+
 // GetQuery returns the Query field value.
 func (o *EventStreamWidgetDefinition) GetQuery() string {
 	if o == nil {
@@ -105,6 +110,7 @@ func (o *EventStreamWidgetDefinition) GetQueryOk() (*string, bool) {
 func (o *EventStreamWidgetDefinition) SetQuery(v string) {
 	o.Query = v
 }
+
 
 // GetTagsExecution returns the TagsExecution field value if set, zero value otherwise.
 func (o *EventStreamWidgetDefinition) GetTagsExecution() string {
@@ -134,6 +140,7 @@ func (o *EventStreamWidgetDefinition) SetTagsExecution(v string) {
 	o.TagsExecution = &v
 }
 
+
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *EventStreamWidgetDefinition) GetTime() WidgetTime {
 	if o == nil || o.Time == nil {
@@ -161,6 +168,7 @@ func (o *EventStreamWidgetDefinition) HasTime() bool {
 func (o *EventStreamWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *EventStreamWidgetDefinition) GetTitle() string {
@@ -190,6 +198,7 @@ func (o *EventStreamWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *EventStreamWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -217,6 +226,7 @@ func (o *EventStreamWidgetDefinition) HasTitleAlign() bool {
 func (o *EventStreamWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
+
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *EventStreamWidgetDefinition) GetTitleSize() string {
@@ -246,6 +256,7 @@ func (o *EventStreamWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *EventStreamWidgetDefinition) GetType() EventStreamWidgetDefinitionType {
 	if o == nil {
@@ -268,6 +279,8 @@ func (o *EventStreamWidgetDefinition) GetTypeOk() (*EventStreamWidgetDefinitionT
 func (o *EventStreamWidgetDefinition) SetType(v EventStreamWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EventStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -305,14 +318,14 @@ func (o EventStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EventSize     *WidgetEventSize                 `json:"event_size,omitempty"`
-		Query         *string                          `json:"query"`
-		TagsExecution *string                          `json:"tags_execution,omitempty"`
-		Time          *WidgetTime                      `json:"time,omitempty"`
-		Title         *string                          `json:"title,omitempty"`
-		TitleAlign    *WidgetTextAlign                 `json:"title_align,omitempty"`
-		TitleSize     *string                          `json:"title_size,omitempty"`
-		Type          *EventStreamWidgetDefinitionType `json:"type"`
+		EventSize *WidgetEventSize `json:"event_size,omitempty"`
+		Query *string `json:"query"`
+		TagsExecution *string `json:"tags_execution,omitempty"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type *EventStreamWidgetDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -325,13 +338,13 @@ func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"event_size", "query", "tags_execution", "time", "title", "title_align", "title_size", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "event_size", "query", "tags_execution", "time", "title", "title_align", "title_size", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.EventSize != nil && !all.EventSize.IsValid() {
+	if all.EventSize != nil &&!all.EventSize.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.EventSize = all.EventSize
@@ -340,7 +353,7 @@ func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.TagsExecution = all.TagsExecution
 	o.Time = all.Time
 	o.Title = all.Title
-	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign

@@ -2,24 +2,28 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	// there is a valid "spans_metric" in the system
 	SpansMetricDataID := os.Getenv("SPANS_METRIC_DATA_ID")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSpansMetricsApi(apiClient)
-	r, err := api.DeleteSpansMetric(ctx, SpansMetricDataID)
+	r, err := api.DeleteSpansMetric(ctx, SpansMetricDataID, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SpansMetricsApi.DeleteSpansMetric`: %v\n", err)

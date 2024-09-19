@@ -2,19 +2,19 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"bytes"
 	_context "context"
 	_fmt "fmt"
 	_io "io"
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-	"github.com/google/uuid"
 )
 
 // APIManagementApi service type
@@ -30,7 +30,6 @@ func NewCreateOpenAPIOptionalParameters() *CreateOpenAPIOptionalParameters {
 	this := CreateOpenAPIOptionalParameters{}
 	return &this
 }
-
 // WithOpenapiSpecFile sets the corresponding parameter name and returns the struct.
 func (r *CreateOpenAPIOptionalParameters) WithOpenapiSpecFile(openapiSpecFile _io.Reader) *CreateOpenAPIOptionalParameters {
 	r.OpenapiSpecFile = &openapiSpecFile
@@ -42,26 +41,29 @@ func (r *CreateOpenAPIOptionalParameters) WithOpenapiSpecFile(openapiSpecFile _i
 // See the [API Catalog documentation](https://docs.datadoghq.com/api_catalog/add_metadata/) for additional
 // information about the possible metadata.
 // It returns the created API ID.
+//
 func (a *APIManagementApi) CreateOpenAPI(ctx _context.Context, o ...CreateOpenAPIOptionalParameters) (CreateOpenAPIResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue CreateOpenAPIResponse
-		optionalParams      CreateOpenAPIOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  CreateOpenAPIResponse
+		optionalParams CreateOpenAPIOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type CreateOpenAPIOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type CreateOpenAPIOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	operationId := "v2.CreateOpenAPI"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.APIManagementApi.CreateOpenAPI")
@@ -74,10 +76,11 @@ func (a *APIManagementApi) CreateOpenAPI(ctx _context.Context, o ...CreateOpenAP
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Content-Type"] = "multipart/form-data"
+	localVarHeaderParams["Content-Type"] =  "multipart/form-data"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	formFile := datadog.FormFile{}
+	
+    formFile := datadog.FormFile{}
 	formFile.FormFileName = "openapi_spec_file"
 	var localVarFile _io.Reader
 	if optionalParams.OpenapiSpecFile != nil {
@@ -87,7 +90,7 @@ func (a *APIManagementApi) CreateOpenAPI(ctx _context.Context, o ...CreateOpenAP
 		fbs, _ := _io.ReadAll(localVarFile)
 		formFile.FileBytes = fbs
 	}
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -110,10 +113,11 @@ func (a *APIManagementApi) CreateOpenAPI(ctx _context.Context, o ...CreateOpenAP
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403{
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -122,7 +126,8 @@ func (a *APIManagementApi) CreateOpenAPI(ctx _context.Context, o ...CreateOpenAP
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -136,7 +141,7 @@ func (a *APIManagementApi) CreateOpenAPI(ctx _context.Context, o ...CreateOpenAP
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -149,13 +154,15 @@ func (a *APIManagementApi) CreateOpenAPI(ctx _context.Context, o ...CreateOpenAP
 // Delete a specific API by ID.
 func (a *APIManagementApi) DeleteOpenAPI(ctx _context.Context, id uuid.UUID) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
+
+    
 
 	operationId := "v2.DeleteOpenAPI"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
@@ -171,9 +178,10 @@ func (a *APIManagementApi) DeleteOpenAPI(ctx _context.Context, id uuid.UUID) (*_
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] =  "*/*"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -196,10 +204,11 @@ func (a *APIManagementApi) DeleteOpenAPI(ctx _context.Context, id uuid.UUID) (*_
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404{
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -208,7 +217,8 @@ func (a *APIManagementApi) DeleteOpenAPI(ctx _context.Context, id uuid.UUID) (*_
 			newErr.ErrorModel = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -226,16 +236,18 @@ func (a *APIManagementApi) DeleteOpenAPI(ctx _context.Context, id uuid.UUID) (*_
 // Retrieve information about a specific API in [OpenAPI](https://spec.openapis.org/oas/latest.html) format file.
 func (a *APIManagementApi) GetOpenAPI(ctx _context.Context, id uuid.UUID) (_io.Reader, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue _io.Reader
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  _io.Reader
 	)
+
+    
 
 	operationId := "v2.GetOpenAPI"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.APIManagementApi.GetOpenAPI")
@@ -251,7 +263,8 @@ func (a *APIManagementApi) GetOpenAPI(ctx _context.Context, id uuid.UUID) (_io.R
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -274,10 +287,11 @@ func (a *APIManagementApi) GetOpenAPI(ctx _context.Context, id uuid.UUID) (_io.R
 			return localVarReturnValue, localVarHTTPResponse, err
 		}
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404{
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -286,7 +300,8 @@ func (a *APIManagementApi) GetOpenAPI(ctx _context.Context, id uuid.UUID) (_io.R
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -303,8 +318,8 @@ func (a *APIManagementApi) GetOpenAPI(ctx _context.Context, id uuid.UUID) (_io.R
 
 // ListAPIsOptionalParameters holds optional parameters for ListAPIs.
 type ListAPIsOptionalParameters struct {
-	Query      *string
-	PageLimit  *int64
+	Query *string
+	PageLimit *int64
 	PageOffset *int64
 }
 
@@ -313,19 +328,16 @@ func NewListAPIsOptionalParameters() *ListAPIsOptionalParameters {
 	this := ListAPIsOptionalParameters{}
 	return &this
 }
-
 // WithQuery sets the corresponding parameter name and returns the struct.
 func (r *ListAPIsOptionalParameters) WithQuery(query string) *ListAPIsOptionalParameters {
 	r.Query = &query
 	return r
 }
-
 // WithPageLimit sets the corresponding parameter name and returns the struct.
 func (r *ListAPIsOptionalParameters) WithPageLimit(pageLimit int64) *ListAPIsOptionalParameters {
 	r.PageLimit = &pageLimit
 	return r
 }
-
 // WithPageOffset sets the corresponding parameter name and returns the struct.
 func (r *ListAPIsOptionalParameters) WithPageOffset(pageOffset int64) *ListAPIsOptionalParameters {
 	r.PageOffset = &pageOffset
@@ -336,24 +348,26 @@ func (r *ListAPIsOptionalParameters) WithPageOffset(pageOffset int64) *ListAPIsO
 // List APIs and their IDs.
 func (a *APIManagementApi) ListAPIs(ctx _context.Context, o ...ListAPIsOptionalParameters) (ListAPIsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue ListAPIsResponse
-		optionalParams      ListAPIsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  ListAPIsResponse
+		optionalParams ListAPIsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListAPIsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListAPIsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	operationId := "v2.ListAPIs"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.APIManagementApi.ListAPIs")
@@ -377,7 +391,8 @@ func (a *APIManagementApi) ListAPIs(ctx _context.Context, o ...ListAPIsOptionalP
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -400,10 +415,11 @@ func (a *APIManagementApi) ListAPIs(ctx _context.Context, o ...ListAPIsOptionalP
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403{
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -412,7 +428,8 @@ func (a *APIManagementApi) ListAPIs(ctx _context.Context, o ...ListAPIsOptionalP
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -426,7 +443,7 @@ func (a *APIManagementApi) ListAPIs(ctx _context.Context, o ...ListAPIsOptionalP
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -445,7 +462,6 @@ func NewUpdateOpenAPIOptionalParameters() *UpdateOpenAPIOptionalParameters {
 	this := UpdateOpenAPIOptionalParameters{}
 	return &this
 }
-
 // WithOpenapiSpecFile sets the corresponding parameter name and returns the struct.
 func (r *UpdateOpenAPIOptionalParameters) WithOpenapiSpecFile(openapiSpecFile _io.Reader) *UpdateOpenAPIOptionalParameters {
 	r.OpenapiSpecFile = &openapiSpecFile
@@ -455,26 +471,29 @@ func (r *UpdateOpenAPIOptionalParameters) WithOpenapiSpecFile(openapiSpecFile _i
 // UpdateOpenAPI Update an API.
 // Update information about a specific API. The given content will replace all API content of the given ID.
 // The ID is returned by the create API, or can be found in the URL in the API catalog UI.
+//
 func (a *APIManagementApi) UpdateOpenAPI(ctx _context.Context, id uuid.UUID, o ...UpdateOpenAPIOptionalParameters) (UpdateOpenAPIResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue UpdateOpenAPIResponse
-		optionalParams      UpdateOpenAPIOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  UpdateOpenAPIResponse
+		optionalParams UpdateOpenAPIOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type UpdateOpenAPIOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type UpdateOpenAPIOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	operationId := "v2.UpdateOpenAPI"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.APIManagementApi.UpdateOpenAPI")
@@ -488,10 +507,11 @@ func (a *APIManagementApi) UpdateOpenAPI(ctx _context.Context, id uuid.UUID, o .
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Content-Type"] = "multipart/form-data"
+	localVarHeaderParams["Content-Type"] =  "multipart/form-data"
 	localVarHeaderParams["Accept"] = "application/json"
 
-	formFile := datadog.FormFile{}
+	
+    formFile := datadog.FormFile{}
 	formFile.FormFileName = "openapi_spec_file"
 	var localVarFile _io.Reader
 	if optionalParams.OpenapiSpecFile != nil {
@@ -501,7 +521,7 @@ func (a *APIManagementApi) UpdateOpenAPI(ctx _context.Context, id uuid.UUID, o .
 		fbs, _ := _io.ReadAll(localVarFile)
 		formFile.FileBytes = fbs
 	}
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -524,10 +544,11 @@ func (a *APIManagementApi) UpdateOpenAPI(ctx _context.Context, id uuid.UUID, o .
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404{
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -536,7 +557,8 @@ func (a *APIManagementApi) UpdateOpenAPI(ctx _context.Context, id uuid.UUID, o .
 			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -550,7 +572,7 @@ func (a *APIManagementApi) UpdateOpenAPI(ctx _context.Context, id uuid.UUID, o .
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

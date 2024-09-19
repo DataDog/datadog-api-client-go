@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // InterfaceAttributesStatus The interface status
 type InterfaceAttributesStatus string
 
 // List of InterfaceAttributesStatus.
 const (
-	INTERFACEATTRIBUTESSTATUS_UP      InterfaceAttributesStatus = "up"
-	INTERFACEATTRIBUTESSTATUS_DOWN    InterfaceAttributesStatus = "down"
+	INTERFACEATTRIBUTESSTATUS_UP InterfaceAttributesStatus = "up"
+	INTERFACEATTRIBUTESSTATUS_DOWN InterfaceAttributesStatus = "down"
 	INTERFACEATTRIBUTESSTATUS_WARNING InterfaceAttributesStatus = "warning"
-	INTERFACEATTRIBUTESSTATUS_OFF     InterfaceAttributesStatus = "off"
+	INTERFACEATTRIBUTESSTATUS_OFF InterfaceAttributesStatus = "off"
 )
 
 var allowedInterfaceAttributesStatusEnumValues = []InterfaceAttributesStatus{

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceAccountCreateAttributes Attributes of the created user.
 type ServiceAccountCreateAttributes struct {
@@ -21,9 +25,10 @@ type ServiceAccountCreateAttributes struct {
 	// The title of the user.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceAccountCreateAttributes instantiates a new ServiceAccountCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewServiceAccountCreateAttributesWithDefaults() *ServiceAccountCreateAttrib
 	this := ServiceAccountCreateAttributes{}
 	return &this
 }
-
 // GetEmail returns the Email field value.
 func (o *ServiceAccountCreateAttributes) GetEmail() string {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *ServiceAccountCreateAttributes) GetEmailOk() (*string, bool) {
 func (o *ServiceAccountCreateAttributes) SetEmail(v string) {
 	o.Email = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ServiceAccountCreateAttributes) GetName() string {
@@ -95,6 +100,7 @@ func (o *ServiceAccountCreateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetServiceAccount returns the ServiceAccount field value.
 func (o *ServiceAccountCreateAttributes) GetServiceAccount() bool {
 	if o == nil {
@@ -117,6 +123,7 @@ func (o *ServiceAccountCreateAttributes) GetServiceAccountOk() (*bool, bool) {
 func (o *ServiceAccountCreateAttributes) SetServiceAccount(v bool) {
 	o.ServiceAccount = v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *ServiceAccountCreateAttributes) GetTitle() string {
@@ -146,6 +153,8 @@ func (o *ServiceAccountCreateAttributes) SetTitle(v string) {
 	o.Title = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceAccountCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -170,10 +179,10 @@ func (o ServiceAccountCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceAccountCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Email          *string `json:"email"`
-		Name           *string `json:"name,omitempty"`
-		ServiceAccount *bool   `json:"service_account"`
-		Title          *string `json:"title,omitempty"`
+		Email *string `json:"email"`
+		Name *string `json:"name,omitempty"`
+		ServiceAccount *bool `json:"service_account"`
+		Title *string `json:"title,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -186,7 +195,7 @@ func (o *ServiceAccountCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"email", "name", "service_account", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "email", "name", "service_account", "title",  })
 	} else {
 		return err
 	}

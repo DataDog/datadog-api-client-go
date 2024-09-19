@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomDestinationResponseHttpDestinationAuth - Authentication method of the HTTP requests.
 type CustomDestinationResponseHttpDestinationAuth struct {
-	CustomDestinationResponseHttpDestinationAuthBasic        *CustomDestinationResponseHttpDestinationAuthBasic
+	CustomDestinationResponseHttpDestinationAuthBasic *CustomDestinationResponseHttpDestinationAuthBasic
 	CustomDestinationResponseHttpDestinationAuthCustomHeader *CustomDestinationResponseHttpDestinationAuthCustomHeader
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj CustomDestinationResponseHttpDestinationAuth) MarshalJSON() ([]byte, e
 		return datadog.Marshal(&obj.CustomDestinationResponseHttpDestinationAuthBasic)
 	}
 
+
 	if obj.CustomDestinationResponseHttpDestinationAuthCustomHeader != nil {
 		return datadog.Marshal(&obj.CustomDestinationResponseHttpDestinationAuthCustomHeader)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj CustomDestinationResponseHttpDestinationAuth) MarshalJSON() ([]byte, e
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *CustomDestinationResponseHttpDestinationAuth) GetActualInstance() interface{} {
+func (obj *CustomDestinationResponseHttpDestinationAuth) GetActualInstance() (interface{}) {
 	if obj.CustomDestinationResponseHttpDestinationAuthBasic != nil {
 		return obj.CustomDestinationResponseHttpDestinationAuthBasic
 	}
 
+
 	if obj.CustomDestinationResponseHttpDestinationAuthCustomHeader != nil {
 		return obj.CustomDestinationResponseHttpDestinationAuthCustomHeader
 	}
+
 
 	// all schemas are nil
 	return nil

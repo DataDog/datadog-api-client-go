@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricAssetResponseRelationships Relationships to assets related to the metric.
 type MetricAssetResponseRelationships struct {
@@ -19,9 +25,10 @@ type MetricAssetResponseRelationships struct {
 	// An object containing a list of SLOs that can be referenced in the `included` data.
 	Slos *MetricAssetSLORelationships `json:"slos,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricAssetResponseRelationships instantiates a new MetricAssetResponseRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewMetricAssetResponseRelationshipsWithDefaults() *MetricAssetResponseRelat
 	this := MetricAssetResponseRelationships{}
 	return &this
 }
-
 // GetDashboards returns the Dashboards field value if set, zero value otherwise.
 func (o *MetricAssetResponseRelationships) GetDashboards() MetricAssetDashboardRelationships {
 	if o == nil || o.Dashboards == nil {
@@ -67,6 +73,7 @@ func (o *MetricAssetResponseRelationships) HasDashboards() bool {
 func (o *MetricAssetResponseRelationships) SetDashboards(v MetricAssetDashboardRelationships) {
 	o.Dashboards = &v
 }
+
 
 // GetMonitors returns the Monitors field value if set, zero value otherwise.
 func (o *MetricAssetResponseRelationships) GetMonitors() MetricAssetMonitorRelationships {
@@ -96,6 +103,7 @@ func (o *MetricAssetResponseRelationships) SetMonitors(v MetricAssetMonitorRelat
 	o.Monitors = &v
 }
 
+
 // GetNotebooks returns the Notebooks field value if set, zero value otherwise.
 func (o *MetricAssetResponseRelationships) GetNotebooks() MetricAssetNotebookRelationships {
 	if o == nil || o.Notebooks == nil {
@@ -124,6 +132,7 @@ func (o *MetricAssetResponseRelationships) SetNotebooks(v MetricAssetNotebookRel
 	o.Notebooks = &v
 }
 
+
 // GetSlos returns the Slos field value if set, zero value otherwise.
 func (o *MetricAssetResponseRelationships) GetSlos() MetricAssetSLORelationships {
 	if o == nil || o.Slos == nil {
@@ -151,6 +160,8 @@ func (o *MetricAssetResponseRelationships) HasSlos() bool {
 func (o *MetricAssetResponseRelationships) SetSlos(v MetricAssetSLORelationships) {
 	o.Slos = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricAssetResponseRelationships) MarshalJSON() ([]byte, error) {
@@ -181,34 +192,34 @@ func (o MetricAssetResponseRelationships) MarshalJSON() ([]byte, error) {
 func (o *MetricAssetResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Dashboards *MetricAssetDashboardRelationships `json:"dashboards,omitempty"`
-		Monitors   *MetricAssetMonitorRelationships   `json:"monitors,omitempty"`
-		Notebooks  *MetricAssetNotebookRelationships  `json:"notebooks,omitempty"`
-		Slos       *MetricAssetSLORelationships       `json:"slos,omitempty"`
+		Monitors *MetricAssetMonitorRelationships `json:"monitors,omitempty"`
+		Notebooks *MetricAssetNotebookRelationships `json:"notebooks,omitempty"`
+		Slos *MetricAssetSLORelationships `json:"slos,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"dashboards", "monitors", "notebooks", "slos"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "dashboards", "monitors", "notebooks", "slos",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Dashboards != nil && all.Dashboards.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Dashboards != nil && all.Dashboards.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Dashboards = all.Dashboards
-	if all.Monitors != nil && all.Monitors.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Monitors != nil && all.Monitors.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Monitors = all.Monitors
-	if all.Notebooks != nil && all.Notebooks.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Notebooks != nil && all.Notebooks.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Notebooks = all.Notebooks
-	if all.Slos != nil && all.Slos.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Slos != nil && all.Slos.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Slos = all.Slos

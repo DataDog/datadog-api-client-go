@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentCreateAttributes The incident's attributes for a create request.
 type IncidentCreateAttributes struct {
@@ -25,9 +29,10 @@ type IncidentCreateAttributes struct {
 	// The title of the incident, which summarizes what happened.
 	Title string `json:"title"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentCreateAttributes instantiates a new IncidentCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewIncidentCreateAttributesWithDefaults() *IncidentCreateAttributes {
 	this := IncidentCreateAttributes{}
 	return &this
 }
-
 // GetCustomerImpactScope returns the CustomerImpactScope field value if set, zero value otherwise.
 func (o *IncidentCreateAttributes) GetCustomerImpactScope() string {
 	if o == nil || o.CustomerImpactScope == nil {
@@ -76,6 +80,7 @@ func (o *IncidentCreateAttributes) SetCustomerImpactScope(v string) {
 	o.CustomerImpactScope = &v
 }
 
+
 // GetCustomerImpacted returns the CustomerImpacted field value.
 func (o *IncidentCreateAttributes) GetCustomerImpacted() bool {
 	if o == nil {
@@ -98,6 +103,7 @@ func (o *IncidentCreateAttributes) GetCustomerImpactedOk() (*bool, bool) {
 func (o *IncidentCreateAttributes) SetCustomerImpacted(v bool) {
 	o.CustomerImpacted = v
 }
+
 
 // GetFields returns the Fields field value if set, zero value otherwise.
 func (o *IncidentCreateAttributes) GetFields() map[string]IncidentFieldAttributes {
@@ -127,6 +133,7 @@ func (o *IncidentCreateAttributes) SetFields(v map[string]IncidentFieldAttribute
 	o.Fields = v
 }
 
+
 // GetInitialCells returns the InitialCells field value if set, zero value otherwise.
 func (o *IncidentCreateAttributes) GetInitialCells() []IncidentTimelineCellCreateAttributes {
 	if o == nil || o.InitialCells == nil {
@@ -154,6 +161,7 @@ func (o *IncidentCreateAttributes) HasInitialCells() bool {
 func (o *IncidentCreateAttributes) SetInitialCells(v []IncidentTimelineCellCreateAttributes) {
 	o.InitialCells = v
 }
+
 
 // GetNotificationHandles returns the NotificationHandles field value if set, zero value otherwise.
 func (o *IncidentCreateAttributes) GetNotificationHandles() []IncidentNotificationHandle {
@@ -183,6 +191,7 @@ func (o *IncidentCreateAttributes) SetNotificationHandles(v []IncidentNotificati
 	o.NotificationHandles = v
 }
 
+
 // GetTitle returns the Title field value.
 func (o *IncidentCreateAttributes) GetTitle() string {
 	if o == nil {
@@ -205,6 +214,8 @@ func (o *IncidentCreateAttributes) GetTitleOk() (*string, bool) {
 func (o *IncidentCreateAttributes) SetTitle(v string) {
 	o.Title = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentCreateAttributes) MarshalJSON() ([]byte, error) {
@@ -236,12 +247,12 @@ func (o IncidentCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomerImpactScope *string                                `json:"customer_impact_scope,omitempty"`
-		CustomerImpacted    *bool                                  `json:"customer_impacted"`
-		Fields              map[string]IncidentFieldAttributes     `json:"fields,omitempty"`
-		InitialCells        []IncidentTimelineCellCreateAttributes `json:"initial_cells,omitempty"`
-		NotificationHandles []IncidentNotificationHandle           `json:"notification_handles,omitempty"`
-		Title               *string                                `json:"title"`
+		CustomerImpactScope *string `json:"customer_impact_scope,omitempty"`
+		CustomerImpacted *bool `json:"customer_impacted"`
+		Fields map[string]IncidentFieldAttributes `json:"fields,omitempty"`
+		InitialCells []IncidentTimelineCellCreateAttributes `json:"initial_cells,omitempty"`
+		NotificationHandles []IncidentNotificationHandle `json:"notification_handles,omitempty"`
+		Title *string `json:"title"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -254,7 +265,7 @@ func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"customer_impact_scope", "customer_impacted", "fields", "initial_cells", "notification_handles", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "customer_impact_scope", "customer_impacted", "fields", "initial_cells", "notification_handles", "title",  })
 	} else {
 		return err
 	}

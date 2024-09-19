@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListFindingsResponse The expected response schema when listing findings.
 type ListFindingsResponse struct {
@@ -17,9 +21,10 @@ type ListFindingsResponse struct {
 	// Metadata for pagination.
 	Meta ListFindingsMeta `json:"meta"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListFindingsResponse instantiates a new ListFindingsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewListFindingsResponseWithDefaults() *ListFindingsResponse {
 	this := ListFindingsResponse{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *ListFindingsResponse) GetData() []Finding {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ListFindingsResponse) GetDataOk() (*[]Finding, bool) {
 func (o *ListFindingsResponse) SetData(v []Finding) {
 	o.Data = v
 }
+
 
 // GetMeta returns the Meta field value.
 func (o *ListFindingsResponse) GetMeta() ListFindingsMeta {
@@ -86,6 +91,8 @@ func (o *ListFindingsResponse) SetMeta(v ListFindingsMeta) {
 	o.Meta = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListFindingsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o ListFindingsResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListFindingsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]Finding        `json:"data"`
+		Data *[]Finding `json:"data"`
 		Meta *ListFindingsMeta `json:"meta"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *ListFindingsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}

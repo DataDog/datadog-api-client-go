@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsMetricUpdateData The new log-based metric properties.
 type LogsMetricUpdateData struct {
@@ -17,9 +21,10 @@ type LogsMetricUpdateData struct {
 	// The type of the resource. The value should always be logs_metrics.
 	Type LogsMetricType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsMetricUpdateData instantiates a new LogsMetricUpdateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewLogsMetricUpdateDataWithDefaults() *LogsMetricUpdateData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *LogsMetricUpdateData) GetAttributes() LogsMetricUpdateAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *LogsMetricUpdateData) GetAttributesOk() (*LogsMetricUpdateAttributes, b
 func (o *LogsMetricUpdateData) SetAttributes(v LogsMetricUpdateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *LogsMetricUpdateData) GetType() LogsMetricType {
@@ -88,6 +93,8 @@ func (o *LogsMetricUpdateData) SetType(v LogsMetricType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsMetricUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o LogsMetricUpdateData) MarshalJSON() ([]byte, error) {
 func (o *LogsMetricUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *LogsMetricUpdateAttributes `json:"attributes"`
-		Type       *LogsMetricType             `json:"type"`
+		Type *LogsMetricType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *LogsMetricUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityResponseIncludedRelatedOncallAttributes Included related oncall attributes.
 type EntityResponseIncludedRelatedOncallAttributes struct {
@@ -15,9 +21,10 @@ type EntityResponseIncludedRelatedOncallAttributes struct {
 	// Oncall provider.
 	Provider *string `json:"provider,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityResponseIncludedRelatedOncallAttributes instantiates a new EntityResponseIncludedRelatedOncallAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewEntityResponseIncludedRelatedOncallAttributesWithDefaults() *EntityRespo
 	this := EntityResponseIncludedRelatedOncallAttributes{}
 	return &this
 }
-
 // GetEscalations returns the Escalations field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedOncallAttributes) GetEscalations() []EntityResponseIncludedRelatedOncallEscalationItem {
 	if o == nil || o.Escalations == nil {
@@ -63,6 +69,7 @@ func (o *EntityResponseIncludedRelatedOncallAttributes) HasEscalations() bool {
 func (o *EntityResponseIncludedRelatedOncallAttributes) SetEscalations(v []EntityResponseIncludedRelatedOncallEscalationItem) {
 	o.Escalations = v
 }
+
 
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedOncallAttributes) GetProvider() string {
@@ -92,6 +99,8 @@ func (o *EntityResponseIncludedRelatedOncallAttributes) SetProvider(v string) {
 	o.Provider = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityResponseIncludedRelatedOncallAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o EntityResponseIncludedRelatedOncallAttributes) MarshalJSON() ([]byte, er
 func (o *EntityResponseIncludedRelatedOncallAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Escalations []EntityResponseIncludedRelatedOncallEscalationItem `json:"escalations,omitempty"`
-		Provider    *string                                             `json:"provider,omitempty"`
+		Provider *string `json:"provider,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"escalations", "provider"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "escalations", "provider",  })
 	} else {
 		return err
 	}

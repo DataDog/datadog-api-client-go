@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PermissionAttributes Attributes of a permission.
 type PermissionAttributes struct {
@@ -27,9 +31,10 @@ type PermissionAttributes struct {
 	// Whether or not the permission is restricted.
 	Restricted *bool `json:"restricted,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPermissionAttributes instantiates a new PermissionAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewPermissionAttributesWithDefaults() *PermissionAttributes {
 	this := PermissionAttributes{}
 	return &this
 }
-
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *PermissionAttributes) GetCreated() time.Time {
 	if o == nil || o.Created == nil {
@@ -75,6 +79,7 @@ func (o *PermissionAttributes) HasCreated() bool {
 func (o *PermissionAttributes) SetCreated(v time.Time) {
 	o.Created = &v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *PermissionAttributes) GetDescription() string {
@@ -104,6 +109,7 @@ func (o *PermissionAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *PermissionAttributes) GetDisplayName() string {
 	if o == nil || o.DisplayName == nil {
@@ -131,6 +137,7 @@ func (o *PermissionAttributes) HasDisplayName() bool {
 func (o *PermissionAttributes) SetDisplayName(v string) {
 	o.DisplayName = &v
 }
+
 
 // GetDisplayType returns the DisplayType field value if set, zero value otherwise.
 func (o *PermissionAttributes) GetDisplayType() string {
@@ -160,6 +167,7 @@ func (o *PermissionAttributes) SetDisplayType(v string) {
 	o.DisplayType = &v
 }
 
+
 // GetGroupName returns the GroupName field value if set, zero value otherwise.
 func (o *PermissionAttributes) GetGroupName() string {
 	if o == nil || o.GroupName == nil {
@@ -187,6 +195,7 @@ func (o *PermissionAttributes) HasGroupName() bool {
 func (o *PermissionAttributes) SetGroupName(v string) {
 	o.GroupName = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PermissionAttributes) GetName() string {
@@ -216,6 +225,7 @@ func (o *PermissionAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetRestricted returns the Restricted field value if set, zero value otherwise.
 func (o *PermissionAttributes) GetRestricted() bool {
 	if o == nil || o.Restricted == nil {
@@ -243,6 +253,8 @@ func (o *PermissionAttributes) HasRestricted() bool {
 func (o *PermissionAttributes) SetRestricted(v bool) {
 	o.Restricted = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o PermissionAttributes) MarshalJSON() ([]byte, error) {
@@ -285,20 +297,20 @@ func (o PermissionAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PermissionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Created     *time.Time `json:"created,omitempty"`
-		Description *string    `json:"description,omitempty"`
-		DisplayName *string    `json:"display_name,omitempty"`
-		DisplayType *string    `json:"display_type,omitempty"`
-		GroupName   *string    `json:"group_name,omitempty"`
-		Name        *string    `json:"name,omitempty"`
-		Restricted  *bool      `json:"restricted,omitempty"`
+		Created *time.Time `json:"created,omitempty"`
+		Description *string `json:"description,omitempty"`
+		DisplayName *string `json:"display_name,omitempty"`
+		DisplayType *string `json:"display_type,omitempty"`
+		GroupName *string `json:"group_name,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Restricted *bool `json:"restricted,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created", "description", "display_name", "display_type", "group_name", "name", "restricted"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created", "description", "display_name", "display_type", "group_name", "name", "restricted",  })
 	} else {
 		return err
 	}

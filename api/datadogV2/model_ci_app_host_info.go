@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppHostInfo Contains information of the host running the pipeline, stage, job, or step.
 type CIAppHostInfo struct {
@@ -19,9 +25,10 @@ type CIAppHostInfo struct {
 	// The path where the code is checked out.
 	Workspace *string `json:"workspace,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCIAppHostInfo instantiates a new CIAppHostInfo object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewCIAppHostInfoWithDefaults() *CIAppHostInfo {
 	this := CIAppHostInfo{}
 	return &this
 }
-
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *CIAppHostInfo) GetHostname() string {
 	if o == nil || o.Hostname == nil {
@@ -67,6 +73,7 @@ func (o *CIAppHostInfo) HasHostname() bool {
 func (o *CIAppHostInfo) SetHostname(v string) {
 	o.Hostname = &v
 }
+
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
 func (o *CIAppHostInfo) GetLabels() []string {
@@ -96,6 +103,7 @@ func (o *CIAppHostInfo) SetLabels(v []string) {
 	o.Labels = v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CIAppHostInfo) GetName() string {
 	if o == nil || o.Name == nil {
@@ -123,6 +131,7 @@ func (o *CIAppHostInfo) HasName() bool {
 func (o *CIAppHostInfo) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetWorkspace returns the Workspace field value if set, zero value otherwise.
 func (o *CIAppHostInfo) GetWorkspace() string {
@@ -152,6 +161,8 @@ func (o *CIAppHostInfo) SetWorkspace(v string) {
 	o.Workspace = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppHostInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,17 +191,17 @@ func (o CIAppHostInfo) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppHostInfo) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Hostname  *string  `json:"hostname,omitempty"`
-		Labels    []string `json:"labels,omitempty"`
-		Name      *string  `json:"name,omitempty"`
-		Workspace *string  `json:"workspace,omitempty"`
+		Hostname *string `json:"hostname,omitempty"`
+		Labels []string `json:"labels,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Workspace *string `json:"workspace,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"hostname", "labels", "name", "workspace"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "hostname", "labels", "name", "workspace",  })
 	} else {
 		return err
 	}
@@ -205,7 +216,6 @@ func (o *CIAppHostInfo) UnmarshalJSON(bytes []byte) (err error) {
 
 	return nil
 }
-
 // NullableCIAppHostInfo handles when a null is used for CIAppHostInfo.
 type NullableCIAppHostInfo struct {
 	value *CIAppHostInfo

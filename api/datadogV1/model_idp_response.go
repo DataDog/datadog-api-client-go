@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IdpResponse The IdP response object.
 type IdpResponse struct {
 	// Identity provider response.
 	Message string `json:"message"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIdpResponse instantiates a new IdpResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewIdpResponseWithDefaults() *IdpResponse {
 	this := IdpResponse{}
 	return &this
 }
-
 // GetMessage returns the Message field value.
 func (o *IdpResponse) GetMessage() string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *IdpResponse) GetMessageOk() (*string, bool) {
 func (o *IdpResponse) SetMessage(v string) {
 	o.Message = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IdpResponse) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *IdpResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"message"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "message",  })
 	} else {
 		return err
 	}

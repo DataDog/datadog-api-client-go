@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageTimeSeriesObject Usage timeseries data.
 type UsageTimeSeriesObject struct {
@@ -17,9 +21,10 @@ type UsageTimeSeriesObject struct {
 	// Contains the number measured for the given usage_type during the hour.
 	Value datadog.NullableInt64 `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageTimeSeriesObject instantiates a new UsageTimeSeriesObject object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewUsageTimeSeriesObjectWithDefaults() *UsageTimeSeriesObject {
 	this := UsageTimeSeriesObject{}
 	return &this
 }
-
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *UsageTimeSeriesObject) GetTimestamp() time.Time {
 	if o == nil || o.Timestamp == nil {
@@ -66,6 +70,7 @@ func (o *UsageTimeSeriesObject) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
 
+
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageTimeSeriesObject) GetValue() int64 {
 	if o == nil || o.Value.Get() == nil {
@@ -79,7 +84,7 @@ func (o *UsageTimeSeriesObject) GetValue() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageTimeSeriesObject) GetValueOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Value.Get(), o.Value.IsSet()
@@ -94,7 +99,6 @@ func (o *UsageTimeSeriesObject) HasValue() bool {
 func (o *UsageTimeSeriesObject) SetValue(v int64) {
 	o.Value.Set(&v)
 }
-
 // SetValueNil sets the value for Value to be an explicit nil.
 func (o *UsageTimeSeriesObject) SetValueNil() {
 	o.Value.Set(nil)
@@ -104,6 +108,8 @@ func (o *UsageTimeSeriesObject) SetValueNil() {
 func (o *UsageTimeSeriesObject) UnsetValue() {
 	o.Value.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageTimeSeriesObject) MarshalJSON() ([]byte, error) {
@@ -131,15 +137,15 @@ func (o UsageTimeSeriesObject) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageTimeSeriesObject) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Timestamp *time.Time            `json:"timestamp,omitempty"`
-		Value     datadog.NullableInt64 `json:"value,omitempty"`
+		Timestamp *time.Time `json:"timestamp,omitempty"`
+		Value datadog.NullableInt64 `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"timestamp", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "timestamp", "value",  })
 	} else {
 		return err
 	}

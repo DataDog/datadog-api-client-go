@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleTestRequest Test the rule queries of a rule (rule property is ignored when applied to an existing rule)
 type SecurityMonitoringRuleTestRequest struct {
@@ -15,9 +21,10 @@ type SecurityMonitoringRuleTestRequest struct {
 	// Data payloads used to test rules query with the expected result.
 	RuleQueryPayloads []SecurityMonitoringRuleQueryPayload `json:"ruleQueryPayloads,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringRuleTestRequest instantiates a new SecurityMonitoringRuleTestRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSecurityMonitoringRuleTestRequestWithDefaults() *SecurityMonitoringRuleT
 	this := SecurityMonitoringRuleTestRequest{}
 	return &this
 }
-
 // GetRule returns the Rule field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleTestRequest) GetRule() SecurityMonitoringRuleTestPayload {
 	if o == nil || o.Rule == nil {
@@ -63,6 +69,7 @@ func (o *SecurityMonitoringRuleTestRequest) HasRule() bool {
 func (o *SecurityMonitoringRuleTestRequest) SetRule(v SecurityMonitoringRuleTestPayload) {
 	o.Rule = &v
 }
+
 
 // GetRuleQueryPayloads returns the RuleQueryPayloads field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleTestRequest) GetRuleQueryPayloads() []SecurityMonitoringRuleQueryPayload {
@@ -92,6 +99,8 @@ func (o *SecurityMonitoringRuleTestRequest) SetRuleQueryPayloads(v []SecurityMon
 	o.RuleQueryPayloads = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleTestRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o SecurityMonitoringRuleTestRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Rule              *SecurityMonitoringRuleTestPayload   `json:"rule,omitempty"`
+		Rule *SecurityMonitoringRuleTestPayload `json:"rule,omitempty"`
 		RuleQueryPayloads []SecurityMonitoringRuleQueryPayload `json:"ruleQueryPayloads,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *SecurityMonitoringRuleTestRequest) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"rule", "ruleQueryPayloads"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "rule", "ruleQueryPayloads",  })
 	} else {
 		return err
 	}

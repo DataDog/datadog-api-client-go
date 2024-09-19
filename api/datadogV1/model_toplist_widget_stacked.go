@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ToplistWidgetStacked Top list widget stacked display options.
 type ToplistWidgetStacked struct {
@@ -17,9 +21,10 @@ type ToplistWidgetStacked struct {
 	// Top list widget stacked display type.
 	Type ToplistWidgetStackedType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewToplistWidgetStacked instantiates a new ToplistWidgetStacked object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewToplistWidgetStackedWithDefaults() *ToplistWidgetStacked {
 	this.Type = typeVar
 	return &this
 }
-
 // GetLegend returns the Legend field value.
 func (o *ToplistWidgetStacked) GetLegend() ToplistWidgetLegend {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *ToplistWidgetStacked) GetLegendOk() (*ToplistWidgetLegend, bool) {
 func (o *ToplistWidgetStacked) SetLegend(v ToplistWidgetLegend) {
 	o.Legend = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ToplistWidgetStacked) GetType() ToplistWidgetStackedType {
@@ -88,6 +93,8 @@ func (o *ToplistWidgetStacked) SetType(v ToplistWidgetStackedType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ToplistWidgetStacked) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -106,8 +113,8 @@ func (o ToplistWidgetStacked) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ToplistWidgetStacked) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Legend *ToplistWidgetLegend      `json:"legend"`
-		Type   *ToplistWidgetStackedType `json:"type"`
+		Legend *ToplistWidgetLegend `json:"legend"`
+		Type *ToplistWidgetStackedType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *ToplistWidgetStacked) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"legend", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "legend", "type",  })
 	} else {
 		return err
 	}

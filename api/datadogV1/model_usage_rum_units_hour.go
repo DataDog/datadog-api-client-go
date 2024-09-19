@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageRumUnitsHour Number of RUM Units used for each hour for a given organization (data available as of November 1, 2021).
 type UsageRumUnitsHour struct {
@@ -21,9 +27,10 @@ type UsageRumUnitsHour struct {
 	// Total RUM units across mobile and browser RUM.
 	RumUnits datadog.NullableInt64 `json:"rum_units,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageRumUnitsHour instantiates a new UsageRumUnitsHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewUsageRumUnitsHourWithDefaults() *UsageRumUnitsHour {
 	this := UsageRumUnitsHour{}
 	return &this
 }
-
 // GetBrowserRumUnits returns the BrowserRumUnits field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageRumUnitsHour) GetBrowserRumUnits() int64 {
 	if o == nil || o.BrowserRumUnits.Get() == nil {
@@ -55,7 +61,7 @@ func (o *UsageRumUnitsHour) GetBrowserRumUnits() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageRumUnitsHour) GetBrowserRumUnitsOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.BrowserRumUnits.Get(), o.BrowserRumUnits.IsSet()
@@ -70,7 +76,6 @@ func (o *UsageRumUnitsHour) HasBrowserRumUnits() bool {
 func (o *UsageRumUnitsHour) SetBrowserRumUnits(v int64) {
 	o.BrowserRumUnits.Set(&v)
 }
-
 // SetBrowserRumUnitsNil sets the value for BrowserRumUnits to be an explicit nil.
 func (o *UsageRumUnitsHour) SetBrowserRumUnitsNil() {
 	o.BrowserRumUnits.Set(nil)
@@ -80,6 +85,7 @@ func (o *UsageRumUnitsHour) SetBrowserRumUnitsNil() {
 func (o *UsageRumUnitsHour) UnsetBrowserRumUnits() {
 	o.BrowserRumUnits.Unset()
 }
+
 
 // GetMobileRumUnits returns the MobileRumUnits field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageRumUnitsHour) GetMobileRumUnits() int64 {
@@ -94,7 +100,7 @@ func (o *UsageRumUnitsHour) GetMobileRumUnits() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageRumUnitsHour) GetMobileRumUnitsOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.MobileRumUnits.Get(), o.MobileRumUnits.IsSet()
@@ -109,7 +115,6 @@ func (o *UsageRumUnitsHour) HasMobileRumUnits() bool {
 func (o *UsageRumUnitsHour) SetMobileRumUnits(v int64) {
 	o.MobileRumUnits.Set(&v)
 }
-
 // SetMobileRumUnitsNil sets the value for MobileRumUnits to be an explicit nil.
 func (o *UsageRumUnitsHour) SetMobileRumUnitsNil() {
 	o.MobileRumUnits.Set(nil)
@@ -119,6 +124,7 @@ func (o *UsageRumUnitsHour) SetMobileRumUnitsNil() {
 func (o *UsageRumUnitsHour) UnsetMobileRumUnits() {
 	o.MobileRumUnits.Unset()
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageRumUnitsHour) GetOrgName() string {
@@ -148,6 +154,7 @@ func (o *UsageRumUnitsHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageRumUnitsHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -176,6 +183,7 @@ func (o *UsageRumUnitsHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
 // GetRumUnits returns the RumUnits field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageRumUnitsHour) GetRumUnits() int64 {
 	if o == nil || o.RumUnits.Get() == nil {
@@ -189,7 +197,7 @@ func (o *UsageRumUnitsHour) GetRumUnits() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageRumUnitsHour) GetRumUnitsOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.RumUnits.Get(), o.RumUnits.IsSet()
@@ -204,7 +212,6 @@ func (o *UsageRumUnitsHour) HasRumUnits() bool {
 func (o *UsageRumUnitsHour) SetRumUnits(v int64) {
 	o.RumUnits.Set(&v)
 }
-
 // SetRumUnitsNil sets the value for RumUnits to be an explicit nil.
 func (o *UsageRumUnitsHour) SetRumUnitsNil() {
 	o.RumUnits.Set(nil)
@@ -214,6 +221,8 @@ func (o *UsageRumUnitsHour) SetRumUnitsNil() {
 func (o *UsageRumUnitsHour) UnsetRumUnits() {
 	o.RumUnits.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageRumUnitsHour) MarshalJSON() ([]byte, error) {
@@ -247,17 +256,17 @@ func (o UsageRumUnitsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageRumUnitsHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		BrowserRumUnits datadog.NullableInt64 `json:"browser_rum_units,omitempty"`
-		MobileRumUnits  datadog.NullableInt64 `json:"mobile_rum_units,omitempty"`
-		OrgName         *string               `json:"org_name,omitempty"`
-		PublicId        *string               `json:"public_id,omitempty"`
-		RumUnits        datadog.NullableInt64 `json:"rum_units,omitempty"`
+		MobileRumUnits datadog.NullableInt64 `json:"mobile_rum_units,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		RumUnits datadog.NullableInt64 `json:"rum_units,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"browser_rum_units", "mobile_rum_units", "org_name", "public_id", "rum_units"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "browser_rum_units", "mobile_rum_units", "org_name", "public_id", "rum_units",  })
 	} else {
 		return err
 	}

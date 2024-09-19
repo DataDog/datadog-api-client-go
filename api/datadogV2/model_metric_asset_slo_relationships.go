@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricAssetSLORelationships An object containing a list of SLOs that can be referenced in the `included` data.
 type MetricAssetSLORelationships struct {
 	// A list of SLOs that can be referenced in the `included` data.
 	Data []MetricAssetSLORelationship `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricAssetSLORelationships instantiates a new MetricAssetSLORelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewMetricAssetSLORelationshipsWithDefaults() *MetricAssetSLORelationships {
 	this := MetricAssetSLORelationships{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *MetricAssetSLORelationships) GetData() []MetricAssetSLORelationship {
 	if o == nil || o.Data == nil {
@@ -62,6 +68,8 @@ func (o *MetricAssetSLORelationships) SetData(v []MetricAssetSLORelationship) {
 	o.Data = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricAssetSLORelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *MetricAssetSLORelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

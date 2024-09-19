@@ -2,32 +2,33 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := []datadogV1.ServiceCheck{
-		{
-			Check:    "app.ok",
-			HostName: "host",
-			Status:   datadogV1.SERVICECHECKSTATUS_OK,
-			Tags: []string{
-				"test:ExampleServiceCheck",
-			},
-		},
-	}
+{
+Check: "app.ok",
+HostName: "host",
+Status: datadogV1.SERVICECHECKSTATUS_OK,
+Tags: []string{
+"test:ExampleServiceCheck",
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewServiceChecksApi(apiClient)
-	resp, r, err := api.SubmitServiceCheck(ctx, body)
+	resp, r, err := api.SubmitServiceCheck(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceChecksApi.SubmitServiceCheck`: %v\n", err)

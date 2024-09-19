@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsUpdateTestPauseStatusPayload Object to start or pause an existing Synthetic test.
 type SyntheticsUpdateTestPauseStatusPayload struct {
@@ -14,9 +20,10 @@ type SyntheticsUpdateTestPauseStatusPayload struct {
 	// Synthetic test.
 	NewStatus *SyntheticsTestPauseStatus `json:"new_status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsUpdateTestPauseStatusPayload instantiates a new SyntheticsUpdateTestPauseStatusPayload object.
 // This constructor will assign default values to properties that have it defined,
@@ -34,7 +41,6 @@ func NewSyntheticsUpdateTestPauseStatusPayloadWithDefaults() *SyntheticsUpdateTe
 	this := SyntheticsUpdateTestPauseStatusPayload{}
 	return &this
 }
-
 // GetNewStatus returns the NewStatus field value if set, zero value otherwise.
 func (o *SyntheticsUpdateTestPauseStatusPayload) GetNewStatus() SyntheticsTestPauseStatus {
 	if o == nil || o.NewStatus == nil {
@@ -63,6 +69,8 @@ func (o *SyntheticsUpdateTestPauseStatusPayload) SetNewStatus(v SyntheticsTestPa
 	o.NewStatus = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsUpdateTestPauseStatusPayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -89,13 +97,13 @@ func (o *SyntheticsUpdateTestPauseStatusPayload) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"new_status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "new_status",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.NewStatus != nil && !all.NewStatus.IsValid() {
+	if all.NewStatus != nil &&!all.NewStatus.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.NewStatus = all.NewStatus

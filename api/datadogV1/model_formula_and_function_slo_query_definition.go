@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FormulaAndFunctionSLOQueryDefinition A formula and functions metrics query.
 type FormulaAndFunctionSLOQueryDefinition struct {
@@ -29,9 +33,10 @@ type FormulaAndFunctionSLOQueryDefinition struct {
 	// Name of the query for use in formulas.
 	SloQueryType *FormulaAndFunctionSLOQueryType `json:"slo_query_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFormulaAndFunctionSLOQueryDefinition instantiates a new FormulaAndFunctionSLOQueryDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewFormulaAndFunctionSLOQueryDefinitionWithDefaults() *FormulaAndFunctionSL
 	this := FormulaAndFunctionSLOQueryDefinition{}
 	return &this
 }
-
 // GetAdditionalQueryFilters returns the AdditionalQueryFilters field value if set, zero value otherwise.
 func (o *FormulaAndFunctionSLOQueryDefinition) GetAdditionalQueryFilters() string {
 	if o == nil || o.AdditionalQueryFilters == nil {
@@ -80,6 +84,7 @@ func (o *FormulaAndFunctionSLOQueryDefinition) HasAdditionalQueryFilters() bool 
 func (o *FormulaAndFunctionSLOQueryDefinition) SetAdditionalQueryFilters(v string) {
 	o.AdditionalQueryFilters = &v
 }
+
 
 // GetCrossOrgUuids returns the CrossOrgUuids field value if set, zero value otherwise.
 func (o *FormulaAndFunctionSLOQueryDefinition) GetCrossOrgUuids() []string {
@@ -109,6 +114,7 @@ func (o *FormulaAndFunctionSLOQueryDefinition) SetCrossOrgUuids(v []string) {
 	o.CrossOrgUuids = v
 }
 
+
 // GetDataSource returns the DataSource field value.
 func (o *FormulaAndFunctionSLOQueryDefinition) GetDataSource() FormulaAndFunctionSLODataSource {
 	if o == nil {
@@ -131,6 +137,7 @@ func (o *FormulaAndFunctionSLOQueryDefinition) GetDataSourceOk() (*FormulaAndFun
 func (o *FormulaAndFunctionSLOQueryDefinition) SetDataSource(v FormulaAndFunctionSLODataSource) {
 	o.DataSource = v
 }
+
 
 // GetGroupMode returns the GroupMode field value if set, zero value otherwise.
 func (o *FormulaAndFunctionSLOQueryDefinition) GetGroupMode() FormulaAndFunctionSLOGroupMode {
@@ -160,6 +167,7 @@ func (o *FormulaAndFunctionSLOQueryDefinition) SetGroupMode(v FormulaAndFunction
 	o.GroupMode = &v
 }
 
+
 // GetMeasure returns the Measure field value.
 func (o *FormulaAndFunctionSLOQueryDefinition) GetMeasure() FormulaAndFunctionSLOMeasure {
 	if o == nil {
@@ -182,6 +190,7 @@ func (o *FormulaAndFunctionSLOQueryDefinition) GetMeasureOk() (*FormulaAndFuncti
 func (o *FormulaAndFunctionSLOQueryDefinition) SetMeasure(v FormulaAndFunctionSLOMeasure) {
 	o.Measure = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FormulaAndFunctionSLOQueryDefinition) GetName() string {
@@ -211,6 +220,7 @@ func (o *FormulaAndFunctionSLOQueryDefinition) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSloId returns the SloId field value.
 func (o *FormulaAndFunctionSLOQueryDefinition) GetSloId() string {
 	if o == nil {
@@ -233,6 +243,7 @@ func (o *FormulaAndFunctionSLOQueryDefinition) GetSloIdOk() (*string, bool) {
 func (o *FormulaAndFunctionSLOQueryDefinition) SetSloId(v string) {
 	o.SloId = v
 }
+
 
 // GetSloQueryType returns the SloQueryType field value if set, zero value otherwise.
 func (o *FormulaAndFunctionSLOQueryDefinition) GetSloQueryType() FormulaAndFunctionSLOQueryType {
@@ -261,6 +272,8 @@ func (o *FormulaAndFunctionSLOQueryDefinition) HasSloQueryType() bool {
 func (o *FormulaAndFunctionSLOQueryDefinition) SetSloQueryType(v FormulaAndFunctionSLOQueryType) {
 	o.SloQueryType = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FormulaAndFunctionSLOQueryDefinition) MarshalJSON() ([]byte, error) {
@@ -296,14 +309,14 @@ func (o FormulaAndFunctionSLOQueryDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionSLOQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AdditionalQueryFilters *string                          `json:"additional_query_filters,omitempty"`
-		CrossOrgUuids          []string                         `json:"cross_org_uuids,omitempty"`
-		DataSource             *FormulaAndFunctionSLODataSource `json:"data_source"`
-		GroupMode              *FormulaAndFunctionSLOGroupMode  `json:"group_mode,omitempty"`
-		Measure                *FormulaAndFunctionSLOMeasure    `json:"measure"`
-		Name                   *string                          `json:"name,omitempty"`
-		SloId                  *string                          `json:"slo_id"`
-		SloQueryType           *FormulaAndFunctionSLOQueryType  `json:"slo_query_type,omitempty"`
+		AdditionalQueryFilters *string `json:"additional_query_filters,omitempty"`
+		CrossOrgUuids []string `json:"cross_org_uuids,omitempty"`
+		DataSource *FormulaAndFunctionSLODataSource `json:"data_source"`
+		GroupMode *FormulaAndFunctionSLOGroupMode `json:"group_mode,omitempty"`
+		Measure *FormulaAndFunctionSLOMeasure `json:"measure"`
+		Name *string `json:"name,omitempty"`
+		SloId *string `json:"slo_id"`
+		SloQueryType *FormulaAndFunctionSLOQueryType `json:"slo_query_type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -319,7 +332,7 @@ func (o *FormulaAndFunctionSLOQueryDefinition) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"additional_query_filters", "cross_org_uuids", "data_source", "group_mode", "measure", "name", "slo_id", "slo_query_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "additional_query_filters", "cross_org_uuids", "data_source", "group_mode", "measure", "name", "slo_id", "slo_query_type",  })
 	} else {
 		return err
 	}
@@ -332,7 +345,7 @@ func (o *FormulaAndFunctionSLOQueryDefinition) UnmarshalJSON(bytes []byte) (err 
 	} else {
 		o.DataSource = *all.DataSource
 	}
-	if all.GroupMode != nil && !all.GroupMode.IsValid() {
+	if all.GroupMode != nil &&!all.GroupMode.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.GroupMode = all.GroupMode
@@ -344,7 +357,7 @@ func (o *FormulaAndFunctionSLOQueryDefinition) UnmarshalJSON(bytes []byte) (err 
 	}
 	o.Name = all.Name
 	o.SloId = *all.SloId
-	if all.SloQueryType != nil && !all.SloQueryType.IsValid() {
+	if all.SloQueryType != nil &&!all.SloQueryType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.SloQueryType = all.SloQueryType

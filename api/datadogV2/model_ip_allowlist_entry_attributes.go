@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IPAllowlistEntryAttributes Attributes of the IP allowlist entry.
 type IPAllowlistEntryAttributes struct {
@@ -21,9 +25,10 @@ type IPAllowlistEntryAttributes struct {
 	// A note describing the IP allowlist entry.
 	Note *string `json:"note,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIPAllowlistEntryAttributes instantiates a new IPAllowlistEntryAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewIPAllowlistEntryAttributesWithDefaults() *IPAllowlistEntryAttributes {
 	this := IPAllowlistEntryAttributes{}
 	return &this
 }
-
 // GetCidrBlock returns the CidrBlock field value if set, zero value otherwise.
 func (o *IPAllowlistEntryAttributes) GetCidrBlock() string {
 	if o == nil || o.CidrBlock == nil {
@@ -69,6 +73,7 @@ func (o *IPAllowlistEntryAttributes) HasCidrBlock() bool {
 func (o *IPAllowlistEntryAttributes) SetCidrBlock(v string) {
 	o.CidrBlock = &v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *IPAllowlistEntryAttributes) GetCreatedAt() time.Time {
@@ -98,6 +103,7 @@ func (o *IPAllowlistEntryAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *IPAllowlistEntryAttributes) GetModifiedAt() time.Time {
 	if o == nil || o.ModifiedAt == nil {
@@ -126,6 +132,7 @@ func (o *IPAllowlistEntryAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
+
 // GetNote returns the Note field value if set, zero value otherwise.
 func (o *IPAllowlistEntryAttributes) GetNote() string {
 	if o == nil || o.Note == nil {
@@ -153,6 +160,8 @@ func (o *IPAllowlistEntryAttributes) HasNote() bool {
 func (o *IPAllowlistEntryAttributes) SetNote(v string) {
 	o.Note = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IPAllowlistEntryAttributes) MarshalJSON() ([]byte, error) {
@@ -190,17 +199,17 @@ func (o IPAllowlistEntryAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IPAllowlistEntryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CidrBlock  *string    `json:"cidr_block,omitempty"`
-		CreatedAt  *time.Time `json:"created_at,omitempty"`
+		CidrBlock *string `json:"cidr_block,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
 		ModifiedAt *time.Time `json:"modified_at,omitempty"`
-		Note       *string    `json:"note,omitempty"`
+		Note *string `json:"note,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cidr_block", "created_at", "modified_at", "note"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cidr_block", "created_at", "modified_at", "note",  })
 	} else {
 		return err
 	}

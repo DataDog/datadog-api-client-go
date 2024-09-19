@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsCIBatchMetadataPipeline Description of the CI pipeline.
 type SyntheticsCIBatchMetadataPipeline struct {
 	// URL of the pipeline.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsCIBatchMetadataPipeline instantiates a new SyntheticsCIBatchMetadataPipeline object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewSyntheticsCIBatchMetadataPipelineWithDefaults() *SyntheticsCIBatchMetada
 	this := SyntheticsCIBatchMetadataPipeline{}
 	return &this
 }
-
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadataPipeline) GetUrl() string {
 	if o == nil || o.Url == nil {
@@ -62,6 +68,8 @@ func (o *SyntheticsCIBatchMetadataPipeline) SetUrl(v string) {
 	o.Url = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsCIBatchMetadataPipeline) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *SyntheticsCIBatchMetadataPipeline) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "url",  })
 	} else {
 		return err
 	}

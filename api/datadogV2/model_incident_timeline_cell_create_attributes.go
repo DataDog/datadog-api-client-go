@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentTimelineCellCreateAttributes - The timeline cell's attributes for a create request.
 type IncidentTimelineCellCreateAttributes struct {
@@ -56,6 +62,7 @@ func (obj IncidentTimelineCellCreateAttributes) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.IncidentTimelineCellMarkdownCreateAttributes)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj IncidentTimelineCellCreateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *IncidentTimelineCellCreateAttributes) GetActualInstance() interface{} {
+func (obj *IncidentTimelineCellCreateAttributes) GetActualInstance() (interface{}) {
 	if obj.IncidentTimelineCellMarkdownCreateAttributes != nil {
 		return obj.IncidentTimelineCellMarkdownCreateAttributes
 	}
+
 
 	// all schemas are nil
 	return nil

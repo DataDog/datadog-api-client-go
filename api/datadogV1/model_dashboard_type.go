@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DashboardType The type of the associated private dashboard.
 type DashboardType string
 
 // List of DashboardType.
 const (
-	DASHBOARDTYPE_CUSTOM_TIMEBOARD   DashboardType = "custom_timeboard"
+	DASHBOARDTYPE_CUSTOM_TIMEBOARD DashboardType = "custom_timeboard"
 	DASHBOARDTYPE_CUSTOM_SCREENBOARD DashboardType = "custom_screenboard"
 )
 

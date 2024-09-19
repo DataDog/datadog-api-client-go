@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudflareAccountUpdateRequestAttributes Attributes object for updating a Cloudflare account.
 type CloudflareAccountUpdateRequestAttributes struct {
@@ -23,9 +27,10 @@ type CloudflareAccountUpdateRequestAttributes struct {
 	// An allowlist of zones to restrict pulling metrics for.
 	Zones []string `json:"zones,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudflareAccountUpdateRequestAttributes instantiates a new CloudflareAccountUpdateRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewCloudflareAccountUpdateRequestAttributesWithDefaults() *CloudflareAccoun
 	this := CloudflareAccountUpdateRequestAttributes{}
 	return &this
 }
-
 // GetApiKey returns the ApiKey field value.
 func (o *CloudflareAccountUpdateRequestAttributes) GetApiKey() string {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *CloudflareAccountUpdateRequestAttributes) GetApiKeyOk() (*string, bool)
 func (o *CloudflareAccountUpdateRequestAttributes) SetApiKey(v string) {
 	o.ApiKey = v
 }
+
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *CloudflareAccountUpdateRequestAttributes) GetEmail() string {
@@ -96,6 +101,7 @@ func (o *CloudflareAccountUpdateRequestAttributes) SetEmail(v string) {
 	o.Email = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CloudflareAccountUpdateRequestAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -123,6 +129,7 @@ func (o *CloudflareAccountUpdateRequestAttributes) HasName() bool {
 func (o *CloudflareAccountUpdateRequestAttributes) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetResources returns the Resources field value if set, zero value otherwise.
 func (o *CloudflareAccountUpdateRequestAttributes) GetResources() []string {
@@ -152,6 +159,7 @@ func (o *CloudflareAccountUpdateRequestAttributes) SetResources(v []string) {
 	o.Resources = v
 }
 
+
 // GetZones returns the Zones field value if set, zero value otherwise.
 func (o *CloudflareAccountUpdateRequestAttributes) GetZones() []string {
 	if o == nil || o.Zones == nil {
@@ -179,6 +187,8 @@ func (o *CloudflareAccountUpdateRequestAttributes) HasZones() bool {
 func (o *CloudflareAccountUpdateRequestAttributes) SetZones(v []string) {
 	o.Zones = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudflareAccountUpdateRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -209,11 +219,11 @@ func (o CloudflareAccountUpdateRequestAttributes) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudflareAccountUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey    *string  `json:"api_key"`
-		Email     *string  `json:"email,omitempty"`
-		Name      *string  `json:"name,omitempty"`
+		ApiKey *string `json:"api_key"`
+		Email *string `json:"email,omitempty"`
+		Name *string `json:"name,omitempty"`
 		Resources []string `json:"resources,omitempty"`
-		Zones     []string `json:"zones,omitempty"`
+		Zones []string `json:"zones,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -223,7 +233,7 @@ func (o *CloudflareAccountUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "email", "name", "resources", "zones"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_key", "email", "name", "resources", "zones",  })
 	} else {
 		return err
 	}

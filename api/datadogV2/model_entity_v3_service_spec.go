@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityV3ServiceSpec The definition of Entity V3 Service Spec object.
 type EntityV3ServiceSpec struct {
@@ -24,6 +30,7 @@ type EntityV3ServiceSpec struct {
 	UnparsedObject map[string]interface{} `json:"-"`
 }
 
+
 // NewEntityV3ServiceSpec instantiates a new EntityV3ServiceSpec object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -40,7 +47,6 @@ func NewEntityV3ServiceSpecWithDefaults() *EntityV3ServiceSpec {
 	this := EntityV3ServiceSpec{}
 	return &this
 }
-
 // GetDependsOn returns the DependsOn field value if set, zero value otherwise.
 func (o *EntityV3ServiceSpec) GetDependsOn() []string {
 	if o == nil || o.DependsOn == nil {
@@ -68,6 +74,7 @@ func (o *EntityV3ServiceSpec) HasDependsOn() bool {
 func (o *EntityV3ServiceSpec) SetDependsOn(v []string) {
 	o.DependsOn = v
 }
+
 
 // GetLanguages returns the Languages field value if set, zero value otherwise.
 func (o *EntityV3ServiceSpec) GetLanguages() []string {
@@ -97,6 +104,7 @@ func (o *EntityV3ServiceSpec) SetLanguages(v []string) {
 	o.Languages = v
 }
 
+
 // GetLifecycle returns the Lifecycle field value if set, zero value otherwise.
 func (o *EntityV3ServiceSpec) GetLifecycle() string {
 	if o == nil || o.Lifecycle == nil {
@@ -124,6 +132,7 @@ func (o *EntityV3ServiceSpec) HasLifecycle() bool {
 func (o *EntityV3ServiceSpec) SetLifecycle(v string) {
 	o.Lifecycle = &v
 }
+
 
 // GetTier returns the Tier field value if set, zero value otherwise.
 func (o *EntityV3ServiceSpec) GetTier() string {
@@ -153,6 +162,7 @@ func (o *EntityV3ServiceSpec) SetTier(v string) {
 	o.Tier = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *EntityV3ServiceSpec) GetType() string {
 	if o == nil || o.Type == nil {
@@ -180,6 +190,8 @@ func (o *EntityV3ServiceSpec) HasType() bool {
 func (o *EntityV3ServiceSpec) SetType(v string) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3ServiceSpec) MarshalJSON() ([]byte, error) {
@@ -210,9 +222,9 @@ func (o *EntityV3ServiceSpec) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DependsOn []string `json:"dependsOn,omitempty"`
 		Languages []string `json:"languages,omitempty"`
-		Lifecycle *string  `json:"lifecycle,omitempty"`
-		Tier      *string  `json:"tier,omitempty"`
-		Type      *string  `json:"type,omitempty"`
+		Lifecycle *string `json:"lifecycle,omitempty"`
+		Tier *string `json:"tier,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
