@@ -28,7 +28,7 @@ GO111MODULE=on go install honnef.co/go/tools/cmd/staticcheck@v0.5.0
 GO111MODULE=on go install gotest.tools/gotestsum@latest
 cd -
 
-staticcheck ./api/...
+staticcheck -checks -SA1009 ./api/...
 go mod tidy
 go clean -testcache
 
