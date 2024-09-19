@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListStreamColumn Widget column.
 type ListStreamColumn struct {
@@ -17,9 +21,10 @@ type ListStreamColumn struct {
 	// Widget column width.
 	Width ListStreamColumnWidth `json:"width"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListStreamColumn instantiates a new ListStreamColumn object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewListStreamColumnWithDefaults() *ListStreamColumn {
 	this := ListStreamColumn{}
 	return &this
 }
-
 // GetField returns the Field field value.
 func (o *ListStreamColumn) GetField() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ListStreamColumn) GetFieldOk() (*string, bool) {
 func (o *ListStreamColumn) SetField(v string) {
 	o.Field = v
 }
+
 
 // GetWidth returns the Width field value.
 func (o *ListStreamColumn) GetWidth() ListStreamColumnWidth {
@@ -86,6 +91,8 @@ func (o *ListStreamColumn) SetWidth(v ListStreamColumnWidth) {
 	o.Width = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListStreamColumn) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o ListStreamColumn) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListStreamColumn) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Field *string                `json:"field"`
+		Field *string `json:"field"`
 		Width *ListStreamColumnWidth `json:"width"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *ListStreamColumn) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"field", "width"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "field", "width",  })
 	} else {
 		return err
 	}

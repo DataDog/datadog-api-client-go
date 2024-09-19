@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleSeverity Severity of the Security Signal.
 type SecurityMonitoringRuleSeverity string
 
 // List of SecurityMonitoringRuleSeverity.
 const (
-	SECURITYMONITORINGRULESEVERITY_INFO     SecurityMonitoringRuleSeverity = "info"
-	SECURITYMONITORINGRULESEVERITY_LOW      SecurityMonitoringRuleSeverity = "low"
-	SECURITYMONITORINGRULESEVERITY_MEDIUM   SecurityMonitoringRuleSeverity = "medium"
-	SECURITYMONITORINGRULESEVERITY_HIGH     SecurityMonitoringRuleSeverity = "high"
+	SECURITYMONITORINGRULESEVERITY_INFO SecurityMonitoringRuleSeverity = "info"
+	SECURITYMONITORINGRULESEVERITY_LOW SecurityMonitoringRuleSeverity = "low"
+	SECURITYMONITORINGRULESEVERITY_MEDIUM SecurityMonitoringRuleSeverity = "medium"
+	SECURITYMONITORINGRULESEVERITY_HIGH SecurityMonitoringRuleSeverity = "high"
 	SECURITYMONITORINGRULESEVERITY_CRITICAL SecurityMonitoringRuleSeverity = "critical"
 )
 

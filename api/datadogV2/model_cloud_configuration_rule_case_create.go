@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudConfigurationRuleCaseCreate Description of signals.
 type CloudConfigurationRuleCaseCreate struct {
@@ -17,9 +21,10 @@ type CloudConfigurationRuleCaseCreate struct {
 	// Severity of the Security Signal.
 	Status SecurityMonitoringRuleSeverity `json:"status"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudConfigurationRuleCaseCreate instantiates a new CloudConfigurationRuleCaseCreate object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewCloudConfigurationRuleCaseCreateWithDefaults() *CloudConfigurationRuleCa
 	this := CloudConfigurationRuleCaseCreate{}
 	return &this
 }
-
 // GetNotifications returns the Notifications field value if set, zero value otherwise.
 func (o *CloudConfigurationRuleCaseCreate) GetNotifications() []string {
 	if o == nil || o.Notifications == nil {
@@ -67,6 +71,7 @@ func (o *CloudConfigurationRuleCaseCreate) SetNotifications(v []string) {
 	o.Notifications = v
 }
 
+
 // GetStatus returns the Status field value.
 func (o *CloudConfigurationRuleCaseCreate) GetStatus() SecurityMonitoringRuleSeverity {
 	if o == nil {
@@ -90,6 +95,8 @@ func (o *CloudConfigurationRuleCaseCreate) SetStatus(v SecurityMonitoringRuleSev
 	o.Status = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudConfigurationRuleCaseCreate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,8 +117,8 @@ func (o CloudConfigurationRuleCaseCreate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudConfigurationRuleCaseCreate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Notifications []string                        `json:"notifications,omitempty"`
-		Status        *SecurityMonitoringRuleSeverity `json:"status"`
+		Notifications []string `json:"notifications,omitempty"`
+		Status *SecurityMonitoringRuleSeverity `json:"status"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *CloudConfigurationRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"notifications", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "notifications", "status",  })
 	} else {
 		return err
 	}

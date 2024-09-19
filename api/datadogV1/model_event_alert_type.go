@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventAlertType If an alert event is enabled, set its type.
 // For example, `error`, `warning`, `info`, `success`, `user_update`,
@@ -17,13 +21,13 @@ type EventAlertType string
 
 // List of EventAlertType.
 const (
-	EVENTALERTTYPE_ERROR          EventAlertType = "error"
-	EVENTALERTTYPE_WARNING        EventAlertType = "warning"
-	EVENTALERTTYPE_INFO           EventAlertType = "info"
-	EVENTALERTTYPE_SUCCESS        EventAlertType = "success"
-	EVENTALERTTYPE_USER_UPDATE    EventAlertType = "user_update"
+	EVENTALERTTYPE_ERROR EventAlertType = "error"
+	EVENTALERTTYPE_WARNING EventAlertType = "warning"
+	EVENTALERTTYPE_INFO EventAlertType = "info"
+	EVENTALERTTYPE_SUCCESS EventAlertType = "success"
+	EVENTALERTTYPE_USER_UPDATE EventAlertType = "user_update"
 	EVENTALERTTYPE_RECOMMENDATION EventAlertType = "recommendation"
-	EVENTALERTTYPE_SNAPSHOT       EventAlertType = "snapshot"
+	EVENTALERTTYPE_SNAPSHOT EventAlertType = "snapshot"
 )
 
 var allowedEventAlertTypeEnumValues = []EventAlertType{

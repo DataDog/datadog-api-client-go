@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAPIStep - The steps used in a Synthetic multi-step API test.
 type SyntheticsAPIStep struct {
@@ -80,9 +86,11 @@ func (obj SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SyntheticsAPITestStep)
 	}
 
+
 	if obj.SyntheticsAPIWaitStep != nil {
 		return datadog.Marshal(&obj.SyntheticsAPIWaitStep)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SyntheticsAPIStep) GetActualInstance() interface{} {
+func (obj *SyntheticsAPIStep) GetActualInstance() (interface{}) {
 	if obj.SyntheticsAPITestStep != nil {
 		return obj.SyntheticsAPITestStep
 	}
 
+
 	if obj.SyntheticsAPIWaitStep != nil {
 		return obj.SyntheticsAPIWaitStep
 	}
+
 
 	// all schemas are nil
 	return nil

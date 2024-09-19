@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OrganizationSettings A JSON array of settings.
 type OrganizationSettings struct {
@@ -32,9 +38,10 @@ type OrganizationSettings struct {
 	// Has one property enabled (boolean).
 	SamlStrictMode *OrganizationSettingsSamlStrictMode `json:"saml_strict_mode,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOrganizationSettings instantiates a new OrganizationSettings object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +59,6 @@ func NewOrganizationSettingsWithDefaults() *OrganizationSettings {
 	this := OrganizationSettings{}
 	return &this
 }
-
 // GetPrivateWidgetShare returns the PrivateWidgetShare field value if set, zero value otherwise.
 func (o *OrganizationSettings) GetPrivateWidgetShare() bool {
 	if o == nil || o.PrivateWidgetShare == nil {
@@ -80,6 +86,7 @@ func (o *OrganizationSettings) HasPrivateWidgetShare() bool {
 func (o *OrganizationSettings) SetPrivateWidgetShare(v bool) {
 	o.PrivateWidgetShare = &v
 }
+
 
 // GetSaml returns the Saml field value if set, zero value otherwise.
 func (o *OrganizationSettings) GetSaml() OrganizationSettingsSaml {
@@ -109,6 +116,7 @@ func (o *OrganizationSettings) SetSaml(v OrganizationSettingsSaml) {
 	o.Saml = &v
 }
 
+
 // GetSamlAutocreateAccessRole returns the SamlAutocreateAccessRole field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OrganizationSettings) GetSamlAutocreateAccessRole() AccessRole {
 	if o == nil || o.SamlAutocreateAccessRole.Get() == nil {
@@ -122,7 +130,7 @@ func (o *OrganizationSettings) GetSamlAutocreateAccessRole() AccessRole {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *OrganizationSettings) GetSamlAutocreateAccessRoleOk() (*AccessRole, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.SamlAutocreateAccessRole.Get(), o.SamlAutocreateAccessRole.IsSet()
@@ -137,7 +145,6 @@ func (o *OrganizationSettings) HasSamlAutocreateAccessRole() bool {
 func (o *OrganizationSettings) SetSamlAutocreateAccessRole(v AccessRole) {
 	o.SamlAutocreateAccessRole.Set(&v)
 }
-
 // SetSamlAutocreateAccessRoleNil sets the value for SamlAutocreateAccessRole to be an explicit nil.
 func (o *OrganizationSettings) SetSamlAutocreateAccessRoleNil() {
 	o.SamlAutocreateAccessRole.Set(nil)
@@ -147,6 +154,7 @@ func (o *OrganizationSettings) SetSamlAutocreateAccessRoleNil() {
 func (o *OrganizationSettings) UnsetSamlAutocreateAccessRole() {
 	o.SamlAutocreateAccessRole.Unset()
 }
+
 
 // GetSamlAutocreateUsersDomains returns the SamlAutocreateUsersDomains field value if set, zero value otherwise.
 func (o *OrganizationSettings) GetSamlAutocreateUsersDomains() OrganizationSettingsSamlAutocreateUsersDomains {
@@ -176,6 +184,7 @@ func (o *OrganizationSettings) SetSamlAutocreateUsersDomains(v OrganizationSetti
 	o.SamlAutocreateUsersDomains = &v
 }
 
+
 // GetSamlCanBeEnabled returns the SamlCanBeEnabled field value if set, zero value otherwise.
 func (o *OrganizationSettings) GetSamlCanBeEnabled() bool {
 	if o == nil || o.SamlCanBeEnabled == nil {
@@ -203,6 +212,7 @@ func (o *OrganizationSettings) HasSamlCanBeEnabled() bool {
 func (o *OrganizationSettings) SetSamlCanBeEnabled(v bool) {
 	o.SamlCanBeEnabled = &v
 }
+
 
 // GetSamlIdpEndpoint returns the SamlIdpEndpoint field value if set, zero value otherwise.
 func (o *OrganizationSettings) GetSamlIdpEndpoint() string {
@@ -232,6 +242,7 @@ func (o *OrganizationSettings) SetSamlIdpEndpoint(v string) {
 	o.SamlIdpEndpoint = &v
 }
 
+
 // GetSamlIdpInitiatedLogin returns the SamlIdpInitiatedLogin field value if set, zero value otherwise.
 func (o *OrganizationSettings) GetSamlIdpInitiatedLogin() OrganizationSettingsSamlIdpInitiatedLogin {
 	if o == nil || o.SamlIdpInitiatedLogin == nil {
@@ -259,6 +270,7 @@ func (o *OrganizationSettings) HasSamlIdpInitiatedLogin() bool {
 func (o *OrganizationSettings) SetSamlIdpInitiatedLogin(v OrganizationSettingsSamlIdpInitiatedLogin) {
 	o.SamlIdpInitiatedLogin = &v
 }
+
 
 // GetSamlIdpMetadataUploaded returns the SamlIdpMetadataUploaded field value if set, zero value otherwise.
 func (o *OrganizationSettings) GetSamlIdpMetadataUploaded() bool {
@@ -288,6 +300,7 @@ func (o *OrganizationSettings) SetSamlIdpMetadataUploaded(v bool) {
 	o.SamlIdpMetadataUploaded = &v
 }
 
+
 // GetSamlLoginUrl returns the SamlLoginUrl field value if set, zero value otherwise.
 func (o *OrganizationSettings) GetSamlLoginUrl() string {
 	if o == nil || o.SamlLoginUrl == nil {
@@ -316,6 +329,7 @@ func (o *OrganizationSettings) SetSamlLoginUrl(v string) {
 	o.SamlLoginUrl = &v
 }
 
+
 // GetSamlStrictMode returns the SamlStrictMode field value if set, zero value otherwise.
 func (o *OrganizationSettings) GetSamlStrictMode() OrganizationSettingsSamlStrictMode {
 	if o == nil || o.SamlStrictMode == nil {
@@ -343,6 +357,8 @@ func (o *OrganizationSettings) HasSamlStrictMode() bool {
 func (o *OrganizationSettings) SetSamlStrictMode(v OrganizationSettingsSamlStrictMode) {
 	o.SamlStrictMode = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o OrganizationSettings) MarshalJSON() ([]byte, error) {
@@ -390,30 +406,30 @@ func (o OrganizationSettings) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		PrivateWidgetShare         *bool                                           `json:"private_widget_share,omitempty"`
-		Saml                       *OrganizationSettingsSaml                       `json:"saml,omitempty"`
-		SamlAutocreateAccessRole   NullableAccessRole                              `json:"saml_autocreate_access_role,omitempty"`
+		PrivateWidgetShare *bool `json:"private_widget_share,omitempty"`
+		Saml *OrganizationSettingsSaml `json:"saml,omitempty"`
+		SamlAutocreateAccessRole NullableAccessRole `json:"saml_autocreate_access_role,omitempty"`
 		SamlAutocreateUsersDomains *OrganizationSettingsSamlAutocreateUsersDomains `json:"saml_autocreate_users_domains,omitempty"`
-		SamlCanBeEnabled           *bool                                           `json:"saml_can_be_enabled,omitempty"`
-		SamlIdpEndpoint            *string                                         `json:"saml_idp_endpoint,omitempty"`
-		SamlIdpInitiatedLogin      *OrganizationSettingsSamlIdpInitiatedLogin      `json:"saml_idp_initiated_login,omitempty"`
-		SamlIdpMetadataUploaded    *bool                                           `json:"saml_idp_metadata_uploaded,omitempty"`
-		SamlLoginUrl               *string                                         `json:"saml_login_url,omitempty"`
-		SamlStrictMode             *OrganizationSettingsSamlStrictMode             `json:"saml_strict_mode,omitempty"`
+		SamlCanBeEnabled *bool `json:"saml_can_be_enabled,omitempty"`
+		SamlIdpEndpoint *string `json:"saml_idp_endpoint,omitempty"`
+		SamlIdpInitiatedLogin *OrganizationSettingsSamlIdpInitiatedLogin `json:"saml_idp_initiated_login,omitempty"`
+		SamlIdpMetadataUploaded *bool `json:"saml_idp_metadata_uploaded,omitempty"`
+		SamlLoginUrl *string `json:"saml_login_url,omitempty"`
+		SamlStrictMode *OrganizationSettingsSamlStrictMode `json:"saml_strict_mode,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"private_widget_share", "saml", "saml_autocreate_access_role", "saml_autocreate_users_domains", "saml_can_be_enabled", "saml_idp_endpoint", "saml_idp_initiated_login", "saml_idp_metadata_uploaded", "saml_login_url", "saml_strict_mode"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "private_widget_share", "saml", "saml_autocreate_access_role", "saml_autocreate_users_domains", "saml_can_be_enabled", "saml_idp_endpoint", "saml_idp_initiated_login", "saml_idp_metadata_uploaded", "saml_login_url", "saml_strict_mode",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.PrivateWidgetShare = all.PrivateWidgetShare
-	if all.Saml != nil && all.Saml.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Saml != nil && all.Saml.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Saml = all.Saml
@@ -422,19 +438,19 @@ func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.SamlAutocreateAccessRole = all.SamlAutocreateAccessRole
 	}
-	if all.SamlAutocreateUsersDomains != nil && all.SamlAutocreateUsersDomains.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SamlAutocreateUsersDomains != nil && all.SamlAutocreateUsersDomains.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SamlAutocreateUsersDomains = all.SamlAutocreateUsersDomains
 	o.SamlCanBeEnabled = all.SamlCanBeEnabled
 	o.SamlIdpEndpoint = all.SamlIdpEndpoint
-	if all.SamlIdpInitiatedLogin != nil && all.SamlIdpInitiatedLogin.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SamlIdpInitiatedLogin != nil && all.SamlIdpInitiatedLogin.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SamlIdpInitiatedLogin = all.SamlIdpInitiatedLogin
 	o.SamlIdpMetadataUploaded = all.SamlIdpMetadataUploaded
 	o.SamlLoginUrl = all.SamlLoginUrl
-	if all.SamlStrictMode != nil && all.SamlStrictMode.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SamlStrictMode != nil && all.SamlStrictMode.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SamlStrictMode = all.SamlStrictMode

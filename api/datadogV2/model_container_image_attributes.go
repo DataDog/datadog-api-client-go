@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ContainerImageAttributes Attributes for a Container Image.
 type ContainerImageAttributes struct {
@@ -48,9 +54,10 @@ type ContainerImageAttributes struct {
 	// Vulnerability counts associated with the Container Image.
 	VulnerabilityCount *ContainerImageVulnerabilities `json:"vulnerability_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewContainerImageAttributes instantiates a new ContainerImageAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -68,7 +75,6 @@ func NewContainerImageAttributesWithDefaults() *ContainerImageAttributes {
 	this := ContainerImageAttributes{}
 	return &this
 }
-
 // GetContainerCount returns the ContainerCount field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetContainerCount() int64 {
 	if o == nil || o.ContainerCount == nil {
@@ -96,6 +102,7 @@ func (o *ContainerImageAttributes) HasContainerCount() bool {
 func (o *ContainerImageAttributes) SetContainerCount(v int64) {
 	o.ContainerCount = &v
 }
+
 
 // GetImageFlavors returns the ImageFlavors field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetImageFlavors() []ContainerImageFlavor {
@@ -125,6 +132,7 @@ func (o *ContainerImageAttributes) SetImageFlavors(v []ContainerImageFlavor) {
 	o.ImageFlavors = v
 }
 
+
 // GetImageTags returns the ImageTags field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetImageTags() []string {
 	if o == nil || o.ImageTags == nil {
@@ -152,6 +160,7 @@ func (o *ContainerImageAttributes) HasImageTags() bool {
 func (o *ContainerImageAttributes) SetImageTags(v []string) {
 	o.ImageTags = v
 }
+
 
 // GetImagesBuiltAt returns the ImagesBuiltAt field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetImagesBuiltAt() []string {
@@ -181,6 +190,7 @@ func (o *ContainerImageAttributes) SetImagesBuiltAt(v []string) {
 	o.ImagesBuiltAt = v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -208,6 +218,7 @@ func (o *ContainerImageAttributes) HasName() bool {
 func (o *ContainerImageAttributes) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetOsArchitectures returns the OsArchitectures field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetOsArchitectures() []string {
@@ -237,6 +248,7 @@ func (o *ContainerImageAttributes) SetOsArchitectures(v []string) {
 	o.OsArchitectures = v
 }
 
+
 // GetOsNames returns the OsNames field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetOsNames() []string {
 	if o == nil || o.OsNames == nil {
@@ -264,6 +276,7 @@ func (o *ContainerImageAttributes) HasOsNames() bool {
 func (o *ContainerImageAttributes) SetOsNames(v []string) {
 	o.OsNames = v
 }
+
 
 // GetOsVersions returns the OsVersions field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetOsVersions() []string {
@@ -293,6 +306,7 @@ func (o *ContainerImageAttributes) SetOsVersions(v []string) {
 	o.OsVersions = v
 }
 
+
 // GetPublishedAt returns the PublishedAt field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetPublishedAt() string {
 	if o == nil || o.PublishedAt == nil {
@@ -320,6 +334,7 @@ func (o *ContainerImageAttributes) HasPublishedAt() bool {
 func (o *ContainerImageAttributes) SetPublishedAt(v string) {
 	o.PublishedAt = &v
 }
+
 
 // GetRegistry returns the Registry field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetRegistry() string {
@@ -349,6 +364,7 @@ func (o *ContainerImageAttributes) SetRegistry(v string) {
 	o.Registry = &v
 }
 
+
 // GetRepoDigest returns the RepoDigest field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetRepoDigest() string {
 	if o == nil || o.RepoDigest == nil {
@@ -376,6 +392,7 @@ func (o *ContainerImageAttributes) HasRepoDigest() bool {
 func (o *ContainerImageAttributes) SetRepoDigest(v string) {
 	o.RepoDigest = &v
 }
+
 
 // GetRepository returns the Repository field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetRepository() string {
@@ -405,6 +422,7 @@ func (o *ContainerImageAttributes) SetRepository(v string) {
 	o.Repository = &v
 }
 
+
 // GetShortImage returns the ShortImage field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetShortImage() string {
 	if o == nil || o.ShortImage == nil {
@@ -432,6 +450,7 @@ func (o *ContainerImageAttributes) HasShortImage() bool {
 func (o *ContainerImageAttributes) SetShortImage(v string) {
 	o.ShortImage = &v
 }
+
 
 // GetSizes returns the Sizes field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetSizes() []int64 {
@@ -461,6 +480,7 @@ func (o *ContainerImageAttributes) SetSizes(v []int64) {
 	o.Sizes = v
 }
 
+
 // GetSources returns the Sources field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetSources() []string {
 	if o == nil || o.Sources == nil {
@@ -488,6 +508,7 @@ func (o *ContainerImageAttributes) HasSources() bool {
 func (o *ContainerImageAttributes) SetSources(v []string) {
 	o.Sources = v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetTags() []string {
@@ -517,6 +538,7 @@ func (o *ContainerImageAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetVulnerabilityCount returns the VulnerabilityCount field value if set, zero value otherwise.
 func (o *ContainerImageAttributes) GetVulnerabilityCount() ContainerImageVulnerabilities {
 	if o == nil || o.VulnerabilityCount == nil {
@@ -544,6 +566,8 @@ func (o *ContainerImageAttributes) HasVulnerabilityCount() bool {
 func (o *ContainerImageAttributes) SetVulnerabilityCount(v ContainerImageVulnerabilities) {
 	o.VulnerabilityCount = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ContainerImageAttributes) MarshalJSON() ([]byte, error) {
@@ -612,22 +636,22 @@ func (o ContainerImageAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ContainerImageAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ContainerCount     *int64                         `json:"container_count,omitempty"`
-		ImageFlavors       []ContainerImageFlavor         `json:"image_flavors,omitempty"`
-		ImageTags          []string                       `json:"image_tags,omitempty"`
-		ImagesBuiltAt      []string                       `json:"images_built_at,omitempty"`
-		Name               *string                        `json:"name,omitempty"`
-		OsArchitectures    []string                       `json:"os_architectures,omitempty"`
-		OsNames            []string                       `json:"os_names,omitempty"`
-		OsVersions         []string                       `json:"os_versions,omitempty"`
-		PublishedAt        *string                        `json:"published_at,omitempty"`
-		Registry           *string                        `json:"registry,omitempty"`
-		RepoDigest         *string                        `json:"repo_digest,omitempty"`
-		Repository         *string                        `json:"repository,omitempty"`
-		ShortImage         *string                        `json:"short_image,omitempty"`
-		Sizes              []int64                        `json:"sizes,omitempty"`
-		Sources            []string                       `json:"sources,omitempty"`
-		Tags               []string                       `json:"tags,omitempty"`
+		ContainerCount *int64 `json:"container_count,omitempty"`
+		ImageFlavors []ContainerImageFlavor `json:"image_flavors,omitempty"`
+		ImageTags []string `json:"image_tags,omitempty"`
+		ImagesBuiltAt []string `json:"images_built_at,omitempty"`
+		Name *string `json:"name,omitempty"`
+		OsArchitectures []string `json:"os_architectures,omitempty"`
+		OsNames []string `json:"os_names,omitempty"`
+		OsVersions []string `json:"os_versions,omitempty"`
+		PublishedAt *string `json:"published_at,omitempty"`
+		Registry *string `json:"registry,omitempty"`
+		RepoDigest *string `json:"repo_digest,omitempty"`
+		Repository *string `json:"repository,omitempty"`
+		ShortImage *string `json:"short_image,omitempty"`
+		Sizes []int64 `json:"sizes,omitempty"`
+		Sources []string `json:"sources,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 		VulnerabilityCount *ContainerImageVulnerabilities `json:"vulnerability_count,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -635,7 +659,7 @@ func (o *ContainerImageAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"container_count", "image_flavors", "image_tags", "images_built_at", "name", "os_architectures", "os_names", "os_versions", "published_at", "registry", "repo_digest", "repository", "short_image", "sizes", "sources", "tags", "vulnerability_count"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "container_count", "image_flavors", "image_tags", "images_built_at", "name", "os_architectures", "os_names", "os_versions", "published_at", "registry", "repo_digest", "repository", "short_image", "sizes", "sources", "tags", "vulnerability_count",  })
 	} else {
 		return err
 	}
@@ -657,7 +681,7 @@ func (o *ContainerImageAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Sizes = all.Sizes
 	o.Sources = all.Sources
 	o.Tags = all.Tags
-	if all.VulnerabilityCount != nil && all.VulnerabilityCount.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.VulnerabilityCount != nil && all.VulnerabilityCount.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.VulnerabilityCount = all.VulnerabilityCount

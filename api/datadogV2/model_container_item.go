@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ContainerItem - Possible Container models.
 type ContainerItem struct {
-	Container      *Container
+	Container *Container
 	ContainerGroup *ContainerGroup
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj ContainerItem) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.Container)
 	}
 
+
 	if obj.ContainerGroup != nil {
 		return datadog.Marshal(&obj.ContainerGroup)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj ContainerItem) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ContainerItem) GetActualInstance() interface{} {
+func (obj *ContainerItem) GetActualInstance() (interface{}) {
 	if obj.Container != nil {
 		return obj.Container
 	}
 
+
 	if obj.ContainerGroup != nil {
 		return obj.ContainerGroup
 	}
+
 
 	// all schemas are nil
 	return nil

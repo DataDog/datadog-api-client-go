@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeMonitorIdentifierTags Object of the monitor tags.
 type DowntimeMonitorIdentifierTags struct {
@@ -18,9 +22,10 @@ type DowntimeMonitorIdentifierTags struct {
 	// to `[*]` configures the downtime to mute all monitors for the given scope.
 	MonitorTags []string `json:"monitor_tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeMonitorIdentifierTags instantiates a new DowntimeMonitorIdentifierTags object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewDowntimeMonitorIdentifierTagsWithDefaults() *DowntimeMonitorIdentifierTa
 	this := DowntimeMonitorIdentifierTags{}
 	return &this
 }
-
 // GetMonitorTags returns the MonitorTags field value.
 func (o *DowntimeMonitorIdentifierTags) GetMonitorTags() []string {
 	if o == nil {
@@ -62,6 +66,8 @@ func (o *DowntimeMonitorIdentifierTags) GetMonitorTagsOk() (*[]string, bool) {
 func (o *DowntimeMonitorIdentifierTags) SetMonitorTags(v []string) {
 	o.MonitorTags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeMonitorIdentifierTags) MarshalJSON() ([]byte, error) {
@@ -90,7 +96,7 @@ func (o *DowntimeMonitorIdentifierTags) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"monitor_tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "monitor_tags",  })
 	} else {
 		return err
 	}

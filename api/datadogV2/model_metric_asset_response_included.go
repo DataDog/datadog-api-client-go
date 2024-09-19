@@ -2,18 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricAssetResponseIncluded - List of included assets with full set of attributes.
 type MetricAssetResponseIncluded struct {
 	MetricDashboardAsset *MetricDashboardAsset
-	MetricMonitorAsset   *MetricMonitorAsset
-	MetricNotebookAsset  *MetricNotebookAsset
-	MetricSLOAsset       *MetricSLOAsset
+	MetricMonitorAsset *MetricMonitorAsset
+	MetricNotebookAsset *MetricNotebookAsset
+	MetricSLOAsset *MetricSLOAsset
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -128,17 +134,21 @@ func (obj MetricAssetResponseIncluded) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.MetricDashboardAsset)
 	}
 
+
 	if obj.MetricMonitorAsset != nil {
 		return datadog.Marshal(&obj.MetricMonitorAsset)
 	}
+
 
 	if obj.MetricNotebookAsset != nil {
 		return datadog.Marshal(&obj.MetricNotebookAsset)
 	}
 
+
 	if obj.MetricSLOAsset != nil {
 		return datadog.Marshal(&obj.MetricSLOAsset)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -147,22 +157,26 @@ func (obj MetricAssetResponseIncluded) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *MetricAssetResponseIncluded) GetActualInstance() interface{} {
+func (obj *MetricAssetResponseIncluded) GetActualInstance() (interface{}) {
 	if obj.MetricDashboardAsset != nil {
 		return obj.MetricDashboardAsset
 	}
+
 
 	if obj.MetricMonitorAsset != nil {
 		return obj.MetricMonitorAsset
 	}
 
+
 	if obj.MetricNotebookAsset != nil {
 		return obj.MetricNotebookAsset
 	}
 
+
 	if obj.MetricSLOAsset != nil {
 		return obj.MetricSLOAsset
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeNotifyEndStateTypes State that will trigger a monitor notification when the `notify_end_types` action occurs.
 type DowntimeNotifyEndStateTypes string
 
 // List of DowntimeNotifyEndStateTypes.
 const (
-	DOWNTIMENOTIFYENDSTATETYPES_ALERT   DowntimeNotifyEndStateTypes = "alert"
+	DOWNTIMENOTIFYENDSTATETYPES_ALERT DowntimeNotifyEndStateTypes = "alert"
 	DOWNTIMENOTIFYENDSTATETYPES_NO_DATA DowntimeNotifyEndStateTypes = "no data"
-	DOWNTIMENOTIFYENDSTATETYPES_WARN    DowntimeNotifyEndStateTypes = "warn"
+	DOWNTIMENOTIFYENDSTATETYPES_WARN DowntimeNotifyEndStateTypes = "warn"
 )
 
 var allowedDowntimeNotifyEndStateTypesEnumValues = []DowntimeNotifyEndStateTypes{

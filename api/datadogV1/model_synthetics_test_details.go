@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestDetails Object containing details about your Synthetic test.
 type SyntheticsTestDetails struct {
@@ -39,9 +45,10 @@ type SyntheticsTestDetails struct {
 	// Type of the Synthetic test, either `api` or `browser`.
 	Type *SyntheticsTestDetailsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsTestDetails instantiates a new SyntheticsTestDetails object.
 // This constructor will assign default values to properties that have it defined,
@@ -59,7 +66,6 @@ func NewSyntheticsTestDetailsWithDefaults() *SyntheticsTestDetails {
 	this := SyntheticsTestDetails{}
 	return &this
 }
-
 // GetConfig returns the Config field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetConfig() SyntheticsTestConfig {
 	if o == nil || o.Config == nil {
@@ -87,6 +93,7 @@ func (o *SyntheticsTestDetails) HasConfig() bool {
 func (o *SyntheticsTestDetails) SetConfig(v SyntheticsTestConfig) {
 	o.Config = &v
 }
+
 
 // GetCreator returns the Creator field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetCreator() Creator {
@@ -116,6 +123,7 @@ func (o *SyntheticsTestDetails) SetCreator(v Creator) {
 	o.Creator = &v
 }
 
+
 // GetLocations returns the Locations field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetLocations() []string {
 	if o == nil || o.Locations == nil {
@@ -143,6 +151,7 @@ func (o *SyntheticsTestDetails) HasLocations() bool {
 func (o *SyntheticsTestDetails) SetLocations(v []string) {
 	o.Locations = v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetMessage() string {
@@ -172,6 +181,7 @@ func (o *SyntheticsTestDetails) SetMessage(v string) {
 	o.Message = &v
 }
 
+
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetMonitorId() int64 {
 	if o == nil || o.MonitorId == nil {
@@ -199,6 +209,7 @@ func (o *SyntheticsTestDetails) HasMonitorId() bool {
 func (o *SyntheticsTestDetails) SetMonitorId(v int64) {
 	o.MonitorId = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetName() string {
@@ -228,6 +239,7 @@ func (o *SyntheticsTestDetails) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetOptions() SyntheticsTestOptions {
 	if o == nil || o.Options == nil {
@@ -255,6 +267,7 @@ func (o *SyntheticsTestDetails) HasOptions() bool {
 func (o *SyntheticsTestDetails) SetOptions(v SyntheticsTestOptions) {
 	o.Options = &v
 }
+
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetPublicId() string {
@@ -284,6 +297,7 @@ func (o *SyntheticsTestDetails) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetStatus() SyntheticsTestPauseStatus {
 	if o == nil || o.Status == nil {
@@ -311,6 +325,7 @@ func (o *SyntheticsTestDetails) HasStatus() bool {
 func (o *SyntheticsTestDetails) SetStatus(v SyntheticsTestPauseStatus) {
 	o.Status = &v
 }
+
 
 // GetSteps returns the Steps field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetSteps() []SyntheticsStep {
@@ -340,6 +355,7 @@ func (o *SyntheticsTestDetails) SetSteps(v []SyntheticsStep) {
 	o.Steps = v
 }
 
+
 // GetSubtype returns the Subtype field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetSubtype() SyntheticsTestDetailsSubType {
 	if o == nil || o.Subtype == nil {
@@ -367,6 +383,7 @@ func (o *SyntheticsTestDetails) HasSubtype() bool {
 func (o *SyntheticsTestDetails) SetSubtype(v SyntheticsTestDetailsSubType) {
 	o.Subtype = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetTags() []string {
@@ -396,6 +413,7 @@ func (o *SyntheticsTestDetails) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SyntheticsTestDetails) GetType() SyntheticsTestDetailsType {
 	if o == nil || o.Type == nil {
@@ -423,6 +441,8 @@ func (o *SyntheticsTestDetails) HasType() bool {
 func (o *SyntheticsTestDetails) SetType(v SyntheticsTestDetailsType) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestDetails) MarshalJSON() ([]byte, error) {
@@ -479,36 +499,36 @@ func (o SyntheticsTestDetails) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestDetails) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Config    *SyntheticsTestConfig         `json:"config,omitempty"`
-		Creator   *Creator                      `json:"creator,omitempty"`
-		Locations []string                      `json:"locations,omitempty"`
-		Message   *string                       `json:"message,omitempty"`
-		MonitorId *int64                        `json:"monitor_id,omitempty"`
-		Name      *string                       `json:"name,omitempty"`
-		Options   *SyntheticsTestOptions        `json:"options,omitempty"`
-		PublicId  *string                       `json:"public_id,omitempty"`
-		Status    *SyntheticsTestPauseStatus    `json:"status,omitempty"`
-		Steps     []SyntheticsStep              `json:"steps,omitempty"`
-		Subtype   *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
-		Tags      []string                      `json:"tags,omitempty"`
-		Type      *SyntheticsTestDetailsType    `json:"type,omitempty"`
+		Config *SyntheticsTestConfig `json:"config,omitempty"`
+		Creator *Creator `json:"creator,omitempty"`
+		Locations []string `json:"locations,omitempty"`
+		Message *string `json:"message,omitempty"`
+		MonitorId *int64 `json:"monitor_id,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Options *SyntheticsTestOptions `json:"options,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
+		Steps []SyntheticsStep `json:"steps,omitempty"`
+		Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Type *SyntheticsTestDetailsType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"config", "creator", "locations", "message", "monitor_id", "name", "options", "public_id", "status", "steps", "subtype", "tags", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "config", "creator", "locations", "message", "monitor_id", "name", "options", "public_id", "status", "steps", "subtype", "tags", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Config != nil && all.Config.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Config != nil && all.Config.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Config = all.Config
-	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Creator = all.Creator
@@ -516,24 +536,24 @@ func (o *SyntheticsTestDetails) UnmarshalJSON(bytes []byte) (err error) {
 	o.Message = all.Message
 	o.MonitorId = all.MonitorId
 	o.Name = all.Name
-	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Options = all.Options
 	o.PublicId = all.PublicId
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status
 	}
 	o.Steps = all.Steps
-	if all.Subtype != nil && !all.Subtype.IsValid() {
+	if all.Subtype != nil &&!all.Subtype.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Subtype = all.Subtype
 	}
 	o.Tags = all.Tags
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

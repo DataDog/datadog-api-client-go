@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerGroupDeleteRequest Delete group request.
 type SensitiveDataScannerGroupDeleteRequest struct {
 	// Meta payload containing information about the API.
 	Meta SensitiveDataScannerMetaVersionOnly `json:"meta"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerGroupDeleteRequest instantiates a new SensitiveDataScannerGroupDeleteRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewSensitiveDataScannerGroupDeleteRequestWithDefaults() *SensitiveDataScann
 	this := SensitiveDataScannerGroupDeleteRequest{}
 	return &this
 }
-
 // GetMeta returns the Meta field value.
 func (o *SensitiveDataScannerGroupDeleteRequest) GetMeta() SensitiveDataScannerMetaVersionOnly {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *SensitiveDataScannerGroupDeleteRequest) GetMetaOk() (*SensitiveDataScan
 func (o *SensitiveDataScannerGroupDeleteRequest) SetMeta(v SensitiveDataScannerMetaVersionOnly) {
 	o.Meta = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerGroupDeleteRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *SensitiveDataScannerGroupDeleteRequest) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "meta",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityV3MetadataContactsItems The definition of Entity V3 Metadata Contacts Items object.
 type EntityV3MetadataContactsItems struct {
@@ -21,6 +25,7 @@ type EntityV3MetadataContactsItems struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityV3MetadataContactsItems instantiates a new EntityV3MetadataContactsItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewEntityV3MetadataContactsItemsWithDefaults() *EntityV3MetadataContactsIte
 	this := EntityV3MetadataContactsItems{}
 	return &this
 }
-
 // GetContact returns the Contact field value.
 func (o *EntityV3MetadataContactsItems) GetContact() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *EntityV3MetadataContactsItems) GetContactOk() (*string, bool) {
 func (o *EntityV3MetadataContactsItems) SetContact(v string) {
 	o.Contact = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *EntityV3MetadataContactsItems) GetName() string {
@@ -92,6 +97,7 @@ func (o *EntityV3MetadataContactsItems) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *EntityV3MetadataContactsItems) GetType() string {
 	if o == nil {
@@ -115,6 +121,8 @@ func (o *EntityV3MetadataContactsItems) SetType(v string) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3MetadataContactsItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -133,8 +141,8 @@ func (o EntityV3MetadataContactsItems) MarshalJSON() ([]byte, error) {
 func (o *EntityV3MetadataContactsItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Contact *string `json:"contact"`
-		Name    *string `json:"name,omitempty"`
-		Type    *string `json:"type"`
+		Name *string `json:"name,omitempty"`
+		Type *string `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

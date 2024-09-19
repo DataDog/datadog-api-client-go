@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SearchSLOQuery A metric-based SLO. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
 // to be used because this will sum up all request counts instead of averaging them, or taking the max or
@@ -20,9 +26,10 @@ type SearchSLOQuery struct {
 	// A Datadog metric query for good events.
 	Numerator *string `json:"numerator,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSearchSLOQuery instantiates a new SearchSLOQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +47,6 @@ func NewSearchSLOQueryWithDefaults() *SearchSLOQuery {
 	this := SearchSLOQuery{}
 	return &this
 }
-
 // GetDenominator returns the Denominator field value if set, zero value otherwise.
 func (o *SearchSLOQuery) GetDenominator() string {
 	if o == nil || o.Denominator == nil {
@@ -69,6 +75,7 @@ func (o *SearchSLOQuery) SetDenominator(v string) {
 	o.Denominator = &v
 }
 
+
 // GetMetrics returns the Metrics field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SearchSLOQuery) GetMetrics() []string {
 	if o == nil || o.Metrics.Get() == nil {
@@ -82,7 +89,7 @@ func (o *SearchSLOQuery) GetMetrics() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SearchSLOQuery) GetMetricsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Metrics.Get(), o.Metrics.IsSet()
@@ -97,7 +104,6 @@ func (o *SearchSLOQuery) HasMetrics() bool {
 func (o *SearchSLOQuery) SetMetrics(v []string) {
 	o.Metrics.Set(&v)
 }
-
 // SetMetricsNil sets the value for Metrics to be an explicit nil.
 func (o *SearchSLOQuery) SetMetricsNil() {
 	o.Metrics.Set(nil)
@@ -107,6 +113,7 @@ func (o *SearchSLOQuery) SetMetricsNil() {
 func (o *SearchSLOQuery) UnsetMetrics() {
 	o.Metrics.Unset()
 }
+
 
 // GetNumerator returns the Numerator field value if set, zero value otherwise.
 func (o *SearchSLOQuery) GetNumerator() string {
@@ -136,6 +143,8 @@ func (o *SearchSLOQuery) SetNumerator(v string) {
 	o.Numerator = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SearchSLOQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -161,16 +170,16 @@ func (o SearchSLOQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SearchSLOQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Denominator *string                      `json:"denominator,omitempty"`
-		Metrics     datadog.NullableList[string] `json:"metrics,omitempty"`
-		Numerator   *string                      `json:"numerator,omitempty"`
+		Denominator *string `json:"denominator,omitempty"`
+		Metrics datadog.NullableList[string] `json:"metrics,omitempty"`
+		Numerator *string `json:"numerator,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"denominator", "metrics", "numerator"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "denominator", "metrics", "numerator",  })
 	} else {
 		return err
 	}
@@ -184,7 +193,6 @@ func (o *SearchSLOQuery) UnmarshalJSON(bytes []byte) (err error) {
 
 	return nil
 }
-
 // NullableSearchSLOQuery handles when a null is used for SearchSLOQuery.
 type NullableSearchSLOQuery struct {
 	value *SearchSLOQuery

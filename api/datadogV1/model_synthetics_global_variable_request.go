@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsGlobalVariableRequest Details of the global variable to create.
 type SyntheticsGlobalVariableRequest struct {
@@ -33,9 +37,10 @@ type SyntheticsGlobalVariableRequest struct {
 	// Value of the global variable.
 	Value *SyntheticsGlobalVariableValue `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsGlobalVariableRequest instantiates a new SyntheticsGlobalVariableRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +61,6 @@ func NewSyntheticsGlobalVariableRequestWithDefaults() *SyntheticsGlobalVariableR
 	this := SyntheticsGlobalVariableRequest{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableRequest) GetAttributes() SyntheticsGlobalVariableAttributes {
 	if o == nil || o.Attributes == nil {
@@ -85,6 +89,7 @@ func (o *SyntheticsGlobalVariableRequest) SetAttributes(v SyntheticsGlobalVariab
 	o.Attributes = &v
 }
 
+
 // GetDescription returns the Description field value.
 func (o *SyntheticsGlobalVariableRequest) GetDescription() string {
 	if o == nil {
@@ -107,6 +112,7 @@ func (o *SyntheticsGlobalVariableRequest) GetDescriptionOk() (*string, bool) {
 func (o *SyntheticsGlobalVariableRequest) SetDescription(v string) {
 	o.Description = v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableRequest) GetId() string {
@@ -136,6 +142,7 @@ func (o *SyntheticsGlobalVariableRequest) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetIsFido returns the IsFido field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableRequest) GetIsFido() bool {
 	if o == nil || o.IsFido == nil {
@@ -163,6 +170,7 @@ func (o *SyntheticsGlobalVariableRequest) HasIsFido() bool {
 func (o *SyntheticsGlobalVariableRequest) SetIsFido(v bool) {
 	o.IsFido = &v
 }
+
 
 // GetIsTotp returns the IsTotp field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableRequest) GetIsTotp() bool {
@@ -192,6 +200,7 @@ func (o *SyntheticsGlobalVariableRequest) SetIsTotp(v bool) {
 	o.IsTotp = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *SyntheticsGlobalVariableRequest) GetName() string {
 	if o == nil {
@@ -214,6 +223,7 @@ func (o *SyntheticsGlobalVariableRequest) GetNameOk() (*string, bool) {
 func (o *SyntheticsGlobalVariableRequest) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetParseTestOptions returns the ParseTestOptions field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableRequest) GetParseTestOptions() SyntheticsGlobalVariableParseTestOptions {
@@ -243,6 +253,7 @@ func (o *SyntheticsGlobalVariableRequest) SetParseTestOptions(v SyntheticsGlobal
 	o.ParseTestOptions = &v
 }
 
+
 // GetParseTestPublicId returns the ParseTestPublicId field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableRequest) GetParseTestPublicId() string {
 	if o == nil || o.ParseTestPublicId == nil {
@@ -271,6 +282,7 @@ func (o *SyntheticsGlobalVariableRequest) SetParseTestPublicId(v string) {
 	o.ParseTestPublicId = &v
 }
 
+
 // GetTags returns the Tags field value.
 func (o *SyntheticsGlobalVariableRequest) GetTags() []string {
 	if o == nil {
@@ -293,6 +305,7 @@ func (o *SyntheticsGlobalVariableRequest) GetTagsOk() (*[]string, bool) {
 func (o *SyntheticsGlobalVariableRequest) SetTags(v []string) {
 	o.Tags = v
 }
+
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableRequest) GetValue() SyntheticsGlobalVariableValue {
@@ -321,6 +334,8 @@ func (o *SyntheticsGlobalVariableRequest) HasValue() bool {
 func (o *SyntheticsGlobalVariableRequest) SetValue(v SyntheticsGlobalVariableValue) {
 	o.Value = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsGlobalVariableRequest) MarshalJSON() ([]byte, error) {
@@ -362,16 +377,16 @@ func (o SyntheticsGlobalVariableRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsGlobalVariableRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes        *SyntheticsGlobalVariableAttributes       `json:"attributes,omitempty"`
-		Description       *string                                   `json:"description"`
-		Id                *string                                   `json:"id,omitempty"`
-		IsFido            *bool                                     `json:"is_fido,omitempty"`
-		IsTotp            *bool                                     `json:"is_totp,omitempty"`
-		Name              *string                                   `json:"name"`
-		ParseTestOptions  *SyntheticsGlobalVariableParseTestOptions `json:"parse_test_options,omitempty"`
-		ParseTestPublicId *string                                   `json:"parse_test_public_id,omitempty"`
-		Tags              *[]string                                 `json:"tags"`
-		Value             *SyntheticsGlobalVariableValue            `json:"value,omitempty"`
+		Attributes *SyntheticsGlobalVariableAttributes `json:"attributes,omitempty"`
+		Description *string `json:"description"`
+		Id *string `json:"id,omitempty"`
+		IsFido *bool `json:"is_fido,omitempty"`
+		IsTotp *bool `json:"is_totp,omitempty"`
+		Name *string `json:"name"`
+		ParseTestOptions *SyntheticsGlobalVariableParseTestOptions `json:"parse_test_options,omitempty"`
+		ParseTestPublicId *string `json:"parse_test_public_id,omitempty"`
+		Tags *[]string `json:"tags"`
+		Value *SyntheticsGlobalVariableValue `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -387,13 +402,13 @@ func (o *SyntheticsGlobalVariableRequest) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "description", "id", "is_fido", "is_totp", "name", "parse_test_options", "parse_test_public_id", "tags", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "description", "id", "is_fido", "is_totp", "name", "parse_test_options", "parse_test_public_id", "tags", "value",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
@@ -402,13 +417,13 @@ func (o *SyntheticsGlobalVariableRequest) UnmarshalJSON(bytes []byte) (err error
 	o.IsFido = all.IsFido
 	o.IsTotp = all.IsTotp
 	o.Name = *all.Name
-	if all.ParseTestOptions != nil && all.ParseTestOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ParseTestOptions != nil && all.ParseTestOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ParseTestOptions = all.ParseTestOptions
 	o.ParseTestPublicId = all.ParseTestPublicId
 	o.Tags = *all.Tags
-	if all.Value != nil && all.Value.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Value != nil && all.Value.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Value = all.Value

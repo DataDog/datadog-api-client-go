@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerRule Rule item included in the group.
 type SensitiveDataScannerRule struct {
@@ -15,9 +21,10 @@ type SensitiveDataScannerRule struct {
 	// Sensitive Data Scanner rule type.
 	Type *SensitiveDataScannerRuleType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerRule instantiates a new SensitiveDataScannerRule object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewSensitiveDataScannerRuleWithDefaults() *SensitiveDataScannerRule {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRule) GetId() string {
 	if o == nil || o.Id == nil {
@@ -67,6 +73,7 @@ func (o *SensitiveDataScannerRule) HasId() bool {
 func (o *SensitiveDataScannerRule) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRule) GetType() SensitiveDataScannerRuleType {
@@ -96,6 +103,8 @@ func (o *SensitiveDataScannerRule) SetType(v SensitiveDataScannerRuleType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerRule) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -118,7 +127,7 @@ func (o SensitiveDataScannerRule) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerRule) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                       `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Type *SensitiveDataScannerRuleType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -126,14 +135,14 @@ func (o *SensitiveDataScannerRule) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Id = all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

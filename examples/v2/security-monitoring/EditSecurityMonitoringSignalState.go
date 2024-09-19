@@ -2,30 +2,31 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV2.SecurityMonitoringSignalStateUpdateRequest{
-		Data: datadogV2.SecurityMonitoringSignalStateUpdateData{
-			Attributes: datadogV2.SecurityMonitoringSignalStateUpdateAttributes{
-				ArchiveReason: datadogV2.SECURITYMONITORINGSIGNALARCHIVEREASON_NONE.Ptr(),
-				State:         datadogV2.SECURITYMONITORINGSIGNALSTATE_OPEN,
-			},
-		},
-	}
+Data: datadogV2.SecurityMonitoringSignalStateUpdateData{
+Attributes: datadogV2.SecurityMonitoringSignalStateUpdateAttributes{
+ArchiveReason: datadogV2.SECURITYMONITORINGSIGNALARCHIVEREASON_NONE.Ptr(),
+State: datadogV2.SECURITYMONITORINGSIGNALSTATE_OPEN,
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.EditSecurityMonitoringSignalState(ctx, "AQAAAYG1bl5K4HuUewAAAABBWUcxYmw1S0FBQmt2RmhRN0V4ZUVnQUE", body)
+	resp, r, err := api.EditSecurityMonitoringSignalState(ctx, "AQAAAYG1bl5K4HuUewAAAABBWUcxYmw1S0FBQmt2RmhRN0V4ZUVnQUE", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.EditSecurityMonitoringSignalState`: %v\n", err)

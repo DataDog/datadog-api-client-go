@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsLocalVariableParsingOptionsType Property of the Synthetic Test Response to extract into a local variable.
 type SyntheticsLocalVariableParsingOptionsType string
 
 // List of SyntheticsLocalVariableParsingOptionsType.
 const (
-	SYNTHETICSLOCALVARIABLEPARSINGOPTIONSTYPE_GRPC_MESSAGE     SyntheticsLocalVariableParsingOptionsType = "grpc_message"
-	SYNTHETICSLOCALVARIABLEPARSINGOPTIONSTYPE_GRPC_METADATA    SyntheticsLocalVariableParsingOptionsType = "grpc_metadata"
-	SYNTHETICSLOCALVARIABLEPARSINGOPTIONSTYPE_HTTP_BODY        SyntheticsLocalVariableParsingOptionsType = "http_body"
-	SYNTHETICSLOCALVARIABLEPARSINGOPTIONSTYPE_HTTP_HEADER      SyntheticsLocalVariableParsingOptionsType = "http_header"
+	SYNTHETICSLOCALVARIABLEPARSINGOPTIONSTYPE_GRPC_MESSAGE SyntheticsLocalVariableParsingOptionsType = "grpc_message"
+	SYNTHETICSLOCALVARIABLEPARSINGOPTIONSTYPE_GRPC_METADATA SyntheticsLocalVariableParsingOptionsType = "grpc_metadata"
+	SYNTHETICSLOCALVARIABLEPARSINGOPTIONSTYPE_HTTP_BODY SyntheticsLocalVariableParsingOptionsType = "http_body"
+	SYNTHETICSLOCALVARIABLEPARSINGOPTIONSTYPE_HTTP_HEADER SyntheticsLocalVariableParsingOptionsType = "http_header"
 	SYNTHETICSLOCALVARIABLEPARSINGOPTIONSTYPE_HTTP_STATUS_CODE SyntheticsLocalVariableParsingOptionsType = "http_status_code"
 )
 

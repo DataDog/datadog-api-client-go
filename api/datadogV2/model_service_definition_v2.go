@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionV2 Service definition V2 for providing service metadata and integrations.
 type ServiceDefinitionV2 struct {
@@ -35,9 +39,10 @@ type ServiceDefinitionV2 struct {
 	// Team that owns the service.
 	Team *string `json:"team,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceDefinitionV2 instantiates a new ServiceDefinitionV2 object.
 // This constructor will assign default values to properties that have it defined,
@@ -59,7 +64,6 @@ func NewServiceDefinitionV2WithDefaults() *ServiceDefinitionV2 {
 	this.SchemaVersion = schemaVersion
 	return &this
 }
-
 // GetContacts returns the Contacts field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2) GetContacts() []ServiceDefinitionV2Contact {
 	if o == nil || o.Contacts == nil {
@@ -88,6 +92,7 @@ func (o *ServiceDefinitionV2) SetContacts(v []ServiceDefinitionV2Contact) {
 	o.Contacts = v
 }
 
+
 // GetDdService returns the DdService field value.
 func (o *ServiceDefinitionV2) GetDdService() string {
 	if o == nil {
@@ -110,6 +115,7 @@ func (o *ServiceDefinitionV2) GetDdServiceOk() (*string, bool) {
 func (o *ServiceDefinitionV2) SetDdService(v string) {
 	o.DdService = v
 }
+
 
 // GetDdTeam returns the DdTeam field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2) GetDdTeam() string {
@@ -139,6 +145,7 @@ func (o *ServiceDefinitionV2) SetDdTeam(v string) {
 	o.DdTeam = &v
 }
 
+
 // GetDocs returns the Docs field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2) GetDocs() []ServiceDefinitionV2Doc {
 	if o == nil || o.Docs == nil {
@@ -166,6 +173,7 @@ func (o *ServiceDefinitionV2) HasDocs() bool {
 func (o *ServiceDefinitionV2) SetDocs(v []ServiceDefinitionV2Doc) {
 	o.Docs = v
 }
+
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2) GetExtensions() map[string]interface{} {
@@ -195,6 +203,7 @@ func (o *ServiceDefinitionV2) SetExtensions(v map[string]interface{}) {
 	o.Extensions = v
 }
 
+
 // GetIntegrations returns the Integrations field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2) GetIntegrations() ServiceDefinitionV2Integrations {
 	if o == nil || o.Integrations == nil {
@@ -222,6 +231,7 @@ func (o *ServiceDefinitionV2) HasIntegrations() bool {
 func (o *ServiceDefinitionV2) SetIntegrations(v ServiceDefinitionV2Integrations) {
 	o.Integrations = &v
 }
+
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2) GetLinks() []ServiceDefinitionV2Link {
@@ -251,6 +261,7 @@ func (o *ServiceDefinitionV2) SetLinks(v []ServiceDefinitionV2Link) {
 	o.Links = v
 }
 
+
 // GetRepos returns the Repos field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2) GetRepos() []ServiceDefinitionV2Repo {
 	if o == nil || o.Repos == nil {
@@ -279,6 +290,7 @@ func (o *ServiceDefinitionV2) SetRepos(v []ServiceDefinitionV2Repo) {
 	o.Repos = v
 }
 
+
 // GetSchemaVersion returns the SchemaVersion field value.
 func (o *ServiceDefinitionV2) GetSchemaVersion() ServiceDefinitionV2Version {
 	if o == nil {
@@ -301,6 +313,7 @@ func (o *ServiceDefinitionV2) GetSchemaVersionOk() (*ServiceDefinitionV2Version,
 func (o *ServiceDefinitionV2) SetSchemaVersion(v ServiceDefinitionV2Version) {
 	o.SchemaVersion = v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2) GetTags() []string {
@@ -330,6 +343,7 @@ func (o *ServiceDefinitionV2) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTeam returns the Team field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2) GetTeam() string {
 	if o == nil || o.Team == nil {
@@ -357,6 +371,8 @@ func (o *ServiceDefinitionV2) HasTeam() bool {
 func (o *ServiceDefinitionV2) SetTeam(v string) {
 	o.Team = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionV2) MarshalJSON() ([]byte, error) {
@@ -403,17 +419,17 @@ func (o ServiceDefinitionV2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV2) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Contacts      []ServiceDefinitionV2Contact     `json:"contacts,omitempty"`
-		DdService     *string                          `json:"dd-service"`
-		DdTeam        *string                          `json:"dd-team,omitempty"`
-		Docs          []ServiceDefinitionV2Doc         `json:"docs,omitempty"`
-		Extensions    map[string]interface{}           `json:"extensions,omitempty"`
-		Integrations  *ServiceDefinitionV2Integrations `json:"integrations,omitempty"`
-		Links         []ServiceDefinitionV2Link        `json:"links,omitempty"`
-		Repos         []ServiceDefinitionV2Repo        `json:"repos,omitempty"`
-		SchemaVersion *ServiceDefinitionV2Version      `json:"schema-version"`
-		Tags          []string                         `json:"tags,omitempty"`
-		Team          *string                          `json:"team,omitempty"`
+		Contacts []ServiceDefinitionV2Contact `json:"contacts,omitempty"`
+		DdService *string `json:"dd-service"`
+		DdTeam *string `json:"dd-team,omitempty"`
+		Docs []ServiceDefinitionV2Doc `json:"docs,omitempty"`
+		Extensions map[string]interface{} `json:"extensions,omitempty"`
+		Integrations *ServiceDefinitionV2Integrations `json:"integrations,omitempty"`
+		Links []ServiceDefinitionV2Link `json:"links,omitempty"`
+		Repos []ServiceDefinitionV2Repo `json:"repos,omitempty"`
+		SchemaVersion *ServiceDefinitionV2Version `json:"schema-version"`
+		Tags []string `json:"tags,omitempty"`
+		Team *string `json:"team,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -426,7 +442,7 @@ func (o *ServiceDefinitionV2) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"contacts", "dd-service", "dd-team", "docs", "extensions", "integrations", "links", "repos", "schema-version", "tags", "team"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "contacts", "dd-service", "dd-team", "docs", "extensions", "integrations", "links", "repos", "schema-version", "tags", "team",  })
 	} else {
 		return err
 	}
@@ -437,7 +453,7 @@ func (o *ServiceDefinitionV2) UnmarshalJSON(bytes []byte) (err error) {
 	o.DdTeam = all.DdTeam
 	o.Docs = all.Docs
 	o.Extensions = all.Extensions
-	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Integrations = all.Integrations

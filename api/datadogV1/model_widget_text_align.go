@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetTextAlign How to align the text on the widget.
 type WidgetTextAlign string
@@ -16,8 +20,8 @@ type WidgetTextAlign string
 // List of WidgetTextAlign.
 const (
 	WIDGETTEXTALIGN_CENTER WidgetTextAlign = "center"
-	WIDGETTEXTALIGN_LEFT   WidgetTextAlign = "left"
-	WIDGETTEXTALIGN_RIGHT  WidgetTextAlign = "right"
+	WIDGETTEXTALIGN_LEFT WidgetTextAlign = "left"
+	WIDGETTEXTALIGN_RIGHT WidgetTextAlign = "right"
 )
 
 var allowedWidgetTextAlignEnumValues = []WidgetTextAlign{

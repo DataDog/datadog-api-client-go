@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HostMuteSettings Combination of settings to mute a host.
 type HostMuteSettings struct {
@@ -17,9 +23,10 @@ type HostMuteSettings struct {
 	// If true and the host is already muted, replaces existing host mute settings.
 	Override *bool `json:"override,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHostMuteSettings instantiates a new HostMuteSettings object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewHostMuteSettingsWithDefaults() *HostMuteSettings {
 	this := HostMuteSettings{}
 	return &this
 }
-
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *HostMuteSettings) GetEnd() int64 {
 	if o == nil || o.End == nil {
@@ -65,6 +71,7 @@ func (o *HostMuteSettings) HasEnd() bool {
 func (o *HostMuteSettings) SetEnd(v int64) {
 	o.End = &v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *HostMuteSettings) GetMessage() string {
@@ -94,6 +101,7 @@ func (o *HostMuteSettings) SetMessage(v string) {
 	o.Message = &v
 }
 
+
 // GetOverride returns the Override field value if set, zero value otherwise.
 func (o *HostMuteSettings) GetOverride() bool {
 	if o == nil || o.Override == nil {
@@ -122,6 +130,8 @@ func (o *HostMuteSettings) SetOverride(v bool) {
 	o.Override = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o HostMuteSettings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o HostMuteSettings) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HostMuteSettings) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		End      *int64  `json:"end,omitempty"`
-		Message  *string `json:"message,omitempty"`
-		Override *bool   `json:"override,omitempty"`
+		End *int64 `json:"end,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Override *bool `json:"override,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"end", "message", "override"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "end", "message", "override",  })
 	} else {
 		return err
 	}

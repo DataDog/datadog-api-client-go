@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsPatchTestOperation A single [JSON Patch](https://jsonpatch.com) operation to perform on the test
 type SyntheticsPatchTestOperation struct {
@@ -17,9 +23,10 @@ type SyntheticsPatchTestOperation struct {
 	// A value to use in a [JSON Patch](https://jsonpatch.com) operation
 	Value interface{} `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsPatchTestOperation instantiates a new SyntheticsPatchTestOperation object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewSyntheticsPatchTestOperationWithDefaults() *SyntheticsPatchTestOperation
 	this := SyntheticsPatchTestOperation{}
 	return &this
 }
-
 // GetOp returns the Op field value if set, zero value otherwise.
 func (o *SyntheticsPatchTestOperation) GetOp() SyntheticsPatchTestOperationName {
 	if o == nil || o.Op == nil {
@@ -65,6 +71,7 @@ func (o *SyntheticsPatchTestOperation) HasOp() bool {
 func (o *SyntheticsPatchTestOperation) SetOp(v SyntheticsPatchTestOperationName) {
 	o.Op = &v
 }
+
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *SyntheticsPatchTestOperation) GetPath() string {
@@ -94,6 +101,7 @@ func (o *SyntheticsPatchTestOperation) SetPath(v string) {
 	o.Path = &v
 }
 
+
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *SyntheticsPatchTestOperation) GetValue() interface{} {
 	if o == nil || o.Value == nil {
@@ -122,6 +130,8 @@ func (o *SyntheticsPatchTestOperation) SetValue(v interface{}) {
 	o.Value = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsPatchTestOperation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,22 +157,22 @@ func (o SyntheticsPatchTestOperation) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsPatchTestOperation) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Op    *SyntheticsPatchTestOperationName `json:"op,omitempty"`
-		Path  *string                           `json:"path,omitempty"`
-		Value interface{}                       `json:"value,omitempty"`
+		Op *SyntheticsPatchTestOperationName `json:"op,omitempty"`
+		Path *string `json:"path,omitempty"`
+		Value interface{} `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"op", "path", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "op", "path", "value",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Op != nil && !all.Op.IsValid() {
+	if all.Op != nil &&!all.Op.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Op = all.Op

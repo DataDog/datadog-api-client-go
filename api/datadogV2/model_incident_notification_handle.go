@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNotificationHandle A notification handle that will be notified at incident creation.
 type IncidentNotificationHandle struct {
@@ -15,9 +21,10 @@ type IncidentNotificationHandle struct {
 	// The handle used for the notification. This includes an email address, Slack channel, or workflow.
 	Handle *string `json:"handle,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentNotificationHandle instantiates a new IncidentNotificationHandle object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewIncidentNotificationHandleWithDefaults() *IncidentNotificationHandle {
 	this := IncidentNotificationHandle{}
 	return &this
 }
-
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *IncidentNotificationHandle) GetDisplayName() string {
 	if o == nil || o.DisplayName == nil {
@@ -63,6 +69,7 @@ func (o *IncidentNotificationHandle) HasDisplayName() bool {
 func (o *IncidentNotificationHandle) SetDisplayName(v string) {
 	o.DisplayName = &v
 }
+
 
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *IncidentNotificationHandle) GetHandle() string {
@@ -92,6 +99,8 @@ func (o *IncidentNotificationHandle) SetHandle(v string) {
 	o.Handle = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentNotificationHandle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o IncidentNotificationHandle) MarshalJSON() ([]byte, error) {
 func (o *IncidentNotificationHandle) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DisplayName *string `json:"display_name,omitempty"`
-		Handle      *string `json:"handle,omitempty"`
+		Handle *string `json:"handle,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "handle"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "display_name", "handle",  })
 	} else {
 		return err
 	}

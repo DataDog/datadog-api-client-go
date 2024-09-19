@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsBrowserTestResultFailure The browser test failure details.
 type SyntheticsBrowserTestResultFailure struct {
@@ -15,9 +21,10 @@ type SyntheticsBrowserTestResultFailure struct {
 	// The browser test error message.
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsBrowserTestResultFailure instantiates a new SyntheticsBrowserTestResultFailure object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSyntheticsBrowserTestResultFailureWithDefaults() *SyntheticsBrowserTestR
 	this := SyntheticsBrowserTestResultFailure{}
 	return &this
 }
-
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultFailure) GetCode() SyntheticsBrowserTestFailureCode {
 	if o == nil || o.Code == nil {
@@ -63,6 +69,7 @@ func (o *SyntheticsBrowserTestResultFailure) HasCode() bool {
 func (o *SyntheticsBrowserTestResultFailure) SetCode(v SyntheticsBrowserTestFailureCode) {
 	o.Code = &v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultFailure) GetMessage() string {
@@ -92,6 +99,8 @@ func (o *SyntheticsBrowserTestResultFailure) SetMessage(v string) {
 	o.Message = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBrowserTestResultFailure) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,21 +123,21 @@ func (o SyntheticsBrowserTestResultFailure) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBrowserTestResultFailure) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Code    *SyntheticsBrowserTestFailureCode `json:"code,omitempty"`
-		Message *string                           `json:"message,omitempty"`
+		Code *SyntheticsBrowserTestFailureCode `json:"code,omitempty"`
+		Message *string `json:"message,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"code", "message"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "code", "message",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Code != nil && !all.Code.IsValid() {
+	if all.Code != nil &&!all.Code.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Code = all.Code

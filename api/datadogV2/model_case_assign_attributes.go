@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CaseAssignAttributes Case assign attributes
 type CaseAssignAttributes struct {
 	// Assignee's UUID
 	AssigneeId string `json:"assignee_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCaseAssignAttributes instantiates a new CaseAssignAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewCaseAssignAttributesWithDefaults() *CaseAssignAttributes {
 	this := CaseAssignAttributes{}
 	return &this
 }
-
 // GetAssigneeId returns the AssigneeId field value.
 func (o *CaseAssignAttributes) GetAssigneeId() string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *CaseAssignAttributes) GetAssigneeIdOk() (*string, bool) {
 func (o *CaseAssignAttributes) SetAssigneeId(v string) {
 	o.AssigneeId = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CaseAssignAttributes) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *CaseAssignAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assignee_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "assignee_id",  })
 	} else {
 		return err
 	}

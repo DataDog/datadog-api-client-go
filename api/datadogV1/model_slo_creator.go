@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOCreator The creator of the SLO
 type SLOCreator struct {
@@ -17,9 +23,10 @@ type SLOCreator struct {
 	// Name of the creator.
 	Name datadog.NullableString `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSLOCreator instantiates a new SLOCreator object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewSLOCreatorWithDefaults() *SLOCreator {
 	this := SLOCreator{}
 	return &this
 }
-
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *SLOCreator) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -65,6 +71,7 @@ func (o *SLOCreator) HasEmail() bool {
 func (o *SLOCreator) SetEmail(v string) {
 	o.Email = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SLOCreator) GetId() int64 {
@@ -94,6 +101,7 @@ func (o *SLOCreator) SetId(v int64) {
 	o.Id = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOCreator) GetName() string {
 	if o == nil || o.Name.Get() == nil {
@@ -107,7 +115,7 @@ func (o *SLOCreator) GetName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOCreator) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Name.Get(), o.Name.IsSet()
@@ -122,7 +130,6 @@ func (o *SLOCreator) HasName() bool {
 func (o *SLOCreator) SetName(v string) {
 	o.Name.Set(&v)
 }
-
 // SetNameNil sets the value for Name to be an explicit nil.
 func (o *SLOCreator) SetNameNil() {
 	o.Name.Set(nil)
@@ -132,6 +139,8 @@ func (o *SLOCreator) SetNameNil() {
 func (o *SLOCreator) UnsetName() {
 	o.Name.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOCreator) MarshalJSON() ([]byte, error) {
@@ -158,16 +167,16 @@ func (o SLOCreator) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOCreator) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Email *string                `json:"email,omitempty"`
-		Id    *int64                 `json:"id,omitempty"`
-		Name  datadog.NullableString `json:"name,omitempty"`
+		Email *string `json:"email,omitempty"`
+		Id *int64 `json:"id,omitempty"`
+		Name datadog.NullableString `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"email", "id", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "email", "id", "name",  })
 	} else {
 		return err
 	}
@@ -181,7 +190,6 @@ func (o *SLOCreator) UnmarshalJSON(bytes []byte) (err error) {
 
 	return nil
 }
-
 // NullableSLOCreator handles when a null is used for SLOCreator.
 type NullableSLOCreator struct {
 	value *SLOCreator

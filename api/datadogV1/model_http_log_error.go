@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HTTPLogError Invalid query performed.
 type HTTPLogError struct {
@@ -17,9 +21,10 @@ type HTTPLogError struct {
 	// Error message.
 	Message string `json:"message"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHTTPLogError instantiates a new HTTPLogError object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewHTTPLogErrorWithDefaults() *HTTPLogError {
 	this := HTTPLogError{}
 	return &this
 }
-
 // GetCode returns the Code field value.
 func (o *HTTPLogError) GetCode() int32 {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *HTTPLogError) GetCodeOk() (*int32, bool) {
 func (o *HTTPLogError) SetCode(v int32) {
 	o.Code = v
 }
+
 
 // GetMessage returns the Message field value.
 func (o *HTTPLogError) GetMessage() string {
@@ -86,6 +91,8 @@ func (o *HTTPLogError) SetMessage(v string) {
 	o.Message = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o HTTPLogError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o HTTPLogError) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Code    *int32  `json:"code"`
+		Code *int32 `json:"code"`
 		Message *string `json:"message"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"code", "message"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "code", "message",  })
 	} else {
 		return err
 	}

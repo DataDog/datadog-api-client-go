@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FastlyAccounResponseAttributes Attributes object of a Fastly account.
 type FastlyAccounResponseAttributes struct {
@@ -17,9 +21,10 @@ type FastlyAccounResponseAttributes struct {
 	// A list of services belonging to the parent account.
 	Services []FastlyService `json:"services,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFastlyAccounResponseAttributes instantiates a new FastlyAccounResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewFastlyAccounResponseAttributesWithDefaults() *FastlyAccounResponseAttrib
 	this := FastlyAccounResponseAttributes{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *FastlyAccounResponseAttributes) GetName() string {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *FastlyAccounResponseAttributes) GetNameOk() (*string, bool) {
 func (o *FastlyAccounResponseAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetServices returns the Services field value if set, zero value otherwise.
 func (o *FastlyAccounResponseAttributes) GetServices() []FastlyService {
@@ -90,6 +95,8 @@ func (o *FastlyAccounResponseAttributes) SetServices(v []FastlyService) {
 	o.Services = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FastlyAccounResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,7 +117,7 @@ func (o FastlyAccounResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FastlyAccounResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name     *string         `json:"name"`
+		Name *string `json:"name"`
 		Services []FastlyService `json:"services,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -121,7 +128,7 @@ func (o *FastlyAccounResponseAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "services"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "services",  })
 	} else {
 		return err
 	}

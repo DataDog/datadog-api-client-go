@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerTextReplacementType Type of the replacement text. None means no replacement.
 // hash means the data will be stubbed. replacement_string means that
@@ -20,11 +24,11 @@ type SensitiveDataScannerTextReplacementType string
 
 // List of SensitiveDataScannerTextReplacementType.
 const (
-	SENSITIVEDATASCANNERTEXTREPLACEMENTTYPE_NONE                               SensitiveDataScannerTextReplacementType = "none"
-	SENSITIVEDATASCANNERTEXTREPLACEMENTTYPE_HASH                               SensitiveDataScannerTextReplacementType = "hash"
-	SENSITIVEDATASCANNERTEXTREPLACEMENTTYPE_REPLACEMENT_STRING                 SensitiveDataScannerTextReplacementType = "replacement_string"
+	SENSITIVEDATASCANNERTEXTREPLACEMENTTYPE_NONE SensitiveDataScannerTextReplacementType = "none"
+	SENSITIVEDATASCANNERTEXTREPLACEMENTTYPE_HASH SensitiveDataScannerTextReplacementType = "hash"
+	SENSITIVEDATASCANNERTEXTREPLACEMENTTYPE_REPLACEMENT_STRING SensitiveDataScannerTextReplacementType = "replacement_string"
 	SENSITIVEDATASCANNERTEXTREPLACEMENTTYPE_PARTIAL_REPLACEMENT_FROM_BEGINNING SensitiveDataScannerTextReplacementType = "partial_replacement_from_beginning"
-	SENSITIVEDATASCANNERTEXTREPLACEMENTTYPE_PARTIAL_REPLACEMENT_FROM_END       SensitiveDataScannerTextReplacementType = "partial_replacement_from_end"
+	SENSITIVEDATASCANNERTEXTREPLACEMENTTYPE_PARTIAL_REPLACEMENT_FROM_END SensitiveDataScannerTextReplacementType = "partial_replacement_from_end"
 )
 
 var allowedSensitiveDataScannerTextReplacementTypeEnumValues = []SensitiveDataScannerTextReplacementType{

@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AzureUCConfigPatchRequestAttributes Attributes for Azure config Patch Request.
 type AzureUCConfigPatchRequestAttributes struct {
 	// Whether or not the Cloud Cost Management account is enabled.
 	IsEnabled bool `json:"is_enabled"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAzureUCConfigPatchRequestAttributes instantiates a new AzureUCConfigPatchRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewAzureUCConfigPatchRequestAttributesWithDefaults() *AzureUCConfigPatchReq
 	this := AzureUCConfigPatchRequestAttributes{}
 	return &this
 }
-
 // GetIsEnabled returns the IsEnabled field value.
 func (o *AzureUCConfigPatchRequestAttributes) GetIsEnabled() bool {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *AzureUCConfigPatchRequestAttributes) GetIsEnabledOk() (*bool, bool) {
 func (o *AzureUCConfigPatchRequestAttributes) SetIsEnabled(v bool) {
 	o.IsEnabled = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AzureUCConfigPatchRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *AzureUCConfigPatchRequestAttributes) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"is_enabled"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "is_enabled",  })
 	} else {
 		return err
 	}

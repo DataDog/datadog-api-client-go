@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceLevelObjectiveQuery A metric-based SLO. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
 // to be used because this will sum up all request counts instead of averaging them, or taking the max or
@@ -19,9 +23,10 @@ type ServiceLevelObjectiveQuery struct {
 	// A Datadog metric query for good events.
 	Numerator string `json:"numerator"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceLevelObjectiveQuery instantiates a new ServiceLevelObjectiveQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewServiceLevelObjectiveQueryWithDefaults() *ServiceLevelObjectiveQuery {
 	this := ServiceLevelObjectiveQuery{}
 	return &this
 }
-
 // GetDenominator returns the Denominator field value.
 func (o *ServiceLevelObjectiveQuery) GetDenominator() string {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *ServiceLevelObjectiveQuery) GetDenominatorOk() (*string, bool) {
 func (o *ServiceLevelObjectiveQuery) SetDenominator(v string) {
 	o.Denominator = v
 }
+
 
 // GetNumerator returns the Numerator field value.
 func (o *ServiceLevelObjectiveQuery) GetNumerator() string {
@@ -88,6 +93,8 @@ func (o *ServiceLevelObjectiveQuery) SetNumerator(v string) {
 	o.Numerator = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o ServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
 func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Denominator *string `json:"denominator"`
-		Numerator   *string `json:"numerator"`
+		Numerator *string `json:"numerator"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"denominator", "numerator"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "denominator", "numerator",  })
 	} else {
 		return err
 	}

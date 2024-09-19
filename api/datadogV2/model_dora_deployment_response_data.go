@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DORADeploymentResponseData The JSON:API data.
 type DORADeploymentResponseData struct {
@@ -17,9 +21,10 @@ type DORADeploymentResponseData struct {
 	// JSON:API type for DORA deployment events.
 	Type *DORADeploymentType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDORADeploymentResponseData instantiates a new DORADeploymentResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewDORADeploymentResponseDataWithDefaults() *DORADeploymentResponseData {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *DORADeploymentResponseData) GetId() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *DORADeploymentResponseData) GetIdOk() (*string, bool) {
 func (o *DORADeploymentResponseData) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *DORADeploymentResponseData) GetType() DORADeploymentType {
@@ -94,6 +99,8 @@ func (o *DORADeploymentResponseData) SetType(v DORADeploymentType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DORADeploymentResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +121,7 @@ func (o DORADeploymentResponseData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DORADeploymentResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string             `json:"id"`
+		Id *string `json:"id"`
 		Type *DORADeploymentType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -125,14 +132,14 @@ func (o *DORADeploymentResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Id = *all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

@@ -2,29 +2,30 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV1.User{
-		AccessRole: *datadogV1.NewNullableAccessRole(nil),
-		Disabled:   datadog.PtrBool(false),
-		Email:      datadog.PtrString("test@datadoghq.com"),
-		Handle:     datadog.PtrString("test@datadoghq.com"),
-		Name:       datadog.PtrString("test user"),
-	}
+AccessRole: *datadogV1.NewNullableAccessRole(nil),
+Disabled: datadog.PtrBool(false),
+Email: datadog.PtrString("test@datadoghq.com"),
+Handle: datadog.PtrString("test@datadoghq.com"),
+Name: datadog.PtrString("test user"),
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewUsersApi(apiClient)
-	resp, r, err := api.CreateUser(ctx, body)
+	resp, r, err := api.CreateUser(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateUser`: %v\n", err)

@@ -2,27 +2,31 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GetTeamMembershipsSort Specifies the order of returned team memberships
 type GetTeamMembershipsSort string
 
 // List of GetTeamMembershipsSort.
 const (
-	GETTEAMMEMBERSHIPSSORT_MANAGER_NAME  GetTeamMembershipsSort = "manager_name"
+	GETTEAMMEMBERSHIPSSORT_MANAGER_NAME GetTeamMembershipsSort = "manager_name"
 	GETTEAMMEMBERSHIPSSORT__MANAGER_NAME GetTeamMembershipsSort = "-manager_name"
-	GETTEAMMEMBERSHIPSSORT_NAME          GetTeamMembershipsSort = "name"
-	GETTEAMMEMBERSHIPSSORT__NAME         GetTeamMembershipsSort = "-name"
-	GETTEAMMEMBERSHIPSSORT_HANDLE        GetTeamMembershipsSort = "handle"
-	GETTEAMMEMBERSHIPSSORT__HANDLE       GetTeamMembershipsSort = "-handle"
-	GETTEAMMEMBERSHIPSSORT_EMAIL         GetTeamMembershipsSort = "email"
-	GETTEAMMEMBERSHIPSSORT__EMAIL        GetTeamMembershipsSort = "-email"
+	GETTEAMMEMBERSHIPSSORT_NAME GetTeamMembershipsSort = "name"
+	GETTEAMMEMBERSHIPSSORT__NAME GetTeamMembershipsSort = "-name"
+	GETTEAMMEMBERSHIPSSORT_HANDLE GetTeamMembershipsSort = "handle"
+	GETTEAMMEMBERSHIPSSORT__HANDLE GetTeamMembershipsSort = "-handle"
+	GETTEAMMEMBERSHIPSSORT_EMAIL GetTeamMembershipsSort = "email"
+	GETTEAMMEMBERSHIPSSORT__EMAIL GetTeamMembershipsSort = "-email"
 )
 
 var allowedGetTeamMembershipsSortEnumValues = []GetTeamMembershipsSort{

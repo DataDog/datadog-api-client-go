@@ -2,21 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Widget Information about widget.
 //
 // **Note**: The `layout` property is required for widgets in dashboards with `free` `layout_type`.
-//
-//	For the **new dashboard layout**, the `layout` property depends on the `reflow_type` of the dashboard.
-//	- If `reflow_type` is `fixed`, `layout` is required.
-//	- If `reflow_type` is `auto`, `layout` should not be set.
+//       For the **new dashboard layout**, the `layout` property depends on the `reflow_type` of the dashboard.
+//       - If `reflow_type` is `fixed`, `layout` is required.
+//       - If `reflow_type` is `auto`, `layout` should not be set.
 type Widget struct {
 	// [Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).
 	Definition WidgetDefinition `json:"definition"`
@@ -25,9 +28,10 @@ type Widget struct {
 	// The layout for a widget on a `free` or **new dashboard layout** dashboard.
 	Layout *WidgetLayout `json:"layout,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWidget instantiates a new Widget object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +50,6 @@ func NewWidgetWithDefaults() *Widget {
 	this := Widget{}
 	return &this
 }
-
 // GetDefinition returns the Definition field value.
 func (o *Widget) GetDefinition() WidgetDefinition {
 	if o == nil {
@@ -69,6 +72,7 @@ func (o *Widget) GetDefinitionOk() (*WidgetDefinition, bool) {
 func (o *Widget) SetDefinition(v WidgetDefinition) {
 	o.Definition = v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Widget) GetId() int64 {
@@ -98,6 +102,7 @@ func (o *Widget) SetId(v int64) {
 	o.Id = &v
 }
 
+
 // GetLayout returns the Layout field value if set, zero value otherwise.
 func (o *Widget) GetLayout() WidgetLayout {
 	if o == nil || o.Layout == nil {
@@ -126,6 +131,8 @@ func (o *Widget) SetLayout(v WidgetLayout) {
 	o.Layout = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o Widget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -150,8 +157,8 @@ func (o Widget) MarshalJSON() ([]byte, error) {
 func (o *Widget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Definition *WidgetDefinition `json:"definition"`
-		Id         *int64            `json:"id,omitempty"`
-		Layout     *WidgetLayout     `json:"layout,omitempty"`
+		Id *int64 `json:"id,omitempty"`
+		Layout *WidgetLayout `json:"layout,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -161,7 +168,7 @@ func (o *Widget) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"definition", "id", "layout"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "definition", "id", "layout",  })
 	} else {
 		return err
 	}
@@ -169,7 +176,7 @@ func (o *Widget) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Definition = *all.Definition
 	o.Id = all.Id
-	if all.Layout != nil && all.Layout.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Layout != nil && all.Layout.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Layout = all.Layout

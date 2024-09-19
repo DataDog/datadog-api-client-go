@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SpansAggregateSort A sort rule.
 type SpansAggregateSort struct {
@@ -19,9 +25,10 @@ type SpansAggregateSort struct {
 	// The type of sorting algorithm.
 	Type *SpansAggregateSortType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSpansAggregateSort instantiates a new SpansAggregateSort object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +50,6 @@ func NewSpansAggregateSortWithDefaults() *SpansAggregateSort {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
 func (o *SpansAggregateSort) GetAggregation() SpansAggregationFunction {
 	if o == nil || o.Aggregation == nil {
@@ -71,6 +77,7 @@ func (o *SpansAggregateSort) HasAggregation() bool {
 func (o *SpansAggregateSort) SetAggregation(v SpansAggregationFunction) {
 	o.Aggregation = &v
 }
+
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *SpansAggregateSort) GetMetric() string {
@@ -100,6 +107,7 @@ func (o *SpansAggregateSort) SetMetric(v string) {
 	o.Metric = &v
 }
 
+
 // GetOrder returns the Order field value if set, zero value otherwise.
 func (o *SpansAggregateSort) GetOrder() SpansSortOrder {
 	if o == nil || o.Order == nil {
@@ -128,6 +136,7 @@ func (o *SpansAggregateSort) SetOrder(v SpansSortOrder) {
 	o.Order = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SpansAggregateSort) GetType() SpansAggregateSortType {
 	if o == nil || o.Type == nil {
@@ -155,6 +164,8 @@ func (o *SpansAggregateSort) HasType() bool {
 func (o *SpansAggregateSort) SetType(v SpansAggregateSortType) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SpansAggregateSort) MarshalJSON() ([]byte, error) {
@@ -185,33 +196,33 @@ func (o SpansAggregateSort) MarshalJSON() ([]byte, error) {
 func (o *SpansAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Aggregation *SpansAggregationFunction `json:"aggregation,omitempty"`
-		Metric      *string                   `json:"metric,omitempty"`
-		Order       *SpansSortOrder           `json:"order,omitempty"`
-		Type        *SpansAggregateSortType   `json:"type,omitempty"`
+		Metric *string `json:"metric,omitempty"`
+		Order *SpansSortOrder `json:"order,omitempty"`
+		Type *SpansAggregateSortType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "metric", "order", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation", "metric", "order", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Aggregation != nil && !all.Aggregation.IsValid() {
+	if all.Aggregation != nil &&!all.Aggregation.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Aggregation = all.Aggregation
 	}
 	o.Metric = all.Metric
-	if all.Order != nil && !all.Order.IsValid() {
+	if all.Order != nil &&!all.Order.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Order = all.Order
 	}
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSRelatedAccountAttributes Attributes for an AWS related account.
 type AWSRelatedAccountAttributes struct {
@@ -15,9 +21,10 @@ type AWSRelatedAccountAttributes struct {
 	// The name of the AWS account.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSRelatedAccountAttributes instantiates a new AWSRelatedAccountAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewAWSRelatedAccountAttributesWithDefaults() *AWSRelatedAccountAttributes {
 	this := AWSRelatedAccountAttributes{}
 	return &this
 }
-
 // GetHasDatadogIntegration returns the HasDatadogIntegration field value if set, zero value otherwise.
 func (o *AWSRelatedAccountAttributes) GetHasDatadogIntegration() bool {
 	if o == nil || o.HasDatadogIntegration == nil {
@@ -63,6 +69,7 @@ func (o *AWSRelatedAccountAttributes) HasHasDatadogIntegration() bool {
 func (o *AWSRelatedAccountAttributes) SetHasDatadogIntegration(v bool) {
 	o.HasDatadogIntegration = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *AWSRelatedAccountAttributes) GetName() string {
@@ -92,6 +99,8 @@ func (o *AWSRelatedAccountAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSRelatedAccountAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,15 +123,15 @@ func (o AWSRelatedAccountAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSRelatedAccountAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		HasDatadogIntegration *bool   `json:"has_datadog_integration,omitempty"`
-		Name                  *string `json:"name,omitempty"`
+		HasDatadogIntegration *bool `json:"has_datadog_integration,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"has_datadog_integration", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "has_datadog_integration", "name",  })
 	} else {
 		return err
 	}

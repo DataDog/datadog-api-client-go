@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestMonitorStatus The status of your Synthetic monitor.
 // * `O` for not triggered
@@ -19,8 +23,8 @@ type SyntheticsTestMonitorStatus int64
 // List of SyntheticsTestMonitorStatus.
 const (
 	SYNTHETICSTESTMONITORSTATUS_UNTRIGGERED SyntheticsTestMonitorStatus = 0
-	SYNTHETICSTESTMONITORSTATUS_TRIGGERED   SyntheticsTestMonitorStatus = 1
-	SYNTHETICSTESTMONITORSTATUS_NO_DATA     SyntheticsTestMonitorStatus = 2
+	SYNTHETICSTESTMONITORSTATUS_TRIGGERED SyntheticsTestMonitorStatus = 1
+	SYNTHETICSTESTMONITORSTATUS_NO_DATA SyntheticsTestMonitorStatus = 2
 )
 
 var allowedSyntheticsTestMonitorStatusEnumValues = []SyntheticsTestMonitorStatus{

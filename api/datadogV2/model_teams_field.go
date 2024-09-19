@@ -2,33 +2,37 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamsField Supported teams field.
 type TeamsField string
 
 // List of TeamsField.
 const (
-	TEAMSFIELD_ID                    TeamsField = "id"
-	TEAMSFIELD_NAME                  TeamsField = "name"
-	TEAMSFIELD_HANDLE                TeamsField = "handle"
-	TEAMSFIELD_SUMMARY               TeamsField = "summary"
-	TEAMSFIELD_DESCRIPTION           TeamsField = "description"
-	TEAMSFIELD_AVATAR                TeamsField = "avatar"
-	TEAMSFIELD_BANNER                TeamsField = "banner"
-	TEAMSFIELD_VISIBLE_MODULES       TeamsField = "visible_modules"
-	TEAMSFIELD_HIDDEN_MODULES        TeamsField = "hidden_modules"
-	TEAMSFIELD_CREATED_AT            TeamsField = "created_at"
-	TEAMSFIELD_MODIFIED_AT           TeamsField = "modified_at"
-	TEAMSFIELD_USER_COUNT            TeamsField = "user_count"
-	TEAMSFIELD_LINK_COUNT            TeamsField = "link_count"
-	TEAMSFIELD_TEAM_LINKS            TeamsField = "team_links"
+	TEAMSFIELD_ID TeamsField = "id"
+	TEAMSFIELD_NAME TeamsField = "name"
+	TEAMSFIELD_HANDLE TeamsField = "handle"
+	TEAMSFIELD_SUMMARY TeamsField = "summary"
+	TEAMSFIELD_DESCRIPTION TeamsField = "description"
+	TEAMSFIELD_AVATAR TeamsField = "avatar"
+	TEAMSFIELD_BANNER TeamsField = "banner"
+	TEAMSFIELD_VISIBLE_MODULES TeamsField = "visible_modules"
+	TEAMSFIELD_HIDDEN_MODULES TeamsField = "hidden_modules"
+	TEAMSFIELD_CREATED_AT TeamsField = "created_at"
+	TEAMSFIELD_MODIFIED_AT TeamsField = "modified_at"
+	TEAMSFIELD_USER_COUNT TeamsField = "user_count"
+	TEAMSFIELD_LINK_COUNT TeamsField = "link_count"
+	TEAMSFIELD_TEAM_LINKS TeamsField = "team_links"
 	TEAMSFIELD_USER_TEAM_PERMISSIONS TeamsField = "user_team_permissions"
 )
 

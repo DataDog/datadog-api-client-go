@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerRuleDeleteRequest Delete rule request.
 type SensitiveDataScannerRuleDeleteRequest struct {
 	// Meta payload containing information about the API.
 	Meta SensitiveDataScannerMetaVersionOnly `json:"meta"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerRuleDeleteRequest instantiates a new SensitiveDataScannerRuleDeleteRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewSensitiveDataScannerRuleDeleteRequestWithDefaults() *SensitiveDataScanne
 	this := SensitiveDataScannerRuleDeleteRequest{}
 	return &this
 }
-
 // GetMeta returns the Meta field value.
 func (o *SensitiveDataScannerRuleDeleteRequest) GetMeta() SensitiveDataScannerMetaVersionOnly {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *SensitiveDataScannerRuleDeleteRequest) GetMetaOk() (*SensitiveDataScann
 func (o *SensitiveDataScannerRuleDeleteRequest) SetMeta(v SensitiveDataScannerMetaVersionOnly) {
 	o.Meta = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerRuleDeleteRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *SensitiveDataScannerRuleDeleteRequest) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "meta",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorUpdateRequest Object describing a monitor update request.
 type MonitorUpdateRequest struct {
@@ -45,9 +49,10 @@ type MonitorUpdateRequest struct {
 	// The type of the monitor. For more information about `type`, see the [monitor options](https://docs.datadoghq.com/monitors/guide/monitor_api_options/) docs.
 	Type *MonitorType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorUpdateRequest instantiates a new MonitorUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -65,7 +70,6 @@ func NewMonitorUpdateRequestWithDefaults() *MonitorUpdateRequest {
 	this := MonitorUpdateRequest{}
 	return &this
 }
-
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetCreated() time.Time {
 	if o == nil || o.Created == nil {
@@ -93,6 +97,7 @@ func (o *MonitorUpdateRequest) HasCreated() bool {
 func (o *MonitorUpdateRequest) SetCreated(v time.Time) {
 	o.Created = &v
 }
+
 
 // GetCreator returns the Creator field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetCreator() Creator {
@@ -122,6 +127,7 @@ func (o *MonitorUpdateRequest) SetCreator(v Creator) {
 	o.Creator = &v
 }
 
+
 // GetDeleted returns the Deleted field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorUpdateRequest) GetDeleted() time.Time {
 	if o == nil || o.Deleted.Get() == nil {
@@ -135,7 +141,7 @@ func (o *MonitorUpdateRequest) GetDeleted() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorUpdateRequest) GetDeletedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Deleted.Get(), o.Deleted.IsSet()
@@ -150,7 +156,6 @@ func (o *MonitorUpdateRequest) HasDeleted() bool {
 func (o *MonitorUpdateRequest) SetDeleted(v time.Time) {
 	o.Deleted.Set(&v)
 }
-
 // SetDeletedNil sets the value for Deleted to be an explicit nil.
 func (o *MonitorUpdateRequest) SetDeletedNil() {
 	o.Deleted.Set(nil)
@@ -160,6 +165,7 @@ func (o *MonitorUpdateRequest) SetDeletedNil() {
 func (o *MonitorUpdateRequest) UnsetDeleted() {
 	o.Deleted.Unset()
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetId() int64 {
@@ -189,6 +195,7 @@ func (o *MonitorUpdateRequest) SetId(v int64) {
 	o.Id = &v
 }
 
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -216,6 +223,7 @@ func (o *MonitorUpdateRequest) HasMessage() bool {
 func (o *MonitorUpdateRequest) SetMessage(v string) {
 	o.Message = &v
 }
+
 
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetModified() time.Time {
@@ -245,6 +253,7 @@ func (o *MonitorUpdateRequest) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
+
 // GetMulti returns the Multi field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetMulti() bool {
 	if o == nil || o.Multi == nil {
@@ -272,6 +281,7 @@ func (o *MonitorUpdateRequest) HasMulti() bool {
 func (o *MonitorUpdateRequest) SetMulti(v bool) {
 	o.Multi = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetName() string {
@@ -301,6 +311,7 @@ func (o *MonitorUpdateRequest) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetOptions() MonitorOptions {
 	if o == nil || o.Options == nil {
@@ -328,6 +339,7 @@ func (o *MonitorUpdateRequest) HasOptions() bool {
 func (o *MonitorUpdateRequest) SetOptions(v MonitorOptions) {
 	o.Options = &v
 }
+
 
 // GetOverallState returns the OverallState field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetOverallState() MonitorOverallStates {
@@ -357,6 +369,7 @@ func (o *MonitorUpdateRequest) SetOverallState(v MonitorOverallStates) {
 	o.OverallState = &v
 }
 
+
 // GetPriority returns the Priority field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorUpdateRequest) GetPriority() int64 {
 	if o == nil || o.Priority.Get() == nil {
@@ -370,7 +383,7 @@ func (o *MonitorUpdateRequest) GetPriority() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorUpdateRequest) GetPriorityOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Priority.Get(), o.Priority.IsSet()
@@ -385,7 +398,6 @@ func (o *MonitorUpdateRequest) HasPriority() bool {
 func (o *MonitorUpdateRequest) SetPriority(v int64) {
 	o.Priority.Set(&v)
 }
-
 // SetPriorityNil sets the value for Priority to be an explicit nil.
 func (o *MonitorUpdateRequest) SetPriorityNil() {
 	o.Priority.Set(nil)
@@ -395,6 +407,7 @@ func (o *MonitorUpdateRequest) SetPriorityNil() {
 func (o *MonitorUpdateRequest) UnsetPriority() {
 	o.Priority.Unset()
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetQuery() string {
@@ -424,6 +437,7 @@ func (o *MonitorUpdateRequest) SetQuery(v string) {
 	o.Query = &v
 }
 
+
 // GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorUpdateRequest) GetRestrictedRoles() []string {
 	if o == nil || o.RestrictedRoles.Get() == nil {
@@ -437,7 +451,7 @@ func (o *MonitorUpdateRequest) GetRestrictedRoles() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorUpdateRequest) GetRestrictedRolesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.RestrictedRoles.Get(), o.RestrictedRoles.IsSet()
@@ -452,7 +466,6 @@ func (o *MonitorUpdateRequest) HasRestrictedRoles() bool {
 func (o *MonitorUpdateRequest) SetRestrictedRoles(v []string) {
 	o.RestrictedRoles.Set(&v)
 }
-
 // SetRestrictedRolesNil sets the value for RestrictedRoles to be an explicit nil.
 func (o *MonitorUpdateRequest) SetRestrictedRolesNil() {
 	o.RestrictedRoles.Set(nil)
@@ -462,6 +475,7 @@ func (o *MonitorUpdateRequest) SetRestrictedRolesNil() {
 func (o *MonitorUpdateRequest) UnsetRestrictedRoles() {
 	o.RestrictedRoles.Unset()
 }
+
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetState() MonitorState {
@@ -491,6 +505,7 @@ func (o *MonitorUpdateRequest) SetState(v MonitorState) {
 	o.State = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -519,6 +534,7 @@ func (o *MonitorUpdateRequest) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetType() MonitorType {
 	if o == nil || o.Type == nil {
@@ -546,6 +562,8 @@ func (o *MonitorUpdateRequest) HasType() bool {
 func (o *MonitorUpdateRequest) SetType(v MonitorType) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -619,36 +637,36 @@ func (o MonitorUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Created         *time.Time                   `json:"created,omitempty"`
-		Creator         *Creator                     `json:"creator,omitempty"`
-		Deleted         datadog.NullableTime         `json:"deleted,omitempty"`
-		Id              *int64                       `json:"id,omitempty"`
-		Message         *string                      `json:"message,omitempty"`
-		Modified        *time.Time                   `json:"modified,omitempty"`
-		Multi           *bool                        `json:"multi,omitempty"`
-		Name            *string                      `json:"name,omitempty"`
-		Options         *MonitorOptions              `json:"options,omitempty"`
-		OverallState    *MonitorOverallStates        `json:"overall_state,omitempty"`
-		Priority        datadog.NullableInt64        `json:"priority,omitempty"`
-		Query           *string                      `json:"query,omitempty"`
+		Created *time.Time `json:"created,omitempty"`
+		Creator *Creator `json:"creator,omitempty"`
+		Deleted datadog.NullableTime `json:"deleted,omitempty"`
+		Id *int64 `json:"id,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Modified *time.Time `json:"modified,omitempty"`
+		Multi *bool `json:"multi,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Options *MonitorOptions `json:"options,omitempty"`
+		OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
+		Priority datadog.NullableInt64 `json:"priority,omitempty"`
+		Query *string `json:"query,omitempty"`
 		RestrictedRoles datadog.NullableList[string] `json:"restricted_roles,omitempty"`
-		State           *MonitorState                `json:"state,omitempty"`
-		Tags            []string                     `json:"tags,omitempty"`
-		Type            *MonitorType                 `json:"type,omitempty"`
+		State *MonitorState `json:"state,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Type *MonitorType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created", "creator", "deleted", "id", "message", "modified", "multi", "name", "options", "overall_state", "priority", "query", "restricted_roles", "state", "tags", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created", "creator", "deleted", "id", "message", "modified", "multi", "name", "options", "overall_state", "priority", "query", "restricted_roles", "state", "tags", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Created = all.Created
-	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Creator = all.Creator
@@ -658,11 +676,11 @@ func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Modified = all.Modified
 	o.Multi = all.Multi
 	o.Name = all.Name
-	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Options = all.Options
-	if all.OverallState != nil && !all.OverallState.IsValid() {
+	if all.OverallState != nil &&!all.OverallState.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.OverallState = all.OverallState
@@ -670,12 +688,12 @@ func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Priority = all.Priority
 	o.Query = all.Query
 	o.RestrictedRoles = all.RestrictedRoles
-	if all.State != nil && all.State.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.State != nil && all.State.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.State = all.State
 	o.Tags = all.Tags
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

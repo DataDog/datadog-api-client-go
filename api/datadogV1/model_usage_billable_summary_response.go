@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageBillableSummaryResponse Response with monthly summary of data billed by Datadog.
 type UsageBillableSummaryResponse struct {
 	// An array of objects regarding usage of billable summary.
 	Usage []UsageBillableSummaryHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageBillableSummaryResponse instantiates a new UsageBillableSummaryResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewUsageBillableSummaryResponseWithDefaults() *UsageBillableSummaryResponse
 	this := UsageBillableSummaryResponse{}
 	return &this
 }
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryResponse) GetUsage() []UsageBillableSummaryHour {
 	if o == nil || o.Usage == nil {
@@ -62,6 +68,8 @@ func (o *UsageBillableSummaryResponse) SetUsage(v []UsageBillableSummaryHour) {
 	o.Usage = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageBillableSummaryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *UsageBillableSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"usage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "usage",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SearchSLOResponseData Data from search SLO response.
 type SearchSLOResponseData struct {
@@ -15,9 +21,10 @@ type SearchSLOResponseData struct {
 	// Type of service level objective result.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSearchSLOResponseData instantiates a new SearchSLOResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSearchSLOResponseDataWithDefaults() *SearchSLOResponseData {
 	this := SearchSLOResponseData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *SearchSLOResponseData) GetAttributes() SearchSLOResponseDataAttributes {
 	if o == nil || o.Attributes == nil {
@@ -63,6 +69,7 @@ func (o *SearchSLOResponseData) HasAttributes() bool {
 func (o *SearchSLOResponseData) SetAttributes(v SearchSLOResponseDataAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SearchSLOResponseData) GetType() string {
@@ -92,6 +99,8 @@ func (o *SearchSLOResponseData) SetType(v string) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SearchSLOResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,20 +124,20 @@ func (o SearchSLOResponseData) MarshalJSON() ([]byte, error) {
 func (o *SearchSLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *SearchSLOResponseDataAttributes `json:"attributes,omitempty"`
-		Type       *string                          `json:"type,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

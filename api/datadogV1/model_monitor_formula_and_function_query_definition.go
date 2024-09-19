@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorFormulaAndFunctionQueryDefinition - A formula and function query.
 type MonitorFormulaAndFunctionQueryDefinition struct {
@@ -56,6 +62,7 @@ func (obj MonitorFormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error
 		return datadog.Marshal(&obj.MonitorFormulaAndFunctionEventQueryDefinition)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj MonitorFormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *MonitorFormulaAndFunctionQueryDefinition) GetActualInstance() interface{} {
+func (obj *MonitorFormulaAndFunctionQueryDefinition) GetActualInstance() (interface{}) {
 	if obj.MonitorFormulaAndFunctionEventQueryDefinition != nil {
 		return obj.MonitorFormulaAndFunctionEventQueryDefinition
 	}
+
 
 	// all schemas are nil
 	return nil

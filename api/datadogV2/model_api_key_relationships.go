@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // APIKeyRelationships Resources related to the API key.
 type APIKeyRelationships struct {
@@ -15,9 +21,10 @@ type APIKeyRelationships struct {
 	// Relationship to user.
 	ModifiedBy NullableNullableRelationshipToUser `json:"modified_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAPIKeyRelationships instantiates a new APIKeyRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewAPIKeyRelationshipsWithDefaults() *APIKeyRelationships {
 	this := APIKeyRelationships{}
 	return &this
 }
-
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *APIKeyRelationships) GetCreatedBy() RelationshipToUser {
 	if o == nil || o.CreatedBy == nil {
@@ -64,6 +70,7 @@ func (o *APIKeyRelationships) SetCreatedBy(v RelationshipToUser) {
 	o.CreatedBy = &v
 }
 
+
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *APIKeyRelationships) GetModifiedBy() NullableRelationshipToUser {
 	if o == nil || o.ModifiedBy.Get() == nil {
@@ -77,7 +84,7 @@ func (o *APIKeyRelationships) GetModifiedBy() NullableRelationshipToUser {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *APIKeyRelationships) GetModifiedByOk() (*NullableRelationshipToUser, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ModifiedBy.Get(), o.ModifiedBy.IsSet()
@@ -92,7 +99,6 @@ func (o *APIKeyRelationships) HasModifiedBy() bool {
 func (o *APIKeyRelationships) SetModifiedBy(v NullableRelationshipToUser) {
 	o.ModifiedBy.Set(&v)
 }
-
 // SetModifiedByNil sets the value for ModifiedBy to be an explicit nil.
 func (o *APIKeyRelationships) SetModifiedByNil() {
 	o.ModifiedBy.Set(nil)
@@ -102,6 +108,8 @@ func (o *APIKeyRelationships) SetModifiedByNil() {
 func (o *APIKeyRelationships) UnsetModifiedBy() {
 	o.ModifiedBy.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o APIKeyRelationships) MarshalJSON() ([]byte, error) {
@@ -125,7 +133,7 @@ func (o APIKeyRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *APIKeyRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedBy  *RelationshipToUser                `json:"created_by,omitempty"`
+		CreatedBy *RelationshipToUser `json:"created_by,omitempty"`
 		ModifiedBy NullableNullableRelationshipToUser `json:"modified_by,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -133,13 +141,13 @@ func (o *APIKeyRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_by", "modified_by"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_by", "modified_by",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.CreatedBy != nil && all.CreatedBy.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CreatedBy != nil && all.CreatedBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CreatedBy = all.CreatedBy

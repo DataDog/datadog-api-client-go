@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ConfluentAccountUpdateRequestData Data object for updating a Confluent account.
 type ConfluentAccountUpdateRequestData struct {
@@ -17,9 +21,10 @@ type ConfluentAccountUpdateRequestData struct {
 	// The JSON:API type for this API. Should always be `confluent-cloud-accounts`.
 	Type ConfluentAccountType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewConfluentAccountUpdateRequestData instantiates a new ConfluentAccountUpdateRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewConfluentAccountUpdateRequestDataWithDefaults() *ConfluentAccountUpdateR
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *ConfluentAccountUpdateRequestData) GetAttributes() ConfluentAccountUpdateRequestAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *ConfluentAccountUpdateRequestData) GetAttributesOk() (*ConfluentAccount
 func (o *ConfluentAccountUpdateRequestData) SetAttributes(v ConfluentAccountUpdateRequestAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ConfluentAccountUpdateRequestData) GetType() ConfluentAccountType {
@@ -88,6 +93,8 @@ func (o *ConfluentAccountUpdateRequestData) SetType(v ConfluentAccountType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ConfluentAccountUpdateRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o ConfluentAccountUpdateRequestData) MarshalJSON() ([]byte, error) {
 func (o *ConfluentAccountUpdateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *ConfluentAccountUpdateRequestAttributes `json:"attributes"`
-		Type       *ConfluentAccountType                    `json:"type"`
+		Type *ConfluentAccountType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *ConfluentAccountUpdateRequestData) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RetentionFilterUpdateAttributes The object describing the configuration of the retention filter to create/update.
 type RetentionFilterUpdateAttributes struct {
@@ -24,9 +28,10 @@ type RetentionFilterUpdateAttributes struct {
 	// a value of 1.0 keeps all spans matching the query.
 	Rate float64 `json:"rate"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRetentionFilterUpdateAttributes instantiates a new RetentionFilterUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +56,6 @@ func NewRetentionFilterUpdateAttributesWithDefaults() *RetentionFilterUpdateAttr
 	this.FilterType = filterType
 	return &this
 }
-
 // GetEnabled returns the Enabled field value.
 func (o *RetentionFilterUpdateAttributes) GetEnabled() bool {
 	if o == nil {
@@ -74,6 +78,7 @@ func (o *RetentionFilterUpdateAttributes) GetEnabledOk() (*bool, bool) {
 func (o *RetentionFilterUpdateAttributes) SetEnabled(v bool) {
 	o.Enabled = v
 }
+
 
 // GetFilter returns the Filter field value.
 func (o *RetentionFilterUpdateAttributes) GetFilter() SpansFilterCreate {
@@ -98,6 +103,7 @@ func (o *RetentionFilterUpdateAttributes) SetFilter(v SpansFilterCreate) {
 	o.Filter = v
 }
 
+
 // GetFilterType returns the FilterType field value.
 func (o *RetentionFilterUpdateAttributes) GetFilterType() RetentionFilterAllType {
 	if o == nil {
@@ -120,6 +126,7 @@ func (o *RetentionFilterUpdateAttributes) GetFilterTypeOk() (*RetentionFilterAll
 func (o *RetentionFilterUpdateAttributes) SetFilterType(v RetentionFilterAllType) {
 	o.FilterType = v
 }
+
 
 // GetName returns the Name field value.
 func (o *RetentionFilterUpdateAttributes) GetName() string {
@@ -144,6 +151,7 @@ func (o *RetentionFilterUpdateAttributes) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetRate returns the Rate field value.
 func (o *RetentionFilterUpdateAttributes) GetRate() float64 {
 	if o == nil {
@@ -167,6 +175,8 @@ func (o *RetentionFilterUpdateAttributes) SetRate(v float64) {
 	o.Rate = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RetentionFilterUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -188,11 +198,11 @@ func (o RetentionFilterUpdateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RetentionFilterUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled    *bool                   `json:"enabled"`
-		Filter     *SpansFilterCreate      `json:"filter"`
+		Enabled *bool `json:"enabled"`
+		Filter *SpansFilterCreate `json:"filter"`
 		FilterType *RetentionFilterAllType `json:"filter_type"`
-		Name       *string                 `json:"name"`
-		Rate       *float64                `json:"rate"`
+		Name *string `json:"name"`
+		Rate *float64 `json:"rate"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -214,7 +224,7 @@ func (o *RetentionFilterUpdateAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "filter", "filter_type", "name", "rate"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "enabled", "filter", "filter_type", "name", "rate",  })
 	} else {
 		return err
 	}

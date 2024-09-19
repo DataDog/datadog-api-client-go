@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // JiraIssue Jira issue attached to case
 type JiraIssue struct {
@@ -15,9 +21,10 @@ type JiraIssue struct {
 	// Case status
 	Status *Case3rdPartyTicketStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewJiraIssue instantiates a new JiraIssue object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewJiraIssueWithDefaults() *JiraIssue {
 	this := JiraIssue{}
 	return &this
 }
-
 // GetResult returns the Result field value if set, zero value otherwise.
 func (o *JiraIssue) GetResult() JiraIssueResult {
 	if o == nil || o.Result == nil {
@@ -63,6 +69,7 @@ func (o *JiraIssue) HasResult() bool {
 func (o *JiraIssue) SetResult(v JiraIssueResult) {
 	o.Result = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *JiraIssue) GetStatus() Case3rdPartyTicketStatus {
@@ -92,6 +99,8 @@ func (o *JiraIssue) SetStatus(v Case3rdPartyTicketStatus) {
 	o.Status = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o JiraIssue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o JiraIssue) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *JiraIssue) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Result *JiraIssueResult          `json:"result,omitempty"`
+		Result *JiraIssueResult `json:"result,omitempty"`
 		Status *Case3rdPartyTicketStatus `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,17 +131,17 @@ func (o *JiraIssue) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"result", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "result", "status",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Result != nil && all.Result.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Result != nil && all.Result.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Result = all.Result
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status
@@ -148,7 +157,6 @@ func (o *JiraIssue) UnmarshalJSON(bytes []byte) (err error) {
 
 	return nil
 }
-
 // NullableJiraIssue handles when a null is used for JiraIssue.
 type NullableJiraIssue struct {
 	value *JiraIssue

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GCPSTSServiceAccountData Additional metadata on your generated service account.
 type GCPSTSServiceAccountData struct {
@@ -15,9 +21,10 @@ type GCPSTSServiceAccountData struct {
 	// The type of account.
 	Type *GCPServiceAccountType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGCPSTSServiceAccountData instantiates a new GCPSTSServiceAccountData object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewGCPSTSServiceAccountDataWithDefaults() *GCPSTSServiceAccountData {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *GCPSTSServiceAccountData) GetAttributes() GCPSTSServiceAccountAttributes {
 	if o == nil || o.Attributes == nil {
@@ -67,6 +73,7 @@ func (o *GCPSTSServiceAccountData) HasAttributes() bool {
 func (o *GCPSTSServiceAccountData) SetAttributes(v GCPSTSServiceAccountAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GCPSTSServiceAccountData) GetType() GCPServiceAccountType {
@@ -96,6 +103,8 @@ func (o *GCPSTSServiceAccountData) SetType(v GCPServiceAccountType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GCPSTSServiceAccountData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -119,24 +128,24 @@ func (o GCPSTSServiceAccountData) MarshalJSON() ([]byte, error) {
 func (o *GCPSTSServiceAccountData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *GCPSTSServiceAccountAttributes `json:"attributes,omitempty"`
-		Type       *GCPServiceAccountType          `json:"type,omitempty"`
+		Type *GCPServiceAccountType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

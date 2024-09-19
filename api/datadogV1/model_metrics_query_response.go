@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricsQueryResponse Response Object that includes your query and the list of metrics retrieved.
 type MetricsQueryResponse struct {
@@ -29,9 +35,10 @@ type MetricsQueryResponse struct {
 	// End of requested time window, milliseconds since Unix epoch.
 	ToDate *int64 `json:"to_date,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricsQueryResponse instantiates a new MetricsQueryResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +56,6 @@ func NewMetricsQueryResponseWithDefaults() *MetricsQueryResponse {
 	this := MetricsQueryResponse{}
 	return &this
 }
-
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *MetricsQueryResponse) GetError() string {
 	if o == nil || o.Error == nil {
@@ -77,6 +83,7 @@ func (o *MetricsQueryResponse) HasError() bool {
 func (o *MetricsQueryResponse) SetError(v string) {
 	o.Error = &v
 }
+
 
 // GetFromDate returns the FromDate field value if set, zero value otherwise.
 func (o *MetricsQueryResponse) GetFromDate() int64 {
@@ -106,6 +113,7 @@ func (o *MetricsQueryResponse) SetFromDate(v int64) {
 	o.FromDate = &v
 }
 
+
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *MetricsQueryResponse) GetGroupBy() []string {
 	if o == nil || o.GroupBy == nil {
@@ -133,6 +141,7 @@ func (o *MetricsQueryResponse) HasGroupBy() bool {
 func (o *MetricsQueryResponse) SetGroupBy(v []string) {
 	o.GroupBy = v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *MetricsQueryResponse) GetMessage() string {
@@ -162,6 +171,7 @@ func (o *MetricsQueryResponse) SetMessage(v string) {
 	o.Message = &v
 }
 
+
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *MetricsQueryResponse) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -189,6 +199,7 @@ func (o *MetricsQueryResponse) HasQuery() bool {
 func (o *MetricsQueryResponse) SetQuery(v string) {
 	o.Query = &v
 }
+
 
 // GetResType returns the ResType field value if set, zero value otherwise.
 func (o *MetricsQueryResponse) GetResType() string {
@@ -218,6 +229,7 @@ func (o *MetricsQueryResponse) SetResType(v string) {
 	o.ResType = &v
 }
 
+
 // GetSeries returns the Series field value if set, zero value otherwise.
 func (o *MetricsQueryResponse) GetSeries() []MetricsQueryMetadata {
 	if o == nil || o.Series == nil {
@@ -245,6 +257,7 @@ func (o *MetricsQueryResponse) HasSeries() bool {
 func (o *MetricsQueryResponse) SetSeries(v []MetricsQueryMetadata) {
 	o.Series = v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *MetricsQueryResponse) GetStatus() string {
@@ -274,6 +287,7 @@ func (o *MetricsQueryResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
+
 // GetToDate returns the ToDate field value if set, zero value otherwise.
 func (o *MetricsQueryResponse) GetToDate() int64 {
 	if o == nil || o.ToDate == nil {
@@ -301,6 +315,8 @@ func (o *MetricsQueryResponse) HasToDate() bool {
 func (o *MetricsQueryResponse) SetToDate(v int64) {
 	o.ToDate = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricsQueryResponse) MarshalJSON() ([]byte, error) {
@@ -345,22 +361,22 @@ func (o MetricsQueryResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricsQueryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Error    *string                `json:"error,omitempty"`
-		FromDate *int64                 `json:"from_date,omitempty"`
-		GroupBy  []string               `json:"group_by,omitempty"`
-		Message  *string                `json:"message,omitempty"`
-		Query    *string                `json:"query,omitempty"`
-		ResType  *string                `json:"res_type,omitempty"`
-		Series   []MetricsQueryMetadata `json:"series,omitempty"`
-		Status   *string                `json:"status,omitempty"`
-		ToDate   *int64                 `json:"to_date,omitempty"`
+		Error *string `json:"error,omitempty"`
+		FromDate *int64 `json:"from_date,omitempty"`
+		GroupBy []string `json:"group_by,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Query *string `json:"query,omitempty"`
+		ResType *string `json:"res_type,omitempty"`
+		Series []MetricsQueryMetadata `json:"series,omitempty"`
+		Status *string `json:"status,omitempty"`
+		ToDate *int64 `json:"to_date,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"error", "from_date", "group_by", "message", "query", "res_type", "series", "status", "to_date"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "error", "from_date", "group_by", "message", "query", "res_type", "series", "status", "to_date",  })
 	} else {
 		return err
 	}

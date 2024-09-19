@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSEventBridgeSource An EventBridge source.
 type AWSEventBridgeSource struct {
@@ -15,9 +21,10 @@ type AWSEventBridgeSource struct {
 	// The event source's [AWS region](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
 	Region *string `json:"region,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSEventBridgeSource instantiates a new AWSEventBridgeSource object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewAWSEventBridgeSourceWithDefaults() *AWSEventBridgeSource {
 	this := AWSEventBridgeSource{}
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *AWSEventBridgeSource) GetName() string {
 	if o == nil || o.Name == nil {
@@ -63,6 +69,7 @@ func (o *AWSEventBridgeSource) HasName() bool {
 func (o *AWSEventBridgeSource) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *AWSEventBridgeSource) GetRegion() string {
@@ -92,6 +99,8 @@ func (o *AWSEventBridgeSource) SetRegion(v string) {
 	o.Region = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSEventBridgeSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o AWSEventBridgeSource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSEventBridgeSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name   *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 		Region *string `json:"region,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *AWSEventBridgeSource) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "region"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "region",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AzureUCConfig Azure config.
 type AzureUCConfig struct {
@@ -44,9 +48,10 @@ type AzureUCConfig struct {
 	// The timestamp when the Azure config was last updated.
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAzureUCConfig instantiates a new AzureUCConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -73,7 +78,6 @@ func NewAzureUCConfigWithDefaults() *AzureUCConfig {
 	this := AzureUCConfig{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value.
 func (o *AzureUCConfig) GetAccountId() string {
 	if o == nil {
@@ -97,6 +101,7 @@ func (o *AzureUCConfig) SetAccountId(v string) {
 	o.AccountId = v
 }
 
+
 // GetClientId returns the ClientId field value.
 func (o *AzureUCConfig) GetClientId() string {
 	if o == nil {
@@ -119,6 +124,7 @@ func (o *AzureUCConfig) GetClientIdOk() (*string, bool) {
 func (o *AzureUCConfig) SetClientId(v string) {
 	o.ClientId = v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *AzureUCConfig) GetCreatedAt() string {
@@ -148,6 +154,7 @@ func (o *AzureUCConfig) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
 
+
 // GetDatasetType returns the DatasetType field value.
 func (o *AzureUCConfig) GetDatasetType() string {
 	if o == nil {
@@ -170,6 +177,7 @@ func (o *AzureUCConfig) GetDatasetTypeOk() (*string, bool) {
 func (o *AzureUCConfig) SetDatasetType(v string) {
 	o.DatasetType = v
 }
+
 
 // GetErrorMessages returns the ErrorMessages field value if set, zero value otherwise.
 func (o *AzureUCConfig) GetErrorMessages() []string {
@@ -199,6 +207,7 @@ func (o *AzureUCConfig) SetErrorMessages(v []string) {
 	o.ErrorMessages = v
 }
 
+
 // GetExportName returns the ExportName field value.
 func (o *AzureUCConfig) GetExportName() string {
 	if o == nil {
@@ -222,6 +231,7 @@ func (o *AzureUCConfig) SetExportName(v string) {
 	o.ExportName = v
 }
 
+
 // GetExportPath returns the ExportPath field value.
 func (o *AzureUCConfig) GetExportPath() string {
 	if o == nil {
@@ -244,6 +254,7 @@ func (o *AzureUCConfig) GetExportPathOk() (*string, bool) {
 func (o *AzureUCConfig) SetExportPath(v string) {
 	o.ExportPath = v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AzureUCConfig) GetId() int64 {
@@ -272,6 +283,7 @@ func (o *AzureUCConfig) HasId() bool {
 func (o *AzureUCConfig) SetId(v int64) {
 	o.Id = &v
 }
+
 
 // GetMonths returns the Months field value if set, zero value otherwise.
 // Deprecated
@@ -304,6 +316,7 @@ func (o *AzureUCConfig) SetMonths(v int32) {
 	o.Months = &v
 }
 
+
 // GetScope returns the Scope field value.
 func (o *AzureUCConfig) GetScope() string {
 	if o == nil {
@@ -327,6 +340,7 @@ func (o *AzureUCConfig) SetScope(v string) {
 	o.Scope = v
 }
 
+
 // GetStatus returns the Status field value.
 func (o *AzureUCConfig) GetStatus() string {
 	if o == nil {
@@ -349,6 +363,7 @@ func (o *AzureUCConfig) GetStatusOk() (*string, bool) {
 func (o *AzureUCConfig) SetStatus(v string) {
 	o.Status = v
 }
+
 
 // GetStatusUpdatedAt returns the StatusUpdatedAt field value if set, zero value otherwise.
 func (o *AzureUCConfig) GetStatusUpdatedAt() string {
@@ -378,6 +393,7 @@ func (o *AzureUCConfig) SetStatusUpdatedAt(v string) {
 	o.StatusUpdatedAt = &v
 }
 
+
 // GetStorageAccount returns the StorageAccount field value.
 func (o *AzureUCConfig) GetStorageAccount() string {
 	if o == nil {
@@ -401,6 +417,7 @@ func (o *AzureUCConfig) SetStorageAccount(v string) {
 	o.StorageAccount = v
 }
 
+
 // GetStorageContainer returns the StorageContainer field value.
 func (o *AzureUCConfig) GetStorageContainer() string {
 	if o == nil {
@@ -423,6 +440,7 @@ func (o *AzureUCConfig) GetStorageContainerOk() (*string, bool) {
 func (o *AzureUCConfig) SetStorageContainer(v string) {
 	o.StorageContainer = v
 }
+
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *AzureUCConfig) GetUpdatedAt() string {
@@ -451,6 +469,8 @@ func (o *AzureUCConfig) HasUpdatedAt() bool {
 func (o *AzureUCConfig) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AzureUCConfig) MarshalJSON() ([]byte, error) {
@@ -495,21 +515,21 @@ func (o AzureUCConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AzureUCConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountId        *string  `json:"account_id"`
-		ClientId         *string  `json:"client_id"`
-		CreatedAt        *string  `json:"created_at,omitempty"`
-		DatasetType      *string  `json:"dataset_type"`
-		ErrorMessages    []string `json:"error_messages,omitempty"`
-		ExportName       *string  `json:"export_name"`
-		ExportPath       *string  `json:"export_path"`
-		Id               *int64   `json:"id,omitempty"`
-		Months           *int32   `json:"months,omitempty"`
-		Scope            *string  `json:"scope"`
-		Status           *string  `json:"status"`
-		StatusUpdatedAt  *string  `json:"status_updated_at,omitempty"`
-		StorageAccount   *string  `json:"storage_account"`
-		StorageContainer *string  `json:"storage_container"`
-		UpdatedAt        *string  `json:"updated_at,omitempty"`
+		AccountId *string `json:"account_id"`
+		ClientId *string `json:"client_id"`
+		CreatedAt *string `json:"created_at,omitempty"`
+		DatasetType *string `json:"dataset_type"`
+		ErrorMessages []string `json:"error_messages,omitempty"`
+		ExportName *string `json:"export_name"`
+		ExportPath *string `json:"export_path"`
+		Id *int64 `json:"id,omitempty"`
+		Months *int32 `json:"months,omitempty"`
+		Scope *string `json:"scope"`
+		Status *string `json:"status"`
+		StatusUpdatedAt *string `json:"status_updated_at,omitempty"`
+		StorageAccount *string `json:"storage_account"`
+		StorageContainer *string `json:"storage_container"`
+		UpdatedAt *string `json:"updated_at,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -543,7 +563,7 @@ func (o *AzureUCConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "client_id", "created_at", "dataset_type", "error_messages", "export_name", "export_path", "id", "months", "scope", "status", "status_updated_at", "storage_account", "storage_container", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account_id", "client_id", "created_at", "dataset_type", "error_messages", "export_name", "export_path", "id", "months", "scope", "status", "status_updated_at", "storage_account", "storage_container", "updated_at",  })
 	} else {
 		return err
 	}

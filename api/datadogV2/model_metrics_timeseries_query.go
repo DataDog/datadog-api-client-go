@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricsTimeseriesQuery An individual timeseries metrics query.
 type MetricsTimeseriesQuery struct {
@@ -19,9 +23,10 @@ type MetricsTimeseriesQuery struct {
 	// A classic metrics query string.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricsTimeseriesQuery instantiates a new MetricsTimeseriesQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewMetricsTimeseriesQueryWithDefaults() *MetricsTimeseriesQuery {
 	this.DataSource = dataSource
 	return &this
 }
-
 // GetDataSource returns the DataSource field value.
 func (o *MetricsTimeseriesQuery) GetDataSource() MetricsDataSource {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *MetricsTimeseriesQuery) GetDataSourceOk() (*MetricsDataSource, bool) {
 func (o *MetricsTimeseriesQuery) SetDataSource(v MetricsDataSource) {
 	o.DataSource = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MetricsTimeseriesQuery) GetName() string {
@@ -95,6 +100,7 @@ func (o *MetricsTimeseriesQuery) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetQuery returns the Query field value.
 func (o *MetricsTimeseriesQuery) GetQuery() string {
 	if o == nil {
@@ -118,6 +124,8 @@ func (o *MetricsTimeseriesQuery) SetQuery(v string) {
 	o.Query = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricsTimeseriesQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -140,8 +148,8 @@ func (o MetricsTimeseriesQuery) MarshalJSON() ([]byte, error) {
 func (o *MetricsTimeseriesQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DataSource *MetricsDataSource `json:"data_source"`
-		Name       *string            `json:"name,omitempty"`
-		Query      *string            `json:"query"`
+		Name *string `json:"name,omitempty"`
+		Query *string `json:"query"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -154,7 +162,7 @@ func (o *MetricsTimeseriesQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data_source", "name", "query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data_source", "name", "query",  })
 	} else {
 		return err
 	}

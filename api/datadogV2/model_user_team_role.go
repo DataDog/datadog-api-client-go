@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UserTeamRole The user's role within the team
 type UserTeamRole string
@@ -62,7 +66,6 @@ func (v UserTeamRole) IsValid() bool {
 func (v UserTeamRole) Ptr() *UserTeamRole {
 	return &v
 }
-
 // NullableUserTeamRole handles when a null is used for UserTeamRole.
 type NullableUserTeamRole struct {
 	value *UserTeamRole

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageBillableSummaryKeys Response with aggregated usage types.
 type UsageBillableSummaryKeys struct {
@@ -189,9 +195,10 @@ type UsageBillableSummaryKeys struct {
 	// Response with properties for each aggregated usage type.
 	TimeseriesSum *UsageBillableSummaryBody `json:"timeseries_sum,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageBillableSummaryKeys instantiates a new UsageBillableSummaryKeys object.
 // This constructor will assign default values to properties that have it defined,
@@ -209,7 +216,6 @@ func NewUsageBillableSummaryKeysWithDefaults() *UsageBillableSummaryKeys {
 	this := UsageBillableSummaryKeys{}
 	return &this
 }
-
 // GetApmFargateAverage returns the ApmFargateAverage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetApmFargateAverage() UsageBillableSummaryBody {
 	if o == nil || o.ApmFargateAverage == nil {
@@ -237,6 +243,7 @@ func (o *UsageBillableSummaryKeys) HasApmFargateAverage() bool {
 func (o *UsageBillableSummaryKeys) SetApmFargateAverage(v UsageBillableSummaryBody) {
 	o.ApmFargateAverage = &v
 }
+
 
 // GetApmFargateSum returns the ApmFargateSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetApmFargateSum() UsageBillableSummaryBody {
@@ -266,6 +273,7 @@ func (o *UsageBillableSummaryKeys) SetApmFargateSum(v UsageBillableSummaryBody) 
 	o.ApmFargateSum = &v
 }
 
+
 // GetApmHostSum returns the ApmHostSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetApmHostSum() UsageBillableSummaryBody {
 	if o == nil || o.ApmHostSum == nil {
@@ -293,6 +301,7 @@ func (o *UsageBillableSummaryKeys) HasApmHostSum() bool {
 func (o *UsageBillableSummaryKeys) SetApmHostSum(v UsageBillableSummaryBody) {
 	o.ApmHostSum = &v
 }
+
 
 // GetApmHostTop99p returns the ApmHostTop99p field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetApmHostTop99p() UsageBillableSummaryBody {
@@ -322,6 +331,7 @@ func (o *UsageBillableSummaryKeys) SetApmHostTop99p(v UsageBillableSummaryBody) 
 	o.ApmHostTop99p = &v
 }
 
+
 // GetApmProfilerHostSum returns the ApmProfilerHostSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetApmProfilerHostSum() UsageBillableSummaryBody {
 	if o == nil || o.ApmProfilerHostSum == nil {
@@ -349,6 +359,7 @@ func (o *UsageBillableSummaryKeys) HasApmProfilerHostSum() bool {
 func (o *UsageBillableSummaryKeys) SetApmProfilerHostSum(v UsageBillableSummaryBody) {
 	o.ApmProfilerHostSum = &v
 }
+
 
 // GetApmProfilerHostTop99p returns the ApmProfilerHostTop99p field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetApmProfilerHostTop99p() UsageBillableSummaryBody {
@@ -378,6 +389,7 @@ func (o *UsageBillableSummaryKeys) SetApmProfilerHostTop99p(v UsageBillableSumma
 	o.ApmProfilerHostTop99p = &v
 }
 
+
 // GetApmTraceSearchSum returns the ApmTraceSearchSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetApmTraceSearchSum() UsageBillableSummaryBody {
 	if o == nil || o.ApmTraceSearchSum == nil {
@@ -405,6 +417,7 @@ func (o *UsageBillableSummaryKeys) HasApmTraceSearchSum() bool {
 func (o *UsageBillableSummaryKeys) SetApmTraceSearchSum(v UsageBillableSummaryBody) {
 	o.ApmTraceSearchSum = &v
 }
+
 
 // GetApplicationSecurityFargateAverage returns the ApplicationSecurityFargateAverage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetApplicationSecurityFargateAverage() UsageBillableSummaryBody {
@@ -434,6 +447,7 @@ func (o *UsageBillableSummaryKeys) SetApplicationSecurityFargateAverage(v UsageB
 	o.ApplicationSecurityFargateAverage = &v
 }
 
+
 // GetApplicationSecurityHostSum returns the ApplicationSecurityHostSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetApplicationSecurityHostSum() UsageBillableSummaryBody {
 	if o == nil || o.ApplicationSecurityHostSum == nil {
@@ -461,6 +475,7 @@ func (o *UsageBillableSummaryKeys) HasApplicationSecurityHostSum() bool {
 func (o *UsageBillableSummaryKeys) SetApplicationSecurityHostSum(v UsageBillableSummaryBody) {
 	o.ApplicationSecurityHostSum = &v
 }
+
 
 // GetApplicationSecurityHostTop99p returns the ApplicationSecurityHostTop99p field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetApplicationSecurityHostTop99p() UsageBillableSummaryBody {
@@ -490,6 +505,7 @@ func (o *UsageBillableSummaryKeys) SetApplicationSecurityHostTop99p(v UsageBilla
 	o.ApplicationSecurityHostTop99p = &v
 }
 
+
 // GetCiPipelineIndexedSpansSum returns the CiPipelineIndexedSpansSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCiPipelineIndexedSpansSum() UsageBillableSummaryBody {
 	if o == nil || o.CiPipelineIndexedSpansSum == nil {
@@ -517,6 +533,7 @@ func (o *UsageBillableSummaryKeys) HasCiPipelineIndexedSpansSum() bool {
 func (o *UsageBillableSummaryKeys) SetCiPipelineIndexedSpansSum(v UsageBillableSummaryBody) {
 	o.CiPipelineIndexedSpansSum = &v
 }
+
 
 // GetCiPipelineMaximum returns the CiPipelineMaximum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCiPipelineMaximum() UsageBillableSummaryBody {
@@ -546,6 +563,7 @@ func (o *UsageBillableSummaryKeys) SetCiPipelineMaximum(v UsageBillableSummaryBo
 	o.CiPipelineMaximum = &v
 }
 
+
 // GetCiPipelineSum returns the CiPipelineSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCiPipelineSum() UsageBillableSummaryBody {
 	if o == nil || o.CiPipelineSum == nil {
@@ -573,6 +591,7 @@ func (o *UsageBillableSummaryKeys) HasCiPipelineSum() bool {
 func (o *UsageBillableSummaryKeys) SetCiPipelineSum(v UsageBillableSummaryBody) {
 	o.CiPipelineSum = &v
 }
+
 
 // GetCiTestIndexedSpansSum returns the CiTestIndexedSpansSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCiTestIndexedSpansSum() UsageBillableSummaryBody {
@@ -602,6 +621,7 @@ func (o *UsageBillableSummaryKeys) SetCiTestIndexedSpansSum(v UsageBillableSumma
 	o.CiTestIndexedSpansSum = &v
 }
 
+
 // GetCiTestingMaximum returns the CiTestingMaximum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCiTestingMaximum() UsageBillableSummaryBody {
 	if o == nil || o.CiTestingMaximum == nil {
@@ -629,6 +649,7 @@ func (o *UsageBillableSummaryKeys) HasCiTestingMaximum() bool {
 func (o *UsageBillableSummaryKeys) SetCiTestingMaximum(v UsageBillableSummaryBody) {
 	o.CiTestingMaximum = &v
 }
+
 
 // GetCiTestingSum returns the CiTestingSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCiTestingSum() UsageBillableSummaryBody {
@@ -658,6 +679,7 @@ func (o *UsageBillableSummaryKeys) SetCiTestingSum(v UsageBillableSummaryBody) {
 	o.CiTestingSum = &v
 }
 
+
 // GetCloudCostManagementAverage returns the CloudCostManagementAverage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCloudCostManagementAverage() UsageBillableSummaryBody {
 	if o == nil || o.CloudCostManagementAverage == nil {
@@ -685,6 +707,7 @@ func (o *UsageBillableSummaryKeys) HasCloudCostManagementAverage() bool {
 func (o *UsageBillableSummaryKeys) SetCloudCostManagementAverage(v UsageBillableSummaryBody) {
 	o.CloudCostManagementAverage = &v
 }
+
 
 // GetCloudCostManagementSum returns the CloudCostManagementSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCloudCostManagementSum() UsageBillableSummaryBody {
@@ -714,6 +737,7 @@ func (o *UsageBillableSummaryKeys) SetCloudCostManagementSum(v UsageBillableSumm
 	o.CloudCostManagementSum = &v
 }
 
+
 // GetCspmContainerSum returns the CspmContainerSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCspmContainerSum() UsageBillableSummaryBody {
 	if o == nil || o.CspmContainerSum == nil {
@@ -741,6 +765,7 @@ func (o *UsageBillableSummaryKeys) HasCspmContainerSum() bool {
 func (o *UsageBillableSummaryKeys) SetCspmContainerSum(v UsageBillableSummaryBody) {
 	o.CspmContainerSum = &v
 }
+
 
 // GetCspmHostSum returns the CspmHostSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCspmHostSum() UsageBillableSummaryBody {
@@ -770,6 +795,7 @@ func (o *UsageBillableSummaryKeys) SetCspmHostSum(v UsageBillableSummaryBody) {
 	o.CspmHostSum = &v
 }
 
+
 // GetCspmHostTop99p returns the CspmHostTop99p field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCspmHostTop99p() UsageBillableSummaryBody {
 	if o == nil || o.CspmHostTop99p == nil {
@@ -797,6 +823,7 @@ func (o *UsageBillableSummaryKeys) HasCspmHostTop99p() bool {
 func (o *UsageBillableSummaryKeys) SetCspmHostTop99p(v UsageBillableSummaryBody) {
 	o.CspmHostTop99p = &v
 }
+
 
 // GetCustomEventSum returns the CustomEventSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCustomEventSum() UsageBillableSummaryBody {
@@ -826,6 +853,7 @@ func (o *UsageBillableSummaryKeys) SetCustomEventSum(v UsageBillableSummaryBody)
 	o.CustomEventSum = &v
 }
 
+
 // GetCwsContainerSum returns the CwsContainerSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCwsContainerSum() UsageBillableSummaryBody {
 	if o == nil || o.CwsContainerSum == nil {
@@ -853,6 +881,7 @@ func (o *UsageBillableSummaryKeys) HasCwsContainerSum() bool {
 func (o *UsageBillableSummaryKeys) SetCwsContainerSum(v UsageBillableSummaryBody) {
 	o.CwsContainerSum = &v
 }
+
 
 // GetCwsHostSum returns the CwsHostSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCwsHostSum() UsageBillableSummaryBody {
@@ -882,6 +911,7 @@ func (o *UsageBillableSummaryKeys) SetCwsHostSum(v UsageBillableSummaryBody) {
 	o.CwsHostSum = &v
 }
 
+
 // GetCwsHostTop99p returns the CwsHostTop99p field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetCwsHostTop99p() UsageBillableSummaryBody {
 	if o == nil || o.CwsHostTop99p == nil {
@@ -909,6 +939,7 @@ func (o *UsageBillableSummaryKeys) HasCwsHostTop99p() bool {
 func (o *UsageBillableSummaryKeys) SetCwsHostTop99p(v UsageBillableSummaryBody) {
 	o.CwsHostTop99p = &v
 }
+
 
 // GetDbmHostSum returns the DbmHostSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetDbmHostSum() UsageBillableSummaryBody {
@@ -938,6 +969,7 @@ func (o *UsageBillableSummaryKeys) SetDbmHostSum(v UsageBillableSummaryBody) {
 	o.DbmHostSum = &v
 }
 
+
 // GetDbmHostTop99p returns the DbmHostTop99p field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetDbmHostTop99p() UsageBillableSummaryBody {
 	if o == nil || o.DbmHostTop99p == nil {
@@ -965,6 +997,7 @@ func (o *UsageBillableSummaryKeys) HasDbmHostTop99p() bool {
 func (o *UsageBillableSummaryKeys) SetDbmHostTop99p(v UsageBillableSummaryBody) {
 	o.DbmHostTop99p = &v
 }
+
 
 // GetDbmNormalizedQueriesAverage returns the DbmNormalizedQueriesAverage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetDbmNormalizedQueriesAverage() UsageBillableSummaryBody {
@@ -994,6 +1027,7 @@ func (o *UsageBillableSummaryKeys) SetDbmNormalizedQueriesAverage(v UsageBillabl
 	o.DbmNormalizedQueriesAverage = &v
 }
 
+
 // GetDbmNormalizedQueriesSum returns the DbmNormalizedQueriesSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetDbmNormalizedQueriesSum() UsageBillableSummaryBody {
 	if o == nil || o.DbmNormalizedQueriesSum == nil {
@@ -1021,6 +1055,7 @@ func (o *UsageBillableSummaryKeys) HasDbmNormalizedQueriesSum() bool {
 func (o *UsageBillableSummaryKeys) SetDbmNormalizedQueriesSum(v UsageBillableSummaryBody) {
 	o.DbmNormalizedQueriesSum = &v
 }
+
 
 // GetFargateContainerApmAndProfilerAverage returns the FargateContainerApmAndProfilerAverage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetFargateContainerApmAndProfilerAverage() UsageBillableSummaryBody {
@@ -1050,6 +1085,7 @@ func (o *UsageBillableSummaryKeys) SetFargateContainerApmAndProfilerAverage(v Us
 	o.FargateContainerApmAndProfilerAverage = &v
 }
 
+
 // GetFargateContainerApmAndProfilerSum returns the FargateContainerApmAndProfilerSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetFargateContainerApmAndProfilerSum() UsageBillableSummaryBody {
 	if o == nil || o.FargateContainerApmAndProfilerSum == nil {
@@ -1077,6 +1113,7 @@ func (o *UsageBillableSummaryKeys) HasFargateContainerApmAndProfilerSum() bool {
 func (o *UsageBillableSummaryKeys) SetFargateContainerApmAndProfilerSum(v UsageBillableSummaryBody) {
 	o.FargateContainerApmAndProfilerSum = &v
 }
+
 
 // GetFargateContainerAverage returns the FargateContainerAverage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetFargateContainerAverage() UsageBillableSummaryBody {
@@ -1106,6 +1143,7 @@ func (o *UsageBillableSummaryKeys) SetFargateContainerAverage(v UsageBillableSum
 	o.FargateContainerAverage = &v
 }
 
+
 // GetFargateContainerProfilerAverage returns the FargateContainerProfilerAverage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetFargateContainerProfilerAverage() UsageBillableSummaryBody {
 	if o == nil || o.FargateContainerProfilerAverage == nil {
@@ -1133,6 +1171,7 @@ func (o *UsageBillableSummaryKeys) HasFargateContainerProfilerAverage() bool {
 func (o *UsageBillableSummaryKeys) SetFargateContainerProfilerAverage(v UsageBillableSummaryBody) {
 	o.FargateContainerProfilerAverage = &v
 }
+
 
 // GetFargateContainerProfilerSum returns the FargateContainerProfilerSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetFargateContainerProfilerSum() UsageBillableSummaryBody {
@@ -1162,6 +1201,7 @@ func (o *UsageBillableSummaryKeys) SetFargateContainerProfilerSum(v UsageBillabl
 	o.FargateContainerProfilerSum = &v
 }
 
+
 // GetFargateContainerSum returns the FargateContainerSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetFargateContainerSum() UsageBillableSummaryBody {
 	if o == nil || o.FargateContainerSum == nil {
@@ -1189,6 +1229,7 @@ func (o *UsageBillableSummaryKeys) HasFargateContainerSum() bool {
 func (o *UsageBillableSummaryKeys) SetFargateContainerSum(v UsageBillableSummaryBody) {
 	o.FargateContainerSum = &v
 }
+
 
 // GetIncidentManagementMaximum returns the IncidentManagementMaximum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetIncidentManagementMaximum() UsageBillableSummaryBody {
@@ -1218,6 +1259,7 @@ func (o *UsageBillableSummaryKeys) SetIncidentManagementMaximum(v UsageBillableS
 	o.IncidentManagementMaximum = &v
 }
 
+
 // GetIncidentManagementSum returns the IncidentManagementSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetIncidentManagementSum() UsageBillableSummaryBody {
 	if o == nil || o.IncidentManagementSum == nil {
@@ -1245,6 +1287,7 @@ func (o *UsageBillableSummaryKeys) HasIncidentManagementSum() bool {
 func (o *UsageBillableSummaryKeys) SetIncidentManagementSum(v UsageBillableSummaryBody) {
 	o.IncidentManagementSum = &v
 }
+
 
 // GetInfraAndApmHostSum returns the InfraAndApmHostSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetInfraAndApmHostSum() UsageBillableSummaryBody {
@@ -1274,6 +1317,7 @@ func (o *UsageBillableSummaryKeys) SetInfraAndApmHostSum(v UsageBillableSummaryB
 	o.InfraAndApmHostSum = &v
 }
 
+
 // GetInfraAndApmHostTop99p returns the InfraAndApmHostTop99p field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetInfraAndApmHostTop99p() UsageBillableSummaryBody {
 	if o == nil || o.InfraAndApmHostTop99p == nil {
@@ -1301,6 +1345,7 @@ func (o *UsageBillableSummaryKeys) HasInfraAndApmHostTop99p() bool {
 func (o *UsageBillableSummaryKeys) SetInfraAndApmHostTop99p(v UsageBillableSummaryBody) {
 	o.InfraAndApmHostTop99p = &v
 }
+
 
 // GetInfraContainerSum returns the InfraContainerSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetInfraContainerSum() UsageBillableSummaryBody {
@@ -1330,6 +1375,7 @@ func (o *UsageBillableSummaryKeys) SetInfraContainerSum(v UsageBillableSummaryBo
 	o.InfraContainerSum = &v
 }
 
+
 // GetInfraHostSum returns the InfraHostSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetInfraHostSum() UsageBillableSummaryBody {
 	if o == nil || o.InfraHostSum == nil {
@@ -1357,6 +1403,7 @@ func (o *UsageBillableSummaryKeys) HasInfraHostSum() bool {
 func (o *UsageBillableSummaryKeys) SetInfraHostSum(v UsageBillableSummaryBody) {
 	o.InfraHostSum = &v
 }
+
 
 // GetInfraHostTop99p returns the InfraHostTop99p field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetInfraHostTop99p() UsageBillableSummaryBody {
@@ -1386,6 +1433,7 @@ func (o *UsageBillableSummaryKeys) SetInfraHostTop99p(v UsageBillableSummaryBody
 	o.InfraHostTop99p = &v
 }
 
+
 // GetIngestedSpansSum returns the IngestedSpansSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetIngestedSpansSum() UsageBillableSummaryBody {
 	if o == nil || o.IngestedSpansSum == nil {
@@ -1413,6 +1461,7 @@ func (o *UsageBillableSummaryKeys) HasIngestedSpansSum() bool {
 func (o *UsageBillableSummaryKeys) SetIngestedSpansSum(v UsageBillableSummaryBody) {
 	o.IngestedSpansSum = &v
 }
+
 
 // GetIngestedTimeseriesAverage returns the IngestedTimeseriesAverage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetIngestedTimeseriesAverage() UsageBillableSummaryBody {
@@ -1442,6 +1491,7 @@ func (o *UsageBillableSummaryKeys) SetIngestedTimeseriesAverage(v UsageBillableS
 	o.IngestedTimeseriesAverage = &v
 }
 
+
 // GetIngestedTimeseriesSum returns the IngestedTimeseriesSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetIngestedTimeseriesSum() UsageBillableSummaryBody {
 	if o == nil || o.IngestedTimeseriesSum == nil {
@@ -1469,6 +1519,7 @@ func (o *UsageBillableSummaryKeys) HasIngestedTimeseriesSum() bool {
 func (o *UsageBillableSummaryKeys) SetIngestedTimeseriesSum(v UsageBillableSummaryBody) {
 	o.IngestedTimeseriesSum = &v
 }
+
 
 // GetIotSum returns the IotSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetIotSum() UsageBillableSummaryBody {
@@ -1498,6 +1549,7 @@ func (o *UsageBillableSummaryKeys) SetIotSum(v UsageBillableSummaryBody) {
 	o.IotSum = &v
 }
 
+
 // GetIotTop99p returns the IotTop99p field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetIotTop99p() UsageBillableSummaryBody {
 	if o == nil || o.IotTop99p == nil {
@@ -1525,6 +1577,7 @@ func (o *UsageBillableSummaryKeys) HasIotTop99p() bool {
 func (o *UsageBillableSummaryKeys) SetIotTop99p(v UsageBillableSummaryBody) {
 	o.IotTop99p = &v
 }
+
 
 // GetLambdaFunctionAverage returns the LambdaFunctionAverage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLambdaFunctionAverage() UsageBillableSummaryBody {
@@ -1554,6 +1607,7 @@ func (o *UsageBillableSummaryKeys) SetLambdaFunctionAverage(v UsageBillableSumma
 	o.LambdaFunctionAverage = &v
 }
 
+
 // GetLambdaFunctionSum returns the LambdaFunctionSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLambdaFunctionSum() UsageBillableSummaryBody {
 	if o == nil || o.LambdaFunctionSum == nil {
@@ -1581,6 +1635,7 @@ func (o *UsageBillableSummaryKeys) HasLambdaFunctionSum() bool {
 func (o *UsageBillableSummaryKeys) SetLambdaFunctionSum(v UsageBillableSummaryBody) {
 	o.LambdaFunctionSum = &v
 }
+
 
 // GetLogsForwardingSum returns the LogsForwardingSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsForwardingSum() UsageBillableSummaryBody {
@@ -1610,6 +1665,7 @@ func (o *UsageBillableSummaryKeys) SetLogsForwardingSum(v UsageBillableSummaryBo
 	o.LogsForwardingSum = &v
 }
 
+
 // GetLogsIndexed15daySum returns the LogsIndexed15daySum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIndexed15daySum() UsageBillableSummaryBody {
 	if o == nil || o.LogsIndexed15daySum == nil {
@@ -1637,6 +1693,7 @@ func (o *UsageBillableSummaryKeys) HasLogsIndexed15daySum() bool {
 func (o *UsageBillableSummaryKeys) SetLogsIndexed15daySum(v UsageBillableSummaryBody) {
 	o.LogsIndexed15daySum = &v
 }
+
 
 // GetLogsIndexed180daySum returns the LogsIndexed180daySum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIndexed180daySum() UsageBillableSummaryBody {
@@ -1666,6 +1723,7 @@ func (o *UsageBillableSummaryKeys) SetLogsIndexed180daySum(v UsageBillableSummar
 	o.LogsIndexed180daySum = &v
 }
 
+
 // GetLogsIndexed1daySum returns the LogsIndexed1daySum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIndexed1daySum() UsageBillableSummaryBody {
 	if o == nil || o.LogsIndexed1daySum == nil {
@@ -1693,6 +1751,7 @@ func (o *UsageBillableSummaryKeys) HasLogsIndexed1daySum() bool {
 func (o *UsageBillableSummaryKeys) SetLogsIndexed1daySum(v UsageBillableSummaryBody) {
 	o.LogsIndexed1daySum = &v
 }
+
 
 // GetLogsIndexed30daySum returns the LogsIndexed30daySum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIndexed30daySum() UsageBillableSummaryBody {
@@ -1722,6 +1781,7 @@ func (o *UsageBillableSummaryKeys) SetLogsIndexed30daySum(v UsageBillableSummary
 	o.LogsIndexed30daySum = &v
 }
 
+
 // GetLogsIndexed360daySum returns the LogsIndexed360daySum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIndexed360daySum() UsageBillableSummaryBody {
 	if o == nil || o.LogsIndexed360daySum == nil {
@@ -1749,6 +1809,7 @@ func (o *UsageBillableSummaryKeys) HasLogsIndexed360daySum() bool {
 func (o *UsageBillableSummaryKeys) SetLogsIndexed360daySum(v UsageBillableSummaryBody) {
 	o.LogsIndexed360daySum = &v
 }
+
 
 // GetLogsIndexed3daySum returns the LogsIndexed3daySum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIndexed3daySum() UsageBillableSummaryBody {
@@ -1778,6 +1839,7 @@ func (o *UsageBillableSummaryKeys) SetLogsIndexed3daySum(v UsageBillableSummaryB
 	o.LogsIndexed3daySum = &v
 }
 
+
 // GetLogsIndexed45daySum returns the LogsIndexed45daySum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIndexed45daySum() UsageBillableSummaryBody {
 	if o == nil || o.LogsIndexed45daySum == nil {
@@ -1805,6 +1867,7 @@ func (o *UsageBillableSummaryKeys) HasLogsIndexed45daySum() bool {
 func (o *UsageBillableSummaryKeys) SetLogsIndexed45daySum(v UsageBillableSummaryBody) {
 	o.LogsIndexed45daySum = &v
 }
+
 
 // GetLogsIndexed60daySum returns the LogsIndexed60daySum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIndexed60daySum() UsageBillableSummaryBody {
@@ -1834,6 +1897,7 @@ func (o *UsageBillableSummaryKeys) SetLogsIndexed60daySum(v UsageBillableSummary
 	o.LogsIndexed60daySum = &v
 }
 
+
 // GetLogsIndexed7daySum returns the LogsIndexed7daySum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIndexed7daySum() UsageBillableSummaryBody {
 	if o == nil || o.LogsIndexed7daySum == nil {
@@ -1861,6 +1925,7 @@ func (o *UsageBillableSummaryKeys) HasLogsIndexed7daySum() bool {
 func (o *UsageBillableSummaryKeys) SetLogsIndexed7daySum(v UsageBillableSummaryBody) {
 	o.LogsIndexed7daySum = &v
 }
+
 
 // GetLogsIndexed90daySum returns the LogsIndexed90daySum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIndexed90daySum() UsageBillableSummaryBody {
@@ -1890,6 +1955,7 @@ func (o *UsageBillableSummaryKeys) SetLogsIndexed90daySum(v UsageBillableSummary
 	o.LogsIndexed90daySum = &v
 }
 
+
 // GetLogsIndexedCustomRetentionSum returns the LogsIndexedCustomRetentionSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIndexedCustomRetentionSum() UsageBillableSummaryBody {
 	if o == nil || o.LogsIndexedCustomRetentionSum == nil {
@@ -1917,6 +1983,7 @@ func (o *UsageBillableSummaryKeys) HasLogsIndexedCustomRetentionSum() bool {
 func (o *UsageBillableSummaryKeys) SetLogsIndexedCustomRetentionSum(v UsageBillableSummaryBody) {
 	o.LogsIndexedCustomRetentionSum = &v
 }
+
 
 // GetLogsIndexedSum returns the LogsIndexedSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIndexedSum() UsageBillableSummaryBody {
@@ -1946,6 +2013,7 @@ func (o *UsageBillableSummaryKeys) SetLogsIndexedSum(v UsageBillableSummaryBody)
 	o.LogsIndexedSum = &v
 }
 
+
 // GetLogsIngestedSum returns the LogsIngestedSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetLogsIngestedSum() UsageBillableSummaryBody {
 	if o == nil || o.LogsIngestedSum == nil {
@@ -1973,6 +2041,7 @@ func (o *UsageBillableSummaryKeys) HasLogsIngestedSum() bool {
 func (o *UsageBillableSummaryKeys) SetLogsIngestedSum(v UsageBillableSummaryBody) {
 	o.LogsIngestedSum = &v
 }
+
 
 // GetNetworkDeviceSum returns the NetworkDeviceSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetNetworkDeviceSum() UsageBillableSummaryBody {
@@ -2002,6 +2071,7 @@ func (o *UsageBillableSummaryKeys) SetNetworkDeviceSum(v UsageBillableSummaryBod
 	o.NetworkDeviceSum = &v
 }
 
+
 // GetNetworkDeviceTop99p returns the NetworkDeviceTop99p field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetNetworkDeviceTop99p() UsageBillableSummaryBody {
 	if o == nil || o.NetworkDeviceTop99p == nil {
@@ -2029,6 +2099,7 @@ func (o *UsageBillableSummaryKeys) HasNetworkDeviceTop99p() bool {
 func (o *UsageBillableSummaryKeys) SetNetworkDeviceTop99p(v UsageBillableSummaryBody) {
 	o.NetworkDeviceTop99p = &v
 }
+
 
 // GetNpmFlowSum returns the NpmFlowSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetNpmFlowSum() UsageBillableSummaryBody {
@@ -2058,6 +2129,7 @@ func (o *UsageBillableSummaryKeys) SetNpmFlowSum(v UsageBillableSummaryBody) {
 	o.NpmFlowSum = &v
 }
 
+
 // GetNpmHostSum returns the NpmHostSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetNpmHostSum() UsageBillableSummaryBody {
 	if o == nil || o.NpmHostSum == nil {
@@ -2085,6 +2157,7 @@ func (o *UsageBillableSummaryKeys) HasNpmHostSum() bool {
 func (o *UsageBillableSummaryKeys) SetNpmHostSum(v UsageBillableSummaryBody) {
 	o.NpmHostSum = &v
 }
+
 
 // GetNpmHostTop99p returns the NpmHostTop99p field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetNpmHostTop99p() UsageBillableSummaryBody {
@@ -2114,6 +2187,7 @@ func (o *UsageBillableSummaryKeys) SetNpmHostTop99p(v UsageBillableSummaryBody) 
 	o.NpmHostTop99p = &v
 }
 
+
 // GetObservabilityPipelineSum returns the ObservabilityPipelineSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetObservabilityPipelineSum() UsageBillableSummaryBody {
 	if o == nil || o.ObservabilityPipelineSum == nil {
@@ -2141,6 +2215,7 @@ func (o *UsageBillableSummaryKeys) HasObservabilityPipelineSum() bool {
 func (o *UsageBillableSummaryKeys) SetObservabilityPipelineSum(v UsageBillableSummaryBody) {
 	o.ObservabilityPipelineSum = &v
 }
+
 
 // GetOnlineArchiveSum returns the OnlineArchiveSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetOnlineArchiveSum() UsageBillableSummaryBody {
@@ -2170,6 +2245,7 @@ func (o *UsageBillableSummaryKeys) SetOnlineArchiveSum(v UsageBillableSummaryBod
 	o.OnlineArchiveSum = &v
 }
 
+
 // GetProfContainerSum returns the ProfContainerSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetProfContainerSum() UsageBillableSummaryBody {
 	if o == nil || o.ProfContainerSum == nil {
@@ -2197,6 +2273,7 @@ func (o *UsageBillableSummaryKeys) HasProfContainerSum() bool {
 func (o *UsageBillableSummaryKeys) SetProfContainerSum(v UsageBillableSummaryBody) {
 	o.ProfContainerSum = &v
 }
+
 
 // GetProfHostSum returns the ProfHostSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetProfHostSum() UsageBillableSummaryBody {
@@ -2226,6 +2303,7 @@ func (o *UsageBillableSummaryKeys) SetProfHostSum(v UsageBillableSummaryBody) {
 	o.ProfHostSum = &v
 }
 
+
 // GetProfHostTop99p returns the ProfHostTop99p field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetProfHostTop99p() UsageBillableSummaryBody {
 	if o == nil || o.ProfHostTop99p == nil {
@@ -2253,6 +2331,7 @@ func (o *UsageBillableSummaryKeys) HasProfHostTop99p() bool {
 func (o *UsageBillableSummaryKeys) SetProfHostTop99p(v UsageBillableSummaryBody) {
 	o.ProfHostTop99p = &v
 }
+
 
 // GetRumLiteSum returns the RumLiteSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetRumLiteSum() UsageBillableSummaryBody {
@@ -2282,6 +2361,7 @@ func (o *UsageBillableSummaryKeys) SetRumLiteSum(v UsageBillableSummaryBody) {
 	o.RumLiteSum = &v
 }
 
+
 // GetRumReplaySum returns the RumReplaySum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetRumReplaySum() UsageBillableSummaryBody {
 	if o == nil || o.RumReplaySum == nil {
@@ -2309,6 +2389,7 @@ func (o *UsageBillableSummaryKeys) HasRumReplaySum() bool {
 func (o *UsageBillableSummaryKeys) SetRumReplaySum(v UsageBillableSummaryBody) {
 	o.RumReplaySum = &v
 }
+
 
 // GetRumSum returns the RumSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetRumSum() UsageBillableSummaryBody {
@@ -2338,6 +2419,7 @@ func (o *UsageBillableSummaryKeys) SetRumSum(v UsageBillableSummaryBody) {
 	o.RumSum = &v
 }
 
+
 // GetRumUnitsSum returns the RumUnitsSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetRumUnitsSum() UsageBillableSummaryBody {
 	if o == nil || o.RumUnitsSum == nil {
@@ -2365,6 +2447,7 @@ func (o *UsageBillableSummaryKeys) HasRumUnitsSum() bool {
 func (o *UsageBillableSummaryKeys) SetRumUnitsSum(v UsageBillableSummaryBody) {
 	o.RumUnitsSum = &v
 }
+
 
 // GetSensitiveDataScannerSum returns the SensitiveDataScannerSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetSensitiveDataScannerSum() UsageBillableSummaryBody {
@@ -2394,6 +2477,7 @@ func (o *UsageBillableSummaryKeys) SetSensitiveDataScannerSum(v UsageBillableSum
 	o.SensitiveDataScannerSum = &v
 }
 
+
 // GetServerlessApmSum returns the ServerlessApmSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetServerlessApmSum() UsageBillableSummaryBody {
 	if o == nil || o.ServerlessApmSum == nil {
@@ -2421,6 +2505,7 @@ func (o *UsageBillableSummaryKeys) HasServerlessApmSum() bool {
 func (o *UsageBillableSummaryKeys) SetServerlessApmSum(v UsageBillableSummaryBody) {
 	o.ServerlessApmSum = &v
 }
+
 
 // GetServerlessInfraAverage returns the ServerlessInfraAverage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetServerlessInfraAverage() UsageBillableSummaryBody {
@@ -2450,6 +2535,7 @@ func (o *UsageBillableSummaryKeys) SetServerlessInfraAverage(v UsageBillableSumm
 	o.ServerlessInfraAverage = &v
 }
 
+
 // GetServerlessInfraSum returns the ServerlessInfraSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetServerlessInfraSum() UsageBillableSummaryBody {
 	if o == nil || o.ServerlessInfraSum == nil {
@@ -2477,6 +2563,7 @@ func (o *UsageBillableSummaryKeys) HasServerlessInfraSum() bool {
 func (o *UsageBillableSummaryKeys) SetServerlessInfraSum(v UsageBillableSummaryBody) {
 	o.ServerlessInfraSum = &v
 }
+
 
 // GetServerlessInvocationSum returns the ServerlessInvocationSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetServerlessInvocationSum() UsageBillableSummaryBody {
@@ -2506,6 +2593,7 @@ func (o *UsageBillableSummaryKeys) SetServerlessInvocationSum(v UsageBillableSum
 	o.ServerlessInvocationSum = &v
 }
 
+
 // GetSiemSum returns the SiemSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetSiemSum() UsageBillableSummaryBody {
 	if o == nil || o.SiemSum == nil {
@@ -2533,6 +2621,7 @@ func (o *UsageBillableSummaryKeys) HasSiemSum() bool {
 func (o *UsageBillableSummaryKeys) SetSiemSum(v UsageBillableSummaryBody) {
 	o.SiemSum = &v
 }
+
 
 // GetStandardTimeseriesAverage returns the StandardTimeseriesAverage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetStandardTimeseriesAverage() UsageBillableSummaryBody {
@@ -2562,6 +2651,7 @@ func (o *UsageBillableSummaryKeys) SetStandardTimeseriesAverage(v UsageBillableS
 	o.StandardTimeseriesAverage = &v
 }
 
+
 // GetSyntheticsApiTestsSum returns the SyntheticsApiTestsSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetSyntheticsApiTestsSum() UsageBillableSummaryBody {
 	if o == nil || o.SyntheticsApiTestsSum == nil {
@@ -2589,6 +2679,7 @@ func (o *UsageBillableSummaryKeys) HasSyntheticsApiTestsSum() bool {
 func (o *UsageBillableSummaryKeys) SetSyntheticsApiTestsSum(v UsageBillableSummaryBody) {
 	o.SyntheticsApiTestsSum = &v
 }
+
 
 // GetSyntheticsAppTestingMaximum returns the SyntheticsAppTestingMaximum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetSyntheticsAppTestingMaximum() UsageBillableSummaryBody {
@@ -2618,6 +2709,7 @@ func (o *UsageBillableSummaryKeys) SetSyntheticsAppTestingMaximum(v UsageBillabl
 	o.SyntheticsAppTestingMaximum = &v
 }
 
+
 // GetSyntheticsBrowserChecksSum returns the SyntheticsBrowserChecksSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetSyntheticsBrowserChecksSum() UsageBillableSummaryBody {
 	if o == nil || o.SyntheticsBrowserChecksSum == nil {
@@ -2645,6 +2737,7 @@ func (o *UsageBillableSummaryKeys) HasSyntheticsBrowserChecksSum() bool {
 func (o *UsageBillableSummaryKeys) SetSyntheticsBrowserChecksSum(v UsageBillableSummaryBody) {
 	o.SyntheticsBrowserChecksSum = &v
 }
+
 
 // GetTimeseriesAverage returns the TimeseriesAverage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetTimeseriesAverage() UsageBillableSummaryBody {
@@ -2674,6 +2767,7 @@ func (o *UsageBillableSummaryKeys) SetTimeseriesAverage(v UsageBillableSummaryBo
 	o.TimeseriesAverage = &v
 }
 
+
 // GetTimeseriesSum returns the TimeseriesSum field value if set, zero value otherwise.
 func (o *UsageBillableSummaryKeys) GetTimeseriesSum() UsageBillableSummaryBody {
 	if o == nil || o.TimeseriesSum == nil {
@@ -2701,6 +2795,8 @@ func (o *UsageBillableSummaryKeys) HasTimeseriesSum() bool {
 func (o *UsageBillableSummaryKeys) SetTimeseriesSum(v UsageBillableSummaryBody) {
 	o.TimeseriesSum = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
@@ -2985,460 +3081,460 @@ func (o UsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApmFargateAverage                     *UsageBillableSummaryBody `json:"apm_fargate_average,omitempty"`
-		ApmFargateSum                         *UsageBillableSummaryBody `json:"apm_fargate_sum,omitempty"`
-		ApmHostSum                            *UsageBillableSummaryBody `json:"apm_host_sum,omitempty"`
-		ApmHostTop99p                         *UsageBillableSummaryBody `json:"apm_host_top99p,omitempty"`
-		ApmProfilerHostSum                    *UsageBillableSummaryBody `json:"apm_profiler_host_sum,omitempty"`
-		ApmProfilerHostTop99p                 *UsageBillableSummaryBody `json:"apm_profiler_host_top99p,omitempty"`
-		ApmTraceSearchSum                     *UsageBillableSummaryBody `json:"apm_trace_search_sum,omitempty"`
-		ApplicationSecurityFargateAverage     *UsageBillableSummaryBody `json:"application_security_fargate_average,omitempty"`
-		ApplicationSecurityHostSum            *UsageBillableSummaryBody `json:"application_security_host_sum,omitempty"`
-		ApplicationSecurityHostTop99p         *UsageBillableSummaryBody `json:"application_security_host_top99p,omitempty"`
-		CiPipelineIndexedSpansSum             *UsageBillableSummaryBody `json:"ci_pipeline_indexed_spans_sum,omitempty"`
-		CiPipelineMaximum                     *UsageBillableSummaryBody `json:"ci_pipeline_maximum,omitempty"`
-		CiPipelineSum                         *UsageBillableSummaryBody `json:"ci_pipeline_sum,omitempty"`
-		CiTestIndexedSpansSum                 *UsageBillableSummaryBody `json:"ci_test_indexed_spans_sum,omitempty"`
-		CiTestingMaximum                      *UsageBillableSummaryBody `json:"ci_testing_maximum,omitempty"`
-		CiTestingSum                          *UsageBillableSummaryBody `json:"ci_testing_sum,omitempty"`
-		CloudCostManagementAverage            *UsageBillableSummaryBody `json:"cloud_cost_management_average,omitempty"`
-		CloudCostManagementSum                *UsageBillableSummaryBody `json:"cloud_cost_management_sum,omitempty"`
-		CspmContainerSum                      *UsageBillableSummaryBody `json:"cspm_container_sum,omitempty"`
-		CspmHostSum                           *UsageBillableSummaryBody `json:"cspm_host_sum,omitempty"`
-		CspmHostTop99p                        *UsageBillableSummaryBody `json:"cspm_host_top99p,omitempty"`
-		CustomEventSum                        *UsageBillableSummaryBody `json:"custom_event_sum,omitempty"`
-		CwsContainerSum                       *UsageBillableSummaryBody `json:"cws_container_sum,omitempty"`
-		CwsHostSum                            *UsageBillableSummaryBody `json:"cws_host_sum,omitempty"`
-		CwsHostTop99p                         *UsageBillableSummaryBody `json:"cws_host_top99p,omitempty"`
-		DbmHostSum                            *UsageBillableSummaryBody `json:"dbm_host_sum,omitempty"`
-		DbmHostTop99p                         *UsageBillableSummaryBody `json:"dbm_host_top99p,omitempty"`
-		DbmNormalizedQueriesAverage           *UsageBillableSummaryBody `json:"dbm_normalized_queries_average,omitempty"`
-		DbmNormalizedQueriesSum               *UsageBillableSummaryBody `json:"dbm_normalized_queries_sum,omitempty"`
+		ApmFargateAverage *UsageBillableSummaryBody `json:"apm_fargate_average,omitempty"`
+		ApmFargateSum *UsageBillableSummaryBody `json:"apm_fargate_sum,omitempty"`
+		ApmHostSum *UsageBillableSummaryBody `json:"apm_host_sum,omitempty"`
+		ApmHostTop99p *UsageBillableSummaryBody `json:"apm_host_top99p,omitempty"`
+		ApmProfilerHostSum *UsageBillableSummaryBody `json:"apm_profiler_host_sum,omitempty"`
+		ApmProfilerHostTop99p *UsageBillableSummaryBody `json:"apm_profiler_host_top99p,omitempty"`
+		ApmTraceSearchSum *UsageBillableSummaryBody `json:"apm_trace_search_sum,omitempty"`
+		ApplicationSecurityFargateAverage *UsageBillableSummaryBody `json:"application_security_fargate_average,omitempty"`
+		ApplicationSecurityHostSum *UsageBillableSummaryBody `json:"application_security_host_sum,omitempty"`
+		ApplicationSecurityHostTop99p *UsageBillableSummaryBody `json:"application_security_host_top99p,omitempty"`
+		CiPipelineIndexedSpansSum *UsageBillableSummaryBody `json:"ci_pipeline_indexed_spans_sum,omitempty"`
+		CiPipelineMaximum *UsageBillableSummaryBody `json:"ci_pipeline_maximum,omitempty"`
+		CiPipelineSum *UsageBillableSummaryBody `json:"ci_pipeline_sum,omitempty"`
+		CiTestIndexedSpansSum *UsageBillableSummaryBody `json:"ci_test_indexed_spans_sum,omitempty"`
+		CiTestingMaximum *UsageBillableSummaryBody `json:"ci_testing_maximum,omitempty"`
+		CiTestingSum *UsageBillableSummaryBody `json:"ci_testing_sum,omitempty"`
+		CloudCostManagementAverage *UsageBillableSummaryBody `json:"cloud_cost_management_average,omitempty"`
+		CloudCostManagementSum *UsageBillableSummaryBody `json:"cloud_cost_management_sum,omitempty"`
+		CspmContainerSum *UsageBillableSummaryBody `json:"cspm_container_sum,omitempty"`
+		CspmHostSum *UsageBillableSummaryBody `json:"cspm_host_sum,omitempty"`
+		CspmHostTop99p *UsageBillableSummaryBody `json:"cspm_host_top99p,omitempty"`
+		CustomEventSum *UsageBillableSummaryBody `json:"custom_event_sum,omitempty"`
+		CwsContainerSum *UsageBillableSummaryBody `json:"cws_container_sum,omitempty"`
+		CwsHostSum *UsageBillableSummaryBody `json:"cws_host_sum,omitempty"`
+		CwsHostTop99p *UsageBillableSummaryBody `json:"cws_host_top99p,omitempty"`
+		DbmHostSum *UsageBillableSummaryBody `json:"dbm_host_sum,omitempty"`
+		DbmHostTop99p *UsageBillableSummaryBody `json:"dbm_host_top99p,omitempty"`
+		DbmNormalizedQueriesAverage *UsageBillableSummaryBody `json:"dbm_normalized_queries_average,omitempty"`
+		DbmNormalizedQueriesSum *UsageBillableSummaryBody `json:"dbm_normalized_queries_sum,omitempty"`
 		FargateContainerApmAndProfilerAverage *UsageBillableSummaryBody `json:"fargate_container_apm_and_profiler_average,omitempty"`
-		FargateContainerApmAndProfilerSum     *UsageBillableSummaryBody `json:"fargate_container_apm_and_profiler_sum,omitempty"`
-		FargateContainerAverage               *UsageBillableSummaryBody `json:"fargate_container_average,omitempty"`
-		FargateContainerProfilerAverage       *UsageBillableSummaryBody `json:"fargate_container_profiler_average,omitempty"`
-		FargateContainerProfilerSum           *UsageBillableSummaryBody `json:"fargate_container_profiler_sum,omitempty"`
-		FargateContainerSum                   *UsageBillableSummaryBody `json:"fargate_container_sum,omitempty"`
-		IncidentManagementMaximum             *UsageBillableSummaryBody `json:"incident_management_maximum,omitempty"`
-		IncidentManagementSum                 *UsageBillableSummaryBody `json:"incident_management_sum,omitempty"`
-		InfraAndApmHostSum                    *UsageBillableSummaryBody `json:"infra_and_apm_host_sum,omitempty"`
-		InfraAndApmHostTop99p                 *UsageBillableSummaryBody `json:"infra_and_apm_host_top99p,omitempty"`
-		InfraContainerSum                     *UsageBillableSummaryBody `json:"infra_container_sum,omitempty"`
-		InfraHostSum                          *UsageBillableSummaryBody `json:"infra_host_sum,omitempty"`
-		InfraHostTop99p                       *UsageBillableSummaryBody `json:"infra_host_top99p,omitempty"`
-		IngestedSpansSum                      *UsageBillableSummaryBody `json:"ingested_spans_sum,omitempty"`
-		IngestedTimeseriesAverage             *UsageBillableSummaryBody `json:"ingested_timeseries_average,omitempty"`
-		IngestedTimeseriesSum                 *UsageBillableSummaryBody `json:"ingested_timeseries_sum,omitempty"`
-		IotSum                                *UsageBillableSummaryBody `json:"iot_sum,omitempty"`
-		IotTop99p                             *UsageBillableSummaryBody `json:"iot_top99p,omitempty"`
-		LambdaFunctionAverage                 *UsageBillableSummaryBody `json:"lambda_function_average,omitempty"`
-		LambdaFunctionSum                     *UsageBillableSummaryBody `json:"lambda_function_sum,omitempty"`
-		LogsForwardingSum                     *UsageBillableSummaryBody `json:"logs_forwarding_sum,omitempty"`
-		LogsIndexed15daySum                   *UsageBillableSummaryBody `json:"logs_indexed_15day_sum,omitempty"`
-		LogsIndexed180daySum                  *UsageBillableSummaryBody `json:"logs_indexed_180day_sum,omitempty"`
-		LogsIndexed1daySum                    *UsageBillableSummaryBody `json:"logs_indexed_1day_sum,omitempty"`
-		LogsIndexed30daySum                   *UsageBillableSummaryBody `json:"logs_indexed_30day_sum,omitempty"`
-		LogsIndexed360daySum                  *UsageBillableSummaryBody `json:"logs_indexed_360day_sum,omitempty"`
-		LogsIndexed3daySum                    *UsageBillableSummaryBody `json:"logs_indexed_3day_sum,omitempty"`
-		LogsIndexed45daySum                   *UsageBillableSummaryBody `json:"logs_indexed_45day_sum,omitempty"`
-		LogsIndexed60daySum                   *UsageBillableSummaryBody `json:"logs_indexed_60day_sum,omitempty"`
-		LogsIndexed7daySum                    *UsageBillableSummaryBody `json:"logs_indexed_7day_sum,omitempty"`
-		LogsIndexed90daySum                   *UsageBillableSummaryBody `json:"logs_indexed_90day_sum,omitempty"`
-		LogsIndexedCustomRetentionSum         *UsageBillableSummaryBody `json:"logs_indexed_custom_retention_sum,omitempty"`
-		LogsIndexedSum                        *UsageBillableSummaryBody `json:"logs_indexed_sum,omitempty"`
-		LogsIngestedSum                       *UsageBillableSummaryBody `json:"logs_ingested_sum,omitempty"`
-		NetworkDeviceSum                      *UsageBillableSummaryBody `json:"network_device_sum,omitempty"`
-		NetworkDeviceTop99p                   *UsageBillableSummaryBody `json:"network_device_top99p,omitempty"`
-		NpmFlowSum                            *UsageBillableSummaryBody `json:"npm_flow_sum,omitempty"`
-		NpmHostSum                            *UsageBillableSummaryBody `json:"npm_host_sum,omitempty"`
-		NpmHostTop99p                         *UsageBillableSummaryBody `json:"npm_host_top99p,omitempty"`
-		ObservabilityPipelineSum              *UsageBillableSummaryBody `json:"observability_pipeline_sum,omitempty"`
-		OnlineArchiveSum                      *UsageBillableSummaryBody `json:"online_archive_sum,omitempty"`
-		ProfContainerSum                      *UsageBillableSummaryBody `json:"prof_container_sum,omitempty"`
-		ProfHostSum                           *UsageBillableSummaryBody `json:"prof_host_sum,omitempty"`
-		ProfHostTop99p                        *UsageBillableSummaryBody `json:"prof_host_top99p,omitempty"`
-		RumLiteSum                            *UsageBillableSummaryBody `json:"rum_lite_sum,omitempty"`
-		RumReplaySum                          *UsageBillableSummaryBody `json:"rum_replay_sum,omitempty"`
-		RumSum                                *UsageBillableSummaryBody `json:"rum_sum,omitempty"`
-		RumUnitsSum                           *UsageBillableSummaryBody `json:"rum_units_sum,omitempty"`
-		SensitiveDataScannerSum               *UsageBillableSummaryBody `json:"sensitive_data_scanner_sum,omitempty"`
-		ServerlessApmSum                      *UsageBillableSummaryBody `json:"serverless_apm_sum,omitempty"`
-		ServerlessInfraAverage                *UsageBillableSummaryBody `json:"serverless_infra_average,omitempty"`
-		ServerlessInfraSum                    *UsageBillableSummaryBody `json:"serverless_infra_sum,omitempty"`
-		ServerlessInvocationSum               *UsageBillableSummaryBody `json:"serverless_invocation_sum,omitempty"`
-		SiemSum                               *UsageBillableSummaryBody `json:"siem_sum,omitempty"`
-		StandardTimeseriesAverage             *UsageBillableSummaryBody `json:"standard_timeseries_average,omitempty"`
-		SyntheticsApiTestsSum                 *UsageBillableSummaryBody `json:"synthetics_api_tests_sum,omitempty"`
-		SyntheticsAppTestingMaximum           *UsageBillableSummaryBody `json:"synthetics_app_testing_maximum,omitempty"`
-		SyntheticsBrowserChecksSum            *UsageBillableSummaryBody `json:"synthetics_browser_checks_sum,omitempty"`
-		TimeseriesAverage                     *UsageBillableSummaryBody `json:"timeseries_average,omitempty"`
-		TimeseriesSum                         *UsageBillableSummaryBody `json:"timeseries_sum,omitempty"`
+		FargateContainerApmAndProfilerSum *UsageBillableSummaryBody `json:"fargate_container_apm_and_profiler_sum,omitempty"`
+		FargateContainerAverage *UsageBillableSummaryBody `json:"fargate_container_average,omitempty"`
+		FargateContainerProfilerAverage *UsageBillableSummaryBody `json:"fargate_container_profiler_average,omitempty"`
+		FargateContainerProfilerSum *UsageBillableSummaryBody `json:"fargate_container_profiler_sum,omitempty"`
+		FargateContainerSum *UsageBillableSummaryBody `json:"fargate_container_sum,omitempty"`
+		IncidentManagementMaximum *UsageBillableSummaryBody `json:"incident_management_maximum,omitempty"`
+		IncidentManagementSum *UsageBillableSummaryBody `json:"incident_management_sum,omitempty"`
+		InfraAndApmHostSum *UsageBillableSummaryBody `json:"infra_and_apm_host_sum,omitempty"`
+		InfraAndApmHostTop99p *UsageBillableSummaryBody `json:"infra_and_apm_host_top99p,omitempty"`
+		InfraContainerSum *UsageBillableSummaryBody `json:"infra_container_sum,omitempty"`
+		InfraHostSum *UsageBillableSummaryBody `json:"infra_host_sum,omitempty"`
+		InfraHostTop99p *UsageBillableSummaryBody `json:"infra_host_top99p,omitempty"`
+		IngestedSpansSum *UsageBillableSummaryBody `json:"ingested_spans_sum,omitempty"`
+		IngestedTimeseriesAverage *UsageBillableSummaryBody `json:"ingested_timeseries_average,omitempty"`
+		IngestedTimeseriesSum *UsageBillableSummaryBody `json:"ingested_timeseries_sum,omitempty"`
+		IotSum *UsageBillableSummaryBody `json:"iot_sum,omitempty"`
+		IotTop99p *UsageBillableSummaryBody `json:"iot_top99p,omitempty"`
+		LambdaFunctionAverage *UsageBillableSummaryBody `json:"lambda_function_average,omitempty"`
+		LambdaFunctionSum *UsageBillableSummaryBody `json:"lambda_function_sum,omitempty"`
+		LogsForwardingSum *UsageBillableSummaryBody `json:"logs_forwarding_sum,omitempty"`
+		LogsIndexed15daySum *UsageBillableSummaryBody `json:"logs_indexed_15day_sum,omitempty"`
+		LogsIndexed180daySum *UsageBillableSummaryBody `json:"logs_indexed_180day_sum,omitempty"`
+		LogsIndexed1daySum *UsageBillableSummaryBody `json:"logs_indexed_1day_sum,omitempty"`
+		LogsIndexed30daySum *UsageBillableSummaryBody `json:"logs_indexed_30day_sum,omitempty"`
+		LogsIndexed360daySum *UsageBillableSummaryBody `json:"logs_indexed_360day_sum,omitempty"`
+		LogsIndexed3daySum *UsageBillableSummaryBody `json:"logs_indexed_3day_sum,omitempty"`
+		LogsIndexed45daySum *UsageBillableSummaryBody `json:"logs_indexed_45day_sum,omitempty"`
+		LogsIndexed60daySum *UsageBillableSummaryBody `json:"logs_indexed_60day_sum,omitempty"`
+		LogsIndexed7daySum *UsageBillableSummaryBody `json:"logs_indexed_7day_sum,omitempty"`
+		LogsIndexed90daySum *UsageBillableSummaryBody `json:"logs_indexed_90day_sum,omitempty"`
+		LogsIndexedCustomRetentionSum *UsageBillableSummaryBody `json:"logs_indexed_custom_retention_sum,omitempty"`
+		LogsIndexedSum *UsageBillableSummaryBody `json:"logs_indexed_sum,omitempty"`
+		LogsIngestedSum *UsageBillableSummaryBody `json:"logs_ingested_sum,omitempty"`
+		NetworkDeviceSum *UsageBillableSummaryBody `json:"network_device_sum,omitempty"`
+		NetworkDeviceTop99p *UsageBillableSummaryBody `json:"network_device_top99p,omitempty"`
+		NpmFlowSum *UsageBillableSummaryBody `json:"npm_flow_sum,omitempty"`
+		NpmHostSum *UsageBillableSummaryBody `json:"npm_host_sum,omitempty"`
+		NpmHostTop99p *UsageBillableSummaryBody `json:"npm_host_top99p,omitempty"`
+		ObservabilityPipelineSum *UsageBillableSummaryBody `json:"observability_pipeline_sum,omitempty"`
+		OnlineArchiveSum *UsageBillableSummaryBody `json:"online_archive_sum,omitempty"`
+		ProfContainerSum *UsageBillableSummaryBody `json:"prof_container_sum,omitempty"`
+		ProfHostSum *UsageBillableSummaryBody `json:"prof_host_sum,omitempty"`
+		ProfHostTop99p *UsageBillableSummaryBody `json:"prof_host_top99p,omitempty"`
+		RumLiteSum *UsageBillableSummaryBody `json:"rum_lite_sum,omitempty"`
+		RumReplaySum *UsageBillableSummaryBody `json:"rum_replay_sum,omitempty"`
+		RumSum *UsageBillableSummaryBody `json:"rum_sum,omitempty"`
+		RumUnitsSum *UsageBillableSummaryBody `json:"rum_units_sum,omitempty"`
+		SensitiveDataScannerSum *UsageBillableSummaryBody `json:"sensitive_data_scanner_sum,omitempty"`
+		ServerlessApmSum *UsageBillableSummaryBody `json:"serverless_apm_sum,omitempty"`
+		ServerlessInfraAverage *UsageBillableSummaryBody `json:"serverless_infra_average,omitempty"`
+		ServerlessInfraSum *UsageBillableSummaryBody `json:"serverless_infra_sum,omitempty"`
+		ServerlessInvocationSum *UsageBillableSummaryBody `json:"serverless_invocation_sum,omitempty"`
+		SiemSum *UsageBillableSummaryBody `json:"siem_sum,omitempty"`
+		StandardTimeseriesAverage *UsageBillableSummaryBody `json:"standard_timeseries_average,omitempty"`
+		SyntheticsApiTestsSum *UsageBillableSummaryBody `json:"synthetics_api_tests_sum,omitempty"`
+		SyntheticsAppTestingMaximum *UsageBillableSummaryBody `json:"synthetics_app_testing_maximum,omitempty"`
+		SyntheticsBrowserChecksSum *UsageBillableSummaryBody `json:"synthetics_browser_checks_sum,omitempty"`
+		TimeseriesAverage *UsageBillableSummaryBody `json:"timeseries_average,omitempty"`
+		TimeseriesSum *UsageBillableSummaryBody `json:"timeseries_sum,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"apm_fargate_average", "apm_fargate_sum", "apm_host_sum", "apm_host_top99p", "apm_profiler_host_sum", "apm_profiler_host_top99p", "apm_trace_search_sum", "application_security_fargate_average", "application_security_host_sum", "application_security_host_top99p", "ci_pipeline_indexed_spans_sum", "ci_pipeline_maximum", "ci_pipeline_sum", "ci_test_indexed_spans_sum", "ci_testing_maximum", "ci_testing_sum", "cloud_cost_management_average", "cloud_cost_management_sum", "cspm_container_sum", "cspm_host_sum", "cspm_host_top99p", "custom_event_sum", "cws_container_sum", "cws_host_sum", "cws_host_top99p", "dbm_host_sum", "dbm_host_top99p", "dbm_normalized_queries_average", "dbm_normalized_queries_sum", "fargate_container_apm_and_profiler_average", "fargate_container_apm_and_profiler_sum", "fargate_container_average", "fargate_container_profiler_average", "fargate_container_profiler_sum", "fargate_container_sum", "incident_management_maximum", "incident_management_sum", "infra_and_apm_host_sum", "infra_and_apm_host_top99p", "infra_container_sum", "infra_host_sum", "infra_host_top99p", "ingested_spans_sum", "ingested_timeseries_average", "ingested_timeseries_sum", "iot_sum", "iot_top99p", "lambda_function_average", "lambda_function_sum", "logs_forwarding_sum", "logs_indexed_15day_sum", "logs_indexed_180day_sum", "logs_indexed_1day_sum", "logs_indexed_30day_sum", "logs_indexed_360day_sum", "logs_indexed_3day_sum", "logs_indexed_45day_sum", "logs_indexed_60day_sum", "logs_indexed_7day_sum", "logs_indexed_90day_sum", "logs_indexed_custom_retention_sum", "logs_indexed_sum", "logs_ingested_sum", "network_device_sum", "network_device_top99p", "npm_flow_sum", "npm_host_sum", "npm_host_top99p", "observability_pipeline_sum", "online_archive_sum", "prof_container_sum", "prof_host_sum", "prof_host_top99p", "rum_lite_sum", "rum_replay_sum", "rum_sum", "rum_units_sum", "sensitive_data_scanner_sum", "serverless_apm_sum", "serverless_infra_average", "serverless_infra_sum", "serverless_invocation_sum", "siem_sum", "standard_timeseries_average", "synthetics_api_tests_sum", "synthetics_app_testing_maximum", "synthetics_browser_checks_sum", "timeseries_average", "timeseries_sum"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "apm_fargate_average", "apm_fargate_sum", "apm_host_sum", "apm_host_top99p", "apm_profiler_host_sum", "apm_profiler_host_top99p", "apm_trace_search_sum", "application_security_fargate_average", "application_security_host_sum", "application_security_host_top99p", "ci_pipeline_indexed_spans_sum", "ci_pipeline_maximum", "ci_pipeline_sum", "ci_test_indexed_spans_sum", "ci_testing_maximum", "ci_testing_sum", "cloud_cost_management_average", "cloud_cost_management_sum", "cspm_container_sum", "cspm_host_sum", "cspm_host_top99p", "custom_event_sum", "cws_container_sum", "cws_host_sum", "cws_host_top99p", "dbm_host_sum", "dbm_host_top99p", "dbm_normalized_queries_average", "dbm_normalized_queries_sum", "fargate_container_apm_and_profiler_average", "fargate_container_apm_and_profiler_sum", "fargate_container_average", "fargate_container_profiler_average", "fargate_container_profiler_sum", "fargate_container_sum", "incident_management_maximum", "incident_management_sum", "infra_and_apm_host_sum", "infra_and_apm_host_top99p", "infra_container_sum", "infra_host_sum", "infra_host_top99p", "ingested_spans_sum", "ingested_timeseries_average", "ingested_timeseries_sum", "iot_sum", "iot_top99p", "lambda_function_average", "lambda_function_sum", "logs_forwarding_sum", "logs_indexed_15day_sum", "logs_indexed_180day_sum", "logs_indexed_1day_sum", "logs_indexed_30day_sum", "logs_indexed_360day_sum", "logs_indexed_3day_sum", "logs_indexed_45day_sum", "logs_indexed_60day_sum", "logs_indexed_7day_sum", "logs_indexed_90day_sum", "logs_indexed_custom_retention_sum", "logs_indexed_sum", "logs_ingested_sum", "network_device_sum", "network_device_top99p", "npm_flow_sum", "npm_host_sum", "npm_host_top99p", "observability_pipeline_sum", "online_archive_sum", "prof_container_sum", "prof_host_sum", "prof_host_top99p", "rum_lite_sum", "rum_replay_sum", "rum_sum", "rum_units_sum", "sensitive_data_scanner_sum", "serverless_apm_sum", "serverless_infra_average", "serverless_infra_sum", "serverless_invocation_sum", "siem_sum", "standard_timeseries_average", "synthetics_api_tests_sum", "synthetics_app_testing_maximum", "synthetics_browser_checks_sum", "timeseries_average", "timeseries_sum",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.ApmFargateAverage != nil && all.ApmFargateAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApmFargateAverage != nil && all.ApmFargateAverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApmFargateAverage = all.ApmFargateAverage
-	if all.ApmFargateSum != nil && all.ApmFargateSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApmFargateSum != nil && all.ApmFargateSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApmFargateSum = all.ApmFargateSum
-	if all.ApmHostSum != nil && all.ApmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApmHostSum != nil && all.ApmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApmHostSum = all.ApmHostSum
-	if all.ApmHostTop99p != nil && all.ApmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApmHostTop99p != nil && all.ApmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApmHostTop99p = all.ApmHostTop99p
-	if all.ApmProfilerHostSum != nil && all.ApmProfilerHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApmProfilerHostSum != nil && all.ApmProfilerHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApmProfilerHostSum = all.ApmProfilerHostSum
-	if all.ApmProfilerHostTop99p != nil && all.ApmProfilerHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApmProfilerHostTop99p != nil && all.ApmProfilerHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApmProfilerHostTop99p = all.ApmProfilerHostTop99p
-	if all.ApmTraceSearchSum != nil && all.ApmTraceSearchSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApmTraceSearchSum != nil && all.ApmTraceSearchSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApmTraceSearchSum = all.ApmTraceSearchSum
-	if all.ApplicationSecurityFargateAverage != nil && all.ApplicationSecurityFargateAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApplicationSecurityFargateAverage != nil && all.ApplicationSecurityFargateAverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApplicationSecurityFargateAverage = all.ApplicationSecurityFargateAverage
-	if all.ApplicationSecurityHostSum != nil && all.ApplicationSecurityHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApplicationSecurityHostSum != nil && all.ApplicationSecurityHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApplicationSecurityHostSum = all.ApplicationSecurityHostSum
-	if all.ApplicationSecurityHostTop99p != nil && all.ApplicationSecurityHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApplicationSecurityHostTop99p != nil && all.ApplicationSecurityHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApplicationSecurityHostTop99p = all.ApplicationSecurityHostTop99p
-	if all.CiPipelineIndexedSpansSum != nil && all.CiPipelineIndexedSpansSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CiPipelineIndexedSpansSum != nil && all.CiPipelineIndexedSpansSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CiPipelineIndexedSpansSum = all.CiPipelineIndexedSpansSum
-	if all.CiPipelineMaximum != nil && all.CiPipelineMaximum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CiPipelineMaximum != nil && all.CiPipelineMaximum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CiPipelineMaximum = all.CiPipelineMaximum
-	if all.CiPipelineSum != nil && all.CiPipelineSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CiPipelineSum != nil && all.CiPipelineSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CiPipelineSum = all.CiPipelineSum
-	if all.CiTestIndexedSpansSum != nil && all.CiTestIndexedSpansSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CiTestIndexedSpansSum != nil && all.CiTestIndexedSpansSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CiTestIndexedSpansSum = all.CiTestIndexedSpansSum
-	if all.CiTestingMaximum != nil && all.CiTestingMaximum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CiTestingMaximum != nil && all.CiTestingMaximum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CiTestingMaximum = all.CiTestingMaximum
-	if all.CiTestingSum != nil && all.CiTestingSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CiTestingSum != nil && all.CiTestingSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CiTestingSum = all.CiTestingSum
-	if all.CloudCostManagementAverage != nil && all.CloudCostManagementAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CloudCostManagementAverage != nil && all.CloudCostManagementAverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CloudCostManagementAverage = all.CloudCostManagementAverage
-	if all.CloudCostManagementSum != nil && all.CloudCostManagementSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CloudCostManagementSum != nil && all.CloudCostManagementSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CloudCostManagementSum = all.CloudCostManagementSum
-	if all.CspmContainerSum != nil && all.CspmContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CspmContainerSum != nil && all.CspmContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CspmContainerSum = all.CspmContainerSum
-	if all.CspmHostSum != nil && all.CspmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CspmHostSum != nil && all.CspmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CspmHostSum = all.CspmHostSum
-	if all.CspmHostTop99p != nil && all.CspmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CspmHostTop99p != nil && all.CspmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CspmHostTop99p = all.CspmHostTop99p
-	if all.CustomEventSum != nil && all.CustomEventSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CustomEventSum != nil && all.CustomEventSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CustomEventSum = all.CustomEventSum
-	if all.CwsContainerSum != nil && all.CwsContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CwsContainerSum != nil && all.CwsContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CwsContainerSum = all.CwsContainerSum
-	if all.CwsHostSum != nil && all.CwsHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CwsHostSum != nil && all.CwsHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CwsHostSum = all.CwsHostSum
-	if all.CwsHostTop99p != nil && all.CwsHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CwsHostTop99p != nil && all.CwsHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CwsHostTop99p = all.CwsHostTop99p
-	if all.DbmHostSum != nil && all.DbmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.DbmHostSum != nil && all.DbmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.DbmHostSum = all.DbmHostSum
-	if all.DbmHostTop99p != nil && all.DbmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.DbmHostTop99p != nil && all.DbmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.DbmHostTop99p = all.DbmHostTop99p
-	if all.DbmNormalizedQueriesAverage != nil && all.DbmNormalizedQueriesAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.DbmNormalizedQueriesAverage != nil && all.DbmNormalizedQueriesAverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.DbmNormalizedQueriesAverage = all.DbmNormalizedQueriesAverage
-	if all.DbmNormalizedQueriesSum != nil && all.DbmNormalizedQueriesSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.DbmNormalizedQueriesSum != nil && all.DbmNormalizedQueriesSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.DbmNormalizedQueriesSum = all.DbmNormalizedQueriesSum
-	if all.FargateContainerApmAndProfilerAverage != nil && all.FargateContainerApmAndProfilerAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.FargateContainerApmAndProfilerAverage != nil && all.FargateContainerApmAndProfilerAverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.FargateContainerApmAndProfilerAverage = all.FargateContainerApmAndProfilerAverage
-	if all.FargateContainerApmAndProfilerSum != nil && all.FargateContainerApmAndProfilerSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.FargateContainerApmAndProfilerSum != nil && all.FargateContainerApmAndProfilerSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.FargateContainerApmAndProfilerSum = all.FargateContainerApmAndProfilerSum
-	if all.FargateContainerAverage != nil && all.FargateContainerAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.FargateContainerAverage != nil && all.FargateContainerAverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.FargateContainerAverage = all.FargateContainerAverage
-	if all.FargateContainerProfilerAverage != nil && all.FargateContainerProfilerAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.FargateContainerProfilerAverage != nil && all.FargateContainerProfilerAverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.FargateContainerProfilerAverage = all.FargateContainerProfilerAverage
-	if all.FargateContainerProfilerSum != nil && all.FargateContainerProfilerSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.FargateContainerProfilerSum != nil && all.FargateContainerProfilerSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.FargateContainerProfilerSum = all.FargateContainerProfilerSum
-	if all.FargateContainerSum != nil && all.FargateContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.FargateContainerSum != nil && all.FargateContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.FargateContainerSum = all.FargateContainerSum
-	if all.IncidentManagementMaximum != nil && all.IncidentManagementMaximum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.IncidentManagementMaximum != nil && all.IncidentManagementMaximum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.IncidentManagementMaximum = all.IncidentManagementMaximum
-	if all.IncidentManagementSum != nil && all.IncidentManagementSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.IncidentManagementSum != nil && all.IncidentManagementSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.IncidentManagementSum = all.IncidentManagementSum
-	if all.InfraAndApmHostSum != nil && all.InfraAndApmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.InfraAndApmHostSum != nil && all.InfraAndApmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.InfraAndApmHostSum = all.InfraAndApmHostSum
-	if all.InfraAndApmHostTop99p != nil && all.InfraAndApmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.InfraAndApmHostTop99p != nil && all.InfraAndApmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.InfraAndApmHostTop99p = all.InfraAndApmHostTop99p
-	if all.InfraContainerSum != nil && all.InfraContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.InfraContainerSum != nil && all.InfraContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.InfraContainerSum = all.InfraContainerSum
-	if all.InfraHostSum != nil && all.InfraHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.InfraHostSum != nil && all.InfraHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.InfraHostSum = all.InfraHostSum
-	if all.InfraHostTop99p != nil && all.InfraHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.InfraHostTop99p != nil && all.InfraHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.InfraHostTop99p = all.InfraHostTop99p
-	if all.IngestedSpansSum != nil && all.IngestedSpansSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.IngestedSpansSum != nil && all.IngestedSpansSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.IngestedSpansSum = all.IngestedSpansSum
-	if all.IngestedTimeseriesAverage != nil && all.IngestedTimeseriesAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.IngestedTimeseriesAverage != nil && all.IngestedTimeseriesAverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.IngestedTimeseriesAverage = all.IngestedTimeseriesAverage
-	if all.IngestedTimeseriesSum != nil && all.IngestedTimeseriesSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.IngestedTimeseriesSum != nil && all.IngestedTimeseriesSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.IngestedTimeseriesSum = all.IngestedTimeseriesSum
-	if all.IotSum != nil && all.IotSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.IotSum != nil && all.IotSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.IotSum = all.IotSum
-	if all.IotTop99p != nil && all.IotTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.IotTop99p != nil && all.IotTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.IotTop99p = all.IotTop99p
-	if all.LambdaFunctionAverage != nil && all.LambdaFunctionAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LambdaFunctionAverage != nil && all.LambdaFunctionAverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LambdaFunctionAverage = all.LambdaFunctionAverage
-	if all.LambdaFunctionSum != nil && all.LambdaFunctionSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LambdaFunctionSum != nil && all.LambdaFunctionSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LambdaFunctionSum = all.LambdaFunctionSum
-	if all.LogsForwardingSum != nil && all.LogsForwardingSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsForwardingSum != nil && all.LogsForwardingSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsForwardingSum = all.LogsForwardingSum
-	if all.LogsIndexed15daySum != nil && all.LogsIndexed15daySum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsIndexed15daySum != nil && all.LogsIndexed15daySum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsIndexed15daySum = all.LogsIndexed15daySum
-	if all.LogsIndexed180daySum != nil && all.LogsIndexed180daySum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsIndexed180daySum != nil && all.LogsIndexed180daySum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsIndexed180daySum = all.LogsIndexed180daySum
-	if all.LogsIndexed1daySum != nil && all.LogsIndexed1daySum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsIndexed1daySum != nil && all.LogsIndexed1daySum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsIndexed1daySum = all.LogsIndexed1daySum
-	if all.LogsIndexed30daySum != nil && all.LogsIndexed30daySum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsIndexed30daySum != nil && all.LogsIndexed30daySum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsIndexed30daySum = all.LogsIndexed30daySum
-	if all.LogsIndexed360daySum != nil && all.LogsIndexed360daySum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsIndexed360daySum != nil && all.LogsIndexed360daySum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsIndexed360daySum = all.LogsIndexed360daySum
-	if all.LogsIndexed3daySum != nil && all.LogsIndexed3daySum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsIndexed3daySum != nil && all.LogsIndexed3daySum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsIndexed3daySum = all.LogsIndexed3daySum
-	if all.LogsIndexed45daySum != nil && all.LogsIndexed45daySum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsIndexed45daySum != nil && all.LogsIndexed45daySum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsIndexed45daySum = all.LogsIndexed45daySum
-	if all.LogsIndexed60daySum != nil && all.LogsIndexed60daySum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsIndexed60daySum != nil && all.LogsIndexed60daySum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsIndexed60daySum = all.LogsIndexed60daySum
-	if all.LogsIndexed7daySum != nil && all.LogsIndexed7daySum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsIndexed7daySum != nil && all.LogsIndexed7daySum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsIndexed7daySum = all.LogsIndexed7daySum
-	if all.LogsIndexed90daySum != nil && all.LogsIndexed90daySum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsIndexed90daySum != nil && all.LogsIndexed90daySum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsIndexed90daySum = all.LogsIndexed90daySum
-	if all.LogsIndexedCustomRetentionSum != nil && all.LogsIndexedCustomRetentionSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsIndexedCustomRetentionSum != nil && all.LogsIndexedCustomRetentionSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsIndexedCustomRetentionSum = all.LogsIndexedCustomRetentionSum
-	if all.LogsIndexedSum != nil && all.LogsIndexedSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsIndexedSum != nil && all.LogsIndexedSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsIndexedSum = all.LogsIndexedSum
-	if all.LogsIngestedSum != nil && all.LogsIngestedSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsIngestedSum != nil && all.LogsIngestedSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsIngestedSum = all.LogsIngestedSum
-	if all.NetworkDeviceSum != nil && all.NetworkDeviceSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.NetworkDeviceSum != nil && all.NetworkDeviceSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.NetworkDeviceSum = all.NetworkDeviceSum
-	if all.NetworkDeviceTop99p != nil && all.NetworkDeviceTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.NetworkDeviceTop99p != nil && all.NetworkDeviceTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.NetworkDeviceTop99p = all.NetworkDeviceTop99p
-	if all.NpmFlowSum != nil && all.NpmFlowSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.NpmFlowSum != nil && all.NpmFlowSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.NpmFlowSum = all.NpmFlowSum
-	if all.NpmHostSum != nil && all.NpmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.NpmHostSum != nil && all.NpmHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.NpmHostSum = all.NpmHostSum
-	if all.NpmHostTop99p != nil && all.NpmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.NpmHostTop99p != nil && all.NpmHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.NpmHostTop99p = all.NpmHostTop99p
-	if all.ObservabilityPipelineSum != nil && all.ObservabilityPipelineSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ObservabilityPipelineSum != nil && all.ObservabilityPipelineSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ObservabilityPipelineSum = all.ObservabilityPipelineSum
-	if all.OnlineArchiveSum != nil && all.OnlineArchiveSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.OnlineArchiveSum != nil && all.OnlineArchiveSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.OnlineArchiveSum = all.OnlineArchiveSum
-	if all.ProfContainerSum != nil && all.ProfContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ProfContainerSum != nil && all.ProfContainerSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ProfContainerSum = all.ProfContainerSum
-	if all.ProfHostSum != nil && all.ProfHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ProfHostSum != nil && all.ProfHostSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ProfHostSum = all.ProfHostSum
-	if all.ProfHostTop99p != nil && all.ProfHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ProfHostTop99p != nil && all.ProfHostTop99p.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ProfHostTop99p = all.ProfHostTop99p
-	if all.RumLiteSum != nil && all.RumLiteSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RumLiteSum != nil && all.RumLiteSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RumLiteSum = all.RumLiteSum
-	if all.RumReplaySum != nil && all.RumReplaySum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RumReplaySum != nil && all.RumReplaySum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RumReplaySum = all.RumReplaySum
-	if all.RumSum != nil && all.RumSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RumSum != nil && all.RumSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RumSum = all.RumSum
-	if all.RumUnitsSum != nil && all.RumUnitsSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RumUnitsSum != nil && all.RumUnitsSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RumUnitsSum = all.RumUnitsSum
-	if all.SensitiveDataScannerSum != nil && all.SensitiveDataScannerSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SensitiveDataScannerSum != nil && all.SensitiveDataScannerSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SensitiveDataScannerSum = all.SensitiveDataScannerSum
-	if all.ServerlessApmSum != nil && all.ServerlessApmSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ServerlessApmSum != nil && all.ServerlessApmSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ServerlessApmSum = all.ServerlessApmSum
-	if all.ServerlessInfraAverage != nil && all.ServerlessInfraAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ServerlessInfraAverage != nil && all.ServerlessInfraAverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ServerlessInfraAverage = all.ServerlessInfraAverage
-	if all.ServerlessInfraSum != nil && all.ServerlessInfraSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ServerlessInfraSum != nil && all.ServerlessInfraSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ServerlessInfraSum = all.ServerlessInfraSum
-	if all.ServerlessInvocationSum != nil && all.ServerlessInvocationSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ServerlessInvocationSum != nil && all.ServerlessInvocationSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ServerlessInvocationSum = all.ServerlessInvocationSum
-	if all.SiemSum != nil && all.SiemSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SiemSum != nil && all.SiemSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SiemSum = all.SiemSum
-	if all.StandardTimeseriesAverage != nil && all.StandardTimeseriesAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.StandardTimeseriesAverage != nil && all.StandardTimeseriesAverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.StandardTimeseriesAverage = all.StandardTimeseriesAverage
-	if all.SyntheticsApiTestsSum != nil && all.SyntheticsApiTestsSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SyntheticsApiTestsSum != nil && all.SyntheticsApiTestsSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SyntheticsApiTestsSum = all.SyntheticsApiTestsSum
-	if all.SyntheticsAppTestingMaximum != nil && all.SyntheticsAppTestingMaximum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SyntheticsAppTestingMaximum != nil && all.SyntheticsAppTestingMaximum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SyntheticsAppTestingMaximum = all.SyntheticsAppTestingMaximum
-	if all.SyntheticsBrowserChecksSum != nil && all.SyntheticsBrowserChecksSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SyntheticsBrowserChecksSum != nil && all.SyntheticsBrowserChecksSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SyntheticsBrowserChecksSum = all.SyntheticsBrowserChecksSum
-	if all.TimeseriesAverage != nil && all.TimeseriesAverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TimeseriesAverage != nil && all.TimeseriesAverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TimeseriesAverage = all.TimeseriesAverage
-	if all.TimeseriesSum != nil && all.TimeseriesSum.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TimeseriesSum != nil && all.TimeseriesSum.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TimeseriesSum = all.TimeseriesSum

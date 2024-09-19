@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListTagsResponseData The list tags response data.
 type ListTagsResponseData struct {
@@ -17,9 +23,10 @@ type ListTagsResponseData struct {
 	// The type of the resource. The value should always be tags.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListTagsResponseData instantiates a new ListTagsResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewListTagsResponseDataWithDefaults() *ListTagsResponseData {
 	this := ListTagsResponseData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *ListTagsResponseData) GetAttributes() ListTagsResponseDataAttributes {
 	if o == nil || o.Attributes == nil {
@@ -65,6 +71,7 @@ func (o *ListTagsResponseData) HasAttributes() bool {
 func (o *ListTagsResponseData) SetAttributes(v ListTagsResponseDataAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ListTagsResponseData) GetId() string {
@@ -94,6 +101,7 @@ func (o *ListTagsResponseData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ListTagsResponseData) GetType() string {
 	if o == nil || o.Type == nil {
@@ -122,6 +130,8 @@ func (o *ListTagsResponseData) SetType(v string) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListTagsResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,21 +158,21 @@ func (o ListTagsResponseData) MarshalJSON() ([]byte, error) {
 func (o *ListTagsResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *ListTagsResponseDataAttributes `json:"attributes,omitempty"`
-		Id         *string                         `json:"id,omitempty"`
-		Type       *string                         `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

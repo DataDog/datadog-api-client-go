@@ -2,41 +2,43 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	// there is a valid "incident" in the system
 	IncidentDataID := os.Getenv("INCIDENT_DATA_ID")
 
+
 	body := datadogV2.IncidentAttachmentUpdateRequest{
-		Data: []datadogV2.IncidentAttachmentUpdateData{
-			{
-				Type: datadogV2.INCIDENTATTACHMENTTYPE_INCIDENT_ATTACHMENTS,
-				Attributes: &datadogV2.IncidentAttachmentUpdateAttributes{
-					IncidentAttachmentLinkAttributes: &datadogV2.IncidentAttachmentLinkAttributes{
-						AttachmentType: datadogV2.INCIDENTATTACHMENTLINKATTACHMENTTYPE_LINK,
-						Attachment: datadogV2.IncidentAttachmentLinkAttributesAttachmentObject{
-							DocumentUrl: "https://www.example.com/doc",
-							Title:       "Example-Incident",
-						},
-					}},
-			},
-		},
-	}
+Data: []datadogV2.IncidentAttachmentUpdateData{
+{
+Type: datadogV2.INCIDENTATTACHMENTTYPE_INCIDENT_ATTACHMENTS,
+Attributes: &datadogV2.IncidentAttachmentUpdateAttributes{
+IncidentAttachmentLinkAttributes: &datadogV2.IncidentAttachmentLinkAttributes{
+AttachmentType: datadogV2.INCIDENTATTACHMENTLINKATTACHMENTTYPE_LINK,
+Attachment: datadogV2.IncidentAttachmentLinkAttributesAttachmentObject{
+DocumentUrl: "https://www.example.com/doc",
+Title: "Example-Incident",
+},
+}},
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.UpdateIncidentAttachments", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewIncidentsApi(apiClient)
-	resp, r, err := api.UpdateIncidentAttachments(ctx, IncidentDataID, body, *datadogV2.NewUpdateIncidentAttachmentsOptionalParameters())
+	resp, r, err := api.UpdateIncidentAttachments(ctx, IncidentDataID, body, *datadogV2.NewUpdateIncidentAttachmentsOptionalParameters(), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.UpdateIncidentAttachments`: %v\n", err)

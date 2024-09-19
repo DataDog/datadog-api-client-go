@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppCIErrorDomain Error category used to differentiate between issues related to the developer or provider environments.
 type CIAppCIErrorDomain string
@@ -16,8 +20,8 @@ type CIAppCIErrorDomain string
 // List of CIAppCIErrorDomain.
 const (
 	CIAPPCIERRORDOMAIN_PROVIDER CIAppCIErrorDomain = "provider"
-	CIAPPCIERRORDOMAIN_USER     CIAppCIErrorDomain = "user"
-	CIAPPCIERRORDOMAIN_UNKNOWN  CIAppCIErrorDomain = "unknown"
+	CIAPPCIERRORDOMAIN_USER CIAppCIErrorDomain = "user"
+	CIAPPCIERRORDOMAIN_UNKNOWN CIAppCIErrorDomain = "unknown"
 )
 
 var allowedCIAppCIErrorDomainEnumValues = []CIAppCIErrorDomain{

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListFindingsMeta Metadata for pagination.
 type ListFindingsMeta struct {
@@ -17,6 +23,7 @@ type ListFindingsMeta struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewListFindingsMeta instantiates a new ListFindingsMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -34,7 +41,6 @@ func NewListFindingsMetaWithDefaults() *ListFindingsMeta {
 	this := ListFindingsMeta{}
 	return &this
 }
-
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *ListFindingsMeta) GetPage() ListFindingsPage {
 	if o == nil || o.Page == nil {
@@ -62,6 +68,7 @@ func (o *ListFindingsMeta) HasPage() bool {
 func (o *ListFindingsMeta) SetPage(v ListFindingsPage) {
 	o.Page = &v
 }
+
 
 // GetSnapshotTimestamp returns the SnapshotTimestamp field value if set, zero value otherwise.
 func (o *ListFindingsMeta) GetSnapshotTimestamp() int64 {
@@ -91,6 +98,8 @@ func (o *ListFindingsMeta) SetSnapshotTimestamp(v int64) {
 	o.SnapshotTimestamp = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListFindingsMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -109,15 +118,15 @@ func (o ListFindingsMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListFindingsMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Page              *ListFindingsPage `json:"page,omitempty"`
-		SnapshotTimestamp *int64            `json:"snapshot_timestamp,omitempty"`
+		Page *ListFindingsPage `json:"page,omitempty"`
+		SnapshotTimestamp *int64 `json:"snapshot_timestamp,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	hasInvalidField := false
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Page = all.Page

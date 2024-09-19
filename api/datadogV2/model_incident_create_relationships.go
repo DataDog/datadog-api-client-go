@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentCreateRelationships The relationships the incident will have with other resources once created.
 type IncidentCreateRelationships struct {
 	// Relationship to user.
 	CommanderUser NullableNullableRelationshipToUser `json:"commander_user"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentCreateRelationships instantiates a new IncidentCreateRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewIncidentCreateRelationshipsWithDefaults() *IncidentCreateRelationships {
 	this := IncidentCreateRelationships{}
 	return &this
 }
-
 // GetCommanderUser returns the CommanderUser field value.
 // If the value is explicit nil, the zero value for NullableRelationshipToUser will be returned.
 func (o *IncidentCreateRelationships) GetCommanderUser() NullableRelationshipToUser {
@@ -61,6 +65,8 @@ func (o *IncidentCreateRelationships) GetCommanderUserOk() (*NullableRelationshi
 func (o *IncidentCreateRelationships) SetCommanderUser(v NullableRelationshipToUser) {
 	o.CommanderUser.Set(&v)
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentCreateRelationships) MarshalJSON() ([]byte, error) {
@@ -89,7 +95,7 @@ func (o *IncidentCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"commander_user"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "commander_user",  })
 	} else {
 		return err
 	}

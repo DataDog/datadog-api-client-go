@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TimeseriesFormulaQueryRequest A request wrapper around a single timeseries query to be executed.
 type TimeseriesFormulaQueryRequest struct {
 	// A single timeseries query to be executed.
 	Data TimeseriesFormulaRequest `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTimeseriesFormulaQueryRequest instantiates a new TimeseriesFormulaQueryRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewTimeseriesFormulaQueryRequestWithDefaults() *TimeseriesFormulaQueryReque
 	this := TimeseriesFormulaQueryRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *TimeseriesFormulaQueryRequest) GetData() TimeseriesFormulaRequest {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *TimeseriesFormulaQueryRequest) GetDataOk() (*TimeseriesFormulaRequest, 
 func (o *TimeseriesFormulaQueryRequest) SetData(v TimeseriesFormulaRequest) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TimeseriesFormulaQueryRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *TimeseriesFormulaQueryRequest) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

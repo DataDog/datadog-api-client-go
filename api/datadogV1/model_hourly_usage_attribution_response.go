@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HourlyUsageAttributionResponse Response containing the hourly usage attribution by tag(s).
 type HourlyUsageAttributionResponse struct {
@@ -15,9 +21,10 @@ type HourlyUsageAttributionResponse struct {
 	// Get the hourly usage attribution by tag(s).
 	Usage []HourlyUsageAttributionBody `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHourlyUsageAttributionResponse instantiates a new HourlyUsageAttributionResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewHourlyUsageAttributionResponseWithDefaults() *HourlyUsageAttributionResp
 	this := HourlyUsageAttributionResponse{}
 	return &this
 }
-
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *HourlyUsageAttributionResponse) GetMetadata() HourlyUsageAttributionMetadata {
 	if o == nil || o.Metadata == nil {
@@ -63,6 +69,7 @@ func (o *HourlyUsageAttributionResponse) HasMetadata() bool {
 func (o *HourlyUsageAttributionResponse) SetMetadata(v HourlyUsageAttributionMetadata) {
 	o.Metadata = &v
 }
+
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *HourlyUsageAttributionResponse) GetUsage() []HourlyUsageAttributionBody {
@@ -92,6 +99,8 @@ func (o *HourlyUsageAttributionResponse) SetUsage(v []HourlyUsageAttributionBody
 	o.Usage = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o HourlyUsageAttributionResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,20 +124,20 @@ func (o HourlyUsageAttributionResponse) MarshalJSON() ([]byte, error) {
 func (o *HourlyUsageAttributionResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Metadata *HourlyUsageAttributionMetadata `json:"metadata,omitempty"`
-		Usage    []HourlyUsageAttributionBody    `json:"usage,omitempty"`
+		Usage []HourlyUsageAttributionBody `json:"usage,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"metadata", "usage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "metadata", "usage",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Metadata = all.Metadata

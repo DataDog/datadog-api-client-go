@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ToplistWidgetLegend Top list widget stacked legend behavior.
 type ToplistWidgetLegend string
@@ -16,8 +20,8 @@ type ToplistWidgetLegend string
 // List of ToplistWidgetLegend.
 const (
 	TOPLISTWIDGETLEGEND_AUTOMATIC ToplistWidgetLegend = "automatic"
-	TOPLISTWIDGETLEGEND_INLINE    ToplistWidgetLegend = "inline"
-	TOPLISTWIDGETLEGEND_NONE      ToplistWidgetLegend = "none"
+	TOPLISTWIDGETLEGEND_INLINE ToplistWidgetLegend = "inline"
+	TOPLISTWIDGETLEGEND_NONE ToplistWidgetLegend = "none"
 )
 
 var allowedToplistWidgetLegendEnumValues = []ToplistWidgetLegend{

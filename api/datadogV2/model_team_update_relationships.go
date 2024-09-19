@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamUpdateRelationships Team update relationships
 type TeamUpdateRelationships struct {
 	// Relationship between a team and a team link
 	TeamLinks *RelationshipToTeamLinks `json:"team_links,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamUpdateRelationships instantiates a new TeamUpdateRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewTeamUpdateRelationshipsWithDefaults() *TeamUpdateRelationships {
 	this := TeamUpdateRelationships{}
 	return &this
 }
-
 // GetTeamLinks returns the TeamLinks field value if set, zero value otherwise.
 func (o *TeamUpdateRelationships) GetTeamLinks() RelationshipToTeamLinks {
 	if o == nil || o.TeamLinks == nil {
@@ -62,6 +68,8 @@ func (o *TeamUpdateRelationships) SetTeamLinks(v RelationshipToTeamLinks) {
 	o.TeamLinks = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamUpdateRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *TeamUpdateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"team_links"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "team_links",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.TeamLinks != nil && all.TeamLinks.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TeamLinks != nil && all.TeamLinks.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TeamLinks = all.TeamLinks

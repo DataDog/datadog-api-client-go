@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TimeseriesWidgetLegendLayout Layout of the legend.
 type TimeseriesWidgetLegendLayout string
 
 // List of TimeseriesWidgetLegendLayout.
 const (
-	TIMESERIESWIDGETLEGENDLAYOUT_AUTO       TimeseriesWidgetLegendLayout = "auto"
+	TIMESERIESWIDGETLEGENDLAYOUT_AUTO TimeseriesWidgetLegendLayout = "auto"
 	TIMESERIESWIDGETLEGENDLAYOUT_HORIZONTAL TimeseriesWidgetLegendLayout = "horizontal"
-	TIMESERIESWIDGETLEGENDLAYOUT_VERTICAL   TimeseriesWidgetLegendLayout = "vertical"
+	TIMESERIESWIDGETLEGENDLAYOUT_VERTICAL TimeseriesWidgetLegendLayout = "vertical"
 )
 
 var allowedTimeseriesWidgetLegendLayoutEnumValues = []TimeseriesWidgetLegendLayout{

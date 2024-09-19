@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OutcomesBatchResponse Scorecard outcomes batch response.
 type OutcomesBatchResponse struct {
@@ -17,9 +21,10 @@ type OutcomesBatchResponse struct {
 	// Metadata pertaining to the bulk operation.
 	Meta OutcomesBatchResponseMeta `json:"meta"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOutcomesBatchResponse instantiates a new OutcomesBatchResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewOutcomesBatchResponseWithDefaults() *OutcomesBatchResponse {
 	this := OutcomesBatchResponse{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *OutcomesBatchResponse) GetData() []OutcomesResponseDataItem {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *OutcomesBatchResponse) GetDataOk() (*[]OutcomesResponseDataItem, bool) 
 func (o *OutcomesBatchResponse) SetData(v []OutcomesResponseDataItem) {
 	o.Data = v
 }
+
 
 // GetMeta returns the Meta field value.
 func (o *OutcomesBatchResponse) GetMeta() OutcomesBatchResponseMeta {
@@ -86,6 +91,8 @@ func (o *OutcomesBatchResponse) SetMeta(v OutcomesBatchResponseMeta) {
 	o.Meta = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OutcomesBatchResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o OutcomesBatchResponse) MarshalJSON() ([]byte, error) {
 func (o *OutcomesBatchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data *[]OutcomesResponseDataItem `json:"data"`
-		Meta *OutcomesBatchResponseMeta  `json:"meta"`
+		Meta *OutcomesBatchResponseMeta `json:"meta"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *OutcomesBatchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}

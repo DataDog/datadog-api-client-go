@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"bytes"
 	_context "context"
 	_fmt "fmt"
+	_io "io"
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -22,16 +24,18 @@ type ServiceScorecardsApi datadog.Service
 // Sets multiple service-rule outcomes in a single batched request.
 func (a *ServiceScorecardsApi) CreateScorecardOutcomesBatch(ctx _context.Context, body OutcomesBatchRequest) (OutcomesBatchResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue OutcomesBatchResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  OutcomesBatchResponse
 	)
+
+    
 
 	operationId := "v2.CreateScorecardOutcomesBatch"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceScorecardsApi.CreateScorecardOutcomesBatch")
@@ -47,9 +51,11 @@ func (a *ServiceScorecardsApi) CreateScorecardOutcomesBatch(ctx _context.Context
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -72,10 +78,11 @@ func (a *ServiceScorecardsApi) CreateScorecardOutcomesBatch(ctx _context.Context
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -89,7 +96,7 @@ func (a *ServiceScorecardsApi) CreateScorecardOutcomesBatch(ctx _context.Context
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -102,16 +109,18 @@ func (a *ServiceScorecardsApi) CreateScorecardOutcomesBatch(ctx _context.Context
 // Creates a new rule.
 func (a *ServiceScorecardsApi) CreateScorecardRule(ctx _context.Context, body CreateRuleRequest) (CreateRuleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue CreateRuleResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  CreateRuleResponse
 	)
+
+    
 
 	operationId := "v2.CreateScorecardRule"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceScorecardsApi.CreateScorecardRule")
@@ -127,9 +136,11 @@ func (a *ServiceScorecardsApi) CreateScorecardRule(ctx _context.Context, body Cr
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -152,10 +163,11 @@ func (a *ServiceScorecardsApi) CreateScorecardRule(ctx _context.Context, body Cr
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -169,7 +181,7 @@ func (a *ServiceScorecardsApi) CreateScorecardRule(ctx _context.Context, body Cr
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -182,13 +194,15 @@ func (a *ServiceScorecardsApi) CreateScorecardRule(ctx _context.Context, body Cr
 // Deletes a single rule.
 func (a *ServiceScorecardsApi) DeleteScorecardRule(ctx _context.Context, ruleId string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
+
+    
 
 	operationId := "v2.DeleteScorecardRule"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
@@ -204,9 +218,10 @@ func (a *ServiceScorecardsApi) DeleteScorecardRule(ctx _context.Context, ruleId 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] =  "*/*"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -229,10 +244,11 @@ func (a *ServiceScorecardsApi) DeleteScorecardRule(ctx _context.Context, ruleId 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -248,16 +264,16 @@ func (a *ServiceScorecardsApi) DeleteScorecardRule(ctx _context.Context, ruleId 
 
 // ListScorecardOutcomesOptionalParameters holds optional parameters for ListScorecardOutcomes.
 type ListScorecardOutcomesOptionalParameters struct {
-	PageSize                 *int64
-	PageOffset               *int64
-	Include                  *string
-	FieldsOutcome            *string
-	FieldsRule               *string
+	PageSize *int64
+	PageOffset *int64
+	Include *string
+	FieldsOutcome *string
+	FieldsRule *string
 	FilterOutcomeServiceName *string
-	FilterOutcomeState       *string
-	FilterRuleEnabled        *bool
-	FilterRuleId             *string
-	FilterRuleName           *string
+	FilterOutcomeState *string
+	FilterRuleEnabled *bool
+	FilterRuleId *string
+	FilterRuleName *string
 }
 
 // NewListScorecardOutcomesOptionalParameters creates an empty struct for parameters.
@@ -265,61 +281,51 @@ func NewListScorecardOutcomesOptionalParameters() *ListScorecardOutcomesOptional
 	this := ListScorecardOutcomesOptionalParameters{}
 	return &this
 }
-
 // WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardOutcomesOptionalParameters) WithPageSize(pageSize int64) *ListScorecardOutcomesOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-
 // WithPageOffset sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardOutcomesOptionalParameters) WithPageOffset(pageOffset int64) *ListScorecardOutcomesOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
-
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardOutcomesOptionalParameters) WithInclude(include string) *ListScorecardOutcomesOptionalParameters {
 	r.Include = &include
 	return r
 }
-
 // WithFieldsOutcome sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardOutcomesOptionalParameters) WithFieldsOutcome(fieldsOutcome string) *ListScorecardOutcomesOptionalParameters {
 	r.FieldsOutcome = &fieldsOutcome
 	return r
 }
-
 // WithFieldsRule sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardOutcomesOptionalParameters) WithFieldsRule(fieldsRule string) *ListScorecardOutcomesOptionalParameters {
 	r.FieldsRule = &fieldsRule
 	return r
 }
-
 // WithFilterOutcomeServiceName sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardOutcomesOptionalParameters) WithFilterOutcomeServiceName(filterOutcomeServiceName string) *ListScorecardOutcomesOptionalParameters {
 	r.FilterOutcomeServiceName = &filterOutcomeServiceName
 	return r
 }
-
 // WithFilterOutcomeState sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardOutcomesOptionalParameters) WithFilterOutcomeState(filterOutcomeState string) *ListScorecardOutcomesOptionalParameters {
 	r.FilterOutcomeState = &filterOutcomeState
 	return r
 }
-
 // WithFilterRuleEnabled sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardOutcomesOptionalParameters) WithFilterRuleEnabled(filterRuleEnabled bool) *ListScorecardOutcomesOptionalParameters {
 	r.FilterRuleEnabled = &filterRuleEnabled
 	return r
 }
-
 // WithFilterRuleId sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardOutcomesOptionalParameters) WithFilterRuleId(filterRuleId string) *ListScorecardOutcomesOptionalParameters {
 	r.FilterRuleId = &filterRuleId
 	return r
 }
-
 // WithFilterRuleName sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardOutcomesOptionalParameters) WithFilterRuleName(filterRuleName string) *ListScorecardOutcomesOptionalParameters {
 	r.FilterRuleName = &filterRuleName
@@ -330,24 +336,26 @@ func (r *ListScorecardOutcomesOptionalParameters) WithFilterRuleName(filterRuleN
 // Fetches all rule outcomes.
 func (a *ServiceScorecardsApi) ListScorecardOutcomes(ctx _context.Context, o ...ListScorecardOutcomesOptionalParameters) (OutcomesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue OutcomesResponse
-		optionalParams      ListScorecardOutcomesOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  OutcomesResponse
+		optionalParams ListScorecardOutcomesOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListScorecardOutcomesOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListScorecardOutcomesOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	operationId := "v2.ListScorecardOutcomes"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceScorecardsApi.ListScorecardOutcomes")
@@ -392,7 +400,8 @@ func (a *ServiceScorecardsApi) ListScorecardOutcomes(ctx _context.Context, o ...
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -415,10 +424,11 @@ func (a *ServiceScorecardsApi) ListScorecardOutcomes(ctx _context.Context, o ...
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -432,7 +442,7 @@ func (a *ServiceScorecardsApi) ListScorecardOutcomes(ctx _context.Context, o ...
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -440,7 +450,6 @@ func (a *ServiceScorecardsApi) ListScorecardOutcomes(ctx _context.Context, o ...
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 // ListScorecardOutcomesWithPagination provides a paginated version of ListScorecardOutcomes returning a channel with all items.
 func (a *ServiceScorecardsApi) ListScorecardOutcomesWithPagination(ctx _context.Context, o ...ListScorecardOutcomesOptionalParameters) (<-chan datadog.PaginationResult[OutcomesResponseDataItem], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -472,8 +481,8 @@ func (a *ServiceScorecardsApi) ListScorecardOutcomesWithPagination(ctx _context.
 				select {
 				case items <- datadog.PaginationResult[OutcomesResponseDataItem]{Item: item, Error: nil}:
 				case <-ctx.Done():
-					close(items)
-					return
+				close(items)
+				return
 				}
 			}
 			if len(results) < int(pageSize_) {
@@ -493,16 +502,16 @@ func (a *ServiceScorecardsApi) ListScorecardOutcomesWithPagination(ctx _context.
 
 // ListScorecardRulesOptionalParameters holds optional parameters for ListScorecardRules.
 type ListScorecardRulesOptionalParameters struct {
-	PageSize              *int64
-	PageOffset            *int64
-	Include               *string
-	FilterRuleId          *string
-	FilterRuleEnabled     *bool
-	FilterRuleCustom      *bool
-	FilterRuleName        *string
+	PageSize *int64
+	PageOffset *int64
+	Include *string
+	FilterRuleId *string
+	FilterRuleEnabled *bool
+	FilterRuleCustom *bool
+	FilterRuleName *string
 	FilterRuleDescription *string
-	FieldsRule            *string
-	FieldsScorecard       *string
+	FieldsRule *string
+	FieldsScorecard *string
 }
 
 // NewListScorecardRulesOptionalParameters creates an empty struct for parameters.
@@ -510,61 +519,51 @@ func NewListScorecardRulesOptionalParameters() *ListScorecardRulesOptionalParame
 	this := ListScorecardRulesOptionalParameters{}
 	return &this
 }
-
 // WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardRulesOptionalParameters) WithPageSize(pageSize int64) *ListScorecardRulesOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-
 // WithPageOffset sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardRulesOptionalParameters) WithPageOffset(pageOffset int64) *ListScorecardRulesOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
-
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardRulesOptionalParameters) WithInclude(include string) *ListScorecardRulesOptionalParameters {
 	r.Include = &include
 	return r
 }
-
 // WithFilterRuleId sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardRulesOptionalParameters) WithFilterRuleId(filterRuleId string) *ListScorecardRulesOptionalParameters {
 	r.FilterRuleId = &filterRuleId
 	return r
 }
-
 // WithFilterRuleEnabled sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardRulesOptionalParameters) WithFilterRuleEnabled(filterRuleEnabled bool) *ListScorecardRulesOptionalParameters {
 	r.FilterRuleEnabled = &filterRuleEnabled
 	return r
 }
-
 // WithFilterRuleCustom sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardRulesOptionalParameters) WithFilterRuleCustom(filterRuleCustom bool) *ListScorecardRulesOptionalParameters {
 	r.FilterRuleCustom = &filterRuleCustom
 	return r
 }
-
 // WithFilterRuleName sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardRulesOptionalParameters) WithFilterRuleName(filterRuleName string) *ListScorecardRulesOptionalParameters {
 	r.FilterRuleName = &filterRuleName
 	return r
 }
-
 // WithFilterRuleDescription sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardRulesOptionalParameters) WithFilterRuleDescription(filterRuleDescription string) *ListScorecardRulesOptionalParameters {
 	r.FilterRuleDescription = &filterRuleDescription
 	return r
 }
-
 // WithFieldsRule sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardRulesOptionalParameters) WithFieldsRule(fieldsRule string) *ListScorecardRulesOptionalParameters {
 	r.FieldsRule = &fieldsRule
 	return r
 }
-
 // WithFieldsScorecard sets the corresponding parameter name and returns the struct.
 func (r *ListScorecardRulesOptionalParameters) WithFieldsScorecard(fieldsScorecard string) *ListScorecardRulesOptionalParameters {
 	r.FieldsScorecard = &fieldsScorecard
@@ -575,24 +574,26 @@ func (r *ListScorecardRulesOptionalParameters) WithFieldsScorecard(fieldsScoreca
 // Fetch all rules.
 func (a *ServiceScorecardsApi) ListScorecardRules(ctx _context.Context, o ...ListScorecardRulesOptionalParameters) (ListRulesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue ListRulesResponse
-		optionalParams      ListScorecardRulesOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  ListRulesResponse
+		optionalParams ListScorecardRulesOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListScorecardRulesOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListScorecardRulesOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	operationId := "v2.ListScorecardRules"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceScorecardsApi.ListScorecardRules")
@@ -637,7 +638,8 @@ func (a *ServiceScorecardsApi) ListScorecardRules(ctx _context.Context, o ...Lis
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -660,10 +662,11 @@ func (a *ServiceScorecardsApi) ListScorecardRules(ctx _context.Context, o ...Lis
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -677,7 +680,7 @@ func (a *ServiceScorecardsApi) ListScorecardRules(ctx _context.Context, o ...Lis
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -685,7 +688,6 @@ func (a *ServiceScorecardsApi) ListScorecardRules(ctx _context.Context, o ...Lis
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 // ListScorecardRulesWithPagination provides a paginated version of ListScorecardRules returning a channel with all items.
 func (a *ServiceScorecardsApi) ListScorecardRulesWithPagination(ctx _context.Context, o ...ListScorecardRulesOptionalParameters) (<-chan datadog.PaginationResult[ListRulesResponseDataItem], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -717,8 +719,8 @@ func (a *ServiceScorecardsApi) ListScorecardRulesWithPagination(ctx _context.Con
 				select {
 				case items <- datadog.PaginationResult[ListRulesResponseDataItem]{Item: item, Error: nil}:
 				case <-ctx.Done():
-					close(items)
-					return
+				close(items)
+				return
 				}
 			}
 			if len(results) < int(pageSize_) {
@@ -740,16 +742,18 @@ func (a *ServiceScorecardsApi) ListScorecardRulesWithPagination(ctx _context.Con
 // Updates an existing rule.
 func (a *ServiceScorecardsApi) UpdateScorecardRule(ctx _context.Context, ruleId string, body UpdateRuleRequest) (UpdateRuleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue UpdateRuleResponse
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  UpdateRuleResponse
 	)
+
+    
 
 	operationId := "v2.UpdateScorecardRule"
 	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceScorecardsApi.UpdateScorecardRule")
@@ -766,9 +770,11 @@ func (a *ServiceScorecardsApi) UpdateScorecardRule(ctx _context.Context, ruleId 
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -791,10 +797,11 @@ func (a *ServiceScorecardsApi) UpdateScorecardRule(ctx _context.Context, ruleId 
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -808,7 +815,7 @@ func (a *ServiceScorecardsApi) UpdateScorecardRule(ctx _context.Context, ruleId 
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

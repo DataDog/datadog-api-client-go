@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOHistoryResponseErrorWithType An object describing the error with error type and error message.
 type SLOHistoryResponseErrorWithType struct {
@@ -17,9 +21,10 @@ type SLOHistoryResponseErrorWithType struct {
 	// Type of the error.
 	ErrorType string `json:"error_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSLOHistoryResponseErrorWithType instantiates a new SLOHistoryResponseErrorWithType object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSLOHistoryResponseErrorWithTypeWithDefaults() *SLOHistoryResponseErrorWi
 	this := SLOHistoryResponseErrorWithType{}
 	return &this
 }
-
 // GetErrorMessage returns the ErrorMessage field value.
 func (o *SLOHistoryResponseErrorWithType) GetErrorMessage() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *SLOHistoryResponseErrorWithType) GetErrorMessageOk() (*string, bool) {
 func (o *SLOHistoryResponseErrorWithType) SetErrorMessage(v string) {
 	o.ErrorMessage = v
 }
+
 
 // GetErrorType returns the ErrorType field value.
 func (o *SLOHistoryResponseErrorWithType) GetErrorType() string {
@@ -86,6 +91,8 @@ func (o *SLOHistoryResponseErrorWithType) SetErrorType(v string) {
 	o.ErrorType = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOHistoryResponseErrorWithType) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o SLOHistoryResponseErrorWithType) MarshalJSON() ([]byte, error) {
 func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ErrorMessage *string `json:"error_message"`
-		ErrorType    *string `json:"error_type"`
+		ErrorType *string `json:"error_type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"error_message", "error_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "error_message", "error_type",  })
 	} else {
 		return err
 	}

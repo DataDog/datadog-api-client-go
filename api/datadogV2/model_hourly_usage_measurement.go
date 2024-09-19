@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HourlyUsageMeasurement Usage amount for a given usage type.
 type HourlyUsageMeasurement struct {
@@ -15,9 +21,10 @@ type HourlyUsageMeasurement struct {
 	// Contains the number measured for the given usage_type during the hour.
 	Value datadog.NullableInt64 `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHourlyUsageMeasurement instantiates a new HourlyUsageMeasurement object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewHourlyUsageMeasurementWithDefaults() *HourlyUsageMeasurement {
 	this := HourlyUsageMeasurement{}
 	return &this
 }
-
 // GetUsageType returns the UsageType field value if set, zero value otherwise.
 func (o *HourlyUsageMeasurement) GetUsageType() string {
 	if o == nil || o.UsageType == nil {
@@ -64,6 +70,7 @@ func (o *HourlyUsageMeasurement) SetUsageType(v string) {
 	o.UsageType = &v
 }
 
+
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *HourlyUsageMeasurement) GetValue() int64 {
 	if o == nil || o.Value.Get() == nil {
@@ -77,7 +84,7 @@ func (o *HourlyUsageMeasurement) GetValue() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *HourlyUsageMeasurement) GetValueOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Value.Get(), o.Value.IsSet()
@@ -92,7 +99,6 @@ func (o *HourlyUsageMeasurement) HasValue() bool {
 func (o *HourlyUsageMeasurement) SetValue(v int64) {
 	o.Value.Set(&v)
 }
-
 // SetValueNil sets the value for Value to be an explicit nil.
 func (o *HourlyUsageMeasurement) SetValueNil() {
 	o.Value.Set(nil)
@@ -102,6 +108,8 @@ func (o *HourlyUsageMeasurement) SetValueNil() {
 func (o *HourlyUsageMeasurement) UnsetValue() {
 	o.Value.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o HourlyUsageMeasurement) MarshalJSON() ([]byte, error) {
@@ -125,15 +133,15 @@ func (o HourlyUsageMeasurement) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HourlyUsageMeasurement) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		UsageType *string               `json:"usage_type,omitempty"`
-		Value     datadog.NullableInt64 `json:"value,omitempty"`
+		UsageType *string `json:"usage_type,omitempty"`
+		Value datadog.NullableInt64 `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"usage_type", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "usage_type", "value",  })
 	} else {
 		return err
 	}

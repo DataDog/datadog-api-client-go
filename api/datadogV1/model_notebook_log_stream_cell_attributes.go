@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotebookLogStreamCellAttributes The attributes of a notebook `log_stream` cell.
 type NotebookLogStreamCellAttributes struct {
@@ -19,9 +23,10 @@ type NotebookLogStreamCellAttributes struct {
 	// Timeframe for the notebook cell. When 'null', the notebook global time is used.
 	Time NullableNotebookCellTime `json:"time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewNotebookLogStreamCellAttributes instantiates a new NotebookLogStreamCellAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewNotebookLogStreamCellAttributesWithDefaults() *NotebookLogStreamCellAttr
 	this := NotebookLogStreamCellAttributes{}
 	return &this
 }
-
 // GetDefinition returns the Definition field value.
 func (o *NotebookLogStreamCellAttributes) GetDefinition() LogStreamWidgetDefinition {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *NotebookLogStreamCellAttributes) GetDefinitionOk() (*LogStreamWidgetDef
 func (o *NotebookLogStreamCellAttributes) SetDefinition(v LogStreamWidgetDefinition) {
 	o.Definition = v
 }
+
 
 // GetGraphSize returns the GraphSize field value if set, zero value otherwise.
 func (o *NotebookLogStreamCellAttributes) GetGraphSize() NotebookGraphSize {
@@ -92,6 +97,7 @@ func (o *NotebookLogStreamCellAttributes) SetGraphSize(v NotebookGraphSize) {
 	o.GraphSize = &v
 }
 
+
 // GetTime returns the Time field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NotebookLogStreamCellAttributes) GetTime() NotebookCellTime {
 	if o == nil || o.Time.Get() == nil {
@@ -105,7 +111,7 @@ func (o *NotebookLogStreamCellAttributes) GetTime() NotebookCellTime {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *NotebookLogStreamCellAttributes) GetTimeOk() (*NotebookCellTime, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Time.Get(), o.Time.IsSet()
@@ -120,7 +126,6 @@ func (o *NotebookLogStreamCellAttributes) HasTime() bool {
 func (o *NotebookLogStreamCellAttributes) SetTime(v NotebookCellTime) {
 	o.Time.Set(&v)
 }
-
 // SetTimeNil sets the value for Time to be an explicit nil.
 func (o *NotebookLogStreamCellAttributes) SetTimeNil() {
 	o.Time.Set(nil)
@@ -130,6 +135,8 @@ func (o *NotebookLogStreamCellAttributes) SetTimeNil() {
 func (o *NotebookLogStreamCellAttributes) UnsetTime() {
 	o.Time.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookLogStreamCellAttributes) MarshalJSON() ([]byte, error) {
@@ -155,8 +162,8 @@ func (o NotebookLogStreamCellAttributes) MarshalJSON() ([]byte, error) {
 func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Definition *LogStreamWidgetDefinition `json:"definition"`
-		GraphSize  *NotebookGraphSize         `json:"graph_size,omitempty"`
-		Time       NullableNotebookCellTime   `json:"time,omitempty"`
+		GraphSize *NotebookGraphSize `json:"graph_size,omitempty"`
+		Time NullableNotebookCellTime `json:"time,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -166,7 +173,7 @@ func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"definition", "graph_size", "time"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "definition", "graph_size", "time",  })
 	} else {
 		return err
 	}
@@ -176,7 +183,7 @@ func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error
 		hasInvalidField = true
 	}
 	o.Definition = *all.Definition
-	if all.GraphSize != nil && !all.GraphSize.IsValid() {
+	if all.GraphSize != nil &&!all.GraphSize.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.GraphSize = all.GraphSize

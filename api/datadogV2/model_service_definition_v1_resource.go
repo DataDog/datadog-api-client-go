@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionV1Resource Service's external links.
 type ServiceDefinitionV1Resource struct {
@@ -19,9 +23,10 @@ type ServiceDefinitionV1Resource struct {
 	// Link URL.
 	Url string `json:"url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceDefinitionV1Resource instantiates a new ServiceDefinitionV1Resource object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewServiceDefinitionV1ResourceWithDefaults() *ServiceDefinitionV1Resource {
 	this := ServiceDefinitionV1Resource{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *ServiceDefinitionV1Resource) GetName() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *ServiceDefinitionV1Resource) GetNameOk() (*string, bool) {
 func (o *ServiceDefinitionV1Resource) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ServiceDefinitionV1Resource) GetType() ServiceDefinitionV1ResourceType {
@@ -89,6 +94,7 @@ func (o *ServiceDefinitionV1Resource) SetType(v ServiceDefinitionV1ResourceType)
 	o.Type = v
 }
 
+
 // GetUrl returns the Url field value.
 func (o *ServiceDefinitionV1Resource) GetUrl() string {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *ServiceDefinitionV1Resource) SetUrl(v string) {
 	o.Url = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionV1Resource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o ServiceDefinitionV1Resource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV1Resource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name *string                          `json:"name"`
+		Name *string `json:"name"`
 		Type *ServiceDefinitionV1ResourceType `json:"type"`
-		Url  *string                          `json:"url"`
+		Url *string `json:"url"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *ServiceDefinitionV1Resource) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "type", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "type", "url",  })
 	} else {
 		return err
 	}

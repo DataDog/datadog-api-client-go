@@ -2,10 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"bytes"
 	_context "context"
+	_fmt "fmt"
+	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -21,10 +26,12 @@ type GCPIntegrationApi datadog.Service
 // Deprecated: This API is deprecated.
 func (a *GCPIntegrationApi) CreateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.GCPIntegrationApi.CreateGCPIntegration")
 	if err != nil {
@@ -39,9 +46,11 @@ func (a *GCPIntegrationApi) CreateGCPIntegration(ctx _context.Context, body GCPA
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -64,10 +73,11 @@ func (a *GCPIntegrationApi) CreateGCPIntegration(ctx _context.Context, body GCPA
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -81,7 +91,7 @@ func (a *GCPIntegrationApi) CreateGCPIntegration(ctx _context.Context, body GCPA
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -96,10 +106,12 @@ func (a *GCPIntegrationApi) CreateGCPIntegration(ctx _context.Context, body GCPA
 // Deprecated: This API is deprecated.
 func (a *GCPIntegrationApi) DeleteGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.GCPIntegrationApi.DeleteGCPIntegration")
 	if err != nil {
@@ -114,9 +126,11 @@ func (a *GCPIntegrationApi) DeleteGCPIntegration(ctx _context.Context, body GCPA
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -139,10 +153,11 @@ func (a *GCPIntegrationApi) DeleteGCPIntegration(ctx _context.Context, body GCPA
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -156,7 +171,7 @@ func (a *GCPIntegrationApi) DeleteGCPIntegration(ctx _context.Context, body GCPA
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -171,10 +186,12 @@ func (a *GCPIntegrationApi) DeleteGCPIntegration(ctx _context.Context, body GCPA
 // Deprecated: This API is deprecated.
 func (a *GCPIntegrationApi) ListGCPIntegration(ctx _context.Context) ([]GCPAccount, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue []GCPAccount
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  []GCPAccount
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.GCPIntegrationApi.ListGCPIntegration")
 	if err != nil {
@@ -188,7 +205,8 @@ func (a *GCPIntegrationApi) ListGCPIntegration(ctx _context.Context) ([]GCPAccou
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
+	
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -211,10 +229,11 @@ func (a *GCPIntegrationApi) ListGCPIntegration(ctx _context.Context) ([]GCPAccou
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -228,7 +247,7 @@ func (a *GCPIntegrationApi) ListGCPIntegration(ctx _context.Context) ([]GCPAccou
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -246,10 +265,12 @@ func (a *GCPIntegrationApi) ListGCPIntegration(ctx _context.Context) ([]GCPAccou
 // Deprecated: This API is deprecated.
 func (a *GCPIntegrationApi) UpdateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.GCPIntegrationApi.UpdateGCPIntegration")
 	if err != nil {
@@ -264,9 +285,11 @@ func (a *GCPIntegrationApi) UpdateGCPIntegration(ctx _context.Context, body GCPA
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
+        datadog.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
 		[2]string{"apiKeyAuth", "DD-API-KEY"},
@@ -289,10 +312,11 @@ func (a *GCPIntegrationApi) UpdateGCPIntegration(ctx _context.Context, body GCPA
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -306,7 +330,7 @@ func (a *GCPIntegrationApi) UpdateGCPIntegration(ctx _context.Context, body GCPA
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

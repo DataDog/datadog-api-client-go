@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // BulkMuteFindingsRequestProperties Object containing the new mute properties of the findings.
 type BulkMuteFindingsRequestProperties struct {
@@ -25,6 +29,7 @@ type BulkMuteFindingsRequestProperties struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewBulkMuteFindingsRequestProperties instantiates a new BulkMuteFindingsRequestProperties object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewBulkMuteFindingsRequestPropertiesWithDefaults() *BulkMuteFindingsRequest
 	this := BulkMuteFindingsRequestProperties{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *BulkMuteFindingsRequestProperties) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -72,6 +76,7 @@ func (o *BulkMuteFindingsRequestProperties) HasDescription() bool {
 func (o *BulkMuteFindingsRequestProperties) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
 func (o *BulkMuteFindingsRequestProperties) GetExpirationDate() int64 {
@@ -101,6 +106,7 @@ func (o *BulkMuteFindingsRequestProperties) SetExpirationDate(v int64) {
 	o.ExpirationDate = &v
 }
 
+
 // GetMuted returns the Muted field value.
 func (o *BulkMuteFindingsRequestProperties) GetMuted() bool {
 	if o == nil {
@@ -123,6 +129,7 @@ func (o *BulkMuteFindingsRequestProperties) GetMutedOk() (*bool, bool) {
 func (o *BulkMuteFindingsRequestProperties) SetMuted(v bool) {
 	o.Muted = v
 }
+
 
 // GetReason returns the Reason field value.
 func (o *BulkMuteFindingsRequestProperties) GetReason() FindingMuteReason {
@@ -147,6 +154,8 @@ func (o *BulkMuteFindingsRequestProperties) SetReason(v FindingMuteReason) {
 	o.Reason = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o BulkMuteFindingsRequestProperties) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -167,10 +176,10 @@ func (o BulkMuteFindingsRequestProperties) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *BulkMuteFindingsRequestProperties) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description    *string            `json:"description,omitempty"`
-		ExpirationDate *int64             `json:"expiration_date,omitempty"`
-		Muted          *bool              `json:"muted"`
-		Reason         *FindingMuteReason `json:"reason"`
+		Description *string `json:"description,omitempty"`
+		ExpirationDate *int64 `json:"expiration_date,omitempty"`
+		Muted *bool `json:"muted"`
+		Reason *FindingMuteReason `json:"reason"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
