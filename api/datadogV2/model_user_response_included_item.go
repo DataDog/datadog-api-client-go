@@ -10,9 +10,11 @@ import (
 
 // UserResponseIncludedItem - An object related to a user.
 type UserResponseIncludedItem struct {
-	Organization *Organization
-	Permission   *Permission
-	Role         *Role
+	Organization                 *Organization
+	Permission                   *Permission
+	Role                         *Role
+	UserOverrideIdentityProvider *UserOverrideIdentityProvider
+	UserOrgsSerializable         *UserOrgsSerializable
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -31,6 +33,16 @@ func PermissionAsUserResponseIncludedItem(v *Permission) UserResponseIncludedIte
 // RoleAsUserResponseIncludedItem is a convenience function that returns Role wrapped in UserResponseIncludedItem.
 func RoleAsUserResponseIncludedItem(v *Role) UserResponseIncludedItem {
 	return UserResponseIncludedItem{Role: v}
+}
+
+// UserOverrideIdentityProviderAsUserResponseIncludedItem is a convenience function that returns UserOverrideIdentityProvider wrapped in UserResponseIncludedItem.
+func UserOverrideIdentityProviderAsUserResponseIncludedItem(v *UserOverrideIdentityProvider) UserResponseIncludedItem {
+	return UserResponseIncludedItem{UserOverrideIdentityProvider: v}
+}
+
+// UserOrgsSerializableAsUserResponseIncludedItem is a convenience function that returns UserOrgsSerializable wrapped in UserResponseIncludedItem.
+func UserOrgsSerializableAsUserResponseIncludedItem(v *UserOrgsSerializable) UserResponseIncludedItem {
+	return UserResponseIncludedItem{UserOrgsSerializable: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -88,11 +100,47 @@ func (obj *UserResponseIncludedItem) UnmarshalJSON(data []byte) error {
 		obj.Role = nil
 	}
 
+	// try to unmarshal data into UserOverrideIdentityProvider
+	err = datadog.Unmarshal(data, &obj.UserOverrideIdentityProvider)
+	if err == nil {
+		if obj.UserOverrideIdentityProvider != nil && obj.UserOverrideIdentityProvider.UnparsedObject == nil {
+			jsonUserOverrideIdentityProvider, _ := datadog.Marshal(obj.UserOverrideIdentityProvider)
+			if string(jsonUserOverrideIdentityProvider) == "{}" { // empty struct
+				obj.UserOverrideIdentityProvider = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.UserOverrideIdentityProvider = nil
+		}
+	} else {
+		obj.UserOverrideIdentityProvider = nil
+	}
+
+	// try to unmarshal data into UserOrgsSerializable
+	err = datadog.Unmarshal(data, &obj.UserOrgsSerializable)
+	if err == nil {
+		if obj.UserOrgsSerializable != nil && obj.UserOrgsSerializable.UnparsedObject == nil {
+			jsonUserOrgsSerializable, _ := datadog.Marshal(obj.UserOrgsSerializable)
+			if string(jsonUserOrgsSerializable) == "{}" { // empty struct
+				obj.UserOrgsSerializable = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.UserOrgsSerializable = nil
+		}
+	} else {
+		obj.UserOrgsSerializable = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.Organization = nil
 		obj.Permission = nil
 		obj.Role = nil
+		obj.UserOverrideIdentityProvider = nil
+		obj.UserOrgsSerializable = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -110,6 +158,14 @@ func (obj UserResponseIncludedItem) MarshalJSON() ([]byte, error) {
 
 	if obj.Role != nil {
 		return datadog.Marshal(&obj.Role)
+	}
+
+	if obj.UserOverrideIdentityProvider != nil {
+		return datadog.Marshal(&obj.UserOverrideIdentityProvider)
+	}
+
+	if obj.UserOrgsSerializable != nil {
+		return datadog.Marshal(&obj.UserOrgsSerializable)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -130,6 +186,14 @@ func (obj *UserResponseIncludedItem) GetActualInstance() interface{} {
 
 	if obj.Role != nil {
 		return obj.Role
+	}
+
+	if obj.UserOverrideIdentityProvider != nil {
+		return obj.UserOverrideIdentityProvider
+	}
+
+	if obj.UserOrgsSerializable != nil {
+		return obj.UserOrgsSerializable
 	}
 
 	// all schemas are nil
