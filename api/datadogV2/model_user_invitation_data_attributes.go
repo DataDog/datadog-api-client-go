@@ -18,6 +18,8 @@ type UserInvitationDataAttributes struct {
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
 	// Type of invitation.
 	InviteType *string `json:"invite_type,omitempty"`
+	// The `UserInvitationDataAttributes` `login_method`.
+	LoginMethod datadog.NullableString `json:"login_method,omitempty"`
 	// UUID of the user invitation.
 	Uuid *string `json:"uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -126,6 +128,45 @@ func (o *UserInvitationDataAttributes) SetInviteType(v string) {
 	o.InviteType = &v
 }
 
+// GetLoginMethod returns the LoginMethod field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UserInvitationDataAttributes) GetLoginMethod() string {
+	if o == nil || o.LoginMethod.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.LoginMethod.Get()
+}
+
+// GetLoginMethodOk returns a tuple with the LoginMethod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *UserInvitationDataAttributes) GetLoginMethodOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LoginMethod.Get(), o.LoginMethod.IsSet()
+}
+
+// HasLoginMethod returns a boolean if a field has been set.
+func (o *UserInvitationDataAttributes) HasLoginMethod() bool {
+	return o != nil && o.LoginMethod.IsSet()
+}
+
+// SetLoginMethod gets a reference to the given datadog.NullableString and assigns it to the LoginMethod field.
+func (o *UserInvitationDataAttributes) SetLoginMethod(v string) {
+	o.LoginMethod.Set(&v)
+}
+
+// SetLoginMethodNil sets the value for LoginMethod to be an explicit nil.
+func (o *UserInvitationDataAttributes) SetLoginMethodNil() {
+	o.LoginMethod.Set(nil)
+}
+
+// UnsetLoginMethod ensures that no value is present for LoginMethod, not even an explicit nil.
+func (o *UserInvitationDataAttributes) UnsetLoginMethod() {
+	o.LoginMethod.Unset()
+}
+
 // GetUuid returns the Uuid field value if set, zero value otherwise.
 func (o *UserInvitationDataAttributes) GetUuid() string {
 	if o == nil || o.Uuid == nil {
@@ -177,6 +218,9 @@ func (o UserInvitationDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.InviteType != nil {
 		toSerialize["invite_type"] = o.InviteType
 	}
+	if o.LoginMethod.IsSet() {
+		toSerialize["login_method"] = o.LoginMethod.Get()
+	}
 	if o.Uuid != nil {
 		toSerialize["uuid"] = o.Uuid
 	}
@@ -190,23 +234,25 @@ func (o UserInvitationDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UserInvitationDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt  *time.Time `json:"created_at,omitempty"`
-		ExpiresAt  *time.Time `json:"expires_at,omitempty"`
-		InviteType *string    `json:"invite_type,omitempty"`
-		Uuid       *string    `json:"uuid,omitempty"`
+		CreatedAt   *time.Time             `json:"created_at,omitempty"`
+		ExpiresAt   *time.Time             `json:"expires_at,omitempty"`
+		InviteType  *string                `json:"invite_type,omitempty"`
+		LoginMethod datadog.NullableString `json:"login_method,omitempty"`
+		Uuid        *string                `json:"uuid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "expires_at", "invite_type", "uuid"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "expires_at", "invite_type", "login_method", "uuid"})
 	} else {
 		return err
 	}
 	o.CreatedAt = all.CreatedAt
 	o.ExpiresAt = all.ExpiresAt
 	o.InviteType = all.InviteType
+	o.LoginMethod = all.LoginMethod
 	o.Uuid = all.Uuid
 
 	if len(additionalProperties) > 0 {
