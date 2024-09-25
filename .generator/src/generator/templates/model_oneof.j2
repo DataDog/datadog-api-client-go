@@ -63,7 +63,7 @@ func (obj *{{ name }}) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.{{ attributeName }} != nil {% if oneOf.get("type", "object") == "object" %}&& obj.{{ attributeName }}.UnparsedObject == nil {% endif %}{
 			json{{ attributeName }}, _ := datadog.Marshal(obj.{{ attributeName }})
-			if string(json{{ attributeName }}) == "{}" { // empty struct
+			if string(json{{ attributeName }}) == "{}"{% if not is_primitive(oneOf) and  not oneOf.required %} && string(data) != "{}" {% endif %} { // empty struct
 				obj.{{ attributeName }} = nil
 			} else {
 				match++
