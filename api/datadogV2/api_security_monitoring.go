@@ -10,6 +10,7 @@ import (
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"reflect"
 	"strings"
 	"time"
 
@@ -1190,6 +1191,7 @@ type ListFindingsOptionalParameters struct {
 	PageLimit                 *int64
 	SnapshotTimestamp         *int64
 	PageCursor                *string
+	FilterDetectionType       *[]FindingDetectionType
 	FilterTags                *string
 	FilterEvaluationChangedAt *string
 	FilterMuted               *bool
@@ -1222,6 +1224,12 @@ func (r *ListFindingsOptionalParameters) WithSnapshotTimestamp(snapshotTimestamp
 // WithPageCursor sets the corresponding parameter name and returns the struct.
 func (r *ListFindingsOptionalParameters) WithPageCursor(pageCursor string) *ListFindingsOptionalParameters {
 	r.PageCursor = &pageCursor
+	return r
+}
+
+// WithFilterDetectionType sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithFilterDetectionType(filterDetectionType []FindingDetectionType) *ListFindingsOptionalParameters {
+	r.FilterDetectionType = &filterDetectionType
 	return r
 }
 
@@ -1350,6 +1358,17 @@ func (a *SecurityMonitoringApi) ListFindings(ctx _context.Context, o ...ListFind
 	}
 	if optionalParams.PageCursor != nil {
 		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*optionalParams.PageCursor, ""))
+	}
+	if optionalParams.FilterDetectionType != nil {
+		t := *optionalParams.FilterDetectionType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("filter[detection_type]", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("filter[detection_type]", datadog.ParameterToString(t, "multi"))
+		}
 	}
 	if optionalParams.FilterTags != nil {
 		localVarQueryParams.Add("filter[tags]", datadog.ParameterToString(*optionalParams.FilterTags, ""))
