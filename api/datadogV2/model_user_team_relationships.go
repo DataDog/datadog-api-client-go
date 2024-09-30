@@ -10,8 +10,6 @@ import (
 
 // UserTeamRelationships Relationship between membership and a user
 type UserTeamRelationships struct {
-	// Relationship between team membership and team
-	Team *RelationshipToUserTeamTeam `json:"team,omitempty"`
 	// Relationship between team membership and user
 	User *RelationshipToUserTeamUser `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -34,34 +32,6 @@ func NewUserTeamRelationships() *UserTeamRelationships {
 func NewUserTeamRelationshipsWithDefaults() *UserTeamRelationships {
 	this := UserTeamRelationships{}
 	return &this
-}
-
-// GetTeam returns the Team field value if set, zero value otherwise.
-func (o *UserTeamRelationships) GetTeam() RelationshipToUserTeamTeam {
-	if o == nil || o.Team == nil {
-		var ret RelationshipToUserTeamTeam
-		return ret
-	}
-	return *o.Team
-}
-
-// GetTeamOk returns a tuple with the Team field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UserTeamRelationships) GetTeamOk() (*RelationshipToUserTeamTeam, bool) {
-	if o == nil || o.Team == nil {
-		return nil, false
-	}
-	return o.Team, true
-}
-
-// HasTeam returns a boolean if a field has been set.
-func (o *UserTeamRelationships) HasTeam() bool {
-	return o != nil && o.Team != nil
-}
-
-// SetTeam gets a reference to the given RelationshipToUserTeamTeam and assigns it to the Team field.
-func (o *UserTeamRelationships) SetTeam(v RelationshipToUserTeamTeam) {
-	o.Team = &v
 }
 
 // GetUser returns the User field value if set, zero value otherwise.
@@ -98,9 +68,6 @@ func (o UserTeamRelationships) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Team != nil {
-		toSerialize["team"] = o.Team
-	}
 	if o.User != nil {
 		toSerialize["user"] = o.User
 	}
@@ -114,7 +81,6 @@ func (o UserTeamRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UserTeamRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Team *RelationshipToUserTeamTeam `json:"team,omitempty"`
 		User *RelationshipToUserTeamUser `json:"user,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,16 +88,12 @@ func (o *UserTeamRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"team", "user"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"user"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Team != nil && all.Team.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.Team = all.Team
 	if all.User != nil && all.User.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
