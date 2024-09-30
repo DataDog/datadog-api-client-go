@@ -133,7 +133,7 @@
 <span id="L76" class="ln">    76  </span>	if err == nil {
 <span id="L77" class="ln">    77  </span>		if obj.RUMAggregateBucketValueTimeseries != nil {
 <span id="L78" class="ln">    78  </span>			jsonRUMAggregateBucketValueTimeseries, _ := datadog.Marshal(obj.RUMAggregateBucketValueTimeseries)
-<span id="L79" class="ln">    79  </span>			if string(jsonRUMAggregateBucketValueTimeseries) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L79" class="ln">    79  </span>			if string(jsonRUMAggregateBucketValueTimeseries) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
 <span id="L80" class="ln">    80  </span>				obj.RUMAggregateBucketValueTimeseries = nil
 <span id="L81" class="ln">    81  </span>			} else {
 <span id="L82" class="ln">    82  </span>				match++

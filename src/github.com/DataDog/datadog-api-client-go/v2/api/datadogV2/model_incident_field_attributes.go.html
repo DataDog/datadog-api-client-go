@@ -93,7 +93,7 @@
 <span id="L36" class="ln">    36  </span>	if err == nil {
 <span id="L37" class="ln">    37  </span>		if obj.IncidentFieldAttributesSingleValue != nil &amp;&amp; obj.IncidentFieldAttributesSingleValue.UnparsedObject == nil {
 <span id="L38" class="ln">    38  </span>			jsonIncidentFieldAttributesSingleValue, _ := datadog.Marshal(obj.IncidentFieldAttributesSingleValue)
-<span id="L39" class="ln">    39  </span>			if string(jsonIncidentFieldAttributesSingleValue) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L39" class="ln">    39  </span>			if string(jsonIncidentFieldAttributesSingleValue) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
 <span id="L40" class="ln">    40  </span>				obj.IncidentFieldAttributesSingleValue = nil
 <span id="L41" class="ln">    41  </span>			} else {
 <span id="L42" class="ln">    42  </span>				match++
@@ -110,7 +110,7 @@
 <span id="L53" class="ln">    53  </span>	if err == nil {
 <span id="L54" class="ln">    54  </span>		if obj.IncidentFieldAttributesMultipleValue != nil &amp;&amp; obj.IncidentFieldAttributesMultipleValue.UnparsedObject == nil {
 <span id="L55" class="ln">    55  </span>			jsonIncidentFieldAttributesMultipleValue, _ := datadog.Marshal(obj.IncidentFieldAttributesMultipleValue)
-<span id="L56" class="ln">    56  </span>			if string(jsonIncidentFieldAttributesMultipleValue) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L56" class="ln">    56  </span>			if string(jsonIncidentFieldAttributesMultipleValue) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
 <span id="L57" class="ln">    57  </span>				obj.IncidentFieldAttributesMultipleValue = nil
 <span id="L58" class="ln">    58  </span>			} else {
 <span id="L59" class="ln">    59  </span>				match++

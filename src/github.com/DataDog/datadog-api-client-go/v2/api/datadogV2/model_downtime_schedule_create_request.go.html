@@ -110,7 +110,7 @@
 <span id="L53" class="ln">    53  </span>	if err == nil {
 <span id="L54" class="ln">    54  </span>		if obj.DowntimeScheduleOneTimeCreateUpdateRequest != nil &amp;&amp; obj.DowntimeScheduleOneTimeCreateUpdateRequest.UnparsedObject == nil {
 <span id="L55" class="ln">    55  </span>			jsonDowntimeScheduleOneTimeCreateUpdateRequest, _ := datadog.Marshal(obj.DowntimeScheduleOneTimeCreateUpdateRequest)
-<span id="L56" class="ln">    56  </span>			if string(jsonDowntimeScheduleOneTimeCreateUpdateRequest) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L56" class="ln">    56  </span>			if string(jsonDowntimeScheduleOneTimeCreateUpdateRequest) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
 <span id="L57" class="ln">    57  </span>				obj.DowntimeScheduleOneTimeCreateUpdateRequest = nil
 <span id="L58" class="ln">    58  </span>			} else {
 <span id="L59" class="ln">    59  </span>				match++

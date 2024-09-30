@@ -93,7 +93,7 @@
 <span id="L36" class="ln">    36  </span>	if err == nil {
 <span id="L37" class="ln">    37  </span>		if obj.EntityV3 != nil &amp;&amp; obj.EntityV3.UnparsedObject == nil {
 <span id="L38" class="ln">    38  </span>			jsonEntityV3, _ := datadog.Marshal(obj.EntityV3)
-<span id="L39" class="ln">    39  </span>			if string(jsonEntityV3) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L39" class="ln">    39  </span>			if string(jsonEntityV3) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
 <span id="L40" class="ln">    40  </span>				obj.EntityV3 = nil
 <span id="L41" class="ln">    41  </span>			} else {
 <span id="L42" class="ln">    42  </span>				match++

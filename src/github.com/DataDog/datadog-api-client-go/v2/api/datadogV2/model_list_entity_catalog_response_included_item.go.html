@@ -111,7 +111,7 @@
 <span id="L54" class="ln">    54  </span>	if err == nil {
 <span id="L55" class="ln">    55  </span>		if obj.EntityResponseIncludedSchema != nil &amp;&amp; obj.EntityResponseIncludedSchema.UnparsedObject == nil {
 <span id="L56" class="ln">    56  </span>			jsonEntityResponseIncludedSchema, _ := datadog.Marshal(obj.EntityResponseIncludedSchema)
-<span id="L57" class="ln">    57  </span>			if string(jsonEntityResponseIncludedSchema) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L57" class="ln">    57  </span>			if string(jsonEntityResponseIncludedSchema) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
 <span id="L58" class="ln">    58  </span>				obj.EntityResponseIncludedSchema = nil
 <span id="L59" class="ln">    59  </span>			} else {
 <span id="L60" class="ln">    60  </span>				match++
@@ -128,7 +128,7 @@
 <span id="L71" class="ln">    71  </span>	if err == nil {
 <span id="L72" class="ln">    72  </span>		if obj.EntityResponseIncludedRawSchema != nil &amp;&amp; obj.EntityResponseIncludedRawSchema.UnparsedObject == nil {
 <span id="L73" class="ln">    73  </span>			jsonEntityResponseIncludedRawSchema, _ := datadog.Marshal(obj.EntityResponseIncludedRawSchema)
-<span id="L74" class="ln">    74  </span>			if string(jsonEntityResponseIncludedRawSchema) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L74" class="ln">    74  </span>			if string(jsonEntityResponseIncludedRawSchema) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
 <span id="L75" class="ln">    75  </span>				obj.EntityResponseIncludedRawSchema = nil
 <span id="L76" class="ln">    76  </span>			} else {
 <span id="L77" class="ln">    77  </span>				match++
@@ -145,7 +145,7 @@
 <span id="L88" class="ln">    88  </span>	if err == nil {
 <span id="L89" class="ln">    89  </span>		if obj.EntityResponseIncludedRelatedEntity != nil &amp;&amp; obj.EntityResponseIncludedRelatedEntity.UnparsedObject == nil {
 <span id="L90" class="ln">    90  </span>			jsonEntityResponseIncludedRelatedEntity, _ := datadog.Marshal(obj.EntityResponseIncludedRelatedEntity)
-<span id="L91" class="ln">    91  </span>			if string(jsonEntityResponseIncludedRelatedEntity) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L91" class="ln">    91  </span>			if string(jsonEntityResponseIncludedRelatedEntity) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
 <span id="L92" class="ln">    92  </span>				obj.EntityResponseIncludedRelatedEntity = nil
 <span id="L93" class="ln">    93  </span>			} else {
 <span id="L94" class="ln">    94  </span>				match++
@@ -162,7 +162,7 @@
 <span id="L105" class="ln">   105  </span>	if err == nil {
 <span id="L106" class="ln">   106  </span>		if obj.EntityResponseIncludedOncall != nil &amp;&amp; obj.EntityResponseIncludedOncall.UnparsedObject == nil {
 <span id="L107" class="ln">   107  </span>			jsonEntityResponseIncludedOncall, _ := datadog.Marshal(obj.EntityResponseIncludedOncall)
-<span id="L108" class="ln">   108  </span>			if string(jsonEntityResponseIncludedOncall) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L108" class="ln">   108  </span>			if string(jsonEntityResponseIncludedOncall) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
 <span id="L109" class="ln">   109  </span>				obj.EntityResponseIncludedOncall = nil
 <span id="L110" class="ln">   110  </span>			} else {
 <span id="L111" class="ln">   111  </span>				match++
@@ -179,7 +179,7 @@
 <span id="L122" class="ln">   122  </span>	if err == nil {
 <span id="L123" class="ln">   123  </span>		if obj.EntityResponseIncludedIncident != nil &amp;&amp; obj.EntityResponseIncludedIncident.UnparsedObject == nil {
 <span id="L124" class="ln">   124  </span>			jsonEntityResponseIncludedIncident, _ := datadog.Marshal(obj.EntityResponseIncludedIncident)
-<span id="L125" class="ln">   125  </span>			if string(jsonEntityResponseIncludedIncident) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L125" class="ln">   125  </span>			if string(jsonEntityResponseIncludedIncident) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
 <span id="L126" class="ln">   126  </span>				obj.EntityResponseIncludedIncident = nil
 <span id="L127" class="ln">   127  </span>			} else {
 <span id="L128" class="ln">   128  </span>				match++

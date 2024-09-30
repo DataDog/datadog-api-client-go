@@ -93,7 +93,7 @@
 <span id="L36" class="ln">    36  </span>	if err == nil {
 <span id="L37" class="ln">    37  </span>		if obj.ContainerImage != nil &amp;&amp; obj.ContainerImage.UnparsedObject == nil {
 <span id="L38" class="ln">    38  </span>			jsonContainerImage, _ := datadog.Marshal(obj.ContainerImage)
-<span id="L39" class="ln">    39  </span>			if string(jsonContainerImage) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L39" class="ln">    39  </span>			if string(jsonContainerImage) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
 <span id="L40" class="ln">    40  </span>				obj.ContainerImage = nil
 <span id="L41" class="ln">    41  </span>			} else {
 <span id="L42" class="ln">    42  </span>				match++
@@ -110,7 +110,7 @@
 <span id="L53" class="ln">    53  </span>	if err == nil {
 <span id="L54" class="ln">    54  </span>		if obj.ContainerImageGroup != nil &amp;&amp; obj.ContainerImageGroup.UnparsedObject == nil {
 <span id="L55" class="ln">    55  </span>			jsonContainerImageGroup, _ := datadog.Marshal(obj.ContainerImageGroup)
-<span id="L56" class="ln">    56  </span>			if string(jsonContainerImageGroup) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L56" class="ln">    56  </span>			if string(jsonContainerImageGroup) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
 <span id="L57" class="ln">    57  </span>				obj.ContainerImageGroup = nil
 <span id="L58" class="ln">    58  </span>			} else {
 <span id="L59" class="ln">    59  </span>				match++
