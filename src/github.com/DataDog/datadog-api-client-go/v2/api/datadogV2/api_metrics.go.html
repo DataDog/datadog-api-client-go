@@ -754,7 +754,7 @@
 <span id="L697" class="ln">   697  </span>type ListTagConfigurationsOptionalParameters struct {
 <span id="L698" class="ln">   698  </span>	FilterConfigured         *bool
 <span id="L699" class="ln">   699  </span>	FilterTagsConfigured     *string
-<span id="L700" class="ln">   700  </span>	FilterMetricType         *MetricTagConfigurationMetricTypes
+<span id="L700" class="ln">   700  </span>	FilterMetricType         *MetricTagConfigurationMetricTypeCategory
 <span id="L701" class="ln">   701  </span>	FilterIncludePercentiles *bool
 <span id="L702" class="ln">   702  </span>	FilterQueried            *bool
 <span id="L703" class="ln">   703  </span>	FilterTags               *string
@@ -780,7 +780,7 @@
 <span id="L723" class="ln">   723  </span>}
 <span id="L724" class="ln">   724  </span>
 <span id="L725" class="ln">   725  </span><span class="comment">// WithFilterMetricType sets the corresponding parameter name and returns the struct.</span>
-<span id="L726" class="ln">   726  </span>func (r *ListTagConfigurationsOptionalParameters) WithFilterMetricType(filterMetricType MetricTagConfigurationMetricTypes) *ListTagConfigurationsOptionalParameters {
+<span id="L726" class="ln">   726  </span>func (r *ListTagConfigurationsOptionalParameters) WithFilterMetricType(filterMetricType MetricTagConfigurationMetricTypeCategory) *ListTagConfigurationsOptionalParameters {
 <span id="L727" class="ln">   727  </span>	r.FilterMetricType = &amp;filterMetricType
 <span id="L728" class="ln">   728  </span>	return r
 <span id="L729" class="ln">   729  </span>}

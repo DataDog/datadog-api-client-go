@@ -84,7 +84,7 @@
 <span id="L27" class="ln">    27  </span>	<span class="comment">// - time: sum, space: avg</span>
 <span id="L28" class="ln">    28  </span>	<span class="comment">// - time: sum, space: sum</span>
 <span id="L29" class="ln">    29  </span>	<span class="comment">//</span>
-<span id="L30" class="ln">    30  </span>	<span class="comment">// Can only be applied to metrics that have a `metric_type` of `count`, `rate`, or `gauge`.</span>
+<span id="L30" class="ln">    30  </span>	<span class="comment">// Can only be applied to non_distribution metrics that have a `metric_type` of `count`, `rate`, or `gauge`.</span>
 <span id="L31" class="ln">    31  </span>	Aggregations []MetricCustomAggregation `json:&#34;aggregations,omitempty&#34;`
 <span id="L32" class="ln">    32  </span>	<span class="comment">// Timestamp when the tag configuration was created.</span>
 <span id="L33" class="ln">    33  </span>	CreatedAt *time.Time `json:&#34;created_at,omitempty&#34;`
