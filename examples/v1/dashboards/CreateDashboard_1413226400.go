@@ -1,4 +1,4 @@
-// Create a new dashboard with a toplist widget sorted by group
+// Create a new dashboard with a toplist widget with stacked type and no legend specified
 
 package main
 
@@ -34,8 +34,7 @@ func main() {
 						Style: &datadogV1.ToplistWidgetStyle{
 							Display: &datadogV1.ToplistWidgetDisplay{
 								ToplistWidgetStacked: &datadogV1.ToplistWidgetStacked{
-									Type:   datadogV1.TOPLISTWIDGETSTACKEDTYPE_STACKED,
-									Legend: datadogV1.TOPLISTWIDGETLEGEND_INLINE.Ptr(),
+									Type: datadogV1.TOPLISTWIDGETSTACKEDTYPE_STACKED,
 								}},
 							Scaling: datadogV1.TOPLISTWIDGETSCALING_RELATIVE.Ptr(),
 							Palette: datadog.PtrString("dog_classic"),
