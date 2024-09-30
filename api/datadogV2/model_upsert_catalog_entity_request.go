@@ -36,7 +36,7 @@ func (obj *UpsertCatalogEntityRequest) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.EntityV3 != nil && obj.EntityV3.UnparsedObject == nil {
 			jsonEntityV3, _ := datadog.Marshal(obj.EntityV3)
-			if string(jsonEntityV3) == "{}" { // empty struct
+			if string(jsonEntityV3) == "{}" && string(data) != "{}" { // empty struct
 				obj.EntityV3 = nil
 			} else {
 				match++

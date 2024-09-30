@@ -42,7 +42,7 @@ func (obj *WidgetTime) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.WidgetLegacyLiveSpan != nil && obj.WidgetLegacyLiveSpan.UnparsedObject == nil {
 			jsonWidgetLegacyLiveSpan, _ := datadog.Marshal(obj.WidgetLegacyLiveSpan)
-			if string(jsonWidgetLegacyLiveSpan) == "{}" { // empty struct
+			if string(jsonWidgetLegacyLiveSpan) == "{}" && string(data) != "{}" { // empty struct
 				obj.WidgetLegacyLiveSpan = nil
 			} else {
 				match++
