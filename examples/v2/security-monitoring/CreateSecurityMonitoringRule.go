@@ -43,6 +43,15 @@ func main() {
 			Tags:      []string{},
 			IsEnabled: true,
 			Type:      datadogV2.SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION.Ptr(),
+			ReferenceTables: []datadogV2.SecurityMonitoringReferenceTable{
+				{
+					TableName:     datadog.PtrString("synthetics_test_reference_table_dont_delete"),
+					ColumnName:    datadog.PtrString("value"),
+					LogFieldPath:  datadog.PtrString("testtag"),
+					CheckPresence: datadog.PtrBool(true),
+					RuleQueryName: datadog.PtrString("a"),
+				},
+			},
 		}}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
