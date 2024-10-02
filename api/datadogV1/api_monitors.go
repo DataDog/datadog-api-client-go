@@ -124,6 +124,7 @@ func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []i
 // - error-tracking: `error-tracking alert`
 // - database-monitoring: `database-monitoring alert`
 // - network-performance: `network-performance alert`
+// - cloud cost: `cost alert`
 //
 // **Notes**:
 // - Synthetic monitors are created through the Synthetics API. See the [Synthetics API](https://docs.datadoghq.com/api/latest/synthetics/) documentation for more information.
