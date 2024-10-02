@@ -40,8 +40,6 @@ func main() {
 					Aggregation: datadogV2.LOGSAGGREGATIONFUNCTION_PERCENTILE_90.Ptr(),
 					Metric:      datadog.PtrString("@duration"),
 				},
-				Total: &datadogV2.LogsGroupByTotal{
-					LogsGroupByTotalString: datadog.PtrString("recall")},
 			},
 		},
 	}
