@@ -22,10 +22,13 @@ func LookupStringI(i interface{}, path string) (reflect.Value, error) {
 	}
 	for _, part := range strings.Split(path, ".") {
 		key, _ := parseIndex(part)
-		value, err = lookupPartI(value, key)
-		if err != nil {
-			break
+		if key != "" {
+			value, err = lookupPartI(value, key)
+			if err != nil {
+				break
+			}
 		}
+
 		for _, listIndex := range splitNestedSlices(part) {
 			_, indexValue := parseIndex(listIndex)
 			value = lookupIndexI(value, indexValue)

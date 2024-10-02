@@ -157,6 +157,7 @@
 //   - [SyntheticsApi.DeletePrivateLocation]
 //   - [SyntheticsApi.DeleteTests]
 //   - [SyntheticsApi.EditGlobalVariable]
+//   - [SyntheticsApi.FetchUptimes]
 //   - [SyntheticsApi.GetAPITest]
 //   - [SyntheticsApi.GetAPITestLatestResults]
 //   - [SyntheticsApi.GetAPITestResult]
