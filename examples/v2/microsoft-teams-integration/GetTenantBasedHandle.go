@@ -1,4 +1,4 @@
-// Get api handle information returns "OK" response
+// Get tenant-based handle information returns "OK" response
 
 package main
 
@@ -13,20 +13,17 @@ import (
 )
 
 func main() {
-	// there is a valid "api_handle" in the system
-	APIHandleDataID := os.Getenv("API_HANDLE_DATA_ID")
-
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMicrosoftTeamsIntegrationApi(apiClient)
-	resp, r, err := api.GetApiHandle(ctx, APIHandleDataID)
+	resp, r, err := api.GetTenantBasedHandle(ctx, "handle_id")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MicrosoftTeamsIntegrationApi.GetApiHandle`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `MicrosoftTeamsIntegrationApi.GetTenantBasedHandle`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `MicrosoftTeamsIntegrationApi.GetApiHandle`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `MicrosoftTeamsIntegrationApi.GetTenantBasedHandle`:\n%s\n", responseContent)
 }

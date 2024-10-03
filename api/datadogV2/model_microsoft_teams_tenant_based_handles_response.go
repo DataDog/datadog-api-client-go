@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MicrosoftTeamsUpdateApiHandleRequest Update handle request.
-type MicrosoftTeamsUpdateApiHandleRequest struct {
-	// Handle data from a response.
-	Data MicrosoftTeamsUpdateApiHandleRequestData `json:"data"`
+// MicrosoftTeamsTenantBasedHandlesResponse Response with a list of tenant-based handles.
+type MicrosoftTeamsTenantBasedHandlesResponse struct {
+	// An array of tenant-based handles.
+	Data []MicrosoftTeamsTenantBasedHandleInfoResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewMicrosoftTeamsUpdateApiHandleRequest instantiates a new MicrosoftTeamsUpdateApiHandleRequest object.
+// NewMicrosoftTeamsTenantBasedHandlesResponse instantiates a new MicrosoftTeamsTenantBasedHandlesResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMicrosoftTeamsUpdateApiHandleRequest(data MicrosoftTeamsUpdateApiHandleRequestData) *MicrosoftTeamsUpdateApiHandleRequest {
-	this := MicrosoftTeamsUpdateApiHandleRequest{}
+func NewMicrosoftTeamsTenantBasedHandlesResponse(data []MicrosoftTeamsTenantBasedHandleInfoResponseData) *MicrosoftTeamsTenantBasedHandlesResponse {
+	this := MicrosoftTeamsTenantBasedHandlesResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewMicrosoftTeamsUpdateApiHandleRequestWithDefaults instantiates a new MicrosoftTeamsUpdateApiHandleRequest object.
+// NewMicrosoftTeamsTenantBasedHandlesResponseWithDefaults instantiates a new MicrosoftTeamsTenantBasedHandlesResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewMicrosoftTeamsUpdateApiHandleRequestWithDefaults() *MicrosoftTeamsUpdateApiHandleRequest {
-	this := MicrosoftTeamsUpdateApiHandleRequest{}
+func NewMicrosoftTeamsTenantBasedHandlesResponseWithDefaults() *MicrosoftTeamsTenantBasedHandlesResponse {
+	this := MicrosoftTeamsTenantBasedHandlesResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *MicrosoftTeamsUpdateApiHandleRequest) GetData() MicrosoftTeamsUpdateApiHandleRequestData {
+func (o *MicrosoftTeamsTenantBasedHandlesResponse) GetData() []MicrosoftTeamsTenantBasedHandleInfoResponseData {
 	if o == nil {
-		var ret MicrosoftTeamsUpdateApiHandleRequestData
+		var ret []MicrosoftTeamsTenantBasedHandleInfoResponseData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *MicrosoftTeamsUpdateApiHandleRequest) GetData() MicrosoftTeamsUpdateApi
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsUpdateApiHandleRequest) GetDataOk() (*MicrosoftTeamsUpdateApiHandleRequestData, bool) {
+func (o *MicrosoftTeamsTenantBasedHandlesResponse) GetDataOk() (*[]MicrosoftTeamsTenantBasedHandleInfoResponseData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *MicrosoftTeamsUpdateApiHandleRequest) GetDataOk() (*MicrosoftTeamsUpdat
 }
 
 // SetData sets field value.
-func (o *MicrosoftTeamsUpdateApiHandleRequest) SetData(v MicrosoftTeamsUpdateApiHandleRequestData) {
+func (o *MicrosoftTeamsTenantBasedHandlesResponse) SetData(v []MicrosoftTeamsTenantBasedHandleInfoResponseData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o MicrosoftTeamsUpdateApiHandleRequest) MarshalJSON() ([]byte, error) {
+func (o MicrosoftTeamsTenantBasedHandlesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o MicrosoftTeamsUpdateApiHandleRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *MicrosoftTeamsUpdateApiHandleRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *MicrosoftTeamsTenantBasedHandlesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *MicrosoftTeamsUpdateApiHandleRequestData `json:"data"`
+		Data *[]MicrosoftTeamsTenantBasedHandleInfoResponseData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -91,19 +91,10 @@ func (o *MicrosoftTeamsUpdateApiHandleRequest) UnmarshalJSON(bytes []byte) (err 
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

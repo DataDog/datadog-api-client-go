@@ -8,44 +8,44 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MicrosoftTeamsApiHandleInfoResponseData Handle data from a response.
-type MicrosoftTeamsApiHandleInfoResponseData struct {
-	// Handle attributes.
-	Attributes *MicrosoftTeamsApiHandleInfoResponseAttributes `json:"attributes,omitempty"`
-	// The ID of the handle.
+// MicrosoftTeamsTenantBasedHandleResponseData Tenant-based handle data from a response.
+type MicrosoftTeamsTenantBasedHandleResponseData struct {
+	// Tenant-based handle attributes.
+	Attributes *MicrosoftTeamsTenantBasedHandleAttributes `json:"attributes,omitempty"`
+	// The ID of the tenant-based handle.
 	Id *string `json:"id,omitempty"`
-	// Handle resource type.
-	Type *MicrosoftTeamsApiHandleInfoType `json:"type,omitempty"`
+	// Specifies the tenant-based handle resource type.
+	Type *MicrosoftTeamsTenantBasedHandleType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewMicrosoftTeamsApiHandleInfoResponseData instantiates a new MicrosoftTeamsApiHandleInfoResponseData object.
+// NewMicrosoftTeamsTenantBasedHandleResponseData instantiates a new MicrosoftTeamsTenantBasedHandleResponseData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMicrosoftTeamsApiHandleInfoResponseData() *MicrosoftTeamsApiHandleInfoResponseData {
-	this := MicrosoftTeamsApiHandleInfoResponseData{}
-	var typeVar MicrosoftTeamsApiHandleInfoType = MICROSOFTTEAMSAPIHANDLEINFOTYPE_MS_TEAMS_HANDLE_INFO
+func NewMicrosoftTeamsTenantBasedHandleResponseData() *MicrosoftTeamsTenantBasedHandleResponseData {
+	this := MicrosoftTeamsTenantBasedHandleResponseData{}
+	var typeVar MicrosoftTeamsTenantBasedHandleType = MICROSOFTTEAMSTENANTBASEDHANDLETYPE_TENANT_BASED_HANDLE
 	this.Type = &typeVar
 	return &this
 }
 
-// NewMicrosoftTeamsApiHandleInfoResponseDataWithDefaults instantiates a new MicrosoftTeamsApiHandleInfoResponseData object.
+// NewMicrosoftTeamsTenantBasedHandleResponseDataWithDefaults instantiates a new MicrosoftTeamsTenantBasedHandleResponseData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewMicrosoftTeamsApiHandleInfoResponseDataWithDefaults() *MicrosoftTeamsApiHandleInfoResponseData {
-	this := MicrosoftTeamsApiHandleInfoResponseData{}
-	var typeVar MicrosoftTeamsApiHandleInfoType = MICROSOFTTEAMSAPIHANDLEINFOTYPE_MS_TEAMS_HANDLE_INFO
+func NewMicrosoftTeamsTenantBasedHandleResponseDataWithDefaults() *MicrosoftTeamsTenantBasedHandleResponseData {
+	this := MicrosoftTeamsTenantBasedHandleResponseData{}
+	var typeVar MicrosoftTeamsTenantBasedHandleType = MICROSOFTTEAMSTENANTBASEDHANDLETYPE_TENANT_BASED_HANDLE
 	this.Type = &typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *MicrosoftTeamsApiHandleInfoResponseData) GetAttributes() MicrosoftTeamsApiHandleInfoResponseAttributes {
+func (o *MicrosoftTeamsTenantBasedHandleResponseData) GetAttributes() MicrosoftTeamsTenantBasedHandleAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret MicrosoftTeamsApiHandleInfoResponseAttributes
+		var ret MicrosoftTeamsTenantBasedHandleAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -53,7 +53,7 @@ func (o *MicrosoftTeamsApiHandleInfoResponseData) GetAttributes() MicrosoftTeams
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseData) GetAttributesOk() (*MicrosoftTeamsApiHandleInfoResponseAttributes, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleResponseData) GetAttributesOk() (*MicrosoftTeamsTenantBasedHandleAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -61,17 +61,17 @@ func (o *MicrosoftTeamsApiHandleInfoResponseData) GetAttributesOk() (*MicrosoftT
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseData) HasAttributes() bool {
+func (o *MicrosoftTeamsTenantBasedHandleResponseData) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
-// SetAttributes gets a reference to the given MicrosoftTeamsApiHandleInfoResponseAttributes and assigns it to the Attributes field.
-func (o *MicrosoftTeamsApiHandleInfoResponseData) SetAttributes(v MicrosoftTeamsApiHandleInfoResponseAttributes) {
+// SetAttributes gets a reference to the given MicrosoftTeamsTenantBasedHandleAttributes and assigns it to the Attributes field.
+func (o *MicrosoftTeamsTenantBasedHandleResponseData) SetAttributes(v MicrosoftTeamsTenantBasedHandleAttributes) {
 	o.Attributes = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *MicrosoftTeamsApiHandleInfoResponseData) GetId() string {
+func (o *MicrosoftTeamsTenantBasedHandleResponseData) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -81,7 +81,7 @@ func (o *MicrosoftTeamsApiHandleInfoResponseData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseData) GetIdOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleResponseData) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -89,19 +89,19 @@ func (o *MicrosoftTeamsApiHandleInfoResponseData) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseData) HasId() bool {
+func (o *MicrosoftTeamsTenantBasedHandleResponseData) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *MicrosoftTeamsApiHandleInfoResponseData) SetId(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleResponseData) SetId(v string) {
 	o.Id = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *MicrosoftTeamsApiHandleInfoResponseData) GetType() MicrosoftTeamsApiHandleInfoType {
+func (o *MicrosoftTeamsTenantBasedHandleResponseData) GetType() MicrosoftTeamsTenantBasedHandleType {
 	if o == nil || o.Type == nil {
-		var ret MicrosoftTeamsApiHandleInfoType
+		var ret MicrosoftTeamsTenantBasedHandleType
 		return ret
 	}
 	return *o.Type
@@ -109,7 +109,7 @@ func (o *MicrosoftTeamsApiHandleInfoResponseData) GetType() MicrosoftTeamsApiHan
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseData) GetTypeOk() (*MicrosoftTeamsApiHandleInfoType, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleResponseData) GetTypeOk() (*MicrosoftTeamsTenantBasedHandleType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -117,17 +117,17 @@ func (o *MicrosoftTeamsApiHandleInfoResponseData) GetTypeOk() (*MicrosoftTeamsAp
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseData) HasType() bool {
+func (o *MicrosoftTeamsTenantBasedHandleResponseData) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
-// SetType gets a reference to the given MicrosoftTeamsApiHandleInfoType and assigns it to the Type field.
-func (o *MicrosoftTeamsApiHandleInfoResponseData) SetType(v MicrosoftTeamsApiHandleInfoType) {
+// SetType gets a reference to the given MicrosoftTeamsTenantBasedHandleType and assigns it to the Type field.
+func (o *MicrosoftTeamsTenantBasedHandleResponseData) SetType(v MicrosoftTeamsTenantBasedHandleType) {
 	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o MicrosoftTeamsApiHandleInfoResponseData) MarshalJSON() ([]byte, error) {
+func (o MicrosoftTeamsTenantBasedHandleResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -149,11 +149,11 @@ func (o MicrosoftTeamsApiHandleInfoResponseData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *MicrosoftTeamsApiHandleInfoResponseData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *MicrosoftTeamsTenantBasedHandleResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *MicrosoftTeamsApiHandleInfoResponseAttributes `json:"attributes,omitempty"`
-		Id         *string                                        `json:"id,omitempty"`
-		Type       *MicrosoftTeamsApiHandleInfoType               `json:"type,omitempty"`
+		Attributes *MicrosoftTeamsTenantBasedHandleAttributes `json:"attributes,omitempty"`
+		Id         *string                                    `json:"id,omitempty"`
+		Type       *MicrosoftTeamsTenantBasedHandleType       `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

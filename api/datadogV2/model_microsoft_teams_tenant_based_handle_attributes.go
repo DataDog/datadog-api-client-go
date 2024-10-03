@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MicrosoftTeamsApiHandleAttributes Handle attributes.
-type MicrosoftTeamsApiHandleAttributes struct {
+// MicrosoftTeamsTenantBasedHandleAttributes Tenant-based handle attributes.
+type MicrosoftTeamsTenantBasedHandleAttributes struct {
 	// Channel id.
 	ChannelId *string `json:"channel_id,omitempty"`
-	// Handle name.
+	// Tenant-based handle name.
 	Name *string `json:"name,omitempty"`
 	// Team id.
 	TeamId *string `json:"team_id,omitempty"`
@@ -23,25 +23,25 @@ type MicrosoftTeamsApiHandleAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewMicrosoftTeamsApiHandleAttributes instantiates a new MicrosoftTeamsApiHandleAttributes object.
+// NewMicrosoftTeamsTenantBasedHandleAttributes instantiates a new MicrosoftTeamsTenantBasedHandleAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMicrosoftTeamsApiHandleAttributes() *MicrosoftTeamsApiHandleAttributes {
-	this := MicrosoftTeamsApiHandleAttributes{}
+func NewMicrosoftTeamsTenantBasedHandleAttributes() *MicrosoftTeamsTenantBasedHandleAttributes {
+	this := MicrosoftTeamsTenantBasedHandleAttributes{}
 	return &this
 }
 
-// NewMicrosoftTeamsApiHandleAttributesWithDefaults instantiates a new MicrosoftTeamsApiHandleAttributes object.
+// NewMicrosoftTeamsTenantBasedHandleAttributesWithDefaults instantiates a new MicrosoftTeamsTenantBasedHandleAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewMicrosoftTeamsApiHandleAttributesWithDefaults() *MicrosoftTeamsApiHandleAttributes {
-	this := MicrosoftTeamsApiHandleAttributes{}
+func NewMicrosoftTeamsTenantBasedHandleAttributesWithDefaults() *MicrosoftTeamsTenantBasedHandleAttributes {
+	this := MicrosoftTeamsTenantBasedHandleAttributes{}
 	return &this
 }
 
 // GetChannelId returns the ChannelId field value if set, zero value otherwise.
-func (o *MicrosoftTeamsApiHandleAttributes) GetChannelId() string {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) GetChannelId() string {
 	if o == nil || o.ChannelId == nil {
 		var ret string
 		return ret
@@ -51,7 +51,7 @@ func (o *MicrosoftTeamsApiHandleAttributes) GetChannelId() string {
 
 // GetChannelIdOk returns a tuple with the ChannelId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleAttributes) GetChannelIdOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) GetChannelIdOk() (*string, bool) {
 	if o == nil || o.ChannelId == nil {
 		return nil, false
 	}
@@ -59,17 +59,17 @@ func (o *MicrosoftTeamsApiHandleAttributes) GetChannelIdOk() (*string, bool) {
 }
 
 // HasChannelId returns a boolean if a field has been set.
-func (o *MicrosoftTeamsApiHandleAttributes) HasChannelId() bool {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) HasChannelId() bool {
 	return o != nil && o.ChannelId != nil
 }
 
 // SetChannelId gets a reference to the given string and assigns it to the ChannelId field.
-func (o *MicrosoftTeamsApiHandleAttributes) SetChannelId(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) SetChannelId(v string) {
 	o.ChannelId = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *MicrosoftTeamsApiHandleAttributes) GetName() string {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -79,7 +79,7 @@ func (o *MicrosoftTeamsApiHandleAttributes) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleAttributes) GetNameOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -87,17 +87,17 @@ func (o *MicrosoftTeamsApiHandleAttributes) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *MicrosoftTeamsApiHandleAttributes) HasName() bool {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) HasName() bool {
 	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *MicrosoftTeamsApiHandleAttributes) SetName(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) SetName(v string) {
 	o.Name = &v
 }
 
 // GetTeamId returns the TeamId field value if set, zero value otherwise.
-func (o *MicrosoftTeamsApiHandleAttributes) GetTeamId() string {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) GetTeamId() string {
 	if o == nil || o.TeamId == nil {
 		var ret string
 		return ret
@@ -107,7 +107,7 @@ func (o *MicrosoftTeamsApiHandleAttributes) GetTeamId() string {
 
 // GetTeamIdOk returns a tuple with the TeamId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleAttributes) GetTeamIdOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) GetTeamIdOk() (*string, bool) {
 	if o == nil || o.TeamId == nil {
 		return nil, false
 	}
@@ -115,17 +115,17 @@ func (o *MicrosoftTeamsApiHandleAttributes) GetTeamIdOk() (*string, bool) {
 }
 
 // HasTeamId returns a boolean if a field has been set.
-func (o *MicrosoftTeamsApiHandleAttributes) HasTeamId() bool {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) HasTeamId() bool {
 	return o != nil && o.TeamId != nil
 }
 
 // SetTeamId gets a reference to the given string and assigns it to the TeamId field.
-func (o *MicrosoftTeamsApiHandleAttributes) SetTeamId(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) SetTeamId(v string) {
 	o.TeamId = &v
 }
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
-func (o *MicrosoftTeamsApiHandleAttributes) GetTenantId() string {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) GetTenantId() string {
 	if o == nil || o.TenantId == nil {
 		var ret string
 		return ret
@@ -135,7 +135,7 @@ func (o *MicrosoftTeamsApiHandleAttributes) GetTenantId() string {
 
 // GetTenantIdOk returns a tuple with the TenantId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleAttributes) GetTenantIdOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) GetTenantIdOk() (*string, bool) {
 	if o == nil || o.TenantId == nil {
 		return nil, false
 	}
@@ -143,17 +143,17 @@ func (o *MicrosoftTeamsApiHandleAttributes) GetTenantIdOk() (*string, bool) {
 }
 
 // HasTenantId returns a boolean if a field has been set.
-func (o *MicrosoftTeamsApiHandleAttributes) HasTenantId() bool {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) HasTenantId() bool {
 	return o != nil && o.TenantId != nil
 }
 
 // SetTenantId gets a reference to the given string and assigns it to the TenantId field.
-func (o *MicrosoftTeamsApiHandleAttributes) SetTenantId(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) SetTenantId(v string) {
 	o.TenantId = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o MicrosoftTeamsApiHandleAttributes) MarshalJSON() ([]byte, error) {
+func (o MicrosoftTeamsTenantBasedHandleAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -178,7 +178,7 @@ func (o MicrosoftTeamsApiHandleAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *MicrosoftTeamsApiHandleAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *MicrosoftTeamsTenantBasedHandleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ChannelId *string `json:"channel_id,omitempty"`
 		Name      *string `json:"name,omitempty"`

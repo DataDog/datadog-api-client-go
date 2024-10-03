@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MicrosoftTeamsApiHandleInfoResponseAttributes Handle attributes.
-type MicrosoftTeamsApiHandleInfoResponseAttributes struct {
+// MicrosoftTeamsTenantBasedHandleInfoResponseAttributes Tenant-based handle attributes.
+type MicrosoftTeamsTenantBasedHandleInfoResponseAttributes struct {
 	// Channel id.
 	ChannelId *string `json:"channel_id,omitempty"`
 	// Channel name.
 	ChannelName *string `json:"channel_name,omitempty"`
-	// Handle name.
+	// Tenant-based handle name.
 	Name *string `json:"name,omitempty"`
 	// Team id.
 	TeamId *string `json:"team_id,omitempty"`
@@ -29,25 +29,25 @@ type MicrosoftTeamsApiHandleInfoResponseAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewMicrosoftTeamsApiHandleInfoResponseAttributes instantiates a new MicrosoftTeamsApiHandleInfoResponseAttributes object.
+// NewMicrosoftTeamsTenantBasedHandleInfoResponseAttributes instantiates a new MicrosoftTeamsTenantBasedHandleInfoResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMicrosoftTeamsApiHandleInfoResponseAttributes() *MicrosoftTeamsApiHandleInfoResponseAttributes {
-	this := MicrosoftTeamsApiHandleInfoResponseAttributes{}
+func NewMicrosoftTeamsTenantBasedHandleInfoResponseAttributes() *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes {
+	this := MicrosoftTeamsTenantBasedHandleInfoResponseAttributes{}
 	return &this
 }
 
-// NewMicrosoftTeamsApiHandleInfoResponseAttributesWithDefaults instantiates a new MicrosoftTeamsApiHandleInfoResponseAttributes object.
+// NewMicrosoftTeamsTenantBasedHandleInfoResponseAttributesWithDefaults instantiates a new MicrosoftTeamsTenantBasedHandleInfoResponseAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewMicrosoftTeamsApiHandleInfoResponseAttributesWithDefaults() *MicrosoftTeamsApiHandleInfoResponseAttributes {
-	this := MicrosoftTeamsApiHandleInfoResponseAttributes{}
+func NewMicrosoftTeamsTenantBasedHandleInfoResponseAttributesWithDefaults() *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes {
+	this := MicrosoftTeamsTenantBasedHandleInfoResponseAttributes{}
 	return &this
 }
 
 // GetChannelId returns the ChannelId field value if set, zero value otherwise.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetChannelId() string {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) GetChannelId() string {
 	if o == nil || o.ChannelId == nil {
 		var ret string
 		return ret
@@ -57,7 +57,7 @@ func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetChannelId() string {
 
 // GetChannelIdOk returns a tuple with the ChannelId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetChannelIdOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) GetChannelIdOk() (*string, bool) {
 	if o == nil || o.ChannelId == nil {
 		return nil, false
 	}
@@ -65,17 +65,17 @@ func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetChannelIdOk() (*strin
 }
 
 // HasChannelId returns a boolean if a field has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) HasChannelId() bool {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) HasChannelId() bool {
 	return o != nil && o.ChannelId != nil
 }
 
 // SetChannelId gets a reference to the given string and assigns it to the ChannelId field.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) SetChannelId(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) SetChannelId(v string) {
 	o.ChannelId = &v
 }
 
 // GetChannelName returns the ChannelName field value if set, zero value otherwise.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetChannelName() string {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) GetChannelName() string {
 	if o == nil || o.ChannelName == nil {
 		var ret string
 		return ret
@@ -85,7 +85,7 @@ func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetChannelName() string 
 
 // GetChannelNameOk returns a tuple with the ChannelName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetChannelNameOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) GetChannelNameOk() (*string, bool) {
 	if o == nil || o.ChannelName == nil {
 		return nil, false
 	}
@@ -93,17 +93,17 @@ func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetChannelNameOk() (*str
 }
 
 // HasChannelName returns a boolean if a field has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) HasChannelName() bool {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) HasChannelName() bool {
 	return o != nil && o.ChannelName != nil
 }
 
 // SetChannelName gets a reference to the given string and assigns it to the ChannelName field.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) SetChannelName(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) SetChannelName(v string) {
 	o.ChannelName = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetName() string {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -113,7 +113,7 @@ func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetNameOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -121,17 +121,17 @@ func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetNameOk() (*string, bo
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) HasName() bool {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) HasName() bool {
 	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) SetName(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) SetName(v string) {
 	o.Name = &v
 }
 
 // GetTeamId returns the TeamId field value if set, zero value otherwise.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTeamId() string {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) GetTeamId() string {
 	if o == nil || o.TeamId == nil {
 		var ret string
 		return ret
@@ -141,7 +141,7 @@ func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTeamId() string {
 
 // GetTeamIdOk returns a tuple with the TeamId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTeamIdOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) GetTeamIdOk() (*string, bool) {
 	if o == nil || o.TeamId == nil {
 		return nil, false
 	}
@@ -149,17 +149,17 @@ func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTeamIdOk() (*string, 
 }
 
 // HasTeamId returns a boolean if a field has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) HasTeamId() bool {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) HasTeamId() bool {
 	return o != nil && o.TeamId != nil
 }
 
 // SetTeamId gets a reference to the given string and assigns it to the TeamId field.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) SetTeamId(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) SetTeamId(v string) {
 	o.TeamId = &v
 }
 
 // GetTeamName returns the TeamName field value if set, zero value otherwise.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTeamName() string {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) GetTeamName() string {
 	if o == nil || o.TeamName == nil {
 		var ret string
 		return ret
@@ -169,7 +169,7 @@ func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTeamName() string {
 
 // GetTeamNameOk returns a tuple with the TeamName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTeamNameOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) GetTeamNameOk() (*string, bool) {
 	if o == nil || o.TeamName == nil {
 		return nil, false
 	}
@@ -177,17 +177,17 @@ func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTeamNameOk() (*string
 }
 
 // HasTeamName returns a boolean if a field has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) HasTeamName() bool {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) HasTeamName() bool {
 	return o != nil && o.TeamName != nil
 }
 
 // SetTeamName gets a reference to the given string and assigns it to the TeamName field.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) SetTeamName(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) SetTeamName(v string) {
 	o.TeamName = &v
 }
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTenantId() string {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) GetTenantId() string {
 	if o == nil || o.TenantId == nil {
 		var ret string
 		return ret
@@ -197,7 +197,7 @@ func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTenantId() string {
 
 // GetTenantIdOk returns a tuple with the TenantId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTenantIdOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) GetTenantIdOk() (*string, bool) {
 	if o == nil || o.TenantId == nil {
 		return nil, false
 	}
@@ -205,17 +205,17 @@ func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTenantIdOk() (*string
 }
 
 // HasTenantId returns a boolean if a field has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) HasTenantId() bool {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) HasTenantId() bool {
 	return o != nil && o.TenantId != nil
 }
 
 // SetTenantId gets a reference to the given string and assigns it to the TenantId field.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) SetTenantId(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) SetTenantId(v string) {
 	o.TenantId = &v
 }
 
 // GetTenantName returns the TenantName field value if set, zero value otherwise.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTenantName() string {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) GetTenantName() string {
 	if o == nil || o.TenantName == nil {
 		var ret string
 		return ret
@@ -225,7 +225,7 @@ func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTenantName() string {
 
 // GetTenantNameOk returns a tuple with the TenantName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTenantNameOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) GetTenantNameOk() (*string, bool) {
 	if o == nil || o.TenantName == nil {
 		return nil, false
 	}
@@ -233,17 +233,17 @@ func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) GetTenantNameOk() (*stri
 }
 
 // HasTenantName returns a boolean if a field has been set.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) HasTenantName() bool {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) HasTenantName() bool {
 	return o != nil && o.TenantName != nil
 }
 
 // SetTenantName gets a reference to the given string and assigns it to the TenantName field.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) SetTenantName(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) SetTenantName(v string) {
 	o.TenantName = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o MicrosoftTeamsApiHandleInfoResponseAttributes) MarshalJSON() ([]byte, error) {
+func (o MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -277,7 +277,7 @@ func (o MicrosoftTeamsApiHandleInfoResponseAttributes) MarshalJSON() ([]byte, er
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *MicrosoftTeamsApiHandleInfoResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *MicrosoftTeamsTenantBasedHandleInfoResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ChannelId   *string `json:"channel_id,omitempty"`
 		ChannelName *string `json:"channel_name,omitempty"`
