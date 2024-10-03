@@ -1,4 +1,4 @@
-// Update handle returns "OK" response
+// Update tenant-based handle returns "OK" response
 
 package main
 
@@ -13,28 +13,28 @@ import (
 )
 
 func main() {
-	body := datadogV2.MicrosoftTeamsUpdateApiHandleRequest{
-		Data: datadogV2.MicrosoftTeamsUpdateApiHandleRequestData{
-			Attributes: datadogV2.MicrosoftTeamsApiHandleAttributes{
+	body := datadogV2.MicrosoftTeamsUpdateTenantBasedHandleRequest{
+		Data: datadogV2.MicrosoftTeamsUpdateTenantBasedHandleRequestData{
+			Attributes: datadogV2.MicrosoftTeamsTenantBasedHandleAttributes{
 				ChannelId: datadog.PtrString("fake-channel-id"),
 				Name:      datadog.PtrString("fake-handle-name"),
 				TeamId:    datadog.PtrString("00000000-0000-0000-0000-000000000000"),
 				TenantId:  datadog.PtrString("00000000-0000-0000-0000-000000000001"),
 			},
-			Type: datadogV2.MICROSOFTTEAMSAPIHANDLETYPE_HANDLE,
+			Type: datadogV2.MICROSOFTTEAMSTENANTBASEDHANDLETYPE_TENANT_BASED_HANDLE,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMicrosoftTeamsIntegrationApi(apiClient)
-	resp, r, err := api.UpdateApiHandle(ctx, "handle_id", body)
+	resp, r, err := api.UpdateTenantBasedHandle(ctx, "handle_id", body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MicrosoftTeamsIntegrationApi.UpdateApiHandle`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `MicrosoftTeamsIntegrationApi.UpdateTenantBasedHandle`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `MicrosoftTeamsIntegrationApi.UpdateApiHandle`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `MicrosoftTeamsIntegrationApi.UpdateTenantBasedHandle`:\n%s\n", responseContent)
 }

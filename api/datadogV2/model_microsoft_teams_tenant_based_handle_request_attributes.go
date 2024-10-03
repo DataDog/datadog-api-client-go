@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MicrosoftTeamsApiHandleRequestAttributes Handle attributes.
-type MicrosoftTeamsApiHandleRequestAttributes struct {
+// MicrosoftTeamsTenantBasedHandleRequestAttributes Tenant-based handle attributes.
+type MicrosoftTeamsTenantBasedHandleRequestAttributes struct {
 	// Channel id.
 	ChannelId string `json:"channel_id"`
-	// Handle name.
+	// Tenant-based handle name.
 	Name string `json:"name"`
 	// Team id.
 	TeamId string `json:"team_id"`
@@ -25,12 +25,12 @@ type MicrosoftTeamsApiHandleRequestAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewMicrosoftTeamsApiHandleRequestAttributes instantiates a new MicrosoftTeamsApiHandleRequestAttributes object.
+// NewMicrosoftTeamsTenantBasedHandleRequestAttributes instantiates a new MicrosoftTeamsTenantBasedHandleRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMicrosoftTeamsApiHandleRequestAttributes(channelId string, name string, teamId string, tenantId string) *MicrosoftTeamsApiHandleRequestAttributes {
-	this := MicrosoftTeamsApiHandleRequestAttributes{}
+func NewMicrosoftTeamsTenantBasedHandleRequestAttributes(channelId string, name string, teamId string, tenantId string) *MicrosoftTeamsTenantBasedHandleRequestAttributes {
+	this := MicrosoftTeamsTenantBasedHandleRequestAttributes{}
 	this.ChannelId = channelId
 	this.Name = name
 	this.TeamId = teamId
@@ -38,16 +38,16 @@ func NewMicrosoftTeamsApiHandleRequestAttributes(channelId string, name string, 
 	return &this
 }
 
-// NewMicrosoftTeamsApiHandleRequestAttributesWithDefaults instantiates a new MicrosoftTeamsApiHandleRequestAttributes object.
+// NewMicrosoftTeamsTenantBasedHandleRequestAttributesWithDefaults instantiates a new MicrosoftTeamsTenantBasedHandleRequestAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewMicrosoftTeamsApiHandleRequestAttributesWithDefaults() *MicrosoftTeamsApiHandleRequestAttributes {
-	this := MicrosoftTeamsApiHandleRequestAttributes{}
+func NewMicrosoftTeamsTenantBasedHandleRequestAttributesWithDefaults() *MicrosoftTeamsTenantBasedHandleRequestAttributes {
+	this := MicrosoftTeamsTenantBasedHandleRequestAttributes{}
 	return &this
 }
 
 // GetChannelId returns the ChannelId field value.
-func (o *MicrosoftTeamsApiHandleRequestAttributes) GetChannelId() string {
+func (o *MicrosoftTeamsTenantBasedHandleRequestAttributes) GetChannelId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -57,7 +57,7 @@ func (o *MicrosoftTeamsApiHandleRequestAttributes) GetChannelId() string {
 
 // GetChannelIdOk returns a tuple with the ChannelId field value
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleRequestAttributes) GetChannelIdOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleRequestAttributes) GetChannelIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,12 +65,12 @@ func (o *MicrosoftTeamsApiHandleRequestAttributes) GetChannelIdOk() (*string, bo
 }
 
 // SetChannelId sets field value.
-func (o *MicrosoftTeamsApiHandleRequestAttributes) SetChannelId(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleRequestAttributes) SetChannelId(v string) {
 	o.ChannelId = v
 }
 
 // GetName returns the Name field value.
-func (o *MicrosoftTeamsApiHandleRequestAttributes) GetName() string {
+func (o *MicrosoftTeamsTenantBasedHandleRequestAttributes) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -80,7 +80,7 @@ func (o *MicrosoftTeamsApiHandleRequestAttributes) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleRequestAttributes) GetNameOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleRequestAttributes) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -88,12 +88,12 @@ func (o *MicrosoftTeamsApiHandleRequestAttributes) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value.
-func (o *MicrosoftTeamsApiHandleRequestAttributes) SetName(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleRequestAttributes) SetName(v string) {
 	o.Name = v
 }
 
 // GetTeamId returns the TeamId field value.
-func (o *MicrosoftTeamsApiHandleRequestAttributes) GetTeamId() string {
+func (o *MicrosoftTeamsTenantBasedHandleRequestAttributes) GetTeamId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -103,7 +103,7 @@ func (o *MicrosoftTeamsApiHandleRequestAttributes) GetTeamId() string {
 
 // GetTeamIdOk returns a tuple with the TeamId field value
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleRequestAttributes) GetTeamIdOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleRequestAttributes) GetTeamIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -111,12 +111,12 @@ func (o *MicrosoftTeamsApiHandleRequestAttributes) GetTeamIdOk() (*string, bool)
 }
 
 // SetTeamId sets field value.
-func (o *MicrosoftTeamsApiHandleRequestAttributes) SetTeamId(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleRequestAttributes) SetTeamId(v string) {
 	o.TeamId = v
 }
 
 // GetTenantId returns the TenantId field value.
-func (o *MicrosoftTeamsApiHandleRequestAttributes) GetTenantId() string {
+func (o *MicrosoftTeamsTenantBasedHandleRequestAttributes) GetTenantId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -126,7 +126,7 @@ func (o *MicrosoftTeamsApiHandleRequestAttributes) GetTenantId() string {
 
 // GetTenantIdOk returns a tuple with the TenantId field value
 // and a boolean to check if the value has been set.
-func (o *MicrosoftTeamsApiHandleRequestAttributes) GetTenantIdOk() (*string, bool) {
+func (o *MicrosoftTeamsTenantBasedHandleRequestAttributes) GetTenantIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -134,12 +134,12 @@ func (o *MicrosoftTeamsApiHandleRequestAttributes) GetTenantIdOk() (*string, boo
 }
 
 // SetTenantId sets field value.
-func (o *MicrosoftTeamsApiHandleRequestAttributes) SetTenantId(v string) {
+func (o *MicrosoftTeamsTenantBasedHandleRequestAttributes) SetTenantId(v string) {
 	o.TenantId = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o MicrosoftTeamsApiHandleRequestAttributes) MarshalJSON() ([]byte, error) {
+func (o MicrosoftTeamsTenantBasedHandleRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -156,7 +156,7 @@ func (o MicrosoftTeamsApiHandleRequestAttributes) MarshalJSON() ([]byte, error) 
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *MicrosoftTeamsApiHandleRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *MicrosoftTeamsTenantBasedHandleRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ChannelId *string `json:"channel_id"`
 		Name      *string `json:"name"`

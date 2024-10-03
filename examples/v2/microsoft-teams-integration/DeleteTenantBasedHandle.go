@@ -1,10 +1,9 @@
-// Get handle information by name returns "OK" response
+// Delete tenant-based handle returns "OK" response
 
 package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -17,13 +16,10 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMicrosoftTeamsIntegrationApi(apiClient)
-	resp, r, err := api.GetApiHandleByName(ctx, "handle_name")
+	r, err := api.DeleteTenantBasedHandle(ctx, "handle_id")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MicrosoftTeamsIntegrationApi.GetApiHandleByName`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `MicrosoftTeamsIntegrationApi.DeleteTenantBasedHandle`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-
-	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `MicrosoftTeamsIntegrationApi.GetApiHandleByName`:\n%s\n", responseContent)
 }

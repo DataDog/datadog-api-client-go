@@ -1,4 +1,4 @@
-// Get all api handles returns "OK" response
+// Get all tenant-based handles returns "OK" response
 
 package main
 
@@ -17,13 +17,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMicrosoftTeamsIntegrationApi(apiClient)
-	resp, r, err := api.ListApiHandles(ctx, *datadogV2.NewListApiHandlesOptionalParameters())
+	resp, r, err := api.ListTenantBasedHandles(ctx, *datadogV2.NewListTenantBasedHandlesOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MicrosoftTeamsIntegrationApi.ListApiHandles`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `MicrosoftTeamsIntegrationApi.ListTenantBasedHandles`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `MicrosoftTeamsIntegrationApi.ListApiHandles`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `MicrosoftTeamsIntegrationApi.ListTenantBasedHandles`:\n%s\n", responseContent)
 }
