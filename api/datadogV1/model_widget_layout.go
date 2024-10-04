@@ -19,10 +19,10 @@ type WidgetLayout struct {
 	IsColumnBreak *bool `json:"is_column_break,omitempty"`
 	// The width of the widget. Should be a non-negative integer.
 	Width int64 `json:"width"`
-	// The position of the widget on the x (horizontal) axis. Should be a non-negative integer.
-	X int64 `json:"x"`
-	// The position of the widget on the y (vertical) axis. Should be a non-negative integer.
-	Y int64 `json:"y"`
+	// The position of the widget on the x (horizontal) axis. Should be a non-negative number.
+	X float64 `json:"x"`
+	// The position of the widget on the y (vertical) axis. Should be a non-negative number.
+	Y float64 `json:"y"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -32,7 +32,7 @@ type WidgetLayout struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewWidgetLayout(height int64, width int64, x int64, y int64) *WidgetLayout {
+func NewWidgetLayout(height int64, width int64, x float64, y float64) *WidgetLayout {
 	this := WidgetLayout{}
 	this.Height = height
 	this.Width = width
@@ -124,9 +124,9 @@ func (o *WidgetLayout) SetWidth(v int64) {
 }
 
 // GetX returns the X field value.
-func (o *WidgetLayout) GetX() int64 {
+func (o *WidgetLayout) GetX() float64 {
 	if o == nil {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return o.X
@@ -134,7 +134,7 @@ func (o *WidgetLayout) GetX() int64 {
 
 // GetXOk returns a tuple with the X field value
 // and a boolean to check if the value has been set.
-func (o *WidgetLayout) GetXOk() (*int64, bool) {
+func (o *WidgetLayout) GetXOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -142,14 +142,14 @@ func (o *WidgetLayout) GetXOk() (*int64, bool) {
 }
 
 // SetX sets field value.
-func (o *WidgetLayout) SetX(v int64) {
+func (o *WidgetLayout) SetX(v float64) {
 	o.X = v
 }
 
 // GetY returns the Y field value.
-func (o *WidgetLayout) GetY() int64 {
+func (o *WidgetLayout) GetY() float64 {
 	if o == nil {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return o.Y
@@ -157,7 +157,7 @@ func (o *WidgetLayout) GetY() int64 {
 
 // GetYOk returns a tuple with the Y field value
 // and a boolean to check if the value has been set.
-func (o *WidgetLayout) GetYOk() (*int64, bool) {
+func (o *WidgetLayout) GetYOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -165,7 +165,7 @@ func (o *WidgetLayout) GetYOk() (*int64, bool) {
 }
 
 // SetY sets field value.
-func (o *WidgetLayout) SetY(v int64) {
+func (o *WidgetLayout) SetY(v float64) {
 	o.Y = v
 }
 
@@ -192,11 +192,11 @@ func (o WidgetLayout) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Height        *int64 `json:"height"`
-		IsColumnBreak *bool  `json:"is_column_break,omitempty"`
-		Width         *int64 `json:"width"`
-		X             *int64 `json:"x"`
-		Y             *int64 `json:"y"`
+		Height        *int64   `json:"height"`
+		IsColumnBreak *bool    `json:"is_column_break,omitempty"`
+		Width         *int64   `json:"width"`
+		X             *float64 `json:"x"`
+		Y             *float64 `json:"y"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
