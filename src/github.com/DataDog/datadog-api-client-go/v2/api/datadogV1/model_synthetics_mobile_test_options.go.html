@@ -76,7 +76,7 @@
 <span id="L19" class="ln">    19  </span>	<span class="comment">// The `SyntheticsMobileTestOptions` `defaultStepTimeout`.</span>
 <span id="L20" class="ln">    20  </span>	DefaultStepTimeout *int32 `json:&#34;defaultStepTimeout,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// For mobile test, array with the different device IDs used to run the test.</span>
-<span id="L22" class="ln">    22  </span>	DeviceIds []SyntheticsMobileDeviceID `json:&#34;device_ids,omitempty&#34;`
+<span id="L22" class="ln">    22  </span>	DeviceIds []string `json:&#34;device_ids,omitempty&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// The `SyntheticsMobileTestOptions` `disableAutoAcceptAlert`.</span>
 <span id="L24" class="ln">    24  </span>	DisableAutoAcceptAlert *bool `json:&#34;disableAutoAcceptAlert,omitempty&#34;`
 <span id="L25" class="ln">    25  </span>	<span class="comment">// Minimum amount of time in failure required to trigger an alert.</span>
@@ -237,9 +237,9 @@
 <span id="L180" class="ln">   180  </span>}
 <span id="L181" class="ln">   181  </span>
 <span id="L182" class="ln">   182  </span><span class="comment">// GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.</span>
-<span id="L183" class="ln">   183  </span>func (o *SyntheticsMobileTestOptions) GetDeviceIds() []SyntheticsMobileDeviceID {
+<span id="L183" class="ln">   183  </span>func (o *SyntheticsMobileTestOptions) GetDeviceIds() []string {
 <span id="L184" class="ln">   184  </span>	if o == nil || o.DeviceIds == nil {
-<span id="L185" class="ln">   185  </span>		var ret []SyntheticsMobileDeviceID
+<span id="L185" class="ln">   185  </span>		var ret []string
 <span id="L186" class="ln">   186  </span>		return ret
 <span id="L187" class="ln">   187  </span>	}
 <span id="L188" class="ln">   188  </span>	return o.DeviceIds
@@ -247,7 +247,7 @@
 <span id="L190" class="ln">   190  </span>
 <span id="L191" class="ln">   191  </span><span class="comment">// GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise</span>
 <span id="L192" class="ln">   192  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L193" class="ln">   193  </span>func (o *SyntheticsMobileTestOptions) GetDeviceIdsOk() (*[]SyntheticsMobileDeviceID, bool) {
+<span id="L193" class="ln">   193  </span>func (o *SyntheticsMobileTestOptions) GetDeviceIdsOk() (*[]string, bool) {
 <span id="L194" class="ln">   194  </span>	if o == nil || o.DeviceIds == nil {
 <span id="L195" class="ln">   195  </span>		return nil, false
 <span id="L196" class="ln">   196  </span>	}
@@ -259,8 +259,8 @@
 <span id="L202" class="ln">   202  </span>	return o != nil &amp;&amp; o.DeviceIds != nil
 <span id="L203" class="ln">   203  </span>}
 <span id="L204" class="ln">   204  </span>
-<span id="L205" class="ln">   205  </span><span class="comment">// SetDeviceIds gets a reference to the given []SyntheticsMobileDeviceID and assigns it to the DeviceIds field.</span>
-<span id="L206" class="ln">   206  </span>func (o *SyntheticsMobileTestOptions) SetDeviceIds(v []SyntheticsMobileDeviceID) {
+<span id="L205" class="ln">   205  </span><span class="comment">// SetDeviceIds gets a reference to the given []string and assigns it to the DeviceIds field.</span>
+<span id="L206" class="ln">   206  </span>func (o *SyntheticsMobileTestOptions) SetDeviceIds(v []string) {
 <span id="L207" class="ln">   207  </span>	o.DeviceIds = v
 <span id="L208" class="ln">   208  </span>}
 <span id="L209" class="ln">   209  </span>
@@ -671,7 +671,7 @@
 <span id="L614" class="ln">   614  </span>		Bindings               []SyntheticsMobileTestBinding              `json:&#34;bindings,omitempty&#34;`
 <span id="L615" class="ln">   615  </span>		Ci                     *SyntheticsMobileTestCiOptions             `json:&#34;ci,omitempty&#34;`
 <span id="L616" class="ln">   616  </span>		DefaultStepTimeout     *int32                                     `json:&#34;defaultStepTimeout,omitempty&#34;`
-<span id="L617" class="ln">   617  </span>		DeviceIds              []SyntheticsMobileDeviceID                 `json:&#34;device_ids,omitempty&#34;`
+<span id="L617" class="ln">   617  </span>		DeviceIds              []string                                   `json:&#34;device_ids,omitempty&#34;`
 <span id="L618" class="ln">   618  </span>		DisableAutoAcceptAlert *bool                                      `json:&#34;disableAutoAcceptAlert,omitempty&#34;`
 <span id="L619" class="ln">   619  </span>		MinFailureDuration     *int64                                     `json:&#34;min_failure_duration,omitempty&#34;`
 <span id="L620" class="ln">   620  </span>		MobileApplication      *SyntheticsMobileTestsMobileApplication    `json:&#34;mobileApplication,omitempty&#34;`
