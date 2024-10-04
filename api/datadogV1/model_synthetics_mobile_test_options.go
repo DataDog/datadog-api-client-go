@@ -19,7 +19,7 @@ type SyntheticsMobileTestOptions struct {
 	// The `SyntheticsMobileTestOptions` `defaultStepTimeout`.
 	DefaultStepTimeout *int32 `json:"defaultStepTimeout,omitempty"`
 	// For mobile test, array with the different device IDs used to run the test.
-	DeviceIds []SyntheticsMobileDeviceID `json:"device_ids,omitempty"`
+	DeviceIds []string `json:"device_ids,omitempty"`
 	// The `SyntheticsMobileTestOptions` `disableAutoAcceptAlert`.
 	DisableAutoAcceptAlert *bool `json:"disableAutoAcceptAlert,omitempty"`
 	// Minimum amount of time in failure required to trigger an alert.
@@ -180,9 +180,9 @@ func (o *SyntheticsMobileTestOptions) SetDefaultStepTimeout(v int32) {
 }
 
 // GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.
-func (o *SyntheticsMobileTestOptions) GetDeviceIds() []SyntheticsMobileDeviceID {
+func (o *SyntheticsMobileTestOptions) GetDeviceIds() []string {
 	if o == nil || o.DeviceIds == nil {
-		var ret []SyntheticsMobileDeviceID
+		var ret []string
 		return ret
 	}
 	return o.DeviceIds
@@ -190,7 +190,7 @@ func (o *SyntheticsMobileTestOptions) GetDeviceIds() []SyntheticsMobileDeviceID 
 
 // GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileTestOptions) GetDeviceIdsOk() (*[]SyntheticsMobileDeviceID, bool) {
+func (o *SyntheticsMobileTestOptions) GetDeviceIdsOk() (*[]string, bool) {
 	if o == nil || o.DeviceIds == nil {
 		return nil, false
 	}
@@ -202,8 +202,8 @@ func (o *SyntheticsMobileTestOptions) HasDeviceIds() bool {
 	return o != nil && o.DeviceIds != nil
 }
 
-// SetDeviceIds gets a reference to the given []SyntheticsMobileDeviceID and assigns it to the DeviceIds field.
-func (o *SyntheticsMobileTestOptions) SetDeviceIds(v []SyntheticsMobileDeviceID) {
+// SetDeviceIds gets a reference to the given []string and assigns it to the DeviceIds field.
+func (o *SyntheticsMobileTestOptions) SetDeviceIds(v []string) {
 	o.DeviceIds = v
 }
 
@@ -614,7 +614,7 @@ func (o *SyntheticsMobileTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		Bindings               []SyntheticsMobileTestBinding              `json:"bindings,omitempty"`
 		Ci                     *SyntheticsMobileTestCiOptions             `json:"ci,omitempty"`
 		DefaultStepTimeout     *int32                                     `json:"defaultStepTimeout,omitempty"`
-		DeviceIds              []SyntheticsMobileDeviceID                 `json:"device_ids,omitempty"`
+		DeviceIds              []string                                   `json:"device_ids,omitempty"`
 		DisableAutoAcceptAlert *bool                                      `json:"disableAutoAcceptAlert,omitempty"`
 		MinFailureDuration     *int64                                     `json:"min_failure_duration,omitempty"`
 		MobileApplication      *SyntheticsMobileTestsMobileApplication    `json:"mobileApplication,omitempty"`

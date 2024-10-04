@@ -25,8 +25,8 @@ func main() {
 		},
 		Message: datadog.PtrString(""),
 		Options: datadogV1.SyntheticsMobileTestOptions{
-			DeviceIds: []datadogV1.SyntheticsMobileDeviceID{
-				datadogV1.SYNTHETICSMOBILEDEVICEID_SYNTHETICS_MOBILE_DEVICE_IPHONE_15_IOS_17,
+			DeviceIds: []string{
+				"synthetics:mobile:device:iphone_15_ios_17",
 			},
 			MobileApplication: &datadogV1.SyntheticsMobileTestsMobileApplication{
 				ApplicationId: datadog.PtrString("ab0e0aed-536d-411a-9a99-5428c27d8f8e"),
