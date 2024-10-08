@@ -3314,6 +3314,12 @@ components:
             to be set to true.'
           example: true
           type: boolean
+        is_resource_change_collection_enabled:
+          default: false
+          description: When enabled, Datadog scans for all resource change data in
+            your Google Cloud environment.
+          example: true
+          type: boolean
         is_security_command_center_enabled:
           default: false
           description: 'When enabled, Datadog will attempt to collect Security Command
@@ -19609,6 +19615,16 @@ components:
             events over all hours in the current date for the given org.
           format: int64
           type: integer
+        code_analysis_sa_committers_hwm:
+          description: Shows the high-water mark of all Static Analysis committers
+            over all hours in the current date for the given org.
+          format: int64
+          type: integer
+        code_analysis_sca_committers_hwm:
+          description: Shows the high-water mark of all static Software Composition
+            Analysis committers over all hours in the current date for the given org.
+          format: int64
+          type: integer
         container_avg:
           description: Shows the average of all distinct containers over all hours
             in the current date for all organizations.
@@ -20347,6 +20363,16 @@ components:
         cloud_siem_events_sum:
           description: Shows the sum of all Cloud Security Information and Event Management
             events over all hours in the current date for the given org.
+          format: int64
+          type: integer
+        code_analysis_sa_committers_hwm:
+          description: Shows the high-water mark of all Static Analysis committers
+            over all hours in the current date for the given org.
+          format: int64
+          type: integer
+        code_analysis_sca_committers_hwm:
+          description: Shows the high-water mark of all static Software Composition
+            Analysis committers over all hours in the current date for the given org.
           format: int64
           type: integer
         container_avg:
@@ -21098,6 +21124,16 @@ components:
         cloud_siem_events_agg_sum:
           description: Shows the sum of all Cloud Security Information and Event Management
             events over all hours in the current month for all organizations.
+          format: int64
+          type: integer
+        code_analysis_sa_committers_hwm_sum:
+          description: Shows the high-water mark of all Static Analysis committers
+            over all hours in the current month for all organizations.
+          format: int64
+          type: integer
+        code_analysis_sca_committers_hwm_sum:
+          description: Shows the high-water mark of all static Software Composition
+            Analysis committers over all hours in the current month for all organizations.
           format: int64
           type: integer
         container_avg_sum:
