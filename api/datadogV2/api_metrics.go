@@ -852,7 +852,7 @@ func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagCon
 }
 
 // ListTagsByMetricName List tags by metric name.
-// View indexed tag key-value pairs for a given metric name.
+// View indexed tag key-value pairs for a given metric name over the previous hour.
 func (a *MetricsApi) ListTagsByMetricName(ctx _context.Context, metricName string) (MetricAllTagsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
