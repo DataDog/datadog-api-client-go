@@ -96,6 +96,7 @@
 //   - [DowntimesApi.ListDowntimes]
 //   - [DowntimesApi.ListMonitorDowntimes]
 //   - [DowntimesApi.UpdateDowntime]
+//   - [EventsApi.CreateEvent]
 //   - [EventsApi.ListEvents]
 //   - [EventsApi.SearchEvents]
 //   - [FastlyIntegrationApi.CreateFastlyAccount]
