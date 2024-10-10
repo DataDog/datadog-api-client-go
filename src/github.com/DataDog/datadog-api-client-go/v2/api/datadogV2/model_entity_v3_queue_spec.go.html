@@ -69,9 +69,9 @@
 <span id="L12" class="ln">    12  </span>type EntityV3QueueSpec struct {
 <span id="L13" class="ln">    13  </span>	<span class="comment">// The lifecycle state of the queue.</span>
 <span id="L14" class="ln">    14  </span>	Lifecycle *string `json:&#34;lifecycle,omitempty&#34;`
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The importance of the queue</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// The importance of the queue.</span>
 <span id="L16" class="ln">    16  </span>	Tier *string `json:&#34;tier,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// The type of queue</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// The type of queue.</span>
 <span id="L18" class="ln">    18  </span>	Type *string `json:&#34;type,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L20" class="ln">    20  </span>	UnparsedObject map[string]interface{} `json:&#34;-&#34;`

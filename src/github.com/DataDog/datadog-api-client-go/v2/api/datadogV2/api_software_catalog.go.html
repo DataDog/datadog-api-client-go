@@ -138,13 +138,13 @@
 <span id="L81" class="ln">    81  </span>type ListCatalogEntityOptionalParameters struct {
 <span id="L82" class="ln">    82  </span>	PageOffset            *int64
 <span id="L83" class="ln">    83  </span>	PageLimit             *int64
-<span id="L84" class="ln">    84  </span>	FitlerId              *string
-<span id="L85" class="ln">    85  </span>	FitlerRef             *string
-<span id="L86" class="ln">    86  </span>	FitlerName            *string
-<span id="L87" class="ln">    87  </span>	FitlerKind            *string
-<span id="L88" class="ln">    88  </span>	FitlerOwner           *string
-<span id="L89" class="ln">    89  </span>	FitlerRelationType    *RelationType
-<span id="L90" class="ln">    90  </span>	FitlerExcludeSnapshot *string
+<span id="L84" class="ln">    84  </span>	FilterId              *string
+<span id="L85" class="ln">    85  </span>	FilterRef             *string
+<span id="L86" class="ln">    86  </span>	FilterName            *string
+<span id="L87" class="ln">    87  </span>	FilterKind            *string
+<span id="L88" class="ln">    88  </span>	FilterOwner           *string
+<span id="L89" class="ln">    89  </span>	FilterRelationType    *RelationType
+<span id="L90" class="ln">    90  </span>	FilterExcludeSnapshot *string
 <span id="L91" class="ln">    91  </span>	Include               *IncludeType
 <span id="L92" class="ln">    92  </span>}
 <span id="L93" class="ln">    93  </span>
@@ -166,45 +166,45 @@
 <span id="L109" class="ln">   109  </span>	return r
 <span id="L110" class="ln">   110  </span>}
 <span id="L111" class="ln">   111  </span>
-<span id="L112" class="ln">   112  </span><span class="comment">// WithFitlerId sets the corresponding parameter name and returns the struct.</span>
-<span id="L113" class="ln">   113  </span>func (r *ListCatalogEntityOptionalParameters) WithFitlerId(fitlerId string) *ListCatalogEntityOptionalParameters {
-<span id="L114" class="ln">   114  </span>	r.FitlerId = &amp;fitlerId
+<span id="L112" class="ln">   112  </span><span class="comment">// WithFilterId sets the corresponding parameter name and returns the struct.</span>
+<span id="L113" class="ln">   113  </span>func (r *ListCatalogEntityOptionalParameters) WithFilterId(filterId string) *ListCatalogEntityOptionalParameters {
+<span id="L114" class="ln">   114  </span>	r.FilterId = &amp;filterId
 <span id="L115" class="ln">   115  </span>	return r
 <span id="L116" class="ln">   116  </span>}
 <span id="L117" class="ln">   117  </span>
-<span id="L118" class="ln">   118  </span><span class="comment">// WithFitlerRef sets the corresponding parameter name and returns the struct.</span>
-<span id="L119" class="ln">   119  </span>func (r *ListCatalogEntityOptionalParameters) WithFitlerRef(fitlerRef string) *ListCatalogEntityOptionalParameters {
-<span id="L120" class="ln">   120  </span>	r.FitlerRef = &amp;fitlerRef
+<span id="L118" class="ln">   118  </span><span class="comment">// WithFilterRef sets the corresponding parameter name and returns the struct.</span>
+<span id="L119" class="ln">   119  </span>func (r *ListCatalogEntityOptionalParameters) WithFilterRef(filterRef string) *ListCatalogEntityOptionalParameters {
+<span id="L120" class="ln">   120  </span>	r.FilterRef = &amp;filterRef
 <span id="L121" class="ln">   121  </span>	return r
 <span id="L122" class="ln">   122  </span>}
 <span id="L123" class="ln">   123  </span>
-<span id="L124" class="ln">   124  </span><span class="comment">// WithFitlerName sets the corresponding parameter name and returns the struct.</span>
-<span id="L125" class="ln">   125  </span>func (r *ListCatalogEntityOptionalParameters) WithFitlerName(fitlerName string) *ListCatalogEntityOptionalParameters {
-<span id="L126" class="ln">   126  </span>	r.FitlerName = &amp;fitlerName
+<span id="L124" class="ln">   124  </span><span class="comment">// WithFilterName sets the corresponding parameter name and returns the struct.</span>
+<span id="L125" class="ln">   125  </span>func (r *ListCatalogEntityOptionalParameters) WithFilterName(filterName string) *ListCatalogEntityOptionalParameters {
+<span id="L126" class="ln">   126  </span>	r.FilterName = &amp;filterName
 <span id="L127" class="ln">   127  </span>	return r
 <span id="L128" class="ln">   128  </span>}
 <span id="L129" class="ln">   129  </span>
-<span id="L130" class="ln">   130  </span><span class="comment">// WithFitlerKind sets the corresponding parameter name and returns the struct.</span>
-<span id="L131" class="ln">   131  </span>func (r *ListCatalogEntityOptionalParameters) WithFitlerKind(fitlerKind string) *ListCatalogEntityOptionalParameters {
-<span id="L132" class="ln">   132  </span>	r.FitlerKind = &amp;fitlerKind
+<span id="L130" class="ln">   130  </span><span class="comment">// WithFilterKind sets the corresponding parameter name and returns the struct.</span>
+<span id="L131" class="ln">   131  </span>func (r *ListCatalogEntityOptionalParameters) WithFilterKind(filterKind string) *ListCatalogEntityOptionalParameters {
+<span id="L132" class="ln">   132  </span>	r.FilterKind = &amp;filterKind
 <span id="L133" class="ln">   133  </span>	return r
 <span id="L134" class="ln">   134  </span>}
 <span id="L135" class="ln">   135  </span>
-<span id="L136" class="ln">   136  </span><span class="comment">// WithFitlerOwner sets the corresponding parameter name and returns the struct.</span>
-<span id="L137" class="ln">   137  </span>func (r *ListCatalogEntityOptionalParameters) WithFitlerOwner(fitlerOwner string) *ListCatalogEntityOptionalParameters {
-<span id="L138" class="ln">   138  </span>	r.FitlerOwner = &amp;fitlerOwner
+<span id="L136" class="ln">   136  </span><span class="comment">// WithFilterOwner sets the corresponding parameter name and returns the struct.</span>
+<span id="L137" class="ln">   137  </span>func (r *ListCatalogEntityOptionalParameters) WithFilterOwner(filterOwner string) *ListCatalogEntityOptionalParameters {
+<span id="L138" class="ln">   138  </span>	r.FilterOwner = &amp;filterOwner
 <span id="L139" class="ln">   139  </span>	return r
 <span id="L140" class="ln">   140  </span>}
 <span id="L141" class="ln">   141  </span>
-<span id="L142" class="ln">   142  </span><span class="comment">// WithFitlerRelationType sets the corresponding parameter name and returns the struct.</span>
-<span id="L143" class="ln">   143  </span>func (r *ListCatalogEntityOptionalParameters) WithFitlerRelationType(fitlerRelationType RelationType) *ListCatalogEntityOptionalParameters {
-<span id="L144" class="ln">   144  </span>	r.FitlerRelationType = &amp;fitlerRelationType
+<span id="L142" class="ln">   142  </span><span class="comment">// WithFilterRelationType sets the corresponding parameter name and returns the struct.</span>
+<span id="L143" class="ln">   143  </span>func (r *ListCatalogEntityOptionalParameters) WithFilterRelationType(filterRelationType RelationType) *ListCatalogEntityOptionalParameters {
+<span id="L144" class="ln">   144  </span>	r.FilterRelationType = &amp;filterRelationType
 <span id="L145" class="ln">   145  </span>	return r
 <span id="L146" class="ln">   146  </span>}
 <span id="L147" class="ln">   147  </span>
-<span id="L148" class="ln">   148  </span><span class="comment">// WithFitlerExcludeSnapshot sets the corresponding parameter name and returns the struct.</span>
-<span id="L149" class="ln">   149  </span>func (r *ListCatalogEntityOptionalParameters) WithFitlerExcludeSnapshot(fitlerExcludeSnapshot string) *ListCatalogEntityOptionalParameters {
-<span id="L150" class="ln">   150  </span>	r.FitlerExcludeSnapshot = &amp;fitlerExcludeSnapshot
+<span id="L148" class="ln">   148  </span><span class="comment">// WithFilterExcludeSnapshot sets the corresponding parameter name and returns the struct.</span>
+<span id="L149" class="ln">   149  </span>func (r *ListCatalogEntityOptionalParameters) WithFilterExcludeSnapshot(filterExcludeSnapshot string) *ListCatalogEntityOptionalParameters {
+<span id="L150" class="ln">   150  </span>	r.FilterExcludeSnapshot = &amp;filterExcludeSnapshot
 <span id="L151" class="ln">   151  </span>	return r
 <span id="L152" class="ln">   152  </span>}
 <span id="L153" class="ln">   153  </span>
@@ -247,26 +247,26 @@
 <span id="L190" class="ln">   190  </span>	if optionalParams.PageLimit != nil {
 <span id="L191" class="ln">   191  </span>		localVarQueryParams.Add(&#34;page[limit]&#34;, datadog.ParameterToString(*optionalParams.PageLimit, &#34;&#34;))
 <span id="L192" class="ln">   192  </span>	}
-<span id="L193" class="ln">   193  </span>	if optionalParams.FitlerId != nil {
-<span id="L194" class="ln">   194  </span>		localVarQueryParams.Add(&#34;fitler[id]&#34;, datadog.ParameterToString(*optionalParams.FitlerId, &#34;&#34;))
+<span id="L193" class="ln">   193  </span>	if optionalParams.FilterId != nil {
+<span id="L194" class="ln">   194  </span>		localVarQueryParams.Add(&#34;filter[id]&#34;, datadog.ParameterToString(*optionalParams.FilterId, &#34;&#34;))
 <span id="L195" class="ln">   195  </span>	}
-<span id="L196" class="ln">   196  </span>	if optionalParams.FitlerRef != nil {
-<span id="L197" class="ln">   197  </span>		localVarQueryParams.Add(&#34;fitler[ref]&#34;, datadog.ParameterToString(*optionalParams.FitlerRef, &#34;&#34;))
+<span id="L196" class="ln">   196  </span>	if optionalParams.FilterRef != nil {
+<span id="L197" class="ln">   197  </span>		localVarQueryParams.Add(&#34;filter[ref]&#34;, datadog.ParameterToString(*optionalParams.FilterRef, &#34;&#34;))
 <span id="L198" class="ln">   198  </span>	}
-<span id="L199" class="ln">   199  </span>	if optionalParams.FitlerName != nil {
-<span id="L200" class="ln">   200  </span>		localVarQueryParams.Add(&#34;fitler[name]&#34;, datadog.ParameterToString(*optionalParams.FitlerName, &#34;&#34;))
+<span id="L199" class="ln">   199  </span>	if optionalParams.FilterName != nil {
+<span id="L200" class="ln">   200  </span>		localVarQueryParams.Add(&#34;filter[name]&#34;, datadog.ParameterToString(*optionalParams.FilterName, &#34;&#34;))
 <span id="L201" class="ln">   201  </span>	}
-<span id="L202" class="ln">   202  </span>	if optionalParams.FitlerKind != nil {
-<span id="L203" class="ln">   203  </span>		localVarQueryParams.Add(&#34;fitler[kind]&#34;, datadog.ParameterToString(*optionalParams.FitlerKind, &#34;&#34;))
+<span id="L202" class="ln">   202  </span>	if optionalParams.FilterKind != nil {
+<span id="L203" class="ln">   203  </span>		localVarQueryParams.Add(&#34;filter[kind]&#34;, datadog.ParameterToString(*optionalParams.FilterKind, &#34;&#34;))
 <span id="L204" class="ln">   204  </span>	}
-<span id="L205" class="ln">   205  </span>	if optionalParams.FitlerOwner != nil {
-<span id="L206" class="ln">   206  </span>		localVarQueryParams.Add(&#34;fitler[owner]&#34;, datadog.ParameterToString(*optionalParams.FitlerOwner, &#34;&#34;))
+<span id="L205" class="ln">   205  </span>	if optionalParams.FilterOwner != nil {
+<span id="L206" class="ln">   206  </span>		localVarQueryParams.Add(&#34;filter[owner]&#34;, datadog.ParameterToString(*optionalParams.FilterOwner, &#34;&#34;))
 <span id="L207" class="ln">   207  </span>	}
-<span id="L208" class="ln">   208  </span>	if optionalParams.FitlerRelationType != nil {
-<span id="L209" class="ln">   209  </span>		localVarQueryParams.Add(&#34;fitler[relation][type]&#34;, datadog.ParameterToString(*optionalParams.FitlerRelationType, &#34;&#34;))
+<span id="L208" class="ln">   208  </span>	if optionalParams.FilterRelationType != nil {
+<span id="L209" class="ln">   209  </span>		localVarQueryParams.Add(&#34;filter[relation][type]&#34;, datadog.ParameterToString(*optionalParams.FilterRelationType, &#34;&#34;))
 <span id="L210" class="ln">   210  </span>	}
-<span id="L211" class="ln">   211  </span>	if optionalParams.FitlerExcludeSnapshot != nil {
-<span id="L212" class="ln">   212  </span>		localVarQueryParams.Add(&#34;fitler[exclude_snapshot]&#34;, datadog.ParameterToString(*optionalParams.FitlerExcludeSnapshot, &#34;&#34;))
+<span id="L211" class="ln">   211  </span>	if optionalParams.FilterExcludeSnapshot != nil {
+<span id="L212" class="ln">   212  </span>		localVarQueryParams.Add(&#34;filter[exclude_snapshot]&#34;, datadog.ParameterToString(*optionalParams.FilterExcludeSnapshot, &#34;&#34;))
 <span id="L213" class="ln">   213  </span>	}
 <span id="L214" class="ln">   214  </span>	if optionalParams.Include != nil {
 <span id="L215" class="ln">   215  </span>		localVarQueryParams.Add(&#34;include&#34;, datadog.ParameterToString(*optionalParams.Include, &#34;&#34;))
