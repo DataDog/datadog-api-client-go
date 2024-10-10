@@ -909,7 +909,7 @@
 <span id="L852" class="ln">   852  </span>}
 <span id="L853" class="ln">   853  </span>
 <span id="L854" class="ln">   854  </span><span class="comment">// ListTagsByMetricName List tags by metric name.</span>
-<span id="L855" class="ln">   855  </span><span class="comment">// View indexed tag key-value pairs for a given metric name.</span>
+<span id="L855" class="ln">   855  </span><span class="comment">// View indexed tag key-value pairs for a given metric name over the previous hour.</span>
 <span id="L856" class="ln">   856  </span>func (a *MetricsApi) ListTagsByMetricName(ctx _context.Context, metricName string) (MetricAllTagsResponse, *_nethttp.Response, error) {
 <span id="L857" class="ln">   857  </span>	var (
 <span id="L858" class="ln">   858  </span>		localVarHTTPMethod  = _nethttp.MethodGet
