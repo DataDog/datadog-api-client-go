@@ -644,6 +644,7 @@ type GetMonthlyCostAttributionOptionalParameters struct {
 	TagBreakdownKeys   *string
 	NextRecordId       *string
 	IncludeDescendants *bool
+	EndMonth           *time.Time
 }
 
 // NewGetMonthlyCostAttributionOptionalParameters creates an empty struct for parameters.
@@ -682,6 +683,12 @@ func (r *GetMonthlyCostAttributionOptionalParameters) WithIncludeDescendants(inc
 	return r
 }
 
+// WithEndMonth sets the corresponding parameter name and returns the struct.
+func (r *GetMonthlyCostAttributionOptionalParameters) WithEndMonth(endMonth time.Time) *GetMonthlyCostAttributionOptionalParameters {
+    r.EndMonth = &endMonth
+	return r
+}
+
 // GetMonthlyCostAttribution Get Monthly Cost Attribution.
 // Get monthly cost attribution by tag across multi-org and single root-org accounts.
 // Cost Attribution data for a given month becomes available no later than the 19th of the following month.
@@ -701,7 +708,7 @@ func (r *GetMonthlyCostAttributionOptionalParameters) WithIncludeDescendants(inc
 // ```
 //
 // This endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/).
-func (a *UsageMeteringApi) GetMonthlyCostAttribution(ctx _context.Context, startMonth time.Time, endMonth time.Time, fields string, o ...GetMonthlyCostAttributionOptionalParameters) (MonthlyCostAttributionResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApi) GetMonthlyCostAttribution(ctx _context.Context, startMonth time.Time, fields string, o ...GetMonthlyCostAttributionOptionalParameters) (MonthlyCostAttributionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -734,8 +741,10 @@ func (a *UsageMeteringApi) GetMonthlyCostAttribution(ctx _context.Context, start
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	localVarQueryParams.Add("start_month", datadog.ParameterToString(startMonth, ""))
-	localVarQueryParams.Add("end_month", datadog.ParameterToString(endMonth, ""))
 	localVarQueryParams.Add("fields", datadog.ParameterToString(fields, ""))
+	if optionalParams.EndMonth != nil {
+		localVarQueryParams.Add("end_month", datadog.ParameterToString(endMonth, ""))
+	}
 	if optionalParams.SortDirection != nil {
 		localVarQueryParams.Add("sort_direction", datadog.ParameterToString(*optionalParams.SortDirection, ""))
 	}
