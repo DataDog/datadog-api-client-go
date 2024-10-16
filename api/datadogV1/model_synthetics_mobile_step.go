@@ -20,8 +20,8 @@ type SyntheticsMobileStep struct {
 	Name *string `json:"name,omitempty"`
 	// A boolean set to not take a screenshot for the step.
 	NoScreenshot *bool `json:"noScreenshot,omitempty"`
-	// The parameters of the mobile step.
-	Params interface{} `json:"params,omitempty"`
+	// The parameters of a mobile step.
+	Params *SyntheticsMobileStepParams `json:"params,omitempty"`
 	// The public ID of the step.
 	PublicId *string `json:"publicId,omitempty"`
 	// The time before declaring a step failed.
@@ -191,21 +191,21 @@ func (o *SyntheticsMobileStep) SetNoScreenshot(v bool) {
 }
 
 // GetParams returns the Params field value if set, zero value otherwise.
-func (o *SyntheticsMobileStep) GetParams() interface{} {
+func (o *SyntheticsMobileStep) GetParams() SyntheticsMobileStepParams {
 	if o == nil || o.Params == nil {
-		var ret interface{}
+		var ret SyntheticsMobileStepParams
 		return ret
 	}
-	return o.Params
+	return *o.Params
 }
 
 // GetParamsOk returns a tuple with the Params field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileStep) GetParamsOk() (*interface{}, bool) {
+func (o *SyntheticsMobileStep) GetParamsOk() (*SyntheticsMobileStepParams, bool) {
 	if o == nil || o.Params == nil {
 		return nil, false
 	}
-	return &o.Params, true
+	return o.Params, true
 }
 
 // HasParams returns a boolean if a field has been set.
@@ -213,9 +213,9 @@ func (o *SyntheticsMobileStep) HasParams() bool {
 	return o != nil && o.Params != nil
 }
 
-// SetParams gets a reference to the given interface{} and assigns it to the Params field.
-func (o *SyntheticsMobileStep) SetParams(v interface{}) {
-	o.Params = v
+// SetParams gets a reference to the given SyntheticsMobileStepParams and assigns it to the Params field.
+func (o *SyntheticsMobileStep) SetParams(v SyntheticsMobileStepParams) {
+	o.Params = &v
 }
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
@@ -345,15 +345,15 @@ func (o SyntheticsMobileStep) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsMobileStep) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AllowFailure      *bool                     `json:"allowFailure,omitempty"`
-		HasNewStepElement *bool                     `json:"hasNewStepElement,omitempty"`
-		IsCritical        *bool                     `json:"isCritical,omitempty"`
-		Name              *string                   `json:"name,omitempty"`
-		NoScreenshot      *bool                     `json:"noScreenshot,omitempty"`
-		Params            interface{}               `json:"params,omitempty"`
-		PublicId          *string                   `json:"publicId,omitempty"`
-		Timeout           *int64                    `json:"timeout,omitempty"`
-		Type              *SyntheticsMobileStepType `json:"type,omitempty"`
+		AllowFailure      *bool                       `json:"allowFailure,omitempty"`
+		HasNewStepElement *bool                       `json:"hasNewStepElement,omitempty"`
+		IsCritical        *bool                       `json:"isCritical,omitempty"`
+		Name              *string                     `json:"name,omitempty"`
+		NoScreenshot      *bool                       `json:"noScreenshot,omitempty"`
+		Params            *SyntheticsMobileStepParams `json:"params,omitempty"`
+		PublicId          *string                     `json:"publicId,omitempty"`
+		Timeout           *int64                      `json:"timeout,omitempty"`
+		Type              *SyntheticsMobileStepType   `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -371,6 +371,9 @@ func (o *SyntheticsMobileStep) UnmarshalJSON(bytes []byte) (err error) {
 	o.IsCritical = all.IsCritical
 	o.Name = all.Name
 	o.NoScreenshot = all.NoScreenshot
+	if all.Params != nil && all.Params.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.Params = all.Params
 	o.PublicId = all.PublicId
 	o.Timeout = all.Timeout
