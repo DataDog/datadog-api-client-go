@@ -19,7 +19,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.GetMonthlyCostAttribution", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetMonthlyCostAttribution(ctx, time.Now().AddDate(0, 0, -5), time.Now().AddDate(0, 0, -3), "infra_host_total_cost", *datadogV2.NewGetMonthlyCostAttributionOptionalParameters())
+	resp, r, err := api.GetMonthlyCostAttribution(ctx, time.Now().AddDate(0, 0, -5), "infra_host_total_cost", *datadogV2.NewGetMonthlyCostAttributionOptionalParameters().WithEndMonth(time.Now().AddDate(0, 0, -3)))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetMonthlyCostAttribution`: %v\n", err)
