@@ -15,7 +15,7 @@ type SyntheticsMobileTestOptions struct {
 	// Array of bindings used for the mobile test.
 	Bindings []SyntheticsMobileTestBinding `json:"bindings,omitempty"`
 	// CI/CD options for a Synthetic test.
-	Ci *SyntheticsMobileTestCiOptions `json:"ci,omitempty"`
+	Ci *SyntheticsTestCiOptions `json:"ci,omitempty"`
 	// The `SyntheticsMobileTestOptions` `defaultStepTimeout`.
 	DefaultStepTimeout *int32 `json:"defaultStepTimeout,omitempty"`
 	// For mobile test, array with the different device IDs used to run the test.
@@ -124,9 +124,9 @@ func (o *SyntheticsMobileTestOptions) SetBindings(v []SyntheticsMobileTestBindin
 }
 
 // GetCi returns the Ci field value if set, zero value otherwise.
-func (o *SyntheticsMobileTestOptions) GetCi() SyntheticsMobileTestCiOptions {
+func (o *SyntheticsMobileTestOptions) GetCi() SyntheticsTestCiOptions {
 	if o == nil || o.Ci == nil {
-		var ret SyntheticsMobileTestCiOptions
+		var ret SyntheticsTestCiOptions
 		return ret
 	}
 	return *o.Ci
@@ -134,7 +134,7 @@ func (o *SyntheticsMobileTestOptions) GetCi() SyntheticsMobileTestCiOptions {
 
 // GetCiOk returns a tuple with the Ci field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileTestOptions) GetCiOk() (*SyntheticsMobileTestCiOptions, bool) {
+func (o *SyntheticsMobileTestOptions) GetCiOk() (*SyntheticsTestCiOptions, bool) {
 	if o == nil || o.Ci == nil {
 		return nil, false
 	}
@@ -146,8 +146,8 @@ func (o *SyntheticsMobileTestOptions) HasCi() bool {
 	return o != nil && o.Ci != nil
 }
 
-// SetCi gets a reference to the given SyntheticsMobileTestCiOptions and assigns it to the Ci field.
-func (o *SyntheticsMobileTestOptions) SetCi(v SyntheticsMobileTestCiOptions) {
+// SetCi gets a reference to the given SyntheticsTestCiOptions and assigns it to the Ci field.
+func (o *SyntheticsMobileTestOptions) SetCi(v SyntheticsTestCiOptions) {
 	o.Ci = &v
 }
 
@@ -612,7 +612,7 @@ func (o *SyntheticsMobileTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AllowApplicationCrash  *bool                                      `json:"allowApplicationCrash,omitempty"`
 		Bindings               []SyntheticsMobileTestBinding              `json:"bindings,omitempty"`
-		Ci                     *SyntheticsMobileTestCiOptions             `json:"ci,omitempty"`
+		Ci                     *SyntheticsTestCiOptions                   `json:"ci,omitempty"`
 		DefaultStepTimeout     *int32                                     `json:"defaultStepTimeout,omitempty"`
 		DeviceIds              []string                                   `json:"device_ids,omitempty"`
 		DisableAutoAcceptAlert *bool                                      `json:"disableAutoAcceptAlert,omitempty"`

@@ -5,68 +5,72 @@
 package datadogV1
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsMobileTestCiOptions CI/CD options for a Synthetic test.
-type SyntheticsMobileTestCiOptions struct {
-	// Execution rule for a Synthetic test.
-	ExecutionRule SyntheticsTestExecutionRule `json:"executionRule"`
+// SyntheticsMobileStepParamsCheck The definition of `SyntheticsMobileStepParamsCheck` object.
+type SyntheticsMobileStepParamsCheck struct {
+	// Type of assertion to apply in an API test.
+	Type *SyntheticsCheckType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewSyntheticsMobileTestCiOptions instantiates a new SyntheticsMobileTestCiOptions object.
+// NewSyntheticsMobileStepParamsCheck instantiates a new SyntheticsMobileStepParamsCheck object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSyntheticsMobileTestCiOptions(executionRule SyntheticsTestExecutionRule) *SyntheticsMobileTestCiOptions {
-	this := SyntheticsMobileTestCiOptions{}
-	this.ExecutionRule = executionRule
+func NewSyntheticsMobileStepParamsCheck() *SyntheticsMobileStepParamsCheck {
+	this := SyntheticsMobileStepParamsCheck{}
 	return &this
 }
 
-// NewSyntheticsMobileTestCiOptionsWithDefaults instantiates a new SyntheticsMobileTestCiOptions object.
+// NewSyntheticsMobileStepParamsCheckWithDefaults instantiates a new SyntheticsMobileStepParamsCheck object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewSyntheticsMobileTestCiOptionsWithDefaults() *SyntheticsMobileTestCiOptions {
-	this := SyntheticsMobileTestCiOptions{}
+func NewSyntheticsMobileStepParamsCheckWithDefaults() *SyntheticsMobileStepParamsCheck {
+	this := SyntheticsMobileStepParamsCheck{}
 	return &this
 }
 
-// GetExecutionRule returns the ExecutionRule field value.
-func (o *SyntheticsMobileTestCiOptions) GetExecutionRule() SyntheticsTestExecutionRule {
-	if o == nil {
-		var ret SyntheticsTestExecutionRule
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *SyntheticsMobileStepParamsCheck) GetType() SyntheticsCheckType {
+	if o == nil || o.Type == nil {
+		var ret SyntheticsCheckType
 		return ret
 	}
-	return o.ExecutionRule
+	return *o.Type
 }
 
-// GetExecutionRuleOk returns a tuple with the ExecutionRule field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileTestCiOptions) GetExecutionRuleOk() (*SyntheticsTestExecutionRule, bool) {
-	if o == nil {
+func (o *SyntheticsMobileStepParamsCheck) GetTypeOk() (*SyntheticsCheckType, bool) {
+	if o == nil || o.Type == nil {
 		return nil, false
 	}
-	return &o.ExecutionRule, true
+	return o.Type, true
 }
 
-// SetExecutionRule sets field value.
-func (o *SyntheticsMobileTestCiOptions) SetExecutionRule(v SyntheticsTestExecutionRule) {
-	o.ExecutionRule = v
+// HasType returns a boolean if a field has been set.
+func (o *SyntheticsMobileStepParamsCheck) HasType() bool {
+	return o != nil && o.Type != nil
+}
+
+// SetType gets a reference to the given SyntheticsCheckType and assigns it to the Type field.
+func (o *SyntheticsMobileStepParamsCheck) SetType(v SyntheticsCheckType) {
+	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o SyntheticsMobileTestCiOptions) MarshalJSON() ([]byte, error) {
+func (o SyntheticsMobileStepParamsCheck) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["executionRule"] = o.ExecutionRule
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,28 +79,25 @@ func (o SyntheticsMobileTestCiOptions) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *SyntheticsMobileTestCiOptions) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SyntheticsMobileStepParamsCheck) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ExecutionRule *SyntheticsTestExecutionRule `json:"executionRule"`
+		Type *SyntheticsCheckType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.ExecutionRule == nil {
-		return fmt.Errorf("required field executionRule missing")
-	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"executionRule"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if !all.ExecutionRule.IsValid() {
+	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.ExecutionRule = *all.ExecutionRule
+		o.Type = all.Type
 	}
 
 	if len(additionalProperties) > 0 {
