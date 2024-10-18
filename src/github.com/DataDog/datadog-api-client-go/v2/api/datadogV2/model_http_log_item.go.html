@@ -87,7 +87,7 @@
 <span id="L30" class="ln">    30  </span>	Service *string `json:&#34;service,omitempty&#34;`
 <span id="L31" class="ln">    31  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L32" class="ln">    32  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L33" class="ln">    33  </span>	AdditionalProperties map[string]string      `json:&#34;-&#34;`
+<span id="L33" class="ln">    33  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
 <span id="L34" class="ln">    34  </span>}
 <span id="L35" class="ln">    35  </span>
 <span id="L36" class="ln">    36  </span><span class="comment">// NewHTTPLogItem instantiates a new HTTPLogItem object.</span>
@@ -284,7 +284,7 @@
 <span id="L227" class="ln">   227  </span>	if all.Message == nil {
 <span id="L228" class="ln">   228  </span>		return fmt.Errorf(&#34;required field message missing&#34;)
 <span id="L229" class="ln">   229  </span>	}
-<span id="L230" class="ln">   230  </span>	additionalProperties := make(map[string]string)
+<span id="L230" class="ln">   230  </span>	additionalProperties := make(map[string]interface{})
 <span id="L231" class="ln">   231  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
 <span id="L232" class="ln">   232  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;ddsource&#34;, &#34;ddtags&#34;, &#34;hostname&#34;, &#34;message&#34;, &#34;service&#34;})
 <span id="L233" class="ln">   233  </span>	} else {
