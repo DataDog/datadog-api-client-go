@@ -640,6 +640,8 @@ def format_data_with_schema_dict(
             nested_schema_name = schema_name(nested_schema)
             if nested_schema_name:
                 nested_schema_name = name_prefix + nested_schema_name
+            elif nested_schema.get("type") is None:
+                nested_schema_name = "interface{}"
 
         has_properties = schema.get("properties")
 
