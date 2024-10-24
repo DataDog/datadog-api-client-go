@@ -1,0 +1,57 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"7a71352d63ea9891"},"type":"incident_types"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/incidents/config/types
+  response:
+    body: '{"data":{"id":"54ee8a4c-591e-48eb-8207-c12ad57617a9","type":"incident_types","attributes":{"createdAt":"2024-10-24T16:03:10.596580603Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2024-10-24T16:03:10.596580603Z","name":"7a71352d63ea9891","prefix":"IR"}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"name":"7a71352d63ea9891-updated"},"id":"54ee8a4c-591e-48eb-8207-c12ad57617a9","type":"incident_types"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/incidents/config/types/54ee8a4c-591e-48eb-8207-c12ad57617a9
+  response:
+    body: '{"data":{"id":"54ee8a4c-591e-48eb-8207-c12ad57617a9","type":"incident_types","attributes":{"createdAt":"2024-10-24T16:03:10.596581Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2024-10-24T16:03:10.974980567Z","name":"7a71352d63ea9891-updated","prefix":"IR"}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/incidents/config/types/54ee8a4c-591e-48eb-8207-c12ad57617a9
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
