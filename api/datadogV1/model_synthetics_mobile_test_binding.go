@@ -10,8 +10,10 @@ import (
 
 // SyntheticsMobileTestBinding Objects describing the binding used for a mobile test.
 type SyntheticsMobileTestBinding struct {
-	// Object describing the binding used for a mobile test.
-	Items *SyntheticsMobileTestBindingItems `json:"items,omitempty"`
+	// List of principals for a mobile test binding.
+	Principals []string `json:"principals,omitempty"`
+	// The type of relation for the binding.
+	Relation *SyntheticsMobileTestBindingRelation `json:"relation,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -34,32 +36,60 @@ func NewSyntheticsMobileTestBindingWithDefaults() *SyntheticsMobileTestBinding {
 	return &this
 }
 
-// GetItems returns the Items field value if set, zero value otherwise.
-func (o *SyntheticsMobileTestBinding) GetItems() SyntheticsMobileTestBindingItems {
-	if o == nil || o.Items == nil {
-		var ret SyntheticsMobileTestBindingItems
+// GetPrincipals returns the Principals field value if set, zero value otherwise.
+func (o *SyntheticsMobileTestBinding) GetPrincipals() []string {
+	if o == nil || o.Principals == nil {
+		var ret []string
 		return ret
 	}
-	return *o.Items
+	return o.Principals
 }
 
-// GetItemsOk returns a tuple with the Items field value if set, nil otherwise
+// GetPrincipalsOk returns a tuple with the Principals field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileTestBinding) GetItemsOk() (*SyntheticsMobileTestBindingItems, bool) {
-	if o == nil || o.Items == nil {
+func (o *SyntheticsMobileTestBinding) GetPrincipalsOk() (*[]string, bool) {
+	if o == nil || o.Principals == nil {
 		return nil, false
 	}
-	return o.Items, true
+	return &o.Principals, true
 }
 
-// HasItems returns a boolean if a field has been set.
-func (o *SyntheticsMobileTestBinding) HasItems() bool {
-	return o != nil && o.Items != nil
+// HasPrincipals returns a boolean if a field has been set.
+func (o *SyntheticsMobileTestBinding) HasPrincipals() bool {
+	return o != nil && o.Principals != nil
 }
 
-// SetItems gets a reference to the given SyntheticsMobileTestBindingItems and assigns it to the Items field.
-func (o *SyntheticsMobileTestBinding) SetItems(v SyntheticsMobileTestBindingItems) {
-	o.Items = &v
+// SetPrincipals gets a reference to the given []string and assigns it to the Principals field.
+func (o *SyntheticsMobileTestBinding) SetPrincipals(v []string) {
+	o.Principals = v
+}
+
+// GetRelation returns the Relation field value if set, zero value otherwise.
+func (o *SyntheticsMobileTestBinding) GetRelation() SyntheticsMobileTestBindingRelation {
+	if o == nil || o.Relation == nil {
+		var ret SyntheticsMobileTestBindingRelation
+		return ret
+	}
+	return *o.Relation
+}
+
+// GetRelationOk returns a tuple with the Relation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsMobileTestBinding) GetRelationOk() (*SyntheticsMobileTestBindingRelation, bool) {
+	if o == nil || o.Relation == nil {
+		return nil, false
+	}
+	return o.Relation, true
+}
+
+// HasRelation returns a boolean if a field has been set.
+func (o *SyntheticsMobileTestBinding) HasRelation() bool {
+	return o != nil && o.Relation != nil
+}
+
+// SetRelation gets a reference to the given SyntheticsMobileTestBindingRelation and assigns it to the Relation field.
+func (o *SyntheticsMobileTestBinding) SetRelation(v SyntheticsMobileTestBindingRelation) {
+	o.Relation = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -68,8 +98,11 @@ func (o SyntheticsMobileTestBinding) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Items != nil {
-		toSerialize["items"] = o.Items
+	if o.Principals != nil {
+		toSerialize["principals"] = o.Principals
+	}
+	if o.Relation != nil {
+		toSerialize["relation"] = o.Relation
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -81,23 +114,26 @@ func (o SyntheticsMobileTestBinding) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsMobileTestBinding) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Items *SyntheticsMobileTestBindingItems `json:"items,omitempty"`
+		Principals []string                             `json:"principals,omitempty"`
+		Relation   *SyntheticsMobileTestBindingRelation `json:"relation,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"items"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"principals", "relation"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Items != nil && all.Items.UnparsedObject != nil && o.UnparsedObject == nil {
+	o.Principals = all.Principals
+	if all.Relation != nil && !all.Relation.IsValid() {
 		hasInvalidField = true
+	} else {
+		o.Relation = all.Relation
 	}
-	o.Items = all.Items
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

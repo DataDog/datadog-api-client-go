@@ -25,12 +25,12 @@ func main() {
 			DeviceIds: []string{
 				"synthetics:mobile:device:iphone_15_ios_17",
 			},
-			MobileApplication: &datadogV1.SyntheticsMobileTestsMobileApplication{
-				ApplicationId: datadog.PtrString("ab0e0aed-536d-411a-9a99-5428c27d8f8e"),
-				ReferenceId:   datadog.PtrString("6115922a-5f5d-455e-bc7e-7955a57f3815"),
-				ReferenceType: datadogV1.SYNTHETICSMOBILETESTSMOBILEAPPLICATIONREFERENCETYPE_VERSION.Ptr(),
+			MobileApplication: datadogV1.SyntheticsMobileTestsMobileApplication{
+				ApplicationId: "ab0e0aed-536d-411a-9a99-5428c27d8f8e",
+				ReferenceId:   "6115922a-5f5d-455e-bc7e-7955a57f3815",
+				ReferenceType: datadogV1.SYNTHETICSMOBILETESTSMOBILEAPPLICATIONREFERENCETYPE_VERSION,
 			},
-			TickEvery: datadog.PtrInt64(3600),
+			TickEvery: 3600,
 		},
 		Steps: []datadogV1.SyntheticsMobileStep{},
 	}

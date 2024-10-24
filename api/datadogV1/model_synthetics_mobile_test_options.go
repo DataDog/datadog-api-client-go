@@ -5,27 +5,29 @@
 package datadogV1
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // SyntheticsMobileTestOptions Object describing the extra options for a Synthetic test.
 type SyntheticsMobileTestOptions struct {
-	// The `SyntheticsMobileTestOptions` `allowApplicationCrash`.
+	// A boolean to set if an application crash would mark the test as failed.
 	AllowApplicationCrash *bool `json:"allowApplicationCrash,omitempty"`
 	// Array of bindings used for the mobile test.
 	Bindings []SyntheticsMobileTestBinding `json:"bindings,omitempty"`
 	// CI/CD options for a Synthetic test.
-	Ci *SyntheticsMobileTestCiOptions `json:"ci,omitempty"`
-	// The `SyntheticsMobileTestOptions` `defaultStepTimeout`.
+	Ci *SyntheticsTestCiOptions `json:"ci,omitempty"`
+	// The defaultStepTimeout for steps of a mobile test in seconds.
 	DefaultStepTimeout *int32 `json:"defaultStepTimeout,omitempty"`
 	// For mobile test, array with the different device IDs used to run the test.
-	DeviceIds []string `json:"device_ids,omitempty"`
-	// The `SyntheticsMobileTestOptions` `disableAutoAcceptAlert`.
+	DeviceIds []string `json:"device_ids"`
+	// A boolean to disable auto accepting alerts.
 	DisableAutoAcceptAlert *bool `json:"disableAutoAcceptAlert,omitempty"`
 	// Minimum amount of time in failure required to trigger an alert.
 	MinFailureDuration *int64 `json:"min_failure_duration,omitempty"`
 	// Mobile application for mobile synthetics test.
-	MobileApplication *SyntheticsMobileTestsMobileApplication `json:"mobileApplication,omitempty"`
+	MobileApplication SyntheticsMobileTestsMobileApplication `json:"mobileApplication"`
 	// The monitor name is used for the alert title as well as for all monitor dashboard widgets and SLOs.
 	MonitorName *string `json:"monitor_name,omitempty"`
 	// Object containing the options for a mobile Synthetic test as a monitor
@@ -33,7 +35,7 @@ type SyntheticsMobileTestOptions struct {
 	MonitorOptions *SyntheticsMobileTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
 	// Integer from 1 (high) to 5 (low) indicating alert severity.
 	MonitorPriority *int32 `json:"monitor_priority,omitempty"`
-	// The `SyntheticsMobileTestOptions` `noScreenshot`.
+	// A boolean set to not take a screenshot for the step.
 	NoScreenshot *bool `json:"noScreenshot,omitempty"`
 	// A list of role identifiers that can be pulled from the Roles API, for restricting read and write access.
 	RestrictedRoles []string `json:"restricted_roles,omitempty"`
@@ -42,8 +44,8 @@ type SyntheticsMobileTestOptions struct {
 	// Object containing timeframes and timezone used for advanced scheduling.
 	Scheduling *SyntheticsTestOptionsScheduling `json:"scheduling,omitempty"`
 	// The frequency at which to run the Synthetic test (in seconds).
-	TickEvery *int64 `json:"tick_every,omitempty"`
-	// The `SyntheticsMobileTestOptions` `verbosity`.
+	TickEvery int64 `json:"tick_every"`
+	// The level of verbosity for the mobile test.
 	Verbosity *int32 `json:"verbosity,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -54,8 +56,11 @@ type SyntheticsMobileTestOptions struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSyntheticsMobileTestOptions() *SyntheticsMobileTestOptions {
+func NewSyntheticsMobileTestOptions(deviceIds []string, mobileApplication SyntheticsMobileTestsMobileApplication, tickEvery int64) *SyntheticsMobileTestOptions {
 	this := SyntheticsMobileTestOptions{}
+	this.DeviceIds = deviceIds
+	this.MobileApplication = mobileApplication
+	this.TickEvery = tickEvery
 	return &this
 }
 
@@ -124,9 +129,9 @@ func (o *SyntheticsMobileTestOptions) SetBindings(v []SyntheticsMobileTestBindin
 }
 
 // GetCi returns the Ci field value if set, zero value otherwise.
-func (o *SyntheticsMobileTestOptions) GetCi() SyntheticsMobileTestCiOptions {
+func (o *SyntheticsMobileTestOptions) GetCi() SyntheticsTestCiOptions {
 	if o == nil || o.Ci == nil {
-		var ret SyntheticsMobileTestCiOptions
+		var ret SyntheticsTestCiOptions
 		return ret
 	}
 	return *o.Ci
@@ -134,7 +139,7 @@ func (o *SyntheticsMobileTestOptions) GetCi() SyntheticsMobileTestCiOptions {
 
 // GetCiOk returns a tuple with the Ci field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileTestOptions) GetCiOk() (*SyntheticsMobileTestCiOptions, bool) {
+func (o *SyntheticsMobileTestOptions) GetCiOk() (*SyntheticsTestCiOptions, bool) {
 	if o == nil || o.Ci == nil {
 		return nil, false
 	}
@@ -146,8 +151,8 @@ func (o *SyntheticsMobileTestOptions) HasCi() bool {
 	return o != nil && o.Ci != nil
 }
 
-// SetCi gets a reference to the given SyntheticsMobileTestCiOptions and assigns it to the Ci field.
-func (o *SyntheticsMobileTestOptions) SetCi(v SyntheticsMobileTestCiOptions) {
+// SetCi gets a reference to the given SyntheticsTestCiOptions and assigns it to the Ci field.
+func (o *SyntheticsMobileTestOptions) SetCi(v SyntheticsTestCiOptions) {
 	o.Ci = &v
 }
 
@@ -179,30 +184,25 @@ func (o *SyntheticsMobileTestOptions) SetDefaultStepTimeout(v int32) {
 	o.DefaultStepTimeout = &v
 }
 
-// GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.
+// GetDeviceIds returns the DeviceIds field value.
 func (o *SyntheticsMobileTestOptions) GetDeviceIds() []string {
-	if o == nil || o.DeviceIds == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
 	return o.DeviceIds
 }
 
-// GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise
+// GetDeviceIdsOk returns a tuple with the DeviceIds field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsMobileTestOptions) GetDeviceIdsOk() (*[]string, bool) {
-	if o == nil || o.DeviceIds == nil {
+	if o == nil {
 		return nil, false
 	}
 	return &o.DeviceIds, true
 }
 
-// HasDeviceIds returns a boolean if a field has been set.
-func (o *SyntheticsMobileTestOptions) HasDeviceIds() bool {
-	return o != nil && o.DeviceIds != nil
-}
-
-// SetDeviceIds gets a reference to the given []string and assigns it to the DeviceIds field.
+// SetDeviceIds sets field value.
 func (o *SyntheticsMobileTestOptions) SetDeviceIds(v []string) {
 	o.DeviceIds = v
 }
@@ -263,32 +263,27 @@ func (o *SyntheticsMobileTestOptions) SetMinFailureDuration(v int64) {
 	o.MinFailureDuration = &v
 }
 
-// GetMobileApplication returns the MobileApplication field value if set, zero value otherwise.
+// GetMobileApplication returns the MobileApplication field value.
 func (o *SyntheticsMobileTestOptions) GetMobileApplication() SyntheticsMobileTestsMobileApplication {
-	if o == nil || o.MobileApplication == nil {
+	if o == nil {
 		var ret SyntheticsMobileTestsMobileApplication
 		return ret
 	}
-	return *o.MobileApplication
+	return o.MobileApplication
 }
 
-// GetMobileApplicationOk returns a tuple with the MobileApplication field value if set, nil otherwise
+// GetMobileApplicationOk returns a tuple with the MobileApplication field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsMobileTestOptions) GetMobileApplicationOk() (*SyntheticsMobileTestsMobileApplication, bool) {
-	if o == nil || o.MobileApplication == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.MobileApplication, true
+	return &o.MobileApplication, true
 }
 
-// HasMobileApplication returns a boolean if a field has been set.
-func (o *SyntheticsMobileTestOptions) HasMobileApplication() bool {
-	return o != nil && o.MobileApplication != nil
-}
-
-// SetMobileApplication gets a reference to the given SyntheticsMobileTestsMobileApplication and assigns it to the MobileApplication field.
+// SetMobileApplication sets field value.
 func (o *SyntheticsMobileTestOptions) SetMobileApplication(v SyntheticsMobileTestsMobileApplication) {
-	o.MobileApplication = &v
+	o.MobileApplication = v
 }
 
 // GetMonitorName returns the MonitorName field value if set, zero value otherwise.
@@ -487,32 +482,27 @@ func (o *SyntheticsMobileTestOptions) SetScheduling(v SyntheticsTestOptionsSched
 	o.Scheduling = &v
 }
 
-// GetTickEvery returns the TickEvery field value if set, zero value otherwise.
+// GetTickEvery returns the TickEvery field value.
 func (o *SyntheticsMobileTestOptions) GetTickEvery() int64 {
-	if o == nil || o.TickEvery == nil {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.TickEvery
+	return o.TickEvery
 }
 
-// GetTickEveryOk returns a tuple with the TickEvery field value if set, nil otherwise
+// GetTickEveryOk returns a tuple with the TickEvery field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsMobileTestOptions) GetTickEveryOk() (*int64, bool) {
-	if o == nil || o.TickEvery == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.TickEvery, true
+	return &o.TickEvery, true
 }
 
-// HasTickEvery returns a boolean if a field has been set.
-func (o *SyntheticsMobileTestOptions) HasTickEvery() bool {
-	return o != nil && o.TickEvery != nil
-}
-
-// SetTickEvery gets a reference to the given int64 and assigns it to the TickEvery field.
+// SetTickEvery sets field value.
 func (o *SyntheticsMobileTestOptions) SetTickEvery(v int64) {
-	o.TickEvery = &v
+	o.TickEvery = v
 }
 
 // GetVerbosity returns the Verbosity field value if set, zero value otherwise.
@@ -561,18 +551,14 @@ func (o SyntheticsMobileTestOptions) MarshalJSON() ([]byte, error) {
 	if o.DefaultStepTimeout != nil {
 		toSerialize["defaultStepTimeout"] = o.DefaultStepTimeout
 	}
-	if o.DeviceIds != nil {
-		toSerialize["device_ids"] = o.DeviceIds
-	}
+	toSerialize["device_ids"] = o.DeviceIds
 	if o.DisableAutoAcceptAlert != nil {
 		toSerialize["disableAutoAcceptAlert"] = o.DisableAutoAcceptAlert
 	}
 	if o.MinFailureDuration != nil {
 		toSerialize["min_failure_duration"] = o.MinFailureDuration
 	}
-	if o.MobileApplication != nil {
-		toSerialize["mobileApplication"] = o.MobileApplication
-	}
+	toSerialize["mobileApplication"] = o.MobileApplication
 	if o.MonitorName != nil {
 		toSerialize["monitor_name"] = o.MonitorName
 	}
@@ -594,9 +580,7 @@ func (o SyntheticsMobileTestOptions) MarshalJSON() ([]byte, error) {
 	if o.Scheduling != nil {
 		toSerialize["scheduling"] = o.Scheduling
 	}
-	if o.TickEvery != nil {
-		toSerialize["tick_every"] = o.TickEvery
-	}
+	toSerialize["tick_every"] = o.TickEvery
 	if o.Verbosity != nil {
 		toSerialize["verbosity"] = o.Verbosity
 	}
@@ -612,12 +596,12 @@ func (o *SyntheticsMobileTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AllowApplicationCrash  *bool                                      `json:"allowApplicationCrash,omitempty"`
 		Bindings               []SyntheticsMobileTestBinding              `json:"bindings,omitempty"`
-		Ci                     *SyntheticsMobileTestCiOptions             `json:"ci,omitempty"`
+		Ci                     *SyntheticsTestCiOptions                   `json:"ci,omitempty"`
 		DefaultStepTimeout     *int32                                     `json:"defaultStepTimeout,omitempty"`
-		DeviceIds              []string                                   `json:"device_ids,omitempty"`
+		DeviceIds              *[]string                                  `json:"device_ids"`
 		DisableAutoAcceptAlert *bool                                      `json:"disableAutoAcceptAlert,omitempty"`
 		MinFailureDuration     *int64                                     `json:"min_failure_duration,omitempty"`
-		MobileApplication      *SyntheticsMobileTestsMobileApplication    `json:"mobileApplication,omitempty"`
+		MobileApplication      *SyntheticsMobileTestsMobileApplication    `json:"mobileApplication"`
 		MonitorName            *string                                    `json:"monitor_name,omitempty"`
 		MonitorOptions         *SyntheticsMobileTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
 		MonitorPriority        *int32                                     `json:"monitor_priority,omitempty"`
@@ -625,11 +609,20 @@ func (o *SyntheticsMobileTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		RestrictedRoles        []string                                   `json:"restricted_roles,omitempty"`
 		Retry                  *SyntheticsTestOptionsRetry                `json:"retry,omitempty"`
 		Scheduling             *SyntheticsTestOptionsScheduling           `json:"scheduling,omitempty"`
-		TickEvery              *int64                                     `json:"tick_every,omitempty"`
+		TickEvery              *int64                                     `json:"tick_every"`
 		Verbosity              *int32                                     `json:"verbosity,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.DeviceIds == nil {
+		return fmt.Errorf("required field device_ids missing")
+	}
+	if all.MobileApplication == nil {
+		return fmt.Errorf("required field mobileApplication missing")
+	}
+	if all.TickEvery == nil {
+		return fmt.Errorf("required field tick_every missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -646,13 +639,13 @@ func (o *SyntheticsMobileTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Ci = all.Ci
 	o.DefaultStepTimeout = all.DefaultStepTimeout
-	o.DeviceIds = all.DeviceIds
+	o.DeviceIds = *all.DeviceIds
 	o.DisableAutoAcceptAlert = all.DisableAutoAcceptAlert
 	o.MinFailureDuration = all.MinFailureDuration
-	if all.MobileApplication != nil && all.MobileApplication.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.MobileApplication.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.MobileApplication = all.MobileApplication
+	o.MobileApplication = *all.MobileApplication
 	o.MonitorName = all.MonitorName
 	if all.MonitorOptions != nil && all.MonitorOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
@@ -669,7 +662,7 @@ func (o *SyntheticsMobileTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Scheduling = all.Scheduling
-	o.TickEvery = all.TickEvery
+	o.TickEvery = *all.TickEvery
 	o.Verbosity = all.Verbosity
 
 	if len(additionalProperties) > 0 {

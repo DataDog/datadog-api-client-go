@@ -13,12 +13,12 @@ import (
 type SyntheticsMobileTestOptionsMonitorOptions struct {
 	// Message to include in the escalation notification.
 	EscalationMessage *string `json:"escalation_message,omitempty"`
-	// The definition of `SyntheticsMobileTestOptionsMonitorOptionsNotificationPresetName` object.
+	// The name of the preset for the notification for the monitor.
 	NotificationPresetName *SyntheticsMobileTestOptionsMonitorOptionsNotificationPresetName `json:"notification_preset_name,omitempty"`
 	// Time interval before renotifying if the test is still failing
 	// (in minutes).
 	RenotifyInterval *int64 `json:"renotify_interval,omitempty"`
-	// The `SyntheticsMobileTestOptionsMonitorOptions` `renotify_occurrences`.
+	// The number renotify_occurrences for the test.
 	RenotifyOccurrences *int64 `json:"renotify_occurrences,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsMobileTestOptionsMonitorOptionsNotificationPresetName The definition of `SyntheticsMobileTestOptionsMonitorOptionsNotificationPresetName` object.
+// SyntheticsMobileTestOptionsMonitorOptionsNotificationPresetName The name of the preset for the notification for the monitor.
 type SyntheticsMobileTestOptionsMonitorOptionsNotificationPresetName string
 
 // List of SyntheticsMobileTestOptionsMonitorOptionsNotificationPresetName.
