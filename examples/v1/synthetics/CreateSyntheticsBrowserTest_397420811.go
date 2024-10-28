@@ -54,17 +54,17 @@ func main() {
 			Scheduling: &datadogV1.SyntheticsTestOptionsScheduling{
 				Timeframes: []datadogV1.SyntheticsTestOptionsSchedulingTimeframe{
 					{
-						Day:  datadog.PtrInt32(1),
-						From: datadog.PtrString("07:00"),
-						To:   datadog.PtrString("16:00"),
+						Day:  1,
+						From: "07:00",
+						To:   "16:00",
 					},
 					{
-						Day:  datadog.PtrInt32(3),
-						From: datadog.PtrString("07:00"),
-						To:   datadog.PtrString("16:00"),
+						Day:  3,
+						From: "07:00",
+						To:   "16:00",
 					},
 				},
-				Timezone: datadog.PtrString("America/New_York"),
+				Timezone: "America/New_York",
 			},
 		},
 		Tags: []string{
