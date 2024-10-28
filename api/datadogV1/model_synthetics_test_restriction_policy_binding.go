@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsMobileTestBindingItems Object describing the binding used for a mobile test.
-type SyntheticsMobileTestBindingItems struct {
+// SyntheticsTestRestrictionPolicyBinding Objects describing the binding used for a mobile test.
+type SyntheticsTestRestrictionPolicyBinding struct {
 	// List of principals for a mobile test binding.
 	Principals []string `json:"principals,omitempty"`
-	// The definition of `SyntheticsMobileTestBindingItemsRole` object.
-	Role *SyntheticsMobileTestBindingItemsRole `json:"role,omitempty"`
+	// The type of relation for the binding.
+	Relation *SyntheticsTestRestrictionPolicyBindingRelation `json:"relation,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewSyntheticsMobileTestBindingItems instantiates a new SyntheticsMobileTestBindingItems object.
+// NewSyntheticsTestRestrictionPolicyBinding instantiates a new SyntheticsTestRestrictionPolicyBinding object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSyntheticsMobileTestBindingItems() *SyntheticsMobileTestBindingItems {
-	this := SyntheticsMobileTestBindingItems{}
+func NewSyntheticsTestRestrictionPolicyBinding() *SyntheticsTestRestrictionPolicyBinding {
+	this := SyntheticsTestRestrictionPolicyBinding{}
 	return &this
 }
 
-// NewSyntheticsMobileTestBindingItemsWithDefaults instantiates a new SyntheticsMobileTestBindingItems object.
+// NewSyntheticsTestRestrictionPolicyBindingWithDefaults instantiates a new SyntheticsTestRestrictionPolicyBinding object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewSyntheticsMobileTestBindingItemsWithDefaults() *SyntheticsMobileTestBindingItems {
-	this := SyntheticsMobileTestBindingItems{}
+func NewSyntheticsTestRestrictionPolicyBindingWithDefaults() *SyntheticsTestRestrictionPolicyBinding {
+	this := SyntheticsTestRestrictionPolicyBinding{}
 	return &this
 }
 
 // GetPrincipals returns the Principals field value if set, zero value otherwise.
-func (o *SyntheticsMobileTestBindingItems) GetPrincipals() []string {
+func (o *SyntheticsTestRestrictionPolicyBinding) GetPrincipals() []string {
 	if o == nil || o.Principals == nil {
 		var ret []string
 		return ret
@@ -47,7 +47,7 @@ func (o *SyntheticsMobileTestBindingItems) GetPrincipals() []string {
 
 // GetPrincipalsOk returns a tuple with the Principals field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileTestBindingItems) GetPrincipalsOk() (*[]string, bool) {
+func (o *SyntheticsTestRestrictionPolicyBinding) GetPrincipalsOk() (*[]string, bool) {
 	if o == nil || o.Principals == nil {
 		return nil, false
 	}
@@ -55,45 +55,45 @@ func (o *SyntheticsMobileTestBindingItems) GetPrincipalsOk() (*[]string, bool) {
 }
 
 // HasPrincipals returns a boolean if a field has been set.
-func (o *SyntheticsMobileTestBindingItems) HasPrincipals() bool {
+func (o *SyntheticsTestRestrictionPolicyBinding) HasPrincipals() bool {
 	return o != nil && o.Principals != nil
 }
 
 // SetPrincipals gets a reference to the given []string and assigns it to the Principals field.
-func (o *SyntheticsMobileTestBindingItems) SetPrincipals(v []string) {
+func (o *SyntheticsTestRestrictionPolicyBinding) SetPrincipals(v []string) {
 	o.Principals = v
 }
 
-// GetRole returns the Role field value if set, zero value otherwise.
-func (o *SyntheticsMobileTestBindingItems) GetRole() SyntheticsMobileTestBindingItemsRole {
-	if o == nil || o.Role == nil {
-		var ret SyntheticsMobileTestBindingItemsRole
+// GetRelation returns the Relation field value if set, zero value otherwise.
+func (o *SyntheticsTestRestrictionPolicyBinding) GetRelation() SyntheticsTestRestrictionPolicyBindingRelation {
+	if o == nil || o.Relation == nil {
+		var ret SyntheticsTestRestrictionPolicyBindingRelation
 		return ret
 	}
-	return *o.Role
+	return *o.Relation
 }
 
-// GetRoleOk returns a tuple with the Role field value if set, nil otherwise
+// GetRelationOk returns a tuple with the Relation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileTestBindingItems) GetRoleOk() (*SyntheticsMobileTestBindingItemsRole, bool) {
-	if o == nil || o.Role == nil {
+func (o *SyntheticsTestRestrictionPolicyBinding) GetRelationOk() (*SyntheticsTestRestrictionPolicyBindingRelation, bool) {
+	if o == nil || o.Relation == nil {
 		return nil, false
 	}
-	return o.Role, true
+	return o.Relation, true
 }
 
-// HasRole returns a boolean if a field has been set.
-func (o *SyntheticsMobileTestBindingItems) HasRole() bool {
-	return o != nil && o.Role != nil
+// HasRelation returns a boolean if a field has been set.
+func (o *SyntheticsTestRestrictionPolicyBinding) HasRelation() bool {
+	return o != nil && o.Relation != nil
 }
 
-// SetRole gets a reference to the given SyntheticsMobileTestBindingItemsRole and assigns it to the Role field.
-func (o *SyntheticsMobileTestBindingItems) SetRole(v SyntheticsMobileTestBindingItemsRole) {
-	o.Role = &v
+// SetRelation gets a reference to the given SyntheticsTestRestrictionPolicyBindingRelation and assigns it to the Relation field.
+func (o *SyntheticsTestRestrictionPolicyBinding) SetRelation(v SyntheticsTestRestrictionPolicyBindingRelation) {
+	o.Relation = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o SyntheticsMobileTestBindingItems) MarshalJSON() ([]byte, error) {
+func (o SyntheticsTestRestrictionPolicyBinding) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -101,8 +101,8 @@ func (o SyntheticsMobileTestBindingItems) MarshalJSON() ([]byte, error) {
 	if o.Principals != nil {
 		toSerialize["principals"] = o.Principals
 	}
-	if o.Role != nil {
-		toSerialize["role"] = o.Role
+	if o.Relation != nil {
+		toSerialize["relation"] = o.Relation
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -112,27 +112,27 @@ func (o SyntheticsMobileTestBindingItems) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *SyntheticsMobileTestBindingItems) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SyntheticsTestRestrictionPolicyBinding) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Principals []string                              `json:"principals,omitempty"`
-		Role       *SyntheticsMobileTestBindingItemsRole `json:"role,omitempty"`
+		Principals []string                                        `json:"principals,omitempty"`
+		Relation   *SyntheticsTestRestrictionPolicyBindingRelation `json:"relation,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"principals", "role"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"principals", "relation"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Principals = all.Principals
-	if all.Role != nil && !all.Role.IsValid() {
+	if all.Relation != nil && !all.Relation.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Role = all.Role
+		o.Relation = all.Relation
 	}
 
 	if len(additionalProperties) > 0 {

@@ -14,7 +14,7 @@ import (
 type SyntheticsMobileTest struct {
 	// Configuration object for a Synthetic mobile test.
 	Config SyntheticsMobileTestConfig `json:"config"`
-	// The `SyntheticsMobileTest` `device_ids`.
+	// Array with the different device IDs used to run the test.
 	DeviceIds []string `json:"device_ids,omitempty"`
 	// Notification message associated with the test.
 	Message *string `json:"message,omitempty"`
