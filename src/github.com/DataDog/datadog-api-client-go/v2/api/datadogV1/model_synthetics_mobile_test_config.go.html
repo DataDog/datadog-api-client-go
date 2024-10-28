@@ -68,7 +68,7 @@
 <span id="L11" class="ln">    11  </span><span class="comment">// SyntheticsMobileTestConfig Configuration object for a Synthetic mobile test.</span>
 <span id="L12" class="ln">    12  </span>type SyntheticsMobileTestConfig struct {
 <span id="L13" class="ln">    13  </span>	<span class="comment">// Initial application arguments for a mobile test.</span>
-<span id="L14" class="ln">    14  </span>	InitialApplicationArguments *SyntheticsMobileTestInitialApplicationArguments `json:&#34;initialApplicationArguments,omitempty&#34;`
+<span id="L14" class="ln">    14  </span>	InitialApplicationArguments map[string]string `json:&#34;initialApplicationArguments,omitempty&#34;`
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Array of variables used for the test steps.</span>
 <span id="L16" class="ln">    16  </span>	Variables []SyntheticsConfigVariable `json:&#34;variables,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
@@ -94,21 +94,21 @@
 <span id="L37" class="ln">    37  </span>}
 <span id="L38" class="ln">    38  </span>
 <span id="L39" class="ln">    39  </span><span class="comment">// GetInitialApplicationArguments returns the InitialApplicationArguments field value if set, zero value otherwise.</span>
-<span id="L40" class="ln">    40  </span>func (o *SyntheticsMobileTestConfig) GetInitialApplicationArguments() SyntheticsMobileTestInitialApplicationArguments {
+<span id="L40" class="ln">    40  </span>func (o *SyntheticsMobileTestConfig) GetInitialApplicationArguments() map[string]string {
 <span id="L41" class="ln">    41  </span>	if o == nil || o.InitialApplicationArguments == nil {
-<span id="L42" class="ln">    42  </span>		var ret SyntheticsMobileTestInitialApplicationArguments
+<span id="L42" class="ln">    42  </span>		var ret map[string]string
 <span id="L43" class="ln">    43  </span>		return ret
 <span id="L44" class="ln">    44  </span>	}
-<span id="L45" class="ln">    45  </span>	return *o.InitialApplicationArguments
+<span id="L45" class="ln">    45  </span>	return o.InitialApplicationArguments
 <span id="L46" class="ln">    46  </span>}
 <span id="L47" class="ln">    47  </span>
 <span id="L48" class="ln">    48  </span><span class="comment">// GetInitialApplicationArgumentsOk returns a tuple with the InitialApplicationArguments field value if set, nil otherwise</span>
 <span id="L49" class="ln">    49  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L50" class="ln">    50  </span>func (o *SyntheticsMobileTestConfig) GetInitialApplicationArgumentsOk() (*SyntheticsMobileTestInitialApplicationArguments, bool) {
+<span id="L50" class="ln">    50  </span>func (o *SyntheticsMobileTestConfig) GetInitialApplicationArgumentsOk() (*map[string]string, bool) {
 <span id="L51" class="ln">    51  </span>	if o == nil || o.InitialApplicationArguments == nil {
 <span id="L52" class="ln">    52  </span>		return nil, false
 <span id="L53" class="ln">    53  </span>	}
-<span id="L54" class="ln">    54  </span>	return o.InitialApplicationArguments, true
+<span id="L54" class="ln">    54  </span>	return &amp;o.InitialApplicationArguments, true
 <span id="L55" class="ln">    55  </span>}
 <span id="L56" class="ln">    56  </span>
 <span id="L57" class="ln">    57  </span><span class="comment">// HasInitialApplicationArguments returns a boolean if a field has been set.</span>
@@ -116,9 +116,9 @@
 <span id="L59" class="ln">    59  </span>	return o != nil &amp;&amp; o.InitialApplicationArguments != nil
 <span id="L60" class="ln">    60  </span>}
 <span id="L61" class="ln">    61  </span>
-<span id="L62" class="ln">    62  </span><span class="comment">// SetInitialApplicationArguments gets a reference to the given SyntheticsMobileTestInitialApplicationArguments and assigns it to the InitialApplicationArguments field.</span>
-<span id="L63" class="ln">    63  </span>func (o *SyntheticsMobileTestConfig) SetInitialApplicationArguments(v SyntheticsMobileTestInitialApplicationArguments) {
-<span id="L64" class="ln">    64  </span>	o.InitialApplicationArguments = &amp;v
+<span id="L62" class="ln">    62  </span><span class="comment">// SetInitialApplicationArguments gets a reference to the given map[string]string and assigns it to the InitialApplicationArguments field.</span>
+<span id="L63" class="ln">    63  </span>func (o *SyntheticsMobileTestConfig) SetInitialApplicationArguments(v map[string]string) {
+<span id="L64" class="ln">    64  </span>	o.InitialApplicationArguments = v
 <span id="L65" class="ln">    65  </span>}
 <span id="L66" class="ln">    66  </span>
 <span id="L67" class="ln">    67  </span><span class="comment">// GetVariables returns the Variables field value if set, zero value otherwise.</span>
@@ -171,8 +171,8 @@
 <span id="L114" class="ln">   114  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L115" class="ln">   115  </span>func (o *SyntheticsMobileTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L116" class="ln">   116  </span>	all := struct {
-<span id="L117" class="ln">   117  </span>		InitialApplicationArguments *SyntheticsMobileTestInitialApplicationArguments `json:&#34;initialApplicationArguments,omitempty&#34;`
-<span id="L118" class="ln">   118  </span>		Variables                   []SyntheticsConfigVariable                       `json:&#34;variables,omitempty&#34;`
+<span id="L117" class="ln">   117  </span>		InitialApplicationArguments map[string]string          `json:&#34;initialApplicationArguments,omitempty&#34;`
+<span id="L118" class="ln">   118  </span>		Variables                   []SyntheticsConfigVariable `json:&#34;variables,omitempty&#34;`
 <span id="L119" class="ln">   119  </span>	}{}
 <span id="L120" class="ln">   120  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L121" class="ln">   121  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
@@ -183,25 +183,16 @@
 <span id="L126" class="ln">   126  </span>	} else {
 <span id="L127" class="ln">   127  </span>		return err
 <span id="L128" class="ln">   128  </span>	}
-<span id="L129" class="ln">   129  </span>
-<span id="L130" class="ln">   130  </span>	hasInvalidField := false
-<span id="L131" class="ln">   131  </span>	if all.InitialApplicationArguments != nil &amp;&amp; all.InitialApplicationArguments.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L132" class="ln">   132  </span>		hasInvalidField = true
-<span id="L133" class="ln">   133  </span>	}
-<span id="L134" class="ln">   134  </span>	o.InitialApplicationArguments = all.InitialApplicationArguments
-<span id="L135" class="ln">   135  </span>	o.Variables = all.Variables
-<span id="L136" class="ln">   136  </span>
-<span id="L137" class="ln">   137  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L138" class="ln">   138  </span>		o.AdditionalProperties = additionalProperties
-<span id="L139" class="ln">   139  </span>	}
-<span id="L140" class="ln">   140  </span>
-<span id="L141" class="ln">   141  </span>	if hasInvalidField {
-<span id="L142" class="ln">   142  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L143" class="ln">   143  </span>	}
-<span id="L144" class="ln">   144  </span>
-<span id="L145" class="ln">   145  </span>	return nil
-<span id="L146" class="ln">   146  </span>}
-<span id="L147" class="ln">   147  </span>
+<span id="L129" class="ln">   129  </span>	o.InitialApplicationArguments = all.InitialApplicationArguments
+<span id="L130" class="ln">   130  </span>	o.Variables = all.Variables
+<span id="L131" class="ln">   131  </span>
+<span id="L132" class="ln">   132  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L133" class="ln">   133  </span>		o.AdditionalProperties = additionalProperties
+<span id="L134" class="ln">   134  </span>	}
+<span id="L135" class="ln">   135  </span>
+<span id="L136" class="ln">   136  </span>	return nil
+<span id="L137" class="ln">   137  </span>}
+<span id="L138" class="ln">   138  </span>
 </pre><p></p>
 
 <div id="footer">
