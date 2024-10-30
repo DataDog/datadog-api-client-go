@@ -90,6 +90,8 @@
 //   - [DashboardListsApi.DeleteDashboardListItems]
 //   - [DashboardListsApi.GetDashboardListItems]
 //   - [DashboardListsApi.UpdateDashboardListItems]
+//   - [DomainAllowlistApi.GetDomainAllowlist]
+//   - [DomainAllowlistApi.PatchDomainAllowlist]
 //   - [DowntimesApi.CancelDowntime]
 //   - [DowntimesApi.CreateDowntime]
 //   - [DowntimesApi.GetDowntime]
