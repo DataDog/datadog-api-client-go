@@ -60,7 +60,6 @@
 //   - [CloudCostManagementApi.DeleteCustomCostsFile]
 //   - [CloudCostManagementApi.GetCloudCostActivity]
 //   - [CloudCostManagementApi.GetCustomCostsFile]
-//   - [CloudCostManagementApi.ListAWSRelatedAccounts]
 //   - [CloudCostManagementApi.ListCostAWSCURConfigs]
 //   - [CloudCostManagementApi.ListCostAzureUCConfigs]
 //   - [CloudCostManagementApi.ListCustomCostsFiles]
