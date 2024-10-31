@@ -75,7 +75,7 @@
 <span id="L18" class="ln">    18  </span>	Email *string `json:&#34;email,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// The name of the Cloudflare account.</span>
 <span id="L20" class="ln">    20  </span>	Name string `json:&#34;name&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// An allowlist of resources to restrict pulling metrics for.</span>
+<span id="L21" class="ln">    21  </span>	<span class="comment">// An allowlist of resources to restrict pulling metrics for including `&#39;web&#39;, &#39;dns&#39;, &#39;lb&#39; (load balancer), &#39;worker&#39;`.</span>
 <span id="L22" class="ln">    22  </span>	Resources []string `json:&#34;resources,omitempty&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// An allowlist of zones to restrict pulling metrics for.</span>
 <span id="L24" class="ln">    24  </span>	Zones []string `json:&#34;zones,omitempty&#34;`
