@@ -11,9 +11,9 @@ import (
 // SyntheticsMobileStepParamsElementRelativePosition Position of the action relative to the element.
 type SyntheticsMobileStepParamsElementRelativePosition struct {
 	// The `relativePosition` on the `x` axis for the element.
-	X *int64 `json:"x,omitempty"`
+	X *float64 `json:"x,omitempty"`
 	// The `relativePosition` on the `y` axis for the element.
-	Y *int64 `json:"y,omitempty"`
+	Y *float64 `json:"y,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -37,9 +37,9 @@ func NewSyntheticsMobileStepParamsElementRelativePositionWithDefaults() *Synthet
 }
 
 // GetX returns the X field value if set, zero value otherwise.
-func (o *SyntheticsMobileStepParamsElementRelativePosition) GetX() int64 {
+func (o *SyntheticsMobileStepParamsElementRelativePosition) GetX() float64 {
 	if o == nil || o.X == nil {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.X
@@ -47,7 +47,7 @@ func (o *SyntheticsMobileStepParamsElementRelativePosition) GetX() int64 {
 
 // GetXOk returns a tuple with the X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileStepParamsElementRelativePosition) GetXOk() (*int64, bool) {
+func (o *SyntheticsMobileStepParamsElementRelativePosition) GetXOk() (*float64, bool) {
 	if o == nil || o.X == nil {
 		return nil, false
 	}
@@ -59,15 +59,15 @@ func (o *SyntheticsMobileStepParamsElementRelativePosition) HasX() bool {
 	return o != nil && o.X != nil
 }
 
-// SetX gets a reference to the given int64 and assigns it to the X field.
-func (o *SyntheticsMobileStepParamsElementRelativePosition) SetX(v int64) {
+// SetX gets a reference to the given float64 and assigns it to the X field.
+func (o *SyntheticsMobileStepParamsElementRelativePosition) SetX(v float64) {
 	o.X = &v
 }
 
 // GetY returns the Y field value if set, zero value otherwise.
-func (o *SyntheticsMobileStepParamsElementRelativePosition) GetY() int64 {
+func (o *SyntheticsMobileStepParamsElementRelativePosition) GetY() float64 {
 	if o == nil || o.Y == nil {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Y
@@ -75,7 +75,7 @@ func (o *SyntheticsMobileStepParamsElementRelativePosition) GetY() int64 {
 
 // GetYOk returns a tuple with the Y field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileStepParamsElementRelativePosition) GetYOk() (*int64, bool) {
+func (o *SyntheticsMobileStepParamsElementRelativePosition) GetYOk() (*float64, bool) {
 	if o == nil || o.Y == nil {
 		return nil, false
 	}
@@ -87,8 +87,8 @@ func (o *SyntheticsMobileStepParamsElementRelativePosition) HasY() bool {
 	return o != nil && o.Y != nil
 }
 
-// SetY gets a reference to the given int64 and assigns it to the Y field.
-func (o *SyntheticsMobileStepParamsElementRelativePosition) SetY(v int64) {
+// SetY gets a reference to the given float64 and assigns it to the Y field.
+func (o *SyntheticsMobileStepParamsElementRelativePosition) SetY(v float64) {
 	o.Y = &v
 }
 
@@ -114,8 +114,8 @@ func (o SyntheticsMobileStepParamsElementRelativePosition) MarshalJSON() ([]byte
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsMobileStepParamsElementRelativePosition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		X *int64 `json:"x,omitempty"`
-		Y *int64 `json:"y,omitempty"`
+		X *float64 `json:"x,omitempty"`
+		Y *float64 `json:"y,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

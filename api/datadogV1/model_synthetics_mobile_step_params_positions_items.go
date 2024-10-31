@@ -11,9 +11,9 @@ import (
 // SyntheticsMobileStepParamsPositionsItems A description of a single position for a `flick` step type.
 type SyntheticsMobileStepParamsPositionsItems struct {
 	// The `x` position for the flick.
-	X *int64 `json:"x,omitempty"`
+	X *float64 `json:"x,omitempty"`
 	// The `y` position for the flick.
-	Y *int64 `json:"y,omitempty"`
+	Y *float64 `json:"y,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -37,9 +37,9 @@ func NewSyntheticsMobileStepParamsPositionsItemsWithDefaults() *SyntheticsMobile
 }
 
 // GetX returns the X field value if set, zero value otherwise.
-func (o *SyntheticsMobileStepParamsPositionsItems) GetX() int64 {
+func (o *SyntheticsMobileStepParamsPositionsItems) GetX() float64 {
 	if o == nil || o.X == nil {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.X
@@ -47,7 +47,7 @@ func (o *SyntheticsMobileStepParamsPositionsItems) GetX() int64 {
 
 // GetXOk returns a tuple with the X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileStepParamsPositionsItems) GetXOk() (*int64, bool) {
+func (o *SyntheticsMobileStepParamsPositionsItems) GetXOk() (*float64, bool) {
 	if o == nil || o.X == nil {
 		return nil, false
 	}
@@ -59,15 +59,15 @@ func (o *SyntheticsMobileStepParamsPositionsItems) HasX() bool {
 	return o != nil && o.X != nil
 }
 
-// SetX gets a reference to the given int64 and assigns it to the X field.
-func (o *SyntheticsMobileStepParamsPositionsItems) SetX(v int64) {
+// SetX gets a reference to the given float64 and assigns it to the X field.
+func (o *SyntheticsMobileStepParamsPositionsItems) SetX(v float64) {
 	o.X = &v
 }
 
 // GetY returns the Y field value if set, zero value otherwise.
-func (o *SyntheticsMobileStepParamsPositionsItems) GetY() int64 {
+func (o *SyntheticsMobileStepParamsPositionsItems) GetY() float64 {
 	if o == nil || o.Y == nil {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Y
@@ -75,7 +75,7 @@ func (o *SyntheticsMobileStepParamsPositionsItems) GetY() int64 {
 
 // GetYOk returns a tuple with the Y field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileStepParamsPositionsItems) GetYOk() (*int64, bool) {
+func (o *SyntheticsMobileStepParamsPositionsItems) GetYOk() (*float64, bool) {
 	if o == nil || o.Y == nil {
 		return nil, false
 	}
@@ -87,8 +87,8 @@ func (o *SyntheticsMobileStepParamsPositionsItems) HasY() bool {
 	return o != nil && o.Y != nil
 }
 
-// SetY gets a reference to the given int64 and assigns it to the Y field.
-func (o *SyntheticsMobileStepParamsPositionsItems) SetY(v int64) {
+// SetY gets a reference to the given float64 and assigns it to the Y field.
+func (o *SyntheticsMobileStepParamsPositionsItems) SetY(v float64) {
 	o.Y = &v
 }
 
@@ -114,8 +114,8 @@ func (o SyntheticsMobileStepParamsPositionsItems) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsMobileStepParamsPositionsItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		X *int64 `json:"x,omitempty"`
-		Y *int64 `json:"y,omitempty"`
+		X *float64 `json:"x,omitempty"`
+		Y *float64 `json:"y,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
