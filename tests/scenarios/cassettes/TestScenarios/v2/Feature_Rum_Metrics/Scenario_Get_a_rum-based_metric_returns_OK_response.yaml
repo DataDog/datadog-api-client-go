@@ -1,0 +1,54 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":true,"path":"@duration"},"event_type":"session","filter":{"query":"source:Test-Get_a_rum_based_metric_returns_OK_response-1730203164"},"group_by":[{"path":"@browser.name","tag_name":"browser_name"}],"uniqueness":{"when":"match"}},"id":"Test-Get_a_rum_based_metric_returns_OK_response-1730203164","type":"rum_metrics"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/rum/config/metrics
+  response:
+    body: '{"data":{"id":"Test_Get_a_rum_based_metric_returns_OK_response_1730203164","type":"rum_metrics","attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":true,"path":"@duration"},"event_type":"session","filter":{"query":"source:Test-Get_a_rum_based_metric_returns_OK_response-1730203164"},"group_by":[{"path":"@browser.name","tag_name":"browser_name"}],"uniqueness":{"when":"match"}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 1
+    method: GET
+    url: https://api.datadoghq.com/api/v2/rum/config/metrics/Test_Get_a_rum_based_metric_returns_OK_response_1730203164
+  response:
+    body: '{"data":{"id":"Test_Get_a_rum_based_metric_returns_OK_response_1730203164","type":"rum_metrics","attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":true,"path":"@duration"},"event_type":"session","filter":{"query":"source:Test-Get_a_rum_based_metric_returns_OK_response-1730203164"},"group_by":[{"path":"@browser.name","tag_name":"browser_name"}],"uniqueness":{"when":"match"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/rum/config/metrics/Test_Get_a_rum_based_metric_returns_OK_response_1730203164
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
