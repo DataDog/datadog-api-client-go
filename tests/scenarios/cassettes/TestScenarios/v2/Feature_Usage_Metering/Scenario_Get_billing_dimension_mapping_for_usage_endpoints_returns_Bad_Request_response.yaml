@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/usage/billing_dimension_mapping
+  response:
+    body: '{"errors":[{"id":null,"links":null,"status":"400","code":null,"title":"Bad
+      Request","detail":"API called with non-parent org keys. Data is only available
+      at the root level org","source":null,"meta":null}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
