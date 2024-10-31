@@ -19,23 +19,23 @@ type SyntheticsMobileStepParams struct {
 	// Information about the element used for a step.
 	Element *SyntheticsMobileStepParamsElement `json:"element,omitempty"`
 	// Boolean to change the state of the wifi for a `toggleWiFi` step type.
-	Enable *bool `json:"enable,omitempty"`
+	Enabled *bool `json:"enabled,omitempty"`
 	// Maximum number of scrolls to do for a `scrollToElement` step type.
 	MaxScrolls *int64 `json:"maxScrolls,omitempty"`
 	// List of positions for the `flick` step type. The maximum is 10 flicks per step
 	Positions []SyntheticsMobileStepParamsPositionsItems `json:"positions,omitempty"`
 	// Public ID of the test to be played as part of a `playSubTest` step type.
 	SubtestPublicId *string `json:"subtestPublicId,omitempty"`
-	// Values used in the step. Used in multiple step types.
-	Value *string `json:"value,omitempty"`
+	// Values used in the step for in multiple step types.
+	Value *SyntheticsMobileStepParamsValue `json:"value,omitempty"`
 	// Variable object for `extractVariable` step type.
 	Variable *SyntheticsMobileStepParamsVariable `json:"variable,omitempty"`
 	// Boolean to indicate if `Enter` should be pressed at the end of the `typeText` step type.
 	WithEnter *bool `json:"withEnter,omitempty"`
 	// Amount to scroll by on the `x` axis for a `scroll` step type.
-	X *int64 `json:"x,omitempty"`
+	X *float64 `json:"x,omitempty"`
 	// Amount to scroll by on the `y` axis for a `scroll` step type.
-	Y *int64 `json:"y,omitempty"`
+	Y *float64 `json:"y,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -170,32 +170,32 @@ func (o *SyntheticsMobileStepParams) SetElement(v SyntheticsMobileStepParamsElem
 	o.Element = &v
 }
 
-// GetEnable returns the Enable field value if set, zero value otherwise.
-func (o *SyntheticsMobileStepParams) GetEnable() bool {
-	if o == nil || o.Enable == nil {
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *SyntheticsMobileStepParams) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Enable
+	return *o.Enabled
 }
 
-// GetEnableOk returns a tuple with the Enable field value if set, nil otherwise
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileStepParams) GetEnableOk() (*bool, bool) {
-	if o == nil || o.Enable == nil {
+func (o *SyntheticsMobileStepParams) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
 		return nil, false
 	}
-	return o.Enable, true
+	return o.Enabled, true
 }
 
-// HasEnable returns a boolean if a field has been set.
-func (o *SyntheticsMobileStepParams) HasEnable() bool {
-	return o != nil && o.Enable != nil
+// HasEnabled returns a boolean if a field has been set.
+func (o *SyntheticsMobileStepParams) HasEnabled() bool {
+	return o != nil && o.Enabled != nil
 }
 
-// SetEnable gets a reference to the given bool and assigns it to the Enable field.
-func (o *SyntheticsMobileStepParams) SetEnable(v bool) {
-	o.Enable = &v
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *SyntheticsMobileStepParams) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetMaxScrolls returns the MaxScrolls field value if set, zero value otherwise.
@@ -283,9 +283,9 @@ func (o *SyntheticsMobileStepParams) SetSubtestPublicId(v string) {
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *SyntheticsMobileStepParams) GetValue() string {
+func (o *SyntheticsMobileStepParams) GetValue() SyntheticsMobileStepParamsValue {
 	if o == nil || o.Value == nil {
-		var ret string
+		var ret SyntheticsMobileStepParamsValue
 		return ret
 	}
 	return *o.Value
@@ -293,7 +293,7 @@ func (o *SyntheticsMobileStepParams) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileStepParams) GetValueOk() (*string, bool) {
+func (o *SyntheticsMobileStepParams) GetValueOk() (*SyntheticsMobileStepParamsValue, bool) {
 	if o == nil || o.Value == nil {
 		return nil, false
 	}
@@ -305,8 +305,8 @@ func (o *SyntheticsMobileStepParams) HasValue() bool {
 	return o != nil && o.Value != nil
 }
 
-// SetValue gets a reference to the given string and assigns it to the Value field.
-func (o *SyntheticsMobileStepParams) SetValue(v string) {
+// SetValue gets a reference to the given SyntheticsMobileStepParamsValue and assigns it to the Value field.
+func (o *SyntheticsMobileStepParams) SetValue(v SyntheticsMobileStepParamsValue) {
 	o.Value = &v
 }
 
@@ -367,9 +367,9 @@ func (o *SyntheticsMobileStepParams) SetWithEnter(v bool) {
 }
 
 // GetX returns the X field value if set, zero value otherwise.
-func (o *SyntheticsMobileStepParams) GetX() int64 {
+func (o *SyntheticsMobileStepParams) GetX() float64 {
 	if o == nil || o.X == nil {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.X
@@ -377,7 +377,7 @@ func (o *SyntheticsMobileStepParams) GetX() int64 {
 
 // GetXOk returns a tuple with the X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileStepParams) GetXOk() (*int64, bool) {
+func (o *SyntheticsMobileStepParams) GetXOk() (*float64, bool) {
 	if o == nil || o.X == nil {
 		return nil, false
 	}
@@ -389,15 +389,15 @@ func (o *SyntheticsMobileStepParams) HasX() bool {
 	return o != nil && o.X != nil
 }
 
-// SetX gets a reference to the given int64 and assigns it to the X field.
-func (o *SyntheticsMobileStepParams) SetX(v int64) {
+// SetX gets a reference to the given float64 and assigns it to the X field.
+func (o *SyntheticsMobileStepParams) SetX(v float64) {
 	o.X = &v
 }
 
 // GetY returns the Y field value if set, zero value otherwise.
-func (o *SyntheticsMobileStepParams) GetY() int64 {
+func (o *SyntheticsMobileStepParams) GetY() float64 {
 	if o == nil || o.Y == nil {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Y
@@ -405,7 +405,7 @@ func (o *SyntheticsMobileStepParams) GetY() int64 {
 
 // GetYOk returns a tuple with the Y field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsMobileStepParams) GetYOk() (*int64, bool) {
+func (o *SyntheticsMobileStepParams) GetYOk() (*float64, bool) {
 	if o == nil || o.Y == nil {
 		return nil, false
 	}
@@ -417,8 +417,8 @@ func (o *SyntheticsMobileStepParams) HasY() bool {
 	return o != nil && o.Y != nil
 }
 
-// SetY gets a reference to the given int64 and assigns it to the Y field.
-func (o *SyntheticsMobileStepParams) SetY(v int64) {
+// SetY gets a reference to the given float64 and assigns it to the Y field.
+func (o *SyntheticsMobileStepParams) SetY(v float64) {
 	o.Y = &v
 }
 
@@ -440,8 +440,8 @@ func (o SyntheticsMobileStepParams) MarshalJSON() ([]byte, error) {
 	if o.Element != nil {
 		toSerialize["element"] = o.Element
 	}
-	if o.Enable != nil {
-		toSerialize["enable"] = o.Enable
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
 	}
 	if o.MaxScrolls != nil {
 		toSerialize["maxScrolls"] = o.MaxScrolls
@@ -481,22 +481,22 @@ func (o *SyntheticsMobileStepParams) UnmarshalJSON(bytes []byte) (err error) {
 		Delay           *int64                                     `json:"delay,omitempty"`
 		Direction       *SyntheticsMobileStepParamsDirection       `json:"direction,omitempty"`
 		Element         *SyntheticsMobileStepParamsElement         `json:"element,omitempty"`
-		Enable          *bool                                      `json:"enable,omitempty"`
+		Enabled         *bool                                      `json:"enabled,omitempty"`
 		MaxScrolls      *int64                                     `json:"maxScrolls,omitempty"`
 		Positions       []SyntheticsMobileStepParamsPositionsItems `json:"positions,omitempty"`
 		SubtestPublicId *string                                    `json:"subtestPublicId,omitempty"`
-		Value           *string                                    `json:"value,omitempty"`
+		Value           *SyntheticsMobileStepParamsValue           `json:"value,omitempty"`
 		Variable        *SyntheticsMobileStepParamsVariable        `json:"variable,omitempty"`
 		WithEnter       *bool                                      `json:"withEnter,omitempty"`
-		X               *int64                                     `json:"x,omitempty"`
-		Y               *int64                                     `json:"y,omitempty"`
+		X               *float64                                   `json:"x,omitempty"`
+		Y               *float64                                   `json:"y,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"check", "delay", "direction", "element", "enable", "maxScrolls", "positions", "subtestPublicId", "value", "variable", "withEnter", "x", "y"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"check", "delay", "direction", "element", "enabled", "maxScrolls", "positions", "subtestPublicId", "value", "variable", "withEnter", "x", "y"})
 	} else {
 		return err
 	}
@@ -517,7 +517,7 @@ func (o *SyntheticsMobileStepParams) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Element = all.Element
-	o.Enable = all.Enable
+	o.Enabled = all.Enabled
 	o.MaxScrolls = all.MaxScrolls
 	o.Positions = all.Positions
 	o.SubtestPublicId = all.SubtestPublicId
