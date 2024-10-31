@@ -329,6 +329,7 @@ func NewConfiguration() *Configuration {
 			"v2.ListAPIs":                     false,
 			"v2.UpdateOpenAPI":                false,
 			"v2.GetActiveBillingDimensions":   false,
+			"v2.GetBillingDimensionMapping":   false,
 			"v2.GetMonthlyCostAttribution":    false,
 			"v2.CreateDORADeployment":         false,
 			"v2.CreateDORAIncident":           false,
