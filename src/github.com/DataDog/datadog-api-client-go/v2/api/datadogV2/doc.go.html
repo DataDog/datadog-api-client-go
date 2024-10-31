@@ -414,30 +414,31 @@
 <span id="L357" class="ln">   357  </span><span class="comment">//   - [TeamsApi.UpdateTeamMembership]</span>
 <span id="L358" class="ln">   358  </span><span class="comment">//   - [TeamsApi.UpdateTeamPermissionSetting]</span>
 <span id="L359" class="ln">   359  </span><span class="comment">//   - [UsageMeteringApi.GetActiveBillingDimensions]</span>
-<span id="L360" class="ln">   360  </span><span class="comment">//   - [UsageMeteringApi.GetCostByOrg]</span>
-<span id="L361" class="ln">   361  </span><span class="comment">//   - [UsageMeteringApi.GetEstimatedCostByOrg]</span>
-<span id="L362" class="ln">   362  </span><span class="comment">//   - [UsageMeteringApi.GetHistoricalCostByOrg]</span>
-<span id="L363" class="ln">   363  </span><span class="comment">//   - [UsageMeteringApi.GetHourlyUsage]</span>
-<span id="L364" class="ln">   364  </span><span class="comment">//   - [UsageMeteringApi.GetMonthlyCostAttribution]</span>
-<span id="L365" class="ln">   365  </span><span class="comment">//   - [UsageMeteringApi.GetProjectedCost]</span>
-<span id="L366" class="ln">   366  </span><span class="comment">//   - [UsageMeteringApi.GetUsageApplicationSecurityMonitoring]</span>
-<span id="L367" class="ln">   367  </span><span class="comment">//   - [UsageMeteringApi.GetUsageLambdaTracedInvocations]</span>
-<span id="L368" class="ln">   368  </span><span class="comment">//   - [UsageMeteringApi.GetUsageObservabilityPipelines]</span>
-<span id="L369" class="ln">   369  </span><span class="comment">//   - [UsersApi.CreateUser]</span>
-<span id="L370" class="ln">   370  </span><span class="comment">//   - [UsersApi.DisableUser]</span>
-<span id="L371" class="ln">   371  </span><span class="comment">//   - [UsersApi.GetInvitation]</span>
-<span id="L372" class="ln">   372  </span><span class="comment">//   - [UsersApi.GetUser]</span>
-<span id="L373" class="ln">   373  </span><span class="comment">//   - [UsersApi.ListUserOrganizations]</span>
-<span id="L374" class="ln">   374  </span><span class="comment">//   - [UsersApi.ListUserPermissions]</span>
-<span id="L375" class="ln">   375  </span><span class="comment">//   - [UsersApi.ListUsers]</span>
-<span id="L376" class="ln">   376  </span><span class="comment">//   - [UsersApi.SendInvitations]</span>
-<span id="L377" class="ln">   377  </span><span class="comment">//   - [UsersApi.UpdateUser]</span>
-<span id="L378" class="ln">   378  </span><span class="comment">//   - [WorkflowAutomationApi.CancelWorkflowInstance]</span>
-<span id="L379" class="ln">   379  </span><span class="comment">//   - [WorkflowAutomationApi.CreateWorkflowInstance]</span>
-<span id="L380" class="ln">   380  </span><span class="comment">//   - [WorkflowAutomationApi.GetWorkflowInstance]</span>
-<span id="L381" class="ln">   381  </span><span class="comment">//   - [WorkflowAutomationApi.ListWorkflowInstances]</span>
-<span id="L382" class="ln">   382  </span>package datadogV2
-<span id="L383" class="ln">   383  </span>
+<span id="L360" class="ln">   360  </span><span class="comment">//   - [UsageMeteringApi.GetBillingDimensionMapping]</span>
+<span id="L361" class="ln">   361  </span><span class="comment">//   - [UsageMeteringApi.GetCostByOrg]</span>
+<span id="L362" class="ln">   362  </span><span class="comment">//   - [UsageMeteringApi.GetEstimatedCostByOrg]</span>
+<span id="L363" class="ln">   363  </span><span class="comment">//   - [UsageMeteringApi.GetHistoricalCostByOrg]</span>
+<span id="L364" class="ln">   364  </span><span class="comment">//   - [UsageMeteringApi.GetHourlyUsage]</span>
+<span id="L365" class="ln">   365  </span><span class="comment">//   - [UsageMeteringApi.GetMonthlyCostAttribution]</span>
+<span id="L366" class="ln">   366  </span><span class="comment">//   - [UsageMeteringApi.GetProjectedCost]</span>
+<span id="L367" class="ln">   367  </span><span class="comment">//   - [UsageMeteringApi.GetUsageApplicationSecurityMonitoring]</span>
+<span id="L368" class="ln">   368  </span><span class="comment">//   - [UsageMeteringApi.GetUsageLambdaTracedInvocations]</span>
+<span id="L369" class="ln">   369  </span><span class="comment">//   - [UsageMeteringApi.GetUsageObservabilityPipelines]</span>
+<span id="L370" class="ln">   370  </span><span class="comment">//   - [UsersApi.CreateUser]</span>
+<span id="L371" class="ln">   371  </span><span class="comment">//   - [UsersApi.DisableUser]</span>
+<span id="L372" class="ln">   372  </span><span class="comment">//   - [UsersApi.GetInvitation]</span>
+<span id="L373" class="ln">   373  </span><span class="comment">//   - [UsersApi.GetUser]</span>
+<span id="L374" class="ln">   374  </span><span class="comment">//   - [UsersApi.ListUserOrganizations]</span>
+<span id="L375" class="ln">   375  </span><span class="comment">//   - [UsersApi.ListUserPermissions]</span>
+<span id="L376" class="ln">   376  </span><span class="comment">//   - [UsersApi.ListUsers]</span>
+<span id="L377" class="ln">   377  </span><span class="comment">//   - [UsersApi.SendInvitations]</span>
+<span id="L378" class="ln">   378  </span><span class="comment">//   - [UsersApi.UpdateUser]</span>
+<span id="L379" class="ln">   379  </span><span class="comment">//   - [WorkflowAutomationApi.CancelWorkflowInstance]</span>
+<span id="L380" class="ln">   380  </span><span class="comment">//   - [WorkflowAutomationApi.CreateWorkflowInstance]</span>
+<span id="L381" class="ln">   381  </span><span class="comment">//   - [WorkflowAutomationApi.GetWorkflowInstance]</span>
+<span id="L382" class="ln">   382  </span><span class="comment">//   - [WorkflowAutomationApi.ListWorkflowInstances]</span>
+<span id="L383" class="ln">   383  </span>package datadogV2
+<span id="L384" class="ln">   384  </span>
 </pre><p></p>
 
 <div id="footer">
