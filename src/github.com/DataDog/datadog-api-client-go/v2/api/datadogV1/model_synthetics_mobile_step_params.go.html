@@ -76,23 +76,23 @@
 <span id="L19" class="ln">    19  </span>	<span class="comment">// Information about the element used for a step.</span>
 <span id="L20" class="ln">    20  </span>	Element *SyntheticsMobileStepParamsElement `json:&#34;element,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// Boolean to change the state of the wifi for a `toggleWiFi` step type.</span>
-<span id="L22" class="ln">    22  </span>	Enable *bool `json:&#34;enable,omitempty&#34;`
+<span id="L22" class="ln">    22  </span>	Enabled *bool `json:&#34;enabled,omitempty&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// Maximum number of scrolls to do for a `scrollToElement` step type.</span>
 <span id="L24" class="ln">    24  </span>	MaxScrolls *int64 `json:&#34;maxScrolls,omitempty&#34;`
 <span id="L25" class="ln">    25  </span>	<span class="comment">// List of positions for the `flick` step type. The maximum is 10 flicks per step</span>
 <span id="L26" class="ln">    26  </span>	Positions []SyntheticsMobileStepParamsPositionsItems `json:&#34;positions,omitempty&#34;`
 <span id="L27" class="ln">    27  </span>	<span class="comment">// Public ID of the test to be played as part of a `playSubTest` step type.</span>
 <span id="L28" class="ln">    28  </span>	SubtestPublicId *string `json:&#34;subtestPublicId,omitempty&#34;`
-<span id="L29" class="ln">    29  </span>	<span class="comment">// Values used in the step. Used in multiple step types.</span>
-<span id="L30" class="ln">    30  </span>	Value *string `json:&#34;value,omitempty&#34;`
+<span id="L29" class="ln">    29  </span>	<span class="comment">// Values used in the step for in multiple step types.</span>
+<span id="L30" class="ln">    30  </span>	Value *SyntheticsMobileStepParamsValue `json:&#34;value,omitempty&#34;`
 <span id="L31" class="ln">    31  </span>	<span class="comment">// Variable object for `extractVariable` step type.</span>
 <span id="L32" class="ln">    32  </span>	Variable *SyntheticsMobileStepParamsVariable `json:&#34;variable,omitempty&#34;`
 <span id="L33" class="ln">    33  </span>	<span class="comment">// Boolean to indicate if `Enter` should be pressed at the end of the `typeText` step type.</span>
 <span id="L34" class="ln">    34  </span>	WithEnter *bool `json:&#34;withEnter,omitempty&#34;`
 <span id="L35" class="ln">    35  </span>	<span class="comment">// Amount to scroll by on the `x` axis for a `scroll` step type.</span>
-<span id="L36" class="ln">    36  </span>	X *int64 `json:&#34;x,omitempty&#34;`
+<span id="L36" class="ln">    36  </span>	X *float64 `json:&#34;x,omitempty&#34;`
 <span id="L37" class="ln">    37  </span>	<span class="comment">// Amount to scroll by on the `y` axis for a `scroll` step type.</span>
-<span id="L38" class="ln">    38  </span>	Y *int64 `json:&#34;y,omitempty&#34;`
+<span id="L38" class="ln">    38  </span>	Y *float64 `json:&#34;y,omitempty&#34;`
 <span id="L39" class="ln">    39  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L40" class="ln">    40  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L41" class="ln">    41  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -227,32 +227,32 @@
 <span id="L170" class="ln">   170  </span>	o.Element = &amp;v
 <span id="L171" class="ln">   171  </span>}
 <span id="L172" class="ln">   172  </span>
-<span id="L173" class="ln">   173  </span><span class="comment">// GetEnable returns the Enable field value if set, zero value otherwise.</span>
-<span id="L174" class="ln">   174  </span>func (o *SyntheticsMobileStepParams) GetEnable() bool {
-<span id="L175" class="ln">   175  </span>	if o == nil || o.Enable == nil {
+<span id="L173" class="ln">   173  </span><span class="comment">// GetEnabled returns the Enabled field value if set, zero value otherwise.</span>
+<span id="L174" class="ln">   174  </span>func (o *SyntheticsMobileStepParams) GetEnabled() bool {
+<span id="L175" class="ln">   175  </span>	if o == nil || o.Enabled == nil {
 <span id="L176" class="ln">   176  </span>		var ret bool
 <span id="L177" class="ln">   177  </span>		return ret
 <span id="L178" class="ln">   178  </span>	}
-<span id="L179" class="ln">   179  </span>	return *o.Enable
+<span id="L179" class="ln">   179  </span>	return *o.Enabled
 <span id="L180" class="ln">   180  </span>}
 <span id="L181" class="ln">   181  </span>
-<span id="L182" class="ln">   182  </span><span class="comment">// GetEnableOk returns a tuple with the Enable field value if set, nil otherwise</span>
+<span id="L182" class="ln">   182  </span><span class="comment">// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise</span>
 <span id="L183" class="ln">   183  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L184" class="ln">   184  </span>func (o *SyntheticsMobileStepParams) GetEnableOk() (*bool, bool) {
-<span id="L185" class="ln">   185  </span>	if o == nil || o.Enable == nil {
+<span id="L184" class="ln">   184  </span>func (o *SyntheticsMobileStepParams) GetEnabledOk() (*bool, bool) {
+<span id="L185" class="ln">   185  </span>	if o == nil || o.Enabled == nil {
 <span id="L186" class="ln">   186  </span>		return nil, false
 <span id="L187" class="ln">   187  </span>	}
-<span id="L188" class="ln">   188  </span>	return o.Enable, true
+<span id="L188" class="ln">   188  </span>	return o.Enabled, true
 <span id="L189" class="ln">   189  </span>}
 <span id="L190" class="ln">   190  </span>
-<span id="L191" class="ln">   191  </span><span class="comment">// HasEnable returns a boolean if a field has been set.</span>
-<span id="L192" class="ln">   192  </span>func (o *SyntheticsMobileStepParams) HasEnable() bool {
-<span id="L193" class="ln">   193  </span>	return o != nil &amp;&amp; o.Enable != nil
+<span id="L191" class="ln">   191  </span><span class="comment">// HasEnabled returns a boolean if a field has been set.</span>
+<span id="L192" class="ln">   192  </span>func (o *SyntheticsMobileStepParams) HasEnabled() bool {
+<span id="L193" class="ln">   193  </span>	return o != nil &amp;&amp; o.Enabled != nil
 <span id="L194" class="ln">   194  </span>}
 <span id="L195" class="ln">   195  </span>
-<span id="L196" class="ln">   196  </span><span class="comment">// SetEnable gets a reference to the given bool and assigns it to the Enable field.</span>
-<span id="L197" class="ln">   197  </span>func (o *SyntheticsMobileStepParams) SetEnable(v bool) {
-<span id="L198" class="ln">   198  </span>	o.Enable = &amp;v
+<span id="L196" class="ln">   196  </span><span class="comment">// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.</span>
+<span id="L197" class="ln">   197  </span>func (o *SyntheticsMobileStepParams) SetEnabled(v bool) {
+<span id="L198" class="ln">   198  </span>	o.Enabled = &amp;v
 <span id="L199" class="ln">   199  </span>}
 <span id="L200" class="ln">   200  </span>
 <span id="L201" class="ln">   201  </span><span class="comment">// GetMaxScrolls returns the MaxScrolls field value if set, zero value otherwise.</span>
@@ -340,9 +340,9 @@
 <span id="L283" class="ln">   283  </span>}
 <span id="L284" class="ln">   284  </span>
 <span id="L285" class="ln">   285  </span><span class="comment">// GetValue returns the Value field value if set, zero value otherwise.</span>
-<span id="L286" class="ln">   286  </span>func (o *SyntheticsMobileStepParams) GetValue() string {
+<span id="L286" class="ln">   286  </span>func (o *SyntheticsMobileStepParams) GetValue() SyntheticsMobileStepParamsValue {
 <span id="L287" class="ln">   287  </span>	if o == nil || o.Value == nil {
-<span id="L288" class="ln">   288  </span>		var ret string
+<span id="L288" class="ln">   288  </span>		var ret SyntheticsMobileStepParamsValue
 <span id="L289" class="ln">   289  </span>		return ret
 <span id="L290" class="ln">   290  </span>	}
 <span id="L291" class="ln">   291  </span>	return *o.Value
@@ -350,7 +350,7 @@
 <span id="L293" class="ln">   293  </span>
 <span id="L294" class="ln">   294  </span><span class="comment">// GetValueOk returns a tuple with the Value field value if set, nil otherwise</span>
 <span id="L295" class="ln">   295  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L296" class="ln">   296  </span>func (o *SyntheticsMobileStepParams) GetValueOk() (*string, bool) {
+<span id="L296" class="ln">   296  </span>func (o *SyntheticsMobileStepParams) GetValueOk() (*SyntheticsMobileStepParamsValue, bool) {
 <span id="L297" class="ln">   297  </span>	if o == nil || o.Value == nil {
 <span id="L298" class="ln">   298  </span>		return nil, false
 <span id="L299" class="ln">   299  </span>	}
@@ -362,8 +362,8 @@
 <span id="L305" class="ln">   305  </span>	return o != nil &amp;&amp; o.Value != nil
 <span id="L306" class="ln">   306  </span>}
 <span id="L307" class="ln">   307  </span>
-<span id="L308" class="ln">   308  </span><span class="comment">// SetValue gets a reference to the given string and assigns it to the Value field.</span>
-<span id="L309" class="ln">   309  </span>func (o *SyntheticsMobileStepParams) SetValue(v string) {
+<span id="L308" class="ln">   308  </span><span class="comment">// SetValue gets a reference to the given SyntheticsMobileStepParamsValue and assigns it to the Value field.</span>
+<span id="L309" class="ln">   309  </span>func (o *SyntheticsMobileStepParams) SetValue(v SyntheticsMobileStepParamsValue) {
 <span id="L310" class="ln">   310  </span>	o.Value = &amp;v
 <span id="L311" class="ln">   311  </span>}
 <span id="L312" class="ln">   312  </span>
@@ -424,9 +424,9 @@
 <span id="L367" class="ln">   367  </span>}
 <span id="L368" class="ln">   368  </span>
 <span id="L369" class="ln">   369  </span><span class="comment">// GetX returns the X field value if set, zero value otherwise.</span>
-<span id="L370" class="ln">   370  </span>func (o *SyntheticsMobileStepParams) GetX() int64 {
+<span id="L370" class="ln">   370  </span>func (o *SyntheticsMobileStepParams) GetX() float64 {
 <span id="L371" class="ln">   371  </span>	if o == nil || o.X == nil {
-<span id="L372" class="ln">   372  </span>		var ret int64
+<span id="L372" class="ln">   372  </span>		var ret float64
 <span id="L373" class="ln">   373  </span>		return ret
 <span id="L374" class="ln">   374  </span>	}
 <span id="L375" class="ln">   375  </span>	return *o.X
@@ -434,7 +434,7 @@
 <span id="L377" class="ln">   377  </span>
 <span id="L378" class="ln">   378  </span><span class="comment">// GetXOk returns a tuple with the X field value if set, nil otherwise</span>
 <span id="L379" class="ln">   379  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L380" class="ln">   380  </span>func (o *SyntheticsMobileStepParams) GetXOk() (*int64, bool) {
+<span id="L380" class="ln">   380  </span>func (o *SyntheticsMobileStepParams) GetXOk() (*float64, bool) {
 <span id="L381" class="ln">   381  </span>	if o == nil || o.X == nil {
 <span id="L382" class="ln">   382  </span>		return nil, false
 <span id="L383" class="ln">   383  </span>	}
@@ -446,15 +446,15 @@
 <span id="L389" class="ln">   389  </span>	return o != nil &amp;&amp; o.X != nil
 <span id="L390" class="ln">   390  </span>}
 <span id="L391" class="ln">   391  </span>
-<span id="L392" class="ln">   392  </span><span class="comment">// SetX gets a reference to the given int64 and assigns it to the X field.</span>
-<span id="L393" class="ln">   393  </span>func (o *SyntheticsMobileStepParams) SetX(v int64) {
+<span id="L392" class="ln">   392  </span><span class="comment">// SetX gets a reference to the given float64 and assigns it to the X field.</span>
+<span id="L393" class="ln">   393  </span>func (o *SyntheticsMobileStepParams) SetX(v float64) {
 <span id="L394" class="ln">   394  </span>	o.X = &amp;v
 <span id="L395" class="ln">   395  </span>}
 <span id="L396" class="ln">   396  </span>
 <span id="L397" class="ln">   397  </span><span class="comment">// GetY returns the Y field value if set, zero value otherwise.</span>
-<span id="L398" class="ln">   398  </span>func (o *SyntheticsMobileStepParams) GetY() int64 {
+<span id="L398" class="ln">   398  </span>func (o *SyntheticsMobileStepParams) GetY() float64 {
 <span id="L399" class="ln">   399  </span>	if o == nil || o.Y == nil {
-<span id="L400" class="ln">   400  </span>		var ret int64
+<span id="L400" class="ln">   400  </span>		var ret float64
 <span id="L401" class="ln">   401  </span>		return ret
 <span id="L402" class="ln">   402  </span>	}
 <span id="L403" class="ln">   403  </span>	return *o.Y
@@ -462,7 +462,7 @@
 <span id="L405" class="ln">   405  </span>
 <span id="L406" class="ln">   406  </span><span class="comment">// GetYOk returns a tuple with the Y field value if set, nil otherwise</span>
 <span id="L407" class="ln">   407  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L408" class="ln">   408  </span>func (o *SyntheticsMobileStepParams) GetYOk() (*int64, bool) {
+<span id="L408" class="ln">   408  </span>func (o *SyntheticsMobileStepParams) GetYOk() (*float64, bool) {
 <span id="L409" class="ln">   409  </span>	if o == nil || o.Y == nil {
 <span id="L410" class="ln">   410  </span>		return nil, false
 <span id="L411" class="ln">   411  </span>	}
@@ -474,8 +474,8 @@
 <span id="L417" class="ln">   417  </span>	return o != nil &amp;&amp; o.Y != nil
 <span id="L418" class="ln">   418  </span>}
 <span id="L419" class="ln">   419  </span>
-<span id="L420" class="ln">   420  </span><span class="comment">// SetY gets a reference to the given int64 and assigns it to the Y field.</span>
-<span id="L421" class="ln">   421  </span>func (o *SyntheticsMobileStepParams) SetY(v int64) {
+<span id="L420" class="ln">   420  </span><span class="comment">// SetY gets a reference to the given float64 and assigns it to the Y field.</span>
+<span id="L421" class="ln">   421  </span>func (o *SyntheticsMobileStepParams) SetY(v float64) {
 <span id="L422" class="ln">   422  </span>	o.Y = &amp;v
 <span id="L423" class="ln">   423  </span>}
 <span id="L424" class="ln">   424  </span>
@@ -497,8 +497,8 @@
 <span id="L440" class="ln">   440  </span>	if o.Element != nil {
 <span id="L441" class="ln">   441  </span>		toSerialize[&#34;element&#34;] = o.Element
 <span id="L442" class="ln">   442  </span>	}
-<span id="L443" class="ln">   443  </span>	if o.Enable != nil {
-<span id="L444" class="ln">   444  </span>		toSerialize[&#34;enable&#34;] = o.Enable
+<span id="L443" class="ln">   443  </span>	if o.Enabled != nil {
+<span id="L444" class="ln">   444  </span>		toSerialize[&#34;enabled&#34;] = o.Enabled
 <span id="L445" class="ln">   445  </span>	}
 <span id="L446" class="ln">   446  </span>	if o.MaxScrolls != nil {
 <span id="L447" class="ln">   447  </span>		toSerialize[&#34;maxScrolls&#34;] = o.MaxScrolls
@@ -538,22 +538,22 @@
 <span id="L481" class="ln">   481  </span>		Delay           *int64                                     `json:&#34;delay,omitempty&#34;`
 <span id="L482" class="ln">   482  </span>		Direction       *SyntheticsMobileStepParamsDirection       `json:&#34;direction,omitempty&#34;`
 <span id="L483" class="ln">   483  </span>		Element         *SyntheticsMobileStepParamsElement         `json:&#34;element,omitempty&#34;`
-<span id="L484" class="ln">   484  </span>		Enable          *bool                                      `json:&#34;enable,omitempty&#34;`
+<span id="L484" class="ln">   484  </span>		Enabled         *bool                                      `json:&#34;enabled,omitempty&#34;`
 <span id="L485" class="ln">   485  </span>		MaxScrolls      *int64                                     `json:&#34;maxScrolls,omitempty&#34;`
 <span id="L486" class="ln">   486  </span>		Positions       []SyntheticsMobileStepParamsPositionsItems `json:&#34;positions,omitempty&#34;`
 <span id="L487" class="ln">   487  </span>		SubtestPublicId *string                                    `json:&#34;subtestPublicId,omitempty&#34;`
-<span id="L488" class="ln">   488  </span>		Value           *string                                    `json:&#34;value,omitempty&#34;`
+<span id="L488" class="ln">   488  </span>		Value           *SyntheticsMobileStepParamsValue           `json:&#34;value,omitempty&#34;`
 <span id="L489" class="ln">   489  </span>		Variable        *SyntheticsMobileStepParamsVariable        `json:&#34;variable,omitempty&#34;`
 <span id="L490" class="ln">   490  </span>		WithEnter       *bool                                      `json:&#34;withEnter,omitempty&#34;`
-<span id="L491" class="ln">   491  </span>		X               *int64                                     `json:&#34;x,omitempty&#34;`
-<span id="L492" class="ln">   492  </span>		Y               *int64                                     `json:&#34;y,omitempty&#34;`
+<span id="L491" class="ln">   491  </span>		X               *float64                                   `json:&#34;x,omitempty&#34;`
+<span id="L492" class="ln">   492  </span>		Y               *float64                                   `json:&#34;y,omitempty&#34;`
 <span id="L493" class="ln">   493  </span>	}{}
 <span id="L494" class="ln">   494  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L495" class="ln">   495  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
 <span id="L496" class="ln">   496  </span>	}
 <span id="L497" class="ln">   497  </span>	additionalProperties := make(map[string]interface{})
 <span id="L498" class="ln">   498  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L499" class="ln">   499  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;check&#34;, &#34;delay&#34;, &#34;direction&#34;, &#34;element&#34;, &#34;enable&#34;, &#34;maxScrolls&#34;, &#34;positions&#34;, &#34;subtestPublicId&#34;, &#34;value&#34;, &#34;variable&#34;, &#34;withEnter&#34;, &#34;x&#34;, &#34;y&#34;})
+<span id="L499" class="ln">   499  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;check&#34;, &#34;delay&#34;, &#34;direction&#34;, &#34;element&#34;, &#34;enabled&#34;, &#34;maxScrolls&#34;, &#34;positions&#34;, &#34;subtestPublicId&#34;, &#34;value&#34;, &#34;variable&#34;, &#34;withEnter&#34;, &#34;x&#34;, &#34;y&#34;})
 <span id="L500" class="ln">   500  </span>	} else {
 <span id="L501" class="ln">   501  </span>		return err
 <span id="L502" class="ln">   502  </span>	}
@@ -574,7 +574,7 @@
 <span id="L517" class="ln">   517  </span>		hasInvalidField = true
 <span id="L518" class="ln">   518  </span>	}
 <span id="L519" class="ln">   519  </span>	o.Element = all.Element
-<span id="L520" class="ln">   520  </span>	o.Enable = all.Enable
+<span id="L520" class="ln">   520  </span>	o.Enabled = all.Enabled
 <span id="L521" class="ln">   521  </span>	o.MaxScrolls = all.MaxScrolls
 <span id="L522" class="ln">   522  </span>	o.Positions = all.Positions
 <span id="L523" class="ln">   523  </span>	o.SubtestPublicId = all.SubtestPublicId

@@ -68,9 +68,9 @@
 <span id="L11" class="ln">    11  </span><span class="comment">// SyntheticsMobileStepParamsPositionsItems A description of a single position for a `flick` step type.</span>
 <span id="L12" class="ln">    12  </span>type SyntheticsMobileStepParamsPositionsItems struct {
 <span id="L13" class="ln">    13  </span>	<span class="comment">// The `x` position for the flick.</span>
-<span id="L14" class="ln">    14  </span>	X *int64 `json:&#34;x,omitempty&#34;`
+<span id="L14" class="ln">    14  </span>	X *float64 `json:&#34;x,omitempty&#34;`
 <span id="L15" class="ln">    15  </span>	<span class="comment">// The `y` position for the flick.</span>
-<span id="L16" class="ln">    16  </span>	Y *int64 `json:&#34;y,omitempty&#34;`
+<span id="L16" class="ln">    16  </span>	Y *float64 `json:&#34;y,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L18" class="ln">    18  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L19" class="ln">    19  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -94,9 +94,9 @@
 <span id="L37" class="ln">    37  </span>}
 <span id="L38" class="ln">    38  </span>
 <span id="L39" class="ln">    39  </span><span class="comment">// GetX returns the X field value if set, zero value otherwise.</span>
-<span id="L40" class="ln">    40  </span>func (o *SyntheticsMobileStepParamsPositionsItems) GetX() int64 {
+<span id="L40" class="ln">    40  </span>func (o *SyntheticsMobileStepParamsPositionsItems) GetX() float64 {
 <span id="L41" class="ln">    41  </span>	if o == nil || o.X == nil {
-<span id="L42" class="ln">    42  </span>		var ret int64
+<span id="L42" class="ln">    42  </span>		var ret float64
 <span id="L43" class="ln">    43  </span>		return ret
 <span id="L44" class="ln">    44  </span>	}
 <span id="L45" class="ln">    45  </span>	return *o.X
@@ -104,7 +104,7 @@
 <span id="L47" class="ln">    47  </span>
 <span id="L48" class="ln">    48  </span><span class="comment">// GetXOk returns a tuple with the X field value if set, nil otherwise</span>
 <span id="L49" class="ln">    49  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L50" class="ln">    50  </span>func (o *SyntheticsMobileStepParamsPositionsItems) GetXOk() (*int64, bool) {
+<span id="L50" class="ln">    50  </span>func (o *SyntheticsMobileStepParamsPositionsItems) GetXOk() (*float64, bool) {
 <span id="L51" class="ln">    51  </span>	if o == nil || o.X == nil {
 <span id="L52" class="ln">    52  </span>		return nil, false
 <span id="L53" class="ln">    53  </span>	}
@@ -116,15 +116,15 @@
 <span id="L59" class="ln">    59  </span>	return o != nil &amp;&amp; o.X != nil
 <span id="L60" class="ln">    60  </span>}
 <span id="L61" class="ln">    61  </span>
-<span id="L62" class="ln">    62  </span><span class="comment">// SetX gets a reference to the given int64 and assigns it to the X field.</span>
-<span id="L63" class="ln">    63  </span>func (o *SyntheticsMobileStepParamsPositionsItems) SetX(v int64) {
+<span id="L62" class="ln">    62  </span><span class="comment">// SetX gets a reference to the given float64 and assigns it to the X field.</span>
+<span id="L63" class="ln">    63  </span>func (o *SyntheticsMobileStepParamsPositionsItems) SetX(v float64) {
 <span id="L64" class="ln">    64  </span>	o.X = &amp;v
 <span id="L65" class="ln">    65  </span>}
 <span id="L66" class="ln">    66  </span>
 <span id="L67" class="ln">    67  </span><span class="comment">// GetY returns the Y field value if set, zero value otherwise.</span>
-<span id="L68" class="ln">    68  </span>func (o *SyntheticsMobileStepParamsPositionsItems) GetY() int64 {
+<span id="L68" class="ln">    68  </span>func (o *SyntheticsMobileStepParamsPositionsItems) GetY() float64 {
 <span id="L69" class="ln">    69  </span>	if o == nil || o.Y == nil {
-<span id="L70" class="ln">    70  </span>		var ret int64
+<span id="L70" class="ln">    70  </span>		var ret float64
 <span id="L71" class="ln">    71  </span>		return ret
 <span id="L72" class="ln">    72  </span>	}
 <span id="L73" class="ln">    73  </span>	return *o.Y
@@ -132,7 +132,7 @@
 <span id="L75" class="ln">    75  </span>
 <span id="L76" class="ln">    76  </span><span class="comment">// GetYOk returns a tuple with the Y field value if set, nil otherwise</span>
 <span id="L77" class="ln">    77  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L78" class="ln">    78  </span>func (o *SyntheticsMobileStepParamsPositionsItems) GetYOk() (*int64, bool) {
+<span id="L78" class="ln">    78  </span>func (o *SyntheticsMobileStepParamsPositionsItems) GetYOk() (*float64, bool) {
 <span id="L79" class="ln">    79  </span>	if o == nil || o.Y == nil {
 <span id="L80" class="ln">    80  </span>		return nil, false
 <span id="L81" class="ln">    81  </span>	}
@@ -144,8 +144,8 @@
 <span id="L87" class="ln">    87  </span>	return o != nil &amp;&amp; o.Y != nil
 <span id="L88" class="ln">    88  </span>}
 <span id="L89" class="ln">    89  </span>
-<span id="L90" class="ln">    90  </span><span class="comment">// SetY gets a reference to the given int64 and assigns it to the Y field.</span>
-<span id="L91" class="ln">    91  </span>func (o *SyntheticsMobileStepParamsPositionsItems) SetY(v int64) {
+<span id="L90" class="ln">    90  </span><span class="comment">// SetY gets a reference to the given float64 and assigns it to the Y field.</span>
+<span id="L91" class="ln">    91  </span>func (o *SyntheticsMobileStepParamsPositionsItems) SetY(v float64) {
 <span id="L92" class="ln">    92  </span>	o.Y = &amp;v
 <span id="L93" class="ln">    93  </span>}
 <span id="L94" class="ln">    94  </span>
@@ -171,8 +171,8 @@
 <span id="L114" class="ln">   114  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L115" class="ln">   115  </span>func (o *SyntheticsMobileStepParamsPositionsItems) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L116" class="ln">   116  </span>	all := struct {
-<span id="L117" class="ln">   117  </span>		X *int64 `json:&#34;x,omitempty&#34;`
-<span id="L118" class="ln">   118  </span>		Y *int64 `json:&#34;y,omitempty&#34;`
+<span id="L117" class="ln">   117  </span>		X *float64 `json:&#34;x,omitempty&#34;`
+<span id="L118" class="ln">   118  </span>		Y *float64 `json:&#34;y,omitempty&#34;`
 <span id="L119" class="ln">   119  </span>	}{}
 <span id="L120" class="ln">   120  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L121" class="ln">   121  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
