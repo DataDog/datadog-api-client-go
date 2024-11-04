@@ -71,7 +71,7 @@
 <span id="L14" class="ln">    14  </span>type RumMetricGroupBy struct {
 <span id="L15" class="ln">    15  </span>	<span class="comment">// The path to the value the rum-based metric will be aggregated over.</span>
 <span id="L16" class="ln">    16  </span>	Path string `json:&#34;path&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// Eventual name of the tag that gets created. By default, the path attribute is used as the tag name.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Eventual name of the tag that gets created. By default, `path` is used as the tag name.</span>
 <span id="L18" class="ln">    18  </span>	TagName *string `json:&#34;tag_name,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L20" class="ln">    20  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`

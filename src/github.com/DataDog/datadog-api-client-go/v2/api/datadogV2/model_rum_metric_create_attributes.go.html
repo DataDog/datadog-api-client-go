@@ -77,7 +77,7 @@
 <span id="L20" class="ln">    20  </span>	Filter *RumMetricFilter `json:&#34;filter,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// The rules for the group by.</span>
 <span id="L22" class="ln">    22  </span>	GroupBy []RumMetricGroupBy `json:&#34;group_by,omitempty&#34;`
-<span id="L23" class="ln">    23  </span>	<span class="comment">// The rule to count updatable events. Is only set if &#34;event_type&#34; is &#34;sessions&#34; or &#34;views&#34;.</span>
+<span id="L23" class="ln">    23  </span>	<span class="comment">// The rule to count updatable events. Is only set if `event_type` is `sessions` or `views`.</span>
 <span id="L24" class="ln">    24  </span>	Uniqueness *RumMetricUniqueness `json:&#34;uniqueness,omitempty&#34;`
 <span id="L25" class="ln">    25  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L26" class="ln">    26  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`

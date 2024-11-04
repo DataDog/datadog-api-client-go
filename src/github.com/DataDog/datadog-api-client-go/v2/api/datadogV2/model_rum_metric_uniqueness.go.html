@@ -67,9 +67,9 @@
 <span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
-<span id="L13" class="ln">    13  </span><span class="comment">// RumMetricUniqueness The rule to count updatable events. Is only set if &#34;event_type&#34; is &#34;sessions&#34; or &#34;views&#34;.</span>
+<span id="L13" class="ln">    13  </span><span class="comment">// RumMetricUniqueness The rule to count updatable events. Is only set if `event_type` is `sessions` or `views`.</span>
 <span id="L14" class="ln">    14  </span>type RumMetricUniqueness struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// When to count updatable events. &#34;match&#34; when the event is first seen, or &#34;end&#34; when the event is complete.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// When to count updatable events. `match` when the event is first seen, or `end` when the event is complete.</span>
 <span id="L16" class="ln">    16  </span>	When RumMetricUniquenessWhen `json:&#34;when&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L18" class="ln">    18  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
