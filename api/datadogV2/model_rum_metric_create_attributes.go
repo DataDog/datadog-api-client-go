@@ -20,7 +20,7 @@ type RumMetricCreateAttributes struct {
 	Filter *RumMetricFilter `json:"filter,omitempty"`
 	// The rules for the group by.
 	GroupBy []RumMetricGroupBy `json:"group_by,omitempty"`
-	// The rule to count updatable events. Is only set if "event_type" is "sessions" or "views".
+	// The rule to count updatable events. Is only set if `event_type` is `sessions` or `views`.
 	Uniqueness *RumMetricUniqueness `json:"uniqueness,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

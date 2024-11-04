@@ -11,7 +11,7 @@ import (
 // RumMetricUpdateCompute The compute rule to compute the rum-based metric.
 type RumMetricUpdateCompute struct {
 	// Toggle to include or exclude percentile aggregations for distribution metrics.
-	// Only present when the `aggregation_type` is `distribution`.
+	// Only present when `aggregation_type` is `distribution`.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

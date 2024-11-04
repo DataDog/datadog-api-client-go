@@ -13,9 +13,10 @@ type RumMetricResponseCompute struct {
 	// The type of aggregation to use.
 	AggregationType *RumMetricComputeAggregationType `json:"aggregation_type,omitempty"`
 	// Toggle to include or exclude percentile aggregations for distribution metrics.
-	// Only present when the `aggregation_type` is `distribution`.
+	// Only present when `aggregation_type` is `distribution`.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
-	// The path to the value the rum-based metric will aggregate on (only used if the aggregation type is a "distribution").
+	// The path to the value the rum-based metric will aggregate on.
+	// Only present when `aggregation_type` is `distribution`.
 	Path *string `json:"path,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -12,7 +12,7 @@ import (
 type RumMetricResponseGroupBy struct {
 	// The path to the value the rum-based metric will be aggregated over.
 	Path *string `json:"path,omitempty"`
-	// Eventual name of the tag that gets created. By default, the path attribute is used as the tag name.
+	// Eventual name of the tag that gets created. By default, `path` is used as the tag name.
 	TagName *string `json:"tag_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
