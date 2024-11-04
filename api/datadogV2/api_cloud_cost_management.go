@@ -347,6 +347,8 @@ func (a *CloudCostManagementApi) DeleteCustomCostsFile(ctx _context.Context, fil
 
 // GetCloudCostActivity Cloud Cost Enabled.
 // Get the Cloud Cost Management activity.
+//
+// Deprecated: This API is deprecated.
 func (a *CloudCostManagementApi) GetCloudCostActivity(ctx _context.Context) (CloudCostActivityResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
