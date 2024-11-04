@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"7a71352d63ea9891"},"type":"incident_types"}}
+      {"data":{"attributes":{"description":"Any incidents that harm (or have the potential to) the confidentiality, integrity, or availability of our data.","is_default":false,"name":"Security Incident"},"type":"incident_types"}}
     form: {}
     headers:
       Accept:
@@ -12,7 +12,10 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/incidents/config/types
   response:
-    body: '{"data":{"id":"54ee8a4c-591e-48eb-8207-c12ad57617a9","type":"incident_types","attributes":{"createdAt":"2024-10-24T16:03:10.596580603Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2024-10-24T16:03:10.596580603Z","name":"7a71352d63ea9891","prefix":"IR"}}}'
+    body: '{"data":{"id":"366ac7cc-9884-4a7f-a751-9d885f3136ed","type":"incident_types","attributes":{"createdAt":"2024-11-04T19:02:38.74682603Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"Any
+      incidents that harm (or have the potential to) the confidentiality, integrity,
+      or availability of our data.","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2024-11-04T19:02:38.74682603Z","name":"Security
+      Incident","prefix":"IR"}}}'
     code: 201
     duration: 0ms
     headers:
@@ -21,7 +24,7 @@ interactions:
     status: 201 Created
 - request:
     body: |
-      {"data":{"attributes":{"name":"7a71352d63ea9891-updated"},"id":"54ee8a4c-591e-48eb-8207-c12ad57617a9","type":"incident_types"}}
+      {"data":{"attributes":{"name":"Security Incident-updated"},"id":"366ac7cc-9884-4a7f-a751-9d885f3136ed","type":"incident_types"}}
     form: {}
     headers:
       Accept:
@@ -30,9 +33,12 @@ interactions:
       - application/json
     id: 1
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/incidents/config/types/54ee8a4c-591e-48eb-8207-c12ad57617a9
+    url: https://api.datadoghq.com/api/v2/incidents/config/types/366ac7cc-9884-4a7f-a751-9d885f3136ed
   response:
-    body: '{"data":{"id":"54ee8a4c-591e-48eb-8207-c12ad57617a9","type":"incident_types","attributes":{"createdAt":"2024-10-24T16:03:10.596581Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2024-10-24T16:03:10.974980567Z","name":"7a71352d63ea9891-updated","prefix":"IR"}}}'
+    body: '{"data":{"id":"366ac7cc-9884-4a7f-a751-9d885f3136ed","type":"incident_types","attributes":{"createdAt":"2024-11-04T19:02:38.746826Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"Any
+      incidents that harm (or have the potential to) the confidentiality, integrity,
+      or availability of our data.","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2024-11-04T19:02:38.837509595Z","name":"Security
+      Incident-updated","prefix":"IR"}}}'
     code: 200
     duration: 0ms
     headers:
@@ -47,7 +53,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/incidents/config/types/54ee8a4c-591e-48eb-8207-c12ad57617a9
+    url: https://api.datadoghq.com/api/v2/incidents/config/types/366ac7cc-9884-4a7f-a751-9d885f3136ed
   response:
     body: ''
     code: 204

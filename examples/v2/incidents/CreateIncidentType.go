@@ -16,9 +16,9 @@ func main() {
 	body := datadogV2.IncidentTypeCreateRequest{
 		Data: datadogV2.IncidentTypeCreateData{
 			Attributes: datadogV2.IncidentTypeAttributes{
-				Description: datadog.PtrString("8d4bbb66dccf2456"),
-				IsDefault:   datadog.PtrBool(true),
-				Name:        "8d4bbb66dccf2456",
+				Description: datadog.PtrString("Any incidents that harm (or have the potential to) the confidentiality, integrity, or availability of our data."),
+				IsDefault:   datadog.PtrBool(false),
+				Name:        "Security Incident",
 			},
 			Type: datadogV2.INCIDENTTYPETYPE_INCIDENT_TYPES,
 		},
