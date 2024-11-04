@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricUniquenessWhen When to count updatable events. "match" when the event is first seen, or "end" when the event is complete.
+// RumMetricUniquenessWhen When to count updatable events. `match` when the event is first seen, or `end` when the event is complete.
 type RumMetricUniquenessWhen string
 
 // List of RumMetricUniquenessWhen.

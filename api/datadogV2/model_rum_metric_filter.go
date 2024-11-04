@@ -12,7 +12,7 @@ import (
 
 // RumMetricFilter The rum-based metric filter. Events matching this filter will be aggregated in this metric.
 type RumMetricFilter struct {
-	// The search query - following the RUM search syntax. Must include an @type facet query.
+	// The search query - following the RUM search syntax.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
