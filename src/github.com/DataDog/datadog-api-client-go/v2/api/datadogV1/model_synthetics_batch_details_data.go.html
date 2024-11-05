@@ -71,8 +71,8 @@
 <span id="L14" class="ln">    14  </span>	Metadata *SyntheticsCIBatchMetadata `json:&#34;metadata,omitempty&#34;`
 <span id="L15" class="ln">    15  </span>	<span class="comment">// List of results for the batch.</span>
 <span id="L16" class="ln">    16  </span>	Results []SyntheticsBatchResult `json:&#34;results,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// Determines whether or not the batch has passed, failed, or is in progress.</span>
-<span id="L18" class="ln">    18  </span>	Status *SyntheticsStatus `json:&#34;status,omitempty&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Determines whether the batch has passed, failed, or is in progress.</span>
+<span id="L18" class="ln">    18  </span>	Status *SyntheticsBatchStatus `json:&#34;status,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L20" class="ln">    20  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L21" class="ln">    21  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -152,9 +152,9 @@
 <span id="L95" class="ln">    95  </span>}
 <span id="L96" class="ln">    96  </span>
 <span id="L97" class="ln">    97  </span><span class="comment">// GetStatus returns the Status field value if set, zero value otherwise.</span>
-<span id="L98" class="ln">    98  </span>func (o *SyntheticsBatchDetailsData) GetStatus() SyntheticsStatus {
+<span id="L98" class="ln">    98  </span>func (o *SyntheticsBatchDetailsData) GetStatus() SyntheticsBatchStatus {
 <span id="L99" class="ln">    99  </span>	if o == nil || o.Status == nil {
-<span id="L100" class="ln">   100  </span>		var ret SyntheticsStatus
+<span id="L100" class="ln">   100  </span>		var ret SyntheticsBatchStatus
 <span id="L101" class="ln">   101  </span>		return ret
 <span id="L102" class="ln">   102  </span>	}
 <span id="L103" class="ln">   103  </span>	return *o.Status
@@ -162,7 +162,7 @@
 <span id="L105" class="ln">   105  </span>
 <span id="L106" class="ln">   106  </span><span class="comment">// GetStatusOk returns a tuple with the Status field value if set, nil otherwise</span>
 <span id="L107" class="ln">   107  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L108" class="ln">   108  </span>func (o *SyntheticsBatchDetailsData) GetStatusOk() (*SyntheticsStatus, bool) {
+<span id="L108" class="ln">   108  </span>func (o *SyntheticsBatchDetailsData) GetStatusOk() (*SyntheticsBatchStatus, bool) {
 <span id="L109" class="ln">   109  </span>	if o == nil || o.Status == nil {
 <span id="L110" class="ln">   110  </span>		return nil, false
 <span id="L111" class="ln">   111  </span>	}
@@ -174,8 +174,8 @@
 <span id="L117" class="ln">   117  </span>	return o != nil &amp;&amp; o.Status != nil
 <span id="L118" class="ln">   118  </span>}
 <span id="L119" class="ln">   119  </span>
-<span id="L120" class="ln">   120  </span><span class="comment">// SetStatus gets a reference to the given SyntheticsStatus and assigns it to the Status field.</span>
-<span id="L121" class="ln">   121  </span>func (o *SyntheticsBatchDetailsData) SetStatus(v SyntheticsStatus) {
+<span id="L120" class="ln">   120  </span><span class="comment">// SetStatus gets a reference to the given SyntheticsBatchStatus and assigns it to the Status field.</span>
+<span id="L121" class="ln">   121  </span>func (o *SyntheticsBatchDetailsData) SetStatus(v SyntheticsBatchStatus) {
 <span id="L122" class="ln">   122  </span>	o.Status = &amp;v
 <span id="L123" class="ln">   123  </span>}
 <span id="L124" class="ln">   124  </span>
@@ -206,7 +206,7 @@
 <span id="L149" class="ln">   149  </span>	all := struct {
 <span id="L150" class="ln">   150  </span>		Metadata *SyntheticsCIBatchMetadata `json:&#34;metadata,omitempty&#34;`
 <span id="L151" class="ln">   151  </span>		Results  []SyntheticsBatchResult    `json:&#34;results,omitempty&#34;`
-<span id="L152" class="ln">   152  </span>		Status   *SyntheticsStatus          `json:&#34;status,omitempty&#34;`
+<span id="L152" class="ln">   152  </span>		Status   *SyntheticsBatchStatus     `json:&#34;status,omitempty&#34;`
 <span id="L153" class="ln">   153  </span>	}{}
 <span id="L154" class="ln">   154  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L155" class="ln">   155  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)

@@ -79,8 +79,8 @@
 <span id="L22" class="ln">    22  </span>	ResultId *string `json:&#34;result_id,omitempty&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// Number of times this result has been retried.</span>
 <span id="L24" class="ln">    24  </span>	Retries *float64 `json:&#34;retries,omitempty&#34;`
-<span id="L25" class="ln">    25  </span>	<span class="comment">// Determines whether or not the batch has passed, failed, or is in progress.</span>
-<span id="L26" class="ln">    26  </span>	Status *SyntheticsStatus `json:&#34;status,omitempty&#34;`
+<span id="L25" class="ln">    25  </span>	<span class="comment">// Determines whether the batch has passed, failed, or is in progress.</span>
+<span id="L26" class="ln">    26  </span>	Status *SyntheticsBatchStatus `json:&#34;status,omitempty&#34;`
 <span id="L27" class="ln">    27  </span>	<span class="comment">// Name of the test.</span>
 <span id="L28" class="ln">    28  </span>	TestName *string `json:&#34;test_name,omitempty&#34;`
 <span id="L29" class="ln">    29  </span>	<span class="comment">// The public ID of the Synthetic test.</span>
@@ -278,9 +278,9 @@
 <span id="L221" class="ln">   221  </span>}
 <span id="L222" class="ln">   222  </span>
 <span id="L223" class="ln">   223  </span><span class="comment">// GetStatus returns the Status field value if set, zero value otherwise.</span>
-<span id="L224" class="ln">   224  </span>func (o *SyntheticsBatchResult) GetStatus() SyntheticsStatus {
+<span id="L224" class="ln">   224  </span>func (o *SyntheticsBatchResult) GetStatus() SyntheticsBatchStatus {
 <span id="L225" class="ln">   225  </span>	if o == nil || o.Status == nil {
-<span id="L226" class="ln">   226  </span>		var ret SyntheticsStatus
+<span id="L226" class="ln">   226  </span>		var ret SyntheticsBatchStatus
 <span id="L227" class="ln">   227  </span>		return ret
 <span id="L228" class="ln">   228  </span>	}
 <span id="L229" class="ln">   229  </span>	return *o.Status
@@ -288,7 +288,7 @@
 <span id="L231" class="ln">   231  </span>
 <span id="L232" class="ln">   232  </span><span class="comment">// GetStatusOk returns a tuple with the Status field value if set, nil otherwise</span>
 <span id="L233" class="ln">   233  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L234" class="ln">   234  </span>func (o *SyntheticsBatchResult) GetStatusOk() (*SyntheticsStatus, bool) {
+<span id="L234" class="ln">   234  </span>func (o *SyntheticsBatchResult) GetStatusOk() (*SyntheticsBatchStatus, bool) {
 <span id="L235" class="ln">   235  </span>	if o == nil || o.Status == nil {
 <span id="L236" class="ln">   236  </span>		return nil, false
 <span id="L237" class="ln">   237  </span>	}
@@ -300,8 +300,8 @@
 <span id="L243" class="ln">   243  </span>	return o != nil &amp;&amp; o.Status != nil
 <span id="L244" class="ln">   244  </span>}
 <span id="L245" class="ln">   245  </span>
-<span id="L246" class="ln">   246  </span><span class="comment">// SetStatus gets a reference to the given SyntheticsStatus and assigns it to the Status field.</span>
-<span id="L247" class="ln">   247  </span>func (o *SyntheticsBatchResult) SetStatus(v SyntheticsStatus) {
+<span id="L246" class="ln">   246  </span><span class="comment">// SetStatus gets a reference to the given SyntheticsBatchStatus and assigns it to the Status field.</span>
+<span id="L247" class="ln">   247  </span>func (o *SyntheticsBatchResult) SetStatus(v SyntheticsBatchStatus) {
 <span id="L248" class="ln">   248  </span>	o.Status = &amp;v
 <span id="L249" class="ln">   249  </span>}
 <span id="L250" class="ln">   250  </span>
@@ -441,7 +441,7 @@
 <span id="L384" class="ln">   384  </span>		Location      *string                      `json:&#34;location,omitempty&#34;`
 <span id="L385" class="ln">   385  </span>		ResultId      *string                      `json:&#34;result_id,omitempty&#34;`
 <span id="L386" class="ln">   386  </span>		Retries       *float64                     `json:&#34;retries,omitempty&#34;`
-<span id="L387" class="ln">   387  </span>		Status        *SyntheticsStatus            `json:&#34;status,omitempty&#34;`
+<span id="L387" class="ln">   387  </span>		Status        *SyntheticsBatchStatus       `json:&#34;status,omitempty&#34;`
 <span id="L388" class="ln">   388  </span>		TestName      *string                      `json:&#34;test_name,omitempty&#34;`
 <span id="L389" class="ln">   389  </span>		TestPublicId  *string                      `json:&#34;test_public_id,omitempty&#34;`
 <span id="L390" class="ln">   390  </span>		TestType      *SyntheticsTestDetailsType   `json:&#34;test_type,omitempty&#34;`
