@@ -22,8 +22,8 @@ type SyntheticsBatchResult struct {
 	ResultId *string `json:"result_id,omitempty"`
 	// Number of times this result has been retried.
 	Retries *float64 `json:"retries,omitempty"`
-	// Determines whether or not the batch has passed, failed, or is in progress.
-	Status *SyntheticsStatus `json:"status,omitempty"`
+	// Determines whether the batch has passed, failed, or is in progress.
+	Status *SyntheticsBatchStatus `json:"status,omitempty"`
 	// Name of the test.
 	TestName *string `json:"test_name,omitempty"`
 	// The public ID of the Synthetic test.
@@ -221,9 +221,9 @@ func (o *SyntheticsBatchResult) SetRetries(v float64) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *SyntheticsBatchResult) GetStatus() SyntheticsStatus {
+func (o *SyntheticsBatchResult) GetStatus() SyntheticsBatchStatus {
 	if o == nil || o.Status == nil {
-		var ret SyntheticsStatus
+		var ret SyntheticsBatchStatus
 		return ret
 	}
 	return *o.Status
@@ -231,7 +231,7 @@ func (o *SyntheticsBatchResult) GetStatus() SyntheticsStatus {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsBatchResult) GetStatusOk() (*SyntheticsStatus, bool) {
+func (o *SyntheticsBatchResult) GetStatusOk() (*SyntheticsBatchStatus, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -243,8 +243,8 @@ func (o *SyntheticsBatchResult) HasStatus() bool {
 	return o != nil && o.Status != nil
 }
 
-// SetStatus gets a reference to the given SyntheticsStatus and assigns it to the Status field.
-func (o *SyntheticsBatchResult) SetStatus(v SyntheticsStatus) {
+// SetStatus gets a reference to the given SyntheticsBatchStatus and assigns it to the Status field.
+func (o *SyntheticsBatchResult) SetStatus(v SyntheticsBatchStatus) {
 	o.Status = &v
 }
 
@@ -384,7 +384,7 @@ func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 		Location      *string                      `json:"location,omitempty"`
 		ResultId      *string                      `json:"result_id,omitempty"`
 		Retries       *float64                     `json:"retries,omitempty"`
-		Status        *SyntheticsStatus            `json:"status,omitempty"`
+		Status        *SyntheticsBatchStatus       `json:"status,omitempty"`
 		TestName      *string                      `json:"test_name,omitempty"`
 		TestPublicId  *string                      `json:"test_public_id,omitempty"`
 		TestType      *SyntheticsTestDetailsType   `json:"test_type,omitempty"`
