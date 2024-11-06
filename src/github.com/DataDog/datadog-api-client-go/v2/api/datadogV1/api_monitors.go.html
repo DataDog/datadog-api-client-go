@@ -315,1014 +315,1016 @@
 <span id="L258" class="ln">   258  </span><span class="comment">//</span>
 <span id="L259" class="ln">   259  </span><span class="comment">// ##### Error Tracking Alert Query</span>
 <span id="L260" class="ln">   260  </span><span class="comment">//</span>
-<span id="L261" class="ln">   261  </span><span class="comment">// Example(RUM): `error-tracking-rum(query).rollup(rollup_method[, measure]).last(time_window) operator #`</span>
-<span id="L262" class="ln">   262  </span><span class="comment">// Example(APM Traces): `error-tracking-traces(query).rollup(rollup_method[, measure]).last(time_window) operator #`</span>
+<span id="L261" class="ln">   261  </span><span class="comment">// &#34;New issue&#34; example: `error-tracking(query).source(issue_source).new().rollup(rollup_method[, measure]).by(group_by).last(time_window) operator #`</span>
+<span id="L262" class="ln">   262  </span><span class="comment">// &#34;High impact issue&#34; example: `error-tracking(query).source(issue_source).impact().rollup(rollup_method[, measure]).by(group_by).last(time_window) operator #`</span>
 <span id="L263" class="ln">   263  </span><span class="comment">//</span>
 <span id="L264" class="ln">   264  </span><span class="comment">// - `query` The search query - following the [Log search syntax](https://docs.datadoghq.com/logs/search_syntax/).</span>
-<span id="L265" class="ln">   265  </span><span class="comment">// - `rollup_method` The stats roll-up method - supports `count`, `avg`, and `cardinality`.</span>
-<span id="L266" class="ln">   266  </span><span class="comment">// - `measure` For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.</span>
-<span id="L267" class="ln">   267  </span><span class="comment">// - `time_window` #m (between 1 and 2880), #h (between 1 and 48).</span>
-<span id="L268" class="ln">   268  </span><span class="comment">// - `operator` `&lt;`, `&lt;=`, `&gt;`, `&gt;=`, `==`, or `!=`.</span>
-<span id="L269" class="ln">   269  </span><span class="comment">// - `#` an integer or decimal number used to set the threshold.</span>
-<span id="L270" class="ln">   270  </span><span class="comment">//</span>
-<span id="L271" class="ln">   271  </span><span class="comment">// **Database Monitoring Alert Query**</span>
+<span id="L265" class="ln">   265  </span><span class="comment">// - `issue_source` The issue source - supports `all`, `browser`, `mobile` and `backend` and defaults to `all` if omitted.</span>
+<span id="L266" class="ln">   266  </span><span class="comment">// - `rollup_method` The stats roll-up method - supports `count`, `avg`, and `cardinality` and defaults to `count` if omitted.</span>
+<span id="L267" class="ln">   267  </span><span class="comment">// - `measure` For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.</span>
+<span id="L268" class="ln">   268  </span><span class="comment">// - `group by` Comma-separated list of attributes to group by - should contain at least `issue.id`.</span>
+<span id="L269" class="ln">   269  </span><span class="comment">// - `time_window` #m (between 1 and 2880), #h (between 1 and 48).</span>
+<span id="L270" class="ln">   270  </span><span class="comment">// - `operator` `&lt;`, `&lt;=`, `&gt;`, `&gt;=`, `==`, or `!=`.</span>
+<span id="L271" class="ln">   271  </span><span class="comment">// - `#` an integer or decimal number used to set the threshold.</span>
 <span id="L272" class="ln">   272  </span><span class="comment">//</span>
-<span id="L273" class="ln">   273  </span><span class="comment">// Example: `database-monitoring(query).rollup(rollup_method[, measure]).last(time_window) operator #`</span>
+<span id="L273" class="ln">   273  </span><span class="comment">// **Database Monitoring Alert Query**</span>
 <span id="L274" class="ln">   274  </span><span class="comment">//</span>
-<span id="L275" class="ln">   275  </span><span class="comment">// - `query` The search query - following the [Log search syntax](https://docs.datadoghq.com/logs/search_syntax/).</span>
-<span id="L276" class="ln">   276  </span><span class="comment">// - `rollup_method` The stats roll-up method - supports `count`, `avg`, and `cardinality`.</span>
-<span id="L277" class="ln">   277  </span><span class="comment">// - `measure` For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.</span>
-<span id="L278" class="ln">   278  </span><span class="comment">// - `time_window` #m (between 1 and 2880), #h (between 1 and 48).</span>
-<span id="L279" class="ln">   279  </span><span class="comment">// - `operator` `&lt;`, `&lt;=`, `&gt;`, `&gt;=`, `==`, or `!=`.</span>
-<span id="L280" class="ln">   280  </span><span class="comment">// - `#` an integer or decimal number used to set the threshold.</span>
-<span id="L281" class="ln">   281  </span><span class="comment">//</span>
-<span id="L282" class="ln">   282  </span><span class="comment">// **Network Performance Alert Query**</span>
+<span id="L275" class="ln">   275  </span><span class="comment">// Example: `database-monitoring(query).rollup(rollup_method[, measure]).last(time_window) operator #`</span>
+<span id="L276" class="ln">   276  </span><span class="comment">//</span>
+<span id="L277" class="ln">   277  </span><span class="comment">// - `query` The search query - following the [Log search syntax](https://docs.datadoghq.com/logs/search_syntax/).</span>
+<span id="L278" class="ln">   278  </span><span class="comment">// - `rollup_method` The stats roll-up method - supports `count`, `avg`, and `cardinality`.</span>
+<span id="L279" class="ln">   279  </span><span class="comment">// - `measure` For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.</span>
+<span id="L280" class="ln">   280  </span><span class="comment">// - `time_window` #m (between 1 and 2880), #h (between 1 and 48).</span>
+<span id="L281" class="ln">   281  </span><span class="comment">// - `operator` `&lt;`, `&lt;=`, `&gt;`, `&gt;=`, `==`, or `!=`.</span>
+<span id="L282" class="ln">   282  </span><span class="comment">// - `#` an integer or decimal number used to set the threshold.</span>
 <span id="L283" class="ln">   283  </span><span class="comment">//</span>
-<span id="L284" class="ln">   284  </span><span class="comment">// Example: `network-performance(query).rollup(rollup_method[, measure]).last(time_window) operator #`</span>
+<span id="L284" class="ln">   284  </span><span class="comment">// **Network Performance Alert Query**</span>
 <span id="L285" class="ln">   285  </span><span class="comment">//</span>
-<span id="L286" class="ln">   286  </span><span class="comment">// - `query` The search query - following the [Log search syntax](https://docs.datadoghq.com/logs/search_syntax/).</span>
-<span id="L287" class="ln">   287  </span><span class="comment">// - `rollup_method` The stats roll-up method - supports `count`, `avg`, and `cardinality`.</span>
-<span id="L288" class="ln">   288  </span><span class="comment">// - `measure` For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.</span>
-<span id="L289" class="ln">   289  </span><span class="comment">// - `time_window` #m (between 1 and 2880), #h (between 1 and 48).</span>
-<span id="L290" class="ln">   290  </span><span class="comment">// - `operator` `&lt;`, `&lt;=`, `&gt;`, `&gt;=`, `==`, or `!=`.</span>
-<span id="L291" class="ln">   291  </span><span class="comment">// - `#` an integer or decimal number used to set the threshold.</span>
-<span id="L292" class="ln">   292  </span>func (a *MonitorsApi) CreateMonitor(ctx _context.Context, body Monitor) (Monitor, *_nethttp.Response, error) {
-<span id="L293" class="ln">   293  </span>	var (
-<span id="L294" class="ln">   294  </span>		localVarHTTPMethod  = _nethttp.MethodPost
-<span id="L295" class="ln">   295  </span>		localVarPostBody    interface{}
-<span id="L296" class="ln">   296  </span>		localVarReturnValue Monitor
-<span id="L297" class="ln">   297  </span>	)
-<span id="L298" class="ln">   298  </span>
-<span id="L299" class="ln">   299  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.CreateMonitor&#34;)
-<span id="L300" class="ln">   300  </span>	if err != nil {
-<span id="L301" class="ln">   301  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L302" class="ln">   302  </span>	}
-<span id="L303" class="ln">   303  </span>
-<span id="L304" class="ln">   304  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor&#34;
+<span id="L286" class="ln">   286  </span><span class="comment">// Example: `network-performance(query).rollup(rollup_method[, measure]).last(time_window) operator #`</span>
+<span id="L287" class="ln">   287  </span><span class="comment">//</span>
+<span id="L288" class="ln">   288  </span><span class="comment">// - `query` The search query - following the [Log search syntax](https://docs.datadoghq.com/logs/search_syntax/).</span>
+<span id="L289" class="ln">   289  </span><span class="comment">// - `rollup_method` The stats roll-up method - supports `count`, `avg`, and `cardinality`.</span>
+<span id="L290" class="ln">   290  </span><span class="comment">// - `measure` For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.</span>
+<span id="L291" class="ln">   291  </span><span class="comment">// - `time_window` #m (between 1 and 2880), #h (between 1 and 48).</span>
+<span id="L292" class="ln">   292  </span><span class="comment">// - `operator` `&lt;`, `&lt;=`, `&gt;`, `&gt;=`, `==`, or `!=`.</span>
+<span id="L293" class="ln">   293  </span><span class="comment">// - `#` an integer or decimal number used to set the threshold.</span>
+<span id="L294" class="ln">   294  </span>func (a *MonitorsApi) CreateMonitor(ctx _context.Context, body Monitor) (Monitor, *_nethttp.Response, error) {
+<span id="L295" class="ln">   295  </span>	var (
+<span id="L296" class="ln">   296  </span>		localVarHTTPMethod  = _nethttp.MethodPost
+<span id="L297" class="ln">   297  </span>		localVarPostBody    interface{}
+<span id="L298" class="ln">   298  </span>		localVarReturnValue Monitor
+<span id="L299" class="ln">   299  </span>	)
+<span id="L300" class="ln">   300  </span>
+<span id="L301" class="ln">   301  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.CreateMonitor&#34;)
+<span id="L302" class="ln">   302  </span>	if err != nil {
+<span id="L303" class="ln">   303  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L304" class="ln">   304  </span>	}
 <span id="L305" class="ln">   305  </span>
-<span id="L306" class="ln">   306  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L307" class="ln">   307  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L308" class="ln">   308  </span>	localVarFormParams := _neturl.Values{}
-<span id="L309" class="ln">   309  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
-<span id="L310" class="ln">   310  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L311" class="ln">   311  </span>
-<span id="L312" class="ln">   312  </span>	<span class="comment">// body params</span>
-<span id="L313" class="ln">   313  </span>	localVarPostBody = &amp;body
-<span id="L314" class="ln">   314  </span>	datadog.SetAuthKeys(
-<span id="L315" class="ln">   315  </span>		ctx,
-<span id="L316" class="ln">   316  </span>		&amp;localVarHeaderParams,
-<span id="L317" class="ln">   317  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L318" class="ln">   318  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L319" class="ln">   319  </span>	)
-<span id="L320" class="ln">   320  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L321" class="ln">   321  </span>	if err != nil {
-<span id="L322" class="ln">   322  </span>		return localVarReturnValue, nil, err
-<span id="L323" class="ln">   323  </span>	}
-<span id="L324" class="ln">   324  </span>
-<span id="L325" class="ln">   325  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L326" class="ln">   326  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L327" class="ln">   327  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L328" class="ln">   328  </span>	}
-<span id="L329" class="ln">   329  </span>
-<span id="L330" class="ln">   330  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L331" class="ln">   331  </span>	if err != nil {
-<span id="L332" class="ln">   332  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L333" class="ln">   333  </span>	}
-<span id="L334" class="ln">   334  </span>
-<span id="L335" class="ln">   335  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L336" class="ln">   336  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L337" class="ln">   337  </span>			ErrorBody:    localVarBody,
-<span id="L338" class="ln">   338  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L339" class="ln">   339  </span>		}
-<span id="L340" class="ln">   340  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L341" class="ln">   341  </span>			var v APIErrorResponse
-<span id="L342" class="ln">   342  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L343" class="ln">   343  </span>			if err != nil {
-<span id="L344" class="ln">   344  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L345" class="ln">   345  </span>			}
-<span id="L346" class="ln">   346  </span>			newErr.ErrorModel = v
-<span id="L347" class="ln">   347  </span>		}
-<span id="L348" class="ln">   348  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L349" class="ln">   349  </span>	}
-<span id="L350" class="ln">   350  </span>
-<span id="L351" class="ln">   351  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L352" class="ln">   352  </span>	if err != nil {
-<span id="L353" class="ln">   353  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L354" class="ln">   354  </span>			ErrorBody:    localVarBody,
-<span id="L355" class="ln">   355  </span>			ErrorMessage: err.Error(),
-<span id="L356" class="ln">   356  </span>		}
-<span id="L357" class="ln">   357  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L358" class="ln">   358  </span>	}
-<span id="L359" class="ln">   359  </span>
-<span id="L360" class="ln">   360  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L361" class="ln">   361  </span>}
-<span id="L362" class="ln">   362  </span>
-<span id="L363" class="ln">   363  </span><span class="comment">// DeleteMonitorOptionalParameters holds optional parameters for DeleteMonitor.</span>
-<span id="L364" class="ln">   364  </span>type DeleteMonitorOptionalParameters struct {
-<span id="L365" class="ln">   365  </span>	Force *string
-<span id="L366" class="ln">   366  </span>}
-<span id="L367" class="ln">   367  </span>
-<span id="L368" class="ln">   368  </span><span class="comment">// NewDeleteMonitorOptionalParameters creates an empty struct for parameters.</span>
-<span id="L369" class="ln">   369  </span>func NewDeleteMonitorOptionalParameters() *DeleteMonitorOptionalParameters {
-<span id="L370" class="ln">   370  </span>	this := DeleteMonitorOptionalParameters{}
-<span id="L371" class="ln">   371  </span>	return &amp;this
-<span id="L372" class="ln">   372  </span>}
-<span id="L373" class="ln">   373  </span>
-<span id="L374" class="ln">   374  </span><span class="comment">// WithForce sets the corresponding parameter name and returns the struct.</span>
-<span id="L375" class="ln">   375  </span>func (r *DeleteMonitorOptionalParameters) WithForce(force string) *DeleteMonitorOptionalParameters {
-<span id="L376" class="ln">   376  </span>	r.Force = &amp;force
-<span id="L377" class="ln">   377  </span>	return r
-<span id="L378" class="ln">   378  </span>}
-<span id="L379" class="ln">   379  </span>
-<span id="L380" class="ln">   380  </span><span class="comment">// DeleteMonitor Delete a monitor.</span>
-<span id="L381" class="ln">   381  </span><span class="comment">// Delete the specified monitor</span>
-<span id="L382" class="ln">   382  </span>func (a *MonitorsApi) DeleteMonitor(ctx _context.Context, monitorId int64, o ...DeleteMonitorOptionalParameters) (DeletedMonitor, *_nethttp.Response, error) {
-<span id="L383" class="ln">   383  </span>	var (
-<span id="L384" class="ln">   384  </span>		localVarHTTPMethod  = _nethttp.MethodDelete
-<span id="L385" class="ln">   385  </span>		localVarPostBody    interface{}
-<span id="L386" class="ln">   386  </span>		localVarReturnValue DeletedMonitor
-<span id="L387" class="ln">   387  </span>		optionalParams      DeleteMonitorOptionalParameters
-<span id="L388" class="ln">   388  </span>	)
-<span id="L389" class="ln">   389  </span>
-<span id="L390" class="ln">   390  </span>	if len(o) &gt; 1 {
-<span id="L391" class="ln">   391  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type DeleteMonitorOptionalParameters is allowed&#34;)
-<span id="L392" class="ln">   392  </span>	}
-<span id="L393" class="ln">   393  </span>	if len(o) == 1 {
-<span id="L394" class="ln">   394  </span>		optionalParams = o[0]
-<span id="L395" class="ln">   395  </span>	}
-<span id="L396" class="ln">   396  </span>
-<span id="L397" class="ln">   397  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.DeleteMonitor&#34;)
-<span id="L398" class="ln">   398  </span>	if err != nil {
-<span id="L399" class="ln">   399  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L400" class="ln">   400  </span>	}
-<span id="L401" class="ln">   401  </span>
-<span id="L402" class="ln">   402  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor/{monitor_id}&#34;
-<span id="L403" class="ln">   403  </span>	localVarPath = strings.Replace(localVarPath, &#34;{&#34;+&#34;monitor_id&#34;+&#34;}&#34;, _neturl.PathEscape(datadog.ParameterToString(monitorId, &#34;&#34;)), -1)
-<span id="L404" class="ln">   404  </span>
-<span id="L405" class="ln">   405  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L406" class="ln">   406  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L407" class="ln">   407  </span>	localVarFormParams := _neturl.Values{}
-<span id="L408" class="ln">   408  </span>	if optionalParams.Force != nil {
-<span id="L409" class="ln">   409  </span>		localVarQueryParams.Add(&#34;force&#34;, datadog.ParameterToString(*optionalParams.Force, &#34;&#34;))
-<span id="L410" class="ln">   410  </span>	}
-<span id="L411" class="ln">   411  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L412" class="ln">   412  </span>
-<span id="L413" class="ln">   413  </span>	datadog.SetAuthKeys(
-<span id="L414" class="ln">   414  </span>		ctx,
-<span id="L415" class="ln">   415  </span>		&amp;localVarHeaderParams,
-<span id="L416" class="ln">   416  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L417" class="ln">   417  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L418" class="ln">   418  </span>	)
-<span id="L419" class="ln">   419  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L420" class="ln">   420  </span>	if err != nil {
-<span id="L421" class="ln">   421  </span>		return localVarReturnValue, nil, err
-<span id="L422" class="ln">   422  </span>	}
-<span id="L423" class="ln">   423  </span>
-<span id="L424" class="ln">   424  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L425" class="ln">   425  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L426" class="ln">   426  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L427" class="ln">   427  </span>	}
-<span id="L428" class="ln">   428  </span>
-<span id="L429" class="ln">   429  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L430" class="ln">   430  </span>	if err != nil {
-<span id="L431" class="ln">   431  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L432" class="ln">   432  </span>	}
-<span id="L433" class="ln">   433  </span>
-<span id="L434" class="ln">   434  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L435" class="ln">   435  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L436" class="ln">   436  </span>			ErrorBody:    localVarBody,
-<span id="L437" class="ln">   437  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L438" class="ln">   438  </span>		}
-<span id="L439" class="ln">   439  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L440" class="ln">   440  </span>			var v APIErrorResponse
-<span id="L441" class="ln">   441  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L442" class="ln">   442  </span>			if err != nil {
-<span id="L443" class="ln">   443  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L444" class="ln">   444  </span>			}
-<span id="L445" class="ln">   445  </span>			newErr.ErrorModel = v
-<span id="L446" class="ln">   446  </span>		}
-<span id="L447" class="ln">   447  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L448" class="ln">   448  </span>	}
-<span id="L449" class="ln">   449  </span>
-<span id="L450" class="ln">   450  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L451" class="ln">   451  </span>	if err != nil {
-<span id="L452" class="ln">   452  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L453" class="ln">   453  </span>			ErrorBody:    localVarBody,
-<span id="L454" class="ln">   454  </span>			ErrorMessage: err.Error(),
-<span id="L455" class="ln">   455  </span>		}
-<span id="L456" class="ln">   456  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L457" class="ln">   457  </span>	}
-<span id="L458" class="ln">   458  </span>
-<span id="L459" class="ln">   459  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L460" class="ln">   460  </span>}
-<span id="L461" class="ln">   461  </span>
-<span id="L462" class="ln">   462  </span><span class="comment">// GetMonitorOptionalParameters holds optional parameters for GetMonitor.</span>
-<span id="L463" class="ln">   463  </span>type GetMonitorOptionalParameters struct {
-<span id="L464" class="ln">   464  </span>	GroupStates   *string
-<span id="L465" class="ln">   465  </span>	WithDowntimes *bool
-<span id="L466" class="ln">   466  </span>}
-<span id="L467" class="ln">   467  </span>
-<span id="L468" class="ln">   468  </span><span class="comment">// NewGetMonitorOptionalParameters creates an empty struct for parameters.</span>
-<span id="L469" class="ln">   469  </span>func NewGetMonitorOptionalParameters() *GetMonitorOptionalParameters {
-<span id="L470" class="ln">   470  </span>	this := GetMonitorOptionalParameters{}
-<span id="L471" class="ln">   471  </span>	return &amp;this
-<span id="L472" class="ln">   472  </span>}
-<span id="L473" class="ln">   473  </span>
-<span id="L474" class="ln">   474  </span><span class="comment">// WithGroupStates sets the corresponding parameter name and returns the struct.</span>
-<span id="L475" class="ln">   475  </span>func (r *GetMonitorOptionalParameters) WithGroupStates(groupStates string) *GetMonitorOptionalParameters {
-<span id="L476" class="ln">   476  </span>	r.GroupStates = &amp;groupStates
-<span id="L477" class="ln">   477  </span>	return r
-<span id="L478" class="ln">   478  </span>}
-<span id="L479" class="ln">   479  </span>
-<span id="L480" class="ln">   480  </span><span class="comment">// WithWithDowntimes sets the corresponding parameter name and returns the struct.</span>
-<span id="L481" class="ln">   481  </span>func (r *GetMonitorOptionalParameters) WithWithDowntimes(withDowntimes bool) *GetMonitorOptionalParameters {
-<span id="L482" class="ln">   482  </span>	r.WithDowntimes = &amp;withDowntimes
-<span id="L483" class="ln">   483  </span>	return r
-<span id="L484" class="ln">   484  </span>}
-<span id="L485" class="ln">   485  </span>
-<span id="L486" class="ln">   486  </span><span class="comment">// GetMonitor Get a monitor&#39;s details.</span>
-<span id="L487" class="ln">   487  </span><span class="comment">// Get details about the specified monitor from your organization.</span>
-<span id="L488" class="ln">   488  </span>func (a *MonitorsApi) GetMonitor(ctx _context.Context, monitorId int64, o ...GetMonitorOptionalParameters) (Monitor, *_nethttp.Response, error) {
-<span id="L489" class="ln">   489  </span>	var (
-<span id="L490" class="ln">   490  </span>		localVarHTTPMethod  = _nethttp.MethodGet
-<span id="L491" class="ln">   491  </span>		localVarPostBody    interface{}
-<span id="L492" class="ln">   492  </span>		localVarReturnValue Monitor
-<span id="L493" class="ln">   493  </span>		optionalParams      GetMonitorOptionalParameters
-<span id="L494" class="ln">   494  </span>	)
-<span id="L495" class="ln">   495  </span>
-<span id="L496" class="ln">   496  </span>	if len(o) &gt; 1 {
-<span id="L497" class="ln">   497  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type GetMonitorOptionalParameters is allowed&#34;)
-<span id="L498" class="ln">   498  </span>	}
-<span id="L499" class="ln">   499  </span>	if len(o) == 1 {
-<span id="L500" class="ln">   500  </span>		optionalParams = o[0]
-<span id="L501" class="ln">   501  </span>	}
-<span id="L502" class="ln">   502  </span>
-<span id="L503" class="ln">   503  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.GetMonitor&#34;)
-<span id="L504" class="ln">   504  </span>	if err != nil {
-<span id="L505" class="ln">   505  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L506" class="ln">   506  </span>	}
-<span id="L507" class="ln">   507  </span>
-<span id="L508" class="ln">   508  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor/{monitor_id}&#34;
-<span id="L509" class="ln">   509  </span>	localVarPath = strings.Replace(localVarPath, &#34;{&#34;+&#34;monitor_id&#34;+&#34;}&#34;, _neturl.PathEscape(datadog.ParameterToString(monitorId, &#34;&#34;)), -1)
-<span id="L510" class="ln">   510  </span>
-<span id="L511" class="ln">   511  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L512" class="ln">   512  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L513" class="ln">   513  </span>	localVarFormParams := _neturl.Values{}
-<span id="L514" class="ln">   514  </span>	if optionalParams.GroupStates != nil {
-<span id="L515" class="ln">   515  </span>		localVarQueryParams.Add(&#34;group_states&#34;, datadog.ParameterToString(*optionalParams.GroupStates, &#34;&#34;))
-<span id="L516" class="ln">   516  </span>	}
-<span id="L517" class="ln">   517  </span>	if optionalParams.WithDowntimes != nil {
-<span id="L518" class="ln">   518  </span>		localVarQueryParams.Add(&#34;with_downtimes&#34;, datadog.ParameterToString(*optionalParams.WithDowntimes, &#34;&#34;))
-<span id="L519" class="ln">   519  </span>	}
-<span id="L520" class="ln">   520  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L521" class="ln">   521  </span>
-<span id="L522" class="ln">   522  </span>	datadog.SetAuthKeys(
-<span id="L523" class="ln">   523  </span>		ctx,
-<span id="L524" class="ln">   524  </span>		&amp;localVarHeaderParams,
-<span id="L525" class="ln">   525  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L526" class="ln">   526  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L527" class="ln">   527  </span>	)
-<span id="L528" class="ln">   528  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L529" class="ln">   529  </span>	if err != nil {
-<span id="L530" class="ln">   530  </span>		return localVarReturnValue, nil, err
-<span id="L531" class="ln">   531  </span>	}
-<span id="L532" class="ln">   532  </span>
-<span id="L533" class="ln">   533  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L534" class="ln">   534  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L535" class="ln">   535  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L536" class="ln">   536  </span>	}
-<span id="L537" class="ln">   537  </span>
-<span id="L538" class="ln">   538  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L539" class="ln">   539  </span>	if err != nil {
-<span id="L540" class="ln">   540  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L541" class="ln">   541  </span>	}
-<span id="L542" class="ln">   542  </span>
-<span id="L543" class="ln">   543  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L544" class="ln">   544  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L545" class="ln">   545  </span>			ErrorBody:    localVarBody,
-<span id="L546" class="ln">   546  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L547" class="ln">   547  </span>		}
-<span id="L548" class="ln">   548  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L549" class="ln">   549  </span>			var v APIErrorResponse
-<span id="L550" class="ln">   550  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L551" class="ln">   551  </span>			if err != nil {
-<span id="L552" class="ln">   552  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L553" class="ln">   553  </span>			}
-<span id="L554" class="ln">   554  </span>			newErr.ErrorModel = v
-<span id="L555" class="ln">   555  </span>		}
-<span id="L556" class="ln">   556  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L557" class="ln">   557  </span>	}
-<span id="L558" class="ln">   558  </span>
-<span id="L559" class="ln">   559  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L560" class="ln">   560  </span>	if err != nil {
-<span id="L561" class="ln">   561  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L562" class="ln">   562  </span>			ErrorBody:    localVarBody,
-<span id="L563" class="ln">   563  </span>			ErrorMessage: err.Error(),
-<span id="L564" class="ln">   564  </span>		}
-<span id="L565" class="ln">   565  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L566" class="ln">   566  </span>	}
-<span id="L567" class="ln">   567  </span>
-<span id="L568" class="ln">   568  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L569" class="ln">   569  </span>}
-<span id="L570" class="ln">   570  </span>
-<span id="L571" class="ln">   571  </span><span class="comment">// ListMonitorsOptionalParameters holds optional parameters for ListMonitors.</span>
-<span id="L572" class="ln">   572  </span>type ListMonitorsOptionalParameters struct {
-<span id="L573" class="ln">   573  </span>	GroupStates   *string
-<span id="L574" class="ln">   574  </span>	Name          *string
-<span id="L575" class="ln">   575  </span>	Tags          *string
-<span id="L576" class="ln">   576  </span>	MonitorTags   *string
-<span id="L577" class="ln">   577  </span>	WithDowntimes *bool
-<span id="L578" class="ln">   578  </span>	IdOffset      *int64
-<span id="L579" class="ln">   579  </span>	Page          *int64
-<span id="L580" class="ln">   580  </span>	PageSize      *int32
-<span id="L581" class="ln">   581  </span>}
-<span id="L582" class="ln">   582  </span>
-<span id="L583" class="ln">   583  </span><span class="comment">// NewListMonitorsOptionalParameters creates an empty struct for parameters.</span>
-<span id="L584" class="ln">   584  </span>func NewListMonitorsOptionalParameters() *ListMonitorsOptionalParameters {
-<span id="L585" class="ln">   585  </span>	this := ListMonitorsOptionalParameters{}
-<span id="L586" class="ln">   586  </span>	return &amp;this
-<span id="L587" class="ln">   587  </span>}
-<span id="L588" class="ln">   588  </span>
-<span id="L589" class="ln">   589  </span><span class="comment">// WithGroupStates sets the corresponding parameter name and returns the struct.</span>
-<span id="L590" class="ln">   590  </span>func (r *ListMonitorsOptionalParameters) WithGroupStates(groupStates string) *ListMonitorsOptionalParameters {
-<span id="L591" class="ln">   591  </span>	r.GroupStates = &amp;groupStates
-<span id="L592" class="ln">   592  </span>	return r
-<span id="L593" class="ln">   593  </span>}
-<span id="L594" class="ln">   594  </span>
-<span id="L595" class="ln">   595  </span><span class="comment">// WithName sets the corresponding parameter name and returns the struct.</span>
-<span id="L596" class="ln">   596  </span>func (r *ListMonitorsOptionalParameters) WithName(name string) *ListMonitorsOptionalParameters {
-<span id="L597" class="ln">   597  </span>	r.Name = &amp;name
-<span id="L598" class="ln">   598  </span>	return r
-<span id="L599" class="ln">   599  </span>}
-<span id="L600" class="ln">   600  </span>
-<span id="L601" class="ln">   601  </span><span class="comment">// WithTags sets the corresponding parameter name and returns the struct.</span>
-<span id="L602" class="ln">   602  </span>func (r *ListMonitorsOptionalParameters) WithTags(tags string) *ListMonitorsOptionalParameters {
-<span id="L603" class="ln">   603  </span>	r.Tags = &amp;tags
-<span id="L604" class="ln">   604  </span>	return r
-<span id="L605" class="ln">   605  </span>}
-<span id="L606" class="ln">   606  </span>
-<span id="L607" class="ln">   607  </span><span class="comment">// WithMonitorTags sets the corresponding parameter name and returns the struct.</span>
-<span id="L608" class="ln">   608  </span>func (r *ListMonitorsOptionalParameters) WithMonitorTags(monitorTags string) *ListMonitorsOptionalParameters {
-<span id="L609" class="ln">   609  </span>	r.MonitorTags = &amp;monitorTags
-<span id="L610" class="ln">   610  </span>	return r
-<span id="L611" class="ln">   611  </span>}
-<span id="L612" class="ln">   612  </span>
-<span id="L613" class="ln">   613  </span><span class="comment">// WithWithDowntimes sets the corresponding parameter name and returns the struct.</span>
-<span id="L614" class="ln">   614  </span>func (r *ListMonitorsOptionalParameters) WithWithDowntimes(withDowntimes bool) *ListMonitorsOptionalParameters {
-<span id="L615" class="ln">   615  </span>	r.WithDowntimes = &amp;withDowntimes
-<span id="L616" class="ln">   616  </span>	return r
-<span id="L617" class="ln">   617  </span>}
-<span id="L618" class="ln">   618  </span>
-<span id="L619" class="ln">   619  </span><span class="comment">// WithIdOffset sets the corresponding parameter name and returns the struct.</span>
-<span id="L620" class="ln">   620  </span>func (r *ListMonitorsOptionalParameters) WithIdOffset(idOffset int64) *ListMonitorsOptionalParameters {
-<span id="L621" class="ln">   621  </span>	r.IdOffset = &amp;idOffset
-<span id="L622" class="ln">   622  </span>	return r
-<span id="L623" class="ln">   623  </span>}
-<span id="L624" class="ln">   624  </span>
-<span id="L625" class="ln">   625  </span><span class="comment">// WithPage sets the corresponding parameter name and returns the struct.</span>
-<span id="L626" class="ln">   626  </span>func (r *ListMonitorsOptionalParameters) WithPage(page int64) *ListMonitorsOptionalParameters {
-<span id="L627" class="ln">   627  </span>	r.Page = &amp;page
-<span id="L628" class="ln">   628  </span>	return r
-<span id="L629" class="ln">   629  </span>}
-<span id="L630" class="ln">   630  </span>
-<span id="L631" class="ln">   631  </span><span class="comment">// WithPageSize sets the corresponding parameter name and returns the struct.</span>
-<span id="L632" class="ln">   632  </span>func (r *ListMonitorsOptionalParameters) WithPageSize(pageSize int32) *ListMonitorsOptionalParameters {
-<span id="L633" class="ln">   633  </span>	r.PageSize = &amp;pageSize
-<span id="L634" class="ln">   634  </span>	return r
-<span id="L635" class="ln">   635  </span>}
-<span id="L636" class="ln">   636  </span>
-<span id="L637" class="ln">   637  </span><span class="comment">// ListMonitors Get all monitor details.</span>
-<span id="L638" class="ln">   638  </span><span class="comment">// Get details about the specified monitor from your organization.</span>
-<span id="L639" class="ln">   639  </span>func (a *MonitorsApi) ListMonitors(ctx _context.Context, o ...ListMonitorsOptionalParameters) ([]Monitor, *_nethttp.Response, error) {
-<span id="L640" class="ln">   640  </span>	var (
-<span id="L641" class="ln">   641  </span>		localVarHTTPMethod  = _nethttp.MethodGet
-<span id="L642" class="ln">   642  </span>		localVarPostBody    interface{}
-<span id="L643" class="ln">   643  </span>		localVarReturnValue []Monitor
-<span id="L644" class="ln">   644  </span>		optionalParams      ListMonitorsOptionalParameters
-<span id="L645" class="ln">   645  </span>	)
-<span id="L646" class="ln">   646  </span>
-<span id="L647" class="ln">   647  </span>	if len(o) &gt; 1 {
-<span id="L648" class="ln">   648  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type ListMonitorsOptionalParameters is allowed&#34;)
-<span id="L649" class="ln">   649  </span>	}
-<span id="L650" class="ln">   650  </span>	if len(o) == 1 {
-<span id="L651" class="ln">   651  </span>		optionalParams = o[0]
-<span id="L652" class="ln">   652  </span>	}
-<span id="L653" class="ln">   653  </span>
-<span id="L654" class="ln">   654  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.ListMonitors&#34;)
-<span id="L655" class="ln">   655  </span>	if err != nil {
-<span id="L656" class="ln">   656  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L657" class="ln">   657  </span>	}
-<span id="L658" class="ln">   658  </span>
-<span id="L659" class="ln">   659  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor&#34;
+<span id="L306" class="ln">   306  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor&#34;
+<span id="L307" class="ln">   307  </span>
+<span id="L308" class="ln">   308  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L309" class="ln">   309  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L310" class="ln">   310  </span>	localVarFormParams := _neturl.Values{}
+<span id="L311" class="ln">   311  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L312" class="ln">   312  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L313" class="ln">   313  </span>
+<span id="L314" class="ln">   314  </span>	<span class="comment">// body params</span>
+<span id="L315" class="ln">   315  </span>	localVarPostBody = &amp;body
+<span id="L316" class="ln">   316  </span>	datadog.SetAuthKeys(
+<span id="L317" class="ln">   317  </span>		ctx,
+<span id="L318" class="ln">   318  </span>		&amp;localVarHeaderParams,
+<span id="L319" class="ln">   319  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L320" class="ln">   320  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L321" class="ln">   321  </span>	)
+<span id="L322" class="ln">   322  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L323" class="ln">   323  </span>	if err != nil {
+<span id="L324" class="ln">   324  </span>		return localVarReturnValue, nil, err
+<span id="L325" class="ln">   325  </span>	}
+<span id="L326" class="ln">   326  </span>
+<span id="L327" class="ln">   327  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L328" class="ln">   328  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L329" class="ln">   329  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L330" class="ln">   330  </span>	}
+<span id="L331" class="ln">   331  </span>
+<span id="L332" class="ln">   332  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L333" class="ln">   333  </span>	if err != nil {
+<span id="L334" class="ln">   334  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L335" class="ln">   335  </span>	}
+<span id="L336" class="ln">   336  </span>
+<span id="L337" class="ln">   337  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L338" class="ln">   338  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L339" class="ln">   339  </span>			ErrorBody:    localVarBody,
+<span id="L340" class="ln">   340  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L341" class="ln">   341  </span>		}
+<span id="L342" class="ln">   342  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L343" class="ln">   343  </span>			var v APIErrorResponse
+<span id="L344" class="ln">   344  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L345" class="ln">   345  </span>			if err != nil {
+<span id="L346" class="ln">   346  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L347" class="ln">   347  </span>			}
+<span id="L348" class="ln">   348  </span>			newErr.ErrorModel = v
+<span id="L349" class="ln">   349  </span>		}
+<span id="L350" class="ln">   350  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L351" class="ln">   351  </span>	}
+<span id="L352" class="ln">   352  </span>
+<span id="L353" class="ln">   353  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L354" class="ln">   354  </span>	if err != nil {
+<span id="L355" class="ln">   355  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L356" class="ln">   356  </span>			ErrorBody:    localVarBody,
+<span id="L357" class="ln">   357  </span>			ErrorMessage: err.Error(),
+<span id="L358" class="ln">   358  </span>		}
+<span id="L359" class="ln">   359  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L360" class="ln">   360  </span>	}
+<span id="L361" class="ln">   361  </span>
+<span id="L362" class="ln">   362  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L363" class="ln">   363  </span>}
+<span id="L364" class="ln">   364  </span>
+<span id="L365" class="ln">   365  </span><span class="comment">// DeleteMonitorOptionalParameters holds optional parameters for DeleteMonitor.</span>
+<span id="L366" class="ln">   366  </span>type DeleteMonitorOptionalParameters struct {
+<span id="L367" class="ln">   367  </span>	Force *string
+<span id="L368" class="ln">   368  </span>}
+<span id="L369" class="ln">   369  </span>
+<span id="L370" class="ln">   370  </span><span class="comment">// NewDeleteMonitorOptionalParameters creates an empty struct for parameters.</span>
+<span id="L371" class="ln">   371  </span>func NewDeleteMonitorOptionalParameters() *DeleteMonitorOptionalParameters {
+<span id="L372" class="ln">   372  </span>	this := DeleteMonitorOptionalParameters{}
+<span id="L373" class="ln">   373  </span>	return &amp;this
+<span id="L374" class="ln">   374  </span>}
+<span id="L375" class="ln">   375  </span>
+<span id="L376" class="ln">   376  </span><span class="comment">// WithForce sets the corresponding parameter name and returns the struct.</span>
+<span id="L377" class="ln">   377  </span>func (r *DeleteMonitorOptionalParameters) WithForce(force string) *DeleteMonitorOptionalParameters {
+<span id="L378" class="ln">   378  </span>	r.Force = &amp;force
+<span id="L379" class="ln">   379  </span>	return r
+<span id="L380" class="ln">   380  </span>}
+<span id="L381" class="ln">   381  </span>
+<span id="L382" class="ln">   382  </span><span class="comment">// DeleteMonitor Delete a monitor.</span>
+<span id="L383" class="ln">   383  </span><span class="comment">// Delete the specified monitor</span>
+<span id="L384" class="ln">   384  </span>func (a *MonitorsApi) DeleteMonitor(ctx _context.Context, monitorId int64, o ...DeleteMonitorOptionalParameters) (DeletedMonitor, *_nethttp.Response, error) {
+<span id="L385" class="ln">   385  </span>	var (
+<span id="L386" class="ln">   386  </span>		localVarHTTPMethod  = _nethttp.MethodDelete
+<span id="L387" class="ln">   387  </span>		localVarPostBody    interface{}
+<span id="L388" class="ln">   388  </span>		localVarReturnValue DeletedMonitor
+<span id="L389" class="ln">   389  </span>		optionalParams      DeleteMonitorOptionalParameters
+<span id="L390" class="ln">   390  </span>	)
+<span id="L391" class="ln">   391  </span>
+<span id="L392" class="ln">   392  </span>	if len(o) &gt; 1 {
+<span id="L393" class="ln">   393  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type DeleteMonitorOptionalParameters is allowed&#34;)
+<span id="L394" class="ln">   394  </span>	}
+<span id="L395" class="ln">   395  </span>	if len(o) == 1 {
+<span id="L396" class="ln">   396  </span>		optionalParams = o[0]
+<span id="L397" class="ln">   397  </span>	}
+<span id="L398" class="ln">   398  </span>
+<span id="L399" class="ln">   399  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.DeleteMonitor&#34;)
+<span id="L400" class="ln">   400  </span>	if err != nil {
+<span id="L401" class="ln">   401  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L402" class="ln">   402  </span>	}
+<span id="L403" class="ln">   403  </span>
+<span id="L404" class="ln">   404  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor/{monitor_id}&#34;
+<span id="L405" class="ln">   405  </span>	localVarPath = strings.Replace(localVarPath, &#34;{&#34;+&#34;monitor_id&#34;+&#34;}&#34;, _neturl.PathEscape(datadog.ParameterToString(monitorId, &#34;&#34;)), -1)
+<span id="L406" class="ln">   406  </span>
+<span id="L407" class="ln">   407  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L408" class="ln">   408  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L409" class="ln">   409  </span>	localVarFormParams := _neturl.Values{}
+<span id="L410" class="ln">   410  </span>	if optionalParams.Force != nil {
+<span id="L411" class="ln">   411  </span>		localVarQueryParams.Add(&#34;force&#34;, datadog.ParameterToString(*optionalParams.Force, &#34;&#34;))
+<span id="L412" class="ln">   412  </span>	}
+<span id="L413" class="ln">   413  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L414" class="ln">   414  </span>
+<span id="L415" class="ln">   415  </span>	datadog.SetAuthKeys(
+<span id="L416" class="ln">   416  </span>		ctx,
+<span id="L417" class="ln">   417  </span>		&amp;localVarHeaderParams,
+<span id="L418" class="ln">   418  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L419" class="ln">   419  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L420" class="ln">   420  </span>	)
+<span id="L421" class="ln">   421  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L422" class="ln">   422  </span>	if err != nil {
+<span id="L423" class="ln">   423  </span>		return localVarReturnValue, nil, err
+<span id="L424" class="ln">   424  </span>	}
+<span id="L425" class="ln">   425  </span>
+<span id="L426" class="ln">   426  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L427" class="ln">   427  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L428" class="ln">   428  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L429" class="ln">   429  </span>	}
+<span id="L430" class="ln">   430  </span>
+<span id="L431" class="ln">   431  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L432" class="ln">   432  </span>	if err != nil {
+<span id="L433" class="ln">   433  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L434" class="ln">   434  </span>	}
+<span id="L435" class="ln">   435  </span>
+<span id="L436" class="ln">   436  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L437" class="ln">   437  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L438" class="ln">   438  </span>			ErrorBody:    localVarBody,
+<span id="L439" class="ln">   439  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L440" class="ln">   440  </span>		}
+<span id="L441" class="ln">   441  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L442" class="ln">   442  </span>			var v APIErrorResponse
+<span id="L443" class="ln">   443  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L444" class="ln">   444  </span>			if err != nil {
+<span id="L445" class="ln">   445  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L446" class="ln">   446  </span>			}
+<span id="L447" class="ln">   447  </span>			newErr.ErrorModel = v
+<span id="L448" class="ln">   448  </span>		}
+<span id="L449" class="ln">   449  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L450" class="ln">   450  </span>	}
+<span id="L451" class="ln">   451  </span>
+<span id="L452" class="ln">   452  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L453" class="ln">   453  </span>	if err != nil {
+<span id="L454" class="ln">   454  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L455" class="ln">   455  </span>			ErrorBody:    localVarBody,
+<span id="L456" class="ln">   456  </span>			ErrorMessage: err.Error(),
+<span id="L457" class="ln">   457  </span>		}
+<span id="L458" class="ln">   458  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L459" class="ln">   459  </span>	}
+<span id="L460" class="ln">   460  </span>
+<span id="L461" class="ln">   461  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L462" class="ln">   462  </span>}
+<span id="L463" class="ln">   463  </span>
+<span id="L464" class="ln">   464  </span><span class="comment">// GetMonitorOptionalParameters holds optional parameters for GetMonitor.</span>
+<span id="L465" class="ln">   465  </span>type GetMonitorOptionalParameters struct {
+<span id="L466" class="ln">   466  </span>	GroupStates   *string
+<span id="L467" class="ln">   467  </span>	WithDowntimes *bool
+<span id="L468" class="ln">   468  </span>}
+<span id="L469" class="ln">   469  </span>
+<span id="L470" class="ln">   470  </span><span class="comment">// NewGetMonitorOptionalParameters creates an empty struct for parameters.</span>
+<span id="L471" class="ln">   471  </span>func NewGetMonitorOptionalParameters() *GetMonitorOptionalParameters {
+<span id="L472" class="ln">   472  </span>	this := GetMonitorOptionalParameters{}
+<span id="L473" class="ln">   473  </span>	return &amp;this
+<span id="L474" class="ln">   474  </span>}
+<span id="L475" class="ln">   475  </span>
+<span id="L476" class="ln">   476  </span><span class="comment">// WithGroupStates sets the corresponding parameter name and returns the struct.</span>
+<span id="L477" class="ln">   477  </span>func (r *GetMonitorOptionalParameters) WithGroupStates(groupStates string) *GetMonitorOptionalParameters {
+<span id="L478" class="ln">   478  </span>	r.GroupStates = &amp;groupStates
+<span id="L479" class="ln">   479  </span>	return r
+<span id="L480" class="ln">   480  </span>}
+<span id="L481" class="ln">   481  </span>
+<span id="L482" class="ln">   482  </span><span class="comment">// WithWithDowntimes sets the corresponding parameter name and returns the struct.</span>
+<span id="L483" class="ln">   483  </span>func (r *GetMonitorOptionalParameters) WithWithDowntimes(withDowntimes bool) *GetMonitorOptionalParameters {
+<span id="L484" class="ln">   484  </span>	r.WithDowntimes = &amp;withDowntimes
+<span id="L485" class="ln">   485  </span>	return r
+<span id="L486" class="ln">   486  </span>}
+<span id="L487" class="ln">   487  </span>
+<span id="L488" class="ln">   488  </span><span class="comment">// GetMonitor Get a monitor&#39;s details.</span>
+<span id="L489" class="ln">   489  </span><span class="comment">// Get details about the specified monitor from your organization.</span>
+<span id="L490" class="ln">   490  </span>func (a *MonitorsApi) GetMonitor(ctx _context.Context, monitorId int64, o ...GetMonitorOptionalParameters) (Monitor, *_nethttp.Response, error) {
+<span id="L491" class="ln">   491  </span>	var (
+<span id="L492" class="ln">   492  </span>		localVarHTTPMethod  = _nethttp.MethodGet
+<span id="L493" class="ln">   493  </span>		localVarPostBody    interface{}
+<span id="L494" class="ln">   494  </span>		localVarReturnValue Monitor
+<span id="L495" class="ln">   495  </span>		optionalParams      GetMonitorOptionalParameters
+<span id="L496" class="ln">   496  </span>	)
+<span id="L497" class="ln">   497  </span>
+<span id="L498" class="ln">   498  </span>	if len(o) &gt; 1 {
+<span id="L499" class="ln">   499  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type GetMonitorOptionalParameters is allowed&#34;)
+<span id="L500" class="ln">   500  </span>	}
+<span id="L501" class="ln">   501  </span>	if len(o) == 1 {
+<span id="L502" class="ln">   502  </span>		optionalParams = o[0]
+<span id="L503" class="ln">   503  </span>	}
+<span id="L504" class="ln">   504  </span>
+<span id="L505" class="ln">   505  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.GetMonitor&#34;)
+<span id="L506" class="ln">   506  </span>	if err != nil {
+<span id="L507" class="ln">   507  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L508" class="ln">   508  </span>	}
+<span id="L509" class="ln">   509  </span>
+<span id="L510" class="ln">   510  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor/{monitor_id}&#34;
+<span id="L511" class="ln">   511  </span>	localVarPath = strings.Replace(localVarPath, &#34;{&#34;+&#34;monitor_id&#34;+&#34;}&#34;, _neturl.PathEscape(datadog.ParameterToString(monitorId, &#34;&#34;)), -1)
+<span id="L512" class="ln">   512  </span>
+<span id="L513" class="ln">   513  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L514" class="ln">   514  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L515" class="ln">   515  </span>	localVarFormParams := _neturl.Values{}
+<span id="L516" class="ln">   516  </span>	if optionalParams.GroupStates != nil {
+<span id="L517" class="ln">   517  </span>		localVarQueryParams.Add(&#34;group_states&#34;, datadog.ParameterToString(*optionalParams.GroupStates, &#34;&#34;))
+<span id="L518" class="ln">   518  </span>	}
+<span id="L519" class="ln">   519  </span>	if optionalParams.WithDowntimes != nil {
+<span id="L520" class="ln">   520  </span>		localVarQueryParams.Add(&#34;with_downtimes&#34;, datadog.ParameterToString(*optionalParams.WithDowntimes, &#34;&#34;))
+<span id="L521" class="ln">   521  </span>	}
+<span id="L522" class="ln">   522  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L523" class="ln">   523  </span>
+<span id="L524" class="ln">   524  </span>	datadog.SetAuthKeys(
+<span id="L525" class="ln">   525  </span>		ctx,
+<span id="L526" class="ln">   526  </span>		&amp;localVarHeaderParams,
+<span id="L527" class="ln">   527  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L528" class="ln">   528  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L529" class="ln">   529  </span>	)
+<span id="L530" class="ln">   530  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L531" class="ln">   531  </span>	if err != nil {
+<span id="L532" class="ln">   532  </span>		return localVarReturnValue, nil, err
+<span id="L533" class="ln">   533  </span>	}
+<span id="L534" class="ln">   534  </span>
+<span id="L535" class="ln">   535  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L536" class="ln">   536  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L537" class="ln">   537  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L538" class="ln">   538  </span>	}
+<span id="L539" class="ln">   539  </span>
+<span id="L540" class="ln">   540  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L541" class="ln">   541  </span>	if err != nil {
+<span id="L542" class="ln">   542  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L543" class="ln">   543  </span>	}
+<span id="L544" class="ln">   544  </span>
+<span id="L545" class="ln">   545  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L546" class="ln">   546  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L547" class="ln">   547  </span>			ErrorBody:    localVarBody,
+<span id="L548" class="ln">   548  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L549" class="ln">   549  </span>		}
+<span id="L550" class="ln">   550  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L551" class="ln">   551  </span>			var v APIErrorResponse
+<span id="L552" class="ln">   552  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L553" class="ln">   553  </span>			if err != nil {
+<span id="L554" class="ln">   554  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L555" class="ln">   555  </span>			}
+<span id="L556" class="ln">   556  </span>			newErr.ErrorModel = v
+<span id="L557" class="ln">   557  </span>		}
+<span id="L558" class="ln">   558  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L559" class="ln">   559  </span>	}
+<span id="L560" class="ln">   560  </span>
+<span id="L561" class="ln">   561  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L562" class="ln">   562  </span>	if err != nil {
+<span id="L563" class="ln">   563  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L564" class="ln">   564  </span>			ErrorBody:    localVarBody,
+<span id="L565" class="ln">   565  </span>			ErrorMessage: err.Error(),
+<span id="L566" class="ln">   566  </span>		}
+<span id="L567" class="ln">   567  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L568" class="ln">   568  </span>	}
+<span id="L569" class="ln">   569  </span>
+<span id="L570" class="ln">   570  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L571" class="ln">   571  </span>}
+<span id="L572" class="ln">   572  </span>
+<span id="L573" class="ln">   573  </span><span class="comment">// ListMonitorsOptionalParameters holds optional parameters for ListMonitors.</span>
+<span id="L574" class="ln">   574  </span>type ListMonitorsOptionalParameters struct {
+<span id="L575" class="ln">   575  </span>	GroupStates   *string
+<span id="L576" class="ln">   576  </span>	Name          *string
+<span id="L577" class="ln">   577  </span>	Tags          *string
+<span id="L578" class="ln">   578  </span>	MonitorTags   *string
+<span id="L579" class="ln">   579  </span>	WithDowntimes *bool
+<span id="L580" class="ln">   580  </span>	IdOffset      *int64
+<span id="L581" class="ln">   581  </span>	Page          *int64
+<span id="L582" class="ln">   582  </span>	PageSize      *int32
+<span id="L583" class="ln">   583  </span>}
+<span id="L584" class="ln">   584  </span>
+<span id="L585" class="ln">   585  </span><span class="comment">// NewListMonitorsOptionalParameters creates an empty struct for parameters.</span>
+<span id="L586" class="ln">   586  </span>func NewListMonitorsOptionalParameters() *ListMonitorsOptionalParameters {
+<span id="L587" class="ln">   587  </span>	this := ListMonitorsOptionalParameters{}
+<span id="L588" class="ln">   588  </span>	return &amp;this
+<span id="L589" class="ln">   589  </span>}
+<span id="L590" class="ln">   590  </span>
+<span id="L591" class="ln">   591  </span><span class="comment">// WithGroupStates sets the corresponding parameter name and returns the struct.</span>
+<span id="L592" class="ln">   592  </span>func (r *ListMonitorsOptionalParameters) WithGroupStates(groupStates string) *ListMonitorsOptionalParameters {
+<span id="L593" class="ln">   593  </span>	r.GroupStates = &amp;groupStates
+<span id="L594" class="ln">   594  </span>	return r
+<span id="L595" class="ln">   595  </span>}
+<span id="L596" class="ln">   596  </span>
+<span id="L597" class="ln">   597  </span><span class="comment">// WithName sets the corresponding parameter name and returns the struct.</span>
+<span id="L598" class="ln">   598  </span>func (r *ListMonitorsOptionalParameters) WithName(name string) *ListMonitorsOptionalParameters {
+<span id="L599" class="ln">   599  </span>	r.Name = &amp;name
+<span id="L600" class="ln">   600  </span>	return r
+<span id="L601" class="ln">   601  </span>}
+<span id="L602" class="ln">   602  </span>
+<span id="L603" class="ln">   603  </span><span class="comment">// WithTags sets the corresponding parameter name and returns the struct.</span>
+<span id="L604" class="ln">   604  </span>func (r *ListMonitorsOptionalParameters) WithTags(tags string) *ListMonitorsOptionalParameters {
+<span id="L605" class="ln">   605  </span>	r.Tags = &amp;tags
+<span id="L606" class="ln">   606  </span>	return r
+<span id="L607" class="ln">   607  </span>}
+<span id="L608" class="ln">   608  </span>
+<span id="L609" class="ln">   609  </span><span class="comment">// WithMonitorTags sets the corresponding parameter name and returns the struct.</span>
+<span id="L610" class="ln">   610  </span>func (r *ListMonitorsOptionalParameters) WithMonitorTags(monitorTags string) *ListMonitorsOptionalParameters {
+<span id="L611" class="ln">   611  </span>	r.MonitorTags = &amp;monitorTags
+<span id="L612" class="ln">   612  </span>	return r
+<span id="L613" class="ln">   613  </span>}
+<span id="L614" class="ln">   614  </span>
+<span id="L615" class="ln">   615  </span><span class="comment">// WithWithDowntimes sets the corresponding parameter name and returns the struct.</span>
+<span id="L616" class="ln">   616  </span>func (r *ListMonitorsOptionalParameters) WithWithDowntimes(withDowntimes bool) *ListMonitorsOptionalParameters {
+<span id="L617" class="ln">   617  </span>	r.WithDowntimes = &amp;withDowntimes
+<span id="L618" class="ln">   618  </span>	return r
+<span id="L619" class="ln">   619  </span>}
+<span id="L620" class="ln">   620  </span>
+<span id="L621" class="ln">   621  </span><span class="comment">// WithIdOffset sets the corresponding parameter name and returns the struct.</span>
+<span id="L622" class="ln">   622  </span>func (r *ListMonitorsOptionalParameters) WithIdOffset(idOffset int64) *ListMonitorsOptionalParameters {
+<span id="L623" class="ln">   623  </span>	r.IdOffset = &amp;idOffset
+<span id="L624" class="ln">   624  </span>	return r
+<span id="L625" class="ln">   625  </span>}
+<span id="L626" class="ln">   626  </span>
+<span id="L627" class="ln">   627  </span><span class="comment">// WithPage sets the corresponding parameter name and returns the struct.</span>
+<span id="L628" class="ln">   628  </span>func (r *ListMonitorsOptionalParameters) WithPage(page int64) *ListMonitorsOptionalParameters {
+<span id="L629" class="ln">   629  </span>	r.Page = &amp;page
+<span id="L630" class="ln">   630  </span>	return r
+<span id="L631" class="ln">   631  </span>}
+<span id="L632" class="ln">   632  </span>
+<span id="L633" class="ln">   633  </span><span class="comment">// WithPageSize sets the corresponding parameter name and returns the struct.</span>
+<span id="L634" class="ln">   634  </span>func (r *ListMonitorsOptionalParameters) WithPageSize(pageSize int32) *ListMonitorsOptionalParameters {
+<span id="L635" class="ln">   635  </span>	r.PageSize = &amp;pageSize
+<span id="L636" class="ln">   636  </span>	return r
+<span id="L637" class="ln">   637  </span>}
+<span id="L638" class="ln">   638  </span>
+<span id="L639" class="ln">   639  </span><span class="comment">// ListMonitors Get all monitor details.</span>
+<span id="L640" class="ln">   640  </span><span class="comment">// Get details about the specified monitor from your organization.</span>
+<span id="L641" class="ln">   641  </span>func (a *MonitorsApi) ListMonitors(ctx _context.Context, o ...ListMonitorsOptionalParameters) ([]Monitor, *_nethttp.Response, error) {
+<span id="L642" class="ln">   642  </span>	var (
+<span id="L643" class="ln">   643  </span>		localVarHTTPMethod  = _nethttp.MethodGet
+<span id="L644" class="ln">   644  </span>		localVarPostBody    interface{}
+<span id="L645" class="ln">   645  </span>		localVarReturnValue []Monitor
+<span id="L646" class="ln">   646  </span>		optionalParams      ListMonitorsOptionalParameters
+<span id="L647" class="ln">   647  </span>	)
+<span id="L648" class="ln">   648  </span>
+<span id="L649" class="ln">   649  </span>	if len(o) &gt; 1 {
+<span id="L650" class="ln">   650  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type ListMonitorsOptionalParameters is allowed&#34;)
+<span id="L651" class="ln">   651  </span>	}
+<span id="L652" class="ln">   652  </span>	if len(o) == 1 {
+<span id="L653" class="ln">   653  </span>		optionalParams = o[0]
+<span id="L654" class="ln">   654  </span>	}
+<span id="L655" class="ln">   655  </span>
+<span id="L656" class="ln">   656  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.ListMonitors&#34;)
+<span id="L657" class="ln">   657  </span>	if err != nil {
+<span id="L658" class="ln">   658  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L659" class="ln">   659  </span>	}
 <span id="L660" class="ln">   660  </span>
-<span id="L661" class="ln">   661  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L662" class="ln">   662  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L663" class="ln">   663  </span>	localVarFormParams := _neturl.Values{}
-<span id="L664" class="ln">   664  </span>	if optionalParams.GroupStates != nil {
-<span id="L665" class="ln">   665  </span>		localVarQueryParams.Add(&#34;group_states&#34;, datadog.ParameterToString(*optionalParams.GroupStates, &#34;&#34;))
-<span id="L666" class="ln">   666  </span>	}
-<span id="L667" class="ln">   667  </span>	if optionalParams.Name != nil {
-<span id="L668" class="ln">   668  </span>		localVarQueryParams.Add(&#34;name&#34;, datadog.ParameterToString(*optionalParams.Name, &#34;&#34;))
-<span id="L669" class="ln">   669  </span>	}
-<span id="L670" class="ln">   670  </span>	if optionalParams.Tags != nil {
-<span id="L671" class="ln">   671  </span>		localVarQueryParams.Add(&#34;tags&#34;, datadog.ParameterToString(*optionalParams.Tags, &#34;&#34;))
-<span id="L672" class="ln">   672  </span>	}
-<span id="L673" class="ln">   673  </span>	if optionalParams.MonitorTags != nil {
-<span id="L674" class="ln">   674  </span>		localVarQueryParams.Add(&#34;monitor_tags&#34;, datadog.ParameterToString(*optionalParams.MonitorTags, &#34;&#34;))
-<span id="L675" class="ln">   675  </span>	}
-<span id="L676" class="ln">   676  </span>	if optionalParams.WithDowntimes != nil {
-<span id="L677" class="ln">   677  </span>		localVarQueryParams.Add(&#34;with_downtimes&#34;, datadog.ParameterToString(*optionalParams.WithDowntimes, &#34;&#34;))
-<span id="L678" class="ln">   678  </span>	}
-<span id="L679" class="ln">   679  </span>	if optionalParams.IdOffset != nil {
-<span id="L680" class="ln">   680  </span>		localVarQueryParams.Add(&#34;id_offset&#34;, datadog.ParameterToString(*optionalParams.IdOffset, &#34;&#34;))
-<span id="L681" class="ln">   681  </span>	}
-<span id="L682" class="ln">   682  </span>	if optionalParams.Page != nil {
-<span id="L683" class="ln">   683  </span>		localVarQueryParams.Add(&#34;page&#34;, datadog.ParameterToString(*optionalParams.Page, &#34;&#34;))
-<span id="L684" class="ln">   684  </span>	}
-<span id="L685" class="ln">   685  </span>	if optionalParams.PageSize != nil {
-<span id="L686" class="ln">   686  </span>		localVarQueryParams.Add(&#34;page_size&#34;, datadog.ParameterToString(*optionalParams.PageSize, &#34;&#34;))
-<span id="L687" class="ln">   687  </span>	}
-<span id="L688" class="ln">   688  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L689" class="ln">   689  </span>
-<span id="L690" class="ln">   690  </span>	datadog.SetAuthKeys(
-<span id="L691" class="ln">   691  </span>		ctx,
-<span id="L692" class="ln">   692  </span>		&amp;localVarHeaderParams,
-<span id="L693" class="ln">   693  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L694" class="ln">   694  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L695" class="ln">   695  </span>	)
-<span id="L696" class="ln">   696  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L697" class="ln">   697  </span>	if err != nil {
-<span id="L698" class="ln">   698  </span>		return localVarReturnValue, nil, err
-<span id="L699" class="ln">   699  </span>	}
-<span id="L700" class="ln">   700  </span>
-<span id="L701" class="ln">   701  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L702" class="ln">   702  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L703" class="ln">   703  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L704" class="ln">   704  </span>	}
-<span id="L705" class="ln">   705  </span>
-<span id="L706" class="ln">   706  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L707" class="ln">   707  </span>	if err != nil {
-<span id="L708" class="ln">   708  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L709" class="ln">   709  </span>	}
-<span id="L710" class="ln">   710  </span>
-<span id="L711" class="ln">   711  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L712" class="ln">   712  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L713" class="ln">   713  </span>			ErrorBody:    localVarBody,
-<span id="L714" class="ln">   714  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L715" class="ln">   715  </span>		}
-<span id="L716" class="ln">   716  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L717" class="ln">   717  </span>			var v APIErrorResponse
-<span id="L718" class="ln">   718  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L719" class="ln">   719  </span>			if err != nil {
-<span id="L720" class="ln">   720  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L721" class="ln">   721  </span>			}
-<span id="L722" class="ln">   722  </span>			newErr.ErrorModel = v
-<span id="L723" class="ln">   723  </span>		}
-<span id="L724" class="ln">   724  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L725" class="ln">   725  </span>	}
-<span id="L726" class="ln">   726  </span>
-<span id="L727" class="ln">   727  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L728" class="ln">   728  </span>	if err != nil {
-<span id="L729" class="ln">   729  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L730" class="ln">   730  </span>			ErrorBody:    localVarBody,
-<span id="L731" class="ln">   731  </span>			ErrorMessage: err.Error(),
-<span id="L732" class="ln">   732  </span>		}
-<span id="L733" class="ln">   733  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L734" class="ln">   734  </span>	}
-<span id="L735" class="ln">   735  </span>
-<span id="L736" class="ln">   736  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L737" class="ln">   737  </span>}
-<span id="L738" class="ln">   738  </span>
-<span id="L739" class="ln">   739  </span><span class="comment">// ListMonitorsWithPagination provides a paginated version of ListMonitors returning a channel with all items.</span>
-<span id="L740" class="ln">   740  </span>func (a *MonitorsApi) ListMonitorsWithPagination(ctx _context.Context, o ...ListMonitorsOptionalParameters) (&lt;-chan datadog.PaginationResult[Monitor], func()) {
-<span id="L741" class="ln">   741  </span>	ctx, cancel := _context.WithCancel(ctx)
-<span id="L742" class="ln">   742  </span>	pageSize_ := int32(100)
-<span id="L743" class="ln">   743  </span>	if len(o) == 0 {
-<span id="L744" class="ln">   744  </span>		o = append(o, ListMonitorsOptionalParameters{})
-<span id="L745" class="ln">   745  </span>	}
-<span id="L746" class="ln">   746  </span>	if o[0].PageSize != nil {
-<span id="L747" class="ln">   747  </span>		pageSize_ = *o[0].PageSize
-<span id="L748" class="ln">   748  </span>	}
-<span id="L749" class="ln">   749  </span>	o[0].PageSize = &amp;pageSize_
-<span id="L750" class="ln">   750  </span>	page_ := int64(0)
-<span id="L751" class="ln">   751  </span>	o[0].Page = &amp;page_
-<span id="L752" class="ln">   752  </span>
-<span id="L753" class="ln">   753  </span>	items := make(chan datadog.PaginationResult[Monitor], pageSize_)
-<span id="L754" class="ln">   754  </span>	go func() {
-<span id="L755" class="ln">   755  </span>		for {
-<span id="L756" class="ln">   756  </span>			resp, _, err := a.ListMonitors(ctx, o...)
-<span id="L757" class="ln">   757  </span>			if err != nil {
-<span id="L758" class="ln">   758  </span>				var returnItem Monitor
-<span id="L759" class="ln">   759  </span>				items &lt;- datadog.PaginationResult[Monitor]{Item: returnItem, Error: err}
-<span id="L760" class="ln">   760  </span>				break
-<span id="L761" class="ln">   761  </span>			}
-<span id="L762" class="ln">   762  </span>			results := resp
-<span id="L763" class="ln">   763  </span>
-<span id="L764" class="ln">   764  </span>			for _, item := range results {
-<span id="L765" class="ln">   765  </span>				select {
-<span id="L766" class="ln">   766  </span>				case items &lt;- datadog.PaginationResult[Monitor]{Item: item, Error: nil}:
-<span id="L767" class="ln">   767  </span>				case &lt;-ctx.Done():
-<span id="L768" class="ln">   768  </span>					close(items)
-<span id="L769" class="ln">   769  </span>					return
-<span id="L770" class="ln">   770  </span>				}
-<span id="L771" class="ln">   771  </span>			}
-<span id="L772" class="ln">   772  </span>			if len(results) &lt; int(pageSize_) {
-<span id="L773" class="ln">   773  </span>				break
-<span id="L774" class="ln">   774  </span>			}
-<span id="L775" class="ln">   775  </span>			pageOffset_ := *o[0].Page + 1
-<span id="L776" class="ln">   776  </span>			o[0].Page = &amp;pageOffset_
-<span id="L777" class="ln">   777  </span>		}
-<span id="L778" class="ln">   778  </span>		close(items)
-<span id="L779" class="ln">   779  </span>	}()
-<span id="L780" class="ln">   780  </span>	return items, cancel
-<span id="L781" class="ln">   781  </span>}
-<span id="L782" class="ln">   782  </span>
-<span id="L783" class="ln">   783  </span><span class="comment">// SearchMonitorGroupsOptionalParameters holds optional parameters for SearchMonitorGroups.</span>
-<span id="L784" class="ln">   784  </span>type SearchMonitorGroupsOptionalParameters struct {
-<span id="L785" class="ln">   785  </span>	Query   *string
-<span id="L786" class="ln">   786  </span>	Page    *int64
-<span id="L787" class="ln">   787  </span>	PerPage *int64
-<span id="L788" class="ln">   788  </span>	Sort    *string
-<span id="L789" class="ln">   789  </span>}
-<span id="L790" class="ln">   790  </span>
-<span id="L791" class="ln">   791  </span><span class="comment">// NewSearchMonitorGroupsOptionalParameters creates an empty struct for parameters.</span>
-<span id="L792" class="ln">   792  </span>func NewSearchMonitorGroupsOptionalParameters() *SearchMonitorGroupsOptionalParameters {
-<span id="L793" class="ln">   793  </span>	this := SearchMonitorGroupsOptionalParameters{}
-<span id="L794" class="ln">   794  </span>	return &amp;this
-<span id="L795" class="ln">   795  </span>}
-<span id="L796" class="ln">   796  </span>
-<span id="L797" class="ln">   797  </span><span class="comment">// WithQuery sets the corresponding parameter name and returns the struct.</span>
-<span id="L798" class="ln">   798  </span>func (r *SearchMonitorGroupsOptionalParameters) WithQuery(query string) *SearchMonitorGroupsOptionalParameters {
-<span id="L799" class="ln">   799  </span>	r.Query = &amp;query
-<span id="L800" class="ln">   800  </span>	return r
-<span id="L801" class="ln">   801  </span>}
-<span id="L802" class="ln">   802  </span>
-<span id="L803" class="ln">   803  </span><span class="comment">// WithPage sets the corresponding parameter name and returns the struct.</span>
-<span id="L804" class="ln">   804  </span>func (r *SearchMonitorGroupsOptionalParameters) WithPage(page int64) *SearchMonitorGroupsOptionalParameters {
-<span id="L805" class="ln">   805  </span>	r.Page = &amp;page
-<span id="L806" class="ln">   806  </span>	return r
-<span id="L807" class="ln">   807  </span>}
-<span id="L808" class="ln">   808  </span>
-<span id="L809" class="ln">   809  </span><span class="comment">// WithPerPage sets the corresponding parameter name and returns the struct.</span>
-<span id="L810" class="ln">   810  </span>func (r *SearchMonitorGroupsOptionalParameters) WithPerPage(perPage int64) *SearchMonitorGroupsOptionalParameters {
-<span id="L811" class="ln">   811  </span>	r.PerPage = &amp;perPage
-<span id="L812" class="ln">   812  </span>	return r
-<span id="L813" class="ln">   813  </span>}
-<span id="L814" class="ln">   814  </span>
-<span id="L815" class="ln">   815  </span><span class="comment">// WithSort sets the corresponding parameter name and returns the struct.</span>
-<span id="L816" class="ln">   816  </span>func (r *SearchMonitorGroupsOptionalParameters) WithSort(sort string) *SearchMonitorGroupsOptionalParameters {
-<span id="L817" class="ln">   817  </span>	r.Sort = &amp;sort
-<span id="L818" class="ln">   818  </span>	return r
-<span id="L819" class="ln">   819  </span>}
-<span id="L820" class="ln">   820  </span>
-<span id="L821" class="ln">   821  </span><span class="comment">// SearchMonitorGroups Monitors group search.</span>
-<span id="L822" class="ln">   822  </span><span class="comment">// Search and filter your monitor groups details.</span>
-<span id="L823" class="ln">   823  </span>func (a *MonitorsApi) SearchMonitorGroups(ctx _context.Context, o ...SearchMonitorGroupsOptionalParameters) (MonitorGroupSearchResponse, *_nethttp.Response, error) {
-<span id="L824" class="ln">   824  </span>	var (
-<span id="L825" class="ln">   825  </span>		localVarHTTPMethod  = _nethttp.MethodGet
-<span id="L826" class="ln">   826  </span>		localVarPostBody    interface{}
-<span id="L827" class="ln">   827  </span>		localVarReturnValue MonitorGroupSearchResponse
-<span id="L828" class="ln">   828  </span>		optionalParams      SearchMonitorGroupsOptionalParameters
-<span id="L829" class="ln">   829  </span>	)
-<span id="L830" class="ln">   830  </span>
-<span id="L831" class="ln">   831  </span>	if len(o) &gt; 1 {
-<span id="L832" class="ln">   832  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type SearchMonitorGroupsOptionalParameters is allowed&#34;)
-<span id="L833" class="ln">   833  </span>	}
-<span id="L834" class="ln">   834  </span>	if len(o) == 1 {
-<span id="L835" class="ln">   835  </span>		optionalParams = o[0]
-<span id="L836" class="ln">   836  </span>	}
-<span id="L837" class="ln">   837  </span>
-<span id="L838" class="ln">   838  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.SearchMonitorGroups&#34;)
-<span id="L839" class="ln">   839  </span>	if err != nil {
-<span id="L840" class="ln">   840  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L841" class="ln">   841  </span>	}
-<span id="L842" class="ln">   842  </span>
-<span id="L843" class="ln">   843  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor/groups/search&#34;
+<span id="L661" class="ln">   661  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor&#34;
+<span id="L662" class="ln">   662  </span>
+<span id="L663" class="ln">   663  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L664" class="ln">   664  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L665" class="ln">   665  </span>	localVarFormParams := _neturl.Values{}
+<span id="L666" class="ln">   666  </span>	if optionalParams.GroupStates != nil {
+<span id="L667" class="ln">   667  </span>		localVarQueryParams.Add(&#34;group_states&#34;, datadog.ParameterToString(*optionalParams.GroupStates, &#34;&#34;))
+<span id="L668" class="ln">   668  </span>	}
+<span id="L669" class="ln">   669  </span>	if optionalParams.Name != nil {
+<span id="L670" class="ln">   670  </span>		localVarQueryParams.Add(&#34;name&#34;, datadog.ParameterToString(*optionalParams.Name, &#34;&#34;))
+<span id="L671" class="ln">   671  </span>	}
+<span id="L672" class="ln">   672  </span>	if optionalParams.Tags != nil {
+<span id="L673" class="ln">   673  </span>		localVarQueryParams.Add(&#34;tags&#34;, datadog.ParameterToString(*optionalParams.Tags, &#34;&#34;))
+<span id="L674" class="ln">   674  </span>	}
+<span id="L675" class="ln">   675  </span>	if optionalParams.MonitorTags != nil {
+<span id="L676" class="ln">   676  </span>		localVarQueryParams.Add(&#34;monitor_tags&#34;, datadog.ParameterToString(*optionalParams.MonitorTags, &#34;&#34;))
+<span id="L677" class="ln">   677  </span>	}
+<span id="L678" class="ln">   678  </span>	if optionalParams.WithDowntimes != nil {
+<span id="L679" class="ln">   679  </span>		localVarQueryParams.Add(&#34;with_downtimes&#34;, datadog.ParameterToString(*optionalParams.WithDowntimes, &#34;&#34;))
+<span id="L680" class="ln">   680  </span>	}
+<span id="L681" class="ln">   681  </span>	if optionalParams.IdOffset != nil {
+<span id="L682" class="ln">   682  </span>		localVarQueryParams.Add(&#34;id_offset&#34;, datadog.ParameterToString(*optionalParams.IdOffset, &#34;&#34;))
+<span id="L683" class="ln">   683  </span>	}
+<span id="L684" class="ln">   684  </span>	if optionalParams.Page != nil {
+<span id="L685" class="ln">   685  </span>		localVarQueryParams.Add(&#34;page&#34;, datadog.ParameterToString(*optionalParams.Page, &#34;&#34;))
+<span id="L686" class="ln">   686  </span>	}
+<span id="L687" class="ln">   687  </span>	if optionalParams.PageSize != nil {
+<span id="L688" class="ln">   688  </span>		localVarQueryParams.Add(&#34;page_size&#34;, datadog.ParameterToString(*optionalParams.PageSize, &#34;&#34;))
+<span id="L689" class="ln">   689  </span>	}
+<span id="L690" class="ln">   690  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L691" class="ln">   691  </span>
+<span id="L692" class="ln">   692  </span>	datadog.SetAuthKeys(
+<span id="L693" class="ln">   693  </span>		ctx,
+<span id="L694" class="ln">   694  </span>		&amp;localVarHeaderParams,
+<span id="L695" class="ln">   695  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L696" class="ln">   696  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L697" class="ln">   697  </span>	)
+<span id="L698" class="ln">   698  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L699" class="ln">   699  </span>	if err != nil {
+<span id="L700" class="ln">   700  </span>		return localVarReturnValue, nil, err
+<span id="L701" class="ln">   701  </span>	}
+<span id="L702" class="ln">   702  </span>
+<span id="L703" class="ln">   703  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L704" class="ln">   704  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L705" class="ln">   705  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L706" class="ln">   706  </span>	}
+<span id="L707" class="ln">   707  </span>
+<span id="L708" class="ln">   708  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L709" class="ln">   709  </span>	if err != nil {
+<span id="L710" class="ln">   710  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L711" class="ln">   711  </span>	}
+<span id="L712" class="ln">   712  </span>
+<span id="L713" class="ln">   713  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L714" class="ln">   714  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L715" class="ln">   715  </span>			ErrorBody:    localVarBody,
+<span id="L716" class="ln">   716  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L717" class="ln">   717  </span>		}
+<span id="L718" class="ln">   718  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L719" class="ln">   719  </span>			var v APIErrorResponse
+<span id="L720" class="ln">   720  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L721" class="ln">   721  </span>			if err != nil {
+<span id="L722" class="ln">   722  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L723" class="ln">   723  </span>			}
+<span id="L724" class="ln">   724  </span>			newErr.ErrorModel = v
+<span id="L725" class="ln">   725  </span>		}
+<span id="L726" class="ln">   726  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L727" class="ln">   727  </span>	}
+<span id="L728" class="ln">   728  </span>
+<span id="L729" class="ln">   729  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L730" class="ln">   730  </span>	if err != nil {
+<span id="L731" class="ln">   731  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L732" class="ln">   732  </span>			ErrorBody:    localVarBody,
+<span id="L733" class="ln">   733  </span>			ErrorMessage: err.Error(),
+<span id="L734" class="ln">   734  </span>		}
+<span id="L735" class="ln">   735  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L736" class="ln">   736  </span>	}
+<span id="L737" class="ln">   737  </span>
+<span id="L738" class="ln">   738  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L739" class="ln">   739  </span>}
+<span id="L740" class="ln">   740  </span>
+<span id="L741" class="ln">   741  </span><span class="comment">// ListMonitorsWithPagination provides a paginated version of ListMonitors returning a channel with all items.</span>
+<span id="L742" class="ln">   742  </span>func (a *MonitorsApi) ListMonitorsWithPagination(ctx _context.Context, o ...ListMonitorsOptionalParameters) (&lt;-chan datadog.PaginationResult[Monitor], func()) {
+<span id="L743" class="ln">   743  </span>	ctx, cancel := _context.WithCancel(ctx)
+<span id="L744" class="ln">   744  </span>	pageSize_ := int32(100)
+<span id="L745" class="ln">   745  </span>	if len(o) == 0 {
+<span id="L746" class="ln">   746  </span>		o = append(o, ListMonitorsOptionalParameters{})
+<span id="L747" class="ln">   747  </span>	}
+<span id="L748" class="ln">   748  </span>	if o[0].PageSize != nil {
+<span id="L749" class="ln">   749  </span>		pageSize_ = *o[0].PageSize
+<span id="L750" class="ln">   750  </span>	}
+<span id="L751" class="ln">   751  </span>	o[0].PageSize = &amp;pageSize_
+<span id="L752" class="ln">   752  </span>	page_ := int64(0)
+<span id="L753" class="ln">   753  </span>	o[0].Page = &amp;page_
+<span id="L754" class="ln">   754  </span>
+<span id="L755" class="ln">   755  </span>	items := make(chan datadog.PaginationResult[Monitor], pageSize_)
+<span id="L756" class="ln">   756  </span>	go func() {
+<span id="L757" class="ln">   757  </span>		for {
+<span id="L758" class="ln">   758  </span>			resp, _, err := a.ListMonitors(ctx, o...)
+<span id="L759" class="ln">   759  </span>			if err != nil {
+<span id="L760" class="ln">   760  </span>				var returnItem Monitor
+<span id="L761" class="ln">   761  </span>				items &lt;- datadog.PaginationResult[Monitor]{Item: returnItem, Error: err}
+<span id="L762" class="ln">   762  </span>				break
+<span id="L763" class="ln">   763  </span>			}
+<span id="L764" class="ln">   764  </span>			results := resp
+<span id="L765" class="ln">   765  </span>
+<span id="L766" class="ln">   766  </span>			for _, item := range results {
+<span id="L767" class="ln">   767  </span>				select {
+<span id="L768" class="ln">   768  </span>				case items &lt;- datadog.PaginationResult[Monitor]{Item: item, Error: nil}:
+<span id="L769" class="ln">   769  </span>				case &lt;-ctx.Done():
+<span id="L770" class="ln">   770  </span>					close(items)
+<span id="L771" class="ln">   771  </span>					return
+<span id="L772" class="ln">   772  </span>				}
+<span id="L773" class="ln">   773  </span>			}
+<span id="L774" class="ln">   774  </span>			if len(results) &lt; int(pageSize_) {
+<span id="L775" class="ln">   775  </span>				break
+<span id="L776" class="ln">   776  </span>			}
+<span id="L777" class="ln">   777  </span>			pageOffset_ := *o[0].Page + 1
+<span id="L778" class="ln">   778  </span>			o[0].Page = &amp;pageOffset_
+<span id="L779" class="ln">   779  </span>		}
+<span id="L780" class="ln">   780  </span>		close(items)
+<span id="L781" class="ln">   781  </span>	}()
+<span id="L782" class="ln">   782  </span>	return items, cancel
+<span id="L783" class="ln">   783  </span>}
+<span id="L784" class="ln">   784  </span>
+<span id="L785" class="ln">   785  </span><span class="comment">// SearchMonitorGroupsOptionalParameters holds optional parameters for SearchMonitorGroups.</span>
+<span id="L786" class="ln">   786  </span>type SearchMonitorGroupsOptionalParameters struct {
+<span id="L787" class="ln">   787  </span>	Query   *string
+<span id="L788" class="ln">   788  </span>	Page    *int64
+<span id="L789" class="ln">   789  </span>	PerPage *int64
+<span id="L790" class="ln">   790  </span>	Sort    *string
+<span id="L791" class="ln">   791  </span>}
+<span id="L792" class="ln">   792  </span>
+<span id="L793" class="ln">   793  </span><span class="comment">// NewSearchMonitorGroupsOptionalParameters creates an empty struct for parameters.</span>
+<span id="L794" class="ln">   794  </span>func NewSearchMonitorGroupsOptionalParameters() *SearchMonitorGroupsOptionalParameters {
+<span id="L795" class="ln">   795  </span>	this := SearchMonitorGroupsOptionalParameters{}
+<span id="L796" class="ln">   796  </span>	return &amp;this
+<span id="L797" class="ln">   797  </span>}
+<span id="L798" class="ln">   798  </span>
+<span id="L799" class="ln">   799  </span><span class="comment">// WithQuery sets the corresponding parameter name and returns the struct.</span>
+<span id="L800" class="ln">   800  </span>func (r *SearchMonitorGroupsOptionalParameters) WithQuery(query string) *SearchMonitorGroupsOptionalParameters {
+<span id="L801" class="ln">   801  </span>	r.Query = &amp;query
+<span id="L802" class="ln">   802  </span>	return r
+<span id="L803" class="ln">   803  </span>}
+<span id="L804" class="ln">   804  </span>
+<span id="L805" class="ln">   805  </span><span class="comment">// WithPage sets the corresponding parameter name and returns the struct.</span>
+<span id="L806" class="ln">   806  </span>func (r *SearchMonitorGroupsOptionalParameters) WithPage(page int64) *SearchMonitorGroupsOptionalParameters {
+<span id="L807" class="ln">   807  </span>	r.Page = &amp;page
+<span id="L808" class="ln">   808  </span>	return r
+<span id="L809" class="ln">   809  </span>}
+<span id="L810" class="ln">   810  </span>
+<span id="L811" class="ln">   811  </span><span class="comment">// WithPerPage sets the corresponding parameter name and returns the struct.</span>
+<span id="L812" class="ln">   812  </span>func (r *SearchMonitorGroupsOptionalParameters) WithPerPage(perPage int64) *SearchMonitorGroupsOptionalParameters {
+<span id="L813" class="ln">   813  </span>	r.PerPage = &amp;perPage
+<span id="L814" class="ln">   814  </span>	return r
+<span id="L815" class="ln">   815  </span>}
+<span id="L816" class="ln">   816  </span>
+<span id="L817" class="ln">   817  </span><span class="comment">// WithSort sets the corresponding parameter name and returns the struct.</span>
+<span id="L818" class="ln">   818  </span>func (r *SearchMonitorGroupsOptionalParameters) WithSort(sort string) *SearchMonitorGroupsOptionalParameters {
+<span id="L819" class="ln">   819  </span>	r.Sort = &amp;sort
+<span id="L820" class="ln">   820  </span>	return r
+<span id="L821" class="ln">   821  </span>}
+<span id="L822" class="ln">   822  </span>
+<span id="L823" class="ln">   823  </span><span class="comment">// SearchMonitorGroups Monitors group search.</span>
+<span id="L824" class="ln">   824  </span><span class="comment">// Search and filter your monitor groups details.</span>
+<span id="L825" class="ln">   825  </span>func (a *MonitorsApi) SearchMonitorGroups(ctx _context.Context, o ...SearchMonitorGroupsOptionalParameters) (MonitorGroupSearchResponse, *_nethttp.Response, error) {
+<span id="L826" class="ln">   826  </span>	var (
+<span id="L827" class="ln">   827  </span>		localVarHTTPMethod  = _nethttp.MethodGet
+<span id="L828" class="ln">   828  </span>		localVarPostBody    interface{}
+<span id="L829" class="ln">   829  </span>		localVarReturnValue MonitorGroupSearchResponse
+<span id="L830" class="ln">   830  </span>		optionalParams      SearchMonitorGroupsOptionalParameters
+<span id="L831" class="ln">   831  </span>	)
+<span id="L832" class="ln">   832  </span>
+<span id="L833" class="ln">   833  </span>	if len(o) &gt; 1 {
+<span id="L834" class="ln">   834  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type SearchMonitorGroupsOptionalParameters is allowed&#34;)
+<span id="L835" class="ln">   835  </span>	}
+<span id="L836" class="ln">   836  </span>	if len(o) == 1 {
+<span id="L837" class="ln">   837  </span>		optionalParams = o[0]
+<span id="L838" class="ln">   838  </span>	}
+<span id="L839" class="ln">   839  </span>
+<span id="L840" class="ln">   840  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.SearchMonitorGroups&#34;)
+<span id="L841" class="ln">   841  </span>	if err != nil {
+<span id="L842" class="ln">   842  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L843" class="ln">   843  </span>	}
 <span id="L844" class="ln">   844  </span>
-<span id="L845" class="ln">   845  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L846" class="ln">   846  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L847" class="ln">   847  </span>	localVarFormParams := _neturl.Values{}
-<span id="L848" class="ln">   848  </span>	if optionalParams.Query != nil {
-<span id="L849" class="ln">   849  </span>		localVarQueryParams.Add(&#34;query&#34;, datadog.ParameterToString(*optionalParams.Query, &#34;&#34;))
-<span id="L850" class="ln">   850  </span>	}
-<span id="L851" class="ln">   851  </span>	if optionalParams.Page != nil {
-<span id="L852" class="ln">   852  </span>		localVarQueryParams.Add(&#34;page&#34;, datadog.ParameterToString(*optionalParams.Page, &#34;&#34;))
-<span id="L853" class="ln">   853  </span>	}
-<span id="L854" class="ln">   854  </span>	if optionalParams.PerPage != nil {
-<span id="L855" class="ln">   855  </span>		localVarQueryParams.Add(&#34;per_page&#34;, datadog.ParameterToString(*optionalParams.PerPage, &#34;&#34;))
-<span id="L856" class="ln">   856  </span>	}
-<span id="L857" class="ln">   857  </span>	if optionalParams.Sort != nil {
-<span id="L858" class="ln">   858  </span>		localVarQueryParams.Add(&#34;sort&#34;, datadog.ParameterToString(*optionalParams.Sort, &#34;&#34;))
-<span id="L859" class="ln">   859  </span>	}
-<span id="L860" class="ln">   860  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L861" class="ln">   861  </span>
-<span id="L862" class="ln">   862  </span>	datadog.SetAuthKeys(
-<span id="L863" class="ln">   863  </span>		ctx,
-<span id="L864" class="ln">   864  </span>		&amp;localVarHeaderParams,
-<span id="L865" class="ln">   865  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L866" class="ln">   866  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L867" class="ln">   867  </span>	)
-<span id="L868" class="ln">   868  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L869" class="ln">   869  </span>	if err != nil {
-<span id="L870" class="ln">   870  </span>		return localVarReturnValue, nil, err
-<span id="L871" class="ln">   871  </span>	}
-<span id="L872" class="ln">   872  </span>
-<span id="L873" class="ln">   873  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L874" class="ln">   874  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L875" class="ln">   875  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L876" class="ln">   876  </span>	}
-<span id="L877" class="ln">   877  </span>
-<span id="L878" class="ln">   878  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L879" class="ln">   879  </span>	if err != nil {
-<span id="L880" class="ln">   880  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L881" class="ln">   881  </span>	}
-<span id="L882" class="ln">   882  </span>
-<span id="L883" class="ln">   883  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L884" class="ln">   884  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L885" class="ln">   885  </span>			ErrorBody:    localVarBody,
-<span id="L886" class="ln">   886  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L887" class="ln">   887  </span>		}
-<span id="L888" class="ln">   888  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L889" class="ln">   889  </span>			var v APIErrorResponse
-<span id="L890" class="ln">   890  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L891" class="ln">   891  </span>			if err != nil {
-<span id="L892" class="ln">   892  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L893" class="ln">   893  </span>			}
-<span id="L894" class="ln">   894  </span>			newErr.ErrorModel = v
-<span id="L895" class="ln">   895  </span>		}
-<span id="L896" class="ln">   896  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L897" class="ln">   897  </span>	}
-<span id="L898" class="ln">   898  </span>
-<span id="L899" class="ln">   899  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L900" class="ln">   900  </span>	if err != nil {
-<span id="L901" class="ln">   901  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L902" class="ln">   902  </span>			ErrorBody:    localVarBody,
-<span id="L903" class="ln">   903  </span>			ErrorMessage: err.Error(),
-<span id="L904" class="ln">   904  </span>		}
-<span id="L905" class="ln">   905  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L906" class="ln">   906  </span>	}
-<span id="L907" class="ln">   907  </span>
-<span id="L908" class="ln">   908  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L909" class="ln">   909  </span>}
-<span id="L910" class="ln">   910  </span>
-<span id="L911" class="ln">   911  </span><span class="comment">// SearchMonitorsOptionalParameters holds optional parameters for SearchMonitors.</span>
-<span id="L912" class="ln">   912  </span>type SearchMonitorsOptionalParameters struct {
-<span id="L913" class="ln">   913  </span>	Query   *string
-<span id="L914" class="ln">   914  </span>	Page    *int64
-<span id="L915" class="ln">   915  </span>	PerPage *int64
-<span id="L916" class="ln">   916  </span>	Sort    *string
-<span id="L917" class="ln">   917  </span>}
-<span id="L918" class="ln">   918  </span>
-<span id="L919" class="ln">   919  </span><span class="comment">// NewSearchMonitorsOptionalParameters creates an empty struct for parameters.</span>
-<span id="L920" class="ln">   920  </span>func NewSearchMonitorsOptionalParameters() *SearchMonitorsOptionalParameters {
-<span id="L921" class="ln">   921  </span>	this := SearchMonitorsOptionalParameters{}
-<span id="L922" class="ln">   922  </span>	return &amp;this
-<span id="L923" class="ln">   923  </span>}
-<span id="L924" class="ln">   924  </span>
-<span id="L925" class="ln">   925  </span><span class="comment">// WithQuery sets the corresponding parameter name and returns the struct.</span>
-<span id="L926" class="ln">   926  </span>func (r *SearchMonitorsOptionalParameters) WithQuery(query string) *SearchMonitorsOptionalParameters {
-<span id="L927" class="ln">   927  </span>	r.Query = &amp;query
-<span id="L928" class="ln">   928  </span>	return r
-<span id="L929" class="ln">   929  </span>}
-<span id="L930" class="ln">   930  </span>
-<span id="L931" class="ln">   931  </span><span class="comment">// WithPage sets the corresponding parameter name and returns the struct.</span>
-<span id="L932" class="ln">   932  </span>func (r *SearchMonitorsOptionalParameters) WithPage(page int64) *SearchMonitorsOptionalParameters {
-<span id="L933" class="ln">   933  </span>	r.Page = &amp;page
-<span id="L934" class="ln">   934  </span>	return r
-<span id="L935" class="ln">   935  </span>}
-<span id="L936" class="ln">   936  </span>
-<span id="L937" class="ln">   937  </span><span class="comment">// WithPerPage sets the corresponding parameter name and returns the struct.</span>
-<span id="L938" class="ln">   938  </span>func (r *SearchMonitorsOptionalParameters) WithPerPage(perPage int64) *SearchMonitorsOptionalParameters {
-<span id="L939" class="ln">   939  </span>	r.PerPage = &amp;perPage
-<span id="L940" class="ln">   940  </span>	return r
-<span id="L941" class="ln">   941  </span>}
-<span id="L942" class="ln">   942  </span>
-<span id="L943" class="ln">   943  </span><span class="comment">// WithSort sets the corresponding parameter name and returns the struct.</span>
-<span id="L944" class="ln">   944  </span>func (r *SearchMonitorsOptionalParameters) WithSort(sort string) *SearchMonitorsOptionalParameters {
-<span id="L945" class="ln">   945  </span>	r.Sort = &amp;sort
-<span id="L946" class="ln">   946  </span>	return r
-<span id="L947" class="ln">   947  </span>}
-<span id="L948" class="ln">   948  </span>
-<span id="L949" class="ln">   949  </span><span class="comment">// SearchMonitors Monitors search.</span>
-<span id="L950" class="ln">   950  </span><span class="comment">// Search and filter your monitors details.</span>
-<span id="L951" class="ln">   951  </span>func (a *MonitorsApi) SearchMonitors(ctx _context.Context, o ...SearchMonitorsOptionalParameters) (MonitorSearchResponse, *_nethttp.Response, error) {
-<span id="L952" class="ln">   952  </span>	var (
-<span id="L953" class="ln">   953  </span>		localVarHTTPMethod  = _nethttp.MethodGet
-<span id="L954" class="ln">   954  </span>		localVarPostBody    interface{}
-<span id="L955" class="ln">   955  </span>		localVarReturnValue MonitorSearchResponse
-<span id="L956" class="ln">   956  </span>		optionalParams      SearchMonitorsOptionalParameters
-<span id="L957" class="ln">   957  </span>	)
-<span id="L958" class="ln">   958  </span>
-<span id="L959" class="ln">   959  </span>	if len(o) &gt; 1 {
-<span id="L960" class="ln">   960  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type SearchMonitorsOptionalParameters is allowed&#34;)
-<span id="L961" class="ln">   961  </span>	}
-<span id="L962" class="ln">   962  </span>	if len(o) == 1 {
-<span id="L963" class="ln">   963  </span>		optionalParams = o[0]
-<span id="L964" class="ln">   964  </span>	}
-<span id="L965" class="ln">   965  </span>
-<span id="L966" class="ln">   966  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.SearchMonitors&#34;)
-<span id="L967" class="ln">   967  </span>	if err != nil {
-<span id="L968" class="ln">   968  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L969" class="ln">   969  </span>	}
-<span id="L970" class="ln">   970  </span>
-<span id="L971" class="ln">   971  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor/search&#34;
+<span id="L845" class="ln">   845  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor/groups/search&#34;
+<span id="L846" class="ln">   846  </span>
+<span id="L847" class="ln">   847  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L848" class="ln">   848  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L849" class="ln">   849  </span>	localVarFormParams := _neturl.Values{}
+<span id="L850" class="ln">   850  </span>	if optionalParams.Query != nil {
+<span id="L851" class="ln">   851  </span>		localVarQueryParams.Add(&#34;query&#34;, datadog.ParameterToString(*optionalParams.Query, &#34;&#34;))
+<span id="L852" class="ln">   852  </span>	}
+<span id="L853" class="ln">   853  </span>	if optionalParams.Page != nil {
+<span id="L854" class="ln">   854  </span>		localVarQueryParams.Add(&#34;page&#34;, datadog.ParameterToString(*optionalParams.Page, &#34;&#34;))
+<span id="L855" class="ln">   855  </span>	}
+<span id="L856" class="ln">   856  </span>	if optionalParams.PerPage != nil {
+<span id="L857" class="ln">   857  </span>		localVarQueryParams.Add(&#34;per_page&#34;, datadog.ParameterToString(*optionalParams.PerPage, &#34;&#34;))
+<span id="L858" class="ln">   858  </span>	}
+<span id="L859" class="ln">   859  </span>	if optionalParams.Sort != nil {
+<span id="L860" class="ln">   860  </span>		localVarQueryParams.Add(&#34;sort&#34;, datadog.ParameterToString(*optionalParams.Sort, &#34;&#34;))
+<span id="L861" class="ln">   861  </span>	}
+<span id="L862" class="ln">   862  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L863" class="ln">   863  </span>
+<span id="L864" class="ln">   864  </span>	datadog.SetAuthKeys(
+<span id="L865" class="ln">   865  </span>		ctx,
+<span id="L866" class="ln">   866  </span>		&amp;localVarHeaderParams,
+<span id="L867" class="ln">   867  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L868" class="ln">   868  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L869" class="ln">   869  </span>	)
+<span id="L870" class="ln">   870  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L871" class="ln">   871  </span>	if err != nil {
+<span id="L872" class="ln">   872  </span>		return localVarReturnValue, nil, err
+<span id="L873" class="ln">   873  </span>	}
+<span id="L874" class="ln">   874  </span>
+<span id="L875" class="ln">   875  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L876" class="ln">   876  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L877" class="ln">   877  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L878" class="ln">   878  </span>	}
+<span id="L879" class="ln">   879  </span>
+<span id="L880" class="ln">   880  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L881" class="ln">   881  </span>	if err != nil {
+<span id="L882" class="ln">   882  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L883" class="ln">   883  </span>	}
+<span id="L884" class="ln">   884  </span>
+<span id="L885" class="ln">   885  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L886" class="ln">   886  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L887" class="ln">   887  </span>			ErrorBody:    localVarBody,
+<span id="L888" class="ln">   888  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L889" class="ln">   889  </span>		}
+<span id="L890" class="ln">   890  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L891" class="ln">   891  </span>			var v APIErrorResponse
+<span id="L892" class="ln">   892  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L893" class="ln">   893  </span>			if err != nil {
+<span id="L894" class="ln">   894  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L895" class="ln">   895  </span>			}
+<span id="L896" class="ln">   896  </span>			newErr.ErrorModel = v
+<span id="L897" class="ln">   897  </span>		}
+<span id="L898" class="ln">   898  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L899" class="ln">   899  </span>	}
+<span id="L900" class="ln">   900  </span>
+<span id="L901" class="ln">   901  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L902" class="ln">   902  </span>	if err != nil {
+<span id="L903" class="ln">   903  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L904" class="ln">   904  </span>			ErrorBody:    localVarBody,
+<span id="L905" class="ln">   905  </span>			ErrorMessage: err.Error(),
+<span id="L906" class="ln">   906  </span>		}
+<span id="L907" class="ln">   907  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L908" class="ln">   908  </span>	}
+<span id="L909" class="ln">   909  </span>
+<span id="L910" class="ln">   910  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L911" class="ln">   911  </span>}
+<span id="L912" class="ln">   912  </span>
+<span id="L913" class="ln">   913  </span><span class="comment">// SearchMonitorsOptionalParameters holds optional parameters for SearchMonitors.</span>
+<span id="L914" class="ln">   914  </span>type SearchMonitorsOptionalParameters struct {
+<span id="L915" class="ln">   915  </span>	Query   *string
+<span id="L916" class="ln">   916  </span>	Page    *int64
+<span id="L917" class="ln">   917  </span>	PerPage *int64
+<span id="L918" class="ln">   918  </span>	Sort    *string
+<span id="L919" class="ln">   919  </span>}
+<span id="L920" class="ln">   920  </span>
+<span id="L921" class="ln">   921  </span><span class="comment">// NewSearchMonitorsOptionalParameters creates an empty struct for parameters.</span>
+<span id="L922" class="ln">   922  </span>func NewSearchMonitorsOptionalParameters() *SearchMonitorsOptionalParameters {
+<span id="L923" class="ln">   923  </span>	this := SearchMonitorsOptionalParameters{}
+<span id="L924" class="ln">   924  </span>	return &amp;this
+<span id="L925" class="ln">   925  </span>}
+<span id="L926" class="ln">   926  </span>
+<span id="L927" class="ln">   927  </span><span class="comment">// WithQuery sets the corresponding parameter name and returns the struct.</span>
+<span id="L928" class="ln">   928  </span>func (r *SearchMonitorsOptionalParameters) WithQuery(query string) *SearchMonitorsOptionalParameters {
+<span id="L929" class="ln">   929  </span>	r.Query = &amp;query
+<span id="L930" class="ln">   930  </span>	return r
+<span id="L931" class="ln">   931  </span>}
+<span id="L932" class="ln">   932  </span>
+<span id="L933" class="ln">   933  </span><span class="comment">// WithPage sets the corresponding parameter name and returns the struct.</span>
+<span id="L934" class="ln">   934  </span>func (r *SearchMonitorsOptionalParameters) WithPage(page int64) *SearchMonitorsOptionalParameters {
+<span id="L935" class="ln">   935  </span>	r.Page = &amp;page
+<span id="L936" class="ln">   936  </span>	return r
+<span id="L937" class="ln">   937  </span>}
+<span id="L938" class="ln">   938  </span>
+<span id="L939" class="ln">   939  </span><span class="comment">// WithPerPage sets the corresponding parameter name and returns the struct.</span>
+<span id="L940" class="ln">   940  </span>func (r *SearchMonitorsOptionalParameters) WithPerPage(perPage int64) *SearchMonitorsOptionalParameters {
+<span id="L941" class="ln">   941  </span>	r.PerPage = &amp;perPage
+<span id="L942" class="ln">   942  </span>	return r
+<span id="L943" class="ln">   943  </span>}
+<span id="L944" class="ln">   944  </span>
+<span id="L945" class="ln">   945  </span><span class="comment">// WithSort sets the corresponding parameter name and returns the struct.</span>
+<span id="L946" class="ln">   946  </span>func (r *SearchMonitorsOptionalParameters) WithSort(sort string) *SearchMonitorsOptionalParameters {
+<span id="L947" class="ln">   947  </span>	r.Sort = &amp;sort
+<span id="L948" class="ln">   948  </span>	return r
+<span id="L949" class="ln">   949  </span>}
+<span id="L950" class="ln">   950  </span>
+<span id="L951" class="ln">   951  </span><span class="comment">// SearchMonitors Monitors search.</span>
+<span id="L952" class="ln">   952  </span><span class="comment">// Search and filter your monitors details.</span>
+<span id="L953" class="ln">   953  </span>func (a *MonitorsApi) SearchMonitors(ctx _context.Context, o ...SearchMonitorsOptionalParameters) (MonitorSearchResponse, *_nethttp.Response, error) {
+<span id="L954" class="ln">   954  </span>	var (
+<span id="L955" class="ln">   955  </span>		localVarHTTPMethod  = _nethttp.MethodGet
+<span id="L956" class="ln">   956  </span>		localVarPostBody    interface{}
+<span id="L957" class="ln">   957  </span>		localVarReturnValue MonitorSearchResponse
+<span id="L958" class="ln">   958  </span>		optionalParams      SearchMonitorsOptionalParameters
+<span id="L959" class="ln">   959  </span>	)
+<span id="L960" class="ln">   960  </span>
+<span id="L961" class="ln">   961  </span>	if len(o) &gt; 1 {
+<span id="L962" class="ln">   962  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type SearchMonitorsOptionalParameters is allowed&#34;)
+<span id="L963" class="ln">   963  </span>	}
+<span id="L964" class="ln">   964  </span>	if len(o) == 1 {
+<span id="L965" class="ln">   965  </span>		optionalParams = o[0]
+<span id="L966" class="ln">   966  </span>	}
+<span id="L967" class="ln">   967  </span>
+<span id="L968" class="ln">   968  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.SearchMonitors&#34;)
+<span id="L969" class="ln">   969  </span>	if err != nil {
+<span id="L970" class="ln">   970  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L971" class="ln">   971  </span>	}
 <span id="L972" class="ln">   972  </span>
-<span id="L973" class="ln">   973  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L974" class="ln">   974  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L975" class="ln">   975  </span>	localVarFormParams := _neturl.Values{}
-<span id="L976" class="ln">   976  </span>	if optionalParams.Query != nil {
-<span id="L977" class="ln">   977  </span>		localVarQueryParams.Add(&#34;query&#34;, datadog.ParameterToString(*optionalParams.Query, &#34;&#34;))
-<span id="L978" class="ln">   978  </span>	}
-<span id="L979" class="ln">   979  </span>	if optionalParams.Page != nil {
-<span id="L980" class="ln">   980  </span>		localVarQueryParams.Add(&#34;page&#34;, datadog.ParameterToString(*optionalParams.Page, &#34;&#34;))
-<span id="L981" class="ln">   981  </span>	}
-<span id="L982" class="ln">   982  </span>	if optionalParams.PerPage != nil {
-<span id="L983" class="ln">   983  </span>		localVarQueryParams.Add(&#34;per_page&#34;, datadog.ParameterToString(*optionalParams.PerPage, &#34;&#34;))
-<span id="L984" class="ln">   984  </span>	}
-<span id="L985" class="ln">   985  </span>	if optionalParams.Sort != nil {
-<span id="L986" class="ln">   986  </span>		localVarQueryParams.Add(&#34;sort&#34;, datadog.ParameterToString(*optionalParams.Sort, &#34;&#34;))
-<span id="L987" class="ln">   987  </span>	}
-<span id="L988" class="ln">   988  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L989" class="ln">   989  </span>
-<span id="L990" class="ln">   990  </span>	datadog.SetAuthKeys(
-<span id="L991" class="ln">   991  </span>		ctx,
-<span id="L992" class="ln">   992  </span>		&amp;localVarHeaderParams,
-<span id="L993" class="ln">   993  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L994" class="ln">   994  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L995" class="ln">   995  </span>	)
-<span id="L996" class="ln">   996  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L997" class="ln">   997  </span>	if err != nil {
-<span id="L998" class="ln">   998  </span>		return localVarReturnValue, nil, err
-<span id="L999" class="ln">   999  </span>	}
-<span id="L1000" class="ln">  1000  </span>
-<span id="L1001" class="ln">  1001  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L1002" class="ln">  1002  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L1003" class="ln">  1003  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L1004" class="ln">  1004  </span>	}
-<span id="L1005" class="ln">  1005  </span>
-<span id="L1006" class="ln">  1006  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L1007" class="ln">  1007  </span>	if err != nil {
-<span id="L1008" class="ln">  1008  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L1009" class="ln">  1009  </span>	}
-<span id="L1010" class="ln">  1010  </span>
-<span id="L1011" class="ln">  1011  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L1012" class="ln">  1012  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L1013" class="ln">  1013  </span>			ErrorBody:    localVarBody,
-<span id="L1014" class="ln">  1014  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L1015" class="ln">  1015  </span>		}
-<span id="L1016" class="ln">  1016  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L1017" class="ln">  1017  </span>			var v APIErrorResponse
-<span id="L1018" class="ln">  1018  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L1019" class="ln">  1019  </span>			if err != nil {
-<span id="L1020" class="ln">  1020  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L1021" class="ln">  1021  </span>			}
-<span id="L1022" class="ln">  1022  </span>			newErr.ErrorModel = v
-<span id="L1023" class="ln">  1023  </span>		}
-<span id="L1024" class="ln">  1024  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L1025" class="ln">  1025  </span>	}
-<span id="L1026" class="ln">  1026  </span>
-<span id="L1027" class="ln">  1027  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L1028" class="ln">  1028  </span>	if err != nil {
-<span id="L1029" class="ln">  1029  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L1030" class="ln">  1030  </span>			ErrorBody:    localVarBody,
-<span id="L1031" class="ln">  1031  </span>			ErrorMessage: err.Error(),
-<span id="L1032" class="ln">  1032  </span>		}
-<span id="L1033" class="ln">  1033  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L1034" class="ln">  1034  </span>	}
-<span id="L1035" class="ln">  1035  </span>
-<span id="L1036" class="ln">  1036  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L1037" class="ln">  1037  </span>}
-<span id="L1038" class="ln">  1038  </span>
-<span id="L1039" class="ln">  1039  </span><span class="comment">// UpdateMonitor Edit a monitor.</span>
-<span id="L1040" class="ln">  1040  </span><span class="comment">// Edit the specified monitor.</span>
-<span id="L1041" class="ln">  1041  </span>func (a *MonitorsApi) UpdateMonitor(ctx _context.Context, monitorId int64, body MonitorUpdateRequest) (Monitor, *_nethttp.Response, error) {
-<span id="L1042" class="ln">  1042  </span>	var (
-<span id="L1043" class="ln">  1043  </span>		localVarHTTPMethod  = _nethttp.MethodPut
-<span id="L1044" class="ln">  1044  </span>		localVarPostBody    interface{}
-<span id="L1045" class="ln">  1045  </span>		localVarReturnValue Monitor
-<span id="L1046" class="ln">  1046  </span>	)
-<span id="L1047" class="ln">  1047  </span>
-<span id="L1048" class="ln">  1048  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.UpdateMonitor&#34;)
-<span id="L1049" class="ln">  1049  </span>	if err != nil {
-<span id="L1050" class="ln">  1050  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L1051" class="ln">  1051  </span>	}
-<span id="L1052" class="ln">  1052  </span>
-<span id="L1053" class="ln">  1053  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor/{monitor_id}&#34;
-<span id="L1054" class="ln">  1054  </span>	localVarPath = strings.Replace(localVarPath, &#34;{&#34;+&#34;monitor_id&#34;+&#34;}&#34;, _neturl.PathEscape(datadog.ParameterToString(monitorId, &#34;&#34;)), -1)
-<span id="L1055" class="ln">  1055  </span>
-<span id="L1056" class="ln">  1056  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L1057" class="ln">  1057  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L1058" class="ln">  1058  </span>	localVarFormParams := _neturl.Values{}
-<span id="L1059" class="ln">  1059  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
-<span id="L1060" class="ln">  1060  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L1061" class="ln">  1061  </span>
-<span id="L1062" class="ln">  1062  </span>	<span class="comment">// body params</span>
-<span id="L1063" class="ln">  1063  </span>	localVarPostBody = &amp;body
-<span id="L1064" class="ln">  1064  </span>	datadog.SetAuthKeys(
-<span id="L1065" class="ln">  1065  </span>		ctx,
-<span id="L1066" class="ln">  1066  </span>		&amp;localVarHeaderParams,
-<span id="L1067" class="ln">  1067  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L1068" class="ln">  1068  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L1069" class="ln">  1069  </span>	)
-<span id="L1070" class="ln">  1070  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L1071" class="ln">  1071  </span>	if err != nil {
-<span id="L1072" class="ln">  1072  </span>		return localVarReturnValue, nil, err
-<span id="L1073" class="ln">  1073  </span>	}
-<span id="L1074" class="ln">  1074  </span>
-<span id="L1075" class="ln">  1075  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L1076" class="ln">  1076  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L1077" class="ln">  1077  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L1078" class="ln">  1078  </span>	}
-<span id="L1079" class="ln">  1079  </span>
-<span id="L1080" class="ln">  1080  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L1081" class="ln">  1081  </span>	if err != nil {
-<span id="L1082" class="ln">  1082  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L1083" class="ln">  1083  </span>	}
-<span id="L1084" class="ln">  1084  </span>
-<span id="L1085" class="ln">  1085  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L1086" class="ln">  1086  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L1087" class="ln">  1087  </span>			ErrorBody:    localVarBody,
-<span id="L1088" class="ln">  1088  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L1089" class="ln">  1089  </span>		}
-<span id="L1090" class="ln">  1090  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L1091" class="ln">  1091  </span>			var v APIErrorResponse
-<span id="L1092" class="ln">  1092  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L1093" class="ln">  1093  </span>			if err != nil {
-<span id="L1094" class="ln">  1094  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L1095" class="ln">  1095  </span>			}
-<span id="L1096" class="ln">  1096  </span>			newErr.ErrorModel = v
-<span id="L1097" class="ln">  1097  </span>		}
-<span id="L1098" class="ln">  1098  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L1099" class="ln">  1099  </span>	}
-<span id="L1100" class="ln">  1100  </span>
-<span id="L1101" class="ln">  1101  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L1102" class="ln">  1102  </span>	if err != nil {
-<span id="L1103" class="ln">  1103  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L1104" class="ln">  1104  </span>			ErrorBody:    localVarBody,
-<span id="L1105" class="ln">  1105  </span>			ErrorMessage: err.Error(),
-<span id="L1106" class="ln">  1106  </span>		}
-<span id="L1107" class="ln">  1107  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L1108" class="ln">  1108  </span>	}
-<span id="L1109" class="ln">  1109  </span>
-<span id="L1110" class="ln">  1110  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L1111" class="ln">  1111  </span>}
-<span id="L1112" class="ln">  1112  </span>
-<span id="L1113" class="ln">  1113  </span><span class="comment">// ValidateExistingMonitor Validate an existing monitor.</span>
-<span id="L1114" class="ln">  1114  </span><span class="comment">// Validate the monitor provided in the request.</span>
-<span id="L1115" class="ln">  1115  </span>func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId int64, body Monitor) (interface{}, *_nethttp.Response, error) {
-<span id="L1116" class="ln">  1116  </span>	var (
-<span id="L1117" class="ln">  1117  </span>		localVarHTTPMethod  = _nethttp.MethodPost
-<span id="L1118" class="ln">  1118  </span>		localVarPostBody    interface{}
-<span id="L1119" class="ln">  1119  </span>		localVarReturnValue interface{}
-<span id="L1120" class="ln">  1120  </span>	)
-<span id="L1121" class="ln">  1121  </span>
-<span id="L1122" class="ln">  1122  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.ValidateExistingMonitor&#34;)
-<span id="L1123" class="ln">  1123  </span>	if err != nil {
-<span id="L1124" class="ln">  1124  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L1125" class="ln">  1125  </span>	}
-<span id="L1126" class="ln">  1126  </span>
-<span id="L1127" class="ln">  1127  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor/{monitor_id}/validate&#34;
-<span id="L1128" class="ln">  1128  </span>	localVarPath = strings.Replace(localVarPath, &#34;{&#34;+&#34;monitor_id&#34;+&#34;}&#34;, _neturl.PathEscape(datadog.ParameterToString(monitorId, &#34;&#34;)), -1)
-<span id="L1129" class="ln">  1129  </span>
-<span id="L1130" class="ln">  1130  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L1131" class="ln">  1131  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L1132" class="ln">  1132  </span>	localVarFormParams := _neturl.Values{}
-<span id="L1133" class="ln">  1133  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
-<span id="L1134" class="ln">  1134  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L1135" class="ln">  1135  </span>
-<span id="L1136" class="ln">  1136  </span>	<span class="comment">// body params</span>
-<span id="L1137" class="ln">  1137  </span>	localVarPostBody = &amp;body
-<span id="L1138" class="ln">  1138  </span>	datadog.SetAuthKeys(
-<span id="L1139" class="ln">  1139  </span>		ctx,
-<span id="L1140" class="ln">  1140  </span>		&amp;localVarHeaderParams,
-<span id="L1141" class="ln">  1141  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L1142" class="ln">  1142  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L1143" class="ln">  1143  </span>	)
-<span id="L1144" class="ln">  1144  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L1145" class="ln">  1145  </span>	if err != nil {
-<span id="L1146" class="ln">  1146  </span>		return localVarReturnValue, nil, err
-<span id="L1147" class="ln">  1147  </span>	}
-<span id="L1148" class="ln">  1148  </span>
-<span id="L1149" class="ln">  1149  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L1150" class="ln">  1150  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L1151" class="ln">  1151  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L1152" class="ln">  1152  </span>	}
-<span id="L1153" class="ln">  1153  </span>
-<span id="L1154" class="ln">  1154  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L1155" class="ln">  1155  </span>	if err != nil {
-<span id="L1156" class="ln">  1156  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L1157" class="ln">  1157  </span>	}
-<span id="L1158" class="ln">  1158  </span>
-<span id="L1159" class="ln">  1159  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L1160" class="ln">  1160  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L1161" class="ln">  1161  </span>			ErrorBody:    localVarBody,
-<span id="L1162" class="ln">  1162  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L1163" class="ln">  1163  </span>		}
-<span id="L1164" class="ln">  1164  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L1165" class="ln">  1165  </span>			var v APIErrorResponse
-<span id="L1166" class="ln">  1166  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L1167" class="ln">  1167  </span>			if err != nil {
-<span id="L1168" class="ln">  1168  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L1169" class="ln">  1169  </span>			}
-<span id="L1170" class="ln">  1170  </span>			newErr.ErrorModel = v
-<span id="L1171" class="ln">  1171  </span>		}
-<span id="L1172" class="ln">  1172  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L1173" class="ln">  1173  </span>	}
-<span id="L1174" class="ln">  1174  </span>
-<span id="L1175" class="ln">  1175  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L1176" class="ln">  1176  </span>	if err != nil {
-<span id="L1177" class="ln">  1177  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L1178" class="ln">  1178  </span>			ErrorBody:    localVarBody,
-<span id="L1179" class="ln">  1179  </span>			ErrorMessage: err.Error(),
-<span id="L1180" class="ln">  1180  </span>		}
-<span id="L1181" class="ln">  1181  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L1182" class="ln">  1182  </span>	}
-<span id="L1183" class="ln">  1183  </span>
-<span id="L1184" class="ln">  1184  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L1185" class="ln">  1185  </span>}
-<span id="L1186" class="ln">  1186  </span>
-<span id="L1187" class="ln">  1187  </span><span class="comment">// ValidateMonitor Validate a monitor.</span>
-<span id="L1188" class="ln">  1188  </span><span class="comment">// Validate the monitor provided in the request.</span>
-<span id="L1189" class="ln">  1189  </span><span class="comment">//</span>
-<span id="L1190" class="ln">  1190  </span><span class="comment">// **Note**: Log monitors require an unscoped App Key.</span>
-<span id="L1191" class="ln">  1191  </span>func (a *MonitorsApi) ValidateMonitor(ctx _context.Context, body Monitor) (interface{}, *_nethttp.Response, error) {
-<span id="L1192" class="ln">  1192  </span>	var (
-<span id="L1193" class="ln">  1193  </span>		localVarHTTPMethod  = _nethttp.MethodPost
-<span id="L1194" class="ln">  1194  </span>		localVarPostBody    interface{}
-<span id="L1195" class="ln">  1195  </span>		localVarReturnValue interface{}
-<span id="L1196" class="ln">  1196  </span>	)
-<span id="L1197" class="ln">  1197  </span>
-<span id="L1198" class="ln">  1198  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.ValidateMonitor&#34;)
-<span id="L1199" class="ln">  1199  </span>	if err != nil {
-<span id="L1200" class="ln">  1200  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L1201" class="ln">  1201  </span>	}
-<span id="L1202" class="ln">  1202  </span>
-<span id="L1203" class="ln">  1203  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor/validate&#34;
+<span id="L973" class="ln">   973  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor/search&#34;
+<span id="L974" class="ln">   974  </span>
+<span id="L975" class="ln">   975  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L976" class="ln">   976  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L977" class="ln">   977  </span>	localVarFormParams := _neturl.Values{}
+<span id="L978" class="ln">   978  </span>	if optionalParams.Query != nil {
+<span id="L979" class="ln">   979  </span>		localVarQueryParams.Add(&#34;query&#34;, datadog.ParameterToString(*optionalParams.Query, &#34;&#34;))
+<span id="L980" class="ln">   980  </span>	}
+<span id="L981" class="ln">   981  </span>	if optionalParams.Page != nil {
+<span id="L982" class="ln">   982  </span>		localVarQueryParams.Add(&#34;page&#34;, datadog.ParameterToString(*optionalParams.Page, &#34;&#34;))
+<span id="L983" class="ln">   983  </span>	}
+<span id="L984" class="ln">   984  </span>	if optionalParams.PerPage != nil {
+<span id="L985" class="ln">   985  </span>		localVarQueryParams.Add(&#34;per_page&#34;, datadog.ParameterToString(*optionalParams.PerPage, &#34;&#34;))
+<span id="L986" class="ln">   986  </span>	}
+<span id="L987" class="ln">   987  </span>	if optionalParams.Sort != nil {
+<span id="L988" class="ln">   988  </span>		localVarQueryParams.Add(&#34;sort&#34;, datadog.ParameterToString(*optionalParams.Sort, &#34;&#34;))
+<span id="L989" class="ln">   989  </span>	}
+<span id="L990" class="ln">   990  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L991" class="ln">   991  </span>
+<span id="L992" class="ln">   992  </span>	datadog.SetAuthKeys(
+<span id="L993" class="ln">   993  </span>		ctx,
+<span id="L994" class="ln">   994  </span>		&amp;localVarHeaderParams,
+<span id="L995" class="ln">   995  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L996" class="ln">   996  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L997" class="ln">   997  </span>	)
+<span id="L998" class="ln">   998  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L999" class="ln">   999  </span>	if err != nil {
+<span id="L1000" class="ln">  1000  </span>		return localVarReturnValue, nil, err
+<span id="L1001" class="ln">  1001  </span>	}
+<span id="L1002" class="ln">  1002  </span>
+<span id="L1003" class="ln">  1003  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L1004" class="ln">  1004  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L1005" class="ln">  1005  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L1006" class="ln">  1006  </span>	}
+<span id="L1007" class="ln">  1007  </span>
+<span id="L1008" class="ln">  1008  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L1009" class="ln">  1009  </span>	if err != nil {
+<span id="L1010" class="ln">  1010  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L1011" class="ln">  1011  </span>	}
+<span id="L1012" class="ln">  1012  </span>
+<span id="L1013" class="ln">  1013  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L1014" class="ln">  1014  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L1015" class="ln">  1015  </span>			ErrorBody:    localVarBody,
+<span id="L1016" class="ln">  1016  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L1017" class="ln">  1017  </span>		}
+<span id="L1018" class="ln">  1018  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L1019" class="ln">  1019  </span>			var v APIErrorResponse
+<span id="L1020" class="ln">  1020  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L1021" class="ln">  1021  </span>			if err != nil {
+<span id="L1022" class="ln">  1022  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1023" class="ln">  1023  </span>			}
+<span id="L1024" class="ln">  1024  </span>			newErr.ErrorModel = v
+<span id="L1025" class="ln">  1025  </span>		}
+<span id="L1026" class="ln">  1026  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1027" class="ln">  1027  </span>	}
+<span id="L1028" class="ln">  1028  </span>
+<span id="L1029" class="ln">  1029  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L1030" class="ln">  1030  </span>	if err != nil {
+<span id="L1031" class="ln">  1031  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L1032" class="ln">  1032  </span>			ErrorBody:    localVarBody,
+<span id="L1033" class="ln">  1033  </span>			ErrorMessage: err.Error(),
+<span id="L1034" class="ln">  1034  </span>		}
+<span id="L1035" class="ln">  1035  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1036" class="ln">  1036  </span>	}
+<span id="L1037" class="ln">  1037  </span>
+<span id="L1038" class="ln">  1038  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L1039" class="ln">  1039  </span>}
+<span id="L1040" class="ln">  1040  </span>
+<span id="L1041" class="ln">  1041  </span><span class="comment">// UpdateMonitor Edit a monitor.</span>
+<span id="L1042" class="ln">  1042  </span><span class="comment">// Edit the specified monitor.</span>
+<span id="L1043" class="ln">  1043  </span>func (a *MonitorsApi) UpdateMonitor(ctx _context.Context, monitorId int64, body MonitorUpdateRequest) (Monitor, *_nethttp.Response, error) {
+<span id="L1044" class="ln">  1044  </span>	var (
+<span id="L1045" class="ln">  1045  </span>		localVarHTTPMethod  = _nethttp.MethodPut
+<span id="L1046" class="ln">  1046  </span>		localVarPostBody    interface{}
+<span id="L1047" class="ln">  1047  </span>		localVarReturnValue Monitor
+<span id="L1048" class="ln">  1048  </span>	)
+<span id="L1049" class="ln">  1049  </span>
+<span id="L1050" class="ln">  1050  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.UpdateMonitor&#34;)
+<span id="L1051" class="ln">  1051  </span>	if err != nil {
+<span id="L1052" class="ln">  1052  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L1053" class="ln">  1053  </span>	}
+<span id="L1054" class="ln">  1054  </span>
+<span id="L1055" class="ln">  1055  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor/{monitor_id}&#34;
+<span id="L1056" class="ln">  1056  </span>	localVarPath = strings.Replace(localVarPath, &#34;{&#34;+&#34;monitor_id&#34;+&#34;}&#34;, _neturl.PathEscape(datadog.ParameterToString(monitorId, &#34;&#34;)), -1)
+<span id="L1057" class="ln">  1057  </span>
+<span id="L1058" class="ln">  1058  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L1059" class="ln">  1059  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L1060" class="ln">  1060  </span>	localVarFormParams := _neturl.Values{}
+<span id="L1061" class="ln">  1061  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L1062" class="ln">  1062  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L1063" class="ln">  1063  </span>
+<span id="L1064" class="ln">  1064  </span>	<span class="comment">// body params</span>
+<span id="L1065" class="ln">  1065  </span>	localVarPostBody = &amp;body
+<span id="L1066" class="ln">  1066  </span>	datadog.SetAuthKeys(
+<span id="L1067" class="ln">  1067  </span>		ctx,
+<span id="L1068" class="ln">  1068  </span>		&amp;localVarHeaderParams,
+<span id="L1069" class="ln">  1069  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L1070" class="ln">  1070  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L1071" class="ln">  1071  </span>	)
+<span id="L1072" class="ln">  1072  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L1073" class="ln">  1073  </span>	if err != nil {
+<span id="L1074" class="ln">  1074  </span>		return localVarReturnValue, nil, err
+<span id="L1075" class="ln">  1075  </span>	}
+<span id="L1076" class="ln">  1076  </span>
+<span id="L1077" class="ln">  1077  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L1078" class="ln">  1078  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L1079" class="ln">  1079  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L1080" class="ln">  1080  </span>	}
+<span id="L1081" class="ln">  1081  </span>
+<span id="L1082" class="ln">  1082  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L1083" class="ln">  1083  </span>	if err != nil {
+<span id="L1084" class="ln">  1084  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L1085" class="ln">  1085  </span>	}
+<span id="L1086" class="ln">  1086  </span>
+<span id="L1087" class="ln">  1087  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L1088" class="ln">  1088  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L1089" class="ln">  1089  </span>			ErrorBody:    localVarBody,
+<span id="L1090" class="ln">  1090  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L1091" class="ln">  1091  </span>		}
+<span id="L1092" class="ln">  1092  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L1093" class="ln">  1093  </span>			var v APIErrorResponse
+<span id="L1094" class="ln">  1094  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L1095" class="ln">  1095  </span>			if err != nil {
+<span id="L1096" class="ln">  1096  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1097" class="ln">  1097  </span>			}
+<span id="L1098" class="ln">  1098  </span>			newErr.ErrorModel = v
+<span id="L1099" class="ln">  1099  </span>		}
+<span id="L1100" class="ln">  1100  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1101" class="ln">  1101  </span>	}
+<span id="L1102" class="ln">  1102  </span>
+<span id="L1103" class="ln">  1103  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L1104" class="ln">  1104  </span>	if err != nil {
+<span id="L1105" class="ln">  1105  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L1106" class="ln">  1106  </span>			ErrorBody:    localVarBody,
+<span id="L1107" class="ln">  1107  </span>			ErrorMessage: err.Error(),
+<span id="L1108" class="ln">  1108  </span>		}
+<span id="L1109" class="ln">  1109  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1110" class="ln">  1110  </span>	}
+<span id="L1111" class="ln">  1111  </span>
+<span id="L1112" class="ln">  1112  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L1113" class="ln">  1113  </span>}
+<span id="L1114" class="ln">  1114  </span>
+<span id="L1115" class="ln">  1115  </span><span class="comment">// ValidateExistingMonitor Validate an existing monitor.</span>
+<span id="L1116" class="ln">  1116  </span><span class="comment">// Validate the monitor provided in the request.</span>
+<span id="L1117" class="ln">  1117  </span>func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId int64, body Monitor) (interface{}, *_nethttp.Response, error) {
+<span id="L1118" class="ln">  1118  </span>	var (
+<span id="L1119" class="ln">  1119  </span>		localVarHTTPMethod  = _nethttp.MethodPost
+<span id="L1120" class="ln">  1120  </span>		localVarPostBody    interface{}
+<span id="L1121" class="ln">  1121  </span>		localVarReturnValue interface{}
+<span id="L1122" class="ln">  1122  </span>	)
+<span id="L1123" class="ln">  1123  </span>
+<span id="L1124" class="ln">  1124  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.ValidateExistingMonitor&#34;)
+<span id="L1125" class="ln">  1125  </span>	if err != nil {
+<span id="L1126" class="ln">  1126  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L1127" class="ln">  1127  </span>	}
+<span id="L1128" class="ln">  1128  </span>
+<span id="L1129" class="ln">  1129  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor/{monitor_id}/validate&#34;
+<span id="L1130" class="ln">  1130  </span>	localVarPath = strings.Replace(localVarPath, &#34;{&#34;+&#34;monitor_id&#34;+&#34;}&#34;, _neturl.PathEscape(datadog.ParameterToString(monitorId, &#34;&#34;)), -1)
+<span id="L1131" class="ln">  1131  </span>
+<span id="L1132" class="ln">  1132  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L1133" class="ln">  1133  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L1134" class="ln">  1134  </span>	localVarFormParams := _neturl.Values{}
+<span id="L1135" class="ln">  1135  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L1136" class="ln">  1136  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L1137" class="ln">  1137  </span>
+<span id="L1138" class="ln">  1138  </span>	<span class="comment">// body params</span>
+<span id="L1139" class="ln">  1139  </span>	localVarPostBody = &amp;body
+<span id="L1140" class="ln">  1140  </span>	datadog.SetAuthKeys(
+<span id="L1141" class="ln">  1141  </span>		ctx,
+<span id="L1142" class="ln">  1142  </span>		&amp;localVarHeaderParams,
+<span id="L1143" class="ln">  1143  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L1144" class="ln">  1144  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L1145" class="ln">  1145  </span>	)
+<span id="L1146" class="ln">  1146  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L1147" class="ln">  1147  </span>	if err != nil {
+<span id="L1148" class="ln">  1148  </span>		return localVarReturnValue, nil, err
+<span id="L1149" class="ln">  1149  </span>	}
+<span id="L1150" class="ln">  1150  </span>
+<span id="L1151" class="ln">  1151  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L1152" class="ln">  1152  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L1153" class="ln">  1153  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L1154" class="ln">  1154  </span>	}
+<span id="L1155" class="ln">  1155  </span>
+<span id="L1156" class="ln">  1156  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L1157" class="ln">  1157  </span>	if err != nil {
+<span id="L1158" class="ln">  1158  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L1159" class="ln">  1159  </span>	}
+<span id="L1160" class="ln">  1160  </span>
+<span id="L1161" class="ln">  1161  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L1162" class="ln">  1162  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L1163" class="ln">  1163  </span>			ErrorBody:    localVarBody,
+<span id="L1164" class="ln">  1164  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L1165" class="ln">  1165  </span>		}
+<span id="L1166" class="ln">  1166  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L1167" class="ln">  1167  </span>			var v APIErrorResponse
+<span id="L1168" class="ln">  1168  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L1169" class="ln">  1169  </span>			if err != nil {
+<span id="L1170" class="ln">  1170  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1171" class="ln">  1171  </span>			}
+<span id="L1172" class="ln">  1172  </span>			newErr.ErrorModel = v
+<span id="L1173" class="ln">  1173  </span>		}
+<span id="L1174" class="ln">  1174  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1175" class="ln">  1175  </span>	}
+<span id="L1176" class="ln">  1176  </span>
+<span id="L1177" class="ln">  1177  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L1178" class="ln">  1178  </span>	if err != nil {
+<span id="L1179" class="ln">  1179  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L1180" class="ln">  1180  </span>			ErrorBody:    localVarBody,
+<span id="L1181" class="ln">  1181  </span>			ErrorMessage: err.Error(),
+<span id="L1182" class="ln">  1182  </span>		}
+<span id="L1183" class="ln">  1183  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1184" class="ln">  1184  </span>	}
+<span id="L1185" class="ln">  1185  </span>
+<span id="L1186" class="ln">  1186  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L1187" class="ln">  1187  </span>}
+<span id="L1188" class="ln">  1188  </span>
+<span id="L1189" class="ln">  1189  </span><span class="comment">// ValidateMonitor Validate a monitor.</span>
+<span id="L1190" class="ln">  1190  </span><span class="comment">// Validate the monitor provided in the request.</span>
+<span id="L1191" class="ln">  1191  </span><span class="comment">//</span>
+<span id="L1192" class="ln">  1192  </span><span class="comment">// **Note**: Log monitors require an unscoped App Key.</span>
+<span id="L1193" class="ln">  1193  </span>func (a *MonitorsApi) ValidateMonitor(ctx _context.Context, body Monitor) (interface{}, *_nethttp.Response, error) {
+<span id="L1194" class="ln">  1194  </span>	var (
+<span id="L1195" class="ln">  1195  </span>		localVarHTTPMethod  = _nethttp.MethodPost
+<span id="L1196" class="ln">  1196  </span>		localVarPostBody    interface{}
+<span id="L1197" class="ln">  1197  </span>		localVarReturnValue interface{}
+<span id="L1198" class="ln">  1198  </span>	)
+<span id="L1199" class="ln">  1199  </span>
+<span id="L1200" class="ln">  1200  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.MonitorsApi.ValidateMonitor&#34;)
+<span id="L1201" class="ln">  1201  </span>	if err != nil {
+<span id="L1202" class="ln">  1202  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L1203" class="ln">  1203  </span>	}
 <span id="L1204" class="ln">  1204  </span>
-<span id="L1205" class="ln">  1205  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L1206" class="ln">  1206  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L1207" class="ln">  1207  </span>	localVarFormParams := _neturl.Values{}
-<span id="L1208" class="ln">  1208  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
-<span id="L1209" class="ln">  1209  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L1210" class="ln">  1210  </span>
-<span id="L1211" class="ln">  1211  </span>	<span class="comment">// body params</span>
-<span id="L1212" class="ln">  1212  </span>	localVarPostBody = &amp;body
-<span id="L1213" class="ln">  1213  </span>	datadog.SetAuthKeys(
-<span id="L1214" class="ln">  1214  </span>		ctx,
-<span id="L1215" class="ln">  1215  </span>		&amp;localVarHeaderParams,
-<span id="L1216" class="ln">  1216  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L1217" class="ln">  1217  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L1218" class="ln">  1218  </span>	)
-<span id="L1219" class="ln">  1219  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L1220" class="ln">  1220  </span>	if err != nil {
-<span id="L1221" class="ln">  1221  </span>		return localVarReturnValue, nil, err
-<span id="L1222" class="ln">  1222  </span>	}
-<span id="L1223" class="ln">  1223  </span>
-<span id="L1224" class="ln">  1224  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L1225" class="ln">  1225  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L1226" class="ln">  1226  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L1227" class="ln">  1227  </span>	}
-<span id="L1228" class="ln">  1228  </span>
-<span id="L1229" class="ln">  1229  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L1230" class="ln">  1230  </span>	if err != nil {
-<span id="L1231" class="ln">  1231  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L1232" class="ln">  1232  </span>	}
-<span id="L1233" class="ln">  1233  </span>
-<span id="L1234" class="ln">  1234  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L1235" class="ln">  1235  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L1236" class="ln">  1236  </span>			ErrorBody:    localVarBody,
-<span id="L1237" class="ln">  1237  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L1238" class="ln">  1238  </span>		}
-<span id="L1239" class="ln">  1239  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L1240" class="ln">  1240  </span>			var v APIErrorResponse
-<span id="L1241" class="ln">  1241  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L1242" class="ln">  1242  </span>			if err != nil {
-<span id="L1243" class="ln">  1243  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L1244" class="ln">  1244  </span>			}
-<span id="L1245" class="ln">  1245  </span>			newErr.ErrorModel = v
-<span id="L1246" class="ln">  1246  </span>		}
-<span id="L1247" class="ln">  1247  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L1248" class="ln">  1248  </span>	}
-<span id="L1249" class="ln">  1249  </span>
-<span id="L1250" class="ln">  1250  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L1251" class="ln">  1251  </span>	if err != nil {
-<span id="L1252" class="ln">  1252  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L1253" class="ln">  1253  </span>			ErrorBody:    localVarBody,
-<span id="L1254" class="ln">  1254  </span>			ErrorMessage: err.Error(),
-<span id="L1255" class="ln">  1255  </span>		}
-<span id="L1256" class="ln">  1256  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L1257" class="ln">  1257  </span>	}
-<span id="L1258" class="ln">  1258  </span>
-<span id="L1259" class="ln">  1259  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L1260" class="ln">  1260  </span>}
-<span id="L1261" class="ln">  1261  </span>
-<span id="L1262" class="ln">  1262  </span><span class="comment">// NewMonitorsApi Returns NewMonitorsApi.</span>
-<span id="L1263" class="ln">  1263  </span>func NewMonitorsApi(client *datadog.APIClient) *MonitorsApi {
-<span id="L1264" class="ln">  1264  </span>	return &amp;MonitorsApi{
-<span id="L1265" class="ln">  1265  </span>		Client: client,
-<span id="L1266" class="ln">  1266  </span>	}
-<span id="L1267" class="ln">  1267  </span>}
-<span id="L1268" class="ln">  1268  </span>
+<span id="L1205" class="ln">  1205  </span>	localVarPath := localBasePath + &#34;/api/v1/monitor/validate&#34;
+<span id="L1206" class="ln">  1206  </span>
+<span id="L1207" class="ln">  1207  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L1208" class="ln">  1208  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L1209" class="ln">  1209  </span>	localVarFormParams := _neturl.Values{}
+<span id="L1210" class="ln">  1210  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L1211" class="ln">  1211  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L1212" class="ln">  1212  </span>
+<span id="L1213" class="ln">  1213  </span>	<span class="comment">// body params</span>
+<span id="L1214" class="ln">  1214  </span>	localVarPostBody = &amp;body
+<span id="L1215" class="ln">  1215  </span>	datadog.SetAuthKeys(
+<span id="L1216" class="ln">  1216  </span>		ctx,
+<span id="L1217" class="ln">  1217  </span>		&amp;localVarHeaderParams,
+<span id="L1218" class="ln">  1218  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L1219" class="ln">  1219  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L1220" class="ln">  1220  </span>	)
+<span id="L1221" class="ln">  1221  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L1222" class="ln">  1222  </span>	if err != nil {
+<span id="L1223" class="ln">  1223  </span>		return localVarReturnValue, nil, err
+<span id="L1224" class="ln">  1224  </span>	}
+<span id="L1225" class="ln">  1225  </span>
+<span id="L1226" class="ln">  1226  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L1227" class="ln">  1227  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L1228" class="ln">  1228  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L1229" class="ln">  1229  </span>	}
+<span id="L1230" class="ln">  1230  </span>
+<span id="L1231" class="ln">  1231  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L1232" class="ln">  1232  </span>	if err != nil {
+<span id="L1233" class="ln">  1233  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L1234" class="ln">  1234  </span>	}
+<span id="L1235" class="ln">  1235  </span>
+<span id="L1236" class="ln">  1236  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L1237" class="ln">  1237  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L1238" class="ln">  1238  </span>			ErrorBody:    localVarBody,
+<span id="L1239" class="ln">  1239  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L1240" class="ln">  1240  </span>		}
+<span id="L1241" class="ln">  1241  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L1242" class="ln">  1242  </span>			var v APIErrorResponse
+<span id="L1243" class="ln">  1243  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L1244" class="ln">  1244  </span>			if err != nil {
+<span id="L1245" class="ln">  1245  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1246" class="ln">  1246  </span>			}
+<span id="L1247" class="ln">  1247  </span>			newErr.ErrorModel = v
+<span id="L1248" class="ln">  1248  </span>		}
+<span id="L1249" class="ln">  1249  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1250" class="ln">  1250  </span>	}
+<span id="L1251" class="ln">  1251  </span>
+<span id="L1252" class="ln">  1252  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L1253" class="ln">  1253  </span>	if err != nil {
+<span id="L1254" class="ln">  1254  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L1255" class="ln">  1255  </span>			ErrorBody:    localVarBody,
+<span id="L1256" class="ln">  1256  </span>			ErrorMessage: err.Error(),
+<span id="L1257" class="ln">  1257  </span>		}
+<span id="L1258" class="ln">  1258  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1259" class="ln">  1259  </span>	}
+<span id="L1260" class="ln">  1260  </span>
+<span id="L1261" class="ln">  1261  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L1262" class="ln">  1262  </span>}
+<span id="L1263" class="ln">  1263  </span>
+<span id="L1264" class="ln">  1264  </span><span class="comment">// NewMonitorsApi Returns NewMonitorsApi.</span>
+<span id="L1265" class="ln">  1265  </span>func NewMonitorsApi(client *datadog.APIClient) *MonitorsApi {
+<span id="L1266" class="ln">  1266  </span>	return &amp;MonitorsApi{
+<span id="L1267" class="ln">  1267  </span>		Client: client,
+<span id="L1268" class="ln">  1268  </span>	}
+<span id="L1269" class="ln">  1269  </span>}
+<span id="L1270" class="ln">  1270  </span>
 </pre><p></p>
 
 <div id="footer">
