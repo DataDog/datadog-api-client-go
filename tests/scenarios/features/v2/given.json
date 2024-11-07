@@ -155,6 +155,18 @@
   {
     "parameters": [
       {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"Security Incident\",\n      \"description\": \"Any incidents that harm (or have the potential to) the confidentiality, integrity, or availability of our data.\",\n      \"is_default\": false\n    },\n    \"type\": \"incident_types\"\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"incident_type\" in the system",
+    "key": "incident_type",
+    "tag": "Incidents",
+    "operationId": "CreateIncidentType"
+  },
+  {
+    "parameters": [
+      {
         "name": "incident_id",
         "source": "incident.data.id"
       },
@@ -211,6 +223,18 @@
     "key": "gcp_sts_account",
     "tag": "GCP Integration",
     "operationId": "CreateGCPSTSAccount"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"{{ unique }}\",\n      \"tenant_id\": \"4d3bac44-0230-4732-9e70-cc00736f0a97\",\n      \"team_id\": \"e5f50a58-c929-4fb3-8866-e2cd836de3c2\",\n      \"channel_id\": \"19:iD_D2xy_sAa-JV851JJYwIa6mlW9F9Nxm3SLyZq68qY1@thread.tacv2\"\n     },\n     \"type\": \"tenant-based-handle\"\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"tenant_based_handle\" in the system",
+    "key": "tenant_based_handle",
+    "tag": "Microsoft Teams Integration",
+    "operationId": "CreateTenantBasedHandle"
   },
   {
     "parameters": [
@@ -446,6 +470,18 @@
     "key": "rum_application",
     "tag": "RUM",
     "operationId": "CreateRUMApplication"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"id\": \"{{ unique }}\",\n    \"type\": \"rum_metrics\",\n    \"attributes\": {\n      \"event_type\": \"session\",\n      \"compute\": {\n        \"aggregation_type\": \"distribution\",\n        \"include_percentiles\": true,\n        \"path\": \"@duration\"\n      },\n      \"filter\": {\n        \"query\": \"source:{{ unique }}\"\n      },\n      \"group_by\": [{\n        \"path\": \"@browser.name\",\n        \"tag_name\": \"browser_name\"\n      }],\n      \"uniqueness\": {\n        \"when\": \"match\"\n      }\n    }\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"rum_metric\" in the system",
+    "key": "rum_metric",
+    "tag": "Rum Metrics",
+    "operationId": "CreateRumMetric"
   },
   {
     "parameters": [

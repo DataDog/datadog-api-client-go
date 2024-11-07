@@ -28,7 +28,6 @@ func main() {
 			EscalationMessage:      datadog.PtrString("the situation has escalated"),
 			EvaluationDelay:        *datadog.NewNullableInt64(datadog.PtrInt64(700)),
 			GroupRetentionDuration: datadog.PtrString("2d"),
-			GroupbySimpleMonitor:   datadog.PtrBool(false),
 			IncludeTags:            datadog.PtrBool(true),
 			Locked:                 datadog.PtrBool(false),
 			NewHostDelay:           *datadog.NewNullableInt64(datadog.PtrInt64(600)),

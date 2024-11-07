@@ -16,9 +16,10 @@ func main() {
 	body := datadogV2.GCPSTSServiceAccountCreateRequest{
 		Data: &datadogV2.GCPSTSServiceAccountData{
 			Attributes: &datadogV2.GCPSTSServiceAccountAttributes{
-				IsSecurityCommandCenterEnabled: datadog.PtrBool(true),
-				ClientEmail:                    datadog.PtrString("Test-252bf553ef04b351@test-project.iam.gserviceaccount.com"),
-				HostFilters:                    []string{},
+				IsSecurityCommandCenterEnabled:    datadog.PtrBool(true),
+				IsResourceChangeCollectionEnabled: datadog.PtrBool(true),
+				ClientEmail:                       datadog.PtrString("Test-252bf553ef04b351@test-project.iam.gserviceaccount.com"),
+				HostFilters:                       []string{},
 			},
 			Type: datadogV2.GCPSERVICEACCOUNTTYPE_GCP_SERVICE_ACCOUNT.Ptr(),
 		},

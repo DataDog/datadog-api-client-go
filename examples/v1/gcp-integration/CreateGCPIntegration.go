@@ -23,14 +23,15 @@ func main() {
 		CloudRunRevisionFilters: []string{
 			"dr:dre",
 		},
-		IsCspmEnabled:                  datadog.PtrBool(true),
-		IsSecurityCommandCenterEnabled: datadog.PtrBool(true),
-		PrivateKey:                     datadog.PtrString("private_key"),
-		PrivateKeyId:                   datadog.PtrString("123456789abcdefghi123456789abcdefghijklm"),
-		ProjectId:                      datadog.PtrString("datadog-apitest"),
-		ResourceCollectionEnabled:      datadog.PtrBool(true),
-		TokenUri:                       datadog.PtrString("https://accounts.google.com/o/oauth2/token"),
-		Type:                           datadog.PtrString("service_account"),
+		IsCspmEnabled:                     datadog.PtrBool(true),
+		IsSecurityCommandCenterEnabled:    datadog.PtrBool(true),
+		IsResourceChangeCollectionEnabled: datadog.PtrBool(true),
+		PrivateKey:                        datadog.PtrString("private_key"),
+		PrivateKeyId:                      datadog.PtrString("123456789abcdefghi123456789abcdefghijklm"),
+		ProjectId:                         datadog.PtrString("datadog-apitest"),
+		ResourceCollectionEnabled:         datadog.PtrBool(true),
+		TokenUri:                          datadog.PtrString("https://accounts.google.com/o/oauth2/token"),
+		Type:                              datadog.PtrString("service_account"),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

@@ -1,0 +1,63 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"Any incidents that harm (or have the potential to) the confidentiality, integrity, or availability of our data.","is_default":false,"name":"Security Incident"},"type":"incident_types"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/incidents/config/types
+  response:
+    body: '{"data":{"id":"366ac7cc-9884-4a7f-a751-9d885f3136ed","type":"incident_types","attributes":{"createdAt":"2024-11-04T19:02:38.74682603Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"Any
+      incidents that harm (or have the potential to) the confidentiality, integrity,
+      or availability of our data.","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2024-11-04T19:02:38.74682603Z","name":"Security
+      Incident","prefix":"IR"}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Security Incident-updated"},"id":"366ac7cc-9884-4a7f-a751-9d885f3136ed","type":"incident_types"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/incidents/config/types/366ac7cc-9884-4a7f-a751-9d885f3136ed
+  response:
+    body: '{"data":{"id":"366ac7cc-9884-4a7f-a751-9d885f3136ed","type":"incident_types","attributes":{"createdAt":"2024-11-04T19:02:38.746826Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"Any
+      incidents that harm (or have the potential to) the confidentiality, integrity,
+      or availability of our data.","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2024-11-04T19:02:38.837509595Z","name":"Security
+      Incident-updated","prefix":"IR"}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/incidents/config/types/366ac7cc-9884-4a7f-a751-9d885f3136ed
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2

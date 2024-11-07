@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -697,7 +695,7 @@ func (a *MetricsApi) ListTagConfigurationByName(ctx _context.Context, metricName
 type ListTagConfigurationsOptionalParameters struct {
 	FilterConfigured         *bool
 	FilterTagsConfigured     *string
-	FilterMetricType         *MetricTagConfigurationMetricTypes
+	FilterMetricType         *MetricTagConfigurationMetricTypeCategory
 	FilterIncludePercentiles *bool
 	FilterQueried            *bool
 	FilterTags               *string
@@ -723,7 +721,7 @@ func (r *ListTagConfigurationsOptionalParameters) WithFilterTagsConfigured(filte
 }
 
 // WithFilterMetricType sets the corresponding parameter name and returns the struct.
-func (r *ListTagConfigurationsOptionalParameters) WithFilterMetricType(filterMetricType MetricTagConfigurationMetricTypes) *ListTagConfigurationsOptionalParameters {
+func (r *ListTagConfigurationsOptionalParameters) WithFilterMetricType(filterMetricType MetricTagConfigurationMetricTypeCategory) *ListTagConfigurationsOptionalParameters {
 	r.FilterMetricType = &filterMetricType
 	return r
 }
@@ -852,7 +850,7 @@ func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagCon
 }
 
 // ListTagsByMetricName List tags by metric name.
-// View indexed tag key-value pairs for a given metric name.
+// View indexed tag key-value pairs for a given metric name over the previous hour.
 func (a *MetricsApi) ListTagsByMetricName(ctx _context.Context, metricName string) (MetricAllTagsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1006,13 +1004,6 @@ func (a *MetricsApi) QueryScalarData(ctx _context.Context, body ScalarFormulaQue
 		localVarReturnValue ScalarFormulaQueryResponse
 	)
 
-	operationId := "v2.QueryScalarData"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.QueryScalarData")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -1086,13 +1077,6 @@ func (a *MetricsApi) QueryTimeseriesData(ctx _context.Context, body TimeseriesFo
 		localVarPostBody    interface{}
 		localVarReturnValue TimeseriesFormulaQueryResponse
 	)
-
-	operationId := "v2.QueryTimeseriesData"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.QueryTimeseriesData")
 	if err != nil {

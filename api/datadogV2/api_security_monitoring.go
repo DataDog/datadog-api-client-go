@@ -10,6 +10,7 @@ import (
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"reflect"
 	"strings"
 	"time"
 
@@ -1199,6 +1200,7 @@ type ListFindingsOptionalParameters struct {
 	FilterDiscoveryTimestamp  *string
 	FilterEvaluation          *FindingEvaluation
 	FilterStatus              *FindingStatus
+	FilterVulnerabilityType   *[]FindingVulnerabilityType
 }
 
 // NewListFindingsOptionalParameters creates an empty struct for parameters.
@@ -1276,6 +1278,12 @@ func (r *ListFindingsOptionalParameters) WithFilterEvaluation(filterEvaluation F
 // WithFilterStatus sets the corresponding parameter name and returns the struct.
 func (r *ListFindingsOptionalParameters) WithFilterStatus(filterStatus FindingStatus) *ListFindingsOptionalParameters {
 	r.FilterStatus = &filterStatus
+	return r
+}
+
+// WithFilterVulnerabilityType sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithFilterVulnerabilityType(filterVulnerabilityType []FindingVulnerabilityType) *ListFindingsOptionalParameters {
+	r.FilterVulnerabilityType = &filterVulnerabilityType
 	return r
 }
 
@@ -1377,6 +1385,17 @@ func (a *SecurityMonitoringApi) ListFindings(ctx _context.Context, o ...ListFind
 	}
 	if optionalParams.FilterStatus != nil {
 		localVarQueryParams.Add("filter[status]", datadog.ParameterToString(*optionalParams.FilterStatus, ""))
+	}
+	if optionalParams.FilterVulnerabilityType != nil {
+		t := *optionalParams.FilterVulnerabilityType
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("filter[vulnerability_type]", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("filter[vulnerability_type]", datadog.ParameterToString(t, "multi"))
+		}
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 

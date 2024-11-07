@@ -130,7 +130,7 @@
       {
         "name": "body",
         "origin": "request",
-        "value": "{\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"client_email\": \"{{unique_hash}}@example.com\",\n  \"client_id\": \"{{ timestamp(\"now\") }}{{ timestamp(\"now\") }}0\",\n  \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/$CLIENT_EMAIL\",\n  \"host_filters\": \"key:value,filter:example\",\n  \"is_cspm_enabled\": true,\n  \"is_security_command_center_enabled\": true,\n  \"private_key\": \"private_key\",\n  \"private_key_id\": \"123456789abcdefghi123456789abcdefghijklm\",\n  \"project_id\": \"datadog-apitest\",\n  \"resource_collection_enabled\": true,\n  \"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\n  \"type\": \"service_account\"\n}"
+        "value": "{\n  \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n  \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n  \"client_email\": \"{{unique_hash}}@example.com\",\n  \"client_id\": \"{{ timestamp(\"now\") }}{{ timestamp(\"now\") }}0\",\n  \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/$CLIENT_EMAIL\",\n  \"host_filters\": \"key:value,filter:example\",\n  \"is_cspm_enabled\": true,\n  \"is_security_command_center_enabled\": true,\n  \"is_resource_change_collection_enabled\": true,\n  \"private_key\": \"private_key\",\n  \"private_key_id\": \"123456789abcdefghi123456789abcdefghijklm\",\n  \"project_id\": \"datadog-apitest\",\n  \"resource_collection_enabled\": true,\n  \"token_uri\": \"https://accounts.google.com/o/oauth2/token\",\n  \"type\": \"service_account\"\n}"
       }
     ],
     "step": "there is a valid \"gcp_account\" in the system",
@@ -166,7 +166,7 @@
     "parameters": [
       {
         "name": "body",
-        "value": "{\n  \"name\": \"{{ unique }}\",\n  \"type\": \"log alert\",\n  \"query\": \"logs(\\\"service:foo AND type:error\\\").index(\\\"main\\\").rollup(\\\"count\\\").by(\\\"source\\\").last(\\\"5m\\\") > 2\",\n  \"message\": \"some message Notify: @hipchat-channel\",\n  \"tags\": [\"test:{{ unique_lower_alnum }}\", \"env:ci\"],\n  \"priority\": 3,\n  \"options\": {\n    \"enable_logs_sample\": true,\n    \"escalation_message\": \"the situation has escalated\",\n    \"evaluation_delay\": 700,\n    \"groupby_simple_monitor\": true,\n    \"include_tags\": true,\n    \"locked\": false,\n    \"new_host_delay\": 600,\n    \"no_data_timeframe\": null,\n    \"notify_audit\": false,\n    \"notify_no_data\": false,\n    \"on_missing_data\": \"show_and_notify_no_data\",\n    \"notification_preset_name\": \"hide_handles\",\n    \"renotify_interval\": 60,\n    \"require_full_window\": true,\n    \"timeout_h\": 24,\n    \"thresholds\": { \"critical\": 2, \"warning\": 1 }\n  }\n}\n"
+        "value": "{\n  \"name\": \"{{ unique }}\",\n  \"type\": \"log alert\",\n  \"query\": \"logs(\\\"service:foo AND type:error\\\").index(\\\"main\\\").rollup(\\\"count\\\").by(\\\"source\\\").last(\\\"5m\\\") > 2\",\n  \"message\": \"some message Notify: @hipchat-channel\",\n  \"tags\": [\"test:{{ unique_lower_alnum }}\", \"env:ci\"],\n  \"priority\": 3,\n  \"options\": {\n    \"enable_logs_sample\": true,\n    \"escalation_message\": \"the situation has escalated\",\n    \"evaluation_delay\": 700,\n    \"include_tags\": true,\n    \"locked\": false,\n    \"new_host_delay\": 600,\n    \"no_data_timeframe\": null,\n    \"notify_audit\": false,\n    \"notify_no_data\": false,\n    \"on_missing_data\": \"show_and_notify_no_data\",\n    \"notification_preset_name\": \"hide_handles\",\n    \"renotify_interval\": 60,\n    \"require_full_window\": true,\n    \"timeout_h\": 24,\n    \"thresholds\": { \"critical\": 2, \"warning\": 1 }\n  }\n}\n"
       }
     ],
     "step": "there is a valid \"monitor\" in the system",
@@ -269,6 +269,18 @@
     "key": "synthetics_api_test_with_wrong_dns",
     "tag": "Synthetics",
     "operationId": "CreateSyntheticsAPITest"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n    \"name\": \"{{ unique }}\",\n    \"status\": \"paused\",\n    \"type\": \"mobile\",\n    \"config\": {\n        \"variables\": []\n    },\n    \"message\": \"\",\n    \"options\": {\n        \"device_ids\": [\n            \"synthetics:mobile:device:iphone_15_ios_17\"\n        ],\n        \"mobileApplication\": {\n            \"applicationId\": \"ab0e0aed-536d-411a-9a99-5428c27d8f8e\",\n            \"referenceId\": \"6115922a-5f5d-455e-bc7e-7955a57f3815\",\n            \"referenceType\": \"version\"\n        },\n        \"tick_every\": 3600\n    },\n    \"steps\": []\n}"
+      }
+    ],
+    "step": "there is a valid \"synthetics_mobile_test\" in the system",
+    "key": "synthetics_mobile_test",
+    "tag": "Synthetics",
+    "operationId": "CreateSyntheticsMobileTest"
   },
   {
     "parameters": [

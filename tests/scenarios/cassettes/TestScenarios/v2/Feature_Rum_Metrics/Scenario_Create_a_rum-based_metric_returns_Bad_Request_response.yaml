@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"compute":{"aggregation_type":"count"},"event_type":"action","uniqueness":{"when":"match"}},"id":"rum.actions.invalid","type":"rum_metrics"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/rum/config/metrics
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"attribute \"uniqueness\"
+      failed excluded_if validation"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2

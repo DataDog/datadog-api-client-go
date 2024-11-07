@@ -60,7 +60,7 @@ func main() {
 			},
 			TickEvery: datadog.PtrInt64(300),
 			Ci: &datadogV1.SyntheticsTestCiOptions{
-				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_SKIPPED.Ptr(),
+				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_SKIPPED,
 			},
 			IgnoreServerCertificateError: datadog.PtrBool(true),
 			DisableCsp:                   datadog.PtrBool(true),

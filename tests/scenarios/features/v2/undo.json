@@ -414,12 +414,6 @@
       "type": "idempotent"
     }
   },
-  "ListAWSRelatedAccounts": {
-    "tag": "Cloud Cost Management",
-    "undo": {
-      "type": "safe"
-    }
-  },
   "ListCostAzureUCConfigs": {
     "tag": "Cloud Cost Management",
     "undo": {
@@ -547,6 +541,18 @@
       "type": "safe"
     }
   },
+  "GetDomainAllowlist": {
+    "tag": "Domain Allowlist",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "PatchDomainAllowlist": {
+    "tag": "Domain Allowlist",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "CreateDORADeployment": {
     "tag": "DORA Metrics",
     "undo": {
@@ -625,6 +631,43 @@
         }
       ],
       "type": "unsafe"
+    }
+  },
+  "ListIncidentTypes": {
+    "tag": "Incidents",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateIncidentType": {
+    "tag": "Incidents",
+    "undo": {
+      "operationId": "DeleteIncidentType",
+      "parameters": [
+        {
+          "name": "incident_type_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteIncidentType": {
+    "tag": "Incidents",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetIncidentType": {
+    "tag": "Incidents",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateIncidentType": {
+    "tag": "Incidents",
+    "undo": {
+      "type": "idempotent"
     }
   },
   "SearchIncidents": {
@@ -784,6 +827,49 @@
   },
   "MakeGCPSTSDelegate": {
     "tag": "GCP Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetChannelByName": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListTenantBasedHandles": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateTenantBasedHandle": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "operationId": "DeleteTenantBasedHandle",
+      "parameters": [
+        {
+          "name": "handle_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteTenantBasedHandle": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetTenantBasedHandle": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateTenantBasedHandle": {
+    "tag": "Microsoft Teams Integration",
     "undo": {
       "type": "idempotent"
     }
@@ -1663,6 +1749,43 @@
       "type": "idempotent"
     }
   },
+  "ListRumMetrics": {
+    "tag": "Rum Metrics",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateRumMetric": {
+    "tag": "Rum Metrics",
+    "undo": {
+      "operationId": "DeleteRumMetric",
+      "parameters": [
+        {
+          "name": "metric_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteRumMetric": {
+    "tag": "Rum Metrics",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetRumMetric": {
+    "tag": "Rum Metrics",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateRumMetric": {
+    "tag": "Rum Metrics",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "ListRUMEvents": {
     "tag": "RUM",
     "undo": {
@@ -2360,6 +2483,12 @@
     }
   },
   "GetUsageApplicationSecurityMonitoring": {
+    "tag": "Usage Metering",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetBillingDimensionMapping": {
     "tag": "Usage Metering",
     "undo": {
       "type": "safe"

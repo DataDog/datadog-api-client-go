@@ -30,7 +30,7 @@ func (obj *UpsertCatalogEntityResponseIncludedItem) UnmarshalJSON(data []byte) e
 	if err == nil {
 		if obj.EntityResponseIncludedSchema != nil && obj.EntityResponseIncludedSchema.UnparsedObject == nil {
 			jsonEntityResponseIncludedSchema, _ := datadog.Marshal(obj.EntityResponseIncludedSchema)
-			if string(jsonEntityResponseIncludedSchema) == "{}" { // empty struct
+			if string(jsonEntityResponseIncludedSchema) == "{}" && string(data) != "{}" { // empty struct
 				obj.EntityResponseIncludedSchema = nil
 			} else {
 				match++

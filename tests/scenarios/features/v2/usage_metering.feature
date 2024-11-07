@@ -19,8 +19,8 @@ Feature: Usage Metering
     Given operation "GetMonthlyCostAttribution" enabled
     And new "GetMonthlyCostAttribution" request
     And request contains "start_month" parameter with value "{{ timeISO('now - 5d') }}"
-    And request contains "end_month" parameter with value "{{ timeISO('now - 3d') }}"
     And request contains "fields" parameter with value "not_a_product"
+    And request contains "end_month" parameter with value "{{ timeISO('now - 3d') }}"
     When the request is sent
     Then the response status is 400 Bad Request
 
@@ -29,8 +29,8 @@ Feature: Usage Metering
     Given operation "GetMonthlyCostAttribution" enabled
     And new "GetMonthlyCostAttribution" request
     And request contains "start_month" parameter with value "{{ timeISO('now - 5d') }}"
-    And request contains "end_month" parameter with value "{{ timeISO('now - 3d') }}"
     And request contains "fields" parameter with value "infra_host_total_cost"
+    And request contains "end_month" parameter with value "{{ timeISO('now - 3d') }}"
     When the request is sent
     Then the response status is 200 OK
 
@@ -45,6 +45,20 @@ Feature: Usage Metering
   Scenario: Get active billing dimensions for cost attribution returns "OK" response
     Given operation "GetActiveBillingDimensions" enabled
     And new "GetActiveBillingDimensions" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @team:DataDog/revenue-query
+  Scenario: Get billing dimension mapping for usage endpoints returns "Bad Request" response
+    Given operation "GetBillingDimensionMapping" enabled
+    And new "GetBillingDimensionMapping" request
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @skip @team:DataDog/revenue-query
+  Scenario: Get billing dimension mapping for usage endpoints returns "OK" response
+    Given operation "GetBillingDimensionMapping" enabled
+    And new "GetBillingDimensionMapping" request
     When the request is sent
     Then the response status is 200 OK
 
