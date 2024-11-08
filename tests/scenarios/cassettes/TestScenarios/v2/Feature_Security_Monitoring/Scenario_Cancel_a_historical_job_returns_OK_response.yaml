@@ -1,0 +1,37 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"jobDefinition":{"cases":[{"condition":"a \u003e 1","name":"Condition 1","notifications":[],"status":"info"}],"from":1730387522611,"index":"main","message":"A large number of failed login attempts.","name":"Excessive number of failed attempts.","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"query":"source:non_existing_src_weekend"}],"tags":[],"to":1730387532611,"type":"log_detection"}},"type":"historicalDetectionsJobCreate"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs
+  response:
+    body: '{"data":{"id":"e332b07e-d573-45fa-b2df-9a1bcc27f17e","type":"historicalDetectionsJob"}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs/e332b07e-d573-45fa-b2df-9a1bcc27f17e/cancel
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
