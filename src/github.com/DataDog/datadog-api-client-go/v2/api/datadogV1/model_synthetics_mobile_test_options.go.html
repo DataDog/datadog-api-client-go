@@ -102,7 +102,7 @@
 <span id="L45" class="ln">    45  </span>	Scheduling *SyntheticsTestOptionsScheduling `json:&#34;scheduling,omitempty&#34;`
 <span id="L46" class="ln">    46  </span>	<span class="comment">// The frequency at which to run the Synthetic test (in seconds).</span>
 <span id="L47" class="ln">    47  </span>	TickEvery int64 `json:&#34;tick_every&#34;`
-<span id="L48" class="ln">    48  </span>	<span class="comment">// The level of verbosity for the mobile test.</span>
+<span id="L48" class="ln">    48  </span>	<span class="comment">// The level of verbosity for the mobile test. This field can not be set by a user.</span>
 <span id="L49" class="ln">    49  </span>	Verbosity *int32 `json:&#34;verbosity,omitempty&#34;`
 <span id="L50" class="ln">    50  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L51" class="ln">    51  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
