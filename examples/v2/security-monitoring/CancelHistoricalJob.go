@@ -17,8 +17,8 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.RunHistoricalJob", true)
 	configuration.SetUnstableOperationEnabled("v2.CancelHistoricalJob", true)
+	configuration.SetUnstableOperationEnabled("v2.RunHistoricalJob", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
 	r, err := api.CancelHistoricalJob(ctx, HistoricalJobDataID)
