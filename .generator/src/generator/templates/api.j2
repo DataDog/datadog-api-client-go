@@ -77,11 +77,14 @@ func (a *{{ classname }}) {{ operation.operationId }}(ctx _context.Context{% for
 	{%- if "x-unstable" in operation %}
 
 	operationId := "{{ version }}.{{ operation.operationId }}"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return {% if returnType %} localVarReturnValue, {% endif %}nil, {{ common_package_name }}.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
+	if isEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
 	{%- endif %}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "{{ version }}.{{ classname }}.{{ operation.operationId }}")
