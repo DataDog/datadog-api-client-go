@@ -240,7 +240,7 @@ def context(request, unique, freezed_time):
         "_imports": imports,
         "_given": given,
         "_key_to_json_path": defaultdict(dict),
-        "_enable_operations": set(),
+        "_enable_operations": list(),
     }
 
     yield ctx
@@ -302,7 +302,7 @@ def api(context, api_version, specs, name):
 @given(parsers.parse('operation "{name}" enabled'))
 def operation_enabled(context, name):
     """Enable the unstable operation specific in the clause."""
-    context["_enable_operations"].add(name)
+    context["_enable_operations"].append(name)
 
 
 @given(parsers.parse('new "{name}" request'), target_fixture="operation_id")
