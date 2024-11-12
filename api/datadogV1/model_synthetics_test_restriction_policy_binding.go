@@ -11,7 +11,7 @@ import (
 // SyntheticsTestRestrictionPolicyBinding Objects describing the binding used for a mobile test.
 type SyntheticsTestRestrictionPolicyBinding struct {
 	// List of principals for a mobile test binding.
-	Principal []string `json:"principal,omitempty"`
+	Principals []string `json:"principals,omitempty"`
 	// The type of relation for the binding.
 	Relation *SyntheticsTestRestrictionPolicyBindingRelation `json:"relation,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -36,32 +36,32 @@ func NewSyntheticsTestRestrictionPolicyBindingWithDefaults() *SyntheticsTestRest
 	return &this
 }
 
-// GetPrincipal returns the Principal field value if set, zero value otherwise.
-func (o *SyntheticsTestRestrictionPolicyBinding) GetPrincipal() []string {
-	if o == nil || o.Principal == nil {
+// GetPrincipals returns the Principals field value if set, zero value otherwise.
+func (o *SyntheticsTestRestrictionPolicyBinding) GetPrincipals() []string {
+	if o == nil || o.Principals == nil {
 		var ret []string
 		return ret
 	}
-	return o.Principal
+	return o.Principals
 }
 
-// GetPrincipalOk returns a tuple with the Principal field value if set, nil otherwise
+// GetPrincipalsOk returns a tuple with the Principals field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestRestrictionPolicyBinding) GetPrincipalOk() (*[]string, bool) {
-	if o == nil || o.Principal == nil {
+func (o *SyntheticsTestRestrictionPolicyBinding) GetPrincipalsOk() (*[]string, bool) {
+	if o == nil || o.Principals == nil {
 		return nil, false
 	}
-	return &o.Principal, true
+	return &o.Principals, true
 }
 
-// HasPrincipal returns a boolean if a field has been set.
-func (o *SyntheticsTestRestrictionPolicyBinding) HasPrincipal() bool {
-	return o != nil && o.Principal != nil
+// HasPrincipals returns a boolean if a field has been set.
+func (o *SyntheticsTestRestrictionPolicyBinding) HasPrincipals() bool {
+	return o != nil && o.Principals != nil
 }
 
-// SetPrincipal gets a reference to the given []string and assigns it to the Principal field.
-func (o *SyntheticsTestRestrictionPolicyBinding) SetPrincipal(v []string) {
-	o.Principal = v
+// SetPrincipals gets a reference to the given []string and assigns it to the Principals field.
+func (o *SyntheticsTestRestrictionPolicyBinding) SetPrincipals(v []string) {
+	o.Principals = v
 }
 
 // GetRelation returns the Relation field value if set, zero value otherwise.
@@ -98,8 +98,8 @@ func (o SyntheticsTestRestrictionPolicyBinding) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Principal != nil {
-		toSerialize["principal"] = o.Principal
+	if o.Principals != nil {
+		toSerialize["principals"] = o.Principals
 	}
 	if o.Relation != nil {
 		toSerialize["relation"] = o.Relation
@@ -114,21 +114,21 @@ func (o SyntheticsTestRestrictionPolicyBinding) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestRestrictionPolicyBinding) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Principal []string                                        `json:"principal,omitempty"`
-		Relation  *SyntheticsTestRestrictionPolicyBindingRelation `json:"relation,omitempty"`
+		Principals []string                                        `json:"principals,omitempty"`
+		Relation   *SyntheticsTestRestrictionPolicyBindingRelation `json:"relation,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"principal", "relation"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"principals", "relation"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	o.Principal = all.Principal
+	o.Principals = all.Principals
 	if all.Relation != nil && !all.Relation.IsValid() {
 		hasInvalidField = true
 	} else {
