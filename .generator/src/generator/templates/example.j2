@@ -54,7 +54,7 @@ func main() {
 {%- endif%}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-{%- for operation in context._enable_operations | sort %}
+{%- for operation in context._enable_operations|sort %}
 	configuration.SetUnstableOperationEnabled("{{ version }}.{{ operation }}", true)
 {%- endfor %}
 	apiClient := datadog.NewAPIClient(configuration)
