@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 2.33.0 / 2024-11-12
+
+### Added
+* Adds accepted reasons for archiving signal by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2681
+* Add usage type breakdown for error tracking billing dimension by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2768
+* Add Historical Job endpoints to Datadog API spec by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2765
+* Add new keys for CWS Fargate Task in summary usage and usage attribution endpoints by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2773
+* Add missing measures for SLOs data source by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2774
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.32.0...v2.33.0
+
 ## 2.32.0 / 2024-11-07
 
 ### Fixed
