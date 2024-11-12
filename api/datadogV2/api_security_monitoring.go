@@ -29,10 +29,12 @@ func (a *SecurityMonitoringApi) CancelHistoricalJob(ctx _context.Context, jobId 
 	)
 
 	operationId := "v2.CancelHistoricalJob"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.CancelHistoricalJob")
@@ -169,10 +171,12 @@ func (a *SecurityMonitoringApi) ConvertJobResultToSignal(ctx _context.Context, b
 	)
 
 	operationId := "v2.ConvertJobResultToSignal"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ConvertJobResultToSignal")
@@ -535,10 +539,12 @@ func (a *SecurityMonitoringApi) DeleteHistoricalJob(ctx _context.Context, jobId 
 	)
 
 	operationId := "v2.DeleteHistoricalJob"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.DeleteHistoricalJob")
@@ -1034,10 +1040,12 @@ func (a *SecurityMonitoringApi) GetFinding(ctx _context.Context, findingId strin
 	}
 
 	operationId := "v2.GetFinding"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetFinding")
@@ -1115,10 +1123,12 @@ func (a *SecurityMonitoringApi) GetHistoricalJob(ctx _context.Context, jobId str
 	)
 
 	operationId := "v2.GetHistoricalJob"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetHistoricalJob")
@@ -1618,10 +1628,12 @@ func (a *SecurityMonitoringApi) ListFindings(ctx _context.Context, o ...ListFind
 	}
 
 	operationId := "v2.ListFindings"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ListFindings")
@@ -1846,10 +1858,12 @@ func (a *SecurityMonitoringApi) ListHistoricalJobs(ctx _context.Context, o ...Li
 	}
 
 	operationId := "v2.ListHistoricalJobs"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ListHistoricalJobs")
@@ -2391,10 +2405,12 @@ func (a *SecurityMonitoringApi) MuteFindings(ctx _context.Context, body BulkMute
 	)
 
 	operationId := "v2.MuteFindings"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.MuteFindings")
@@ -2471,10 +2487,12 @@ func (a *SecurityMonitoringApi) RunHistoricalJob(ctx _context.Context, body RunH
 	)
 
 	operationId := "v2.RunHistoricalJob"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.RunHistoricalJob")
