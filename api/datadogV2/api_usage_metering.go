@@ -28,10 +28,12 @@ func (a *UsageMeteringApi) GetActiveBillingDimensions(ctx _context.Context) (Act
 	)
 
 	operationId := "v2.GetActiveBillingDimensions"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetActiveBillingDimensions")
@@ -140,10 +142,12 @@ func (a *UsageMeteringApi) GetBillingDimensionMapping(ctx _context.Context, o ..
 	}
 
 	operationId := "v2.GetBillingDimensionMapping"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetBillingDimensionMapping")
@@ -842,10 +846,12 @@ func (a *UsageMeteringApi) GetMonthlyCostAttribution(ctx _context.Context, start
 	}
 
 	operationId := "v2.GetMonthlyCostAttribution"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetMonthlyCostAttribution")

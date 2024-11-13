@@ -788,6 +788,61 @@
       "type": "idempotent"
     }
   },
+  "ListAWSAccounts": {
+    "tag": "AWS Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateAWSAccount": {
+    "tag": "AWS Integration",
+    "undo": {
+      "operationId": "DeleteAWSAccount",
+      "parameters": [
+        {
+          "name": "aws_account_config_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteAWSAccount": {
+    "tag": "AWS Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetAWSAccount": {
+    "tag": "AWS Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateAWSAccount": {
+    "tag": "AWS Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListAWSNamespaces": {
+    "tag": "AWS Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateNewAWSExternalID": {
+    "tag": "AWS Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListAWSLogsServices": {
+    "tag": "AWS Logs Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "ListGCPSTSAccounts": {
     "tag": "GCP Integration",
     "undo": {
@@ -2268,6 +2323,42 @@
   },
   "UpdateIncidentService": {
     "tag": "Incident Services",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListHistoricalJobs": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "RunHistoricalJob": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ConvertJobResultToSignal": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DeleteHistoricalJob": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetHistoricalJob": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CancelHistoricalJob": {
+    "tag": "Security Monitoring",
     "undo": {
       "type": "idempotent"
     }

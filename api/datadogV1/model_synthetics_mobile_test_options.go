@@ -45,7 +45,7 @@ type SyntheticsMobileTestOptions struct {
 	Scheduling *SyntheticsTestOptionsScheduling `json:"scheduling,omitempty"`
 	// The frequency at which to run the Synthetic test (in seconds).
 	TickEvery int64 `json:"tick_every"`
-	// The level of verbosity for the mobile test.
+	// The level of verbosity for the mobile test. This field can not be set by a user.
 	Verbosity *int32 `json:"verbosity,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
