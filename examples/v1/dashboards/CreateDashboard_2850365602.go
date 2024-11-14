@@ -15,7 +15,6 @@ import (
 func main() {
 	body := datadogV1.Dashboard{
 		Description:     *datadog.NewNullableString(nil),
-		IsReadOnly:      datadog.PtrBool(false),
 		LayoutType:      datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 		NotifyList:      *datadog.NewNullableList(&[]string{}),
 		ReflowType:      datadogV1.DASHBOARDREFLOWTYPE_AUTO.Ptr(),
