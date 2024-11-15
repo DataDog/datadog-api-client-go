@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_list_stream_widget_with_a_valid_sort_parameter_DESC-1731611547 with list_stream widget","widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"event_stream","event_size":"l","query_string":"","sort":{"column":"timestamp","order":"desc"}},"response_format":"event_list"}],"type":"list_stream"}}]}
+      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_list_stream_widget_with_a_valid_sort_parameter_DESC-1731699164 with list_stream widget","widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"event_stream","event_size":"l","query_string":"","sort":{"column":"timestamp","order":"desc"}},"response_format":"event_list"}],"type":"list_stream"}}]}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"id":"2sk-pz4-gv6","title":"Test-Create_a_new_dashboard_with_list_stream_widget_with_a_valid_sort_parameter_DESC-1731611547
-      with list_stream widget","description":null,"author_handle":"anika.maskara@datadoghq.com","author_name":"Anika
-      Maskara","layout_type":"ordered","url":"/dashboard/2sk-pz4-gv6/test-createanewdashboardwithliststreamwidgetwithavalidsortparameterdesc-17316115","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"event_stream","event_size":"l","query_string":"","sort":{"column":"timestamp","order":"desc"}},"response_format":"event_list"}],"type":"list_stream"},"id":7607126425701824}],"notify_list":null,"created_at":"2024-11-14T19:12:27.856660+00:00","modified_at":"2024-11-14T19:12:27.856660+00:00","restricted_roles":[]}
+    body: '{"id":"8er-jb3-ctv","title":"Test-Create_a_new_dashboard_with_list_stream_widget_with_a_valid_sort_parameter_DESC-1731699164
+      with list_stream widget","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"ordered","url":"/dashboard/8er-jb3-ctv/test-createanewdashboardwithliststreamwidgetwithavalidsortparameterdesc-17316991","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"event_stream","event_size":"l","query_string":"","sort":{"column":"timestamp","order":"desc"}},"response_format":"event_list"}],"type":"list_stream"},"id":6906120015083123}],"notify_list":null,"created_at":"2024-11-15T19:32:45.108245+00:00","modified_at":"2024-11-15T19:32:45.108245+00:00","restricted_roles":[]}
 
       '
     code: 200
@@ -31,9 +30,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/2sk-pz4-gv6
+    url: https://api.datadoghq.com/api/v1/dashboard/8er-jb3-ctv
   response:
-    body: '{"deleted_dashboard_id":"2sk-pz4-gv6"}
+    body: '{"deleted_dashboard_id":"8er-jb3-ctv"}
 
       '
     code: 200

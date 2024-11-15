@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"description":null,"layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_event_timeline_widget-1731611541","widgets":[{"definition":{"query":"status:error priority:all","tags_execution":"and","title":"","title_align":"left","title_size":"16","type":"event_timeline"},"layout":{"height":9,"width":47,"x":0,"y":0}}]}
+      {"description":null,"layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_event_timeline_widget-1731699159","widgets":[{"definition":{"query":"status:error priority:all","tags_execution":"and","title":"","title_align":"left","title_size":"16","type":"event_timeline"},"layout":{"height":9,"width":47,"x":0,"y":0}}]}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"id":"i3x-7cz-cn3","title":"Test-Create_a_new_dashboard_with_event_timeline_widget-1731611541","description":null,"author_handle":"anika.maskara@datadoghq.com","author_name":"Anika
-      Maskara","layout_type":"free","url":"/dashboard/i3x-7cz-cn3/test-createanewdashboardwitheventtimelinewidget-1731611541","is_read_only":false,"template_variables":[],"widgets":[{"definition":{"query":"status:error
-      priority:all","tags_execution":"and","title":"","title_align":"left","title_size":"16","type":"event_timeline"},"layout":{"height":9,"width":47,"x":0,"y":0},"id":2993493904946935}],"notify_list":[],"created_at":"2024-11-14T19:12:21.485271+00:00","modified_at":"2024-11-14T19:12:21.485271+00:00","restricted_roles":[]}
+    body: '{"id":"y4s-pyq-y6k","title":"Test-Create_a_new_dashboard_with_event_timeline_widget-1731699159","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"free","url":"/dashboard/y4s-pyq-y6k/test-createanewdashboardwitheventtimelinewidget-1731699159","is_read_only":false,"template_variables":[],"widgets":[{"definition":{"query":"status:error
+      priority:all","tags_execution":"and","title":"","title_align":"left","title_size":"16","type":"event_timeline"},"layout":{"height":9,"width":47,"x":0,"y":0},"id":1248560916532440}],"notify_list":[],"created_at":"2024-11-15T19:32:39.998921+00:00","modified_at":"2024-11-15T19:32:39.998921+00:00","restricted_roles":[]}
 
       '
     code: 200
@@ -31,9 +30,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/i3x-7cz-cn3
+    url: https://api.datadoghq.com/api/v1/dashboard/y4s-pyq-y6k
   response:
-    body: '{"deleted_dashboard_id":"i3x-7cz-cn3"}
+    body: '{"deleted_dashboard_id":"y4s-pyq-y6k"}
 
       '
     code: 200

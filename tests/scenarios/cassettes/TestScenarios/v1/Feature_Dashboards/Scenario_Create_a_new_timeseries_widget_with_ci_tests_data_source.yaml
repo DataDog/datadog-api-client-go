@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"layout_type":"ordered","reflow_type":"auto","title":"Test-Create_a_new_timeseries_widget_with_ci_tests_data_source-1731611564 with ci_tests datasource","widgets":[{"definition":{"legend_columns":["avg","min","max","value","sum"],"legend_layout":"auto","requests":[{"display_type":"line","formulas":[{"formula":"query1"}],"queries":[{"compute":{"aggregation":"count"},"data_source":"ci_tests","group_by":[],"indexes":["*"],"name":"query1","search":{"query":"test_level:test"}}],"response_format":"timeseries","style":{"line_type":"solid","line_width":"normal","palette":"dog_classic"}}],"show_legend":true,"time":{},"title":"","type":"timeseries"}}]}
+      {"layout_type":"ordered","reflow_type":"auto","title":"Test-Create_a_new_timeseries_widget_with_ci_tests_data_source-1731699181 with ci_tests datasource","widgets":[{"definition":{"legend_columns":["avg","min","max","value","sum"],"legend_layout":"auto","requests":[{"display_type":"line","formulas":[{"formula":"query1"}],"queries":[{"compute":{"aggregation":"count"},"data_source":"ci_tests","group_by":[],"indexes":["*"],"name":"query1","search":{"query":"test_level:test"}}],"response_format":"timeseries","style":{"line_type":"solid","line_width":"normal","palette":"dog_classic"}}],"show_legend":true,"time":{},"title":"","type":"timeseries"}}]}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"id":"cdv-aqf-wud","title":"Test-Create_a_new_timeseries_widget_with_ci_tests_data_source-1731611564
-      with ci_tests datasource","description":null,"author_handle":"anika.maskara@datadoghq.com","author_name":"Anika
-      Maskara","layout_type":"ordered","url":"/dashboard/cdv-aqf-wud/test-createanewtimeserieswidgetwithcitestsdatasource-1731611564-with-citests-dat","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"legend_columns":["avg","min","max","value","sum"],"legend_layout":"auto","requests":[{"display_type":"line","formulas":[{"formula":"query1"}],"queries":[{"compute":{"aggregation":"count"},"data_source":"ci_tests","group_by":[],"indexes":["*"],"name":"query1","search":{"query":"test_level:test"}}],"response_format":"timeseries","style":{"line_type":"solid","line_width":"normal","palette":"dog_classic"}}],"show_legend":true,"time":{},"title":"","type":"timeseries"},"id":6269280786174487}],"notify_list":null,"created_at":"2024-11-14T19:12:44.657788+00:00","modified_at":"2024-11-14T19:12:44.657788+00:00","reflow_type":"auto","restricted_roles":[]}
+    body: '{"id":"j89-gve-ggt","title":"Test-Create_a_new_timeseries_widget_with_ci_tests_data_source-1731699181
+      with ci_tests datasource","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"ordered","url":"/dashboard/j89-gve-ggt/test-createanewtimeserieswidgetwithcitestsdatasource-1731699181-with-citests-dat","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"legend_columns":["avg","min","max","value","sum"],"legend_layout":"auto","requests":[{"display_type":"line","formulas":[{"formula":"query1"}],"queries":[{"compute":{"aggregation":"count"},"data_source":"ci_tests","group_by":[],"indexes":["*"],"name":"query1","search":{"query":"test_level:test"}}],"response_format":"timeseries","style":{"line_type":"solid","line_width":"normal","palette":"dog_classic"}}],"show_legend":true,"time":{},"title":"","type":"timeseries"},"id":6228011042051238}],"notify_list":null,"created_at":"2024-11-15T19:33:01.854077+00:00","modified_at":"2024-11-15T19:33:01.854077+00:00","reflow_type":"auto","restricted_roles":[]}
 
       '
     code: 200
@@ -31,9 +30,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/cdv-aqf-wud
+    url: https://api.datadoghq.com/api/v1/dashboard/j89-gve-ggt
   response:
-    body: '{"deleted_dashboard_id":"cdv-aqf-wud"}
+    body: '{"deleted_dashboard_id":"j89-gve-ggt"}
 
       '
     code: 200

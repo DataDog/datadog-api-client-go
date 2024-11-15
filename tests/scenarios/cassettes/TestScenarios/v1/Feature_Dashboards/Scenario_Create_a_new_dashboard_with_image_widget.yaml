@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"description":"","layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_image_widget-1731611545","widgets":[{"definition":{"sizing":"cover","type":"image","url":"https://example.com/image.png"},"layout":{"height":12,"width":12,"x":0,"y":0}}]}
+      {"description":"","layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_image_widget-1731699163","widgets":[{"definition":{"sizing":"cover","type":"image","url":"https://example.com/image.png"},"layout":{"height":12,"width":12,"x":0,"y":0}}]}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"id":"kau-9fb-ghy","title":"Test-Create_a_new_dashboard_with_image_widget-1731611545","description":"","author_handle":"anika.maskara@datadoghq.com","author_name":"Anika
-      Maskara","layout_type":"free","url":"/dashboard/kau-9fb-ghy/test-createanewdashboardwithimagewidget-1731611545","is_read_only":false,"template_variables":[],"widgets":[{"definition":{"sizing":"cover","type":"image","url":"https://example.com/image.png"},"layout":{"height":12,"width":12,"x":0,"y":0},"id":4997431125308733}],"notify_list":[],"created_at":"2024-11-14T19:12:26.585068+00:00","modified_at":"2024-11-14T19:12:26.585068+00:00","restricted_roles":[]}
+    body: '{"id":"pep-4f2-6my","title":"Test-Create_a_new_dashboard_with_image_widget-1731699163","description":"","author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"free","url":"/dashboard/pep-4f2-6my/test-createanewdashboardwithimagewidget-1731699163","is_read_only":false,"template_variables":[],"widgets":[{"definition":{"sizing":"cover","type":"image","url":"https://example.com/image.png"},"layout":{"height":12,"width":12,"x":0,"y":0},"id":560642460565424}],"notify_list":[],"created_at":"2024-11-15T19:32:43.805437+00:00","modified_at":"2024-11-15T19:32:43.805437+00:00","restricted_roles":[]}
 
       '
     code: 200
@@ -30,9 +29,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/kau-9fb-ghy
+    url: https://api.datadoghq.com/api/v1/dashboard/pep-4f2-6my
   response:
-    body: '{"deleted_dashboard_id":"kau-9fb-ghy"}
+    body: '{"deleted_dashboard_id":"pep-4f2-6my"}
 
       '
     code: 200

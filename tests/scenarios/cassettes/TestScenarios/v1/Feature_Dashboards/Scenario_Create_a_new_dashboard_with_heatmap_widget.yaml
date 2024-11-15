@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"description":null,"layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_heatmap_widget-1731611543","widgets":[{"definition":{"requests":[{"q":"avg:system.cpu.user{*} by {service}","style":{"palette":"dog_classic"}}],"time":{},"title":"","title_align":"left","title_size":"16","type":"heatmap"},"layout":{"height":15,"width":47,"x":0,"y":0}}]}
+      {"description":null,"layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_heatmap_widget-1731699162","widgets":[{"definition":{"requests":[{"q":"avg:system.cpu.user{*} by {service}","style":{"palette":"dog_classic"}}],"time":{},"title":"","title_align":"left","title_size":"16","type":"heatmap"},"layout":{"height":15,"width":47,"x":0,"y":0}}]}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"id":"m55-nbe-fb2","title":"Test-Create_a_new_dashboard_with_heatmap_widget-1731611543","description":null,"author_handle":"anika.maskara@datadoghq.com","author_name":"Anika
-      Maskara","layout_type":"free","url":"/dashboard/m55-nbe-fb2/test-createanewdashboardwithheatmapwidget-1731611543","is_read_only":false,"template_variables":[],"widgets":[{"definition":{"requests":[{"q":"avg:system.cpu.user{*}
-      by {service}","style":{"palette":"dog_classic"}}],"time":{},"title":"","title_align":"left","title_size":"16","type":"heatmap"},"layout":{"height":15,"width":47,"x":0,"y":0},"id":3468862583321901}],"notify_list":[],"created_at":"2024-11-14T19:12:24.011974+00:00","modified_at":"2024-11-14T19:12:24.011974+00:00","restricted_roles":[]}
+    body: '{"id":"2vd-tnh-iwh","title":"Test-Create_a_new_dashboard_with_heatmap_widget-1731699162","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"free","url":"/dashboard/2vd-tnh-iwh/test-createanewdashboardwithheatmapwidget-1731699162","is_read_only":false,"template_variables":[],"widgets":[{"definition":{"requests":[{"q":"avg:system.cpu.user{*}
+      by {service}","style":{"palette":"dog_classic"}}],"time":{},"title":"","title_align":"left","title_size":"16","type":"heatmap"},"layout":{"height":15,"width":47,"x":0,"y":0},"id":3378279846394032}],"notify_list":[],"created_at":"2024-11-15T19:32:42.534303+00:00","modified_at":"2024-11-15T19:32:42.534303+00:00","restricted_roles":[]}
 
       '
     code: 200
@@ -31,9 +30,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/m55-nbe-fb2
+    url: https://api.datadoghq.com/api/v1/dashboard/2vd-tnh-iwh
   response:
-    body: '{"deleted_dashboard_id":"m55-nbe-fb2"}
+    body: '{"deleted_dashboard_id":"2vd-tnh-iwh"}
 
       '
     code: 200

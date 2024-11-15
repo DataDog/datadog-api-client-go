@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_logs_transaction_stream_list_stream_widget-1731611550 with list_stream widget","widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"compute":[{"aggregation":"count","facet":"service"}],"data_source":"logs_transaction_stream","group_by":[{"facet":"service"}],"query_string":""},"response_format":"event_list"}],"type":"list_stream"}}]}
+      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_logs_transaction_stream_list_stream_widget-1731699167 with list_stream widget","widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"compute":[{"aggregation":"count","facet":"service"}],"data_source":"logs_transaction_stream","group_by":[{"facet":"service"}],"query_string":""},"response_format":"event_list"}],"type":"list_stream"}}]}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"id":"yp5-u4f-myz","title":"Test-Create_a_new_dashboard_with_logs_transaction_stream_list_stream_widget-1731611550
-      with list_stream widget","description":null,"author_handle":"anika.maskara@datadoghq.com","author_name":"Anika
-      Maskara","layout_type":"ordered","url":"/dashboard/yp5-u4f-myz/test-createanewdashboardwithlogstransactionstreamliststreamwidget-1731611550-wit","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"compute":[{"aggregation":"count","facet":"service"}],"data_source":"logs_transaction_stream","group_by":[{"facet":"service"}],"query_string":""},"response_format":"event_list"}],"type":"list_stream"},"id":7241154271346052}],"notify_list":null,"created_at":"2024-11-14T19:12:30.290344+00:00","modified_at":"2024-11-14T19:12:30.290344+00:00","restricted_roles":[]}
+    body: '{"id":"6dq-36y-p59","title":"Test-Create_a_new_dashboard_with_logs_transaction_stream_list_stream_widget-1731699167
+      with list_stream widget","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"ordered","url":"/dashboard/6dq-36y-p59/test-createanewdashboardwithlogstransactionstreamliststreamwidget-1731699167-wit","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"compute":[{"aggregation":"count","facet":"service"}],"data_source":"logs_transaction_stream","group_by":[{"facet":"service"}],"query_string":""},"response_format":"event_list"}],"type":"list_stream"},"id":2144413846825527}],"notify_list":null,"created_at":"2024-11-15T19:32:47.601494+00:00","modified_at":"2024-11-15T19:32:47.601494+00:00","restricted_roles":[]}
 
       '
     code: 200
@@ -31,9 +30,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/yp5-u4f-myz
+    url: https://api.datadoghq.com/api/v1/dashboard/6dq-36y-p59
   response:
-    body: '{"deleted_dashboard_id":"yp5-u4f-myz"}
+    body: '{"deleted_dashboard_id":"6dq-36y-p59"}
 
       '
     code: 200

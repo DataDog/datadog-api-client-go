@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"description":"","layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_iframe_widget-1731611544","widgets":[{"definition":{"type":"iframe","url":"https://docs.datadoghq.com/api/latest/"},"layout":{"height":12,"width":12,"x":0,"y":0}}]}
+      {"description":"","layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_iframe_widget-1731699163","widgets":[{"definition":{"type":"iframe","url":"https://docs.datadoghq.com/api/latest/"},"layout":{"height":12,"width":12,"x":0,"y":0}}]}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"id":"az3-9m4-ywf","title":"Test-Create_a_new_dashboard_with_iframe_widget-1731611544","description":"","author_handle":"anika.maskara@datadoghq.com","author_name":"Anika
-      Maskara","layout_type":"free","url":"/dashboard/az3-9m4-ywf/test-createanewdashboardwithiframewidget-1731611544","is_read_only":false,"template_variables":[],"widgets":[{"definition":{"type":"iframe","url":"https://docs.datadoghq.com/api/latest/"},"layout":{"height":12,"width":12,"x":0,"y":0},"id":3286517205333846}],"notify_list":[],"created_at":"2024-11-14T19:12:24.844136+00:00","modified_at":"2024-11-14T19:12:24.844136+00:00","restricted_roles":[]}
+    body: '{"id":"y65-35v-xh5","title":"Test-Create_a_new_dashboard_with_iframe_widget-1731699163","description":"","author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"free","url":"/dashboard/y65-35v-xh5/test-createanewdashboardwithiframewidget-1731699163","is_read_only":false,"template_variables":[],"widgets":[{"definition":{"type":"iframe","url":"https://docs.datadoghq.com/api/latest/"},"layout":{"height":12,"width":12,"x":0,"y":0},"id":1537588948372026}],"notify_list":[],"created_at":"2024-11-15T19:32:43.415569+00:00","modified_at":"2024-11-15T19:32:43.415569+00:00","restricted_roles":[]}
 
       '
     code: 200
@@ -30,9 +29,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/az3-9m4-ywf
+    url: https://api.datadoghq.com/api/v1/dashboard/y65-35v-xh5
   response:
-    body: '{"deleted_dashboard_id":"az3-9m4-ywf"}
+    body: '{"deleted_dashboard_id":"y65-35v-xh5"}
 
       '
     code: 200
