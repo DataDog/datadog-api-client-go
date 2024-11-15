@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_funnel_widget-1731611543 with funnel widget","widgets":[{"definition":{"requests":[{"query":{"data_source":"rum","query_string":"","steps":[]},"request_type":"funnel"}],"type":"funnel"}}]}
+      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_funnel_widget-1731699161 with funnel widget","widgets":[{"definition":{"requests":[{"query":{"data_source":"rum","query_string":"","steps":[]},"request_type":"funnel"}],"type":"funnel"}}]}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"id":"zta-rqr-z7r","title":"Test-Create_a_new_dashboard_with_funnel_widget-1731611543
-      with funnel widget","description":null,"author_handle":"anika.maskara@datadoghq.com","author_name":"Anika
-      Maskara","layout_type":"ordered","url":"/dashboard/zta-rqr-z7r/test-createanewdashboardwithfunnelwidget-1731611543-with-funnel-widget","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"requests":[{"query":{"data_source":"rum","query_string":"","steps":[]},"request_type":"funnel"}],"type":"funnel"},"id":3177333241748468}],"notify_list":null,"created_at":"2024-11-14T19:12:23.172576+00:00","modified_at":"2024-11-14T19:12:23.172576+00:00","restricted_roles":[]}
+    body: '{"id":"xfs-csi-vjh","title":"Test-Create_a_new_dashboard_with_funnel_widget-1731699161
+      with funnel widget","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"ordered","url":"/dashboard/xfs-csi-vjh/test-createanewdashboardwithfunnelwidget-1731699161-with-funnel-widget","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"requests":[{"query":{"data_source":"rum","query_string":"","steps":[]},"request_type":"funnel"}],"type":"funnel"},"id":4755008273116868}],"notify_list":null,"created_at":"2024-11-15T19:32:41.625961+00:00","modified_at":"2024-11-15T19:32:41.625961+00:00","restricted_roles":[]}
 
       '
     code: 200
@@ -31,9 +30,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/zta-rqr-z7r
+    url: https://api.datadoghq.com/api/v1/dashboard/xfs-csi-vjh
   response:
-    body: '{"deleted_dashboard_id":"zta-rqr-z7r"}
+    body: '{"deleted_dashboard_id":"xfs-csi-vjh"}
 
       '
     code: 200

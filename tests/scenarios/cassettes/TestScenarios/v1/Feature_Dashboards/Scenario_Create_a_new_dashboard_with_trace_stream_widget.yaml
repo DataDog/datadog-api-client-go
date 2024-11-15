@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_trace_stream_widget-1731611563 with list_stream widget","widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"},{"field":"service","width":"auto"}],"query":{"data_source":"trace_stream","query_string":""},"response_format":"event_list"}],"type":"list_stream"}}]}
+      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_trace_stream_widget-1731699180 with list_stream widget","widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"},{"field":"service","width":"auto"}],"query":{"data_source":"trace_stream","query_string":""},"response_format":"event_list"}],"type":"list_stream"}}]}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"id":"wnc-xse-sns","title":"Test-Create_a_new_dashboard_with_trace_stream_widget-1731611563
-      with list_stream widget","description":null,"author_handle":"anika.maskara@datadoghq.com","author_name":"Anika
-      Maskara","layout_type":"ordered","url":"/dashboard/wnc-xse-sns/test-createanewdashboardwithtracestreamwidget-1731611563-with-liststream-widget","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"},{"field":"service","width":"auto"}],"query":{"data_source":"trace_stream","query_string":""},"response_format":"event_list"}],"type":"list_stream"},"id":6150580172370879}],"notify_list":null,"created_at":"2024-11-14T19:12:43.829004+00:00","modified_at":"2024-11-14T19:12:43.829004+00:00","restricted_roles":[]}
+    body: '{"id":"8hi-5bw-sya","title":"Test-Create_a_new_dashboard_with_trace_stream_widget-1731699180
+      with list_stream widget","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"ordered","url":"/dashboard/8hi-5bw-sya/test-createanewdashboardwithtracestreamwidget-1731699180-with-liststream-widget","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"},{"field":"service","width":"auto"}],"query":{"data_source":"trace_stream","query_string":""},"response_format":"event_list"}],"type":"list_stream"},"id":4795393510685480}],"notify_list":null,"created_at":"2024-11-15T19:33:01.001890+00:00","modified_at":"2024-11-15T19:33:01.001890+00:00","restricted_roles":[]}
 
       '
     code: 200
@@ -31,9 +30,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/wnc-xse-sns
+    url: https://api.datadoghq.com/api/v1/dashboard/8hi-5bw-sya
   response:
-    body: '{"deleted_dashboard_id":"wnc-xse-sns"}
+    body: '{"deleted_dashboard_id":"8hi-5bw-sya"}
 
       '
     code: 200

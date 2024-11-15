@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_list_stream_widget-1731611546 with list_stream widget","widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"apm_issue_stream","query_string":""},"response_format":"event_list"}],"type":"list_stream"}}]}
+      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_list_stream_widget-1731699164 with list_stream widget","widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"apm_issue_stream","query_string":""},"response_format":"event_list"}],"type":"list_stream"}}]}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"id":"ma4-5ie-2j7","title":"Test-Create_a_new_dashboard_with_list_stream_widget-1731611546
-      with list_stream widget","description":null,"author_handle":"anika.maskara@datadoghq.com","author_name":"Anika
-      Maskara","layout_type":"ordered","url":"/dashboard/ma4-5ie-2j7/test-createanewdashboardwithliststreamwidget-1731611546-with-liststream-widget","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"apm_issue_stream","query_string":""},"response_format":"event_list"}],"type":"list_stream"},"id":6991546772131646}],"notify_list":null,"created_at":"2024-11-14T19:12:27.070407+00:00","modified_at":"2024-11-14T19:12:27.070407+00:00","restricted_roles":[]}
+    body: '{"id":"p6y-umd-i2r","title":"Test-Create_a_new_dashboard_with_list_stream_widget-1731699164
+      with list_stream widget","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"ordered","url":"/dashboard/p6y-umd-i2r/test-createanewdashboardwithliststreamwidget-1731699164-with-liststream-widget","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"apm_issue_stream","query_string":""},"response_format":"event_list"}],"type":"list_stream"},"id":8526780473770766}],"notify_list":null,"created_at":"2024-11-15T19:32:44.310733+00:00","modified_at":"2024-11-15T19:32:44.310733+00:00","restricted_roles":[]}
 
       '
     code: 200
@@ -31,9 +30,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/ma4-5ie-2j7
+    url: https://api.datadoghq.com/api/v1/dashboard/p6y-umd-i2r
   response:
-    body: '{"deleted_dashboard_id":"ma4-5ie-2j7"}
+    body: '{"deleted_dashboard_id":"p6y-umd-i2r"}
 
       '
     code: 200
