@@ -47,7 +47,6 @@ func main() {
 		},
 		TemplateVariables: []datadogV1.DashboardTemplateVariable{},
 		LayoutType:        datadogV1.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
 		NotifyList:        *datadog.NewNullableList(&[]string{}),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

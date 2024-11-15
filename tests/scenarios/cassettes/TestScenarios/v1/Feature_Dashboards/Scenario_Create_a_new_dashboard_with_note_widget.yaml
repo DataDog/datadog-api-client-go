@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"description":"","is_read_only":false,"layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_note_widget-1641430237","widgets":[{"definition":{"content":"# Example Note","type":"note"},"layout":{"height":24,"width":18,"x":0,"y":0}}]}
+      {"description":"","layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_note_widget-1731611551","widgets":[{"definition":{"content":"# Example Note","type":"note"},"layout":{"height":24,"width":18,"x":0,"y":0}}]}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,11 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"notify_list":[],"description":"","restricted_roles":[],"author_name":null,"template_variables":[],"is_read_only":false,"id":"67s-sdf-cr7","title":"Test-Create_a_new_dashboard_with_note_widget-1641430237","url":"/dashboard/67s-sdf-cr7/test-createanewdashboardwithnotewidget-1641430237","created_at":"2022-01-06T00:50:37.865600+00:00","modified_at":"2022-01-06T00:50:37.865600+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"content":"#
-      Example Note","type":"note"},"layout":{"y":0,"width":18,"x":0,"height":24},"id":2976451902581497}],"layout_type":"free"}'
+    body: '{"id":"tsm-3qy-my2","title":"Test-Create_a_new_dashboard_with_note_widget-1731611551","description":"","author_handle":"anika.maskara@datadoghq.com","author_name":"Anika
+      Maskara","layout_type":"free","url":"/dashboard/tsm-3qy-my2/test-createanewdashboardwithnotewidget-1731611551","is_read_only":false,"template_variables":[],"widgets":[{"definition":{"content":"#
+      Example Note","type":"note"},"layout":{"height":24,"width":18,"x":0,"y":0},"id":1906638315550440}],"notify_list":[],"created_at":"2024-11-14T19:12:31.403064+00:00","modified_at":"2024-11-14T19:12:31.403064+00:00","restricted_roles":[]}
+
+      '
     code: 200
     duration: 0ms
     headers:
@@ -28,9 +31,11 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/67s-sdf-cr7
+    url: https://api.datadoghq.com/api/v1/dashboard/tsm-3qy-my2
   response:
-    body: '{"deleted_dashboard_id":"67s-sdf-cr7"}'
+    body: '{"deleted_dashboard_id":"tsm-3qy-my2"}
+
+      '
     code: 200
     duration: 0ms
     headers:

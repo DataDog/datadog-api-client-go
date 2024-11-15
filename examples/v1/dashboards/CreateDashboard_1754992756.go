@@ -50,7 +50,6 @@ func main() {
 			},
 		},
 		Description: *datadog.NewNullableString(datadog.PtrString("description")),
-		IsReadOnly:  datadog.PtrBool(false),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
