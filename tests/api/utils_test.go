@@ -38,15 +38,15 @@ func TestContainsUnparsedObject(t *testing.T) {
 		},
 		{
 			"unparsed enum in array",
-			datadogV1.SyntheticsTestOptions{DeviceIds: []datadogV1.SyntheticsDeviceID{"edge.tablet", "foobar"}},
+			datadogV2.DowntimeResponseAttributes{NotifyEndStates: []datadogV2.DowntimeNotifyEndStateTypes{"alert", "foobar"}},
 			true,
-			datadogV1.SyntheticsDeviceID("foobar"),
+			datadogV2.DowntimeNotifyEndStateTypes("foobar"),
 		},
 		{
 			"unparsed enum in map",
-			map[string]datadogV1.SyntheticsDeviceID{"foo": "edge.laptop_large", "bar": "foobar"},
+			map[string]datadogV2.DowntimeNotifyEndStateTypes{"foo": "alert", "bar": "foobar"},
 			true,
-			datadogV1.SyntheticsDeviceID("foobar"),
+			datadogV2.DowntimeNotifyEndStateTypes("foobar"),
 		},
 		{
 			"unparsed nullable",
