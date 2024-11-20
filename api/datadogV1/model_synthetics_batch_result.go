@@ -11,7 +11,7 @@ import (
 // SyntheticsBatchResult Object with the results of a Synthetic batch.
 type SyntheticsBatchResult struct {
 	// The device ID.
-	Device *SyntheticsDeviceID `json:"device,omitempty"`
+	Device *string `json:"device,omitempty"`
 	// Total duration in millisecond of the test.
 	Duration *float64 `json:"duration,omitempty"`
 	// Execution rule for a Synthetic test.
@@ -53,9 +53,9 @@ func NewSyntheticsBatchResultWithDefaults() *SyntheticsBatchResult {
 }
 
 // GetDevice returns the Device field value if set, zero value otherwise.
-func (o *SyntheticsBatchResult) GetDevice() SyntheticsDeviceID {
+func (o *SyntheticsBatchResult) GetDevice() string {
 	if o == nil || o.Device == nil {
-		var ret SyntheticsDeviceID
+		var ret string
 		return ret
 	}
 	return *o.Device
@@ -63,7 +63,7 @@ func (o *SyntheticsBatchResult) GetDevice() SyntheticsDeviceID {
 
 // GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsBatchResult) GetDeviceOk() (*SyntheticsDeviceID, bool) {
+func (o *SyntheticsBatchResult) GetDeviceOk() (*string, bool) {
 	if o == nil || o.Device == nil {
 		return nil, false
 	}
@@ -75,8 +75,8 @@ func (o *SyntheticsBatchResult) HasDevice() bool {
 	return o != nil && o.Device != nil
 }
 
-// SetDevice gets a reference to the given SyntheticsDeviceID and assigns it to the Device field.
-func (o *SyntheticsBatchResult) SetDevice(v SyntheticsDeviceID) {
+// SetDevice gets a reference to the given string and assigns it to the Device field.
+func (o *SyntheticsBatchResult) SetDevice(v string) {
 	o.Device = &v
 }
 
@@ -378,7 +378,7 @@ func (o SyntheticsBatchResult) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Device        *SyntheticsDeviceID          `json:"device,omitempty"`
+		Device        *string                      `json:"device,omitempty"`
 		Duration      *float64                     `json:"duration,omitempty"`
 		ExecutionRule *SyntheticsTestExecutionRule `json:"execution_rule,omitempty"`
 		Location      *string                      `json:"location,omitempty"`
@@ -400,11 +400,7 @@ func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if all.Device != nil && !all.Device.IsValid() {
-		hasInvalidField = true
-	} else {
-		o.Device = all.Device
-	}
+	o.Device = all.Device
 	o.Duration = all.Duration
 	if all.ExecutionRule != nil && !all.ExecutionRule.IsValid() {
 		hasInvalidField = true

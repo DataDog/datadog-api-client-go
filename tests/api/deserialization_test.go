@@ -110,90 +110,64 @@ func TestDeserializationUnknownNestedOneOfInList(t *testing.T) {
 func TestDeserializationUnknownNestedEnumInList(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
-	ctx = testV1.WithClient(testV1.WithFakeAuth(ctx))
+	ctx = testV2.WithClient(testV2.WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadogV1.NewSyntheticsApi(testV1.Client(ctx))
+	api := datadogV2.NewDowntimesApi(testV2.Client(ctx))
 
 	responseBody := `
 {
-    "status": "live",
-    "public_id": "2fx-64b-fb8",
-    "tags": [
-        "mini-website",
-        "team:synthetics",
-        "firefox",
-        "synthetics-ci-browser",
-        "edge",
-        "chrome"
-    ],
-    "locations": [
-        "aws:ap-northeast-1",
-        "aws:eu-north-1",
-        "aws:eu-west-3",
-        "aws:eu-central-1"
-    ],
-    "message": "This mini-website check failed, please investigate why. @slack-synthetics-ops-worker",
-    "name": "Mini Website - Click Trap",
-    "monitor_id": 7647262,
-    "type": "browser",
-    "created_at": "2018-12-20T13:19:23.734004+00:00",
-    "modified_at": "2021-06-30T15:46:49.387631+00:00",
-    "config": {
-        "variables": [],
-        "setCookie": "",
-        "request": {
-            "url": "http://34.95.79.70/click-trap",
-            "headers": {},
-            "method": "GET"
+    "data": {
+        "type": "downtime",
+        "attributes": {
+            "mute_first_recovery_notification": false,
+            "schedule": {
+                "end": null,
+                "start": "2024-11-10T03:12:35.223223+00:00"
+            },
+            "notify_end_types": [
+                "expired"
+            ],
+            "status": "active",
+            "monitor_identifier": {
+                "monitor_tags": [
+                    "*"
+                ]
+            },
+            "display_timezone": "UTC",
+            "notify_end_states": [
+                "warn",
+                "alert",
+                "not an end state"
+            ],
+            "created": "2024-11-10T03:12:35.241213+00:00",
+            "modified": "2024-11-10T03:12:35.241213+00:00",
+            "canceled": null,
+            "message": null,
+            "scope": "host:java-hostsMuteErrorsTest-local-1731208355"
         },
-        "assertions": [],
-        "configVariables": []
-    },
-    "options": {
-        "ci": {
-            "executionRule": "blocking"
-        },
-        "retry": {
-            "count": 1,
-            "interval": 1000
-        },
-        "min_location_failed": 1,
-        "min_failure_duration": 0,
-        "noScreenshot": false,
-        "tick_every": 300,
-        "forwardProxy": false,
-        "disableCors": false,
-        "device_ids": [
-            "chrome.laptop_large",
-            "firefox.laptop_large",
-            "A non existent device ID"
-        ],
-        "monitor_options": {
-            "renotify_interval": 360
-        },
-        "ignoreServerCertificateError": true
+        "id": "a5546ef7-fea3-4a1b-b82e-04f8067f655a"
     }
 }
 `
 	// Mock the synthetics API.
-	URL, err := testV1.Client(ctx).GetConfig().ServerURLWithContext(ctx, "SyntheticsApiService.GetBrowserTest")
+	URL, err := testV2.Client(ctx).GetConfig().ServerURLWithContext(ctx, "DowntimeApiService.GetDowntime")
 	assert.NoError(err)
 
 	gock.New(URL).
-		Get("synthetics/tests/browser/public_id").
+		Get("downtime/downtime_id").
 		Reply(299).
 		AddHeader("Content-Type", "application/json").
 		Body(strings.NewReader(responseBody))
 	defer gock.Off()
 
-	resp, httpresp, err := api.GetBrowserTest(ctx, "public_id")
+	resp, httpresp, err := api.GetDowntime(ctx, "downtime_id")
 	assert.Nil(err)
 	assert.Equal(299, httpresp.StatusCode)
 	// Root object deserializes correctly
 	assert.Nil(resp.UnparsedObject)
 	// Options object has the 3 expected device IDs
-	assert.Len(resp.Options.GetDeviceIds(), 3)
-	assert.Equal(datadogV1.SyntheticsDeviceID("A non existent device ID"), resp.Options.GetDeviceIds()[2])
+	assert.Len(resp.Data.Attributes.GetNotifyEndStates(), 3)
+	assert.Equal(datadogV2.DowntimeNotifyEndStateTypes("not an end state"), resp.Data.Attributes.GetNotifyEndStates()[2])
 	assert.True(datadog.ContainsUnparsedObject(resp))
 }
 

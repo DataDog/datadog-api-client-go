@@ -48,8 +48,8 @@ func main() {
 		Options: datadogV1.SyntheticsTestOptions{
 			AcceptSelfSigned: datadog.PtrBool(false),
 			AllowInsecure:    datadog.PtrBool(true),
-			DeviceIds: []datadogV1.SyntheticsDeviceID{
-				datadogV1.SYNTHETICSDEVICEID_CHROME_LAPTOP_LARGE,
+			DeviceIds: []string{
+				"chrome.laptop_large",
 			},
 			DisableCors:        datadog.PtrBool(true),
 			FollowRedirects:    datadog.PtrBool(true),
