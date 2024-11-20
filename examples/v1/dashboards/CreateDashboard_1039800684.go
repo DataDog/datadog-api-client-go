@@ -28,10 +28,16 @@ func main() {
 										Width: datadogV1.LISTSTREAMCOLUMNWIDTH_AUTO,
 										Field: "timestamp",
 									},
+									{
+										Width:                        datadogV1.LISTSTREAMCOLUMNWIDTH_AUTO,
+										Field:                        "message",
+										IsClusteringPatternFieldPath: datadog.PtrBool(true),
+									},
 								},
 								Query: datadogV1.ListStreamQuery{
-									DataSource:  datadogV1.LISTSTREAMSOURCE_LOGS_PATTERN_STREAM,
-									QueryString: "",
+									DataSource:                 datadogV1.LISTSTREAMSOURCE_LOGS_PATTERN_STREAM,
+									QueryString:                "",
+									ClusteringPatternFieldPath: datadog.PtrString("message"),
 									GroupBy: []datadogV1.ListStreamGroupByItems{
 										{
 											Facet: "service",
