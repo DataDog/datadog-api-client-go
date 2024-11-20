@@ -63,8 +63,8 @@ func main() {
 			Ci: &datadogV1.SyntheticsTestCiOptions{
 				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_BLOCKING,
 			},
-			DeviceIds: []datadogV1.SyntheticsDeviceID{
-				datadogV1.SYNTHETICSDEVICEID_CHROME_LAPTOP_LARGE,
+			DeviceIds: []string{
+				"chrome.laptop_large",
 			},
 			HttpVersion: datadogV1.SYNTHETICSTESTOPTIONSHTTPVERSION_HTTP1.Ptr(),
 			MonitorOptions: &datadogV1.SyntheticsTestOptionsMonitorOptions{

@@ -22,8 +22,8 @@ func main() {
 						Type:     datadogV1.SYNTHETICSBASICAUTHWEBTYPE_WEB.Ptr(),
 						Username: "my_username",
 					}},
-				DeviceIds: []datadogV1.SyntheticsDeviceID{
-					datadogV1.SYNTHETICSDEVICEID_CHROME_LAPTOP_LARGE,
+				DeviceIds: []string{
+					"chrome.laptop_large",
 				},
 				Locations: []string{
 					"aws:eu-west-3",
