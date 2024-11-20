@@ -77,7 +77,7 @@
 <span id="L20" class="ln">    20  </span>	<span class="comment">// CI/CD options for a Synthetic test.</span>
 <span id="L21" class="ln">    21  </span>	Ci *SyntheticsTestCiOptions `json:&#34;ci,omitempty&#34;`
 <span id="L22" class="ln">    22  </span>	<span class="comment">// For browser test, array with the different device IDs used to run the test.</span>
-<span id="L23" class="ln">    23  </span>	DeviceIds []SyntheticsDeviceID `json:&#34;device_ids,omitempty&#34;`
+<span id="L23" class="ln">    23  </span>	DeviceIds []string `json:&#34;device_ids,omitempty&#34;`
 <span id="L24" class="ln">    24  </span>	<span class="comment">// Whether or not to disable CORS mechanism.</span>
 <span id="L25" class="ln">    25  </span>	DisableCors *bool `json:&#34;disableCors,omitempty&#34;`
 <span id="L26" class="ln">    26  </span>	<span class="comment">// Disable Content Security Policy for browser tests.</span>
@@ -264,9 +264,9 @@
 <span id="L207" class="ln">   207  </span>}
 <span id="L208" class="ln">   208  </span>
 <span id="L209" class="ln">   209  </span><span class="comment">// GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.</span>
-<span id="L210" class="ln">   210  </span>func (o *SyntheticsTestOptions) GetDeviceIds() []SyntheticsDeviceID {
+<span id="L210" class="ln">   210  </span>func (o *SyntheticsTestOptions) GetDeviceIds() []string {
 <span id="L211" class="ln">   211  </span>	if o == nil || o.DeviceIds == nil {
-<span id="L212" class="ln">   212  </span>		var ret []SyntheticsDeviceID
+<span id="L212" class="ln">   212  </span>		var ret []string
 <span id="L213" class="ln">   213  </span>		return ret
 <span id="L214" class="ln">   214  </span>	}
 <span id="L215" class="ln">   215  </span>	return o.DeviceIds
@@ -274,7 +274,7 @@
 <span id="L217" class="ln">   217  </span>
 <span id="L218" class="ln">   218  </span><span class="comment">// GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise</span>
 <span id="L219" class="ln">   219  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L220" class="ln">   220  </span>func (o *SyntheticsTestOptions) GetDeviceIdsOk() (*[]SyntheticsDeviceID, bool) {
+<span id="L220" class="ln">   220  </span>func (o *SyntheticsTestOptions) GetDeviceIdsOk() (*[]string, bool) {
 <span id="L221" class="ln">   221  </span>	if o == nil || o.DeviceIds == nil {
 <span id="L222" class="ln">   222  </span>		return nil, false
 <span id="L223" class="ln">   223  </span>	}
@@ -286,8 +286,8 @@
 <span id="L229" class="ln">   229  </span>	return o != nil &amp;&amp; o.DeviceIds != nil
 <span id="L230" class="ln">   230  </span>}
 <span id="L231" class="ln">   231  </span>
-<span id="L232" class="ln">   232  </span><span class="comment">// SetDeviceIds gets a reference to the given []SyntheticsDeviceID and assigns it to the DeviceIds field.</span>
-<span id="L233" class="ln">   233  </span>func (o *SyntheticsTestOptions) SetDeviceIds(v []SyntheticsDeviceID) {
+<span id="L232" class="ln">   232  </span><span class="comment">// SetDeviceIds gets a reference to the given []string and assigns it to the DeviceIds field.</span>
+<span id="L233" class="ln">   233  </span>func (o *SyntheticsTestOptions) SetDeviceIds(v []string) {
 <span id="L234" class="ln">   234  </span>	o.DeviceIds = v
 <span id="L235" class="ln">   235  </span>}
 <span id="L236" class="ln">   236  </span>
@@ -918,7 +918,7 @@
 <span id="L861" class="ln">   861  </span>		AllowInsecure                *bool                                `json:&#34;allow_insecure,omitempty&#34;`
 <span id="L862" class="ln">   862  </span>		CheckCertificateRevocation   *bool                                `json:&#34;checkCertificateRevocation,omitempty&#34;`
 <span id="L863" class="ln">   863  </span>		Ci                           *SyntheticsTestCiOptions             `json:&#34;ci,omitempty&#34;`
-<span id="L864" class="ln">   864  </span>		DeviceIds                    []SyntheticsDeviceID                 `json:&#34;device_ids,omitempty&#34;`
+<span id="L864" class="ln">   864  </span>		DeviceIds                    []string                             `json:&#34;device_ids,omitempty&#34;`
 <span id="L865" class="ln">   865  </span>		DisableCors                  *bool                                `json:&#34;disableCors,omitempty&#34;`
 <span id="L866" class="ln">   866  </span>		DisableCsp                   *bool                                `json:&#34;disableCsp,omitempty&#34;`
 <span id="L867" class="ln">   867  </span>		EnableProfiling              *bool                                `json:&#34;enableProfiling,omitempty&#34;`

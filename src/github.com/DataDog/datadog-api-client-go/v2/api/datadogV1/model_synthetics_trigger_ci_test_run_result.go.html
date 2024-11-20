@@ -68,7 +68,7 @@
 <span id="L11" class="ln">    11  </span><span class="comment">// SyntheticsTriggerCITestRunResult Information about a single test run.</span>
 <span id="L12" class="ln">    12  </span>type SyntheticsTriggerCITestRunResult struct {
 <span id="L13" class="ln">    13  </span>	<span class="comment">// The device ID.</span>
-<span id="L14" class="ln">    14  </span>	Device *SyntheticsDeviceID `json:&#34;device,omitempty&#34;`
+<span id="L14" class="ln">    14  </span>	Device *string `json:&#34;device,omitempty&#34;`
 <span id="L15" class="ln">    15  </span>	<span class="comment">// The location ID of the test run.</span>
 <span id="L16" class="ln">    16  </span>	Location *int64 `json:&#34;location,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// The public ID of the Synthetic test.</span>
@@ -98,9 +98,9 @@
 <span id="L41" class="ln">    41  </span>}
 <span id="L42" class="ln">    42  </span>
 <span id="L43" class="ln">    43  </span><span class="comment">// GetDevice returns the Device field value if set, zero value otherwise.</span>
-<span id="L44" class="ln">    44  </span>func (o *SyntheticsTriggerCITestRunResult) GetDevice() SyntheticsDeviceID {
+<span id="L44" class="ln">    44  </span>func (o *SyntheticsTriggerCITestRunResult) GetDevice() string {
 <span id="L45" class="ln">    45  </span>	if o == nil || o.Device == nil {
-<span id="L46" class="ln">    46  </span>		var ret SyntheticsDeviceID
+<span id="L46" class="ln">    46  </span>		var ret string
 <span id="L47" class="ln">    47  </span>		return ret
 <span id="L48" class="ln">    48  </span>	}
 <span id="L49" class="ln">    49  </span>	return *o.Device
@@ -108,7 +108,7 @@
 <span id="L51" class="ln">    51  </span>
 <span id="L52" class="ln">    52  </span><span class="comment">// GetDeviceOk returns a tuple with the Device field value if set, nil otherwise</span>
 <span id="L53" class="ln">    53  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L54" class="ln">    54  </span>func (o *SyntheticsTriggerCITestRunResult) GetDeviceOk() (*SyntheticsDeviceID, bool) {
+<span id="L54" class="ln">    54  </span>func (o *SyntheticsTriggerCITestRunResult) GetDeviceOk() (*string, bool) {
 <span id="L55" class="ln">    55  </span>	if o == nil || o.Device == nil {
 <span id="L56" class="ln">    56  </span>		return nil, false
 <span id="L57" class="ln">    57  </span>	}
@@ -120,8 +120,8 @@
 <span id="L63" class="ln">    63  </span>	return o != nil &amp;&amp; o.Device != nil
 <span id="L64" class="ln">    64  </span>}
 <span id="L65" class="ln">    65  </span>
-<span id="L66" class="ln">    66  </span><span class="comment">// SetDevice gets a reference to the given SyntheticsDeviceID and assigns it to the Device field.</span>
-<span id="L67" class="ln">    67  </span>func (o *SyntheticsTriggerCITestRunResult) SetDevice(v SyntheticsDeviceID) {
+<span id="L66" class="ln">    66  </span><span class="comment">// SetDevice gets a reference to the given string and assigns it to the Device field.</span>
+<span id="L67" class="ln">    67  </span>func (o *SyntheticsTriggerCITestRunResult) SetDevice(v string) {
 <span id="L68" class="ln">    68  </span>	o.Device = &amp;v
 <span id="L69" class="ln">    69  </span>}
 <span id="L70" class="ln">    70  </span>
@@ -237,10 +237,10 @@
 <span id="L180" class="ln">   180  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L181" class="ln">   181  </span>func (o *SyntheticsTriggerCITestRunResult) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L182" class="ln">   182  </span>	all := struct {
-<span id="L183" class="ln">   183  </span>		Device   *SyntheticsDeviceID `json:&#34;device,omitempty&#34;`
-<span id="L184" class="ln">   184  </span>		Location *int64              `json:&#34;location,omitempty&#34;`
-<span id="L185" class="ln">   185  </span>		PublicId *string             `json:&#34;public_id,omitempty&#34;`
-<span id="L186" class="ln">   186  </span>		ResultId *string             `json:&#34;result_id,omitempty&#34;`
+<span id="L183" class="ln">   183  </span>		Device   *string `json:&#34;device,omitempty&#34;`
+<span id="L184" class="ln">   184  </span>		Location *int64  `json:&#34;location,omitempty&#34;`
+<span id="L185" class="ln">   185  </span>		PublicId *string `json:&#34;public_id,omitempty&#34;`
+<span id="L186" class="ln">   186  </span>		ResultId *string `json:&#34;result_id,omitempty&#34;`
 <span id="L187" class="ln">   187  </span>	}{}
 <span id="L188" class="ln">   188  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L189" class="ln">   189  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
@@ -251,28 +251,18 @@
 <span id="L194" class="ln">   194  </span>	} else {
 <span id="L195" class="ln">   195  </span>		return err
 <span id="L196" class="ln">   196  </span>	}
-<span id="L197" class="ln">   197  </span>
-<span id="L198" class="ln">   198  </span>	hasInvalidField := false
-<span id="L199" class="ln">   199  </span>	if all.Device != nil &amp;&amp; !all.Device.IsValid() {
-<span id="L200" class="ln">   200  </span>		hasInvalidField = true
-<span id="L201" class="ln">   201  </span>	} else {
-<span id="L202" class="ln">   202  </span>		o.Device = all.Device
-<span id="L203" class="ln">   203  </span>	}
-<span id="L204" class="ln">   204  </span>	o.Location = all.Location
-<span id="L205" class="ln">   205  </span>	o.PublicId = all.PublicId
-<span id="L206" class="ln">   206  </span>	o.ResultId = all.ResultId
-<span id="L207" class="ln">   207  </span>
-<span id="L208" class="ln">   208  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L209" class="ln">   209  </span>		o.AdditionalProperties = additionalProperties
-<span id="L210" class="ln">   210  </span>	}
-<span id="L211" class="ln">   211  </span>
-<span id="L212" class="ln">   212  </span>	if hasInvalidField {
-<span id="L213" class="ln">   213  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L214" class="ln">   214  </span>	}
-<span id="L215" class="ln">   215  </span>
-<span id="L216" class="ln">   216  </span>	return nil
-<span id="L217" class="ln">   217  </span>}
-<span id="L218" class="ln">   218  </span>
+<span id="L197" class="ln">   197  </span>	o.Device = all.Device
+<span id="L198" class="ln">   198  </span>	o.Location = all.Location
+<span id="L199" class="ln">   199  </span>	o.PublicId = all.PublicId
+<span id="L200" class="ln">   200  </span>	o.ResultId = all.ResultId
+<span id="L201" class="ln">   201  </span>
+<span id="L202" class="ln">   202  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L203" class="ln">   203  </span>		o.AdditionalProperties = additionalProperties
+<span id="L204" class="ln">   204  </span>	}
+<span id="L205" class="ln">   205  </span>
+<span id="L206" class="ln">   206  </span>	return nil
+<span id="L207" class="ln">   207  </span>}
+<span id="L208" class="ln">   208  </span>
 </pre><p></p>
 
 <div id="footer">

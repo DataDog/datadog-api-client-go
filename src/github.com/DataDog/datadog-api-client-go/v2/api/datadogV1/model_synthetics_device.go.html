@@ -72,7 +72,7 @@
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Screen height of the device.</span>
 <span id="L16" class="ln">    16  </span>	Height int64 `json:&#34;height&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// The device ID.</span>
-<span id="L18" class="ln">    18  </span>	Id SyntheticsDeviceID `json:&#34;id&#34;`
+<span id="L18" class="ln">    18  </span>	Id string `json:&#34;id&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// Whether or not the device is a mobile.</span>
 <span id="L20" class="ln">    20  </span>	IsMobile *bool `json:&#34;isMobile,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// The device name.</span>
@@ -88,7 +88,7 @@
 <span id="L31" class="ln">    31  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L32" class="ln">    32  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L33" class="ln">    33  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L34" class="ln">    34  </span>func NewSyntheticsDevice(height int64, id SyntheticsDeviceID, name string, width int64) *SyntheticsDevice {
+<span id="L34" class="ln">    34  </span>func NewSyntheticsDevice(height int64, id string, name string, width int64) *SyntheticsDevice {
 <span id="L35" class="ln">    35  </span>	this := SyntheticsDevice{}
 <span id="L36" class="ln">    36  </span>	this.Height = height
 <span id="L37" class="ln">    37  </span>	this.Id = id
@@ -129,9 +129,9 @@
 <span id="L72" class="ln">    72  </span>}
 <span id="L73" class="ln">    73  </span>
 <span id="L74" class="ln">    74  </span><span class="comment">// GetId returns the Id field value.</span>
-<span id="L75" class="ln">    75  </span>func (o *SyntheticsDevice) GetId() SyntheticsDeviceID {
+<span id="L75" class="ln">    75  </span>func (o *SyntheticsDevice) GetId() string {
 <span id="L76" class="ln">    76  </span>	if o == nil {
-<span id="L77" class="ln">    77  </span>		var ret SyntheticsDeviceID
+<span id="L77" class="ln">    77  </span>		var ret string
 <span id="L78" class="ln">    78  </span>		return ret
 <span id="L79" class="ln">    79  </span>	}
 <span id="L80" class="ln">    80  </span>	return o.Id
@@ -139,7 +139,7 @@
 <span id="L82" class="ln">    82  </span>
 <span id="L83" class="ln">    83  </span><span class="comment">// GetIdOk returns a tuple with the Id field value</span>
 <span id="L84" class="ln">    84  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L85" class="ln">    85  </span>func (o *SyntheticsDevice) GetIdOk() (*SyntheticsDeviceID, bool) {
+<span id="L85" class="ln">    85  </span>func (o *SyntheticsDevice) GetIdOk() (*string, bool) {
 <span id="L86" class="ln">    86  </span>	if o == nil {
 <span id="L87" class="ln">    87  </span>		return nil, false
 <span id="L88" class="ln">    88  </span>	}
@@ -147,7 +147,7 @@
 <span id="L90" class="ln">    90  </span>}
 <span id="L91" class="ln">    91  </span>
 <span id="L92" class="ln">    92  </span><span class="comment">// SetId sets field value.</span>
-<span id="L93" class="ln">    93  </span>func (o *SyntheticsDevice) SetId(v SyntheticsDeviceID) {
+<span id="L93" class="ln">    93  </span>func (o *SyntheticsDevice) SetId(v string) {
 <span id="L94" class="ln">    94  </span>	o.Id = v
 <span id="L95" class="ln">    95  </span>}
 <span id="L96" class="ln">    96  </span>
@@ -248,11 +248,11 @@
 <span id="L191" class="ln">   191  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L192" class="ln">   192  </span>func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L193" class="ln">   193  </span>	all := struct {
-<span id="L194" class="ln">   194  </span>		Height   *int64              `json:&#34;height&#34;`
-<span id="L195" class="ln">   195  </span>		Id       *SyntheticsDeviceID `json:&#34;id&#34;`
-<span id="L196" class="ln">   196  </span>		IsMobile *bool               `json:&#34;isMobile,omitempty&#34;`
-<span id="L197" class="ln">   197  </span>		Name     *string             `json:&#34;name&#34;`
-<span id="L198" class="ln">   198  </span>		Width    *int64              `json:&#34;width&#34;`
+<span id="L194" class="ln">   194  </span>		Height   *int64  `json:&#34;height&#34;`
+<span id="L195" class="ln">   195  </span>		Id       *string `json:&#34;id&#34;`
+<span id="L196" class="ln">   196  </span>		IsMobile *bool   `json:&#34;isMobile,omitempty&#34;`
+<span id="L197" class="ln">   197  </span>		Name     *string `json:&#34;name&#34;`
+<span id="L198" class="ln">   198  </span>		Width    *int64  `json:&#34;width&#34;`
 <span id="L199" class="ln">   199  </span>	}{}
 <span id="L200" class="ln">   200  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L201" class="ln">   201  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
@@ -275,29 +275,19 @@
 <span id="L218" class="ln">   218  </span>	} else {
 <span id="L219" class="ln">   219  </span>		return err
 <span id="L220" class="ln">   220  </span>	}
-<span id="L221" class="ln">   221  </span>
-<span id="L222" class="ln">   222  </span>	hasInvalidField := false
-<span id="L223" class="ln">   223  </span>	o.Height = *all.Height
-<span id="L224" class="ln">   224  </span>	if !all.Id.IsValid() {
-<span id="L225" class="ln">   225  </span>		hasInvalidField = true
-<span id="L226" class="ln">   226  </span>	} else {
-<span id="L227" class="ln">   227  </span>		o.Id = *all.Id
-<span id="L228" class="ln">   228  </span>	}
-<span id="L229" class="ln">   229  </span>	o.IsMobile = all.IsMobile
-<span id="L230" class="ln">   230  </span>	o.Name = *all.Name
-<span id="L231" class="ln">   231  </span>	o.Width = *all.Width
-<span id="L232" class="ln">   232  </span>
-<span id="L233" class="ln">   233  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L234" class="ln">   234  </span>		o.AdditionalProperties = additionalProperties
-<span id="L235" class="ln">   235  </span>	}
-<span id="L236" class="ln">   236  </span>
-<span id="L237" class="ln">   237  </span>	if hasInvalidField {
-<span id="L238" class="ln">   238  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L239" class="ln">   239  </span>	}
-<span id="L240" class="ln">   240  </span>
-<span id="L241" class="ln">   241  </span>	return nil
-<span id="L242" class="ln">   242  </span>}
-<span id="L243" class="ln">   243  </span>
+<span id="L221" class="ln">   221  </span>	o.Height = *all.Height
+<span id="L222" class="ln">   222  </span>	o.Id = *all.Id
+<span id="L223" class="ln">   223  </span>	o.IsMobile = all.IsMobile
+<span id="L224" class="ln">   224  </span>	o.Name = *all.Name
+<span id="L225" class="ln">   225  </span>	o.Width = *all.Width
+<span id="L226" class="ln">   226  </span>
+<span id="L227" class="ln">   227  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L228" class="ln">   228  </span>		o.AdditionalProperties = additionalProperties
+<span id="L229" class="ln">   229  </span>	}
+<span id="L230" class="ln">   230  </span>
+<span id="L231" class="ln">   231  </span>	return nil
+<span id="L232" class="ln">   232  </span>}
+<span id="L233" class="ln">   233  </span>
 </pre><p></p>
 
 <div id="footer">

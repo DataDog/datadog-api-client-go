@@ -68,7 +68,7 @@
 <span id="L11" class="ln">    11  </span><span class="comment">// SyntheticsBatchResult Object with the results of a Synthetic batch.</span>
 <span id="L12" class="ln">    12  </span>type SyntheticsBatchResult struct {
 <span id="L13" class="ln">    13  </span>	<span class="comment">// The device ID.</span>
-<span id="L14" class="ln">    14  </span>	Device *SyntheticsDeviceID `json:&#34;device,omitempty&#34;`
+<span id="L14" class="ln">    14  </span>	Device *string `json:&#34;device,omitempty&#34;`
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Total duration in millisecond of the test.</span>
 <span id="L16" class="ln">    16  </span>	Duration *float64 `json:&#34;duration,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// Execution rule for a Synthetic test.</span>
@@ -110,9 +110,9 @@
 <span id="L53" class="ln">    53  </span>}
 <span id="L54" class="ln">    54  </span>
 <span id="L55" class="ln">    55  </span><span class="comment">// GetDevice returns the Device field value if set, zero value otherwise.</span>
-<span id="L56" class="ln">    56  </span>func (o *SyntheticsBatchResult) GetDevice() SyntheticsDeviceID {
+<span id="L56" class="ln">    56  </span>func (o *SyntheticsBatchResult) GetDevice() string {
 <span id="L57" class="ln">    57  </span>	if o == nil || o.Device == nil {
-<span id="L58" class="ln">    58  </span>		var ret SyntheticsDeviceID
+<span id="L58" class="ln">    58  </span>		var ret string
 <span id="L59" class="ln">    59  </span>		return ret
 <span id="L60" class="ln">    60  </span>	}
 <span id="L61" class="ln">    61  </span>	return *o.Device
@@ -120,7 +120,7 @@
 <span id="L63" class="ln">    63  </span>
 <span id="L64" class="ln">    64  </span><span class="comment">// GetDeviceOk returns a tuple with the Device field value if set, nil otherwise</span>
 <span id="L65" class="ln">    65  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L66" class="ln">    66  </span>func (o *SyntheticsBatchResult) GetDeviceOk() (*SyntheticsDeviceID, bool) {
+<span id="L66" class="ln">    66  </span>func (o *SyntheticsBatchResult) GetDeviceOk() (*string, bool) {
 <span id="L67" class="ln">    67  </span>	if o == nil || o.Device == nil {
 <span id="L68" class="ln">    68  </span>		return nil, false
 <span id="L69" class="ln">    69  </span>	}
@@ -132,8 +132,8 @@
 <span id="L75" class="ln">    75  </span>	return o != nil &amp;&amp; o.Device != nil
 <span id="L76" class="ln">    76  </span>}
 <span id="L77" class="ln">    77  </span>
-<span id="L78" class="ln">    78  </span><span class="comment">// SetDevice gets a reference to the given SyntheticsDeviceID and assigns it to the Device field.</span>
-<span id="L79" class="ln">    79  </span>func (o *SyntheticsBatchResult) SetDevice(v SyntheticsDeviceID) {
+<span id="L78" class="ln">    78  </span><span class="comment">// SetDevice gets a reference to the given string and assigns it to the Device field.</span>
+<span id="L79" class="ln">    79  </span>func (o *SyntheticsBatchResult) SetDevice(v string) {
 <span id="L80" class="ln">    80  </span>	o.Device = &amp;v
 <span id="L81" class="ln">    81  </span>}
 <span id="L82" class="ln">    82  </span>
@@ -435,7 +435,7 @@
 <span id="L378" class="ln">   378  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L379" class="ln">   379  </span>func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L380" class="ln">   380  </span>	all := struct {
-<span id="L381" class="ln">   381  </span>		Device        *SyntheticsDeviceID          `json:&#34;device,omitempty&#34;`
+<span id="L381" class="ln">   381  </span>		Device        *string                      `json:&#34;device,omitempty&#34;`
 <span id="L382" class="ln">   382  </span>		Duration      *float64                     `json:&#34;duration,omitempty&#34;`
 <span id="L383" class="ln">   383  </span>		ExecutionRule *SyntheticsTestExecutionRule `json:&#34;execution_rule,omitempty&#34;`
 <span id="L384" class="ln">   384  </span>		Location      *string                      `json:&#34;location,omitempty&#34;`
@@ -457,44 +457,40 @@
 <span id="L400" class="ln">   400  </span>	}
 <span id="L401" class="ln">   401  </span>
 <span id="L402" class="ln">   402  </span>	hasInvalidField := false
-<span id="L403" class="ln">   403  </span>	if all.Device != nil &amp;&amp; !all.Device.IsValid() {
-<span id="L404" class="ln">   404  </span>		hasInvalidField = true
-<span id="L405" class="ln">   405  </span>	} else {
-<span id="L406" class="ln">   406  </span>		o.Device = all.Device
-<span id="L407" class="ln">   407  </span>	}
-<span id="L408" class="ln">   408  </span>	o.Duration = all.Duration
-<span id="L409" class="ln">   409  </span>	if all.ExecutionRule != nil &amp;&amp; !all.ExecutionRule.IsValid() {
-<span id="L410" class="ln">   410  </span>		hasInvalidField = true
-<span id="L411" class="ln">   411  </span>	} else {
-<span id="L412" class="ln">   412  </span>		o.ExecutionRule = all.ExecutionRule
-<span id="L413" class="ln">   413  </span>	}
-<span id="L414" class="ln">   414  </span>	o.Location = all.Location
-<span id="L415" class="ln">   415  </span>	o.ResultId = all.ResultId
-<span id="L416" class="ln">   416  </span>	o.Retries = all.Retries
-<span id="L417" class="ln">   417  </span>	if all.Status != nil &amp;&amp; !all.Status.IsValid() {
-<span id="L418" class="ln">   418  </span>		hasInvalidField = true
-<span id="L419" class="ln">   419  </span>	} else {
-<span id="L420" class="ln">   420  </span>		o.Status = all.Status
-<span id="L421" class="ln">   421  </span>	}
-<span id="L422" class="ln">   422  </span>	o.TestName = all.TestName
-<span id="L423" class="ln">   423  </span>	o.TestPublicId = all.TestPublicId
-<span id="L424" class="ln">   424  </span>	if all.TestType != nil &amp;&amp; !all.TestType.IsValid() {
-<span id="L425" class="ln">   425  </span>		hasInvalidField = true
-<span id="L426" class="ln">   426  </span>	} else {
-<span id="L427" class="ln">   427  </span>		o.TestType = all.TestType
+<span id="L403" class="ln">   403  </span>	o.Device = all.Device
+<span id="L404" class="ln">   404  </span>	o.Duration = all.Duration
+<span id="L405" class="ln">   405  </span>	if all.ExecutionRule != nil &amp;&amp; !all.ExecutionRule.IsValid() {
+<span id="L406" class="ln">   406  </span>		hasInvalidField = true
+<span id="L407" class="ln">   407  </span>	} else {
+<span id="L408" class="ln">   408  </span>		o.ExecutionRule = all.ExecutionRule
+<span id="L409" class="ln">   409  </span>	}
+<span id="L410" class="ln">   410  </span>	o.Location = all.Location
+<span id="L411" class="ln">   411  </span>	o.ResultId = all.ResultId
+<span id="L412" class="ln">   412  </span>	o.Retries = all.Retries
+<span id="L413" class="ln">   413  </span>	if all.Status != nil &amp;&amp; !all.Status.IsValid() {
+<span id="L414" class="ln">   414  </span>		hasInvalidField = true
+<span id="L415" class="ln">   415  </span>	} else {
+<span id="L416" class="ln">   416  </span>		o.Status = all.Status
+<span id="L417" class="ln">   417  </span>	}
+<span id="L418" class="ln">   418  </span>	o.TestName = all.TestName
+<span id="L419" class="ln">   419  </span>	o.TestPublicId = all.TestPublicId
+<span id="L420" class="ln">   420  </span>	if all.TestType != nil &amp;&amp; !all.TestType.IsValid() {
+<span id="L421" class="ln">   421  </span>		hasInvalidField = true
+<span id="L422" class="ln">   422  </span>	} else {
+<span id="L423" class="ln">   423  </span>		o.TestType = all.TestType
+<span id="L424" class="ln">   424  </span>	}
+<span id="L425" class="ln">   425  </span>
+<span id="L426" class="ln">   426  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L427" class="ln">   427  </span>		o.AdditionalProperties = additionalProperties
 <span id="L428" class="ln">   428  </span>	}
 <span id="L429" class="ln">   429  </span>
-<span id="L430" class="ln">   430  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L431" class="ln">   431  </span>		o.AdditionalProperties = additionalProperties
+<span id="L430" class="ln">   430  </span>	if hasInvalidField {
+<span id="L431" class="ln">   431  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
 <span id="L432" class="ln">   432  </span>	}
 <span id="L433" class="ln">   433  </span>
-<span id="L434" class="ln">   434  </span>	if hasInvalidField {
-<span id="L435" class="ln">   435  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L436" class="ln">   436  </span>	}
-<span id="L437" class="ln">   437  </span>
-<span id="L438" class="ln">   438  </span>	return nil
-<span id="L439" class="ln">   439  </span>}
-<span id="L440" class="ln">   440  </span>
+<span id="L434" class="ln">   434  </span>	return nil
+<span id="L435" class="ln">   435  </span>}
+<span id="L436" class="ln">   436  </span>
 </pre><p></p>
 
 <div id="footer">

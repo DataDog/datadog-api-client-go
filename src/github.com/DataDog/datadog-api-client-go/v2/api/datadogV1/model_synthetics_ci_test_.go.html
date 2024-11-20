@@ -80,7 +80,7 @@
 <span id="L23" class="ln">    23  </span>	<span class="comment">// Cookies for the request.</span>
 <span id="L24" class="ln">    24  </span>	Cookies *string `json:&#34;cookies,omitempty&#34;`
 <span id="L25" class="ln">    25  </span>	<span class="comment">// For browser test, array with the different device IDs used to run the test.</span>
-<span id="L26" class="ln">    26  </span>	DeviceIds []SyntheticsDeviceID `json:&#34;deviceIds,omitempty&#34;`
+<span id="L26" class="ln">    26  </span>	DeviceIds []string `json:&#34;deviceIds,omitempty&#34;`
 <span id="L27" class="ln">    27  </span>	<span class="comment">// For API HTTP test, whether or not the test should follow redirects.</span>
 <span id="L28" class="ln">    28  </span>	FollowRedirects *bool `json:&#34;followRedirects,omitempty&#34;`
 <span id="L29" class="ln">    29  </span>	<span class="comment">// Headers to include when performing the test.</span>
@@ -261,9 +261,9 @@
 <span id="L204" class="ln">   204  </span>}
 <span id="L205" class="ln">   205  </span>
 <span id="L206" class="ln">   206  </span><span class="comment">// GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.</span>
-<span id="L207" class="ln">   207  </span>func (o *SyntheticsCITest) GetDeviceIds() []SyntheticsDeviceID {
+<span id="L207" class="ln">   207  </span>func (o *SyntheticsCITest) GetDeviceIds() []string {
 <span id="L208" class="ln">   208  </span>	if o == nil || o.DeviceIds == nil {
-<span id="L209" class="ln">   209  </span>		var ret []SyntheticsDeviceID
+<span id="L209" class="ln">   209  </span>		var ret []string
 <span id="L210" class="ln">   210  </span>		return ret
 <span id="L211" class="ln">   211  </span>	}
 <span id="L212" class="ln">   212  </span>	return o.DeviceIds
@@ -271,7 +271,7 @@
 <span id="L214" class="ln">   214  </span>
 <span id="L215" class="ln">   215  </span><span class="comment">// GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise</span>
 <span id="L216" class="ln">   216  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L217" class="ln">   217  </span>func (o *SyntheticsCITest) GetDeviceIdsOk() (*[]SyntheticsDeviceID, bool) {
+<span id="L217" class="ln">   217  </span>func (o *SyntheticsCITest) GetDeviceIdsOk() (*[]string, bool) {
 <span id="L218" class="ln">   218  </span>	if o == nil || o.DeviceIds == nil {
 <span id="L219" class="ln">   219  </span>		return nil, false
 <span id="L220" class="ln">   220  </span>	}
@@ -283,8 +283,8 @@
 <span id="L226" class="ln">   226  </span>	return o != nil &amp;&amp; o.DeviceIds != nil
 <span id="L227" class="ln">   227  </span>}
 <span id="L228" class="ln">   228  </span>
-<span id="L229" class="ln">   229  </span><span class="comment">// SetDeviceIds gets a reference to the given []SyntheticsDeviceID and assigns it to the DeviceIds field.</span>
-<span id="L230" class="ln">   230  </span>func (o *SyntheticsCITest) SetDeviceIds(v []SyntheticsDeviceID) {
+<span id="L229" class="ln">   229  </span><span class="comment">// SetDeviceIds gets a reference to the given []string and assigns it to the DeviceIds field.</span>
+<span id="L230" class="ln">   230  </span>func (o *SyntheticsCITest) SetDeviceIds(v []string) {
 <span id="L231" class="ln">   231  </span>	o.DeviceIds = v
 <span id="L232" class="ln">   232  </span>}
 <span id="L233" class="ln">   233  </span>
@@ -568,7 +568,7 @@
 <span id="L511" class="ln">   511  </span>		Body                      *string                     `json:&#34;body,omitempty&#34;`
 <span id="L512" class="ln">   512  </span>		BodyType                  *string                     `json:&#34;bodyType,omitempty&#34;`
 <span id="L513" class="ln">   513  </span>		Cookies                   *string                     `json:&#34;cookies,omitempty&#34;`
-<span id="L514" class="ln">   514  </span>		DeviceIds                 []SyntheticsDeviceID        `json:&#34;deviceIds,omitempty&#34;`
+<span id="L514" class="ln">   514  </span>		DeviceIds                 []string                    `json:&#34;deviceIds,omitempty&#34;`
 <span id="L515" class="ln">   515  </span>		FollowRedirects           *bool                       `json:&#34;followRedirects,omitempty&#34;`
 <span id="L516" class="ln">   516  </span>		Headers                   map[string]string           `json:&#34;headers,omitempty&#34;`
 <span id="L517" class="ln">   517  </span>		Locations                 []string                    `json:&#34;locations,omitempty&#34;`
