@@ -41,8 +41,6 @@ type ListStreamQuery struct {
 // will change when the set of required properties is changed.
 func NewListStreamQuery(dataSource ListStreamSource, queryString string) *ListStreamQuery {
 	this := ListStreamQuery{}
-	var clusteringPatternFieldPath string = "message"
-	this.ClusteringPatternFieldPath = &clusteringPatternFieldPath
 	this.DataSource = dataSource
 	this.QueryString = queryString
 	return &this
@@ -53,8 +51,6 @@ func NewListStreamQuery(dataSource ListStreamSource, queryString string) *ListSt
 // but it doesn't guarantee that properties required by API are set.
 func NewListStreamQueryWithDefaults() *ListStreamQuery {
 	this := ListStreamQuery{}
-	var clusteringPatternFieldPath string = "message"
-	this.ClusteringPatternFieldPath = &clusteringPatternFieldPath
 	var dataSource ListStreamSource = LISTSTREAMSOURCE_APM_ISSUE_STREAM
 	this.DataSource = dataSource
 	return &this
