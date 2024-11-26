@@ -12,12 +12,12 @@ import (
 
 // SecurityMonitoringRuleCaseCreate Case when signal is generated.
 type SecurityMonitoringRuleCaseCreate struct {
-	// A rule case contains logical operations (`>`,`>=`, `&&`, `||`) to determine if a signal should be generated
+	// A case contains logical operations (`>`,`>=`, `&&`, `||`) to determine if a signal should be generated
 	// based on the event counts in the previously defined queries.
 	Condition *string `json:"condition,omitempty"`
 	// Name of the case.
 	Name *string `json:"name,omitempty"`
-	// Notification targets for each rule case.
+	// Notification targets.
 	Notifications []string `json:"notifications,omitempty"`
 	// Severity of the Security Signal.
 	Status SecurityMonitoringRuleSeverity `json:"status"`

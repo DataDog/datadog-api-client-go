@@ -26,15 +26,15 @@ type JobDefinition struct {
 	Message string `json:"message"`
 	// Job name.
 	Name string `json:"name"`
-	// Options on rules.
+	// Options.
 	Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
 	// Queries for selecting logs analyzed by the job.
 	Queries []SecurityMonitoringStandardRuleQuery `json:"queries"`
-	// Reference tables for the rule.
+	// Reference tables used in the queries.
 	ReferenceTables []SecurityMonitoringReferenceTable `json:"referenceTables,omitempty"`
 	// Tags for generated signals.
 	Tags []string `json:"tags,omitempty"`
-	// Cases for generating results from third-party rules. Only available for third-party rules.
+	// Cases for generating results from third-party detection method. Only available for third-party detection method.
 	ThirdPartyCases []SecurityMonitoringThirdPartyRuleCaseCreate `json:"thirdPartyCases,omitempty"`
 	// Ending time of data analyzed by the job.
 	To int64 `json:"to"`
