@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSNamespacesResponseData AWS Namespaces response body
+// AWSNamespacesResponseData AWS Namespaces response data.
 type AWSNamespacesResponseData struct {
-	// AWS Namespaces response body
+	// AWS Namespaces response attributes.
 	Attributes *AWSNamespacesResponseAttributes `json:"attributes,omitempty"`
 	// The `AWSNamespacesResponseData` `id`.
 	Id string `json:"id"`

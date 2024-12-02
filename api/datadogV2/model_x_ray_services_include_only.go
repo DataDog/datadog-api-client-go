@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// XRayServicesIncludeOnly Include only these services
+// XRayServicesIncludeOnly Include only these services. Defaults to `[]`.
 type XRayServicesIncludeOnly struct {
-	// Include only these services
+	// Include only these services.
 	IncludeOnly []string `json:"include_only"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
