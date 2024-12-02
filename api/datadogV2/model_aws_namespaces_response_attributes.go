@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSNamespacesResponseAttributes AWS Namespaces response body
+// AWSNamespacesResponseAttributes AWS Namespaces response attributes.
 type AWSNamespacesResponseAttributes struct {
-	// AWS CloudWatch namespace
+	// AWS CloudWatch namespace.
 	Namespaces []string `json:"namespaces"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
