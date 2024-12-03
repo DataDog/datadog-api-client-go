@@ -1112,14 +1112,36 @@ func (a *MonitorsApi) UpdateMonitor(ctx _context.Context, monitorId int64, body 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ValidateMonitorOptionalParameters holds optional parameters for ValidateMonitor.
+type ValidateMonitorOptionalParameters struct {
+	Quality *string
+}
+
+// NewValidateMonitorOptionalParameters creates an empty struct for parameters.
+func NewValidateMonitorOptionalParameters() *ValidateMonitorOptionalParameters {
+	this := ValidateMonitorOptionalParameters{}
+	return &this
+}
+
+// WithQuality sets the corresponding parameter name and returns the struct.
+func (r *ValidateMonitorOptionalParameters) WithQuality(quality string) *ValidateMonitorOptionalParameters {
+	r.Quality = &quality
+	return r
+}
+
 // ValidateExistingMonitor Validate an existing monitor.
 // Validate the monitor provided in the request.
-func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId int64, body Monitor) (interface{}, *_nethttp.Response, error) {
+func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId int64, body Monitor, o ...ValidateMonitorOptionalParameters) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
+		optionalParams      ValidateMonitorOptionalParameters
 	)
+
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.MonitorsApi.ValidateExistingMonitor")
 	if err != nil {
@@ -1132,6 +1154,9 @@ func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId in
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.WithQuality != nil {
+		localVarQueryParams.Add("with_quality", datadog.ParameterToString(*optionalParams.Quality, ""))
+	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
@@ -1190,12 +1215,17 @@ func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId in
 // Validate the monitor provided in the request.
 //
 // **Note**: Log monitors require an unscoped App Key.
-func (a *MonitorsApi) ValidateMonitor(ctx _context.Context, body Monitor) (interface{}, *_nethttp.Response, error) {
+func (a *MonitorsApi) ValidateMonitor(ctx _context.Context, body Monitor, o ...ValidateMonitorOptionalParameters) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue interface{}
+		optionalParams      ValidateMonitorOptionalParameters
 	)
+
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.MonitorsApi.ValidateMonitor")
 	if err != nil {
@@ -1207,6 +1237,9 @@ func (a *MonitorsApi) ValidateMonitor(ctx _context.Context, body Monitor) (inter
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.WithQuality != nil {
+		localVarQueryParams.Add("with_quality", datadog.ParameterToString(*optionalParams.Quality, ""))
+	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
