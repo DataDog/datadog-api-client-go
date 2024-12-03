@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: PUT
+    url: https://api.datadoghq.com/api/v2/deletion/requests/-1/cancel
+  response:
+    body: '{"errors":[{"status":"412","code":"INVALID_ID","title":"INVALID_ID","detail":"INVALID_ID"}]}'
+    code: 412
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 412 Precondition Failed
+version: 2
