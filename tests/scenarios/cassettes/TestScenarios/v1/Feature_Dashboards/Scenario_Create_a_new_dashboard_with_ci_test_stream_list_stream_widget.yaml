@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_ci_test_stream_list_stream_widget-1677789434 with list_stream widget","widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"ci_test_stream","query_string":"test_level:suite"},"response_format":"event_list"}],"type":"list_stream"}}]}
+      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_ci_test_stream_list_stream_widget-1731699158 with list_stream widget","widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"ci_test_stream","query_string":"test_level:suite"},"response_format":"event_list"}],"type":"list_stream"}}]}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"id":"mdr-2je-u6x","title":"Test-Create_a_new_dashboard_with_ci_test_stream_list_stream_widget-1677789434
-      with list_stream widget","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"ordered","url":"/dashboard/mdr-2je-u6x/test-createanewdashboardwithciteststreamliststreamwidget-1677789434-with-liststr","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"ci_test_stream","query_string":"test_level:suite"},"response_format":"event_list"}],"type":"list_stream"},"id":1680451278463569}],"notify_list":null,"created_at":"2023-03-02T20:37:14.537234+00:00","modified_at":"2023-03-02T20:37:14.537234+00:00","restricted_roles":[]}
+    body: '{"id":"as4-cys-wwb","title":"Test-Create_a_new_dashboard_with_ci_test_stream_list_stream_widget-1731699158
+      with list_stream widget","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"ordered","url":"/dashboard/as4-cys-wwb/test-createanewdashboardwithciteststreamliststreamwidget-1731699158-with-liststr","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"ci_test_stream","query_string":"test_level:suite"},"response_format":"event_list"}],"type":"list_stream"},"id":723670979268214}],"notify_list":null,"created_at":"2024-11-15T19:32:38.213091+00:00","modified_at":"2024-11-15T19:32:38.213091+00:00","restricted_roles":[]}
 
       '
     code: 200
@@ -30,9 +30,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/mdr-2je-u6x
+    url: https://api.datadoghq.com/api/v1/dashboard/as4-cys-wwb
   response:
-    body: '{"deleted_dashboard_id":"mdr-2je-u6x"}
+    body: '{"deleted_dashboard_id":"as4-cys-wwb"}
 
       '
     code: 200

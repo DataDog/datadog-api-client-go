@@ -1582,7 +1582,9 @@ func (r *ListFindingsOptionalParameters) WithFilterVulnerabilityType(filterVulne
 }
 
 // ListFindings List findings.
-// Get a list of CSPM findings.
+// Get a list of findings. These include both misconfigurations and identity risks.
+//
+// **Note**: To filter and return only identity risks, add the following query parameter: `?filter[tags]=dd_rule_type:ciem`
 //
 // ### Filtering
 //

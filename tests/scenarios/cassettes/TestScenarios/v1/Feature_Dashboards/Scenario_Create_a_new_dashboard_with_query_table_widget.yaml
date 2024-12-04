@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"description":"","is_read_only":false,"layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_query_table_widget-1715803661","widgets":[{"definition":{"has_search_bar":"auto","requests":[{"formulas":[{"cell_display_mode":"bar","conditional_formats":[],"formula":"query1"}],"queries":[{"aggregator":"avg","data_source":"metrics","name":"query1","query":"avg:system.cpu.user{*} by {host}"}],"response_format":"scalar","sort":{"count":500,"order_by":[{"index":0,"order":"desc","type":"formula"}]}}],"time":{},"title":"","title_align":"left","title_size":"16","type":"query_table"},"layout":{"height":32,"width":54,"x":0,"y":0}}]}
+      {"description":"","layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_query_table_widget-1731699170","widgets":[{"definition":{"has_search_bar":"auto","requests":[{"formulas":[{"cell_display_mode":"bar","conditional_formats":[],"formula":"query1"}],"queries":[{"aggregator":"avg","data_source":"metrics","name":"query1","query":"avg:system.cpu.user{*} by {host}"}],"response_format":"scalar","sort":{"count":500,"order_by":[{"index":0,"order":"desc","type":"formula"}]}}],"time":{},"title":"","title_align":"left","title_size":"16","type":"query_table"},"layout":{"height":32,"width":54,"x":0,"y":0}}]}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"id":"gau-v5i-xn9","title":"Test-Create_a_new_dashboard_with_query_table_widget-1715803661","description":"","author_handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","author_name":"CI
-      Account","layout_type":"free","url":"/dashboard/gau-v5i-xn9/test-createanewdashboardwithquerytablewidget-1715803661","is_read_only":false,"template_variables":[],"widgets":[{"definition":{"has_search_bar":"auto","requests":[{"formulas":[{"cell_display_mode":"bar","conditional_formats":[],"formula":"query1"}],"queries":[{"aggregator":"avg","data_source":"metrics","name":"query1","query":"avg:system.cpu.user{*}
-      by {host}"}],"response_format":"scalar","sort":{"count":500,"order_by":[{"index":0,"order":"desc","type":"formula"}]}}],"time":{},"title":"","title_align":"left","title_size":"16","type":"query_table"},"layout":{"height":32,"width":54,"x":0,"y":0},"id":2055060354863184}],"notify_list":[],"created_at":"2024-05-15T20:07:42.157797+00:00","modified_at":"2024-05-15T20:07:42.157797+00:00","restricted_roles":[]}
+    body: '{"id":"7q6-h26-j3u","title":"Test-Create_a_new_dashboard_with_query_table_widget-1731699170","description":"","author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"free","url":"/dashboard/7q6-h26-j3u/test-createanewdashboardwithquerytablewidget-1731699170","is_read_only":false,"template_variables":[],"widgets":[{"definition":{"has_search_bar":"auto","requests":[{"formulas":[{"cell_display_mode":"bar","conditional_formats":[],"formula":"query1"}],"queries":[{"aggregator":"avg","data_source":"metrics","name":"query1","query":"avg:system.cpu.user{*}
+      by {host}"}],"response_format":"scalar","sort":{"count":500,"order_by":[{"index":0,"order":"desc","type":"formula"}]}}],"time":{},"title":"","title_align":"left","title_size":"16","type":"query_table"},"layout":{"height":32,"width":54,"x":0,"y":0},"id":6518783990420616}],"notify_list":[],"created_at":"2024-11-15T19:32:50.203807+00:00","modified_at":"2024-11-15T19:32:50.203807+00:00","restricted_roles":[]}
 
       '
     code: 200
@@ -31,9 +30,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/gau-v5i-xn9
+    url: https://api.datadoghq.com/api/v1/dashboard/7q6-h26-j3u
   response:
-    body: '{"deleted_dashboard_id":"gau-v5i-xn9"}
+    body: '{"deleted_dashboard_id":"7q6-h26-j3u"}
 
       '
     code: 200

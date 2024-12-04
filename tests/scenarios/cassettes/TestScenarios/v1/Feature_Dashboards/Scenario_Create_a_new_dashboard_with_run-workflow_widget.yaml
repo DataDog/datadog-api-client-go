@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"description":"","is_read_only":false,"layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_run_workflow_widget-1674727559","widgets":[{"definition":{"inputs":[{"name":"environment","value":"$env.value"}],"time":{},"title":"Run workflow title","title_align":"left","title_size":"16","type":"run_workflow","workflow_id":"2e055f16-8b6a-4cdd-b452-17a34c44b160"},"layout":{"height":15,"width":47,"x":0,"y":0}}]}
+      {"description":"","layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_run_workflow_widget-1731699171","widgets":[{"definition":{"inputs":[{"name":"environment","value":"$env.value"}],"time":{},"title":"Run workflow title","title_align":"left","title_size":"16","type":"run_workflow","workflow_id":"2e055f16-8b6a-4cdd-b452-17a34c44b160"},"layout":{"height":15,"width":47,"x":0,"y":0}}]}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"notify_list":[],"description":"","restricted_roles":[],"author_name":null,"template_variables":[],"is_read_only":false,"id":"pnw-fkv-n4x","title":"Test-Create_a_new_dashboard_with_run_workflow_widget-1674727559","url":"/dashboard/pnw-fkv-n4x/test-createanewdashboardwithrunworkflowwidget-1674727559","created_at":"2023-01-26T10:06:00.011221+00:00","modified_at":"2023-01-26T10:06:00.011221+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"inputs":[{"name":"environment","value":"$env.value"}],"title_size":"16","title":"Run
-      workflow title","title_align":"left","workflow_id":"2e055f16-8b6a-4cdd-b452-17a34c44b160","time":{},"type":"run_workflow"},"layout":{"y":0,"width":47,"x":0,"height":15},"id":737363147915504}],"layout_type":"free"}
+    body: '{"id":"iis-hmn-pzf","title":"Test-Create_a_new_dashboard_with_run_workflow_widget-1731699171","description":"","author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"free","url":"/dashboard/iis-hmn-pzf/test-createanewdashboardwithrunworkflowwidget-1731699171","is_read_only":false,"template_variables":[],"widgets":[{"definition":{"inputs":[{"name":"environment","value":"$env.value"}],"time":{},"title":"Run
+      workflow title","title_align":"left","title_size":"16","type":"run_workflow","workflow_id":"2e055f16-8b6a-4cdd-b452-17a34c44b160"},"layout":{"height":15,"width":47,"x":0,"y":0},"id":5837412826936459}],"notify_list":[],"created_at":"2024-11-15T19:32:51.982136+00:00","modified_at":"2024-11-15T19:32:51.982136+00:00","restricted_roles":[]}
 
       '
     code: 200
@@ -30,9 +30,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/pnw-fkv-n4x
+    url: https://api.datadoghq.com/api/v1/dashboard/iis-hmn-pzf
   response:
-    body: '{"deleted_dashboard_id":"pnw-fkv-n4x"}
+    body: '{"deleted_dashboard_id":"iis-hmn-pzf"}
 
       '
     code: 200

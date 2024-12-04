@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"layout_type":"ordered","title":"Test-Delete_a_dashboard_returns_OK_response-1645779299 with Profile Metrics Query","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"compute":{"aggregation":"sum","facet":"@prof_core_cpu_cores"},"group_by":[{"facet":"service","limit":10,"sort":{"aggregation":"sum","facet":"@prof_core_cpu_cores","order":"desc"}}],"search":{"query":"runtime:jvm"}}}],"type":"timeseries"}}]}
+      {"layout_type":"ordered","title":"Test-Delete_a_dashboard_returns_OK_response-1731699184 with Profile Metrics Query","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"compute":{"aggregation":"sum","facet":"@prof_core_cpu_cores"},"group_by":[{"facet":"service","limit":10,"sort":{"aggregation":"sum","facet":"@prof_core_cpu_cores","order":"desc"}}],"search":{"query":"runtime:jvm"}}}],"type":"timeseries"}}]}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,10 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"notify_list":null,"description":null,"restricted_roles":[],"author_name":null,"template_variables":null,"is_read_only":false,"id":"sbs-4fb-9dc","title":"Test-Delete_a_dashboard_returns_OK_response-1645779299
-      with Profile Metrics Query","url":"/dashboard/sbs-4fb-9dc/test-deleteadashboardreturnsokresponse-1645779299-with-profile-metrics-query","created_at":"2022-02-25T08:55:00.681383+00:00","modified_at":"2022-02-25T08:55:00.681383+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"requests":[{"profile_metrics_query":{"search":{"query":"runtime:jvm"},"group_by":[{"facet":"service","sort":{"facet":"@prof_core_cpu_cores","aggregation":"sum","order":"desc"},"limit":10}],"compute":{"facet":"@prof_core_cpu_cores","aggregation":"sum"}}}],"type":"timeseries"},"id":7246585146253581}],"layout_type":"ordered"}'
+    body: '{"id":"hai-uhn-87g","title":"Test-Delete_a_dashboard_returns_OK_response-1731699184
+      with Profile Metrics Query","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"ordered","url":"/dashboard/hai-uhn-87g/test-deleteadashboardreturnsokresponse-1731699184-with-profile-metrics-query","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"requests":[{"profile_metrics_query":{"compute":{"aggregation":"sum","facet":"@prof_core_cpu_cores"},"group_by":[{"facet":"service","limit":10,"sort":{"aggregation":"sum","facet":"@prof_core_cpu_cores","order":"desc"}}],"search":{"query":"runtime:jvm"}}}],"type":"timeseries"},"id":1882306032459411}],"notify_list":null,"created_at":"2024-11-15T19:33:05.172609+00:00","modified_at":"2024-11-15T19:33:05.172609+00:00","restricted_roles":[]}
+
+      '
     code: 200
     duration: 0ms
     headers:
@@ -28,9 +30,11 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/sbs-4fb-9dc
+    url: https://api.datadoghq.com/api/v1/dashboard/hai-uhn-87g
   response:
-    body: '{"deleted_dashboard_id":"sbs-4fb-9dc"}'
+    body: '{"deleted_dashboard_id":"hai-uhn-87g"}
+
+      '
     code: 200
     duration: 0ms
     headers:
@@ -45,9 +49,9 @@ interactions:
       - application/json
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/sbs-4fb-9dc
+    url: https://api.datadoghq.com/api/v1/dashboard/hai-uhn-87g
   response:
-    body: '{"errors": ["Dashboard with ID sbs-4fb-9dc not found"]}'
+    body: '{"errors":["Dashboard with ID hai-uhn-87g not found"]}'
     code: 404
     duration: 0ms
     headers:

@@ -220,7 +220,7 @@ type UsageSummaryResponse struct {
 	// Shows the sum of all Network flows indexed over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
 	// Deprecated
 	NetflowIndexedEventsCountAggSum *int64 `json:"netflow_indexed_events_count_agg_sum,omitempty"`
-	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current month for all organizations.
+	// Shows the 99th percentile of all distinct Cloud Network Monitoring hosts (formerly known as Network hosts) over all hours in the current month for all organizations.
 	NpmHostTop99pSum *int64 `json:"npm_host_top99p_sum,omitempty"`
 	// Sum of all observability pipelines bytes processed over all hours in the current month for all organizations.
 	ObservabilityPipelinesBytesProcessedAggSum *int64 `json:"observability_pipelines_bytes_processed_agg_sum,omitempty"`

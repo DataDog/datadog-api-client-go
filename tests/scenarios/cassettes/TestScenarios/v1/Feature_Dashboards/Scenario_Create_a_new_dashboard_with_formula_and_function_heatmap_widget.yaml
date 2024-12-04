@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"is_read_only":false,"layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_formula_and_function_heatmap_widget-1694548300","widgets":[{"definition":{"requests":[{"formulas":[{"formula":"query1"}],"queries":[{"data_source":"metrics","name":"query1","query":"avg:system.cpu.user{*}"}],"response_format":"timeseries","style":{"palette":"dog_classic"}}],"time":{},"title":"","title_align":"left","title_size":"16","type":"heatmap"},"layout":{"height":15,"width":47,"x":0,"y":0}}]}
+      {"layout_type":"free","notify_list":[],"template_variables":[],"title":"Test-Create_a_new_dashboard_with_formula_and_function_heatmap_widget-1731699160","widgets":[{"definition":{"requests":[{"formulas":[{"formula":"query1"}],"queries":[{"data_source":"metrics","name":"query1","query":"avg:system.cpu.user{*}"}],"response_format":"timeseries","style":{"palette":"dog_classic"}}],"time":{},"title":"","title_align":"left","title_size":"16","type":"heatmap"},"layout":{"height":15,"width":47,"x":0,"y":0}}]}
     form: {}
     headers:
       Accept:
@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"id":"agm-reh-km8","title":"Test-Create_a_new_dashboard_with_formula_and_function_heatmap_widget-1694548300","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"free","url":"/dashboard/agm-reh-km8/test-createanewdashboardwithformulaandfunctionheatmapwidget-1694548300","is_read_only":false,"template_variables":[],"widgets":[{"definition":{"requests":[{"formulas":[{"formula":"query1"}],"queries":[{"data_source":"metrics","name":"query1","query":"avg:system.cpu.user{*}"}],"response_format":"timeseries","style":{"palette":"dog_classic"}}],"time":{},"title":"","title_align":"left","title_size":"16","type":"heatmap"},"layout":{"height":15,"width":47,"x":0,"y":0},"id":658874190518028}],"notify_list":[],"created_at":"2023-09-12T19:51:41.163760+00:00","modified_at":"2023-09-12T19:51:41.163760+00:00","restricted_roles":[]}
+    body: '{"id":"g5w-g59-qaw","title":"Test-Create_a_new_dashboard_with_formula_and_function_heatmap_widget-1731699160","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"free","url":"/dashboard/g5w-g59-qaw/test-createanewdashboardwithformulaandfunctionheatmapwidget-1731699160","is_read_only":false,"template_variables":[],"widgets":[{"definition":{"requests":[{"formulas":[{"formula":"query1"}],"queries":[{"data_source":"metrics","name":"query1","query":"avg:system.cpu.user{*}"}],"response_format":"timeseries","style":{"palette":"dog_classic"}}],"time":{},"title":"","title_align":"left","title_size":"16","type":"heatmap"},"layout":{"height":15,"width":47,"x":0,"y":0},"id":7260882193896439}],"notify_list":[],"created_at":"2024-11-15T19:32:40.397908+00:00","modified_at":"2024-11-15T19:32:40.397908+00:00","restricted_roles":[]}
 
       '
     code: 200
@@ -29,9 +29,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/agm-reh-km8
+    url: https://api.datadoghq.com/api/v1/dashboard/g5w-g59-qaw
   response:
-    body: '{"deleted_dashboard_id":"agm-reh-km8"}
+    body: '{"deleted_dashboard_id":"g5w-g59-qaw"}
 
       '
     code: 200
