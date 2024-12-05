@@ -18,8 +18,8 @@ func main() {
 			Attributes: datadogV2.CreateDataDeletionRequestBodyAttributes{
 				From: 1672527600000,
 				Indexes: []string{
-					"index-1",
-					"index-2",
+					"test-index",
+					"test-index-2",
 				},
 				Query: map[string]string{
 					"host":    "abc",
