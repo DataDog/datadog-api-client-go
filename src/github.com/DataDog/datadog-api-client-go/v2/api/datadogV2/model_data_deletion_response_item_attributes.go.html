@@ -77,7 +77,7 @@
 <span id="L20" class="ln">    20  </span>	FromTime int64 `json:&#34;from_time&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// List of indexes for the search. If not provided, the search is performed in all indexes.</span>
 <span id="L22" class="ln">    22  </span>	Indexes []string `json:&#34;indexes,omitempty&#34;`
-<span id="L23" class="ln">    23  </span>	<span class="comment">// Whether the deletion request is fully created or not.</span>
+<span id="L23" class="ln">    23  </span>	<span class="comment">// Whether the deletion request is fully created or not. It can take several minutes to fully create a deletion request depending on the target query and timeframe.</span>
 <span id="L24" class="ln">    24  </span>	IsCreated bool `json:&#34;is_created&#34;`
 <span id="L25" class="ln">    25  </span>	<span class="comment">// Organization ID.</span>
 <span id="L26" class="ln">    26  </span>	OrgId int64 `json:&#34;org_id&#34;`
