@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":true,"path":"@duration"},"event_type":"session","filter":{"query":"source:Test-Create_a_rum_based_metric_returns_Conflict_response-1730203160"},"group_by":[{"path":"@browser.name","tag_name":"browser_name"}],"uniqueness":{"when":"match"}},"id":"Test-Create_a_rum_based_metric_returns_Conflict_response-1730203160","type":"rum_metrics"}}
+      {"data":{"attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":true,"path":"@duration"},"event_type":"session","filter":{"query":"source:Test-Create_a_rum_based_metric_returns_Conflict_response-1732807878"},"group_by":[{"path":"@browser.name","tag_name":"browser_name"}],"uniqueness":{"when":"match"}},"id":"testcreatearumbasedmetricreturnsconflictresponse1732807878","type":"rum_metrics"}}
     form: {}
     headers:
       Accept:
@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/rum/config/metrics
   response:
-    body: '{"data":{"id":"Test_Create_a_rum_based_metric_returns_Conflict_response_1730203160","type":"rum_metrics","attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":true,"path":"@duration"},"event_type":"session","filter":{"query":"source:Test-Create_a_rum_based_metric_returns_Conflict_response-1730203160"},"group_by":[{"path":"@browser.name","tag_name":"browser_name"}],"uniqueness":{"when":"match"}}}}'
+    body: '{"data":{"id":"testcreatearumbasedmetricreturnsconflictresponse1732807878","type":"rum_metrics","attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":true,"path":"@duration"},"event_type":"session","filter":{"query":"source:Test-Create_a_rum_based_metric_returns_Conflict_response-1732807878"},"group_by":[{"path":"@browser.name","tag_name":"browser_name"}],"uniqueness":{"when":"match"}}}}'
     code: 201
     duration: 0ms
     headers:
@@ -21,7 +21,7 @@ interactions:
     status: 201 Created
 - request:
     body: |
-      {"data":{"attributes":{"compute":{"aggregation_type":"count"},"event_type":"action"},"id":"Test_Create_a_rum_based_metric_returns_Conflict_response_1730203160","type":"rum_metrics"}}
+      {"data":{"attributes":{"compute":{"aggregation_type":"count"},"event_type":"action"},"id":"testcreatearumbasedmetricreturnsconflictresponse1732807878","type":"rum_metrics"}}
     form: {}
     headers:
       Accept:
@@ -33,7 +33,7 @@ interactions:
     url: https://api.datadoghq.com/api/v2/rum/config/metrics
   response:
     body: '{"errors":[{"status":"409","title":"Conflict","detail":"conflict(Field
-      ''data.id'' is invalid: ''Test_Create_a_rum_based_metric_returns_Conflict_response_1730203160''
+      ''data.id'' is invalid: ''testcreatearumbasedmetricreturnsconflictresponse1732807878''
       cannot be used as metric name, a metric already exists with that name)"}]}'
     code: 409
     duration: 0ms
@@ -49,7 +49,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/rum/config/metrics/Test_Create_a_rum_based_metric_returns_Conflict_response_1730203160
+    url: https://api.datadoghq.com/api/v2/rum/config/metrics/testcreatearumbasedmetricreturnsconflictresponse1732807878
   response:
     body: ''
     code: 204
