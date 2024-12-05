@@ -88,7 +88,7 @@ func (a *DataDeletionApi) CancelDataDeletionRequest(ctx _context.Context, id str
 }
 
 // CreateDataDeletionRequest Creates a data deletion request.
-// Creates a data deletion request by providing a query and a time frame targeting the proper data.
+// Creates a data deletion request by providing a query and a timeframe targeting the proper data.
 func (a *DataDeletionApi) CreateDataDeletionRequest(ctx _context.Context, product string, body CreateDataDeletionRequestBody) (CreateDataDeletionResponseBody, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

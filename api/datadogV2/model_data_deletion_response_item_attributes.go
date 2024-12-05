@@ -20,7 +20,7 @@ type DataDeletionResponseItemAttributes struct {
 	FromTime int64 `json:"from_time"`
 	// List of indexes for the search. If not provided, the search is performed in all indexes.
 	Indexes []string `json:"indexes,omitempty"`
-	// Whether the deletion request is fully created or not.
+	// Whether the deletion request is fully created or not. It can take several minutes to fully create a deletion request depending on the target query and timeframe.
 	IsCreated bool `json:"is_created"`
 	// Organization ID.
 	OrgId int64 `json:"org_id"`
