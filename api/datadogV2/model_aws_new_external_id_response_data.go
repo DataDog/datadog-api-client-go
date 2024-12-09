@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSNewExternalIDResponseData AWS External ID response body
+// AWSNewExternalIDResponseData AWS External ID response body.
 type AWSNewExternalIDResponseData struct {
-	// AWS External ID response body
+	// AWS External ID response body.
 	Attributes *AWSNewExternalIDResponseAttributes `json:"attributes,omitempty"`
 	// The `AWSNewExternalIDResponseData` `id`.
 	Id string `json:"id"`
