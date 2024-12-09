@@ -70,11 +70,13 @@ func main() {
 		Type: datadogV1.SYNTHETICSBROWSERTESTTYPE_BROWSER,
 		Steps: []datadogV1.SyntheticsStep{
 			{
-				AllowFailure: datadog.PtrBool(false),
-				IsCritical:   datadog.PtrBool(true),
-				Name:         datadog.PtrString("Refresh page"),
-				Params:       new(interface{}),
-				Type:         datadogV1.SYNTHETICSSTEPTYPE_REFRESH.Ptr(),
+				AllowFailure:  datadog.PtrBool(false),
+				AlwaysExecute: datadog.PtrBool(true),
+				ExitIfSucceed: datadog.PtrBool(true),
+				IsCritical:    datadog.PtrBool(true),
+				Name:          datadog.PtrString("Refresh page"),
+				Params:        new(interface{}),
+				Type:          datadogV1.SYNTHETICSSTEPTYPE_REFRESH.Ptr(),
 			},
 		},
 	}
