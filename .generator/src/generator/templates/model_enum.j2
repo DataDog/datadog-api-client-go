@@ -14,7 +14,7 @@ var allowed{{ name }}EnumValues = []{{ name }}{
 	{%- endfor %}
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *{{ name }}) GetAllowedValues() []{{ name }} {
 	return allowed{{ name }}EnumValues
 }
