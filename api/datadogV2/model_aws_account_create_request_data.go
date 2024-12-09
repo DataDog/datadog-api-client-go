@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAccountCreateRequestData AWS Account Create Request data
+// AWSAccountCreateRequestData AWS Account Create Request data.
 type AWSAccountCreateRequestData struct {
-	// The AWS Account Integration Config to be created
+	// The AWS Account Integration Config to be created.
 	Attributes AWSAccountCreateRequestAttributes `json:"attributes"`
 	// AWS Account resource type.
 	Type AWSAccountType `json:"type"`
