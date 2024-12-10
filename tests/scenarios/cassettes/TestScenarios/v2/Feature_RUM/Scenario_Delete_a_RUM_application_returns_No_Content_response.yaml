@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"test_name_create","type":"browser"},"type":"rum_application_create"}}
+      {"data":{"attributes":{"name":"test-rum-233b98774ce06558","type":"ios"},"type":"rum_application_create"}}
     form: {}
     headers:
       Accept:
@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/rum/applications
   response:
-    body: '{"data":{"attributes":{"updated_by_handle":"frog@datadoghq.com","application_id":"cae2b3d1-9ea1-4321-8506-725cc4242f6f","name":"test_name_create","created_by_handle":"frog@datadoghq.com","created_at":1670264413962,"org_id":321813,"updated_at":1670264413962,"is_active":false,"hash":"pub147f190fd98caeffebcb3bc3130879bf","client_token":"pub147f190fd98caeffebcb3bc3130879bf","type":"browser"},"type":"rum_application","id":"cae2b3d1-9ea1-4321-8506-725cc4242f6f"}}
+    body: '{"data":{"type":"rum_application","attributes":{"org_id":321813,"tags":[],"product_analytics_disabled_at":1733845241534,"rum_enabled_at":1733845241534,"rum_enabled":true,"updated_by_handle":"frog@datadoghq.com","name":"test-rum-233b98774ce06558","rum_disabled_at":0,"created_by_handle":"frog@datadoghq.com","application_id":"e095c068-b8e7-44bd-b263-557a6bb99e0c","type":"ios","product_analytics_enabled":false,"hash":"pub41dd1d34d200608780557e0a2728f6c6","client_token":"pub41dd1d34d200608780557e0a2728f6c6","product_analytics_enabled_at":1733845241534,"updated_at":1733845241534,"created_at":1733845241534,"is_active":false},"id":"e095c068-b8e7-44bd-b263-557a6bb99e0c"}}
 
       '
     code: 200
@@ -29,7 +29,7 @@ interactions:
       - '*/*'
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/rum/applications/cae2b3d1-9ea1-4321-8506-725cc4242f6f
+    url: https://api.datadoghq.com/api/v2/rum/applications/e095c068-b8e7-44bd-b263-557a6bb99e0c
   response:
     body: ''
     code: 204
@@ -44,7 +44,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/rum/applications/cae2b3d1-9ea1-4321-8506-725cc4242f6f
+    url: https://api.datadoghq.com/api/v2/rum/applications/e095c068-b8e7-44bd-b263-557a6bb99e0c
   response:
     body: ''
     code: 204
