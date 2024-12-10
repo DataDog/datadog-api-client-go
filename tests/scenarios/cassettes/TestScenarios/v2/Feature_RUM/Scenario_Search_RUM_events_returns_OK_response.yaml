@@ -12,7 +12,9 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/rum/events/search
   response:
-    body: '{"data":[]}'
+    body: '{"data":[],"meta":{"elapsed":8,"request_id":"pddv1ChZuVVBDZFI0cFFSQzZUWGR2TUVFYTRRIiwKHKl8fXhuRXGvOyjzriL7J6Jc6RqbmKFnOgcA4oMSDPmicr8fZBUCKcqymg","status":"done"}}
+
+      '
     code: 200
     duration: 0ms
     headers:
