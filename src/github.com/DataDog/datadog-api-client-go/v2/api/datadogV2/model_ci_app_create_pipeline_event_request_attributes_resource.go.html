@@ -105,7 +105,7 @@
 <span id="L48" class="ln">    48  </span>	if err == nil {
 <span id="L49" class="ln">    49  </span>		if obj.CIAppPipelineEventPipeline != nil &amp;&amp; obj.CIAppPipelineEventPipeline.UnparsedObject == nil {
 <span id="L50" class="ln">    50  </span>			jsonCIAppPipelineEventPipeline, _ := datadog.Marshal(obj.CIAppPipelineEventPipeline)
-<span id="L51" class="ln">    51  </span>			if string(jsonCIAppPipelineEventPipeline) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L51" class="ln">    51  </span>			if string(jsonCIAppPipelineEventPipeline) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
 <span id="L52" class="ln">    52  </span>				obj.CIAppPipelineEventPipeline = nil
 <span id="L53" class="ln">    53  </span>			} else {
 <span id="L54" class="ln">    54  </span>				match++
