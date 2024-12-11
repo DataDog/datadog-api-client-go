@@ -8,9 +8,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSLogsConfig AWS Logs config
+// AWSLogsConfig AWS Logs Collection config.
 type AWSLogsConfig struct {
-	// AWS Lambda forwarder
+	// Log Autosubscription configuration for Datadog Forwarder Lambda functions. Automatically set up triggers for existing
+	// and new logs for some services, ensuring no logs from new resources are missed and saving time spent on manual configuration.
 	LambdaForwarder *AWSLambdaForwarderConfig `json:"lambda_forwarder,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

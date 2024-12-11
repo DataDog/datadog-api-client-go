@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAuthConfigRole AWS Authentication config for role-based account
+// AWSAuthConfigRole AWS Authentication config to integrate your account using an IAM role.
 type AWSAuthConfigRole struct {
-	// AWS IAM External ID for associated role
+	// AWS IAM External ID for associated role.
 	ExternalId *string `json:"external_id,omitempty"`
-	// AWS IAM Role name
+	// AWS IAM Role name.
 	RoleName string `json:"role_name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

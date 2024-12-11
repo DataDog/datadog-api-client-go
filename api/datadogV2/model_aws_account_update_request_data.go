@@ -10,11 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAccountUpdateRequestData AWS Account Update Request data
+// AWSAccountUpdateRequestData AWS Account Update Request data.
 type AWSAccountUpdateRequestData struct {
-	// The AWS Account Integration Config to be updated
+	// The AWS Account Integration Config to be updated.
 	Attributes AWSAccountUpdateRequestAttributes `json:"attributes"`
-	// Unique Datadog ID of the AWS Account Integration Config
+	// Unique Datadog ID of the AWS Account Integration Config.
+	// To get the config ID for an account, use the [List all AWS integrations](https://docs.datadoghq.com/api/latest/aws-integration/#list-all-aws-integrations)
+	// endpoint and query by AWS Account ID.
 	Id *string `json:"id,omitempty"`
 	// AWS Account resource type.
 	Type AWSAccountType `json:"type"`

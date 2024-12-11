@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSTracesConfig AWS Traces config
+// AWSTracesConfig AWS Traces Collection config.
 type AWSTracesConfig struct {
-	// AWS X-Ray services to collect traces from
+	// AWS X-Ray services to collect traces from. Defaults to `include_only`.
 	XrayServices *XRayServicesList `json:"xray_services,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

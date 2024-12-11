@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAuthConfigKeys AWS Authentication config for key-based account
+// AWSAuthConfigKeys AWS Authentication config to integrate your account using an access key pair.
 type AWSAuthConfigKeys struct {
-	// AWS Access Key ID
+	// AWS Access Key ID.
 	AccessKeyId string `json:"access_key_id"`
-	// AWS Secret Access Key
+	// AWS Secret Access Key.
 	SecretAccessKey *string `json:"secret_access_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
