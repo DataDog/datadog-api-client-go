@@ -8,19 +8,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSMetricsConfig AWS Metrics config
+// AWSMetricsConfig AWS Metrics Collection config.
 type AWSMetricsConfig struct {
-	// Enable EC2 automute for AWS metrics
+	// Enable EC2 automute for AWS metrics. Defaults to `true`.
 	AutomuteEnabled *bool `json:"automute_enabled,omitempty"`
-	// Enable CloudWatch alarms collection
+	// Enable CloudWatch alarms collection. Defaults to `false`.
 	CollectCloudwatchAlarms *bool `json:"collect_cloudwatch_alarms,omitempty"`
-	// Enable custom metrics collection
+	// Enable custom metrics collection. Defaults to `false`.
 	CollectCustomMetrics *bool `json:"collect_custom_metrics,omitempty"`
-	// Enable AWS metrics collection
+	// Enable AWS metrics collection. Defaults to `true`.
 	Enabled *bool `json:"enabled,omitempty"`
-	// AWS Metrics namespace filters
+	// AWS Metrics namespace filters. Defaults to `exclude_only`.
 	NamespaceFilters *AWSNamespaceFilters `json:"namespace_filters,omitempty"`
-	// AWS Metrics tag filters list
+	// AWS Metrics collection tag filters list. Defaults to `[]`.
 	TagFilters []AWSNamespaceTagFilter `json:"tag_filters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

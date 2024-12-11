@@ -8,11 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSLambdaForwarderConfig AWS Lambda forwarder
+// AWSLambdaForwarderConfig Log Autosubscription configuration for Datadog Forwarder Lambda functions. Automatically set up triggers for existing
+// and new logs for some services, ensuring no logs from new resources are missed and saving time spent on manual configuration.
 type AWSLambdaForwarderConfig struct {
-	// List of Datadog Lambda Log Forwarder ARNs
+	// List of Datadog Lambda Log Forwarder ARNs in your AWS account. Defaults to `[]`.
 	Lambdas []string `json:"lambdas,omitempty"`
-	// List of AWS services that will send logs to the Datadog Lambda Log Forwarder
+	// List of service IDs set to enable automatic log collection. Discover the list of available services with the
+	// [Get list of AWS log ready services](https://docs.datadoghq.com/api/latest/aws-logs-integration/#get-list-of-aws-log-ready-services) endpoint.
 	Sources []string `json:"sources,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
