@@ -18,6 +18,7 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.CancelDataDeletionRequest", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewDataDeletionApi(apiClient)
 	resp, r, err := api.CancelDataDeletionRequest(ctx, DeletionRequestDataID)

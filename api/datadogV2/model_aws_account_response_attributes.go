@@ -11,29 +11,30 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAccountResponseAttributes The AWS Account Integration Config
+// AWSAccountResponseAttributes AWS Account response attributes.
 type AWSAccountResponseAttributes struct {
-	// Tags to apply to all metrics in the account
+	// Tags to apply to all hosts and metrics reporting for this account. Defaults to `[]`.
 	AccountTags datadog.NullableList[string] `json:"account_tags,omitempty"`
-	// AWS Authentication config
+	// AWS Authentication config.
 	AuthConfig *AWSAuthConfig `json:"auth_config,omitempty"`
-	// AWS Account ID
+	// AWS Account ID.
 	AwsAccountId string `json:"aws_account_id"`
-	// AWS Account partition
+	// AWS partition your AWS account is scoped to. Defaults to `aws`.
+	// See [Partitions](https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/partitions.html) in the AWS documentation for more information.
 	AwsPartition *AWSAccountPartition `json:"aws_partition,omitempty"`
-	// AWS Regions to collect data from
+	// AWS Regions to collect data from. Defaults to `include_all`.
 	AwsRegions *AWSRegions `json:"aws_regions,omitempty"`
-	// Timestamp of when the account integration was created
+	// Timestamp of when the account integration was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	// AWS Logs config
+	// AWS Logs Collection config.
 	LogsConfig *AWSLogsConfig `json:"logs_config,omitempty"`
-	// AWS Metrics config
+	// AWS Metrics Collection config.
 	MetricsConfig *AWSMetricsConfig `json:"metrics_config,omitempty"`
-	// Timestamp of when the account integration was updated
+	// Timestamp of when the account integration was updated.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
-	// AWS Resources config
+	// AWS Resources Collection config.
 	ResourcesConfig *AWSResourcesConfig `json:"resources_config,omitempty"`
-	// AWS Traces config
+	// AWS Traces Collection config.
 	TracesConfig *AWSTracesConfig `json:"traces_config,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -47,8 +48,6 @@ type AWSAccountResponseAttributes struct {
 func NewAWSAccountResponseAttributes(awsAccountId string) *AWSAccountResponseAttributes {
 	this := AWSAccountResponseAttributes{}
 	this.AwsAccountId = awsAccountId
-	var awsPartition AWSAccountPartition = AWSACCOUNTPARTITION_AWS
-	this.AwsPartition = &awsPartition
 	return &this
 }
 
@@ -57,8 +56,6 @@ func NewAWSAccountResponseAttributes(awsAccountId string) *AWSAccountResponseAtt
 // but it doesn't guarantee that properties required by API are set.
 func NewAWSAccountResponseAttributesWithDefaults() *AWSAccountResponseAttributes {
 	this := AWSAccountResponseAttributes{}
-	var awsPartition AWSAccountPartition = AWSACCOUNTPARTITION_AWS
-	this.AwsPartition = &awsPartition
 	return &this
 }
 

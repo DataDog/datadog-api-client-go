@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAccountResponse AWS Account response body
+// AWSAccountResponse AWS Account response body.
 type AWSAccountResponse struct {
-	// AWS Account Response body
+	// AWS Account response data.
 	Data AWSAccountResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
