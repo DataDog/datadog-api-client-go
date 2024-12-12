@@ -29,9 +29,8 @@ func main() {
 										Field: "timestamp",
 									},
 									{
-										Width:                        datadogV1.LISTSTREAMCOLUMNWIDTH_AUTO,
-										Field:                        "message",
-										IsClusteringPatternFieldPath: datadog.PtrBool(true),
+										Width: datadogV1.LISTSTREAMCOLUMNWIDTH_AUTO,
+										Field: "message",
 									},
 								},
 								Query: datadogV1.ListStreamQuery{
