@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAuthConfig - AWS Authentication config
+// AWSAuthConfig - AWS Authentication config.
 type AWSAuthConfig struct {
 	AWSAuthConfigKeys *AWSAuthConfigKeys
 	AWSAuthConfigRole *AWSAuthConfigRole

@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSNewExternalIDResponse AWS External ID response body
+// AWSNewExternalIDResponse AWS External ID response body.
 type AWSNewExternalIDResponse struct {
-	// AWS External ID response body
+	// AWS External ID response body.
 	Data AWSNewExternalIDResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
