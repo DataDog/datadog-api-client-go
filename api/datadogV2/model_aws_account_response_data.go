@@ -10,11 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAccountResponseData AWS Account Response body
+// AWSAccountResponseData AWS Account response data.
 type AWSAccountResponseData struct {
-	// The AWS Account Integration Config
+	// AWS Account response attributes.
 	Attributes *AWSAccountResponseAttributes `json:"attributes,omitempty"`
-	// Unique Datadog ID of the AWS Account Integration Config
+	// Unique Datadog ID of the AWS Account Integration Config.
+	// To get the config ID for an account, use the [List all AWS integrations](https://docs.datadoghq.com/api/latest/aws-integration/#list-all-aws-integrations)
+	// endpoint and query by AWS Account ID.
 	Id string `json:"id"`
 	// AWS Account resource type.
 	Type AWSAccountType `json:"type"`

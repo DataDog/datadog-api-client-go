@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// XRayServicesList - AWS X-Ray services to collect traces from
+// XRayServicesList - AWS X-Ray services to collect traces from. Defaults to `include_only`.
 type XRayServicesList struct {
 	XRayServicesIncludeAll  *XRayServicesIncludeAll
 	XRayServicesIncludeOnly *XRayServicesIncludeOnly
