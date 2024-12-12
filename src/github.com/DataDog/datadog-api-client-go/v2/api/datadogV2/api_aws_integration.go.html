@@ -237,7 +237,7 @@
 <span id="L180" class="ln">   180  </span>}
 <span id="L181" class="ln">   181  </span>
 <span id="L182" class="ln">   182  </span><span class="comment">// DeleteAWSAccount Delete an AWS integration.</span>
-<span id="L183" class="ln">   183  </span><span class="comment">// Delete an AWS Account Integration Config</span>
+<span id="L183" class="ln">   183  </span><span class="comment">// Delete an AWS Account Integration Config by config ID.</span>
 <span id="L184" class="ln">   184  </span>func (a *AWSIntegrationApi) DeleteAWSAccount(ctx _context.Context, awsAccountConfigId string) (*_nethttp.Response, error) {
 <span id="L185" class="ln">   185  </span>	var (
 <span id="L186" class="ln">   186  </span>		localVarHTTPMethod = _nethttp.MethodDelete
@@ -307,7 +307,7 @@
 <span id="L250" class="ln">   250  </span>}
 <span id="L251" class="ln">   251  </span>
 <span id="L252" class="ln">   252  </span><span class="comment">// GetAWSAccount Get an AWS integration by config ID.</span>
-<span id="L253" class="ln">   253  </span><span class="comment">// Get an AWS Account Integration Config</span>
+<span id="L253" class="ln">   253  </span><span class="comment">// Get an AWS Account Integration Config by config ID.</span>
 <span id="L254" class="ln">   254  </span>func (a *AWSIntegrationApi) GetAWSAccount(ctx _context.Context, awsAccountConfigId string) (AWSAccountResponse, *_nethttp.Response, error) {
 <span id="L255" class="ln">   255  </span>	var (
 <span id="L256" class="ln">   256  </span>		localVarHTTPMethod  = _nethttp.MethodGet
@@ -573,7 +573,7 @@
 <span id="L516" class="ln">   516  </span>}
 <span id="L517" class="ln">   517  </span>
 <span id="L518" class="ln">   518  </span><span class="comment">// UpdateAWSAccount Update an AWS integration.</span>
-<span id="L519" class="ln">   519  </span><span class="comment">// Update an AWS Account Integration Config</span>
+<span id="L519" class="ln">   519  </span><span class="comment">// Update an AWS Account Integration Config by config ID.</span>
 <span id="L520" class="ln">   520  </span>func (a *AWSIntegrationApi) UpdateAWSAccount(ctx _context.Context, awsAccountConfigId string, body AWSAccountUpdateRequest) (AWSAccountResponse, *_nethttp.Response, error) {
 <span id="L521" class="ln">   521  </span>	var (
 <span id="L522" class="ln">   522  </span>		localVarHTTPMethod  = _nethttp.MethodPatch
