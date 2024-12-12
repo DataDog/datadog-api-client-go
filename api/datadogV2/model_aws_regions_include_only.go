@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSRegionsIncludeOnly Include only these regions
+// AWSRegionsIncludeOnly Include only these regions.
 type AWSRegionsIncludeOnly struct {
-	// Include only these regions
+	// Include only these regions.
 	IncludeOnly []string `json:"include_only"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

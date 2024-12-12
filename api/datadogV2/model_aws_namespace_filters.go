@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSNamespaceFilters - AWS Metrics namespace filters
+// AWSNamespaceFilters - AWS Metrics namespace filters. Defaults to `exclude_only`.
 type AWSNamespaceFilters struct {
 	AWSNamespaceFiltersExcludeOnly *AWSNamespaceFiltersExcludeOnly
 	AWSNamespaceFiltersIncludeOnly *AWSNamespaceFiltersIncludeOnly
