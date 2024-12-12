@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// XRayServicesIncludeAll Include all services
+// XRayServicesIncludeAll Include all services.
 type XRayServicesIncludeAll struct {
-	// Include all services
+	// Include all services.
 	IncludeAll bool `json:"include_all"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

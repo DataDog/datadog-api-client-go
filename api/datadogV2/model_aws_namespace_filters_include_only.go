@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSNamespaceFiltersIncludeOnly Include only these namespaces
+// AWSNamespaceFiltersIncludeOnly Include only these namespaces.
 type AWSNamespaceFiltersIncludeOnly struct {
-	// Include only these namespaces
+	// Include only these namespaces.
 	IncludeOnly []string `json:"include_only"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

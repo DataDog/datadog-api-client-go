@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSRegions - AWS Regions to collect data from
+// AWSRegions - AWS Regions to collect data from. Defaults to `include_all`.
 type AWSRegions struct {
 	AWSRegionsIncludeAll  *AWSRegionsIncludeAll
 	AWSRegionsIncludeOnly *AWSRegionsIncludeOnly

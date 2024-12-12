@@ -180,7 +180,7 @@ func (a *AWSIntegrationApi) CreateNewAWSExternalID(ctx _context.Context) (AWSNew
 }
 
 // DeleteAWSAccount Delete an AWS integration.
-// Delete an AWS Account Integration Config
+// Delete an AWS Account Integration Config by config ID.
 func (a *AWSIntegrationApi) DeleteAWSAccount(ctx _context.Context, awsAccountConfigId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -250,7 +250,7 @@ func (a *AWSIntegrationApi) DeleteAWSAccount(ctx _context.Context, awsAccountCon
 }
 
 // GetAWSAccount Get an AWS integration by config ID.
-// Get an AWS Account Integration Config
+// Get an AWS Account Integration Config by config ID.
 func (a *AWSIntegrationApi) GetAWSAccount(ctx _context.Context, awsAccountConfigId string) (AWSAccountResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -516,7 +516,7 @@ func (a *AWSIntegrationApi) ListAWSNamespaces(ctx _context.Context) (AWSNamespac
 }
 
 // UpdateAWSAccount Update an AWS integration.
-// Update an AWS Account Integration Config
+// Update an AWS Account Integration Config by config ID.
 func (a *AWSIntegrationApi) UpdateAWSAccount(ctx _context.Context, awsAccountConfigId string, body AWSAccountUpdateRequest) (AWSAccountResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
