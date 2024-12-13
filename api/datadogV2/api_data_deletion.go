@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	_context "context"
+	_fmt "fmt"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -24,6 +26,15 @@ func (a *DataDeletionApi) CancelDataDeletionRequest(ctx _context.Context, id str
 		localVarPostBody    interface{}
 		localVarReturnValue CancelDataDeletionResponseBody
 	)
+
+	operationId := "v2.CancelDataDeletionRequest"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DataDeletionApi.CancelDataDeletionRequest")
 	if err != nil {
@@ -95,6 +106,15 @@ func (a *DataDeletionApi) CreateDataDeletionRequest(ctx _context.Context, produc
 		localVarPostBody    interface{}
 		localVarReturnValue CreateDataDeletionResponseBody
 	)
+
+	operationId := "v2.CreateDataDeletionRequest"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DataDeletionApi.CreateDataDeletionRequest")
 	if err != nil {
@@ -221,6 +241,15 @@ func (a *DataDeletionApi) GetDataDeletionRequests(ctx _context.Context, o ...Get
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetDataDeletionRequests"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DataDeletionApi.GetDataDeletionRequests")
