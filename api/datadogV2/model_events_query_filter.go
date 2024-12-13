@@ -12,7 +12,7 @@ import (
 type EventsQueryFilter struct {
 	// The minimum time for the requested events. Supports date math and regular timestamps in milliseconds.
 	From *string `json:"from,omitempty"`
-	// The search query following the event search syntax.
+	// The search query following the [event search syntax](https://docs.datadoghq.com/service_management/events/explorer/searching).
 	Query *string `json:"query,omitempty"`
 	// The maximum time for the requested events. Supports date math and regular timestamps in milliseconds.
 	To *string `json:"to,omitempty"`
