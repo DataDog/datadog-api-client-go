@@ -36,6 +36,8 @@
 //   - [CIVisibilityTestsApi.AggregateCIAppTestEvents]
 //   - [CIVisibilityTestsApi.ListCIAppTestEvents]
 //   - [CIVisibilityTestsApi.SearchCIAppTestEvents]
+//   - [CSMAgentsApi.ListAllCSMAgents]
+//   - [CSMAgentsApi.ListAllCSMServerlessAgents]
 //   - [CSMThreatsApi.CreateCSMThreatsAgentRule]
 //   - [CSMThreatsApi.CreateCloudWorkloadSecurityAgentRule]
 //   - [CSMThreatsApi.DeleteCSMThreatsAgentRule]
