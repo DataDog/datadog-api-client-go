@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSRegionsIncludeAll Include all regions
+// AWSRegionsIncludeAll Include all regions. Defaults to `true`.
 type AWSRegionsIncludeAll struct {
-	// Include all regions
+	// Include all regions.
 	IncludeAll bool `json:"include_all"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

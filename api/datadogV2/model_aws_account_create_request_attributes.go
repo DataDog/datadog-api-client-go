@@ -10,25 +10,26 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAccountCreateRequestAttributes The AWS Account Integration Config to be created
+// AWSAccountCreateRequestAttributes The AWS Account Integration Config to be created.
 type AWSAccountCreateRequestAttributes struct {
-	// Tags to apply to all metrics in the account
+	// Tags to apply to all hosts and metrics reporting for this account. Defaults to `[]`.
 	AccountTags datadog.NullableList[string] `json:"account_tags,omitempty"`
-	// AWS Authentication config
+	// AWS Authentication config.
 	AuthConfig AWSAuthConfig `json:"auth_config"`
-	// AWS Account ID
+	// AWS Account ID.
 	AwsAccountId string `json:"aws_account_id"`
-	// AWS Account partition
+	// AWS partition your AWS account is scoped to. Defaults to `aws`.
+	// See [Partitions](https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/partitions.html) in the AWS documentation for more information.
 	AwsPartition AWSAccountPartition `json:"aws_partition"`
-	// AWS Regions to collect data from
+	// AWS Regions to collect data from. Defaults to `include_all`.
 	AwsRegions *AWSRegions `json:"aws_regions,omitempty"`
-	// AWS Logs config
+	// AWS Logs Collection config.
 	LogsConfig *AWSLogsConfig `json:"logs_config,omitempty"`
-	// AWS Metrics config
+	// AWS Metrics Collection config.
 	MetricsConfig *AWSMetricsConfig `json:"metrics_config,omitempty"`
-	// AWS Resources config
+	// AWS Resources Collection config.
 	ResourcesConfig *AWSResourcesConfig `json:"resources_config,omitempty"`
-	// AWS Traces config
+	// AWS Traces Collection config.
 	TracesConfig *AWSTracesConfig `json:"traces_config,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -52,8 +53,6 @@ func NewAWSAccountCreateRequestAttributes(authConfig AWSAuthConfig, awsAccountId
 // but it doesn't guarantee that properties required by API are set.
 func NewAWSAccountCreateRequestAttributesWithDefaults() *AWSAccountCreateRequestAttributes {
 	this := AWSAccountCreateRequestAttributes{}
-	var awsPartition AWSAccountPartition = AWSACCOUNTPARTITION_AWS
-	this.AwsPartition = awsPartition
 	return &this
 }
 

@@ -66,7 +66,6 @@
 //   - [CloudCostManagementApi.DeleteCostAWSCURConfig]
 //   - [CloudCostManagementApi.DeleteCostAzureUCConfig]
 //   - [CloudCostManagementApi.DeleteCustomCostsFile]
-//   - [CloudCostManagementApi.GetCloudCostActivity]
 //   - [CloudCostManagementApi.GetCustomCostsFile]
 //   - [CloudCostManagementApi.ListCostAWSCURConfigs]
 //   - [CloudCostManagementApi.ListCostAzureUCConfigs]

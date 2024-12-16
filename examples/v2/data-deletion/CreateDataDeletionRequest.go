@@ -18,8 +18,8 @@ func main() {
 			Attributes: datadogV2.CreateDataDeletionRequestBodyAttributes{
 				From: 1672527600000,
 				Indexes: []string{
-					"index-1",
-					"index-2",
+					"test-index",
+					"test-index-2",
 				},
 				Query: map[string]string{
 					"host":    "abc",
@@ -31,6 +31,7 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.CreateDataDeletionRequest", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewDataDeletionApi(apiClient)
 	resp, r, err := api.CreateDataDeletionRequest(ctx, "logs", body)

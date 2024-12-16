@@ -136,7 +136,7 @@
       },
       {
         "name": "body",
-        "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"from\": 1672527600000,\n      \"to\": 1704063600000,\n      \"indexes\": [\"index-1\", \"index-2\"],\n      \"query\": {\"host\": \"abc\", \"service\": \"xyz\"}\n    }\n  }\n}"
+        "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"from\": 1672527600000,\n      \"to\": 1704063600000,\n      \"indexes\": [\"test-index\", \"test-index-2\"],\n      \"query\": {\"host\": \"abc\", \"service\": \"xyz\"}\n    }\n  }\n}"
       }
     ],
     "step": "there is a valid \"deletion_request\" in the system",
@@ -491,7 +491,7 @@
     "parameters": [
       {
         "name": "body",
-        "value": "{ \"data\": {\n\n    \"type\": \"rum_application_create\",\n    \"attributes\": {\n        \"name\": \"test_name_create\",\n        \"type\": \"browser\"\n    }\n  }\n}"
+        "value": "{ \"data\": {\n    \"type\": \"rum_application_create\",\n    \"attributes\": {\n        \"name\": \"test-rum-{{ unique_hash }}\",\n        \"type\": \"ios\"\n    }\n  }\n}"
       }
     ],
     "step": "there is a valid \"rum_application\" in the system",
@@ -503,7 +503,7 @@
     "parameters": [
       {
         "name": "body",
-        "value": "{\n  \"data\": {\n    \"id\": \"{{ unique }}\",\n    \"type\": \"rum_metrics\",\n    \"attributes\": {\n      \"event_type\": \"session\",\n      \"compute\": {\n        \"aggregation_type\": \"distribution\",\n        \"include_percentiles\": true,\n        \"path\": \"@duration\"\n      },\n      \"filter\": {\n        \"query\": \"source:{{ unique }}\"\n      },\n      \"group_by\": [{\n        \"path\": \"@browser.name\",\n        \"tag_name\": \"browser_name\"\n      }],\n      \"uniqueness\": {\n        \"when\": \"match\"\n      }\n    }\n  }\n}"
+        "value": "{\n  \"data\": {\n    \"id\": \"{{ unique_lower_alnum }}\",\n    \"type\": \"rum_metrics\",\n    \"attributes\": {\n      \"event_type\": \"session\",\n      \"compute\": {\n        \"aggregation_type\": \"distribution\",\n        \"include_percentiles\": true,\n        \"path\": \"@duration\"\n      },\n      \"filter\": {\n        \"query\": \"source:{{ unique }}\"\n      },\n      \"group_by\": [{\n        \"path\": \"@browser.name\",\n        \"tag_name\": \"browser_name\"\n      }],\n      \"uniqueness\": {\n        \"when\": \"match\"\n      }\n    }\n  }\n}"
       }
     ],
     "step": "there is a valid \"rum_metric\" in the system",
