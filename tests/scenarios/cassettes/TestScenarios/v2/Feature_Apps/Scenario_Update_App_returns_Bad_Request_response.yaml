@@ -1,0 +1,59 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"components":[{"events":[],"name":"grid0","properties":{"children":[{"events":[],"name":"gridCell0","properties":{"children":[{"events":[],"name":"calloutValue0","properties":{"isDisabled":false,"isLoading":false,"isVisible":true,"label":"CPU Usage","size":"sm","style":"vivid_yellow","unit":"kB","value":"42"},"type":"calloutValue"}],"isVisible":"true","layout":{"default":{"height":8,"width":2,"x":0,"y":0}}},"type":"gridCell"}]},"type":"grid"}],"description":"This is a simple example app","embeddedQueries":[],"name":"Example App","rootInstanceName":"grid0"},"type":"appDefinitions"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/app-builder/apps
+  response:
+    body: '{"data":{"id":"9d2ee93b-6ac5-4b0e-abd8-829916f2365d","type":"appDefinitions"}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"rootInstanceName":""},"id":"9d2ee93b-6ac5-4b0e-abd8-829916f2365d","type":"appDefinitions"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/app-builder/apps/9d2ee93b-6ac5-4b0e-abd8-829916f2365d
+  response:
+    body: '{"errors":[{"detail":"missing required field","source":{"pointer":"/data/attributes/rootInstanceName"}}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/app-builder/apps/9d2ee93b-6ac5-4b0e-abd8-829916f2365d
+  response:
+    body: '{"data":{"id":"9d2ee93b-6ac5-4b0e-abd8-829916f2365d","type":"appDefinitions"}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2
