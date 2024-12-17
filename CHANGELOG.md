@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## 2.34.0 / 2024-12-17
+
+### Added
+* Create AWS Integrations v2 API spec by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2516
+* Add step_functions as valid enum for v1 AWS tag filter spec by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2788
+* Fix authz scope descriptions by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2799
+* Updated OpenAPI logs_pattern_query to support Patterns for any attribute by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2797
+* Add API specification for events intake v2 by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2731
+* Data Deletion Endpoints Documentation by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2776
+* Add `exitIfSucceed` to multistep API tests by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2825
+* Security Monitoring Rule - Add the updatedAt field in the SecurityMonitoringStandardRuleResponse by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2801
+* add docs for pagination in /api/v2/metrics endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2701
+* Add daily as a valid enum for SLOReportInterval by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2835
+* Add new product Code Security host for summary endpoint and UA endpoints by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2803
+* Add CSM Agents Read Endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2833
+* Add app builder API spec by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2828
+### Changed
+* Remove mobile device ids and make all device ids simple string by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2794
+* Remove support for `namespace_filters.include/exclude_all` in v2 AWS Integrations API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2796
+* Add running pipelines on custom pipelines API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2791
+### Removed
+* Remove unnecessary field in list stream column config by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2836
+### Deprecated
+* Remove `/api/v2/cost/enabled` by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2822
+
+## New Contributors
+* @bthuilot made their first contribution in https://github.com/DataDog/datadog-api-client-go/pull/2831
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.33.0...v2.34.0
+
 ## 2.33.0 / 2024-11-12
 
 ### Added
