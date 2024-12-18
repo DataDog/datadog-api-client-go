@@ -886,7 +886,7 @@
 <span id="L829" class="ln">   829  </span><span class="comment">// END</span>
 <span id="L830" class="ln">   830  </span><span class="comment">// ```</span>
 <span id="L831" class="ln">   831  </span><span class="comment">//</span>
-<span id="L832" class="ln">   832  </span><span class="comment">// This endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/).</span>
+<span id="L832" class="ln">   832  </span><span class="comment">// This endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/). This endpoint is not available in the Government (US1-FED) site.</span>
 <span id="L833" class="ln">   833  </span>func (a *UsageMeteringApi) GetMonthlyCostAttribution(ctx _context.Context, startMonth time.Time, fields string, o ...GetMonthlyCostAttributionOptionalParameters) (MonthlyCostAttributionResponse, *_nethttp.Response, error) {
 <span id="L834" class="ln">   834  </span>	var (
 <span id="L835" class="ln">   835  </span>		localVarHTTPMethod  = _nethttp.MethodGet
