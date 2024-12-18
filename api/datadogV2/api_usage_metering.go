@@ -829,7 +829,7 @@ func (r *GetMonthlyCostAttributionOptionalParameters) WithIncludeDescendants(inc
 // END
 // ```
 //
-// This endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/).
+// This endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/). This endpoint is not available in the Government (US1-FED) site.
 func (a *UsageMeteringApi) GetMonthlyCostAttribution(ctx _context.Context, startMonth time.Time, fields string, o ...GetMonthlyCostAttributionOptionalParameters) (MonthlyCostAttributionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
