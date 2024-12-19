@@ -315,6 +315,8 @@
 //   - [SecurityMonitoringApi.ListSecurityMonitoringRules]
 //   - [SecurityMonitoringApi.ListSecurityMonitoringSignals]
 //   - [SecurityMonitoringApi.ListSecurityMonitoringSuppressions]
+//   - [SecurityMonitoringApi.ListVulnerabilities]
+//   - [SecurityMonitoringApi.ListVulnerableAssets]
 //   - [SecurityMonitoringApi.MuteFindings]
 //   - [SecurityMonitoringApi.RunHistoricalJob]
 //   - [SecurityMonitoringApi.SearchSecurityMonitoringSignals]
