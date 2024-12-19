@@ -20,7 +20,7 @@ func main() {
 				JobDefinition: &datadogV2.JobDefinition{
 					Type: datadog.PtrString("log_detection"),
 					Name: "Excessive number of failed attempts.",
-					Queries: []datadogV2.SecurityMonitoringStandardRuleQuery{
+					Queries: []datadogV2.HistoricalJobQuery{
 						{
 							Query:          datadog.PtrString("source:non_existing_src_weekend"),
 							Aggregation:    datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
@@ -36,7 +36,7 @@ func main() {
 							Condition:     datadog.PtrString("a > 1"),
 						},
 					},
-					Options: &datadogV2.SecurityMonitoringRuleOptions{
+					Options: &datadogV2.HistoricalJobOptions{
 						KeepAlive:         datadogV2.SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR.Ptr(),
 						MaxSignalDuration: datadogV2.SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY.Ptr(),
 						EvaluationWindow:  datadogV2.SECURITYMONITORINGRULEEVALUATIONWINDOW_FIFTEEN_MINUTES.Ptr(),
