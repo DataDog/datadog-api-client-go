@@ -24,7 +24,7 @@ type SecurityMonitoringRuleUpdatePayload struct {
 	Message *string `json:"message,omitempty"`
 	// Name of the rule.
 	Name *string `json:"name,omitempty"`
-	// Options on rules.
+	// Options.
 	Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
 	// Queries for selecting logs which are part of the rule.
 	Queries []SecurityMonitoringRuleQuery `json:"queries,omitempty"`
