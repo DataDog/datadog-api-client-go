@@ -120,6 +120,11 @@ func ParameterToString(obj interface{}, collectionFormat string) string {
 	return fmt.Sprintf("%v", obj)
 }
 
+// ReplacePathParameter replace all occurrences of `pathKey` in `path` with `parameterValue`.
+func ReplacePathParameter(path, pathKey, parameterValue string) string {
+	return strings.ReplaceAll(path, pathKey, parameterValue)
+}
+
 // CallAPI do the request.
 func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 	var rawBody []byte

@@ -10,7 +10,6 @@ import (
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -42,7 +41,7 @@ func (a *AppDeploymentApi) DeployApp(ctx _context.Context, appId string) (Deploy
 	}
 
 	localVarPath := localBasePath + "/api/v2/app-builder/apps/{app_id}/deployment"
-	localVarPath = strings.Replace(localVarPath, "{"+"app_id"+"}", _neturl.PathEscape(datadog.ParameterToString(appId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{app_id}", _neturl.PathEscape(datadog.ParameterToString(appId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -131,7 +130,7 @@ func (a *AppDeploymentApi) DisableApp(ctx _context.Context, appId string) (Disab
 	}
 
 	localVarPath := localBasePath + "/api/v2/app-builder/apps/{app_id}/deployment"
-	localVarPath = strings.Replace(localVarPath, "{"+"app_id"+"}", _neturl.PathEscape(datadog.ParameterToString(appId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{app_id}", _neturl.PathEscape(datadog.ParameterToString(appId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

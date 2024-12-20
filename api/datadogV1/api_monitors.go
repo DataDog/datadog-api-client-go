@@ -8,7 +8,6 @@ import (
 	_context "context"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -402,7 +401,7 @@ func (a *MonitorsApi) DeleteMonitor(ctx _context.Context, monitorId int64, o ...
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.PathEscape(datadog.ParameterToString(monitorId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{monitor_id}", _neturl.PathEscape(datadog.ParameterToString(monitorId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -508,7 +507,7 @@ func (a *MonitorsApi) GetMonitor(ctx _context.Context, monitorId int64, o ...Get
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.PathEscape(datadog.ParameterToString(monitorId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{monitor_id}", _neturl.PathEscape(datadog.ParameterToString(monitorId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1053,7 +1052,7 @@ func (a *MonitorsApi) UpdateMonitor(ctx _context.Context, monitorId int64, body 
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.PathEscape(datadog.ParameterToString(monitorId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{monitor_id}", _neturl.PathEscape(datadog.ParameterToString(monitorId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1127,7 +1126,7 @@ func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId in
 	}
 
 	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}/validate"
-	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.PathEscape(datadog.ParameterToString(monitorId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{monitor_id}", _neturl.PathEscape(datadog.ParameterToString(monitorId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
