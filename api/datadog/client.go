@@ -109,7 +109,7 @@ func ParameterToString(obj interface{}, collectionFormat string) string {
 	}
 
 	if reflect.TypeOf(obj).Kind() == reflect.Slice {
-		return strings.Trim(strings.Replace(fmt.Sprint(obj), " ", delimiter, -1), "[]")
+		return strings.Trim(strings.ReplaceAll(fmt.Sprint(obj), " ", delimiter), "[]")
 	} else if t, ok := obj.(time.Time); ok {
 		if t.Nanosecond() == 0 {
 			return t.Format("2006-01-02T15:04:05Z07:00")
