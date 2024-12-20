@@ -8,7 +8,6 @@ import (
 	_context "context"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -31,8 +30,8 @@ func (a *WorkflowAutomationApi) CancelWorkflowInstance(ctx _context.Context, wor
 	}
 
 	localVarPath := localBasePath + "/api/v2/workflows/{workflow_id}/instances/{instance_id}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"workflow_id"+"}", _neturl.PathEscape(datadog.ParameterToString(workflowId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instance_id"+"}", _neturl.PathEscape(datadog.ParameterToString(instanceId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{workflow_id}", _neturl.PathEscape(datadog.ParameterToString(workflowId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{instance_id}", _neturl.PathEscape(datadog.ParameterToString(instanceId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -103,7 +102,7 @@ func (a *WorkflowAutomationApi) CreateWorkflowInstance(ctx _context.Context, wor
 	}
 
 	localVarPath := localBasePath + "/api/v2/workflows/{workflow_id}/instances"
-	localVarPath = strings.Replace(localVarPath, "{"+"workflow_id"+"}", _neturl.PathEscape(datadog.ParameterToString(workflowId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{workflow_id}", _neturl.PathEscape(datadog.ParameterToString(workflowId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -177,8 +176,8 @@ func (a *WorkflowAutomationApi) GetWorkflowInstance(ctx _context.Context, workfl
 	}
 
 	localVarPath := localBasePath + "/api/v2/workflows/{workflow_id}/instances/{instance_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"workflow_id"+"}", _neturl.PathEscape(datadog.ParameterToString(workflowId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instance_id"+"}", _neturl.PathEscape(datadog.ParameterToString(instanceId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{workflow_id}", _neturl.PathEscape(datadog.ParameterToString(workflowId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{instance_id}", _neturl.PathEscape(datadog.ParameterToString(instanceId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -281,7 +280,7 @@ func (a *WorkflowAutomationApi) ListWorkflowInstances(ctx _context.Context, work
 	}
 
 	localVarPath := localBasePath + "/api/v2/workflows/{workflow_id}/instances"
-	localVarPath = strings.Replace(localVarPath, "{"+"workflow_id"+"}", _neturl.PathEscape(datadog.ParameterToString(workflowId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{workflow_id}", _neturl.PathEscape(datadog.ParameterToString(workflowId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

@@ -11,7 +11,6 @@ import (
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/google/uuid"
@@ -170,7 +169,7 @@ func (a *APIManagementApi) DeleteOpenAPI(ctx _context.Context, id uuid.UUID) (*_
 	}
 
 	localVarPath := localBasePath + "/api/v2/apicatalog/api/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(datadog.ParameterToString(id, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{id}", _neturl.PathEscape(datadog.ParameterToString(id, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -250,7 +249,7 @@ func (a *APIManagementApi) GetOpenAPI(ctx _context.Context, id uuid.UUID) (_io.R
 	}
 
 	localVarPath := localBasePath + "/api/v2/apicatalog/api/{id}/openapi"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(datadog.ParameterToString(id, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{id}", _neturl.PathEscape(datadog.ParameterToString(id, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -493,7 +492,7 @@ func (a *APIManagementApi) UpdateOpenAPI(ctx _context.Context, id uuid.UUID, o .
 	}
 
 	localVarPath := localBasePath + "/api/v2/apicatalog/api/{id}/openapi"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(datadog.ParameterToString(id, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{id}", _neturl.PathEscape(datadog.ParameterToString(id, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

@@ -8,7 +8,6 @@ import (
 	_context "context"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -30,7 +29,7 @@ func (a *RestrictionPoliciesApi) DeleteRestrictionPolicy(ctx _context.Context, r
 	}
 
 	localVarPath := localBasePath + "/api/v2/restriction_policy/{resource_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_id"+"}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{resource_id}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -92,7 +91,7 @@ func (a *RestrictionPoliciesApi) GetRestrictionPolicy(ctx _context.Context, reso
 	}
 
 	localVarPath := localBasePath + "/api/v2/restriction_policy/{resource_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_id"+"}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{resource_id}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -190,7 +189,7 @@ func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, r
 	}
 
 	localVarPath := localBasePath + "/api/v2/restriction_policy/{resource_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_id"+"}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{resource_id}", _neturl.PathEscape(datadog.ParameterToString(resourceId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

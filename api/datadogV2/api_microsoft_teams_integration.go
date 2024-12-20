@@ -8,7 +8,6 @@ import (
 	_context "context"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -103,7 +102,7 @@ func (a *MicrosoftTeamsIntegrationApi) DeleteTenantBasedHandle(ctx _context.Cont
 	}
 
 	localVarPath := localBasePath + "/api/v2/integration/ms-teams/configuration/tenant-based-handles/{handle_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"handle_id"+"}", _neturl.PathEscape(datadog.ParameterToString(handleId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{handle_id}", _neturl.PathEscape(datadog.ParameterToString(handleId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -165,9 +164,9 @@ func (a *MicrosoftTeamsIntegrationApi) GetChannelByName(ctx _context.Context, te
 	}
 
 	localVarPath := localBasePath + "/api/v2/integration/ms-teams/configuration/channel/{tenant_name}/{team_name}/{channel_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"tenant_name"+"}", _neturl.PathEscape(datadog.ParameterToString(tenantName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"team_name"+"}", _neturl.PathEscape(datadog.ParameterToString(teamName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"channel_name"+"}", _neturl.PathEscape(datadog.ParameterToString(channelName, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{tenant_name}", _neturl.PathEscape(datadog.ParameterToString(tenantName, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{team_name}", _neturl.PathEscape(datadog.ParameterToString(teamName, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{channel_name}", _neturl.PathEscape(datadog.ParameterToString(channelName, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -238,7 +237,7 @@ func (a *MicrosoftTeamsIntegrationApi) GetTenantBasedHandle(ctx _context.Context
 	}
 
 	localVarPath := localBasePath + "/api/v2/integration/ms-teams/configuration/tenant-based-handles/{handle_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"handle_id"+"}", _neturl.PathEscape(datadog.ParameterToString(handleId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{handle_id}", _neturl.PathEscape(datadog.ParameterToString(handleId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -417,7 +416,7 @@ func (a *MicrosoftTeamsIntegrationApi) UpdateTenantBasedHandle(ctx _context.Cont
 	}
 
 	localVarPath := localBasePath + "/api/v2/integration/ms-teams/configuration/tenant-based-handles/{handle_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"handle_id"+"}", _neturl.PathEscape(datadog.ParameterToString(handleId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{handle_id}", _neturl.PathEscape(datadog.ParameterToString(handleId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

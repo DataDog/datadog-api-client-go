@@ -94,7 +94,7 @@ func (a *{{ classname }}) {{ operation.operationId }}(ctx _context.Context{% for
 
 	localVarPath := localBasePath + "{{ path }}"
 	{%- for name, parameter in operation|parameters if parameter.in == "path" %}
-	localVarPath = strings.Replace(localVarPath, "{"+"{{ name }}"+"}", _neturl.PathEscape({{ common_package_name }}.ParameterToString({{ name|variable_name}}, "{{ parameter|collection_format }}")), -1)
+	localVarPath = {{ common_package_name }}.ReplacePathParameter(localVarPath, "{% raw %}{{% endraw %}{{ name }}{% raw %}}{% endraw %}", _neturl.PathEscape({{ common_package_name }}.ParameterToString({{ name|variable_name}}, "{{ parameter|collection_format }}")))
 	{%- endfor %}
 
 	localVarHeaderParams := make(map[string]string)

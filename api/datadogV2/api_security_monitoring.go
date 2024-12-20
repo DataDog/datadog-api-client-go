@@ -11,7 +11,6 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"reflect"
-	"strings"
 	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -43,7 +42,7 @@ func (a *SecurityMonitoringApi) CancelHistoricalJob(ctx _context.Context, jobId 
 	}
 
 	localVarPath := localBasePath + "/api/v2/siem-historical-detections/jobs/{job_id}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"job_id"+"}", _neturl.PathEscape(datadog.ParameterToString(jobId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{job_id}", _neturl.PathEscape(datadog.ParameterToString(jobId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -106,7 +105,7 @@ func (a *SecurityMonitoringApi) ConvertExistingSecurityMonitoringRule(ctx _conte
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/rules/{rule_id}/convert"
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{rule_id}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -553,7 +552,7 @@ func (a *SecurityMonitoringApi) DeleteHistoricalJob(ctx _context.Context, jobId 
 	}
 
 	localVarPath := localBasePath + "/api/v2/siem-historical-detections/jobs/{job_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"job_id"+"}", _neturl.PathEscape(datadog.ParameterToString(jobId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{job_id}", _neturl.PathEscape(datadog.ParameterToString(jobId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -614,7 +613,7 @@ func (a *SecurityMonitoringApi) DeleteSecurityFilter(ctx _context.Context, secur
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/configuration/security_filters/{security_filter_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(datadog.ParameterToString(securityFilterId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{security_filter_id}", _neturl.PathEscape(datadog.ParameterToString(securityFilterId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -675,7 +674,7 @@ func (a *SecurityMonitoringApi) DeleteSecurityMonitoringRule(ctx _context.Contex
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/rules/{rule_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{rule_id}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -736,7 +735,7 @@ func (a *SecurityMonitoringApi) DeleteSecurityMonitoringSuppression(ctx _context
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/configuration/suppressions/{suppression_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"suppression_id"+"}", _neturl.PathEscape(datadog.ParameterToString(suppressionId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{suppression_id}", _neturl.PathEscape(datadog.ParameterToString(suppressionId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -798,7 +797,7 @@ func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalAssignee(ctx _contex
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/signals/{signal_id}/assignee"
-	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(datadog.ParameterToString(signalId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{signal_id}", _neturl.PathEscape(datadog.ParameterToString(signalId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -872,7 +871,7 @@ func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalIncidents(ctx _conte
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/signals/{signal_id}/incidents"
-	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(datadog.ParameterToString(signalId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{signal_id}", _neturl.PathEscape(datadog.ParameterToString(signalId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -946,7 +945,7 @@ func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalState(ctx _context.C
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/signals/{signal_id}/state"
-	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(datadog.ParameterToString(signalId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{signal_id}", _neturl.PathEscape(datadog.ParameterToString(signalId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1054,7 +1053,7 @@ func (a *SecurityMonitoringApi) GetFinding(ctx _context.Context, findingId strin
 	}
 
 	localVarPath := localBasePath + "/api/v2/posture_management/findings/{finding_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"finding_id"+"}", _neturl.PathEscape(datadog.ParameterToString(findingId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{finding_id}", _neturl.PathEscape(datadog.ParameterToString(findingId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1137,7 +1136,7 @@ func (a *SecurityMonitoringApi) GetHistoricalJob(ctx _context.Context, jobId str
 	}
 
 	localVarPath := localBasePath + "/api/v2/siem-historical-detections/jobs/{job_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"job_id"+"}", _neturl.PathEscape(datadog.ParameterToString(jobId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{job_id}", _neturl.PathEscape(datadog.ParameterToString(jobId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1211,7 +1210,7 @@ func (a *SecurityMonitoringApi) GetSecurityFilter(ctx _context.Context, security
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/configuration/security_filters/{security_filter_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(datadog.ParameterToString(securityFilterId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{security_filter_id}", _neturl.PathEscape(datadog.ParameterToString(securityFilterId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1282,7 +1281,7 @@ func (a *SecurityMonitoringApi) GetSecurityMonitoringRule(ctx _context.Context, 
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/rules/{rule_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{rule_id}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1353,7 +1352,7 @@ func (a *SecurityMonitoringApi) GetSecurityMonitoringSignal(ctx _context.Context
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/signals/{signal_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"signal_id"+"}", _neturl.PathEscape(datadog.ParameterToString(signalId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{signal_id}", _neturl.PathEscape(datadog.ParameterToString(signalId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1424,7 +1423,7 @@ func (a *SecurityMonitoringApi) GetSecurityMonitoringSuppression(ctx _context.Co
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/configuration/suppressions/{suppression_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"suppression_id"+"}", _neturl.PathEscape(datadog.ParameterToString(suppressionId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{suppression_id}", _neturl.PathEscape(datadog.ParameterToString(suppressionId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2742,7 +2741,7 @@ func (a *SecurityMonitoringApi) TestExistingSecurityMonitoringRule(ctx _context.
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/rules/{rule_id}/test"
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{rule_id}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2890,7 +2889,7 @@ func (a *SecurityMonitoringApi) UpdateSecurityFilter(ctx _context.Context, secur
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/configuration/security_filters/{security_filter_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"security_filter_id"+"}", _neturl.PathEscape(datadog.ParameterToString(securityFilterId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{security_filter_id}", _neturl.PathEscape(datadog.ParameterToString(securityFilterId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2967,7 +2966,7 @@ func (a *SecurityMonitoringApi) UpdateSecurityMonitoringRule(ctx _context.Contex
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/rules/{rule_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{rule_id}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -3041,7 +3040,7 @@ func (a *SecurityMonitoringApi) UpdateSecurityMonitoringSuppression(ctx _context
 	}
 
 	localVarPath := localBasePath + "/api/v2/security_monitoring/configuration/suppressions/{suppression_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"suppression_id"+"}", _neturl.PathEscape(datadog.ParameterToString(suppressionId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{suppression_id}", _neturl.PathEscape(datadog.ParameterToString(suppressionId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
