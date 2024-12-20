@@ -158,6 +158,9 @@
 				<dd><a href="#ReadBody">func ReadBody(response *http.Response) ([]byte, error)</a></dd>
 			
 				
+				<dd><a href="#ReplacePathParameter">func ReplacePathParameter(path, pathKey, parameterValue string) string</a></dd>
+			
+				
 				<dd><a href="#ReportError">func ReportError(format string, a ...interface{}) error</a></dd>
 			
 				
@@ -803,7 +806,21 @@
 		
 			
 			
-			<h2 id="ReportError">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L457">ReportError</a>
+			<h2 id="ReplacePathParameter">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L124">ReplacePathParameter</a>
+				<a class="permalink" href="#ReplacePathParameter">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func ReplacePathParameter(path, pathKey, parameterValue <a href="https://pkg.go.dev/builtin/#string">string</a>) <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+			<p>ReplacePathParameter replace all occurrences of `pathKey` in `path` with `parameterValue`.
+
+			
+			
+
+		
+			
+			
+			<h2 id="ReportError">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L462">ReportError</a>
 				<a class="permalink" href="#ReportError">&#xb6;</a>
 				
 				
@@ -897,7 +914,7 @@ optionally a custom http.Client to allow for advanced features such as caching.
 
 			
 				
-				<h3 id="APIClient.CallAPI">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L124">CallAPI</a>
+				<h3 id="APIClient.CallAPI">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L129">CallAPI</a>
 					<a class="permalink" href="#APIClient.CallAPI">&#xb6;</a>
 					
 					
@@ -910,7 +927,7 @@ optionally a custom http.Client to allow for advanced features such as caching.
 				
 			
 				
-				<h3 id="APIClient.Decode">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L411">Decode</a>
+				<h3 id="APIClient.Decode">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L416">Decode</a>
 					<a class="permalink" href="#APIClient.Decode">&#xb6;</a>
 					
 					
@@ -923,7 +940,7 @@ optionally a custom http.Client to allow for advanced features such as caching.
 				
 			
 				
-				<h3 id="APIClient.GetConfig">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L214">GetConfig</a>
+				<h3 id="APIClient.GetConfig">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L219">GetConfig</a>
 					<a class="permalink" href="#APIClient.GetConfig">&#xb6;</a>
 					
 					
@@ -937,7 +954,7 @@ Caution: modifying the configuration while live can cause data races and potenti
 				
 			
 				
-				<h3 id="APIClient.PrepareRequest">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L219">PrepareRequest</a>
+				<h3 id="APIClient.PrepareRequest">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L224">PrepareRequest</a>
 					<a class="permalink" href="#APIClient.PrepareRequest">&#xb6;</a>
 					
 					
@@ -1186,7 +1203,7 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 		
 			
 			
-			<h2 id="GenericOpenAPIError">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L519">GenericOpenAPIError</a>
+			<h2 id="GenericOpenAPIError">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L524">GenericOpenAPIError</a>
 				<a class="permalink" href="#GenericOpenAPIError">&#xb6;</a>
 				
 				
@@ -1212,7 +1229,7 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 
 			
 				
-				<h3 id="GenericOpenAPIError.Body">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L531">Body</a>
+				<h3 id="GenericOpenAPIError.Body">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L536">Body</a>
 					<a class="permalink" href="#GenericOpenAPIError.Body">&#xb6;</a>
 					
 					
@@ -1225,7 +1242,7 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 				
 			
 				
-				<h3 id="GenericOpenAPIError.Error">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L526">Error</a>
+				<h3 id="GenericOpenAPIError.Error">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L531">Error</a>
 					<a class="permalink" href="#GenericOpenAPIError.Error">&#xb6;</a>
 					
 					
@@ -1238,7 +1255,7 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 				
 			
 				
-				<h3 id="GenericOpenAPIError.Model">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L536">Model</a>
+				<h3 id="GenericOpenAPIError.Model">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L541">Model</a>
 					<a class="permalink" href="#GenericOpenAPIError.Model">&#xb6;</a>
 					
 					

@@ -69,12 +69,12 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// SecurityMonitoringRuleCaseCreate Case when signal is generated.</span>
 <span id="L14" class="ln">    14  </span>type SecurityMonitoringRuleCaseCreate struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// A rule case contains logical operations (`&gt;`,`&gt;=`, `&amp;&amp;`, `||`) to determine if a signal should be generated</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// A case contains logical operations (`&gt;`,`&gt;=`, `&amp;&amp;`, `||`) to determine if a signal should be generated</span>
 <span id="L16" class="ln">    16  </span>	<span class="comment">// based on the event counts in the previously defined queries.</span>
 <span id="L17" class="ln">    17  </span>	Condition *string `json:&#34;condition,omitempty&#34;`
 <span id="L18" class="ln">    18  </span>	<span class="comment">// Name of the case.</span>
 <span id="L19" class="ln">    19  </span>	Name *string `json:&#34;name,omitempty&#34;`
-<span id="L20" class="ln">    20  </span>	<span class="comment">// Notification targets for each rule case.</span>
+<span id="L20" class="ln">    20  </span>	<span class="comment">// Notification targets.</span>
 <span id="L21" class="ln">    21  </span>	Notifications []string `json:&#34;notifications,omitempty&#34;`
 <span id="L22" class="ln">    22  </span>	<span class="comment">// Severity of the Security Signal.</span>
 <span id="L23" class="ln">    23  </span>	Status SecurityMonitoringRuleSeverity `json:&#34;status&#34;`
