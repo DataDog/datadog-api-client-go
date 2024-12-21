@@ -635,8 +635,8 @@ func (r *ListMonitorsOptionalParameters) WithPageSize(pageSize int32) *ListMonit
 	return r
 }
 
-// ListMonitors Get all monitor details.
-// Get details about the specified monitor from your organization.
+// ListMonitors Get all monitors.
+// Get all monitors from your organization.
 func (a *MonitorsApi) ListMonitors(ctx _context.Context, o ...ListMonitorsOptionalParameters) ([]Monitor, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
