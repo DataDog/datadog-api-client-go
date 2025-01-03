@@ -5,6 +5,8 @@
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -17,7 +19,7 @@ type DeploymentRelationshipMeta struct {
 	// The `meta` `user_name`.
 	UserName *string `json:"user_name,omitempty"`
 	// The `meta` `user_uuid`.
-	UserUuid *string `json:"user_uuid,omitempty"`
+	UserUuid *uuid.UUID `json:"user_uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -125,9 +127,9 @@ func (o *DeploymentRelationshipMeta) SetUserName(v string) {
 }
 
 // GetUserUuid returns the UserUuid field value if set, zero value otherwise.
-func (o *DeploymentRelationshipMeta) GetUserUuid() string {
+func (o *DeploymentRelationshipMeta) GetUserUuid() uuid.UUID {
 	if o == nil || o.UserUuid == nil {
-		var ret string
+		var ret uuid.UUID
 		return ret
 	}
 	return *o.UserUuid
@@ -135,7 +137,7 @@ func (o *DeploymentRelationshipMeta) GetUserUuid() string {
 
 // GetUserUuidOk returns a tuple with the UserUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeploymentRelationshipMeta) GetUserUuidOk() (*string, bool) {
+func (o *DeploymentRelationshipMeta) GetUserUuidOk() (*uuid.UUID, bool) {
 	if o == nil || o.UserUuid == nil {
 		return nil, false
 	}
@@ -147,8 +149,8 @@ func (o *DeploymentRelationshipMeta) HasUserUuid() bool {
 	return o != nil && o.UserUuid != nil
 }
 
-// SetUserUuid gets a reference to the given string and assigns it to the UserUuid field.
-func (o *DeploymentRelationshipMeta) SetUserUuid(v string) {
+// SetUserUuid gets a reference to the given uuid.UUID and assigns it to the UserUuid field.
+func (o *DeploymentRelationshipMeta) SetUserUuid(v uuid.UUID) {
 	o.UserUuid = &v
 }
 
@@ -180,10 +182,10 @@ func (o DeploymentRelationshipMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DeploymentRelationshipMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt *string `json:"created_at,omitempty"`
-		UserId    *int64  `json:"user_id,omitempty"`
-		UserName  *string `json:"user_name,omitempty"`
-		UserUuid  *string `json:"user_uuid,omitempty"`
+		CreatedAt *string    `json:"created_at,omitempty"`
+		UserId    *int64     `json:"user_id,omitempty"`
+		UserName  *string    `json:"user_name,omitempty"`
+		UserUuid  *uuid.UUID `json:"user_uuid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
