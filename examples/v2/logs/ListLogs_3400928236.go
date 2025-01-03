@@ -1,4 +1,4 @@
-// Search logs (POST) returns "OK" response
+// Search logs returns "OK" response
 
 package main
 
@@ -15,23 +15,17 @@ import (
 func main() {
 	body := datadogV2.LogsListRequest{
 		Filter: &datadogV2.LogsQueryFilter{
-			From: datadog.PtrString("now-15m"),
+			Query: datadog.PtrString("datadog-agent"),
 			Indexes: []string{
 				"main",
-				"web",
 			},
-			Query:       datadog.PtrString("service:web* AND @http.status_code:[200 TO 299]"),
-			StorageTier: datadogV2.LOGSSTORAGETIER_INDEXES.Ptr(),
-			To:          datadog.PtrString("now"),
-		},
-		Options: &datadogV2.LogsQueryOptions{
-			Timezone: datadog.PtrString("GMT"),
-		},
-		Page: &datadogV2.LogsListRequestPage{
-			Cursor: datadog.PtrString("eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ=="),
-			Limit:  datadog.PtrInt32(25),
+			From: datadog.PtrString("2020-09-17T11:48:36+01:00"),
+			To:   datadog.PtrString("2020-09-17T12:48:36+01:00"),
 		},
 		Sort: datadogV2.LOGSSORT_TIMESTAMP_ASCENDING.Ptr(),
+		Page: &datadogV2.LogsListRequestPage{
+			Limit: datadog.PtrInt32(5),
+		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

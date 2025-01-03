@@ -1,4 +1,4 @@
-// Get a list of logs returns "OK" response
+// Search logs (GET) returns "OK" response
 
 package main
 
