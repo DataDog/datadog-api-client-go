@@ -35,7 +35,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRestrictionPoliciesApi(apiClient)
-	resp, r, err := api.UpdateRestrictionPolicy(ctx, "dashboard:test-update", body)
+	resp, r, err := api.UpdateRestrictionPolicy(ctx, "dashboard:test-update", body, *datadogV2.NewUpdateRestrictionPolicyOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RestrictionPoliciesApi.UpdateRestrictionPolicy`: %v\n", err)

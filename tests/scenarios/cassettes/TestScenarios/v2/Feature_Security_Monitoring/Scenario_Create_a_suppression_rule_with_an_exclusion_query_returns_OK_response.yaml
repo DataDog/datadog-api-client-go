@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"data_exclusion_query":"account_id:12345","description":"This rule suppresses low-severity signals in staging environments.","enabled":true,"expiration_date":1718039232000,"name":"Test-Create_a_suppression_rule_with_an_exclusion_query_returns_OK_response-1716224832","rule_query":"type:log_detection source:cloudtrail"},"type":"suppressions"}}
+      {"data":{"attributes":{"data_exclusion_query":"account_id:12345","description":"This rule suppresses low-severity signals in staging environments.","enabled":true,"expiration_date":1734535475000,"name":"Test-Create_a_suppression_rule_with_an_exclusion_query_returns_OK_response-1732721075","rule_query":"type:log_detection source:cloudtrail","start_date":1733585075000},"type":"suppressions"}}
     form: {}
     headers:
       Accept:
@@ -12,16 +12,14 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions
   response:
-    body: '{"data":{"id":"i9m-nqb-ets","attributes":{"name":"Test-Create_a_suppression_rule_with_an_exclusion_query_returns_OK_response-1716224832","enabled":true,"description":"This
-      rule suppresses low-severity signals in staging environments.","rule_query":"type:log_detection
-      source:cloudtrail","suppression_query":"","data_exclusion_query":"account_id:12345","expiration_date":1718039232000,"version":1,"creation_date":1716224832354,"update_date":1716224832355,"creator":{"name":null,"handle":"frog@datadoghq.com"},"updater":{"name":null,"handle":"frog@datadoghq.com"}},"type":"suppressions"}}
-
-      '
+    body: '{"data":{"id":"rv5-3sh-tvp","type":"suppressions","attributes":{"creation_date":1732721075298,"creator":{"handle":"frog@datadoghq.com","name":""},"data_exclusion_query":"account_id:12345","description":"This
+      rule suppresses low-severity signals in staging environments.","editable":true,"enabled":true,"expiration_date":1734535475000,"name":"Test-Create_a_suppression_rule_with_an_exclusion_query_returns_OK_response-1732721075","rule_query":"type:log_detection
+      source:cloudtrail","start_date":1733585075000,"suppression_query":"","update_date":1732721075298,"updater":{"handle":"frog@datadoghq.com","name":""},"version":1}}}'
     code: 200
     duration: 0ms
     headers:
       Content-Type:
-      - application/json
+      - application/vnd.api+json
     status: 200 OK
 - request:
     body: ''
@@ -31,13 +29,11 @@ interactions:
       - '*/*'
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/i9m-nqb-ets
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/rv5-3sh-tvp
   response:
     body: ''
     code: 204
     duration: 0ms
-    headers:
-      Content-Type:
-      - text/html; charset=utf-8
+    headers: {}
     status: 204 No Content
 version: 2
