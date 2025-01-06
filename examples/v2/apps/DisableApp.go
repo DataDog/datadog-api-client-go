@@ -1,4 +1,4 @@
-// Deploy App returns "Created" response
+// Disable App returns "OK" response
 
 package main
 
@@ -18,16 +18,16 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.DeployApp", true)
+	configuration.SetUnstableOperationEnabled("v2.DisableApp", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewAppDeploymentApi(apiClient)
-	resp, r, err := api.DeployApp(ctx, AppDataID)
+	api := datadogV2.NewAppsApi(apiClient)
+	resp, r, err := api.DisableApp(ctx, AppDataID)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AppDeploymentApi.DeployApp`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.DisableApp`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `AppDeploymentApi.DeployApp`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `AppsApi.DisableApp`:\n%s\n", responseContent)
 }
