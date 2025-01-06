@@ -149,7 +149,7 @@ func (a *RestrictionPoliciesApi) GetRestrictionPolicy(ctx _context.Context, reso
 
 // UpdateRestrictionPolicyOptionalParameters holds optional parameters for UpdateRestrictionPolicy.
 type UpdateRestrictionPolicyOptionalParameters struct {
-	AllowSelfLockout *string
+	AllowSelfLockout *bool
 }
 
 // NewUpdateRestrictionPolicyOptionalParameters creates an empty struct for parameters.
@@ -159,7 +159,7 @@ func NewUpdateRestrictionPolicyOptionalParameters() *UpdateRestrictionPolicyOpti
 }
 
 // WithAllowSelfLockout sets the corresponding parameter name and returns the struct.
-func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSelfLockout string) *UpdateRestrictionPolicyOptionalParameters {
+func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSelfLockout bool) *UpdateRestrictionPolicyOptionalParameters {
 	r.AllowSelfLockout = &allowSelfLockout
 	return r
 }
