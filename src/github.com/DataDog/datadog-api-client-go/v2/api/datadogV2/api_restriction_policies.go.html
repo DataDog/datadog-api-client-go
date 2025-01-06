@@ -206,7 +206,7 @@
 <span id="L149" class="ln">   149  </span>
 <span id="L150" class="ln">   150  </span><span class="comment">// UpdateRestrictionPolicyOptionalParameters holds optional parameters for UpdateRestrictionPolicy.</span>
 <span id="L151" class="ln">   151  </span>type UpdateRestrictionPolicyOptionalParameters struct {
-<span id="L152" class="ln">   152  </span>	AllowSelfLockout *string
+<span id="L152" class="ln">   152  </span>	AllowSelfLockout *bool
 <span id="L153" class="ln">   153  </span>}
 <span id="L154" class="ln">   154  </span>
 <span id="L155" class="ln">   155  </span><span class="comment">// NewUpdateRestrictionPolicyOptionalParameters creates an empty struct for parameters.</span>
@@ -216,7 +216,7 @@
 <span id="L159" class="ln">   159  </span>}
 <span id="L160" class="ln">   160  </span>
 <span id="L161" class="ln">   161  </span><span class="comment">// WithAllowSelfLockout sets the corresponding parameter name and returns the struct.</span>
-<span id="L162" class="ln">   162  </span>func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSelfLockout string) *UpdateRestrictionPolicyOptionalParameters {
+<span id="L162" class="ln">   162  </span>func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSelfLockout bool) *UpdateRestrictionPolicyOptionalParameters {
 <span id="L163" class="ln">   163  </span>	r.AllowSelfLockout = &amp;allowSelfLockout
 <span id="L164" class="ln">   164  </span>	return r
 <span id="L165" class="ln">   165  </span>}
