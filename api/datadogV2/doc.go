@@ -22,6 +22,7 @@
 //   - [AWSIntegrationApi.ListAWSNamespaces]
 //   - [AWSIntegrationApi.UpdateAWSAccount]
 //   - [AWSLogsIntegrationApi.ListAWSLogsServices]
+//   - [AgentlessScanningApi.ListAwsScanOptions]
 //   - [AppsApi.CreateApp]
 //   - [AppsApi.DeleteApp]
 //   - [AppsApi.DeleteApps]
