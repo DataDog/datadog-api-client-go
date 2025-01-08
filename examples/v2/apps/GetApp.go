@@ -21,7 +21,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.GetApp", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAppsApi(apiClient)
-	resp, r, err := api.GetApp(ctx, AppDataID, *datadogV2.NewGetAppOptionalParameters())
+	resp, r, err := api.GetApp(ctx, AppDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.GetApp`: %v\n", err)

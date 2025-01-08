@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/app-builder/apps
   response:
-    body: '{"data":{"id":"290ad26d-6f5c-43b6-aef6-57b403d755e8","type":"appDefinitions"}}'
+    body: '{"data":{"id":"6fdd1eb3-bd2c-4fe3-a3cf-38d0af4913ad","type":"appDefinitions"}}'
     code: 201
     duration: 0ms
     headers:
@@ -26,16 +26,16 @@ interactions:
       Accept:
       - application/json
     id: 1
-    method: POST
-    url: https://api.datadoghq.com/api/v2/app-builder/apps/290ad26d-6f5c-43b6-aef6-57b403d755e8/deployment
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/app-builder/apps/6fdd1eb3-bd2c-4fe3-a3cf-38d0af4913ad/deployment
   response:
-    body: '{"data":{"id":"74a4bbff-b587-4272-a207-b61678cc0bf1","type":"deployment","attributes":{"app_version_id":"ab334928-2df5-4e6e-8e40-9eeee2b2cd44"},"meta":{"created_at":"2024-12-20T20:39:20.594723Z","user_id":15479137,"user_uuid":"b3f98453-b289-11ef-a4e9-d6d283f92d91","user_name":"oliver.li@datadoghq.com"}}}'
-    code: 201
+    body: '{"data":{"id":"be510de8-34d8-45fc-830f-85c208a42920","type":"deployment","attributes":{"app_version_id":"00000000-0000-0000-0000-000000000000"},"meta":{"created_at":"2024-12-12T20:29:23.883145Z","user_id":2320499,"user_uuid":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","user_name":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}'
+    code: 200
     duration: 0ms
     headers:
       Content-Type:
       - application/vnd.api+json
-    status: 201 Created
+    status: 200 OK
 - request:
     body: ''
     form: {}
@@ -44,9 +44,9 @@ interactions:
       - application/json
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/app-builder/apps/290ad26d-6f5c-43b6-aef6-57b403d755e8
+    url: https://api.datadoghq.com/api/v2/app-builder/apps/6fdd1eb3-bd2c-4fe3-a3cf-38d0af4913ad
   response:
-    body: '{"data":{"id":"290ad26d-6f5c-43b6-aef6-57b403d755e8","type":"appDefinitions"}}'
+    body: '{"data":{"id":"6fdd1eb3-bd2c-4fe3-a3cf-38d0af4913ad","type":"appDefinitions"}}'
     code: 200
     duration: 0ms
     headers:

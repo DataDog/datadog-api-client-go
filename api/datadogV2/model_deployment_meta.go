@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"github.com/google/uuid"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -19,7 +17,7 @@ type DeploymentMeta struct {
 	// The `DeploymentMeta` `user_name`.
 	UserName *string `json:"user_name,omitempty"`
 	// The `DeploymentMeta` `user_uuid`.
-	UserUuid *uuid.UUID `json:"user_uuid,omitempty"`
+	UserUuid *string `json:"user_uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -127,9 +125,9 @@ func (o *DeploymentMeta) SetUserName(v string) {
 }
 
 // GetUserUuid returns the UserUuid field value if set, zero value otherwise.
-func (o *DeploymentMeta) GetUserUuid() uuid.UUID {
+func (o *DeploymentMeta) GetUserUuid() string {
 	if o == nil || o.UserUuid == nil {
-		var ret uuid.UUID
+		var ret string
 		return ret
 	}
 	return *o.UserUuid
@@ -137,7 +135,7 @@ func (o *DeploymentMeta) GetUserUuid() uuid.UUID {
 
 // GetUserUuidOk returns a tuple with the UserUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeploymentMeta) GetUserUuidOk() (*uuid.UUID, bool) {
+func (o *DeploymentMeta) GetUserUuidOk() (*string, bool) {
 	if o == nil || o.UserUuid == nil {
 		return nil, false
 	}
@@ -149,8 +147,8 @@ func (o *DeploymentMeta) HasUserUuid() bool {
 	return o != nil && o.UserUuid != nil
 }
 
-// SetUserUuid gets a reference to the given uuid.UUID and assigns it to the UserUuid field.
-func (o *DeploymentMeta) SetUserUuid(v uuid.UUID) {
+// SetUserUuid gets a reference to the given string and assigns it to the UserUuid field.
+func (o *DeploymentMeta) SetUserUuid(v string) {
 	o.UserUuid = &v
 }
 
@@ -182,10 +180,10 @@ func (o DeploymentMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DeploymentMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt *string    `json:"created_at,omitempty"`
-		UserId    *int64     `json:"user_id,omitempty"`
-		UserName  *string    `json:"user_name,omitempty"`
-		UserUuid  *uuid.UUID `json:"user_uuid,omitempty"`
+		CreatedAt *string `json:"created_at,omitempty"`
+		UserId    *int64  `json:"user_id,omitempty"`
+		UserName  *string `json:"user_name,omitempty"`
+		UserUuid  *string `json:"user_uuid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
