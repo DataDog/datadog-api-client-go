@@ -253,7 +253,7 @@ def reference_to_value(schema, value, print_nullable=True, **kwargs):
             "date": "Time",
             "date-time": "Time",
             "email": "String",
-            "uuid": "UUID",
+            "uuid": "Uuid",
             None: "String",
         }[type_format]
         return formatter.format(prefix=prefix, function_name=function_name, value=value)
