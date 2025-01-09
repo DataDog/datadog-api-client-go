@@ -249,11 +249,13 @@ def reference_to_value(schema, value, print_nullable=True, **kwargs):
         return formatter.format(prefix=prefix, function_name=function_name, value=value)
 
     if type_name == "string":
+        if type_format == "uuid":
+            return f"&{value}"
+
         function_name = {
             "date": "Time",
             "date-time": "Time",
             "email": "String",
-            "uuid": "Uuid",
             None: "String",
         }[type_format]
         return formatter.format(prefix=prefix, function_name=function_name, value=value)
