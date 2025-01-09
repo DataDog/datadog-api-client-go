@@ -1,4 +1,4 @@
-// Get all monitor details with tags
+// Get all monitors with tags
 
 package main
 
