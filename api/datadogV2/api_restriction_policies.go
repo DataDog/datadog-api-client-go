@@ -147,6 +147,23 @@ func (a *RestrictionPoliciesApi) GetRestrictionPolicy(ctx _context.Context, reso
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// UpdateRestrictionPolicyOptionalParameters holds optional parameters for UpdateRestrictionPolicy.
+type UpdateRestrictionPolicyOptionalParameters struct {
+	AllowSelfLockout *bool
+}
+
+// NewUpdateRestrictionPolicyOptionalParameters creates an empty struct for parameters.
+func NewUpdateRestrictionPolicyOptionalParameters() *UpdateRestrictionPolicyOptionalParameters {
+	this := UpdateRestrictionPolicyOptionalParameters{}
+	return &this
+}
+
+// WithAllowSelfLockout sets the corresponding parameter name and returns the struct.
+func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSelfLockout bool) *UpdateRestrictionPolicyOptionalParameters {
+	r.AllowSelfLockout = &allowSelfLockout
+	return r
+}
+
 // UpdateRestrictionPolicy Update a restriction policy.
 // Updates the restriction policy associated with a resource.
 //
@@ -176,12 +193,20 @@ func (a *RestrictionPoliciesApi) GetRestrictionPolicy(ctx _context.Context, reso
 // Synthetic Private Locations | `viewer`, `editor`
 // Monitors                    | `viewer`, `editor`
 // Reference Tables            | `viewer`, `editor`
-func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest) (RestrictionPolicyResponse, *_nethttp.Response, error) {
+func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest, o ...UpdateRestrictionPolicyOptionalParameters) (RestrictionPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue RestrictionPolicyResponse
+		optionalParams      UpdateRestrictionPolicyOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type UpdateRestrictionPolicyOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RestrictionPoliciesApi.UpdateRestrictionPolicy")
 	if err != nil {
@@ -194,6 +219,9 @@ func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, r
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.AllowSelfLockout != nil {
+		localVarQueryParams.Add("allow_self_lockout", datadog.ParameterToString(*optionalParams.AllowSelfLockout, ""))
+	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 

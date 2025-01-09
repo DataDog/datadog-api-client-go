@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/app-builder/apps
   response:
-    body: '{"data":{"id":"2d9dd18e-c574-454c-8d43-3045b731d6a2","type":"appDefinitions"}}'
+    body: '{"data":{"id":"02c52f8c-78d9-4c14-ac27-b0bcac36ce74","type":"appDefinitions"}}'
     code: 201
     duration: 0ms
     headers:
@@ -27,9 +27,9 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/app-builder/apps/2d9dd18e-c574-454c-8d43-3045b731d6a2
+    url: https://api.datadoghq.com/api/v2/app-builder/apps/02c52f8c-78d9-4c14-ac27-b0bcac36ce74
   response:
-    body: '{"data":{"id":"2d9dd18e-c574-454c-8d43-3045b731d6a2","type":"appDefinitions"}}'
+    body: '{"data":{"id":"02c52f8c-78d9-4c14-ac27-b0bcac36ce74","type":"appDefinitions"}}'
     code: 200
     duration: 0ms
     headers:
