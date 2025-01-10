@@ -35,6 +35,7 @@ rule_name_2 bar
 					Type:      datadogV1.LOGSGROKPARSERTYPE_GROK_PARSER,
 				}},
 		},
+		Tags: []string{},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
