@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// QueryType The definition of `QueryType` object.
+// QueryType The query type.
 type QueryType string
 
 // List of QueryType.
