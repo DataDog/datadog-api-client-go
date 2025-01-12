@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":[{"id":"aea2ed17-b45f-40d0-ba59-c86b7972c901","type":"appDefinitions"},{"id":"f69bb8be-6168-4fe7-a30d-370256b6504a","type":"appDefinitions"},{"id":"ab1ed73e-13ad-4426-b0df-a0ff8876a088","type":"appDefinitions"}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/app-builder/apps
+  response:
+    body: '{"errors":[{"title":"one or more apps not found","detail":"one or more
+      apps not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

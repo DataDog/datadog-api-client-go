@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ComponentProperties The definition of `ComponentProperties` object.
+// ComponentProperties Properties of a UI component. Different component types can have its own additional unique properties. See [the components documentation](https://docs.datadoghq.com/service_management/app_builder/components/) for more details on the various components and their properties.
 type ComponentProperties struct {
-	// The `ComponentProperties` `children`.
+	// The child components of the UI component.
 	Children []Component `json:"children,omitempty"`
-	// The definition of `ComponentPropertiesIsVisible` object.
+	// Whether the UI component is visible. If a string, it should be a valid JavaScript expression that evaluates to a boolean.
 	IsVisible *ComponentPropertiesIsVisible `json:"isVisible,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
