@@ -300,6 +300,7 @@
 //   - [SecurityMonitoringApi.CreateSecurityFilter]
 //   - [SecurityMonitoringApi.CreateSecurityMonitoringRule]
 //   - [SecurityMonitoringApi.CreateSecurityMonitoringSuppression]
+//   - [SecurityMonitoringApi.DeleteCustomFramework]
 //   - [SecurityMonitoringApi.DeleteHistoricalJob]
 //   - [SecurityMonitoringApi.DeleteSecurityFilter]
 //   - [SecurityMonitoringApi.DeleteSecurityMonitoringRule]
