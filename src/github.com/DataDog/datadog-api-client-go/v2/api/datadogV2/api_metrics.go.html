@@ -524,7 +524,7 @@
 <span id="L467" class="ln">   467  </span>}
 <span id="L468" class="ln">   468  </span>
 <span id="L469" class="ln">   469  </span><span class="comment">// ListActiveMetricConfigurations List active tags and aggregations.</span>
-<span id="L470" class="ln">   470  </span><span class="comment">// List tags and aggregations that are actively queried on dashboards, notebooks, monitors, and the Metrics Explorer for a given metric name.</span>
+<span id="L470" class="ln">   470  </span><span class="comment">// List tags and aggregations that are actively queried on dashboards, notebooks, monitors, the Metrics Explorer, and using the API for a given metric name.</span>
 <span id="L471" class="ln">   471  </span>func (a *MetricsApi) ListActiveMetricConfigurations(ctx _context.Context, metricName string, o ...ListActiveMetricConfigurationsOptionalParameters) (MetricSuggestedTagsAndAggregationsResponse, *_nethttp.Response, error) {
 <span id="L472" class="ln">   472  </span>	var (
 <span id="L473" class="ln">   473  </span>		localVarHTTPMethod  = _nethttp.MethodGet
