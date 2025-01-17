@@ -27,6 +27,7 @@ func main() {
 				},
 				To: 1704063600000,
 			},
+			Type: datadogV2.CREATEDATADELETIONREQUESTBODYDATATYPE_CREATE_DELETION_REQ,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
