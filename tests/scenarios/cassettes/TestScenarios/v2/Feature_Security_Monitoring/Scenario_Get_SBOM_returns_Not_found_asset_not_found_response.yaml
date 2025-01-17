@@ -1,0 +1,20 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/security/sboms/Host?filter%5Basset_name%5D=unknown-host
+  response:
+    body: '{"errors":[{"title":"Asset not found","detail":"asset_type: ''Host'' with
+      asset_name: ''unknown-host'' not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

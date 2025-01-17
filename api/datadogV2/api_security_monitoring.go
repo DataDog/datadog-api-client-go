@@ -1192,6 +1192,124 @@ func (a *SecurityMonitoringApi) GetHistoricalJob(ctx _context.Context, jobId str
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetSBOMOptionalParameters holds optional parameters for GetSBOM.
+type GetSBOMOptionalParameters struct {
+	FilterRepoDigest *string
+}
+
+// NewGetSBOMOptionalParameters creates an empty struct for parameters.
+func NewGetSBOMOptionalParameters() *GetSBOMOptionalParameters {
+	this := GetSBOMOptionalParameters{}
+	return &this
+}
+
+// WithFilterRepoDigest sets the corresponding parameter name and returns the struct.
+func (r *GetSBOMOptionalParameters) WithFilterRepoDigest(filterRepoDigest string) *GetSBOMOptionalParameters {
+	r.FilterRepoDigest = &filterRepoDigest
+	return r
+}
+
+// GetSBOM Get SBOM.
+// Get a single SBOM related to an asset by its type and name.
+func (a *SecurityMonitoringApi) GetSBOM(ctx _context.Context, assetType AssetType, filterAssetName string, o ...GetSBOMOptionalParameters) (GetSBOMResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue GetSBOMResponse
+		optionalParams      GetSBOMOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetSBOMOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetSBOM"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetSBOM")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/security/sboms/{asset_type}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{asset_type}", _neturl.PathEscape(datadog.ParameterToString(assetType, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("filter[asset_name]", datadog.ParameterToString(filterAssetName, ""))
+	if optionalParams.FilterRepoDigest != nil {
+		localVarQueryParams.Add("filter[repo_digest]", datadog.ParameterToString(*optionalParams.FilterRepoDigest, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetSecurityFilter Get a security filter.
 // Get the details of a specific security filter.
 //
