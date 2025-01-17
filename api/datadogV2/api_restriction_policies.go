@@ -197,8 +197,8 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // Synthetic Private Locations | `viewer`, `editor`
 // Monitors                    | `viewer`, `editor`
 // Reference Tables            | `viewer`, `editor`
-// Workflows                   | `viewer`, `editor`
-// App Builder Apps            | `viewer`, `runner`, `editor`
+// Workflows                   | `viewer`, `runner`, `editor`
+// App Builder Apps            | `viewer`, `editor`
 // Connections                 | `viewer`, `resolver`, `editor`
 // Connection Groups           | `viewer`, `editor`
 func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest, o ...UpdateRestrictionPolicyOptionalParameters) (RestrictionPolicyResponse, *_nethttp.Response, error) {
