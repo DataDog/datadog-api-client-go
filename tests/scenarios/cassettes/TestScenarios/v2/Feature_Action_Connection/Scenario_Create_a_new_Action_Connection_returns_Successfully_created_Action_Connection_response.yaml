@@ -1,0 +1,38 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"integration":{"credentials":{"account_id":"123456789123","role":"MyRoleUpdated","type":"AWSAssumeRole"},"type":"AWS"},"name":"Cassette Connection DELETE_ME"},"type":"action_connection"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/actions/connections
+  response:
+    body: '{"data":{"id":"db41b6cb-ef93-45bd-9857-548e9474737c","type":"action_connection","attributes":{"integration":{"credentials":{"account_id":"123456789123","role":"MyRoleUpdated","external_id":"c6f62d439f14423b963e4dd4246af4a7","principal_id":"464622532012","type":"AWSAssumeRole"},"type":"AWS"},"name":"Cassette
+      Connection DELETE_ME"}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/actions/connections/db41b6cb-ef93-45bd-9857-548e9474737c
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2

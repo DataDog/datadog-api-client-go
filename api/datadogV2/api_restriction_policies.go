@@ -179,6 +179,10 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // - Synthetic Tests: `synthetics-test`
 // - Synthetic Private Locations: `synthetics-private-location`
 // - Monitors: `monitor`
+// - Workflows: `workflow`
+// - App Builder Apps: `app-builder-app`
+// - Connections: `connection`
+// - Connection Groups: `connection-group`
 //
 // #### Supported relations for resources
 // Resource Type               | Supported Relations
@@ -193,6 +197,10 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // Synthetic Private Locations | `viewer`, `editor`
 // Monitors                    | `viewer`, `editor`
 // Reference Tables            | `viewer`, `editor`
+// Workflows                   | `viewer`, `runner`, `editor`
+// App Builder Apps            | `viewer`, `editor`
+// Connections                 | `viewer`, `resolver`, `editor`
+// Connection Groups           | `viewer`, `editor`
 func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest, o ...UpdateRestrictionPolicyOptionalParameters) (RestrictionPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
