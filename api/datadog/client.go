@@ -57,10 +57,29 @@ type Service struct {
 // SetAuthKeys sets the appropriate values in the headers parameter.
 func SetAuthKeys(ctx context.Context, headerParams *map[string]string, keys ...[2]string) {
 	if ctx != nil {
-		for _, key := range keys {
-			if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-				if apiKey, ok := auth[key[0]]; ok {
-					(*headerParams)[key[1]] = apiKey.Key
+		// If we have a cloud provider auth token and the route uses appKeyAuth, use that over the app key auth headers
+		hasCloudProviderAuth := false
+		if cloudProviderAuth, ok := ctx.Value(ContextCloudProvider).(*CloudProviderConfig); ok {
+			hasAppKeyAuth := false
+			for _, key := range keys {
+				if key[0] == "appKeyAuth" {
+					hasAppKeyAuth = true
+					break
+				}
+			}
+
+			if hasAppKeyAuth && cloudProviderAuth.DatadogToken != "" {
+				(*headerParams)["dd-auth-token"] = cloudProviderAuth.DatadogToken
+				hasCloudProviderAuth = true
+			}
+		}
+
+		if !hasCloudProviderAuth {
+			for _, key := range keys {
+				if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+					if apiKey, ok := auth[key[0]]; ok {
+						(*headerParams)[key[1]] = apiKey.Key
+					}
 				}
 			}
 		}
@@ -439,6 +458,20 @@ func (c *APIClient) Decode(v interface{}, b []byte, contentType string) (err err
 		return err
 	}
 	return nil
+}
+
+func (c *APIClient) GetTokenUsingCloudProviderAuth(ctx context.Context) (*CloudProviderConfig, error) {
+	if cloudProvider, ok := ctx.Value(ContextCloudProvider).(*CloudProviderConfig); ok {
+		auth, err := cloudProvider.ProviderAuth.Authenticate()
+		if err != nil {
+			return nil, err
+		}
+		cloudProvider.OrgUUID = auth.OrgUUID
+		cloudProvider.CloudProviderProof = auth.CloudProviderProof
+		cloudProvider.DatadogToken = auth.DatadogToken
+		return cloudProvider, nil
+	}
+	return nil, fmt.Errorf("cloud provider auth not found in context")
 }
 
 // Add a file to the multipart request.

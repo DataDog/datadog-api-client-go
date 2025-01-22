@@ -40,6 +40,9 @@ var (
 	// ContextAPIKeys takes a string apikey as authentication for the request
 	ContextAPIKeys = contextKey("apiKeys")
 
+	// ContextCloudProvider takes a string cloud provider proof as authentication for the request
+	ContextCloudProvider = contextKey("cloudProvider")
+
 	// ContextHttpSignatureAuth takes HttpSignatureAuth as authentication for the request.
 	ContextHttpSignatureAuth = contextKey("httpsignature")
 
@@ -66,6 +69,24 @@ type BasicAuth struct {
 type APIKey struct {
 	Key    string
 	Prefix string
+}
+
+type CloudProviderCredentials struct {
+	OrgUUID            string
+	DatadogToken       string
+	CloudProviderProof string
+}
+
+// CloudProviderConfig provides cloud provider based authentication to a request passed via context using ContextCloudProvider.
+type CloudProviderConfig struct {
+	CloudProviderCredentials
+	ProviderAuth CloudProviderAuth
+	Provider     string
+}
+
+// CloudProviderAuth is an interface for cloud provider authentication.
+type CloudProviderAuth interface {
+	Authenticate() (*CloudProviderCredentials, error)
 }
 
 // ServerVariable stores the information about a server variable.
