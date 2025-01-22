@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AssetAttributesVersion Asset version.
-type AssetAttributesVersion struct {
+// AssetVersion Asset version.
+type AssetVersion struct {
 	// Asset first version.
 	First *string `json:"first,omitempty"`
 	// Asset last version.
@@ -19,25 +19,25 @@ type AssetAttributesVersion struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewAssetAttributesVersion instantiates a new AssetAttributesVersion object.
+// NewAssetVersion instantiates a new AssetVersion object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAssetAttributesVersion() *AssetAttributesVersion {
-	this := AssetAttributesVersion{}
+func NewAssetVersion() *AssetVersion {
+	this := AssetVersion{}
 	return &this
 }
 
-// NewAssetAttributesVersionWithDefaults instantiates a new AssetAttributesVersion object.
+// NewAssetVersionWithDefaults instantiates a new AssetVersion object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewAssetAttributesVersionWithDefaults() *AssetAttributesVersion {
-	this := AssetAttributesVersion{}
+func NewAssetVersionWithDefaults() *AssetVersion {
+	this := AssetVersion{}
 	return &this
 }
 
 // GetFirst returns the First field value if set, zero value otherwise.
-func (o *AssetAttributesVersion) GetFirst() string {
+func (o *AssetVersion) GetFirst() string {
 	if o == nil || o.First == nil {
 		var ret string
 		return ret
@@ -47,7 +47,7 @@ func (o *AssetAttributesVersion) GetFirst() string {
 
 // GetFirstOk returns a tuple with the First field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AssetAttributesVersion) GetFirstOk() (*string, bool) {
+func (o *AssetVersion) GetFirstOk() (*string, bool) {
 	if o == nil || o.First == nil {
 		return nil, false
 	}
@@ -55,17 +55,17 @@ func (o *AssetAttributesVersion) GetFirstOk() (*string, bool) {
 }
 
 // HasFirst returns a boolean if a field has been set.
-func (o *AssetAttributesVersion) HasFirst() bool {
+func (o *AssetVersion) HasFirst() bool {
 	return o != nil && o.First != nil
 }
 
 // SetFirst gets a reference to the given string and assigns it to the First field.
-func (o *AssetAttributesVersion) SetFirst(v string) {
+func (o *AssetVersion) SetFirst(v string) {
 	o.First = &v
 }
 
 // GetLast returns the Last field value if set, zero value otherwise.
-func (o *AssetAttributesVersion) GetLast() string {
+func (o *AssetVersion) GetLast() string {
 	if o == nil || o.Last == nil {
 		var ret string
 		return ret
@@ -75,7 +75,7 @@ func (o *AssetAttributesVersion) GetLast() string {
 
 // GetLastOk returns a tuple with the Last field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AssetAttributesVersion) GetLastOk() (*string, bool) {
+func (o *AssetVersion) GetLastOk() (*string, bool) {
 	if o == nil || o.Last == nil {
 		return nil, false
 	}
@@ -83,17 +83,17 @@ func (o *AssetAttributesVersion) GetLastOk() (*string, bool) {
 }
 
 // HasLast returns a boolean if a field has been set.
-func (o *AssetAttributesVersion) HasLast() bool {
+func (o *AssetVersion) HasLast() bool {
 	return o != nil && o.Last != nil
 }
 
 // SetLast gets a reference to the given string and assigns it to the Last field.
-func (o *AssetAttributesVersion) SetLast(v string) {
+func (o *AssetVersion) SetLast(v string) {
 	o.Last = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o AssetAttributesVersion) MarshalJSON() ([]byte, error) {
+func (o AssetVersion) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -112,7 +112,7 @@ func (o AssetAttributesVersion) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *AssetAttributesVersion) UnmarshalJSON(bytes []byte) (err error) {
+func (o *AssetVersion) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		First *string `json:"first,omitempty"`
 		Last  *string `json:"last,omitempty"`

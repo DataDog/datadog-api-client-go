@@ -19,13 +19,13 @@ type AssetAttributes struct {
 	// Asset name.
 	Name string `json:"name"`
 	// Asset operating system.
-	OperatingSystem *AssetAttributesOperatingSystem `json:"operating_system,omitempty"`
+	OperatingSystem *AssetOperatingSystem `json:"operating_system,omitempty"`
 	// Asset risks.
-	Risks AssetAttributesRisks `json:"risks"`
+	Risks AssetRisks `json:"risks"`
 	// The asset type
 	Type AssetType `json:"type"`
 	// Asset version.
-	Version *AssetAttributesVersion `json:"version,omitempty"`
+	Version *AssetVersion `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -35,7 +35,7 @@ type AssetAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAssetAttributes(environments []string, name string, risks AssetAttributesRisks, typeVar AssetType) *AssetAttributes {
+func NewAssetAttributes(environments []string, name string, risks AssetRisks, typeVar AssetType) *AssetAttributes {
 	this := AssetAttributes{}
 	this.Environments = environments
 	this.Name = name
@@ -127,9 +127,9 @@ func (o *AssetAttributes) SetName(v string) {
 }
 
 // GetOperatingSystem returns the OperatingSystem field value if set, zero value otherwise.
-func (o *AssetAttributes) GetOperatingSystem() AssetAttributesOperatingSystem {
+func (o *AssetAttributes) GetOperatingSystem() AssetOperatingSystem {
 	if o == nil || o.OperatingSystem == nil {
-		var ret AssetAttributesOperatingSystem
+		var ret AssetOperatingSystem
 		return ret
 	}
 	return *o.OperatingSystem
@@ -137,7 +137,7 @@ func (o *AssetAttributes) GetOperatingSystem() AssetAttributesOperatingSystem {
 
 // GetOperatingSystemOk returns a tuple with the OperatingSystem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AssetAttributes) GetOperatingSystemOk() (*AssetAttributesOperatingSystem, bool) {
+func (o *AssetAttributes) GetOperatingSystemOk() (*AssetOperatingSystem, bool) {
 	if o == nil || o.OperatingSystem == nil {
 		return nil, false
 	}
@@ -149,15 +149,15 @@ func (o *AssetAttributes) HasOperatingSystem() bool {
 	return o != nil && o.OperatingSystem != nil
 }
 
-// SetOperatingSystem gets a reference to the given AssetAttributesOperatingSystem and assigns it to the OperatingSystem field.
-func (o *AssetAttributes) SetOperatingSystem(v AssetAttributesOperatingSystem) {
+// SetOperatingSystem gets a reference to the given AssetOperatingSystem and assigns it to the OperatingSystem field.
+func (o *AssetAttributes) SetOperatingSystem(v AssetOperatingSystem) {
 	o.OperatingSystem = &v
 }
 
 // GetRisks returns the Risks field value.
-func (o *AssetAttributes) GetRisks() AssetAttributesRisks {
+func (o *AssetAttributes) GetRisks() AssetRisks {
 	if o == nil {
-		var ret AssetAttributesRisks
+		var ret AssetRisks
 		return ret
 	}
 	return o.Risks
@@ -165,7 +165,7 @@ func (o *AssetAttributes) GetRisks() AssetAttributesRisks {
 
 // GetRisksOk returns a tuple with the Risks field value
 // and a boolean to check if the value has been set.
-func (o *AssetAttributes) GetRisksOk() (*AssetAttributesRisks, bool) {
+func (o *AssetAttributes) GetRisksOk() (*AssetRisks, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -173,7 +173,7 @@ func (o *AssetAttributes) GetRisksOk() (*AssetAttributesRisks, bool) {
 }
 
 // SetRisks sets field value.
-func (o *AssetAttributes) SetRisks(v AssetAttributesRisks) {
+func (o *AssetAttributes) SetRisks(v AssetRisks) {
 	o.Risks = v
 }
 
@@ -201,9 +201,9 @@ func (o *AssetAttributes) SetType(v AssetType) {
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
-func (o *AssetAttributes) GetVersion() AssetAttributesVersion {
+func (o *AssetAttributes) GetVersion() AssetVersion {
 	if o == nil || o.Version == nil {
-		var ret AssetAttributesVersion
+		var ret AssetVersion
 		return ret
 	}
 	return *o.Version
@@ -211,7 +211,7 @@ func (o *AssetAttributes) GetVersion() AssetAttributesVersion {
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AssetAttributes) GetVersionOk() (*AssetAttributesVersion, bool) {
+func (o *AssetAttributes) GetVersionOk() (*AssetVersion, bool) {
 	if o == nil || o.Version == nil {
 		return nil, false
 	}
@@ -223,8 +223,8 @@ func (o *AssetAttributes) HasVersion() bool {
 	return o != nil && o.Version != nil
 }
 
-// SetVersion gets a reference to the given AssetAttributesVersion and assigns it to the Version field.
-func (o *AssetAttributes) SetVersion(v AssetAttributesVersion) {
+// SetVersion gets a reference to the given AssetVersion and assigns it to the Version field.
+func (o *AssetAttributes) SetVersion(v AssetVersion) {
 	o.Version = &v
 }
 
@@ -257,13 +257,13 @@ func (o AssetAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AssetAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Arch            *string                         `json:"arch,omitempty"`
-		Environments    *[]string                       `json:"environments"`
-		Name            *string                         `json:"name"`
-		OperatingSystem *AssetAttributesOperatingSystem `json:"operating_system,omitempty"`
-		Risks           *AssetAttributesRisks           `json:"risks"`
-		Type            *AssetType                      `json:"type"`
-		Version         *AssetAttributesVersion         `json:"version,omitempty"`
+		Arch            *string               `json:"arch,omitempty"`
+		Environments    *[]string             `json:"environments"`
+		Name            *string               `json:"name"`
+		OperatingSystem *AssetOperatingSystem `json:"operating_system,omitempty"`
+		Risks           *AssetRisks           `json:"risks"`
+		Type            *AssetType            `json:"type"`
+		Version         *AssetVersion         `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

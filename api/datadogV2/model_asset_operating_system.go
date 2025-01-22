@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AssetAttributesOperatingSystem Asset operating system.
-type AssetAttributesOperatingSystem struct {
+// AssetOperatingSystem Asset operating system.
+type AssetOperatingSystem struct {
 	// Operating system version.
 	Description *string `json:"description,omitempty"`
 	// Operating system name.
@@ -21,26 +21,26 @@ type AssetAttributesOperatingSystem struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewAssetAttributesOperatingSystem instantiates a new AssetAttributesOperatingSystem object.
+// NewAssetOperatingSystem instantiates a new AssetOperatingSystem object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAssetAttributesOperatingSystem(name string) *AssetAttributesOperatingSystem {
-	this := AssetAttributesOperatingSystem{}
+func NewAssetOperatingSystem(name string) *AssetOperatingSystem {
+	this := AssetOperatingSystem{}
 	this.Name = name
 	return &this
 }
 
-// NewAssetAttributesOperatingSystemWithDefaults instantiates a new AssetAttributesOperatingSystem object.
+// NewAssetOperatingSystemWithDefaults instantiates a new AssetOperatingSystem object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewAssetAttributesOperatingSystemWithDefaults() *AssetAttributesOperatingSystem {
-	this := AssetAttributesOperatingSystem{}
+func NewAssetOperatingSystemWithDefaults() *AssetOperatingSystem {
+	this := AssetOperatingSystem{}
 	return &this
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *AssetAttributesOperatingSystem) GetDescription() string {
+func (o *AssetOperatingSystem) GetDescription() string {
 	if o == nil || o.Description == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *AssetAttributesOperatingSystem) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AssetAttributesOperatingSystem) GetDescriptionOk() (*string, bool) {
+func (o *AssetOperatingSystem) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
 		return nil, false
 	}
@@ -58,17 +58,17 @@ func (o *AssetAttributesOperatingSystem) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *AssetAttributesOperatingSystem) HasDescription() bool {
+func (o *AssetOperatingSystem) HasDescription() bool {
 	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *AssetAttributesOperatingSystem) SetDescription(v string) {
+func (o *AssetOperatingSystem) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetName returns the Name field value.
-func (o *AssetAttributesOperatingSystem) GetName() string {
+func (o *AssetOperatingSystem) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -78,7 +78,7 @@ func (o *AssetAttributesOperatingSystem) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *AssetAttributesOperatingSystem) GetNameOk() (*string, bool) {
+func (o *AssetOperatingSystem) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -86,12 +86,12 @@ func (o *AssetAttributesOperatingSystem) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value.
-func (o *AssetAttributesOperatingSystem) SetName(v string) {
+func (o *AssetOperatingSystem) SetName(v string) {
 	o.Name = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o AssetAttributesOperatingSystem) MarshalJSON() ([]byte, error) {
+func (o AssetOperatingSystem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -108,7 +108,7 @@ func (o AssetAttributesOperatingSystem) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *AssetAttributesOperatingSystem) UnmarshalJSON(bytes []byte) (err error) {
+func (o *AssetOperatingSystem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Description *string `json:"description,omitempty"`
 		Name        *string `json:"name"`
