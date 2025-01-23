@@ -14,6 +14,8 @@ import (
 type LogsArchiveDestinationS3 struct {
 	// The bucket where the archive will be stored.
 	Bucket string `json:"bucket"`
+	// The S3 encryption settings.
+	Encryption *LogsArchiveEncryptionS3 `json:"encryption,omitempty"`
 	// The S3 Archive's integration destination.
 	Integration LogsArchiveIntegrationS3 `json:"integration"`
 	// The archive path.
@@ -68,6 +70,34 @@ func (o *LogsArchiveDestinationS3) GetBucketOk() (*string, bool) {
 // SetBucket sets field value.
 func (o *LogsArchiveDestinationS3) SetBucket(v string) {
 	o.Bucket = v
+}
+
+// GetEncryption returns the Encryption field value if set, zero value otherwise.
+func (o *LogsArchiveDestinationS3) GetEncryption() LogsArchiveEncryptionS3 {
+	if o == nil || o.Encryption == nil {
+		var ret LogsArchiveEncryptionS3
+		return ret
+	}
+	return *o.Encryption
+}
+
+// GetEncryptionOk returns a tuple with the Encryption field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogsArchiveDestinationS3) GetEncryptionOk() (*LogsArchiveEncryptionS3, bool) {
+	if o == nil || o.Encryption == nil {
+		return nil, false
+	}
+	return o.Encryption, true
+}
+
+// HasEncryption returns a boolean if a field has been set.
+func (o *LogsArchiveDestinationS3) HasEncryption() bool {
+	return o != nil && o.Encryption != nil
+}
+
+// SetEncryption gets a reference to the given LogsArchiveEncryptionS3 and assigns it to the Encryption field.
+func (o *LogsArchiveDestinationS3) SetEncryption(v LogsArchiveEncryptionS3) {
+	o.Encryption = &v
 }
 
 // GetIntegration returns the Integration field value.
@@ -151,6 +181,9 @@ func (o LogsArchiveDestinationS3) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["bucket"] = o.Bucket
+	if o.Encryption != nil {
+		toSerialize["encryption"] = o.Encryption
+	}
 	toSerialize["integration"] = o.Integration
 	if o.Path != nil {
 		toSerialize["path"] = o.Path
@@ -167,6 +200,7 @@ func (o LogsArchiveDestinationS3) MarshalJSON() ([]byte, error) {
 func (o *LogsArchiveDestinationS3) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Bucket      *string                       `json:"bucket"`
+		Encryption  *LogsArchiveEncryptionS3      `json:"encryption,omitempty"`
 		Integration *LogsArchiveIntegrationS3     `json:"integration"`
 		Path        *string                       `json:"path,omitempty"`
 		Type        *LogsArchiveDestinationS3Type `json:"type"`
@@ -185,13 +219,17 @@ func (o *LogsArchiveDestinationS3) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"bucket", "integration", "path", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"bucket", "encryption", "integration", "path", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Bucket = *all.Bucket
+	if all.Encryption != nil && all.Encryption.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Encryption = all.Encryption
 	if all.Integration.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
