@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AssetAttributesRisks Asset risks.
-type AssetAttributesRisks struct {
+// AssetRisks Asset risks.
+type AssetRisks struct {
 	// Whether the asset has access to sensitive data or not.
 	HasAccessToSensitiveData *bool `json:"has_access_to_sensitive_data,omitempty"`
 	// Whether the asset has privileged access or not.
@@ -27,26 +27,26 @@ type AssetAttributesRisks struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewAssetAttributesRisks instantiates a new AssetAttributesRisks object.
+// NewAssetRisks instantiates a new AssetRisks object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAssetAttributesRisks(inProduction bool) *AssetAttributesRisks {
-	this := AssetAttributesRisks{}
+func NewAssetRisks(inProduction bool) *AssetRisks {
+	this := AssetRisks{}
 	this.InProduction = inProduction
 	return &this
 }
 
-// NewAssetAttributesRisksWithDefaults instantiates a new AssetAttributesRisks object.
+// NewAssetRisksWithDefaults instantiates a new AssetRisks object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewAssetAttributesRisksWithDefaults() *AssetAttributesRisks {
-	this := AssetAttributesRisks{}
+func NewAssetRisksWithDefaults() *AssetRisks {
+	this := AssetRisks{}
 	return &this
 }
 
 // GetHasAccessToSensitiveData returns the HasAccessToSensitiveData field value if set, zero value otherwise.
-func (o *AssetAttributesRisks) GetHasAccessToSensitiveData() bool {
+func (o *AssetRisks) GetHasAccessToSensitiveData() bool {
 	if o == nil || o.HasAccessToSensitiveData == nil {
 		var ret bool
 		return ret
@@ -56,7 +56,7 @@ func (o *AssetAttributesRisks) GetHasAccessToSensitiveData() bool {
 
 // GetHasAccessToSensitiveDataOk returns a tuple with the HasAccessToSensitiveData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AssetAttributesRisks) GetHasAccessToSensitiveDataOk() (*bool, bool) {
+func (o *AssetRisks) GetHasAccessToSensitiveDataOk() (*bool, bool) {
 	if o == nil || o.HasAccessToSensitiveData == nil {
 		return nil, false
 	}
@@ -64,17 +64,17 @@ func (o *AssetAttributesRisks) GetHasAccessToSensitiveDataOk() (*bool, bool) {
 }
 
 // HasHasAccessToSensitiveData returns a boolean if a field has been set.
-func (o *AssetAttributesRisks) HasHasAccessToSensitiveData() bool {
+func (o *AssetRisks) HasHasAccessToSensitiveData() bool {
 	return o != nil && o.HasAccessToSensitiveData != nil
 }
 
 // SetHasAccessToSensitiveData gets a reference to the given bool and assigns it to the HasAccessToSensitiveData field.
-func (o *AssetAttributesRisks) SetHasAccessToSensitiveData(v bool) {
+func (o *AssetRisks) SetHasAccessToSensitiveData(v bool) {
 	o.HasAccessToSensitiveData = &v
 }
 
 // GetHasPrivilegedAccess returns the HasPrivilegedAccess field value if set, zero value otherwise.
-func (o *AssetAttributesRisks) GetHasPrivilegedAccess() bool {
+func (o *AssetRisks) GetHasPrivilegedAccess() bool {
 	if o == nil || o.HasPrivilegedAccess == nil {
 		var ret bool
 		return ret
@@ -84,7 +84,7 @@ func (o *AssetAttributesRisks) GetHasPrivilegedAccess() bool {
 
 // GetHasPrivilegedAccessOk returns a tuple with the HasPrivilegedAccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AssetAttributesRisks) GetHasPrivilegedAccessOk() (*bool, bool) {
+func (o *AssetRisks) GetHasPrivilegedAccessOk() (*bool, bool) {
 	if o == nil || o.HasPrivilegedAccess == nil {
 		return nil, false
 	}
@@ -92,17 +92,17 @@ func (o *AssetAttributesRisks) GetHasPrivilegedAccessOk() (*bool, bool) {
 }
 
 // HasHasPrivilegedAccess returns a boolean if a field has been set.
-func (o *AssetAttributesRisks) HasHasPrivilegedAccess() bool {
+func (o *AssetRisks) HasHasPrivilegedAccess() bool {
 	return o != nil && o.HasPrivilegedAccess != nil
 }
 
 // SetHasPrivilegedAccess gets a reference to the given bool and assigns it to the HasPrivilegedAccess field.
-func (o *AssetAttributesRisks) SetHasPrivilegedAccess(v bool) {
+func (o *AssetRisks) SetHasPrivilegedAccess(v bool) {
 	o.HasPrivilegedAccess = &v
 }
 
 // GetInProduction returns the InProduction field value.
-func (o *AssetAttributesRisks) GetInProduction() bool {
+func (o *AssetRisks) GetInProduction() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -112,7 +112,7 @@ func (o *AssetAttributesRisks) GetInProduction() bool {
 
 // GetInProductionOk returns a tuple with the InProduction field value
 // and a boolean to check if the value has been set.
-func (o *AssetAttributesRisks) GetInProductionOk() (*bool, bool) {
+func (o *AssetRisks) GetInProductionOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -120,12 +120,12 @@ func (o *AssetAttributesRisks) GetInProductionOk() (*bool, bool) {
 }
 
 // SetInProduction sets field value.
-func (o *AssetAttributesRisks) SetInProduction(v bool) {
+func (o *AssetRisks) SetInProduction(v bool) {
 	o.InProduction = v
 }
 
 // GetIsPubliclyAccessible returns the IsPubliclyAccessible field value if set, zero value otherwise.
-func (o *AssetAttributesRisks) GetIsPubliclyAccessible() bool {
+func (o *AssetRisks) GetIsPubliclyAccessible() bool {
 	if o == nil || o.IsPubliclyAccessible == nil {
 		var ret bool
 		return ret
@@ -135,7 +135,7 @@ func (o *AssetAttributesRisks) GetIsPubliclyAccessible() bool {
 
 // GetIsPubliclyAccessibleOk returns a tuple with the IsPubliclyAccessible field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AssetAttributesRisks) GetIsPubliclyAccessibleOk() (*bool, bool) {
+func (o *AssetRisks) GetIsPubliclyAccessibleOk() (*bool, bool) {
 	if o == nil || o.IsPubliclyAccessible == nil {
 		return nil, false
 	}
@@ -143,17 +143,17 @@ func (o *AssetAttributesRisks) GetIsPubliclyAccessibleOk() (*bool, bool) {
 }
 
 // HasIsPubliclyAccessible returns a boolean if a field has been set.
-func (o *AssetAttributesRisks) HasIsPubliclyAccessible() bool {
+func (o *AssetRisks) HasIsPubliclyAccessible() bool {
 	return o != nil && o.IsPubliclyAccessible != nil
 }
 
 // SetIsPubliclyAccessible gets a reference to the given bool and assigns it to the IsPubliclyAccessible field.
-func (o *AssetAttributesRisks) SetIsPubliclyAccessible(v bool) {
+func (o *AssetRisks) SetIsPubliclyAccessible(v bool) {
 	o.IsPubliclyAccessible = &v
 }
 
 // GetUnderAttack returns the UnderAttack field value if set, zero value otherwise.
-func (o *AssetAttributesRisks) GetUnderAttack() bool {
+func (o *AssetRisks) GetUnderAttack() bool {
 	if o == nil || o.UnderAttack == nil {
 		var ret bool
 		return ret
@@ -163,7 +163,7 @@ func (o *AssetAttributesRisks) GetUnderAttack() bool {
 
 // GetUnderAttackOk returns a tuple with the UnderAttack field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AssetAttributesRisks) GetUnderAttackOk() (*bool, bool) {
+func (o *AssetRisks) GetUnderAttackOk() (*bool, bool) {
 	if o == nil || o.UnderAttack == nil {
 		return nil, false
 	}
@@ -171,17 +171,17 @@ func (o *AssetAttributesRisks) GetUnderAttackOk() (*bool, bool) {
 }
 
 // HasUnderAttack returns a boolean if a field has been set.
-func (o *AssetAttributesRisks) HasUnderAttack() bool {
+func (o *AssetRisks) HasUnderAttack() bool {
 	return o != nil && o.UnderAttack != nil
 }
 
 // SetUnderAttack gets a reference to the given bool and assigns it to the UnderAttack field.
-func (o *AssetAttributesRisks) SetUnderAttack(v bool) {
+func (o *AssetRisks) SetUnderAttack(v bool) {
 	o.UnderAttack = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o AssetAttributesRisks) MarshalJSON() ([]byte, error) {
+func (o AssetRisks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -207,7 +207,7 @@ func (o AssetAttributesRisks) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *AssetAttributesRisks) UnmarshalJSON(bytes []byte) (err error) {
+func (o *AssetRisks) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		HasAccessToSensitiveData *bool `json:"has_access_to_sensitive_data,omitempty"`
 		HasPrivilegedAccess      *bool `json:"has_privileged_access,omitempty"`
