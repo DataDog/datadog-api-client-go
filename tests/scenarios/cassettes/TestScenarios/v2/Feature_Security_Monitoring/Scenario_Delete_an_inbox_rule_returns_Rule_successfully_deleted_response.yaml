@@ -1,0 +1,56 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"action":{"reason_description":"items to focus on"},"enabled":true,"name":"Test-Delete_an_inbox_rule_returns_Rule_successfully_deleted_response-1737621637","rule":{"issue_type":"vulnerability","query":"","rule_ids":[],"rule_types":["misconfiguration","attack_path"],"severities":["critical"]}},"type":"inbox_rules"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security/vulnerabilities/pipelines/inbox_rules
+  response:
+    body: '{"data":{"id":"6d6379c8-16a2-42a0-9119-5a76c0d947fc","type":"inbox_rules","attributes":{"action":{"reason_description":"items
+      to focus on"},"created_at":1737621637438,"created_by":{"name":"frog","handle":"frog@datadoghq.com"},"enabled":true,"modified_at":1737621637438,"modified_by":{"name":"frog","handle":"frog@datadoghq.com"},"name":"Test-Delete_an_inbox_rule_returns_Rule_successfully_deleted_response-1737621637","rule":{"issue_type":"vulnerability","rule_types":["misconfiguration","attack_path"],"rule_ids":[],"query":"","severities":["critical"]}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security/vulnerabilities/pipelines/inbox_rules/6d6379c8-16a2-42a0-9119-5a76c0d947fc
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security/vulnerabilities/pipelines/inbox_rules/6d6379c8-16a2-42a0-9119-5a76c0d947fc
+  response:
+    body: '{"errors":[{"status":"404","title":"Not Found","detail":"Rule does not
+      exist"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

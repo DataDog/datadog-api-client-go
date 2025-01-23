@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"action":{"expire_at":1893452400000,"reason":"duplicate","reason_description":"Muting for a while"},"enabled":true,"name":"Rule 1","rule":{"issue_type":"vulnerability","query":"key:val","rule_ids":["rule-id-1"],"rule_types":["application_code_vulnerability"],"severities":["critical"]}}}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security/vulnerabilities/pipelines/mute_rules
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"got type \"\"
+      expected one of \"mute_rules\""}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
