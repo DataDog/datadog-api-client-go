@@ -12,7 +12,7 @@ import (
 
 // AWSAssumeRoleUpdate The definition of `AWSAssumeRoleUpdate` object.
 type AWSAssumeRoleUpdate struct {
-	// AWS account the connection is created for
+	// AWS account the connection is created for.
 	AccountId *string `json:"account_id,omitempty"`
 	// The `AWSAssumeRoleUpdate` `generate_new_external_id`.
 	GenerateNewExternalId *bool `json:"generate_new_external_id,omitempty"`

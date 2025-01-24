@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// GetActionConnectionResponse The response for found connection
+// GetActionConnectionResponse The response for found connection.
 type GetActionConnectionResponse struct {
 	// Data related to the connection.
 	Data *ActionConnectionData `json:"data,omitempty"`

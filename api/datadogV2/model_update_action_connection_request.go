@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UpdateActionConnectionRequest Request used to update an action connection.
+// UpdateActionConnectionRequest Request used to update an Action Connection.
 type UpdateActionConnectionRequest struct {
 	// Data related to the connection update.
 	Data ActionConnectionDataUpdate `json:"data"`

@@ -14,7 +14,7 @@ import (
 type ActionConnectionAttributes struct {
 	// The definition of `ActionConnectionIntegration` object.
 	Integration ActionConnectionIntegration `json:"integration"`
-	// Name of the connection
+	// Name of the connection.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

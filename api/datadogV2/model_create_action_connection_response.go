@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateActionConnectionResponse The response for a created connection
+// CreateActionConnectionResponse The response for a created connection.
 type CreateActionConnectionResponse struct {
 	// Data related to the connection.
 	Data *ActionConnectionData `json:"data,omitempty"`

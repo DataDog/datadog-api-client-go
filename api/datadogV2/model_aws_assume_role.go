@@ -12,13 +12,13 @@ import (
 
 // AWSAssumeRole The definition of `AWSAssumeRole` object.
 type AWSAssumeRole struct {
-	// AWS account the connection is created for
+	// AWS account the connection is created for.
 	AccountId string `json:"account_id"`
-	// External ID used to scope which connection can be used to assume the role
+	// External ID used to scope which connection can be used to assume the role.
 	ExternalId *string `json:"external_id,omitempty"`
-	// AWS account that will assume the role
+	// AWS account that will assume the role.
 	PrincipalId *string `json:"principal_id,omitempty"`
-	// Role to assume
+	// Role to assume.
 	Role string `json:"role"`
 	// The definition of `AWSAssumeRoleType` object.
 	Type AWSAssumeRoleType `json:"type"`
