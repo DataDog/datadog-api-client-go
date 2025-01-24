@@ -7,20 +7,22 @@ package datadogV2
 import (
 	"fmt"
 
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Query The definition of `Query` object.
+// Query A query used by an app. This can take the form of an external action, a data transformation, or a state variable change.
 type Query struct {
-	// The `Query` `events`.
+	// Events to listen for downstream of the query.
 	Events []AppBuilderEvent `json:"events,omitempty"`
-	// The `Query` `id`.
-	Id string `json:"id"`
-	// The `Query` `name`.
+	// The ID of the query.
+	Id uuid.UUID `json:"id"`
+	// The name of the query. The name must be unique within the app and is visible in the app editor.
 	Name string `json:"name"`
-	// The `Query` `properties`.
+	// The properties of the query. The properties vary depending on the query type.
 	Properties interface{} `json:"properties,omitempty"`
-	// The definition of `QueryType` object.
+	// The query type.
 	Type QueryType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -31,7 +33,7 @@ type Query struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewQuery(id string, name string, typeVar QueryType) *Query {
+func NewQuery(id uuid.UUID, name string, typeVar QueryType) *Query {
 	this := Query{}
 	this.Id = id
 	this.Name = name
@@ -76,9 +78,9 @@ func (o *Query) SetEvents(v []AppBuilderEvent) {
 }
 
 // GetId returns the Id field value.
-func (o *Query) GetId() string {
+func (o *Query) GetId() uuid.UUID {
 	if o == nil {
-		var ret string
+		var ret uuid.UUID
 		return ret
 	}
 	return o.Id
@@ -86,7 +88,7 @@ func (o *Query) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Query) GetIdOk() (*string, bool) {
+func (o *Query) GetIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,7 +96,7 @@ func (o *Query) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *Query) SetId(v string) {
+func (o *Query) SetId(v uuid.UUID) {
 	o.Id = v
 }
 
@@ -198,7 +200,7 @@ func (o Query) MarshalJSON() ([]byte, error) {
 func (o *Query) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Events     []AppBuilderEvent `json:"events,omitempty"`
-		Id         *string           `json:"id"`
+		Id         *uuid.UUID        `json:"id"`
 		Name       *string           `json:"name"`
 		Properties interface{}       `json:"properties,omitempty"`
 		Type       *QueryType        `json:"type"`
