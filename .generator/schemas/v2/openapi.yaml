@@ -206,6 +206,13 @@ components:
       required: true
       schema:
         type: string
+    ConnectionId:
+      description: The ID of the action connection
+      in: path
+      name: connection_id
+      required: true
+      schema:
+        type: string
     CustomDestinationId:
       description: The ID of the custom destination.
       in: path
@@ -601,7 +608,8 @@ components:
         type: string
     ResourceID:
       description: 'Identifier, formatted as `type:id`. Supported types: `connection`,
-        `dashboard`, `notebook`, `reference-table`, `security-rule`, `slo`.'
+        `dashboard`, `notebook`, `reference-table`, `security-rule`, `slo`, `workflow`,
+        `app-builder-app`, `connection`, `connection-group`.'
       example: dashboard:abc-def-ghi
       in: path
       name: resource_id
@@ -1209,6 +1217,64 @@ components:
       required:
       - data
       type: object
+    AWSAssumeRole:
+      description: The definition of `AWSAssumeRole` object.
+      properties:
+        account_id:
+          description: AWS account the connection is created for
+          example: '111222333444'
+          pattern: ^\d{12}$
+          type: string
+        external_id:
+          description: External ID used to scope which connection can be used to assume
+            the role
+          example: 33a1011635c44b38a064cf14e82e1d8f
+          readOnly: true
+          type: string
+        principal_id:
+          description: AWS account that will assume the role
+          example: '123456789012'
+          readOnly: true
+          type: string
+        role:
+          description: Role to assume
+          example: my-role
+          type: string
+        type:
+          $ref: '#/components/schemas/AWSAssumeRoleType'
+      required:
+      - type
+      - account_id
+      - role
+      type: object
+    AWSAssumeRoleType:
+      description: The definition of `AWSAssumeRoleType` object.
+      enum:
+      - AWSAssumeRole
+      example: AWSAssumeRole
+      type: string
+      x-enum-varnames:
+      - AWSASSUMEROLE
+    AWSAssumeRoleUpdate:
+      description: The definition of `AWSAssumeRoleUpdate` object.
+      properties:
+        account_id:
+          description: AWS account the connection is created for
+          example: '111222333444'
+          pattern: ^\d{12}$
+          type: string
+        generate_new_external_id:
+          description: The `AWSAssumeRoleUpdate` `generate_new_external_id`.
+          type: boolean
+        role:
+          description: Role to assume
+          example: my-role
+          type: string
+        type:
+          $ref: '#/components/schemas/AWSAssumeRoleType'
+      required:
+      - type
+      type: object
     AWSAuthConfig:
       description: AWS Authentication config.
       oneOf:
@@ -1246,6 +1312,43 @@ components:
           type: string
       required:
       - role_name
+      type: object
+    AWSCredentials:
+      description: The definition of `AWSCredentials` object.
+      oneOf:
+      - $ref: '#/components/schemas/AWSAssumeRole'
+    AWSCredentialsUpdate:
+      description: The definition of `AWSCredentialsUpdate` object.
+      oneOf:
+      - $ref: '#/components/schemas/AWSAssumeRoleUpdate'
+    AWSIntegration:
+      description: The definition of `AWSIntegration` object.
+      properties:
+        credentials:
+          $ref: '#/components/schemas/AWSCredentials'
+        type:
+          $ref: '#/components/schemas/AWSIntegrationType'
+      required:
+      - type
+      - credentials
+      type: object
+    AWSIntegrationType:
+      description: The definition of `AWSIntegrationType` object.
+      enum:
+      - AWS
+      example: AWS
+      type: string
+      x-enum-varnames:
+      - AWS
+    AWSIntegrationUpdate:
+      description: The definition of `AWSIntegrationUpdate` object.
+      properties:
+        credentials:
+          $ref: '#/components/schemas/AWSCredentialsUpdate'
+        type:
+          $ref: '#/components/schemas/AWSIntegrationType'
+      required:
+      - type
       type: object
     AWSLambdaForwarderConfig:
       description: 'Log Autosubscription configuration for Datadog Forwarder Lambda
@@ -1560,6 +1663,73 @@ components:
         xray_services:
           $ref: '#/components/schemas/XRayServicesList'
       type: object
+    ActionConnectionAttributes:
+      description: The definition of `ActionConnectionAttributes` object.
+      properties:
+        integration:
+          $ref: '#/components/schemas/ActionConnectionIntegration'
+        name:
+          description: Name of the connection
+          example: My AWS Connection
+          type: string
+      required:
+      - name
+      - integration
+      type: object
+    ActionConnectionAttributesUpdate:
+      description: The definition of `ActionConnectionAttributesUpdate` object.
+      properties:
+        integration:
+          $ref: '#/components/schemas/ActionConnectionIntegrationUpdate'
+        name:
+          description: Name of the connection
+          example: My AWS Connection
+          type: string
+      type: object
+    ActionConnectionData:
+      description: Data related to the connection.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ActionConnectionAttributes'
+        id:
+          description: The connection identifier
+          readOnly: true
+          type: string
+        type:
+          $ref: '#/components/schemas/ActionConnectionDataType'
+      required:
+      - type
+      - attributes
+      type: object
+    ActionConnectionDataType:
+      description: The definition of `ActionConnectionDataType` object.
+      enum:
+      - action_connection
+      example: action_connection
+      type: string
+      x-enum-varnames:
+      - ACTION_CONNECTION
+    ActionConnectionDataUpdate:
+      description: Data related to the connection update.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ActionConnectionAttributesUpdate'
+        type:
+          $ref: '#/components/schemas/ActionConnectionDataType'
+      required:
+      - type
+      - attributes
+      type: object
+    ActionConnectionIntegration:
+      description: The definition of `ActionConnectionIntegration` object.
+      oneOf:
+      - $ref: '#/components/schemas/AWSIntegration'
+      - $ref: '#/components/schemas/HTTPIntegration'
+    ActionConnectionIntegrationUpdate:
+      description: The definition of `ActionConnectionIntegrationUpdate` object.
+      oneOf:
+      - $ref: '#/components/schemas/AWSIntegrationUpdate'
+      - $ref: '#/components/schemas/HTTPIntegrationUpdate'
     ActiveBillingDimensionsAttributes:
       description: List of active billing dimensions.
       properties:
@@ -1601,6 +1771,25 @@ components:
       type: string
       x-enum-varnames:
       - BILLING_DIMENSIONS
+    Advisory:
+      description: Advisory.
+      properties:
+        base_severity:
+          description: Advisory base severity.
+          example: Critical
+          type: string
+        id:
+          description: Advisory id.
+          example: GHSA-4wrc-f8pq-fpqp
+          type: string
+        severity:
+          description: Advisory Datadog severity.
+          example: Medium
+          type: string
+      required:
+      - id
+      - base_severity
+      type: object
     ApiID:
       description: API identifier.
       example: 90646597-5fdb-4a17-a240-647003f8c028
@@ -1615,6 +1804,99 @@ components:
       type: string
       x-enum-varnames:
       - apm_retention_filter
+    AppBuilderEvent:
+      additionalProperties: {}
+      description: The definition of `AppBuilderEvent` object.
+      properties:
+        name:
+          $ref: '#/components/schemas/AppBuilderEventName'
+        type:
+          $ref: '#/components/schemas/AppBuilderEventType'
+      type: object
+    AppBuilderEventName:
+      description: The triggering action for the event.
+      enum:
+      - pageChange
+      - tableRowClick
+      - _tableRowButtonClick
+      - change
+      - submit
+      - click
+      - toggleOpen
+      - close
+      - open
+      - executionFinished
+      type: string
+      x-enum-varnames:
+      - PAGECHANGE
+      - TABLEROWCLICK
+      - TABLEROWBUTTONCLICK
+      - CHANGE
+      - SUBMIT
+      - CLICK
+      - TOGGLEOPEN
+      - CLOSE
+      - OPEN
+      - EXECUTIONFINISHED
+    AppBuilderEventType:
+      description: The response to the event.
+      enum:
+      - custom
+      - setComponentState
+      - triggerQuery
+      - openModal
+      - closeModal
+      - openUrl
+      - downloadFile
+      - setStateVariableValue
+      type: string
+      x-enum-varnames:
+      - CUSTOM
+      - SETCOMPONENTSTATE
+      - TRIGGERQUERY
+      - OPENMODAL
+      - CLOSEMODAL
+      - OPENURL
+      - DOWNLOADFILE
+      - SETSTATEVARIABLEVALUE
+    AppMeta:
+      description: The definition of `AppMeta` object.
+      properties:
+        created_at:
+          description: The `AppMeta` `created_at`.
+          type: string
+        deleted_at:
+          description: The `AppMeta` `deleted_at`.
+          type: string
+        org_id:
+          description: The `AppMeta` `org_id`.
+          format: int64
+          type: integer
+        run_as_user:
+          description: The `AppMeta` `run_as_user`.
+          type: string
+        updated_at:
+          description: The `AppMeta` `updated_at`.
+          type: string
+        updated_since_deployment:
+          description: The `AppMeta` `updated_since_deployment`.
+          type: boolean
+        user_id:
+          description: The `AppMeta` `user_id`.
+          format: int64
+          type: integer
+        user_name:
+          description: The `AppMeta` `user_name`.
+          type: string
+        user_uuid:
+          description: The `AppMeta` `user_uuid`.
+          format: uuid
+          type: string
+        version:
+          description: The `AppMeta` `version`.
+          format: int64
+          type: integer
+      type: object
     ApplicationKeyCreateAttributes:
       description: Attributes used to create an application Key.
       properties:
@@ -1766,6 +2048,152 @@ components:
       type: string
       x-enum-varnames:
       - APPLICATION_KEYS
+    AppsSortField:
+      description: The field and direction to sort apps by
+      enum:
+      - name
+      - created_at
+      - updated_at
+      - user_name
+      - -name
+      - -created_at
+      - -updated_at
+      - -user_name
+      type: string
+      x-enum-varnames:
+      - NAME
+      - CREATED_AT
+      - UPDATED_AT
+      - USER_NAME
+      - NAME_DESC
+      - CREATED_AT_DESC
+      - UPDATED_AT_DESC
+      - USER_NAME_DESC
+    Asset:
+      description: A single vulnerable asset
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AssetAttributes'
+        id:
+          description: The unique ID for this asset.
+          example: Repository|github.com/DataDog/datadog-agent.git
+          type: string
+        type:
+          $ref: '#/components/schemas/AssetEntityType'
+      required:
+      - id
+      - type
+      - attributes
+      type: object
+    AssetAttributes:
+      description: The JSON:API attributes of the asset.
+      properties:
+        arch:
+          description: Asset architecture.
+          example: arm64
+          type: string
+        environments:
+          description: List of environments where the asset is deployed.
+          example:
+          - staging
+          items:
+            example: staging
+            type: string
+          type: array
+        name:
+          description: Asset name.
+          example: github.com/DataDog/datadog-agent.git
+          type: string
+        operating_system:
+          $ref: '#/components/schemas/AssetOperatingSystem'
+        risks:
+          $ref: '#/components/schemas/AssetRisks'
+        type:
+          $ref: '#/components/schemas/AssetType'
+        version:
+          $ref: '#/components/schemas/AssetVersion'
+      required:
+      - name
+      - type
+      - risks
+      - environments
+      type: object
+    AssetEntityType:
+      description: The JSON:API type.
+      enum:
+      - assets
+      example: assets
+      type: string
+      x-enum-varnames:
+      - ASSETS
+    AssetOperatingSystem:
+      description: Asset operating system.
+      properties:
+        description:
+          description: Operating system version.
+          example: '24.04'
+          type: string
+        name:
+          description: Operating system name.
+          example: ubuntu
+          type: string
+      required:
+      - name
+      type: object
+    AssetRisks:
+      description: Asset risks.
+      properties:
+        has_access_to_sensitive_data:
+          description: Whether the asset has access to sensitive data or not.
+          example: false
+          type: boolean
+        has_privileged_access:
+          description: Whether the asset has privileged access or not.
+          example: false
+          type: boolean
+        in_production:
+          description: Whether the asset is in production or not.
+          example: false
+          type: boolean
+        is_publicly_accessible:
+          description: Whether the asset is publicly accessible or not.
+          example: false
+          type: boolean
+        under_attack:
+          description: Whether the asset is under attack or not.
+          example: false
+          type: boolean
+      required:
+      - in_production
+      type: object
+    AssetType:
+      description: The asset type
+      enum:
+      - Repository
+      - Service
+      - Host
+      - HostImage
+      - Image
+      example: Repository
+      type: string
+      x-enum-varnames:
+      - REPOSITORY
+      - SERVICE
+      - HOST
+      - HOSTIMAGE
+      - IMAGE
+    AssetVersion:
+      description: Asset version.
+      properties:
+        first:
+          description: Asset first version.
+          example: _latest
+          type: string
+        last:
+          description: Asset last version.
+          example: _latest
+          type: string
+      type: object
     AuditLogsEvent:
       description: Object description of an Audit Logs event after it is processed
         and stored by Datadog.
@@ -2474,6 +2902,57 @@ components:
             $ref: '#/components/schemas/AwsCURConfig'
           type: array
       type: object
+    AwsScanOptionsAttributes:
+      description: Attributes for the AWS scan options.
+      properties:
+        lambda:
+          description: Indicates if scanning of Lambda functions is enabled.
+          example: true
+          type: boolean
+        sensitive_data:
+          description: Indicates if scanning for sensitive data is enabled.
+          example: false
+          type: boolean
+        vuln_containers_os:
+          description: Indicates if scanning for vulnerabilities in containers is
+            enabled.
+          example: true
+          type: boolean
+        vuln_host_os:
+          description: Indicates if scanning for vulnerabilities in hosts is enabled.
+          example: true
+          type: boolean
+      type: object
+    AwsScanOptionsData:
+      description: Single AWS Scan Options entry.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/AwsScanOptionsAttributes'
+        id:
+          description: The ID of the AWS account.
+          example: '184366314700'
+          type: string
+        type:
+          $ref: '#/components/schemas/AwsScanOptionsType'
+      type: object
+    AwsScanOptionsResponse:
+      description: Response object that includes a list of AWS scan options.
+      properties:
+        data:
+          description: A list of AWS scan options.
+          items:
+            $ref: '#/components/schemas/AwsScanOptionsData'
+          type: array
+      type: object
+    AwsScanOptionsType:
+      default: aws_scan_options
+      description: The type of the resource. The value should always be `aws_scan_options`.
+      enum:
+      - aws_scan_options
+      example: aws_scan_options
+      type: string
+      x-enum-varnames:
+      - AWS_SCAN_OPTIONS
     AzureUCConfig:
       description: Azure config.
       properties:
@@ -3072,6 +3551,9 @@ components:
       properties:
         env:
           description: The Datadog environment.
+          type: string
+        provider_name:
+          description: The name of the CI provider. By default, this is "custom".
           type: string
         resource:
           $ref: '#/components/schemas/CIAppCreatePipelineEventRequestAttributesResource'
@@ -4339,6 +4821,53 @@ components:
             from the other indexes
           type: string
       type: object
+    CSMAgentsMetadata:
+      description: Metadata related to the paginated response.
+      properties:
+        page_index:
+          description: The index of the current page in the paginated results.
+          example: 0
+          format: int64
+          type: integer
+        page_size:
+          description: The number of items per page in the paginated results.
+          example: 10
+          format: int64
+          type: integer
+        total_filtered:
+          description: Total number of items that match the filter criteria.
+          example: 128697
+          format: int64
+          type: integer
+      type: object
+    CSMAgentsType:
+      default: datadog_agent
+      description: The type of the resource. The value should always be `datadog_agent`.
+      enum:
+      - datadog_agent
+      example: datadog_agent
+      type: string
+      x-enum-varnames:
+      - DATADOG_AGENT
+    CVSS:
+      description: Vulnerability severity.
+      properties:
+        score:
+          description: Vulnerability severity score.
+          example: 4.5
+          format: double
+          type: number
+        severity:
+          $ref: '#/components/schemas/VulnerabilitySeverity'
+        vector:
+          description: Vulnerability CVSS vector.
+          example: CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H
+          type: string
+      required:
+      - score
+      - severity
+      - vector
+      type: object
     CalculatedField:
       description: Calculated field.
       properties:
@@ -5500,6 +6029,168 @@ components:
             $ref: '#/components/schemas/CloudflareAccountResponseData'
           type: array
       type: object
+    CodeLocation:
+      description: Code vulnerability location.
+      properties:
+        file_path:
+          description: Vulnerability location file path.
+          example: src/Class.java:100
+          type: string
+        location:
+          description: Vulnerability extracted location.
+          example: com.example.Class:100
+          type: string
+        method:
+          description: Vulnerability location method.
+          example: FooBar
+          type: string
+      required:
+      - location
+      type: object
+    Component:
+      description: The definition of `Component` object.
+      properties:
+        events:
+          description: The `Component` `events`.
+          items:
+            $ref: '#/components/schemas/AppBuilderEvent'
+          type: array
+        id:
+          description: The `Component` `id`.
+          nullable: true
+          type: string
+        name:
+          description: The `Component` `name`.
+          example: ''
+          type: string
+        properties:
+          $ref: '#/components/schemas/ComponentProperties'
+        type:
+          $ref: '#/components/schemas/ComponentType'
+      required:
+      - name
+      - type
+      - properties
+      type: object
+    ComponentGrid:
+      description: The definition of `ComponentGrid` object.
+      properties:
+        events:
+          description: The `ComponentGrid` `events`.
+          items:
+            $ref: '#/components/schemas/AppBuilderEvent'
+          type: array
+        id:
+          description: The `ComponentGrid` `id`.
+          type: string
+        name:
+          description: The `ComponentGrid` `name`.
+          example: ''
+          type: string
+        properties:
+          $ref: '#/components/schemas/ComponentGridProperties'
+        type:
+          $ref: '#/components/schemas/ComponentGridType'
+      required:
+      - name
+      - type
+      - properties
+      type: object
+    ComponentGridProperties:
+      description: The definition of `ComponentGridProperties` object.
+      properties:
+        backgroundColor:
+          default: default
+          description: The `ComponentGridProperties` `backgroundColor`.
+          type: string
+        children:
+          description: The `ComponentGridProperties` `children`.
+          items:
+            $ref: '#/components/schemas/Component'
+          type: array
+        isVisible:
+          $ref: '#/components/schemas/ComponentGridPropertiesIsVisible'
+      type: object
+    ComponentGridPropertiesIsVisible:
+      description: The definition of `ComponentGridPropertiesIsVisible` object.
+      oneOf:
+      - type: string
+      - default: true
+        type: boolean
+    ComponentGridType:
+      description: The definition of `ComponentGridType` object.
+      enum:
+      - grid
+      example: grid
+      type: string
+      x-enum-varnames:
+      - GRID
+    ComponentProperties:
+      additionalProperties: {}
+      description: The definition of `ComponentProperties` object.
+      properties:
+        children:
+          description: The `ComponentProperties` `children`.
+          items:
+            $ref: '#/components/schemas/Component'
+          type: array
+        isVisible:
+          $ref: '#/components/schemas/ComponentPropertiesIsVisible'
+      type: object
+    ComponentPropertiesIsVisible:
+      description: The definition of `ComponentPropertiesIsVisible` object.
+      oneOf:
+      - type: boolean
+      - description: If a string, it should be a valid JavaScript expression that
+          evaluates to a boolean.
+        example: ${true}
+        type: string
+    ComponentType:
+      description: The definition of `ComponentType` object.
+      enum:
+      - table
+      - textInput
+      - textArea
+      - button
+      - text
+      - select
+      - modal
+      - schemaForm
+      - checkbox
+      - tabs
+      - vegaChart
+      - radioButtons
+      - numberInput
+      - fileInput
+      - jsonInput
+      - gridCell
+      - dateRangePicker
+      - search
+      - container
+      - calloutValue
+      example: table
+      type: string
+      x-enum-varnames:
+      - TABLE
+      - TEXTINPUT
+      - TEXTAREA
+      - BUTTON
+      - TEXT
+      - SELECT
+      - MODAL
+      - SCHEMAFORM
+      - CHECKBOX
+      - TABS
+      - VEGACHART
+      - RADIOBUTTONS
+      - NUMBERINPUT
+      - FILEINPUT
+      - JSONINPUT
+      - GRIDCELL
+      - DATERANGEPICKER
+      - SEARCH
+      - CONTAINER
+      - CALLOUTVALUE
     ConfluentAccountCreateRequest:
       description: Payload schema when adding a Confluent account.
       properties:
@@ -6501,6 +7192,146 @@ components:
       type: string
       x-enum-varnames:
       - COST_BY_ORG
+    CreateActionConnectionRequest:
+      description: Request used to create an action connection.
+      properties:
+        data:
+          $ref: '#/components/schemas/ActionConnectionData'
+      required:
+      - data
+      type: object
+    CreateActionConnectionResponse:
+      description: The response for a created connection
+      properties:
+        data:
+          $ref: '#/components/schemas/ActionConnectionData'
+      type: object
+    CreateAppRequest:
+      description: The definition of `CreateAppRequest` object.
+      example:
+        data:
+          attributes:
+            components:
+            - events: []
+              name: grid0
+              properties:
+                children:
+                - events: []
+                  name: gridCell0
+                  properties:
+                    children:
+                    - events: []
+                      name: calloutValue0
+                      properties:
+                        isDisabled: false
+                        isLoading: false
+                        isVisible: true
+                        label: CPU Usage
+                        size: sm
+                        style: vivid_yellow
+                        unit: kB
+                        value: '42'
+                      type: calloutValue
+                    isVisible: 'true'
+                    layout:
+                      default:
+                        height: 8
+                        width: 2
+                        x: 0
+                        y: 0
+                  type: gridCell
+              type: grid
+            description: This is a simple example app
+            embeddedQueries: []
+            name: Example App
+            rootInstanceName: grid0
+          type: appDefinitions
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateAppRequestData'
+      type: object
+    CreateAppRequestData:
+      description: The definition of `CreateAppRequestData` object.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CreateAppRequestDataAttributes'
+        type:
+          $ref: '#/components/schemas/CreateAppRequestDataType'
+      required:
+      - type
+      type: object
+    CreateAppRequestDataAttributes:
+      description: The definition of `CreateAppRequestDataAttributes` object.
+      properties:
+        components:
+          description: The `attributes` `components`.
+          items:
+            $ref: '#/components/schemas/ComponentGrid'
+          type: array
+        description:
+          description: The `attributes` `description`.
+          type: string
+        embeddedQueries:
+          description: The `attributes` `embeddedQueries`.
+          items:
+            $ref: '#/components/schemas/Query'
+          type: array
+        inputSchema:
+          $ref: '#/components/schemas/InputSchema'
+        name:
+          description: The `attributes` `name`.
+          type: string
+        rootInstanceName:
+          description: The `attributes` `rootInstanceName`.
+          type: string
+        scripts:
+          description: The `attributes` `scripts`.
+          items:
+            $ref: '#/components/schemas/Script'
+          type: array
+        tags:
+          description: The `attributes` `tags`.
+          items:
+            type: string
+          type: array
+      type: object
+    CreateAppRequestDataType:
+      default: appDefinitions
+      description: The definition of `CreateAppRequestDataType` object.
+      enum:
+      - appDefinitions
+      example: appDefinitions
+      type: string
+      x-enum-varnames:
+      - APPDEFINITIONS
+    CreateAppResponse:
+      description: The definition of `CreateAppResponse` object.
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateAppResponseData'
+      type: object
+    CreateAppResponseData:
+      description: The definition of `CreateAppResponseData` object.
+      properties:
+        id:
+          description: The `data` `id`.
+          example: ''
+          type: string
+        type:
+          $ref: '#/components/schemas/CreateAppResponseDataType'
+      required:
+      - id
+      - type
+      type: object
+    CreateAppResponseDataType:
+      default: appDefinitions
+      description: The definition of `CreateAppResponseDataType` object.
+      enum:
+      - appDefinitions
+      example: appDefinitions
+      type: string
+      x-enum-varnames:
+      - APPDEFINITIONS
     CreateDataDeletionRequestBody:
       description: Object needed to create a data deletion request.
       properties:
@@ -6550,9 +7381,20 @@ components:
       properties:
         attributes:
           $ref: '#/components/schemas/CreateDataDeletionRequestBodyAttributes'
+        type:
+          $ref: '#/components/schemas/CreateDataDeletionRequestBodyDataType'
       required:
       - attributes
+      - type
       type: object
+    CreateDataDeletionRequestBodyDataType:
+      description: The deletion request type.
+      enum:
+      - create_deletion_req
+      example: create_deletion_req
+      type: string
+      x-enum-varnames:
+      - CREATE_DELETION_REQ
     CreateDataDeletionResponseBody:
       description: The response from the create data deletion request endpoint.
       properties:
@@ -6630,6 +7472,268 @@ components:
           nullable: true
           type: string
       type: object
+    CsmAgentData:
+      description: Single Agent Data.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CsmAgentsAttributes'
+        id:
+          description: The ID of the Agent.
+          example: fffffc5505f6a006fdf7cf5aae053653
+          type: string
+        type:
+          $ref: '#/components/schemas/CSMAgentsType'
+      type: object
+    CsmAgentsAttributes:
+      description: A CSM Agent returned by the API.
+      properties:
+        agent_version:
+          description: Version of the Datadog Agent.
+          type: string
+        aws_fargate:
+          description: AWS Fargate details.
+          type: string
+        cluster_name:
+          description: List of cluster names associated with the Agent.
+          items:
+            type: string
+          type: array
+        datadog_agent:
+          description: Unique identifier for the Datadog Agent.
+          type: string
+        ecs_fargate_task_arn:
+          description: ARN of the ECS Fargate task.
+          type: string
+        envs:
+          description: List of environments associated with the Agent.
+          items:
+            type: string
+          nullable: true
+          type: array
+        host_id:
+          description: ID of the host.
+          format: int64
+          type: integer
+        hostname:
+          description: Name of the host.
+          type: string
+        install_method_installer_version:
+          description: Version of the installer used for installing the Datadog Agent.
+          type: string
+        install_method_tool:
+          description: Tool used for installing the Datadog Agent.
+          type: string
+        is_csm_vm_containers_enabled:
+          description: Indicates if CSM VM Containers is enabled.
+          nullable: true
+          type: boolean
+        is_csm_vm_hosts_enabled:
+          description: Indicates if CSM VM Hosts is enabled.
+          nullable: true
+          type: boolean
+        is_cspm_enabled:
+          description: Indicates if CSPM is enabled.
+          nullable: true
+          type: boolean
+        is_cws_enabled:
+          description: Indicates if CWS is enabled.
+          nullable: true
+          type: boolean
+        is_cws_remote_configuration_enabled:
+          description: Indicates if CWS Remote Configuration is enabled.
+          nullable: true
+          type: boolean
+        is_remote_configuration_enabled:
+          description: Indicates if Remote Configuration is enabled.
+          nullable: true
+          type: boolean
+        os:
+          description: Operating system of the host.
+          type: string
+      type: object
+    CsmAgentsResponse:
+      description: Response object that includes a list of CSM Agents.
+      properties:
+        data:
+          description: A list of Agents.
+          items:
+            $ref: '#/components/schemas/CsmAgentData'
+          type: array
+        meta:
+          $ref: '#/components/schemas/CSMAgentsMetadata'
+      type: object
+    CsmCloudAccountsCoverageAnalysisAttributes:
+      description: CSM Cloud Accounts Coverage Analysis attributes.
+      properties:
+        aws_coverage:
+          $ref: '#/components/schemas/CsmCoverageAnalysis'
+        azure_coverage:
+          $ref: '#/components/schemas/CsmCoverageAnalysis'
+        gcp_coverage:
+          $ref: '#/components/schemas/CsmCoverageAnalysis'
+        org_id:
+          description: The ID of your organization.
+          example: 123456
+          format: int64
+          type: integer
+        total_coverage:
+          $ref: '#/components/schemas/CsmCoverageAnalysis'
+      type: object
+    CsmCloudAccountsCoverageAnalysisData:
+      description: CSM Cloud Accounts Coverage Analysis data.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CsmCloudAccountsCoverageAnalysisAttributes'
+        id:
+          description: The ID of your organization.
+          example: 66b3c6b5-5c9a-457e-b1c3-f247ca23afa3
+          type: string
+        type:
+          default: get_cloud_accounts_coverage_analysis_response_public_v0
+          description: The type of the resource. The value should always be `get_cloud_accounts_coverage_analysis_response_public_v0`.
+          example: get_cloud_accounts_coverage_analysis_response_public_v0
+          type: string
+      type: object
+    CsmCloudAccountsCoverageAnalysisResponse:
+      description: CSM Cloud Accounts Coverage Analysis response.
+      properties:
+        data:
+          $ref: '#/components/schemas/CsmCloudAccountsCoverageAnalysisData'
+      type: object
+    CsmCoverageAnalysis:
+      description: CSM Coverage Analysis.
+      properties:
+        configured_resources_count:
+          description: The number of fully configured resources.
+          example: 8
+          format: int64
+          type: integer
+        coverage:
+          description: The coverage percentage.
+          example: 0.8
+          format: double
+          type: number
+        partially_configured_resources_count:
+          description: The number of partially configured resources.
+          example: 0
+          format: int64
+          type: integer
+        total_resources_count:
+          description: The total number of resources.
+          example: 10
+          format: int64
+          type: integer
+      type: object
+    CsmHostsAndContainersCoverageAnalysisAttributes:
+      description: CSM Hosts and Containers Coverage Analysis attributes.
+      properties:
+        cspm_coverage:
+          $ref: '#/components/schemas/CsmCoverageAnalysis'
+        cws_coverage:
+          $ref: '#/components/schemas/CsmCoverageAnalysis'
+        org_id:
+          description: The ID of your organization.
+          example: 123456
+          format: int64
+          type: integer
+        total_coverage:
+          $ref: '#/components/schemas/CsmCoverageAnalysis'
+        vm_coverage:
+          $ref: '#/components/schemas/CsmCoverageAnalysis'
+      type: object
+    CsmHostsAndContainersCoverageAnalysisData:
+      description: CSM Hosts and Containers Coverage Analysis data.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CsmHostsAndContainersCoverageAnalysisAttributes'
+        id:
+          description: The ID of your organization.
+          example: 66b3c6b5-5c9a-457e-b1c3-f247ca23afa3
+          type: string
+        type:
+          default: get_hosts_and_containers_coverage_analysis_response_public_v0
+          description: The type of the resource. The value should always be `get_hosts_and_containers_coverage_analysis_response_public_v0`.
+          example: get_hosts_and_containers_coverage_analysis_response_public_v0
+          type: string
+      type: object
+    CsmHostsAndContainersCoverageAnalysisResponse:
+      description: CSM Hosts and Containers Coverage Analysis response.
+      properties:
+        data:
+          $ref: '#/components/schemas/CsmHostsAndContainersCoverageAnalysisData'
+      type: object
+    CsmServerlessCoverageAnalysisAttributes:
+      description: CSM Serverless Resources Coverage Analysis attributes.
+      properties:
+        cws_coverage:
+          $ref: '#/components/schemas/CsmCoverageAnalysis'
+        org_id:
+          description: The ID of your organization.
+          example: 123456
+          format: int64
+          type: integer
+        total_coverage:
+          $ref: '#/components/schemas/CsmCoverageAnalysis'
+      type: object
+    CsmServerlessCoverageAnalysisData:
+      description: CSM Serverless Resources Coverage Analysis data.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CsmServerlessCoverageAnalysisAttributes'
+        id:
+          description: The ID of your organization.
+          example: 66b3c6b5-5c9a-457e-b1c3-f247ca23afa3
+          type: string
+        type:
+          default: get_serverless_coverage_analysis_response_public_v0
+          description: The type of the resource. The value should always be `get_serverless_coverage_analysis_response_public_v0`.
+          example: get_serverless_coverage_analysis_response_public_v0
+          type: string
+      type: object
+    CsmServerlessCoverageAnalysisResponse:
+      description: CSM Serverless Resources Coverage Analysis response.
+      properties:
+        data:
+          $ref: '#/components/schemas/CsmServerlessCoverageAnalysisData'
+      type: object
+    CustomConnection:
+      description: The definition of `CustomConnection` object.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CustomConnectionAttributes'
+        id:
+          description: The `CustomConnection` `id`.
+          type: string
+        type:
+          $ref: '#/components/schemas/CustomConnectionType'
+      type: object
+    CustomConnectionAttributes:
+      description: The definition of `CustomConnectionAttributes` object.
+      properties:
+        name:
+          description: The `attributes` `name`.
+          type: string
+        onPremRunner:
+          $ref: '#/components/schemas/CustomConnectionAttributesOnPremRunner'
+      type: object
+    CustomConnectionAttributesOnPremRunner:
+      description: The definition of `CustomConnectionAttributesOnPremRunner` object.
+      properties:
+        id:
+          description: The `onPremRunner` `id`.
+          type: string
+        url:
+          description: The `onPremRunner` `url`.
+          type: string
+      type: object
+    CustomConnectionType:
+      default: custom_connections
+      description: The definition of `CustomConnectionType` object.
+      enum:
+      - custom_connections
+      type: string
+      x-enum-varnames:
+      - CUSTOM_CONNECTIONS
     CustomCostGetResponseMeta:
       description: Meta for the response from the Get Custom Costs endpoints.
       properties:
@@ -8011,6 +9115,307 @@ components:
             type: number
           type: array
       type: object
+    DeleteAppResponse:
+      description: The definition of `DeleteAppResponse` object.
+      properties:
+        data:
+          $ref: '#/components/schemas/DeleteAppResponseData'
+      type: object
+    DeleteAppResponseData:
+      description: The definition of `DeleteAppResponseData` object.
+      properties:
+        id:
+          description: The `data` `id`.
+          example: ''
+          type: string
+        type:
+          $ref: '#/components/schemas/DeleteAppResponseDataType'
+      required:
+      - id
+      - type
+      type: object
+    DeleteAppResponseDataType:
+      default: appDefinitions
+      description: The definition of `DeleteAppResponseDataType` object.
+      enum:
+      - appDefinitions
+      example: appDefinitions
+      type: string
+      x-enum-varnames:
+      - APPDEFINITIONS
+    DeleteAppsRequest:
+      description: The definition of `DeleteAppsRequest` object.
+      example:
+        data:
+        - id: 29494ddd-ac13-46a7-8558-b05b050ee755
+          type: appDefinitions
+        - id: 71c0d358-eac5-41e3-892d-a7467571b9b0
+          type: appDefinitions
+        - id: 98e7e44d-1562-474a-90f7-3a94e739c006
+          type: appDefinitions
+      properties:
+        data:
+          description: The `DeleteAppsRequest` `data`.
+          items:
+            $ref: '#/components/schemas/DeleteAppsRequestDataItems'
+          type: array
+      type: object
+    DeleteAppsRequestDataItems:
+      description: The definition of `DeleteAppsRequestDataItems` object.
+      properties:
+        id:
+          description: The `items` `id`.
+          example: ''
+          type: string
+        type:
+          $ref: '#/components/schemas/DeleteAppsRequestDataItemsType'
+      required:
+      - id
+      - type
+      type: object
+    DeleteAppsRequestDataItemsType:
+      default: appDefinitions
+      description: The definition of `DeleteAppsRequestDataItemsType` object.
+      enum:
+      - appDefinitions
+      example: appDefinitions
+      type: string
+      x-enum-varnames:
+      - APPDEFINITIONS
+    DeleteAppsResponse:
+      description: The definition of `DeleteAppsResponse` object.
+      properties:
+        data:
+          description: The `DeleteAppsResponse` `data`.
+          items:
+            $ref: '#/components/schemas/DeleteAppsResponseDataItems'
+          type: array
+      type: object
+    DeleteAppsResponseDataItems:
+      description: The definition of `DeleteAppsResponseDataItems` object.
+      properties:
+        id:
+          description: The `items` `id`.
+          example: ''
+          type: string
+        type:
+          $ref: '#/components/schemas/DeleteAppsResponseDataItemsType'
+      required:
+      - id
+      - type
+      type: object
+    DeleteAppsResponseDataItemsType:
+      default: appDefinitions
+      description: The definition of `DeleteAppsResponseDataItemsType` object.
+      enum:
+      - appDefinitions
+      example: appDefinitions
+      type: string
+      x-enum-varnames:
+      - APPDEFINITIONS
+    DependencyLocation:
+      description: Static library vulnerability location.
+      properties:
+        column_end:
+          description: Location column end.
+          example: 140
+          format: int64
+          type: integer
+        column_start:
+          description: Location column start.
+          example: 5
+          format: int64
+          type: integer
+        file_name:
+          description: Location file name.
+          example: src/go.mod
+          type: string
+        line_end:
+          description: Location line end.
+          example: 10
+          format: int64
+          type: integer
+        line_start:
+          description: Location line start.
+          example: 1
+          format: int64
+          type: integer
+      required:
+      - file_name
+      - line_start
+      - line_end
+      - column_start
+      - column_end
+      type: object
+    DeployAppResponse:
+      description: The definition of `DeployAppResponse` object.
+      properties:
+        data:
+          $ref: '#/components/schemas/DeployAppResponseData'
+      type: object
+    DeployAppResponseData:
+      description: The definition of `DeployAppResponseData` object.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/DeployAppResponseDataAttributes'
+        id:
+          description: The `data` `id`.
+          type: string
+        meta:
+          $ref: '#/components/schemas/DeploymentMeta'
+        type:
+          $ref: '#/components/schemas/DeployAppResponseDataType'
+      type: object
+    DeployAppResponseDataAttributes:
+      description: The definition of `DeployAppResponseDataAttributes` object.
+      properties:
+        app_version_id:
+          description: The `attributes` `app_version_id`.
+          type: string
+      type: object
+    DeployAppResponseDataType:
+      default: deployment
+      description: The definition of `DeployAppResponseDataType` object.
+      enum:
+      - deployment
+      type: string
+      x-enum-varnames:
+      - DEPLOYMENT
+    Deployment:
+      description: The definition of `Deployment` object.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/DeploymentAttributes'
+        id:
+          description: The `Deployment` `id`.
+          type: string
+        meta:
+          $ref: '#/components/schemas/DeploymentMeta'
+        type:
+          $ref: '#/components/schemas/DeploymentType'
+      type: object
+    DeploymentAttributes:
+      description: The definition of `DeploymentAttributes` object.
+      properties:
+        app_version_id:
+          description: The `attributes` `app_version_id`.
+          type: string
+      type: object
+    DeploymentIncluded:
+      description: The definition of `DeploymentIncluded` object.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/DeploymentIncludedAttributes'
+        id:
+          description: The `DeploymentIncluded` `id`.
+          type: string
+        meta:
+          $ref: '#/components/schemas/DeploymentIncludedMeta'
+        type:
+          $ref: '#/components/schemas/DeploymentIncludedType'
+      type: object
+    DeploymentIncludedAttributes:
+      description: The definition of `DeploymentIncludedAttributes` object.
+      properties:
+        app_version_id:
+          description: The `attributes` `app_version_id`.
+          type: string
+      type: object
+    DeploymentIncludedMeta:
+      description: The definition of `DeploymentIncludedMeta` object.
+      properties:
+        created_at:
+          description: The `meta` `created_at`.
+          type: string
+        user_id:
+          description: The `meta` `user_id`.
+          format: int64
+          type: integer
+        user_name:
+          description: The `meta` `user_name`.
+          type: string
+        user_uuid:
+          description: The `meta` `user_uuid`.
+          format: uuid
+          type: string
+      type: object
+    DeploymentIncludedType:
+      default: deployment
+      description: The definition of `DeploymentIncludedType` object.
+      enum:
+      - deployment
+      type: string
+      x-enum-varnames:
+      - DEPLOYMENT
+    DeploymentMeta:
+      description: The definition of `DeploymentMeta` object.
+      properties:
+        created_at:
+          description: The `DeploymentMeta` `created_at`.
+          type: string
+        user_id:
+          description: The `DeploymentMeta` `user_id`.
+          format: int64
+          type: integer
+        user_name:
+          description: The `DeploymentMeta` `user_name`.
+          type: string
+        user_uuid:
+          description: The `DeploymentMeta` `user_uuid`.
+          format: uuid
+          type: string
+      type: object
+    DeploymentRelationship:
+      description: The definition of `DeploymentRelationship` object.
+      properties:
+        data:
+          $ref: '#/components/schemas/DeploymentRelationshipData'
+        meta:
+          $ref: '#/components/schemas/DeploymentRelationshipMeta'
+      type: object
+    DeploymentRelationshipData:
+      description: The definition of `DeploymentRelationshipData` object.
+      properties:
+        id:
+          description: The `data` `id`.
+          type: string
+        type:
+          $ref: '#/components/schemas/DeploymentRelationshipDataType'
+      type: object
+    DeploymentRelationshipDataType:
+      default: deployment
+      description: The definition of `DeploymentRelationshipDataType` object.
+      enum:
+      - deployment
+      type: string
+      x-enum-varnames:
+      - DEPLOYMENT
+    DeploymentRelationshipMeta:
+      description: The definition of `DeploymentRelationshipMeta` object.
+      properties:
+        created_at:
+          description: The `meta` `created_at`.
+          type: string
+        user_id:
+          description: The `meta` `user_id`.
+          format: int64
+          type: integer
+        user_name:
+          description: The `meta` `user_name`.
+          type: string
+        user_uuid:
+          description: The `meta` `user_uuid`.
+          format: uuid
+          type: string
+      type: object
+    DeploymentType:
+      default: deployment
+      description: The definition of `DeploymentType` object.
+      enum:
+      - deployment
+      type: string
+      x-enum-varnames:
+      - DEPLOYMENT
     DetailedFinding:
       description: A single finding with with message and resource configuration.
       properties:
@@ -8194,6 +9599,40 @@ components:
           description: The type of the resource. The value should always be device.
           type: string
       type: object
+    DisableAppResponse:
+      description: The definition of `DisableAppResponse` object.
+      properties:
+        data:
+          $ref: '#/components/schemas/DisableAppResponseData'
+      type: object
+    DisableAppResponseData:
+      description: The definition of `DisableAppResponseData` object.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/DisableAppResponseDataAttributes'
+        id:
+          description: The `data` `id`.
+          type: string
+        meta:
+          $ref: '#/components/schemas/DeploymentMeta'
+        type:
+          $ref: '#/components/schemas/DisableAppResponseDataType'
+      type: object
+    DisableAppResponseDataAttributes:
+      description: The definition of `DisableAppResponseDataAttributes` object.
+      properties:
+        app_version_id:
+          description: The `attributes` `app_version_id`.
+          type: string
+      type: object
+    DisableAppResponseDataType:
+      default: deployment
+      description: The definition of `DisableAppResponseDataType` object.
+      enum:
+      - deployment
+      type: string
+      x-enum-varnames:
+      - DEPLOYMENT
     DomainAllowlist:
       description: The email domain allowlist for an org.
       properties:
@@ -8843,6 +10282,20 @@ components:
       - id
       - type
       - attributes
+      type: object
+    EPSS:
+      description: Vulnerability EPSS severity.
+      properties:
+        score:
+          description: Vulnerability EPSS severity score.
+          example: 0.2
+          format: double
+          type: number
+        severity:
+          $ref: '#/components/schemas/VulnerabilitySeverity'
+      required:
+      - score
+      - severity
       type: object
     EntityAttributes:
       description: Entity attributes.
@@ -10974,6 +12427,101 @@ components:
       type: string
       x-enum-varnames:
       - GCP_SERVICE_ACCOUNT
+    GetActionConnectionResponse:
+      description: The response for found connection
+      properties:
+        data:
+          $ref: '#/components/schemas/ActionConnectionData'
+      type: object
+    GetAppResponse:
+      description: The definition of `GetAppResponse` object.
+      properties:
+        data:
+          $ref: '#/components/schemas/GetAppResponseData'
+        included:
+          description: The `GetAppResponse` `included`.
+          items:
+            $ref: '#/components/schemas/DeploymentIncluded'
+          type: array
+        meta:
+          $ref: '#/components/schemas/AppMeta'
+        relationship:
+          $ref: '#/components/schemas/GetAppResponseRelationship'
+      type: object
+    GetAppResponseData:
+      description: The definition of `GetAppResponseData` object.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/GetAppResponseDataAttributes'
+        id:
+          description: The `data` `id`.
+          example: ''
+          type: string
+        type:
+          $ref: '#/components/schemas/GetAppResponseDataType'
+      required:
+      - id
+      - type
+      - attributes
+      type: object
+    GetAppResponseDataAttributes:
+      description: The definition of `GetAppResponseDataAttributes` object.
+      properties:
+        components:
+          description: The `attributes` `components`.
+          items:
+            $ref: '#/components/schemas/ComponentGrid'
+          type: array
+        description:
+          description: The `attributes` `description`.
+          type: string
+        embeddedQueries:
+          description: The `attributes` `embeddedQueries`.
+          items:
+            $ref: '#/components/schemas/Query'
+          type: array
+        favorite:
+          description: The `attributes` `favorite`.
+          type: boolean
+        inputSchema:
+          $ref: '#/components/schemas/InputSchema'
+        name:
+          description: The `attributes` `name`.
+          type: string
+        rootInstanceName:
+          description: The `attributes` `rootInstanceName`.
+          type: string
+        scripts:
+          description: The `attributes` `scripts`.
+          items:
+            $ref: '#/components/schemas/Script'
+          type: array
+        tags:
+          description: The `attributes` `tags`.
+          items:
+            type: string
+          type: array
+      type: object
+    GetAppResponseDataType:
+      default: appDefinitions
+      description: The definition of `GetAppResponseDataType` object.
+      enum:
+      - appDefinitions
+      example: appDefinitions
+      type: string
+      x-enum-varnames:
+      - APPDEFINITIONS
+    GetAppResponseRelationship:
+      description: The definition of `GetAppResponseRelationship` object.
+      properties:
+        connections:
+          description: The `relationship` `connections`.
+          items:
+            $ref: '#/components/schemas/CustomConnection'
+          type: array
+        deployment:
+          $ref: '#/components/schemas/DeploymentRelationship'
+      type: object
     GetDataDeletionsResponseBody:
       description: The response from the get data deletion requests endpoint.
       properties:
@@ -11118,6 +12666,14 @@ components:
             $ref: '#/components/schemas/GetInterfacesData'
           type: array
       type: object
+    GetSBOMResponse:
+      description: The expected response schema when getting an SBOM.
+      properties:
+        data:
+          $ref: '#/components/schemas/SBOM'
+      required:
+      - data
+      type: object
     GetTeamMembershipsSort:
       description: Specifies the order of returned team memberships
       enum:
@@ -11179,6 +12735,18 @@ components:
         example: env:production
         type: string
       type: array
+    HTTPBody:
+      description: The definition of `HTTPBody` object.
+      properties:
+        content:
+          description: Serialized body content
+          example: '{"some-json": "with-value"}'
+          type: string
+        content_type:
+          description: Content type of the body
+          example: application/json
+          type: string
+      type: object
     HTTPCIAppError:
       description: List of errors.
       properties:
@@ -11203,6 +12771,88 @@ components:
           items:
             $ref: '#/components/schemas/HTTPCIAppError'
           type: array
+      type: object
+    HTTPCredentials:
+      description: The definition of `HTTPCredentials` object.
+      oneOf:
+      - $ref: '#/components/schemas/HTTPTokenAuth'
+    HTTPCredentialsUpdate:
+      description: The definition of `HTTPCredentialsUpdate` object.
+      oneOf:
+      - $ref: '#/components/schemas/HTTPTokenAuthUpdate'
+    HTTPHeader:
+      description: The definition of `HTTPHeader` object.
+      properties:
+        name:
+          description: The `HTTPHeader` `name`.
+          example: MyHttpHeader
+          pattern: ^[A-Za-z][A-Za-z\\d\\-\\_]*$
+          type: string
+        value:
+          description: The `HTTPHeader` `value`.
+          example: Some header value
+          type: string
+      required:
+      - name
+      - value
+      type: object
+    HTTPHeaderUpdate:
+      description: The definition of `HTTPHeaderUpdate` object.
+      properties:
+        deleted:
+          description: Should the header be deleted.
+          type: boolean
+        name:
+          description: The `HTTPHeaderUpdate` `name`.
+          example: MyHttpHeader
+          pattern: ^[A-Za-z][A-Za-z\\d\\-\\_]*$
+          type: string
+        value:
+          description: The `HTTPHeaderUpdate` `value`.
+          example: Updated Header Value
+          type: string
+      required:
+      - name
+      type: object
+    HTTPIntegration:
+      description: The definition of `HTTPIntegration` object.
+      properties:
+        base_url:
+          description: Base HTTP url for the integration
+          example: http://datadoghq.com
+          pattern: url
+          type: string
+        credentials:
+          $ref: '#/components/schemas/HTTPCredentials'
+        type:
+          $ref: '#/components/schemas/HTTPIntegrationType'
+      required:
+      - type
+      - base_url
+      - credentials
+      type: object
+    HTTPIntegrationType:
+      description: The definition of `HTTPIntegrationType` object.
+      enum:
+      - HTTP
+      example: HTTP
+      type: string
+      x-enum-varnames:
+      - HTTP
+    HTTPIntegrationUpdate:
+      description: The definition of `HTTPIntegrationUpdate` object.
+      properties:
+        base_url:
+          description: Base HTTP url for the integration
+          example: http://datadoghq.com
+          pattern: url
+          type: string
+        credentials:
+          $ref: '#/components/schemas/HTTPCredentialsUpdate'
+        type:
+          $ref: '#/components/schemas/HTTPIntegrationType'
+      required:
+      - type
       type: object
     HTTPLog:
       description: Structured log message.
@@ -11280,6 +12930,105 @@ components:
       required:
       - message
       type: object
+    HTTPToken:
+      description: The definition of `HTTPToken` object.
+      properties:
+        name:
+          description: The `HTTPToken` `name`.
+          example: MyToken
+          pattern: ^[A-Za-z][A-Za-z\\d]*$
+          type: string
+        type:
+          $ref: '#/components/schemas/TokenType'
+        value:
+          description: The `HTTPToken` `value`.
+          example: Some Token Value
+          type: string
+      required:
+      - name
+      - value
+      - type
+      type: object
+    HTTPTokenAuth:
+      description: The definition of `HTTPTokenAuth` object.
+      properties:
+        body:
+          $ref: '#/components/schemas/HTTPBody'
+        headers:
+          description: The `HTTPTokenAuth` `headers`.
+          items:
+            $ref: '#/components/schemas/HTTPHeader'
+          type: array
+        tokens:
+          description: The `HTTPTokenAuth` `tokens`.
+          items:
+            $ref: '#/components/schemas/HTTPToken'
+          type: array
+        type:
+          $ref: '#/components/schemas/HTTPTokenAuthType'
+        url_parameters:
+          description: The `HTTPTokenAuth` `url_parameters`.
+          items:
+            $ref: '#/components/schemas/UrlParam'
+          type: array
+      required:
+      - type
+      type: object
+    HTTPTokenAuthType:
+      description: The definition of `HTTPTokenAuthType` object.
+      enum:
+      - HTTPTokenAuth
+      example: HTTPTokenAuth
+      type: string
+      x-enum-varnames:
+      - HTTPTOKENAUTH
+    HTTPTokenAuthUpdate:
+      description: The definition of `HTTPTokenAuthUpdate` object.
+      properties:
+        body:
+          $ref: '#/components/schemas/HTTPBody'
+        headers:
+          description: The `HTTPTokenAuthUpdate` `headers`.
+          items:
+            $ref: '#/components/schemas/HTTPHeaderUpdate'
+          type: array
+        tokens:
+          description: The `HTTPTokenAuthUpdate` `tokens`.
+          items:
+            $ref: '#/components/schemas/HTTPTokenUpdate'
+          type: array
+        type:
+          $ref: '#/components/schemas/HTTPTokenAuthType'
+        url_parameters:
+          description: The `HTTPTokenAuthUpdate` `url_parameters`.
+          items:
+            $ref: '#/components/schemas/UrlParamUpdate'
+          type: array
+      required:
+      - type
+      type: object
+    HTTPTokenUpdate:
+      description: The definition of `HTTPTokenUpdate` object.
+      properties:
+        deleted:
+          description: Should the header be deleted.
+          type: boolean
+        name:
+          description: The `HTTPToken` `name`.
+          example: MyToken
+          pattern: ^[A-Za-z][A-Za-z\\d]*$
+          type: string
+        type:
+          $ref: '#/components/schemas/TokenType'
+        value:
+          description: The `HTTPToken` `value`.
+          example: Some Token Value
+          type: string
+      required:
+      - name
+      - type
+      - value
+      type: object
     HistoricalJobDataType:
       description: Type of payload.
       enum:
@@ -11295,6 +13044,65 @@ components:
           format: int32
           maximum: 2147483647
           type: integer
+      type: object
+    HistoricalJobOptions:
+      description: Job options.
+      properties:
+        detectionMethod:
+          $ref: '#/components/schemas/SecurityMonitoringRuleDetectionMethod'
+        evaluationWindow:
+          $ref: '#/components/schemas/SecurityMonitoringRuleEvaluationWindow'
+        impossibleTravelOptions:
+          $ref: '#/components/schemas/SecurityMonitoringRuleImpossibleTravelOptions'
+        keepAlive:
+          $ref: '#/components/schemas/SecurityMonitoringRuleKeepAlive'
+        maxSignalDuration:
+          $ref: '#/components/schemas/SecurityMonitoringRuleMaxSignalDuration'
+        newValueOptions:
+          $ref: '#/components/schemas/SecurityMonitoringRuleNewValueOptions'
+        thirdPartyRuleOptions:
+          $ref: '#/components/schemas/SecurityMonitoringRuleThirdPartyOptions'
+      type: object
+    HistoricalJobQuery:
+      description: Query for selecting logs analyzed by the historical job.
+      properties:
+        aggregation:
+          $ref: '#/components/schemas/SecurityMonitoringRuleQueryAggregation'
+        distinctFields:
+          description: Field for which the cardinality is measured. Sent as an array.
+          items:
+            description: Field.
+            type: string
+          type: array
+        groupByFields:
+          description: Fields to group by.
+          items:
+            description: Field.
+            type: string
+          type: array
+        hasOptionalGroupByFields:
+          description: When false, events without a group-by value are ignored by
+            the query. When true, events with missing group-by fields are processed
+            with `N/A`, replacing the missing values.
+          example: false
+          readOnly: true
+          type: boolean
+        metrics:
+          description: Group of target fields to aggregate over when using the sum,
+            max, geo data, or new value aggregations. The sum, max, and geo data aggregations
+            only accept one value in this list, whereas the new value aggregation
+            accepts up to five values.
+          items:
+            description: Field.
+            type: string
+          type: array
+        name:
+          description: Name of the query.
+          type: string
+        query:
+          description: Query to run on logs.
+          example: a > 3
+          type: string
       type: object
     HistoricalJobResponse:
       description: Historical job response.
@@ -13627,6 +15435,77 @@ components:
       - ONCALL
       - INCIDENT
       - RELATION
+    InputSchema:
+      description: The definition of `InputSchema` object.
+      properties:
+        data:
+          $ref: '#/components/schemas/InputSchemaData'
+      type: object
+    InputSchemaData:
+      description: The definition of `InputSchemaData` object.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/InputSchemaDataAttributes'
+        id:
+          description: The `data` `id`.
+          type: string
+        type:
+          $ref: '#/components/schemas/InputSchemaDataType'
+      type: object
+    InputSchemaDataAttributes:
+      description: The definition of `InputSchemaDataAttributes` object.
+      properties:
+        parameters:
+          description: The `attributes` `parameters`.
+          items:
+            $ref: '#/components/schemas/InputSchemaDataAttributesParametersItems'
+          type: array
+      type: object
+    InputSchemaDataAttributesParametersItems:
+      description: The definition of `InputSchemaDataAttributesParametersItems` object.
+      properties:
+        data:
+          $ref: '#/components/schemas/InputSchemaDataAttributesParametersItemsData'
+      type: object
+    InputSchemaDataAttributesParametersItemsData:
+      description: The definition of `InputSchemaDataAttributesParametersItemsData`
+        object.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/InputSchemaDataAttributesParametersItemsDataAttributes'
+      type: object
+    InputSchemaDataAttributesParametersItemsDataAttributes:
+      description: The definition of `InputSchemaDataAttributesParametersItemsDataAttributes`
+        object.
+      properties:
+        defaultValue:
+          description: The `attributes` `defaultValue`.
+        description:
+          description: The `attributes` `description`.
+          type: string
+        enum:
+          description: The `attributes` `enum`.
+          items:
+            type: string
+          type: array
+        label:
+          description: The `attributes` `label`.
+          type: string
+        name:
+          description: The `attributes` `name`.
+          type: string
+        type:
+          description: The `attributes` `type`.
+          type: string
+      type: object
+    InputSchemaDataType:
+      default: inputSchema
+      description: The definition of `InputSchemaDataType` object.
+      enum:
+      - inputSchema
+      type: string
+      x-enum-varnames:
+      - INPUTSCHEMA
     IntakePayloadAccepted:
       description: The payload accepted for intake.
       properties:
@@ -13686,6 +15565,12 @@ components:
             the error.
           example: Missing required attribute in body
           type: string
+        meta:
+          additionalProperties: {}
+          description: Non-standard meta-information about the error
+          type: object
+        source:
+          $ref: '#/components/schemas/JSONAPIErrorItemSource'
         status:
           description: Status code of the response.
           example: '400'
@@ -13693,6 +15578,24 @@ components:
         title:
           description: Short human-readable summary of the error.
           example: Bad Request
+          type: string
+      type: object
+    JSONAPIErrorItemSource:
+      description: References to the source of the error.
+      properties:
+        header:
+          description: A string indicating the name of a single request header which
+            caused the error.
+          example: Authorization
+          type: string
+        parameter:
+          description: A string indicating which URI query parameter caused the error.
+          example: limit
+          type: string
+        pointer:
+          description: A JSON pointer to the value in the request document that caused
+            the error.
+          example: /data/attributes/title
           type: string
       type: object
     JSONAPIErrorResponse:
@@ -13799,13 +15702,6 @@ components:
           items:
             $ref: '#/components/schemas/SecurityMonitoringRuleCaseCreate'
           type: array
-        filters:
-          description: Additional queries to filter matched events before they are
-            processed. This field is deprecated for log detection, signal correlation,
-            and workload security rules.
-          items:
-            $ref: '#/components/schemas/SecurityMonitoringFilter'
-          type: array
         from:
           description: Starting time of data analyzed by the job.
           example: 1729843470000
@@ -13824,14 +15720,14 @@ components:
           example: Excessive number of failed attempts.
           type: string
         options:
-          $ref: '#/components/schemas/SecurityMonitoringRuleOptions'
+          $ref: '#/components/schemas/HistoricalJobOptions'
         queries:
           description: Queries for selecting logs analyzed by the job.
           items:
-            $ref: '#/components/schemas/SecurityMonitoringStandardRuleQuery'
+            $ref: '#/components/schemas/HistoricalJobQuery'
           type: array
         referenceTables:
-          description: Reference tables for the rule.
+          description: Reference tables used in the queries.
           items:
             $ref: '#/components/schemas/SecurityMonitoringReferenceTable'
           type: array
@@ -13841,8 +15737,8 @@ components:
             type: string
           type: array
         thirdPartyCases:
-          description: Cases for generating results from third-party rules. Only available
-            for third-party rules.
+          description: Cases for generating results from third-party detection method.
+            Only available for third-party detection method.
           example: []
           items:
             $ref: '#/components/schemas/SecurityMonitoringThirdPartyRuleCaseCreate'
@@ -13944,6 +15840,48 @@ components:
       type: string
       x-enum-varnames:
       - LEAKED_KEYS
+    Library:
+      description: Vulnerability library.
+      properties:
+        name:
+          description: Vulnerability library name.
+          example: linux-aws-5.15
+          type: string
+        version:
+          description: Vulnerability library version.
+          example: 5.15.0
+          type: string
+      required:
+      - name
+      type: object
+    Links:
+      description: The JSON:API links related to pagination.
+      properties:
+        first:
+          description: First page link.
+          example: https://api.datadoghq.com/api/v2/security/vulnerabilities?page%5Bnumber%5D=1&page%5Btoken%5D=b82cef018aab81ed1d4bb4xb35xxfc065da7efa685fbcecdbd338f3015e3afabbbfa3a911b4984_721ee28a-zecb-4e45-9960-c42065b574f4
+          type: string
+        last:
+          description: Last page link.
+          example: https://api.datadoghq.com/api/v2/security/vulnerabilities?page%5Bnumber%5D=15&page%5Btoken%5D=b82cef018aab81ed1d4bb4xb35xxfc065da7efa685fbcecdbd338f3015e3afabbbfa3a911b4984_721ee28a-zecb-4e45-9960-c42065b574f4
+          type: string
+        next:
+          description: Next page link.
+          example: https://api.datadoghq.com/api/v2/security/vulnerabilities?page%5Bnumber%5D=16&page%5Btoken%5D=b82cef018aab81ed1d4bb4xb35xxfc065da7efa685fbcecdbd338f3015e3afabbbfa3a911b4984_721ee28a-zecb-4e45-9960-c42065b574f4
+          type: string
+        previous:
+          description: Previous page link.
+          example: https://api.datadoghq.com/api/v2/security/vulnerabilities?page%5Bnumber%5D=14&page%5Btoken%5D=b82cef018aab81ed1d4bb4xb35xxfc065da7efa685fbcecdbd338f3015e3afabbbfa3a911b4984_721ee28a-zecb-4e45-9960-c42065b574f4
+          type: string
+        self:
+          description: Request link.
+          example: https://api.datadoghq.com/api/v2/security/vulnerabilities?filter%5Btool%5D=Infra
+          type: string
+      required:
+      - self
+      - first
+      - last
+      type: object
     ListAPIsResponse:
       description: Response for `ListAPIs`.
       properties:
@@ -14011,6 +15949,96 @@ components:
           type: array
         meta:
           $ref: '#/components/schemas/ApplicationKeyResponseMeta'
+      type: object
+    ListAppsResponse:
+      description: The definition of `ListAppsResponse` object.
+      properties:
+        data:
+          description: The `ListAppsResponse` `data`.
+          items:
+            $ref: '#/components/schemas/ListAppsResponseDataItems'
+          type: array
+        included:
+          description: The `ListAppsResponse` `included`.
+          items:
+            $ref: '#/components/schemas/DeploymentIncluded'
+          type: array
+        meta:
+          $ref: '#/components/schemas/ListAppsResponseMeta'
+      type: object
+    ListAppsResponseDataItems:
+      description: The definition of `ListAppsResponseDataItems` object.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ListAppsResponseDataItemsAttributes'
+        id:
+          description: The `items` `id`.
+          example: ''
+          type: string
+        meta:
+          $ref: '#/components/schemas/AppMeta'
+        relationships:
+          $ref: '#/components/schemas/ListAppsResponseDataItemsRelationships'
+        type:
+          $ref: '#/components/schemas/ListAppsResponseDataItemsType'
+      required:
+      - id
+      - type
+      - attributes
+      type: object
+    ListAppsResponseDataItemsAttributes:
+      description: The definition of `ListAppsResponseDataItemsAttributes` object.
+      properties:
+        description:
+          description: The `attributes` `description`.
+          type: string
+        favorite:
+          description: The `attributes` `favorite`.
+          type: boolean
+        name:
+          description: The `attributes` `name`.
+          type: string
+        selfService:
+          description: The `attributes` `selfService`.
+          type: boolean
+        tags:
+          description: The `attributes` `tags`.
+          items:
+            type: string
+          type: array
+      type: object
+    ListAppsResponseDataItemsRelationships:
+      description: The definition of `ListAppsResponseDataItemsRelationships` object.
+      properties:
+        deployment:
+          $ref: '#/components/schemas/DeploymentRelationship'
+      type: object
+    ListAppsResponseDataItemsType:
+      default: appDefinitions
+      description: The definition of `ListAppsResponseDataItemsType` object.
+      enum:
+      - appDefinitions
+      example: appDefinitions
+      type: string
+      x-enum-varnames:
+      - APPDEFINITIONS
+    ListAppsResponseMeta:
+      description: The definition of `ListAppsResponseMeta` object.
+      properties:
+        page:
+          $ref: '#/components/schemas/ListAppsResponseMetaPage'
+      type: object
+    ListAppsResponseMetaPage:
+      description: The definition of `ListAppsResponseMetaPage` object.
+      properties:
+        totalCount:
+          description: The `page` `totalCount`.
+          format: int64
+          type: integer
+        totalFilteredCount:
+          description: The `page` `totalFilteredCount`.
+          format: int64
+          type: integer
       type: object
     ListDevicesResponse:
       description: List devices response.
@@ -14250,6 +16278,36 @@ components:
       - _NAME
       - USER_COUNT
       - _USER_COUNT
+    ListVulnerabilitiesResponse:
+      description: The expected response schema when listing vulnerabilities.
+      properties:
+        data:
+          description: List of vulnerabilities.
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        meta:
+          $ref: '#/components/schemas/Metadata'
+      required:
+      - data
+      type: object
+    ListVulnerableAssetsResponse:
+      description: The expected response schema when listing vulnerable assets.
+      properties:
+        data:
+          description: List of vulnerable assets.
+          items:
+            $ref: '#/components/schemas/Asset'
+          type: array
+        links:
+          $ref: '#/components/schemas/Links'
+        meta:
+          $ref: '#/components/schemas/Metadata'
+      required:
+      - data
+      type: object
     Log:
       description: Object description of a log after being processed and stored by
         Datadog.
@@ -14704,6 +16762,8 @@ components:
           description: The bucket where the archive will be stored.
           example: bucket-name
           type: string
+        encryption:
+          $ref: '#/components/schemas/LogsArchiveEncryptionS3'
         integration:
           $ref: '#/components/schemas/LogsArchiveIntegrationS3'
         path:
@@ -14725,6 +16785,30 @@ components:
       type: string
       x-enum-varnames:
       - S3
+    LogsArchiveEncryptionS3:
+      description: The S3 encryption settings.
+      properties:
+        key:
+          description: An Amazon Resource Name (ARN) used to identify an AWS KMS key.
+          example: arn:aws:kms:us-east-1:012345678901:key/DatadogIntegrationRoleKms
+          type: string
+        type:
+          $ref: '#/components/schemas/LogsArchiveEncryptionS3Type'
+      required:
+      - type
+      type: object
+    LogsArchiveEncryptionS3Type:
+      description: Type of S3 encryption for a destination.
+      enum:
+      - NO_OVERRIDE
+      - SSE_S3
+      - SSE_KMS
+      example: SSE_S3
+      type: string
+      x-enum-varnames:
+      - NO_OVERRIDE
+      - SSE_S3
+      - SSE_KMS
     LogsArchiveIntegrationAzure:
       description: The Azure archive's integration destination.
       properties:
@@ -15411,6 +17495,28 @@ components:
       - ms_channel_id
       - ms_channel_name
       - redirect_url
+      type: object
+    Metadata:
+      description: The metadata related to this request.
+      properties:
+        count:
+          description: Number of entities included in the response.
+          example: 150
+          format: int64
+          type: integer
+        token:
+          description: The token that identifies the request.
+          example: b82cef018aab81ed1d4bb4xb35xxfc065da7efa685fbcecdbd338f3015e3afabbbfa3a911b4984_721ee28a-zecb-4e45-9960-c42065b574f4
+          type: string
+        total:
+          description: Total number of entities across all pages.
+          example: 152431
+          format: int64
+          type: integer
+      required:
+      - count
+      - total
+      - token
       type: object
     Metric:
       description: Object for a single metric tag configuration.
@@ -17704,6 +19810,16 @@ components:
       required:
       - data
       type: object
+    OrderDirection:
+      description: The sort direction for results.
+      enum:
+      - asc
+      - desc
+      example: asc
+      type: string
+      x-enum-varnames:
+      - ASC
+      - DESC
     OrgConfigGetResponse:
       description: A response with a single Org Config.
       properties:
@@ -18780,6 +20896,31 @@ components:
             $ref: '#/components/schemas/Project'
           type: array
       type: object
+    Query:
+      description: The definition of `Query` object.
+      properties:
+        events:
+          description: The `Query` `events`.
+          items:
+            $ref: '#/components/schemas/AppBuilderEvent'
+          type: array
+        id:
+          description: The `Query` `id`.
+          example: ''
+          type: string
+        name:
+          description: The `Query` `name`.
+          example: ''
+          type: string
+        properties:
+          description: The `Query` `properties`.
+        type:
+          $ref: '#/components/schemas/QueryType'
+      required:
+      - id
+      - name
+      - type
+      type: object
     QueryFormula:
       description: A formula for calculation based on one or more queries.
       properties:
@@ -18803,6 +20944,18 @@ components:
       x-enum-varnames:
       - ASC
       - DESC
+    QueryType:
+      description: The definition of `QueryType` object.
+      enum:
+      - action
+      - stateVariable
+      - dataTransform
+      example: action
+      type: string
+      x-enum-varnames:
+      - ACTION
+      - STATEVARIABLE
+      - DATATRANSFORM
     RUMAggregateBucketValue:
       description: A bucket value, can be either a timeseries or a single value.
       oneOf:
@@ -20050,6 +22203,56 @@ components:
       required:
       - data
       type: object
+    Remediation:
+      description: Vulnerability remediation.
+      properties:
+        auto_solvable:
+          description: Whether the vulnerability can be resolved when recompiling
+            the package or not.
+          example: false
+          type: boolean
+        avoided_advisories:
+          description: Avoided advisories.
+          items:
+            $ref: '#/components/schemas/Advisory'
+          type: array
+        fixed_advisories:
+          description: Remediation fixed advisories.
+          items:
+            $ref: '#/components/schemas/Advisory'
+          type: array
+        library_name:
+          description: Library name remediating the vulnerability.
+          example: stdlib
+          type: string
+        library_version:
+          description: Library version remediating the vulnerability.
+          example: Upgrade to a version >= 1.20.0
+          type: string
+        new_advisories:
+          description: New advisories.
+          items:
+            $ref: '#/components/schemas/Advisory'
+          type: array
+        remaining_advisories:
+          description: Remaining advisories.
+          items:
+            $ref: '#/components/schemas/Advisory'
+          type: array
+        type:
+          description: Remediation type.
+          example: text
+          type: string
+      required:
+      - type
+      - library_name
+      - library_version
+      - auto_solvable
+      - fixed_advisories
+      - remaining_advisories
+      - new_advisories
+      - avoided_advisories
+      type: object
     ReorderRetentionFiltersRequest:
       description: A list of retention filters to reorder.
       properties:
@@ -21107,6 +23310,143 @@ components:
       type: string
       x-enum-varnames:
       - SAML_ASSERTION_ATTRIBUTES
+    SBOM:
+      description: A single SBOM
+      properties:
+        attributes:
+          $ref: '#/components/schemas/SBOMAttributes'
+        id:
+          description: The unique ID for this SBOM (it is equivalent to the `asset_name`
+            or `asset_name@repo_digest` (Image)
+          example: github.com/datadog/datadog-agent
+          type: string
+        type:
+          $ref: '#/components/schemas/SBOMType'
+      type: object
+    SBOMAttributes:
+      description: The JSON:API attributes of the SBOM.
+      properties:
+        bomFormat:
+          description: Specifies the format of the BOM. This helps to identify the
+            file as CycloneDX since BOM do not have a filename convention nor does
+            JSON schema support namespaces. This value MUST be `CycloneDX`.
+          example: CycloneDX
+          type: string
+        components:
+          description: A list of software and hardware components.
+          items:
+            $ref: '#/components/schemas/SBOMComponent'
+          type: array
+        metadata:
+          $ref: '#/components/schemas/SBOMMetadata'
+        serialNumber:
+          description: Every BOM generated has a unique serial number, even if the
+            contents of the BOM have not changed overt time. The serial number follows
+            [RFC-4122](https://datatracker.ietf.org/doc/html/rfc4122)
+          example: urn:uuid:f7119d2f-1vgh-24b5-91f0-12010db72da7
+          type: string
+        specVersion:
+          $ref: '#/components/schemas/SpecVersion'
+        version:
+          description: It increments when a BOM is modified. The default value is
+            1.
+          example: 1
+          format: int64
+          type: integer
+      required:
+      - bomFormat
+      - specVersion
+      - components
+      - metadata
+      - serialNumber
+      - version
+      type: object
+    SBOMComponent:
+      description: Software or hardware component.
+      properties:
+        bom-ref:
+          description: An optional identifier that can be used to reference the component
+            elsewhere in the BOM.
+          example: pkg:golang/google.golang.org/grpc@1.68.1
+          type: string
+        name:
+          description: The name of the component. This will often be a shortened,
+            single name of the component.
+          example: google.golang.org/grpc
+          type: string
+        purl:
+          description: Specifies the package-url (purl). The purl, if specified, MUST
+            be valid and conform to the [specification](https://github.com/package-url/purl-spec).
+          example: pkg:golang/google.golang.org/grpc@1.68.1
+          type: string
+        type:
+          $ref: '#/components/schemas/SBOMComponentType'
+        version:
+          description: The component version.
+          example: 1.68.1
+          type: string
+      required:
+      - type
+      - name
+      - version
+      type: object
+    SBOMComponentType:
+      description: The SBOM component type
+      enum:
+      - application
+      - container
+      - data
+      - device
+      - device-driver
+      - file
+      - firmware
+      - framework
+      - library
+      - machine-learning-model
+      - operating-system
+      - platform
+      example: application
+      type: string
+      x-enum-varnames:
+      - APPLICATION
+      - CONTAINER
+      - DATA
+      - DEVICE
+      - DEVICE_DRIVER
+      - FILE
+      - FIRMWARE
+      - FRAMEWORK
+      - LIBRARY
+      - MACHINE_LEARNING_MODEL
+      - OPERATING_SYSTEM
+      - PLATFORM
+    SBOMMetadata:
+      description: Provides additional information about a BOM.
+      properties:
+        component:
+          $ref: '#/components/schemas/SBOMMetadataComponent'
+      type: object
+    SBOMMetadataComponent:
+      description: The component that the BOM describes.
+      properties:
+        name:
+          description: The name of the component. This will often be a shortened,
+            single name of the component.
+          example: github.com/datadog/datadog-agent
+          type: string
+        type:
+          description: Specifies the type of the component.
+          example: application
+          type: string
+      type: object
+    SBOMType:
+      description: The JSON:API type.
+      enum:
+      - sboms
+      example: sboms
+      type: string
+      x-enum-varnames:
+      - SBOMS
     SLOReportInterval:
       description: The frequency at which report data is to be generated.
       enum:
@@ -21337,6 +23677,44 @@ components:
       type: string
       x-enum-varnames:
       - SCORECARD
+    Script:
+      description: The definition of `Script` object.
+      properties:
+        data:
+          $ref: '#/components/schemas/ScriptData'
+      type: object
+    ScriptData:
+      description: The definition of `ScriptData` object.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/ScriptDataAttributes'
+        id:
+          description: The `data` `id`.
+          type: string
+        type:
+          $ref: '#/components/schemas/ScriptDataType'
+      type: object
+    ScriptDataAttributes:
+      description: The definition of `ScriptDataAttributes` object.
+      properties:
+        name:
+          description: The `attributes` `name`.
+          type: string
+        src:
+          description: The `attributes` `src`.
+          type: string
+        type:
+          description: The `attributes` `type`.
+          type: string
+      type: object
+    ScriptDataType:
+      default: scripts
+      description: The definition of `ScriptDataType` object.
+      enum:
+      - scripts
+      type: string
+      x-enum-varnames:
+      - SCRIPTS
     SecurityFilter:
       description: The security filter's properties.
       properties:
@@ -21592,7 +23970,7 @@ components:
           $ref: '#/components/schemas/ResponseMetaAttributes'
       type: object
     SecurityMonitoringReferenceTable:
-      description: Reference table for the rule.
+      description: Reference tables used in the queries.
       properties:
         checkPresence:
           description: Whether to include or exclude the matched values.
@@ -21604,7 +23982,7 @@ components:
           description: The field in the log to match against the reference table.
           type: string
         ruleQueryName:
-          description: The name of the rule query to apply the reference table to.
+          description: The name of the query to apply the reference table to.
           type: string
         tableName:
           description: The name of the reference table.
@@ -21635,7 +24013,7 @@ components:
       description: Case when signal is generated.
       properties:
         condition:
-          description: 'A rule case contains logical operations (`>`,`>=`, `&&`, `||`)
+          description: 'A case contains logical operations (`>`,`>=`, `&&`, `||`)
             to determine if a signal should be generated
 
             based on the event counts in the previously defined queries.'
@@ -21644,7 +24022,7 @@ components:
           description: Name of the case.
           type: string
         notifications:
-          description: Notification targets for each rule case.
+          description: Notification targets.
           items:
             description: Notification.
             type: string
@@ -21706,7 +24084,8 @@ components:
       description: 'A time window is specified to match when at least one of the cases
         matches true. This is a sliding window
 
-        and evaluates in real time. For third party rules, this field is not used.'
+        and evaluates in real time. For third party detection method, this field is
+        not used.'
       enum:
       - 0
       - 60
@@ -21735,7 +24114,7 @@ components:
       x-enum-varnames:
       - LOG4SHELL
     SecurityMonitoringRuleImpossibleTravelOptions:
-      description: Options on impossible travel rules.
+      description: Options on impossible travel detection method.
       properties:
         baselineUserLocations:
           $ref: '#/components/schemas/SecurityMonitoringRuleImpossibleTravelOptionsBaselineUserLocations'
@@ -21751,7 +24130,7 @@ components:
     SecurityMonitoringRuleKeepAlive:
       description: "Once a signal is generated, the signal will remain \u201Copen\u201D
         if a case is matched at least once within\nthis keep alive window. For third
-        party rules, this field is not used."
+        party detection method, this field is not used."
       enum:
       - 0
       - 60
@@ -21809,7 +24188,7 @@ components:
       - TWELVE_HOURS
       - ONE_DAY
     SecurityMonitoringRuleNewValueOptions:
-      description: Options on new value rules.
+      description: Options on new value detection method.
       properties:
         forgetAfter:
           $ref: '#/components/schemas/SecurityMonitoringRuleNewValueOptionsForgetAfter'
@@ -21879,7 +24258,7 @@ components:
       - ZERO_OCCURRENCES
       - ONE_OCCURRENCE
     SecurityMonitoringRuleOptions:
-      description: Options on rules.
+      description: Options.
       properties:
         complianceRuleOptions:
           $ref: '#/components/schemas/CloudConfigurationComplianceRuleOptions'
@@ -22021,7 +24400,7 @@ components:
           type: array
       type: object
     SecurityMonitoringRuleThirdPartyOptions:
-      description: Options on third party rules.
+      description: Options on third party detection method.
       properties:
         defaultNotifications:
           description: Notification targets for the logs that do not correspond to
@@ -23199,6 +25578,12 @@ components:
             as the search bar for detection rules.
           example: type:log_detection source:cloudtrail
           type: string
+        start_date:
+          description: A Unix millisecond timestamp giving the start date for the
+            suppression rule. After this date, it starts suppressing signals.
+          example: 1703187336000
+          format: int64
+          type: integer
         suppression_query:
           description: The suppression query of the suppression rule. If a signal
             matches this query, it is suppressed and not triggered. Same syntax as
@@ -23254,6 +25639,12 @@ components:
             as the search bar for detection rules.
           example: type:log_detection source:cloudtrail
           type: string
+        start_date:
+          description: A Unix millisecond timestamp giving the start date for the
+            suppression rule. After this date, it starts suppressing signals.
+          example: 1703187336000
+          format: int64
+          type: integer
         suppression_query:
           description: The suppression query of the suppression rule. If a signal
             matches this query, it is suppressed and is not triggered. It uses the
@@ -23340,6 +25731,15 @@ components:
             as the search bar for detection rules.
           example: type:log_detection source:cloudtrail
           type: string
+        start_date:
+          description: A Unix millisecond timestamp giving the start date for the
+            suppression rule. After this date, it starts suppressing signals. If unset,
+            the start date of the suppression rule is left untouched. If set to `null`,
+            the start date is removed.
+          example: 1703187336000
+          format: int64
+          nullable: true
+          type: integer
         suppression_query:
           description: The suppression query of the suppression rule. If a signal
             matches this query, it is suppressed and not triggered. Same syntax as
@@ -23421,7 +25821,7 @@ components:
           description: Name of the case.
           type: string
         notifications:
-          description: Notification targets for each rule case.
+          description: Notification targets for each case.
           items:
             description: Notification.
             type: string
@@ -26127,6 +28527,24 @@ components:
             from the other indexes
           type: string
       type: object
+    SpecVersion:
+      description: The version of the CycloneDX specification a BOM conforms to.
+      enum:
+      - '1.0'
+      - '1.1'
+      - '1.2'
+      - '1.3'
+      - '1.4'
+      - '1.5'
+      example: '1.5'
+      type: string
+      x-enum-varnames:
+      - ONE_ZERO
+      - ONE_ONE
+      - ONE_TWO
+      - ONE_THREE
+      - ONE_FOUR
+      - ONE_FIVE
     State:
       description: The state of the rule evaluation.
       enum:
@@ -26902,6 +29320,19 @@ components:
       items:
         $ref: '#/components/schemas/TimeseriesResponseValues'
       type: array
+    TokenName:
+      description: Name for tokens.
+      example: MyTokenName
+      pattern: ^[A-Za-z][A-Za-z\\d]*$
+      type: string
+    TokenType:
+      description: The definition of `TokenType` object.
+      enum:
+      - SECRET
+      example: SECRET
+      type: string
+      x-enum-varnames:
+      - SECRET
     Unit:
       description: Object containing the metric unit family, scale factor, name, and
         short name.
@@ -26929,6 +29360,211 @@ components:
           description: Abbreviation of the unit.
           example: min
           type: string
+      type: object
+    UpdateActionConnectionRequest:
+      description: Request used to update an action connection.
+      properties:
+        data:
+          $ref: '#/components/schemas/ActionConnectionDataUpdate'
+      required:
+      - data
+      type: object
+    UpdateActionConnectionResponse:
+      description: The response for an updated connection.
+      properties:
+        data:
+          $ref: '#/components/schemas/ActionConnectionData'
+      type: object
+    UpdateAppRequest:
+      description: The definition of `UpdateAppRequest` object.
+      example:
+        data:
+          attributes:
+            components:
+            - events: []
+              name: grid0
+              properties:
+                children:
+                - events: []
+                  name: gridCell0
+                  properties:
+                    children:
+                    - events: []
+                      name: calloutValue0
+                      properties:
+                        isDisabled: false
+                        isLoading: false
+                        isVisible: true
+                        label: CPU Usage
+                        size: sm
+                        style: vivid_yellow
+                        unit: kB
+                        value: '42'
+                      type: calloutValue
+                    isVisible: 'true'
+                    layout:
+                      default:
+                        height: 8
+                        width: 2
+                        x: 0
+                        y: 0
+                  type: gridCell
+              type: grid
+            description: This is a simple example app
+            embeddedQueries: []
+            name: Example App
+            rootInstanceName: grid0
+          id: 9e20cbaf-68da-45a6-9ccf-54193ac29fa5
+          type: appDefinitions
+      properties:
+        data:
+          $ref: '#/components/schemas/UpdateAppRequestData'
+      type: object
+    UpdateAppRequestData:
+      description: The definition of `UpdateAppRequestData` object.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/UpdateAppRequestDataAttributes'
+        id:
+          description: The `data` `id`.
+          type: string
+        type:
+          $ref: '#/components/schemas/UpdateAppRequestDataType'
+      required:
+      - type
+      type: object
+    UpdateAppRequestDataAttributes:
+      description: The definition of `UpdateAppRequestDataAttributes` object.
+      properties:
+        components:
+          description: The `attributes` `components`.
+          items:
+            $ref: '#/components/schemas/ComponentGrid'
+          type: array
+        description:
+          description: The `attributes` `description`.
+          type: string
+        embeddedQueries:
+          description: The `attributes` `embeddedQueries`.
+          items:
+            $ref: '#/components/schemas/Query'
+          type: array
+        inputSchema:
+          $ref: '#/components/schemas/InputSchema'
+        name:
+          description: The `attributes` `name`.
+          type: string
+        rootInstanceName:
+          description: The `attributes` `rootInstanceName`.
+          type: string
+        scripts:
+          description: The `attributes` `scripts`.
+          items:
+            $ref: '#/components/schemas/Script'
+          type: array
+        tags:
+          description: The `attributes` `tags`.
+          items:
+            type: string
+          type: array
+      type: object
+    UpdateAppRequestDataType:
+      default: appDefinitions
+      description: The definition of `UpdateAppRequestDataType` object.
+      enum:
+      - appDefinitions
+      example: appDefinitions
+      type: string
+      x-enum-varnames:
+      - APPDEFINITIONS
+    UpdateAppResponse:
+      description: The definition of `UpdateAppResponse` object.
+      properties:
+        data:
+          $ref: '#/components/schemas/UpdateAppResponseData'
+        included:
+          description: The `UpdateAppResponse` `included`.
+          items:
+            $ref: '#/components/schemas/DeploymentIncluded'
+          type: array
+        meta:
+          $ref: '#/components/schemas/AppMeta'
+        relationship:
+          $ref: '#/components/schemas/UpdateAppResponseRelationship'
+      type: object
+    UpdateAppResponseData:
+      description: The definition of `UpdateAppResponseData` object.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/UpdateAppResponseDataAttributes'
+        id:
+          description: The `data` `id`.
+          example: ''
+          type: string
+        type:
+          $ref: '#/components/schemas/UpdateAppResponseDataType'
+      required:
+      - id
+      - type
+      - attributes
+      type: object
+    UpdateAppResponseDataAttributes:
+      description: The definition of `UpdateAppResponseDataAttributes` object.
+      properties:
+        components:
+          description: The `attributes` `components`.
+          items:
+            $ref: '#/components/schemas/ComponentGrid'
+          type: array
+        description:
+          description: The `attributes` `description`.
+          type: string
+        embeddedQueries:
+          description: The `attributes` `embeddedQueries`.
+          items:
+            $ref: '#/components/schemas/Query'
+          type: array
+        favorite:
+          description: The `attributes` `favorite`.
+          type: boolean
+        inputSchema:
+          $ref: '#/components/schemas/InputSchema'
+        name:
+          description: The `attributes` `name`.
+          type: string
+        rootInstanceName:
+          description: The `attributes` `rootInstanceName`.
+          type: string
+        scripts:
+          description: The `attributes` `scripts`.
+          items:
+            $ref: '#/components/schemas/Script'
+          type: array
+        tags:
+          description: The `attributes` `tags`.
+          items:
+            type: string
+          type: array
+      type: object
+    UpdateAppResponseDataType:
+      default: appDefinitions
+      description: The definition of `UpdateAppResponseDataType` object.
+      enum:
+      - appDefinitions
+      example: appDefinitions
+      type: string
+      x-enum-varnames:
+      - APPDEFINITIONS
+    UpdateAppResponseRelationship:
+      description: The definition of `UpdateAppResponseRelationship` object.
+      properties:
+        connections:
+          description: The `relationship` `connections`.
+          items:
+            $ref: '#/components/schemas/CustomConnection'
+          type: array
+        deployment:
+          $ref: '#/components/schemas/DeploymentRelationship'
       type: object
     UpdateOpenAPIResponse:
       description: Response for `UpdateOpenAPI`.
@@ -27009,6 +29645,36 @@ components:
       description: Upsert entity response included item.
       oneOf:
       - $ref: '#/components/schemas/EntityResponseIncludedSchema'
+    UrlParam:
+      description: The definition of `UrlParam` object.
+      properties:
+        name:
+          $ref: '#/components/schemas/TokenName'
+          example: MyUrlParameter
+        value:
+          description: The `UrlParam` `value`.
+          example: Some Url Parameter value
+          type: string
+      required:
+      - name
+      - value
+      type: object
+    UrlParamUpdate:
+      description: The definition of `UrlParamUpdate` object.
+      properties:
+        deleted:
+          description: Should the header be deleted.
+          type: boolean
+        name:
+          $ref: '#/components/schemas/TokenName'
+          example: MyUrlParameter
+        value:
+          description: The `UrlParamUpdate` `value`.
+          example: Some Url Parameter value
+          type: string
+      required:
+      - name
+      type: object
     UsageApplicationSecurityMonitoringResponse:
       description: Application Security Monitoring usage response.
       properties:
@@ -27592,6 +30258,378 @@ components:
       type: string
       x-enum-varnames:
       - USERS
+    VulnerabilitiesType:
+      description: The JSON:API type.
+      enum:
+      - vulnerabilities
+      example: vulnerabilities
+      type: string
+      x-enum-varnames:
+      - VULNERABILITIES
+    Vulnerability:
+      description: A single vulnerability
+      properties:
+        attributes:
+          $ref: '#/components/schemas/VulnerabilityAttributes'
+        id:
+          description: The unique ID for this vulnerability.
+          example: 3ecdfea798f2ce8f6e964805a344945f
+          type: string
+        relationships:
+          $ref: '#/components/schemas/VulnerabilityRelationships'
+        type:
+          $ref: '#/components/schemas/VulnerabilitiesType'
+      required:
+      - id
+      - type
+      - attributes
+      - relationships
+      type: object
+    VulnerabilityAttributes:
+      description: The JSON:API attributes of the vulnerability.
+      properties:
+        advisory_id:
+          description: Vulnerability advisory ID.
+          example: TRIVY-CVE-2023-0615
+          type: string
+        code_location:
+          $ref: '#/components/schemas/CodeLocation'
+        cve_list:
+          description: Vulnerability CVE list.
+          example:
+          - CVE-2023-0615
+          items:
+            example: CVE-2023-0615
+            type: string
+          type: array
+        cvss:
+          $ref: '#/components/schemas/VulnerabilityCvss'
+        dependency_locations:
+          $ref: '#/components/schemas/VulnerabilityDependencyLocations'
+        description:
+          description: Vulnerability description.
+          example: LDAP Injection is a security vulnerability that occurs when untrusted
+            user input is improperly handled and directly incorporated into LDAP queries
+            without appropriate sanitization or validation. This vulnerability enables
+            attackers to manipulate LDAP queries and potentially gain unauthorized
+            access, modify data, or extract sensitive information from the directory
+            server. By exploiting the LDAP injection vulnerability, attackers can
+            execute malicious commands, bypass authentication mechanisms, and perform
+            unauthorized actions within the directory service.
+          type: string
+        ecosystem:
+          $ref: '#/components/schemas/VulnerabilityEcosystem'
+        exposure_time:
+          description: Vulnerability exposure time in seconds.
+          example: 5618604
+          format: int64
+          type: integer
+        first_detection:
+          description: First detection of the vulnerability in [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339)
+            format
+          example: 2024-09-19 21:23:08+00:00
+          type: string
+        fix_available:
+          description: Whether the vulnerability has a remediation or not.
+          example: false
+          type: boolean
+        language:
+          description: Vulnerability language.
+          example: ubuntu
+          type: string
+        last_detection:
+          description: Last detection of the vulnerability in [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339)
+            format
+          example: 2024-09-01 21:23:08+00:00
+          type: string
+        library:
+          $ref: '#/components/schemas/Library'
+        remediations:
+          description: List of remediations.
+          items:
+            $ref: '#/components/schemas/Remediation'
+          type: array
+        repo_digests:
+          description: Vulnerability `repo_digest` list (when the vulnerability is
+            related to `Image` asset).
+          items:
+            example: sha256:0ae7da091191787229d321e3638e39c319a97d6e20f927d465b519d699215bf7
+            type: string
+          type: array
+        risks:
+          $ref: '#/components/schemas/VulnerabilityRisks'
+        status:
+          $ref: '#/components/schemas/VulnerabilityStatus'
+        title:
+          description: Vulnerability title.
+          example: LDAP Injection
+          type: string
+        tool:
+          $ref: '#/components/schemas/VulnerabilityTool'
+        type:
+          $ref: '#/components/schemas/VulnerabilityType'
+      required:
+      - type
+      - cvss
+      - status
+      - tool
+      - title
+      - description
+      - cve_list
+      - risks
+      - language
+      - first_detection
+      - last_detection
+      - exposure_time
+      - remediations
+      - fix_available
+      type: object
+    VulnerabilityCvss:
+      description: Vulnerability severities.
+      properties:
+        base:
+          $ref: '#/components/schemas/CVSS'
+        datadog:
+          $ref: '#/components/schemas/CVSS'
+      required:
+      - base
+      - datadog
+      type: object
+    VulnerabilityDependencyLocations:
+      description: Static library vulnerability location.
+      properties:
+        block:
+          $ref: '#/components/schemas/DependencyLocation'
+        name:
+          $ref: '#/components/schemas/DependencyLocation'
+        version:
+          $ref: '#/components/schemas/DependencyLocation'
+      required:
+      - block
+      type: object
+    VulnerabilityEcosystem:
+      description: The related vulnerability asset ecosystem.
+      enum:
+      - PyPI
+      - Maven
+      - NuGet
+      - Npm
+      - RubyGems
+      - Go
+      - Packagist
+      - Ddeb
+      - Rpm
+      - Apk
+      - Windows
+      type: string
+      x-enum-varnames:
+      - PYPI
+      - MAVEN
+      - NUGET
+      - NPM
+      - RUBY_GEMS
+      - GO
+      - PACKAGIST
+      - D_DEB
+      - RPM
+      - APK
+      - WINDOWS
+    VulnerabilityRelationships:
+      description: Related entities object.
+      properties:
+        affects:
+          $ref: '#/components/schemas/VulnerabilityRelationshipsAffects'
+      required:
+      - affects
+      type: object
+    VulnerabilityRelationshipsAffects:
+      description: Relationship type.
+      properties:
+        data:
+          $ref: '#/components/schemas/VulnerabilityRelationshipsAffectsData'
+      required:
+      - data
+      type: object
+    VulnerabilityRelationshipsAffectsData:
+      description: Asset affected by this vulnerability.
+      properties:
+        id:
+          description: The unique ID for this related asset.
+          example: Repository|github.com/DataDog/datadog-agent.git
+          type: string
+        type:
+          $ref: '#/components/schemas/AssetEntityType'
+      required:
+      - id
+      - type
+      type: object
+    VulnerabilityRisks:
+      description: Vulnerability risks.
+      properties:
+        epss:
+          $ref: '#/components/schemas/EPSS'
+        exploit_available:
+          description: Vulnerability public exploit availability.
+          example: false
+          type: boolean
+        exploit_sources:
+          description: Vulnerability exploit sources.
+          example:
+          - NIST
+          items:
+            example: NIST
+            type: string
+          type: array
+        exploitation_probability:
+          description: Vulnerability exploitation probability.
+          example: false
+          type: boolean
+        poc_exploit_available:
+          description: Vulnerability POC exploit availability.
+          example: false
+          type: boolean
+      required:
+      - exploitation_probability
+      - poc_exploit_available
+      - exploit_available
+      - exploit_sources
+      type: object
+    VulnerabilitySeverity:
+      description: The vulnerability severity.
+      enum:
+      - Unknown
+      - None
+      - Low
+      - Medium
+      - High
+      - Critical
+      example: Medium
+      type: string
+      x-enum-varnames:
+      - UNKNOWN
+      - NONE
+      - LOW
+      - MEDIUM
+      - HIGH
+      - CRITICAL
+    VulnerabilityStatus:
+      description: The vulnerability status.
+      enum:
+      - Open
+      - Muted
+      - Remediated
+      - InProgress
+      - AutoClosed
+      example: Open
+      type: string
+      x-enum-varnames:
+      - OPEN
+      - MUTED
+      - REMEDIATED
+      - INPROGRESS
+      - AUTOCLOSED
+    VulnerabilityTool:
+      description: The vulnerability tool.
+      enum:
+      - IAST
+      - SCA
+      - Infra
+      example: SCA
+      type: string
+      x-enum-varnames:
+      - IAST
+      - SCA
+      - INFRA
+    VulnerabilityType:
+      description: The vulnerability type.
+      enum:
+      - AdminConsoleActive
+      - CodeInjection
+      - CommandInjection
+      - ComponentWithKnownVulnerability
+      - DangerousWorkflows
+      - DefaultAppDeployed
+      - DefaultHtmlEscapeInvalid
+      - DirectoryListingLeak
+      - EmailHtmlInjection
+      - EndOfLife
+      - HardcodedPassword
+      - HardcodedSecret
+      - HeaderInjection
+      - HstsHeaderMissing
+      - InsecureAuthProtocol
+      - InsecureCookie
+      - InsecureJspLayout
+      - LdapInjection
+      - MaliciousPackage
+      - MandatoryRemediation
+      - NoHttpOnlyCookie
+      - NoSameSiteCookie
+      - NoSqlMongoDbInjection
+      - PathTraversal
+      - ReflectionInjection
+      - RiskyLicense
+      - SessionRewriting
+      - SessionTimeout
+      - SqlInjection
+      - Ssrf
+      - StackTraceLeak
+      - TrustBoundaryViolation
+      - Unmaintained
+      - UntrustedDeserialization
+      - UnvalidatedRedirect
+      - VerbTampering
+      - WeakCipher
+      - WeakHash
+      - WeakRandomness
+      - XContentTypeHeaderMissing
+      - XPathInjection
+      - Xss
+      example: WeakCipher
+      type: string
+      x-enum-varnames:
+      - ADMIN_CONSOLE_ACTIVE
+      - CODE_INJECTION
+      - COMMAND_INJECTION
+      - COMPONENT_WITH_KNOWN_VULNERABILITY
+      - DANGEROUS_WORKFLOWS
+      - DEFAULT_APP_DEPLOYED
+      - DEFAULT_HTML_ESCAPE_INVALID
+      - DIRECTORY_LISTING_LEAK
+      - EMAIL_HTML_INJECTION
+      - END_OF_LIFE
+      - HARDCODED_PASSWORD
+      - HARDCODED_SECRET
+      - HEADER_INJECTION
+      - HSTS_HEADER_MISSING
+      - INSECURE_AUTH_PROTOCOL
+      - INSECURE_COOKIE
+      - INSECURE_JSP_LAYOUT
+      - LDAP_INJECTION
+      - MALICIOUS_PACKAGE
+      - MANDATORY_REMEDIATION
+      - NO_HTTP_ONLY_COOKIE
+      - NO_SAME_SITE_COOKIE
+      - NO_SQL_MONGO_DB_INJECTION
+      - PATH_TRAVERSAL
+      - REFLECTION_INJECTION
+      - RISKY_LICENSE
+      - SESSION_REWRITING
+      - SESSION_TIMEOUT
+      - SQL_INJECTION
+      - SSRF
+      - STACK_TRACE_LEAK
+      - TRUST_BOUNDARY_VIOLATION
+      - UNMAINTAINED
+      - UNTRUSTED_DESERIALIZATION
+      - UNVALIDATED_REDIRECT
+      - VERB_TAMPERING
+      - WEAK_CIPHER
+      - WEAK_HASH
+      - WEAK_RANDOMNESS
+      - X_CONTENT_TYPE_HEADER_MISSING
+      - X_PATH_INJECTION
+      - XSS
     WidgetLiveSpan:
       description: The available timeframes depend on the widget you are using.
       enum:
@@ -27878,6 +30916,181 @@ info:
   version: '1.0'
 openapi: 3.0.0
 paths:
+  /api/v2/actions/connections:
+    post:
+      description: Create a new Action Connection
+      operationId: CreateActionConnection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateActionConnectionRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateActionConnectionResponse'
+          description: Successfully created Action Connection
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Forbidden
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Too Many Request
+      summary: Create a new Action Connection
+      tags:
+      - Action Connection
+  /api/v2/actions/connections/{connection_id}:
+    delete:
+      description: Delete an existing Action Connection
+      operationId: DeleteActionConnection
+      parameters:
+      - $ref: '#/components/parameters/ConnectionId'
+      responses:
+        '204':
+          description: The resource was deleted successfully.
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Not Found
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Too Many Request
+      summary: Delete an existing Action Connection
+      tags:
+      - Action Connection
+      x-permission:
+        operator: OR
+        permissions:
+        - connection_write
+    get:
+      description: Get an existing Action Connection
+      operationId: GetActionConnection
+      parameters:
+      - $ref: '#/components/parameters/ConnectionId'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetActionConnectionResponse'
+          description: Successfully get Action Connection
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Not Found
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Too Many Request
+      summary: Get an existing Action Connection
+      tags:
+      - Action Connection
+    patch:
+      description: Update an existing Action Connection
+      operationId: UpdateActionConnection
+      parameters:
+      - $ref: '#/components/parameters/ConnectionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateActionConnectionRequest'
+        description: Update an existing Action Connection request body
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateActionConnectionResponse'
+          description: Successfully updated Action Connection
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Not Found
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Too Many Request
+      summary: Update an existing Action Connection
+      tags:
+      - Action Connection
+  /api/v2/agentless_scanning/accounts/aws:
+    get:
+      description: Fetches the scan options configured for AWS accounts.
+      operationId: ListAwsScanOptions
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AwsScanOptionsResponse'
+          description: OK
+        '403':
+          $ref: '#/components/responses/NotAuthorizedResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Get AWS Scan Options
+      tags:
+      - Agentless Scanning
   /api/v2/api_keys:
     get:
       description: List all API keys available for your account.
@@ -28688,6 +31901,441 @@ paths:
         permissions:
         - apm_retention_filter_write
         - apm_pipelines_write
+  /api/v2/app-builder/apps:
+    delete:
+      description: Delete multiple apps by ID
+      operationId: DeleteApps
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteAppsRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAppsResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Not Found
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Delete Multiple Apps
+      tags:
+      - Apps
+      x-permission:
+        operator: OR
+        permissions:
+        - apps_write
+      x-unstable: '**Note**: App Builder API endpoints are still under active development
+        and may change at any time.'
+    get:
+      description: List all apps, with optional filters and sorting
+      operationId: ListApps
+      parameters:
+      - description: The number of apps to return per page.
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int64
+          type: integer
+      - description: The page number to return.
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+      - description: Filter apps by the app creator. Usually the user's email.
+        in: query
+        name: filter[user_name]
+        required: false
+        schema:
+          type: string
+      - description: Filter apps by the app creator's UUID.
+        in: query
+        name: filter[user_uuid]
+        required: false
+        schema:
+          format: uuid
+          type: string
+      - description: Filter by app name.
+        in: query
+        name: filter[name]
+        required: false
+        schema:
+          type: string
+      - description: Filter apps by the app name or the app creator.
+        in: query
+        name: filter[query]
+        required: false
+        schema:
+          type: string
+      - description: Filter apps by whether they are published.
+        in: query
+        name: filter[deployed]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter apps by tags.
+        in: query
+        name: filter[tags]
+        required: false
+        schema:
+          type: string
+      - description: Filter apps by whether you have added them to your favorites.
+        in: query
+        name: filter[favorite]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter apps by whether they are enabled for self-service.
+        in: query
+        name: filter[self_service]
+        required: false
+        schema:
+          type: boolean
+      - description: The fields and direction to sort apps by.
+        explode: false
+        in: query
+        name: sort
+        required: false
+        schema:
+          items:
+            $ref: '#/components/schemas/AppsSortField'
+          type: array
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAppsResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Forbidden
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: List Apps
+      tags:
+      - Apps
+      x-permission:
+        operator: OR
+        permissions:
+        - apps_run
+      x-unstable: '**Note**: App Builder API endpoints are still under active development
+        and may change at any time.'
+    post:
+      description: Create a new app, returning the app ID
+      operationId: CreateApp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAppRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAppResponse'
+          description: App Created
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Forbidden
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Create App
+      tags:
+      - Apps
+      x-permission:
+        operator: AND
+        permissions:
+        - apps_write
+        - connections_resolve
+        - workflows_run
+      x-unstable: '**Note**: App Builder API endpoints are still under active development
+        and may change at any time.'
+  /api/v2/app-builder/apps/{app_id}:
+    delete:
+      description: Delete an app by ID
+      operationId: DeleteApp
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAppResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Not Found
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Gone
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Delete App
+      tags:
+      - Apps
+      x-permission:
+        operator: OR
+        permissions:
+        - apps_write
+      x-unstable: '**Note**: App Builder API endpoints are still under active development
+        and may change at any time.'
+    get:
+      description: Get the full definition of an app by ID
+      operationId: GetApp
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: version
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAppResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Not Found
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Get App
+      tags:
+      - Apps
+      x-permission:
+        operator: AND
+        permissions:
+        - apps_run
+        - connections_read
+      x-unstable: '**Note**: App Builder API endpoints are still under active development
+        and may change at any time.'
+    patch:
+      description: Update an existing app by ID. Creates a new version of the app
+      operationId: UpdateApp
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAppRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAppResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Forbidden
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Update App
+      tags:
+      - Apps
+      x-permission:
+        operator: AND
+        permissions:
+        - apps_write
+        - connections_resolve
+        - workflows_run
+      x-unstable: '**Note**: App Builder API endpoints are still under active development
+        and may change at any time.'
+  /api/v2/app-builder/apps/{app_id}/deployment:
+    delete:
+      description: Disable an app by ID
+      operationId: DisableApp
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisableAppResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Not Found
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Disable App
+      tags:
+      - Apps
+      x-permission:
+        operator: OR
+        permissions:
+        - apps_write
+      x-unstable: '**Note**: App Builder API endpoints are still under active development
+        and may change at any time.'
+    post:
+      description: Deploy (publish) an app by ID
+      operationId: DeployApp
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeployAppResponse'
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: Not Found
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Deploy App
+      tags:
+      - Apps
+      x-permission:
+        operator: OR
+        permissions:
+        - apps_write
+      x-unstable: '**Note**: App Builder API endpoints are still under active development
+        and may change at any time.'
   /api/v2/application_keys:
     get:
       description: List all application keys available for your org
@@ -30807,7 +34455,8 @@ paths:
         != null BEGIN\n  sleep(5 seconds)  # Avoid running into rate limit\n  response
         := GetMonthlyCostAttribution(start_month, end_month, next_record_id=cursor)\n
         \ cursor := response.metadata.pagination.next_record_id\nEND\n```\n\nThis
-        endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/)."
+        endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/).
+        This endpoint is not available in the Government (US1-FED) site."
       operationId: GetMonthlyCostAttribution
       parameters:
       - description: 'Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]`
@@ -30922,6 +34571,179 @@ paths:
       x-unstable: '**Note**: This endpoint is in public beta.
 
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).'
+  /api/v2/csm/onboarding/agents:
+    get:
+      description: Get the list of all CSM Agents running on your hosts and containers.
+      operationId: ListAllCSMAgents
+      parameters:
+      - description: The page index for pagination (zero-based).
+        in: query
+        name: page
+        required: false
+        schema:
+          example: 2
+          format: int32
+          maximum: 1000000
+          minimum: 0
+          type: integer
+      - description: The number of items to include in a single page.
+        in: query
+        name: size
+        required: false
+        schema:
+          example: 12
+          format: int32
+          maximum: 100
+          minimum: 0
+          type: integer
+      - description: A search query string to filter results (for example, `hostname:COMP-T2H4J27423`).
+        in: query
+        name: query
+        required: false
+        schema:
+          example: hostname:COMP-T2H4J27423
+          type: string
+      - description: The sort direction for results. Use `asc` for ascending or `desc`
+          for descending.
+        in: query
+        name: order_direction
+        required: false
+        schema:
+          $ref: '#/components/schemas/OrderDirection'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CsmAgentsResponse'
+          description: OK
+        '403':
+          $ref: '#/components/responses/NotAuthorizedResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Get all CSM Agents
+      tags:
+      - CSM Agents
+  /api/v2/csm/onboarding/coverage_analysis/cloud_accounts:
+    get:
+      description: 'Get the CSM Coverage Analysis of your Cloud Accounts.
+
+        This is calculated based on the number of your Cloud Accounts that are
+
+        scanned for security issues.'
+      operationId: GetCSMCloudAccountsCoverageAnalysis
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CsmCloudAccountsCoverageAnalysisResponse'
+          description: OK
+        '403':
+          $ref: '#/components/responses/NotAuthorizedResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Get the CSM Cloud Accounts Coverage Analysis
+      tags:
+      - CSM Coverage Analysis
+  /api/v2/csm/onboarding/coverage_analysis/hosts_and_containers:
+    get:
+      description: 'Get the CSM Coverage Analysis of your Hosts and Containers.
+
+        This is calculated based on the number of agents running on your Hosts
+
+        and Containers with CSM feature(s) enabled.'
+      operationId: GetCSMHostsAndContainersCoverageAnalysis
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CsmHostsAndContainersCoverageAnalysisResponse'
+          description: OK
+        '403':
+          $ref: '#/components/responses/NotAuthorizedResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Get the CSM Hosts and Containers Coverage Analysis
+      tags:
+      - CSM Coverage Analysis
+  /api/v2/csm/onboarding/coverage_analysis/serverless:
+    get:
+      description: 'Get the CSM Coverage Analysis of your Serverless Resources.
+
+        This is calculated based on the number of agents running on your Serverless
+
+        Resources with CSM feature(s) enabled.'
+      operationId: GetCSMServerlessCoverageAnalysis
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CsmServerlessCoverageAnalysisResponse'
+          description: OK
+        '403':
+          $ref: '#/components/responses/NotAuthorizedResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Get the CSM Serverless Coverage Analysis
+      tags:
+      - CSM Coverage Analysis
+  /api/v2/csm/onboarding/serverless/agents:
+    get:
+      description: Get the list of all CSM Serverless Agents running on your hosts
+        and containers.
+      operationId: ListAllCSMServerlessAgents
+      parameters:
+      - description: The page index for pagination (zero-based).
+        in: query
+        name: page
+        required: false
+        schema:
+          example: 2
+          format: int32
+          maximum: 1000000
+          minimum: 0
+          type: integer
+      - description: The number of items to include in a single page.
+        in: query
+        name: size
+        required: false
+        schema:
+          example: 12
+          format: int32
+          maximum: 100
+          minimum: 0
+          type: integer
+      - description: A search query string to filter results (for example, `hostname:COMP-T2H4J27423`).
+        in: query
+        name: query
+        required: false
+        schema:
+          example: hostname:COMP-T2H4J27423
+          type: string
+      - description: The sort direction for results. Use `asc` for ascending or `desc`
+          for descending.
+        in: query
+        name: order_direction
+        required: false
+        schema:
+          $ref: '#/components/schemas/OrderDirection'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CsmAgentsResponse'
+          description: OK
+        '403':
+          $ref: '#/components/responses/NotAuthorizedResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Get all CSM Serverless Agents
+      tags:
+      - CSM Agents
   /api/v2/current_user/application_keys:
     get:
       description: List all application keys available for current user
@@ -31987,12 +35809,10 @@ paths:
         permissions:
         - events_read
     post:
-      description: 'This endpoint allows you to post events.
-
-
-        Only events with **`change` category** are under General Availability. Refer
-        to [Change Tracking](https://docs.datadoghq.com/change_tracking) for further
-        details.'
+      description: "This endpoint allows you to post events.\n\n\u2705 **Only events
+        with the `change` category** are in General Availability. See [Change Tracking](https://docs.datadoghq.com/change_tracking)
+        for more details.\n\n\u274C For use cases involving other event categories,
+        please use the V1 endpoint."
       operationId: CreateEvent
       requestBody:
         content:
@@ -35681,7 +39501,7 @@ paths:
         [Results are paginated][1].
 
 
-        Use this endpoint to see your latest logs.
+        Use this endpoint to search and filter your logs.
 
 
         **If you are considering archiving logs for your organization,
@@ -35778,7 +39598,7 @@ paths:
           $ref: '#/components/responses/NotAuthorizedResponse'
         '429':
           $ref: '#/components/responses/TooManyRequestsResponse'
-      summary: Get a list of logs
+      summary: Search logs (GET)
       tags:
       - Logs
       x-pagination:
@@ -35797,7 +39617,7 @@ paths:
         [Results are paginated][1].
 
 
-        Use this endpoint to build complex logs filtering and search.
+        Use this endpoint to search and filter your logs.
 
 
         **If you are considering archiving logs for your organization,
@@ -35830,7 +39650,7 @@ paths:
           $ref: '#/components/responses/NotAuthorizedResponse'
         '429':
           $ref: '#/components/responses/TooManyRequestsResponse'
-      summary: Search logs
+      summary: Search logs (POST)
       tags:
       - Logs
       x-codegen-request-body-name: body
@@ -36108,7 +39928,8 @@ paths:
   /api/v2/metrics/{metric_name}/active-configurations:
     get:
       description: List tags and aggregations that are actively queried on dashboards,
-        notebooks, monitors, and the Metrics Explorer for a given metric name.
+        notebooks, monitors, the Metrics Explorer, and using the API for a given metric
+        name.
       operationId: ListActiveMetricConfigurations
       parameters:
       - $ref: '#/components/parameters/MetricName'
@@ -38016,6 +41837,14 @@ paths:
 
         - Monitors: `monitor`
 
+        - Workflows: `workflow`
+
+        - App Builder Apps: `app-builder-app`
+
+        - Connections: `connection`
+
+        - Connection Groups: `connection-group`
+
 
         #### Supported relations for resources
 
@@ -38041,10 +41870,26 @@ paths:
 
         Monitors                    | `viewer`, `editor`
 
-        Reference Tables            | `viewer`, `editor`'
+        Reference Tables            | `viewer`, `editor`
+
+        Workflows                   | `viewer`, `runner`, `editor`
+
+        App Builder Apps            | `viewer`, `editor`
+
+        Connections                 | `viewer`, `resolver`, `editor`
+
+        Connection Groups           | `viewer`, `editor`'
       operationId: UpdateRestrictionPolicy
       parameters:
       - $ref: '#/components/parameters/ResourceID'
+      - description: Allows admins (users with the `user_access_manage` permission)
+          to remove their own access from the resource if set to `true`. By default,
+          this is set to `false`, preventing admins from locking themselves out.
+        in: query
+        name: allow_self_lockout
+        required: false
+        schema:
+          type: boolean
       requestBody:
         content:
           application/json:
@@ -39453,6 +43298,189 @@ paths:
       x-unstable: '**Note**: This endpoint is in public beta.
 
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).'
+  /api/v2/security/assets:
+    get:
+      description: 'Get a list of vulnerable assets.
+
+
+        ### Pagination
+
+
+        Please review the [Pagination section for the "List Vulnerabilities"](#pagination)
+        endpoint.
+
+
+        ### Filtering
+
+
+        Please review the [Filtering section for the "List Vulnerabilities"](#filtering)
+        endpoint.
+
+
+        ### Metadata
+
+
+        Please review the [Metadata section for the "List Vulnerabilities"](#metadata)
+        endpoint.
+
+        '
+      operationId: ListVulnerableAssets
+      parameters:
+      - description: Its value must come from the `links` section of the response
+          of the first request. Do not manually edit it.
+        example: b82cef018aab81ed1d4bb4xb35xxfc065da7efa685fbcecdbd338f3015e3afabbbfa3a911b4984_721ee28a-zecb-4e45-9960-c42065b574f4
+        in: query
+        name: page[token]
+        required: false
+        schema:
+          type: string
+      - description: The page number to be retrieved. It should be equal or greater
+          than `1`
+        example: 1
+        in: query
+        name: page[number]
+        required: false
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      - description: Filter by name.
+        example: datadog-agent
+        in: query
+        name: filter[name]
+        required: false
+        schema:
+          type: string
+      - description: Filter by type.
+        example: Host
+        in: query
+        name: filter[type]
+        required: false
+        schema:
+          $ref: '#/components/schemas/AssetType'
+      - description: Filter by the first version of the asset since it has been vulnerable.
+        example: v1.15.1
+        in: query
+        name: filter[version.first]
+        required: false
+        schema:
+          type: string
+      - description: Filter by the last detected version of the asset.
+        example: v1.15.1
+        in: query
+        name: filter[version.last]
+        required: false
+        schema:
+          type: string
+      - description: Filter by the repository url associated to the asset.
+        example: github.com/DataDog/datadog-agent.git
+        in: query
+        name: filter[repository_url]
+        required: false
+        schema:
+          type: string
+      - description: Filter whether the asset is in production or not.
+        example: false
+        in: query
+        name: filter[risks.in_production]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter whether the asset (Service) is under attack or not.
+        example: false
+        in: query
+        name: filter[risks.under_attack]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter whether the asset (Host) is publicly accessible or not.
+        example: false
+        in: query
+        name: filter[risks.is_publicly_accessible]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter whether the asset (Host) has privileged access or not.
+        example: false
+        in: query
+        name: filter[risks.has_privileged_access]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter whether the asset (Host)  has access to sensitive data
+          or not.
+        example: false
+        in: query
+        name: filter[risks.has_access_to_sensitive_data]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter by environment.
+        example: staging
+        in: query
+        name: filter[environments]
+        required: false
+        schema:
+          type: string
+      - description: Filter by architecture.
+        example: arm64
+        in: query
+        name: filter[arch]
+        required: false
+        schema:
+          type: string
+      - description: Filter by operating system name.
+        example: ubuntu
+        in: query
+        name: filter[operating_system.name]
+        required: false
+        schema:
+          type: string
+      - description: Filter by operating system version.
+        example: '24.04'
+        in: query
+        name: filter[operating_system.version]
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVulnerableAssetsResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: 'Bad request: The server cannot process the request due to
+            invalid syntax in the request.'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: 'Forbidden: Access denied'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: 'Not found: There is no request associated with the provided
+            token.'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      summary: List vulnerable assets
+      tags:
+      - Security Monitoring
+      x-unstable: '**Note**: This endpoint is a private preview.
+
+        If you are interested in accessing this API, please [fill out this form](https://forms.gle/kMYC1sDr6WDUBDsx9).'
   /api/v2/security/cloud_workload/policy/download:
     get:
       description: 'The download endpoint generates a Cloud Workload Security policy
@@ -39482,6 +43510,451 @@ paths:
         operator: OR
         permissions:
         - security_monitoring_cws_agent_rules_read
+  /api/v2/security/sboms/{asset_type}:
+    get:
+      description: 'Get a single SBOM related to an asset by its type and name.
+
+        '
+      operationId: GetSBOM
+      parameters:
+      - description: The type of the asset for the SBOM request.
+        example: Repository
+        in: path
+        name: asset_type
+        required: true
+        schema:
+          $ref: '#/components/schemas/AssetType'
+      - description: The name of the asset for the SBOM request.
+        example: github.com/datadog/datadog-agent
+        in: query
+        name: filter[asset_name]
+        required: true
+        schema:
+          type: string
+      - description: The container image `repo_digest` for the SBOM request. When
+          the requested asset type is 'Image', this filter is mandatory.
+        example: sha256:0ae7da091191787229d321e3638e39c319a97d6e20f927d465b519d699215bf7
+        in: query
+        name: filter[repo_digest]
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSBOMResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: 'Bad request: The server cannot process the request due to
+            invalid syntax in the request.'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: 'Forbidden: Access denied'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: 'Not found: asset not found'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      summary: Get SBOM
+      tags:
+      - Security Monitoring
+      x-unstable: '**Note**: This endpoint is a private preview.
+
+        If you are interested in accessing this API, please [fill out this form](https://forms.gle/kMYC1sDr6WDUBDsx9).'
+  /api/v2/security/vulnerabilities:
+    get:
+      description: "Get a list of vulnerabilities.\n\n### Pagination\n\nPagination
+        is enabled by default in both `vulnerabilities` and `assets`. The size of
+        the page varies depending on the endpoint and cannot be modified. To automate
+        the request of the next page, you can use the links section in the response.\n\nThis
+        endpoint will return paginated responses. The pages are stored in the links
+        section of the response:\n\n```JSON\n{\n  \"data\": [...],\n  \"meta\": {...},\n
+        \ \"links\": {\n    \"self\": \"https://.../api/v2/security/vulnerabilities\",\n
+        \   \"first\": \"https://.../api/v2/security/vulnerabilities?page[number]=1&page[token]=abc\",\n
+        \   \"last\": \"https://.../api/v2/security/vulnerabilities?page[number]=43&page[token]=abc\",\n
+        \   \"next\": \"https://.../api/v2/security/vulnerabilities?page[number]=2&page[token]=abc\"\n
+        \ }\n}\n```\n\n\n- `links.previous` is empty if the first page is requested.\n-
+        `links.next` is empty if the last page is requested.\n\n#### Token\n\nVulnerabilities
+        can be created, updated or deleted at any point in time.\n\nUpon the first
+        request, a token is created to ensure consistency across subsequent paginated
+        requests.\n\nA token is valid only for 24 hours.\n\n#### First request\n\nWe
+        consider a request to be the first request when there is no `page[token]`
+        parameter.\n\nThe response of this first request contains the newly created
+        token in the `links` section.\n\nThis token can then be used in the subsequent
+        paginated requests.\n\n#### Subsequent requests\n\nAny request containing
+        valid `page[token]` and `page[number]` parameters will be considered a subsequent
+        request.\n\nIf the `token` is invalid, a `404` response will be returned.\n\nIf
+        the page `number` is invalid, a `400` response will be returned.\n\n### Filtering\n\nThe
+        request can include some filter parameters to filter the data to be retrieved.
+        The format of the filter parameters follows the [JSON:API format](https://jsonapi.org/format/#fetching-filtering):
+        `filter[$prop_name]`, where `prop_name` is the property name in the entity
+        being filtered by.\n\nAll filters can include multiple values, where data
+        will be filtered with an OR clause: `filter[title]=Title1,Title2` will filter
+        all vulnerabilities where title is equal to `Title1` OR `Title2`.\n\nString
+        filters are case sensitive.\n\nBoolean filters accept `true` or `false` as
+        values.\n\nNumber filters must include an operator as a second filter input:
+        `filter[$prop_name][$operator]`. For example, for the vulnerabilities endpoint:
+        `filter[cvss.base.score][lte]=8`.\n\nAvailable operators are: `eq` (==), `lt`
+        (<), `lte` (<=), `gt` (>) and `gte` (>=).\n\n### Metadata\n\nFollowing [JSON:API
+        format](https://jsonapi.org/format/#document-meta), object including non-standard
+        meta-information.\n\nThis endpoint includes the meta member in the response.
+        For more details on each of the properties included in this section, check
+        the endpoints response tables.\n\n```JSON\n{\n  \"data\": [...],\n  \"meta\":
+        {\n    \"total\": 1500,\n    \"count\": 18732,\n    \"token\": \"some_token\"\n
+        \ },\n  \"links\": {...}\n}\n```\n"
+      operationId: ListVulnerabilities
+      parameters:
+      - description: Its value must come from the `links` section of the response
+          of the first request. Do not manually edit it.
+        example: b82cef018aab81ed1d4bb4xb35xxfc065da7efa685fbcecdbd338f3015e3afabbbfa3a911b4984_721ee28a-zecb-4e45-9960-c42065b574f4
+        in: query
+        name: page[token]
+        required: false
+        schema:
+          type: string
+      - description: The page number to be retrieved. It should be equal or greater
+          than `1`
+        example: 1
+        in: query
+        name: page[number]
+        required: false
+        schema:
+          format: int64
+          minimum: 1
+          type: integer
+      - description: Filter by vulnerability type.
+        example: WeakCipher
+        in: query
+        name: filter[type]
+        required: false
+        schema:
+          $ref: '#/components/schemas/VulnerabilityType'
+      - description: Filter by vulnerability base (i.e. from the original advisory)
+          severity score.
+        example: 5.5
+        in: query
+        name: filter[cvss.base.score][`$op`]
+        required: false
+        schema:
+          format: double
+          maximum: 10
+          minimum: 0
+          type: number
+      - description: Filter by vulnerability base severity.
+        example: Medium
+        in: query
+        name: filter[cvss.base.severity]
+        required: false
+        schema:
+          $ref: '#/components/schemas/VulnerabilitySeverity'
+      - description: Filter by vulnerability base CVSS vector.
+        example: CVSS:3.0/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H
+        in: query
+        name: filter[cvss.base.vector]
+        required: false
+        schema:
+          type: string
+      - description: Filter by vulnerability Datadog severity score.
+        example: 4.3
+        in: query
+        name: filter[cvss.datadog.score][`$op`]
+        required: false
+        schema:
+          format: double
+          maximum: 10
+          minimum: 0
+          type: number
+      - description: Filter by vulnerability Datadog severity.
+        example: Medium
+        in: query
+        name: filter[cvss.datadog.severity]
+        required: false
+        schema:
+          $ref: '#/components/schemas/VulnerabilitySeverity'
+      - description: Filter by vulnerability Datadog CVSS vector.
+        example: CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H/E:U/RL:X/RC:X/CR:X/IR:X/AR:X/MAV:L/MAC:H/MPR:L/MUI:N/MS:U/MC:N/MI:N/MA:H
+        in: query
+        name: filter[cvss.datadog.vector]
+        required: false
+        schema:
+          type: string
+      - description: Filter by the status of the vulnerability.
+        example: Open
+        in: query
+        name: filter[status]
+        required: false
+        schema:
+          $ref: '#/components/schemas/VulnerabilityStatus'
+      - description: Filter by the tool of the vulnerability.
+        example: SCA
+        in: query
+        name: filter[tool]
+        required: false
+        schema:
+          $ref: '#/components/schemas/VulnerabilityTool'
+      - description: Filter by library name.
+        example: linux-aws-5.15
+        in: query
+        name: filter[library.name]
+        required: false
+        schema:
+          type: string
+      - description: Filter by library version.
+        example: 5.15.0
+        in: query
+        name: filter[library.version]
+        required: false
+        schema:
+          type: string
+      - description: Filter by advisory ID.
+        example: TRIVY-CVE-2023-0615
+        in: query
+        name: filter[advisory_id]
+        required: false
+        schema:
+          type: string
+      - description: Filter by exploitation probability.
+        example: false
+        in: query
+        name: filter[risks.exploitation_probability]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter by POC exploit availability.
+        example: false
+        in: query
+        name: filter[risks.poc_exploit_available]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter by public exploit availability.
+        example: false
+        in: query
+        name: filter[risks.exploit_available]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter by vulnerability [EPSS](https://www.first.org/epss/) severity
+          score.
+        example: 0.00042
+        in: query
+        name: filter[risks.epss.score][`$op`]
+        required: false
+        schema:
+          format: double
+          maximum: 1
+          minimum: 0
+          type: number
+      - description: Filter by vulnerability [EPSS](https://www.first.org/epss/) severity.
+        example: Low
+        in: query
+        name: filter[risks.epss.severity]
+        required: false
+        schema:
+          $ref: '#/components/schemas/VulnerabilitySeverity'
+      - description: Filter by language.
+        example: ubuntu
+        in: query
+        name: filter[language]
+        required: false
+        schema:
+          type: string
+      - description: Filter by ecosystem.
+        example: Deb
+        in: query
+        name: filter[ecosystem]
+        required: false
+        schema:
+          $ref: '#/components/schemas/VulnerabilityEcosystem'
+      - description: Filter by vulnerability location.
+        example: com.example.Class:100
+        in: query
+        name: filter[code_location.location]
+        required: false
+        schema:
+          type: string
+      - description: Filter by vulnerability file path.
+        example: src/Class.java:100
+        in: query
+        name: filter[code_location.file_path]
+        required: false
+        schema:
+          type: string
+      - description: Filter by method.
+        example: FooBar
+        in: query
+        name: filter[code_location.method]
+        required: false
+        schema:
+          type: string
+      - description: Filter by fix availability.
+        example: false
+        in: query
+        name: filter[fix_available]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter by vulnerability `repo_digest` (when the vulnerability
+          is related to `Image` asset).
+        example: sha256:0ae7da091191787229d321e3638e39c319a97d6e20f927d465b519d699215bf7
+        in: query
+        name: filter[repo_digests]
+        required: false
+        schema:
+          type: string
+      - description: Filter by asset name.
+        example: datadog-agent
+        in: query
+        name: filter[asset.name]
+        required: false
+        schema:
+          type: string
+      - description: Filter by asset type.
+        example: Host
+        in: query
+        name: filter[asset.type]
+        required: false
+        schema:
+          $ref: '#/components/schemas/AssetType'
+      - description: Filter by the first version of the asset this vulnerability has
+          been detected on.
+        example: v1.15.1
+        in: query
+        name: filter[asset.version.first]
+        required: false
+        schema:
+          type: string
+      - description: Filter by the last version of the asset this vulnerability has
+          been detected on.
+        example: v1.15.1
+        in: query
+        name: filter[asset.version.last]
+        required: false
+        schema:
+          type: string
+      - description: Filter by the repository url associated to the asset.
+        example: github.com/DataDog/datadog-agent.git
+        in: query
+        name: filter[asset.repository_url]
+        required: false
+        schema:
+          type: string
+      - description: Filter whether the asset is in production or not.
+        example: false
+        in: query
+        name: filter[asset.risks.in_production]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter whether the asset is under attack or not.
+        example: false
+        in: query
+        name: filter[asset.risks.under_attack]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter whether the asset is publicly accessible or not.
+        example: false
+        in: query
+        name: filter[asset.risks.is_publicly_accessible]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter whether the asset is publicly accessible or not.
+        example: false
+        in: query
+        name: filter[asset.risks.has_privileged_access]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter whether the asset  has access to sensitive data or not.
+        example: false
+        in: query
+        name: filter[asset.risks.has_access_to_sensitive_data]
+        required: false
+        schema:
+          type: boolean
+      - description: Filter by asset environments.
+        example: staging
+        in: query
+        name: filter[asset.environments]
+        required: false
+        schema:
+          type: string
+      - description: Filter by asset architecture.
+        example: arm64
+        in: query
+        name: filter[asset.arch]
+        required: false
+        schema:
+          type: string
+      - description: Filter by asset operating system name.
+        example: ubuntu
+        in: query
+        name: filter[asset.operating_system.name]
+        required: false
+        schema:
+          type: string
+      - description: Filter by asset operating system version.
+        example: '24.04'
+        in: query
+        name: filter[asset.operating_system.version]
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVulnerabilitiesResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: 'Bad request: The server cannot process the request due to
+            invalid syntax in the request.'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: 'Forbidden: Access denied'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+          description: 'Not found: There is no request associated with the provided
+            token.'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      summary: List vulnerabilities
+      tags:
+      - Security Monitoring
+      x-unstable: '**Note**: This endpoint is a private preview.
+
+        If you are interested in accessing this API, please [fill out this form](https://forms.gle/kMYC1sDr6WDUBDsx9).'
   /api/v2/security_monitoring/cloud_workload_security/agent_rules:
     get:
       description: Get the list of Agent rules.
@@ -43346,9 +47819,6 @@ paths:
         operator: OR
         permissions:
         - usage_read
-      x-unstable: '**Note**: This endpoint is in Preview.
-
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).'
   /api/v2/usage/cost_by_org:
     get:
       deprecated: true
@@ -44610,6 +49080,27 @@ tags:
   externalDocs:
     url: https://docs.datadoghq.com/integrations/amazon_web_services/#log-collection
   name: AWS Logs Integration
+- description: "Action connections extend your installed integrations and allow you
+    to take action in your third-party systems\n(e.g. AWS, GitLab, and Statuspage)
+    with Datadog\u2019s Workflow Automation and App Builder products.\n\nDatadog\u2019s
+    Integrations automatically provide authentication for Slack, Microsoft Teams,
+    PagerDuty, Opsgenie,\nJIRA, GitHub, and Statuspage. You do not need additional
+    connections in order to access these tools within\nWorkflow Automation and App
+    Builder.\n\nWe offer granular access control for editing and resolving connections."
+  externalDocs:
+    description: Find out more at
+    url: https://docs.datadoghq.com/service_management/workflows/connections/
+  name: Action Connection
+- description: "Datadog Agentless Scanning provides visibility into risks and vulnerabilities\nwithin
+    your hosts, running containers, and serverless functions\u2014all without\nrequiring
+    teams to install Agents on every host or where Agents cannot be installed.\nGo
+    to https://www.datadoghq.com/blog/agentless-scanning/ to learn more"
+  name: Agentless Scanning
+- description: Datadog App Builder provides a low-code solution to rapidly develop
+    and integrate secure, customized applications into your monitoring stack that
+    are built to accelerate remediation at scale. These API endpoints allow you to
+    create, read, update, delete, and publish apps.
+  name: Apps
 - description: Search your Audit Logs events over HTTP.
   name: Audit
 - description: '[The AuthN Mappings API](https://docs.datadoghq.com/account_management/authn_mapping/?tab=example)
@@ -44626,6 +49117,24 @@ tags:
     [Test Visibility in Datadog page](https://docs.datadoghq.com/tests/) for more
     information.
   name: CI Visibility Tests
+- description: 'Datadog Cloud Security Management (CSM) delivers real-time threat
+    detection
+
+    and continuous configuration audits across your entire cloud infrastructure,
+
+    all in a unified view for seamless collaboration and faster remediation.
+
+    Go to https://docs.datadoghq.com/security/cloud_security_management to learn more'
+  name: CSM Agents
+- description: 'Datadog Cloud Security Management (CSM) delivers real-time threat
+    detection
+
+    and continuous configuration audits across your entire cloud infrastructure,
+
+    all in a unified view for seamless collaboration and faster remediation.
+
+    Go to https://docs.datadoghq.com/security/cloud_security_management to learn more.'
+  name: CSM Coverage Analysis
 - description: Cloud Security Management Threats (CSM Threats) monitors file, network,
     and process activity across your environment to detect real-time threats to your
     infrastructure. See [Cloud Security Management Threats](https://docs.datadoghq.com/security/threats/)
@@ -44692,10 +49201,17 @@ tags:
     end times, prevent all alerting related to specified Datadog tags.'
   name: Downtimes
 - description: 'The Event Management API allows you to programmatically post events
-    to the Events Explorer
+    to the Events Explorer and fetch events from the Events Explorer. See the [Event
+    Management page](https://docs.datadoghq.com/service_management/events/) for more
+    information.
 
-    and fetch events from the Events Explorer. See the [Event Management page](https://docs.datadoghq.com/service_management/events/)
-    for more information.'
+
+    **Update to Datadog monitor events `aggregation_key` starting March 1, 2025:**
+    The Datadog monitor events `aggregation_key` is unique to each Monitor ID. Starting
+    March 1st, this key will also include Monitor Group, making it unique per *Monitor
+    ID and Monitor Group*. If you''re using monitor events `aggregation_key` in dashboard
+    queries or the Event API, you must migrate to use `@monitor.id`. Reach out to
+    [support](https://www.datadoghq.com/support/) if you have any question.'
   name: Events
 - description: Manage your Datadog Fastly integration accounts and services directly
     through the Datadog API. See the [Fastly integration page](https://docs.datadoghq.com/integrations/fastly/)
@@ -44904,7 +49420,11 @@ tags:
     page](https://docs.datadoghq.com/account_management/org_settings/service_accounts/)
     for more information.
   name: Service Accounts
-- description: API to create, update, retrieve and delete service definitions.
+- description: 'API to create, update, retrieve and delete service definitions.
+
+    Note: Service Catalog [v3.0 schema](https://docs.datadoghq.com/service_catalog/service_definitions/v3-0/)
+    has new API endpoints documented under [Software Catalog](https://docs.datadoghq.com/api/latest/software-catalog/).
+    Use the following Service Definition endpoints for v2.2 and earlier.'
   externalDocs:
     url: https://docs.datadoghq.com/tracing/service_catalog/
   name: Service Definition

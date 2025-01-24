@@ -34,6 +34,13 @@ Feature: Monitors
     And the response "data.ok[0]" has the same value as "monitor.id"
 
   @team:DataDog/monitor-app
+  Scenario: Create a Cost Monitor returns "OK" response
+    Given new "CreateMonitor" request
+    And body with value {"name": "Example Monitor", "type": "cost alert", "query": "formula(\"exclude_null(query1)\").last(\"7d\").anomaly(direction=\"above\", threshold=10) >= 5", "message": "some message Notify: @hipchat-channel", "tags": ["test:examplemonitor", "env:ci"], "priority": 3, "options": {"thresholds": {"critical": 5, "warning": 3}, "variables": [{"data_source": "cloud_cost", "query": "sum:aws.cost.net.amortized.shared.resources.allocated{aws_product IN (amplify ,athena, backup, bedrock ) } by {aws_product}.rollup(sum, 86400)", "name": "query1", "aggregator": "sum"}], "include_tags": true}}
+    When the request is sent
+    Then the response status is 200 OK
+
+  @team:DataDog/monitor-app
   Scenario: Create a RUM formula and functions monitor returns "OK" response
     Given new "CreateMonitor" request
     And body with value {"name": "{{ unique }}","type": "rum alert","query": "formula(\"query2 / query1 * 100\").last(\"15m\") >= 0.8","message": "some message Notify: @hipchat-channel", "tags": ["test:{{ unique_lower_alnum }}", "env:ci"],"priority": 3,"options":{"thresholds":{"critical":0.8},"variables":[{"data_source": "rum","name": "query2","search": {"query": ""},"indexes": ["*"],"compute": {"aggregation": "count"},"group_by": []}, {"data_source": "rum","name": "query1","search": {"query": "status:error"},"indexes": ["*"],"compute": {"aggregation": "count"},"group_by": []}]}}
@@ -227,20 +234,20 @@ Feature: Monitors
     And the response "options.synthetics_check_id" has the same value as "synthetics_api_test.public_id"
 
   @team:DataDog/monitor-app
-  Scenario: Get all monitor details returns "Bad Request" response
+  Scenario: Get all monitors returns "Bad Request" response
     Given new "ListMonitors" request
     And request contains "group_states" parameter with value "notagroupstate"
     When the request is sent
     Then the response status is 400 Bad Request
 
   @integration-only @team:DataDog/monitor-app
-  Scenario: Get all monitor details returns "OK" response
+  Scenario: Get all monitors returns "OK" response
     Given new "ListMonitors" request
     When the request is sent
     Then the response status is 200 OK
 
   @replay-only @skip-validation @team:DataDog/monitor-app @with-pagination
-  Scenario: Get all monitor details returns "OK" response with pagination
+  Scenario: Get all monitors returns "OK" response with pagination
     Given new "ListMonitors" request
     And request contains "page_size" parameter with value 2
     When the request with pagination is sent
@@ -248,7 +255,7 @@ Feature: Monitors
     And the response has 3 items
 
   @skip @team:DataDog/monitor-app
-  Scenario: Get all monitor details with tags
+  Scenario: Get all monitors with tags
     Given there is a valid "monitor" in the system
     And new "ListMonitors" request
     And request contains "tags" parameter with value "test:{{ unique_lower_alnum }}"

@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"integration":{"credentials":{"account_id":"123456789123","role":"MyRoleUpdated","type":"AWSAssumeRole"},"type":"AWS"},"name":"Cassette Connection"},"type":"action_connection"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/actions/connections/aaa11111-aa11-aa11-aaaa-aaaaaa111111
+  response:
+    body: '{"errors":[{"title":"Generic Error","detail":"error creating connection:
+      rpc error: code = NotFound desc = connection not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

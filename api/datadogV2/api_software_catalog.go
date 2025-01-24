@@ -8,7 +8,6 @@ import (
 	_context "context"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -30,7 +29,7 @@ func (a *SoftwareCatalogApi) DeleteCatalogEntity(ctx _context.Context, entityId 
 	}
 
 	localVarPath := localBasePath + "/api/v2/catalog/entity/{entity_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"entity_id"+"}", _neturl.PathEscape(datadog.ParameterToString(entityId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{entity_id}", _neturl.PathEscape(datadog.ParameterToString(entityId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

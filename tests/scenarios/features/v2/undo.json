@@ -1,4 +1,41 @@
 {
+  "CreateActionConnection": {
+    "tag": "Action Connection",
+    "undo": {
+      "operationId": "DeleteActionConnection",
+      "parameters": [
+        {
+          "name": "connection_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteActionConnection": {
+    "tag": "Action Connection",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetActionConnection": {
+    "tag": "Action Connection",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateActionConnection": {
+    "tag": "Action Connection",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListAwsScanOptions": {
+    "tag": "Agentless Scanning",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "ListAPIKeys": {
     "tag": "Key Management",
     "undo": {
@@ -149,6 +186,61 @@
   },
   "UpdateApmRetentionFilter": {
     "tag": "APM Retention Filters",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DeleteApps": {
+    "tag": "Apps",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListApps": {
+    "tag": "Apps",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateApp": {
+    "tag": "Apps",
+    "undo": {
+      "operationId": "DeleteApp",
+      "parameters": [
+        {
+          "name": "app_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteApp": {
+    "tag": "Apps",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetApp": {
+    "tag": "Apps",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateApp": {
+    "tag": "Apps",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DisableApp": {
+    "tag": "Apps",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DeployApp": {
+    "tag": "Apps",
     "undo": {
       "type": "idempotent"
     }
@@ -470,6 +562,36 @@
   },
   "GetMonthlyCostAttribution": {
     "tag": "Usage Metering",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListAllCSMAgents": {
+    "tag": "CSM Agents",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetCSMCloudAccountsCoverageAnalysis": {
+    "tag": "CSM Coverage Analysis",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetCSMHostsAndContainersCoverageAnalysis": {
+    "tag": "CSM Coverage Analysis",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetCSMServerlessCoverageAnalysis": {
+    "tag": "CSM Coverage Analysis",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListAllCSMServerlessAgents": {
+    "tag": "CSM Agents",
     "undo": {
       "type": "safe"
     }
@@ -1927,8 +2049,26 @@
       "type": "idempotent"
     }
   },
+  "ListVulnerableAssets": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "DownloadCloudWorkloadPolicyFile": {
     "tag": "CSM Threats",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetSBOM": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListVulnerabilities": {
+    "tag": "Security Monitoring",
     "undo": {
       "type": "safe"
     }

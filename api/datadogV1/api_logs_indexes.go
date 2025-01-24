@@ -8,7 +8,6 @@ import (
 	_context "context"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -113,7 +112,7 @@ func (a *LogsIndexesApi) GetLogsIndex(ctx _context.Context, name string) (LogsIn
 	}
 
 	localVarPath := localBasePath + "/api/v1/logs/config/indexes/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(datadog.ParameterToString(name, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{name}", _neturl.PathEscape(datadog.ParameterToString(name, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -338,7 +337,7 @@ func (a *LogsIndexesApi) UpdateLogsIndex(ctx _context.Context, name string, body
 	}
 
 	localVarPath := localBasePath + "/api/v1/logs/config/indexes/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", _neturl.PathEscape(datadog.ParameterToString(name, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{name}", _neturl.PathEscape(datadog.ParameterToString(name, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
