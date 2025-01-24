@@ -14,7 +14,7 @@ import (
 type ActionConnectionData struct {
 	// The definition of `ActionConnectionAttributes` object.
 	Attributes ActionConnectionAttributes `json:"attributes"`
-	// The connection identifier
+	// The connection identifier.
 	Id *string `json:"id,omitempty"`
 	// The definition of `ActionConnectionDataType` object.
 	Type ActionConnectionDataType `json:"type"`

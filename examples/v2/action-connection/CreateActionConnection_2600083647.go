@@ -1,4 +1,4 @@
-// Create a new Action Connection returns "Successfully created an Action Connection." response
+// Create a new Action Connection returns "Successfully created Action Connection" response
 
 package main
 
@@ -15,20 +15,20 @@ import (
 func main() {
 	body := datadogV2.CreateActionConnectionRequest{
 		Data: datadogV2.ActionConnectionData{
+			Type: datadogV2.ACTIONCONNECTIONDATATYPE_ACTION_CONNECTION,
 			Attributes: datadogV2.ActionConnectionAttributes{
+				Name: "Cassette Connection DELETE_ME",
 				Integration: datadogV2.ActionConnectionIntegration{
 					AWSIntegration: &datadogV2.AWSIntegration{
+						Type: datadogV2.AWSINTEGRATIONTYPE_AWS,
 						Credentials: datadogV2.AWSCredentials{
 							AWSAssumeRole: &datadogV2.AWSAssumeRole{
-								AccountId: "111222333444",
-								Role:      "my-role",
 								Type:      datadogV2.AWSASSUMEROLETYPE_AWSASSUMEROLE,
+								Role:      "MyRoleUpdated",
+								AccountId: "123456789123",
 							}},
-						Type: datadogV2.AWSINTEGRATIONTYPE_AWS,
 					}},
-				Name: "My AWS Connection",
 			},
-			Type: datadogV2.ACTIONCONNECTIONDATATYPE_ACTION_CONNECTION,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

@@ -16,7 +16,7 @@ import (
 type ActionConnectionApi datadog.Service
 
 // CreateActionConnection Create a new Action Connection.
-// Create a new Action Connection
+// Create a new Action Connection.
 func (a *ActionConnectionApi) CreateActionConnection(ctx _context.Context, body CreateActionConnectionRequest) (CreateActionConnectionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -89,7 +89,7 @@ func (a *ActionConnectionApi) CreateActionConnection(ctx _context.Context, body 
 }
 
 // DeleteActionConnection Delete an existing Action Connection.
-// Delete an existing Action Connection
+// Delete an existing Action Connection.
 func (a *ActionConnectionApi) DeleteActionConnection(ctx _context.Context, connectionId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -150,7 +150,7 @@ func (a *ActionConnectionApi) DeleteActionConnection(ctx _context.Context, conne
 }
 
 // GetActionConnection Get an existing Action Connection.
-// Get an existing Action Connection
+// Get an existing Action Connection.
 func (a *ActionConnectionApi) GetActionConnection(ctx _context.Context, connectionId string) (GetActionConnectionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

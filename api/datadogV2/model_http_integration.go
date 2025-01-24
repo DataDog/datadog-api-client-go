@@ -12,7 +12,7 @@ import (
 
 // HTTPIntegration The definition of `HTTPIntegration` object.
 type HTTPIntegration struct {
-	// Base HTTP url for the integration
+	// Base HTTP url for the integration.
 	BaseUrl string `json:"base_url"`
 	// The definition of `HTTPCredentials` object.
 	Credentials HTTPCredentials `json:"credentials"`

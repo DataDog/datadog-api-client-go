@@ -12,7 +12,7 @@ import (
 type ActionConnectionAttributesUpdate struct {
 	// The definition of `ActionConnectionIntegrationUpdate` object.
 	Integration *ActionConnectionIntegrationUpdate `json:"integration,omitempty"`
-	// Name of the connection
+	// Name of the connection.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

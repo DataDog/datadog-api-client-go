@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateActionConnectionRequest Request used to create an action connection.
+// CreateActionConnectionRequest Request used to create an Action Connection.
 type CreateActionConnectionRequest struct {
 	// Data related to the connection.
 	Data ActionConnectionData `json:"data"`

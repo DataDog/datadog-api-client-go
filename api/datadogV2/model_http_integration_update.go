@@ -12,7 +12,7 @@ import (
 
 // HTTPIntegrationUpdate The definition of `HTTPIntegrationUpdate` object.
 type HTTPIntegrationUpdate struct {
-	// Base HTTP url for the integration
+	// Base HTTP url for the integration.
 	BaseUrl *string `json:"base_url,omitempty"`
 	// The definition of `HTTPCredentialsUpdate` object.
 	Credentials *HTTPCredentialsUpdate `json:"credentials,omitempty"`
