@@ -65,16 +65,16 @@
 <span id="L8" class="ln">     8  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L9" class="ln">     9  </span>)
 <span id="L10" class="ln">    10  </span>
-<span id="L11" class="ln">    11  </span><span class="comment">// UpdateAppResponse The definition of `UpdateAppResponse` object.</span>
+<span id="L11" class="ln">    11  </span><span class="comment">// UpdateAppResponse The response object after an app is successfully updated.</span>
 <span id="L12" class="ln">    12  </span>type UpdateAppResponse struct {
-<span id="L13" class="ln">    13  </span>	<span class="comment">// The definition of `UpdateAppResponseData` object.</span>
+<span id="L13" class="ln">    13  </span>	<span class="comment">// The data object containing the updated app definition.</span>
 <span id="L14" class="ln">    14  </span>	Data *UpdateAppResponseData `json:&#34;data,omitempty&#34;`
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The `UpdateAppResponse` `included`.</span>
-<span id="L16" class="ln">    16  </span>	Included []DeploymentIncluded `json:&#34;included,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// The definition of `AppMeta` object.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Data on the version of the app that was published.</span>
+<span id="L16" class="ln">    16  </span>	Included []Deployment `json:&#34;included,omitempty&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Metadata of an app.</span>
 <span id="L18" class="ln">    18  </span>	Meta *AppMeta `json:&#34;meta,omitempty&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// The definition of `UpdateAppResponseRelationship` object.</span>
-<span id="L20" class="ln">    20  </span>	Relationship *UpdateAppResponseRelationship `json:&#34;relationship,omitempty&#34;`
+<span id="L19" class="ln">    19  </span>	<span class="comment">// The app&#39;s publication relationship and custom connections.</span>
+<span id="L20" class="ln">    20  </span>	Relationship *AppRelationship `json:&#34;relationship,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L22" class="ln">    22  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L23" class="ln">    23  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -126,9 +126,9 @@
 <span id="L69" class="ln">    69  </span>}
 <span id="L70" class="ln">    70  </span>
 <span id="L71" class="ln">    71  </span><span class="comment">// GetIncluded returns the Included field value if set, zero value otherwise.</span>
-<span id="L72" class="ln">    72  </span>func (o *UpdateAppResponse) GetIncluded() []DeploymentIncluded {
+<span id="L72" class="ln">    72  </span>func (o *UpdateAppResponse) GetIncluded() []Deployment {
 <span id="L73" class="ln">    73  </span>	if o == nil || o.Included == nil {
-<span id="L74" class="ln">    74  </span>		var ret []DeploymentIncluded
+<span id="L74" class="ln">    74  </span>		var ret []Deployment
 <span id="L75" class="ln">    75  </span>		return ret
 <span id="L76" class="ln">    76  </span>	}
 <span id="L77" class="ln">    77  </span>	return o.Included
@@ -136,7 +136,7 @@
 <span id="L79" class="ln">    79  </span>
 <span id="L80" class="ln">    80  </span><span class="comment">// GetIncludedOk returns a tuple with the Included field value if set, nil otherwise</span>
 <span id="L81" class="ln">    81  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L82" class="ln">    82  </span>func (o *UpdateAppResponse) GetIncludedOk() (*[]DeploymentIncluded, bool) {
+<span id="L82" class="ln">    82  </span>func (o *UpdateAppResponse) GetIncludedOk() (*[]Deployment, bool) {
 <span id="L83" class="ln">    83  </span>	if o == nil || o.Included == nil {
 <span id="L84" class="ln">    84  </span>		return nil, false
 <span id="L85" class="ln">    85  </span>	}
@@ -148,8 +148,8 @@
 <span id="L91" class="ln">    91  </span>	return o != nil &amp;&amp; o.Included != nil
 <span id="L92" class="ln">    92  </span>}
 <span id="L93" class="ln">    93  </span>
-<span id="L94" class="ln">    94  </span><span class="comment">// SetIncluded gets a reference to the given []DeploymentIncluded and assigns it to the Included field.</span>
-<span id="L95" class="ln">    95  </span>func (o *UpdateAppResponse) SetIncluded(v []DeploymentIncluded) {
+<span id="L94" class="ln">    94  </span><span class="comment">// SetIncluded gets a reference to the given []Deployment and assigns it to the Included field.</span>
+<span id="L95" class="ln">    95  </span>func (o *UpdateAppResponse) SetIncluded(v []Deployment) {
 <span id="L96" class="ln">    96  </span>	o.Included = v
 <span id="L97" class="ln">    97  </span>}
 <span id="L98" class="ln">    98  </span>
@@ -182,9 +182,9 @@
 <span id="L125" class="ln">   125  </span>}
 <span id="L126" class="ln">   126  </span>
 <span id="L127" class="ln">   127  </span><span class="comment">// GetRelationship returns the Relationship field value if set, zero value otherwise.</span>
-<span id="L128" class="ln">   128  </span>func (o *UpdateAppResponse) GetRelationship() UpdateAppResponseRelationship {
+<span id="L128" class="ln">   128  </span>func (o *UpdateAppResponse) GetRelationship() AppRelationship {
 <span id="L129" class="ln">   129  </span>	if o == nil || o.Relationship == nil {
-<span id="L130" class="ln">   130  </span>		var ret UpdateAppResponseRelationship
+<span id="L130" class="ln">   130  </span>		var ret AppRelationship
 <span id="L131" class="ln">   131  </span>		return ret
 <span id="L132" class="ln">   132  </span>	}
 <span id="L133" class="ln">   133  </span>	return *o.Relationship
@@ -192,7 +192,7 @@
 <span id="L135" class="ln">   135  </span>
 <span id="L136" class="ln">   136  </span><span class="comment">// GetRelationshipOk returns a tuple with the Relationship field value if set, nil otherwise</span>
 <span id="L137" class="ln">   137  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L138" class="ln">   138  </span>func (o *UpdateAppResponse) GetRelationshipOk() (*UpdateAppResponseRelationship, bool) {
+<span id="L138" class="ln">   138  </span>func (o *UpdateAppResponse) GetRelationshipOk() (*AppRelationship, bool) {
 <span id="L139" class="ln">   139  </span>	if o == nil || o.Relationship == nil {
 <span id="L140" class="ln">   140  </span>		return nil, false
 <span id="L141" class="ln">   141  </span>	}
@@ -204,8 +204,8 @@
 <span id="L147" class="ln">   147  </span>	return o != nil &amp;&amp; o.Relationship != nil
 <span id="L148" class="ln">   148  </span>}
 <span id="L149" class="ln">   149  </span>
-<span id="L150" class="ln">   150  </span><span class="comment">// SetRelationship gets a reference to the given UpdateAppResponseRelationship and assigns it to the Relationship field.</span>
-<span id="L151" class="ln">   151  </span>func (o *UpdateAppResponse) SetRelationship(v UpdateAppResponseRelationship) {
+<span id="L150" class="ln">   150  </span><span class="comment">// SetRelationship gets a reference to the given AppRelationship and assigns it to the Relationship field.</span>
+<span id="L151" class="ln">   151  </span>func (o *UpdateAppResponse) SetRelationship(v AppRelationship) {
 <span id="L152" class="ln">   152  </span>	o.Relationship = &amp;v
 <span id="L153" class="ln">   153  </span>}
 <span id="L154" class="ln">   154  </span>
@@ -237,10 +237,10 @@
 <span id="L180" class="ln">   180  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L181" class="ln">   181  </span>func (o *UpdateAppResponse) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L182" class="ln">   182  </span>	all := struct {
-<span id="L183" class="ln">   183  </span>		Data         *UpdateAppResponseData         `json:&#34;data,omitempty&#34;`
-<span id="L184" class="ln">   184  </span>		Included     []DeploymentIncluded           `json:&#34;included,omitempty&#34;`
-<span id="L185" class="ln">   185  </span>		Meta         *AppMeta                       `json:&#34;meta,omitempty&#34;`
-<span id="L186" class="ln">   186  </span>		Relationship *UpdateAppResponseRelationship `json:&#34;relationship,omitempty&#34;`
+<span id="L183" class="ln">   183  </span>		Data         *UpdateAppResponseData `json:&#34;data,omitempty&#34;`
+<span id="L184" class="ln">   184  </span>		Included     []Deployment           `json:&#34;included,omitempty&#34;`
+<span id="L185" class="ln">   185  </span>		Meta         *AppMeta               `json:&#34;meta,omitempty&#34;`
+<span id="L186" class="ln">   186  </span>		Relationship *AppRelationship       `json:&#34;relationship,omitempty&#34;`
 <span id="L187" class="ln">   187  </span>	}{}
 <span id="L188" class="ln">   188  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L189" class="ln">   189  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
