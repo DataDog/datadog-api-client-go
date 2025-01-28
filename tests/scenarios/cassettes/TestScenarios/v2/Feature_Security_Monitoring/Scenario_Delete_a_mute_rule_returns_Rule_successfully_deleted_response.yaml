@@ -1,0 +1,55 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"action":{"reason":"duplicate"},"enabled":true,"name":"Test-Delete_a_mute_rule_returns_Rule_successfully_deleted_response-1738076183","rule":{"issue_type":"vulnerability","query":"","rule_ids":[],"rule_types":["misconfiguration","attack_path"],"severities":["critical"]}},"type":"mute_rules"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security/vulnerabilities/pipelines/mute_rules
+  response:
+    body: '{"data":{"id":"8b2eba88-d569-457c-a257-81dca506a008","type":"mute_rules","attributes":{"action":{"reason":"duplicate"},"created_at":1738076183701,"created_by":{"name":"frog","handle":"frog@datadoghq.com"},"enabled":true,"modified_at":1738076183701,"modified_by":{"name":"frog","handle":"frog@datadoghq.com"},"name":"Test-Delete_a_mute_rule_returns_Rule_successfully_deleted_response-1738076183","rule":{"issue_type":"vulnerability","rule_types":["misconfiguration","attack_path"],"rule_ids":[],"query":"","severities":["critical"]}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security/vulnerabilities/pipelines/mute_rules/8b2eba88-d569-457c-a257-81dca506a008
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security/vulnerabilities/pipelines/mute_rules/8b2eba88-d569-457c-a257-81dca506a008
+  response:
+    body: '{"errors":[{"status":"404","title":"Not Found","detail":"Rule does not
+      exist"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

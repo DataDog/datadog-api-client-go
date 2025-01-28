@@ -1,0 +1,54 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"action":{"reason":"duplicate"},"enabled":true,"name":"Test-Get_details_of_a_mute_rule_returns_Mute_rule_details_response-1738076204","rule":{"issue_type":"vulnerability","query":"","rule_ids":[],"rule_types":["misconfiguration","attack_path"],"severities":["critical"]}},"type":"mute_rules"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security/vulnerabilities/pipelines/mute_rules
+  response:
+    body: '{"data":{"id":"4c45a22e-76c1-4dd8-b0a4-b759c69f12b5","type":"mute_rules","attributes":{"action":{"reason":"duplicate"},"created_at":1738076205227,"created_by":{"name":"frog","handle":"frog@datadoghq.com"},"enabled":true,"modified_at":1738076205227,"modified_by":{"name":"frog","handle":"frog@datadoghq.com"},"name":"Test-Get_details_of_a_mute_rule_returns_Mute_rule_details_response-1738076204","rule":{"issue_type":"vulnerability","rule_types":["misconfiguration","attack_path"],"rule_ids":[],"query":"","severities":["critical"]}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 1
+    method: GET
+    url: https://api.datadoghq.com/api/v2/security/vulnerabilities/pipelines/mute_rules/4c45a22e-76c1-4dd8-b0a4-b759c69f12b5
+  response:
+    body: '{"data":{"id":"4c45a22e-76c1-4dd8-b0a4-b759c69f12b5","type":"mute_rules","attributes":{"action":{"reason":"duplicate"},"created_at":1738076205227,"created_by":{"name":"frog","handle":"frog@datadoghq.com"},"enabled":true,"modified_at":1738076205227,"modified_by":{"name":"frog","handle":"frog@datadoghq.com"},"name":"Test-Get_details_of_a_mute_rule_returns_Mute_rule_details_response-1738076204","rule":{"issue_type":"vulnerability","rule_types":["misconfiguration","attack_path"],"rule_ids":[],"query":"","severities":["critical"]}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security/vulnerabilities/pipelines/mute_rules/4c45a22e-76c1-4dd8-b0a4-b759c69f12b5
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
