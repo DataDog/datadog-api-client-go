@@ -1,0 +1,54 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"enabled":true,"name":"Test-Delete_a_signal_based_rule_returns_Rule_successfully_deleted_response-1737539405","selectors":{"query":"env:test","rule_types":["signal_correlation"],"severities":["critical"],"trigger_source":"security_signals"},"targets":["@email@email.com"]},"type":"notification_rules"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security/signals/notification_rules
+  response:
+    body: '{"data":{"id":"ukc-0jn-maf","type":"notification_rules","attributes":{"created_at":1737539405540,"created_by":{"name":"frog","handle":"frog@datadoghq.com"},"enabled":true,"modified_at":1737539405540,"modified_by":{"name":"frog","handle":"frog@datadoghq.com"},"name":"Test-Delete_a_signal_based_rule_returns_Rule_successfully_deleted_response-1737539405","selectors":{"severities":["critical"],"rule_types":["signal_correlation"],"query":"env:test","trigger_source":"security_signals"},"targets":["@email@email.com"],"time_aggregation":0,"version":1}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security/signals/notification_rules/ukc-0jn-maf
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security/signals/notification_rules/ukc-0jn-maf
+  response:
+    body: '{"errors":["not_found(Notification rule with id ''ukc-0jn-maf'' not found)"]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 2

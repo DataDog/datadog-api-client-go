@@ -794,6 +794,17 @@ components:
           schema:
             $ref: '#/components/schemas/APIErrorResponse'
       description: Not Found
+    NotificationRulesList:
+      content:
+        application/json:
+          schema:
+            properties:
+              data:
+                items:
+                  $ref: '#/components/schemas/NotificationRule'
+                type: array
+            type: object
+      description: The list of notification rules.
     PreconditionFailedResponse:
       content:
         application/json:
@@ -836,6 +847,13 @@ components:
           schema:
             $ref: '#/components/schemas/APIErrorResponse'
       description: Unauthorized
+    UnprocessableEntityResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIErrorResponse'
+      description: The server cannot process the request because it contains invalid
+        data.
   schemas:
     APIErrorResponse:
       description: API error response.
@@ -1806,7 +1824,8 @@ components:
       - apm_retention_filter
     AppBuilderEvent:
       additionalProperties: {}
-      description: The definition of `AppBuilderEvent` object.
+      description: An event on a UI component that triggers a response or action in
+        an app.
       properties:
         name:
           $ref: '#/components/schemas/AppBuilderEventName'
@@ -1826,6 +1845,7 @@ components:
       - close
       - open
       - executionFinished
+      example: click
       type: string
       x-enum-varnames:
       - PAGECHANGE
@@ -1849,6 +1869,7 @@ components:
       - openUrl
       - downloadFile
       - setStateVariableValue
+      example: triggerQuery
       type: string
       x-enum-varnames:
       - CUSTOM
@@ -1859,43 +1880,76 @@ components:
       - OPENURL
       - DOWNLOADFILE
       - SETSTATEVARIABLEVALUE
+    AppDefinitionType:
+      default: appDefinitions
+      description: The app definition type.
+      enum:
+      - appDefinitions
+      example: appDefinitions
+      type: string
+      x-enum-varnames:
+      - APPDEFINITIONS
+    AppDeploymentType:
+      default: deployment
+      description: The deployment type.
+      enum:
+      - deployment
+      example: deployment
+      type: string
+      x-enum-varnames:
+      - DEPLOYMENT
     AppMeta:
-      description: The definition of `AppMeta` object.
+      description: Metadata of an app.
       properties:
         created_at:
-          description: The `AppMeta` `created_at`.
+          description: Timestamp of when the app was created.
+          format: date-time
           type: string
         deleted_at:
-          description: The `AppMeta` `deleted_at`.
+          description: Timestamp of when the app was deleted.
+          format: date-time
           type: string
         org_id:
-          description: The `AppMeta` `org_id`.
+          description: The Datadog organization ID that owns the app.
           format: int64
           type: integer
-        run_as_user:
-          description: The `AppMeta` `run_as_user`.
-          type: string
         updated_at:
-          description: The `AppMeta` `updated_at`.
+          description: Timestamp of when the app was last updated.
+          format: date-time
           type: string
         updated_since_deployment:
-          description: The `AppMeta` `updated_since_deployment`.
+          description: Whether the app was updated since it was last published. Published
+            apps are pinned to a specific version and do not automatically update
+            when the app is updated.
           type: boolean
         user_id:
-          description: The `AppMeta` `user_id`.
+          description: The ID of the user who created the app.
           format: int64
           type: integer
         user_name:
-          description: The `AppMeta` `user_name`.
+          description: The name (or email address) of the user who created the app.
           type: string
         user_uuid:
-          description: The `AppMeta` `user_uuid`.
+          description: The UUID of the user who created the app.
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
           format: uuid
           type: string
         version:
-          description: The `AppMeta` `version`.
+          description: The version number of the app. This starts at 1 and increments
+            with each update.
           format: int64
           type: integer
+      type: object
+    AppRelationship:
+      description: The app's publication relationship and custom connections.
+      properties:
+        connections:
+          description: Array of custom connections used by the app.
+          items:
+            $ref: '#/components/schemas/CustomConnection'
+          type: array
+        deployment:
+          $ref: '#/components/schemas/DeploymentRelationship'
       type: object
     ApplicationKeyCreateAttributes:
       description: Attributes used to create an application Key.
@@ -2059,6 +2113,7 @@ components:
       - -created_at
       - -updated_at
       - -user_name
+      example: -created_at
       type: string
       x-enum-varnames:
       - NAME
@@ -6048,19 +6103,21 @@ components:
       - location
       type: object
     Component:
-      description: The definition of `Component` object.
+      description: '[Definition of a UI component in the app](https://docs.datadoghq.com/service_management/app_builder/components/)'
       properties:
         events:
-          description: The `Component` `events`.
+          description: Events to listen for on the UI component.
           items:
             $ref: '#/components/schemas/AppBuilderEvent'
           type: array
         id:
-          description: The `Component` `id`.
+          description: The ID of the UI component. This property is deprecated; use
+            `name` to identify individual components instead.
           nullable: true
           type: string
         name:
-          description: The `Component` `name`.
+          description: A unique identifier for this UI component. This name is also
+            visible in the app editor.
           example: ''
           type: string
         properties:
@@ -6073,18 +6130,21 @@ components:
       - properties
       type: object
     ComponentGrid:
-      description: The definition of `ComponentGrid` object.
+      description: A grid component. The grid component is the root canvas for an
+        app and contains all other components.
       properties:
         events:
-          description: The `ComponentGrid` `events`.
+          description: Events to listen for on the grid component.
           items:
             $ref: '#/components/schemas/AppBuilderEvent'
           type: array
         id:
-          description: The `ComponentGrid` `id`.
+          description: The ID of the grid component. This property is deprecated;
+            use `name` to identify individual components instead.
           type: string
         name:
-          description: The `ComponentGrid` `name`.
+          description: A unique identifier for this grid component. This name is also
+            visible in the app editor.
           example: ''
           type: string
         properties:
@@ -6097,14 +6157,14 @@ components:
       - properties
       type: object
     ComponentGridProperties:
-      description: The definition of `ComponentGridProperties` object.
+      description: Properties of a grid component.
       properties:
         backgroundColor:
           default: default
-          description: The `ComponentGridProperties` `backgroundColor`.
+          description: The background color of the grid.
           type: string
         children:
-          description: The `ComponentGridProperties` `children`.
+          description: The child components of the grid.
           items:
             $ref: '#/components/schemas/Component'
           type: array
@@ -6112,13 +6172,15 @@ components:
           $ref: '#/components/schemas/ComponentGridPropertiesIsVisible'
       type: object
     ComponentGridPropertiesIsVisible:
-      description: The definition of `ComponentGridPropertiesIsVisible` object.
+      description: Whether the grid component and its children are visible. If a string,
+        it must be a valid JavaScript expression that evaluates to a boolean.
       oneOf:
       - type: string
       - default: true
         type: boolean
     ComponentGridType:
-      description: The definition of `ComponentGridType` object.
+      default: grid
+      description: The grid component type.
       enum:
       - grid
       example: grid
@@ -6127,10 +6189,12 @@ components:
       - GRID
     ComponentProperties:
       additionalProperties: {}
-      description: The definition of `ComponentProperties` object.
+      description: Properties of a UI component. Different component types can have
+        their own additional unique properties. See the [components documentation](https://docs.datadoghq.com/service_management/app_builder/components/)
+        for more detail on each component type and its properties.
       properties:
         children:
-          description: The `ComponentProperties` `children`.
+          description: The child components of the UI component.
           items:
             $ref: '#/components/schemas/Component'
           type: array
@@ -6138,15 +6202,16 @@ components:
           $ref: '#/components/schemas/ComponentPropertiesIsVisible'
       type: object
     ComponentPropertiesIsVisible:
-      description: The definition of `ComponentPropertiesIsVisible` object.
+      description: Whether the UI component is visible. If this is a string, it must
+        be a valid JavaScript expression that evaluates to a boolean.
       oneOf:
       - type: boolean
-      - description: If a string, it should be a valid JavaScript expression that
-          evaluates to a boolean.
+      - description: If this is a string, it must be a valid JavaScript expression
+          that evaluates to a boolean.
         example: ${true}
         type: string
     ComponentType:
-      description: The definition of `ComponentType` object.
+      description: The UI component type.
       enum:
       - table
       - textInput
@@ -6168,7 +6233,7 @@ components:
       - search
       - container
       - calloutValue
-      example: table
+      example: text
       type: string
       x-enum-varnames:
       - TABLE
@@ -7207,7 +7272,7 @@ components:
           $ref: '#/components/schemas/ActionConnectionData'
       type: object
     CreateAppRequest:
-      description: The definition of `CreateAppRequest` object.
+      description: A request object for creating a new app.
       example:
         data:
           attributes:
@@ -7251,87 +7316,70 @@ components:
           $ref: '#/components/schemas/CreateAppRequestData'
       type: object
     CreateAppRequestData:
-      description: The definition of `CreateAppRequestData` object.
+      description: The data object containing the app definition.
       properties:
         attributes:
           $ref: '#/components/schemas/CreateAppRequestDataAttributes'
         type:
-          $ref: '#/components/schemas/CreateAppRequestDataType'
+          $ref: '#/components/schemas/AppDefinitionType'
       required:
       - type
       type: object
     CreateAppRequestDataAttributes:
-      description: The definition of `CreateAppRequestDataAttributes` object.
+      description: App definition attributes such as name, description, and components.
       properties:
         components:
-          description: The `attributes` `components`.
+          description: The UI components that make up the app.
           items:
             $ref: '#/components/schemas/ComponentGrid'
           type: array
         description:
-          description: The `attributes` `description`.
+          description: A human-readable description for the app.
           type: string
         embeddedQueries:
-          description: The `attributes` `embeddedQueries`.
+          description: An array of queries, such as external actions and state variables,
+            that the app uses.
           items:
             $ref: '#/components/schemas/Query'
           type: array
-        inputSchema:
-          $ref: '#/components/schemas/InputSchema'
         name:
-          description: The `attributes` `name`.
+          description: The name of the app.
           type: string
         rootInstanceName:
-          description: The `attributes` `rootInstanceName`.
+          description: The name of the root component of the app. This must be a `grid`
+            component that contains all other components.
           type: string
-        scripts:
-          description: The `attributes` `scripts`.
-          items:
-            $ref: '#/components/schemas/Script'
-          type: array
         tags:
-          description: The `attributes` `tags`.
+          description: A list of tags for the app, which can be used to filter apps.
+          example:
+          - service:webshop-backend
+          - team:webshop
           items:
+            description: An individual tag for the app.
             type: string
           type: array
       type: object
-    CreateAppRequestDataType:
-      default: appDefinitions
-      description: The definition of `CreateAppRequestDataType` object.
-      enum:
-      - appDefinitions
-      example: appDefinitions
-      type: string
-      x-enum-varnames:
-      - APPDEFINITIONS
     CreateAppResponse:
-      description: The definition of `CreateAppResponse` object.
+      description: The response object after a new app is successfully created, with
+        the app ID.
       properties:
         data:
           $ref: '#/components/schemas/CreateAppResponseData'
       type: object
     CreateAppResponseData:
-      description: The definition of `CreateAppResponseData` object.
+      description: The data object containing the app ID.
       properties:
         id:
-          description: The `data` `id`.
-          example: ''
+          description: The ID of the created app.
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+          format: uuid
           type: string
         type:
-          $ref: '#/components/schemas/CreateAppResponseDataType'
+          $ref: '#/components/schemas/AppDefinitionType'
       required:
       - id
       - type
       type: object
-    CreateAppResponseDataType:
-      default: appDefinitions
-      description: The definition of `CreateAppResponseDataType` object.
-      enum:
-      - appDefinitions
-      example: appDefinitions
-      type: string
-      x-enum-varnames:
-      - APPDEFINITIONS
     CreateDataDeletionRequestBody:
       description: Object needed to create a data deletion request.
       properties:
@@ -7402,6 +7450,42 @@ components:
           $ref: '#/components/schemas/DataDeletionResponseItem'
         meta:
           $ref: '#/components/schemas/DataDeletionResponseMeta'
+      type: object
+    CreateNotificationRuleParameters:
+      description: Body of the notification rule create request.
+      properties:
+        data:
+          $ref: '#/components/schemas/CreateNotificationRuleParametersData'
+      type: object
+    CreateNotificationRuleParametersData:
+      description: 'Data of the notification rule create request: the rule type, and
+        the rule attributes. All fields are required.'
+      properties:
+        attributes:
+          $ref: '#/components/schemas/CreateNotificationRuleParametersDataAttributes'
+        type:
+          $ref: '#/components/schemas/NotificationRulesType'
+      required:
+      - attributes
+      - type
+      type: object
+    CreateNotificationRuleParametersDataAttributes:
+      description: Attributes of the notification rule create request.
+      properties:
+        enabled:
+          $ref: '#/components/schemas/Enabled'
+        name:
+          $ref: '#/components/schemas/RuleName'
+        selectors:
+          $ref: '#/components/schemas/Selectors'
+        targets:
+          $ref: '#/components/schemas/Targets'
+        time_aggregation:
+          $ref: '#/components/schemas/TimeAggregation'
+      required:
+      - selectors
+      - name
+      - targets
       type: object
     CreateOpenAPIResponse:
       description: Response for `CreateOpenAPI` operation.
@@ -7697,40 +7781,44 @@ components:
           $ref: '#/components/schemas/CsmServerlessCoverageAnalysisData'
       type: object
     CustomConnection:
-      description: The definition of `CustomConnection` object.
+      description: A custom connection used by an app.
       properties:
         attributes:
           $ref: '#/components/schemas/CustomConnectionAttributes'
         id:
-          description: The `CustomConnection` `id`.
+          description: The ID of the custom connection.
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+          format: uuid
           type: string
         type:
           $ref: '#/components/schemas/CustomConnectionType'
       type: object
     CustomConnectionAttributes:
-      description: The definition of `CustomConnectionAttributes` object.
+      description: The custom connection attributes.
       properties:
         name:
-          description: The `attributes` `name`.
+          description: The name of the custom connection.
           type: string
         onPremRunner:
           $ref: '#/components/schemas/CustomConnectionAttributesOnPremRunner'
       type: object
     CustomConnectionAttributesOnPremRunner:
-      description: The definition of `CustomConnectionAttributesOnPremRunner` object.
+      description: Information about the Private Action Runner used by the custom
+        connection, if the custom connection is associated with a Private Action Runner.
       properties:
         id:
-          description: The `onPremRunner` `id`.
+          description: The Private Action Runner ID.
           type: string
         url:
-          description: The `onPremRunner` `url`.
+          description: The URL of the Private Action Runner.
           type: string
       type: object
     CustomConnectionType:
       default: custom_connections
-      description: The definition of `CustomConnectionType` object.
+      description: The custom connection type.
       enum:
       - custom_connections
+      example: custom_connections
       type: string
       x-enum-varnames:
       - CUSTOM_CONNECTIONS
@@ -9115,8 +9203,13 @@ components:
             type: number
           type: array
       type: object
+    Date:
+      description: Date as Unix timestamp in milliseconds.
+      example: 1722439510282
+      format: int64
+      type: integer
     DeleteAppResponse:
-      description: The definition of `DeleteAppResponse` object.
+      description: The response object after an app is successfully deleted.
       properties:
         data:
           $ref: '#/components/schemas/DeleteAppResponseData'
@@ -9125,94 +9218,70 @@ components:
       description: The definition of `DeleteAppResponseData` object.
       properties:
         id:
-          description: The `data` `id`.
-          example: ''
+          description: The ID of the deleted app.
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+          format: uuid
           type: string
         type:
-          $ref: '#/components/schemas/DeleteAppResponseDataType'
+          $ref: '#/components/schemas/AppDefinitionType'
       required:
       - id
       - type
       type: object
-    DeleteAppResponseDataType:
-      default: appDefinitions
-      description: The definition of `DeleteAppResponseDataType` object.
-      enum:
-      - appDefinitions
-      example: appDefinitions
-      type: string
-      x-enum-varnames:
-      - APPDEFINITIONS
     DeleteAppsRequest:
-      description: The definition of `DeleteAppsRequest` object.
+      description: A request object for deleting multiple apps by ID.
       example:
         data:
-        - id: 29494ddd-ac13-46a7-8558-b05b050ee755
+        - id: aea2ed17-b45f-40d0-ba59-c86b7972c901
           type: appDefinitions
-        - id: 71c0d358-eac5-41e3-892d-a7467571b9b0
+        - id: f69bb8be-6168-4fe7-a30d-370256b6504a
           type: appDefinitions
-        - id: 98e7e44d-1562-474a-90f7-3a94e739c006
+        - id: ab1ed73e-13ad-4426-b0df-a0ff8876a088
           type: appDefinitions
       properties:
         data:
-          description: The `DeleteAppsRequest` `data`.
+          description: An array of objects containing the IDs of the apps to delete.
           items:
             $ref: '#/components/schemas/DeleteAppsRequestDataItems'
           type: array
       type: object
     DeleteAppsRequestDataItems:
-      description: The definition of `DeleteAppsRequestDataItems` object.
+      description: An object containing the ID of an app to delete.
       properties:
         id:
-          description: The `items` `id`.
-          example: ''
+          description: The ID of the app to delete.
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+          format: uuid
           type: string
         type:
-          $ref: '#/components/schemas/DeleteAppsRequestDataItemsType'
+          $ref: '#/components/schemas/AppDefinitionType'
       required:
       - id
       - type
       type: object
-    DeleteAppsRequestDataItemsType:
-      default: appDefinitions
-      description: The definition of `DeleteAppsRequestDataItemsType` object.
-      enum:
-      - appDefinitions
-      example: appDefinitions
-      type: string
-      x-enum-varnames:
-      - APPDEFINITIONS
     DeleteAppsResponse:
-      description: The definition of `DeleteAppsResponse` object.
+      description: The response object after multiple apps are successfully deleted.
       properties:
         data:
-          description: The `DeleteAppsResponse` `data`.
+          description: An array of objects containing the IDs of the deleted apps.
           items:
             $ref: '#/components/schemas/DeleteAppsResponseDataItems'
           type: array
       type: object
     DeleteAppsResponseDataItems:
-      description: The definition of `DeleteAppsResponseDataItems` object.
+      description: An object containing the ID of a deleted app.
       properties:
         id:
-          description: The `items` `id`.
-          example: ''
+          description: The ID of the deleted app.
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+          format: uuid
           type: string
         type:
-          $ref: '#/components/schemas/DeleteAppsResponseDataItemsType'
+          $ref: '#/components/schemas/AppDefinitionType'
       required:
       - id
       - type
       type: object
-    DeleteAppsResponseDataItemsType:
-      default: appDefinitions
-      description: The definition of `DeleteAppsResponseDataItemsType` object.
-      enum:
-      - appDefinitions
-      example: appDefinitions
-      type: string
-      x-enum-varnames:
-      - APPDEFINITIONS
     DependencyLocation:
       description: Static library vulnerability location.
       properties:
@@ -9247,175 +9316,71 @@ components:
       - column_start
       - column_end
       type: object
-    DeployAppResponse:
-      description: The definition of `DeployAppResponse` object.
-      properties:
-        data:
-          $ref: '#/components/schemas/DeployAppResponseData'
-      type: object
-    DeployAppResponseData:
-      description: The definition of `DeployAppResponseData` object.
-      properties:
-        attributes:
-          $ref: '#/components/schemas/DeployAppResponseDataAttributes'
-        id:
-          description: The `data` `id`.
-          type: string
-        meta:
-          $ref: '#/components/schemas/DeploymentMeta'
-        type:
-          $ref: '#/components/schemas/DeployAppResponseDataType'
-      type: object
-    DeployAppResponseDataAttributes:
-      description: The definition of `DeployAppResponseDataAttributes` object.
-      properties:
-        app_version_id:
-          description: The `attributes` `app_version_id`.
-          type: string
-      type: object
-    DeployAppResponseDataType:
-      default: deployment
-      description: The definition of `DeployAppResponseDataType` object.
-      enum:
-      - deployment
-      type: string
-      x-enum-varnames:
-      - DEPLOYMENT
     Deployment:
-      description: The definition of `Deployment` object.
+      description: The version of the app that was published.
       properties:
         attributes:
           $ref: '#/components/schemas/DeploymentAttributes'
         id:
-          description: The `Deployment` `id`.
+          description: The deployment ID.
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+          format: uuid
           type: string
         meta:
-          $ref: '#/components/schemas/DeploymentMeta'
+          $ref: '#/components/schemas/DeploymentMetadata'
         type:
-          $ref: '#/components/schemas/DeploymentType'
+          $ref: '#/components/schemas/AppDeploymentType'
       type: object
     DeploymentAttributes:
-      description: The definition of `DeploymentAttributes` object.
+      description: The attributes object containing the version ID of the published
+        app.
       properties:
         app_version_id:
-          description: The `attributes` `app_version_id`.
-          type: string
-      type: object
-    DeploymentIncluded:
-      description: The definition of `DeploymentIncluded` object.
-      properties:
-        attributes:
-          $ref: '#/components/schemas/DeploymentIncludedAttributes'
-        id:
-          description: The `DeploymentIncluded` `id`.
-          type: string
-        meta:
-          $ref: '#/components/schemas/DeploymentIncludedMeta'
-        type:
-          $ref: '#/components/schemas/DeploymentIncludedType'
-      type: object
-    DeploymentIncludedAttributes:
-      description: The definition of `DeploymentIncludedAttributes` object.
-      properties:
-        app_version_id:
-          description: The `attributes` `app_version_id`.
-          type: string
-      type: object
-    DeploymentIncludedMeta:
-      description: The definition of `DeploymentIncludedMeta` object.
-      properties:
-        created_at:
-          description: The `meta` `created_at`.
-          type: string
-        user_id:
-          description: The `meta` `user_id`.
-          format: int64
-          type: integer
-        user_name:
-          description: The `meta` `user_name`.
-          type: string
-        user_uuid:
-          description: The `meta` `user_uuid`.
+          description: The version ID of the app that was published. For an unpublished
+            app, this is always the nil UUID (`00000000-0000-0000-0000-000000000000`).
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
           format: uuid
           type: string
       type: object
-    DeploymentIncludedType:
-      default: deployment
-      description: The definition of `DeploymentIncludedType` object.
-      enum:
-      - deployment
-      type: string
-      x-enum-varnames:
-      - DEPLOYMENT
-    DeploymentMeta:
-      description: The definition of `DeploymentMeta` object.
+    DeploymentMetadata:
+      description: Metadata object containing the publication creation information.
       properties:
         created_at:
-          description: The `DeploymentMeta` `created_at`.
+          description: Timestamp of when the app was published.
+          format: date-time
           type: string
         user_id:
-          description: The `DeploymentMeta` `user_id`.
+          description: The ID of the user who published the app.
           format: int64
           type: integer
         user_name:
-          description: The `DeploymentMeta` `user_name`.
+          description: The name (or email address) of the user who published the app.
           type: string
         user_uuid:
-          description: The `DeploymentMeta` `user_uuid`.
+          description: The UUID of the user who published the app.
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
           format: uuid
           type: string
       type: object
     DeploymentRelationship:
-      description: The definition of `DeploymentRelationship` object.
+      description: Information pointing to the app's publication status.
       properties:
         data:
           $ref: '#/components/schemas/DeploymentRelationshipData'
         meta:
-          $ref: '#/components/schemas/DeploymentRelationshipMeta'
+          $ref: '#/components/schemas/DeploymentMetadata'
       type: object
     DeploymentRelationshipData:
-      description: The definition of `DeploymentRelationshipData` object.
+      description: Data object containing the deployment ID.
       properties:
         id:
-          description: The `data` `id`.
-          type: string
-        type:
-          $ref: '#/components/schemas/DeploymentRelationshipDataType'
-      type: object
-    DeploymentRelationshipDataType:
-      default: deployment
-      description: The definition of `DeploymentRelationshipDataType` object.
-      enum:
-      - deployment
-      type: string
-      x-enum-varnames:
-      - DEPLOYMENT
-    DeploymentRelationshipMeta:
-      description: The definition of `DeploymentRelationshipMeta` object.
-      properties:
-        created_at:
-          description: The `meta` `created_at`.
-          type: string
-        user_id:
-          description: The `meta` `user_id`.
-          format: int64
-          type: integer
-        user_name:
-          description: The `meta` `user_name`.
-          type: string
-        user_uuid:
-          description: The `meta` `user_uuid`.
+          description: The deployment ID.
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
           format: uuid
           type: string
+        type:
+          $ref: '#/components/schemas/AppDeploymentType'
       type: object
-    DeploymentType:
-      default: deployment
-      description: The definition of `DeploymentType` object.
-      enum:
-      - deployment
-      type: string
-      x-enum-varnames:
-      - DEPLOYMENT
     DetailedFinding:
       description: A single finding with with message and resource configuration.
       properties:
@@ -9599,40 +9564,6 @@ components:
           description: The type of the resource. The value should always be device.
           type: string
       type: object
-    DisableAppResponse:
-      description: The definition of `DisableAppResponse` object.
-      properties:
-        data:
-          $ref: '#/components/schemas/DisableAppResponseData'
-      type: object
-    DisableAppResponseData:
-      description: The definition of `DisableAppResponseData` object.
-      properties:
-        attributes:
-          $ref: '#/components/schemas/DisableAppResponseDataAttributes'
-        id:
-          description: The `data` `id`.
-          type: string
-        meta:
-          $ref: '#/components/schemas/DeploymentMeta'
-        type:
-          $ref: '#/components/schemas/DisableAppResponseDataType'
-      type: object
-    DisableAppResponseDataAttributes:
-      description: The definition of `DisableAppResponseDataAttributes` object.
-      properties:
-        app_version_id:
-          description: The `attributes` `app_version_id`.
-          type: string
-      type: object
-    DisableAppResponseDataType:
-      default: deployment
-      description: The definition of `DisableAppResponseDataType` object.
-      enum:
-      - deployment
-      type: string
-      x-enum-varnames:
-      - DEPLOYMENT
     DomainAllowlist:
       description: The email domain allowlist for an org.
       properties:
@@ -10297,6 +10228,10 @@ components:
       - score
       - severity
       type: object
+    Enabled:
+      description: Field used to enable or disable the rule.
+      example: true
+      type: boolean
     EntityAttributes:
       description: Entity attributes.
       properties:
@@ -12434,93 +12369,73 @@ components:
           $ref: '#/components/schemas/ActionConnectionData'
       type: object
     GetAppResponse:
-      description: The definition of `GetAppResponse` object.
+      description: The full app definition response object.
       properties:
         data:
           $ref: '#/components/schemas/GetAppResponseData'
         included:
-          description: The `GetAppResponse` `included`.
+          description: Data on the version of the app that was published.
           items:
-            $ref: '#/components/schemas/DeploymentIncluded'
+            $ref: '#/components/schemas/Deployment'
           type: array
         meta:
           $ref: '#/components/schemas/AppMeta'
         relationship:
-          $ref: '#/components/schemas/GetAppResponseRelationship'
+          $ref: '#/components/schemas/AppRelationship'
       type: object
     GetAppResponseData:
-      description: The definition of `GetAppResponseData` object.
+      description: The data object containing the app definition.
       properties:
         attributes:
           $ref: '#/components/schemas/GetAppResponseDataAttributes'
         id:
-          description: The `data` `id`.
-          example: ''
+          description: The ID of the app.
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+          format: uuid
           type: string
         type:
-          $ref: '#/components/schemas/GetAppResponseDataType'
+          $ref: '#/components/schemas/AppDefinitionType'
       required:
       - id
       - type
       - attributes
       type: object
     GetAppResponseDataAttributes:
-      description: The definition of `GetAppResponseDataAttributes` object.
+      description: The app definition attributes, such as name, description, and components.
       properties:
         components:
-          description: The `attributes` `components`.
+          description: The UI components that make up the app.
           items:
             $ref: '#/components/schemas/ComponentGrid'
           type: array
         description:
-          description: The `attributes` `description`.
+          description: A human-readable description for the app.
           type: string
         embeddedQueries:
-          description: The `attributes` `embeddedQueries`.
+          description: An array of queries, such as external actions and state variables,
+            that the app uses.
           items:
             $ref: '#/components/schemas/Query'
           type: array
         favorite:
-          description: The `attributes` `favorite`.
+          description: Whether the app is marked as a favorite by the current user.
           type: boolean
-        inputSchema:
-          $ref: '#/components/schemas/InputSchema'
         name:
-          description: The `attributes` `name`.
+          description: The name of the app.
           type: string
         rootInstanceName:
-          description: The `attributes` `rootInstanceName`.
+          description: The name of the root component of the app. This must be a `grid`
+            component that contains all other components.
           type: string
-        scripts:
-          description: The `attributes` `scripts`.
-          items:
-            $ref: '#/components/schemas/Script'
-          type: array
         tags:
-          description: The `attributes` `tags`.
+          description: A list of tags for the app, which can be used to filter apps.
+          example:
+          - service:webshop-backend
+          - team:webshop
           items:
+            description: An individual tag for the app.
             type: string
           type: array
-      type: object
-    GetAppResponseDataType:
-      default: appDefinitions
-      description: The definition of `GetAppResponseDataType` object.
-      enum:
-      - appDefinitions
-      example: appDefinitions
-      type: string
-      x-enum-varnames:
-      - APPDEFINITIONS
-    GetAppResponseRelationship:
-      description: The definition of `GetAppResponseRelationship` object.
-      properties:
-        connections:
-          description: The `relationship` `connections`.
-          items:
-            $ref: '#/components/schemas/CustomConnection'
-          type: array
-        deployment:
-          $ref: '#/components/schemas/DeploymentRelationship'
       type: object
     GetDataDeletionsResponseBody:
       description: The response from the get data deletion requests endpoint.
@@ -13245,6 +13160,10 @@ components:
       - APP_SEC_HOST_COUNT
       - OBSERVABILITY_PIPELINES_BYTES_PROCESSSED
       - LAMBDA_TRACED_INVOCATIONS_COUNT
+    ID:
+      description: The ID of a notification rule.
+      example: aaa-bbb-ccc
+      type: string
     IPAllowlistAttributes:
       description: Attributes of the IP allowlist.
       properties:
@@ -15435,77 +15354,6 @@ components:
       - ONCALL
       - INCIDENT
       - RELATION
-    InputSchema:
-      description: The definition of `InputSchema` object.
-      properties:
-        data:
-          $ref: '#/components/schemas/InputSchemaData'
-      type: object
-    InputSchemaData:
-      description: The definition of `InputSchemaData` object.
-      properties:
-        attributes:
-          $ref: '#/components/schemas/InputSchemaDataAttributes'
-        id:
-          description: The `data` `id`.
-          type: string
-        type:
-          $ref: '#/components/schemas/InputSchemaDataType'
-      type: object
-    InputSchemaDataAttributes:
-      description: The definition of `InputSchemaDataAttributes` object.
-      properties:
-        parameters:
-          description: The `attributes` `parameters`.
-          items:
-            $ref: '#/components/schemas/InputSchemaDataAttributesParametersItems'
-          type: array
-      type: object
-    InputSchemaDataAttributesParametersItems:
-      description: The definition of `InputSchemaDataAttributesParametersItems` object.
-      properties:
-        data:
-          $ref: '#/components/schemas/InputSchemaDataAttributesParametersItemsData'
-      type: object
-    InputSchemaDataAttributesParametersItemsData:
-      description: The definition of `InputSchemaDataAttributesParametersItemsData`
-        object.
-      properties:
-        attributes:
-          $ref: '#/components/schemas/InputSchemaDataAttributesParametersItemsDataAttributes'
-      type: object
-    InputSchemaDataAttributesParametersItemsDataAttributes:
-      description: The definition of `InputSchemaDataAttributesParametersItemsDataAttributes`
-        object.
-      properties:
-        defaultValue:
-          description: The `attributes` `defaultValue`.
-        description:
-          description: The `attributes` `description`.
-          type: string
-        enum:
-          description: The `attributes` `enum`.
-          items:
-            type: string
-          type: array
-        label:
-          description: The `attributes` `label`.
-          type: string
-        name:
-          description: The `attributes` `name`.
-          type: string
-        type:
-          description: The `attributes` `type`.
-          type: string
-      type: object
-    InputSchemaDataType:
-      default: inputSchema
-      description: The definition of `InputSchemaDataType` object.
-      enum:
-      - inputSchema
-      type: string
-      x-enum-varnames:
-      - INPUTSCHEMA
     IntakePayloadAccepted:
       description: The payload accepted for intake.
       properties:
@@ -15951,92 +15799,92 @@ components:
           $ref: '#/components/schemas/ApplicationKeyResponseMeta'
       type: object
     ListAppsResponse:
-      description: The definition of `ListAppsResponse` object.
+      description: A paginated list of apps matching the specified filters and sorting.
       properties:
         data:
-          description: The `ListAppsResponse` `data`.
+          description: An array of app definitions.
           items:
             $ref: '#/components/schemas/ListAppsResponseDataItems'
           type: array
         included:
-          description: The `ListAppsResponse` `included`.
+          description: Data on the version of the app that was published.
           items:
-            $ref: '#/components/schemas/DeploymentIncluded'
+            $ref: '#/components/schemas/Deployment'
           type: array
         meta:
           $ref: '#/components/schemas/ListAppsResponseMeta'
       type: object
     ListAppsResponseDataItems:
-      description: The definition of `ListAppsResponseDataItems` object.
+      description: An app definition object. This contains only basic information
+        about the app such as ID, name, and tags.
       properties:
         attributes:
           $ref: '#/components/schemas/ListAppsResponseDataItemsAttributes'
         id:
-          description: The `items` `id`.
-          example: ''
+          description: The ID of the app.
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+          format: uuid
           type: string
         meta:
           $ref: '#/components/schemas/AppMeta'
         relationships:
           $ref: '#/components/schemas/ListAppsResponseDataItemsRelationships'
         type:
-          $ref: '#/components/schemas/ListAppsResponseDataItemsType'
+          $ref: '#/components/schemas/AppDefinitionType'
       required:
       - id
       - type
       - attributes
       type: object
     ListAppsResponseDataItemsAttributes:
-      description: The definition of `ListAppsResponseDataItemsAttributes` object.
+      description: Basic information about the app such as name, description, and
+        tags.
       properties:
         description:
-          description: The `attributes` `description`.
+          description: A human-readable description for the app.
           type: string
         favorite:
-          description: The `attributes` `favorite`.
+          description: Whether the app is marked as a favorite by the current user.
           type: boolean
         name:
-          description: The `attributes` `name`.
+          description: The name of the app.
           type: string
         selfService:
-          description: The `attributes` `selfService`.
+          description: Whether the app is enabled for use in the Datadog self-service
+            hub.
           type: boolean
         tags:
-          description: The `attributes` `tags`.
+          description: A list of tags for the app, which can be used to filter apps.
+          example:
+          - service:webshop-backend
+          - team:webshop
           items:
+            description: An individual tag for the app.
             type: string
           type: array
       type: object
     ListAppsResponseDataItemsRelationships:
-      description: The definition of `ListAppsResponseDataItemsRelationships` object.
+      description: The app's publication information.
       properties:
         deployment:
           $ref: '#/components/schemas/DeploymentRelationship'
       type: object
-    ListAppsResponseDataItemsType:
-      default: appDefinitions
-      description: The definition of `ListAppsResponseDataItemsType` object.
-      enum:
-      - appDefinitions
-      example: appDefinitions
-      type: string
-      x-enum-varnames:
-      - APPDEFINITIONS
     ListAppsResponseMeta:
-      description: The definition of `ListAppsResponseMeta` object.
+      description: Pagination metadata.
       properties:
         page:
           $ref: '#/components/schemas/ListAppsResponseMetaPage'
       type: object
     ListAppsResponseMetaPage:
-      description: The definition of `ListAppsResponseMetaPage` object.
+      description: Information on the total number of apps, to be used for pagination.
       properties:
         totalCount:
-          description: The `page` `totalCount`.
+          description: The total number of apps under the Datadog organization, disregarding
+            any filters applied.
           format: int64
           type: integer
         totalFilteredCount:
-          description: The `page` `totalFilteredCount`.
+          description: The total number of apps that match the specified filters.
           format: int64
           type: integer
       type: object
@@ -19407,6 +19255,84 @@ components:
         meta:
           $ref: '#/components/schemas/MonthlyCostAttributionMeta'
       type: object
+    NotificationRule:
+      description: 'Notification rules allow full control over notifications generated
+        by the various Datadog security products.
+
+        They allow users to define the conditions under which a notification should
+        be generated (based on rule severities,
+
+        rule types, rule tags, and so on), and the targets to notify.
+
+        A notification rule is composed of a rule ID, a rule type, and the rule attributes.
+        All fields are required.
+
+        '
+      properties:
+        attributes:
+          $ref: '#/components/schemas/NotificationRuleAttributes'
+        id:
+          $ref: '#/components/schemas/ID'
+        type:
+          $ref: '#/components/schemas/NotificationRulesType'
+      required:
+      - attributes
+      - id
+      - type
+      type: object
+    NotificationRuleAttributes:
+      description: Attributes of the notification rule.
+      properties:
+        created_at:
+          $ref: '#/components/schemas/Date'
+        created_by:
+          $ref: '#/components/schemas/RuleUser'
+        enabled:
+          $ref: '#/components/schemas/Enabled'
+        modified_at:
+          $ref: '#/components/schemas/Date'
+        modified_by:
+          $ref: '#/components/schemas/RuleUser'
+        name:
+          $ref: '#/components/schemas/RuleName'
+        selectors:
+          $ref: '#/components/schemas/Selectors'
+        targets:
+          $ref: '#/components/schemas/Targets'
+        time_aggregation:
+          $ref: '#/components/schemas/TimeAggregation'
+        version:
+          $ref: '#/components/schemas/Version'
+      required:
+      - created_at
+      - created_by
+      - enabled
+      - modified_at
+      - modified_by
+      - name
+      - selectors
+      - targets
+      - version
+      type: object
+    NotificationRuleQuery:
+      description: The query is composed of one or several key:value pairs, which
+        can be used to filter security issues on tags and attributes.
+      example: (source:production_service OR env:prod)
+      type: string
+    NotificationRuleResponse:
+      description: Response object which includes a notification rule.
+      properties:
+        data:
+          $ref: '#/components/schemas/NotificationRule'
+      type: object
+    NotificationRulesType:
+      description: The rule type associated to notification rules.
+      enum:
+      - notification_rules
+      example: notification_rules
+      type: string
+      x-enum-varnames:
+      - NOTIFICATION_RULES
     NullableRelationshipToUser:
       description: Relationship to user.
       nullable: true
@@ -20260,6 +20186,44 @@ components:
             $ref: '#/components/schemas/ApplicationKeyResponseIncludedItem'
           type: array
       type: object
+    PatchNotificationRuleParameters:
+      description: Body of the notification rule patch request.
+      properties:
+        data:
+          $ref: '#/components/schemas/PatchNotificationRuleParametersData'
+      type: object
+    PatchNotificationRuleParametersData:
+      description: 'Data of the notification rule patch request: the rule ID, the
+        rule type, and the rule attributes. All fields are required.'
+      properties:
+        attributes:
+          $ref: '#/components/schemas/PatchNotificationRuleParametersDataAttributes'
+        id:
+          $ref: '#/components/schemas/ID'
+        type:
+          $ref: '#/components/schemas/NotificationRulesType'
+      required:
+      - attributes
+      - id
+      - type
+      type: object
+    PatchNotificationRuleParametersDataAttributes:
+      description: Attributes of the notification rule patch request. It is required
+        to update the version of the rule when patching it.
+      properties:
+        enabled:
+          $ref: '#/components/schemas/Enabled'
+        name:
+          $ref: '#/components/schemas/RuleName'
+        selectors:
+          $ref: '#/components/schemas/Selectors'
+        targets:
+          $ref: '#/components/schemas/Targets'
+        time_aggregation:
+          $ref: '#/components/schemas/TimeAggregation'
+        version:
+          $ref: '#/components/schemas/Version'
+      type: object
     Permission:
       description: Permission object.
       properties:
@@ -20896,24 +20860,34 @@ components:
             $ref: '#/components/schemas/Project'
           type: array
       type: object
+    PublishAppResponse:
+      description: The response object after an app is successfully published.
+      properties:
+        data:
+          $ref: '#/components/schemas/Deployment'
+      type: object
     Query:
-      description: The definition of `Query` object.
+      description: A query used by an app. This can take the form of an external action,
+        a data transformation, or a state variable change.
       properties:
         events:
-          description: The `Query` `events`.
+          description: Events to listen for downstream of the query.
           items:
             $ref: '#/components/schemas/AppBuilderEvent'
           type: array
         id:
-          description: The `Query` `id`.
-          example: ''
+          description: The ID of the query.
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+          format: uuid
           type: string
         name:
-          description: The `Query` `name`.
+          description: The name of the query. The name must be unique within the app
+            and is visible in the app editor.
           example: ''
           type: string
         properties:
-          description: The `Query` `properties`.
+          description: The properties of the query. The properties vary depending
+            on the query type.
         type:
           $ref: '#/components/schemas/QueryType'
       required:
@@ -20945,7 +20919,7 @@ components:
       - ASC
       - DESC
     QueryType:
-      description: The definition of `QueryType` object.
+      description: The query type.
       enum:
       - action
       - stateVariable
@@ -22941,12 +22915,34 @@ components:
       description: The unique ID for a scorecard rule.
       example: q8MQxk8TCqrHnWkx
       type: string
+    RuleName:
+      description: Name of the notification rule.
+      example: Rule 1
+      type: string
     RuleOutcomeRelationships:
       description: The JSON:API relationship to a scorecard rule.
       properties:
         rule:
           $ref: '#/components/schemas/RelationshipToOutcome'
       type: object
+    RuleSeverity:
+      description: Severity of a security rule.
+      enum:
+      - critical
+      - high
+      - medium
+      - low
+      - unknown
+      - info
+      example: critical
+      type: string
+      x-enum-varnames:
+      - CRITICAL
+      - HIGH
+      - MEDIUM
+      - LOW
+      - UNKNOWN
+      - INFO
     RuleType:
       default: rule
       description: The JSON:API type for scorecard rules.
@@ -22956,6 +22952,69 @@ components:
       type: string
       x-enum-varnames:
       - RULE
+    RuleTypes:
+      description: Security rule types used to filter signals and vulnerabilities
+        generating notifications.
+      example:
+      - misconfiguration
+      - attack_path
+      items:
+        $ref: '#/components/schemas/RuleTypesItems'
+      type: array
+    RuleTypesItems:
+      description: 'Security rule types which can be used in notification rules.
+
+        Signal-based notification rules can filter signals based on rule types application_security,
+        log_detection,
+
+        workload_security, signal_correlation, cloud_configuration and infrastructure_configuration.
+
+        Vulnerability-based notification rules can filter vulnerabilities based on
+        rule types application_code_vulnerability,
+
+        application_library_vulnerability, attack_path, container_image_vulnerability,
+        identity_risk, misconfiguration, and api_security.'
+      enum:
+      - application_security
+      - log_detection
+      - workload_security
+      - signal_correlation
+      - cloud_configuration
+      - infrastructure_configuration
+      - application_code_vulnerability
+      - application_library_vulnerability
+      - attack_path
+      - container_image_vulnerability
+      - identity_risk
+      - misconfiguration
+      - api_security
+      type: string
+      x-enum-varnames:
+      - APPLICATION_SECURITY
+      - LOG_DETECTION
+      - WORKLOAD_SECURITY
+      - SIGNAL_CORRELATION
+      - CLOUD_CONFIGURATION
+      - INFRASTRUCTURE_CONFIGURATION
+      - APPLICATION_CODE_VULNERABILITY
+      - APPLICATION_LIBRARY_VULNERABILITY
+      - ATTACK_PATH
+      - CONTAINER_IMAGE_VULNERABILITY
+      - IDENTITY_RISK
+      - MISCONFIGURATION
+      - API_SECURITY
+    RuleUser:
+      description: User creating or modifying a rule.
+      properties:
+        handle:
+          description: The user handle.
+          example: john.doe@domain.com
+          type: string
+        name:
+          description: The user name.
+          example: John Doe
+          type: string
+      type: object
     RumMetricCompute:
       description: The compute rule to compute the rum-based metric.
       properties:
@@ -23677,44 +23736,6 @@ components:
       type: string
       x-enum-varnames:
       - SCORECARD
-    Script:
-      description: The definition of `Script` object.
-      properties:
-        data:
-          $ref: '#/components/schemas/ScriptData'
-      type: object
-    ScriptData:
-      description: The definition of `ScriptData` object.
-      properties:
-        attributes:
-          $ref: '#/components/schemas/ScriptDataAttributes'
-        id:
-          description: The `data` `id`.
-          type: string
-        type:
-          $ref: '#/components/schemas/ScriptDataType'
-      type: object
-    ScriptDataAttributes:
-      description: The definition of `ScriptDataAttributes` object.
-      properties:
-        name:
-          description: The `attributes` `name`.
-          type: string
-        src:
-          description: The `attributes` `src`.
-          type: string
-        type:
-          description: The `attributes` `type`.
-          type: string
-      type: object
-    ScriptDataType:
-      default: scripts
-      description: The definition of `ScriptDataType` object.
-      enum:
-      - scripts
-      type: string
-      x-enum-varnames:
-      - SCRIPTS
     SecurityFilter:
       description: The security filter's properties.
       properties:
@@ -25872,6 +25893,29 @@ components:
           example: John Doe
           nullable: true
           type: string
+      type: object
+    Selectors:
+      description: 'Selectors are used to filter security issues for which notifications
+        should be generated.
+
+        Users can specify rule severities, rule types, a query to filter security
+        issues on tags and attributes, and the trigger source.
+
+        Only the trigger_source field is required.'
+      properties:
+        query:
+          $ref: '#/components/schemas/NotificationRuleQuery'
+        rule_types:
+          $ref: '#/components/schemas/RuleTypes'
+        severities:
+          description: The security rules severities to consider.
+          items:
+            $ref: '#/components/schemas/RuleSeverity'
+          type: array
+        trigger_source:
+          $ref: '#/components/schemas/TriggerSource'
+      required:
+      - trigger_source
       type: object
     SensitiveDataScannerConfigRequest:
       description: Group reorder request.
@@ -28565,6 +28609,20 @@ components:
         description: Tag associated with your event.
         type: string
       type: array
+    Targets:
+      description: 'List of recipients to notify when a notification rule is triggered.
+        Many different target types are supported,
+
+        such as email addresses, Slack channels, and PagerDuty services.
+
+        The appropriate integrations need to be properly configured to send notifications
+        to the specified targets.'
+      example:
+      - '@john.doe@email.com'
+      items:
+        description: Recipients to notify.
+        type: string
+      type: array
     Team:
       description: A team
       properties:
@@ -29141,6 +29199,22 @@ components:
           description: Offset type.
           type: string
       type: object
+    TimeAggregation:
+      description: 'Time aggregation period (in seconds) is used to aggregate the
+        results of the notification rule evaluation.
+
+        Results are aggregated over a selected time frame using a rolling window,
+        which updates with each new evaluation.
+
+        Notifications are only sent for new issues discovered during the window.
+
+        Time aggregation is only available for vulnerability-based notification rules.
+        When omitted or set to 0, no aggregation
+
+        is done.'
+      example: 86400
+      format: int64
+      type: integer
     TimeseriesFormulaQueryRequest:
       description: A request wrapper around a single timeseries query to be executed.
       properties:
@@ -29333,6 +29407,20 @@ components:
       type: string
       x-enum-varnames:
       - SECRET
+    TriggerSource:
+      description: 'The type of security issues on which the rule applies. Notification
+        rules based on security signals need to use the trigger source "security_signals",
+
+        while notification rules based on security vulnerabilities need to use the
+        trigger source "security_findings".'
+      enum:
+      - security_findings
+      - security_signals
+      example: security_findings
+      type: string
+      x-enum-varnames:
+      - SECURITY_FINDINGS
+      - SECURITY_SIGNALS
     Unit:
       description: Object containing the metric unit family, scale factor, name, and
         short name.
@@ -29361,6 +29449,12 @@ components:
           example: min
           type: string
       type: object
+    UnpublishAppResponse:
+      description: The response object after an app is successfully unpublished.
+      properties:
+        data:
+          $ref: '#/components/schemas/Deployment'
+      type: object
     UpdateActionConnectionRequest:
       description: Request used to update an action connection.
       properties:
@@ -29376,7 +29470,7 @@ components:
           $ref: '#/components/schemas/ActionConnectionData'
       type: object
     UpdateAppRequest:
-      description: The definition of `UpdateAppRequest` object.
+      description: A request object for updating an existing app.
       example:
         data:
           attributes:
@@ -29421,150 +29515,131 @@ components:
           $ref: '#/components/schemas/UpdateAppRequestData'
       type: object
     UpdateAppRequestData:
-      description: The definition of `UpdateAppRequestData` object.
+      description: The data object containing the new app definition. Any fields not
+        included in the request remain unchanged.
       properties:
         attributes:
           $ref: '#/components/schemas/UpdateAppRequestDataAttributes'
         id:
-          description: The `data` `id`.
+          description: The ID of the app to update. The app ID must match the ID in
+            the URL path.
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+          format: uuid
           type: string
         type:
-          $ref: '#/components/schemas/UpdateAppRequestDataType'
+          $ref: '#/components/schemas/AppDefinitionType'
       required:
       - type
       type: object
     UpdateAppRequestDataAttributes:
-      description: The definition of `UpdateAppRequestDataAttributes` object.
+      description: App definition attributes to be updated, such as name, description,
+        and components.
       properties:
         components:
-          description: The `attributes` `components`.
+          description: The new UI components that make up the app. If this field is
+            set, all existing components are replaced with the new components under
+            this field.
           items:
             $ref: '#/components/schemas/ComponentGrid'
           type: array
         description:
-          description: The `attributes` `description`.
+          description: The new human-readable description for the app.
           type: string
         embeddedQueries:
-          description: The `attributes` `embeddedQueries`.
+          description: The new array of queries, such as external actions and state
+            variables, that the app uses. If this field is set, all existing queries
+            are replaced with the new queries under this field.
           items:
             $ref: '#/components/schemas/Query'
           type: array
-        inputSchema:
-          $ref: '#/components/schemas/InputSchema'
         name:
-          description: The `attributes` `name`.
+          description: The new name of the app.
           type: string
         rootInstanceName:
-          description: The `attributes` `rootInstanceName`.
+          description: The new name of the root component of the app. This must be
+            a `grid` component that contains all other components.
           type: string
-        scripts:
-          description: The `attributes` `scripts`.
-          items:
-            $ref: '#/components/schemas/Script'
-          type: array
         tags:
-          description: The `attributes` `tags`.
+          description: The new list of tags for the app, which can be used to filter
+            apps. If this field is set, any existing tags not included in the request
+            are removed.
+          example:
+          - service:webshop-backend
+          - team:webshop
           items:
+            description: An individual tag for the app.
             type: string
           type: array
       type: object
-    UpdateAppRequestDataType:
-      default: appDefinitions
-      description: The definition of `UpdateAppRequestDataType` object.
-      enum:
-      - appDefinitions
-      example: appDefinitions
-      type: string
-      x-enum-varnames:
-      - APPDEFINITIONS
     UpdateAppResponse:
-      description: The definition of `UpdateAppResponse` object.
+      description: The response object after an app is successfully updated.
       properties:
         data:
           $ref: '#/components/schemas/UpdateAppResponseData'
         included:
-          description: The `UpdateAppResponse` `included`.
+          description: Data on the version of the app that was published.
           items:
-            $ref: '#/components/schemas/DeploymentIncluded'
+            $ref: '#/components/schemas/Deployment'
           type: array
         meta:
           $ref: '#/components/schemas/AppMeta'
         relationship:
-          $ref: '#/components/schemas/UpdateAppResponseRelationship'
+          $ref: '#/components/schemas/AppRelationship'
       type: object
     UpdateAppResponseData:
-      description: The definition of `UpdateAppResponseData` object.
+      description: The data object containing the updated app definition.
       properties:
         attributes:
           $ref: '#/components/schemas/UpdateAppResponseDataAttributes'
         id:
-          description: The `data` `id`.
-          example: ''
+          description: The ID of the updated app.
+          example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+          format: uuid
           type: string
         type:
-          $ref: '#/components/schemas/UpdateAppResponseDataType'
+          $ref: '#/components/schemas/AppDefinitionType'
       required:
       - id
       - type
       - attributes
       type: object
     UpdateAppResponseDataAttributes:
-      description: The definition of `UpdateAppResponseDataAttributes` object.
+      description: The updated app definition attributes, such as name, description,
+        and components.
       properties:
         components:
-          description: The `attributes` `components`.
+          description: The UI components that make up the app.
           items:
             $ref: '#/components/schemas/ComponentGrid'
           type: array
         description:
-          description: The `attributes` `description`.
+          description: The human-readable description for the app.
           type: string
         embeddedQueries:
-          description: The `attributes` `embeddedQueries`.
+          description: An array of queries, such as external actions and state variables,
+            that the app uses.
           items:
             $ref: '#/components/schemas/Query'
           type: array
         favorite:
-          description: The `attributes` `favorite`.
+          description: Whether the app is marked as a favorite by the current user.
           type: boolean
-        inputSchema:
-          $ref: '#/components/schemas/InputSchema'
         name:
-          description: The `attributes` `name`.
+          description: The name of the app.
           type: string
         rootInstanceName:
-          description: The `attributes` `rootInstanceName`.
+          description: The name of the root component of the app. This must be a `grid`
+            component that contains all other components.
           type: string
-        scripts:
-          description: The `attributes` `scripts`.
-          items:
-            $ref: '#/components/schemas/Script'
-          type: array
         tags:
-          description: The `attributes` `tags`.
+          description: A list of tags for the app, which can be used to filter apps.
+          example:
+          - service:webshop-backend
+          - team:webshop
           items:
+            description: An individual tag for the app.
             type: string
           type: array
-      type: object
-    UpdateAppResponseDataType:
-      default: appDefinitions
-      description: The definition of `UpdateAppResponseDataType` object.
-      enum:
-      - appDefinitions
-      example: appDefinitions
-      type: string
-      x-enum-varnames:
-      - APPDEFINITIONS
-    UpdateAppResponseRelationship:
-      description: The definition of `UpdateAppResponseRelationship` object.
-      properties:
-        connections:
-          description: The `relationship` `connections`.
-          items:
-            $ref: '#/components/schemas/CustomConnection'
-          type: array
-        deployment:
-          $ref: '#/components/schemas/DeploymentRelationship'
       type: object
     UpdateOpenAPIResponse:
       description: Response for `UpdateOpenAPI`.
@@ -30258,6 +30333,12 @@ components:
       type: string
       x-enum-varnames:
       - USERS
+    Version:
+      description: Version of the notification rule. It is updated when the rule is
+        modified.
+      example: 1
+      format: int64
+      type: integer
     VulnerabilitiesType:
       description: The JSON:API type.
       enum:
@@ -30849,6 +30930,10 @@ components:
             security_monitoring_filters_write: Create, edit, and delete Security Filters.
             security_monitoring_findings_read: View a list of findings that include
               both misconfigurations and identity risks.
+            security_monitoring_notification_profiles_read: View Rule Security Notification
+              rules.
+            security_monitoring_notification_profiles_write: Create, edit, and delete
+              Security Notification rules.
             security_monitoring_rules_read: Read Detection Rules.
             security_monitoring_rules_write: Create and edit Detection Rules.
             security_monitoring_signals_read: View Security Signals.
@@ -30901,8 +30986,6 @@ components:
       type: apiKey
       x-env-name: DD_APP_KEY
     bearerAuth:
-      in: header
-      name: Authorization
       scheme: bearer
       type: http
       x-env-name: DD_BEARER_TOKEN
@@ -31903,7 +31986,7 @@ paths:
         - apm_pipelines_write
   /api/v2/app-builder/apps:
     delete:
-      description: Delete multiple apps by ID
+      description: Delete multiple apps in a single request from a list of app IDs.
       operationId: DeleteApps
       requestBody:
         content:
@@ -31940,15 +32023,17 @@ paths:
           $ref: '#/components/responses/TooManyRequestsResponse'
       summary: Delete Multiple Apps
       tags:
-      - Apps
+      - App Builder
       x-permission:
         operator: OR
         permissions:
         - apps_write
       x-unstable: '**Note**: App Builder API endpoints are still under active development
-        and may change at any time.'
+        and might change at any time.'
     get:
-      description: List all apps, with optional filters and sorting
+      description: List all apps, with optional filters and sorting. This endpoint
+        is paginated. Only basic app information such as the app ID, name, and description
+        is returned by this endpoint.
       operationId: ListApps
       parameters:
       - description: The number of apps to return per page.
@@ -31972,6 +32057,7 @@ paths:
         schema:
           type: string
       - description: Filter apps by the app creator's UUID.
+        example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
         in: query
         name: filter[user_uuid]
         required: false
@@ -32047,15 +32133,15 @@ paths:
           $ref: '#/components/responses/TooManyRequestsResponse'
       summary: List Apps
       tags:
-      - Apps
+      - App Builder
       x-permission:
         operator: OR
         permissions:
         - apps_run
       x-unstable: '**Note**: App Builder API endpoints are still under active development
-        and may change at any time.'
+        and might change at any time.'
     post:
-      description: Create a new app, returning the app ID
+      description: Create a new app, returning the app ID.
       operationId: CreateApp
       requestBody:
         content:
@@ -32069,7 +32155,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateAppResponse'
-          description: App Created
+          description: Created
         '400':
           content:
             application/json:
@@ -32086,7 +32172,7 @@ paths:
           $ref: '#/components/responses/TooManyRequestsResponse'
       summary: Create App
       tags:
-      - Apps
+      - App Builder
       x-permission:
         operator: AND
         permissions:
@@ -32094,16 +32180,19 @@ paths:
         - connections_resolve
         - workflows_run
       x-unstable: '**Note**: App Builder API endpoints are still under active development
-        and may change at any time.'
+        and might change at any time.'
   /api/v2/app-builder/apps/{app_id}:
     delete:
-      description: Delete an app by ID
+      description: Delete a single app.
       operationId: DeleteApp
       parameters:
-      - in: path
+      - description: The ID of the app to delete.
+        example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+        in: path
         name: app_id
         required: true
         schema:
+          format: uuid
           type: string
       responses:
         '200':
@@ -32140,23 +32229,30 @@ paths:
           $ref: '#/components/responses/TooManyRequestsResponse'
       summary: Delete App
       tags:
-      - Apps
+      - App Builder
       x-permission:
         operator: OR
         permissions:
         - apps_write
       x-unstable: '**Note**: App Builder API endpoints are still under active development
-        and may change at any time.'
+        and might change at any time.'
     get:
-      description: Get the full definition of an app by ID
+      description: Get the full definition of an app.
       operationId: GetApp
       parameters:
-      - in: path
+      - description: The ID of the app to retrieve.
+        example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+        in: path
         name: app_id
         required: true
         schema:
+          format: uuid
           type: string
-      - in: query
+      - description: The version number of the app to retrieve. If not specified,
+          the latest version is returned. Version numbers start at 1 and increment
+          with each update. The special values `latest` and `deployed` can be used
+          to retrieve the latest version or the published version, respectively.
+        in: query
         name: version
         required: false
         schema:
@@ -32190,22 +32286,25 @@ paths:
           $ref: '#/components/responses/TooManyRequestsResponse'
       summary: Get App
       tags:
-      - Apps
+      - App Builder
       x-permission:
         operator: AND
         permissions:
         - apps_run
         - connections_read
       x-unstable: '**Note**: App Builder API endpoints are still under active development
-        and may change at any time.'
+        and might change at any time.'
     patch:
-      description: Update an existing app by ID. Creates a new version of the app
+      description: Update an existing app. This creates a new version of the app.
       operationId: UpdateApp
       parameters:
-      - in: path
+      - description: The ID of the app to update.
+        example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+        in: path
         name: app_id
         required: true
         schema:
+          format: uuid
           type: string
       requestBody:
         content:
@@ -32236,7 +32335,7 @@ paths:
           $ref: '#/components/responses/TooManyRequestsResponse'
       summary: Update App
       tags:
-      - Apps
+      - App Builder
       x-permission:
         operator: AND
         permissions:
@@ -32244,23 +32343,29 @@ paths:
         - connections_resolve
         - workflows_run
       x-unstable: '**Note**: App Builder API endpoints are still under active development
-        and may change at any time.'
+        and might change at any time.'
   /api/v2/app-builder/apps/{app_id}/deployment:
     delete:
-      description: Disable an app by ID
-      operationId: DisableApp
+      description: Unpublish an app, removing the live version of the app. Unpublishing
+        creates a new instance of a `deployment` object on the app, with a nil `app_version_id`
+        (`00000000-0000-0000-0000-000000000000`). The app can still be updated and
+        published again in the future.
+      operationId: UnpublishApp
       parameters:
-      - in: path
+      - description: The ID of the app to unpublish.
+        example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+        in: path
         name: app_id
         required: true
         schema:
+          format: uuid
           type: string
       responses:
         '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DisableAppResponse'
+                $ref: '#/components/schemas/UnpublishAppResponse'
           description: OK
         '400':
           content:
@@ -32282,30 +32387,35 @@ paths:
           description: Not Found
         '429':
           $ref: '#/components/responses/TooManyRequestsResponse'
-      summary: Disable App
+      summary: Unpublish App
       tags:
-      - Apps
+      - App Builder
       x-permission:
         operator: OR
         permissions:
         - apps_write
       x-unstable: '**Note**: App Builder API endpoints are still under active development
-        and may change at any time.'
+        and might change at any time.'
     post:
-      description: Deploy (publish) an app by ID
-      operationId: DeployApp
+      description: Publish an app for use by other users. To ensure the app is accessible
+        to the correct users, you also need to set a [Restriction Policy](https://docs.datadoghq.com/api/latest/restriction-policies/)
+        on the app if a policy does not yet exist.
+      operationId: PublishApp
       parameters:
-      - in: path
+      - description: The ID of the app to publish.
+        example: 65bb1f25-52e1-4510-9f8d-22d1516ed693
+        in: path
         name: app_id
         required: true
         schema:
+          format: uuid
           type: string
       responses:
         '201':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeployAppResponse'
+                $ref: '#/components/schemas/PublishAppResponse'
           description: Created
         '400':
           content:
@@ -32327,15 +32437,15 @@ paths:
           description: Not Found
         '429':
           $ref: '#/components/responses/TooManyRequestsResponse'
-      summary: Deploy App
+      summary: Publish App
       tags:
-      - Apps
+      - App Builder
       x-permission:
         operator: OR
         permissions:
         - apps_write
       x-unstable: '**Note**: App Builder API endpoints are still under active development
-        and may change at any time.'
+        and might change at any time.'
   /api/v2/application_keys:
     get:
       description: List all application keys available for your org
@@ -38832,8 +38942,9 @@ paths:
       tags:
       - Logs Archives
       x-permission:
-        operator: OPEN
-        permissions: []
+        operator: OR
+        permissions:
+        - logs_read_config
     put:
       description: 'Update the order of your archives. Since logs are processed sequentially,
         reordering an archive may change
@@ -39160,8 +39271,9 @@ paths:
       - Logs Archives
       x-codegen-request-body-name: body
       x-permission:
-        operator: OPEN
-        permissions: []
+        operator: OR
+        permissions:
+        - logs_read_config
     post:
       description: Adds a read role to an archive. ([Roles API](https://docs.datadoghq.com/api/v2/roles/))
       operationId: AddReadRoleToArchive
@@ -39231,6 +39343,7 @@ paths:
         operator: OR
         permissions:
         - logs_read_data
+        - logs_read_config
     post:
       description: Create a custom destination in your organization.
       operationId: CreateLogsCustomDestination
@@ -39315,6 +39428,7 @@ paths:
         operator: OR
         permissions:
         - logs_read_data
+        - logs_read_config
     patch:
       description: Update the given fields of a specific custom destination in your
         organization.
@@ -39372,8 +39486,9 @@ paths:
       tags:
       - Logs Metrics
       x-permission:
-        operator: OPEN
-        permissions: []
+        operator: OR
+        permissions:
+        - logs_read_config
     post:
       description: 'Create a metric based on your ingested logs in your organization.
 
@@ -39454,8 +39569,9 @@ paths:
       tags:
       - Logs Metrics
       x-permission:
-        operator: OPEN
-        permissions: []
+        operator: OR
+        permissions:
+        - logs_read_config
     patch:
       description: 'Update a specific log-based metric from your organization.
 
@@ -43576,6 +43692,188 @@ paths:
       x-unstable: '**Note**: This endpoint is a private preview.
 
         If you are interested in accessing this API, please [fill out this form](https://forms.gle/kMYC1sDr6WDUBDsx9).'
+  /api/v2/security/signals/notification_rules:
+    get:
+      description: Returns the list of notification rules for security signals.
+      operationId: GetSignalNotificationRules
+      responses:
+        '200':
+          $ref: '#/components/responses/NotificationRulesList'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - security_monitoring_notification_profiles_read
+      summary: Get the list of signal-based rules
+      tags:
+      - Security Monitoring
+      x-permission:
+        operator: OR
+        permissions:
+        - security_monitoring_notification_profiles_read
+    post:
+      description: Create a new notification rule for security signals and return
+        the created rule.
+      operationId: CreateSignalNotificationRule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNotificationRuleParameters'
+        description: 'The body of the create notification rule request is composed
+          of the rule type and the rule attributes:
+
+          the rule name, the selectors, the notification targets, and the rule enabled
+          status.
+
+          '
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRuleResponse'
+          description: Successfully created the notification rule.
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - security_monitoring_notification_profiles_write
+      summary: Create a new signal-based rule
+      tags:
+      - Security Monitoring
+      x-codegen-request-body-name: body
+      x-permission:
+        operator: OR
+        permissions:
+        - security_monitoring_notification_profiles_write
+  /api/v2/security/signals/notification_rules/{id}:
+    delete:
+      description: Delete a notification rule for security signals.
+      operationId: DeleteSignalNotificationRule
+      parameters:
+      - description: ID of the notification rule.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Rule successfully deleted.
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - security_monitoring_notification_profiles_write
+      summary: Delete a signal-based rule
+      tags:
+      - Security Monitoring
+      x-permission:
+        operator: OR
+        permissions:
+        - security_monitoring_notification_profiles_write
+    get:
+      description: Get the details of a notification rule for security signals.
+      operationId: GetSignalNotificationRule
+      parameters:
+      - description: ID of the notification rule.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRuleResponse'
+          description: Notification rule details.
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - security_monitoring_notification_profiles_read
+      summary: Get details of a signal-based rule
+      tags:
+      - Security Monitoring
+      x-permission:
+        operator: OR
+        permissions:
+        - security_monitoring_notification_profiles_read
+    patch:
+      description: Partially update the notification rule. All fields are optional;
+        if a field is not provided, it is not updated.
+      operationId: PatchSignalNotificationRule
+      parameters:
+      - description: ID of the notification rule.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchNotificationRuleParameters'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRuleResponse'
+          description: Notification rule successfully patched.
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntityResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - security_monitoring_notification_profiles_write
+      summary: Patch a signal-based rule
+      tags:
+      - Security Monitoring
+      x-codegen-request-body-name: body
+      x-permission:
+        operator: OR
+        permissions:
+        - security_monitoring_notification_profiles_write
   /api/v2/security/vulnerabilities:
     get:
       description: "Get a list of vulnerabilities.\n\n### Pagination\n\nPagination
@@ -43955,6 +44253,188 @@ paths:
       x-unstable: '**Note**: This endpoint is a private preview.
 
         If you are interested in accessing this API, please [fill out this form](https://forms.gle/kMYC1sDr6WDUBDsx9).'
+  /api/v2/security/vulnerabilities/notification_rules:
+    get:
+      description: Returns the list of notification rules for security vulnerabilities.
+      operationId: GetVulnerabilityNotificationRules
+      responses:
+        '200':
+          $ref: '#/components/responses/NotificationRulesList'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - security_monitoring_notification_profiles_read
+      summary: Get the list of vulnerability-based rules
+      tags:
+      - Security Monitoring
+      x-permission:
+        operator: OR
+        permissions:
+        - security_monitoring_notification_profiles_read
+    post:
+      description: Create a new notification rule for security vulnerabilities and
+        return the created rule.
+      operationId: CreateVulnerabilityNotificationRule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNotificationRuleParameters'
+        description: 'The body of the create notification rule request is composed
+          of the rule type and the rule attributes:
+
+          the rule name, the selectors, the notification targets, and the rule enabled
+          status.
+
+          '
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRuleResponse'
+          description: Successfully created the notification rule.
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - security_monitoring_notification_profiles_write
+      summary: Create a new vulnerability-based rule
+      tags:
+      - Security Monitoring
+      x-codegen-request-body-name: body
+      x-permission:
+        operator: OR
+        permissions:
+        - security_monitoring_notification_profiles_write
+  /api/v2/security/vulnerabilities/notification_rules/{id}:
+    delete:
+      description: Delete a notification rule for security vulnerabilities.
+      operationId: DeleteVulnerabilityNotificationRule
+      parameters:
+      - description: ID of the notification rule.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Rule successfully deleted.
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - security_monitoring_notification_profiles_write
+      summary: Delete a vulnerability-based rule
+      tags:
+      - Security Monitoring
+      x-permission:
+        operator: OR
+        permissions:
+        - security_monitoring_notification_profiles_write
+    get:
+      description: Get the details of a notification rule for security vulnerabilities.
+      operationId: GetVulnerabilityNotificationRule
+      parameters:
+      - description: ID of the notification rule.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRuleResponse'
+          description: Notification rule details.
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - security_monitoring_notification_profiles_read
+      summary: Get details of a vulnerability-based rule
+      tags:
+      - Security Monitoring
+      x-permission:
+        operator: OR
+        permissions:
+        - security_monitoring_notification_profiles_read
+    patch:
+      description: Partially update the notification rule. All fields are optional;
+        if a field is not provided, it is not updated.
+      operationId: PatchVulnerabilityNotificationRule
+      parameters:
+      - description: ID of the notification rule.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchNotificationRuleParameters'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationRuleResponse'
+          description: Notification rule successfully patched.
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntityResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      security:
+      - apiKeyAuth: []
+        appKeyAuth: []
+      - AuthZ:
+        - security_monitoring_notification_profiles_write
+      summary: Patch a vulnerability-based rule
+      tags:
+      - Security Monitoring
+      x-codegen-request-body-name: body
+      x-permission:
+        operator: OR
+        permissions:
+        - security_monitoring_notification_profiles_write
   /api/v2/security_monitoring/cloud_workload_security/agent_rules:
     get:
       description: Get the list of Agent rules.
@@ -49100,7 +49580,7 @@ tags:
     and integrate secure, customized applications into your monitoring stack that
     are built to accelerate remediation at scale. These API endpoints allow you to
     create, read, update, delete, and publish apps.
-  name: Apps
+  name: App Builder
 - description: Search your Audit Logs events over HTTP.
   name: Audit
 - description: '[The AuthN Mappings API](https://docs.datadoghq.com/account_management/authn_mapping/?tab=example)
@@ -49266,11 +49746,7 @@ tags:
 
     See the [Archives Page](https://app.datadoghq.com/logs/pipelines/archives)
 
-    for a list of the archives currently configured in Datadog.
-
-
-    You need an API and non-scoped application key with Admin rights to interact with
-    these endpoints.'
+    for a list of the archives currently configured in Datadog.'
   externalDocs:
     description: Find out more at
     url: https://docs.datadoghq.com/logs/archives/
@@ -49289,11 +49765,8 @@ tags:
     description: Find out more at
     url: https://docs.datadoghq.com/logs/log_configuration/forwarding_custom_destinations/
   name: Logs Custom Destinations
-- description: 'Manage configuration of [log-based metrics](https://app.datadoghq.com/logs/pipelines/generate-metrics)
+- description: Manage configuration of [log-based metrics](https://app.datadoghq.com/logs/pipelines/generate-metrics)
     for your organization.
-
-    You need an API and non-scoped application key with Admin rights to interact with
-    these endpoints.'
   externalDocs:
     description: Find out more at
     url: https://docs.datadoghq.com/logs/logs_to_metrics/
