@@ -336,8 +336,6 @@ func NewConfiguration() *Configuration {
 			"v2.PublishApp":                   false,
 			"v2.UnpublishApp":                 false,
 			"v2.UpdateApp":                    false,
-			"v2.GetActiveBillingDimensions":   false,
-			"v2.GetMonthlyCostAttribution":    false,
 			"v2.CancelDataDeletionRequest":    false,
 			"v2.CreateDataDeletionRequest":    false,
 			"v2.GetDataDeletionRequests":      false,
