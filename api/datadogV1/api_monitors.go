@@ -293,9 +293,13 @@ func (a *MonitorsApi) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []i
 //
 // **Cost Alert Query**
 //
-// Example: `formula(query).last(time_window).function(parameter) operator #`
+// Example: `formula(query).timeframe_type(time_window).function(parameter) operator #`
 //
 // - `query` The search query - following the [Log search syntax](https://docs.datadoghq.com/logs/search_syntax/).
+// - `timeframe_type` The timeframe type to evaluate the cost
+//   - for `forecast` supports `current`
+//   - for `change`, `anomaly`, `threshold` supports `last`
+//
 // - `time_window` - supports daily roll-up e.g. `7d`
 // - `function` - [optional, defaults to `threshold` monitor if omitted] supports `change`, `anomaly`, `forecast`
 // - `parameter` Specify the parameter of the type
