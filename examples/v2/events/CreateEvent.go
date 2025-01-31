@@ -50,7 +50,7 @@ func main() {
 				Category: datadogV2.EVENTCATEGORY_CHANGE,
 				Message:  datadog.PtrString("payment_processed feature flag has been enabled"),
 				Tags: []string{
-					"environment:test",
+					"env:test",
 				},
 				Title: "payment_processed feature flag updated",
 			},
