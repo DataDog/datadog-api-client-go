@@ -14,10 +14,10 @@ type UpdateAppRequestDataAttributes struct {
 	Components []ComponentGrid `json:"components,omitempty"`
 	// The new human-readable description for the app.
 	Description *string `json:"description,omitempty"`
-	// The new array of queries, such as external actions and state variables, that the app uses. If this field is set, all existing queries are replaced with the new queries under this field.
-	EmbeddedQueries []Query `json:"embeddedQueries,omitempty"`
 	// The new name of the app.
 	Name *string `json:"name,omitempty"`
+	// The new array of queries, such as external actions and state variables, that the app uses. If this field is set, all existing queries are replaced with the new queries under this field.
+	Queries []Query `json:"queries,omitempty"`
 	// The new name of the root component of the app. This must be a `grid` component that contains all other components.
 	RootInstanceName *string `json:"rootInstanceName,omitempty"`
 	// The new list of tags for the app, which can be used to filter apps. If this field is set, any existing tags not included in the request are removed.
@@ -100,34 +100,6 @@ func (o *UpdateAppRequestDataAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetEmbeddedQueries returns the EmbeddedQueries field value if set, zero value otherwise.
-func (o *UpdateAppRequestDataAttributes) GetEmbeddedQueries() []Query {
-	if o == nil || o.EmbeddedQueries == nil {
-		var ret []Query
-		return ret
-	}
-	return o.EmbeddedQueries
-}
-
-// GetEmbeddedQueriesOk returns a tuple with the EmbeddedQueries field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateAppRequestDataAttributes) GetEmbeddedQueriesOk() (*[]Query, bool) {
-	if o == nil || o.EmbeddedQueries == nil {
-		return nil, false
-	}
-	return &o.EmbeddedQueries, true
-}
-
-// HasEmbeddedQueries returns a boolean if a field has been set.
-func (o *UpdateAppRequestDataAttributes) HasEmbeddedQueries() bool {
-	return o != nil && o.EmbeddedQueries != nil
-}
-
-// SetEmbeddedQueries gets a reference to the given []Query and assigns it to the EmbeddedQueries field.
-func (o *UpdateAppRequestDataAttributes) SetEmbeddedQueries(v []Query) {
-	o.EmbeddedQueries = v
-}
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateAppRequestDataAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -154,6 +126,34 @@ func (o *UpdateAppRequestDataAttributes) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *UpdateAppRequestDataAttributes) SetName(v string) {
 	o.Name = &v
+}
+
+// GetQueries returns the Queries field value if set, zero value otherwise.
+func (o *UpdateAppRequestDataAttributes) GetQueries() []Query {
+	if o == nil || o.Queries == nil {
+		var ret []Query
+		return ret
+	}
+	return o.Queries
+}
+
+// GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateAppRequestDataAttributes) GetQueriesOk() (*[]Query, bool) {
+	if o == nil || o.Queries == nil {
+		return nil, false
+	}
+	return &o.Queries, true
+}
+
+// HasQueries returns a boolean if a field has been set.
+func (o *UpdateAppRequestDataAttributes) HasQueries() bool {
+	return o != nil && o.Queries != nil
+}
+
+// SetQueries gets a reference to the given []Query and assigns it to the Queries field.
+func (o *UpdateAppRequestDataAttributes) SetQueries(v []Query) {
+	o.Queries = v
 }
 
 // GetRootInstanceName returns the RootInstanceName field value if set, zero value otherwise.
@@ -224,11 +224,11 @@ func (o UpdateAppRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if o.EmbeddedQueries != nil {
-		toSerialize["embeddedQueries"] = o.EmbeddedQueries
-	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
+	}
+	if o.Queries != nil {
+		toSerialize["queries"] = o.Queries
 	}
 	if o.RootInstanceName != nil {
 		toSerialize["rootInstanceName"] = o.RootInstanceName
@@ -248,8 +248,8 @@ func (o *UpdateAppRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error)
 	all := struct {
 		Components       []ComponentGrid `json:"components,omitempty"`
 		Description      *string         `json:"description,omitempty"`
-		EmbeddedQueries  []Query         `json:"embeddedQueries,omitempty"`
 		Name             *string         `json:"name,omitempty"`
+		Queries          []Query         `json:"queries,omitempty"`
 		RootInstanceName *string         `json:"rootInstanceName,omitempty"`
 		Tags             []string        `json:"tags,omitempty"`
 	}{}
@@ -258,14 +258,14 @@ func (o *UpdateAppRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"components", "description", "embeddedQueries", "name", "rootInstanceName", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"components", "description", "name", "queries", "rootInstanceName", "tags"})
 	} else {
 		return err
 	}
 	o.Components = all.Components
 	o.Description = all.Description
-	o.EmbeddedQueries = all.EmbeddedQueries
 	o.Name = all.Name
+	o.Queries = all.Queries
 	o.RootInstanceName = all.RootInstanceName
 	o.Tags = all.Tags
 
