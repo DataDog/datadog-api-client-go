@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListVulnerableAssets", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
 	resp, r, err := api.ListVulnerableAssets(ctx, *datadogV2.NewListVulnerableAssetsOptionalParameters().WithFilterType(datadogV2.ASSETTYPE_HOST).WithFilterRepositoryUrl("github.com/datadog/dd-go").WithFilterRisksInProduction(true))
