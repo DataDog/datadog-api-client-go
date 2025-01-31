@@ -9,7 +9,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/app-builder/apps/7addb29b-f935-472c-ae79-d1963979a23e/deployment
   response:
-    body: '{"errors":[{"title":"app not found","detail":"app not found"}]}'
+    body: '{"errors":[{"title":"app not found"}]}'
     code: 404
     duration: 0ms
     headers:

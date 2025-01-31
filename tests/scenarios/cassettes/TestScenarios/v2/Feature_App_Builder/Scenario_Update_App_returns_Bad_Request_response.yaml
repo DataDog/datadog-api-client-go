@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"components":[{"events":[],"name":"grid0","properties":{"children":[{"events":[],"name":"gridCell0","properties":{"children":[{"events":[],"name":"calloutValue0","properties":{"isDisabled":false,"isLoading":false,"isVisible":true,"label":"CPU Usage","size":"sm","style":"vivid_yellow","unit":"kB","value":"42"},"type":"calloutValue"}],"isVisible":"true","layout":{"default":{"height":8,"width":2,"x":0,"y":0}}},"type":"gridCell"}]},"type":"grid"}],"description":"This is a simple example app","embeddedQueries":[],"name":"Example App","rootInstanceName":"grid0"},"type":"appDefinitions"}}
+      {"data":{"attributes":{"components":[{"events":[],"name":"grid0","properties":{"children":[{"events":[],"name":"gridCell0","properties":{"children":[{"events":[],"name":"calloutValue0","properties":{"isDisabled":false,"isLoading":false,"isVisible":true,"label":"CPU Usage","size":"sm","style":"vivid_yellow","unit":"kB","value":"42"},"type":"calloutValue"}],"isVisible":"true","layout":{"default":{"height":8,"width":2,"x":0,"y":0}}},"type":"gridCell"}]},"type":"grid"}],"description":"This is a simple example app","name":"Example App","queries":[],"rootInstanceName":"grid0"},"type":"appDefinitions"}}
     form: {}
     headers:
       Accept:
@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/app-builder/apps
   response:
-    body: '{"data":{"id":"b3f997e6-a9db-4984-a560-23005049c5f3","type":"appDefinitions"}}'
+    body: '{"data":{"id":"3800673b-840c-4c3a-8815-058b4a8ce38e","type":"appDefinitions"}}'
     code: 201
     duration: 0ms
     headers:
@@ -21,7 +21,7 @@ interactions:
     status: 201 Created
 - request:
     body: |
-      {"data":{"attributes":{"rootInstanceName":""},"id":"b3f997e6-a9db-4984-a560-23005049c5f3","type":"appDefinitions"}}
+      {"data":{"attributes":{"rootInstanceName":""},"id":"3800673b-840c-4c3a-8815-058b4a8ce38e","type":"appDefinitions"}}
     form: {}
     headers:
       Accept:
@@ -30,10 +30,9 @@ interactions:
       - application/json
     id: 1
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/app-builder/apps/b3f997e6-a9db-4984-a560-23005049c5f3
+    url: https://api.datadoghq.com/api/v2/app-builder/apps/3800673b-840c-4c3a-8815-058b4a8ce38e
   response:
-    body: '{"errors":[{"title":"missing required field","detail":"missing required
-      field","source":{"pointer":"/data/attributes/rootInstanceName"}}]}'
+    body: '{"errors":[{"title":"missing required field","source":{"pointer":"/data/attributes/rootInstanceName"}}]}'
     code: 400
     duration: 0ms
     headers:
@@ -48,9 +47,9 @@ interactions:
       - application/json
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/app-builder/apps/b3f997e6-a9db-4984-a560-23005049c5f3
+    url: https://api.datadoghq.com/api/v2/app-builder/apps/3800673b-840c-4c3a-8815-058b4a8ce38e
   response:
-    body: '{"data":{"id":"b3f997e6-a9db-4984-a560-23005049c5f3","type":"appDefinitions"}}'
+    body: '{"data":{"id":"3800673b-840c-4c3a-8815-058b4a8ce38e","type":"appDefinitions"}}'
     code: 200
     duration: 0ms
     headers:
