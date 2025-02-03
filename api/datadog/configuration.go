@@ -403,6 +403,10 @@ func NewConfiguration() *Configuration {
 			"v2.GetIncidentTeam":              false,
 			"v2.ListIncidentTeams":            false,
 			"v2.UpdateIncidentTeam":           false,
+			"v2.CreateWorkflow":               false,
+			"v2.DeleteWorkflow":               false,
+			"v2.GetWorkflow":                  false,
+			"v2.UpdateWorkflow":               false,
 		},
 		RetryConfiguration: RetryConfiguration{
 			EnableRetry:       false,
