@@ -9,7 +9,8 @@ interactions:
     method: GET
     url: https://api.datadoghq.com/api/v2/security/vulnerabilities?page%5Btoken%5D=unknown&page%5Bnumber%5D=1
   response:
-    body: '{"errors":[{"status":"404","title":"Not Found"}]}'
+    body: '{"errors":[{"title":"Generic Error","detail":"rpc error: code = Internal
+      desc = no cached result set found for queryID: unknown"}]}'
     code: 404
     duration: 0ms
     headers:
