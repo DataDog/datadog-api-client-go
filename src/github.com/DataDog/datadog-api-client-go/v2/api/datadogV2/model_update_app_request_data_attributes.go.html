@@ -71,10 +71,10 @@
 <span id="L14" class="ln">    14  </span>	Components []ComponentGrid `json:&#34;components,omitempty&#34;`
 <span id="L15" class="ln">    15  </span>	<span class="comment">// The new human-readable description for the app.</span>
 <span id="L16" class="ln">    16  </span>	Description *string `json:&#34;description,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// The new array of queries, such as external actions and state variables, that the app uses. If this field is set, all existing queries are replaced with the new queries under this field.</span>
-<span id="L18" class="ln">    18  </span>	EmbeddedQueries []Query `json:&#34;embeddedQueries,omitempty&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// The new name of the app.</span>
-<span id="L20" class="ln">    20  </span>	Name *string `json:&#34;name,omitempty&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// The new name of the app.</span>
+<span id="L18" class="ln">    18  </span>	Name *string `json:&#34;name,omitempty&#34;`
+<span id="L19" class="ln">    19  </span>	<span class="comment">// The new array of queries, such as external actions and state variables, that the app uses. If this field is set, all existing queries are replaced with the new queries under this field.</span>
+<span id="L20" class="ln">    20  </span>	Queries []Query `json:&#34;queries,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// The new name of the root component of the app. This must be a `grid` component that contains all other components.</span>
 <span id="L22" class="ln">    22  </span>	RootInstanceName *string `json:&#34;rootInstanceName,omitempty&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// The new list of tags for the app, which can be used to filter apps. If this field is set, any existing tags not included in the request are removed.</span>
@@ -157,60 +157,60 @@
 <span id="L100" class="ln">   100  </span>	o.Description = &amp;v
 <span id="L101" class="ln">   101  </span>}
 <span id="L102" class="ln">   102  </span>
-<span id="L103" class="ln">   103  </span><span class="comment">// GetEmbeddedQueries returns the EmbeddedQueries field value if set, zero value otherwise.</span>
-<span id="L104" class="ln">   104  </span>func (o *UpdateAppRequestDataAttributes) GetEmbeddedQueries() []Query {
-<span id="L105" class="ln">   105  </span>	if o == nil || o.EmbeddedQueries == nil {
-<span id="L106" class="ln">   106  </span>		var ret []Query
+<span id="L103" class="ln">   103  </span><span class="comment">// GetName returns the Name field value if set, zero value otherwise.</span>
+<span id="L104" class="ln">   104  </span>func (o *UpdateAppRequestDataAttributes) GetName() string {
+<span id="L105" class="ln">   105  </span>	if o == nil || o.Name == nil {
+<span id="L106" class="ln">   106  </span>		var ret string
 <span id="L107" class="ln">   107  </span>		return ret
 <span id="L108" class="ln">   108  </span>	}
-<span id="L109" class="ln">   109  </span>	return o.EmbeddedQueries
+<span id="L109" class="ln">   109  </span>	return *o.Name
 <span id="L110" class="ln">   110  </span>}
 <span id="L111" class="ln">   111  </span>
-<span id="L112" class="ln">   112  </span><span class="comment">// GetEmbeddedQueriesOk returns a tuple with the EmbeddedQueries field value if set, nil otherwise</span>
+<span id="L112" class="ln">   112  </span><span class="comment">// GetNameOk returns a tuple with the Name field value if set, nil otherwise</span>
 <span id="L113" class="ln">   113  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L114" class="ln">   114  </span>func (o *UpdateAppRequestDataAttributes) GetEmbeddedQueriesOk() (*[]Query, bool) {
-<span id="L115" class="ln">   115  </span>	if o == nil || o.EmbeddedQueries == nil {
+<span id="L114" class="ln">   114  </span>func (o *UpdateAppRequestDataAttributes) GetNameOk() (*string, bool) {
+<span id="L115" class="ln">   115  </span>	if o == nil || o.Name == nil {
 <span id="L116" class="ln">   116  </span>		return nil, false
 <span id="L117" class="ln">   117  </span>	}
-<span id="L118" class="ln">   118  </span>	return &amp;o.EmbeddedQueries, true
+<span id="L118" class="ln">   118  </span>	return o.Name, true
 <span id="L119" class="ln">   119  </span>}
 <span id="L120" class="ln">   120  </span>
-<span id="L121" class="ln">   121  </span><span class="comment">// HasEmbeddedQueries returns a boolean if a field has been set.</span>
-<span id="L122" class="ln">   122  </span>func (o *UpdateAppRequestDataAttributes) HasEmbeddedQueries() bool {
-<span id="L123" class="ln">   123  </span>	return o != nil &amp;&amp; o.EmbeddedQueries != nil
+<span id="L121" class="ln">   121  </span><span class="comment">// HasName returns a boolean if a field has been set.</span>
+<span id="L122" class="ln">   122  </span>func (o *UpdateAppRequestDataAttributes) HasName() bool {
+<span id="L123" class="ln">   123  </span>	return o != nil &amp;&amp; o.Name != nil
 <span id="L124" class="ln">   124  </span>}
 <span id="L125" class="ln">   125  </span>
-<span id="L126" class="ln">   126  </span><span class="comment">// SetEmbeddedQueries gets a reference to the given []Query and assigns it to the EmbeddedQueries field.</span>
-<span id="L127" class="ln">   127  </span>func (o *UpdateAppRequestDataAttributes) SetEmbeddedQueries(v []Query) {
-<span id="L128" class="ln">   128  </span>	o.EmbeddedQueries = v
+<span id="L126" class="ln">   126  </span><span class="comment">// SetName gets a reference to the given string and assigns it to the Name field.</span>
+<span id="L127" class="ln">   127  </span>func (o *UpdateAppRequestDataAttributes) SetName(v string) {
+<span id="L128" class="ln">   128  </span>	o.Name = &amp;v
 <span id="L129" class="ln">   129  </span>}
 <span id="L130" class="ln">   130  </span>
-<span id="L131" class="ln">   131  </span><span class="comment">// GetName returns the Name field value if set, zero value otherwise.</span>
-<span id="L132" class="ln">   132  </span>func (o *UpdateAppRequestDataAttributes) GetName() string {
-<span id="L133" class="ln">   133  </span>	if o == nil || o.Name == nil {
-<span id="L134" class="ln">   134  </span>		var ret string
+<span id="L131" class="ln">   131  </span><span class="comment">// GetQueries returns the Queries field value if set, zero value otherwise.</span>
+<span id="L132" class="ln">   132  </span>func (o *UpdateAppRequestDataAttributes) GetQueries() []Query {
+<span id="L133" class="ln">   133  </span>	if o == nil || o.Queries == nil {
+<span id="L134" class="ln">   134  </span>		var ret []Query
 <span id="L135" class="ln">   135  </span>		return ret
 <span id="L136" class="ln">   136  </span>	}
-<span id="L137" class="ln">   137  </span>	return *o.Name
+<span id="L137" class="ln">   137  </span>	return o.Queries
 <span id="L138" class="ln">   138  </span>}
 <span id="L139" class="ln">   139  </span>
-<span id="L140" class="ln">   140  </span><span class="comment">// GetNameOk returns a tuple with the Name field value if set, nil otherwise</span>
+<span id="L140" class="ln">   140  </span><span class="comment">// GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise</span>
 <span id="L141" class="ln">   141  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L142" class="ln">   142  </span>func (o *UpdateAppRequestDataAttributes) GetNameOk() (*string, bool) {
-<span id="L143" class="ln">   143  </span>	if o == nil || o.Name == nil {
+<span id="L142" class="ln">   142  </span>func (o *UpdateAppRequestDataAttributes) GetQueriesOk() (*[]Query, bool) {
+<span id="L143" class="ln">   143  </span>	if o == nil || o.Queries == nil {
 <span id="L144" class="ln">   144  </span>		return nil, false
 <span id="L145" class="ln">   145  </span>	}
-<span id="L146" class="ln">   146  </span>	return o.Name, true
+<span id="L146" class="ln">   146  </span>	return &amp;o.Queries, true
 <span id="L147" class="ln">   147  </span>}
 <span id="L148" class="ln">   148  </span>
-<span id="L149" class="ln">   149  </span><span class="comment">// HasName returns a boolean if a field has been set.</span>
-<span id="L150" class="ln">   150  </span>func (o *UpdateAppRequestDataAttributes) HasName() bool {
-<span id="L151" class="ln">   151  </span>	return o != nil &amp;&amp; o.Name != nil
+<span id="L149" class="ln">   149  </span><span class="comment">// HasQueries returns a boolean if a field has been set.</span>
+<span id="L150" class="ln">   150  </span>func (o *UpdateAppRequestDataAttributes) HasQueries() bool {
+<span id="L151" class="ln">   151  </span>	return o != nil &amp;&amp; o.Queries != nil
 <span id="L152" class="ln">   152  </span>}
 <span id="L153" class="ln">   153  </span>
-<span id="L154" class="ln">   154  </span><span class="comment">// SetName gets a reference to the given string and assigns it to the Name field.</span>
-<span id="L155" class="ln">   155  </span>func (o *UpdateAppRequestDataAttributes) SetName(v string) {
-<span id="L156" class="ln">   156  </span>	o.Name = &amp;v
+<span id="L154" class="ln">   154  </span><span class="comment">// SetQueries gets a reference to the given []Query and assigns it to the Queries field.</span>
+<span id="L155" class="ln">   155  </span>func (o *UpdateAppRequestDataAttributes) SetQueries(v []Query) {
+<span id="L156" class="ln">   156  </span>	o.Queries = v
 <span id="L157" class="ln">   157  </span>}
 <span id="L158" class="ln">   158  </span>
 <span id="L159" class="ln">   159  </span><span class="comment">// GetRootInstanceName returns the RootInstanceName field value if set, zero value otherwise.</span>
@@ -281,11 +281,11 @@
 <span id="L224" class="ln">   224  </span>	if o.Description != nil {
 <span id="L225" class="ln">   225  </span>		toSerialize[&#34;description&#34;] = o.Description
 <span id="L226" class="ln">   226  </span>	}
-<span id="L227" class="ln">   227  </span>	if o.EmbeddedQueries != nil {
-<span id="L228" class="ln">   228  </span>		toSerialize[&#34;embeddedQueries&#34;] = o.EmbeddedQueries
+<span id="L227" class="ln">   227  </span>	if o.Name != nil {
+<span id="L228" class="ln">   228  </span>		toSerialize[&#34;name&#34;] = o.Name
 <span id="L229" class="ln">   229  </span>	}
-<span id="L230" class="ln">   230  </span>	if o.Name != nil {
-<span id="L231" class="ln">   231  </span>		toSerialize[&#34;name&#34;] = o.Name
+<span id="L230" class="ln">   230  </span>	if o.Queries != nil {
+<span id="L231" class="ln">   231  </span>		toSerialize[&#34;queries&#34;] = o.Queries
 <span id="L232" class="ln">   232  </span>	}
 <span id="L233" class="ln">   233  </span>	if o.RootInstanceName != nil {
 <span id="L234" class="ln">   234  </span>		toSerialize[&#34;rootInstanceName&#34;] = o.RootInstanceName
@@ -305,8 +305,8 @@
 <span id="L248" class="ln">   248  </span>	all := struct {
 <span id="L249" class="ln">   249  </span>		Components       []ComponentGrid `json:&#34;components,omitempty&#34;`
 <span id="L250" class="ln">   250  </span>		Description      *string         `json:&#34;description,omitempty&#34;`
-<span id="L251" class="ln">   251  </span>		EmbeddedQueries  []Query         `json:&#34;embeddedQueries,omitempty&#34;`
-<span id="L252" class="ln">   252  </span>		Name             *string         `json:&#34;name,omitempty&#34;`
+<span id="L251" class="ln">   251  </span>		Name             *string         `json:&#34;name,omitempty&#34;`
+<span id="L252" class="ln">   252  </span>		Queries          []Query         `json:&#34;queries,omitempty&#34;`
 <span id="L253" class="ln">   253  </span>		RootInstanceName *string         `json:&#34;rootInstanceName,omitempty&#34;`
 <span id="L254" class="ln">   254  </span>		Tags             []string        `json:&#34;tags,omitempty&#34;`
 <span id="L255" class="ln">   255  </span>	}{}
@@ -315,14 +315,14 @@
 <span id="L258" class="ln">   258  </span>	}
 <span id="L259" class="ln">   259  </span>	additionalProperties := make(map[string]interface{})
 <span id="L260" class="ln">   260  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L261" class="ln">   261  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;components&#34;, &#34;description&#34;, &#34;embeddedQueries&#34;, &#34;name&#34;, &#34;rootInstanceName&#34;, &#34;tags&#34;})
+<span id="L261" class="ln">   261  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;components&#34;, &#34;description&#34;, &#34;name&#34;, &#34;queries&#34;, &#34;rootInstanceName&#34;, &#34;tags&#34;})
 <span id="L262" class="ln">   262  </span>	} else {
 <span id="L263" class="ln">   263  </span>		return err
 <span id="L264" class="ln">   264  </span>	}
 <span id="L265" class="ln">   265  </span>	o.Components = all.Components
 <span id="L266" class="ln">   266  </span>	o.Description = all.Description
-<span id="L267" class="ln">   267  </span>	o.EmbeddedQueries = all.EmbeddedQueries
-<span id="L268" class="ln">   268  </span>	o.Name = all.Name
+<span id="L267" class="ln">   267  </span>	o.Name = all.Name
+<span id="L268" class="ln">   268  </span>	o.Queries = all.Queries
 <span id="L269" class="ln">   269  </span>	o.RootInstanceName = all.RootInstanceName
 <span id="L270" class="ln">   270  </span>	o.Tags = all.Tags
 <span id="L271" class="ln">   271  </span>

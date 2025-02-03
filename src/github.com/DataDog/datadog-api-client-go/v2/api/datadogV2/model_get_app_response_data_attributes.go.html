@@ -71,12 +71,12 @@
 <span id="L14" class="ln">    14  </span>	Components []ComponentGrid `json:&#34;components,omitempty&#34;`
 <span id="L15" class="ln">    15  </span>	<span class="comment">// A human-readable description for the app.</span>
 <span id="L16" class="ln">    16  </span>	Description *string `json:&#34;description,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// An array of queries, such as external actions and state variables, that the app uses.</span>
-<span id="L18" class="ln">    18  </span>	EmbeddedQueries []Query `json:&#34;embeddedQueries,omitempty&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// Whether the app is marked as a favorite by the current user.</span>
-<span id="L20" class="ln">    20  </span>	Favorite *bool `json:&#34;favorite,omitempty&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// The name of the app.</span>
-<span id="L22" class="ln">    22  </span>	Name *string `json:&#34;name,omitempty&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Whether the app is marked as a favorite by the current user.</span>
+<span id="L18" class="ln">    18  </span>	Favorite *bool `json:&#34;favorite,omitempty&#34;`
+<span id="L19" class="ln">    19  </span>	<span class="comment">// The name of the app.</span>
+<span id="L20" class="ln">    20  </span>	Name *string `json:&#34;name,omitempty&#34;`
+<span id="L21" class="ln">    21  </span>	<span class="comment">// An array of queries, such as external actions and state variables, that the app uses.</span>
+<span id="L22" class="ln">    22  </span>	Queries []Query `json:&#34;queries,omitempty&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// The name of the root component of the app. This must be a `grid` component that contains all other components.</span>
 <span id="L24" class="ln">    24  </span>	RootInstanceName *string `json:&#34;rootInstanceName,omitempty&#34;`
 <span id="L25" class="ln">    25  </span>	<span class="comment">// A list of tags for the app, which can be used to filter apps.</span>
@@ -159,88 +159,88 @@
 <span id="L102" class="ln">   102  </span>	o.Description = &amp;v
 <span id="L103" class="ln">   103  </span>}
 <span id="L104" class="ln">   104  </span>
-<span id="L105" class="ln">   105  </span><span class="comment">// GetEmbeddedQueries returns the EmbeddedQueries field value if set, zero value otherwise.</span>
-<span id="L106" class="ln">   106  </span>func (o *GetAppResponseDataAttributes) GetEmbeddedQueries() []Query {
-<span id="L107" class="ln">   107  </span>	if o == nil || o.EmbeddedQueries == nil {
-<span id="L108" class="ln">   108  </span>		var ret []Query
+<span id="L105" class="ln">   105  </span><span class="comment">// GetFavorite returns the Favorite field value if set, zero value otherwise.</span>
+<span id="L106" class="ln">   106  </span>func (o *GetAppResponseDataAttributes) GetFavorite() bool {
+<span id="L107" class="ln">   107  </span>	if o == nil || o.Favorite == nil {
+<span id="L108" class="ln">   108  </span>		var ret bool
 <span id="L109" class="ln">   109  </span>		return ret
 <span id="L110" class="ln">   110  </span>	}
-<span id="L111" class="ln">   111  </span>	return o.EmbeddedQueries
+<span id="L111" class="ln">   111  </span>	return *o.Favorite
 <span id="L112" class="ln">   112  </span>}
 <span id="L113" class="ln">   113  </span>
-<span id="L114" class="ln">   114  </span><span class="comment">// GetEmbeddedQueriesOk returns a tuple with the EmbeddedQueries field value if set, nil otherwise</span>
+<span id="L114" class="ln">   114  </span><span class="comment">// GetFavoriteOk returns a tuple with the Favorite field value if set, nil otherwise</span>
 <span id="L115" class="ln">   115  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L116" class="ln">   116  </span>func (o *GetAppResponseDataAttributes) GetEmbeddedQueriesOk() (*[]Query, bool) {
-<span id="L117" class="ln">   117  </span>	if o == nil || o.EmbeddedQueries == nil {
+<span id="L116" class="ln">   116  </span>func (o *GetAppResponseDataAttributes) GetFavoriteOk() (*bool, bool) {
+<span id="L117" class="ln">   117  </span>	if o == nil || o.Favorite == nil {
 <span id="L118" class="ln">   118  </span>		return nil, false
 <span id="L119" class="ln">   119  </span>	}
-<span id="L120" class="ln">   120  </span>	return &amp;o.EmbeddedQueries, true
+<span id="L120" class="ln">   120  </span>	return o.Favorite, true
 <span id="L121" class="ln">   121  </span>}
 <span id="L122" class="ln">   122  </span>
-<span id="L123" class="ln">   123  </span><span class="comment">// HasEmbeddedQueries returns a boolean if a field has been set.</span>
-<span id="L124" class="ln">   124  </span>func (o *GetAppResponseDataAttributes) HasEmbeddedQueries() bool {
-<span id="L125" class="ln">   125  </span>	return o != nil &amp;&amp; o.EmbeddedQueries != nil
+<span id="L123" class="ln">   123  </span><span class="comment">// HasFavorite returns a boolean if a field has been set.</span>
+<span id="L124" class="ln">   124  </span>func (o *GetAppResponseDataAttributes) HasFavorite() bool {
+<span id="L125" class="ln">   125  </span>	return o != nil &amp;&amp; o.Favorite != nil
 <span id="L126" class="ln">   126  </span>}
 <span id="L127" class="ln">   127  </span>
-<span id="L128" class="ln">   128  </span><span class="comment">// SetEmbeddedQueries gets a reference to the given []Query and assigns it to the EmbeddedQueries field.</span>
-<span id="L129" class="ln">   129  </span>func (o *GetAppResponseDataAttributes) SetEmbeddedQueries(v []Query) {
-<span id="L130" class="ln">   130  </span>	o.EmbeddedQueries = v
+<span id="L128" class="ln">   128  </span><span class="comment">// SetFavorite gets a reference to the given bool and assigns it to the Favorite field.</span>
+<span id="L129" class="ln">   129  </span>func (o *GetAppResponseDataAttributes) SetFavorite(v bool) {
+<span id="L130" class="ln">   130  </span>	o.Favorite = &amp;v
 <span id="L131" class="ln">   131  </span>}
 <span id="L132" class="ln">   132  </span>
-<span id="L133" class="ln">   133  </span><span class="comment">// GetFavorite returns the Favorite field value if set, zero value otherwise.</span>
-<span id="L134" class="ln">   134  </span>func (o *GetAppResponseDataAttributes) GetFavorite() bool {
-<span id="L135" class="ln">   135  </span>	if o == nil || o.Favorite == nil {
-<span id="L136" class="ln">   136  </span>		var ret bool
+<span id="L133" class="ln">   133  </span><span class="comment">// GetName returns the Name field value if set, zero value otherwise.</span>
+<span id="L134" class="ln">   134  </span>func (o *GetAppResponseDataAttributes) GetName() string {
+<span id="L135" class="ln">   135  </span>	if o == nil || o.Name == nil {
+<span id="L136" class="ln">   136  </span>		var ret string
 <span id="L137" class="ln">   137  </span>		return ret
 <span id="L138" class="ln">   138  </span>	}
-<span id="L139" class="ln">   139  </span>	return *o.Favorite
+<span id="L139" class="ln">   139  </span>	return *o.Name
 <span id="L140" class="ln">   140  </span>}
 <span id="L141" class="ln">   141  </span>
-<span id="L142" class="ln">   142  </span><span class="comment">// GetFavoriteOk returns a tuple with the Favorite field value if set, nil otherwise</span>
+<span id="L142" class="ln">   142  </span><span class="comment">// GetNameOk returns a tuple with the Name field value if set, nil otherwise</span>
 <span id="L143" class="ln">   143  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L144" class="ln">   144  </span>func (o *GetAppResponseDataAttributes) GetFavoriteOk() (*bool, bool) {
-<span id="L145" class="ln">   145  </span>	if o == nil || o.Favorite == nil {
+<span id="L144" class="ln">   144  </span>func (o *GetAppResponseDataAttributes) GetNameOk() (*string, bool) {
+<span id="L145" class="ln">   145  </span>	if o == nil || o.Name == nil {
 <span id="L146" class="ln">   146  </span>		return nil, false
 <span id="L147" class="ln">   147  </span>	}
-<span id="L148" class="ln">   148  </span>	return o.Favorite, true
+<span id="L148" class="ln">   148  </span>	return o.Name, true
 <span id="L149" class="ln">   149  </span>}
 <span id="L150" class="ln">   150  </span>
-<span id="L151" class="ln">   151  </span><span class="comment">// HasFavorite returns a boolean if a field has been set.</span>
-<span id="L152" class="ln">   152  </span>func (o *GetAppResponseDataAttributes) HasFavorite() bool {
-<span id="L153" class="ln">   153  </span>	return o != nil &amp;&amp; o.Favorite != nil
+<span id="L151" class="ln">   151  </span><span class="comment">// HasName returns a boolean if a field has been set.</span>
+<span id="L152" class="ln">   152  </span>func (o *GetAppResponseDataAttributes) HasName() bool {
+<span id="L153" class="ln">   153  </span>	return o != nil &amp;&amp; o.Name != nil
 <span id="L154" class="ln">   154  </span>}
 <span id="L155" class="ln">   155  </span>
-<span id="L156" class="ln">   156  </span><span class="comment">// SetFavorite gets a reference to the given bool and assigns it to the Favorite field.</span>
-<span id="L157" class="ln">   157  </span>func (o *GetAppResponseDataAttributes) SetFavorite(v bool) {
-<span id="L158" class="ln">   158  </span>	o.Favorite = &amp;v
+<span id="L156" class="ln">   156  </span><span class="comment">// SetName gets a reference to the given string and assigns it to the Name field.</span>
+<span id="L157" class="ln">   157  </span>func (o *GetAppResponseDataAttributes) SetName(v string) {
+<span id="L158" class="ln">   158  </span>	o.Name = &amp;v
 <span id="L159" class="ln">   159  </span>}
 <span id="L160" class="ln">   160  </span>
-<span id="L161" class="ln">   161  </span><span class="comment">// GetName returns the Name field value if set, zero value otherwise.</span>
-<span id="L162" class="ln">   162  </span>func (o *GetAppResponseDataAttributes) GetName() string {
-<span id="L163" class="ln">   163  </span>	if o == nil || o.Name == nil {
-<span id="L164" class="ln">   164  </span>		var ret string
+<span id="L161" class="ln">   161  </span><span class="comment">// GetQueries returns the Queries field value if set, zero value otherwise.</span>
+<span id="L162" class="ln">   162  </span>func (o *GetAppResponseDataAttributes) GetQueries() []Query {
+<span id="L163" class="ln">   163  </span>	if o == nil || o.Queries == nil {
+<span id="L164" class="ln">   164  </span>		var ret []Query
 <span id="L165" class="ln">   165  </span>		return ret
 <span id="L166" class="ln">   166  </span>	}
-<span id="L167" class="ln">   167  </span>	return *o.Name
+<span id="L167" class="ln">   167  </span>	return o.Queries
 <span id="L168" class="ln">   168  </span>}
 <span id="L169" class="ln">   169  </span>
-<span id="L170" class="ln">   170  </span><span class="comment">// GetNameOk returns a tuple with the Name field value if set, nil otherwise</span>
+<span id="L170" class="ln">   170  </span><span class="comment">// GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise</span>
 <span id="L171" class="ln">   171  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L172" class="ln">   172  </span>func (o *GetAppResponseDataAttributes) GetNameOk() (*string, bool) {
-<span id="L173" class="ln">   173  </span>	if o == nil || o.Name == nil {
+<span id="L172" class="ln">   172  </span>func (o *GetAppResponseDataAttributes) GetQueriesOk() (*[]Query, bool) {
+<span id="L173" class="ln">   173  </span>	if o == nil || o.Queries == nil {
 <span id="L174" class="ln">   174  </span>		return nil, false
 <span id="L175" class="ln">   175  </span>	}
-<span id="L176" class="ln">   176  </span>	return o.Name, true
+<span id="L176" class="ln">   176  </span>	return &amp;o.Queries, true
 <span id="L177" class="ln">   177  </span>}
 <span id="L178" class="ln">   178  </span>
-<span id="L179" class="ln">   179  </span><span class="comment">// HasName returns a boolean if a field has been set.</span>
-<span id="L180" class="ln">   180  </span>func (o *GetAppResponseDataAttributes) HasName() bool {
-<span id="L181" class="ln">   181  </span>	return o != nil &amp;&amp; o.Name != nil
+<span id="L179" class="ln">   179  </span><span class="comment">// HasQueries returns a boolean if a field has been set.</span>
+<span id="L180" class="ln">   180  </span>func (o *GetAppResponseDataAttributes) HasQueries() bool {
+<span id="L181" class="ln">   181  </span>	return o != nil &amp;&amp; o.Queries != nil
 <span id="L182" class="ln">   182  </span>}
 <span id="L183" class="ln">   183  </span>
-<span id="L184" class="ln">   184  </span><span class="comment">// SetName gets a reference to the given string and assigns it to the Name field.</span>
-<span id="L185" class="ln">   185  </span>func (o *GetAppResponseDataAttributes) SetName(v string) {
-<span id="L186" class="ln">   186  </span>	o.Name = &amp;v
+<span id="L184" class="ln">   184  </span><span class="comment">// SetQueries gets a reference to the given []Query and assigns it to the Queries field.</span>
+<span id="L185" class="ln">   185  </span>func (o *GetAppResponseDataAttributes) SetQueries(v []Query) {
+<span id="L186" class="ln">   186  </span>	o.Queries = v
 <span id="L187" class="ln">   187  </span>}
 <span id="L188" class="ln">   188  </span>
 <span id="L189" class="ln">   189  </span><span class="comment">// GetRootInstanceName returns the RootInstanceName field value if set, zero value otherwise.</span>
@@ -311,14 +311,14 @@
 <span id="L254" class="ln">   254  </span>	if o.Description != nil {
 <span id="L255" class="ln">   255  </span>		toSerialize[&#34;description&#34;] = o.Description
 <span id="L256" class="ln">   256  </span>	}
-<span id="L257" class="ln">   257  </span>	if o.EmbeddedQueries != nil {
-<span id="L258" class="ln">   258  </span>		toSerialize[&#34;embeddedQueries&#34;] = o.EmbeddedQueries
+<span id="L257" class="ln">   257  </span>	if o.Favorite != nil {
+<span id="L258" class="ln">   258  </span>		toSerialize[&#34;favorite&#34;] = o.Favorite
 <span id="L259" class="ln">   259  </span>	}
-<span id="L260" class="ln">   260  </span>	if o.Favorite != nil {
-<span id="L261" class="ln">   261  </span>		toSerialize[&#34;favorite&#34;] = o.Favorite
+<span id="L260" class="ln">   260  </span>	if o.Name != nil {
+<span id="L261" class="ln">   261  </span>		toSerialize[&#34;name&#34;] = o.Name
 <span id="L262" class="ln">   262  </span>	}
-<span id="L263" class="ln">   263  </span>	if o.Name != nil {
-<span id="L264" class="ln">   264  </span>		toSerialize[&#34;name&#34;] = o.Name
+<span id="L263" class="ln">   263  </span>	if o.Queries != nil {
+<span id="L264" class="ln">   264  </span>		toSerialize[&#34;queries&#34;] = o.Queries
 <span id="L265" class="ln">   265  </span>	}
 <span id="L266" class="ln">   266  </span>	if o.RootInstanceName != nil {
 <span id="L267" class="ln">   267  </span>		toSerialize[&#34;rootInstanceName&#34;] = o.RootInstanceName
@@ -338,9 +338,9 @@
 <span id="L281" class="ln">   281  </span>	all := struct {
 <span id="L282" class="ln">   282  </span>		Components       []ComponentGrid `json:&#34;components,omitempty&#34;`
 <span id="L283" class="ln">   283  </span>		Description      *string         `json:&#34;description,omitempty&#34;`
-<span id="L284" class="ln">   284  </span>		EmbeddedQueries  []Query         `json:&#34;embeddedQueries,omitempty&#34;`
-<span id="L285" class="ln">   285  </span>		Favorite         *bool           `json:&#34;favorite,omitempty&#34;`
-<span id="L286" class="ln">   286  </span>		Name             *string         `json:&#34;name,omitempty&#34;`
+<span id="L284" class="ln">   284  </span>		Favorite         *bool           `json:&#34;favorite,omitempty&#34;`
+<span id="L285" class="ln">   285  </span>		Name             *string         `json:&#34;name,omitempty&#34;`
+<span id="L286" class="ln">   286  </span>		Queries          []Query         `json:&#34;queries,omitempty&#34;`
 <span id="L287" class="ln">   287  </span>		RootInstanceName *string         `json:&#34;rootInstanceName,omitempty&#34;`
 <span id="L288" class="ln">   288  </span>		Tags             []string        `json:&#34;tags,omitempty&#34;`
 <span id="L289" class="ln">   289  </span>	}{}
@@ -349,15 +349,15 @@
 <span id="L292" class="ln">   292  </span>	}
 <span id="L293" class="ln">   293  </span>	additionalProperties := make(map[string]interface{})
 <span id="L294" class="ln">   294  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L295" class="ln">   295  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;components&#34;, &#34;description&#34;, &#34;embeddedQueries&#34;, &#34;favorite&#34;, &#34;name&#34;, &#34;rootInstanceName&#34;, &#34;tags&#34;})
+<span id="L295" class="ln">   295  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;components&#34;, &#34;description&#34;, &#34;favorite&#34;, &#34;name&#34;, &#34;queries&#34;, &#34;rootInstanceName&#34;, &#34;tags&#34;})
 <span id="L296" class="ln">   296  </span>	} else {
 <span id="L297" class="ln">   297  </span>		return err
 <span id="L298" class="ln">   298  </span>	}
 <span id="L299" class="ln">   299  </span>	o.Components = all.Components
 <span id="L300" class="ln">   300  </span>	o.Description = all.Description
-<span id="L301" class="ln">   301  </span>	o.EmbeddedQueries = all.EmbeddedQueries
-<span id="L302" class="ln">   302  </span>	o.Favorite = all.Favorite
-<span id="L303" class="ln">   303  </span>	o.Name = all.Name
+<span id="L301" class="ln">   301  </span>	o.Favorite = all.Favorite
+<span id="L302" class="ln">   302  </span>	o.Name = all.Name
+<span id="L303" class="ln">   303  </span>	o.Queries = all.Queries
 <span id="L304" class="ln">   304  </span>	o.RootInstanceName = all.RootInstanceName
 <span id="L305" class="ln">   305  </span>	o.Tags = all.Tags
 <span id="L306" class="ln">   306  </span>
