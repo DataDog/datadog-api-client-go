@@ -1,0 +1,59 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Cassette Workflow DELETE","spec":{"steps":[],"triggers":[{"startStepNames":[],"workflowTrigger":{}}]}},"type":"workflows"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/workflows
+  response:
+    body: '{"data":{"id":"d140796c-8c90-4ed9-b162-7842d9008825","type":"workflows","attributes":{"createdAt":"2025-02-03T01:41:53.522621Z","description":"","name":"Cassette
+      Workflow DELETE","published":true,"spec":{"triggers":[{"workflowTrigger":{}}]},"tags":[],"updatedAt":"2025-02-03T01:41:53.522621Z"},"relationships":{"creator":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}},"owner":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"description":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","name":"Too many characters in description","spec":{}},"id":"22222222-2222-2222-2222-222222222222","type":"workflows"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/workflows/d140796c-8c90-4ed9-b162-7842d9008825
+  response:
+    body: '{"errors":[{"detail":"workflow description exceeds size limit of [300]
+      characters"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/workflows/d140796c-8c90-4ed9-b162-7842d9008825
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
