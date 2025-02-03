@@ -48,7 +48,7 @@ func main() {
 					},
 				},
 				Description:      datadog.PtrString("This is a simple example app"),
-				EmbeddedQueries:  []datadogV2.Query{},
+				Queries:          []datadogV2.Query{},
 				Name:             datadog.PtrString("Example App"),
 				RootInstanceName: datadog.PtrString("grid0"),
 			},

@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"components":[{"events":[],"name":"grid0","properties":{"children":[{"events":[],"name":"gridCell0","properties":{"children":[{"events":[],"name":"calloutValue0","properties":{"isDisabled":false,"isLoading":false,"isVisible":true,"label":"CPU Usage","size":"sm","style":"vivid_yellow","unit":"kB","value":"42"},"type":"calloutValue"}],"isVisible":"true","layout":{"default":{"height":8,"width":2,"x":0,"y":0}}},"type":"gridCell"}]},"type":"grid"}],"description":"This is a simple example app","embeddedQueries":[],"name":"Example App","rootInstanceName":"grid0"},"type":"appDefinitions"}}
+      {"data":{"attributes":{"components":[{"events":[],"name":"grid0","properties":{"children":[{"events":[],"name":"gridCell0","properties":{"children":[{"events":[],"name":"calloutValue0","properties":{"isDisabled":false,"isLoading":false,"isVisible":true,"label":"CPU Usage","size":"sm","style":"vivid_yellow","unit":"kB","value":"42"},"type":"calloutValue"}],"isVisible":"true","layout":{"default":{"height":8,"width":2,"x":0,"y":0}}},"type":"gridCell"}]},"type":"grid"}],"description":"This is a simple example app","name":"Example App","queries":[],"rootInstanceName":"grid0"},"type":"appDefinitions"}}
     form: {}
     headers:
       Accept:
@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/app-builder/apps
   response:
-    body: '{"data":{"id":"7b5a5fec-3026-47a9-acca-e01dc557af0a","type":"appDefinitions"}}'
+    body: '{"data":{"id":"91f80f89-33dc-4311-93fe-b4936275bc74","type":"appDefinitions"}}'
     code: 201
     duration: 0ms
     headers:
@@ -21,7 +21,7 @@ interactions:
     status: 201 Created
 - request:
     body: |
-      {"data":[{"id":"7b5a5fec-3026-47a9-acca-e01dc557af0a","type":"appDefinitions"}]}
+      {"data":[{"id":"91f80f89-33dc-4311-93fe-b4936275bc74","type":"appDefinitions"}]}
     form: {}
     headers:
       Accept:
@@ -32,7 +32,7 @@ interactions:
     method: DELETE
     url: https://api.datadoghq.com/api/v2/app-builder/apps
   response:
-    body: '{"data":[{"id":"7b5a5fec-3026-47a9-acca-e01dc557af0a","type":"appDefinitions"}]}'
+    body: '{"data":[{"id":"91f80f89-33dc-4311-93fe-b4936275bc74","type":"appDefinitions"}]}'
     code: 200
     duration: 0ms
     headers:
@@ -47,9 +47,9 @@ interactions:
       - application/json
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/app-builder/apps/7b5a5fec-3026-47a9-acca-e01dc557af0a
+    url: https://api.datadoghq.com/api/v2/app-builder/apps/91f80f89-33dc-4311-93fe-b4936275bc74
   response:
-    body: '{"errors":[{"title":"app not found","detail":"app not found"}]}'
+    body: '{"errors":[{"title":"app not found"}]}'
     code: 404
     duration: 0ms
     headers:
