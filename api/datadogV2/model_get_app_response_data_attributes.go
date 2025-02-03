@@ -14,12 +14,12 @@ type GetAppResponseDataAttributes struct {
 	Components []ComponentGrid `json:"components,omitempty"`
 	// A human-readable description for the app.
 	Description *string `json:"description,omitempty"`
-	// An array of queries, such as external actions and state variables, that the app uses.
-	EmbeddedQueries []Query `json:"embeddedQueries,omitempty"`
 	// Whether the app is marked as a favorite by the current user.
 	Favorite *bool `json:"favorite,omitempty"`
 	// The name of the app.
 	Name *string `json:"name,omitempty"`
+	// An array of queries, such as external actions and state variables, that the app uses.
+	Queries []Query `json:"queries,omitempty"`
 	// The name of the root component of the app. This must be a `grid` component that contains all other components.
 	RootInstanceName *string `json:"rootInstanceName,omitempty"`
 	// A list of tags for the app, which can be used to filter apps.
@@ -102,34 +102,6 @@ func (o *GetAppResponseDataAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetEmbeddedQueries returns the EmbeddedQueries field value if set, zero value otherwise.
-func (o *GetAppResponseDataAttributes) GetEmbeddedQueries() []Query {
-	if o == nil || o.EmbeddedQueries == nil {
-		var ret []Query
-		return ret
-	}
-	return o.EmbeddedQueries
-}
-
-// GetEmbeddedQueriesOk returns a tuple with the EmbeddedQueries field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetAppResponseDataAttributes) GetEmbeddedQueriesOk() (*[]Query, bool) {
-	if o == nil || o.EmbeddedQueries == nil {
-		return nil, false
-	}
-	return &o.EmbeddedQueries, true
-}
-
-// HasEmbeddedQueries returns a boolean if a field has been set.
-func (o *GetAppResponseDataAttributes) HasEmbeddedQueries() bool {
-	return o != nil && o.EmbeddedQueries != nil
-}
-
-// SetEmbeddedQueries gets a reference to the given []Query and assigns it to the EmbeddedQueries field.
-func (o *GetAppResponseDataAttributes) SetEmbeddedQueries(v []Query) {
-	o.EmbeddedQueries = v
-}
-
 // GetFavorite returns the Favorite field value if set, zero value otherwise.
 func (o *GetAppResponseDataAttributes) GetFavorite() bool {
 	if o == nil || o.Favorite == nil {
@@ -184,6 +156,34 @@ func (o *GetAppResponseDataAttributes) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *GetAppResponseDataAttributes) SetName(v string) {
 	o.Name = &v
+}
+
+// GetQueries returns the Queries field value if set, zero value otherwise.
+func (o *GetAppResponseDataAttributes) GetQueries() []Query {
+	if o == nil || o.Queries == nil {
+		var ret []Query
+		return ret
+	}
+	return o.Queries
+}
+
+// GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetAppResponseDataAttributes) GetQueriesOk() (*[]Query, bool) {
+	if o == nil || o.Queries == nil {
+		return nil, false
+	}
+	return &o.Queries, true
+}
+
+// HasQueries returns a boolean if a field has been set.
+func (o *GetAppResponseDataAttributes) HasQueries() bool {
+	return o != nil && o.Queries != nil
+}
+
+// SetQueries gets a reference to the given []Query and assigns it to the Queries field.
+func (o *GetAppResponseDataAttributes) SetQueries(v []Query) {
+	o.Queries = v
 }
 
 // GetRootInstanceName returns the RootInstanceName field value if set, zero value otherwise.
@@ -254,14 +254,14 @@ func (o GetAppResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if o.EmbeddedQueries != nil {
-		toSerialize["embeddedQueries"] = o.EmbeddedQueries
-	}
 	if o.Favorite != nil {
 		toSerialize["favorite"] = o.Favorite
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
+	}
+	if o.Queries != nil {
+		toSerialize["queries"] = o.Queries
 	}
 	if o.RootInstanceName != nil {
 		toSerialize["rootInstanceName"] = o.RootInstanceName
@@ -281,9 +281,9 @@ func (o *GetAppResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Components       []ComponentGrid `json:"components,omitempty"`
 		Description      *string         `json:"description,omitempty"`
-		EmbeddedQueries  []Query         `json:"embeddedQueries,omitempty"`
 		Favorite         *bool           `json:"favorite,omitempty"`
 		Name             *string         `json:"name,omitempty"`
+		Queries          []Query         `json:"queries,omitempty"`
 		RootInstanceName *string         `json:"rootInstanceName,omitempty"`
 		Tags             []string        `json:"tags,omitempty"`
 	}{}
@@ -292,15 +292,15 @@ func (o *GetAppResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"components", "description", "embeddedQueries", "favorite", "name", "rootInstanceName", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"components", "description", "favorite", "name", "queries", "rootInstanceName", "tags"})
 	} else {
 		return err
 	}
 	o.Components = all.Components
 	o.Description = all.Description
-	o.EmbeddedQueries = all.EmbeddedQueries
 	o.Favorite = all.Favorite
 	o.Name = all.Name
+	o.Queries = all.Queries
 	o.RootInstanceName = all.RootInstanceName
 	o.Tags = all.Tags
 

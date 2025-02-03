@@ -12,8 +12,7 @@ interactions:
     method: DELETE
     url: https://api.datadoghq.com/api/v2/app-builder/apps
   response:
-    body: '{"errors":[{"title":"one or more apps not found","detail":"one or more
-      apps not found"}]}'
+    body: '{"errors":[{"title":"one or more apps not found"}]}'
     code: 404
     duration: 0ms
     headers:
