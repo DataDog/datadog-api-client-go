@@ -184,6 +184,8 @@ func (a *IncidentsApi) CreateIncidentIntegration(ctx _context.Context, incidentI
 
 // CreateIncidentTodo Create an incident todo.
 // Create an incident todo.
+//
+// Deprecated: This API is deprecated.
 func (a *IncidentsApi) CreateIncidentTodo(ctx _context.Context, incidentId string, body IncidentTodoCreateRequest) (IncidentTodoResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -490,6 +492,8 @@ func (a *IncidentsApi) DeleteIncidentIntegration(ctx _context.Context, incidentI
 
 // DeleteIncidentTodo Delete an incident todo.
 // Delete an incident todo.
+//
+// Deprecated: This API is deprecated.
 func (a *IncidentsApi) DeleteIncidentTodo(ctx _context.Context, incidentId string, todoId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -820,6 +824,8 @@ func (a *IncidentsApi) GetIncidentIntegration(ctx _context.Context, incidentId s
 
 // GetIncidentTodo Get incident todo details.
 // Get incident todo details.
+//
+// Deprecated: This API is deprecated.
 func (a *IncidentsApi) GetIncidentTodo(ctx _context.Context, incidentId string, todoId string) (IncidentTodoResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1179,6 +1185,8 @@ func (a *IncidentsApi) ListIncidentIntegrations(ctx _context.Context, incidentId
 
 // ListIncidentTodos Get a list of an incident's todos.
 // Get all todos for an incident.
+//
+// Deprecated: This API is deprecated.
 func (a *IncidentsApi) ListIncidentTodos(ctx _context.Context, incidentId string) (IncidentTodoListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2045,6 +2053,8 @@ func (a *IncidentsApi) UpdateIncidentIntegration(ctx _context.Context, incidentI
 
 // UpdateIncidentTodo Update an incident todo.
 // Update an incident todo.
+//
+// Deprecated: This API is deprecated.
 func (a *IncidentsApi) UpdateIncidentTodo(ctx _context.Context, incidentId string, todoId string, body IncidentTodoPatchRequest) (IncidentTodoResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
