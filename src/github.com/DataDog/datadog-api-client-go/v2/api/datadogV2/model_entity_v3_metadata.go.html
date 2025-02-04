@@ -90,7 +90,7 @@
 <span id="L33" class="ln">    33  </span>	<span class="comment">// Namespace is a part of unique identifier. It has a default value of &#39;default&#39;.</span>
 <span id="L34" class="ln">    34  </span>	Namespace *string `json:&#34;namespace,omitempty&#34;`
 <span id="L35" class="ln">    35  </span>	<span class="comment">// The owner of the entity, usually a team.</span>
-<span id="L36" class="ln">    36  </span>	Owner *EntityV3MetadataOwner `json:&#34;owner,omitempty&#34;`
+<span id="L36" class="ln">    36  </span>	Owner *string `json:&#34;owner,omitempty&#34;`
 <span id="L37" class="ln">    37  </span>	<span class="comment">// A set of custom tags.</span>
 <span id="L38" class="ln">    38  </span>	Tags []string `json:&#34;tags,omitempty&#34;`
 <span id="L39" class="ln">    39  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
@@ -391,9 +391,9 @@
 <span id="L334" class="ln">   334  </span>}
 <span id="L335" class="ln">   335  </span>
 <span id="L336" class="ln">   336  </span><span class="comment">// GetOwner returns the Owner field value if set, zero value otherwise.</span>
-<span id="L337" class="ln">   337  </span>func (o *EntityV3Metadata) GetOwner() EntityV3MetadataOwner {
+<span id="L337" class="ln">   337  </span>func (o *EntityV3Metadata) GetOwner() string {
 <span id="L338" class="ln">   338  </span>	if o == nil || o.Owner == nil {
-<span id="L339" class="ln">   339  </span>		var ret EntityV3MetadataOwner
+<span id="L339" class="ln">   339  </span>		var ret string
 <span id="L340" class="ln">   340  </span>		return ret
 <span id="L341" class="ln">   341  </span>	}
 <span id="L342" class="ln">   342  </span>	return *o.Owner
@@ -401,7 +401,7 @@
 <span id="L344" class="ln">   344  </span>
 <span id="L345" class="ln">   345  </span><span class="comment">// GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise</span>
 <span id="L346" class="ln">   346  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L347" class="ln">   347  </span>func (o *EntityV3Metadata) GetOwnerOk() (*EntityV3MetadataOwner, bool) {
+<span id="L347" class="ln">   347  </span>func (o *EntityV3Metadata) GetOwnerOk() (*string, bool) {
 <span id="L348" class="ln">   348  </span>	if o == nil || o.Owner == nil {
 <span id="L349" class="ln">   349  </span>		return nil, false
 <span id="L350" class="ln">   350  </span>	}
@@ -413,8 +413,8 @@
 <span id="L356" class="ln">   356  </span>	return o != nil &amp;&amp; o.Owner != nil
 <span id="L357" class="ln">   357  </span>}
 <span id="L358" class="ln">   358  </span>
-<span id="L359" class="ln">   359  </span><span class="comment">// SetOwner gets a reference to the given EntityV3MetadataOwner and assigns it to the Owner field.</span>
-<span id="L360" class="ln">   360  </span>func (o *EntityV3Metadata) SetOwner(v EntityV3MetadataOwner) {
+<span id="L359" class="ln">   359  </span><span class="comment">// SetOwner gets a reference to the given string and assigns it to the Owner field.</span>
+<span id="L360" class="ln">   360  </span>func (o *EntityV3Metadata) SetOwner(v string) {
 <span id="L361" class="ln">   361  </span>	o.Owner = &amp;v
 <span id="L362" class="ln">   362  </span>}
 <span id="L363" class="ln">   363  </span>
@@ -502,7 +502,7 @@
 <span id="L445" class="ln">   445  </span>		Managed          map[string]interface{}                  `json:&#34;managed,omitempty&#34;`
 <span id="L446" class="ln">   446  </span>		Name             *string                                 `json:&#34;name&#34;`
 <span id="L447" class="ln">   447  </span>		Namespace        *string                                 `json:&#34;namespace,omitempty&#34;`
-<span id="L448" class="ln">   448  </span>		Owner            *EntityV3MetadataOwner                  `json:&#34;owner,omitempty&#34;`
+<span id="L448" class="ln">   448  </span>		Owner            *string                                 `json:&#34;owner,omitempty&#34;`
 <span id="L449" class="ln">   449  </span>		Tags             []string                                `json:&#34;tags,omitempty&#34;`
 <span id="L450" class="ln">   450  </span>	}{}
 <span id="L451" class="ln">   451  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
@@ -511,31 +511,22 @@
 <span id="L454" class="ln">   454  </span>	if all.Name == nil {
 <span id="L455" class="ln">   455  </span>		return fmt.Errorf(&#34;required field name missing&#34;)
 <span id="L456" class="ln">   456  </span>	}
-<span id="L457" class="ln">   457  </span>
-<span id="L458" class="ln">   458  </span>	hasInvalidField := false
-<span id="L459" class="ln">   459  </span>	o.AdditionalOwners = all.AdditionalOwners
-<span id="L460" class="ln">   460  </span>	o.Contacts = all.Contacts
-<span id="L461" class="ln">   461  </span>	o.Description = all.Description
-<span id="L462" class="ln">   462  </span>	o.DisplayName = all.DisplayName
-<span id="L463" class="ln">   463  </span>	o.Id = all.Id
-<span id="L464" class="ln">   464  </span>	o.InheritFrom = all.InheritFrom
-<span id="L465" class="ln">   465  </span>	o.Links = all.Links
-<span id="L466" class="ln">   466  </span>	o.Managed = all.Managed
-<span id="L467" class="ln">   467  </span>	o.Name = *all.Name
-<span id="L468" class="ln">   468  </span>	o.Namespace = all.Namespace
-<span id="L469" class="ln">   469  </span>	if all.Owner != nil &amp;&amp; all.Owner.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L470" class="ln">   470  </span>		hasInvalidField = true
-<span id="L471" class="ln">   471  </span>	}
-<span id="L472" class="ln">   472  </span>	o.Owner = all.Owner
-<span id="L473" class="ln">   473  </span>	o.Tags = all.Tags
-<span id="L474" class="ln">   474  </span>
-<span id="L475" class="ln">   475  </span>	if hasInvalidField {
-<span id="L476" class="ln">   476  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L477" class="ln">   477  </span>	}
-<span id="L478" class="ln">   478  </span>
-<span id="L479" class="ln">   479  </span>	return nil
-<span id="L480" class="ln">   480  </span>}
-<span id="L481" class="ln">   481  </span>
+<span id="L457" class="ln">   457  </span>	o.AdditionalOwners = all.AdditionalOwners
+<span id="L458" class="ln">   458  </span>	o.Contacts = all.Contacts
+<span id="L459" class="ln">   459  </span>	o.Description = all.Description
+<span id="L460" class="ln">   460  </span>	o.DisplayName = all.DisplayName
+<span id="L461" class="ln">   461  </span>	o.Id = all.Id
+<span id="L462" class="ln">   462  </span>	o.InheritFrom = all.InheritFrom
+<span id="L463" class="ln">   463  </span>	o.Links = all.Links
+<span id="L464" class="ln">   464  </span>	o.Managed = all.Managed
+<span id="L465" class="ln">   465  </span>	o.Name = *all.Name
+<span id="L466" class="ln">   466  </span>	o.Namespace = all.Namespace
+<span id="L467" class="ln">   467  </span>	o.Owner = all.Owner
+<span id="L468" class="ln">   468  </span>	o.Tags = all.Tags
+<span id="L469" class="ln">   469  </span>
+<span id="L470" class="ln">   470  </span>	return nil
+<span id="L471" class="ln">   471  </span>}
+<span id="L472" class="ln">   472  </span>
 </pre><p></p>
 
 <div id="footer">
