@@ -14,7 +14,7 @@ import (
 type ListAPIsResponseData struct {
 	// Attributes for `ListAPIsResponseData`.
 	Attributes *ListAPIsResponseDataAttributes `json:"attributes,omitempty"`
-	// API identifier.
+	// Test
 	Id *uuid.UUID `json:"id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

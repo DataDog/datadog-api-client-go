@@ -14,7 +14,7 @@ import (
 type CreateOpenAPIResponseData struct {
 	// Attributes for `CreateOpenAPI`.
 	Attributes *CreateOpenAPIResponseAttributes `json:"attributes,omitempty"`
-	// API identifier.
+	// Test
 	Id *uuid.UUID `json:"id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
