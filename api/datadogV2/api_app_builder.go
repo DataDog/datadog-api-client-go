@@ -291,7 +291,7 @@ func (a *AppBuilderApi) DeleteApps(ctx _context.Context, body DeleteAppsRequest)
 
 // GetAppOptionalParameters holds optional parameters for GetApp.
 type GetAppOptionalParameters struct {
-	Version *string
+	Version *AppVersionSelector
 }
 
 // NewGetAppOptionalParameters creates an empty struct for parameters.
@@ -301,7 +301,7 @@ func NewGetAppOptionalParameters() *GetAppOptionalParameters {
 }
 
 // WithVersion sets the corresponding parameter name and returns the struct.
-func (r *GetAppOptionalParameters) WithVersion(version string) *GetAppOptionalParameters {
+func (r *GetAppOptionalParameters) WithVersion(version AppVersionSelector) *GetAppOptionalParameters {
 	r.Version = &version
 	return r
 }
@@ -374,7 +374,7 @@ func (a *AppBuilderApi) GetApp(ctx _context.Context, appId uuid.UUID, o ...GetAp
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 410 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
