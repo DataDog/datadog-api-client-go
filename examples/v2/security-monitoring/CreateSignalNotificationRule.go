@@ -1,4 +1,4 @@
-// Create a new signal-based rule returns "Successfully created the notification rule." response
+// Create a new signal-based notification rule returns "Successfully created the notification rule." response
 
 package main
 

@@ -201,6 +201,16 @@ Feature: Security Monitoring
     And the response "thirdPartyCases[0].query" is equal to "status:error"
 
   @skip-validation @team:DataDog/k9-cloud-security-platform
+  Scenario: Create a detection rule with type 'application_security 'returns "OK" response
+    Given new "CreateSecurityMonitoringRule" request
+    And body with value {"type":"application_security","name":"{{unique}}_appsec_rule","queries":[{"query":"@appsec.security_activity:business_logic.users.login.failure","aggregation":"count","groupByFields":["service","@http.client_ip"],"distinctFields":[]}],"filters":[],"cases":[{"name":"","status":"info","notifications":[],"condition":"a > 100000","actions":[{"type":"block_ip","options":{"duration":900}}]}],"options":{"keepAlive":3600,"maxSignalDuration":86400,"evaluationWindow":900,"detectionMethod":"threshold"},"isEnabled":true,"message":"Test rule","tags":[],"groupSignalsBy":["service"]}
+    When the request is sent
+    Then the response status is 200 OK
+    And the response "name" is equal to "{{ unique }}_appsec_rule"
+    And the response "type" is equal to "application_security"
+    And the response "message" is equal to "Test rule"
+
+  @skip-validation @team:DataDog/k9-cloud-security-platform
   Scenario: Create a detection rule with type 'impossible_travel' returns "OK" response
     Given new "CreateSecurityMonitoringRule" request
     And body with value {"queries":[{"aggregation":"geo_data","groupByFields":["@usr.id"],"distinctFields":[],"metric":"@network.client.geoip","query":"*"}],"cases":[{"name":"","status":"info","notifications":[]}],"hasExtendedTitle":true,"message":"test","isEnabled":true,"options":{"maxSignalDuration":86400,"evaluationWindow":900,"keepAlive":3600,"detectionMethod":"impossible_travel","impossibleTravelOptions":{"baselineUserLocations":false}},"name":"{{ unique }}","type":"log_detection","tags":[],"filters":[]}
@@ -236,28 +246,28 @@ Feature: Security Monitoring
     And the response "isEnabled" is equal to true
 
   @generated @skip @team:DataDog/cloud-security-posture-management
-  Scenario: Create a new signal-based rule returns "Bad Request" response
+  Scenario: Create a new signal-based notification rule returns "Bad Request" response
     Given new "CreateSignalNotificationRule" request
     And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400}, "type": "notification_rules"}}
     When the request is sent
     Then the response status is 400 Bad Request
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Create a new signal-based rule returns "Successfully created the notification rule." response
+  Scenario: Create a new signal-based notification rule returns "Successfully created the notification rule." response
     Given new "CreateSignalNotificationRule" request
     And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400}, "type": "notification_rules"}}
     When the request is sent
     Then the response status is 201 Successfully created the notification rule.
 
   @generated @skip @team:DataDog/cloud-security-posture-management
-  Scenario: Create a new vulnerability-based rule returns "Bad Request" response
+  Scenario: Create a new vulnerability-based notification rule returns "Bad Request" response
     Given new "CreateVulnerabilityNotificationRule" request
     And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400}, "type": "notification_rules"}}
     When the request is sent
     Then the response status is 400 Bad Request
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Create a new vulnerability-based rule returns "Successfully created the notification rule." response
+  Scenario: Create a new vulnerability-based notification rule returns "Successfully created the notification rule." response
     Given new "CreateVulnerabilityNotificationRule" request
     And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400}, "type": "notification_rules"}}
     When the request is sent
@@ -354,14 +364,14 @@ Feature: Security Monitoring
     Then the response status is 204 OK
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Delete a signal-based rule returns "Not Found" response
+  Scenario: Delete a signal-based notification rule returns "Not Found" response
     Given new "DeleteSignalNotificationRule" request
     And request contains "id" parameter with value "000-000-000"
     When the request is sent
     Then the response status is 404 Not Found
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Delete a signal-based rule returns "Rule successfully deleted." response
+  Scenario: Delete a signal-based notification rule returns "Rule successfully deleted." response
     Given there is a valid "valid_signal_notification_rule" in the system
     And new "DeleteSignalNotificationRule" request
     And request contains "id" parameter from "valid_signal_notification_rule.data.id"
@@ -384,14 +394,14 @@ Feature: Security Monitoring
     Then the response status is 204 OK
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Delete a vulnerability-based rule returns "Not Found" response
+  Scenario: Delete a vulnerability-based notification rule returns "Not Found" response
     Given new "DeleteVulnerabilityNotificationRule" request
     And request contains "id" parameter with value "000-000-000"
     When the request is sent
     Then the response status is 404 Not Found
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Delete a vulnerability-based rule returns "Rule successfully deleted." response
+  Scenario: Delete a vulnerability-based notification rule returns "Rule successfully deleted." response
     Given there is a valid "valid_vulnerability_notification_rule" in the system
     And new "DeleteVulnerabilityNotificationRule" request
     And request contains "id" parameter from "valid_vulnerability_notification_rule.data.id"
@@ -655,21 +665,21 @@ Feature: Security Monitoring
     Then the response status is 200 OK
 
   @generated @skip @team:DataDog/cloud-security-posture-management
-  Scenario: Get details of a signal-based rule returns "Bad Request" response
+  Scenario: Get details of a signal-based notification rule returns "Bad Request" response
     Given new "GetSignalNotificationRule" request
     And request contains "id" parameter from "REPLACE.ME"
     When the request is sent
     Then the response status is 400 Bad Request
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Get details of a signal-based rule returns "Not Found" response
+  Scenario: Get details of a signal-based notification rule returns "Not Found" response
     Given new "GetSignalNotificationRule" request
     And request contains "id" parameter with value "000-000-000"
     When the request is sent
     Then the response status is 404 Not Found
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Get details of a signal-based rule returns "Notification rule details." response
+  Scenario: Get details of a signal-based notification rule returns "Notification rule details." response
     Given there is a valid "valid_signal_notification_rule" in the system
     And new "GetSignalNotificationRule" request
     And request contains "id" parameter from "valid_signal_notification_rule.data.id"
@@ -677,21 +687,21 @@ Feature: Security Monitoring
     Then the response status is 200 Notification rule details.
 
   @generated @skip @team:DataDog/cloud-security-posture-management
-  Scenario: Get details of a vulnerability-based rule returns "Bad Request" response
+  Scenario: Get details of a vulnerability notification rule returns "Bad Request" response
     Given new "GetVulnerabilityNotificationRule" request
     And request contains "id" parameter from "REPLACE.ME"
     When the request is sent
     Then the response status is 400 Bad Request
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Get details of a vulnerability-based rule returns "Not Found" response
+  Scenario: Get details of a vulnerability notification rule returns "Not Found" response
     Given new "GetVulnerabilityNotificationRule" request
     And request contains "id" parameter with value "000-000-000"
     When the request is sent
     Then the response status is 404 Not Found
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Get details of a vulnerability-based rule returns "Notification rule details." response
+  Scenario: Get details of a vulnerability notification rule returns "Notification rule details." response
     Given there is a valid "valid_vulnerability_notification_rule" in the system
     And new "GetVulnerabilityNotificationRule" request
     And request contains "id" parameter from "valid_vulnerability_notification_rule.data.id"
@@ -699,14 +709,14 @@ Feature: Security Monitoring
     Then the response status is 200 Notification rule details.
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Get the list of signal-based rules returns "The list of notification rules." response
+  Scenario: Get the list of signal-based notification rules returns "The list of notification rules." response
     Given there is a valid "valid_signal_notification_rule" in the system
     And new "GetSignalNotificationRules" request
     When the request is sent
     Then the response status is 200 The list of notification rules.
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Get the list of vulnerability-based rules returns "The list of notification rules." response
+  Scenario: Get the list of vulnerability notification rules returns "The list of notification rules." response
     Given there is a valid "valid_vulnerability_notification_rule" in the system
     And new "GetVulnerabilityNotificationRules" request
     When the request is sent
@@ -881,7 +891,7 @@ Feature: Security Monitoring
     Then the response status is 200 OK
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Patch a signal-based rule returns "Bad Request" response
+  Scenario: Patch a signal-based notification rule returns "Bad Request" response
     Given new "PatchSignalNotificationRule" request
     And there is a valid "valid_signal_notification_rule" in the system
     And request contains "id" parameter from "valid_signal_notification_rule.data.id"
@@ -890,7 +900,7 @@ Feature: Security Monitoring
     Then the response status is 400 Bad Request
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Patch a signal-based rule returns "Not Found" response
+  Scenario: Patch a signal-based notification rule returns "Not Found" response
     Given new "PatchSignalNotificationRule" request
     And request contains "id" parameter with value "000-000-000"
     And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400, "version": 1}, "id": "aaa-bbb-ccc", "type": "notification_rules"}}
@@ -898,7 +908,7 @@ Feature: Security Monitoring
     Then the response status is 404 Not Found
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Patch a signal-based rule returns "Notification rule successfully patched." response
+  Scenario: Patch a signal-based notification rule returns "Notification rule successfully patched." response
     Given new "PatchSignalNotificationRule" request
     And there is a valid "valid_signal_notification_rule" in the system
     And request contains "id" parameter from "valid_signal_notification_rule.data.id"
@@ -907,7 +917,7 @@ Feature: Security Monitoring
     Then the response status is 200 Notification rule successfully patched.
 
   @generated @skip @team:DataDog/cloud-security-posture-management
-  Scenario: Patch a signal-based rule returns "The server cannot process the request because it contains invalid data." response
+  Scenario: Patch a signal-based notification rule returns "The server cannot process the request because it contains invalid data." response
     Given new "PatchSignalNotificationRule" request
     And request contains "id" parameter from "REPLACE.ME"
     And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400, "version": 1}, "id": "aaa-bbb-ccc", "type": "notification_rules"}}
@@ -915,7 +925,7 @@ Feature: Security Monitoring
     Then the response status is 422 The server cannot process the request because it contains invalid data.
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Patch a vulnerability-based rule returns "Bad Request" response
+  Scenario: Patch a vulnerability-based notification rule returns "Bad Request" response
     Given new "PatchVulnerabilityNotificationRule" request
     And there is a valid "valid_vulnerability_notification_rule" in the system
     And request contains "id" parameter from "valid_vulnerability_notification_rule.data.id"
@@ -924,7 +934,7 @@ Feature: Security Monitoring
     Then the response status is 400 Bad Request
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Patch a vulnerability-based rule returns "Not Found" response
+  Scenario: Patch a vulnerability-based notification rule returns "Not Found" response
     Given new "PatchVulnerabilityNotificationRule" request
     And request contains "id" parameter with value "000-000-000"
     And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400, "version": 1}, "id": "aaa-bbb-ccc", "type": "notification_rules"}}
@@ -932,7 +942,7 @@ Feature: Security Monitoring
     Then the response status is 404 Not Found
 
   @team:DataDog/cloud-security-posture-management
-  Scenario: Patch a vulnerability-based rule returns "Notification rule successfully patched." response
+  Scenario: Patch a vulnerability-based notification rule returns "Notification rule successfully patched." response
     Given new "PatchVulnerabilityNotificationRule" request
     And there is a valid "valid_vulnerability_notification_rule" in the system
     And request contains "id" parameter from "valid_vulnerability_notification_rule.data.id"
@@ -941,7 +951,7 @@ Feature: Security Monitoring
     Then the response status is 200 Notification rule successfully patched.
 
   @generated @skip @team:DataDog/cloud-security-posture-management
-  Scenario: Patch a vulnerability-based rule returns "The server cannot process the request because it contains invalid data." response
+  Scenario: Patch a vulnerability-based notification rule returns "The server cannot process the request because it contains invalid data." response
     Given new "PatchVulnerabilityNotificationRule" request
     And request contains "id" parameter from "REPLACE.ME"
     And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400, "version": 1}, "id": "aaa-bbb-ccc", "type": "notification_rules"}}
