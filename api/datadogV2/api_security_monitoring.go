@@ -529,7 +529,7 @@ func (a *SecurityMonitoringApi) CreateSecurityMonitoringSuppression(ctx _context
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateSignalNotificationRule Create a new signal-based rule.
+// CreateSignalNotificationRule Create a new signal-based notification rule.
 // Create a new notification rule for security signals and return the created rule.
 func (a *SecurityMonitoringApi) CreateSignalNotificationRule(ctx _context.Context, body CreateNotificationRuleParameters) (NotificationRuleResponse, *_nethttp.Response, error) {
 	var (
@@ -602,7 +602,7 @@ func (a *SecurityMonitoringApi) CreateSignalNotificationRule(ctx _context.Contex
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateVulnerabilityNotificationRule Create a new vulnerability-based rule.
+// CreateVulnerabilityNotificationRule Create a new vulnerability-based notification rule.
 // Create a new notification rule for security vulnerabilities and return the created rule.
 func (a *SecurityMonitoringApi) CreateVulnerabilityNotificationRule(ctx _context.Context, body CreateNotificationRuleParameters) (NotificationRuleResponse, *_nethttp.Response, error) {
 	var (
@@ -928,7 +928,7 @@ func (a *SecurityMonitoringApi) DeleteSecurityMonitoringSuppression(ctx _context
 	return localVarHTTPResponse, nil
 }
 
-// DeleteSignalNotificationRule Delete a signal-based rule.
+// DeleteSignalNotificationRule Delete a signal-based notification rule.
 // Delete a notification rule for security signals.
 func (a *SecurityMonitoringApi) DeleteSignalNotificationRule(ctx _context.Context, id string) (*_nethttp.Response, error) {
 	var (
@@ -989,7 +989,7 @@ func (a *SecurityMonitoringApi) DeleteSignalNotificationRule(ctx _context.Contex
 	return localVarHTTPResponse, nil
 }
 
-// DeleteVulnerabilityNotificationRule Delete a vulnerability-based rule.
+// DeleteVulnerabilityNotificationRule Delete a vulnerability-based notification rule.
 // Delete a notification rule for security vulnerabilities.
 func (a *SecurityMonitoringApi) DeleteVulnerabilityNotificationRule(ctx _context.Context, id string) (*_nethttp.Response, error) {
 	var (
@@ -1856,7 +1856,7 @@ func (a *SecurityMonitoringApi) GetSecurityMonitoringSuppression(ctx _context.Co
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetSignalNotificationRule Get details of a signal-based rule.
+// GetSignalNotificationRule Get details of a signal-based notification rule.
 // Get the details of a notification rule for security signals.
 func (a *SecurityMonitoringApi) GetSignalNotificationRule(ctx _context.Context, id string) (NotificationRuleResponse, *_nethttp.Response, error) {
 	var (
@@ -1927,7 +1927,7 @@ func (a *SecurityMonitoringApi) GetSignalNotificationRule(ctx _context.Context, 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetSignalNotificationRules Get the list of signal-based rules.
+// GetSignalNotificationRules Get the list of signal-based notification rules.
 // Returns the list of notification rules for security signals.
 func (a *SecurityMonitoringApi) GetSignalNotificationRules(ctx _context.Context) (interface{}, *_nethttp.Response, error) {
 	var (
@@ -1997,7 +1997,7 @@ func (a *SecurityMonitoringApi) GetSignalNotificationRules(ctx _context.Context)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetVulnerabilityNotificationRule Get details of a vulnerability-based rule.
+// GetVulnerabilityNotificationRule Get details of a vulnerability notification rule.
 // Get the details of a notification rule for security vulnerabilities.
 func (a *SecurityMonitoringApi) GetVulnerabilityNotificationRule(ctx _context.Context, id string) (NotificationRuleResponse, *_nethttp.Response, error) {
 	var (
@@ -2068,7 +2068,7 @@ func (a *SecurityMonitoringApi) GetVulnerabilityNotificationRule(ctx _context.Co
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetVulnerabilityNotificationRules Get the list of vulnerability-based rules.
+// GetVulnerabilityNotificationRules Get the list of vulnerability notification rules.
 // Returns the list of notification rules for security vulnerabilities.
 func (a *SecurityMonitoringApi) GetVulnerabilityNotificationRules(ctx _context.Context) (interface{}, *_nethttp.Response, error) {
 	var (
@@ -3985,7 +3985,7 @@ func (a *SecurityMonitoringApi) MuteFindings(ctx _context.Context, body BulkMute
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// PatchSignalNotificationRule Patch a signal-based rule.
+// PatchSignalNotificationRule Patch a signal-based notification rule.
 // Partially update the notification rule. All fields are optional; if a field is not provided, it is not updated.
 func (a *SecurityMonitoringApi) PatchSignalNotificationRule(ctx _context.Context, id string, body PatchNotificationRuleParameters) (NotificationRuleResponse, *_nethttp.Response, error) {
 	var (
@@ -4068,7 +4068,7 @@ func (a *SecurityMonitoringApi) PatchSignalNotificationRule(ctx _context.Context
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// PatchVulnerabilityNotificationRule Patch a vulnerability-based rule.
+// PatchVulnerabilityNotificationRule Patch a vulnerability-based notification rule.
 // Partially update the notification rule. All fields are optional; if a field is not provided, it is not updated.
 func (a *SecurityMonitoringApi) PatchVulnerabilityNotificationRule(ctx _context.Context, id string, body PatchNotificationRuleParameters) (NotificationRuleResponse, *_nethttp.Response, error) {
 	var (

@@ -15657,6 +15657,15 @@ components:
           example: 1729843470000
           format: int64
           type: integer
+        groupSignalsBy:
+          description: Additional grouping to perform on top of the existing groups
+            in the query section. Must be a subset of the existing groups
+          example:
+          - service
+          items:
+            description: Field to group by.
+            type: string
+          type: array
         index:
           description: Index used to load the data.
           example: cloud_siem
@@ -23184,8 +23193,7 @@ components:
       x-enum-varnames:
       - RULE
     RuleTypes:
-      description: Security rule types used to filter signals and vulnerabilities
-        generating notifications.
+      description: Security rule types used as filters in security rules.
       example:
       - misconfiguration
       - attack_path
@@ -23193,7 +23201,7 @@ components:
         $ref: '#/components/schemas/RuleTypesItems'
       type: array
     RuleTypesItems:
-      description: 'Security rule types which can be used in notification rules.
+      description: 'Security rule type which can be used in security rules.
 
         Signal-based notification rules can filter signals based on rule types application_security,
         log_detection,
@@ -24243,6 +24251,11 @@ components:
     SecurityMonitoringRuleCase:
       description: Case when signal is generated.
       properties:
+        actions:
+          description: Action to perform for each rule case.
+          items:
+            $ref: '#/components/schemas/SecurityMonitoringRuleCaseAction'
+          type: array
         condition:
           description: 'A rule case contains logical operations (`>`,`>=`, `&&`, `||`)
             to determine if a signal should be generated
@@ -24261,9 +24274,42 @@ components:
         status:
           $ref: '#/components/schemas/SecurityMonitoringRuleSeverity'
       type: object
+    SecurityMonitoringRuleCaseAction:
+      description: Action to perform when a signals trigger. Only available for Application
+        Security rule type
+      properties:
+        options:
+          $ref: '#/components/schemas/SecurityMonitoringRuleCaseActionOptions'
+        type:
+          $ref: '#/components/schemas/SecurityMonitoringRuleCaseActionType'
+      type: object
+    SecurityMonitoringRuleCaseActionOptions:
+      description: Options for the rule action
+      properties:
+        duration:
+          description: Duration of the action in seconds. 0 means no expiration
+          example: 0
+          format: int64
+          minimum: 0
+          type: integer
+      type: object
+    SecurityMonitoringRuleCaseActionType:
+      description: Type of the action
+      enum:
+      - block_ip
+      - block_user
+      type: string
+      x-enum-varnames:
+      - BLOCK_IP
+      - BLOCK_USER
     SecurityMonitoringRuleCaseCreate:
       description: Case when signal is generated.
       properties:
+        actions:
+          description: Action to perform for each rule case.
+          items:
+            $ref: '#/components/schemas/SecurityMonitoringRuleCaseAction'
+          type: array
         condition:
           description: 'A case contains logical operations (`>`,`>=`, `&&`, `||`)
             to determine if a signal should be generated
@@ -24724,6 +24770,15 @@ components:
             and workload security rules.
           items:
             $ref: '#/components/schemas/SecurityMonitoringFilter'
+          type: array
+        groupSignalsBy:
+          description: Additional grouping to perform on top of the existing groups
+            in the query section. Must be a subset of the existing groups
+          example:
+          - service
+          items:
+            description: Field to group by.
+            type: string
           type: array
         hasExtendedTitle:
           description: Whether the notifications include the triggering group-by values
@@ -25430,6 +25485,15 @@ components:
           items:
             $ref: '#/components/schemas/SecurityMonitoringFilter'
           type: array
+        groupSignalsBy:
+          description: Additional grouping to perform on top of the existing groups
+            in the query section. Must be a subset of the existing groups
+          example:
+          - service
+          items:
+            description: Field to group by.
+            type: string
+          type: array
         hasExtendedTitle:
           description: Whether the notifications include the triggering group-by values
             in their title.
@@ -25501,6 +25565,15 @@ components:
             and workload security rules.
           items:
             $ref: '#/components/schemas/SecurityMonitoringFilter'
+          type: array
+        groupSignalsBy:
+          description: Additional grouping to perform on top of the existing groups
+            in the query section. Must be a subset of the existing groups
+          example:
+          - service
+          items:
+            description: Field to group by.
+            type: string
           type: array
         hasExtendedTitle:
           description: Whether the notifications include the triggering group-by values
@@ -25643,6 +25716,15 @@ components:
           items:
             $ref: '#/components/schemas/SecurityMonitoringFilter'
           type: array
+        groupSignalsBy:
+          description: Additional grouping to perform on top of the existing groups
+            in the query section. Must be a subset of the existing groups
+          example:
+          - service
+          items:
+            description: Field to group by.
+            type: string
+          type: array
         hasExtendedTitle:
           description: Whether the notifications include the triggering group-by values
             in their title.
@@ -25719,6 +25801,15 @@ components:
             and workload security rules.
           items:
             $ref: '#/components/schemas/SecurityMonitoringFilter'
+          type: array
+        groupSignalsBy:
+          description: Additional grouping to perform on top of the existing groups
+            in the query section. Must be a subset of the existing groups
+          example:
+          - service
+          items:
+            description: Field to group by.
+            type: string
           type: array
         hasExtendedTitle:
           description: Whether the notifications include the triggering group-by values
@@ -44078,7 +44169,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - security_monitoring_notification_profiles_read
-      summary: Get the list of signal-based rules
+      summary: Get the list of signal-based notification rules
       tags:
       - Security Monitoring
       x-permission:
@@ -44120,7 +44211,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - security_monitoring_notification_profiles_write
-      summary: Create a new signal-based rule
+      summary: Create a new signal-based notification rule
       tags:
       - Security Monitoring
       x-codegen-request-body-name: body
@@ -44153,7 +44244,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - security_monitoring_notification_profiles_write
-      summary: Delete a signal-based rule
+      summary: Delete a signal-based notification rule
       tags:
       - Security Monitoring
       x-permission:
@@ -44190,7 +44281,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - security_monitoring_notification_profiles_read
-      summary: Get details of a signal-based rule
+      summary: Get details of a signal-based notification rule
       tags:
       - Security Monitoring
       x-permission:
@@ -44236,7 +44327,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - security_monitoring_notification_profiles_write
-      summary: Patch a signal-based rule
+      summary: Patch a signal-based notification rule
       tags:
       - Security Monitoring
       x-codegen-request-body-name: body
@@ -44636,7 +44727,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - security_monitoring_notification_profiles_read
-      summary: Get the list of vulnerability-based rules
+      summary: Get the list of vulnerability notification rules
       tags:
       - Security Monitoring
       x-permission:
@@ -44678,7 +44769,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - security_monitoring_notification_profiles_write
-      summary: Create a new vulnerability-based rule
+      summary: Create a new vulnerability-based notification rule
       tags:
       - Security Monitoring
       x-codegen-request-body-name: body
@@ -44711,7 +44802,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - security_monitoring_notification_profiles_write
-      summary: Delete a vulnerability-based rule
+      summary: Delete a vulnerability-based notification rule
       tags:
       - Security Monitoring
       x-permission:
@@ -44748,7 +44839,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - security_monitoring_notification_profiles_read
-      summary: Get details of a vulnerability-based rule
+      summary: Get details of a vulnerability notification rule
       tags:
       - Security Monitoring
       x-permission:
@@ -44794,7 +44885,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - security_monitoring_notification_profiles_write
-      summary: Patch a vulnerability-based rule
+      summary: Patch a vulnerability-based notification rule
       tags:
       - Security Monitoring
       x-codegen-request-body-name: body
