@@ -698,6 +698,7 @@ type ListTagConfigurationsOptionalParameters struct {
 	FilterIncludePercentiles *bool
 	FilterQueried            *bool
 	FilterTags               *string
+	FilterRelatedAssets      *bool
 	WindowSeconds            *int64
 	PageSize                 *int32
 	PageCursor               *string
@@ -742,6 +743,12 @@ func (r *ListTagConfigurationsOptionalParameters) WithFilterQueried(filterQuerie
 // WithFilterTags sets the corresponding parameter name and returns the struct.
 func (r *ListTagConfigurationsOptionalParameters) WithFilterTags(filterTags string) *ListTagConfigurationsOptionalParameters {
 	r.FilterTags = &filterTags
+	return r
+}
+
+// WithFilterRelatedAssets sets the corresponding parameter name and returns the struct.
+func (r *ListTagConfigurationsOptionalParameters) WithFilterRelatedAssets(filterRelatedAssets bool) *ListTagConfigurationsOptionalParameters {
+	r.FilterRelatedAssets = &filterRelatedAssets
 	return r
 }
 
@@ -810,6 +817,9 @@ func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagCon
 	}
 	if optionalParams.FilterTags != nil {
 		localVarQueryParams.Add("filter[tags]", datadog.ParameterToString(*optionalParams.FilterTags, ""))
+	}
+	if optionalParams.FilterRelatedAssets != nil {
+		localVarQueryParams.Add("filter[related_assets]", datadog.ParameterToString(*optionalParams.FilterRelatedAssets, ""))
 	}
 	if optionalParams.WindowSeconds != nil {
 		localVarQueryParams.Add("window[seconds]", datadog.ParameterToString(*optionalParams.WindowSeconds, ""))
