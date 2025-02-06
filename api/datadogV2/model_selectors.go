@@ -16,7 +16,7 @@ import (
 type Selectors struct {
 	// The query is composed of one or several key:value pairs, which can be used to filter security issues on tags and attributes.
 	Query *string `json:"query,omitempty"`
-	// Security rule types used to filter signals and vulnerabilities generating notifications.
+	// Security rule types used as filters in security rules.
 	RuleTypes []RuleTypesItems `json:"rule_types,omitempty"`
 	// The security rules severities to consider.
 	Severities []RuleSeverity `json:"severities,omitempty"`
