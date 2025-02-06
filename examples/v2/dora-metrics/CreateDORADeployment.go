@@ -16,13 +16,13 @@ func main() {
 	body := datadogV2.DORADeploymentRequest{
 		Data: datadogV2.DORADeploymentRequestData{
 			Attributes: datadogV2.DORADeploymentRequestAttributes{
-				FinishedAt: 1693491984000000000,
+				FinishedAt: 1693491984000,
 				Git: &datadogV2.DORAGitInfo{
 					CommitSha:     "66adc9350f2cc9b250b69abddab733dd55e1a588",
 					RepositoryUrl: "https://github.com/organization/example-repository",
 				},
 				Service:   "shopist",
-				StartedAt: 1693491974000000000,
+				StartedAt: 1693491974000,
 				Version:   datadog.PtrString("v1.12.07"),
 			},
 		},

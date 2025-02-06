@@ -16,7 +16,7 @@ func main() {
 	body := datadogV2.DORAIncidentRequest{
 		Data: datadogV2.DORAIncidentRequestData{
 			Attributes: datadogV2.DORAIncidentRequestAttributes{
-				FinishedAt: datadog.PtrInt64(1707842944600000000),
+				FinishedAt: datadog.PtrInt64(17078429446000),
 				Git: &datadogV2.DORAGitInfo{
 					CommitSha:     "66adc9350f2cc9b250b69abddab733dd55e1a588",
 					RepositoryUrl: "https://github.com/organization/example-repository",
@@ -26,7 +26,7 @@ func main() {
 					"shopist",
 				},
 				Severity:  datadog.PtrString("High"),
-				StartedAt: 1707842944500000000,
+				StartedAt: 17078429445000,
 				Team:      datadog.PtrString("backend"),
 				Version:   datadog.PtrString("v1.12.07"),
 			},
