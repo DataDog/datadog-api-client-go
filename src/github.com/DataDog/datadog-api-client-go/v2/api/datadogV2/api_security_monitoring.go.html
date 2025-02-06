@@ -586,7 +586,7 @@
 <span id="L529" class="ln">   529  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L530" class="ln">   530  </span>}
 <span id="L531" class="ln">   531  </span>
-<span id="L532" class="ln">   532  </span><span class="comment">// CreateSignalNotificationRule Create a new signal-based rule.</span>
+<span id="L532" class="ln">   532  </span><span class="comment">// CreateSignalNotificationRule Create a new signal-based notification rule.</span>
 <span id="L533" class="ln">   533  </span><span class="comment">// Create a new notification rule for security signals and return the created rule.</span>
 <span id="L534" class="ln">   534  </span>func (a *SecurityMonitoringApi) CreateSignalNotificationRule(ctx _context.Context, body CreateNotificationRuleParameters) (NotificationRuleResponse, *_nethttp.Response, error) {
 <span id="L535" class="ln">   535  </span>	var (
@@ -659,7 +659,7 @@
 <span id="L602" class="ln">   602  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L603" class="ln">   603  </span>}
 <span id="L604" class="ln">   604  </span>
-<span id="L605" class="ln">   605  </span><span class="comment">// CreateVulnerabilityNotificationRule Create a new vulnerability-based rule.</span>
+<span id="L605" class="ln">   605  </span><span class="comment">// CreateVulnerabilityNotificationRule Create a new vulnerability-based notification rule.</span>
 <span id="L606" class="ln">   606  </span><span class="comment">// Create a new notification rule for security vulnerabilities and return the created rule.</span>
 <span id="L607" class="ln">   607  </span>func (a *SecurityMonitoringApi) CreateVulnerabilityNotificationRule(ctx _context.Context, body CreateNotificationRuleParameters) (NotificationRuleResponse, *_nethttp.Response, error) {
 <span id="L608" class="ln">   608  </span>	var (
@@ -985,7 +985,7 @@
 <span id="L928" class="ln">   928  </span>	return localVarHTTPResponse, nil
 <span id="L929" class="ln">   929  </span>}
 <span id="L930" class="ln">   930  </span>
-<span id="L931" class="ln">   931  </span><span class="comment">// DeleteSignalNotificationRule Delete a signal-based rule.</span>
+<span id="L931" class="ln">   931  </span><span class="comment">// DeleteSignalNotificationRule Delete a signal-based notification rule.</span>
 <span id="L932" class="ln">   932  </span><span class="comment">// Delete a notification rule for security signals.</span>
 <span id="L933" class="ln">   933  </span>func (a *SecurityMonitoringApi) DeleteSignalNotificationRule(ctx _context.Context, id string) (*_nethttp.Response, error) {
 <span id="L934" class="ln">   934  </span>	var (
@@ -1046,7 +1046,7 @@
 <span id="L989" class="ln">   989  </span>	return localVarHTTPResponse, nil
 <span id="L990" class="ln">   990  </span>}
 <span id="L991" class="ln">   991  </span>
-<span id="L992" class="ln">   992  </span><span class="comment">// DeleteVulnerabilityNotificationRule Delete a vulnerability-based rule.</span>
+<span id="L992" class="ln">   992  </span><span class="comment">// DeleteVulnerabilityNotificationRule Delete a vulnerability-based notification rule.</span>
 <span id="L993" class="ln">   993  </span><span class="comment">// Delete a notification rule for security vulnerabilities.</span>
 <span id="L994" class="ln">   994  </span>func (a *SecurityMonitoringApi) DeleteVulnerabilityNotificationRule(ctx _context.Context, id string) (*_nethttp.Response, error) {
 <span id="L995" class="ln">   995  </span>	var (
@@ -1913,7 +1913,7 @@
 <span id="L1856" class="ln">  1856  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1857" class="ln">  1857  </span>}
 <span id="L1858" class="ln">  1858  </span>
-<span id="L1859" class="ln">  1859  </span><span class="comment">// GetSignalNotificationRule Get details of a signal-based rule.</span>
+<span id="L1859" class="ln">  1859  </span><span class="comment">// GetSignalNotificationRule Get details of a signal-based notification rule.</span>
 <span id="L1860" class="ln">  1860  </span><span class="comment">// Get the details of a notification rule for security signals.</span>
 <span id="L1861" class="ln">  1861  </span>func (a *SecurityMonitoringApi) GetSignalNotificationRule(ctx _context.Context, id string) (NotificationRuleResponse, *_nethttp.Response, error) {
 <span id="L1862" class="ln">  1862  </span>	var (
@@ -1984,7 +1984,7 @@
 <span id="L1927" class="ln">  1927  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1928" class="ln">  1928  </span>}
 <span id="L1929" class="ln">  1929  </span>
-<span id="L1930" class="ln">  1930  </span><span class="comment">// GetSignalNotificationRules Get the list of signal-based rules.</span>
+<span id="L1930" class="ln">  1930  </span><span class="comment">// GetSignalNotificationRules Get the list of signal-based notification rules.</span>
 <span id="L1931" class="ln">  1931  </span><span class="comment">// Returns the list of notification rules for security signals.</span>
 <span id="L1932" class="ln">  1932  </span>func (a *SecurityMonitoringApi) GetSignalNotificationRules(ctx _context.Context) (interface{}, *_nethttp.Response, error) {
 <span id="L1933" class="ln">  1933  </span>	var (
@@ -2054,7 +2054,7 @@
 <span id="L1997" class="ln">  1997  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1998" class="ln">  1998  </span>}
 <span id="L1999" class="ln">  1999  </span>
-<span id="L2000" class="ln">  2000  </span><span class="comment">// GetVulnerabilityNotificationRule Get details of a vulnerability-based rule.</span>
+<span id="L2000" class="ln">  2000  </span><span class="comment">// GetVulnerabilityNotificationRule Get details of a vulnerability notification rule.</span>
 <span id="L2001" class="ln">  2001  </span><span class="comment">// Get the details of a notification rule for security vulnerabilities.</span>
 <span id="L2002" class="ln">  2002  </span>func (a *SecurityMonitoringApi) GetVulnerabilityNotificationRule(ctx _context.Context, id string) (NotificationRuleResponse, *_nethttp.Response, error) {
 <span id="L2003" class="ln">  2003  </span>	var (
@@ -2125,7 +2125,7 @@
 <span id="L2068" class="ln">  2068  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L2069" class="ln">  2069  </span>}
 <span id="L2070" class="ln">  2070  </span>
-<span id="L2071" class="ln">  2071  </span><span class="comment">// GetVulnerabilityNotificationRules Get the list of vulnerability-based rules.</span>
+<span id="L2071" class="ln">  2071  </span><span class="comment">// GetVulnerabilityNotificationRules Get the list of vulnerability notification rules.</span>
 <span id="L2072" class="ln">  2072  </span><span class="comment">// Returns the list of notification rules for security vulnerabilities.</span>
 <span id="L2073" class="ln">  2073  </span>func (a *SecurityMonitoringApi) GetVulnerabilityNotificationRules(ctx _context.Context) (interface{}, *_nethttp.Response, error) {
 <span id="L2074" class="ln">  2074  </span>	var (
@@ -4042,7 +4042,7 @@
 <span id="L3985" class="ln">  3985  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L3986" class="ln">  3986  </span>}
 <span id="L3987" class="ln">  3987  </span>
-<span id="L3988" class="ln">  3988  </span><span class="comment">// PatchSignalNotificationRule Patch a signal-based rule.</span>
+<span id="L3988" class="ln">  3988  </span><span class="comment">// PatchSignalNotificationRule Patch a signal-based notification rule.</span>
 <span id="L3989" class="ln">  3989  </span><span class="comment">// Partially update the notification rule. All fields are optional; if a field is not provided, it is not updated.</span>
 <span id="L3990" class="ln">  3990  </span>func (a *SecurityMonitoringApi) PatchSignalNotificationRule(ctx _context.Context, id string, body PatchNotificationRuleParameters) (NotificationRuleResponse, *_nethttp.Response, error) {
 <span id="L3991" class="ln">  3991  </span>	var (
@@ -4125,7 +4125,7 @@
 <span id="L4068" class="ln">  4068  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L4069" class="ln">  4069  </span>}
 <span id="L4070" class="ln">  4070  </span>
-<span id="L4071" class="ln">  4071  </span><span class="comment">// PatchVulnerabilityNotificationRule Patch a vulnerability-based rule.</span>
+<span id="L4071" class="ln">  4071  </span><span class="comment">// PatchVulnerabilityNotificationRule Patch a vulnerability-based notification rule.</span>
 <span id="L4072" class="ln">  4072  </span><span class="comment">// Partially update the notification rule. All fields are optional; if a field is not provided, it is not updated.</span>
 <span id="L4073" class="ln">  4073  </span>func (a *SecurityMonitoringApi) PatchVulnerabilityNotificationRule(ctx _context.Context, id string, body PatchNotificationRuleParameters) (NotificationRuleResponse, *_nethttp.Response, error) {
 <span id="L4074" class="ln">  4074  </span>	var (

@@ -73,7 +73,7 @@
 <span id="L16" class="ln">    16  </span>type Selectors struct {
 <span id="L17" class="ln">    17  </span>	<span class="comment">// The query is composed of one or several key:value pairs, which can be used to filter security issues on tags and attributes.</span>
 <span id="L18" class="ln">    18  </span>	Query *string `json:&#34;query,omitempty&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// Security rule types used to filter signals and vulnerabilities generating notifications.</span>
+<span id="L19" class="ln">    19  </span>	<span class="comment">// Security rule types used as filters in security rules.</span>
 <span id="L20" class="ln">    20  </span>	RuleTypes []RuleTypesItems `json:&#34;rule_types,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// The security rules severities to consider.</span>
 <span id="L22" class="ln">    22  </span>	Severities []RuleSeverity `json:&#34;severities,omitempty&#34;`
