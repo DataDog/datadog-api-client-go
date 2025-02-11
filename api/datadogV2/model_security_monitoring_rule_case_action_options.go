@@ -1,0 +1,102 @@
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
+
+package datadogV2
+
+import (
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+)
+
+// SecurityMonitoringRuleCaseActionOptions Options for the rule action
+type SecurityMonitoringRuleCaseActionOptions struct {
+	// Duration of the action in seconds. 0 indicates no expiration.
+	Duration *int64 `json:"duration,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject       map[string]interface{} `json:"-"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// NewSecurityMonitoringRuleCaseActionOptions instantiates a new SecurityMonitoringRuleCaseActionOptions object.
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed.
+func NewSecurityMonitoringRuleCaseActionOptions() *SecurityMonitoringRuleCaseActionOptions {
+	this := SecurityMonitoringRuleCaseActionOptions{}
+	return &this
+}
+
+// NewSecurityMonitoringRuleCaseActionOptionsWithDefaults instantiates a new SecurityMonitoringRuleCaseActionOptions object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set.
+func NewSecurityMonitoringRuleCaseActionOptionsWithDefaults() *SecurityMonitoringRuleCaseActionOptions {
+	this := SecurityMonitoringRuleCaseActionOptions{}
+	return &this
+}
+
+// GetDuration returns the Duration field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleCaseActionOptions) GetDuration() int64 {
+	if o == nil || o.Duration == nil {
+		var ret int64
+		return ret
+	}
+	return *o.Duration
+}
+
+// GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleCaseActionOptions) GetDurationOk() (*int64, bool) {
+	if o == nil || o.Duration == nil {
+		return nil, false
+	}
+	return o.Duration, true
+}
+
+// HasDuration returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleCaseActionOptions) HasDuration() bool {
+	return o != nil && o.Duration != nil
+}
+
+// SetDuration gets a reference to the given int64 and assigns it to the Duration field.
+func (o *SecurityMonitoringRuleCaseActionOptions) SetDuration(v int64) {
+	o.Duration = &v
+}
+
+// MarshalJSON serializes the struct using spec logic.
+func (o SecurityMonitoringRuleCaseActionOptions) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return datadog.Marshal(o.UnparsedObject)
+	}
+	if o.Duration != nil {
+		toSerialize["duration"] = o.Duration
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+	return datadog.Marshal(toSerialize)
+}
+
+// UnmarshalJSON deserializes the given payload.
+func (o *SecurityMonitoringRuleCaseActionOptions) UnmarshalJSON(bytes []byte) (err error) {
+	all := struct {
+		Duration *int64 `json:"duration,omitempty"`
+	}{}
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	additionalProperties := make(map[string]interface{})
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"duration"})
+	} else {
+		return err
+	}
+	o.Duration = all.Duration
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return nil
+}
