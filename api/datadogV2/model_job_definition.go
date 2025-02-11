@@ -18,6 +18,8 @@ type JobDefinition struct {
 	Cases []SecurityMonitoringRuleCaseCreate `json:"cases"`
 	// Starting time of data analyzed by the job.
 	From int64 `json:"from"`
+	// Additional grouping to perform on top of the existing groups in the query section. Must be a subset of the existing groups.
+	GroupSignalsBy []string `json:"groupSignalsBy,omitempty"`
 	// Index used to load the data.
 	Index string `json:"index"`
 	// Message for generated results.
@@ -139,6 +141,34 @@ func (o *JobDefinition) GetFromOk() (*int64, bool) {
 // SetFrom sets field value.
 func (o *JobDefinition) SetFrom(v int64) {
 	o.From = v
+}
+
+// GetGroupSignalsBy returns the GroupSignalsBy field value if set, zero value otherwise.
+func (o *JobDefinition) GetGroupSignalsBy() []string {
+	if o == nil || o.GroupSignalsBy == nil {
+		var ret []string
+		return ret
+	}
+	return o.GroupSignalsBy
+}
+
+// GetGroupSignalsByOk returns a tuple with the GroupSignalsBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *JobDefinition) GetGroupSignalsByOk() (*[]string, bool) {
+	if o == nil || o.GroupSignalsBy == nil {
+		return nil, false
+	}
+	return &o.GroupSignalsBy, true
+}
+
+// HasGroupSignalsBy returns a boolean if a field has been set.
+func (o *JobDefinition) HasGroupSignalsBy() bool {
+	return o != nil && o.GroupSignalsBy != nil
+}
+
+// SetGroupSignalsBy gets a reference to the given []string and assigns it to the GroupSignalsBy field.
+func (o *JobDefinition) SetGroupSignalsBy(v []string) {
+	o.GroupSignalsBy = v
 }
 
 // GetIndex returns the Index field value.
@@ -407,6 +437,9 @@ func (o JobDefinition) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["cases"] = o.Cases
 	toSerialize["from"] = o.From
+	if o.GroupSignalsBy != nil {
+		toSerialize["groupSignalsBy"] = o.GroupSignalsBy
+	}
 	toSerialize["index"] = o.Index
 	toSerialize["message"] = o.Message
 	toSerialize["name"] = o.Name
@@ -440,6 +473,7 @@ func (o *JobDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		CalculatedFields []CalculatedField                            `json:"calculatedFields,omitempty"`
 		Cases            *[]SecurityMonitoringRuleCaseCreate          `json:"cases"`
 		From             *int64                                       `json:"from"`
+		GroupSignalsBy   []string                                     `json:"groupSignalsBy,omitempty"`
 		Index            *string                                      `json:"index"`
 		Message          *string                                      `json:"message"`
 		Name             *string                                      `json:"name"`
@@ -477,7 +511,7 @@ func (o *JobDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"calculatedFields", "cases", "from", "index", "message", "name", "options", "queries", "referenceTables", "tags", "thirdPartyCases", "to", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"calculatedFields", "cases", "from", "groupSignalsBy", "index", "message", "name", "options", "queries", "referenceTables", "tags", "thirdPartyCases", "to", "type"})
 	} else {
 		return err
 	}
@@ -486,6 +520,7 @@ func (o *JobDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.CalculatedFields = all.CalculatedFields
 	o.Cases = *all.Cases
 	o.From = *all.From
+	o.GroupSignalsBy = all.GroupSignalsBy
 	o.Index = *all.Index
 	o.Message = *all.Message
 	o.Name = *all.Name
