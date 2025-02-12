@@ -113,7 +113,7 @@ type UsageSummaryResponse struct {
 	CspmAzureHostTop99pSum *int64 `json:"cspm_azure_host_top99p_sum,omitempty"`
 	// Shows the average number of Cloud Security Management Pro containers over all hours in the current month for all organizations.
 	CspmContainerAvgSum *int64 `json:"cspm_container_avg_sum,omitempty"`
-	// Shows the sum of the the high-water marks of Cloud Security Management Pro containers over all hours in the current month for all organizations.
+	// Shows the sum of the high-water marks of Cloud Security Management Pro containers over all hours in the current month for all organizations.
 	CspmContainerHwmSum *int64 `json:"cspm_container_hwm_sum,omitempty"`
 	// Shows the 99th percentile of all Cloud Security Management Pro GCP hosts over all hours in the current month for all organizations.
 	CspmGcpHostTop99pSum *int64 `json:"cspm_gcp_host_top99p_sum,omitempty"`
@@ -201,7 +201,7 @@ type UsageSummaryResponse struct {
 	GcpHostTop99pSum *int64 `json:"gcp_host_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all Heroku dynos over all hours in the current month for all organizations.
 	HerokuHostTop99pSum *int64 `json:"heroku_host_top99p_sum,omitempty"`
-	// Shows sum of the the high-water marks of incident management monthly active users in the current month for all organizations.
+	// Shows sum of the high-water marks of incident management monthly active users in the current month for all organizations.
 	IncidentManagementMonthlyActiveUsersHwmSum *int64 `json:"incident_management_monthly_active_users_hwm_sum,omitempty"`
 	// Shows the sum of all log events indexed over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
 	// Deprecated
@@ -214,7 +214,7 @@ type UsageSummaryResponse struct {
 	IotDeviceAggSum *int64 `json:"iot_device_agg_sum,omitempty"`
 	// Shows the 99th percentile of all IoT devices over all hours in the current month of all organizations.
 	IotDeviceTop99pSum *int64 `json:"iot_device_top99p_sum,omitempty"`
-	// Shows the the most recent hour in the current month for all organizations for which all usages were calculated.
+	// Shows the most recent hour in the current month for all organizations for which all usages were calculated.
 	LastUpdated *time.Time `json:"last_updated,omitempty"`
 	// Shows the sum of all live logs indexed over all hours in the current month for all organization (To be deprecated on October 1st, 2024).
 	// Deprecated
