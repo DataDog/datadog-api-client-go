@@ -44,14 +44,14 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewCIVisibilityTestsApi(apiClient)
+	api := datadogV2.NewTestOptimizationApi(apiClient)
 	resp, r, err := api.AggregateCIAppTestEvents(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CIVisibilityTestsApi.AggregateCIAppTestEvents`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TestOptimizationApi.AggregateCIAppTestEvents`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `CIVisibilityTestsApi.AggregateCIAppTestEvents`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `TestOptimizationApi.AggregateCIAppTestEvents`:\n%s\n", responseContent)
 }

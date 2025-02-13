@@ -10,7 +10,7 @@ import (
 
 // CIAppEventAttributes JSON object containing all event attributes and their associated values.
 type CIAppEventAttributes struct {
-	// JSON object of attributes from CI Visibility test events.
+	// JSON object of attributes from Test Optimization test events.
 	Attributes map[string]interface{} `json:"attributes,omitempty"`
 	// Array of tags associated with your event.
 	Tags []string `json:"tags,omitempty"`
