@@ -30,14 +30,14 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewCIVisibilityTestsApi(apiClient)
+	api := datadogV2.NewTestOptimizationApi(apiClient)
 	resp, r, err := api.SearchCIAppTestEvents(ctx, *datadogV2.NewSearchCIAppTestEventsOptionalParameters().WithBody(body))
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CIVisibilityTestsApi.SearchCIAppTestEvents`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TestOptimizationApi.SearchCIAppTestEvents`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `CIVisibilityTestsApi.SearchCIAppTestEvents`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `TestOptimizationApi.SearchCIAppTestEvents`:\n%s\n", responseContent)
 }

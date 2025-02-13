@@ -13,19 +13,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CIVisibilityTestsApi service type
-type CIVisibilityTestsApi datadog.Service
+// TestOptimizationApi service type
+type TestOptimizationApi datadog.Service
 
 // AggregateCIAppTestEvents Aggregate tests events.
-// The API endpoint to aggregate CI Visibility test events into buckets of computed metrics and timeseries.
-func (a *CIVisibilityTestsApi) AggregateCIAppTestEvents(ctx _context.Context, body CIAppTestsAggregateRequest) (CIAppTestsAnalyticsAggregateResponse, *_nethttp.Response, error) {
+// The API endpoint to aggregate test events into buckets of computed metrics and timeseries.
+func (a *TestOptimizationApi) AggregateCIAppTestEvents(ctx _context.Context, body CIAppTestsAggregateRequest) (CIAppTestsAnalyticsAggregateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue CIAppTestsAnalyticsAggregateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CIVisibilityTestsApi.AggregateCIAppTestEvents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TestOptimizationApi.AggregateCIAppTestEvents")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -142,11 +142,11 @@ func (r *ListCIAppTestEventsOptionalParameters) WithPageLimit(pageLimit int32) *
 }
 
 // ListCIAppTestEvents Get a list of tests events.
-// List endpoint returns CI Visibility test events that match a [search query](https://docs.datadoghq.com/continuous_integration/explorer/search_syntax/).
+// List endpoint returns test events that match a [search query](https://docs.datadoghq.com/continuous_integration/explorer/search_syntax/).
 // [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
 //
 // Use this endpoint to see your latest test events.
-func (a *CIVisibilityTestsApi) ListCIAppTestEvents(ctx _context.Context, o ...ListCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
+func (a *TestOptimizationApi) ListCIAppTestEvents(ctx _context.Context, o ...ListCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -161,7 +161,7 @@ func (a *CIVisibilityTestsApi) ListCIAppTestEvents(ctx _context.Context, o ...Li
 		optionalParams = o[0]
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CIVisibilityTestsApi.ListCIAppTestEvents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TestOptimizationApi.ListCIAppTestEvents")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -241,7 +241,7 @@ func (a *CIVisibilityTestsApi) ListCIAppTestEvents(ctx _context.Context, o ...Li
 }
 
 // ListCIAppTestEventsWithPagination provides a paginated version of ListCIAppTestEvents returning a channel with all items.
-func (a *CIVisibilityTestsApi) ListCIAppTestEventsWithPagination(ctx _context.Context, o ...ListCIAppTestEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppTestEvent], func()) {
+func (a *TestOptimizationApi) ListCIAppTestEventsWithPagination(ctx _context.Context, o ...ListCIAppTestEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppTestEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -316,11 +316,11 @@ func (r *SearchCIAppTestEventsOptionalParameters) WithBody(body CIAppTestEventsR
 }
 
 // SearchCIAppTestEvents Search tests events.
-// List endpoint returns CI Visibility test events that match a [search query](https://docs.datadoghq.com/continuous_integration/explorer/search_syntax/).
+// List endpoint returns test events that match a [search query](https://docs.datadoghq.com/continuous_integration/explorer/search_syntax/).
 // [Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).
 //
 // Use this endpoint to build complex events filtering and search.
-func (a *CIVisibilityTestsApi) SearchCIAppTestEvents(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
+func (a *TestOptimizationApi) SearchCIAppTestEvents(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (CIAppTestEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -335,7 +335,7 @@ func (a *CIVisibilityTestsApi) SearchCIAppTestEvents(ctx _context.Context, o ...
 		optionalParams = o[0]
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CIVisibilityTestsApi.SearchCIAppTestEvents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TestOptimizationApi.SearchCIAppTestEvents")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -402,7 +402,7 @@ func (a *CIVisibilityTestsApi) SearchCIAppTestEvents(ctx _context.Context, o ...
 }
 
 // SearchCIAppTestEventsWithPagination provides a paginated version of SearchCIAppTestEvents returning a channel with all items.
-func (a *CIVisibilityTestsApi) SearchCIAppTestEventsWithPagination(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppTestEvent], func()) {
+func (a *TestOptimizationApi) SearchCIAppTestEventsWithPagination(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppTestEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -465,9 +465,9 @@ func (a *CIVisibilityTestsApi) SearchCIAppTestEventsWithPagination(ctx _context.
 	return items, cancel
 }
 
-// NewCIVisibilityTestsApi Returns NewCIVisibilityTestsApi.
-func NewCIVisibilityTestsApi(client *datadog.APIClient) *CIVisibilityTestsApi {
-	return &CIVisibilityTestsApi{
+// NewTestOptimizationApi Returns NewTestOptimizationApi.
+func NewTestOptimizationApi(client *datadog.APIClient) *TestOptimizationApi {
+	return &TestOptimizationApi{
 		Client: client,
 	}
 }
