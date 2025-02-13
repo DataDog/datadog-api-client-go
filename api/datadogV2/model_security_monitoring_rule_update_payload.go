@@ -16,6 +16,8 @@ type SecurityMonitoringRuleUpdatePayload struct {
 	ComplianceSignalOptions *CloudConfigurationRuleComplianceSignalOptions `json:"complianceSignalOptions,omitempty"`
 	// Additional queries to filter matched events before they are processed. This field is deprecated for log detection, signal correlation, and workload security rules.
 	Filters []SecurityMonitoringFilter `json:"filters,omitempty"`
+	// Additional grouping to perform on top of the existing groups in the query section. Must be a subset of the existing groups.
+	GroupSignalsBy []string `json:"groupSignalsBy,omitempty"`
 	// Whether the notifications include the triggering group-by values in their title.
 	HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
 	// Whether the rule is enabled.
@@ -24,10 +26,12 @@ type SecurityMonitoringRuleUpdatePayload struct {
 	Message *string `json:"message,omitempty"`
 	// Name of the rule.
 	Name *string `json:"name,omitempty"`
-	// Options on rules.
+	// Options.
 	Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
 	// Queries for selecting logs which are part of the rule.
 	Queries []SecurityMonitoringRuleQuery `json:"queries,omitempty"`
+	// Reference tables for the rule.
+	ReferenceTables []SecurityMonitoringReferenceTable `json:"referenceTables,omitempty"`
 	// Tags for generated signals.
 	Tags []string `json:"tags,omitempty"`
 	// Cases for generating signals from third-party rules. Only available for third-party rules.
@@ -138,6 +142,34 @@ func (o *SecurityMonitoringRuleUpdatePayload) HasFilters() bool {
 // SetFilters gets a reference to the given []SecurityMonitoringFilter and assigns it to the Filters field.
 func (o *SecurityMonitoringRuleUpdatePayload) SetFilters(v []SecurityMonitoringFilter) {
 	o.Filters = v
+}
+
+// GetGroupSignalsBy returns the GroupSignalsBy field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleUpdatePayload) GetGroupSignalsBy() []string {
+	if o == nil || o.GroupSignalsBy == nil {
+		var ret []string
+		return ret
+	}
+	return o.GroupSignalsBy
+}
+
+// GetGroupSignalsByOk returns a tuple with the GroupSignalsBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleUpdatePayload) GetGroupSignalsByOk() (*[]string, bool) {
+	if o == nil || o.GroupSignalsBy == nil {
+		return nil, false
+	}
+	return &o.GroupSignalsBy, true
+}
+
+// HasGroupSignalsBy returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleUpdatePayload) HasGroupSignalsBy() bool {
+	return o != nil && o.GroupSignalsBy != nil
+}
+
+// SetGroupSignalsBy gets a reference to the given []string and assigns it to the GroupSignalsBy field.
+func (o *SecurityMonitoringRuleUpdatePayload) SetGroupSignalsBy(v []string) {
+	o.GroupSignalsBy = v
 }
 
 // GetHasExtendedTitle returns the HasExtendedTitle field value if set, zero value otherwise.
@@ -308,6 +340,34 @@ func (o *SecurityMonitoringRuleUpdatePayload) SetQueries(v []SecurityMonitoringR
 	o.Queries = v
 }
 
+// GetReferenceTables returns the ReferenceTables field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleUpdatePayload) GetReferenceTables() []SecurityMonitoringReferenceTable {
+	if o == nil || o.ReferenceTables == nil {
+		var ret []SecurityMonitoringReferenceTable
+		return ret
+	}
+	return o.ReferenceTables
+}
+
+// GetReferenceTablesOk returns a tuple with the ReferenceTables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleUpdatePayload) GetReferenceTablesOk() (*[]SecurityMonitoringReferenceTable, bool) {
+	if o == nil || o.ReferenceTables == nil {
+		return nil, false
+	}
+	return &o.ReferenceTables, true
+}
+
+// HasReferenceTables returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleUpdatePayload) HasReferenceTables() bool {
+	return o != nil && o.ReferenceTables != nil
+}
+
+// SetReferenceTables gets a reference to the given []SecurityMonitoringReferenceTable and assigns it to the ReferenceTables field.
+func (o *SecurityMonitoringRuleUpdatePayload) SetReferenceTables(v []SecurityMonitoringReferenceTable) {
+	o.ReferenceTables = v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleUpdatePayload) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -407,6 +467,9 @@ func (o SecurityMonitoringRuleUpdatePayload) MarshalJSON() ([]byte, error) {
 	if o.Filters != nil {
 		toSerialize["filters"] = o.Filters
 	}
+	if o.GroupSignalsBy != nil {
+		toSerialize["groupSignalsBy"] = o.GroupSignalsBy
+	}
 	if o.HasExtendedTitle != nil {
 		toSerialize["hasExtendedTitle"] = o.HasExtendedTitle
 	}
@@ -424,6 +487,9 @@ func (o SecurityMonitoringRuleUpdatePayload) MarshalJSON() ([]byte, error) {
 	}
 	if o.Queries != nil {
 		toSerialize["queries"] = o.Queries
+	}
+	if o.ReferenceTables != nil {
+		toSerialize["referenceTables"] = o.ReferenceTables
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
@@ -447,12 +513,14 @@ func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err e
 		Cases                   []SecurityMonitoringRuleCase                   `json:"cases,omitempty"`
 		ComplianceSignalOptions *CloudConfigurationRuleComplianceSignalOptions `json:"complianceSignalOptions,omitempty"`
 		Filters                 []SecurityMonitoringFilter                     `json:"filters,omitempty"`
+		GroupSignalsBy          []string                                       `json:"groupSignalsBy,omitempty"`
 		HasExtendedTitle        *bool                                          `json:"hasExtendedTitle,omitempty"`
 		IsEnabled               *bool                                          `json:"isEnabled,omitempty"`
 		Message                 *string                                        `json:"message,omitempty"`
 		Name                    *string                                        `json:"name,omitempty"`
 		Options                 *SecurityMonitoringRuleOptions                 `json:"options,omitempty"`
 		Queries                 []SecurityMonitoringRuleQuery                  `json:"queries,omitempty"`
+		ReferenceTables         []SecurityMonitoringReferenceTable             `json:"referenceTables,omitempty"`
 		Tags                    []string                                       `json:"tags,omitempty"`
 		ThirdPartyCases         []SecurityMonitoringThirdPartyRuleCase         `json:"thirdPartyCases,omitempty"`
 		Version                 *int32                                         `json:"version,omitempty"`
@@ -462,7 +530,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cases", "complianceSignalOptions", "filters", "hasExtendedTitle", "isEnabled", "message", "name", "options", "queries", "tags", "thirdPartyCases", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cases", "complianceSignalOptions", "filters", "groupSignalsBy", "hasExtendedTitle", "isEnabled", "message", "name", "options", "queries", "referenceTables", "tags", "thirdPartyCases", "version"})
 	} else {
 		return err
 	}
@@ -474,6 +542,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err e
 	}
 	o.ComplianceSignalOptions = all.ComplianceSignalOptions
 	o.Filters = all.Filters
+	o.GroupSignalsBy = all.GroupSignalsBy
 	o.HasExtendedTitle = all.HasExtendedTitle
 	o.IsEnabled = all.IsEnabled
 	o.Message = all.Message
@@ -483,6 +552,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err e
 	}
 	o.Options = all.Options
 	o.Queries = all.Queries
+	o.ReferenceTables = all.ReferenceTables
 	o.Tags = all.Tags
 	o.ThirdPartyCases = all.ThirdPartyCases
 	o.Version = all.Version

@@ -10,7 +10,6 @@ import (
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -30,10 +29,12 @@ func (a *IncidentServicesApi) CreateIncidentService(ctx _context.Context, body I
 	)
 
 	operationId := "v2.CreateIncidentService"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentServicesApi.CreateIncidentService")
@@ -111,10 +112,12 @@ func (a *IncidentServicesApi) DeleteIncidentService(ctx _context.Context, servic
 	)
 
 	operationId := "v2.DeleteIncidentService"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentServicesApi.DeleteIncidentService")
@@ -123,7 +126,7 @@ func (a *IncidentServicesApi) DeleteIncidentService(ctx _context.Context, servic
 	}
 
 	localVarPath := localBasePath + "/api/v2/services/{service_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_id"+"}", _neturl.PathEscape(datadog.ParameterToString(serviceId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{service_id}", _neturl.PathEscape(datadog.ParameterToString(serviceId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -208,10 +211,12 @@ func (a *IncidentServicesApi) GetIncidentService(ctx _context.Context, serviceId
 	}
 
 	operationId := "v2.GetIncidentService"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentServicesApi.GetIncidentService")
@@ -220,7 +225,7 @@ func (a *IncidentServicesApi) GetIncidentService(ctx _context.Context, serviceId
 	}
 
 	localVarPath := localBasePath + "/api/v2/services/{service_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_id"+"}", _neturl.PathEscape(datadog.ParameterToString(serviceId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{service_id}", _neturl.PathEscape(datadog.ParameterToString(serviceId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -337,10 +342,12 @@ func (a *IncidentServicesApi) ListIncidentServices(ctx _context.Context, o ...Li
 	}
 
 	operationId := "v2.ListIncidentServices"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentServicesApi.ListIncidentServices")
@@ -428,10 +435,12 @@ func (a *IncidentServicesApi) UpdateIncidentService(ctx _context.Context, servic
 	)
 
 	operationId := "v2.UpdateIncidentService"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.IncidentServicesApi.UpdateIncidentService")
@@ -440,7 +449,7 @@ func (a *IncidentServicesApi) UpdateIncidentService(ctx _context.Context, servic
 	}
 
 	localVarPath := localBasePath + "/api/v2/services/{service_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"service_id"+"}", _neturl.PathEscape(datadog.ParameterToString(serviceId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{service_id}", _neturl.PathEscape(datadog.ParameterToString(serviceId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

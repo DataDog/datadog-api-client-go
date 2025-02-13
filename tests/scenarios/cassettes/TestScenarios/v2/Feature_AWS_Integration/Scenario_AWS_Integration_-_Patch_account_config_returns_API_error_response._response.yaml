@@ -1,0 +1,59 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"account_tags":["$KEY:$VALUE"],"auth_config":{"role_name":"DatadogAWSIntegrationRole"},"aws_account_id":"123456789012","aws_partition":"aws","aws_regions":{"include_only":["us-east-2","us-west-1"]},"logs_config":{},"metrics_config":{"automute_enabled":true,"enabled":false,"namespace_filters":{"exclude_only":["AWS/AutoScaling","AWS/ElasticMapReduce","AWS/SQS"]},"tag_filters":[{"namespace":"AWS/EC2","tags":["$KEY:$VALUE"]}]},"resources_config":{"cloud_security_posture_management_collection":true,"extended_collection":true},"traces_config":{"xray_services":{"include_only":["AWS/AppSync"]}}},"id":"123456789012","type":"account"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/integration/aws/accounts
+  response:
+    body: '{"data":{"id":"b5333e91-03e0-4a3f-9bd6-07e2d83cb85f","type":"account","attributes":{"account_tags":["$KEY:$VALUE"],"auth_config":{"role_name":"DatadogAWSIntegrationRole","external_id":"aa55eef398064c1ab1937f6f008b7184"},"aws_account_id":"123456789012","aws_partition":"aws","aws_regions":{"include_only":["us-east-2","us-west-1"]},"created_at":"2024-08-21T20:16:53.079170523Z","logs_config":{"lambda_forwarder":{}},"metrics_config":{"enabled":false,"automute_enabled":true,"collect_custom_metrics":true,"collect_cloudwatch_alarms":true,"tag_filters":[{"namespace":"AWS/EC2","tags":["$KEY:$VALUE"]}],"namespace_filters":{"exclude_only":["AWS/AutoScaling","AWS/ElasticMapReduce","AWS/SQS"]}},"modified_at":"2024-08-21T20:16:53.079176907Z","resources_config":{"cloud_security_posture_management_collection":true,"extended_collection":true}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"account_tags":[],"auth_config":{"role_name":"test"},"aws_account_id":"123456789012","aws_partition":"aws-test","aws_regions":{"include_only":["us-east-1"]},"logs_config":{"lambda_forwarder":{"lambdas":[],"sources":["s3"]}},"metrics_config":{"namespace_filters":{"include_only":["AWS/EC2"]},"tag_filters":[{"namespace":"AWS/EC2","tags":[]}]},"resources_config":{},"traces_config":{"xray_services":{"include_only":["AWS/AppSync"]}}},"id":"123456789012","type":"account"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/integration/aws/accounts/123456789012
+  response:
+    body: '{"errors":[{"title":"Generic Error","detail":"invalid partition: aws-test"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/integration/aws/accounts/123456789012
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 204 No Content
+version: 2

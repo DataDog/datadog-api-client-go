@@ -12,14 +12,20 @@ import (
 type SyntheticsStep struct {
 	// A boolean set to allow this step to fail.
 	AllowFailure *bool `json:"allowFailure,omitempty"`
+	// A boolean set to always execute this step even if the previous step failed or was skipped.
+	AlwaysExecute *bool `json:"alwaysExecute,omitempty"`
+	// A boolean set to exit the test if the step succeeds.
+	ExitIfSucceed *bool `json:"exitIfSucceed,omitempty"`
 	// A boolean to use in addition to `allowFailure` to determine if the test should be marked as failed when the step fails.
 	IsCritical *bool `json:"isCritical,omitempty"`
 	// The name of the step.
 	Name *string `json:"name,omitempty"`
-	// A boolean set to not take a screenshot for the step.
+	// A boolean set to skip taking a screenshot for the step.
 	NoScreenshot *bool `json:"noScreenshot,omitempty"`
 	// The parameters of the step.
 	Params interface{} `json:"params,omitempty"`
+	// The public ID of the step.
+	PublicId *string `json:"public_id,omitempty"`
 	// The time before declaring a step failed.
 	Timeout *int64 `json:"timeout,omitempty"`
 	// Step type used in your Synthetic test.
@@ -72,6 +78,62 @@ func (o *SyntheticsStep) HasAllowFailure() bool {
 // SetAllowFailure gets a reference to the given bool and assigns it to the AllowFailure field.
 func (o *SyntheticsStep) SetAllowFailure(v bool) {
 	o.AllowFailure = &v
+}
+
+// GetAlwaysExecute returns the AlwaysExecute field value if set, zero value otherwise.
+func (o *SyntheticsStep) GetAlwaysExecute() bool {
+	if o == nil || o.AlwaysExecute == nil {
+		var ret bool
+		return ret
+	}
+	return *o.AlwaysExecute
+}
+
+// GetAlwaysExecuteOk returns a tuple with the AlwaysExecute field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsStep) GetAlwaysExecuteOk() (*bool, bool) {
+	if o == nil || o.AlwaysExecute == nil {
+		return nil, false
+	}
+	return o.AlwaysExecute, true
+}
+
+// HasAlwaysExecute returns a boolean if a field has been set.
+func (o *SyntheticsStep) HasAlwaysExecute() bool {
+	return o != nil && o.AlwaysExecute != nil
+}
+
+// SetAlwaysExecute gets a reference to the given bool and assigns it to the AlwaysExecute field.
+func (o *SyntheticsStep) SetAlwaysExecute(v bool) {
+	o.AlwaysExecute = &v
+}
+
+// GetExitIfSucceed returns the ExitIfSucceed field value if set, zero value otherwise.
+func (o *SyntheticsStep) GetExitIfSucceed() bool {
+	if o == nil || o.ExitIfSucceed == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ExitIfSucceed
+}
+
+// GetExitIfSucceedOk returns a tuple with the ExitIfSucceed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsStep) GetExitIfSucceedOk() (*bool, bool) {
+	if o == nil || o.ExitIfSucceed == nil {
+		return nil, false
+	}
+	return o.ExitIfSucceed, true
+}
+
+// HasExitIfSucceed returns a boolean if a field has been set.
+func (o *SyntheticsStep) HasExitIfSucceed() bool {
+	return o != nil && o.ExitIfSucceed != nil
+}
+
+// SetExitIfSucceed gets a reference to the given bool and assigns it to the ExitIfSucceed field.
+func (o *SyntheticsStep) SetExitIfSucceed(v bool) {
+	o.ExitIfSucceed = &v
 }
 
 // GetIsCritical returns the IsCritical field value if set, zero value otherwise.
@@ -186,6 +248,34 @@ func (o *SyntheticsStep) SetParams(v interface{}) {
 	o.Params = v
 }
 
+// GetPublicId returns the PublicId field value if set, zero value otherwise.
+func (o *SyntheticsStep) GetPublicId() string {
+	if o == nil || o.PublicId == nil {
+		var ret string
+		return ret
+	}
+	return *o.PublicId
+}
+
+// GetPublicIdOk returns a tuple with the PublicId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsStep) GetPublicIdOk() (*string, bool) {
+	if o == nil || o.PublicId == nil {
+		return nil, false
+	}
+	return o.PublicId, true
+}
+
+// HasPublicId returns a boolean if a field has been set.
+func (o *SyntheticsStep) HasPublicId() bool {
+	return o != nil && o.PublicId != nil
+}
+
+// SetPublicId gets a reference to the given string and assigns it to the PublicId field.
+func (o *SyntheticsStep) SetPublicId(v string) {
+	o.PublicId = &v
+}
+
 // GetTimeout returns the Timeout field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetTimeout() int64 {
 	if o == nil || o.Timeout == nil {
@@ -251,6 +341,12 @@ func (o SyntheticsStep) MarshalJSON() ([]byte, error) {
 	if o.AllowFailure != nil {
 		toSerialize["allowFailure"] = o.AllowFailure
 	}
+	if o.AlwaysExecute != nil {
+		toSerialize["alwaysExecute"] = o.AlwaysExecute
+	}
+	if o.ExitIfSucceed != nil {
+		toSerialize["exitIfSucceed"] = o.ExitIfSucceed
+	}
 	if o.IsCritical != nil {
 		toSerialize["isCritical"] = o.IsCritical
 	}
@@ -262,6 +358,9 @@ func (o SyntheticsStep) MarshalJSON() ([]byte, error) {
 	}
 	if o.Params != nil {
 		toSerialize["params"] = o.Params
+	}
+	if o.PublicId != nil {
+		toSerialize["public_id"] = o.PublicId
 	}
 	if o.Timeout != nil {
 		toSerialize["timeout"] = o.Timeout
@@ -279,30 +378,36 @@ func (o SyntheticsStep) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AllowFailure *bool               `json:"allowFailure,omitempty"`
-		IsCritical   *bool               `json:"isCritical,omitempty"`
-		Name         *string             `json:"name,omitempty"`
-		NoScreenshot *bool               `json:"noScreenshot,omitempty"`
-		Params       interface{}         `json:"params,omitempty"`
-		Timeout      *int64              `json:"timeout,omitempty"`
-		Type         *SyntheticsStepType `json:"type,omitempty"`
+		AllowFailure  *bool               `json:"allowFailure,omitempty"`
+		AlwaysExecute *bool               `json:"alwaysExecute,omitempty"`
+		ExitIfSucceed *bool               `json:"exitIfSucceed,omitempty"`
+		IsCritical    *bool               `json:"isCritical,omitempty"`
+		Name          *string             `json:"name,omitempty"`
+		NoScreenshot  *bool               `json:"noScreenshot,omitempty"`
+		Params        interface{}         `json:"params,omitempty"`
+		PublicId      *string             `json:"public_id,omitempty"`
+		Timeout       *int64              `json:"timeout,omitempty"`
+		Type          *SyntheticsStepType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allowFailure", "isCritical", "name", "noScreenshot", "params", "timeout", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"allowFailure", "alwaysExecute", "exitIfSucceed", "isCritical", "name", "noScreenshot", "params", "public_id", "timeout", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.AllowFailure = all.AllowFailure
+	o.AlwaysExecute = all.AlwaysExecute
+	o.ExitIfSucceed = all.ExitIfSucceed
 	o.IsCritical = all.IsCritical
 	o.Name = all.Name
 	o.NoScreenshot = all.NoScreenshot
 	o.Params = all.Params
+	o.PublicId = all.PublicId
 	o.Timeout = all.Timeout
 	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true

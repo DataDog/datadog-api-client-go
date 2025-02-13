@@ -3,6 +3,18 @@
     "parameters": [
       {
         "name": "body",
+        "value": "{\n  \"data\": {\n    \"type\": \"action_connection\",\n    \"attributes\": {\n        \"name\": \"Cassette Connection DELETE\",\n        \"integration\": {\n            \"type\": \"AWS\",\n            \"credentials\": {\n                \"type\": \"AWSAssumeRole\",\n                \"role\": \"MyRole\",\n                \"account_id\": \"123456789123\"\n            }\n        }\n    }\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"action_connection\" in the system",
+    "key": "action_connection",
+    "tag": "Action Connection",
+    "operationId": "CreateActionConnection"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
         "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"{{ unique }}\"\n    },\n    \"type\": \"api_keys\"\n  }\n}"
       }
     ],
@@ -46,6 +58,18 @@
     "key": "retention_filter",
     "tag": "APM Retention Filters",
     "operationId": "CreateApmRetentionFilter"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\"data\": {\"attributes\": {\"components\": [{\"events\": [], \"name\": \"grid0\", \"properties\": {\"children\": [{\"events\": [], \"name\": \"gridCell0\", \"properties\": {\"children\": [{\"events\": [], \"name\": \"calloutValue0\", \"properties\": {\"isDisabled\": false, \"isLoading\": false, \"isVisible\": true, \"label\": \"CPU Usage\", \"size\": \"sm\", \"style\": \"vivid_yellow\", \"unit\": \"kB\", \"value\": \"42\"}, \"type\": \"calloutValue\"}], \"isVisible\": \"true\", \"layout\": {\"default\": {\"height\": 8, \"width\": 2, \"x\": 0, \"y\": 0}}}, \"type\": \"gridCell\"}]}, \"type\": \"grid\"}], \"description\": \"This is a simple example app\", \"queries\": [], \"name\": \"Example App\", \"rootInstanceName\": \"grid0\"}, \"type\": \"appDefinitions\"}}"
+      }
+    ],
+    "step": "there is a valid \"app\" in the system",
+    "key": "app",
+    "tag": "App Builder",
+    "operationId": "CreateApp"
   },
   {
     "parameters": [
@@ -131,6 +155,22 @@
   {
     "parameters": [
       {
+        "name": "product",
+        "value": "\"logs\""
+      },
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"from\": 1672527600000,\n      \"to\": 1704063600000,\n      \"indexes\": [\"test-index\", \"test-index-2\"],\n      \"query\": {\"host\": \"abc\", \"service\": \"xyz\"}\n    },\n    \"type\": \"create_deletion_req\"\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"deletion_request\" in the system",
+    "key": "deletion_request",
+    "tag": "Data Deletion",
+    "operationId": "CreateDataDeletionRequest"
+  },
+  {
+    "parameters": [
+      {
         "name": "body",
         "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"message\": \"test message\",\n      \"monitor_identifier\": {\n        \"monitor_tags\": [\"cat:hat\"]\n      },\n      \"scope\": \"test:{{ unique_lower_alnum }}\",\n      \"schedule\": {\n        \"start\": null\n      }\n    },\n    \"type\": \"downtime\"\n  }\n}"
       }
@@ -151,6 +191,18 @@
     "key": "incident",
     "tag": "Incidents",
     "operationId": "CreateIncident"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"Security Incident\",\n      \"description\": \"Any incidents that harm (or have the potential to) the confidentiality, integrity, or availability of our data.\",\n      \"is_default\": false\n    },\n    \"type\": \"incident_types\"\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"incident_type\" in the system",
+    "key": "incident_type",
+    "tag": "Incidents",
+    "operationId": "CreateIncidentType"
   },
   {
     "parameters": [
@@ -204,6 +256,18 @@
     "parameters": [
       {
         "name": "body",
+        "value": "{\n  \"data\": {\n    \"type\": \"account\",\n    \"attributes\": {\n      \"account_tags\": [\n        \"key:value\"\n      ],\n      \"auth_config\": {\n        \"role_name\": \"DatadogIntegrationRole\"\n      },\n      \"aws_account_id\": \"123456789012\",\n      \"aws_partition\": \"aws\",\n      \"aws_regions\": {\n        \"include_only\": [\n          \"us-east-1\"\n        ]\n      },\n      \"logs_config\": {\n        \"lambda_forwarder\": {\n          \"lambdas\": [\n            \"arn:aws:lambda:us-east-1:123456789012:function:DatadogLambdaLogForwarder\"\n          ],\n          \"sources\": [\n            \"s3\"\n          ]\n        }\n      },\n      \"metrics_config\": {\n        \"enabled\": true,\n        \"automute_enabled\": true,\n        \"collect_custom_metrics\": false,\n        \"collect_cloudwatch_alarms\": false,\n        \"tag_filters\": [\n          {\n            \"namespace\": \"AWS/EC2\",\n            \"tags\": [\n              \"key:value\"\n            ]\n          }\n        ],\n        \"namespace_filters\": {\n          \"include_only\": [\n            \"AWS/EC2\"\n          ]\n        }\n      },\n      \"resources_config\": {\n        \"cloud_security_posture_management_collection\": false,\n        \"extended_collection\": false\n      },\n      \"traces_config\": {\n        \"xray_services\": {\n          \"include_only\": [\n            \"AWS/AppSync\"\n          ]\n        }\n      }\n    }\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"aws_account_v2\" in the system",
+    "key": "aws_account_v2",
+    "tag": "AWS Integration",
+    "operationId": "CreateAWSAccount"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
         "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"client_email\": \"Test-{{ unique_hash }}@example.com\",\n      \"host_filters\": []\n    },\n    \"type\": \"gcp_service_account\"\n  }\n}"
       }
     ],
@@ -211,6 +275,30 @@
     "key": "gcp_sts_account",
     "tag": "GCP Integration",
     "operationId": "CreateGCPSTSAccount"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"{{ unique }}\",\n      \"tenant_id\": \"4d3bac44-0230-4732-9e70-cc00736f0a97\",\n      \"team_id\": \"e5f50a58-c929-4fb3-8866-e2cd836de3c2\",\n      \"channel_id\": \"19:iD_D2xy_sAa-JV851JJYwIa6mlW9F9Nxm3SLyZq68qY1@thread.tacv2\"\n     },\n     \"type\": \"tenant-based-handle\"\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"tenant_based_handle\" in the system",
+    "key": "tenant_based_handle",
+    "tag": "Microsoft Teams Integration",
+    "operationId": "CreateTenantBasedHandle"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"{{ unique }}\",\n      \"url\": \"https://prod-100.westus.logic.azure.com:443/workflows/abcd1234\"\n     },\n     \"type\": \"workflows-webhook-handle\"\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"workflows_webhook_handle\" in the system",
+    "key": "workflows_webhook_handle",
+    "tag": "Microsoft Teams Integration",
+    "operationId": "CreateWorkflowsWebhookHandle"
   },
   {
     "parameters": [
@@ -439,13 +527,25 @@
     "parameters": [
       {
         "name": "body",
-        "value": "{ \"data\": {\n\n    \"type\": \"rum_application_create\",\n    \"attributes\": {\n        \"name\": \"test_name_create\",\n        \"type\": \"browser\"\n    }\n  }\n}"
+        "value": "{ \"data\": {\n    \"type\": \"rum_application_create\",\n    \"attributes\": {\n        \"name\": \"test-rum-{{ unique_hash }}\",\n        \"type\": \"ios\"\n    }\n  }\n}"
       }
     ],
     "step": "there is a valid \"rum_application\" in the system",
     "key": "rum_application",
     "tag": "RUM",
     "operationId": "CreateRUMApplication"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"id\": \"{{ unique_lower_alnum }}\",\n    \"type\": \"rum_metrics\",\n    \"attributes\": {\n      \"event_type\": \"session\",\n      \"compute\": {\n        \"aggregation_type\": \"distribution\",\n        \"include_percentiles\": true,\n        \"path\": \"@duration\"\n      },\n      \"filter\": {\n        \"query\": \"source:{{ unique }}\"\n      },\n      \"group_by\": [{\n        \"path\": \"@browser.name\",\n        \"tag_name\": \"browser_name\"\n      }],\n      \"uniqueness\": {\n        \"when\": \"match\"\n      }\n    }\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"rum_metric\" in the system",
+    "key": "rum_metric",
+    "tag": "Rum Metrics",
+    "operationId": "CreateRumMetric"
   },
   {
     "parameters": [
@@ -458,6 +558,30 @@
     "key": "create_scorecard_rule",
     "tag": "Service Scorecards",
     "operationId": "CreateScorecardRule"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"type\": \"notification_rules\",\n    \"attributes\": {\n      \"name\": \"{{ unique }}\",\n      \"selectors\": {\n        \"rule_types\": [\"signal_correlation\"],\n        \"trigger_source\": \"security_signals\",\n        \"severities\": [\"critical\"],\n        \"query\": \"env:test\"\n      },\n      \"targets\": [\"@email@email.com\"],\n      \"enabled\": true\n    }\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"valid_signal_notification_rule\" in the system",
+    "key": "valid_signal_notification_rule",
+    "tag": "Security Monitoring",
+    "operationId": "CreateSignalNotificationRule"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"type\": \"notification_rules\",\n    \"attributes\": {\n      \"name\": \"{{ unique }}\",\n      \"selectors\": {\n        \"rule_types\": [\"misconfiguration\", \"attack_path\"],\n        \"trigger_source\": \"security_findings\",\n        \"severities\": [\"critical\"],\n        \"query\": \"env:test\"\n      },\n      \"time_aggregation\": 86400,\n      \"targets\": [\"@email@email.com\"],\n      \"enabled\": true\n    }\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"valid_vulnerability_notification_rule\" in the system",
+    "key": "valid_vulnerability_notification_rule",
+    "tag": "Security Monitoring",
+    "operationId": "CreateVulnerabilityNotificationRule"
   },
   {
     "parameters": [
@@ -617,6 +741,18 @@
     "parameters": [
       {
         "name": "body",
+        "value": "{\n  \"data\": {\n    \"type\": \"historicalDetectionsJobCreate\",\n    \"attributes\": {\n      \"jobDefinition\": {\n        \"type\": \"log_detection\",\n        \"name\": \"Excessive number of failed attempts.\",\n        \"queries\": [\n          {\n            \"query\": \"source:non_existing_src_weekend\",\n            \"aggregation\": \"count\",\n            \"groupByFields\": [],\n            \"distinctFields\": []\n          }\n        ],\n        \"cases\": [\n          {\n            \"name\": \"Condition 1\",\n            \"status\": \"info\",\n            \"notifications\": [],\n            \"condition\": \"a > 1\"\n          }\n        ],\n        \"options\": {\n          \"keepAlive\": 3600,\n          \"maxSignalDuration\": 86400,\n          \"evaluationWindow\": 900\n        },\n        \"message\": \"A large number of failed login attempts.\",\n        \"tags\": [],\n        \"from\": 1730387522611,\n        \"to\": 1730387532611,\n        \"index\": \"main\"\n      }\n    }\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"historical_job\" in the system",
+    "key": "historical_job",
+    "tag": "Security Monitoring",
+    "operationId": "RunHistoricalJob"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
         "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"query\": \"slo_type:metric \\\"SLO Reporting Test\\\"\",\n      \"interval\": \"monthly\",\n      \"from_ts\": {{ timestamp(\"now - 21d\") }},\n      \"to_ts\":  {{ timestamp(\"now\") }}\n    }\n  }\n}"
       }
     ],
@@ -701,5 +837,17 @@
     "key": "user",
     "tag": "Users",
     "operationId": "CreateUser"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"type\": \"workflows\",\n    \"attributes\": {\n        \"name\": \"Cassette Workflow x-given\",\n        \"spec\": {\n            \"triggers\": [\n                {\n                    \"startStepNames\": [\"No_op\"],\n                    \"workflowTrigger\": {}\n                }\n            ],\n            \"steps\": [\n              {\n                \"name\": \"No_op\",\n                \"actionId\": \"com.datadoghq.core.noop\"\n              }\n            ]\n        }\n    }\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"workflow\" in the system",
+    "key": "workflow",
+    "tag": "Workflow Automation",
+    "operationId": "CreateWorkflow"
   }
 ]

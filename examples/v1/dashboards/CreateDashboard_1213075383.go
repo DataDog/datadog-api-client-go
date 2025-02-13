@@ -35,7 +35,7 @@ func main() {
 							Display: &datadogV1.ToplistWidgetDisplay{
 								ToplistWidgetStacked: &datadogV1.ToplistWidgetStacked{
 									Type:   datadogV1.TOPLISTWIDGETSTACKEDTYPE_STACKED,
-									Legend: datadogV1.TOPLISTWIDGETLEGEND_INLINE,
+									Legend: datadogV1.TOPLISTWIDGETLEGEND_INLINE.Ptr(),
 								}},
 							Scaling: datadogV1.TOPLISTWIDGETSCALING_RELATIVE.Ptr(),
 							Palette: datadog.PtrString("dog_classic"),
@@ -76,7 +76,6 @@ func main() {
 		},
 		TemplateVariables: []datadogV1.DashboardTemplateVariable{},
 		LayoutType:        datadogV1.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
 		NotifyList:        *datadog.NewNullableList(&[]string{}),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

@@ -48,8 +48,8 @@ func main() {
 		Options: datadogV1.SyntheticsTestOptions{
 			AcceptSelfSigned: datadog.PtrBool(false),
 			AllowInsecure:    datadog.PtrBool(true),
-			DeviceIds: []datadogV1.SyntheticsDeviceID{
-				datadogV1.SYNTHETICSDEVICEID_CHROME_LAPTOP_LARGE,
+			DeviceIds: []string{
+				"chrome.laptop_large",
 			},
 			DisableCors:        datadog.PtrBool(true),
 			FollowRedirects:    datadog.PtrBool(true),
@@ -70,11 +70,13 @@ func main() {
 		Type: datadogV1.SYNTHETICSBROWSERTESTTYPE_BROWSER,
 		Steps: []datadogV1.SyntheticsStep{
 			{
-				AllowFailure: datadog.PtrBool(false),
-				IsCritical:   datadog.PtrBool(true),
-				Name:         datadog.PtrString("Refresh page"),
-				Params:       new(interface{}),
-				Type:         datadogV1.SYNTHETICSSTEPTYPE_REFRESH.Ptr(),
+				AllowFailure:  datadog.PtrBool(false),
+				AlwaysExecute: datadog.PtrBool(true),
+				ExitIfSucceed: datadog.PtrBool(true),
+				IsCritical:    datadog.PtrBool(true),
+				Name:          datadog.PtrString("Refresh page"),
+				Params:        new(interface{}),
+				Type:          datadogV1.SYNTHETICSSTEPTYPE_REFRESH.Ptr(),
 			},
 		},
 	}

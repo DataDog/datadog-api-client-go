@@ -24,6 +24,8 @@ type SecurityMonitoringStandardRuleResponse struct {
 	DeprecationDate *int64 `json:"deprecationDate,omitempty"`
 	// Additional queries to filter matched events before they are processed. This field is deprecated for log detection, signal correlation, and workload security rules.
 	Filters []SecurityMonitoringFilter `json:"filters,omitempty"`
+	// Additional grouping to perform on top of the existing groups in the query section. Must be a subset of the existing groups.
+	GroupSignalsBy []string `json:"groupSignalsBy,omitempty"`
 	// Whether the notifications include the triggering group-by values in their title.
 	HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
 	// The ID of the rule.
@@ -38,10 +40,12 @@ type SecurityMonitoringStandardRuleResponse struct {
 	Message *string `json:"message,omitempty"`
 	// The name of the rule.
 	Name *string `json:"name,omitempty"`
-	// Options on rules.
+	// Options.
 	Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
 	// Queries for selecting logs which are part of the rule.
 	Queries []SecurityMonitoringStandardRuleQuery `json:"queries,omitempty"`
+	// Reference tables for the rule.
+	ReferenceTables []SecurityMonitoringReferenceTable `json:"referenceTables,omitempty"`
 	// Tags for generated signals.
 	Tags []string `json:"tags,omitempty"`
 	// Cases for generating signals from third-party rules. Only available for third-party rules.
@@ -50,6 +54,8 @@ type SecurityMonitoringStandardRuleResponse struct {
 	Type *SecurityMonitoringRuleTypeRead `json:"type,omitempty"`
 	// User ID of the user who updated the rule.
 	UpdateAuthorId *int64 `json:"updateAuthorId,omitempty"`
+	// The date the rule was last updated, in milliseconds.
+	UpdatedAt *int64 `json:"updatedAt,omitempty"`
 	// The version of the rule.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -268,6 +274,34 @@ func (o *SecurityMonitoringStandardRuleResponse) HasFilters() bool {
 // SetFilters gets a reference to the given []SecurityMonitoringFilter and assigns it to the Filters field.
 func (o *SecurityMonitoringStandardRuleResponse) SetFilters(v []SecurityMonitoringFilter) {
 	o.Filters = v
+}
+
+// GetGroupSignalsBy returns the GroupSignalsBy field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleResponse) GetGroupSignalsBy() []string {
+	if o == nil || o.GroupSignalsBy == nil {
+		var ret []string
+		return ret
+	}
+	return o.GroupSignalsBy
+}
+
+// GetGroupSignalsByOk returns a tuple with the GroupSignalsBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleResponse) GetGroupSignalsByOk() (*[]string, bool) {
+	if o == nil || o.GroupSignalsBy == nil {
+		return nil, false
+	}
+	return &o.GroupSignalsBy, true
+}
+
+// HasGroupSignalsBy returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleResponse) HasGroupSignalsBy() bool {
+	return o != nil && o.GroupSignalsBy != nil
+}
+
+// SetGroupSignalsBy gets a reference to the given []string and assigns it to the GroupSignalsBy field.
+func (o *SecurityMonitoringStandardRuleResponse) SetGroupSignalsBy(v []string) {
+	o.GroupSignalsBy = v
 }
 
 // GetHasExtendedTitle returns the HasExtendedTitle field value if set, zero value otherwise.
@@ -522,6 +556,34 @@ func (o *SecurityMonitoringStandardRuleResponse) SetQueries(v []SecurityMonitori
 	o.Queries = v
 }
 
+// GetReferenceTables returns the ReferenceTables field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleResponse) GetReferenceTables() []SecurityMonitoringReferenceTable {
+	if o == nil || o.ReferenceTables == nil {
+		var ret []SecurityMonitoringReferenceTable
+		return ret
+	}
+	return o.ReferenceTables
+}
+
+// GetReferenceTablesOk returns a tuple with the ReferenceTables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleResponse) GetReferenceTablesOk() (*[]SecurityMonitoringReferenceTable, bool) {
+	if o == nil || o.ReferenceTables == nil {
+		return nil, false
+	}
+	return &o.ReferenceTables, true
+}
+
+// HasReferenceTables returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleResponse) HasReferenceTables() bool {
+	return o != nil && o.ReferenceTables != nil
+}
+
+// SetReferenceTables gets a reference to the given []SecurityMonitoringReferenceTable and assigns it to the ReferenceTables field.
+func (o *SecurityMonitoringStandardRuleResponse) SetReferenceTables(v []SecurityMonitoringReferenceTable) {
+	o.ReferenceTables = v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleResponse) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -634,6 +696,34 @@ func (o *SecurityMonitoringStandardRuleResponse) SetUpdateAuthorId(v int64) {
 	o.UpdateAuthorId = &v
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleResponse) GetUpdatedAt() int64 {
+	if o == nil || o.UpdatedAt == nil {
+		var ret int64
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleResponse) GetUpdatedAtOk() (*int64, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleResponse) HasUpdatedAt() bool {
+	return o != nil && o.UpdatedAt != nil
+}
+
+// SetUpdatedAt gets a reference to the given int64 and assigns it to the UpdatedAt field.
+func (o *SecurityMonitoringStandardRuleResponse) SetUpdatedAt(v int64) {
+	o.UpdatedAt = &v
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleResponse) GetVersion() int64 {
 	if o == nil || o.Version == nil {
@@ -689,6 +779,9 @@ func (o SecurityMonitoringStandardRuleResponse) MarshalJSON() ([]byte, error) {
 	if o.Filters != nil {
 		toSerialize["filters"] = o.Filters
 	}
+	if o.GroupSignalsBy != nil {
+		toSerialize["groupSignalsBy"] = o.GroupSignalsBy
+	}
 	if o.HasExtendedTitle != nil {
 		toSerialize["hasExtendedTitle"] = o.HasExtendedTitle
 	}
@@ -716,6 +809,9 @@ func (o SecurityMonitoringStandardRuleResponse) MarshalJSON() ([]byte, error) {
 	if o.Queries != nil {
 		toSerialize["queries"] = o.Queries
 	}
+	if o.ReferenceTables != nil {
+		toSerialize["referenceTables"] = o.ReferenceTables
+	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
@@ -727,6 +823,9 @@ func (o SecurityMonitoringStandardRuleResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.UpdateAuthorId != nil {
 		toSerialize["updateAuthorId"] = o.UpdateAuthorId
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updatedAt"] = o.UpdatedAt
 	}
 	if o.Version != nil {
 		toSerialize["version"] = o.Version
@@ -748,6 +847,7 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 		DefaultTags             []string                                       `json:"defaultTags,omitempty"`
 		DeprecationDate         *int64                                         `json:"deprecationDate,omitempty"`
 		Filters                 []SecurityMonitoringFilter                     `json:"filters,omitempty"`
+		GroupSignalsBy          []string                                       `json:"groupSignalsBy,omitempty"`
 		HasExtendedTitle        *bool                                          `json:"hasExtendedTitle,omitempty"`
 		Id                      *string                                        `json:"id,omitempty"`
 		IsDefault               *bool                                          `json:"isDefault,omitempty"`
@@ -757,10 +857,12 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 		Name                    *string                                        `json:"name,omitempty"`
 		Options                 *SecurityMonitoringRuleOptions                 `json:"options,omitempty"`
 		Queries                 []SecurityMonitoringStandardRuleQuery          `json:"queries,omitempty"`
+		ReferenceTables         []SecurityMonitoringReferenceTable             `json:"referenceTables,omitempty"`
 		Tags                    []string                                       `json:"tags,omitempty"`
 		ThirdPartyCases         []SecurityMonitoringThirdPartyRuleCase         `json:"thirdPartyCases,omitempty"`
 		Type                    *SecurityMonitoringRuleTypeRead                `json:"type,omitempty"`
 		UpdateAuthorId          *int64                                         `json:"updateAuthorId,omitempty"`
+		UpdatedAt               *int64                                         `json:"updatedAt,omitempty"`
 		Version                 *int64                                         `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -768,7 +870,7 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cases", "complianceSignalOptions", "createdAt", "creationAuthorId", "defaultTags", "deprecationDate", "filters", "hasExtendedTitle", "id", "isDefault", "isDeleted", "isEnabled", "message", "name", "options", "queries", "tags", "thirdPartyCases", "type", "updateAuthorId", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cases", "complianceSignalOptions", "createdAt", "creationAuthorId", "defaultTags", "deprecationDate", "filters", "groupSignalsBy", "hasExtendedTitle", "id", "isDefault", "isDeleted", "isEnabled", "message", "name", "options", "queries", "referenceTables", "tags", "thirdPartyCases", "type", "updateAuthorId", "updatedAt", "version"})
 	} else {
 		return err
 	}
@@ -784,6 +886,7 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 	o.DefaultTags = all.DefaultTags
 	o.DeprecationDate = all.DeprecationDate
 	o.Filters = all.Filters
+	o.GroupSignalsBy = all.GroupSignalsBy
 	o.HasExtendedTitle = all.HasExtendedTitle
 	o.Id = all.Id
 	o.IsDefault = all.IsDefault
@@ -796,6 +899,7 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 	}
 	o.Options = all.Options
 	o.Queries = all.Queries
+	o.ReferenceTables = all.ReferenceTables
 	o.Tags = all.Tags
 	o.ThirdPartyCases = all.ThirdPartyCases
 	if all.Type != nil && !all.Type.IsValid() {
@@ -804,6 +908,7 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 		o.Type = all.Type
 	}
 	o.UpdateAuthorId = all.UpdateAuthorId
+	o.UpdatedAt = all.UpdatedAt
 	o.Version = all.Version
 
 	if len(additionalProperties) > 0 {

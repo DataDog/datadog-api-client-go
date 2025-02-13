@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"Sample powerpack","group_widget":{"definition":{"layout_type":"ordered","show_title":true,"title":"Sample Powerpack","type":"group","widgets":[{"definition":{"content":"test","type":"note"}}]},"layout":{"height":3,"width":12,"x":0,"y":0},"live_span":"1h"},"name":"Test-Create_a_new_dashboard_with_powerpack_widget-1698172328","tags":["tag:sample"],"template_variables":[{"defaults":["*"],"name":"sample"}]},"type":"powerpack"}}
+      {"data":{"attributes":{"description":"Sample powerpack","group_widget":{"definition":{"layout_type":"ordered","show_title":true,"title":"Sample Powerpack","type":"group","widgets":[{"definition":{"content":"test","type":"note"}}]},"layout":{"height":3,"width":12,"x":0,"y":0},"live_span":"1h"},"name":"Test-Create_a_new_dashboard_with_powerpack_widget-1731699168","tags":["tag:sample"],"template_variables":[{"defaults":["*"],"name":"sample"}]},"type":"powerpack"}}
     form: {}
     headers:
       Accept:
@@ -12,10 +12,9 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/powerpacks
   response:
-    body: '{"data":{"type":"powerpack","id":"a3e591c8-729b-11ee-bde6-da7ad0900002","attributes":{"name":"Test-Create_a_new_dashboard_with_powerpack_widget-1698172328","description":"Sample
+    body: '{"data":{"type":"powerpack","id":"65c564d0-a388-11ef-a7cd-da7ad0900002","attributes":{"name":"Test-Create_a_new_dashboard_with_powerpack_widget-1731699168","description":"Sample
       powerpack","group_widget":{"definition":{"layout_type":"ordered","show_title":true,"title":"Sample
-      Powerpack","type":"group","widgets":[{"definition":{"content":"test","type":"note"},"id":1041433464205113}]},"layout":{"height":3,"width":12,"x":0,"y":0},"live_span":"1h"},"template_variables":[{"defaults":["*"],"name":"sample"}],"tags":["tag:sample"]},"relationships":{"author":{"data":{"type":"users","id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}},"included":[{"type":"users","id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","attributes":{"name":"CI
-      Account","email":"team-intg-tools-libs-spam@datadoghq.com"}}]}
+      Powerpack","type":"group","widgets":[{"definition":{"content":"test","type":"note"},"id":5420081943814583}]},"layout":{"height":3,"width":12,"x":0,"y":0},"live_span":"1h"},"template_variables":[{"defaults":["*"],"name":"sample"}],"tags":["tag:sample"]},"relationships":{"author":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}}}},"included":[{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0","attributes":{"name":null,"email":"frog@datadoghq.com"}}]}
 
       '
     code: 200
@@ -26,7 +25,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"description":"description","is_read_only":false,"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_powerpack_widget-1698172328 with powerpack widget","widgets":[{"definition":{"powerpack_id":"a3e591c8-729b-11ee-bde6-da7ad0900002","template_variables":{"controlled_by_powerpack":[{"name":"foo","prefix":"bar","values":["baz","qux","quuz"]}],"controlled_externally":[]},"type":"powerpack"},"layout":{"height":2,"is_column_break":false,"width":2,"x":1,"y":1}}]}
+      {"description":"description","layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_powerpack_widget-1731699168 with powerpack widget","widgets":[{"definition":{"powerpack_id":"65c564d0-a388-11ef-a7cd-da7ad0900002","template_variables":{"controlled_by_powerpack":[{"name":"foo","prefix":"bar","values":["baz","qux","quuz"]}],"controlled_externally":[]},"type":"powerpack"},"layout":{"height":2,"is_column_break":false,"width":2,"x":1,"y":1}}]}
     form: {}
     headers:
       Accept:
@@ -37,9 +36,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"id":"u4a-itq-xia","title":"Test-Create_a_new_dashboard_with_powerpack_widget-1698172328
-      with powerpack widget","description":"description","author_handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","author_name":"CI
-      Account","layout_type":"ordered","url":"/dashboard/u4a-itq-xia/test-createanewdashboardwithpowerpackwidget-1698172328-with-powerpack-widget","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"powerpack_id":"a3e591c8-729b-11ee-bde6-da7ad0900002","template_variables":{"controlled_by_powerpack":[{"name":"foo","prefix":"bar","values":["baz","qux","quuz"]}],"controlled_externally":[]},"type":"powerpack"},"layout":{"height":2,"is_column_break":false,"width":2,"x":1,"y":1},"id":1423357855337541}],"notify_list":null,"created_at":"2023-10-24T18:32:09.719784+00:00","modified_at":"2023-10-24T18:32:09.719784+00:00","restricted_roles":[]}
+    body: '{"id":"zb2-4ez-tuk","title":"Test-Create_a_new_dashboard_with_powerpack_widget-1731699168
+      with powerpack widget","description":"description","author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"ordered","url":"/dashboard/zb2-4ez-tuk/test-createanewdashboardwithpowerpackwidget-1731699168-with-powerpack-widget","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"powerpack_id":"65c564d0-a388-11ef-a7cd-da7ad0900002","template_variables":{"controlled_by_powerpack":[{"name":"foo","prefix":"bar","values":["baz","qux","quuz"]}],"controlled_externally":[]},"type":"powerpack"},"layout":{"height":2,"is_column_break":false,"width":2,"x":1,"y":1},"id":648463768842724}],"notify_list":null,"created_at":"2024-11-15T19:32:49.465110+00:00","modified_at":"2024-11-15T19:32:49.465110+00:00","restricted_roles":[]}
 
       '
     code: 200
@@ -56,9 +54,9 @@ interactions:
       - application/json
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/u4a-itq-xia
+    url: https://api.datadoghq.com/api/v1/dashboard/zb2-4ez-tuk
   response:
-    body: '{"deleted_dashboard_id":"u4a-itq-xia"}
+    body: '{"deleted_dashboard_id":"zb2-4ez-tuk"}
 
       '
     code: 200
@@ -75,7 +73,7 @@ interactions:
       - '*/*'
     id: 3
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/powerpacks/a3e591c8-729b-11ee-bde6-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/powerpacks/65c564d0-a388-11ef-a7cd-da7ad0900002
   response:
     body: ''
     code: 204

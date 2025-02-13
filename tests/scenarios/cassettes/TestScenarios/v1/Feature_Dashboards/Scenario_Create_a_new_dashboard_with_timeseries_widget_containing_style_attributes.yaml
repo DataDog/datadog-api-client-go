@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_timeseries_widget_containing_style_attributes-1641430241 with timeseries widget","widgets":[{"definition":{"requests":[{"display_type":"bars","on_right_yaxis":false,"q":"sum:trace.test.errors{env:prod,service:datadog-api-spec} by {resource_name}.as_count()","style":{"line_type":"solid","line_width":"normal","palette":"warm"}}],"type":"timeseries"}}]}
+      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_timeseries_widget_containing_style_attributes-1731699179 with timeseries widget","widgets":[{"definition":{"requests":[{"display_type":"bars","on_right_yaxis":false,"q":"sum:trace.test.errors{env:prod,service:datadog-api-spec} by {resource_name}.as_count()","style":{"line_type":"solid","line_width":"normal","palette":"warm"}}],"type":"timeseries"}}]}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,11 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"notify_list":null,"description":null,"restricted_roles":[],"author_name":null,"template_variables":null,"is_read_only":false,"id":"asn-82x-2q5","title":"Test-Create_a_new_dashboard_with_timeseries_widget_containing_style_attributes-1641430241
-      with timeseries widget","url":"/dashboard/asn-82x-2q5/test-createanewdashboardwithtimeserieswidgetcontainingstyleattributes-1641430241","created_at":"2022-01-06T00:50:41.722113+00:00","modified_at":"2022-01-06T00:50:41.722113+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"requests":[{"q":"sum:trace.test.errors{env:prod,service:datadog-api-spec}
-      by {resource_name}.as_count()","on_right_yaxis":false,"style":{"line_width":"normal","palette":"warm","line_type":"solid"},"display_type":"bars"}],"type":"timeseries"},"id":8478940066341905}],"layout_type":"ordered"}'
+    body: '{"id":"3g2-7q5-mxv","title":"Test-Create_a_new_dashboard_with_timeseries_widget_containing_style_attributes-1731699179
+      with timeseries widget","description":null,"author_handle":"frog@datadoghq.com","author_name":null,"layout_type":"ordered","url":"/dashboard/3g2-7q5-mxv/test-createanewdashboardwithtimeserieswidgetcontainingstyleattributes-1731699179","is_read_only":false,"template_variables":null,"widgets":[{"definition":{"requests":[{"display_type":"bars","on_right_yaxis":false,"q":"sum:trace.test.errors{env:prod,service:datadog-api-spec}
+      by {resource_name}.as_count()","style":{"line_type":"solid","line_width":"normal","palette":"warm"}}],"type":"timeseries"},"id":6683223163247608}],"notify_list":null,"created_at":"2024-11-15T19:32:59.447813+00:00","modified_at":"2024-11-15T19:32:59.447813+00:00","restricted_roles":[]}
+
+      '
     code: 200
     duration: 0ms
     headers:
@@ -29,9 +31,11 @@ interactions:
       - application/json
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/asn-82x-2q5
+    url: https://api.datadoghq.com/api/v1/dashboard/3g2-7q5-mxv
   response:
-    body: '{"deleted_dashboard_id":"asn-82x-2q5"}'
+    body: '{"deleted_dashboard_id":"3g2-7q5-mxv"}
+
+      '
     code: 200
     duration: 0ms
     headers:

@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"description":null,"is_read_only":false,"layout_type":"ordered","notify_list":[],"reflow_type":"auto","restricted_roles":[],"template_variables":[{"available_values":["my-host","host1","host2"],"defaults":[""],"name":"host1","prefix":"host"}],"title":"","widgets":[{"definition":{"requests":{"fill":{"q":"avg:system.cpu.user{*}"}},"type":"hostmap"}}]}
+      {"description":null,"layout_type":"ordered","notify_list":[],"reflow_type":"auto","restricted_roles":[],"template_variables":[{"available_values":["my-host","host1","host2"],"defaults":[""],"name":"host1","prefix":"host"}],"title":"","widgets":[{"definition":{"requests":{"fill":{"q":"avg:system.cpu.user{*}"}},"type":"hostmap"}}]}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"errors":["Minimum length of parameter ''defaults'' should be 1"]}
-
-      '
+    body: '{"errors":["Minimum length of parameter ''defaults'' should be 1"]}'
     code: 400
     duration: 0ms
     headers:

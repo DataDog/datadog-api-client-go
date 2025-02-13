@@ -9,6 +9,40 @@ Feature: Security Monitoring
     And a valid "appKeyAuth" key in the system
     And an instance of "SecurityMonitoring" API
 
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Cancel a historical job returns "Bad Request" response
+    Given operation "CancelHistoricalJob" enabled
+    And new "CancelHistoricalJob" request
+    And request contains "job_id" parameter with value "inva-lid"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: Cancel a historical job returns "Conflict" response
+    Given operation "CancelHistoricalJob" enabled
+    And new "CancelHistoricalJob" request
+    And request contains "job_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 409 Conflict
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Cancel a historical job returns "Not Found" response
+    Given operation "CancelHistoricalJob" enabled
+    And new "CancelHistoricalJob" request
+    And request contains "job_id" parameter with value "8e2a37fb-b0c8-4761-a7f0-0a8d6a98ba93"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Cancel a historical job returns "OK" response
+    Given operation "CancelHistoricalJob" enabled
+    And operation "RunHistoricalJob" enabled
+    And new "CancelHistoricalJob" request
+    And there is a valid "historical_job" in the system
+    And request contains "job_id" parameter from "historical_job.data.id"
+    When the request is sent
+    Then the response status is 204 No Content
+
   @generated @skip @team:DataDog/k9-cloud-security-platform
   Scenario: Change the related incidents of a security signal returns "Bad Request" response
     Given new "EditSecurityMonitoringSignalIncidents" request
@@ -56,6 +90,30 @@ Feature: Security Monitoring
     And body with value {"data": {"attributes": {"archive_reason": "none", "state": "open"}}}
     When the request is sent
     Then the response status is 200 OK
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Convert a job result to a signal returns "Bad Request" response
+    Given operation "ConvertJobResultToSignal" enabled
+    And new "ConvertJobResultToSignal" request
+    And body with value {"data": {"attributes": {"jobResultIds": [""], "notifications": [""], "signalMessage": "A large number of failed login attempts.", "signalSeverity": "critical"}, "type": "historicalDetectionsJobResultSignalConversion"}}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: Convert a job result to a signal returns "Not Found" response
+    Given operation "ConvertJobResultToSignal" enabled
+    And new "ConvertJobResultToSignal" request
+    And body with value {"data": {"attributes": {"jobResultIds": [""], "notifications": [""], "signalMessage": "A large number of failed login attempts.", "signalSeverity": "critical"}, "type": "historicalDetectionsJobResultSignalConversion"}}
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: Convert a job result to a signal returns "OK" response
+    Given operation "ConvertJobResultToSignal" enabled
+    And new "ConvertJobResultToSignal" request
+    And body with value {"data": {"attributes": {"jobResultIds": [""], "notifications": [""], "signalMessage": "A large number of failed login attempts.", "signalSeverity": "critical"}, "type": "historicalDetectionsJobResultSignalConversion"}}
+    When the request is sent
+    Then the response status is 204 OK
 
   @skip @team:DataDog/k9-cloud-security-platform
   Scenario: Convert a rule from JSON to Terraform returns "Bad Request" response
@@ -123,12 +181,13 @@ Feature: Security Monitoring
   @skip-validation @team:DataDog/k9-cloud-security-platform
   Scenario: Create a detection rule returns "OK" response
     Given new "CreateSecurityMonitoringRule" request
-    And body with value {"name":"{{ unique }}", "queries":[{"query":"@test:true","aggregation":"count","groupByFields":[],"distinctFields":[],"metric":""}],"filters":[],"cases":[{"name":"","status":"info","condition":"a > 0","notifications":[]}],"options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"message":"Test rule","tags":[],"isEnabled":true, "type":"log_detection"}
+    And body with value {"name":"{{ unique }}", "queries":[{"query":"@test:true","aggregation":"count","groupByFields":[],"distinctFields":[],"metric":""}],"filters":[],"cases":[{"name":"","status":"info","condition":"a > 0","notifications":[]}],"options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"message":"Test rule","tags":[],"isEnabled":true, "type":"log_detection", "referenceTables":[{"tableName": "synthetics_test_reference_table_dont_delete", "columnName": "value", "logFieldPath":"testtag", "checkPresence":true, "ruleQueryName":"a"}]}
     When the request is sent
     Then the response status is 200 OK
     And the response "name" is equal to "{{ unique }}"
     And the response "type" is equal to "log_detection"
     And the response "message" is equal to "Test rule"
+    And the response "referenceTables" is equal to [{"tableName": "synthetics_test_reference_table_dont_delete", "columnName": "value", "logFieldPath":"testtag", "checkPresence":true, "ruleQueryName":"a"}]
 
   @team:DataDog/k9-cloud-security-platform
   Scenario: Create a detection rule with detection method 'third_party' returns "OK" response
@@ -140,6 +199,16 @@ Feature: Security Monitoring
     And the response "type" is equal to "log_detection"
     And the response "options.detectionMethod" is equal to "third_party"
     And the response "thirdPartyCases[0].query" is equal to "status:error"
+
+  @skip-validation @team:DataDog/k9-cloud-security-platform
+  Scenario: Create a detection rule with type 'application_security 'returns "OK" response
+    Given new "CreateSecurityMonitoringRule" request
+    And body with value {"type":"application_security","name":"{{unique}}_appsec_rule","queries":[{"query":"@appsec.security_activity:business_logic.users.login.failure","aggregation":"count","groupByFields":["service","@http.client_ip"],"distinctFields":[]}],"filters":[],"cases":[{"name":"","status":"info","notifications":[],"condition":"a > 100000","actions":[{"type":"block_ip","options":{"duration":900}}]}],"options":{"keepAlive":3600,"maxSignalDuration":86400,"evaluationWindow":900,"detectionMethod":"threshold"},"isEnabled":true,"message":"Test rule","tags":[],"groupSignalsBy":["service"]}
+    When the request is sent
+    Then the response status is 200 OK
+    And the response "name" is equal to "{{ unique }}_appsec_rule"
+    And the response "type" is equal to "application_security"
+    And the response "message" is equal to "Test rule"
 
   @skip-validation @team:DataDog/k9-cloud-security-platform
   Scenario: Create a detection rule with type 'impossible_travel' returns "OK" response
@@ -176,6 +245,34 @@ Feature: Security Monitoring
     And the response "message" is equal to "Test rule"
     And the response "isEnabled" is equal to true
 
+  @generated @skip @team:DataDog/cloud-security-posture-management
+  Scenario: Create a new signal-based notification rule returns "Bad Request" response
+    Given new "CreateSignalNotificationRule" request
+    And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400}, "type": "notification_rules"}}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Create a new signal-based notification rule returns "Successfully created the notification rule." response
+    Given new "CreateSignalNotificationRule" request
+    And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400}, "type": "notification_rules"}}
+    When the request is sent
+    Then the response status is 201 Successfully created the notification rule.
+
+  @generated @skip @team:DataDog/cloud-security-posture-management
+  Scenario: Create a new vulnerability-based notification rule returns "Bad Request" response
+    Given new "CreateVulnerabilityNotificationRule" request
+    And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400}, "type": "notification_rules"}}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Create a new vulnerability-based notification rule returns "Successfully created the notification rule." response
+    Given new "CreateVulnerabilityNotificationRule" request
+    And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400}, "type": "notification_rules"}}
+    When the request is sent
+    Then the response status is 201 Successfully created the notification rule.
+
   @generated @skip @team:DataDog/k9-cloud-security-platform
   Scenario: Create a security filter returns "Bad Request" response
     Given new "CreateSecurityFilter" request
@@ -205,21 +302,21 @@ Feature: Security Monitoring
   @generated @skip @team:DataDog/k9-cloud-security-platform
   Scenario: Create a suppression rule returns "Bad Request" response
     Given new "CreateSecurityMonitoringSuppression" request
-    And body with value {"data": {"attributes": {"data_exclusion_query": "source:cloudtrail account_id:12345", "description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "expiration_date": 1703187336000, "name": "Custom suppression", "rule_query": "type:log_detection source:cloudtrail", "suppression_query": "env:staging status:low"}, "type": "suppressions"}}
+    And body with value {"data": {"attributes": {"data_exclusion_query": "source:cloudtrail account_id:12345", "description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "expiration_date": 1703187336000, "name": "Custom suppression", "rule_query": "type:log_detection source:cloudtrail", "start_date": 1703187336000, "suppression_query": "env:staging status:low"}, "type": "suppressions"}}
     When the request is sent
     Then the response status is 400 Bad Request
 
   @generated @skip @team:DataDog/k9-cloud-security-platform
   Scenario: Create a suppression rule returns "Conflict" response
     Given new "CreateSecurityMonitoringSuppression" request
-    And body with value {"data": {"attributes": {"data_exclusion_query": "source:cloudtrail account_id:12345", "description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "expiration_date": 1703187336000, "name": "Custom suppression", "rule_query": "type:log_detection source:cloudtrail", "suppression_query": "env:staging status:low"}, "type": "suppressions"}}
+    And body with value {"data": {"attributes": {"data_exclusion_query": "source:cloudtrail account_id:12345", "description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "expiration_date": 1703187336000, "name": "Custom suppression", "rule_query": "type:log_detection source:cloudtrail", "start_date": 1703187336000, "suppression_query": "env:staging status:low"}, "type": "suppressions"}}
     When the request is sent
     Then the response status is 409 Conflict
 
   @skip-validation @team:DataDog/k9-cloud-security-platform
   Scenario: Create a suppression rule returns "OK" response
     Given new "CreateSecurityMonitoringSuppression" request
-    And body with value {"data": {"attributes": {"description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "expiration_date": {{ timestamp('now + 21d') }}000, "name": "{{ unique }}", "rule_query": "type:log_detection source:cloudtrail", "suppression_query": "env:staging status:low"}, "type": "suppressions"}}
+    And body with value {"data": {"attributes": {"description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "start_date": {{ timestamp('now + 10d') }}000, "expiration_date": {{ timestamp('now + 21d') }}000, "name": "{{ unique }}", "rule_query": "type:log_detection source:cloudtrail", "suppression_query": "env:staging status:low"}, "type": "suppressions"}}
     When the request is sent
     Then the response status is 200 OK
     And the response "data.type" is equal to "suppressions"
@@ -229,7 +326,7 @@ Feature: Security Monitoring
   @skip-validation @team:DataDog/k9-cloud-security-platform
   Scenario: Create a suppression rule with an exclusion query returns "OK" response
     Given new "CreateSecurityMonitoringSuppression" request
-    And body with value {"data": {"attributes": {"description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "expiration_date": {{ timestamp('now + 21d') }}000, "name": "{{ unique }}", "rule_query": "type:log_detection source:cloudtrail", "data_exclusion_query": "account_id:12345"}, "type": "suppressions"}}
+    And body with value {"data": {"attributes": {"description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "start_date": {{ timestamp('now + 10d') }}000, "expiration_date": {{ timestamp('now + 21d') }}000, "name": "{{ unique }}", "rule_query": "type:log_detection source:cloudtrail", "data_exclusion_query": "account_id:12345"}, "type": "suppressions"}}
     When the request is sent
     Then the response status is 200 OK
     And the response "data.type" is equal to "suppressions"
@@ -266,6 +363,21 @@ Feature: Security Monitoring
     When the request is sent
     Then the response status is 204 OK
 
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Delete a signal-based notification rule returns "Not Found" response
+    Given new "DeleteSignalNotificationRule" request
+    And request contains "id" parameter with value "000-000-000"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Delete a signal-based notification rule returns "Rule successfully deleted." response
+    Given there is a valid "valid_signal_notification_rule" in the system
+    And new "DeleteSignalNotificationRule" request
+    And request contains "id" parameter from "valid_signal_notification_rule.data.id"
+    When the request is sent
+    Then the response status is 204 Rule successfully deleted.
+
   @skip @team:DataDog/k9-cloud-security-platform
   Scenario: Delete a suppression rule returns "Not Found" response
     Given new "DeleteSecurityMonitoringSuppression" request
@@ -278,6 +390,53 @@ Feature: Security Monitoring
     Given there is a valid "suppression" in the system
     And new "DeleteSecurityMonitoringSuppression" request
     And request contains "suppression_id" parameter from "suppression.data.id"
+    When the request is sent
+    Then the response status is 204 OK
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Delete a vulnerability-based notification rule returns "Not Found" response
+    Given new "DeleteVulnerabilityNotificationRule" request
+    And request contains "id" parameter with value "000-000-000"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Delete a vulnerability-based notification rule returns "Rule successfully deleted." response
+    Given there is a valid "valid_vulnerability_notification_rule" in the system
+    And new "DeleteVulnerabilityNotificationRule" request
+    And request contains "id" parameter from "valid_vulnerability_notification_rule.data.id"
+    When the request is sent
+    Then the response status is 204 Rule successfully deleted.
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Delete an existing job returns "Bad Request" response
+    Given operation "DeleteHistoricalJob" enabled
+    And new "DeleteHistoricalJob" request
+    And request contains "job_id" parameter with value "inva-lid"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: Delete an existing job returns "Conflict" response
+    Given operation "DeleteHistoricalJob" enabled
+    And new "DeleteHistoricalJob" request
+    And request contains "job_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 409 Conflict
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Delete an existing job returns "Not Found" response
+    Given operation "DeleteHistoricalJob" enabled
+    And new "DeleteHistoricalJob" request
+    And request contains "job_id" parameter with value "8e2a37fb-b0c8-4761-a7f0-0a8d6a98ba93"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: Delete an existing job returns "OK" response
+    Given operation "DeleteHistoricalJob" enabled
+    And new "DeleteHistoricalJob" request
+    And request contains "job_id" parameter from "REPLACE.ME"
     When the request is sent
     Then the response status is 204 OK
 
@@ -295,6 +454,30 @@ Feature: Security Monitoring
     And request contains "rule_id" parameter from "security_rule.id"
     When the request is sent
     Then the response status is 204 OK
+
+  @generated @skip @team:DataDog/asm-vm
+  Scenario: Get SBOM returns "Bad request: The server cannot process the request due to invalid syntax in the request." response
+    Given new "GetSBOM" request
+    And request contains "asset_type" parameter from "REPLACE.ME"
+    And request contains "filter[asset_name]" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad request: The server cannot process the request due to invalid syntax in the request.
+
+  @team:DataDog/asm-vm
+  Scenario: Get SBOM returns "Not found: asset not found" response
+    Given new "GetSBOM" request
+    And request contains "asset_type" parameter with value "Host"
+    And request contains "filter[asset_name]" parameter with value "unknown-host"
+    When the request is sent
+    Then the response status is 404 Not found: asset not found
+
+  @team:DataDog/asm-vm
+  Scenario: Get SBOM returns "OK" response
+    Given new "GetSBOM" request
+    And request contains "asset_type" parameter with value "Repository"
+    And request contains "filter[asset_name]" parameter with value "github.com/datadog/datadog-agent"
+    When the request is sent
+    Then the response status is 200 OK
 
   @skip-validation @team:DataDog/k9-cloud-security-platform
   Scenario: Get a cloud configuration rule's details returns "OK" response
@@ -330,6 +513,32 @@ Feature: Security Monitoring
     When the request is sent
     Then the response status is 200 OK
     And the response "data.attributes.evaluation" is equal to "pass"
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Get a job's details returns "Bad Request" response
+    Given operation "GetHistoricalJob" enabled
+    And new "GetHistoricalJob" request
+    And request contains "job_id" parameter with value "inva-lid"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Get a job's details returns "Not Found" response
+    Given operation "GetHistoricalJob" enabled
+    And new "GetHistoricalJob" request
+    And request contains "job_id" parameter with value "8e2a37fb-b0c8-4761-a7f0-0a8d6a98ba93"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Get a job's details returns "OK" response
+    Given operation "GetHistoricalJob" enabled
+    And operation "RunHistoricalJob" enabled
+    And new "GetHistoricalJob" request
+    And there is a valid "historical_job" in the system
+    And request contains "job_id" parameter from "historical_job.data.id"
+    When the request is sent
+    Then the response status is 200 OK
 
   @generated @skip @team:DataDog/k9-cloud-security-platform
   Scenario: Get a list of security signals returns "Bad Request" response
@@ -456,6 +665,64 @@ Feature: Security Monitoring
     Then the response status is 200 OK
 
   @generated @skip @team:DataDog/cloud-security-posture-management
+  Scenario: Get details of a signal-based notification rule returns "Bad Request" response
+    Given new "GetSignalNotificationRule" request
+    And request contains "id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Get details of a signal-based notification rule returns "Not Found" response
+    Given new "GetSignalNotificationRule" request
+    And request contains "id" parameter with value "000-000-000"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Get details of a signal-based notification rule returns "Notification rule details." response
+    Given there is a valid "valid_signal_notification_rule" in the system
+    And new "GetSignalNotificationRule" request
+    And request contains "id" parameter from "valid_signal_notification_rule.data.id"
+    When the request is sent
+    Then the response status is 200 Notification rule details.
+
+  @generated @skip @team:DataDog/cloud-security-posture-management
+  Scenario: Get details of a vulnerability notification rule returns "Bad Request" response
+    Given new "GetVulnerabilityNotificationRule" request
+    And request contains "id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Get details of a vulnerability notification rule returns "Not Found" response
+    Given new "GetVulnerabilityNotificationRule" request
+    And request contains "id" parameter with value "000-000-000"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Get details of a vulnerability notification rule returns "Notification rule details." response
+    Given there is a valid "valid_vulnerability_notification_rule" in the system
+    And new "GetVulnerabilityNotificationRule" request
+    And request contains "id" parameter from "valid_vulnerability_notification_rule.data.id"
+    When the request is sent
+    Then the response status is 200 Notification rule details.
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Get the list of signal-based notification rules returns "The list of notification rules." response
+    Given there is a valid "valid_signal_notification_rule" in the system
+    And new "GetSignalNotificationRules" request
+    When the request is sent
+    Then the response status is 200 The list of notification rules.
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Get the list of vulnerability notification rules returns "The list of notification rules." response
+    Given there is a valid "valid_vulnerability_notification_rule" in the system
+    And new "GetVulnerabilityNotificationRules" request
+    When the request is sent
+    Then the response status is 200 The list of notification rules.
+
+  @generated @skip @team:DataDog/cloud-security-posture-management
   Scenario: List findings returns "Bad Request: The server cannot process the request due to invalid syntax in the request." response
     Given operation "ListFindings" enabled
     And new "ListFindings" request
@@ -484,6 +751,31 @@ Feature: Security Monitoring
     When the request with pagination is sent
     Then the response status is 200 OK
 
+  @skip-terraform-config @team:DataDog/cloud-security-posture-management
+  Scenario: List findings with detection_type query param returns "OK" response
+    Given operation "ListFindings" enabled
+    And new "ListFindings" request
+    And request contains "filter[vulnerability_type]" parameter with value ["misconfiguration", "attack_path"]
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: List historical jobs returns "Bad Request" response
+    Given operation "ListHistoricalJobs" enabled
+    And new "ListHistoricalJobs" request
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: List historical jobs returns "OK" response
+    Given operation "ListHistoricalJobs" enabled
+    And operation "RunHistoricalJob" enabled
+    And new "ListHistoricalJobs" request
+    And there is a valid "historical_job" in the system
+    And request contains "filter[query]" parameter with value "id:{{historical_job.data.id}}"
+    When the request is sent
+    Then the response status is 200 OK
+
   @generated @skip @team:DataDog/k9-cloud-security-platform
   Scenario: List rules returns "Bad Request" response
     Given new "ListSecurityMonitoringRules" request
@@ -493,6 +785,52 @@ Feature: Security Monitoring
   @skip-validation @team:DataDog/k9-cloud-security-platform
   Scenario: List rules returns "OK" response
     Given new "ListSecurityMonitoringRules" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/asm-vm
+  Scenario: List vulnerabilities returns "Bad request: The server cannot process the request due to invalid syntax in the request." response
+    Given new "ListVulnerabilities" request
+    When the request is sent
+    Then the response status is 400 Bad request: The server cannot process the request due to invalid syntax in the request.
+
+  @team:DataDog/asm-vm
+  Scenario: List vulnerabilities returns "Not found: There is no request associated with the provided token." response
+    Given new "ListVulnerabilities" request
+    And request contains "page[token]" parameter with value "unknown"
+    And request contains "page[number]" parameter with value 1
+    When the request is sent
+    Then the response status is 404 Not found: There is no request associated with the provided token.
+
+  @team:DataDog/asm-vm
+  Scenario: List vulnerabilities returns "OK" response
+    Given new "ListVulnerabilities" request
+    And request contains "filter[cvss.base.severity]" parameter with value "High"
+    And request contains "filter[asset.type]" parameter with value "Service"
+    And request contains "filter[tool]" parameter with value "Infra"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/asm-vm
+  Scenario: List vulnerable assets returns "Bad request: The server cannot process the request due to invalid syntax in the request." response
+    Given new "ListVulnerableAssets" request
+    When the request is sent
+    Then the response status is 400 Bad request: The server cannot process the request due to invalid syntax in the request.
+
+  @team:DataDog/asm-vm
+  Scenario: List vulnerable assets returns "Not found: There is no request associated with the provided token." response
+    Given new "ListVulnerableAssets" request
+    And request contains "page[token]" parameter with value "unknown"
+    And request contains "page[number]" parameter with value 1
+    When the request is sent
+    Then the response status is 404 Not found: There is no request associated with the provided token.
+
+  @team:DataDog/asm-vm
+  Scenario: List vulnerable assets returns "OK" response
+    Given new "ListVulnerableAssets" request
+    And request contains "filter[type]" parameter with value "Host"
+    And request contains "filter[repository_url]" parameter with value "github.com/datadog/dd-go"
+    And request contains "filter[risks.in_production]" parameter with value true
     When the request is sent
     Then the response status is 200 OK
 
@@ -551,6 +889,98 @@ Feature: Security Monitoring
     And body with value {"data": {"attributes": {"mute": {"expiration_date": 1778721573794, "muted": true, "reason": "ACCEPTED_RISK"}}, "id": "dbe5f567-192b-4404-b908-29b70e1c9f76", "meta": {"findings":[{"finding_id": "ZGVmLTAwcC1pZXJ-aS0wZjhjNjMyZDNmMzRlZTgzNw=="}]}, "type": "finding"}}
     When the request is sent
     Then the response status is 200 OK
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Patch a signal-based notification rule returns "Bad Request" response
+    Given new "PatchSignalNotificationRule" request
+    And there is a valid "valid_signal_notification_rule" in the system
+    And request contains "id" parameter from "valid_signal_notification_rule.data.id"
+    And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400}, "id": "aaa-bbb-ccc", "type": "notification_rules"}}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Patch a signal-based notification rule returns "Not Found" response
+    Given new "PatchSignalNotificationRule" request
+    And request contains "id" parameter with value "000-000-000"
+    And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400, "version": 1}, "id": "aaa-bbb-ccc", "type": "notification_rules"}}
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Patch a signal-based notification rule returns "Notification rule successfully patched." response
+    Given new "PatchSignalNotificationRule" request
+    And there is a valid "valid_signal_notification_rule" in the system
+    And request contains "id" parameter from "valid_signal_notification_rule.data.id"
+    And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400, "version": 1}, "id": "aaa-bbb-ccc", "type": "notification_rules"}}
+    When the request is sent
+    Then the response status is 200 Notification rule successfully patched.
+
+  @generated @skip @team:DataDog/cloud-security-posture-management
+  Scenario: Patch a signal-based notification rule returns "The server cannot process the request because it contains invalid data." response
+    Given new "PatchSignalNotificationRule" request
+    And request contains "id" parameter from "REPLACE.ME"
+    And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400, "version": 1}, "id": "aaa-bbb-ccc", "type": "notification_rules"}}
+    When the request is sent
+    Then the response status is 422 The server cannot process the request because it contains invalid data.
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Patch a vulnerability-based notification rule returns "Bad Request" response
+    Given new "PatchVulnerabilityNotificationRule" request
+    And there is a valid "valid_vulnerability_notification_rule" in the system
+    And request contains "id" parameter from "valid_vulnerability_notification_rule.data.id"
+    And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400}, "id": "aaa-bbb-ccc", "type": "notification_rules"}}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Patch a vulnerability-based notification rule returns "Not Found" response
+    Given new "PatchVulnerabilityNotificationRule" request
+    And request contains "id" parameter with value "000-000-000"
+    And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400, "version": 1}, "id": "aaa-bbb-ccc", "type": "notification_rules"}}
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @team:DataDog/cloud-security-posture-management
+  Scenario: Patch a vulnerability-based notification rule returns "Notification rule successfully patched." response
+    Given new "PatchVulnerabilityNotificationRule" request
+    And there is a valid "valid_vulnerability_notification_rule" in the system
+    And request contains "id" parameter from "valid_vulnerability_notification_rule.data.id"
+    And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400, "version": 1}, "id": "aaa-bbb-ccc", "type": "notification_rules"}}
+    When the request is sent
+    Then the response status is 200 Notification rule successfully patched.
+
+  @generated @skip @team:DataDog/cloud-security-posture-management
+  Scenario: Patch a vulnerability-based notification rule returns "The server cannot process the request because it contains invalid data." response
+    Given new "PatchVulnerabilityNotificationRule" request
+    And request contains "id" parameter from "REPLACE.ME"
+    And body with value {"data": {"attributes": {"enabled": true, "name": "Rule 1", "selectors": {"query": "(source:production_service OR env:prod)", "rule_types": ["misconfiguration", "attack_path"], "severities": ["critical"], "trigger_source": "security_findings"}, "targets": ["@john.doe@email.com"], "time_aggregation": 86400, "version": 1}, "id": "aaa-bbb-ccc", "type": "notification_rules"}}
+    When the request is sent
+    Then the response status is 422 The server cannot process the request because it contains invalid data.
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Run a historical job returns "Bad Request" response
+    Given operation "RunHistoricalJob" enabled
+    And new "RunHistoricalJob" request
+    And body with value {"data":{"type":"historicalDetectionsJobCreate","attributes":{"jobDefinition":{"type":"log_detection","name":"Excessive number of failed attempts.","queries":[{"query":"source:non_existing_src_weekend","aggregation":"count","groupByFields":[],"distinctFields":[]}],"cases":[{"name":"Condition 1","status":"info","notifications":[],"condition":"a > 1"}],"options":{"keepAlive":3600,"maxSignalDuration":86400,"evaluationWindow":900},"message":"A large number of failed login attempts.","tags":[],"from":1730387522611,"to":1730391122611,"index":"non_existing_index"}}}}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Run a historical job returns "Not Found" response
+    Given operation "RunHistoricalJob" enabled
+    And new "RunHistoricalJob" request
+    And body with value {"data": { "type": "historicalDetectionsJobCreate", "attributes": {"fromRule": {"caseIndex": 0, "from": 1730201035064, "id": "non-existng", "index": "main", "notifications": [], "to": 1730204635115}}}}
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Run a historical job returns "Status created" response
+    Given operation "RunHistoricalJob" enabled
+    And new "RunHistoricalJob" request
+    And body with value {"data":{"type":"historicalDetectionsJobCreate","attributes":{"jobDefinition":{"type":"log_detection","name":"Excessive number of failed attempts.","queries":[{"query":"source:non_existing_src_weekend","aggregation":"count","groupByFields":[],"distinctFields":[]}],"cases":[{"name":"Condition 1","status":"info","notifications":[],"condition":"a > 1"}],"options":{"keepAlive":3600,"maxSignalDuration":86400,"evaluationWindow":900},"message":"A large number of failed login attempts.","tags":[],"from":1730387522611,"to":1730387532611,"index":"main"}}}}
+    When the request is sent
+    Then the response status is 201 Status created
 
   @skip @team:DataDog/k9-cloud-security-platform
   Scenario: Test a rule returns "Bad Request" response
@@ -649,7 +1079,7 @@ Feature: Security Monitoring
   Scenario: Update a suppression rule returns "Bad Request" response
     Given new "UpdateSecurityMonitoringSuppression" request
     And request contains "suppression_id" parameter from "REPLACE.ME"
-    And body with value {"data": {"attributes": {"data_exclusion_query": "source:cloudtrail account_id:12345", "description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "expiration_date": 1703187336000, "name": "Custom suppression", "rule_query": "type:log_detection source:cloudtrail", "suppression_query": "env:staging status:low"}, "type": "suppressions"}}
+    And body with value {"data": {"attributes": {"data_exclusion_query": "source:cloudtrail account_id:12345", "description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "expiration_date": 1703187336000, "name": "Custom suppression", "rule_query": "type:log_detection source:cloudtrail", "start_date": 1703187336000, "suppression_query": "env:staging status:low"}, "type": "suppressions"}}
     When the request is sent
     Then the response status is 400 Bad Request
 
@@ -657,7 +1087,7 @@ Feature: Security Monitoring
   Scenario: Update a suppression rule returns "Concurrent Modification" response
     Given new "UpdateSecurityMonitoringSuppression" request
     And request contains "suppression_id" parameter from "REPLACE.ME"
-    And body with value {"data": {"attributes": {"data_exclusion_query": "source:cloudtrail account_id:12345", "description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "expiration_date": 1703187336000, "name": "Custom suppression", "rule_query": "type:log_detection source:cloudtrail", "suppression_query": "env:staging status:low"}, "type": "suppressions"}}
+    And body with value {"data": {"attributes": {"data_exclusion_query": "source:cloudtrail account_id:12345", "description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "expiration_date": 1703187336000, "name": "Custom suppression", "rule_query": "type:log_detection source:cloudtrail", "start_date": 1703187336000, "suppression_query": "env:staging status:low"}, "type": "suppressions"}}
     When the request is sent
     Then the response status is 409 Concurrent Modification
 
@@ -665,7 +1095,7 @@ Feature: Security Monitoring
   Scenario: Update a suppression rule returns "Not Found" response
     Given new "UpdateSecurityMonitoringSuppression" request
     And request contains "suppression_id" parameter from "REPLACE.ME"
-    And body with value {"data": {"attributes": {"data_exclusion_query": "source:cloudtrail account_id:12345", "description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "expiration_date": 1703187336000, "name": "Custom suppression", "rule_query": "type:log_detection source:cloudtrail", "suppression_query": "env:staging status:low"}, "type": "suppressions"}}
+    And body with value {"data": {"attributes": {"data_exclusion_query": "source:cloudtrail account_id:12345", "description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "expiration_date": 1703187336000, "name": "Custom suppression", "rule_query": "type:log_detection source:cloudtrail", "start_date": 1703187336000, "suppression_query": "env:staging status:low"}, "type": "suppressions"}}
     When the request is sent
     Then the response status is 404 Not Found
 

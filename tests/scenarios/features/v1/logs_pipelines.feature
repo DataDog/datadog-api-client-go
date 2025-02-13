@@ -9,13 +9,12 @@ Feature: Logs Pipelines
   documentation](https://docs.datadoghq.com/logs/log_configuration/processor
   s/?tab=api#lookup-processor).  - For more information about Pipelines, see
   the   [pipeline documentation](https://docs.datadoghq.com/logs/log_configu
-  ration/pipelines).  **Notes:**  These endpoints are only available for
-  admin users. Make sure to use an application key created by an admin.
-  **Grok parsing rules may effect JSON output and require returned data to
-  be configured before using in a request.** For example, if you are using
-  the data returned from a request for another request body, and have a
-  parsing rule that uses a regex pattern like `\s` for spaces, you will need
-  to configure all escaped spaces as `%{space}` to use in the body data.
+  ration/pipelines).  **Notes:**  **Grok parsing rules may effect JSON
+  output and require returned data to be configured before using in a
+  request.** For example, if you are using the data returned from a request
+  for another request body, and have a parsing rule that uses a regex
+  pattern like `\s` for spaces, you will need to configure all escaped
+  spaces as `%{space}` to use in the body data.
 
   Background:
     Given a valid "apiKeyAuth" key in the system
@@ -25,14 +24,14 @@ Feature: Logs Pipelines
   @generated @skip @team:DataDog/event-platform-experience
   Scenario: Create a pipeline returns "Bad Request" response
     Given new "CreateLogsPipeline" request
-    And body with value {"filter": {"query": "source:python"}, "name": "", "processors": [{"grok": {"match_rules": "rule_name_1 foo\nrule_name_2 bar\n", "support_rules": "rule_name_1 foo\nrule_name_2 bar\n"}, "is_enabled": false, "samples": [], "source": "message", "type": "grok-parser"}]}
+    And body with value {"filter": {"query": "source:python"}, "name": "", "processors": [{"grok": {"match_rules": "rule_name_1 foo\nrule_name_2 bar\n", "support_rules": "rule_name_1 foo\nrule_name_2 bar\n"}, "is_enabled": false, "samples": [], "source": "message", "type": "grok-parser"}], "tags": []}
     When the request is sent
     Then the response status is 400 Bad Request
 
   @generated @skip @team:DataDog/event-platform-experience
   Scenario: Create a pipeline returns "OK" response
     Given new "CreateLogsPipeline" request
-    And body with value {"filter": {"query": "source:python"}, "name": "", "processors": [{"grok": {"match_rules": "rule_name_1 foo\nrule_name_2 bar\n", "support_rules": "rule_name_1 foo\nrule_name_2 bar\n"}, "is_enabled": false, "samples": [], "source": "message", "type": "grok-parser"}]}
+    And body with value {"filter": {"query": "source:python"}, "name": "", "processors": [{"grok": {"match_rules": "rule_name_1 foo\nrule_name_2 bar\n", "support_rules": "rule_name_1 foo\nrule_name_2 bar\n"}, "is_enabled": false, "samples": [], "source": "message", "type": "grok-parser"}], "tags": []}
     When the request is sent
     Then the response status is 200 OK
 
@@ -80,7 +79,7 @@ Feature: Logs Pipelines
   Scenario: Update a pipeline returns "Bad Request" response
     Given new "UpdateLogsPipeline" request
     And request contains "pipeline_id" parameter from "REPLACE.ME"
-    And body with value {"filter": {"query": "source:python"}, "name": "", "processors": [{"grok": {"match_rules": "rule_name_1 foo\nrule_name_2 bar\n", "support_rules": "rule_name_1 foo\nrule_name_2 bar\n"}, "is_enabled": false, "samples": [], "source": "message", "type": "grok-parser"}]}
+    And body with value {"filter": {"query": "source:python"}, "name": "", "processors": [{"grok": {"match_rules": "rule_name_1 foo\nrule_name_2 bar\n", "support_rules": "rule_name_1 foo\nrule_name_2 bar\n"}, "is_enabled": false, "samples": [], "source": "message", "type": "grok-parser"}], "tags": []}
     When the request is sent
     Then the response status is 400 Bad Request
 
@@ -88,7 +87,7 @@ Feature: Logs Pipelines
   Scenario: Update a pipeline returns "OK" response
     Given new "UpdateLogsPipeline" request
     And request contains "pipeline_id" parameter from "REPLACE.ME"
-    And body with value {"filter": {"query": "source:python"}, "name": "", "processors": [{"grok": {"match_rules": "rule_name_1 foo\nrule_name_2 bar\n", "support_rules": "rule_name_1 foo\nrule_name_2 bar\n"}, "is_enabled": false, "samples": [], "source": "message", "type": "grok-parser"}]}
+    And body with value {"filter": {"query": "source:python"}, "name": "", "processors": [{"grok": {"match_rules": "rule_name_1 foo\nrule_name_2 bar\n", "support_rules": "rule_name_1 foo\nrule_name_2 bar\n"}, "is_enabled": false, "samples": [], "source": "message", "type": "grok-parser"}], "tags": []}
     When the request is sent
     Then the response status is 200 OK
 

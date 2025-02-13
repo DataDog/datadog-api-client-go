@@ -3,7 +3,14 @@ Feature: Events
   The Event Management API allows you to programmatically post events to the
   Events Explorer and fetch events from the Events Explorer. See the [Event
   Management page](https://docs.datadoghq.com/service_management/events/)
-  for more information.
+  for more information.  **Update to Datadog monitor events
+  `aggregation_key` starting March 1, 2025:** The Datadog monitor events
+  `aggregation_key` is unique to each Monitor ID. Starting March 1st, this
+  key will also include Monitor Group, making it unique per *Monitor ID and
+  Monitor Group*. If you're using monitor events `aggregation_key` in
+  dashboard queries or the Event API, you must migrate to use `@monitor.id`.
+  Reach out to [support](https://www.datadoghq.com/support/) if you have any
+  question.
 
   Background:
     Given a valid "apiKeyAuth" key in the system
@@ -42,6 +49,20 @@ Feature: Events
     When the request is sent
     Then the response status is 200 OK
     And the response "data" has length 0
+
+  @generated @skip @team:DataDog/event-management
+  Scenario: Post an event returns "Bad request" response
+    Given new "CreateEvent" request
+    And body with value {"data": {"attributes": {"attributes": {"author": {"name": "datadog@datadog.com", "type": "user"}, "change_metadata": {"dd": {"team": "datadog_team", "user_email": "datadog@datadog.com", "user_id": "datadog_user_id", "user_name": "datadog_username"}, "resource_link": "datadog.com/feature/fallback_payments_test"}, "changed_resource": {"name": "fallback_payments_test", "type": "feature_flag"}, "impacted_resources": [{"name": "payments_api", "type": "service"}], "new_value": {"enabled": true, "percentage": "50%", "rule": {"datacenter": "devcycle.us1.prod"}}, "prev_value": {"enabled": true, "percentage": "10%", "rule": {"datacenter": "devcycle.us1.prod"}}}, "category": "change", "message": "payment_processed feature flag has been enabled", "tags": ["env:test"], "title": "payment_processed feature flag updated"}, "type": "event"}}
+    When the request is sent
+    Then the response status is 400 Bad request
+
+  @generated @skip @team:DataDog/event-management
+  Scenario: Post an event returns "OK" response
+    Given new "CreateEvent" request
+    And body with value {"data": {"attributes": {"attributes": {"author": {"name": "datadog@datadog.com", "type": "user"}, "change_metadata": {"dd": {"team": "datadog_team", "user_email": "datadog@datadog.com", "user_id": "datadog_user_id", "user_name": "datadog_username"}, "resource_link": "datadog.com/feature/fallback_payments_test"}, "changed_resource": {"name": "fallback_payments_test", "type": "feature_flag"}, "impacted_resources": [{"name": "payments_api", "type": "service"}], "new_value": {"enabled": true, "percentage": "50%", "rule": {"datacenter": "devcycle.us1.prod"}}, "prev_value": {"enabled": true, "percentage": "10%", "rule": {"datacenter": "devcycle.us1.prod"}}}, "category": "change", "message": "payment_processed feature flag has been enabled", "tags": ["env:test"], "title": "payment_processed feature flag updated"}, "type": "event"}}
+    When the request is sent
+    Then the response status is 200 OK
 
   @team:DataDog/event-management
   Scenario: Search events returns "Bad Request" response

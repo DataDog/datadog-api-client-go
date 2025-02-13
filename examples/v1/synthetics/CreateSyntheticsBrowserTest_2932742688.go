@@ -41,8 +41,8 @@ func main() {
 		Options: datadogV1.SyntheticsTestOptions{
 			AcceptSelfSigned: datadog.PtrBool(false),
 			AllowInsecure:    datadog.PtrBool(true),
-			DeviceIds: []datadogV1.SyntheticsDeviceID{
-				datadogV1.SYNTHETICSDEVICEID_TABLET,
+			DeviceIds: []string{
+				"tablet",
 			},
 			DisableCors:        datadog.PtrBool(true),
 			FollowRedirects:    datadog.PtrBool(true),
@@ -60,7 +60,7 @@ func main() {
 			},
 			TickEvery: datadog.PtrInt64(300),
 			Ci: &datadogV1.SyntheticsTestCiOptions{
-				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_SKIPPED.Ptr(),
+				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_SKIPPED,
 			},
 			IgnoreServerCertificateError: datadog.PtrBool(true),
 			DisableCsp:                   datadog.PtrBool(true),

@@ -1,4 +1,41 @@
 {
+  "CreateActionConnection": {
+    "tag": "Action Connection",
+    "undo": {
+      "operationId": "DeleteActionConnection",
+      "parameters": [
+        {
+          "name": "connection_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteActionConnection": {
+    "tag": "Action Connection",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetActionConnection": {
+    "tag": "Action Connection",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateActionConnection": {
+    "tag": "Action Connection",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListAwsScanOptions": {
+    "tag": "Agentless Scanning",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "ListAPIKeys": {
     "tag": "Key Management",
     "undo": {
@@ -149,6 +186,61 @@
   },
   "UpdateApmRetentionFilter": {
     "tag": "APM Retention Filters",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DeleteApps": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListApps": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateApp": {
+    "tag": "App Builder",
+    "undo": {
+      "operationId": "DeleteApp",
+      "parameters": [
+        {
+          "name": "app_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteApp": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetApp": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateApp": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "UnpublishApp": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "PublishApp": {
+    "tag": "App Builder",
     "undo": {
       "type": "idempotent"
     }
@@ -414,12 +506,6 @@
       "type": "idempotent"
     }
   },
-  "ListAWSRelatedAccounts": {
-    "tag": "Cloud Cost Management",
-    "undo": {
-      "type": "safe"
-    }
-  },
   "ListCostAzureUCConfigs": {
     "tag": "Cloud Cost Management",
     "undo": {
@@ -468,12 +554,6 @@
       "type": "safe"
     }
   },
-  "GetCloudCostActivity": {
-    "tag": "Cloud Cost Management",
-    "undo": {
-      "type": "safe"
-    }
-  },
   "GetActiveBillingDimensions": {
     "tag": "Usage Metering",
     "undo": {
@@ -482,6 +562,36 @@
   },
   "GetMonthlyCostAttribution": {
     "tag": "Usage Metering",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListAllCSMAgents": {
+    "tag": "CSM Agents",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetCSMCloudAccountsCoverageAnalysis": {
+    "tag": "CSM Coverage Analysis",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetCSMHostsAndContainersCoverageAnalysis": {
+    "tag": "CSM Coverage Analysis",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetCSMServerlessCoverageAnalysis": {
+    "tag": "CSM Coverage Analysis",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListAllCSMServerlessAgents": {
+    "tag": "CSM Agents",
     "undo": {
       "type": "safe"
     }
@@ -547,6 +657,43 @@
       "type": "safe"
     }
   },
+  "CreateDataDeletionRequest": {
+    "tag": "Data Deletion",
+    "undo": {
+      "operationId": "CancelDataDeletionRequest",
+      "parameters": [
+        {
+          "name": "id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "GetDataDeletionRequests": {
+    "tag": "Data Deletion",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CancelDataDeletionRequest": {
+    "tag": "Data Deletion",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetDomainAllowlist": {
+    "tag": "Domain Allowlist",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "PatchDomainAllowlist": {
+    "tag": "Domain Allowlist",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "CreateDORADeployment": {
     "tag": "DORA Metrics",
     "undo": {
@@ -602,6 +749,12 @@
       "type": "safe"
     }
   },
+  "CreateEvent": {
+    "tag": "Events",
+    "undo": {
+      "type": "unsafe"
+    }
+  },
   "SearchEvents": {
     "tag": "Events",
     "undo": {
@@ -625,6 +778,43 @@
         }
       ],
       "type": "unsafe"
+    }
+  },
+  "ListIncidentTypes": {
+    "tag": "Incidents",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateIncidentType": {
+    "tag": "Incidents",
+    "undo": {
+      "operationId": "DeleteIncidentType",
+      "parameters": [
+        {
+          "name": "incident_type_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteIncidentType": {
+    "tag": "Incidents",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetIncidentType": {
+    "tag": "Incidents",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateIncidentType": {
+    "tag": "Incidents",
+    "undo": {
+      "type": "idempotent"
     }
   },
   "SearchIncidents": {
@@ -745,6 +935,61 @@
       "type": "idempotent"
     }
   },
+  "ListAWSAccounts": {
+    "tag": "AWS Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateAWSAccount": {
+    "tag": "AWS Integration",
+    "undo": {
+      "operationId": "DeleteAWSAccount",
+      "parameters": [
+        {
+          "name": "aws_account_config_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteAWSAccount": {
+    "tag": "AWS Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetAWSAccount": {
+    "tag": "AWS Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateAWSAccount": {
+    "tag": "AWS Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListAWSNamespaces": {
+    "tag": "AWS Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateNewAWSExternalID": {
+    "tag": "AWS Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListAWSLogsServices": {
+    "tag": "AWS Logs Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "ListGCPSTSAccounts": {
     "tag": "GCP Integration",
     "undo": {
@@ -784,6 +1029,86 @@
   },
   "MakeGCPSTSDelegate": {
     "tag": "GCP Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetChannelByName": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListTenantBasedHandles": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateTenantBasedHandle": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "operationId": "DeleteTenantBasedHandle",
+      "parameters": [
+        {
+          "name": "handle_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteTenantBasedHandle": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetTenantBasedHandle": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateTenantBasedHandle": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListWorkflowsWebhookHandles": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateWorkflowsWebhookHandle": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "operationId": "DeleteWorkflowsWebhookHandle",
+      "parameters": [
+        {
+          "name": "handle_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteWorkflowsWebhookHandle": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetWorkflowsWebhookHandle": {
+    "tag": "Microsoft Teams Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateWorkflowsWebhookHandle": {
+    "tag": "Microsoft Teams Integration",
     "undo": {
       "type": "idempotent"
     }
@@ -1663,6 +1988,43 @@
       "type": "idempotent"
     }
   },
+  "ListRumMetrics": {
+    "tag": "Rum Metrics",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateRumMetric": {
+    "tag": "Rum Metrics",
+    "undo": {
+      "operationId": "DeleteRumMetric",
+      "parameters": [
+        {
+          "name": "metric_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteRumMetric": {
+    "tag": "Rum Metrics",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetRumMetric": {
+    "tag": "Rum Metrics",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateRumMetric": {
+    "tag": "Rum Metrics",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "ListRUMEvents": {
     "tag": "RUM",
     "undo": {
@@ -1724,10 +2086,102 @@
       "type": "idempotent"
     }
   },
+  "ListVulnerableAssets": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "DownloadCloudWorkloadPolicyFile": {
     "tag": "CSM Threats",
     "undo": {
       "type": "safe"
+    }
+  },
+  "GetSBOM": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetSignalNotificationRules": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateSignalNotificationRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "operationId": "DeleteSignalNotificationRule",
+      "parameters": [
+        {
+          "name": "id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteSignalNotificationRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetSignalNotificationRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "PatchSignalNotificationRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListVulnerabilities": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetVulnerabilityNotificationRules": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateVulnerabilityNotificationRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "operationId": "DeleteVulnerabilityNotificationRule",
+      "parameters": [
+        {
+          "name": "id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteVulnerabilityNotificationRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetVulnerabilityNotificationRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "PatchVulnerabilityNotificationRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
     }
   },
   "ListCloudWorkloadSecurityAgentRules": {
@@ -2149,6 +2603,42 @@
       "type": "idempotent"
     }
   },
+  "ListHistoricalJobs": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "RunHistoricalJob": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ConvertJobResultToSignal": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DeleteHistoricalJob": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetHistoricalJob": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CancelHistoricalJob": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "CreateSLOReportJob": {
     "tag": "Service Level Objectives",
     "undo": {
@@ -2365,6 +2855,12 @@
       "type": "safe"
     }
   },
+  "GetBillingDimensionMapping": {
+    "tag": "Usage Metering",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "GetCostByOrg": {
     "tag": "Usage Metering",
     "undo": {
@@ -2472,6 +2968,37 @@
     "tag": "Teams",
     "undo": {
       "type": "safe"
+    }
+  },
+  "CreateWorkflow": {
+    "tag": "Workflow Automation",
+    "undo": {
+      "operationId": "DeleteWorkflow",
+      "parameters": [
+        {
+          "name": "workflow_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteWorkflow": {
+    "tag": "Workflow Automation",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetWorkflow": {
+    "tag": "Workflow Automation",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateWorkflow": {
+    "tag": "Workflow Automation",
+    "undo": {
+      "type": "idempotent"
     }
   },
   "ListWorkflowInstances": {

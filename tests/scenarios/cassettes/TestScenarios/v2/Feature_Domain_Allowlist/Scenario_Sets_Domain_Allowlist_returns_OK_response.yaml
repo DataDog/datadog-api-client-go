@@ -1,0 +1,24 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"domains":["@static-test-domain.test"],"enabled":false},"type":"domain_allowlist"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/domain_allowlist
+  response:
+    body: '{"data":{"type":"domain_allowlist","attributes":{"enabled":false,"domains":["@static-test-domain.test"]}}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 2

@@ -24,17 +24,20 @@ func main() {
 		Errors: []string{
 			"*",
 		},
-		HostFilters: datadog.PtrString("key:value,filter:example"),
-		MetricsConfig: &datadogV1.AzureAccountMetricsConfig{
-			ExcludedResourceProviders: []string{
-				"Microsoft.Sql",
-				"Microsoft.Cdn",
-			},
-		},
+		HostFilters:               datadog.PtrString("key:value,filter:example"),
+		MetricsEnabled:            datadog.PtrBool(true),
+		MetricsEnabledDefault:     datadog.PtrBool(true),
 		NewClientId:               datadog.PtrString("new1c7f6-1234-5678-9101-3fcbf464test"),
 		NewTenantName:             datadog.PtrString("new1c44-1234-5678-9101-cc00736ftest"),
 		ResourceCollectionEnabled: datadog.PtrBool(true),
-		TenantName:                datadog.PtrString("testc44-1234-5678-9101-cc00736ftest"),
+		ResourceProviderConfigs: []datadogV1.ResourceProviderConfig{
+			{
+				MetricsEnabled: datadog.PtrBool(true),
+				Namespace:      datadog.PtrString("Microsoft.Compute"),
+			},
+		},
+		TenantName:          datadog.PtrString("testc44-1234-5678-9101-cc00736ftest"),
+		UsageMetricsEnabled: datadog.PtrBool(true),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

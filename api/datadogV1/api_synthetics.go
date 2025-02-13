@@ -9,7 +9,6 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"reflect"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -309,6 +308,79 @@ func (a *SyntheticsApi) CreateSyntheticsBrowserTest(ctx _context.Context, body S
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// CreateSyntheticsMobileTest Create a mobile test.
+// Create a Synthetic mobile test.
+func (a *SyntheticsApi) CreateSyntheticsMobileTest(ctx _context.Context, body SyntheticsMobileTest) (SyntheticsMobileTest, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsMobileTest
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.SyntheticsApi.CreateSyntheticsMobileTest")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/synthetics/tests/mobile"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 402 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // DeleteGlobalVariable Delete a global variable.
 // Delete a Synthetic global variable.
 func (a *SyntheticsApi) DeleteGlobalVariable(ctx _context.Context, variableId string) (*_nethttp.Response, error) {
@@ -323,7 +395,7 @@ func (a *SyntheticsApi) DeleteGlobalVariable(ctx _context.Context, variableId st
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/variables/{variable_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"variable_id"+"}", _neturl.PathEscape(datadog.ParameterToString(variableId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{variable_id}", _neturl.PathEscape(datadog.ParameterToString(variableId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -384,7 +456,7 @@ func (a *SyntheticsApi) DeletePrivateLocation(ctx _context.Context, locationId s
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/private-locations/{location_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"location_id"+"}", _neturl.PathEscape(datadog.ParameterToString(locationId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{location_id}", _neturl.PathEscape(datadog.ParameterToString(locationId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -519,7 +591,80 @@ func (a *SyntheticsApi) EditGlobalVariable(ctx _context.Context, variableId stri
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/variables/{variable_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"variable_id"+"}", _neturl.PathEscape(datadog.ParameterToString(variableId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{variable_id}", _neturl.PathEscape(datadog.ParameterToString(variableId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// FetchUptimes Fetch uptime for multiple tests.
+// Fetch uptime for multiple Synthetic tests by ID.
+func (a *SyntheticsApi) FetchUptimes(ctx _context.Context, body SyntheticsFetchUptimesPayload) ([]SyntheticsTestUptime, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue []SyntheticsTestUptime
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.SyntheticsApi.FetchUptimes")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/synthetics/tests/uptimes"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -594,7 +739,7 @@ func (a *SyntheticsApi) GetAPITest(ctx _context.Context, publicId string) (Synth
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/api/{public_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -704,7 +849,7 @@ func (a *SyntheticsApi) GetAPITestLatestResults(ctx _context.Context, publicId s
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/{public_id}/results"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -792,8 +937,8 @@ func (a *SyntheticsApi) GetAPITestResult(ctx _context.Context, publicId string, 
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/{public_id}/results/{result_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"result_id"+"}", _neturl.PathEscape(datadog.ParameterToString(resultId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{result_id}", _neturl.PathEscape(datadog.ParameterToString(resultId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -865,7 +1010,7 @@ func (a *SyntheticsApi) GetBrowserTest(ctx _context.Context, publicId string) (S
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/browser/{public_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -975,7 +1120,7 @@ func (a *SyntheticsApi) GetBrowserTestLatestResults(ctx _context.Context, public
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/browser/{public_id}/results"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1063,8 +1208,8 @@ func (a *SyntheticsApi) GetBrowserTestResult(ctx _context.Context, publicId stri
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/browser/{public_id}/results/{result_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"result_id"+"}", _neturl.PathEscape(datadog.ParameterToString(resultId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{result_id}", _neturl.PathEscape(datadog.ParameterToString(resultId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1135,7 +1280,79 @@ func (a *SyntheticsApi) GetGlobalVariable(ctx _context.Context, variableId strin
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/variables/{variable_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"variable_id"+"}", _neturl.PathEscape(datadog.ParameterToString(variableId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{variable_id}", _neturl.PathEscape(datadog.ParameterToString(variableId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetMobileTest Get a Mobile test.
+// Get the detailed configuration associated with
+// a Synthetic Mobile test.
+func (a *SyntheticsApi) GetMobileTest(ctx _context.Context, publicId string) (SyntheticsMobileTest, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsMobileTest
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.SyntheticsApi.GetMobileTest")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/synthetics/tests/mobile/{public_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1206,7 +1423,7 @@ func (a *SyntheticsApi) GetPrivateLocation(ctx _context.Context, locationId stri
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/private-locations/{location_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"location_id"+"}", _neturl.PathEscape(datadog.ParameterToString(locationId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{location_id}", _neturl.PathEscape(datadog.ParameterToString(locationId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1277,7 +1494,7 @@ func (a *SyntheticsApi) GetSyntheticsCIBatch(ctx _context.Context, batchId strin
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/ci/batch/{batch_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"batch_id"+"}", _neturl.PathEscape(datadog.ParameterToString(batchId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{batch_id}", _neturl.PathEscape(datadog.ParameterToString(batchId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1418,7 +1635,7 @@ func (a *SyntheticsApi) GetTest(ctx _context.Context, publicId string) (Syntheti
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/{public_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1786,7 +2003,7 @@ func (a *SyntheticsApi) PatchTest(ctx _context.Context, publicId string, body Sy
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/{public_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2006,7 +2223,7 @@ func (a *SyntheticsApi) UpdateAPITest(ctx _context.Context, publicId string, bod
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/api/{public_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2080,7 +2297,81 @@ func (a *SyntheticsApi) UpdateBrowserTest(ctx _context.Context, publicId string,
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/browser/{public_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// UpdateMobileTest Edit a Mobile test.
+// Edit the configuration of a Synthetic Mobile test.
+func (a *SyntheticsApi) UpdateMobileTest(ctx _context.Context, publicId string, body SyntheticsMobileTest) (SyntheticsMobileTest, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsMobileTest
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.SyntheticsApi.UpdateMobileTest")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/synthetics/tests/mobile/{public_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2154,7 +2445,7 @@ func (a *SyntheticsApi) UpdatePrivateLocation(ctx _context.Context, locationId s
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/private-locations/{location_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"location_id"+"}", _neturl.PathEscape(datadog.ParameterToString(locationId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{location_id}", _neturl.PathEscape(datadog.ParameterToString(locationId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -2228,7 +2519,7 @@ func (a *SyntheticsApi) UpdateTestPauseStatus(ctx _context.Context, publicId str
 	}
 
 	localVarPath := localBasePath + "/api/v1/synthetics/tests/{public_id}/status"
-	localVarPath = strings.Replace(localVarPath, "{"+"public_id"+"}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

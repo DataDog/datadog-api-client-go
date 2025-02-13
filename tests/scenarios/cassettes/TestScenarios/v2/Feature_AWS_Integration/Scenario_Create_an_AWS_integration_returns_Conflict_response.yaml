@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"account_tags":["key:value"],"auth_config":{"role_name":"DatadogIntegrationRole"},"aws_account_id":"123456789012","aws_partition":"aws","aws_regions":{"include_only":["us-east-1"]},"logs_config":{"lambda_forwarder":{"lambdas":["arn:aws:lambda:us-east-1:123456789012:function:DatadogLambdaLogForwarder"],"sources":["s3"]}},"metrics_config":{"automute_enabled":true,"collect_cloudwatch_alarms":false,"collect_custom_metrics":false,"enabled":true,"namespace_filters":{"include_only":["AWS/EC2"]},"tag_filters":[{"namespace":"AWS/EC2","tags":["key:value"]}]},"resources_config":{"cloud_security_posture_management_collection":false,"extended_collection":false},"traces_config":{"xray_services":{"include_only":["AWS/AppSync"]}}},"type":"account"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/integration/aws/accounts
+  response:
+    body: '{"data":{"id":"3827b469-bc3a-41be-bdf0-1d0e6ea413a2","type":"account","attributes":{"account_tags":["key:value"],"auth_config":{"role_name":"DatadogIntegrationRole","external_id":"d2a623a93f7444b29404f25cb5853c05"},"aws_account_id":"123456789012","aws_partition":"aws","aws_regions":{"include_only":["us-east-1"]},"created_at":"2024-11-14T20:07:59.282635727Z","logs_config":{"lambda_forwarder":{"lambdas":["arn:aws:lambda:us-east-1:123456789012:function:DatadogLambdaLogForwarder"],"sources":["s3"]}},"metrics_config":{"enabled":true,"automute_enabled":true,"collect_custom_metrics":false,"collect_cloudwatch_alarms":false,"tag_filters":[{"namespace":"AWS/EC2","tags":["key:value"]}],"namespace_filters":{"include_only":["AWS/EC2"]}},"modified_at":"2024-11-14T20:07:59.282642012Z","resources_config":{"cloud_security_posture_management_collection":false,"extended_collection":false},"traces_config":{"xray_services":{"include_only":["AWS/AppSync"]}}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"account_tags":["key:value"],"auth_config":{"role_name":"DatadogIntegrationRole"},"aws_account_id":"123456789012","aws_partition":"aws","logs_config":{"lambda_forwarder":{"lambdas":["arn:aws:lambda:us-east-1:123456789012:function:DatadogLambdaLogForwarder"],"sources":["s3"]}},"metrics_config":{"automute_enabled":true,"collect_cloudwatch_alarms":true,"collect_custom_metrics":true,"enabled":true,"tag_filters":[{"namespace":"AWS/EC2","tags":["key:value"]}]},"resources_config":{"cloud_security_posture_management_collection":false,"extended_collection":false},"traces_config":{}},"type":"account"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
+    url: https://api.datadoghq.com/api/v2/integration/aws/accounts
+  response:
+    body: '{"errors":[{"status":"409","title":"Account already exists","detail":"AWS
+      account with provided id already exists"}]}'
+    code: 409
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 409 Conflict
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/integration/aws/accounts/3827b469-bc3a-41be-bdf0-1d0e6ea413a2
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2

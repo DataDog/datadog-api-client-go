@@ -1,4 +1,4 @@
-// Get all monitor details returns "OK" response
+// Get all monitors returns "OK" response
 
 package main
 

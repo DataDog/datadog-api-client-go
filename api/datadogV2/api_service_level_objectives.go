@@ -10,7 +10,6 @@ import (
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -30,10 +29,12 @@ func (a *ServiceLevelObjectivesApi) CreateSLOReportJob(ctx _context.Context, bod
 	)
 
 	operationId := "v2.CreateSLOReportJob"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceLevelObjectivesApi.CreateSLOReportJob")
@@ -112,10 +113,12 @@ func (a *ServiceLevelObjectivesApi) GetSLOReport(ctx _context.Context, reportId 
 	)
 
 	operationId := "v2.GetSLOReport"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceLevelObjectivesApi.GetSLOReport")
@@ -124,7 +127,7 @@ func (a *ServiceLevelObjectivesApi) GetSLOReport(ctx _context.Context, reportId 
 	}
 
 	localVarPath := localBasePath + "/api/v2/slo/report/{report_id}/download"
-	localVarPath = strings.Replace(localVarPath, "{"+"report_id"+"}", _neturl.PathEscape(datadog.ParameterToString(reportId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{report_id}", _neturl.PathEscape(datadog.ParameterToString(reportId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -190,10 +193,12 @@ func (a *ServiceLevelObjectivesApi) GetSLOReportJobStatus(ctx _context.Context, 
 	)
 
 	operationId := "v2.GetSLOReportJobStatus"
-	if a.Client.Cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceLevelObjectivesApi.GetSLOReportJobStatus")
@@ -202,7 +207,7 @@ func (a *ServiceLevelObjectivesApi) GetSLOReportJobStatus(ctx _context.Context, 
 	}
 
 	localVarPath := localBasePath + "/api/v2/slo/report/{report_id}/status"
-	localVarPath = strings.Replace(localVarPath, "{"+"report_id"+"}", _neturl.PathEscape(datadog.ParameterToString(reportId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{report_id}", _neturl.PathEscape(datadog.ParameterToString(reportId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

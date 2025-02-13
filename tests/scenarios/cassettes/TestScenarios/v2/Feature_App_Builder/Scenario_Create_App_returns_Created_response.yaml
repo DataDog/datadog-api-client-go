@@ -1,0 +1,39 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"components":[{"events":[],"name":"grid0","properties":{"children":[{"events":[],"name":"gridCell0","properties":{"children":[{"events":[],"name":"calloutValue0","properties":{"isLoading":false,"isUnpublishd":false,"isVisible":true,"label":"CPU Usage","size":"sm","style":"vivid_yellow","unit":"kB","value":"42"},"type":"calloutValue"}],"isVisible":"true","layout":{"default":{"height":8,"width":2,"x":0,"y":0}}},"type":"gridCell"}]},"type":"grid"}],"description":"This is a simple example app","name":"Example App","queries":[],"rootInstanceName":"grid0"},"type":"appDefinitions"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/app-builder/apps
+  response:
+    body: '{"data":{"id":"444afc7d-6572-42eb-b655-b8763ba2d032","type":"appDefinitions"}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/app-builder/apps/444afc7d-6572-42eb-b655-b8763ba2d032
+  response:
+    body: '{"data":{"id":"444afc7d-6572-42eb-b655-b8763ba2d032","type":"appDefinitions"}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2

@@ -1,0 +1,20 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 0
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/integration/aws/accounts/not-a-uuid
+  response:
+    body: '{"errors":[{"status":"400","title":"Invalid Parameter","detail":"invalid
+      parameter \"aws_account_config_id\" in \"path\"; expected type \"uuid\""}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2

@@ -52,7 +52,7 @@ Feature: Synthetics
   @generated @skip @team:DataDog/synthetics-ct
   Scenario: Create a browser test returns "- JSON format is wrong" response
     Given new "CreateSyntheticsBrowserTest" request
-    And body with value {"config": {"assertions": [], "configVariables": [{"name": "VARIABLE_NAME", "secure": false, "type": "text"}], "request": {"basicAuth": {"password": "PaSSw0RD!", "type": "web", "username": "my_username"}, "bodyType": "text/plain", "callType": "unary", "certificate": {"cert": {}, "key": {}}, "certificateDomains": [], "files": [{}], "httpVersion": "http1", "proxy": {"url": "https://example.com"}, "service": "Greeter", "url": "https://example.com"}, "variables": [{"name": "VARIABLE_NAME", "type": "text"}]}, "locations": ["aws:eu-west-3"], "message": "", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "steps": [{"type": "assertElementContent"}], "tags": ["env:prod"], "type": "browser"}
+    And body with value {"config": {"assertions": [], "configVariables": [{"name": "VARIABLE_NAME", "secure": false, "type": "text"}], "request": {"basicAuth": {"password": "PaSSw0RD!", "type": "web", "username": "my_username"}, "bodyType": "text/plain", "callType": "unary", "certificate": {"cert": {}, "key": {}}, "certificateDomains": [], "files": [{}], "httpVersion": "http1", "proxy": {"url": "https://example.com"}, "service": "Greeter", "url": "https://example.com"}, "variables": [{"name": "VARIABLE_NAME", "type": "text"}]}, "locations": ["aws:eu-west-3"], "message": "", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {"notification_preset_name": "show_all"}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "steps": [{"type": "assertElementContent"}], "tags": ["env:prod"], "type": "browser"}
     When the request is sent
     Then the response status is 400 - JSON format is wrong
 
@@ -65,6 +65,7 @@ Feature: Synthetics
     And the response "options.rumSettings.isEnabled" is equal to true
     And the response "options.rumSettings.applicationId" is equal to "mockApplicationId"
     And the response "options.rumSettings.clientTokenId" is equal to 12345
+    And the response "steps[0]" has field "public_id"
 
   @team:DataDog/synthetics-ct
   Scenario: Create a browser test returns "OK - Returns the created test details." response
@@ -75,11 +76,13 @@ Feature: Synthetics
     And the response "name" is equal to "{{ unique }}"
     And the response "config.configVariables" has item with field "secure" with value true
     And the response "config.variables" has item with field "secure" with value true
+    And the response "steps[0].alwaysExecute" is equal to true
+    And the response "steps[0].exitIfSucceed" is equal to true
 
   @generated @skip @team:DataDog/synthetics-ct
   Scenario: Create a browser test returns "Test quota is reached" response
     Given new "CreateSyntheticsBrowserTest" request
-    And body with value {"config": {"assertions": [], "configVariables": [{"name": "VARIABLE_NAME", "secure": false, "type": "text"}], "request": {"basicAuth": {"password": "PaSSw0RD!", "type": "web", "username": "my_username"}, "bodyType": "text/plain", "callType": "unary", "certificate": {"cert": {}, "key": {}}, "certificateDomains": [], "files": [{}], "httpVersion": "http1", "proxy": {"url": "https://example.com"}, "service": "Greeter", "url": "https://example.com"}, "variables": [{"name": "VARIABLE_NAME", "type": "text"}]}, "locations": ["aws:eu-west-3"], "message": "", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "steps": [{"type": "assertElementContent"}], "tags": ["env:prod"], "type": "browser"}
+    And body with value {"config": {"assertions": [], "configVariables": [{"name": "VARIABLE_NAME", "secure": false, "type": "text"}], "request": {"basicAuth": {"password": "PaSSw0RD!", "type": "web", "username": "my_username"}, "bodyType": "text/plain", "callType": "unary", "certificate": {"cert": {}, "key": {}}, "certificateDomains": [], "files": [{}], "httpVersion": "http1", "proxy": {"url": "https://example.com"}, "service": "Greeter", "url": "https://example.com"}, "variables": [{"name": "VARIABLE_NAME", "type": "text"}]}, "locations": ["aws:eu-west-3"], "message": "", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {"notification_preset_name": "show_all"}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "steps": [{"type": "assertElementContent"}], "tags": ["env:prod"], "type": "browser"}
     When the request is sent
     Then the response status is 402 Test quota is reached
 
@@ -124,6 +127,32 @@ Feature: Synthetics
     And body with value {"attributes": {"restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"]}, "description": "Example description", "name": "MY_VARIABLE", "parse_test_options": {"field": "content-type", "localVariableName": "LOCAL_VARIABLE", "parser": {"type": "regex", "value": ".*"}, "type": "http_body"}, "parse_test_public_id": "abc-def-123", "tags": ["team:front", "test:workflow-1"], "value": {"secure": true, "value": "value"}}
     When the request is sent
     Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/synthetics-ct
+  Scenario: Create a mobile test returns "- JSON format is wrong" response
+    Given new "CreateSyntheticsMobileTest" request
+    And body with value {"config": {"variables": [{"name": "VARIABLE_NAME", "secure": false, "type": "text"}]}, "device_ids": ["chrome.laptop_large"], "message": "Notification message", "name": "Example test name", "options": {"bindings": [{"principals": [], "relation": "editor"}], "ci": {"executionRule": "blocking"}, "device_ids": ["synthetics:mobile:device:apple_ipad_10th_gen_2022_ios_16"], "mobileApplication": {"applicationId": "00000000-0000-0000-0000-aaaaaaaaaaaa", "referenceId": "00000000-0000-0000-0000-aaaaaaaaaaab", "referenceType": "latest"}, "monitor_options": {"notification_preset_name": "show_all"}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}, "tick_every": 300}, "status": "live", "steps": [{"name": "", "params": {"check": "equals", "direction": "up", "element": {"contextType": "native", "relativePosition": {}, "userLocator": {"values": [{"type": "accessibility-id"}]}}, "positions": [{}], "variable": {"example": "", "name": "VAR_NAME"}}, "publicId": "pub-lic-id0", "type": "assertElementContent"}], "tags": ["env:production"], "type": "mobile"}
+    When the request is sent
+    Then the response status is 400 - JSON format is wrong
+
+  @team:DataDog/synthetics-ct
+  Scenario: Create a mobile test returns "OK - Returns the created test details." response
+    Given new "CreateSyntheticsMobileTest" request
+    And body from file "synthetics_mobile_test_payload.json"
+    When the request is sent
+    Then the response status is 200 OK - Returns the created test details.
+    And the response "name" is equal to "{{ unique }}"
+    And the response "options.device_ids[0]" is equal to "synthetics:mobile:device:iphone_15_ios_17"
+    And the response "options.mobileApplication.applicationId" is equal to "ab0e0aed-536d-411a-9a99-5428c27d8f8e"
+    And the response "options.mobileApplication.referenceId" is equal to "6115922a-5f5d-455e-bc7e-7955a57f3815"
+    And the response "options.mobileApplication.referenceType" is equal to "version"
+
+  @generated @skip @team:DataDog/synthetics-ct
+  Scenario: Create a mobile test returns "Test quota is reached" response
+    Given new "CreateSyntheticsMobileTest" request
+    And body with value {"config": {"variables": [{"name": "VARIABLE_NAME", "secure": false, "type": "text"}]}, "device_ids": ["chrome.laptop_large"], "message": "Notification message", "name": "Example test name", "options": {"bindings": [{"principals": [], "relation": "editor"}], "ci": {"executionRule": "blocking"}, "device_ids": ["synthetics:mobile:device:apple_ipad_10th_gen_2022_ios_16"], "mobileApplication": {"applicationId": "00000000-0000-0000-0000-aaaaaaaaaaaa", "referenceId": "00000000-0000-0000-0000-aaaaaaaaaaab", "referenceType": "latest"}, "monitor_options": {"notification_preset_name": "show_all"}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}, "tick_every": 300}, "status": "live", "steps": [{"name": "", "params": {"check": "equals", "direction": "up", "element": {"contextType": "native", "relativePosition": {}, "userLocator": {"values": [{"type": "accessibility-id"}]}}, "positions": [{}], "variable": {"example": "", "name": "VAR_NAME"}}, "publicId": "pub-lic-id0", "type": "assertElementContent"}], "tags": ["env:production"], "type": "mobile"}
+    When the request is sent
+    Then the response status is 402 Test quota is reached
 
   @team:DataDog/synthetics-ct
   Scenario: Create a multi-step api test with every type of basicAuth returns "OK - Returns the created test details." response
@@ -211,21 +240,21 @@ Feature: Synthetics
   @generated @skip @team:DataDog/synthetics-ct
   Scenario: Create an API test returns "- JSON format is wrong" response
     Given new "CreateSyntheticsAPITest" request
-    And body with value {"config": {"assertions": [{"operator": "lessThan", "target": 1000, "type": "responseTime"}], "request": {"method": "GET", "url": "https://example.com"}}, "locations": ["aws:eu-west-3"], "message": "Notification message", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "subtype": "http", "tags": ["env:production"], "type": "api"}
+    And body with value {"config": {"assertions": [{"operator": "lessThan", "target": 1000, "type": "responseTime"}], "request": {"method": "GET", "url": "https://example.com"}}, "locations": ["aws:eu-west-3"], "message": "Notification message", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {"notification_preset_name": "show_all"}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "subtype": "http", "tags": ["env:production"], "type": "api"}
     When the request is sent
     Then the response status is 400 - JSON format is wrong
 
   @generated @skip @team:DataDog/synthetics-ct
   Scenario: Create an API test returns "OK - Returns the created test details." response
     Given new "CreateSyntheticsAPITest" request
-    And body with value {"config": {"assertions": [{"operator": "lessThan", "target": 1000, "type": "responseTime"}], "request": {"method": "GET", "url": "https://example.com"}}, "locations": ["aws:eu-west-3"], "message": "Notification message", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "subtype": "http", "tags": ["env:production"], "type": "api"}
+    And body with value {"config": {"assertions": [{"operator": "lessThan", "target": 1000, "type": "responseTime"}], "request": {"method": "GET", "url": "https://example.com"}}, "locations": ["aws:eu-west-3"], "message": "Notification message", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {"notification_preset_name": "show_all"}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "subtype": "http", "tags": ["env:production"], "type": "api"}
     When the request is sent
     Then the response status is 200 OK - Returns the created test details.
 
   @generated @skip @team:DataDog/synthetics-ct
   Scenario: Create an API test returns "Test quota is reached" response
     Given new "CreateSyntheticsAPITest" request
-    And body with value {"config": {"assertions": [{"operator": "lessThan", "target": 1000, "type": "responseTime"}], "request": {"method": "GET", "url": "https://example.com"}}, "locations": ["aws:eu-west-3"], "message": "Notification message", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "subtype": "http", "tags": ["env:production"], "type": "api"}
+    And body with value {"config": {"assertions": [{"operator": "lessThan", "target": 1000, "type": "responseTime"}], "request": {"method": "GET", "url": "https://example.com"}}, "locations": ["aws:eu-west-3"], "message": "Notification message", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {"notification_preset_name": "show_all"}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "subtype": "http", "tags": ["env:production"], "type": "api"}
     When the request is sent
     Then the response status is 402 Test quota is reached
 
@@ -267,6 +296,7 @@ Feature: Synthetics
     And the response "config.steps[0].retry.count" is equal to 5
     And the response "config.steps[0].retry.interval" is equal to 1000
     And the response "config.steps[0].request.httpVersion" is equal to "http2"
+    And the response "config.steps[0].exitIfSucceed" is equal to true
     And the response "config.steps[0].extractedValues[0].secure" is equal to true
     And the response "config.steps[1].subtype" is equal to "wait"
     And the response "config.steps[1].value" is equal to 1
@@ -332,10 +362,40 @@ Feature: Synthetics
     And the response "deleted_tests[0].public_id" is equal to "{{ synthetics_api_test.public_id }}"
 
   @generated @skip @team:DataDog/synthetics-ct
+  Scenario: Edit a Mobile test returns "- JSON format is wrong" response
+    Given new "UpdateMobileTest" request
+    And request contains "public_id" parameter from "REPLACE.ME"
+    And body with value {"config": {"variables": [{"name": "VARIABLE_NAME", "secure": false, "type": "text"}]}, "device_ids": ["chrome.laptop_large"], "message": "Notification message", "name": "Example test name", "options": {"bindings": [{"principals": [], "relation": "editor"}], "ci": {"executionRule": "blocking"}, "device_ids": ["synthetics:mobile:device:apple_ipad_10th_gen_2022_ios_16"], "mobileApplication": {"applicationId": "00000000-0000-0000-0000-aaaaaaaaaaaa", "referenceId": "00000000-0000-0000-0000-aaaaaaaaaaab", "referenceType": "latest"}, "monitor_options": {"notification_preset_name": "show_all"}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}, "tick_every": 300}, "status": "live", "steps": [{"name": "", "params": {"check": "equals", "direction": "up", "element": {"contextType": "native", "relativePosition": {}, "userLocator": {"values": [{"type": "accessibility-id"}]}}, "positions": [{}], "variable": {"example": "", "name": "VAR_NAME"}}, "publicId": "pub-lic-id0", "type": "assertElementContent"}], "tags": ["env:production"], "type": "mobile"}
+    When the request is sent
+    Then the response status is 400 - JSON format is wrong
+
+  @generated @skip @team:DataDog/synthetics-ct
+  Scenario: Edit a Mobile test returns "- Synthetic Monitoring is not activated for the user" response
+    Given new "UpdateMobileTest" request
+    And request contains "public_id" parameter from "REPLACE.ME"
+    And body with value {"config": {"variables": [{"name": "VARIABLE_NAME", "secure": false, "type": "text"}]}, "device_ids": ["chrome.laptop_large"], "message": "Notification message", "name": "Example test name", "options": {"bindings": [{"principals": [], "relation": "editor"}], "ci": {"executionRule": "blocking"}, "device_ids": ["synthetics:mobile:device:apple_ipad_10th_gen_2022_ios_16"], "mobileApplication": {"applicationId": "00000000-0000-0000-0000-aaaaaaaaaaaa", "referenceId": "00000000-0000-0000-0000-aaaaaaaaaaab", "referenceType": "latest"}, "monitor_options": {"notification_preset_name": "show_all"}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}, "tick_every": 300}, "status": "live", "steps": [{"name": "", "params": {"check": "equals", "direction": "up", "element": {"contextType": "native", "relativePosition": {}, "userLocator": {"values": [{"type": "accessibility-id"}]}}, "positions": [{}], "variable": {"example": "", "name": "VAR_NAME"}}, "publicId": "pub-lic-id0", "type": "assertElementContent"}], "tags": ["env:production"], "type": "mobile"}
+    When the request is sent
+    Then the response status is 404 - Synthetic Monitoring is not activated for the user
+
+  @team:DataDog/synthetics-ct
+  Scenario: Edit a Mobile test returns "OK" response
+    Given there is a valid "synthetics_mobile_test" in the system
+    And new "UpdateMobileTest" request
+    And request contains "public_id" parameter from "synthetics_mobile_test.public_id"
+    And body from file "synthetics_mobile_test_update_payload.json"
+    When the request is sent
+    Then the response status is 200 OK - Returns the created test details.
+    And the response "name" is equal to "{{ unique }}-updated"
+    And the response "options.device_ids[0]" is equal to "synthetics:mobile:device:iphone_15_ios_17"
+    And the response "options.mobileApplication.applicationId" is equal to "ab0e0aed-536d-411a-9a99-5428c27d8f8e"
+    And the response "options.mobileApplication.referenceId" is equal to "6115922a-5f5d-455e-bc7e-7955a57f3815"
+    And the response "options.mobileApplication.referenceType" is equal to "version"
+
+  @generated @skip @team:DataDog/synthetics-ct
   Scenario: Edit a browser test returns "- JSON format is wrong" response
     Given new "UpdateBrowserTest" request
     And request contains "public_id" parameter from "REPLACE.ME"
-    And body with value {"config": {"assertions": [], "configVariables": [{"name": "VARIABLE_NAME", "secure": false, "type": "text"}], "request": {"basicAuth": {"password": "PaSSw0RD!", "type": "web", "username": "my_username"}, "bodyType": "text/plain", "callType": "unary", "certificate": {"cert": {}, "key": {}}, "certificateDomains": [], "files": [{}], "httpVersion": "http1", "proxy": {"url": "https://example.com"}, "service": "Greeter", "url": "https://example.com"}, "variables": [{"name": "VARIABLE_NAME", "type": "text"}]}, "locations": ["aws:eu-west-3"], "message": "", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "steps": [{"type": "assertElementContent"}], "tags": ["env:prod"], "type": "browser"}
+    And body with value {"config": {"assertions": [], "configVariables": [{"name": "VARIABLE_NAME", "secure": false, "type": "text"}], "request": {"basicAuth": {"password": "PaSSw0RD!", "type": "web", "username": "my_username"}, "bodyType": "text/plain", "callType": "unary", "certificate": {"cert": {}, "key": {}}, "certificateDomains": [], "files": [{}], "httpVersion": "http1", "proxy": {"url": "https://example.com"}, "service": "Greeter", "url": "https://example.com"}, "variables": [{"name": "VARIABLE_NAME", "type": "text"}]}, "locations": ["aws:eu-west-3"], "message": "", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {"notification_preset_name": "show_all"}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "steps": [{"type": "assertElementContent"}], "tags": ["env:prod"], "type": "browser"}
     When the request is sent
     Then the response status is 400 - JSON format is wrong
 
@@ -343,7 +403,7 @@ Feature: Synthetics
   Scenario: Edit a browser test returns "- Synthetic Monitoring is not activated for the user" response
     Given new "UpdateBrowserTest" request
     And request contains "public_id" parameter from "REPLACE.ME"
-    And body with value {"config": {"assertions": [], "configVariables": [{"name": "VARIABLE_NAME", "secure": false, "type": "text"}], "request": {"basicAuth": {"password": "PaSSw0RD!", "type": "web", "username": "my_username"}, "bodyType": "text/plain", "callType": "unary", "certificate": {"cert": {}, "key": {}}, "certificateDomains": [], "files": [{}], "httpVersion": "http1", "proxy": {"url": "https://example.com"}, "service": "Greeter", "url": "https://example.com"}, "variables": [{"name": "VARIABLE_NAME", "type": "text"}]}, "locations": ["aws:eu-west-3"], "message": "", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "steps": [{"type": "assertElementContent"}], "tags": ["env:prod"], "type": "browser"}
+    And body with value {"config": {"assertions": [], "configVariables": [{"name": "VARIABLE_NAME", "secure": false, "type": "text"}], "request": {"basicAuth": {"password": "PaSSw0RD!", "type": "web", "username": "my_username"}, "bodyType": "text/plain", "callType": "unary", "certificate": {"cert": {}, "key": {}}, "certificateDomains": [], "files": [{}], "httpVersion": "http1", "proxy": {"url": "https://example.com"}, "service": "Greeter", "url": "https://example.com"}, "variables": [{"name": "VARIABLE_NAME", "type": "text"}]}, "locations": ["aws:eu-west-3"], "message": "", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {"notification_preset_name": "show_all"}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "steps": [{"type": "assertElementContent"}], "tags": ["env:prod"], "type": "browser"}
     When the request is sent
     Then the response status is 404 - Synthetic Monitoring is not activated for the user
 
@@ -351,7 +411,7 @@ Feature: Synthetics
   Scenario: Edit a browser test returns "OK" response
     Given new "UpdateBrowserTest" request
     And request contains "public_id" parameter from "REPLACE.ME"
-    And body with value {"config": {"assertions": [], "configVariables": [{"name": "VARIABLE_NAME", "secure": false, "type": "text"}], "request": {"basicAuth": {"password": "PaSSw0RD!", "type": "web", "username": "my_username"}, "bodyType": "text/plain", "callType": "unary", "certificate": {"cert": {}, "key": {}}, "certificateDomains": [], "files": [{}], "httpVersion": "http1", "proxy": {"url": "https://example.com"}, "service": "Greeter", "url": "https://example.com"}, "variables": [{"name": "VARIABLE_NAME", "type": "text"}]}, "locations": ["aws:eu-west-3"], "message": "", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "steps": [{"type": "assertElementContent"}], "tags": ["env:prod"], "type": "browser"}
+    And body with value {"config": {"assertions": [], "configVariables": [{"name": "VARIABLE_NAME", "secure": false, "type": "text"}], "request": {"basicAuth": {"password": "PaSSw0RD!", "type": "web", "username": "my_username"}, "bodyType": "text/plain", "callType": "unary", "certificate": {"cert": {}, "key": {}}, "certificateDomains": [], "files": [{}], "httpVersion": "http1", "proxy": {"url": "https://example.com"}, "service": "Greeter", "url": "https://example.com"}, "variables": [{"name": "VARIABLE_NAME", "type": "text"}]}, "locations": ["aws:eu-west-3"], "message": "", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {"notification_preset_name": "show_all"}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "steps": [{"type": "assertElementContent"}], "tags": ["env:prod"], "type": "browser"}
     When the request is sent
     Then the response status is 200 OK
 
@@ -391,7 +451,7 @@ Feature: Synthetics
   Scenario: Edit an API test returns "- JSON format is wrong" response
     Given new "UpdateAPITest" request
     And request contains "public_id" parameter from "REPLACE.ME"
-    And body with value {"config": {"assertions": [{"operator": "lessThan", "target": 1000, "type": "responseTime"}], "request": {"method": "GET", "url": "https://example.com"}}, "locations": ["aws:eu-west-3"], "message": "Notification message", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "subtype": "http", "tags": ["env:production"], "type": "api"}
+    And body with value {"config": {"assertions": [{"operator": "lessThan", "target": 1000, "type": "responseTime"}], "request": {"method": "GET", "url": "https://example.com"}}, "locations": ["aws:eu-west-3"], "message": "Notification message", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {"notification_preset_name": "show_all"}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "subtype": "http", "tags": ["env:production"], "type": "api"}
     When the request is sent
     Then the response status is 400 - JSON format is wrong
 
@@ -399,7 +459,7 @@ Feature: Synthetics
   Scenario: Edit an API test returns "- Synthetic Monitoring is not activated for the user" response
     Given new "UpdateAPITest" request
     And request contains "public_id" parameter from "REPLACE.ME"
-    And body with value {"config": {"assertions": [{"operator": "lessThan", "target": 1000, "type": "responseTime"}], "request": {"method": "GET", "url": "https://example.com"}}, "locations": ["aws:eu-west-3"], "message": "Notification message", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "subtype": "http", "tags": ["env:production"], "type": "api"}
+    And body with value {"config": {"assertions": [{"operator": "lessThan", "target": 1000, "type": "responseTime"}], "request": {"method": "GET", "url": "https://example.com"}}, "locations": ["aws:eu-west-3"], "message": "Notification message", "name": "Example test name", "options": {"ci": {"executionRule": "blocking"}, "device_ids": ["chrome.laptop_large"], "httpVersion": "http1", "monitor_options": {"notification_preset_name": "show_all"}, "restricted_roles": ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"], "retry": {}, "rumSettings": {"applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "clientTokenId": 12345, "isEnabled": true}, "scheduling": {"timeframes": [{"day": 1, "from": "07:00", "to": "16:00"}, {"day": 3, "from": "07:00", "to": "16:00"}], "timezone": "America/New_York"}}, "status": "live", "subtype": "http", "tags": ["env:production"], "type": "api"}
     When the request is sent
     Then the response status is 404 - Synthetic Monitoring is not activated for the user
 
@@ -412,6 +472,44 @@ Feature: Synthetics
     When the request is sent
     Then the response status is 200 OK
     And the response "name" is equal to "{{ synthetics_api_test.name }}-updated"
+
+  @team:DataDog/synthetics-ct
+  Scenario: Fetch uptime for multiple tests returns "- JSON format is wrong" response
+    Given new "FetchUptimes" request
+    And body with value {"from_ts": 0, "public_ids": [], "to_ts": 0}
+    When the request is sent
+    Then the response status is 400 - JSON format is wrong
+
+  @replay-only @team:DataDog/synthetics-ct
+  Scenario: Fetch uptime for multiple tests returns "OK." response
+    Given new "FetchUptimes" request
+    And body with value {"from_ts": 1726041488, "public_ids": ["p8m-9gw-nte"], "to_ts": 1726055954}
+    When the request is sent
+    Then the response status is 200 OK
+    And the response "[0].public_id" is equal to "p8m-9gw-nte"
+    And the response "[0].overall.uptime" is equal to 83.05682373046875
+    And the response "[0].overall.history" has length 2
+
+  @generated @skip @team:DataDog/synthetics-ct
+  Scenario: Get a Mobile test returns "- Synthetic Monitoring is not activated for the user" response
+    Given new "GetMobileTest" request
+    And request contains "public_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 404 - Synthetic Monitoring is not activated for the user
+
+  @team:DataDog/synthetics-ct
+  Scenario: Get a Mobile test returns "OK" response
+    Given there is a valid "synthetics_mobile_test" in the system
+    And new "GetMobileTest" request
+    And request contains "public_id" parameter from "synthetics_mobile_test.public_id"
+    When the request is sent
+    Then the response status is 200 OK
+    And the response "name" is equal to "{{ synthetics_mobile_test.name }}"
+    And the response "options.device_ids[0]" is equal to "synthetics:mobile:device:iphone_15_ios_17"
+    And the response "options.mobileApplication.applicationId" is equal to "ab0e0aed-536d-411a-9a99-5428c27d8f8e"
+    And the response "options.mobileApplication.referenceId" is equal to "6115922a-5f5d-455e-bc7e-7955a57f3815"
+    And the response "options.mobileApplication.referenceType" is equal to "version"
+    And the response "type" is equal to "mobile"
 
   @generated @skip @team:DataDog/synthetics-ct
   Scenario: Get a browser test result returns "- Synthetic Monitoring is not activated for the user" response

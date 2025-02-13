@@ -61,13 +61,15 @@ func main() {
 		Name:    "Example test name",
 		Options: datadogV1.SyntheticsTestOptions{
 			Ci: &datadogV1.SyntheticsTestCiOptions{
-				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_BLOCKING.Ptr(),
+				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_BLOCKING,
 			},
-			DeviceIds: []datadogV1.SyntheticsDeviceID{
-				datadogV1.SYNTHETICSDEVICEID_CHROME_LAPTOP_LARGE,
+			DeviceIds: []string{
+				"chrome.laptop_large",
 			},
-			HttpVersion:    datadogV1.SYNTHETICSTESTOPTIONSHTTPVERSION_HTTP1.Ptr(),
-			MonitorOptions: &datadogV1.SyntheticsTestOptionsMonitorOptions{},
+			HttpVersion: datadogV1.SYNTHETICSTESTOPTIONSHTTPVERSION_HTTP1.Ptr(),
+			MonitorOptions: &datadogV1.SyntheticsTestOptionsMonitorOptions{
+				NotificationPresetName: datadogV1.SYNTHETICSTESTOPTIONSMONITOROPTIONSNOTIFICATIONPRESETNAME_SHOW_ALL.Ptr(),
+			},
 			RestrictedRoles: []string{
 				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 			},
@@ -80,17 +82,17 @@ func main() {
 			Scheduling: &datadogV1.SyntheticsTestOptionsScheduling{
 				Timeframes: []datadogV1.SyntheticsTestOptionsSchedulingTimeframe{
 					{
-						Day:  datadog.PtrInt32(1),
-						From: datadog.PtrString("07:00"),
-						To:   datadog.PtrString("16:00"),
+						Day:  1,
+						From: "07:00",
+						To:   "16:00",
 					},
 					{
-						Day:  datadog.PtrInt32(3),
-						From: datadog.PtrString("07:00"),
-						To:   datadog.PtrString("16:00"),
+						Day:  3,
+						From: "07:00",
+						To:   "16:00",
 					},
 				},
-				Timezone: datadog.PtrString("America/New_York"),
+				Timezone: "America/New_York",
 			},
 		},
 		Status: datadogV1.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),

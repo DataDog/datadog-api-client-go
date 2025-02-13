@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/integration/aws/logs/services
+  response:
+    body: '{"data":{"id":"logs_services","type":"logs_services","attributes":{"logs_services":["apigw-access-logs","apigw-execution-logs","cloudfront","elb","elbv2","lambda","redshift","s3","states","waf"]}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2

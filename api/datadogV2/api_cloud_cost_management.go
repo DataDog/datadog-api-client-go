@@ -8,7 +8,6 @@ import (
 	_context "context"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -176,7 +175,7 @@ func (a *CloudCostManagementApi) DeleteCostAWSCURConfig(ctx _context.Context, cl
 	}
 
 	localVarPath := localBasePath + "/api/v2/cost/aws_cur_config/{cloud_account_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"cloud_account_id"+"}", _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{cloud_account_id}", _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -237,7 +236,7 @@ func (a *CloudCostManagementApi) DeleteCostAzureUCConfig(ctx _context.Context, c
 	}
 
 	localVarPath := localBasePath + "/api/v2/cost/azure_uc_config/{cloud_account_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"cloud_account_id"+"}", _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{cloud_account_id}", _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -298,7 +297,7 @@ func (a *CloudCostManagementApi) DeleteCustomCostsFile(ctx _context.Context, fil
 	}
 
 	localVarPath := localBasePath + "/api/v2/cost/custom_costs/{file_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"file_id"+"}", _neturl.PathEscape(datadog.ParameterToString(fileId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{file_id}", _neturl.PathEscape(datadog.ParameterToString(fileId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -345,76 +344,6 @@ func (a *CloudCostManagementApi) DeleteCustomCostsFile(ctx _context.Context, fil
 	return localVarHTTPResponse, nil
 }
 
-// GetCloudCostActivity Cloud Cost Enabled.
-// Get the Cloud Cost Management activity.
-func (a *CloudCostManagementApi) GetCloudCostActivity(ctx _context.Context) (CloudCostActivityResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue CloudCostActivityResponse
-	)
-
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetCloudCostActivity")
-	if err != nil {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/cost/enabled"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "application/json"
-
-	datadog.SetAuthKeys(
-		ctx,
-		&localVarHeaderParams,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
-	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.Client.CallAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-			var v APIErrorResponse
-			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.ErrorModel = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 // GetCustomCostsFile Get Custom Costs file.
 // Fetch the specified Custom Costs file.
 func (a *CloudCostManagementApi) GetCustomCostsFile(ctx _context.Context, fileId string) (CustomCostsFileGetResponse, *_nethttp.Response, error) {
@@ -430,7 +359,7 @@ func (a *CloudCostManagementApi) GetCustomCostsFile(ctx _context.Context, fileId
 	}
 
 	localVarPath := localBasePath + "/api/v2/cost/custom_costs/{file_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"file_id"+"}", _neturl.PathEscape(datadog.ParameterToString(fileId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{file_id}", _neturl.PathEscape(datadog.ParameterToString(fileId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -464,79 +393,6 @@ func (a *CloudCostManagementApi) GetCustomCostsFile(ctx _context.Context, fileId
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-			var v APIErrorResponse
-			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.ErrorModel = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// ListAWSRelatedAccounts List related AWS accounts.
-// List the AWS accounts in an organization by calling 'organizations:ListAccounts' from the specified management account.
-//
-// Deprecated: This API is deprecated.
-func (a *CloudCostManagementApi) ListAWSRelatedAccounts(ctx _context.Context, filterManagementAccountId string) (AWSRelatedAccountsResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue AWSRelatedAccountsResponse
-	)
-
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.ListAWSRelatedAccounts")
-	if err != nil {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/cost/aws_related_accounts"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	localVarQueryParams.Add("filter[management_account_id]", datadog.ParameterToString(filterManagementAccountId, ""))
-	localVarHeaderParams["Accept"] = "application/json"
-
-	datadog.SetAuthKeys(
-		ctx,
-		&localVarHeaderParams,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
-	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.Client.CallAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -784,7 +640,7 @@ func (a *CloudCostManagementApi) UpdateCostAWSCURConfig(ctx _context.Context, cl
 	}
 
 	localVarPath := localBasePath + "/api/v2/cost/aws_cur_config/{cloud_account_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"cloud_account_id"+"}", _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{cloud_account_id}", _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -858,7 +714,7 @@ func (a *CloudCostManagementApi) UpdateCostAzureUCConfigs(ctx _context.Context, 
 	}
 
 	localVarPath := localBasePath + "/api/v2/cost/azure_uc_config/{cloud_account_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"cloud_account_id"+"}", _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, "")), -1)
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{cloud_account_id}", _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

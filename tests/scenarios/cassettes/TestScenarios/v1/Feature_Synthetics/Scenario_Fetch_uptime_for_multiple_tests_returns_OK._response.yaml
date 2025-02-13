@@ -1,0 +1,25 @@
+interactions:
+- request:
+    body: |
+      {"from_ts":1726041488,"public_ids":["p8m-9gw-nte"],"to_ts":1726055954}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/uptimes
+  response:
+    body: '[{"from_ts":1726041488,"to_ts":1726055954,"overall":{"name":"[Synthetics]
+      Synthetics test","preview":false,"monitor_type":"synthetics alert","monitor_modified":1726060063,"errors":null,"span_precision":0,"history":[[1726004543,0],[1726053503,1]],"uptime":83.05682373046875},"public_id":"p8m-9gw-nte","groups":[]}]
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 2

@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"fromRule":{"caseIndex":0,"from":1730201035064,"id":"non-existng","index":"main","notifications":[],"to":1730204635115}},"type":"historicalDetectionsJobCreate"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs
+  response:
+    body: '{"errors":[{"status":"404","detail":"failed to get rule details"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

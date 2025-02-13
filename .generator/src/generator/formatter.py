@@ -249,6 +249,9 @@ def reference_to_value(schema, value, print_nullable=True, **kwargs):
         return formatter.format(prefix=prefix, function_name=function_name, value=value)
 
     if type_name == "string":
+        if type_format == "uuid":
+            return f"&{value}"
+
         function_name = {
             "date": "Time",
             "date-time": "Time",
@@ -640,6 +643,8 @@ def format_data_with_schema_dict(
             nested_schema_name = schema_name(nested_schema)
             if nested_schema_name:
                 nested_schema_name = name_prefix + nested_schema_name
+            elif nested_schema.get("type") is None:
+                nested_schema_name = "interface{}"
 
         has_properties = schema.get("properties")
 

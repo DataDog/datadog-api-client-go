@@ -35,6 +35,7 @@ func main() {
 									Target:   200,
 								}},
 						},
+						ExitIfSucceed: datadog.PtrBool(true),
 						ExtractedValues: []datadogV1.SyntheticsParsingOptions{
 							{
 								Field: datadog.PtrString("server"),
