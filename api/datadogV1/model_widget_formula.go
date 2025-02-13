@@ -22,6 +22,8 @@ type WidgetFormula struct {
 	Formula string `json:"formula"`
 	// Options for limiting results returned.
 	Limit *WidgetFormulaLimit `json:"limit,omitempty"`
+	// Number format options for the widget.
+	NumberFormat *WidgetNumberFormat `json:"number_format,omitempty"`
 	// Styling options for widget formulas.
 	Style *WidgetFormulaStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -182,6 +184,34 @@ func (o *WidgetFormula) SetLimit(v WidgetFormulaLimit) {
 	o.Limit = &v
 }
 
+// GetNumberFormat returns the NumberFormat field value if set, zero value otherwise.
+func (o *WidgetFormula) GetNumberFormat() WidgetNumberFormat {
+	if o == nil || o.NumberFormat == nil {
+		var ret WidgetNumberFormat
+		return ret
+	}
+	return *o.NumberFormat
+}
+
+// GetNumberFormatOk returns a tuple with the NumberFormat field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WidgetFormula) GetNumberFormatOk() (*WidgetNumberFormat, bool) {
+	if o == nil || o.NumberFormat == nil {
+		return nil, false
+	}
+	return o.NumberFormat, true
+}
+
+// HasNumberFormat returns a boolean if a field has been set.
+func (o *WidgetFormula) HasNumberFormat() bool {
+	return o != nil && o.NumberFormat != nil
+}
+
+// SetNumberFormat gets a reference to the given WidgetNumberFormat and assigns it to the NumberFormat field.
+func (o *WidgetFormula) SetNumberFormat(v WidgetNumberFormat) {
+	o.NumberFormat = &v
+}
+
 // GetStyle returns the Style field value if set, zero value otherwise.
 func (o *WidgetFormula) GetStyle() WidgetFormulaStyle {
 	if o == nil || o.Style == nil {
@@ -229,6 +259,9 @@ func (o WidgetFormula) MarshalJSON() ([]byte, error) {
 	if o.Limit != nil {
 		toSerialize["limit"] = o.Limit
 	}
+	if o.NumberFormat != nil {
+		toSerialize["number_format"] = o.NumberFormat
+	}
 	if o.Style != nil {
 		toSerialize["style"] = o.Style
 	}
@@ -247,6 +280,7 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 		ConditionalFormats []WidgetConditionalFormat   `json:"conditional_formats,omitempty"`
 		Formula            *string                     `json:"formula"`
 		Limit              *WidgetFormulaLimit         `json:"limit,omitempty"`
+		NumberFormat       *WidgetNumberFormat         `json:"number_format,omitempty"`
 		Style              *WidgetFormulaStyle         `json:"style,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -257,7 +291,7 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"alias", "cell_display_mode", "conditional_formats", "formula", "limit", "style"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"alias", "cell_display_mode", "conditional_formats", "formula", "limit", "number_format", "style"})
 	} else {
 		return err
 	}
@@ -275,6 +309,10 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Limit = all.Limit
+	if all.NumberFormat != nil && all.NumberFormat.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.NumberFormat = all.NumberFormat
 	if all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

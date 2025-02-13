@@ -377,6 +377,7 @@ func NewConfiguration() *Configuration {
 			"v2.DeleteHistoricalJob":          false,
 			"v2.GetFinding":                   false,
 			"v2.GetHistoricalJob":             false,
+			"v2.GetRuleVersionHistory":        false,
 			"v2.ListFindings":                 false,
 			"v2.ListHistoricalJobs":           false,
 			"v2.MuteFindings":                 false,
