@@ -322,6 +322,7 @@
 //   - [SecurityMonitoringApi.EditSecurityMonitoringSignalState]
 //   - [SecurityMonitoringApi.GetFinding]
 //   - [SecurityMonitoringApi.GetHistoricalJob]
+//   - [SecurityMonitoringApi.GetRuleVersionHistory]
 //   - [SecurityMonitoringApi.GetSBOM]
 //   - [SecurityMonitoringApi.GetSecurityFilter]
 //   - [SecurityMonitoringApi.GetSecurityMonitoringRule]
