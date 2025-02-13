@@ -430,7 +430,11 @@
 //   - [UsersApi.SendInvitations]
 //   - [UsersApi.UpdateUser]
 //   - [WorkflowAutomationApi.CancelWorkflowInstance]
+//   - [WorkflowAutomationApi.CreateWorkflow]
 //   - [WorkflowAutomationApi.CreateWorkflowInstance]
+//   - [WorkflowAutomationApi.DeleteWorkflow]
+//   - [WorkflowAutomationApi.GetWorkflow]
 //   - [WorkflowAutomationApi.GetWorkflowInstance]
 //   - [WorkflowAutomationApi.ListWorkflowInstances]
+//   - [WorkflowAutomationApi.UpdateWorkflow]
 package datadogV2
