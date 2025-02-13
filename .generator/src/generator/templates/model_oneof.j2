@@ -61,7 +61,7 @@ func (obj *{{ name }}) UnmarshalJSON(data []byte) error {
 	// try to unmarshal data into {{ attributeName }}
 	err = datadog.Unmarshal(data, &obj.{{ attributeName }})
 	if err == nil {
-		if obj.{{ attributeName }} != nil {% if oneOf.get("type", "object") == "object" %}&& obj.{{ attributeName }}.UnparsedObject == nil {% endif %}{
+		if obj.{{ attributeName }} != nil {% if oneOf.get("type", "object") == "object" and not (oneOf.get("additionalProperties", False) != False and not oneOf.get("properties")) %}&& obj.{{ attributeName }}.UnparsedObject == nil {% endif %}{
 			json{{ attributeName }}, _ := datadog.Marshal(obj.{{ attributeName }})
 			if string(json{{ attributeName }}) == "{}"{% if not oneOf|is_primitive and not oneOf.required %} && string(data) != "{}" {% endif %} { // empty struct
 				obj.{{ attributeName }} = nil
