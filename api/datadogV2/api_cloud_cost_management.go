@@ -626,7 +626,7 @@ func (a *CloudCostManagementApi) ListCustomCostsFiles(ctx _context.Context) (Cus
 }
 
 // UpdateCostAWSCURConfig Update Cloud Cost Management AWS CUR config.
-// Update the status of an AWS CUR config (active/archived).
+// Update the status (active/archived) and/or account filtering configuration of an AWS CUR config.
 func (a *CloudCostManagementApi) UpdateCostAWSCURConfig(ctx _context.Context, cloudAccountId string, body AwsCURConfigPatchRequest) (AwsCURConfigsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
