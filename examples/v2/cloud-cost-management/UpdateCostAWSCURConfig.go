@@ -16,7 +16,7 @@ func main() {
 	body := datadogV2.AwsCURConfigPatchRequest{
 		Data: datadogV2.AwsCURConfigPatchData{
 			Attributes: datadogV2.AwsCURConfigPatchRequestAttributes{
-				IsEnabled: true,
+				IsEnabled: datadog.PtrBool(true),
 			},
 			Type: datadogV2.AWSCURCONFIGPATCHREQUESTTYPE_AWS_CUR_CONFIG_PATCH_REQUEST,
 		},
