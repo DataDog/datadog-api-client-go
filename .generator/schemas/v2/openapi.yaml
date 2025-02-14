@@ -32761,6 +32761,7 @@ paths:
         - api_keys_write
   /api/v2/apicatalog/api:
     get:
+      deprecated: true
       description: List APIs and their IDs.
       operationId: ListAPIs
       parameters:
@@ -32822,11 +32823,10 @@ paths:
         operator: OR
         permissions:
         - apm_api_catalog_read
-      x-unstable: '**Note**: This endpoint is in public beta.
-
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).'
+      x-unstable: '**Note**: This endpoint is deprecated.'
   /api/v2/apicatalog/api/{id}:
     delete:
+      deprecated: true
       description: Delete a specific API by ID.
       operationId: DeleteOpenAPI
       parameters:
@@ -32871,11 +32871,10 @@ paths:
         operator: OR
         permissions:
         - apm_api_catalog_write
-      x-unstable: '**Note**: This endpoint is in public beta.
-
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).'
+      x-unstable: '**Note**: This endpoint is deprecated.'
   /api/v2/apicatalog/api/{id}/openapi:
     get:
+      deprecated: true
       description: Retrieve information about a specific API in [OpenAPI](https://spec.openapis.org/oas/latest.html)
         format file.
       operationId: GetOpenAPI
@@ -32926,10 +32925,9 @@ paths:
         operator: OR
         permissions:
         - apm_api_catalog_read
-      x-unstable: '**Note**: This endpoint is in public beta.
-
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).'
+      x-unstable: '**Note**: This endpoint is deprecated.'
     put:
+      deprecated: true
       description: 'Update information about a specific API. The given content will
         replace all API content of the given ID.
 
@@ -32990,11 +32988,10 @@ paths:
         operator: OR
         permissions:
         - apm_api_catalog_write
-      x-unstable: '**Note**: This endpoint is in public beta.
-
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).'
+      x-unstable: '**Note**: This endpoint is deprecated.'
   /api/v2/apicatalog/openapi:
     post:
+      deprecated: true
       description: 'Create a new API from the [OpenAPI](https://spec.openapis.org/oas/latest.html)
         specification given.
 
@@ -33046,9 +33043,7 @@ paths:
         operator: OR
         permissions:
         - apm_api_catalog_write
-      x-unstable: '**Note**: This endpoint is in public beta.
-
-        If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).'
+      x-unstable: '**Note**: This endpoint is deprecated.'
   /api/v2/apm/config/metrics:
     get:
       description: Get the list of configured span-based metrics with their definitions.
