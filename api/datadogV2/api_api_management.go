@@ -41,6 +41,8 @@ func (r *CreateOpenAPIOptionalParameters) WithOpenapiSpecFile(openapiSpecFile _i
 // See the [API Catalog documentation](https://docs.datadoghq.com/api_catalog/add_metadata/) for additional
 // information about the possible metadata.
 // It returns the created API ID.
+//
+// Deprecated: This API is deprecated.
 func (a *APIManagementApi) CreateOpenAPI(ctx _context.Context, o ...CreateOpenAPIOptionalParameters) (CreateOpenAPIResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -148,6 +150,8 @@ func (a *APIManagementApi) CreateOpenAPI(ctx _context.Context, o ...CreateOpenAP
 
 // DeleteOpenAPI Delete an API.
 // Delete a specific API by ID.
+//
+// Deprecated: This API is deprecated.
 func (a *APIManagementApi) DeleteOpenAPI(ctx _context.Context, id uuid.UUID) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -227,6 +231,8 @@ func (a *APIManagementApi) DeleteOpenAPI(ctx _context.Context, id uuid.UUID) (*_
 
 // GetOpenAPI Get an API.
 // Retrieve information about a specific API in [OpenAPI](https://spec.openapis.org/oas/latest.html) format file.
+//
+// Deprecated: This API is deprecated.
 func (a *APIManagementApi) GetOpenAPI(ctx _context.Context, id uuid.UUID) (_io.Reader, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -339,6 +345,8 @@ func (r *ListAPIsOptionalParameters) WithPageOffset(pageOffset int64) *ListAPIsO
 
 // ListAPIs List APIs.
 // List APIs and their IDs.
+//
+// Deprecated: This API is deprecated.
 func (a *APIManagementApi) ListAPIs(ctx _context.Context, o ...ListAPIsOptionalParameters) (ListAPIsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -462,6 +470,8 @@ func (r *UpdateOpenAPIOptionalParameters) WithOpenapiSpecFile(openapiSpecFile _i
 // UpdateOpenAPI Update an API.
 // Update information about a specific API. The given content will replace all API content of the given ID.
 // The ID is returned by the create API, or can be found in the URL in the API catalog UI.
+//
+// Deprecated: This API is deprecated.
 func (a *APIManagementApi) UpdateOpenAPI(ctx _context.Context, id uuid.UUID, o ...UpdateOpenAPIOptionalParameters) (UpdateOpenAPIResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
