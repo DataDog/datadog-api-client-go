@@ -683,7 +683,7 @@
 <span id="L626" class="ln">   626  </span>}
 <span id="L627" class="ln">   627  </span>
 <span id="L628" class="ln">   628  </span><span class="comment">// UpdateCostAWSCURConfig Update Cloud Cost Management AWS CUR config.</span>
-<span id="L629" class="ln">   629  </span><span class="comment">// Update the status of an AWS CUR config (active/archived).</span>
+<span id="L629" class="ln">   629  </span><span class="comment">// Update the status (active/archived) and/or account filtering configuration of an AWS CUR config.</span>
 <span id="L630" class="ln">   630  </span>func (a *CloudCostManagementApi) UpdateCostAWSCURConfig(ctx _context.Context, cloudAccountId string, body AwsCURConfigPatchRequest) (AwsCURConfigsResponse, *_nethttp.Response, error) {
 <span id="L631" class="ln">   631  </span>	var (
 <span id="L632" class="ln">   632  </span>		localVarHTTPMethod  = _nethttp.MethodPatch
