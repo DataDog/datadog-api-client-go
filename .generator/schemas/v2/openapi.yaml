@@ -9273,10 +9273,6 @@ components:
           description: Whether or not the dashboard is in the favorites.
           readOnly: true
           type: boolean
-        is_read_only:
-          description: Whether or not the dashboard is read only.
-          readOnly: true
-          type: boolean
         is_shared:
           description: Whether the dashboard is publicly shared or not.
           readOnly: true

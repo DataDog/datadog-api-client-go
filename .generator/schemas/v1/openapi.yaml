@@ -1180,17 +1180,6 @@ components:
           example: 123-abc-456
           readOnly: true
           type: string
-        is_read_only:
-          default: false
-          deprecated: true
-          description: 'Whether this dashboard is read-only. If True, only the author
-            and admins can make changes to it.
-
-
-            This property is deprecated; please use the [Restriction Policies API](https://docs.datadoghq.com/api/latest/restriction-policies/)
-            instead to manage write authorization for individual dashboards.'
-          example: false
-          type: boolean
         layout_type:
           $ref: '#/components/schemas/DashboardLayoutType'
         modified_at:
@@ -1484,15 +1473,6 @@ components:
         id:
           description: Dashboard identifier.
           type: string
-        is_read_only:
-          deprecated: true
-          description: 'Whether this dashboard is read-only. If True, only the author
-            and admins can make changes to it.
-
-
-            This property is deprecated; please use the [Restriction Policies API](https://docs.datadoghq.com/api/latest/restriction-policies/)
-            instead to manage write authorization for individual dashboards.'
-          type: boolean
         layout_type:
           $ref: '#/components/schemas/DashboardLayoutType'
         modified_at:
@@ -5939,10 +5919,6 @@ components:
           type: string
         is_enabled:
           description: Whether or not the pipeline is enabled.
-          type: boolean
-        is_read_only:
-          description: Whether or not the pipeline can be edited.
-          readOnly: true
           type: boolean
         name:
           description: Name of the pipeline.
