@@ -46,7 +46,11 @@ func main() {
 				},
 				Kind: datadogV2.ENTITYV3SERVICEKIND_SERVICE,
 				Metadata: datadogV2.EntityV3Metadata{
-					AdditionalOwners: []datadogV2.EntityV3MetadataAdditionalOwnersItems{},
+					AdditionalOwners: []datadogV2.EntityV3MetadataAdditionalOwnersItems{
+						{
+							Name: "",
+						},
+					},
 					Contacts: []datadogV2.EntityV3MetadataContactsItems{
 						{
 							Contact: "https://slack/",
