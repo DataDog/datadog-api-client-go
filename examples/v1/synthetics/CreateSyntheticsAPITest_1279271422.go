@@ -59,7 +59,8 @@ func main() {
 							Count:    datadog.PtrInt64(5),
 							Interval: datadog.PtrFloat64(1000),
 						},
-						Subtype: datadogV1.SYNTHETICSAPITESTSTEPSUBTYPE_HTTP,
+						Subtype:                   datadogV1.SYNTHETICSAPITESTSTEPSUBTYPE_HTTP,
+						ExtractedValuesFromScript: datadog.PtrString("dd.variable.set('STATUS_CODE', dd.response.statusCode);"),
 					}},
 				datadogV1.SyntheticsAPIStep{
 					SyntheticsAPIWaitStep: &datadogV1.SyntheticsAPIWaitStep{
