@@ -381,6 +381,8 @@ func NewConfiguration() *Configuration {
 			"v2.GetSBOM":                      false,
 			"v2.ListFindings":                 false,
 			"v2.ListHistoricalJobs":           false,
+			"v2.ListVulnerabilities":          false,
+			"v2.ListVulnerableAssets":         false,
 			"v2.MuteFindings":                 false,
 			"v2.RunHistoricalJob":             false,
 			"v2.CreateScorecardOutcomesBatch": false,
