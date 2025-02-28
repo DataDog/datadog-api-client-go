@@ -345,6 +345,7 @@ def _format_oneof(schema, data, name, name_prefix, replace_values, required, nul
                     sub_schema,
                     name_prefix=name_prefix,
                     replace_values=replace_values,
+                    in_oneof=True,
                     **kwargs,
                 )
             if matched == 0:
@@ -366,9 +367,11 @@ def _format_oneof(schema, data, name, name_prefix, replace_values, required, nul
     if name:
         if one_of_schema.get("type") == "array":
             parameters = f"&{parameters}"
+
         return f"{reference}{name_prefix}{name}{{\n{one_of_schema_name}: {parameters}}}"
     if one_of_schema.get("type") == "array":
         reference = "&"
+
     return f"{{{one_of_schema_name}: {reference}{parameters}}}"
 
 
@@ -598,6 +601,7 @@ def format_data_with_schema_dict(
     default_name=None,
     required=False,
     in_list=False,
+    in_oneof=False,
     **kwargs,
 ):
     if not schema:
@@ -680,7 +684,7 @@ def format_data_with_schema_dict(
         if schema.get("additionalProperties") == {}:
             name_prefix = ""
             name = "map[string]interface{}"
-            reference = ""
+            reference = "" if not in_oneof else "&"
             for k, v in data.items():
                 parameters += f'"{k}": "{v}",\n'
         else:
