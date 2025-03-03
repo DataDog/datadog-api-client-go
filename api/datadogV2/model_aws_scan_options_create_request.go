@@ -5,72 +5,68 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AwsScanOptionsResponse Response object that includes the scan options of an AWS account.
-type AwsScanOptionsResponse struct {
-	// Single AWS Scan Options entry.
-	Data *AwsScanOptionsData `json:"data,omitempty"`
+// AwsScanOptionsCreateRequest Request object that includes the scan options to create.
+type AwsScanOptionsCreateRequest struct {
+	// Object for the scan options of a single AWS account.
+	Data AwsScanOptionsCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewAwsScanOptionsResponse instantiates a new AwsScanOptionsResponse object.
+// NewAwsScanOptionsCreateRequest instantiates a new AwsScanOptionsCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAwsScanOptionsResponse() *AwsScanOptionsResponse {
-	this := AwsScanOptionsResponse{}
+func NewAwsScanOptionsCreateRequest(data AwsScanOptionsCreateData) *AwsScanOptionsCreateRequest {
+	this := AwsScanOptionsCreateRequest{}
+	this.Data = data
 	return &this
 }
 
-// NewAwsScanOptionsResponseWithDefaults instantiates a new AwsScanOptionsResponse object.
+// NewAwsScanOptionsCreateRequestWithDefaults instantiates a new AwsScanOptionsCreateRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewAwsScanOptionsResponseWithDefaults() *AwsScanOptionsResponse {
-	this := AwsScanOptionsResponse{}
+func NewAwsScanOptionsCreateRequestWithDefaults() *AwsScanOptionsCreateRequest {
+	this := AwsScanOptionsCreateRequest{}
 	return &this
 }
 
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *AwsScanOptionsResponse) GetData() AwsScanOptionsData {
-	if o == nil || o.Data == nil {
-		var ret AwsScanOptionsData
+// GetData returns the Data field value.
+func (o *AwsScanOptionsCreateRequest) GetData() AwsScanOptionsCreateData {
+	if o == nil {
+		var ret AwsScanOptionsCreateData
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *AwsScanOptionsResponse) GetDataOk() (*AwsScanOptionsData, bool) {
-	if o == nil || o.Data == nil {
+func (o *AwsScanOptionsCreateRequest) GetDataOk() (*AwsScanOptionsCreateData, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
-// HasData returns a boolean if a field has been set.
-func (o *AwsScanOptionsResponse) HasData() bool {
-	return o != nil && o.Data != nil
-}
-
-// SetData gets a reference to the given AwsScanOptionsData and assigns it to the Data field.
-func (o *AwsScanOptionsResponse) SetData(v AwsScanOptionsData) {
-	o.Data = &v
+// SetData sets field value.
+func (o *AwsScanOptionsCreateRequest) SetData(v AwsScanOptionsCreateData) {
+	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o AwsScanOptionsResponse) MarshalJSON() ([]byte, error) {
+func (o AwsScanOptionsCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Data != nil {
-		toSerialize["data"] = o.Data
-	}
+	toSerialize["data"] = o.Data
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -79,12 +75,15 @@ func (o AwsScanOptionsResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *AwsScanOptionsResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *AwsScanOptionsCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *AwsScanOptionsData `json:"data,omitempty"`
+		Data *AwsScanOptionsCreateData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -94,10 +93,10 @@ func (o *AwsScanOptionsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Data = all.Data
+	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
