@@ -3,7 +3,8 @@ type {{ name }} struct {
 {%- for oneOf in model.oneOf %}
 	{%- set dataType = get_type(oneOf) %}
 	{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
-	{{ attributeName }} *{{ dataType }}
+	{%- set isAdditionalPropertiesContainer = oneOf.get("type", "object") == "object" and not oneOf.get("properties") and oneOf.get("additionalProperties", False) != False %}
+	{{ attributeName }} {% if not isAdditionalPropertiesContainer %}*{% endif %}{{ dataType }}
 {%- endfor%}
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -13,9 +14,10 @@ type {{ name }} struct {
 {%- for oneOf in model.oneOf %}
 	{%- set dataType = get_type(oneOf) %}
 	{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
+	{%- set isAdditionalPropertiesContainer = oneOf.get("type", "object") == "object" and not oneOf.get("properties") and oneOf.get("additionalProperties", False) != False %}
 
 // {{ attributeName }}As{{ name }} is a convenience function that returns {{ dataType }} wrapped in {{ name }}.
-func {{ attributeName }}As{{ name }}(v *{{ dataType }}) {{ name }} {
+func {{ attributeName }}As{{ name }}(v {% if not isAdditionalPropertiesContainer %}*{% endif %}{{ dataType }}) {{ name }} {
 	return {{ name }}{{ "{" }}{{ attributeName }}: v}
 }
 {%- endfor %}
