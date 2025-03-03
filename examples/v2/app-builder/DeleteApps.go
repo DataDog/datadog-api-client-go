@@ -27,7 +27,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.DeleteApps", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAppBuilderApi(apiClient)
 	resp, r, err := api.DeleteApps(ctx, body)

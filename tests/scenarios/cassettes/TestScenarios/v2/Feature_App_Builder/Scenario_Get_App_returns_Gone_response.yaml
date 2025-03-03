@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/app-builder/apps
   response:
-    body: '{"data":{"id":"b6becff0-4703-4724-b92a-1445df194b75","type":"appDefinitions"}}'
+    body: '{"data":{"id":"84b262f9-ae08-4be9-9050-93ff89ccd474","type":"appDefinitions"}}'
     code: 201
     duration: 0ms
     headers:
@@ -26,10 +26,27 @@ interactions:
       Accept:
       - application/json
     id: 1
-    method: DELETE
-    url: https://api.datadoghq.com/api/v2/app-builder/apps/b6becff0-4703-4724-b92a-1445df194b75
+    method: GET
+    url: https://api.datadoghq.com/api/v2/app-builder/apps/84b262f9-ae08-4be9-9050-93ff89ccd474?version=31
   response:
-    body: '{"data":{"id":"b6becff0-4703-4724-b92a-1445df194b75","type":"appDefinitions"}}'
+    body: '{"errors":[{"title":"app version not found"}]}'
+    code: 410
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 410 Gone
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/app-builder/apps/84b262f9-ae08-4be9-9050-93ff89ccd474
+  response:
+    body: '{"data":{"id":"84b262f9-ae08-4be9-9050-93ff89ccd474","type":"appDefinitions"}}'
     code: 200
     duration: 0ms
     headers:
