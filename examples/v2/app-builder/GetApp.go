@@ -19,7 +19,6 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetApp", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAppBuilderApi(apiClient)
 	resp, r, err := api.GetApp(ctx, AppDataID, *datadogV2.NewGetAppOptionalParameters())
