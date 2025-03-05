@@ -69,9 +69,9 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// AwsScanOptionsCreateData Object for the scan options of a single AWS account.</span>
 <span id="L14" class="ln">    14  </span>type AwsScanOptionsCreateData struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// Attributes for the AWS scan options.</span>
-<span id="L16" class="ln">    16  </span>	Attributes AwsScanOptionsAttributes `json:&#34;attributes&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// The ID of an AWS account.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Attributes for the AWS scan options to create.</span>
+<span id="L16" class="ln">    16  </span>	Attributes AwsScanOptionsCreateAttributes `json:&#34;attributes&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// The ID of the AWS account.</span>
 <span id="L18" class="ln">    18  </span>	Id string `json:&#34;id&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// The type of the resource. The value should always be `aws_scan_options`.</span>
 <span id="L20" class="ln">    20  </span>	Type AwsScanOptionsType `json:&#34;type&#34;`
@@ -84,7 +84,7 @@
 <span id="L27" class="ln">    27  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L28" class="ln">    28  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L29" class="ln">    29  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L30" class="ln">    30  </span>func NewAwsScanOptionsCreateData(attributes AwsScanOptionsAttributes, id string, typeVar AwsScanOptionsType) *AwsScanOptionsCreateData {
+<span id="L30" class="ln">    30  </span>func NewAwsScanOptionsCreateData(attributes AwsScanOptionsCreateAttributes, id string, typeVar AwsScanOptionsType) *AwsScanOptionsCreateData {
 <span id="L31" class="ln">    31  </span>	this := AwsScanOptionsCreateData{}
 <span id="L32" class="ln">    32  </span>	this.Attributes = attributes
 <span id="L33" class="ln">    33  </span>	this.Id = id
@@ -103,9 +103,9 @@
 <span id="L46" class="ln">    46  </span>}
 <span id="L47" class="ln">    47  </span>
 <span id="L48" class="ln">    48  </span><span class="comment">// GetAttributes returns the Attributes field value.</span>
-<span id="L49" class="ln">    49  </span>func (o *AwsScanOptionsCreateData) GetAttributes() AwsScanOptionsAttributes {
+<span id="L49" class="ln">    49  </span>func (o *AwsScanOptionsCreateData) GetAttributes() AwsScanOptionsCreateAttributes {
 <span id="L50" class="ln">    50  </span>	if o == nil {
-<span id="L51" class="ln">    51  </span>		var ret AwsScanOptionsAttributes
+<span id="L51" class="ln">    51  </span>		var ret AwsScanOptionsCreateAttributes
 <span id="L52" class="ln">    52  </span>		return ret
 <span id="L53" class="ln">    53  </span>	}
 <span id="L54" class="ln">    54  </span>	return o.Attributes
@@ -113,7 +113,7 @@
 <span id="L56" class="ln">    56  </span>
 <span id="L57" class="ln">    57  </span><span class="comment">// GetAttributesOk returns a tuple with the Attributes field value</span>
 <span id="L58" class="ln">    58  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L59" class="ln">    59  </span>func (o *AwsScanOptionsCreateData) GetAttributesOk() (*AwsScanOptionsAttributes, bool) {
+<span id="L59" class="ln">    59  </span>func (o *AwsScanOptionsCreateData) GetAttributesOk() (*AwsScanOptionsCreateAttributes, bool) {
 <span id="L60" class="ln">    60  </span>	if o == nil {
 <span id="L61" class="ln">    61  </span>		return nil, false
 <span id="L62" class="ln">    62  </span>	}
@@ -121,7 +121,7 @@
 <span id="L64" class="ln">    64  </span>}
 <span id="L65" class="ln">    65  </span>
 <span id="L66" class="ln">    66  </span><span class="comment">// SetAttributes sets field value.</span>
-<span id="L67" class="ln">    67  </span>func (o *AwsScanOptionsCreateData) SetAttributes(v AwsScanOptionsAttributes) {
+<span id="L67" class="ln">    67  </span>func (o *AwsScanOptionsCreateData) SetAttributes(v AwsScanOptionsCreateAttributes) {
 <span id="L68" class="ln">    68  </span>	o.Attributes = v
 <span id="L69" class="ln">    69  </span>}
 <span id="L70" class="ln">    70  </span>
@@ -190,9 +190,9 @@
 <span id="L133" class="ln">   133  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L134" class="ln">   134  </span>func (o *AwsScanOptionsCreateData) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L135" class="ln">   135  </span>	all := struct {
-<span id="L136" class="ln">   136  </span>		Attributes *AwsScanOptionsAttributes `json:&#34;attributes&#34;`
-<span id="L137" class="ln">   137  </span>		Id         *string                   `json:&#34;id&#34;`
-<span id="L138" class="ln">   138  </span>		Type       *AwsScanOptionsType       `json:&#34;type&#34;`
+<span id="L136" class="ln">   136  </span>		Attributes *AwsScanOptionsCreateAttributes `json:&#34;attributes&#34;`
+<span id="L137" class="ln">   137  </span>		Id         *string                         `json:&#34;id&#34;`
+<span id="L138" class="ln">   138  </span>		Type       *AwsScanOptionsType             `json:&#34;type&#34;`
 <span id="L139" class="ln">   139  </span>	}{}
 <span id="L140" class="ln">   140  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L141" class="ln">   141  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
