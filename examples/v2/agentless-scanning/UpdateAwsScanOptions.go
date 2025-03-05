@@ -15,7 +15,7 @@ func main() {
 	body := datadogV2.AwsScanOptionsUpdateRequest{
 		Data: datadogV2.AwsScanOptionsUpdateData{
 			Type: datadogV2.AWSSCANOPTIONSTYPE_AWS_SCAN_OPTIONS,
-			Id:   datadog.PtrString("000000000002"),
+			Id:   "000000000002",
 			Attributes: datadogV2.AwsScanOptionsUpdateAttributes{
 				VulnHostOs:       datadog.PtrBool(true),
 				VulnContainersOs: datadog.PtrBool(true),

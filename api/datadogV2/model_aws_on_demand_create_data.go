@@ -10,45 +10,42 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AwsScanOptionsCreateData Object for the scan options of a single AWS account.
-type AwsScanOptionsCreateData struct {
-	// Attributes for the AWS scan options to create.
-	Attributes AwsScanOptionsCreateAttributes `json:"attributes"`
-	// The ID of the AWS account.
-	Id string `json:"id"`
-	// The type of the resource. The value should always be `aws_scan_options`.
-	Type AwsScanOptionsType `json:"type"`
+// AwsOnDemandCreateData Object for a single AWS on demand task.
+type AwsOnDemandCreateData struct {
+	// Attributes for the AWS on demand task.
+	Attributes AwsOnDemandCreateAttributes `json:"attributes"`
+	// The type of the on demand task. The value should always be `aws_resource`.
+	Type AwsOnDemandType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewAwsScanOptionsCreateData instantiates a new AwsScanOptionsCreateData object.
+// NewAwsOnDemandCreateData instantiates a new AwsOnDemandCreateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAwsScanOptionsCreateData(attributes AwsScanOptionsCreateAttributes, id string, typeVar AwsScanOptionsType) *AwsScanOptionsCreateData {
-	this := AwsScanOptionsCreateData{}
+func NewAwsOnDemandCreateData(attributes AwsOnDemandCreateAttributes, typeVar AwsOnDemandType) *AwsOnDemandCreateData {
+	this := AwsOnDemandCreateData{}
 	this.Attributes = attributes
-	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewAwsScanOptionsCreateDataWithDefaults instantiates a new AwsScanOptionsCreateData object.
+// NewAwsOnDemandCreateDataWithDefaults instantiates a new AwsOnDemandCreateData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewAwsScanOptionsCreateDataWithDefaults() *AwsScanOptionsCreateData {
-	this := AwsScanOptionsCreateData{}
-	var typeVar AwsScanOptionsType = AWSSCANOPTIONSTYPE_AWS_SCAN_OPTIONS
+func NewAwsOnDemandCreateDataWithDefaults() *AwsOnDemandCreateData {
+	this := AwsOnDemandCreateData{}
+	var typeVar AwsOnDemandType = AWSONDEMANDTYPE_AWS_RESOURCE
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *AwsScanOptionsCreateData) GetAttributes() AwsScanOptionsCreateAttributes {
+func (o *AwsOnDemandCreateData) GetAttributes() AwsOnDemandCreateAttributes {
 	if o == nil {
-		var ret AwsScanOptionsCreateAttributes
+		var ret AwsOnDemandCreateAttributes
 		return ret
 	}
 	return o.Attributes
@@ -56,7 +53,7 @@ func (o *AwsScanOptionsCreateData) GetAttributes() AwsScanOptionsCreateAttribute
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *AwsScanOptionsCreateData) GetAttributesOk() (*AwsScanOptionsCreateAttributes, bool) {
+func (o *AwsOnDemandCreateData) GetAttributesOk() (*AwsOnDemandCreateAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,37 +61,14 @@ func (o *AwsScanOptionsCreateData) GetAttributesOk() (*AwsScanOptionsCreateAttri
 }
 
 // SetAttributes sets field value.
-func (o *AwsScanOptionsCreateData) SetAttributes(v AwsScanOptionsCreateAttributes) {
+func (o *AwsOnDemandCreateData) SetAttributes(v AwsOnDemandCreateAttributes) {
 	o.Attributes = v
 }
 
-// GetId returns the Id field value.
-func (o *AwsScanOptionsCreateData) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *AwsScanOptionsCreateData) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value.
-func (o *AwsScanOptionsCreateData) SetId(v string) {
-	o.Id = v
-}
-
 // GetType returns the Type field value.
-func (o *AwsScanOptionsCreateData) GetType() AwsScanOptionsType {
+func (o *AwsOnDemandCreateData) GetType() AwsOnDemandType {
 	if o == nil {
-		var ret AwsScanOptionsType
+		var ret AwsOnDemandType
 		return ret
 	}
 	return o.Type
@@ -102,7 +76,7 @@ func (o *AwsScanOptionsCreateData) GetType() AwsScanOptionsType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *AwsScanOptionsCreateData) GetTypeOk() (*AwsScanOptionsType, bool) {
+func (o *AwsOnDemandCreateData) GetTypeOk() (*AwsOnDemandType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -110,18 +84,17 @@ func (o *AwsScanOptionsCreateData) GetTypeOk() (*AwsScanOptionsType, bool) {
 }
 
 // SetType sets field value.
-func (o *AwsScanOptionsCreateData) SetType(v AwsScanOptionsType) {
+func (o *AwsOnDemandCreateData) SetType(v AwsOnDemandType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o AwsScanOptionsCreateData) MarshalJSON() ([]byte, error) {
+func (o AwsOnDemandCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
-	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -131,11 +104,10 @@ func (o AwsScanOptionsCreateData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *AwsScanOptionsCreateData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *AwsOnDemandCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *AwsScanOptionsCreateAttributes `json:"attributes"`
-		Id         *string                         `json:"id"`
-		Type       *AwsScanOptionsType             `json:"type"`
+		Attributes *AwsOnDemandCreateAttributes `json:"attributes"`
+		Type       *AwsOnDemandType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -143,15 +115,12 @@ func (o *AwsScanOptionsCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Attributes == nil {
 		return fmt.Errorf("required field attributes missing")
 	}
-	if all.Id == nil {
-		return fmt.Errorf("required field id missing")
-	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
 	} else {
 		return err
 	}
@@ -161,7 +130,6 @@ func (o *AwsScanOptionsCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
