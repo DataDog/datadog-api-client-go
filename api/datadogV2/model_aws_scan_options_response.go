@@ -8,10 +8,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AwsScanOptionsResponse Response object that includes a list of AWS scan options.
+// AwsScanOptionsResponse Response object that includes the scan options of an AWS account.
 type AwsScanOptionsResponse struct {
-	// A list of AWS scan options.
-	Data []AwsScanOptionsData `json:"data,omitempty"`
+	// Single AWS Scan Options entry.
+	Data *AwsScanOptionsData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -35,21 +35,21 @@ func NewAwsScanOptionsResponseWithDefaults() *AwsScanOptionsResponse {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *AwsScanOptionsResponse) GetData() []AwsScanOptionsData {
+func (o *AwsScanOptionsResponse) GetData() AwsScanOptionsData {
 	if o == nil || o.Data == nil {
-		var ret []AwsScanOptionsData
+		var ret AwsScanOptionsData
 		return ret
 	}
-	return o.Data
+	return *o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AwsScanOptionsResponse) GetDataOk() (*[]AwsScanOptionsData, bool) {
+func (o *AwsScanOptionsResponse) GetDataOk() (*AwsScanOptionsData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return &o.Data, true
+	return o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -57,9 +57,9 @@ func (o *AwsScanOptionsResponse) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
-// SetData gets a reference to the given []AwsScanOptionsData and assigns it to the Data field.
-func (o *AwsScanOptionsResponse) SetData(v []AwsScanOptionsData) {
-	o.Data = v
+// SetData gets a reference to the given AwsScanOptionsData and assigns it to the Data field.
+func (o *AwsScanOptionsResponse) SetData(v AwsScanOptionsData) {
+	o.Data = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -81,7 +81,7 @@ func (o AwsScanOptionsResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AwsScanOptionsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []AwsScanOptionsData `json:"data,omitempty"`
+		Data *AwsScanOptionsData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -92,10 +92,19 @@ func (o *AwsScanOptionsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.Data = all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
