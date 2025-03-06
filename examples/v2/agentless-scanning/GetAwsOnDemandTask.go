@@ -17,13 +17,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAgentlessScanningApi(apiClient)
-	resp, r, err := api.RetrieveAwsOnDemandTask(ctx, "63d6b4f5-e5d0-4d90-824a-9580f05f026a")
+	resp, r, err := api.GetAwsOnDemandTask(ctx, "63d6b4f5-e5d0-4d90-824a-9580f05f026a")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AgentlessScanningApi.RetrieveAwsOnDemandTask`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentlessScanningApi.GetAwsOnDemandTask`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `AgentlessScanningApi.RetrieveAwsOnDemandTask`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `AgentlessScanningApi.GetAwsOnDemandTask`:\n%s\n", responseContent)
 }

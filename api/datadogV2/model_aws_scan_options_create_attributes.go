@@ -5,19 +5,21 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // AwsScanOptionsCreateAttributes Attributes for the AWS scan options to create.
 type AwsScanOptionsCreateAttributes struct {
 	// Indicates if scanning of Lambda functions is enabled.
-	Lambda *bool `json:"lambda,omitempty"`
+	Lambda bool `json:"lambda"`
 	// Indicates if scanning for sensitive data is enabled.
-	SensitiveData *bool `json:"sensitive_data,omitempty"`
+	SensitiveData bool `json:"sensitive_data"`
 	// Indicates if scanning for vulnerabilities in containers is enabled.
-	VulnContainersOs *bool `json:"vuln_containers_os,omitempty"`
+	VulnContainersOs bool `json:"vuln_containers_os"`
 	// Indicates if scanning for vulnerabilities in hosts is enabled.
-	VulnHostOs *bool `json:"vuln_host_os,omitempty"`
+	VulnHostOs bool `json:"vuln_host_os"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -27,8 +29,12 @@ type AwsScanOptionsCreateAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAwsScanOptionsCreateAttributes() *AwsScanOptionsCreateAttributes {
+func NewAwsScanOptionsCreateAttributes(lambda bool, sensitiveData bool, vulnContainersOs bool, vulnHostOs bool) *AwsScanOptionsCreateAttributes {
 	this := AwsScanOptionsCreateAttributes{}
+	this.Lambda = lambda
+	this.SensitiveData = sensitiveData
+	this.VulnContainersOs = vulnContainersOs
+	this.VulnHostOs = vulnHostOs
 	return &this
 }
 
@@ -40,116 +46,96 @@ func NewAwsScanOptionsCreateAttributesWithDefaults() *AwsScanOptionsCreateAttrib
 	return &this
 }
 
-// GetLambda returns the Lambda field value if set, zero value otherwise.
+// GetLambda returns the Lambda field value.
 func (o *AwsScanOptionsCreateAttributes) GetLambda() bool {
-	if o == nil || o.Lambda == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Lambda
+	return o.Lambda
 }
 
-// GetLambdaOk returns a tuple with the Lambda field value if set, nil otherwise
+// GetLambdaOk returns a tuple with the Lambda field value
 // and a boolean to check if the value has been set.
 func (o *AwsScanOptionsCreateAttributes) GetLambdaOk() (*bool, bool) {
-	if o == nil || o.Lambda == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Lambda, true
+	return &o.Lambda, true
 }
 
-// HasLambda returns a boolean if a field has been set.
-func (o *AwsScanOptionsCreateAttributes) HasLambda() bool {
-	return o != nil && o.Lambda != nil
-}
-
-// SetLambda gets a reference to the given bool and assigns it to the Lambda field.
+// SetLambda sets field value.
 func (o *AwsScanOptionsCreateAttributes) SetLambda(v bool) {
-	o.Lambda = &v
+	o.Lambda = v
 }
 
-// GetSensitiveData returns the SensitiveData field value if set, zero value otherwise.
+// GetSensitiveData returns the SensitiveData field value.
 func (o *AwsScanOptionsCreateAttributes) GetSensitiveData() bool {
-	if o == nil || o.SensitiveData == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.SensitiveData
+	return o.SensitiveData
 }
 
-// GetSensitiveDataOk returns a tuple with the SensitiveData field value if set, nil otherwise
+// GetSensitiveDataOk returns a tuple with the SensitiveData field value
 // and a boolean to check if the value has been set.
 func (o *AwsScanOptionsCreateAttributes) GetSensitiveDataOk() (*bool, bool) {
-	if o == nil || o.SensitiveData == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.SensitiveData, true
+	return &o.SensitiveData, true
 }
 
-// HasSensitiveData returns a boolean if a field has been set.
-func (o *AwsScanOptionsCreateAttributes) HasSensitiveData() bool {
-	return o != nil && o.SensitiveData != nil
-}
-
-// SetSensitiveData gets a reference to the given bool and assigns it to the SensitiveData field.
+// SetSensitiveData sets field value.
 func (o *AwsScanOptionsCreateAttributes) SetSensitiveData(v bool) {
-	o.SensitiveData = &v
+	o.SensitiveData = v
 }
 
-// GetVulnContainersOs returns the VulnContainersOs field value if set, zero value otherwise.
+// GetVulnContainersOs returns the VulnContainersOs field value.
 func (o *AwsScanOptionsCreateAttributes) GetVulnContainersOs() bool {
-	if o == nil || o.VulnContainersOs == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.VulnContainersOs
+	return o.VulnContainersOs
 }
 
-// GetVulnContainersOsOk returns a tuple with the VulnContainersOs field value if set, nil otherwise
+// GetVulnContainersOsOk returns a tuple with the VulnContainersOs field value
 // and a boolean to check if the value has been set.
 func (o *AwsScanOptionsCreateAttributes) GetVulnContainersOsOk() (*bool, bool) {
-	if o == nil || o.VulnContainersOs == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.VulnContainersOs, true
+	return &o.VulnContainersOs, true
 }
 
-// HasVulnContainersOs returns a boolean if a field has been set.
-func (o *AwsScanOptionsCreateAttributes) HasVulnContainersOs() bool {
-	return o != nil && o.VulnContainersOs != nil
-}
-
-// SetVulnContainersOs gets a reference to the given bool and assigns it to the VulnContainersOs field.
+// SetVulnContainersOs sets field value.
 func (o *AwsScanOptionsCreateAttributes) SetVulnContainersOs(v bool) {
-	o.VulnContainersOs = &v
+	o.VulnContainersOs = v
 }
 
-// GetVulnHostOs returns the VulnHostOs field value if set, zero value otherwise.
+// GetVulnHostOs returns the VulnHostOs field value.
 func (o *AwsScanOptionsCreateAttributes) GetVulnHostOs() bool {
-	if o == nil || o.VulnHostOs == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.VulnHostOs
+	return o.VulnHostOs
 }
 
-// GetVulnHostOsOk returns a tuple with the VulnHostOs field value if set, nil otherwise
+// GetVulnHostOsOk returns a tuple with the VulnHostOs field value
 // and a boolean to check if the value has been set.
 func (o *AwsScanOptionsCreateAttributes) GetVulnHostOsOk() (*bool, bool) {
-	if o == nil || o.VulnHostOs == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.VulnHostOs, true
+	return &o.VulnHostOs, true
 }
 
-// HasVulnHostOs returns a boolean if a field has been set.
-func (o *AwsScanOptionsCreateAttributes) HasVulnHostOs() bool {
-	return o != nil && o.VulnHostOs != nil
-}
-
-// SetVulnHostOs gets a reference to the given bool and assigns it to the VulnHostOs field.
+// SetVulnHostOs sets field value.
 func (o *AwsScanOptionsCreateAttributes) SetVulnHostOs(v bool) {
-	o.VulnHostOs = &v
+	o.VulnHostOs = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -158,18 +144,10 @@ func (o AwsScanOptionsCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Lambda != nil {
-		toSerialize["lambda"] = o.Lambda
-	}
-	if o.SensitiveData != nil {
-		toSerialize["sensitive_data"] = o.SensitiveData
-	}
-	if o.VulnContainersOs != nil {
-		toSerialize["vuln_containers_os"] = o.VulnContainersOs
-	}
-	if o.VulnHostOs != nil {
-		toSerialize["vuln_host_os"] = o.VulnHostOs
-	}
+	toSerialize["lambda"] = o.Lambda
+	toSerialize["sensitive_data"] = o.SensitiveData
+	toSerialize["vuln_containers_os"] = o.VulnContainersOs
+	toSerialize["vuln_host_os"] = o.VulnHostOs
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -180,13 +158,25 @@ func (o AwsScanOptionsCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AwsScanOptionsCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Lambda           *bool `json:"lambda,omitempty"`
-		SensitiveData    *bool `json:"sensitive_data,omitempty"`
-		VulnContainersOs *bool `json:"vuln_containers_os,omitempty"`
-		VulnHostOs       *bool `json:"vuln_host_os,omitempty"`
+		Lambda           *bool `json:"lambda"`
+		SensitiveData    *bool `json:"sensitive_data"`
+		VulnContainersOs *bool `json:"vuln_containers_os"`
+		VulnHostOs       *bool `json:"vuln_host_os"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Lambda == nil {
+		return fmt.Errorf("required field lambda missing")
+	}
+	if all.SensitiveData == nil {
+		return fmt.Errorf("required field sensitive_data missing")
+	}
+	if all.VulnContainersOs == nil {
+		return fmt.Errorf("required field vuln_containers_os missing")
+	}
+	if all.VulnHostOs == nil {
+		return fmt.Errorf("required field vuln_host_os missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -194,10 +184,10 @@ func (o *AwsScanOptionsCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	} else {
 		return err
 	}
-	o.Lambda = all.Lambda
-	o.SensitiveData = all.SensitiveData
-	o.VulnContainersOs = all.VulnContainersOs
-	o.VulnHostOs = all.VulnHostOs
+	o.Lambda = *all.Lambda
+	o.SensitiveData = *all.SensitiveData
+	o.VulnContainersOs = *all.VulnContainersOs
+	o.VulnHostOs = *all.VulnHostOs
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
