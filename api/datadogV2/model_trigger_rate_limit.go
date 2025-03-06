@@ -15,8 +15,7 @@ type TriggerRateLimit struct {
 	// The `TriggerRateLimit` `interval`. The expected format is the number of seconds ending with an s. For example, 1 day is 86400s
 	Interval *string `json:"interval,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewTriggerRateLimit instantiates a new TriggerRateLimit object.
@@ -104,10 +103,6 @@ func (o TriggerRateLimit) MarshalJSON() ([]byte, error) {
 	if o.Interval != nil {
 		toSerialize["interval"] = o.Interval
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -120,18 +115,8 @@ func (o *TriggerRateLimit) UnmarshalJSON(bytes []byte) (err error) {
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count", "interval"})
-	} else {
-		return err
-	}
 	o.Count = all.Count
 	o.Interval = all.Interval
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

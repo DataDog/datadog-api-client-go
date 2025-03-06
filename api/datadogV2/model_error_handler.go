@@ -17,8 +17,7 @@ type ErrorHandler struct {
 	// The definition of `RetryStrategy` object.
 	RetryStrategy RetryStrategy `json:"retryStrategy"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewErrorHandler instantiates a new ErrorHandler object.
@@ -94,10 +93,6 @@ func (o ErrorHandler) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["fallbackStepName"] = o.FallbackStepName
 	toSerialize["retryStrategy"] = o.RetryStrategy
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -116,12 +111,6 @@ func (o *ErrorHandler) UnmarshalJSON(bytes []byte) (err error) {
 	if all.RetryStrategy == nil {
 		return fmt.Errorf("required field retryStrategy missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"fallbackStepName", "retryStrategy"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	o.FallbackStepName = *all.FallbackStepName
@@ -129,10 +118,6 @@ func (o *ErrorHandler) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.RetryStrategy = *all.RetryStrategy
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

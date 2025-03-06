@@ -19,8 +19,7 @@ type Annotation struct {
 	// The definition of `AnnotationMarkdownTextAnnotation` object.
 	MarkdownTextAnnotation AnnotationMarkdownTextAnnotation `json:"markdownTextAnnotation"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewAnnotation instantiates a new Annotation object.
@@ -121,10 +120,6 @@ func (o Annotation) MarshalJSON() ([]byte, error) {
 	toSerialize["display"] = o.Display
 	toSerialize["id"] = o.Id
 	toSerialize["markdownTextAnnotation"] = o.MarkdownTextAnnotation
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -147,12 +142,6 @@ func (o *Annotation) UnmarshalJSON(bytes []byte) (err error) {
 	if all.MarkdownTextAnnotation == nil {
 		return fmt.Errorf("required field markdownTextAnnotation missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"display", "id", "markdownTextAnnotation"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	if all.Display.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -164,10 +153,6 @@ func (o *Annotation) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.MarkdownTextAnnotation = *all.MarkdownTextAnnotation
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

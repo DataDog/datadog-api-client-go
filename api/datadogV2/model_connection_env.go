@@ -19,8 +19,7 @@ type ConnectionEnv struct {
 	// The definition of `ConnectionEnvEnv` object.
 	Env ConnectionEnvEnv `json:"env"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewConnectionEnv instantiates a new ConnectionEnv object.
@@ -133,10 +132,6 @@ func (o ConnectionEnv) MarshalJSON() ([]byte, error) {
 		toSerialize["connections"] = o.Connections
 	}
 	toSerialize["env"] = o.Env
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -153,12 +148,6 @@ func (o *ConnectionEnv) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Env == nil {
 		return fmt.Errorf("required field env missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"connectionGroups", "connections", "env"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	o.ConnectionGroups = all.ConnectionGroups
@@ -167,10 +156,6 @@ func (o *ConnectionEnv) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	} else {
 		o.Env = *all.Env
-	}
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	if hasInvalidField {

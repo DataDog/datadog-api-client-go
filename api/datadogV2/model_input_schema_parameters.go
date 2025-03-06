@@ -23,8 +23,7 @@ type InputSchemaParameters struct {
 	// The definition of `InputSchemaParametersType` object.
 	Type InputSchemaParametersType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewInputSchemaParameters instantiates a new InputSchemaParameters object.
@@ -193,10 +192,6 @@ func (o InputSchemaParameters) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["type"] = o.Type
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -218,12 +213,6 @@ func (o *InputSchemaParameters) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"defaultValue", "description", "label", "name", "type"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	o.DefaultValue = all.DefaultValue
@@ -234,10 +223,6 @@ func (o *InputSchemaParameters) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
-	}
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	if hasInvalidField {

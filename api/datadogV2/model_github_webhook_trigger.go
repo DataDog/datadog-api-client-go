@@ -13,8 +13,7 @@ type GithubWebhookTrigger struct {
 	// Defines a rate limit for a trigger.
 	RateLimit *TriggerRateLimit `json:"rateLimit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewGithubWebhookTrigger instantiates a new GithubWebhookTrigger object.
@@ -71,10 +70,6 @@ func (o GithubWebhookTrigger) MarshalJSON() ([]byte, error) {
 	if o.RateLimit != nil {
 		toSerialize["rateLimit"] = o.RateLimit
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -86,22 +81,12 @@ func (o *GithubWebhookTrigger) UnmarshalJSON(bytes []byte) (err error) {
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"rateLimit"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	if all.RateLimit != nil && all.RateLimit.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RateLimit = all.RateLimit
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

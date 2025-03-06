@@ -17,8 +17,7 @@ type RetryStrategy struct {
 	// The definition of `RetryStrategyLinear` object.
 	Linear *RetryStrategyLinear `json:"linear,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewRetryStrategy instantiates a new RetryStrategy object.
@@ -100,10 +99,6 @@ func (o RetryStrategy) MarshalJSON() ([]byte, error) {
 	if o.Linear != nil {
 		toSerialize["linear"] = o.Linear
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -119,12 +114,6 @@ func (o *RetryStrategy) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Kind == nil {
 		return fmt.Errorf("required field kind missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"kind", "linear"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	if !all.Kind.IsValid() {
@@ -136,10 +125,6 @@ func (o *RetryStrategy) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Linear = all.Linear
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

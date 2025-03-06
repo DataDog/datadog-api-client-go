@@ -31,8 +31,7 @@ type Step struct {
 	// Used to merge multiple branches into a single branch.
 	ReadinessGate *ReadinessGate `json:"readinessGate,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewStep instantiates a new Step object.
@@ -325,10 +324,6 @@ func (o Step) MarshalJSON() ([]byte, error) {
 	if o.ReadinessGate != nil {
 		toSerialize["readinessGate"] = o.ReadinessGate
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -354,12 +349,6 @@ func (o *Step) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"actionId", "completionGate", "connectionLabel", "display", "errorHandlers", "name", "outboundEdges", "parameters", "readinessGate"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	o.ActionId = *all.ActionId
@@ -380,10 +369,6 @@ func (o *Step) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.ReadinessGate = all.ReadinessGate
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

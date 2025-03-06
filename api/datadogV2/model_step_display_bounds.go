@@ -15,8 +15,7 @@ type StepDisplayBounds struct {
 	// The `bounds` `y`.
 	Y *float64 `json:"y,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewStepDisplayBounds instantiates a new StepDisplayBounds object.
@@ -104,10 +103,6 @@ func (o StepDisplayBounds) MarshalJSON() ([]byte, error) {
 	if o.Y != nil {
 		toSerialize["y"] = o.Y
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -120,18 +115,8 @@ func (o *StepDisplayBounds) UnmarshalJSON(bytes []byte) (err error) {
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"x", "y"})
-	} else {
-		return err
-	}
 	o.X = all.X
 	o.Y = all.Y
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

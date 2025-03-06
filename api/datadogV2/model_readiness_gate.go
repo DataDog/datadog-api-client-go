@@ -15,8 +15,7 @@ type ReadinessGate struct {
 	// The definition of `ReadinessGateThresholdType` object.
 	ThresholdType ReadinessGateThresholdType `json:"thresholdType"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewReadinessGate instantiates a new ReadinessGate object.
@@ -67,10 +66,6 @@ func (o ReadinessGate) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["thresholdType"] = o.ThresholdType
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -85,22 +80,12 @@ func (o *ReadinessGate) UnmarshalJSON(bytes []byte) (err error) {
 	if all.ThresholdType == nil {
 		return fmt.Errorf("required field thresholdType missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"thresholdType"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	if !all.ThresholdType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ThresholdType = *all.ThresholdType
-	}
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	if hasInvalidField {

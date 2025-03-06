@@ -17,8 +17,7 @@ type APITriggerWrapper struct {
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewAPITriggerWrapper instantiates a new APITriggerWrapper object.
@@ -100,10 +99,6 @@ func (o APITriggerWrapper) MarshalJSON() ([]byte, error) {
 	if o.StartStepNames != nil {
 		toSerialize["startStepNames"] = o.StartStepNames
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -119,12 +114,6 @@ func (o *APITriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	if all.ApiTrigger == nil {
 		return fmt.Errorf("required field apiTrigger missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"apiTrigger", "startStepNames"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	if all.ApiTrigger.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -132,10 +121,6 @@ func (o *APITriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.ApiTrigger = *all.ApiTrigger
 	o.StartStepNames = all.StartStepNames
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

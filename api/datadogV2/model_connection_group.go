@@ -19,8 +19,7 @@ type ConnectionGroup struct {
 	// The `ConnectionGroup` `tags`.
 	Tags []string `json:"tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewConnectionGroup instantiates a new ConnectionGroup object.
@@ -121,10 +120,6 @@ func (o ConnectionGroup) MarshalJSON() ([]byte, error) {
 	toSerialize["connectionGroupId"] = o.ConnectionGroupId
 	toSerialize["label"] = o.Label
 	toSerialize["tags"] = o.Tags
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -147,19 +142,9 @@ func (o *ConnectionGroup) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Tags == nil {
 		return fmt.Errorf("required field tags missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"connectionGroupId", "label", "tags"})
-	} else {
-		return err
-	}
 	o.ConnectionGroupId = *all.ConnectionGroupId
 	o.Label = *all.Label
 	o.Tags = *all.Tags
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

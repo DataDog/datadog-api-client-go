@@ -25,8 +25,7 @@ type Spec struct {
 	// The list of triggers that activate this workflow. At least one trigger is required, and each trigger type may appear at most once.
 	Triggers []Trigger `json:"triggers,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewSpec instantiates a new Spec object.
@@ -269,10 +268,6 @@ func (o Spec) MarshalJSON() ([]byte, error) {
 	if o.Triggers != nil {
 		toSerialize["triggers"] = o.Triggers
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -290,12 +285,6 @@ func (o *Spec) UnmarshalJSON(bytes []byte) (err error) {
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"annotations", "connectionEnvs", "handle", "inputSchema", "outputSchema", "steps", "triggers"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	o.Annotations = all.Annotations
@@ -311,10 +300,6 @@ func (o *Spec) UnmarshalJSON(bytes []byte) (err error) {
 	o.OutputSchema = all.OutputSchema
 	o.Steps = all.Steps
 	o.Triggers = all.Triggers
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

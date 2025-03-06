@@ -17,8 +17,7 @@ type GithubWebhookTriggerWrapper struct {
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewGithubWebhookTriggerWrapper instantiates a new GithubWebhookTriggerWrapper object.
@@ -100,10 +99,6 @@ func (o GithubWebhookTriggerWrapper) MarshalJSON() ([]byte, error) {
 	if o.StartStepNames != nil {
 		toSerialize["startStepNames"] = o.StartStepNames
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -119,12 +114,6 @@ func (o *GithubWebhookTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	if all.GithubWebhookTrigger == nil {
 		return fmt.Errorf("required field githubWebhookTrigger missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"githubWebhookTrigger", "startStepNames"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	if all.GithubWebhookTrigger.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -132,10 +121,6 @@ func (o *GithubWebhookTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.GithubWebhookTrigger = *all.GithubWebhookTrigger
 	o.StartStepNames = all.StartStepNames
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

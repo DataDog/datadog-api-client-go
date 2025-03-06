@@ -13,8 +13,7 @@ type AnnotationMarkdownTextAnnotation struct {
 	// The `markdownTextAnnotation` `text`.
 	Text *string `json:"text,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewAnnotationMarkdownTextAnnotation instantiates a new AnnotationMarkdownTextAnnotation object.
@@ -71,10 +70,6 @@ func (o AnnotationMarkdownTextAnnotation) MarshalJSON() ([]byte, error) {
 	if o.Text != nil {
 		toSerialize["text"] = o.Text
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -86,17 +81,7 @@ func (o *AnnotationMarkdownTextAnnotation) UnmarshalJSON(bytes []byte) (err erro
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"text"})
-	} else {
-		return err
-	}
 	o.Text = all.Text
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

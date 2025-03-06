@@ -13,8 +13,7 @@ type InputSchema struct {
 	// The `InputSchema` `parameters`.
 	Parameters []InputSchemaParameters `json:"parameters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewInputSchema instantiates a new InputSchema object.
@@ -71,10 +70,6 @@ func (o InputSchema) MarshalJSON() ([]byte, error) {
 	if o.Parameters != nil {
 		toSerialize["parameters"] = o.Parameters
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -86,17 +81,7 @@ func (o *InputSchema) UnmarshalJSON(bytes []byte) (err error) {
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"parameters"})
-	} else {
-		return err
-	}
 	o.Parameters = all.Parameters
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

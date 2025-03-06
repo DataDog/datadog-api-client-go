@@ -29,8 +29,7 @@ type WorkflowDataUpdateAttributes struct {
 	// If a Webhook trigger is defined on this workflow, a webhookSecret is required and should be provided here.
 	WebhookSecret *string `json:"webhookSecret,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewWorkflowDataUpdateAttributes instantiates a new WorkflowDataUpdateAttributes object.
@@ -312,10 +311,6 @@ func (o WorkflowDataUpdateAttributes) MarshalJSON() ([]byte, error) {
 	if o.WebhookSecret != nil {
 		toSerialize["webhookSecret"] = o.WebhookSecret
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -334,12 +329,6 @@ func (o *WorkflowDataUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "description", "name", "published", "spec", "tags", "updatedAt", "webhookSecret"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	o.CreatedAt = all.CreatedAt
@@ -353,10 +342,6 @@ func (o *WorkflowDataUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	o.UpdatedAt = all.UpdatedAt
 	o.WebhookSecret = all.WebhookSecret
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

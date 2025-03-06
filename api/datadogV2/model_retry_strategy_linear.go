@@ -17,8 +17,7 @@ type RetryStrategyLinear struct {
 	// The `RetryStrategyLinear` `maxRetries`.
 	MaxRetries float64 `json:"maxRetries"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewRetryStrategyLinear instantiates a new RetryStrategyLinear object.
@@ -94,10 +93,6 @@ func (o RetryStrategyLinear) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["interval"] = o.Interval
 	toSerialize["maxRetries"] = o.MaxRetries
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -116,18 +111,8 @@ func (o *RetryStrategyLinear) UnmarshalJSON(bytes []byte) (err error) {
 	if all.MaxRetries == nil {
 		return fmt.Errorf("required field maxRetries missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"interval", "maxRetries"})
-	} else {
-		return err
-	}
 	o.Interval = *all.Interval
 	o.MaxRetries = *all.MaxRetries
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

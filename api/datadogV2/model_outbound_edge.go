@@ -17,8 +17,7 @@ type OutboundEdge struct {
 	// The `OutboundEdge` `nextStepName`.
 	NextStepName string `json:"nextStepName"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewOutboundEdge instantiates a new OutboundEdge object.
@@ -94,10 +93,6 @@ func (o OutboundEdge) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["branchName"] = o.BranchName
 	toSerialize["nextStepName"] = o.NextStepName
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -116,18 +111,8 @@ func (o *OutboundEdge) UnmarshalJSON(bytes []byte) (err error) {
 	if all.NextStepName == nil {
 		return fmt.Errorf("required field nextStepName missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"branchName", "nextStepName"})
-	} else {
-		return err
-	}
 	o.BranchName = *all.BranchName
 	o.NextStepName = *all.NextStepName
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

@@ -17,8 +17,7 @@ type Parameter struct {
 	// The `Parameter` `value`.
 	Value interface{} `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewParameter instantiates a new Parameter object.
@@ -94,10 +93,6 @@ func (o Parameter) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["value"] = o.Value
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -116,18 +111,8 @@ func (o *Parameter) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Value == nil {
 		return fmt.Errorf("required field value missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "value"})
-	} else {
-		return err
-	}
 	o.Name = *all.Name
 	o.Value = *all.Value
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

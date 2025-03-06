@@ -15,8 +15,7 @@ type ScheduleTrigger struct {
 	// Recurrence rule expression for scheduling.
 	RruleExpression string `json:"rruleExpression"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewScheduleTrigger instantiates a new ScheduleTrigger object.
@@ -67,10 +66,6 @@ func (o ScheduleTrigger) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["rruleExpression"] = o.RruleExpression
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -85,17 +80,7 @@ func (o *ScheduleTrigger) UnmarshalJSON(bytes []byte) (err error) {
 	if all.RruleExpression == nil {
 		return fmt.Errorf("required field rruleExpression missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"rruleExpression"})
-	} else {
-		return err
-	}
 	o.RruleExpression = *all.RruleExpression
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

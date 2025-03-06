@@ -17,8 +17,7 @@ type Connection struct {
 	// The `Connection` `label`.
 	Label string `json:"label"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewConnection instantiates a new Connection object.
@@ -94,10 +93,6 @@ func (o Connection) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["connectionId"] = o.ConnectionId
 	toSerialize["label"] = o.Label
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -116,18 +111,8 @@ func (o *Connection) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Label == nil {
 		return fmt.Errorf("required field label missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"connectionId", "label"})
-	} else {
-		return err
-	}
 	o.ConnectionId = *all.ConnectionId
 	o.Label = *all.Label
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }
