@@ -1,0 +1,24 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"Exclude false positives on a path","enabled":true,"event_query":"test:1"},"type":"exclusion_filter"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/remote_config/products/asm/waf/exclusion_filters
+  response:
+    body: '{"errors":[{"title":"legacy exclusion filters cannot be created anymore","code":"400"}]}
+
+      '
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 2
