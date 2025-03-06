@@ -181,7 +181,7 @@ on your configuration object:
 <pre>configuration.Debug = true
 </pre>
 <h3 id="hdr-Enable_retry">Enable retry</h3>
-<p>If you want to enable retry when getting status code 429 rate-limited, set EnableRetry to true
+<p>If you want to enable retry when getting status code 429 rate-limited or 5xx, set EnableRetry to true
 <pre>configuration.RetryConfiguration.EnableRetry = true
 </pre>
 <p>The default max retry is 3, you can change it with MaxRetries
