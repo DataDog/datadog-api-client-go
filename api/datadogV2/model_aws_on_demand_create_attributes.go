@@ -5,13 +5,15 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // AwsOnDemandCreateAttributes Attributes for the AWS on demand task.
 type AwsOnDemandCreateAttributes struct {
 	// The arn of the resource to scan. Agentless supports the scan of EC2 instances, lambda functions, AMI, ECR, RDS and S3 buckets.
-	Arn *string `json:"arn,omitempty"`
+	Arn string `json:"arn"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -21,8 +23,9 @@ type AwsOnDemandCreateAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAwsOnDemandCreateAttributes() *AwsOnDemandCreateAttributes {
+func NewAwsOnDemandCreateAttributes(arn string) *AwsOnDemandCreateAttributes {
 	this := AwsOnDemandCreateAttributes{}
+	this.Arn = arn
 	return &this
 }
 
@@ -34,32 +37,27 @@ func NewAwsOnDemandCreateAttributesWithDefaults() *AwsOnDemandCreateAttributes {
 	return &this
 }
 
-// GetArn returns the Arn field value if set, zero value otherwise.
+// GetArn returns the Arn field value.
 func (o *AwsOnDemandCreateAttributes) GetArn() string {
-	if o == nil || o.Arn == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Arn
+	return o.Arn
 }
 
-// GetArnOk returns a tuple with the Arn field value if set, nil otherwise
+// GetArnOk returns a tuple with the Arn field value
 // and a boolean to check if the value has been set.
 func (o *AwsOnDemandCreateAttributes) GetArnOk() (*string, bool) {
-	if o == nil || o.Arn == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Arn, true
+	return &o.Arn, true
 }
 
-// HasArn returns a boolean if a field has been set.
-func (o *AwsOnDemandCreateAttributes) HasArn() bool {
-	return o != nil && o.Arn != nil
-}
-
-// SetArn gets a reference to the given string and assigns it to the Arn field.
+// SetArn sets field value.
 func (o *AwsOnDemandCreateAttributes) SetArn(v string) {
-	o.Arn = &v
+	o.Arn = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -68,9 +66,7 @@ func (o AwsOnDemandCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Arn != nil {
-		toSerialize["arn"] = o.Arn
-	}
+	toSerialize["arn"] = o.Arn
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -81,10 +77,13 @@ func (o AwsOnDemandCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AwsOnDemandCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Arn *string `json:"arn,omitempty"`
+		Arn *string `json:"arn"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Arn == nil {
+		return fmt.Errorf("required field arn missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -92,7 +91,7 @@ func (o *AwsOnDemandCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	o.Arn = all.Arn
+	o.Arn = *all.Arn
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
