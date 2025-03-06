@@ -18,10 +18,10 @@ func main() {
 			Id:   "000000000003",
 			Type: datadogV2.AWSSCANOPTIONSTYPE_AWS_SCAN_OPTIONS,
 			Attributes: datadogV2.AwsScanOptionsCreateAttributes{
-				Lambda:           datadog.PtrBool(true),
-				SensitiveData:    datadog.PtrBool(false),
-				VulnContainersOs: datadog.PtrBool(true),
-				VulnHostOs:       datadog.PtrBool(true),
+				Lambda:           true,
+				SensitiveData:    false,
+				VulnContainersOs: true,
+				VulnHostOs:       true,
 			},
 		},
 	}
