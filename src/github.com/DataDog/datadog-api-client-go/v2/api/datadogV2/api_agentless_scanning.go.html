@@ -73,7 +73,7 @@
 <span id="L16" class="ln">    16  </span>type AgentlessScanningApi datadog.Service
 <span id="L17" class="ln">    17  </span>
 <span id="L18" class="ln">    18  </span><span class="comment">// CreateAwsOnDemandTask Post an AWS on demand task.</span>
-<span id="L19" class="ln">    19  </span><span class="comment">// Trigger the scan of an AWS resource with a high priority.</span>
+<span id="L19" class="ln">    19  </span><span class="comment">// Trigger the scan of an AWS resource with a high priority. Agentless scanning must be activated for the AWS account containing the resource to scan.</span>
 <span id="L20" class="ln">    20  </span>func (a *AgentlessScanningApi) CreateAwsOnDemandTask(ctx _context.Context, body AwsOnDemandCreateRequest) (AwsOnDemandResponse, *_nethttp.Response, error) {
 <span id="L21" class="ln">    21  </span>	var (
 <span id="L22" class="ln">    22  </span>		localVarHTTPMethod  = _nethttp.MethodPost
@@ -279,162 +279,162 @@
 <span id="L222" class="ln">   222  </span>	return localVarHTTPResponse, nil
 <span id="L223" class="ln">   223  </span>}
 <span id="L224" class="ln">   224  </span>
-<span id="L225" class="ln">   225  </span><span class="comment">// ListAwsOnDemandTasks Get AWS On Demand tasks.</span>
-<span id="L226" class="ln">   226  </span><span class="comment">// Fetches the most recent 1000 AWS on demand tasks.</span>
-<span id="L227" class="ln">   227  </span>func (a *AgentlessScanningApi) ListAwsOnDemandTasks(ctx _context.Context) (AwsOnDemandListResponse, *_nethttp.Response, error) {
+<span id="L225" class="ln">   225  </span><span class="comment">// GetAwsOnDemandTask Get AWS On Demand task by id.</span>
+<span id="L226" class="ln">   226  </span><span class="comment">// Fetch the data of a specific on demand task.</span>
+<span id="L227" class="ln">   227  </span>func (a *AgentlessScanningApi) GetAwsOnDemandTask(ctx _context.Context, taskId string) (AwsOnDemandResponse, *_nethttp.Response, error) {
 <span id="L228" class="ln">   228  </span>	var (
 <span id="L229" class="ln">   229  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L230" class="ln">   230  </span>		localVarPostBody    interface{}
-<span id="L231" class="ln">   231  </span>		localVarReturnValue AwsOnDemandListResponse
+<span id="L231" class="ln">   231  </span>		localVarReturnValue AwsOnDemandResponse
 <span id="L232" class="ln">   232  </span>	)
 <span id="L233" class="ln">   233  </span>
-<span id="L234" class="ln">   234  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.AgentlessScanningApi.ListAwsOnDemandTasks&#34;)
+<span id="L234" class="ln">   234  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.AgentlessScanningApi.GetAwsOnDemandTask&#34;)
 <span id="L235" class="ln">   235  </span>	if err != nil {
 <span id="L236" class="ln">   236  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L237" class="ln">   237  </span>	}
 <span id="L238" class="ln">   238  </span>
-<span id="L239" class="ln">   239  </span>	localVarPath := localBasePath + &#34;/api/v2/agentless_scanning/ondemand/aws&#34;
-<span id="L240" class="ln">   240  </span>
-<span id="L241" class="ln">   241  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L242" class="ln">   242  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L243" class="ln">   243  </span>	localVarFormParams := _neturl.Values{}
-<span id="L244" class="ln">   244  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L245" class="ln">   245  </span>
-<span id="L246" class="ln">   246  </span>	datadog.SetAuthKeys(
-<span id="L247" class="ln">   247  </span>		ctx,
-<span id="L248" class="ln">   248  </span>		&amp;localVarHeaderParams,
-<span id="L249" class="ln">   249  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L250" class="ln">   250  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L251" class="ln">   251  </span>	)
-<span id="L252" class="ln">   252  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L253" class="ln">   253  </span>	if err != nil {
-<span id="L254" class="ln">   254  </span>		return localVarReturnValue, nil, err
-<span id="L255" class="ln">   255  </span>	}
-<span id="L256" class="ln">   256  </span>
-<span id="L257" class="ln">   257  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L258" class="ln">   258  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L259" class="ln">   259  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L260" class="ln">   260  </span>	}
-<span id="L261" class="ln">   261  </span>
-<span id="L262" class="ln">   262  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L263" class="ln">   263  </span>	if err != nil {
-<span id="L264" class="ln">   264  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L265" class="ln">   265  </span>	}
-<span id="L266" class="ln">   266  </span>
-<span id="L267" class="ln">   267  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L268" class="ln">   268  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L269" class="ln">   269  </span>			ErrorBody:    localVarBody,
-<span id="L270" class="ln">   270  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L271" class="ln">   271  </span>		}
-<span id="L272" class="ln">   272  </span>		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L273" class="ln">   273  </span>			var v APIErrorResponse
-<span id="L274" class="ln">   274  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L275" class="ln">   275  </span>			if err != nil {
-<span id="L276" class="ln">   276  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L277" class="ln">   277  </span>			}
-<span id="L278" class="ln">   278  </span>			newErr.ErrorModel = v
-<span id="L279" class="ln">   279  </span>		}
-<span id="L280" class="ln">   280  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L281" class="ln">   281  </span>	}
-<span id="L282" class="ln">   282  </span>
-<span id="L283" class="ln">   283  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L284" class="ln">   284  </span>	if err != nil {
-<span id="L285" class="ln">   285  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L286" class="ln">   286  </span>			ErrorBody:    localVarBody,
-<span id="L287" class="ln">   287  </span>			ErrorMessage: err.Error(),
-<span id="L288" class="ln">   288  </span>		}
-<span id="L289" class="ln">   289  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L290" class="ln">   290  </span>	}
-<span id="L291" class="ln">   291  </span>
-<span id="L292" class="ln">   292  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L293" class="ln">   293  </span>}
-<span id="L294" class="ln">   294  </span>
-<span id="L295" class="ln">   295  </span><span class="comment">// ListAwsScanOptions Get AWS Scan Options.</span>
-<span id="L296" class="ln">   296  </span><span class="comment">// Fetches the scan options configured for AWS accounts.</span>
-<span id="L297" class="ln">   297  </span>func (a *AgentlessScanningApi) ListAwsScanOptions(ctx _context.Context) (AwsScanOptionsListResponse, *_nethttp.Response, error) {
-<span id="L298" class="ln">   298  </span>	var (
-<span id="L299" class="ln">   299  </span>		localVarHTTPMethod  = _nethttp.MethodGet
-<span id="L300" class="ln">   300  </span>		localVarPostBody    interface{}
-<span id="L301" class="ln">   301  </span>		localVarReturnValue AwsScanOptionsListResponse
-<span id="L302" class="ln">   302  </span>	)
-<span id="L303" class="ln">   303  </span>
-<span id="L304" class="ln">   304  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.AgentlessScanningApi.ListAwsScanOptions&#34;)
-<span id="L305" class="ln">   305  </span>	if err != nil {
-<span id="L306" class="ln">   306  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L307" class="ln">   307  </span>	}
-<span id="L308" class="ln">   308  </span>
-<span id="L309" class="ln">   309  </span>	localVarPath := localBasePath + &#34;/api/v2/agentless_scanning/accounts/aws&#34;
-<span id="L310" class="ln">   310  </span>
-<span id="L311" class="ln">   311  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L312" class="ln">   312  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L313" class="ln">   313  </span>	localVarFormParams := _neturl.Values{}
-<span id="L314" class="ln">   314  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L315" class="ln">   315  </span>
-<span id="L316" class="ln">   316  </span>	datadog.SetAuthKeys(
-<span id="L317" class="ln">   317  </span>		ctx,
-<span id="L318" class="ln">   318  </span>		&amp;localVarHeaderParams,
-<span id="L319" class="ln">   319  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L320" class="ln">   320  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L321" class="ln">   321  </span>	)
-<span id="L322" class="ln">   322  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L323" class="ln">   323  </span>	if err != nil {
-<span id="L324" class="ln">   324  </span>		return localVarReturnValue, nil, err
-<span id="L325" class="ln">   325  </span>	}
-<span id="L326" class="ln">   326  </span>
-<span id="L327" class="ln">   327  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L328" class="ln">   328  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L329" class="ln">   329  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L330" class="ln">   330  </span>	}
-<span id="L331" class="ln">   331  </span>
-<span id="L332" class="ln">   332  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L333" class="ln">   333  </span>	if err != nil {
-<span id="L334" class="ln">   334  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L335" class="ln">   335  </span>	}
-<span id="L336" class="ln">   336  </span>
-<span id="L337" class="ln">   337  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L338" class="ln">   338  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L339" class="ln">   339  </span>			ErrorBody:    localVarBody,
-<span id="L340" class="ln">   340  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L341" class="ln">   341  </span>		}
-<span id="L342" class="ln">   342  </span>		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L343" class="ln">   343  </span>			var v APIErrorResponse
-<span id="L344" class="ln">   344  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L345" class="ln">   345  </span>			if err != nil {
-<span id="L346" class="ln">   346  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L347" class="ln">   347  </span>			}
-<span id="L348" class="ln">   348  </span>			newErr.ErrorModel = v
-<span id="L349" class="ln">   349  </span>		}
-<span id="L350" class="ln">   350  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L351" class="ln">   351  </span>	}
-<span id="L352" class="ln">   352  </span>
-<span id="L353" class="ln">   353  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L354" class="ln">   354  </span>	if err != nil {
-<span id="L355" class="ln">   355  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L356" class="ln">   356  </span>			ErrorBody:    localVarBody,
-<span id="L357" class="ln">   357  </span>			ErrorMessage: err.Error(),
-<span id="L358" class="ln">   358  </span>		}
-<span id="L359" class="ln">   359  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L360" class="ln">   360  </span>	}
-<span id="L361" class="ln">   361  </span>
-<span id="L362" class="ln">   362  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L363" class="ln">   363  </span>}
-<span id="L364" class="ln">   364  </span>
-<span id="L365" class="ln">   365  </span><span class="comment">// RetrieveAwsOnDemandTask Get AWS On Demand task by id.</span>
-<span id="L366" class="ln">   366  </span><span class="comment">// Fetch the data of a specific on demand task.</span>
-<span id="L367" class="ln">   367  </span>func (a *AgentlessScanningApi) RetrieveAwsOnDemandTask(ctx _context.Context, taskId string) (AwsOnDemandResponse, *_nethttp.Response, error) {
-<span id="L368" class="ln">   368  </span>	var (
-<span id="L369" class="ln">   369  </span>		localVarHTTPMethod  = _nethttp.MethodGet
-<span id="L370" class="ln">   370  </span>		localVarPostBody    interface{}
-<span id="L371" class="ln">   371  </span>		localVarReturnValue AwsOnDemandResponse
-<span id="L372" class="ln">   372  </span>	)
-<span id="L373" class="ln">   373  </span>
-<span id="L374" class="ln">   374  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.AgentlessScanningApi.RetrieveAwsOnDemandTask&#34;)
-<span id="L375" class="ln">   375  </span>	if err != nil {
-<span id="L376" class="ln">   376  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L377" class="ln">   377  </span>	}
-<span id="L378" class="ln">   378  </span>
-<span id="L379" class="ln">   379  </span>	localVarPath := localBasePath + &#34;/api/v2/agentless_scanning/ondemand/aws/{task_id}&#34;
-<span id="L380" class="ln">   380  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{task_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(taskId, &#34;&#34;)))
+<span id="L239" class="ln">   239  </span>	localVarPath := localBasePath + &#34;/api/v2/agentless_scanning/ondemand/aws/{task_id}&#34;
+<span id="L240" class="ln">   240  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{task_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(taskId, &#34;&#34;)))
+<span id="L241" class="ln">   241  </span>
+<span id="L242" class="ln">   242  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L243" class="ln">   243  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L244" class="ln">   244  </span>	localVarFormParams := _neturl.Values{}
+<span id="L245" class="ln">   245  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L246" class="ln">   246  </span>
+<span id="L247" class="ln">   247  </span>	datadog.SetAuthKeys(
+<span id="L248" class="ln">   248  </span>		ctx,
+<span id="L249" class="ln">   249  </span>		&amp;localVarHeaderParams,
+<span id="L250" class="ln">   250  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L251" class="ln">   251  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L252" class="ln">   252  </span>	)
+<span id="L253" class="ln">   253  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L254" class="ln">   254  </span>	if err != nil {
+<span id="L255" class="ln">   255  </span>		return localVarReturnValue, nil, err
+<span id="L256" class="ln">   256  </span>	}
+<span id="L257" class="ln">   257  </span>
+<span id="L258" class="ln">   258  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L259" class="ln">   259  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L260" class="ln">   260  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L261" class="ln">   261  </span>	}
+<span id="L262" class="ln">   262  </span>
+<span id="L263" class="ln">   263  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L264" class="ln">   264  </span>	if err != nil {
+<span id="L265" class="ln">   265  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L266" class="ln">   266  </span>	}
+<span id="L267" class="ln">   267  </span>
+<span id="L268" class="ln">   268  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L269" class="ln">   269  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L270" class="ln">   270  </span>			ErrorBody:    localVarBody,
+<span id="L271" class="ln">   271  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L272" class="ln">   272  </span>		}
+<span id="L273" class="ln">   273  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L274" class="ln">   274  </span>			var v APIErrorResponse
+<span id="L275" class="ln">   275  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L276" class="ln">   276  </span>			if err != nil {
+<span id="L277" class="ln">   277  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L278" class="ln">   278  </span>			}
+<span id="L279" class="ln">   279  </span>			newErr.ErrorModel = v
+<span id="L280" class="ln">   280  </span>		}
+<span id="L281" class="ln">   281  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L282" class="ln">   282  </span>	}
+<span id="L283" class="ln">   283  </span>
+<span id="L284" class="ln">   284  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L285" class="ln">   285  </span>	if err != nil {
+<span id="L286" class="ln">   286  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L287" class="ln">   287  </span>			ErrorBody:    localVarBody,
+<span id="L288" class="ln">   288  </span>			ErrorMessage: err.Error(),
+<span id="L289" class="ln">   289  </span>		}
+<span id="L290" class="ln">   290  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L291" class="ln">   291  </span>	}
+<span id="L292" class="ln">   292  </span>
+<span id="L293" class="ln">   293  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L294" class="ln">   294  </span>}
+<span id="L295" class="ln">   295  </span>
+<span id="L296" class="ln">   296  </span><span class="comment">// ListAwsOnDemandTasks Get AWS On Demand tasks.</span>
+<span id="L297" class="ln">   297  </span><span class="comment">// Fetches the most recent 1000 AWS on demand tasks.</span>
+<span id="L298" class="ln">   298  </span>func (a *AgentlessScanningApi) ListAwsOnDemandTasks(ctx _context.Context) (AwsOnDemandListResponse, *_nethttp.Response, error) {
+<span id="L299" class="ln">   299  </span>	var (
+<span id="L300" class="ln">   300  </span>		localVarHTTPMethod  = _nethttp.MethodGet
+<span id="L301" class="ln">   301  </span>		localVarPostBody    interface{}
+<span id="L302" class="ln">   302  </span>		localVarReturnValue AwsOnDemandListResponse
+<span id="L303" class="ln">   303  </span>	)
+<span id="L304" class="ln">   304  </span>
+<span id="L305" class="ln">   305  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.AgentlessScanningApi.ListAwsOnDemandTasks&#34;)
+<span id="L306" class="ln">   306  </span>	if err != nil {
+<span id="L307" class="ln">   307  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L308" class="ln">   308  </span>	}
+<span id="L309" class="ln">   309  </span>
+<span id="L310" class="ln">   310  </span>	localVarPath := localBasePath + &#34;/api/v2/agentless_scanning/ondemand/aws&#34;
+<span id="L311" class="ln">   311  </span>
+<span id="L312" class="ln">   312  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L313" class="ln">   313  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L314" class="ln">   314  </span>	localVarFormParams := _neturl.Values{}
+<span id="L315" class="ln">   315  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L316" class="ln">   316  </span>
+<span id="L317" class="ln">   317  </span>	datadog.SetAuthKeys(
+<span id="L318" class="ln">   318  </span>		ctx,
+<span id="L319" class="ln">   319  </span>		&amp;localVarHeaderParams,
+<span id="L320" class="ln">   320  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L321" class="ln">   321  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L322" class="ln">   322  </span>	)
+<span id="L323" class="ln">   323  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L324" class="ln">   324  </span>	if err != nil {
+<span id="L325" class="ln">   325  </span>		return localVarReturnValue, nil, err
+<span id="L326" class="ln">   326  </span>	}
+<span id="L327" class="ln">   327  </span>
+<span id="L328" class="ln">   328  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L329" class="ln">   329  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L330" class="ln">   330  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L331" class="ln">   331  </span>	}
+<span id="L332" class="ln">   332  </span>
+<span id="L333" class="ln">   333  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L334" class="ln">   334  </span>	if err != nil {
+<span id="L335" class="ln">   335  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L336" class="ln">   336  </span>	}
+<span id="L337" class="ln">   337  </span>
+<span id="L338" class="ln">   338  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L339" class="ln">   339  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L340" class="ln">   340  </span>			ErrorBody:    localVarBody,
+<span id="L341" class="ln">   341  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L342" class="ln">   342  </span>		}
+<span id="L343" class="ln">   343  </span>		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L344" class="ln">   344  </span>			var v APIErrorResponse
+<span id="L345" class="ln">   345  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L346" class="ln">   346  </span>			if err != nil {
+<span id="L347" class="ln">   347  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L348" class="ln">   348  </span>			}
+<span id="L349" class="ln">   349  </span>			newErr.ErrorModel = v
+<span id="L350" class="ln">   350  </span>		}
+<span id="L351" class="ln">   351  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L352" class="ln">   352  </span>	}
+<span id="L353" class="ln">   353  </span>
+<span id="L354" class="ln">   354  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L355" class="ln">   355  </span>	if err != nil {
+<span id="L356" class="ln">   356  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L357" class="ln">   357  </span>			ErrorBody:    localVarBody,
+<span id="L358" class="ln">   358  </span>			ErrorMessage: err.Error(),
+<span id="L359" class="ln">   359  </span>		}
+<span id="L360" class="ln">   360  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L361" class="ln">   361  </span>	}
+<span id="L362" class="ln">   362  </span>
+<span id="L363" class="ln">   363  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L364" class="ln">   364  </span>}
+<span id="L365" class="ln">   365  </span>
+<span id="L366" class="ln">   366  </span><span class="comment">// ListAwsScanOptions Get AWS Scan Options.</span>
+<span id="L367" class="ln">   367  </span><span class="comment">// Fetches the scan options configured for AWS accounts.</span>
+<span id="L368" class="ln">   368  </span>func (a *AgentlessScanningApi) ListAwsScanOptions(ctx _context.Context) (AwsScanOptionsListResponse, *_nethttp.Response, error) {
+<span id="L369" class="ln">   369  </span>	var (
+<span id="L370" class="ln">   370  </span>		localVarHTTPMethod  = _nethttp.MethodGet
+<span id="L371" class="ln">   371  </span>		localVarPostBody    interface{}
+<span id="L372" class="ln">   372  </span>		localVarReturnValue AwsScanOptionsListResponse
+<span id="L373" class="ln">   373  </span>	)
+<span id="L374" class="ln">   374  </span>
+<span id="L375" class="ln">   375  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.AgentlessScanningApi.ListAwsScanOptions&#34;)
+<span id="L376" class="ln">   376  </span>	if err != nil {
+<span id="L377" class="ln">   377  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L378" class="ln">   378  </span>	}
+<span id="L379" class="ln">   379  </span>
+<span id="L380" class="ln">   380  </span>	localVarPath := localBasePath + &#34;/api/v2/agentless_scanning/accounts/aws&#34;
 <span id="L381" class="ln">   381  </span>
 <span id="L382" class="ln">   382  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L383" class="ln">   383  </span>	localVarQueryParams := _neturl.Values{}
@@ -467,7 +467,7 @@
 <span id="L410" class="ln">   410  </span>			ErrorBody:    localVarBody,
 <span id="L411" class="ln">   411  </span>			ErrorMessage: localVarHTTPResponse.Status,
 <span id="L412" class="ln">   412  </span>		}
-<span id="L413" class="ln">   413  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L413" class="ln">   413  </span>		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 <span id="L414" class="ln">   414  </span>			var v APIErrorResponse
 <span id="L415" class="ln">   415  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
 <span id="L416" class="ln">   416  </span>			if err != nil {
