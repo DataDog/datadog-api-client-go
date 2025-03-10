@@ -10,7 +10,7 @@ import (
 
 // RumRetentionFilterMeta The object describing metadata of a RUM retention filter.
 type RumRetentionFilterMeta struct {
-	// The type of RUM events to filter on.
+	// The source that defines the origin of the retention filter.
 	Source *RumRetentionFilterSource `json:"source,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
