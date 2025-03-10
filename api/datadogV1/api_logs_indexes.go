@@ -100,16 +100,15 @@ func (a *LogsIndexesApi) CreateLogsIndex(ctx _context.Context, body LogsIndex) (
 // DeleteLogsIndex Delete an index.
 // Delete an existing index from your organization. Index deletions are permanent and cannot be reverted.
 // You cannot recreate an index with the same name as deleted ones.
-func (a *LogsIndexesApi) DeleteLogsIndex(ctx _context.Context, name string) (LogsIndex, *_nethttp.Response, error) {
+func (a *LogsIndexesApi) DeleteLogsIndex(ctx _context.Context, name string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue LogsIndex
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v1.LogsIndexesApi.DeleteLogsIndex")
 	if err != nil {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/logs/config/indexes/{name}"
@@ -118,7 +117,7 @@ func (a *LogsIndexesApi) DeleteLogsIndex(ctx _context.Context, name string) (Log
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "application/json"
+	localVarHeaderParams["Accept"] = "*/*"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -128,17 +127,17 @@ func (a *LogsIndexesApi) DeleteLogsIndex(ctx _context.Context, name string) (Log
 	)
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -150,32 +149,23 @@ func (a *LogsIndexesApi) DeleteLogsIndex(ctx _context.Context, name string) (Log
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.ErrorModel = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v LogsAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.ErrorModel = v
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 // GetLogsIndex Get an index.
