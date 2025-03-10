@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionFilterSource The type of RUM events to filter on.
+// RumRetentionFilterSource The source that defines the origin of the retention filter.
 type RumRetentionFilterSource string
 
 // List of RumRetentionFilterSource.
