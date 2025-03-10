@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionFiltersResponse All RUM retention filters for an application.
+// RumRetentionFiltersResponse All RUM retention filters for a RUM application.
 type RumRetentionFiltersResponse struct {
 	// A list of RUM retention filters.
 	Data []RumRetentionFilterData `json:"data,omitempty"`

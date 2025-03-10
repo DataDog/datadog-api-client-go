@@ -10,7 +10,7 @@ import (
 
 // RumRetentionFilterMeta The object describing metadata of a RUM retention filter.
 type RumRetentionFilterMeta struct {
-	// The type of RUM events to filter on.
+	// The origin source of the retention filter, which may be created or updated through the Datadog UI, terraform, or other channels such as direct API calls.
 	Source *RumRetentionFilterSource `json:"source,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
