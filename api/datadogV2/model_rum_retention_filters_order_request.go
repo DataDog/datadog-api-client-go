@@ -9,7 +9,7 @@ import (
 )
 
 // RumRetentionFiltersOrderRequest The list of RUM retention filter IDs along with their corresponding type to reorder.
-// All retention filter IDs should be included in the list created for an application.
+// All retention filter IDs should be included in the list created for a RUM application.
 type RumRetentionFiltersOrderRequest struct {
 	// A list of RUM retention filter IDs along with type.
 	Data []RumRetentionFiltersOrderData `json:"data,omitempty"`

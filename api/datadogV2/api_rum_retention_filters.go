@@ -16,7 +16,7 @@ import (
 type RumRetentionFiltersApi datadog.Service
 
 // CreateRetentionFilter Create a RUM retention filter.
-// Create a RUM retention filter for an application.
+// Create a RUM retention filter for a RUM application.
 // Returns RUM retention filter objects from the request body when the request is successful.
 func (a *RumRetentionFiltersApi) CreateRetentionFilter(ctx _context.Context, appId string, body RumRetentionFilterCreateRequest) (RumRetentionFilterResponse, *_nethttp.Response, error) {
 	var (
@@ -91,7 +91,7 @@ func (a *RumRetentionFiltersApi) CreateRetentionFilter(ctx _context.Context, app
 }
 
 // DeleteRetentionFilter Delete a RUM retention filter.
-// Delete a RUM retention filter for an application.
+// Delete a RUM retention filter for a RUM application.
 func (a *RumRetentionFiltersApi) DeleteRetentionFilter(ctx _context.Context, appId string, rfId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -153,7 +153,7 @@ func (a *RumRetentionFiltersApi) DeleteRetentionFilter(ctx _context.Context, app
 }
 
 // GetRetentionFilter Get a RUM retention filter.
-// Get a RUM retention filter for an application.
+// Get a RUM retention filter for a RUM application.
 func (a *RumRetentionFiltersApi) GetRetentionFilter(ctx _context.Context, appId string, rfId string) (RumRetentionFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -225,7 +225,7 @@ func (a *RumRetentionFiltersApi) GetRetentionFilter(ctx _context.Context, appId 
 }
 
 // ListRetentionFilters Get all RUM retention filters.
-// Get the list of RUM retention filters for an application.
+// Get the list of RUM retention filters for a RUM application.
 func (a *RumRetentionFiltersApi) ListRetentionFilters(ctx _context.Context, appId string) (RumRetentionFiltersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -296,8 +296,8 @@ func (a *RumRetentionFiltersApi) ListRetentionFilters(ctx _context.Context, appI
 }
 
 // OrderRetentionFilters Order RUM retention filters.
-// Order RUM retention filters for an application.
-// Returns RUM retention filter objects without attributes and meta from the request body when the request is successful.
+// Order RUM retention filters for a RUM application.
+// Returns RUM retention filter objects without attributes from the request body when the request is successful.
 func (a *RumRetentionFiltersApi) OrderRetentionFilters(ctx _context.Context, appId string, body RumRetentionFiltersOrderRequest) (RumRetentionFiltersOrderResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -371,7 +371,7 @@ func (a *RumRetentionFiltersApi) OrderRetentionFilters(ctx _context.Context, app
 }
 
 // UpdateRetentionFilter Update a RUM retention filter.
-// Update a RUM retention filter for an application.
+// Update a RUM retention filter for a RUM application.
 // Returns RUM retention filter objects from the request body when the request is successful.
 func (a *RumRetentionFiltersApi) UpdateRetentionFilter(ctx _context.Context, appId string, rfId string, body RumRetentionFilterUpdateRequest) (RumRetentionFilterResponse, *_nethttp.Response, error) {
 	var (
