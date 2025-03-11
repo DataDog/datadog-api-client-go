@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2.36.1 / 2025-03-11
+
+### Changed
+* Remove meta from RUM retention filters APIs by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/2977
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v2.36.0...v2.36.1
+
 ## 2.36.0 / 2025-03-11
 
 ### Fixed
