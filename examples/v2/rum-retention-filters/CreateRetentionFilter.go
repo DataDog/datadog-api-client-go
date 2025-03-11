@@ -23,9 +23,6 @@ func main() {
 				SampleRate: 50,
 				Enabled:    datadog.PtrBool(true),
 			},
-			Meta: &datadogV2.RumRetentionFilterMeta{
-				Source: datadogV2.RUMRETENTIONFILTERSOURCE_TERRAFORM.Ptr(),
-			},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

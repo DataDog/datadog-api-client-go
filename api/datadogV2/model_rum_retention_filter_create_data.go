@@ -14,8 +14,6 @@ import (
 type RumRetentionFilterCreateData struct {
 	// The object describing attributes of a RUM retention filter to create.
 	Attributes RumRetentionFilterCreateAttributes `json:"attributes"`
-	// The object describing metadata of a RUM retention filter.
-	Meta *RumRetentionFilterMeta `json:"meta,omitempty"`
 	// The type of the resource. The value should always be retention_filters.
 	Type RumRetentionFilterType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -67,34 +65,6 @@ func (o *RumRetentionFilterCreateData) SetAttributes(v RumRetentionFilterCreateA
 	o.Attributes = v
 }
 
-// GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *RumRetentionFilterCreateData) GetMeta() RumRetentionFilterMeta {
-	if o == nil || o.Meta == nil {
-		var ret RumRetentionFilterMeta
-		return ret
-	}
-	return *o.Meta
-}
-
-// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RumRetentionFilterCreateData) GetMetaOk() (*RumRetentionFilterMeta, bool) {
-	if o == nil || o.Meta == nil {
-		return nil, false
-	}
-	return o.Meta, true
-}
-
-// HasMeta returns a boolean if a field has been set.
-func (o *RumRetentionFilterCreateData) HasMeta() bool {
-	return o != nil && o.Meta != nil
-}
-
-// SetMeta gets a reference to the given RumRetentionFilterMeta and assigns it to the Meta field.
-func (o *RumRetentionFilterCreateData) SetMeta(v RumRetentionFilterMeta) {
-	o.Meta = &v
-}
-
 // GetType returns the Type field value.
 func (o *RumRetentionFilterCreateData) GetType() RumRetentionFilterType {
 	if o == nil {
@@ -125,9 +95,6 @@ func (o RumRetentionFilterCreateData) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
-	if o.Meta != nil {
-		toSerialize["meta"] = o.Meta
-	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -140,7 +107,6 @@ func (o RumRetentionFilterCreateData) MarshalJSON() ([]byte, error) {
 func (o *RumRetentionFilterCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *RumRetentionFilterCreateAttributes `json:"attributes"`
-		Meta       *RumRetentionFilterMeta             `json:"meta,omitempty"`
 		Type       *RumRetentionFilterType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -154,7 +120,7 @@ func (o *RumRetentionFilterCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "meta", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
 	} else {
 		return err
 	}
@@ -164,10 +130,6 @@ func (o *RumRetentionFilterCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.Meta = all.Meta
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
