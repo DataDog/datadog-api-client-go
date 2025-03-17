@@ -12,6 +12,8 @@ import (
 type HistoricalJobQuery struct {
 	// The aggregation type.
 	Aggregation *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
+	// Source of events, either logs or audit trail.
+	DataSource *SecurityMonitoringStandardDataSource `json:"dataSource,omitempty"`
 	// Field for which the cardinality is measured. Sent as an array.
 	DistinctFields []string `json:"distinctFields,omitempty"`
 	// Fields to group by.
@@ -35,6 +37,8 @@ type HistoricalJobQuery struct {
 // will change when the set of required properties is changed.
 func NewHistoricalJobQuery() *HistoricalJobQuery {
 	this := HistoricalJobQuery{}
+	var dataSource SecurityMonitoringStandardDataSource = SECURITYMONITORINGSTANDARDDATASOURCE_LOGS
+	this.DataSource = &dataSource
 	return &this
 }
 
@@ -43,6 +47,8 @@ func NewHistoricalJobQuery() *HistoricalJobQuery {
 // but it doesn't guarantee that properties required by API are set.
 func NewHistoricalJobQueryWithDefaults() *HistoricalJobQuery {
 	this := HistoricalJobQuery{}
+	var dataSource SecurityMonitoringStandardDataSource = SECURITYMONITORINGSTANDARDDATASOURCE_LOGS
+	this.DataSource = &dataSource
 	return &this
 }
 
@@ -72,6 +78,34 @@ func (o *HistoricalJobQuery) HasAggregation() bool {
 // SetAggregation gets a reference to the given SecurityMonitoringRuleQueryAggregation and assigns it to the Aggregation field.
 func (o *HistoricalJobQuery) SetAggregation(v SecurityMonitoringRuleQueryAggregation) {
 	o.Aggregation = &v
+}
+
+// GetDataSource returns the DataSource field value if set, zero value otherwise.
+func (o *HistoricalJobQuery) GetDataSource() SecurityMonitoringStandardDataSource {
+	if o == nil || o.DataSource == nil {
+		var ret SecurityMonitoringStandardDataSource
+		return ret
+	}
+	return *o.DataSource
+}
+
+// GetDataSourceOk returns a tuple with the DataSource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HistoricalJobQuery) GetDataSourceOk() (*SecurityMonitoringStandardDataSource, bool) {
+	if o == nil || o.DataSource == nil {
+		return nil, false
+	}
+	return o.DataSource, true
+}
+
+// HasDataSource returns a boolean if a field has been set.
+func (o *HistoricalJobQuery) HasDataSource() bool {
+	return o != nil && o.DataSource != nil
+}
+
+// SetDataSource gets a reference to the given SecurityMonitoringStandardDataSource and assigns it to the DataSource field.
+func (o *HistoricalJobQuery) SetDataSource(v SecurityMonitoringStandardDataSource) {
+	o.DataSource = &v
 }
 
 // GetDistinctFields returns the DistinctFields field value if set, zero value otherwise.
@@ -251,6 +285,9 @@ func (o HistoricalJobQuery) MarshalJSON() ([]byte, error) {
 	if o.Aggregation != nil {
 		toSerialize["aggregation"] = o.Aggregation
 	}
+	if o.DataSource != nil {
+		toSerialize["dataSource"] = o.DataSource
+	}
 	if o.DistinctFields != nil {
 		toSerialize["distinctFields"] = o.DistinctFields
 	}
@@ -280,6 +317,7 @@ func (o HistoricalJobQuery) MarshalJSON() ([]byte, error) {
 func (o *HistoricalJobQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Aggregation              *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
+		DataSource               *SecurityMonitoringStandardDataSource   `json:"dataSource,omitempty"`
 		DistinctFields           []string                                `json:"distinctFields,omitempty"`
 		GroupByFields            []string                                `json:"groupByFields,omitempty"`
 		HasOptionalGroupByFields *bool                                   `json:"hasOptionalGroupByFields,omitempty"`
@@ -292,7 +330,7 @@ func (o *HistoricalJobQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "distinctFields", "groupByFields", "hasOptionalGroupByFields", "metrics", "name", "query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "dataSource", "distinctFields", "groupByFields", "hasOptionalGroupByFields", "metrics", "name", "query"})
 	} else {
 		return err
 	}
@@ -302,6 +340,11 @@ func (o *HistoricalJobQuery) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	} else {
 		o.Aggregation = all.Aggregation
+	}
+	if all.DataSource != nil && !all.DataSource.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.DataSource = all.DataSource
 	}
 	o.DistinctFields = all.DistinctFields
 	o.GroupByFields = all.GroupByFields
