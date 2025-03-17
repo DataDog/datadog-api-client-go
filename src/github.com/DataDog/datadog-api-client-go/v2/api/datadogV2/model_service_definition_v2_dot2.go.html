@@ -98,7 +98,7 @@
 <span id="L41" class="ln">    41  </span>	<span class="comment">// Importance of the service.</span>
 <span id="L42" class="ln">    42  </span>	Tier *string `json:&#34;tier,omitempty&#34;`
 <span id="L43" class="ln">    43  </span>	<span class="comment">// The type of service.</span>
-<span id="L44" class="ln">    44  </span>	Type *ServiceDefinitionV2Dot2Type `json:&#34;type,omitempty&#34;`
+<span id="L44" class="ln">    44  </span>	Type *string `json:&#34;type,omitempty&#34;`
 <span id="L45" class="ln">    45  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L46" class="ln">    46  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L47" class="ln">    47  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -508,9 +508,9 @@
 <span id="L451" class="ln">   451  </span>}
 <span id="L452" class="ln">   452  </span>
 <span id="L453" class="ln">   453  </span><span class="comment">// GetType returns the Type field value if set, zero value otherwise.</span>
-<span id="L454" class="ln">   454  </span>func (o *ServiceDefinitionV2Dot2) GetType() ServiceDefinitionV2Dot2Type {
+<span id="L454" class="ln">   454  </span>func (o *ServiceDefinitionV2Dot2) GetType() string {
 <span id="L455" class="ln">   455  </span>	if o == nil || o.Type == nil {
-<span id="L456" class="ln">   456  </span>		var ret ServiceDefinitionV2Dot2Type
+<span id="L456" class="ln">   456  </span>		var ret string
 <span id="L457" class="ln">   457  </span>		return ret
 <span id="L458" class="ln">   458  </span>	}
 <span id="L459" class="ln">   459  </span>	return *o.Type
@@ -518,7 +518,7 @@
 <span id="L461" class="ln">   461  </span>
 <span id="L462" class="ln">   462  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value if set, nil otherwise</span>
 <span id="L463" class="ln">   463  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L464" class="ln">   464  </span>func (o *ServiceDefinitionV2Dot2) GetTypeOk() (*ServiceDefinitionV2Dot2Type, bool) {
+<span id="L464" class="ln">   464  </span>func (o *ServiceDefinitionV2Dot2) GetTypeOk() (*string, bool) {
 <span id="L465" class="ln">   465  </span>	if o == nil || o.Type == nil {
 <span id="L466" class="ln">   466  </span>		return nil, false
 <span id="L467" class="ln">   467  </span>	}
@@ -530,8 +530,8 @@
 <span id="L473" class="ln">   473  </span>	return o != nil &amp;&amp; o.Type != nil
 <span id="L474" class="ln">   474  </span>}
 <span id="L475" class="ln">   475  </span>
-<span id="L476" class="ln">   476  </span><span class="comment">// SetType gets a reference to the given ServiceDefinitionV2Dot2Type and assigns it to the Type field.</span>
-<span id="L477" class="ln">   477  </span>func (o *ServiceDefinitionV2Dot2) SetType(v ServiceDefinitionV2Dot2Type) {
+<span id="L476" class="ln">   476  </span><span class="comment">// SetType gets a reference to the given string and assigns it to the Type field.</span>
+<span id="L477" class="ln">   477  </span>func (o *ServiceDefinitionV2Dot2) SetType(v string) {
 <span id="L478" class="ln">   478  </span>	o.Type = &amp;v
 <span id="L479" class="ln">   479  </span>}
 <span id="L480" class="ln">   480  </span>
@@ -606,7 +606,7 @@
 <span id="L549" class="ln">   549  </span>		Tags                   []string                             `json:&#34;tags,omitempty&#34;`
 <span id="L550" class="ln">   550  </span>		Team                   *string                              `json:&#34;team,omitempty&#34;`
 <span id="L551" class="ln">   551  </span>		Tier                   *string                              `json:&#34;tier,omitempty&#34;`
-<span id="L552" class="ln">   552  </span>		Type                   *ServiceDefinitionV2Dot2Type         `json:&#34;type,omitempty&#34;`
+<span id="L552" class="ln">   552  </span>		Type                   *string                              `json:&#34;type,omitempty&#34;`
 <span id="L553" class="ln">   553  </span>	}{}
 <span id="L554" class="ln">   554  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L555" class="ln">   555  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
@@ -646,23 +646,19 @@
 <span id="L589" class="ln">   589  </span>	o.Tags = all.Tags
 <span id="L590" class="ln">   590  </span>	o.Team = all.Team
 <span id="L591" class="ln">   591  </span>	o.Tier = all.Tier
-<span id="L592" class="ln">   592  </span>	if all.Type != nil &amp;&amp; !all.Type.IsValid() {
-<span id="L593" class="ln">   593  </span>		hasInvalidField = true
-<span id="L594" class="ln">   594  </span>	} else {
-<span id="L595" class="ln">   595  </span>		o.Type = all.Type
+<span id="L592" class="ln">   592  </span>	o.Type = all.Type
+<span id="L593" class="ln">   593  </span>
+<span id="L594" class="ln">   594  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L595" class="ln">   595  </span>		o.AdditionalProperties = additionalProperties
 <span id="L596" class="ln">   596  </span>	}
 <span id="L597" class="ln">   597  </span>
-<span id="L598" class="ln">   598  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L599" class="ln">   599  </span>		o.AdditionalProperties = additionalProperties
+<span id="L598" class="ln">   598  </span>	if hasInvalidField {
+<span id="L599" class="ln">   599  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
 <span id="L600" class="ln">   600  </span>	}
 <span id="L601" class="ln">   601  </span>
-<span id="L602" class="ln">   602  </span>	if hasInvalidField {
-<span id="L603" class="ln">   603  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L604" class="ln">   604  </span>	}
-<span id="L605" class="ln">   605  </span>
-<span id="L606" class="ln">   606  </span>	return nil
-<span id="L607" class="ln">   607  </span>}
-<span id="L608" class="ln">   608  </span>
+<span id="L602" class="ln">   602  </span>	return nil
+<span id="L603" class="ln">   603  </span>}
+<span id="L604" class="ln">   604  </span>
 </pre><p></p>
 
 <div id="footer">
