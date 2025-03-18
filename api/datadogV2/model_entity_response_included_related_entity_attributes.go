@@ -5,13 +5,15 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // EntityResponseIncludedRelatedEntityAttributes Related entity attributes.
 type EntityResponseIncludedRelatedEntityAttributes struct {
 	// Entity kind.
-	Kind *string `json:"kind,omitempty"`
+	Kind string `json:"kind"`
 	// Entity name.
 	Name *string `json:"name,omitempty"`
 	// Entity namespace.
@@ -27,8 +29,9 @@ type EntityResponseIncludedRelatedEntityAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewEntityResponseIncludedRelatedEntityAttributes() *EntityResponseIncludedRelatedEntityAttributes {
+func NewEntityResponseIncludedRelatedEntityAttributes(kind string) *EntityResponseIncludedRelatedEntityAttributes {
 	this := EntityResponseIncludedRelatedEntityAttributes{}
+	this.Kind = kind
 	return &this
 }
 
@@ -40,32 +43,27 @@ func NewEntityResponseIncludedRelatedEntityAttributesWithDefaults() *EntityRespo
 	return &this
 }
 
-// GetKind returns the Kind field value if set, zero value otherwise.
+// GetKind returns the Kind field value.
 func (o *EntityResponseIncludedRelatedEntityAttributes) GetKind() string {
-	if o == nil || o.Kind == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Kind
+	return o.Kind
 }
 
-// GetKindOk returns a tuple with the Kind field value if set, nil otherwise
+// GetKindOk returns a tuple with the Kind field value
 // and a boolean to check if the value has been set.
 func (o *EntityResponseIncludedRelatedEntityAttributes) GetKindOk() (*string, bool) {
-	if o == nil || o.Kind == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Kind, true
+	return &o.Kind, true
 }
 
-// HasKind returns a boolean if a field has been set.
-func (o *EntityResponseIncludedRelatedEntityAttributes) HasKind() bool {
-	return o != nil && o.Kind != nil
-}
-
-// SetKind gets a reference to the given string and assigns it to the Kind field.
+// SetKind sets field value.
 func (o *EntityResponseIncludedRelatedEntityAttributes) SetKind(v string) {
-	o.Kind = &v
+	o.Kind = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -158,9 +156,7 @@ func (o EntityResponseIncludedRelatedEntityAttributes) MarshalJSON() ([]byte, er
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Kind != nil {
-		toSerialize["kind"] = o.Kind
-	}
+	toSerialize["kind"] = o.Kind
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
@@ -180,7 +176,7 @@ func (o EntityResponseIncludedRelatedEntityAttributes) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityResponseIncludedRelatedEntityAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Kind      *string `json:"kind,omitempty"`
+		Kind      *string `json:"kind"`
 		Name      *string `json:"name,omitempty"`
 		Namespace *string `json:"namespace,omitempty"`
 		Type      *string `json:"type,omitempty"`
@@ -188,13 +184,16 @@ func (o *EntityResponseIncludedRelatedEntityAttributes) UnmarshalJSON(bytes []by
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
+	if all.Kind == nil {
+		return fmt.Errorf("required field kind missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"kind", "name", "namespace", "type"})
 	} else {
 		return err
 	}
-	o.Kind = all.Kind
+	o.Kind = *all.Kind
 	o.Name = all.Name
 	o.Namespace = all.Namespace
 	o.Type = all.Type

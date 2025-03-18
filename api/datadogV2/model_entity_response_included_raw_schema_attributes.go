@@ -5,13 +5,15 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // EntityResponseIncludedRawSchemaAttributes Included raw schema attributes.
 type EntityResponseIncludedRawSchemaAttributes struct {
 	// Schema from user input in base64 encoding.
-	RawSchema *string `json:"rawSchema,omitempty"`
+	RawSchema string `json:"rawSchema"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -21,8 +23,9 @@ type EntityResponseIncludedRawSchemaAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewEntityResponseIncludedRawSchemaAttributes() *EntityResponseIncludedRawSchemaAttributes {
+func NewEntityResponseIncludedRawSchemaAttributes(rawSchema string) *EntityResponseIncludedRawSchemaAttributes {
 	this := EntityResponseIncludedRawSchemaAttributes{}
+	this.RawSchema = rawSchema
 	return &this
 }
 
@@ -34,32 +37,27 @@ func NewEntityResponseIncludedRawSchemaAttributesWithDefaults() *EntityResponseI
 	return &this
 }
 
-// GetRawSchema returns the RawSchema field value if set, zero value otherwise.
+// GetRawSchema returns the RawSchema field value.
 func (o *EntityResponseIncludedRawSchemaAttributes) GetRawSchema() string {
-	if o == nil || o.RawSchema == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.RawSchema
+	return o.RawSchema
 }
 
-// GetRawSchemaOk returns a tuple with the RawSchema field value if set, nil otherwise
+// GetRawSchemaOk returns a tuple with the RawSchema field value
 // and a boolean to check if the value has been set.
 func (o *EntityResponseIncludedRawSchemaAttributes) GetRawSchemaOk() (*string, bool) {
-	if o == nil || o.RawSchema == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.RawSchema, true
+	return &o.RawSchema, true
 }
 
-// HasRawSchema returns a boolean if a field has been set.
-func (o *EntityResponseIncludedRawSchemaAttributes) HasRawSchema() bool {
-	return o != nil && o.RawSchema != nil
-}
-
-// SetRawSchema gets a reference to the given string and assigns it to the RawSchema field.
+// SetRawSchema sets field value.
 func (o *EntityResponseIncludedRawSchemaAttributes) SetRawSchema(v string) {
-	o.RawSchema = &v
+	o.RawSchema = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -68,9 +66,7 @@ func (o EntityResponseIncludedRawSchemaAttributes) MarshalJSON() ([]byte, error)
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.RawSchema != nil {
-		toSerialize["rawSchema"] = o.RawSchema
-	}
+	toSerialize["rawSchema"] = o.RawSchema
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -81,10 +77,13 @@ func (o EntityResponseIncludedRawSchemaAttributes) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityResponseIncludedRawSchemaAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		RawSchema *string `json:"rawSchema,omitempty"`
+		RawSchema *string `json:"rawSchema"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.RawSchema == nil {
+		return fmt.Errorf("required field rawSchema missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -92,7 +91,7 @@ func (o *EntityResponseIncludedRawSchemaAttributes) UnmarshalJSON(bytes []byte) 
 	} else {
 		return err
 	}
-	o.RawSchema = all.RawSchema
+	o.RawSchema = *all.RawSchema
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
