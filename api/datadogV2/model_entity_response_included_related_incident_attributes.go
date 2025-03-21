@@ -5,6 +5,7 @@
 package datadogV2
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -21,7 +22,7 @@ type EntityResponseIncludedRelatedIncidentAttributes struct {
 	// Incident status.
 	Status *string `json:"status,omitempty"`
 	// Incident title.
-	Title *string `json:"title,omitempty"`
+	Title string `json:"title"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -31,8 +32,9 @@ type EntityResponseIncludedRelatedIncidentAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewEntityResponseIncludedRelatedIncidentAttributes() *EntityResponseIncludedRelatedIncidentAttributes {
+func NewEntityResponseIncludedRelatedIncidentAttributes(title string) *EntityResponseIncludedRelatedIncidentAttributes {
 	this := EntityResponseIncludedRelatedIncidentAttributes{}
+	this.Title = title
 	return &this
 }
 
@@ -156,32 +158,27 @@ func (o *EntityResponseIncludedRelatedIncidentAttributes) SetStatus(v string) {
 	o.Status = &v
 }
 
-// GetTitle returns the Title field value if set, zero value otherwise.
+// GetTitle returns the Title field value.
 func (o *EntityResponseIncludedRelatedIncidentAttributes) GetTitle() string {
-	if o == nil || o.Title == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Title
+	return o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
+// GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
 func (o *EntityResponseIncludedRelatedIncidentAttributes) GetTitleOk() (*string, bool) {
-	if o == nil || o.Title == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Title, true
+	return &o.Title, true
 }
 
-// HasTitle returns a boolean if a field has been set.
-func (o *EntityResponseIncludedRelatedIncidentAttributes) HasTitle() bool {
-	return o != nil && o.Title != nil
-}
-
-// SetTitle gets a reference to the given string and assigns it to the Title field.
+// SetTitle sets field value.
 func (o *EntityResponseIncludedRelatedIncidentAttributes) SetTitle(v string) {
-	o.Title = &v
+	o.Title = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -206,9 +203,7 @@ func (o EntityResponseIncludedRelatedIncidentAttributes) MarshalJSON() ([]byte, 
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
-	if o.Title != nil {
-		toSerialize["title"] = o.Title
-	}
+	toSerialize["title"] = o.Title
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -223,10 +218,13 @@ func (o *EntityResponseIncludedRelatedIncidentAttributes) UnmarshalJSON(bytes []
 		HtmlUrl   *string    `json:"htmlURL,omitempty"`
 		Provider  *string    `json:"provider,omitempty"`
 		Status    *string    `json:"status,omitempty"`
-		Title     *string    `json:"title,omitempty"`
+		Title     *string    `json:"title"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Title == nil {
+		return fmt.Errorf("required field title missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -238,7 +236,7 @@ func (o *EntityResponseIncludedRelatedIncidentAttributes) UnmarshalJSON(bytes []
 	o.HtmlUrl = all.HtmlUrl
 	o.Provider = all.Provider
 	o.Status = all.Status
-	o.Title = all.Title
+	o.Title = *all.Title
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
