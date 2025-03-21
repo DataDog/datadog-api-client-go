@@ -18,12 +18,14 @@ const (
 	CONTENTENCODING_IDENTITY ContentEncoding = "identity"
 	CONTENTENCODING_GZIP     ContentEncoding = "gzip"
 	CONTENTENCODING_DEFLATE  ContentEncoding = "deflate"
+	CONTENTENCODING_ZSTD1    ContentEncoding = "zstd1"
 )
 
 var allowedContentEncodingEnumValues = []ContentEncoding{
 	CONTENTENCODING_IDENTITY,
 	CONTENTENCODING_GZIP,
 	CONTENTENCODING_DEFLATE,
+	CONTENTENCODING_ZSTD1,
 }
 
 // GetAllowedValues reeturns the list of possible values.
