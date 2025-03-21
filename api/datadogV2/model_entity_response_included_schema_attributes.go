@@ -5,13 +5,15 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // EntityResponseIncludedSchemaAttributes Included schema.
 type EntityResponseIncludedSchemaAttributes struct {
 	// Entity schema v3.
-	Schema *EntityV3 `json:"schema,omitempty"`
+	Schema EntityV3 `json:"schema"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -21,8 +23,9 @@ type EntityResponseIncludedSchemaAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewEntityResponseIncludedSchemaAttributes() *EntityResponseIncludedSchemaAttributes {
+func NewEntityResponseIncludedSchemaAttributes(schema EntityV3) *EntityResponseIncludedSchemaAttributes {
 	this := EntityResponseIncludedSchemaAttributes{}
+	this.Schema = schema
 	return &this
 }
 
@@ -34,32 +37,27 @@ func NewEntityResponseIncludedSchemaAttributesWithDefaults() *EntityResponseIncl
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
+// GetSchema returns the Schema field value.
 func (o *EntityResponseIncludedSchemaAttributes) GetSchema() EntityV3 {
-	if o == nil || o.Schema == nil {
+	if o == nil {
 		var ret EntityV3
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
-// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
+// GetSchemaOk returns a tuple with the Schema field value
 // and a boolean to check if the value has been set.
 func (o *EntityResponseIncludedSchemaAttributes) GetSchemaOk() (*EntityV3, bool) {
-	if o == nil || o.Schema == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
-// HasSchema returns a boolean if a field has been set.
-func (o *EntityResponseIncludedSchemaAttributes) HasSchema() bool {
-	return o != nil && o.Schema != nil
-}
-
-// SetSchema gets a reference to the given EntityV3 and assigns it to the Schema field.
+// SetSchema sets field value.
 func (o *EntityResponseIncludedSchemaAttributes) SetSchema(v EntityV3) {
-	o.Schema = &v
+	o.Schema = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -68,9 +66,7 @@ func (o EntityResponseIncludedSchemaAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Schema != nil {
-		toSerialize["schema"] = o.Schema
-	}
+	toSerialize["schema"] = o.Schema
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -81,10 +77,13 @@ func (o EntityResponseIncludedSchemaAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityResponseIncludedSchemaAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Schema *EntityV3 `json:"schema,omitempty"`
+		Schema *EntityV3 `json:"schema"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Schema == nil {
+		return fmt.Errorf("required field schema missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -92,7 +91,7 @@ func (o *EntityResponseIncludedSchemaAttributes) UnmarshalJSON(bytes []byte) (er
 	} else {
 		return err
 	}
-	o.Schema = all.Schema
+	o.Schema = *all.Schema
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

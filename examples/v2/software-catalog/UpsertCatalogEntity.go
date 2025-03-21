@@ -48,7 +48,7 @@ func main() {
 				Metadata: datadogV2.EntityV3Metadata{
 					AdditionalOwners: []datadogV2.EntityV3MetadataAdditionalOwnersItems{
 						{
-							Name: "",
+							Name: "fake-team-name",
 						},
 					},
 					Contacts: []datadogV2.EntityV3MetadataContactsItems{
