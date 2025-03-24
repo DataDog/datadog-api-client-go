@@ -74,7 +74,7 @@
 <span id="L17" class="ln">    17  </span>	<span class="comment">// Included related entity meta.</span>
 <span id="L18" class="ln">    18  </span>	Meta *EntityResponseIncludedRelatedEntityMeta `json:&#34;meta,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// Related entity.</span>
-<span id="L20" class="ln">    20  </span>	Type *string `json:&#34;type,omitempty&#34;`
+<span id="L20" class="ln">    20  </span>	Type *EntityResponseIncludedRelatedEntityType `json:&#34;type,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L22" class="ln">    22  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L23" class="ln">    23  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -182,9 +182,9 @@
 <span id="L125" class="ln">   125  </span>}
 <span id="L126" class="ln">   126  </span>
 <span id="L127" class="ln">   127  </span><span class="comment">// GetType returns the Type field value if set, zero value otherwise.</span>
-<span id="L128" class="ln">   128  </span>func (o *EntityResponseIncludedRelatedEntity) GetType() string {
+<span id="L128" class="ln">   128  </span>func (o *EntityResponseIncludedRelatedEntity) GetType() EntityResponseIncludedRelatedEntityType {
 <span id="L129" class="ln">   129  </span>	if o == nil || o.Type == nil {
-<span id="L130" class="ln">   130  </span>		var ret string
+<span id="L130" class="ln">   130  </span>		var ret EntityResponseIncludedRelatedEntityType
 <span id="L131" class="ln">   131  </span>		return ret
 <span id="L132" class="ln">   132  </span>	}
 <span id="L133" class="ln">   133  </span>	return *o.Type
@@ -192,7 +192,7 @@
 <span id="L135" class="ln">   135  </span>
 <span id="L136" class="ln">   136  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value if set, nil otherwise</span>
 <span id="L137" class="ln">   137  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L138" class="ln">   138  </span>func (o *EntityResponseIncludedRelatedEntity) GetTypeOk() (*string, bool) {
+<span id="L138" class="ln">   138  </span>func (o *EntityResponseIncludedRelatedEntity) GetTypeOk() (*EntityResponseIncludedRelatedEntityType, bool) {
 <span id="L139" class="ln">   139  </span>	if o == nil || o.Type == nil {
 <span id="L140" class="ln">   140  </span>		return nil, false
 <span id="L141" class="ln">   141  </span>	}
@@ -204,8 +204,8 @@
 <span id="L147" class="ln">   147  </span>	return o != nil &amp;&amp; o.Type != nil
 <span id="L148" class="ln">   148  </span>}
 <span id="L149" class="ln">   149  </span>
-<span id="L150" class="ln">   150  </span><span class="comment">// SetType gets a reference to the given string and assigns it to the Type field.</span>
-<span id="L151" class="ln">   151  </span>func (o *EntityResponseIncludedRelatedEntity) SetType(v string) {
+<span id="L150" class="ln">   150  </span><span class="comment">// SetType gets a reference to the given EntityResponseIncludedRelatedEntityType and assigns it to the Type field.</span>
+<span id="L151" class="ln">   151  </span>func (o *EntityResponseIncludedRelatedEntity) SetType(v EntityResponseIncludedRelatedEntityType) {
 <span id="L152" class="ln">   152  </span>	o.Type = &amp;v
 <span id="L153" class="ln">   153  </span>}
 <span id="L154" class="ln">   154  </span>
@@ -240,7 +240,7 @@
 <span id="L183" class="ln">   183  </span>		Attributes *EntityResponseIncludedRelatedEntityAttributes `json:&#34;attributes,omitempty&#34;`
 <span id="L184" class="ln">   184  </span>		Id         *string                                        `json:&#34;id,omitempty&#34;`
 <span id="L185" class="ln">   185  </span>		Meta       *EntityResponseIncludedRelatedEntityMeta       `json:&#34;meta,omitempty&#34;`
-<span id="L186" class="ln">   186  </span>		Type       *string                                        `json:&#34;type,omitempty&#34;`
+<span id="L186" class="ln">   186  </span>		Type       *EntityResponseIncludedRelatedEntityType       `json:&#34;type,omitempty&#34;`
 <span id="L187" class="ln">   187  </span>	}{}
 <span id="L188" class="ln">   188  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L189" class="ln">   189  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
@@ -262,19 +262,23 @@
 <span id="L205" class="ln">   205  </span>		hasInvalidField = true
 <span id="L206" class="ln">   206  </span>	}
 <span id="L207" class="ln">   207  </span>	o.Meta = all.Meta
-<span id="L208" class="ln">   208  </span>	o.Type = all.Type
-<span id="L209" class="ln">   209  </span>
-<span id="L210" class="ln">   210  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L211" class="ln">   211  </span>		o.AdditionalProperties = additionalProperties
+<span id="L208" class="ln">   208  </span>	if all.Type != nil &amp;&amp; !all.Type.IsValid() {
+<span id="L209" class="ln">   209  </span>		hasInvalidField = true
+<span id="L210" class="ln">   210  </span>	} else {
+<span id="L211" class="ln">   211  </span>		o.Type = all.Type
 <span id="L212" class="ln">   212  </span>	}
 <span id="L213" class="ln">   213  </span>
-<span id="L214" class="ln">   214  </span>	if hasInvalidField {
-<span id="L215" class="ln">   215  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L214" class="ln">   214  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L215" class="ln">   215  </span>		o.AdditionalProperties = additionalProperties
 <span id="L216" class="ln">   216  </span>	}
 <span id="L217" class="ln">   217  </span>
-<span id="L218" class="ln">   218  </span>	return nil
-<span id="L219" class="ln">   219  </span>}
-<span id="L220" class="ln">   220  </span>
+<span id="L218" class="ln">   218  </span>	if hasInvalidField {
+<span id="L219" class="ln">   219  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L220" class="ln">   220  </span>	}
+<span id="L221" class="ln">   221  </span>
+<span id="L222" class="ln">   222  </span>	return nil
+<span id="L223" class="ln">   223  </span>}
+<span id="L224" class="ln">   224  </span>
 </pre><p></p>
 
 <div id="footer">
