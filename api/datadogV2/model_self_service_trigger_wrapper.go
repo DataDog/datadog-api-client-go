@@ -10,10 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SecurityTriggerWrapper Schema for a Security-based trigger.
-type SecurityTriggerWrapper struct {
-	// Trigger a workflow from a Security Signal or Finding. For automatic triggering a handle must be configured and the workflow must be published.
-	SecurityTrigger SecurityTrigger `json:"securityTrigger"`
+// SelfServiceTriggerWrapper Schema for a Self Service-based trigger.
+type SelfServiceTriggerWrapper struct {
+	// Trigger a workflow from Self Service.
+	SelfServiceTrigger interface{} `json:"selfServiceTrigger"`
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -21,49 +21,49 @@ type SecurityTriggerWrapper struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewSecurityTriggerWrapper instantiates a new SecurityTriggerWrapper object.
+// NewSelfServiceTriggerWrapper instantiates a new SelfServiceTriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSecurityTriggerWrapper(securityTrigger SecurityTrigger) *SecurityTriggerWrapper {
-	this := SecurityTriggerWrapper{}
-	this.SecurityTrigger = securityTrigger
+func NewSelfServiceTriggerWrapper(selfServiceTrigger interface{}) *SelfServiceTriggerWrapper {
+	this := SelfServiceTriggerWrapper{}
+	this.SelfServiceTrigger = selfServiceTrigger
 	return &this
 }
 
-// NewSecurityTriggerWrapperWithDefaults instantiates a new SecurityTriggerWrapper object.
+// NewSelfServiceTriggerWrapperWithDefaults instantiates a new SelfServiceTriggerWrapper object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewSecurityTriggerWrapperWithDefaults() *SecurityTriggerWrapper {
-	this := SecurityTriggerWrapper{}
+func NewSelfServiceTriggerWrapperWithDefaults() *SelfServiceTriggerWrapper {
+	this := SelfServiceTriggerWrapper{}
 	return &this
 }
 
-// GetSecurityTrigger returns the SecurityTrigger field value.
-func (o *SecurityTriggerWrapper) GetSecurityTrigger() SecurityTrigger {
+// GetSelfServiceTrigger returns the SelfServiceTrigger field value.
+func (o *SelfServiceTriggerWrapper) GetSelfServiceTrigger() interface{} {
 	if o == nil {
-		var ret SecurityTrigger
+		var ret interface{}
 		return ret
 	}
-	return o.SecurityTrigger
+	return o.SelfServiceTrigger
 }
 
-// GetSecurityTriggerOk returns a tuple with the SecurityTrigger field value
+// GetSelfServiceTriggerOk returns a tuple with the SelfServiceTrigger field value
 // and a boolean to check if the value has been set.
-func (o *SecurityTriggerWrapper) GetSecurityTriggerOk() (*SecurityTrigger, bool) {
+func (o *SelfServiceTriggerWrapper) GetSelfServiceTriggerOk() (*interface{}, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SecurityTrigger, true
+	return &o.SelfServiceTrigger, true
 }
 
-// SetSecurityTrigger sets field value.
-func (o *SecurityTriggerWrapper) SetSecurityTrigger(v SecurityTrigger) {
-	o.SecurityTrigger = v
+// SetSelfServiceTrigger sets field value.
+func (o *SelfServiceTriggerWrapper) SetSelfServiceTrigger(v interface{}) {
+	o.SelfServiceTrigger = v
 }
 
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
-func (o *SecurityTriggerWrapper) GetStartStepNames() []string {
+func (o *SelfServiceTriggerWrapper) GetStartStepNames() []string {
 	if o == nil || o.StartStepNames == nil {
 		var ret []string
 		return ret
@@ -73,7 +73,7 @@ func (o *SecurityTriggerWrapper) GetStartStepNames() []string {
 
 // GetStartStepNamesOk returns a tuple with the StartStepNames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecurityTriggerWrapper) GetStartStepNamesOk() (*[]string, bool) {
+func (o *SelfServiceTriggerWrapper) GetStartStepNamesOk() (*[]string, bool) {
 	if o == nil || o.StartStepNames == nil {
 		return nil, false
 	}
@@ -81,22 +81,22 @@ func (o *SecurityTriggerWrapper) GetStartStepNamesOk() (*[]string, bool) {
 }
 
 // HasStartStepNames returns a boolean if a field has been set.
-func (o *SecurityTriggerWrapper) HasStartStepNames() bool {
+func (o *SelfServiceTriggerWrapper) HasStartStepNames() bool {
 	return o != nil && o.StartStepNames != nil
 }
 
 // SetStartStepNames gets a reference to the given []string and assigns it to the StartStepNames field.
-func (o *SecurityTriggerWrapper) SetStartStepNames(v []string) {
+func (o *SelfServiceTriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o SecurityTriggerWrapper) MarshalJSON() ([]byte, error) {
+func (o SelfServiceTriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["securityTrigger"] = o.SecurityTrigger
+	toSerialize["selfServiceTrigger"] = o.SelfServiceTrigger
 	if o.StartStepNames != nil {
 		toSerialize["startStepNames"] = o.StartStepNames
 	}
@@ -108,37 +108,28 @@ func (o SecurityTriggerWrapper) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *SecurityTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SelfServiceTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		SecurityTrigger *SecurityTrigger `json:"securityTrigger"`
-		StartStepNames  []string         `json:"startStepNames,omitempty"`
+		SelfServiceTrigger *interface{} `json:"selfServiceTrigger"`
+		StartStepNames     []string     `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.SecurityTrigger == nil {
-		return fmt.Errorf("required field securityTrigger missing")
+	if all.SelfServiceTrigger == nil {
+		return fmt.Errorf("required field selfServiceTrigger missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"securityTrigger", "startStepNames"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"selfServiceTrigger", "startStepNames"})
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
-	if all.SecurityTrigger.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.SecurityTrigger = *all.SecurityTrigger
+	o.SelfServiceTrigger = *all.SelfServiceTrigger
 	o.StartStepNames = all.StartStepNames
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

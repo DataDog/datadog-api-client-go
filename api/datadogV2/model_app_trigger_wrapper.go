@@ -12,7 +12,7 @@ import (
 
 // AppTriggerWrapper Schema for an App-based trigger.
 type AppTriggerWrapper struct {
-	// Trigger a workflow VIA an App.
+	// Trigger a workflow from an App.
 	AppTrigger interface{} `json:"appTrigger"`
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`

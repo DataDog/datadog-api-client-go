@@ -12,7 +12,7 @@ import (
 
 // MonitorTriggerWrapper Schema for a Monitor-based trigger.
 type MonitorTriggerWrapper struct {
-	// Trigger a workflow VIA a Monitor. For automatic triggering a handle must be configured and the workflow must be published.
+	// Trigger a workflow from a Monitor. For automatic triggering a handle must be configured and the workflow must be published.
 	MonitorTrigger MonitorTrigger `json:"monitorTrigger"`
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`

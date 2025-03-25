@@ -12,7 +12,7 @@ import (
 
 // ChangeEventTriggerWrapper Schema for a Change Event-based trigger.
 type ChangeEventTriggerWrapper struct {
-	// Trigger a workflow VIA a Change Event.
+	// Trigger a workflow from a Change Event.
 	ChangeEventTrigger interface{} `json:"changeEventTrigger"`
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`

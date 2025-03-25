@@ -10,18 +10,22 @@ import (
 
 // Trigger - One of the triggers that can start the execution of a workflow.
 type Trigger struct {
-	APITriggerWrapper           *APITriggerWrapper
-	AppTriggerWrapper           *AppTriggerWrapper
-	CaseTriggerWrapper          *CaseTriggerWrapper
-	ChangeEventTriggerWrapper   *ChangeEventTriggerWrapper
-	DashboardTriggerWrapper     *DashboardTriggerWrapper
-	GithubWebhookTriggerWrapper *GithubWebhookTriggerWrapper
-	IncidentTriggerWrapper      *IncidentTriggerWrapper
-	MonitorTriggerWrapper       *MonitorTriggerWrapper
-	ScheduleTriggerWrapper      *ScheduleTriggerWrapper
-	SecurityTriggerWrapper      *SecurityTriggerWrapper
-	SlackTriggerWrapper         *SlackTriggerWrapper
-	WorkflowTriggerWrapper      *WorkflowTriggerWrapper
+	APITriggerWrapper                *APITriggerWrapper
+	AppTriggerWrapper                *AppTriggerWrapper
+	CaseTriggerWrapper               *CaseTriggerWrapper
+	ChangeEventTriggerWrapper        *ChangeEventTriggerWrapper
+	DatabaseMonitoringTriggerWrapper *DatabaseMonitoringTriggerWrapper
+	DashboardTriggerWrapper          *DashboardTriggerWrapper
+	GithubWebhookTriggerWrapper      *GithubWebhookTriggerWrapper
+	IncidentTriggerWrapper           *IncidentTriggerWrapper
+	MonitorTriggerWrapper            *MonitorTriggerWrapper
+	NotebookTriggerWrapper           *NotebookTriggerWrapper
+	ScheduleTriggerWrapper           *ScheduleTriggerWrapper
+	SecurityTriggerWrapper           *SecurityTriggerWrapper
+	SelfServiceTriggerWrapper        *SelfServiceTriggerWrapper
+	SlackTriggerWrapper              *SlackTriggerWrapper
+	SoftwareCatalogTriggerWrapper    *SoftwareCatalogTriggerWrapper
+	WorkflowTriggerWrapper           *WorkflowTriggerWrapper
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -47,6 +51,11 @@ func ChangeEventTriggerWrapperAsTrigger(v *ChangeEventTriggerWrapper) Trigger {
 	return Trigger{ChangeEventTriggerWrapper: v}
 }
 
+// DatabaseMonitoringTriggerWrapperAsTrigger is a convenience function that returns DatabaseMonitoringTriggerWrapper wrapped in Trigger.
+func DatabaseMonitoringTriggerWrapperAsTrigger(v *DatabaseMonitoringTriggerWrapper) Trigger {
+	return Trigger{DatabaseMonitoringTriggerWrapper: v}
+}
+
 // DashboardTriggerWrapperAsTrigger is a convenience function that returns DashboardTriggerWrapper wrapped in Trigger.
 func DashboardTriggerWrapperAsTrigger(v *DashboardTriggerWrapper) Trigger {
 	return Trigger{DashboardTriggerWrapper: v}
@@ -67,6 +76,11 @@ func MonitorTriggerWrapperAsTrigger(v *MonitorTriggerWrapper) Trigger {
 	return Trigger{MonitorTriggerWrapper: v}
 }
 
+// NotebookTriggerWrapperAsTrigger is a convenience function that returns NotebookTriggerWrapper wrapped in Trigger.
+func NotebookTriggerWrapperAsTrigger(v *NotebookTriggerWrapper) Trigger {
+	return Trigger{NotebookTriggerWrapper: v}
+}
+
 // ScheduleTriggerWrapperAsTrigger is a convenience function that returns ScheduleTriggerWrapper wrapped in Trigger.
 func ScheduleTriggerWrapperAsTrigger(v *ScheduleTriggerWrapper) Trigger {
 	return Trigger{ScheduleTriggerWrapper: v}
@@ -77,9 +91,19 @@ func SecurityTriggerWrapperAsTrigger(v *SecurityTriggerWrapper) Trigger {
 	return Trigger{SecurityTriggerWrapper: v}
 }
 
+// SelfServiceTriggerWrapperAsTrigger is a convenience function that returns SelfServiceTriggerWrapper wrapped in Trigger.
+func SelfServiceTriggerWrapperAsTrigger(v *SelfServiceTriggerWrapper) Trigger {
+	return Trigger{SelfServiceTriggerWrapper: v}
+}
+
 // SlackTriggerWrapperAsTrigger is a convenience function that returns SlackTriggerWrapper wrapped in Trigger.
 func SlackTriggerWrapperAsTrigger(v *SlackTriggerWrapper) Trigger {
 	return Trigger{SlackTriggerWrapper: v}
+}
+
+// SoftwareCatalogTriggerWrapperAsTrigger is a convenience function that returns SoftwareCatalogTriggerWrapper wrapped in Trigger.
+func SoftwareCatalogTriggerWrapperAsTrigger(v *SoftwareCatalogTriggerWrapper) Trigger {
+	return Trigger{SoftwareCatalogTriggerWrapper: v}
 }
 
 // WorkflowTriggerWrapperAsTrigger is a convenience function that returns WorkflowTriggerWrapper wrapped in Trigger.
@@ -159,6 +183,23 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 		obj.ChangeEventTriggerWrapper = nil
 	}
 
+	// try to unmarshal data into DatabaseMonitoringTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.DatabaseMonitoringTriggerWrapper)
+	if err == nil {
+		if obj.DatabaseMonitoringTriggerWrapper != nil && obj.DatabaseMonitoringTriggerWrapper.UnparsedObject == nil {
+			jsonDatabaseMonitoringTriggerWrapper, _ := datadog.Marshal(obj.DatabaseMonitoringTriggerWrapper)
+			if string(jsonDatabaseMonitoringTriggerWrapper) == "{}" { // empty struct
+				obj.DatabaseMonitoringTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.DatabaseMonitoringTriggerWrapper = nil
+		}
+	} else {
+		obj.DatabaseMonitoringTriggerWrapper = nil
+	}
+
 	// try to unmarshal data into DashboardTriggerWrapper
 	err = datadog.Unmarshal(data, &obj.DashboardTriggerWrapper)
 	if err == nil {
@@ -227,6 +268,23 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 		obj.MonitorTriggerWrapper = nil
 	}
 
+	// try to unmarshal data into NotebookTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.NotebookTriggerWrapper)
+	if err == nil {
+		if obj.NotebookTriggerWrapper != nil && obj.NotebookTriggerWrapper.UnparsedObject == nil {
+			jsonNotebookTriggerWrapper, _ := datadog.Marshal(obj.NotebookTriggerWrapper)
+			if string(jsonNotebookTriggerWrapper) == "{}" { // empty struct
+				obj.NotebookTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.NotebookTriggerWrapper = nil
+		}
+	} else {
+		obj.NotebookTriggerWrapper = nil
+	}
+
 	// try to unmarshal data into ScheduleTriggerWrapper
 	err = datadog.Unmarshal(data, &obj.ScheduleTriggerWrapper)
 	if err == nil {
@@ -261,6 +319,23 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 		obj.SecurityTriggerWrapper = nil
 	}
 
+	// try to unmarshal data into SelfServiceTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.SelfServiceTriggerWrapper)
+	if err == nil {
+		if obj.SelfServiceTriggerWrapper != nil && obj.SelfServiceTriggerWrapper.UnparsedObject == nil {
+			jsonSelfServiceTriggerWrapper, _ := datadog.Marshal(obj.SelfServiceTriggerWrapper)
+			if string(jsonSelfServiceTriggerWrapper) == "{}" { // empty struct
+				obj.SelfServiceTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.SelfServiceTriggerWrapper = nil
+		}
+	} else {
+		obj.SelfServiceTriggerWrapper = nil
+	}
+
 	// try to unmarshal data into SlackTriggerWrapper
 	err = datadog.Unmarshal(data, &obj.SlackTriggerWrapper)
 	if err == nil {
@@ -276,6 +351,23 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 		}
 	} else {
 		obj.SlackTriggerWrapper = nil
+	}
+
+	// try to unmarshal data into SoftwareCatalogTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.SoftwareCatalogTriggerWrapper)
+	if err == nil {
+		if obj.SoftwareCatalogTriggerWrapper != nil && obj.SoftwareCatalogTriggerWrapper.UnparsedObject == nil {
+			jsonSoftwareCatalogTriggerWrapper, _ := datadog.Marshal(obj.SoftwareCatalogTriggerWrapper)
+			if string(jsonSoftwareCatalogTriggerWrapper) == "{}" { // empty struct
+				obj.SoftwareCatalogTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.SoftwareCatalogTriggerWrapper = nil
+		}
+	} else {
+		obj.SoftwareCatalogTriggerWrapper = nil
 	}
 
 	// try to unmarshal data into WorkflowTriggerWrapper
@@ -301,13 +393,17 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 		obj.AppTriggerWrapper = nil
 		obj.CaseTriggerWrapper = nil
 		obj.ChangeEventTriggerWrapper = nil
+		obj.DatabaseMonitoringTriggerWrapper = nil
 		obj.DashboardTriggerWrapper = nil
 		obj.GithubWebhookTriggerWrapper = nil
 		obj.IncidentTriggerWrapper = nil
 		obj.MonitorTriggerWrapper = nil
+		obj.NotebookTriggerWrapper = nil
 		obj.ScheduleTriggerWrapper = nil
 		obj.SecurityTriggerWrapper = nil
+		obj.SelfServiceTriggerWrapper = nil
 		obj.SlackTriggerWrapper = nil
+		obj.SoftwareCatalogTriggerWrapper = nil
 		obj.WorkflowTriggerWrapper = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
@@ -332,6 +428,10 @@ func (obj Trigger) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.ChangeEventTriggerWrapper)
 	}
 
+	if obj.DatabaseMonitoringTriggerWrapper != nil {
+		return datadog.Marshal(&obj.DatabaseMonitoringTriggerWrapper)
+	}
+
 	if obj.DashboardTriggerWrapper != nil {
 		return datadog.Marshal(&obj.DashboardTriggerWrapper)
 	}
@@ -348,6 +448,10 @@ func (obj Trigger) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.MonitorTriggerWrapper)
 	}
 
+	if obj.NotebookTriggerWrapper != nil {
+		return datadog.Marshal(&obj.NotebookTriggerWrapper)
+	}
+
 	if obj.ScheduleTriggerWrapper != nil {
 		return datadog.Marshal(&obj.ScheduleTriggerWrapper)
 	}
@@ -356,8 +460,16 @@ func (obj Trigger) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SecurityTriggerWrapper)
 	}
 
+	if obj.SelfServiceTriggerWrapper != nil {
+		return datadog.Marshal(&obj.SelfServiceTriggerWrapper)
+	}
+
 	if obj.SlackTriggerWrapper != nil {
 		return datadog.Marshal(&obj.SlackTriggerWrapper)
+	}
+
+	if obj.SoftwareCatalogTriggerWrapper != nil {
+		return datadog.Marshal(&obj.SoftwareCatalogTriggerWrapper)
 	}
 
 	if obj.WorkflowTriggerWrapper != nil {
@@ -388,6 +500,10 @@ func (obj *Trigger) GetActualInstance() interface{} {
 		return obj.ChangeEventTriggerWrapper
 	}
 
+	if obj.DatabaseMonitoringTriggerWrapper != nil {
+		return obj.DatabaseMonitoringTriggerWrapper
+	}
+
 	if obj.DashboardTriggerWrapper != nil {
 		return obj.DashboardTriggerWrapper
 	}
@@ -404,6 +520,10 @@ func (obj *Trigger) GetActualInstance() interface{} {
 		return obj.MonitorTriggerWrapper
 	}
 
+	if obj.NotebookTriggerWrapper != nil {
+		return obj.NotebookTriggerWrapper
+	}
+
 	if obj.ScheduleTriggerWrapper != nil {
 		return obj.ScheduleTriggerWrapper
 	}
@@ -412,8 +532,16 @@ func (obj *Trigger) GetActualInstance() interface{} {
 		return obj.SecurityTriggerWrapper
 	}
 
+	if obj.SelfServiceTriggerWrapper != nil {
+		return obj.SelfServiceTriggerWrapper
+	}
+
 	if obj.SlackTriggerWrapper != nil {
 		return obj.SlackTriggerWrapper
+	}
+
+	if obj.SoftwareCatalogTriggerWrapper != nil {
+		return obj.SoftwareCatalogTriggerWrapper
 	}
 
 	if obj.WorkflowTriggerWrapper != nil {

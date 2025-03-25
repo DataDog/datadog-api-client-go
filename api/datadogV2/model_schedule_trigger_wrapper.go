@@ -12,7 +12,7 @@ import (
 
 // ScheduleTriggerWrapper Schema for a Schedule-based trigger.
 type ScheduleTriggerWrapper struct {
-	// Trigger a workflow VIA a Schedule. The workflow must be published.
+	// Trigger a workflow from a Schedule. The workflow must be published.
 	ScheduleTrigger ScheduleTrigger `json:"scheduleTrigger"`
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`

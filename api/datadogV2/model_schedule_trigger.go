@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ScheduleTrigger Trigger a workflow VIA a Schedule. The workflow must be published.
+// ScheduleTrigger Trigger a workflow from a Schedule. The workflow must be published.
 type ScheduleTrigger struct {
 	// Recurrence rule expression for scheduling.
 	RruleExpression string `json:"rruleExpression"`

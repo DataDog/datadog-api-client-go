@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IncidentTrigger Trigger a workflow VIA an Incident. For automatic triggering a handle must be configured and the workflow must be published.
+// IncidentTrigger Trigger a workflow from an Incident. For automatic triggering a handle must be configured and the workflow must be published.
 type IncidentTrigger struct {
 	// Defines a rate limit for a trigger.
 	RateLimit *TriggerRateLimit `json:"rateLimit,omitempty"`
