@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// APITrigger Trigger a workflow VIA an API. The workflow must be published.
+// APITrigger Trigger a workflow from an API request. The workflow must be published.
 type APITrigger struct {
 	// Defines a rate limit for a trigger.
 	RateLimit *TriggerRateLimit `json:"rateLimit,omitempty"`

@@ -12,7 +12,7 @@ import (
 
 // SlackTriggerWrapper Schema for a Slack-based trigger.
 type SlackTriggerWrapper struct {
-	// Trigger a workflow VIA Slack. The workflow must be published.
+	// Trigger a workflow from Slack. The workflow must be published.
 	SlackTrigger interface{} `json:"slackTrigger"`
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`

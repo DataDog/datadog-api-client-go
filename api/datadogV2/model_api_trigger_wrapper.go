@@ -12,7 +12,7 @@ import (
 
 // APITriggerWrapper Schema for an API-based trigger.
 type APITriggerWrapper struct {
-	// Trigger a workflow VIA an API. The workflow must be published.
+	// Trigger a workflow from an API request. The workflow must be published.
 	ApiTrigger APITrigger `json:"apiTrigger"`
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`

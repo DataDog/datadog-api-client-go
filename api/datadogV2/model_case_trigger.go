@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseTrigger Trigger a workflow VIA a Case. For automatic triggering a handle must be configured and the workflow must be published.
+// CaseTrigger Trigger a workflow from a Case. For automatic triggering a handle must be configured and the workflow must be published.
 type CaseTrigger struct {
 	// Defines a rate limit for a trigger.
 	RateLimit *TriggerRateLimit `json:"rateLimit,omitempty"`

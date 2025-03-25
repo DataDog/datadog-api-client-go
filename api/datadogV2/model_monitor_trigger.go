@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MonitorTrigger Trigger a workflow VIA a Monitor. For automatic triggering a handle must be configured and the workflow must be published.
+// MonitorTrigger Trigger a workflow from a Monitor. For automatic triggering a handle must be configured and the workflow must be published.
 type MonitorTrigger struct {
 	// Defines a rate limit for a trigger.
 	RateLimit *TriggerRateLimit `json:"rateLimit,omitempty"`

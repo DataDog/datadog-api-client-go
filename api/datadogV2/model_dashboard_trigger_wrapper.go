@@ -12,7 +12,7 @@ import (
 
 // DashboardTriggerWrapper Schema for a Dashboard-based trigger.
 type DashboardTriggerWrapper struct {
-	// Trigger a workflow VIA a Dashboard.
+	// Trigger a workflow from a Dashboard.
 	DashboardTrigger interface{} `json:"dashboardTrigger"`
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`

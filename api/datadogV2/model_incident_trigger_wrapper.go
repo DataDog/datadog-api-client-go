@@ -12,7 +12,7 @@ import (
 
 // IncidentTriggerWrapper Schema for an Incident-based trigger.
 type IncidentTriggerWrapper struct {
-	// Trigger a workflow VIA an Incident. For automatic triggering a handle must be configured and the workflow must be published.
+	// Trigger a workflow from an Incident. For automatic triggering a handle must be configured and the workflow must be published.
 	IncidentTrigger IncidentTrigger `json:"incidentTrigger"`
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
