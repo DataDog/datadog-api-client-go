@@ -20315,6 +20315,11 @@ components:
             Plus over all hours in the current date for the given org.
           format: int64
           type: integer
+        error_tracking_apm_error_events_sum:
+          description: Shows the sum of all Error Tracking APM error events over all
+            hours in the current date for the given org.
+          format: int64
+          type: integer
         error_tracking_error_events_sum:
           description: Shows the sum of all Error Tracking error events over all hours
             in the current date for the given org.
@@ -20634,6 +20639,11 @@ components:
             1st, 2024).
           format: int64
           type: integer
+        rum_mobile_lite_session_count_kotlinmultiplatform_sum:
+          description: Shows the sum of all mobile RUM lite sessions on Kotlin Multiplatform
+            over all hours within the current date for all organizations.
+          format: int64
+          type: integer
         rum_mobile_lite_session_count_reactnative_sum:
           description: Shows the sum of all mobile RUM lite sessions on React Native
             over all hours in the current date for all organizations (To be introduced
@@ -20646,6 +20656,11 @@ components:
             on October 1st, 2024).
           format: int64
           type: integer
+        rum_mobile_lite_session_count_unity_sum:
+          description: Shows the sum of all mobile RUM lite sessions on Unity over
+            all hours within the current date for all organizations.
+          format: int64
+          type: integer
         rum_mobile_replay_session_count_android_sum:
           description: Shows the sum of all mobile RUM replay sessions on Android
             over all hours within the current date for the given org.
@@ -20654,6 +20669,11 @@ components:
         rum_mobile_replay_session_count_ios_sum:
           description: Shows the sum of all mobile RUM replay sessions on iOS over
             all hours within the current date for the given org.
+          format: int64
+          type: integer
+        rum_mobile_replay_session_count_kotlinmultiplatform_sum:
+          description: Shows the sum of all mobile RUM replay sessions on Kotlin Multiplatform
+            over all hours within the current date for all organizations.
           format: int64
           type: integer
         rum_mobile_replay_session_count_reactnative_sum:
@@ -21185,6 +21205,11 @@ components:
             Plus over all hours in the current date for the given org.
           format: int64
           type: integer
+        error_tracking_apm_error_events_sum:
+          description: Shows the sum of all Error Tracking APM error events over all
+            hours in the current date for the given org.
+          format: int64
+          type: integer
         error_tracking_error_events_sum:
           description: Shows the sum of all Error Tracking error events over all hours
             in the current date for the given org.
@@ -21508,6 +21533,11 @@ components:
             1st, 2024).
           format: int64
           type: integer
+        rum_mobile_lite_session_count_kotlinmultiplatform_sum:
+          description: Shows the sum of all mobile RUM lite sessions on Kotlin Multiplatform
+            over all hours within the current date for the given org.
+          format: int64
+          type: integer
         rum_mobile_lite_session_count_reactnative_sum:
           description: Shows the sum of all mobile RUM lite sessions on React Native
             over all hours in the current date for the given org (To be introduced
@@ -21520,6 +21550,11 @@ components:
             1st, 2024).
           format: int64
           type: integer
+        rum_mobile_lite_session_count_unity_sum:
+          description: Shows the sum of all mobile RUM lite sessions on Unity over
+            all hours within the current date for the given org.
+          format: int64
+          type: integer
         rum_mobile_replay_session_count_android_sum:
           description: Shows the sum of all mobile RUM replay sessions on Android
             over all hours within the current date for the given org.
@@ -21528,6 +21563,11 @@ components:
         rum_mobile_replay_session_count_ios_sum:
           description: Shows the sum of all mobile RUM replay sessions on iOS over
             all hours within the current date for the given org.
+          format: int64
+          type: integer
+        rum_mobile_replay_session_count_kotlinmultiplatform_sum:
+          description: Shows the sum of all mobile RUM replay sessions on Kotlin Multiplatform
+            over all hours within the current date for the given org.
           format: int64
           type: integer
         rum_mobile_replay_session_count_reactnative_sum:
@@ -22060,6 +22100,11 @@ components:
             Plus over all hours in the current month for all organizations.
           format: int64
           type: integer
+        error_tracking_apm_error_events_agg_sum:
+          description: Shows the sum of all Error Tracking APM error events over all
+            hours in the current month for all organizations.
+          format: int64
+          type: integer
         error_tracking_error_events_agg_sum:
           description: Shows the sum of all Error Tracking error events over all hours
             in the current month for all organizations.
@@ -22414,6 +22459,11 @@ components:
             October 1st, 2024).
           format: int64
           type: integer
+        rum_mobile_lite_session_count_kotlinmultiplatform_agg_sum:
+          description: Shows the sum of all mobile RUM lite sessions on Kotlin Multiplatform
+            over all hours within the current month for all organizations.
+          format: int64
+          type: integer
         rum_mobile_lite_session_count_reactnative_agg_sum:
           description: Shows the sum of all mobile RUM lite sessions on React Native
             over all hours in the current month for all organizations (To be introduced
@@ -22426,6 +22476,11 @@ components:
             on October 1st, 2024).
           format: int64
           type: integer
+        rum_mobile_lite_session_count_unity_agg_sum:
+          description: Shows the sum of all mobile RUM lite sessions on Unity over
+            all hours within the current month for all organizations.
+          format: int64
+          type: integer
         rum_mobile_replay_session_count_android_agg_sum:
           description: Shows the sum of all mobile RUM replay sessions on Android
             over all hours within the current month for all organizations.
@@ -22434,6 +22489,11 @@ components:
         rum_mobile_replay_session_count_ios_agg_sum:
           description: Shows the sum of all mobile RUM replay sessions on iOS over
             all hours within the current month for all organizations.
+          format: int64
+          type: integer
+        rum_mobile_replay_session_count_kotlinmultiplatform_agg_sum:
+          description: Shows the sum of all mobile RUM replay sessions on Kotlin Multiplatform
+            over all hours within the current month for all organizations.
           format: int64
           type: integer
         rum_mobile_replay_session_count_reactnative_agg_sum:
@@ -28758,6 +28818,43 @@ paths:
         permissions:
         - logs_modify_indexes
   /api/v1/logs/config/indexes/{name}:
+    delete:
+      description: 'Delete an existing index from your organization. Index deletions
+        are permanent and cannot be reverted.
+
+        You cannot recreate an index with the same name as deleted ones.'
+      operationId: DeleteLogsIndex
+      parameters:
+      - description: Name of the log index.
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogsAPIErrorResponse'
+          description: Not Found
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Delete an index
+      tags:
+      - Logs Indexes
+      x-permission:
+        operator: OR
+        permissions:
+        - logs_modify_indexes
     get:
       description: Get one log index from your organization. This endpoint takes no
         JSON arguments.
@@ -29291,7 +29388,7 @@ paths:
       - description: 'When specified, shows additional information about the group
           states.
 
-          Choose one or more from `all`, `alert`, `warn`, and `no data` (`no%20data`).'
+          Choose one or more from `all`, `alert`, `warn`, and `no data`.'
         in: query
         name: group_states
         required: false
@@ -36751,7 +36848,7 @@ servers:
   variables:
     site:
       default: datadoghq.com
-      description: The regional site for a Datadog customer.
+      description: The regional site for Datadog customers.
       enum:
       - datadoghq.com
       - us3.datadoghq.com
@@ -36826,7 +36923,10 @@ tags:
 
     scopes from alerting. Downtime settings, which can be scheduled with start and
 
-    end times, prevent all alerting related to specified Datadog tags.'
+    end times, prevent all alerting related to specified Datadog tags.
+
+
+    **Note:** `curl` commands require [url encoding](https://curl.se/docs/url-syntax.html).'
   name: Downtimes
 - description: 'The Event Management API allows you to programmatically post events
     to the Events Explorer and fetch events from the Events Explorer. See the [Event
@@ -36903,7 +37003,10 @@ tags:
     notifies your team when a defined threshold has exceeded.
 
 
-    For more information, see [Creating Monitors](https://docs.datadoghq.com/monitors/create/types/).'
+    For more information, see [Creating Monitors](https://docs.datadoghq.com/monitors/create/types/).
+
+
+    **Note:** `curl` commands require [url encoding](https://curl.se/docs/url-syntax.html).'
   externalDocs:
     description: Find out more at
     url: https://docs.datadoghq.com/monitors/create/types/

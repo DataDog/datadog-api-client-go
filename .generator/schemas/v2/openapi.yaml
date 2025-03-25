@@ -683,10 +683,24 @@ components:
       required: true
       schema:
         type: string
+    RumApplicationIDParameter:
+      description: RUM application ID.
+      in: path
+      name: app_id
+      required: true
+      schema:
+        type: string
     RumMetricIDParameter:
       description: The name of the rum-based metric.
       in: path
       name: metric_id
+      required: true
+      schema:
+        type: string
+    RumRetentionFilterIDParameter:
+      description: Retention filter ID.
+      in: path
+      name: rf_id
       required: true
       schema:
         type: string
@@ -4122,6 +4136,8 @@ components:
             of EC2 instances, lambda functions, AMI, ECR, RDS and S3 buckets.
           example: arn:aws:ec2:us-east-1:727000456123:instance/i-0eabb50529b67a1ba
           type: string
+      required:
+      - arn
       type: object
     AwsOnDemandCreateData:
       description: Object for a single AWS on demand task.
@@ -4219,6 +4235,11 @@ components:
           description: Indicates if scanning for vulnerabilities in hosts is enabled.
           example: true
           type: boolean
+      required:
+      - lambda
+      - sensitive_data
+      - vuln_containers_os
+      - vuln_host_os
       type: object
     AwsScanOptionsCreateData:
       description: Object for the scan options of a single AWS account.
@@ -11915,9 +11936,15 @@ components:
           description: Incident ID.
           type: string
         type:
-          description: Incident description.
-          type: string
+          $ref: '#/components/schemas/EntityResponseIncludedIncidentType'
       type: object
+    EntityResponseIncludedIncidentType:
+      description: Incident description.
+      enum:
+      - incident
+      type: string
+      x-enum-varnames:
+      - INCIDENT
     EntityResponseIncludedOncall:
       description: Included oncall.
       properties:
@@ -11927,9 +11954,15 @@ components:
           description: Oncall ID.
           type: string
         type:
-          description: Oncall type.
-          type: string
+          $ref: '#/components/schemas/EntityResponseIncludedOncallType'
       type: object
+    EntityResponseIncludedOncallType:
+      description: Oncall type.
+      enum:
+      - oncall
+      type: string
+      x-enum-varnames:
+      - ONCALL
     EntityResponseIncludedRawSchema:
       description: Included raw schema.
       properties:
@@ -11939,8 +11972,7 @@ components:
           description: Raw schema ID.
           type: string
         type:
-          description: Raw schema type.
-          type: string
+          $ref: '#/components/schemas/EntityResponseIncludedRawSchemaType'
       type: object
     EntityResponseIncludedRawSchemaAttributes:
       description: Included raw schema attributes.
@@ -11949,6 +11981,13 @@ components:
           description: Schema from user input in base64 encoding.
           type: string
       type: object
+    EntityResponseIncludedRawSchemaType:
+      description: Raw schema type.
+      enum:
+      - rawSchema
+      type: string
+      x-enum-varnames:
+      - RAW_SCHEMA
     EntityResponseIncludedRelatedEntity:
       description: Included related entity.
       properties:
@@ -11960,8 +11999,7 @@ components:
         meta:
           $ref: '#/components/schemas/EntityResponseIncludedRelatedEntityMeta'
         type:
-          description: Related entity.
-          type: string
+          $ref: '#/components/schemas/EntityResponseIncludedRelatedEntityType'
       type: object
     EntityResponseIncludedRelatedEntityAttributes:
       description: Related entity attributes.
@@ -11997,6 +12035,13 @@ components:
           description: Entity relation source.
           type: string
       type: object
+    EntityResponseIncludedRelatedEntityType:
+      description: Related entity.
+      enum:
+      - relatedEntity
+      type: string
+      x-enum-varnames:
+      - RELATED_ENTITY
     EntityResponseIncludedRelatedIncidentAttributes:
       description: Incident attributes.
       properties:
@@ -12054,8 +12099,7 @@ components:
           description: Entity ID.
           type: string
         type:
-          description: Schema type.
-          type: string
+          $ref: '#/components/schemas/EntityResponseIncludedSchemaType'
       type: object
     EntityResponseIncludedSchemaAttributes:
       description: Included schema.
@@ -12063,6 +12107,13 @@ components:
         schema:
           $ref: '#/components/schemas/EntityV3'
       type: object
+    EntityResponseIncludedSchemaType:
+      description: Schema type.
+      enum:
+      - schema
+      type: string
+      x-enum-varnames:
+      - SCHEMA
     EntityResponseMeta:
       description: Entity metadata.
       properties:
@@ -14725,6 +14776,8 @@ components:
       properties:
         aggregation:
           $ref: '#/components/schemas/SecurityMonitoringRuleQueryAggregation'
+        dataSource:
+          $ref: '#/components/schemas/SecurityMonitoringStandardDataSource'
         distinctFields:
           description: Field for which the cardinality is measured. Sent as an array.
           items:
@@ -18438,6 +18491,8 @@ components:
         path:
           description: The archive path.
           type: string
+        storage_class:
+          $ref: '#/components/schemas/LogsArchiveStorageClassS3Type'
         type:
           $ref: '#/components/schemas/LogsArchiveDestinationS3Type'
       required:
@@ -18581,6 +18636,23 @@ components:
       - WORKING
       - FAILING
       - WORKING_AUTH_LEGACY
+    LogsArchiveStorageClassS3Type:
+      default: STANDARD
+      description: The storage class where the archive will be stored.
+      enum:
+      - STANDARD
+      - STANDARD_IA
+      - ONEZONE_IA
+      - INTELLIGENT_TIERING
+      - GLACIER_IR
+      example: STANDARD
+      type: string
+      x-enum-varnames:
+      - STANDARD
+      - STANDARD_IA
+      - ONEZONE_IA
+      - INTELLIGENT_TIERING
+      - GLACIER_IR
     LogsArchives:
       description: The available archives.
       properties:
@@ -25441,6 +25513,199 @@ components:
             $ref: '#/components/schemas/RumMetricResponseData'
           type: array
       type: object
+    RumRetentionFilterAttributes:
+      description: The object describing attributes of a RUM retention filter.
+      properties:
+        enabled:
+          $ref: '#/components/schemas/RumRetentionFilterEnabled'
+        event_type:
+          $ref: '#/components/schemas/RumRetentionFilterEventType'
+        name:
+          $ref: '#/components/schemas/RunRetentionFilterName'
+        query:
+          $ref: '#/components/schemas/RumRetentionFilterQuery'
+        sample_rate:
+          $ref: '#/components/schemas/RumRetentionFilterSampleRate'
+      type: object
+    RumRetentionFilterCreateAttributes:
+      description: The object describing attributes of a RUM retention filter to create.
+      properties:
+        enabled:
+          $ref: '#/components/schemas/RumRetentionFilterEnabled'
+        event_type:
+          $ref: '#/components/schemas/RumRetentionFilterEventType'
+        name:
+          $ref: '#/components/schemas/RunRetentionFilterName'
+        query:
+          $ref: '#/components/schemas/RumRetentionFilterQuery'
+        sample_rate:
+          $ref: '#/components/schemas/RumRetentionFilterSampleRate'
+      required:
+      - event_type
+      - name
+      - sample_rate
+      type: object
+    RumRetentionFilterCreateData:
+      description: The new RUM retention filter properties to create.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/RumRetentionFilterCreateAttributes'
+        type:
+          $ref: '#/components/schemas/RumRetentionFilterType'
+      required:
+      - type
+      - attributes
+      type: object
+    RumRetentionFilterCreateRequest:
+      description: The RUM retention filter body to create.
+      properties:
+        data:
+          $ref: '#/components/schemas/RumRetentionFilterCreateData'
+      required:
+      - data
+      type: object
+    RumRetentionFilterData:
+      description: The RUM retention filter.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/RumRetentionFilterAttributes'
+        id:
+          $ref: '#/components/schemas/RumRetentionFilterID'
+        type:
+          $ref: '#/components/schemas/RumRetentionFilterType'
+      type: object
+    RumRetentionFilterEnabled:
+      description: Whether the retention filter is enabled.
+      example: true
+      type: boolean
+    RumRetentionFilterEventType:
+      description: The type of RUM events to filter on.
+      enum:
+      - session
+      - view
+      - action
+      - error
+      - resource
+      - long_task
+      - vital
+      example: session
+      type: string
+      x-enum-varnames:
+      - SESSION
+      - VIEW
+      - ACTION
+      - ERROR
+      - RESOURCE
+      - LONG_TASK
+      - VITAL
+    RumRetentionFilterID:
+      description: ID of retention filter in UUID.
+      example: 051601eb-54a0-abc0-03f9-cc02efa18892
+      type: string
+    RumRetentionFilterQuery:
+      description: The query string for a RUM retention filter.
+      example: '@session.has_replay:true'
+      type: string
+    RumRetentionFilterResponse:
+      description: The RUM retention filter object.
+      properties:
+        data:
+          $ref: '#/components/schemas/RumRetentionFilterData'
+      type: object
+    RumRetentionFilterSampleRate:
+      description: The sample rate for a RUM retention filter, between 0 and 100.
+      example: 25
+      format: int64
+      maximum: 100
+      minimum: 0
+      type: integer
+    RumRetentionFilterType:
+      default: retention_filters
+      description: The type of the resource. The value should always be retention_filters.
+      enum:
+      - retention_filters
+      example: retention_filters
+      type: string
+      x-enum-varnames:
+      - RETENTION_FILTERS
+    RumRetentionFilterUpdateAttributes:
+      description: The object describing attributes of a RUM retention filter to update.
+      properties:
+        enabled:
+          $ref: '#/components/schemas/RumRetentionFilterEnabled'
+        event_type:
+          $ref: '#/components/schemas/RumRetentionFilterEventType'
+        name:
+          $ref: '#/components/schemas/RunRetentionFilterName'
+        query:
+          $ref: '#/components/schemas/RumRetentionFilterQuery'
+        sample_rate:
+          $ref: '#/components/schemas/RumRetentionFilterSampleRate'
+      type: object
+    RumRetentionFilterUpdateData:
+      description: The new RUM retention filter properties to update.
+      properties:
+        attributes:
+          $ref: '#/components/schemas/RumRetentionFilterUpdateAttributes'
+        id:
+          $ref: '#/components/schemas/RumRetentionFilterID'
+        type:
+          $ref: '#/components/schemas/RumRetentionFilterType'
+      required:
+      - id
+      - type
+      - attributes
+      type: object
+    RumRetentionFilterUpdateRequest:
+      description: The RUM retention filter body to update.
+      properties:
+        data:
+          $ref: '#/components/schemas/RumRetentionFilterUpdateData'
+      required:
+      - data
+      type: object
+    RumRetentionFiltersOrderData:
+      description: The RUM retention filter data for ordering.
+      properties:
+        id:
+          $ref: '#/components/schemas/RumRetentionFilterID'
+        type:
+          $ref: '#/components/schemas/RumRetentionFilterType'
+      required:
+      - id
+      - type
+      type: object
+    RumRetentionFiltersOrderRequest:
+      description: 'The list of RUM retention filter IDs along with their corresponding
+        type to reorder.
+
+        All retention filter IDs should be included in the list created for a RUM
+        application.'
+      properties:
+        data:
+          description: A list of RUM retention filter IDs along with type.
+          items:
+            $ref: '#/components/schemas/RumRetentionFiltersOrderData'
+          type: array
+      type: object
+    RumRetentionFiltersOrderResponse:
+      description: The list of RUM retention filter IDs along with type.
+      properties:
+        data:
+          description: A list of RUM retention filter IDs along with type.
+          items:
+            $ref: '#/components/schemas/RumRetentionFiltersOrderData'
+          type: array
+      type: object
+    RumRetentionFiltersResponse:
+      description: All RUM retention filters for a RUM application.
+      properties:
+        data:
+          description: A list of RUM retention filters.
+          items:
+            $ref: '#/components/schemas/RumRetentionFilterData'
+          type: array
+      type: object
     RunHistoricalJobRequest:
       description: Run a historical job request.
       properties:
@@ -25473,6 +25738,10 @@ components:
       type: string
       x-enum-varnames:
       - HISTORICALDETECTIONSJOBCREATE
+    RunRetentionFilterName:
+      description: The name of a RUM retention filter.
+      example: Retention filter for session
+      type: string
     SAMLAssertionAttribute:
       description: SAML assertion attribute.
       properties:
@@ -27405,6 +27674,17 @@ components:
       x-enum-varnames:
       - TIMESTAMP_ASCENDING
       - TIMESTAMP_DESCENDING
+    SecurityMonitoringStandardDataSource:
+      default: logs
+      description: Source of events, either logs or audit trail.
+      enum:
+      - logs
+      - audit
+      example: logs
+      type: string
+      x-enum-varnames:
+      - LOGS
+      - AUDIT
     SecurityMonitoringStandardRuleCreatePayload:
       description: Create a new rule.
       properties:
@@ -27572,6 +27852,8 @@ components:
       properties:
         aggregation:
           $ref: '#/components/schemas/SecurityMonitoringRuleQueryAggregation'
+        dataSource:
+          $ref: '#/components/schemas/SecurityMonitoringStandardDataSource'
         distinctFields:
           description: Field for which the cardinality is measured. Sent as an array.
           items:
@@ -29650,24 +29932,8 @@ components:
       type: object
     ServiceDefinitionV2Dot2Type:
       description: The type of service.
-      enum:
-      - web
-      - db
-      - cache
-      - function
-      - browser
-      - mobile
-      - custom
       example: web
       type: string
-      x-enum-varnames:
-      - WEB
-      - DB
-      - CACHE
-      - FUNCTION
-      - BROSWER
-      - MOBILE
-      - CUSTOM
     ServiceDefinitionV2Dot2Version:
       default: v2.2
       description: Schema version being used.
@@ -33982,7 +34248,9 @@ paths:
         permissions:
         - security_monitoring_findings_read
     post:
-      description: Trigger the scan of an AWS resource with a high priority.
+      description: Trigger the scan of an AWS resource with a high priority. Agentless
+        scanning must be activated for the AWS account containing the resource to
+        scan.
       operationId: CreateAwsOnDemandTask
       requestBody:
         content:
@@ -34015,7 +34283,7 @@ paths:
   /api/v2/agentless_scanning/ondemand/aws/{task_id}:
     get:
       description: Fetch the data of a specific on demand task.
-      operationId: RetrieveAwsOnDemandTask
+      operationId: GetAwsOnDemandTask
       parameters:
       - $ref: '#/components/parameters/OnDemandTaskId'
       responses:
@@ -38525,7 +38793,12 @@ paths:
         - monitors_downtime
   /api/v2/downtime/{downtime_id}:
     delete:
-      description: Cancel a downtime.
+      description: 'Cancel a downtime.
+
+
+        **Note**: Downtimes canceled through the API are no longer active, but are
+        retained for approximately two days before being permanently removed. The
+        downtime may still appear in search results until it is permanently removed.'
       operationId: CancelDowntime
       parameters:
       - description: ID of the downtime to cancel.
@@ -45978,6 +46251,167 @@ paths:
         operator: OR
         permissions:
         - rum_apps_write
+  /api/v2/rum/applications/{app_id}/relationships/retention_filters:
+    patch:
+      description: 'Order RUM retention filters for a RUM application.
+
+        Returns RUM retention filter objects without attributes from the request body
+        when the request is successful.'
+      operationId: OrderRetentionFilters
+      parameters:
+      - $ref: '#/components/parameters/RumApplicationIDParameter'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RumRetentionFiltersOrderRequest'
+        description: New definition of the RUM retention filter.
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RumRetentionFiltersOrderResponse'
+          description: Ordered
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '403':
+          $ref: '#/components/responses/NotAuthorizedResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Order RUM retention filters
+      tags:
+      - Rum Retention Filters
+      x-codegen-request-body-name: body
+  /api/v2/rum/applications/{app_id}/retention_filters:
+    get:
+      description: Get the list of RUM retention filters for a RUM application.
+      operationId: ListRetentionFilters
+      parameters:
+      - $ref: '#/components/parameters/RumApplicationIDParameter'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RumRetentionFiltersResponse'
+          description: OK
+        '403':
+          $ref: '#/components/responses/NotAuthorizedResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Get all RUM retention filters
+      tags:
+      - Rum Retention Filters
+    post:
+      description: 'Create a RUM retention filter for a RUM application.
+
+        Returns RUM retention filter objects from the request body when the request
+        is successful.'
+      operationId: CreateRetentionFilter
+      parameters:
+      - $ref: '#/components/parameters/RumApplicationIDParameter'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RumRetentionFilterCreateRequest'
+        description: The definition of the new RUM retention filter.
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RumRetentionFilterResponse'
+          description: Created
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '403':
+          $ref: '#/components/responses/NotAuthorizedResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Create a RUM retention filter
+      tags:
+      - Rum Retention Filters
+      x-codegen-request-body-name: body
+  /api/v2/rum/applications/{app_id}/retention_filters/{rf_id}:
+    delete:
+      description: Delete a RUM retention filter for a RUM application.
+      operationId: DeleteRetentionFilter
+      parameters:
+      - $ref: '#/components/parameters/RumApplicationIDParameter'
+      - $ref: '#/components/parameters/RumRetentionFilterIDParameter'
+      responses:
+        '204':
+          description: No Content
+        '403':
+          $ref: '#/components/responses/NotAuthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Delete a RUM retention filter
+      tags:
+      - Rum Retention Filters
+    get:
+      description: Get a RUM retention filter for a RUM application.
+      operationId: GetRetentionFilter
+      parameters:
+      - $ref: '#/components/parameters/RumApplicationIDParameter'
+      - $ref: '#/components/parameters/RumRetentionFilterIDParameter'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RumRetentionFilterResponse'
+          description: OK
+        '403':
+          $ref: '#/components/responses/NotAuthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Get a RUM retention filter
+      tags:
+      - Rum Retention Filters
+    patch:
+      description: 'Update a RUM retention filter for a RUM application.
+
+        Returns RUM retention filter objects from the request body when the request
+        is successful.'
+      operationId: UpdateRetentionFilter
+      parameters:
+      - $ref: '#/components/parameters/RumApplicationIDParameter'
+      - $ref: '#/components/parameters/RumRetentionFilterIDParameter'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RumRetentionFilterUpdateRequest'
+        description: New definition of the RUM retention filter.
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RumRetentionFilterResponse'
+          description: Updated
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '403':
+          $ref: '#/components/responses/NotAuthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/TooManyRequestsResponse'
+      summary: Update a RUM retention filter
+      tags:
+      - Rum Retention Filters
+      x-codegen-request-body-name: body
   /api/v2/rum/applications/{id}:
     delete:
       description: Delete an existing RUM application in your organization.
@@ -53068,8 +53502,9 @@ tags:
   name: Action Connection
 - description: "Datadog Agentless Scanning provides visibility into risks and vulnerabilities\nwithin
     your hosts, running containers, and serverless functions\u2014all without\nrequiring
-    teams to install Agents on every host or where Agents cannot be installed.\nGo
-    to https://www.datadoghq.com/blog/agentless-scanning/ to learn more."
+    teams to install Agents on every host or where Agents cannot be installed.\nAgentless
+    offers also Sensitive Data Scanning capabilities on your storage.\nGo to https://www.datadoghq.com/blog/agentless-scanning/
+    to learn more."
   name: Agentless Scanning
 - description: Datadog App Builder provides a low-code solution to rapidly develop
     and integrate secure, customized applications into your monitoring stack that
@@ -53392,6 +53827,9 @@ tags:
     description: Find out more at
     url: https://docs.datadoghq.com/real_user_monitoring/platform/generate_metrics/
   name: Rum Metrics
+- description: Manage retention filters through [Manage Applications](https://app.datadoghq.com/rum/list)
+    of RUM for your organization.
+  name: Rum Retention Filters
 - description: Create and manage your security rules, signals, filters, and more.
     See the [Datadog Security page](https://docs.datadoghq.com/security/) for more
     information.

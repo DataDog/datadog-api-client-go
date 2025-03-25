@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"enabled":true,"event_type":"view","name":"Test updating retention filter","query":"","sample_rate":100},"id":"Test-Update_a_RUM_retention_filter_returns_Not_Found_response-1741036884","type":"retention_filters"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/rum/applications/a33671aa-24fd-4dcd-ba4b-5bbdbafe7690/retention_filters/Test-Update_a_RUM_retention_filter_returns_Not_Found_response-1741036884
+  response:
+    body: '{"errors":[{"status":"404","title":"Not Found","detail":"rpc error: code
+      = NotFound desc = NotFound: This retention filter does not exist"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

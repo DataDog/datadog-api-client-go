@@ -67,7 +67,7 @@ func main() {
 			},
 			Team: datadog.PtrString("my-team"),
 			Tier: datadog.PtrString("High"),
-			Type: datadogV2.SERVICEDEFINITIONV2DOT2TYPE_WEB.Ptr(),
+			Type: datadog.PtrString("web"),
 		}}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
