@@ -11936,9 +11936,15 @@ components:
           description: Incident ID.
           type: string
         type:
-          description: Incident description.
-          type: string
+          $ref: '#/components/schemas/EntityResponseIncludedIncidentType'
       type: object
+    EntityResponseIncludedIncidentType:
+      description: Incident description.
+      enum:
+      - incident
+      type: string
+      x-enum-varnames:
+      - INCIDENT
     EntityResponseIncludedOncall:
       description: Included oncall.
       properties:
@@ -11948,9 +11954,15 @@ components:
           description: Oncall ID.
           type: string
         type:
-          description: Oncall type.
-          type: string
+          $ref: '#/components/schemas/EntityResponseIncludedOncallType'
       type: object
+    EntityResponseIncludedOncallType:
+      description: Oncall type.
+      enum:
+      - oncall
+      type: string
+      x-enum-varnames:
+      - ONCALL
     EntityResponseIncludedRawSchema:
       description: Included raw schema.
       properties:
@@ -11960,8 +11972,7 @@ components:
           description: Raw schema ID.
           type: string
         type:
-          description: Raw schema type.
-          type: string
+          $ref: '#/components/schemas/EntityResponseIncludedRawSchemaType'
       type: object
     EntityResponseIncludedRawSchemaAttributes:
       description: Included raw schema attributes.
@@ -11970,6 +11981,13 @@ components:
           description: Schema from user input in base64 encoding.
           type: string
       type: object
+    EntityResponseIncludedRawSchemaType:
+      description: Raw schema type.
+      enum:
+      - rawSchema
+      type: string
+      x-enum-varnames:
+      - RAW_SCHEMA
     EntityResponseIncludedRelatedEntity:
       description: Included related entity.
       properties:
@@ -11981,8 +11999,7 @@ components:
         meta:
           $ref: '#/components/schemas/EntityResponseIncludedRelatedEntityMeta'
         type:
-          description: Related entity.
-          type: string
+          $ref: '#/components/schemas/EntityResponseIncludedRelatedEntityType'
       type: object
     EntityResponseIncludedRelatedEntityAttributes:
       description: Related entity attributes.
@@ -12018,6 +12035,13 @@ components:
           description: Entity relation source.
           type: string
       type: object
+    EntityResponseIncludedRelatedEntityType:
+      description: Related entity.
+      enum:
+      - relatedEntity
+      type: string
+      x-enum-varnames:
+      - RELATED_ENTITY
     EntityResponseIncludedRelatedIncidentAttributes:
       description: Incident attributes.
       properties:
@@ -12075,8 +12099,7 @@ components:
           description: Entity ID.
           type: string
         type:
-          description: Schema type.
-          type: string
+          $ref: '#/components/schemas/EntityResponseIncludedSchemaType'
       type: object
     EntityResponseIncludedSchemaAttributes:
       description: Included schema.
@@ -12084,6 +12107,13 @@ components:
         schema:
           $ref: '#/components/schemas/EntityV3'
       type: object
+    EntityResponseIncludedSchemaType:
+      description: Schema type.
+      enum:
+      - schema
+      type: string
+      x-enum-varnames:
+      - SCHEMA
     EntityResponseMeta:
       description: Entity metadata.
       properties:
@@ -14746,6 +14776,8 @@ components:
       properties:
         aggregation:
           $ref: '#/components/schemas/SecurityMonitoringRuleQueryAggregation'
+        dataSource:
+          $ref: '#/components/schemas/SecurityMonitoringStandardDataSource'
         distinctFields:
           description: Field for which the cardinality is measured. Sent as an array.
           items:
@@ -27642,6 +27674,17 @@ components:
       x-enum-varnames:
       - TIMESTAMP_ASCENDING
       - TIMESTAMP_DESCENDING
+    SecurityMonitoringStandardDataSource:
+      default: logs
+      description: Source of events, either logs or audit trail.
+      enum:
+      - logs
+      - audit
+      example: logs
+      type: string
+      x-enum-varnames:
+      - LOGS
+      - AUDIT
     SecurityMonitoringStandardRuleCreatePayload:
       description: Create a new rule.
       properties:
@@ -27809,6 +27852,8 @@ components:
       properties:
         aggregation:
           $ref: '#/components/schemas/SecurityMonitoringRuleQueryAggregation'
+        dataSource:
+          $ref: '#/components/schemas/SecurityMonitoringStandardDataSource'
         distinctFields:
           description: Field for which the cardinality is measured. Sent as an array.
           items:
@@ -29887,24 +29932,8 @@ components:
       type: object
     ServiceDefinitionV2Dot2Type:
       description: The type of service.
-      enum:
-      - web
-      - db
-      - cache
-      - function
-      - browser
-      - mobile
-      - custom
       example: web
       type: string
-      x-enum-varnames:
-      - WEB
-      - DB
-      - CACHE
-      - FUNCTION
-      - BROSWER
-      - MOBILE
-      - CUSTOM
     ServiceDefinitionV2Dot2Version:
       default: v2.2
       description: Schema version being used.
@@ -38764,7 +38793,12 @@ paths:
         - monitors_downtime
   /api/v2/downtime/{downtime_id}:
     delete:
-      description: Cancel a downtime.
+      description: 'Cancel a downtime.
+
+
+        **Note**: Downtimes canceled through the API are no longer active, but are
+        retained for approximately two days before being permanently removed. The
+        downtime may still appear in search results until it is permanently removed.'
       operationId: CancelDowntime
       parameters:
       - description: ID of the downtime to cancel.
