@@ -69,7 +69,7 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// GithubWebhookTriggerWrapper Schema for a GitHub webhook-based trigger.</span>
 <span id="L14" class="ln">    14  </span>type GithubWebhookTriggerWrapper struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// Trigger a workflow VIA GitHub webhook. To trigger a workflow from GitHub, you must set a `webhookSecret`. In your GitHub Webhook Settings, set the Payload URL to &#34;base_url&#34;/api/v2/workflows/&#34;workflow_id&#34;/webhook?orgId=&#34;org_id&#34;, select application/json for the content type, and be highly recommend enabling SSL verification for security. The workflow must be published.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Trigger a workflow from a GitHub webhook. To trigger a workflow from GitHub, you must set a `webhookSecret`. In your GitHub Webhook Settings, set the Payload URL to &#34;base_url&#34;/api/v2/workflows/&#34;workflow_id&#34;/webhook?orgId=&#34;org_id&#34;, select application/json for the content type, and be highly recommend enabling SSL verification for security. The workflow must be published.</span>
 <span id="L16" class="ln">    16  </span>	GithubWebhookTrigger GithubWebhookTrigger `json:&#34;githubWebhookTrigger&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// A list of steps that run first after a trigger fires.</span>
 <span id="L18" class="ln">    18  </span>	StartStepNames []string `json:&#34;startStepNames,omitempty&#34;`

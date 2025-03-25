@@ -71,7 +71,7 @@
 <span id="L14" class="ln">    14  </span>type WorkflowTriggerWrapper struct {
 <span id="L15" class="ln">    15  </span>	<span class="comment">// A list of steps that run first after a trigger fires.</span>
 <span id="L16" class="ln">    16  </span>	StartStepNames []string `json:&#34;startStepNames,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// Trigger a workflow VIA the Datadog UI. Only required if no other trigger exists.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Trigger a workflow from the Datadog UI. Only required if no other trigger exists.</span>
 <span id="L18" class="ln">    18  </span>	WorkflowTrigger interface{} `json:&#34;workflowTrigger&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L20" class="ln">    20  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`

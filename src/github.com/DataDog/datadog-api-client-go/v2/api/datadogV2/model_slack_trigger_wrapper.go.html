@@ -69,7 +69,7 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// SlackTriggerWrapper Schema for a Slack-based trigger.</span>
 <span id="L14" class="ln">    14  </span>type SlackTriggerWrapper struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// Trigger a workflow VIA Slack. The workflow must be published.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Trigger a workflow from Slack. The workflow must be published.</span>
 <span id="L16" class="ln">    16  </span>	SlackTrigger interface{} `json:&#34;slackTrigger&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// A list of steps that run first after a trigger fires.</span>
 <span id="L18" class="ln">    18  </span>	StartStepNames []string `json:&#34;startStepNames,omitempty&#34;`

@@ -69,7 +69,7 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// MonitorTriggerWrapper Schema for a Monitor-based trigger.</span>
 <span id="L14" class="ln">    14  </span>type MonitorTriggerWrapper struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// Trigger a workflow VIA a Monitor. For automatic triggering a handle must be configured and the workflow must be published.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Trigger a workflow from a Monitor. For automatic triggering a handle must be configured and the workflow must be published.</span>
 <span id="L16" class="ln">    16  </span>	MonitorTrigger MonitorTrigger `json:&#34;monitorTrigger&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// A list of steps that run first after a trigger fires.</span>
 <span id="L18" class="ln">    18  </span>	StartStepNames []string `json:&#34;startStepNames,omitempty&#34;`
