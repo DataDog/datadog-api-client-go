@@ -232,6 +232,13 @@ func (c *APIClient) PrepareRequest(
 
 	var body *bytes.Buffer
 
+	// Apply default headers unless they are overridden
+	for header, value := range c.Cfg.DefaultHeader {
+		if _, exists := headerParams[header]; !exists {
+			headerParams[header] = value
+		}
+	}
+
 	// Detect postBody type and post.
 	if postBody != nil {
 		contentType := headerParams["Content-Type"]
@@ -399,10 +406,6 @@ func (c *APIClient) PrepareRequest(
 		if auth, ok := ctx.Value(ContextAccessToken).(string); ok {
 			localVarRequest.Header.Add("Authorization", "Bearer "+auth)
 		}
-	}
-
-	for header, value := range c.Cfg.DefaultHeader {
-		localVarRequest.Header.Add(header, value)
 	}
 
 	if !c.Cfg.Compress {
