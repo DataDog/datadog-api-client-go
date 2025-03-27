@@ -23,7 +23,7 @@ type DashboardTemplateVariable struct {
 	Name string `json:"name"`
 	// The tag prefix associated with the variable. Only tags with this prefix appear in the variable drop-down.
 	Prefix datadog.NullableString `json:"prefix,omitempty"`
-	// The type of variable. i.e. group, filter
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
