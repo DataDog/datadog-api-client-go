@@ -15,13 +15,21 @@ type SecurityMonitoringStandardDataSource string
 
 // List of SecurityMonitoringStandardDataSource.
 const (
-	SECURITYMONITORINGSTANDARDDATASOURCE_LOGS  SecurityMonitoringStandardDataSource = "logs"
-	SECURITYMONITORINGSTANDARDDATASOURCE_AUDIT SecurityMonitoringStandardDataSource = "audit"
+	SECURITYMONITORINGSTANDARDDATASOURCE_LOGS             SecurityMonitoringStandardDataSource = "logs"
+	SECURITYMONITORINGSTANDARDDATASOURCE_AUDIT            SecurityMonitoringStandardDataSource = "audit"
+	SECURITYMONITORINGSTANDARDDATASOURCE_APP_SEC_SPANS    SecurityMonitoringStandardDataSource = "app_sec_spans"
+	SECURITYMONITORINGSTANDARDDATASOURCE_SPANS            SecurityMonitoringStandardDataSource = "spans"
+	SECURITYMONITORINGSTANDARDDATASOURCE_SECURITY_RUNTIME SecurityMonitoringStandardDataSource = "security_runtime"
+	SECURITYMONITORINGSTANDARDDATASOURCE_NETWORK          SecurityMonitoringStandardDataSource = "network"
 )
 
 var allowedSecurityMonitoringStandardDataSourceEnumValues = []SecurityMonitoringStandardDataSource{
 	SECURITYMONITORINGSTANDARDDATASOURCE_LOGS,
 	SECURITYMONITORINGSTANDARDDATASOURCE_AUDIT,
+	SECURITYMONITORINGSTANDARDDATASOURCE_APP_SEC_SPANS,
+	SECURITYMONITORINGSTANDARDDATASOURCE_SPANS,
+	SECURITYMONITORINGSTANDARDDATASOURCE_SECURITY_RUNTIME,
+	SECURITYMONITORINGSTANDARDDATASOURCE_NETWORK,
 }
 
 // GetAllowedValues reeturns the list of possible values.
