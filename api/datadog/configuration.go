@@ -364,6 +364,7 @@ func NewConfiguration() *Configuration {
 			"v2.ListAWSNamespaces":            false,
 			"v2.UpdateAWSAccount":             false,
 			"v2.ListAWSLogsServices":          false,
+			"v2.GetAggregatedConnections":     false,
 			"v2.CancelHistoricalJob":          false,
 			"v2.ConvertJobResultToSignal":     false,
 			"v2.DeleteHistoricalJob":          false,
