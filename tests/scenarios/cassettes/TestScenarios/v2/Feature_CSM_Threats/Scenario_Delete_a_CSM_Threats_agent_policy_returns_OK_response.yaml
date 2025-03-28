@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testdeleteacsmthreatsagentpolicyreturnsokresponse1743068146"},"type":"policy"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datad0g.com/api/v2/remote_config/products/cws/policy
+  response:
+    body: '{"data":{"id":"kjf-cn3-8uz","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testdeleteacsmthreatsagentpolicyreturnsokresponse1743068146","policyVersion":"1","priority":1000000025,"ruleCount":226,"updateDate":1743068146778,"updater":{"name":"Quentin
+      Guillard","handle":"quentin.guillard@datadoghq.com"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datad0g.com/api/v2/remote_config/products/cws/policy/kjf-cn3-8uz
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datad0g.com/api/v2/remote_config/products/cws/policy/kjf-cn3-8uz
+  response:
+    body: '{"errors":[{"title":"failed to delete policy"}]}
+
+      '
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 2

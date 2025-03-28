@@ -1,0 +1,41 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":[],"name":"my_agent_policy"},"type":"policy"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datad0g.com/api/v2/remote_config/products/cws/policy
+  response:
+    body: '{"data":{"id":"zct-zna-ax9","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":[],"monitoringRulesCount":225,"name":"my_agent_policy","policyVersion":"1","priority":1000000026,"ruleCount":226,"updateDate":1743170332834,"updater":{"name":"Quentin
+      Guillard","handle":"quentin.guillard@datadoghq.com"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datad0g.com/api/v2/remote_config/products/cws/policy/zct-zna-ax9
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 204 No Content
+version: 2

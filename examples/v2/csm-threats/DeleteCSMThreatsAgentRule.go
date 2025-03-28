@@ -19,7 +19,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCSMThreatsApi(apiClient)
-	r, err := api.DeleteCSMThreatsAgentRule(ctx, AgentRuleDataID)
+	r, err := api.DeleteCSMThreatsAgentRule(ctx, AgentRuleDataID, *datadogV2.NewDeleteCSMThreatsAgentRuleOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.DeleteCSMThreatsAgentRule`: %v\n", err)

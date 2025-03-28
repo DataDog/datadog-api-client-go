@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == sh","name":"testcreateacsmthreatsagentrulereturnsbadrequestresponse1713895064"},"type":"agent_rule"}}
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testcreateacsmthreatsagentrulereturnsbadrequestresponse1743170333"},"type":"policy"}}
     form: {}
     headers:
       Accept:
@@ -10,15 +10,53 @@ interactions:
       - application/json
     id: 0
     method: POST
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules
+    url: https://api.datad0g.com/api/v2/remote_config/products/cws/policy
+  response:
+    body: '{"data":{"id":"3t4-vlv-lsd","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testcreateacsmthreatsagentrulereturnsbadrequestresponse1743170333","policyVersion":"1","priority":1000000026,"ruleCount":226,"updateDate":1743170333959,"updater":{"name":"Quentin
+      Guillard","handle":"quentin.guillard@datadoghq.com"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name","filters":[],"name":"my_agent_rule","policy_id":"3t4-vlv-lsd","product_tags":[]},"type":"agent_rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
+    url: https://api.datad0g.com/api/v2/remote_config/products/cws/agent_rules
   response:
     body: '{"errors":["input_validation_error(Field ''expression'' is invalid: rule
-      `testcreateacsmthreatsagentrulereturnsbadrequestresponse1713895064` error: rule
-      compilation error: field `sh` not found)"]}'
+      `my_agent_rule` error: rule syntax error: bool expected: 1:1: exec.file.name\n^)"]}'
     code: 400
     duration: 0ms
     headers:
       Content-Type:
       - application/json
     status: 400 Bad Request
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datad0g.com/api/v2/remote_config/products/cws/policy/3t4-vlv-lsd
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 204 No Content
 version: 2

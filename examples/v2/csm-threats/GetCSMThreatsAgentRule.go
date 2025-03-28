@@ -20,7 +20,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCSMThreatsApi(apiClient)
-	resp, r, err := api.GetCSMThreatsAgentRule(ctx, AgentRuleDataID)
+	resp, r, err := api.GetCSMThreatsAgentRule(ctx, AgentRuleDataID, *datadogV2.NewGetCSMThreatsAgentRuleOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.GetCSMThreatsAgentRule`: %v\n", err)
