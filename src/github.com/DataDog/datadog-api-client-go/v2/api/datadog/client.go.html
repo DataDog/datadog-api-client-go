@@ -289,316 +289,319 @@
 <span id="L232" class="ln">   232  </span>
 <span id="L233" class="ln">   233  </span>	var body *bytes.Buffer
 <span id="L234" class="ln">   234  </span>
-<span id="L235" class="ln">   235  </span>	<span class="comment">// Detect postBody type and post.</span>
-<span id="L236" class="ln">   236  </span>	if postBody != nil {
-<span id="L237" class="ln">   237  </span>		contentType := headerParams[&#34;Content-Type&#34;]
-<span id="L238" class="ln">   238  </span>		if contentType == &#34;&#34; {
-<span id="L239" class="ln">   239  </span>			contentType = detectContentType(postBody)
-<span id="L240" class="ln">   240  </span>			headerParams[&#34;Content-Type&#34;] = contentType
-<span id="L241" class="ln">   241  </span>		}
-<span id="L242" class="ln">   242  </span>
-<span id="L243" class="ln">   243  </span>		body, err = setBody(postBody, contentType)
-<span id="L244" class="ln">   244  </span>		if err != nil {
-<span id="L245" class="ln">   245  </span>			return nil, err
-<span id="L246" class="ln">   246  </span>		}
-<span id="L247" class="ln">   247  </span>	}
-<span id="L248" class="ln">   248  </span>
-<span id="L249" class="ln">   249  </span>	<span class="comment">// add form parameters and file if available.</span>
-<span id="L250" class="ln">   250  </span>	if strings.HasPrefix(headerParams[&#34;Content-Type&#34;], &#34;multipart/form-data&#34;) &amp;&amp; len(formParams) &gt; 0 || formFile != nil {
-<span id="L251" class="ln">   251  </span>		if body != nil {
-<span id="L252" class="ln">   252  </span>			return nil, errors.New(&#34;cannot specify postBody and multipart form at the same time&#34;)
+<span id="L235" class="ln">   235  </span>	<span class="comment">// Apply default headers unless they are overridden</span>
+<span id="L236" class="ln">   236  </span>	for header, value := range c.Cfg.DefaultHeader {
+<span id="L237" class="ln">   237  </span>		if _, exists := headerParams[header]; !exists {
+<span id="L238" class="ln">   238  </span>			headerParams[header] = value
+<span id="L239" class="ln">   239  </span>		}
+<span id="L240" class="ln">   240  </span>	}
+<span id="L241" class="ln">   241  </span>
+<span id="L242" class="ln">   242  </span>	<span class="comment">// Detect postBody type and post.</span>
+<span id="L243" class="ln">   243  </span>	if postBody != nil {
+<span id="L244" class="ln">   244  </span>		contentType := headerParams[&#34;Content-Type&#34;]
+<span id="L245" class="ln">   245  </span>		if contentType == &#34;&#34; {
+<span id="L246" class="ln">   246  </span>			contentType = detectContentType(postBody)
+<span id="L247" class="ln">   247  </span>			headerParams[&#34;Content-Type&#34;] = contentType
+<span id="L248" class="ln">   248  </span>		}
+<span id="L249" class="ln">   249  </span>
+<span id="L250" class="ln">   250  </span>		body, err = setBody(postBody, contentType)
+<span id="L251" class="ln">   251  </span>		if err != nil {
+<span id="L252" class="ln">   252  </span>			return nil, err
 <span id="L253" class="ln">   253  </span>		}
-<span id="L254" class="ln">   254  </span>		body = &amp;bytes.Buffer{}
-<span id="L255" class="ln">   255  </span>		w := multipart.NewWriter(body)
-<span id="L256" class="ln">   256  </span>
-<span id="L257" class="ln">   257  </span>		for k, v := range formParams {
-<span id="L258" class="ln">   258  </span>			for _, iv := range v {
-<span id="L259" class="ln">   259  </span>				if strings.HasPrefix(k, &#34;@&#34;) { <span class="comment">// file</span>
-<span id="L260" class="ln">   260  </span>					err = addFile(w, k[1:], iv)
-<span id="L261" class="ln">   261  </span>					if err != nil {
-<span id="L262" class="ln">   262  </span>						return nil, err
-<span id="L263" class="ln">   263  </span>					}
-<span id="L264" class="ln">   264  </span>				} else { <span class="comment">// form value</span>
-<span id="L265" class="ln">   265  </span>					_ = w.WriteField(k, iv)
-<span id="L266" class="ln">   266  </span>				}
-<span id="L267" class="ln">   267  </span>			}
-<span id="L268" class="ln">   268  </span>		}
-<span id="L269" class="ln">   269  </span>		if formFile != nil {
-<span id="L270" class="ln">   270  </span>			w.Boundary()
-<span id="L271" class="ln">   271  </span>			part, err := w.CreateFormFile(formFile.FormFileName, filepath.Base(formFile.FileName))
-<span id="L272" class="ln">   272  </span>			if err != nil {
-<span id="L273" class="ln">   273  </span>				return nil, err
+<span id="L254" class="ln">   254  </span>	}
+<span id="L255" class="ln">   255  </span>
+<span id="L256" class="ln">   256  </span>	<span class="comment">// add form parameters and file if available.</span>
+<span id="L257" class="ln">   257  </span>	if strings.HasPrefix(headerParams[&#34;Content-Type&#34;], &#34;multipart/form-data&#34;) &amp;&amp; len(formParams) &gt; 0 || formFile != nil {
+<span id="L258" class="ln">   258  </span>		if body != nil {
+<span id="L259" class="ln">   259  </span>			return nil, errors.New(&#34;cannot specify postBody and multipart form at the same time&#34;)
+<span id="L260" class="ln">   260  </span>		}
+<span id="L261" class="ln">   261  </span>		body = &amp;bytes.Buffer{}
+<span id="L262" class="ln">   262  </span>		w := multipart.NewWriter(body)
+<span id="L263" class="ln">   263  </span>
+<span id="L264" class="ln">   264  </span>		for k, v := range formParams {
+<span id="L265" class="ln">   265  </span>			for _, iv := range v {
+<span id="L266" class="ln">   266  </span>				if strings.HasPrefix(k, &#34;@&#34;) { <span class="comment">// file</span>
+<span id="L267" class="ln">   267  </span>					err = addFile(w, k[1:], iv)
+<span id="L268" class="ln">   268  </span>					if err != nil {
+<span id="L269" class="ln">   269  </span>						return nil, err
+<span id="L270" class="ln">   270  </span>					}
+<span id="L271" class="ln">   271  </span>				} else { <span class="comment">// form value</span>
+<span id="L272" class="ln">   272  </span>					_ = w.WriteField(k, iv)
+<span id="L273" class="ln">   273  </span>				}
 <span id="L274" class="ln">   274  </span>			}
-<span id="L275" class="ln">   275  </span>			_, err = part.Write(formFile.FileBytes)
-<span id="L276" class="ln">   276  </span>			if err != nil {
-<span id="L277" class="ln">   277  </span>				return nil, err
-<span id="L278" class="ln">   278  </span>			}
-<span id="L279" class="ln">   279  </span>		}
-<span id="L280" class="ln">   280  </span>
-<span id="L281" class="ln">   281  </span>		<span class="comment">// Set the Boundary in the Content-Type</span>
-<span id="L282" class="ln">   282  </span>		headerParams[&#34;Content-Type&#34;] = w.FormDataContentType()
-<span id="L283" class="ln">   283  </span>
-<span id="L284" class="ln">   284  </span>		<span class="comment">// Set Content-Length</span>
-<span id="L285" class="ln">   285  </span>		headerParams[&#34;Content-Length&#34;] = fmt.Sprintf(&#34;%d&#34;, body.Len())
-<span id="L286" class="ln">   286  </span>		w.Close()
-<span id="L287" class="ln">   287  </span>	}
-<span id="L288" class="ln">   288  </span>
-<span id="L289" class="ln">   289  </span>	if strings.HasPrefix(headerParams[&#34;Content-Type&#34;], &#34;application/x-www-form-urlencoded&#34;) &amp;&amp; len(formParams) &gt; 0 {
-<span id="L290" class="ln">   290  </span>		if body != nil {
-<span id="L291" class="ln">   291  </span>			return nil, errors.New(&#34;cannot specify postBody and x-www-form-urlencoded form at the same time&#34;)
-<span id="L292" class="ln">   292  </span>		}
-<span id="L293" class="ln">   293  </span>		body = &amp;bytes.Buffer{}
-<span id="L294" class="ln">   294  </span>		body.WriteString(formParams.Encode())
-<span id="L295" class="ln">   295  </span>		<span class="comment">// Set Content-Length</span>
-<span id="L296" class="ln">   296  </span>		headerParams[&#34;Content-Length&#34;] = fmt.Sprintf(&#34;%d&#34;, body.Len())
-<span id="L297" class="ln">   297  </span>	}
-<span id="L298" class="ln">   298  </span>
-<span id="L299" class="ln">   299  </span>	<span class="comment">// Setup path and query parameters</span>
-<span id="L300" class="ln">   300  </span>	url, err := url.Parse(path)
-<span id="L301" class="ln">   301  </span>	if err != nil {
-<span id="L302" class="ln">   302  </span>		return nil, err
-<span id="L303" class="ln">   303  </span>	}
-<span id="L304" class="ln">   304  </span>
-<span id="L305" class="ln">   305  </span>	<span class="comment">// Override request host, if applicable</span>
-<span id="L306" class="ln">   306  </span>	if c.Cfg.Host != &#34;&#34; {
-<span id="L307" class="ln">   307  </span>		url.Host = c.Cfg.Host
-<span id="L308" class="ln">   308  </span>	}
-<span id="L309" class="ln">   309  </span>
-<span id="L310" class="ln">   310  </span>	<span class="comment">// Override request scheme, if applicable</span>
-<span id="L311" class="ln">   311  </span>	if c.Cfg.Scheme != &#34;&#34; {
-<span id="L312" class="ln">   312  </span>		url.Scheme = c.Cfg.Scheme
-<span id="L313" class="ln">   313  </span>	}
-<span id="L314" class="ln">   314  </span>
-<span id="L315" class="ln">   315  </span>	<span class="comment">// Adding Query Param</span>
-<span id="L316" class="ln">   316  </span>	query := url.Query()
-<span id="L317" class="ln">   317  </span>	for k, v := range queryParams {
-<span id="L318" class="ln">   318  </span>		for _, iv := range v {
-<span id="L319" class="ln">   319  </span>			query.Add(k, iv)
-<span id="L320" class="ln">   320  </span>		}
-<span id="L321" class="ln">   321  </span>	}
-<span id="L322" class="ln">   322  </span>
-<span id="L323" class="ln">   323  </span>	<span class="comment">// Encode the parameters.</span>
-<span id="L324" class="ln">   324  </span>	url.RawQuery = query.Encode()
-<span id="L325" class="ln">   325  </span>
-<span id="L326" class="ln">   326  </span>	<span class="comment">// Generate a new request</span>
-<span id="L327" class="ln">   327  </span>	if body != nil {
-<span id="L328" class="ln">   328  </span>		if headerParams[&#34;Content-Encoding&#34;] == &#34;gzip&#34; {
-<span id="L329" class="ln">   329  </span>			var buf bytes.Buffer
-<span id="L330" class="ln">   330  </span>			compressor := gzip.NewWriter(&amp;buf)
-<span id="L331" class="ln">   331  </span>			if _, err = compressor.Write(body.Bytes()); err != nil {
-<span id="L332" class="ln">   332  </span>				return nil, err
-<span id="L333" class="ln">   333  </span>			}
-<span id="L334" class="ln">   334  </span>			if err = compressor.Close(); err != nil {
-<span id="L335" class="ln">   335  </span>				return nil, err
-<span id="L336" class="ln">   336  </span>			}
-<span id="L337" class="ln">   337  </span>			body = &amp;buf
-<span id="L338" class="ln">   338  </span>
-<span id="L339" class="ln">   339  </span>		} else if headerParams[&#34;Content-Encoding&#34;] == &#34;deflate&#34; {
-<span id="L340" class="ln">   340  </span>			var buf bytes.Buffer
-<span id="L341" class="ln">   341  </span>			compressor := zlib.NewWriter(&amp;buf)
-<span id="L342" class="ln">   342  </span>			if _, err = compressor.Write(body.Bytes()); err != nil {
-<span id="L343" class="ln">   343  </span>				return nil, err
-<span id="L344" class="ln">   344  </span>			}
-<span id="L345" class="ln">   345  </span>			if err = compressor.Close(); err != nil {
-<span id="L346" class="ln">   346  </span>				return nil, err
-<span id="L347" class="ln">   347  </span>			}
-<span id="L348" class="ln">   348  </span>			body = &amp;buf
-<span id="L349" class="ln">   349  </span>		} else if headerParams[&#34;Content-Encoding&#34;] == &#34;zstd1&#34; {
-<span id="L350" class="ln">   350  </span>			body, err = compressZstd(body.Bytes())
-<span id="L351" class="ln">   351  </span>			if err != nil {
-<span id="L352" class="ln">   352  </span>				return nil, err
-<span id="L353" class="ln">   353  </span>			}
-<span id="L354" class="ln">   354  </span>		}
-<span id="L355" class="ln">   355  </span>		headerParams[&#34;Content-Length&#34;] = fmt.Sprintf(&#34;%d&#34;, body.Len())
-<span id="L356" class="ln">   356  </span>		localVarRequest, err = http.NewRequest(method, url.String(), body)
-<span id="L357" class="ln">   357  </span>	} else {
-<span id="L358" class="ln">   358  </span>		localVarRequest, err = http.NewRequest(method, url.String(), nil)
-<span id="L359" class="ln">   359  </span>	}
-<span id="L360" class="ln">   360  </span>	if err != nil {
-<span id="L361" class="ln">   361  </span>		return nil, err
-<span id="L362" class="ln">   362  </span>	}
-<span id="L363" class="ln">   363  </span>
-<span id="L364" class="ln">   364  </span>	<span class="comment">// add header parameters, if any</span>
-<span id="L365" class="ln">   365  </span>	if len(headerParams) &gt; 0 {
-<span id="L366" class="ln">   366  </span>		headers := http.Header{}
-<span id="L367" class="ln">   367  </span>		for h, v := range headerParams {
-<span id="L368" class="ln">   368  </span>			headers.Set(h, v)
-<span id="L369" class="ln">   369  </span>		}
-<span id="L370" class="ln">   370  </span>		localVarRequest.Header = headers
-<span id="L371" class="ln">   371  </span>	}
-<span id="L372" class="ln">   372  </span>
-<span id="L373" class="ln">   373  </span>	<span class="comment">// Add the user agent to the request.</span>
-<span id="L374" class="ln">   374  </span>	localVarRequest.Header.Add(&#34;User-Agent&#34;, c.Cfg.UserAgent)
-<span id="L375" class="ln">   375  </span>
-<span id="L376" class="ln">   376  </span>	if ctx != nil {
-<span id="L377" class="ln">   377  </span>		<span class="comment">// add context to the request</span>
-<span id="L378" class="ln">   378  </span>		localVarRequest = localVarRequest.WithContext(ctx)
+<span id="L275" class="ln">   275  </span>		}
+<span id="L276" class="ln">   276  </span>		if formFile != nil {
+<span id="L277" class="ln">   277  </span>			w.Boundary()
+<span id="L278" class="ln">   278  </span>			part, err := w.CreateFormFile(formFile.FormFileName, filepath.Base(formFile.FileName))
+<span id="L279" class="ln">   279  </span>			if err != nil {
+<span id="L280" class="ln">   280  </span>				return nil, err
+<span id="L281" class="ln">   281  </span>			}
+<span id="L282" class="ln">   282  </span>			_, err = part.Write(formFile.FileBytes)
+<span id="L283" class="ln">   283  </span>			if err != nil {
+<span id="L284" class="ln">   284  </span>				return nil, err
+<span id="L285" class="ln">   285  </span>			}
+<span id="L286" class="ln">   286  </span>		}
+<span id="L287" class="ln">   287  </span>
+<span id="L288" class="ln">   288  </span>		<span class="comment">// Set the Boundary in the Content-Type</span>
+<span id="L289" class="ln">   289  </span>		headerParams[&#34;Content-Type&#34;] = w.FormDataContentType()
+<span id="L290" class="ln">   290  </span>
+<span id="L291" class="ln">   291  </span>		<span class="comment">// Set Content-Length</span>
+<span id="L292" class="ln">   292  </span>		headerParams[&#34;Content-Length&#34;] = fmt.Sprintf(&#34;%d&#34;, body.Len())
+<span id="L293" class="ln">   293  </span>		w.Close()
+<span id="L294" class="ln">   294  </span>	}
+<span id="L295" class="ln">   295  </span>
+<span id="L296" class="ln">   296  </span>	if strings.HasPrefix(headerParams[&#34;Content-Type&#34;], &#34;application/x-www-form-urlencoded&#34;) &amp;&amp; len(formParams) &gt; 0 {
+<span id="L297" class="ln">   297  </span>		if body != nil {
+<span id="L298" class="ln">   298  </span>			return nil, errors.New(&#34;cannot specify postBody and x-www-form-urlencoded form at the same time&#34;)
+<span id="L299" class="ln">   299  </span>		}
+<span id="L300" class="ln">   300  </span>		body = &amp;bytes.Buffer{}
+<span id="L301" class="ln">   301  </span>		body.WriteString(formParams.Encode())
+<span id="L302" class="ln">   302  </span>		<span class="comment">// Set Content-Length</span>
+<span id="L303" class="ln">   303  </span>		headerParams[&#34;Content-Length&#34;] = fmt.Sprintf(&#34;%d&#34;, body.Len())
+<span id="L304" class="ln">   304  </span>	}
+<span id="L305" class="ln">   305  </span>
+<span id="L306" class="ln">   306  </span>	<span class="comment">// Setup path and query parameters</span>
+<span id="L307" class="ln">   307  </span>	url, err := url.Parse(path)
+<span id="L308" class="ln">   308  </span>	if err != nil {
+<span id="L309" class="ln">   309  </span>		return nil, err
+<span id="L310" class="ln">   310  </span>	}
+<span id="L311" class="ln">   311  </span>
+<span id="L312" class="ln">   312  </span>	<span class="comment">// Override request host, if applicable</span>
+<span id="L313" class="ln">   313  </span>	if c.Cfg.Host != &#34;&#34; {
+<span id="L314" class="ln">   314  </span>		url.Host = c.Cfg.Host
+<span id="L315" class="ln">   315  </span>	}
+<span id="L316" class="ln">   316  </span>
+<span id="L317" class="ln">   317  </span>	<span class="comment">// Override request scheme, if applicable</span>
+<span id="L318" class="ln">   318  </span>	if c.Cfg.Scheme != &#34;&#34; {
+<span id="L319" class="ln">   319  </span>		url.Scheme = c.Cfg.Scheme
+<span id="L320" class="ln">   320  </span>	}
+<span id="L321" class="ln">   321  </span>
+<span id="L322" class="ln">   322  </span>	<span class="comment">// Adding Query Param</span>
+<span id="L323" class="ln">   323  </span>	query := url.Query()
+<span id="L324" class="ln">   324  </span>	for k, v := range queryParams {
+<span id="L325" class="ln">   325  </span>		for _, iv := range v {
+<span id="L326" class="ln">   326  </span>			query.Add(k, iv)
+<span id="L327" class="ln">   327  </span>		}
+<span id="L328" class="ln">   328  </span>	}
+<span id="L329" class="ln">   329  </span>
+<span id="L330" class="ln">   330  </span>	<span class="comment">// Encode the parameters.</span>
+<span id="L331" class="ln">   331  </span>	url.RawQuery = query.Encode()
+<span id="L332" class="ln">   332  </span>
+<span id="L333" class="ln">   333  </span>	<span class="comment">// Generate a new request</span>
+<span id="L334" class="ln">   334  </span>	if body != nil {
+<span id="L335" class="ln">   335  </span>		if headerParams[&#34;Content-Encoding&#34;] == &#34;gzip&#34; {
+<span id="L336" class="ln">   336  </span>			var buf bytes.Buffer
+<span id="L337" class="ln">   337  </span>			compressor := gzip.NewWriter(&amp;buf)
+<span id="L338" class="ln">   338  </span>			if _, err = compressor.Write(body.Bytes()); err != nil {
+<span id="L339" class="ln">   339  </span>				return nil, err
+<span id="L340" class="ln">   340  </span>			}
+<span id="L341" class="ln">   341  </span>			if err = compressor.Close(); err != nil {
+<span id="L342" class="ln">   342  </span>				return nil, err
+<span id="L343" class="ln">   343  </span>			}
+<span id="L344" class="ln">   344  </span>			body = &amp;buf
+<span id="L345" class="ln">   345  </span>
+<span id="L346" class="ln">   346  </span>		} else if headerParams[&#34;Content-Encoding&#34;] == &#34;deflate&#34; {
+<span id="L347" class="ln">   347  </span>			var buf bytes.Buffer
+<span id="L348" class="ln">   348  </span>			compressor := zlib.NewWriter(&amp;buf)
+<span id="L349" class="ln">   349  </span>			if _, err = compressor.Write(body.Bytes()); err != nil {
+<span id="L350" class="ln">   350  </span>				return nil, err
+<span id="L351" class="ln">   351  </span>			}
+<span id="L352" class="ln">   352  </span>			if err = compressor.Close(); err != nil {
+<span id="L353" class="ln">   353  </span>				return nil, err
+<span id="L354" class="ln">   354  </span>			}
+<span id="L355" class="ln">   355  </span>			body = &amp;buf
+<span id="L356" class="ln">   356  </span>		} else if headerParams[&#34;Content-Encoding&#34;] == &#34;zstd1&#34; {
+<span id="L357" class="ln">   357  </span>			body, err = compressZstd(body.Bytes())
+<span id="L358" class="ln">   358  </span>			if err != nil {
+<span id="L359" class="ln">   359  </span>				return nil, err
+<span id="L360" class="ln">   360  </span>			}
+<span id="L361" class="ln">   361  </span>		}
+<span id="L362" class="ln">   362  </span>		headerParams[&#34;Content-Length&#34;] = fmt.Sprintf(&#34;%d&#34;, body.Len())
+<span id="L363" class="ln">   363  </span>		localVarRequest, err = http.NewRequest(method, url.String(), body)
+<span id="L364" class="ln">   364  </span>	} else {
+<span id="L365" class="ln">   365  </span>		localVarRequest, err = http.NewRequest(method, url.String(), nil)
+<span id="L366" class="ln">   366  </span>	}
+<span id="L367" class="ln">   367  </span>	if err != nil {
+<span id="L368" class="ln">   368  </span>		return nil, err
+<span id="L369" class="ln">   369  </span>	}
+<span id="L370" class="ln">   370  </span>
+<span id="L371" class="ln">   371  </span>	<span class="comment">// add header parameters, if any</span>
+<span id="L372" class="ln">   372  </span>	if len(headerParams) &gt; 0 {
+<span id="L373" class="ln">   373  </span>		headers := http.Header{}
+<span id="L374" class="ln">   374  </span>		for h, v := range headerParams {
+<span id="L375" class="ln">   375  </span>			headers.Set(h, v)
+<span id="L376" class="ln">   376  </span>		}
+<span id="L377" class="ln">   377  </span>		localVarRequest.Header = headers
+<span id="L378" class="ln">   378  </span>	}
 <span id="L379" class="ln">   379  </span>
-<span id="L380" class="ln">   380  </span>		<span class="comment">// Walk through any authentication.</span>
-<span id="L381" class="ln">   381  </span>
-<span id="L382" class="ln">   382  </span>		<span class="comment">// OAuth2 authentication</span>
-<span id="L383" class="ln">   383  </span>		if tok, ok := ctx.Value(ContextOAuth2).(oauth2.TokenSource); ok {
-<span id="L384" class="ln">   384  </span>			<span class="comment">// We were able to grab an oauth2 token from the context</span>
-<span id="L385" class="ln">   385  </span>			var latestToken *oauth2.Token
-<span id="L386" class="ln">   386  </span>			if latestToken, err = tok.Token(); err != nil {
-<span id="L387" class="ln">   387  </span>				return nil, err
-<span id="L388" class="ln">   388  </span>			}
-<span id="L389" class="ln">   389  </span>
-<span id="L390" class="ln">   390  </span>			latestToken.SetAuthHeader(localVarRequest)
-<span id="L391" class="ln">   391  </span>		}
-<span id="L392" class="ln">   392  </span>
-<span id="L393" class="ln">   393  </span>		<span class="comment">// Basic HTTP Authentication</span>
-<span id="L394" class="ln">   394  </span>		if auth, ok := ctx.Value(ContextBasicAuth).(BasicAuth); ok {
-<span id="L395" class="ln">   395  </span>			localVarRequest.SetBasicAuth(auth.UserName, auth.Password)
-<span id="L396" class="ln">   396  </span>		}
-<span id="L397" class="ln">   397  </span>
-<span id="L398" class="ln">   398  </span>		<span class="comment">// AccessToken Authentication</span>
-<span id="L399" class="ln">   399  </span>		if auth, ok := ctx.Value(ContextAccessToken).(string); ok {
-<span id="L400" class="ln">   400  </span>			localVarRequest.Header.Add(&#34;Authorization&#34;, &#34;Bearer &#34;+auth)
-<span id="L401" class="ln">   401  </span>		}
-<span id="L402" class="ln">   402  </span>	}
-<span id="L403" class="ln">   403  </span>
-<span id="L404" class="ln">   404  </span>	for header, value := range c.Cfg.DefaultHeader {
-<span id="L405" class="ln">   405  </span>		localVarRequest.Header.Add(header, value)
-<span id="L406" class="ln">   406  </span>	}
-<span id="L407" class="ln">   407  </span>
-<span id="L408" class="ln">   408  </span>	if !c.Cfg.Compress {
-<span id="L409" class="ln">   409  </span>		<span class="comment">// gzip is on by default, so disable it by setting encoding to identity</span>
-<span id="L410" class="ln">   410  </span>		localVarRequest.Header.Add(&#34;Accept-Encoding&#34;, &#34;identity&#34;)
-<span id="L411" class="ln">   411  </span>	}
-<span id="L412" class="ln">   412  </span>	return localVarRequest, nil
-<span id="L413" class="ln">   413  </span>}
-<span id="L414" class="ln">   414  </span>
-<span id="L415" class="ln">   415  </span><span class="comment">// Decode unmarshal bytes into an interface</span>
-<span id="L416" class="ln">   416  </span>func (c *APIClient) Decode(v interface{}, b []byte, contentType string) (err error) {
-<span id="L417" class="ln">   417  </span>	if len(b) == 0 {
-<span id="L418" class="ln">   418  </span>		return nil
-<span id="L419" class="ln">   419  </span>	}
-<span id="L420" class="ln">   420  </span>	if s, ok := v.(*string); ok {
-<span id="L421" class="ln">   421  </span>		*s = string(b)
-<span id="L422" class="ln">   422  </span>		return nil
-<span id="L423" class="ln">   423  </span>	}
-<span id="L424" class="ln">   424  </span>	if xmlCheck.MatchString(contentType) {
-<span id="L425" class="ln">   425  </span>		if err = xml.Unmarshal(b, v); err != nil {
-<span id="L426" class="ln">   426  </span>			return err
-<span id="L427" class="ln">   427  </span>		}
-<span id="L428" class="ln">   428  </span>		return nil
-<span id="L429" class="ln">   429  </span>	}
-<span id="L430" class="ln">   430  </span>	if actualObj, ok := v.(interface{ GetActualInstance() interface{} }); ok { <span class="comment">// oneOf, anyOf schemas</span>
-<span id="L431" class="ln">   431  </span>		if unmarshalObj, ok := actualObj.(interface{ UnmarshalJSON([]byte) error }); ok { <span class="comment">// make sure it has UnmarshalJSON defined</span>
-<span id="L432" class="ln">   432  </span>			if err = unmarshalObj.UnmarshalJSON(b); err != nil {
-<span id="L433" class="ln">   433  </span>				return err
-<span id="L434" class="ln">   434  </span>			}
-<span id="L435" class="ln">   435  </span>		} else {
-<span id="L436" class="ln">   436  </span>			return errors.New(&#34;unknown type with GetActualInstance but no unmarshalObj.UnmarshalJSON defined&#34;)
-<span id="L437" class="ln">   437  </span>		}
-<span id="L438" class="ln">   438  </span>	} else if err = Unmarshal(b, v); err != nil { <span class="comment">// simple model</span>
-<span id="L439" class="ln">   439  </span>		return err
-<span id="L440" class="ln">   440  </span>	}
-<span id="L441" class="ln">   441  </span>	return nil
-<span id="L442" class="ln">   442  </span>}
-<span id="L443" class="ln">   443  </span>
-<span id="L444" class="ln">   444  </span><span class="comment">// Add a file to the multipart request.</span>
-<span id="L445" class="ln">   445  </span>func addFile(w *multipart.Writer, fieldName, path string) error {
-<span id="L446" class="ln">   446  </span>	file, err := os.Open(path)
-<span id="L447" class="ln">   447  </span>	if err != nil {
-<span id="L448" class="ln">   448  </span>		return err
-<span id="L449" class="ln">   449  </span>	}
-<span id="L450" class="ln">   450  </span>	defer file.Close()
-<span id="L451" class="ln">   451  </span>
-<span id="L452" class="ln">   452  </span>	part, err := w.CreateFormFile(fieldName, filepath.Base(path))
-<span id="L453" class="ln">   453  </span>	if err != nil {
-<span id="L454" class="ln">   454  </span>		return err
-<span id="L455" class="ln">   455  </span>	}
-<span id="L456" class="ln">   456  </span>	_, err = io.Copy(part, file)
-<span id="L457" class="ln">   457  </span>
-<span id="L458" class="ln">   458  </span>	return err
-<span id="L459" class="ln">   459  </span>}
+<span id="L380" class="ln">   380  </span>	<span class="comment">// Add the user agent to the request.</span>
+<span id="L381" class="ln">   381  </span>	localVarRequest.Header.Add(&#34;User-Agent&#34;, c.Cfg.UserAgent)
+<span id="L382" class="ln">   382  </span>
+<span id="L383" class="ln">   383  </span>	if ctx != nil {
+<span id="L384" class="ln">   384  </span>		<span class="comment">// add context to the request</span>
+<span id="L385" class="ln">   385  </span>		localVarRequest = localVarRequest.WithContext(ctx)
+<span id="L386" class="ln">   386  </span>
+<span id="L387" class="ln">   387  </span>		<span class="comment">// Walk through any authentication.</span>
+<span id="L388" class="ln">   388  </span>
+<span id="L389" class="ln">   389  </span>		<span class="comment">// OAuth2 authentication</span>
+<span id="L390" class="ln">   390  </span>		if tok, ok := ctx.Value(ContextOAuth2).(oauth2.TokenSource); ok {
+<span id="L391" class="ln">   391  </span>			<span class="comment">// We were able to grab an oauth2 token from the context</span>
+<span id="L392" class="ln">   392  </span>			var latestToken *oauth2.Token
+<span id="L393" class="ln">   393  </span>			if latestToken, err = tok.Token(); err != nil {
+<span id="L394" class="ln">   394  </span>				return nil, err
+<span id="L395" class="ln">   395  </span>			}
+<span id="L396" class="ln">   396  </span>
+<span id="L397" class="ln">   397  </span>			latestToken.SetAuthHeader(localVarRequest)
+<span id="L398" class="ln">   398  </span>		}
+<span id="L399" class="ln">   399  </span>
+<span id="L400" class="ln">   400  </span>		<span class="comment">// Basic HTTP Authentication</span>
+<span id="L401" class="ln">   401  </span>		if auth, ok := ctx.Value(ContextBasicAuth).(BasicAuth); ok {
+<span id="L402" class="ln">   402  </span>			localVarRequest.SetBasicAuth(auth.UserName, auth.Password)
+<span id="L403" class="ln">   403  </span>		}
+<span id="L404" class="ln">   404  </span>
+<span id="L405" class="ln">   405  </span>		<span class="comment">// AccessToken Authentication</span>
+<span id="L406" class="ln">   406  </span>		if auth, ok := ctx.Value(ContextAccessToken).(string); ok {
+<span id="L407" class="ln">   407  </span>			localVarRequest.Header.Add(&#34;Authorization&#34;, &#34;Bearer &#34;+auth)
+<span id="L408" class="ln">   408  </span>		}
+<span id="L409" class="ln">   409  </span>	}
+<span id="L410" class="ln">   410  </span>
+<span id="L411" class="ln">   411  </span>	if !c.Cfg.Compress {
+<span id="L412" class="ln">   412  </span>		<span class="comment">// gzip is on by default, so disable it by setting encoding to identity</span>
+<span id="L413" class="ln">   413  </span>		localVarRequest.Header.Add(&#34;Accept-Encoding&#34;, &#34;identity&#34;)
+<span id="L414" class="ln">   414  </span>	}
+<span id="L415" class="ln">   415  </span>	return localVarRequest, nil
+<span id="L416" class="ln">   416  </span>}
+<span id="L417" class="ln">   417  </span>
+<span id="L418" class="ln">   418  </span><span class="comment">// Decode unmarshal bytes into an interface</span>
+<span id="L419" class="ln">   419  </span>func (c *APIClient) Decode(v interface{}, b []byte, contentType string) (err error) {
+<span id="L420" class="ln">   420  </span>	if len(b) == 0 {
+<span id="L421" class="ln">   421  </span>		return nil
+<span id="L422" class="ln">   422  </span>	}
+<span id="L423" class="ln">   423  </span>	if s, ok := v.(*string); ok {
+<span id="L424" class="ln">   424  </span>		*s = string(b)
+<span id="L425" class="ln">   425  </span>		return nil
+<span id="L426" class="ln">   426  </span>	}
+<span id="L427" class="ln">   427  </span>	if xmlCheck.MatchString(contentType) {
+<span id="L428" class="ln">   428  </span>		if err = xml.Unmarshal(b, v); err != nil {
+<span id="L429" class="ln">   429  </span>			return err
+<span id="L430" class="ln">   430  </span>		}
+<span id="L431" class="ln">   431  </span>		return nil
+<span id="L432" class="ln">   432  </span>	}
+<span id="L433" class="ln">   433  </span>	if actualObj, ok := v.(interface{ GetActualInstance() interface{} }); ok { <span class="comment">// oneOf, anyOf schemas</span>
+<span id="L434" class="ln">   434  </span>		if unmarshalObj, ok := actualObj.(interface{ UnmarshalJSON([]byte) error }); ok { <span class="comment">// make sure it has UnmarshalJSON defined</span>
+<span id="L435" class="ln">   435  </span>			if err = unmarshalObj.UnmarshalJSON(b); err != nil {
+<span id="L436" class="ln">   436  </span>				return err
+<span id="L437" class="ln">   437  </span>			}
+<span id="L438" class="ln">   438  </span>		} else {
+<span id="L439" class="ln">   439  </span>			return errors.New(&#34;unknown type with GetActualInstance but no unmarshalObj.UnmarshalJSON defined&#34;)
+<span id="L440" class="ln">   440  </span>		}
+<span id="L441" class="ln">   441  </span>	} else if err = Unmarshal(b, v); err != nil { <span class="comment">// simple model</span>
+<span id="L442" class="ln">   442  </span>		return err
+<span id="L443" class="ln">   443  </span>	}
+<span id="L444" class="ln">   444  </span>	return nil
+<span id="L445" class="ln">   445  </span>}
+<span id="L446" class="ln">   446  </span>
+<span id="L447" class="ln">   447  </span><span class="comment">// Add a file to the multipart request.</span>
+<span id="L448" class="ln">   448  </span>func addFile(w *multipart.Writer, fieldName, path string) error {
+<span id="L449" class="ln">   449  </span>	file, err := os.Open(path)
+<span id="L450" class="ln">   450  </span>	if err != nil {
+<span id="L451" class="ln">   451  </span>		return err
+<span id="L452" class="ln">   452  </span>	}
+<span id="L453" class="ln">   453  </span>	defer file.Close()
+<span id="L454" class="ln">   454  </span>
+<span id="L455" class="ln">   455  </span>	part, err := w.CreateFormFile(fieldName, filepath.Base(path))
+<span id="L456" class="ln">   456  </span>	if err != nil {
+<span id="L457" class="ln">   457  </span>		return err
+<span id="L458" class="ln">   458  </span>	}
+<span id="L459" class="ln">   459  </span>	_, err = io.Copy(part, file)
 <span id="L460" class="ln">   460  </span>
-<span id="L461" class="ln">   461  </span><span class="comment">// ReportError Prevent trying to import &#34;fmt&#34;.</span>
-<span id="L462" class="ln">   462  </span>func ReportError(format string, a ...interface{}) error {
-<span id="L463" class="ln">   463  </span>	return fmt.Errorf(format, a...)
-<span id="L464" class="ln">   464  </span>}
-<span id="L465" class="ln">   465  </span>
-<span id="L466" class="ln">   466  </span><span class="comment">// Set request body from an interface{}.</span>
-<span id="L467" class="ln">   467  </span>func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err error) {
-<span id="L468" class="ln">   468  </span>	if reflect.ValueOf(body).IsNil() {
-<span id="L469" class="ln">   469  </span>		return nil, nil
-<span id="L470" class="ln">   470  </span>	}
-<span id="L471" class="ln">   471  </span>
-<span id="L472" class="ln">   472  </span>	if bodyBuf == nil {
-<span id="L473" class="ln">   473  </span>		bodyBuf = &amp;bytes.Buffer{}
-<span id="L474" class="ln">   474  </span>	}
-<span id="L475" class="ln">   475  </span>
-<span id="L476" class="ln">   476  </span>	if reader, ok := body.(io.Reader); ok {
-<span id="L477" class="ln">   477  </span>		_, err = bodyBuf.ReadFrom(reader)
-<span id="L478" class="ln">   478  </span>	} else if fp, ok := body.(**os.File); ok {
-<span id="L479" class="ln">   479  </span>		_, err = bodyBuf.ReadFrom(*fp)
-<span id="L480" class="ln">   480  </span>	} else if b, ok := body.([]byte); ok {
-<span id="L481" class="ln">   481  </span>		_, err = bodyBuf.Write(b)
-<span id="L482" class="ln">   482  </span>	} else if s, ok := body.(string); ok {
-<span id="L483" class="ln">   483  </span>		_, err = bodyBuf.WriteString(s)
-<span id="L484" class="ln">   484  </span>	} else if s, ok := body.(*string); ok {
-<span id="L485" class="ln">   485  </span>		_, err = bodyBuf.WriteString(*s)
-<span id="L486" class="ln">   486  </span>	} else if jsonCheck.MatchString(contentType) {
-<span id="L487" class="ln">   487  </span>		err = NewEncoder(bodyBuf).Encode(body)
-<span id="L488" class="ln">   488  </span>	} else if xmlCheck.MatchString(contentType) {
-<span id="L489" class="ln">   489  </span>		err = xml.NewEncoder(bodyBuf).Encode(body)
-<span id="L490" class="ln">   490  </span>	}
-<span id="L491" class="ln">   491  </span>
-<span id="L492" class="ln">   492  </span>	if err != nil {
-<span id="L493" class="ln">   493  </span>		return nil, err
-<span id="L494" class="ln">   494  </span>	}
-<span id="L495" class="ln">   495  </span>
-<span id="L496" class="ln">   496  </span>	if bodyBuf.Len() == 0 {
-<span id="L497" class="ln">   497  </span>		return nil, fmt.Errorf(&#34;invalid body type %s&#34;, contentType)
-<span id="L498" class="ln">   498  </span>	}
-<span id="L499" class="ln">   499  </span>	return bodyBuf, nil
-<span id="L500" class="ln">   500  </span>}
-<span id="L501" class="ln">   501  </span>
-<span id="L502" class="ln">   502  </span><span class="comment">// detectContentType method is used to figure out `Request.Body` content type for request header.</span>
-<span id="L503" class="ln">   503  </span>func detectContentType(body interface{}) string {
-<span id="L504" class="ln">   504  </span>	contentType := &#34;text/plain; charset=utf-8&#34;
-<span id="L505" class="ln">   505  </span>	kind := reflect.TypeOf(body).Kind()
-<span id="L506" class="ln">   506  </span>
-<span id="L507" class="ln">   507  </span>	switch kind {
-<span id="L508" class="ln">   508  </span>	case reflect.Struct, reflect.Map, reflect.Ptr:
-<span id="L509" class="ln">   509  </span>		contentType = &#34;application/json; charset=utf-8&#34;
-<span id="L510" class="ln">   510  </span>	case reflect.String:
-<span id="L511" class="ln">   511  </span>		contentType = &#34;text/plain; charset=utf-8&#34;
-<span id="L512" class="ln">   512  </span>	default:
-<span id="L513" class="ln">   513  </span>		if b, ok := body.([]byte); ok {
-<span id="L514" class="ln">   514  </span>			contentType = http.DetectContentType(b)
-<span id="L515" class="ln">   515  </span>		} else if kind == reflect.Slice {
-<span id="L516" class="ln">   516  </span>			contentType = &#34;application/json; charset=utf-8&#34;
-<span id="L517" class="ln">   517  </span>		}
-<span id="L518" class="ln">   518  </span>	}
-<span id="L519" class="ln">   519  </span>
-<span id="L520" class="ln">   520  </span>	return contentType
-<span id="L521" class="ln">   521  </span>}
+<span id="L461" class="ln">   461  </span>	return err
+<span id="L462" class="ln">   462  </span>}
+<span id="L463" class="ln">   463  </span>
+<span id="L464" class="ln">   464  </span><span class="comment">// ReportError Prevent trying to import &#34;fmt&#34;.</span>
+<span id="L465" class="ln">   465  </span>func ReportError(format string, a ...interface{}) error {
+<span id="L466" class="ln">   466  </span>	return fmt.Errorf(format, a...)
+<span id="L467" class="ln">   467  </span>}
+<span id="L468" class="ln">   468  </span>
+<span id="L469" class="ln">   469  </span><span class="comment">// Set request body from an interface{}.</span>
+<span id="L470" class="ln">   470  </span>func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err error) {
+<span id="L471" class="ln">   471  </span>	if reflect.ValueOf(body).IsNil() {
+<span id="L472" class="ln">   472  </span>		return nil, nil
+<span id="L473" class="ln">   473  </span>	}
+<span id="L474" class="ln">   474  </span>
+<span id="L475" class="ln">   475  </span>	if bodyBuf == nil {
+<span id="L476" class="ln">   476  </span>		bodyBuf = &amp;bytes.Buffer{}
+<span id="L477" class="ln">   477  </span>	}
+<span id="L478" class="ln">   478  </span>
+<span id="L479" class="ln">   479  </span>	if reader, ok := body.(io.Reader); ok {
+<span id="L480" class="ln">   480  </span>		_, err = bodyBuf.ReadFrom(reader)
+<span id="L481" class="ln">   481  </span>	} else if fp, ok := body.(**os.File); ok {
+<span id="L482" class="ln">   482  </span>		_, err = bodyBuf.ReadFrom(*fp)
+<span id="L483" class="ln">   483  </span>	} else if b, ok := body.([]byte); ok {
+<span id="L484" class="ln">   484  </span>		_, err = bodyBuf.Write(b)
+<span id="L485" class="ln">   485  </span>	} else if s, ok := body.(string); ok {
+<span id="L486" class="ln">   486  </span>		_, err = bodyBuf.WriteString(s)
+<span id="L487" class="ln">   487  </span>	} else if s, ok := body.(*string); ok {
+<span id="L488" class="ln">   488  </span>		_, err = bodyBuf.WriteString(*s)
+<span id="L489" class="ln">   489  </span>	} else if jsonCheck.MatchString(contentType) {
+<span id="L490" class="ln">   490  </span>		err = NewEncoder(bodyBuf).Encode(body)
+<span id="L491" class="ln">   491  </span>	} else if xmlCheck.MatchString(contentType) {
+<span id="L492" class="ln">   492  </span>		err = xml.NewEncoder(bodyBuf).Encode(body)
+<span id="L493" class="ln">   493  </span>	}
+<span id="L494" class="ln">   494  </span>
+<span id="L495" class="ln">   495  </span>	if err != nil {
+<span id="L496" class="ln">   496  </span>		return nil, err
+<span id="L497" class="ln">   497  </span>	}
+<span id="L498" class="ln">   498  </span>
+<span id="L499" class="ln">   499  </span>	if bodyBuf.Len() == 0 {
+<span id="L500" class="ln">   500  </span>		return nil, fmt.Errorf(&#34;invalid body type %s&#34;, contentType)
+<span id="L501" class="ln">   501  </span>	}
+<span id="L502" class="ln">   502  </span>	return bodyBuf, nil
+<span id="L503" class="ln">   503  </span>}
+<span id="L504" class="ln">   504  </span>
+<span id="L505" class="ln">   505  </span><span class="comment">// detectContentType method is used to figure out `Request.Body` content type for request header.</span>
+<span id="L506" class="ln">   506  </span>func detectContentType(body interface{}) string {
+<span id="L507" class="ln">   507  </span>	contentType := &#34;text/plain; charset=utf-8&#34;
+<span id="L508" class="ln">   508  </span>	kind := reflect.TypeOf(body).Kind()
+<span id="L509" class="ln">   509  </span>
+<span id="L510" class="ln">   510  </span>	switch kind {
+<span id="L511" class="ln">   511  </span>	case reflect.Struct, reflect.Map, reflect.Ptr:
+<span id="L512" class="ln">   512  </span>		contentType = &#34;application/json; charset=utf-8&#34;
+<span id="L513" class="ln">   513  </span>	case reflect.String:
+<span id="L514" class="ln">   514  </span>		contentType = &#34;text/plain; charset=utf-8&#34;
+<span id="L515" class="ln">   515  </span>	default:
+<span id="L516" class="ln">   516  </span>		if b, ok := body.([]byte); ok {
+<span id="L517" class="ln">   517  </span>			contentType = http.DetectContentType(b)
+<span id="L518" class="ln">   518  </span>		} else if kind == reflect.Slice {
+<span id="L519" class="ln">   519  </span>			contentType = &#34;application/json; charset=utf-8&#34;
+<span id="L520" class="ln">   520  </span>		}
+<span id="L521" class="ln">   521  </span>	}
 <span id="L522" class="ln">   522  </span>
-<span id="L523" class="ln">   523  </span><span class="comment">// GenericOpenAPIError Provides access to the body, error and model on returned errors.</span>
-<span id="L524" class="ln">   524  </span>type GenericOpenAPIError struct {
-<span id="L525" class="ln">   525  </span>	ErrorBody    []byte
-<span id="L526" class="ln">   526  </span>	ErrorMessage string
-<span id="L527" class="ln">   527  </span>	ErrorModel   interface{}
-<span id="L528" class="ln">   528  </span>}
-<span id="L529" class="ln">   529  </span>
-<span id="L530" class="ln">   530  </span><span class="comment">// Error returns non-empty string if there was an error.</span>
-<span id="L531" class="ln">   531  </span>func (e GenericOpenAPIError) Error() string {
-<span id="L532" class="ln">   532  </span>	return e.ErrorMessage
-<span id="L533" class="ln">   533  </span>}
-<span id="L534" class="ln">   534  </span>
-<span id="L535" class="ln">   535  </span><span class="comment">// Body returns the raw bytes of the response.</span>
-<span id="L536" class="ln">   536  </span>func (e GenericOpenAPIError) Body() []byte {
-<span id="L537" class="ln">   537  </span>	return e.ErrorBody
-<span id="L538" class="ln">   538  </span>}
-<span id="L539" class="ln">   539  </span>
-<span id="L540" class="ln">   540  </span><span class="comment">// Model returns the unpacked model of the error.</span>
-<span id="L541" class="ln">   541  </span>func (e GenericOpenAPIError) Model() interface{} {
-<span id="L542" class="ln">   542  </span>	return e.ErrorModel
-<span id="L543" class="ln">   543  </span>}
-<span id="L544" class="ln">   544  </span>
+<span id="L523" class="ln">   523  </span>	return contentType
+<span id="L524" class="ln">   524  </span>}
+<span id="L525" class="ln">   525  </span>
+<span id="L526" class="ln">   526  </span><span class="comment">// GenericOpenAPIError Provides access to the body, error and model on returned errors.</span>
+<span id="L527" class="ln">   527  </span>type GenericOpenAPIError struct {
+<span id="L528" class="ln">   528  </span>	ErrorBody    []byte
+<span id="L529" class="ln">   529  </span>	ErrorMessage string
+<span id="L530" class="ln">   530  </span>	ErrorModel   interface{}
+<span id="L531" class="ln">   531  </span>}
+<span id="L532" class="ln">   532  </span>
+<span id="L533" class="ln">   533  </span><span class="comment">// Error returns non-empty string if there was an error.</span>
+<span id="L534" class="ln">   534  </span>func (e GenericOpenAPIError) Error() string {
+<span id="L535" class="ln">   535  </span>	return e.ErrorMessage
+<span id="L536" class="ln">   536  </span>}
+<span id="L537" class="ln">   537  </span>
+<span id="L538" class="ln">   538  </span><span class="comment">// Body returns the raw bytes of the response.</span>
+<span id="L539" class="ln">   539  </span>func (e GenericOpenAPIError) Body() []byte {
+<span id="L540" class="ln">   540  </span>	return e.ErrorBody
+<span id="L541" class="ln">   541  </span>}
+<span id="L542" class="ln">   542  </span>
+<span id="L543" class="ln">   543  </span><span class="comment">// Model returns the unpacked model of the error.</span>
+<span id="L544" class="ln">   544  </span>func (e GenericOpenAPIError) Model() interface{} {
+<span id="L545" class="ln">   545  </span>	return e.ErrorModel
+<span id="L546" class="ln">   546  </span>}
+<span id="L547" class="ln">   547  </span>
 </pre><p></p>
 
 <div id="footer">
