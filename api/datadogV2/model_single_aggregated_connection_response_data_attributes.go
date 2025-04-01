@@ -20,7 +20,7 @@ type SingleAggregatedConnectionResponseDataAttributes struct {
 	PacketsSentByClient *int64 `json:"packets_sent_by_client,omitempty"`
 	// The total number of packets sent by the server over the given period.
 	PacketsSentByServer *int64 `json:"packets_sent_by_server,omitempty"`
-	// Measured as TCP smoothed roundtrip time in microseconds (the time between a TCP frame being sent and acknowledged).
+	// Measured as TCP smoothed round trip time in microseconds (the time between a TCP frame being sent and acknowledged).
 	RttMicroSeconds *int64 `json:"rtt_micro_seconds,omitempty"`
 	// The number of TCP connections in a closed state. Measured in connections per second from the client.
 	TcpClosedConnections *int64 `json:"tcp_closed_connections,omitempty"`
