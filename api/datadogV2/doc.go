@@ -107,6 +107,7 @@
 //   - [CloudCostManagementApi.UpdateCostAWSCURConfig]
 //   - [CloudCostManagementApi.UpdateCostAzureUCConfigs]
 //   - [CloudCostManagementApi.UploadCustomCostsFile]
+//   - [CloudNetworkMonitoringApi.GetAggregatedConnections]
 //   - [CloudflareIntegrationApi.CreateCloudflareAccount]
 //   - [CloudflareIntegrationApi.DeleteCloudflareAccount]
 //   - [CloudflareIntegrationApi.GetCloudflareAccount]
