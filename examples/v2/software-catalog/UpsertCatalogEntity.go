@@ -74,8 +74,9 @@ func main() {
 					},
 				},
 				Spec: &datadogV2.EntityV3ServiceSpec{
-					DependsOn: []string{},
-					Languages: []string{},
+					ComponentOf: []string{},
+					DependsOn:   []string{},
+					Languages:   []string{},
 				},
 			}}}
 	ctx := datadog.NewDefaultContext(context.Background())
