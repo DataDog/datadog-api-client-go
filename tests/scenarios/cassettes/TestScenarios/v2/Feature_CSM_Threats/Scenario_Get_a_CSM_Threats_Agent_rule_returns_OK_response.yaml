@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testgetacsmthreatsagentrulereturnsokresponse1713895067"},"type":"agent_rule"}}
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testgetacsmthreatsagentrulereturnsokresponse1743517856"},"type":"policy"}}
     form: {}
     headers:
       Accept:
@@ -10,12 +10,35 @@ interactions:
       - application/json
     id: 0
     method: POST
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy
+  response:
+    body: '{"data":{"id":"lxh-tyq-n9u","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testgetacsmthreatsagentrulereturnsokresponse1743517856","policyVersion":"1","priority":1000000001,"ruleCount":226,"updateDate":1743517856115,"updater":{"name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testgetacsmthreatsagentrulereturnsokresponse1743517856","policy_id":"lxh-tyq-n9u","product_tags":["security:attack","technique:T1059"]},"type":"agent_rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
     url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules
   response:
-    body: '{"data":{"id":"6wy-t98-466","type":"agent_rule","attributes":{"category":"Process
-      Activity","creationDate":1713895067605,"creator":{"name":"","handle":"frog@datadoghq.com"},"defaultRule":false,"description":"My
+    body: '{"data":{"id":"k1m-gqh-zqm","type":"agent_rule","attributes":{"category":"Process
+      Activity","creationDate":1743517856488,"creator":{"name":"CI Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"defaultRule":false,"description":"My
       Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","filters":["os
-      == \"linux\""],"name":"testgetacsmthreatsagentrulereturnsokresponse1713895067","updateDate":1713895067605,"updater":{"name":"","handle":"frog@datadoghq.com"}}}}'
+      == \"linux\""],"name":"testgetacsmthreatsagentrulereturnsokresponse1743517856","updateDate":1743517856488,"updater":{"name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
     code: 200
     duration: 0ms
     headers:
@@ -28,14 +51,15 @@ interactions:
     headers:
       Accept:
       - application/json
-    id: 1
+    id: 2
     method: GET
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/6wy-t98-466
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/k1m-gqh-zqm?policy_id=lxh-tyq-n9u
   response:
-    body: '{"data":{"id":"6wy-t98-466","type":"agent_rule","attributes":{"category":"Process
-      Activity","creationDate":1713895067000,"creator":{"name":"","handle":"frog@datadoghq.com"},"defaultRule":false,"description":"My
+    body: '{"data":{"id":"k1m-gqh-zqm","type":"agent_rule","attributes":{"category":"Process
+      Activity","creationDate":1743517856000,"creator":{"name":"CI Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"defaultRule":false,"description":"My
       Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","filters":["os
-      == \"linux\""],"name":"testgetacsmthreatsagentrulereturnsokresponse1713895067","updateDate":1713895067000,"updater":{"name":"","handle":"frog@datadoghq.com"}}}}'
+      == \"linux\""],"name":"testgetacsmthreatsagentrulereturnsokresponse1743517856","updateDate":1743517856000,"updater":{"name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
     code: 200
     duration: 0ms
     headers:
@@ -48,9 +72,26 @@ interactions:
     headers:
       Accept:
       - '*/*'
-    id: 2
+    id: 3
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/6wy-t98-466
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/k1m-gqh-zqm
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 4
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/lxh-tyq-n9u
   response:
     body: ''
     code: 204

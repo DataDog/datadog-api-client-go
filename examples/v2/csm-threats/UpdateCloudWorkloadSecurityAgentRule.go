@@ -16,15 +16,20 @@ func main() {
 	// there is a valid "agent_rule" in the system
 	AgentRuleDataID := os.Getenv("AGENT_RULE_DATA_ID")
 
+	// there is a valid "policy_rc" in the system
+	PolicyDataID := os.Getenv("POLICY_DATA_ID")
+
 	body := datadogV2.CloudWorkloadSecurityAgentRuleUpdateRequest{
 		Data: datadogV2.CloudWorkloadSecurityAgentRuleUpdateData{
 			Attributes: datadogV2.CloudWorkloadSecurityAgentRuleUpdateAttributes{
-				Description: datadog.PtrString("Test Agent rule"),
+				Description: datadog.PtrString("Updated Agent rule"),
 				Enabled:     datadog.PtrBool(true),
 				Expression:  datadog.PtrString(`exec.file.name == "sh"`),
+				PolicyId:    datadog.PtrString(PolicyDataID),
+				ProductTags: []string{},
 			},
-			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
 			Id:   datadog.PtrString(AgentRuleDataID),
+			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
