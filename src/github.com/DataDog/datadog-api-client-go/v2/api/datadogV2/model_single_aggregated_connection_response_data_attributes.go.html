@@ -77,7 +77,7 @@
 <span id="L20" class="ln">    20  </span>	PacketsSentByClient *int64 `json:&#34;packets_sent_by_client,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// The total number of packets sent by the server over the given period.</span>
 <span id="L22" class="ln">    22  </span>	PacketsSentByServer *int64 `json:&#34;packets_sent_by_server,omitempty&#34;`
-<span id="L23" class="ln">    23  </span>	<span class="comment">// Measured as TCP smoothed roundtrip time in microseconds (the time between a TCP frame being sent and acknowledged).</span>
+<span id="L23" class="ln">    23  </span>	<span class="comment">// Measured as TCP smoothed round trip time in microseconds (the time between a TCP frame being sent and acknowledged).</span>
 <span id="L24" class="ln">    24  </span>	RttMicroSeconds *int64 `json:&#34;rtt_micro_seconds,omitempty&#34;`
 <span id="L25" class="ln">    25  </span>	<span class="comment">// The number of TCP connections in a closed state. Measured in connections per second from the client.</span>
 <span id="L26" class="ln">    26  </span>	TcpClosedConnections *int64 `json:&#34;tcp_closed_connections,omitempty&#34;`
