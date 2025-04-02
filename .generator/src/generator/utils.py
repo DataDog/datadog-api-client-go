@@ -35,6 +35,10 @@ def camel_case(value):
 def untitle_case(value):
     return value[0].lower() + value[1:]
 
+def class_name(value):
+    value = re.sub(r'[^a-zA-Z0-9]', '', value)
+    return value + "Api"
+
 
 def schema_name(schema):
     if not schema:
