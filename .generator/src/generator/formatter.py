@@ -548,8 +548,9 @@ def format_data_with_schema_list(
     if "oneOf" in list_schema:
         if nested_schema_name:
             nested_schema_name = f"{name_prefix}{nested_schema_name}"
-        elif schema_name(schema['items']):
-            nested_schema_name = f"{name_prefix}{schema_name(schema['items'])}Item"
+        elif schema_name(schema['items']) or default_name:
+            item_name = schema_name(schema['items']) or default_name
+            nested_schema_name = f"{name_prefix}{item_name}Item"
         else:
             nested_schema_name = "interface{}"
     else:
