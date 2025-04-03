@@ -12431,6 +12431,11 @@ components:
       additionalProperties: false
       description: The definition of Entity V3 Datastore Spec object.
       properties:
+        componentOf:
+          description: A list of components the datastore is a part of
+          items:
+            type: string
+          type: array
         lifecycle:
           description: The lifecycle state of the datastore.
           minLength: 1
@@ -12629,6 +12634,11 @@ components:
       additionalProperties: false
       description: The definition of Entity V3 Queue Spec object.
       properties:
+        componentOf:
+          description: A list of components the queue is a part of
+          items:
+            type: string
+          type: array
         lifecycle:
           description: The lifecycle state of the queue.
           minLength: 1
@@ -12694,6 +12704,11 @@ components:
       additionalProperties: false
       description: The definition of Entity V3 Service Spec object.
       properties:
+        componentOf:
+          description: A list of components the service is a part of
+          items:
+            type: string
+          type: array
         dependsOn:
           description: A list of components the service depends on.
           items:
@@ -27702,11 +27717,19 @@ components:
       enum:
       - logs
       - audit
+      - app_sec_spans
+      - spans
+      - security_runtime
+      - network
       example: logs
       type: string
       x-enum-varnames:
       - LOGS
       - AUDIT
+      - APP_SEC_SPANS
+      - SPANS
+      - SECURITY_RUNTIME
+      - NETWORK
     SecurityMonitoringStandardRuleCreatePayload:
       description: Create a new rule.
       properties:
