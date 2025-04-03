@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SingleAggregatedConnectionResponseArray The definition of `SingleAggregatedConnectionResponseArray` object.
+// SingleAggregatedConnectionResponseArray List of aggregated connections.
 type SingleAggregatedConnectionResponseArray struct {
-	// The `SingleAggregatedConnectionResponseArray` `data`.
+	// Array of aggregated connection objects.
 	Data []SingleAggregatedConnectionResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
