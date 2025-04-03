@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SingleAggregatedConnectionResponseDataAttributes The definition of `SingleAggregatedConnectionResponseDataAttributes` object.
+// SingleAggregatedConnectionResponseDataAttributes Attributes for an aggregated connection.
 type SingleAggregatedConnectionResponseDataAttributes struct {
 	// The total number of bytes sent by the client over the given period.
 	BytesSentByClient *int64 `json:"bytes_sent_by_client,omitempty"`
 	// The total number of bytes sent by the server over the given period.
 	BytesSentByServer *int64 `json:"bytes_sent_by_server,omitempty"`
-	// The `attributes` `group_bys`.
+	// The key, value pairs for each group by.
 	GroupBys map[string][]string `json:"group_bys,omitempty"`
 	// The total number of packets sent by the client over the given period.
 	PacketsSentByClient *int64 `json:"packets_sent_by_client,omitempty"`

@@ -62,8 +62,8 @@ func (r *GetAggregatedConnectionsOptionalParameters) WithLimit(limit int32) *Get
 	return r
 }
 
-// GetAggregatedConnections Get aggregated connections.
-// Get aggregated connections
+// GetAggregatedConnections Get all aggregated connections.
+// Get all aggregated connections.
 func (a *CloudNetworkMonitoringApi) GetAggregatedConnections(ctx _context.Context, o ...GetAggregatedConnectionsOptionalParameters) (SingleAggregatedConnectionResponseArray, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
