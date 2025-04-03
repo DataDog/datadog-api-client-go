@@ -18,13 +18,15 @@ func main() {
 		Series: []datadogV1.DistributionPointsSeries{
 			{
 				Metric: "system.load.1.dist",
-				Points: [][]datadogV1.DistributionPointItem{
+				Points: [][]datadogV1.DistributionPointItems{
 					{
-						{DistributionPointTimestamp: datadog.PtrFloat64(float64(time.Now().Unix()))},
-						{DistributionPointData: &[]float64{
-							1.0,
-							2.0,
-						}},
+						datadogV1.DistributionPointItems{
+							DistributionPointTimestamp: datadog.PtrFloat64(float64(time.Now().Unix()))},
+						datadogV1.DistributionPointItems{
+							DistributionPointData: &[]float64{
+								1.0,
+								2.0,
+							}},
 					},
 				},
 			},

@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DistributionPointItem - List of distribution point.
-type DistributionPointItem struct {
+// DistributionPointItems - List of distribution point.
+type DistributionPointItems struct {
 	DistributionPointTimestamp *float64
 	DistributionPointData      *[]float64
 
@@ -17,18 +17,18 @@ type DistributionPointItem struct {
 	UnparsedObject interface{}
 }
 
-// DistributionPointTimestampAsDistributionPointItem is a convenience function that returns float64 wrapped in DistributionPointItem.
-func DistributionPointTimestampAsDistributionPointItem(v *float64) DistributionPointItem {
-	return DistributionPointItem{DistributionPointTimestamp: v}
+// DistributionPointTimestampAsDistributionPointItems is a convenience function that returns float64 wrapped in DistributionPointItems.
+func DistributionPointTimestampAsDistributionPointItems(v *float64) DistributionPointItems {
+	return DistributionPointItems{DistributionPointTimestamp: v}
 }
 
-// DistributionPointDataAsDistributionPointItem is a convenience function that returns []float64 wrapped in DistributionPointItem.
-func DistributionPointDataAsDistributionPointItem(v *[]float64) DistributionPointItem {
-	return DistributionPointItem{DistributionPointData: v}
+// DistributionPointDataAsDistributionPointItems is a convenience function that returns []float64 wrapped in DistributionPointItems.
+func DistributionPointDataAsDistributionPointItems(v *[]float64) DistributionPointItems {
+	return DistributionPointItems{DistributionPointData: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
-func (obj *DistributionPointItem) UnmarshalJSON(data []byte) error {
+func (obj *DistributionPointItems) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into DistributionPointTimestamp
@@ -75,7 +75,7 @@ func (obj *DistributionPointItem) UnmarshalJSON(data []byte) error {
 }
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
-func (obj DistributionPointItem) MarshalJSON() ([]byte, error) {
+func (obj DistributionPointItems) MarshalJSON() ([]byte, error) {
 	if obj.DistributionPointTimestamp != nil {
 		return datadog.Marshal(&obj.DistributionPointTimestamp)
 	}
@@ -91,7 +91,7 @@ func (obj DistributionPointItem) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *DistributionPointItem) GetActualInstance() interface{} {
+func (obj *DistributionPointItems) GetActualInstance() interface{} {
 	if obj.DistributionPointTimestamp != nil {
 		return obj.DistributionPointTimestamp
 	}

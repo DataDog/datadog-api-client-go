@@ -17,7 +17,7 @@ type DistributionPointsSeries struct {
 	// The name of the distribution points metric.
 	Metric string `json:"metric"`
 	// Points relating to the distribution point metric. All points must be tuples with timestamp and a list of values (cannot be a string). Timestamps should be in POSIX time in seconds.
-	Points [][]DistributionPointItem `json:"points"`
+	Points [][]DistributionPointItems `json:"points"`
 	// A list of tags associated with the distribution point metric.
 	Tags []string `json:"tags,omitempty"`
 	// The type of the distribution point.
@@ -31,7 +31,7 @@ type DistributionPointsSeries struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDistributionPointsSeries(metric string, points [][]DistributionPointItem) *DistributionPointsSeries {
+func NewDistributionPointsSeries(metric string, points [][]DistributionPointItems) *DistributionPointsSeries {
 	this := DistributionPointsSeries{}
 	this.Metric = metric
 	this.Points = points
@@ -102,9 +102,9 @@ func (o *DistributionPointsSeries) SetMetric(v string) {
 }
 
 // GetPoints returns the Points field value.
-func (o *DistributionPointsSeries) GetPoints() [][]DistributionPointItem {
+func (o *DistributionPointsSeries) GetPoints() [][]DistributionPointItems {
 	if o == nil {
-		var ret [][]DistributionPointItem
+		var ret [][]DistributionPointItems
 		return ret
 	}
 	return o.Points
@@ -112,7 +112,7 @@ func (o *DistributionPointsSeries) GetPoints() [][]DistributionPointItem {
 
 // GetPointsOk returns a tuple with the Points field value
 // and a boolean to check if the value has been set.
-func (o *DistributionPointsSeries) GetPointsOk() (*[][]DistributionPointItem, bool) {
+func (o *DistributionPointsSeries) GetPointsOk() (*[][]DistributionPointItems, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -120,7 +120,7 @@ func (o *DistributionPointsSeries) GetPointsOk() (*[][]DistributionPointItem, bo
 }
 
 // SetPoints sets field value.
-func (o *DistributionPointsSeries) SetPoints(v [][]DistributionPointItem) {
+func (o *DistributionPointsSeries) SetPoints(v [][]DistributionPointItems) {
 	o.Points = v
 }
 
@@ -207,11 +207,11 @@ func (o DistributionPointsSeries) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DistributionPointsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Host   *string                    `json:"host,omitempty"`
-		Metric *string                    `json:"metric"`
-		Points *[][]DistributionPointItem `json:"points"`
-		Tags   []string                   `json:"tags,omitempty"`
-		Type   *DistributionPointsType    `json:"type,omitempty"`
+		Host   *string                     `json:"host,omitempty"`
+		Metric *string                     `json:"metric"`
+		Points *[][]DistributionPointItems `json:"points"`
+		Tags   []string                    `json:"tags,omitempty"`
+		Type   *DistributionPointsType     `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
