@@ -15,10 +15,11 @@ import (
 func main() {
 	body := datadogV1.SlackIntegrationChannel{
 		Display: &datadogV1.SlackIntegrationChannelDisplay{
-			Message:  datadog.PtrBool(true),
-			Notified: datadog.PtrBool(true),
-			Snapshot: datadog.PtrBool(true),
-			Tags:     datadog.PtrBool(true),
+			Message:     datadog.PtrBool(true),
+			MuteButtons: datadog.PtrBool(false),
+			Notified:    datadog.PtrBool(true),
+			Snapshot:    datadog.PtrBool(true),
+			Tags:        datadog.PtrBool(true),
 		},
 		Name: datadog.PtrString("#general"),
 	}
