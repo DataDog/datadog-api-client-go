@@ -15,15 +15,15 @@ type ApplicationSecurityWafCustomRuleTagsCategory string
 
 // List of ApplicationSecurityWafCustomRuleTagsCategory.
 const (
-	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_ATTACK_ATTEMPT     ApplicationSecurityWafCustomRuleTagsCategory = "attack_attempt"
-	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_BUSINESS_LOGIC     ApplicationSecurityWafCustomRuleTagsCategory = "business_logic"
-	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_SECURITY_RESPONSES ApplicationSecurityWafCustomRuleTagsCategory = "security_responses"
+	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_ATTACK_ATTEMPT    ApplicationSecurityWafCustomRuleTagsCategory = "attack_attempt"
+	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_BUSINESS_LOGIC    ApplicationSecurityWafCustomRuleTagsCategory = "business_logic"
+	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_SECURITY_RESPONSE ApplicationSecurityWafCustomRuleTagsCategory = "security_response"
 )
 
 var allowedApplicationSecurityWafCustomRuleTagsCategoryEnumValues = []ApplicationSecurityWafCustomRuleTagsCategory{
 	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_ATTACK_ATTEMPT,
 	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_BUSINESS_LOGIC,
-	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_SECURITY_RESPONSES,
+	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_SECURITY_RESPONSE,
 }
 
 // GetAllowedValues reeturns the list of possible values.
