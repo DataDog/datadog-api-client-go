@@ -296,7 +296,7 @@ def operation_specs(specs):
 def api(context, api_version, specs, name):
     """Return an API instance."""
     assert name in {tag["name"].replace(" ", "") for tag in specs[api_version]["tags"]}
-    context["api_instance"] = {"name": name}
+    context["api_instance"] = {"name": re.sub(r'[^a-zA-Z0-9]', '', name)}
 
 
 @given(parsers.parse('operation "{name}" enabled'))
