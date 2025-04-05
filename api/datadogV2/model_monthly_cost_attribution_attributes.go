@@ -289,7 +289,7 @@ func (o MonthlyCostAttributionAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonthlyCostAttributionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Month           *time.Time          `json:"month,omitempty"`
+		Month           *string             `json:"month,omitempty"`
 		OrgName         *string             `json:"org_name,omitempty"`
 		PublicId        *string             `json:"public_id,omitempty"`
 		TagConfigSource *string             `json:"tag_config_source,omitempty"`
@@ -306,7 +306,12 @@ func (o *MonthlyCostAttributionAttributes) UnmarshalJSON(bytes []byte) (err erro
 	} else {
 		return err
 	}
-	o.Month = all.Month
+	// all.Month is a datetime string in ISO-8601 format, convert to golang time.Time
+	month, err := time.Parse("2006-01-02T15:04:05-0700", *all.Month)
+	if err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	o.Month = &month
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
 	o.TagConfigSource = all.TagConfigSource
