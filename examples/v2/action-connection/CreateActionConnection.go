@@ -17,7 +17,7 @@ func main() {
 		Data: datadogV2.ActionConnectionData{
 			Type: datadogV2.ACTIONCONNECTIONDATATYPE_ACTION_CONNECTION,
 			Attributes: datadogV2.ActionConnectionAttributes{
-				Name: "Cassette Connection DELETE_ME",
+				Name: "Cassette Connection exampleactionconnection",
 				Integration: datadogV2.ActionConnectionIntegration{
 					AWSIntegration: &datadogV2.AWSIntegration{
 						Type: datadogV2.AWSINTEGRATIONTYPE_AWS,
