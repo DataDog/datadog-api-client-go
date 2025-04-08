@@ -12,9 +12,9 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/apm/config/retention-filters
   response:
-    body: '{"data":{"id":"ErO5dcpeRPmDWbmrryfpYQ","attributes":{"name":"demo retention
-      filter","rate":0.9,"enabled":true,"filter_type":"spans-sampling-processor","filter":{"query":"@_top_level:1
-      test:service-demo"},"modified_by":"frog@datadoghq.com","modified_at":1695118296,"created_by":"frog@datadoghq.com","created_at":1695118296,"editable":true},"type":"apm_retention_filter"}}
+    body: '{"data":{"id":"ZHyaGYKyQNO4nNxGqIxrdg","attributes":{"name":"demo retention
+      filter","rate":0.9,"trace_rate":0.0,"enabled":true,"filter_type":"spans-sampling-processor","filter":{"query":"@_top_level:1
+      test:service-demo"},"editable":true,"modified_by":"frog@datadoghq.com","modified_at":1744111968,"created_by":"frog@datadoghq.com","created_at":1744111968},"type":"apm_retention_filter"}}
 
       '
     code: 200
@@ -31,7 +31,7 @@ interactions:
       - '*/*'
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/apm/config/retention-filters/ErO5dcpeRPmDWbmrryfpYQ
+    url: https://api.datadoghq.com/api/v2/apm/config/retention-filters/ZHyaGYKyQNO4nNxGqIxrdg
   response:
     body: '{}
 
@@ -50,9 +50,9 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/apm/config/retention-filters/ErO5dcpeRPmDWbmrryfpYQ
+    url: https://api.datadoghq.com/api/v2/apm/config/retention-filters/ZHyaGYKyQNO4nNxGqIxrdg
   response:
-    body: '{"errors":["retention filter with id: ''ErO5dcpeRPmDWbmrryfpYQ'' not found"]}'
+    body: '{"errors":["retention filter with id: ''ZHyaGYKyQNO4nNxGqIxrdg'' not found"]}'
     code: 404
     duration: 0ms
     headers:
