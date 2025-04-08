@@ -10,8 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SingleAggregatedConnectionResponseDataType Aggregated connection resource type. Allowed enum values: `aggregated_connection`.
-// default: `aggregated_connection`
+// SingleAggregatedConnectionResponseDataType Aggregated connection resource type.
 type SingleAggregatedConnectionResponseDataType string
 
 // List of SingleAggregatedConnectionResponseDataType.

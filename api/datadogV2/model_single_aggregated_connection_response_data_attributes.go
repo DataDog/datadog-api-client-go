@@ -8,19 +8,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SingleAggregatedConnectionResponseDataAttributes The definition of `SingleAggregatedConnectionResponseDataAttributes` object.
+// SingleAggregatedConnectionResponseDataAttributes Attributes for an aggregated connection.
 type SingleAggregatedConnectionResponseDataAttributes struct {
 	// The total number of bytes sent by the client over the given period.
 	BytesSentByClient *int64 `json:"bytes_sent_by_client,omitempty"`
 	// The total number of bytes sent by the server over the given period.
 	BytesSentByServer *int64 `json:"bytes_sent_by_server,omitempty"`
-	// The `attributes` `group_bys`.
+	// The key, value pairs for each group by.
 	GroupBys map[string][]string `json:"group_bys,omitempty"`
 	// The total number of packets sent by the client over the given period.
 	PacketsSentByClient *int64 `json:"packets_sent_by_client,omitempty"`
 	// The total number of packets sent by the server over the given period.
 	PacketsSentByServer *int64 `json:"packets_sent_by_server,omitempty"`
-	// Measured as TCP smoothed roundtrip time in microseconds (the time between a TCP frame being sent and acknowledged).
+	// Measured as TCP smoothed round trip time in microseconds (the time between a TCP frame being sent and acknowledged).
 	RttMicroSeconds *int64 `json:"rtt_micro_seconds,omitempty"`
 	// The number of TCP connections in a closed state. Measured in connections per second from the client.
 	TcpClosedConnections *int64 `json:"tcp_closed_connections,omitempty"`

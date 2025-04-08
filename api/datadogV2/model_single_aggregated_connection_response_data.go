@@ -8,14 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SingleAggregatedConnectionResponseData The definition of `SingleAggregatedConnectionResponseData` object.
+// SingleAggregatedConnectionResponseData Object describing an aggregated connection.
 type SingleAggregatedConnectionResponseData struct {
-	// The definition of `SingleAggregatedConnectionResponseDataAttributes` object.
+	// Attributes for an aggregated connection.
 	Attributes *SingleAggregatedConnectionResponseDataAttributes `json:"attributes,omitempty"`
-	// The `SingleAggregatedConnectionResponseData` `id`.
+	// A unique identifier for the aggregated connection based on the group by values.
 	Id *string `json:"id,omitempty"`
-	// Aggregated connection resource type. Allowed enum values: `aggregated_connection`.
-	// default: `aggregated_connection`
+	// Aggregated connection resource type.
 	Type *SingleAggregatedConnectionResponseDataType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

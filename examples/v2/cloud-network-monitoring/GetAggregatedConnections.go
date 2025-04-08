@@ -1,4 +1,4 @@
-// Get aggregated connections returns "OK" response
+// Get all aggregated connections returns "OK" response
 
 package main
 
