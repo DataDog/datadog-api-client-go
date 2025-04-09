@@ -30,8 +30,8 @@ type RetentionFilterAllAttributes struct {
 	ModifiedBy *string `json:"modified_by,omitempty"`
 	// The name of the retention filter.
 	Name *string `json:"name,omitempty"`
-	// Sample rate to apply to spans going through this retention filter,
-	// a value of 1.0 keeps all spans matching the query.
+	// Sample rate to apply to spans going through this retention filter.
+	// A value of 1.0 keeps all spans matching the query.
 	Rate *float64 `json:"rate,omitempty"`
 	// Sample rate to apply to traces containing spans going through this retention filter.
 	// A value of 1.0 keeps all traces with spans matching the query.
