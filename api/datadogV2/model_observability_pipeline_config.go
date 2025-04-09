@@ -15,7 +15,7 @@ type ObservabilityPipelineConfig struct {
 	// A list of destination components where processed logs are sent.
 	Destinations []ObservabilityPipelineConfigDestinationItem `json:"destinations"`
 	// A list of processors that transform or enrich log data.
-	Processors []ObservabilityPipelineConfigProcessorItem `json:"processors"`
+	Processors []ObservabilityPipelineConfigProcessorItem `json:"processors,omitempty"`
 	// A list of configured data sources for the pipeline.
 	Sources []ObservabilityPipelineConfigSourceItem `json:"sources"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -27,10 +27,9 @@ type ObservabilityPipelineConfig struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineConfig(destinations []ObservabilityPipelineConfigDestinationItem, processors []ObservabilityPipelineConfigProcessorItem, sources []ObservabilityPipelineConfigSourceItem) *ObservabilityPipelineConfig {
+func NewObservabilityPipelineConfig(destinations []ObservabilityPipelineConfigDestinationItem, sources []ObservabilityPipelineConfigSourceItem) *ObservabilityPipelineConfig {
 	this := ObservabilityPipelineConfig{}
 	this.Destinations = destinations
-	this.Processors = processors
 	this.Sources = sources
 	return &this
 }
@@ -66,25 +65,30 @@ func (o *ObservabilityPipelineConfig) SetDestinations(v []ObservabilityPipelineC
 	o.Destinations = v
 }
 
-// GetProcessors returns the Processors field value.
+// GetProcessors returns the Processors field value if set, zero value otherwise.
 func (o *ObservabilityPipelineConfig) GetProcessors() []ObservabilityPipelineConfigProcessorItem {
-	if o == nil {
+	if o == nil || o.Processors == nil {
 		var ret []ObservabilityPipelineConfigProcessorItem
 		return ret
 	}
 	return o.Processors
 }
 
-// GetProcessorsOk returns a tuple with the Processors field value
+// GetProcessorsOk returns a tuple with the Processors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineConfig) GetProcessorsOk() (*[]ObservabilityPipelineConfigProcessorItem, bool) {
-	if o == nil {
+	if o == nil || o.Processors == nil {
 		return nil, false
 	}
 	return &o.Processors, true
 }
 
-// SetProcessors sets field value.
+// HasProcessors returns a boolean if a field has been set.
+func (o *ObservabilityPipelineConfig) HasProcessors() bool {
+	return o != nil && o.Processors != nil
+}
+
+// SetProcessors gets a reference to the given []ObservabilityPipelineConfigProcessorItem and assigns it to the Processors field.
 func (o *ObservabilityPipelineConfig) SetProcessors(v []ObservabilityPipelineConfigProcessorItem) {
 	o.Processors = v
 }
@@ -119,7 +123,9 @@ func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["destinations"] = o.Destinations
-	toSerialize["processors"] = o.Processors
+	if o.Processors != nil {
+		toSerialize["processors"] = o.Processors
+	}
 	toSerialize["sources"] = o.Sources
 
 	for key, value := range o.AdditionalProperties {
@@ -132,7 +138,7 @@ func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
 func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Destinations *[]ObservabilityPipelineConfigDestinationItem `json:"destinations"`
-		Processors   *[]ObservabilityPipelineConfigProcessorItem   `json:"processors"`
+		Processors   []ObservabilityPipelineConfigProcessorItem    `json:"processors,omitempty"`
 		Sources      *[]ObservabilityPipelineConfigSourceItem      `json:"sources"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -140,9 +146,6 @@ func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.Destinations == nil {
 		return fmt.Errorf("required field destinations missing")
-	}
-	if all.Processors == nil {
-		return fmt.Errorf("required field processors missing")
 	}
 	if all.Sources == nil {
 		return fmt.Errorf("required field sources missing")
@@ -154,7 +157,7 @@ func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	o.Destinations = *all.Destinations
-	o.Processors = *all.Processors
+	o.Processors = all.Processors
 	o.Sources = *all.Sources
 
 	if len(additionalProperties) > 0 {
