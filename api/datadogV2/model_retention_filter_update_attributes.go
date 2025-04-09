@@ -20,8 +20,8 @@ type RetentionFilterUpdateAttributes struct {
 	FilterType RetentionFilterAllType `json:"filter_type"`
 	// The name of the retention filter.
 	Name string `json:"name"`
-	// Sample rate to apply to spans going through this retention filter,
-	// a value of 1.0 keeps all spans matching the query.
+	// Sample rate to apply to spans going through this retention filter.
+	// A value of 1.0 keeps all spans matching the query.
 	Rate float64 `json:"rate"`
 	// Sample rate to apply to traces containing spans going through this retention filter.
 	// A value of 1.0 keeps all traces with spans matching the query.
