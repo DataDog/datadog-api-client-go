@@ -26,7 +26,7 @@ var allowedViewingPreferencesThemeEnumValues = []ViewingPreferencesTheme{
 	VIEWINGPREFERENCESTHEME_DARK,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ViewingPreferencesTheme) GetAllowedValues() []ViewingPreferencesTheme {
 	return allowedViewingPreferencesThemeEnumValues
 }

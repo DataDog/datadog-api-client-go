@@ -22,7 +22,7 @@ var allowedIncidentServiceTypeEnumValues = []IncidentServiceType{
 	INCIDENTSERVICETYPE_SERVICES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IncidentServiceType) GetAllowedValues() []IncidentServiceType {
 	return allowedIncidentServiceTypeEnumValues
 }

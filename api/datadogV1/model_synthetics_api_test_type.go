@@ -22,7 +22,7 @@ var allowedSyntheticsAPITestTypeEnumValues = []SyntheticsAPITestType{
 	SYNTHETICSAPITESTTYPE_API,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsAPITestType) GetAllowedValues() []SyntheticsAPITestType {
 	return allowedSyntheticsAPITestTypeEnumValues
 }

@@ -26,7 +26,7 @@ var allowedStateEnumValues = []State{
 	STATE_SKIP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *State) GetAllowedValues() []State {
 	return allowedStateEnumValues
 }

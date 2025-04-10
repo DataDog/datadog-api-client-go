@@ -30,7 +30,7 @@ var allowedServiceDefinitionV2Dot1LinkTypeEnumValues = []ServiceDefinitionV2Dot1
 	SERVICEDEFINITIONV2DOT1LINKTYPE_OTHER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ServiceDefinitionV2Dot1LinkType) GetAllowedValues() []ServiceDefinitionV2Dot1LinkType {
 	return allowedServiceDefinitionV2Dot1LinkTypeEnumValues
 }

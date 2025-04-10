@@ -22,7 +22,7 @@ var allowedMetricMetaPageTypeEnumValues = []MetricMetaPageType{
 	METRICMETAPAGETYPE_CURSOR_LIMIT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricMetaPageType) GetAllowedValues() []MetricMetaPageType {
 	return allowedMetricMetaPageTypeEnumValues
 }

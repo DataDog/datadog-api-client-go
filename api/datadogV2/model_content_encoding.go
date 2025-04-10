@@ -26,7 +26,7 @@ var allowedContentEncodingEnumValues = []ContentEncoding{
 	CONTENTENCODING_DEFLATE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ContentEncoding) GetAllowedValues() []ContentEncoding {
 	return allowedContentEncodingEnumValues
 }

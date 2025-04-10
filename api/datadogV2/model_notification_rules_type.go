@@ -22,7 +22,7 @@ var allowedNotificationRulesTypeEnumValues = []NotificationRulesType{
 	NOTIFICATIONRULESTYPE_NOTIFICATION_RULES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *NotificationRulesType) GetAllowedValues() []NotificationRulesType {
 	return allowedNotificationRulesTypeEnumValues
 }

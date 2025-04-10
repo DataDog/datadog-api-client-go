@@ -24,7 +24,7 @@ var allowedCIAppSortOrderEnumValues = []CIAppSortOrder{
 	CIAPPSORTORDER_DESCENDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CIAppSortOrder) GetAllowedValues() []CIAppSortOrder {
 	return allowedCIAppSortOrderEnumValues
 }

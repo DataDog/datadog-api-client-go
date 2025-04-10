@@ -22,7 +22,7 @@ var allowedRumMetricTypeEnumValues = []RumMetricType{
 	RUMMETRICTYPE_RUM_METRICS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RumMetricType) GetAllowedValues() []RumMetricType {
 	return allowedRumMetricTypeEnumValues
 }

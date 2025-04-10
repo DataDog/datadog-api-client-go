@@ -22,7 +22,7 @@ var allowedLogsArchiveDestinationGCSTypeEnumValues = []LogsArchiveDestinationGCS
 	LOGSARCHIVEDESTINATIONGCSTYPE_GCS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsArchiveDestinationGCSType) GetAllowedValues() []LogsArchiveDestinationGCSType {
 	return allowedLogsArchiveDestinationGCSTypeEnumValues
 }

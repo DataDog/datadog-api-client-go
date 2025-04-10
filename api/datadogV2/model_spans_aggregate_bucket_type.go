@@ -22,7 +22,7 @@ var allowedSpansAggregateBucketTypeEnumValues = []SpansAggregateBucketType{
 	SPANSAGGREGATEBUCKETTYPE_BUCKET,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SpansAggregateBucketType) GetAllowedValues() []SpansAggregateBucketType {
 	return allowedSpansAggregateBucketTypeEnumValues
 }

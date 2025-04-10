@@ -36,7 +36,7 @@ var allowedOutputSchemaParametersTypeEnumValues = []OutputSchemaParametersType{
 	OUTPUTSCHEMAPARAMETERSTYPE_ARRAY_OBJECT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *OutputSchemaParametersType) GetAllowedValues() []OutputSchemaParametersType {
 	return allowedOutputSchemaParametersTypeEnumValues
 }

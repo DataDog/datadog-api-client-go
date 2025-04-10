@@ -22,7 +22,7 @@ var allowedDashboardResourceTypeEnumValues = []DashboardResourceType{
 	DASHBOARDRESOURCETYPE_DASHBOARD,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DashboardResourceType) GetAllowedValues() []DashboardResourceType {
 	return allowedDashboardResourceTypeEnumValues
 }

@@ -22,7 +22,7 @@ var allowedSecurityFilterTypeEnumValues = []SecurityFilterType{
 	SECURITYFILTERTYPE_SECURITY_FILTERS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityFilterType) GetAllowedValues() []SecurityFilterType {
 	return allowedSecurityFilterTypeEnumValues
 }

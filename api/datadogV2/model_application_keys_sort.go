@@ -32,7 +32,7 @@ var allowedApplicationKeysSortEnumValues = []ApplicationKeysSort{
 	APPLICATIONKEYSSORT_NAME_DESCENDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ApplicationKeysSort) GetAllowedValues() []ApplicationKeysSort {
 	return allowedApplicationKeysSortEnumValues
 }

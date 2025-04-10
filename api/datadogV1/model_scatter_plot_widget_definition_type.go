@@ -22,7 +22,7 @@ var allowedScatterPlotWidgetDefinitionTypeEnumValues = []ScatterPlotWidgetDefini
 	SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ScatterPlotWidgetDefinitionType) GetAllowedValues() []ScatterPlotWidgetDefinitionType {
 	return allowedScatterPlotWidgetDefinitionTypeEnumValues
 }

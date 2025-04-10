@@ -30,7 +30,7 @@ var allowedAssetTypeEnumValues = []AssetType{
 	ASSETTYPE_IMAGE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AssetType) GetAllowedValues() []AssetType {
 	return allowedAssetTypeEnumValues
 }

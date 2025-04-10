@@ -22,7 +22,7 @@ var allowedComponentGridTypeEnumValues = []ComponentGridType{
 	COMPONENTGRIDTYPE_GRID,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ComponentGridType) GetAllowedValues() []ComponentGridType {
 	return allowedComponentGridTypeEnumValues
 }

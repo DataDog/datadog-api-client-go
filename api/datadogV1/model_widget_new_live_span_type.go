@@ -22,7 +22,7 @@ var allowedWidgetNewLiveSpanTypeEnumValues = []WidgetNewLiveSpanType{
 	WIDGETNEWLIVESPANTYPE_LIVE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetNewLiveSpanType) GetAllowedValues() []WidgetNewLiveSpanType {
 	return allowedWidgetNewLiveSpanTypeEnumValues
 }

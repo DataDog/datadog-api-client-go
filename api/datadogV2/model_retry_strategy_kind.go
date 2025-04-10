@@ -22,7 +22,7 @@ var allowedRetryStrategyKindEnumValues = []RetryStrategyKind{
 	RETRYSTRATEGYKIND_RETRY_STRATEGY_LINEAR,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RetryStrategyKind) GetAllowedValues() []RetryStrategyKind {
 	return allowedRetryStrategyKindEnumValues
 }

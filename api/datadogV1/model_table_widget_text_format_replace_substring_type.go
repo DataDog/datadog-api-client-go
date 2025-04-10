@@ -22,7 +22,7 @@ var allowedTableWidgetTextFormatReplaceSubstringTypeEnumValues = []TableWidgetTe
 	TABLEWIDGETTEXTFORMATREPLACESUBSTRINGTYPE_SUBSTRING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TableWidgetTextFormatReplaceSubstringType) GetAllowedValues() []TableWidgetTextFormatReplaceSubstringType {
 	return allowedTableWidgetTextFormatReplaceSubstringTypeEnumValues
 }

@@ -24,7 +24,7 @@ var allowedSpansSortEnumValues = []SpansSort{
 	SPANSSORT_TIMESTAMP_DESCENDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SpansSort) GetAllowedValues() []SpansSort {
 	return allowedSpansSortEnumValues
 }

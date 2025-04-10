@@ -22,7 +22,7 @@ var allowedDORADeploymentTypeEnumValues = []DORADeploymentType{
 	DORADEPLOYMENTTYPE_DORA_DEPLOYMENT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DORADeploymentType) GetAllowedValues() []DORADeploymentType {
 	return allowedDORADeploymentTypeEnumValues
 }

@@ -72,7 +72,7 @@ var allowedSyntheticsStepTypeEnumValues = []SyntheticsStepType{
 	SYNTHETICSSTEPTYPE_WAIT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsStepType) GetAllowedValues() []SyntheticsStepType {
 	return allowedSyntheticsStepTypeEnumValues
 }

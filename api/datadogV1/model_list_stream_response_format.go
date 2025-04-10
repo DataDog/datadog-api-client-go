@@ -22,7 +22,7 @@ var allowedListStreamResponseFormatEnumValues = []ListStreamResponseFormat{
 	LISTSTREAMRESPONSEFORMAT_EVENT_LIST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ListStreamResponseFormat) GetAllowedValues() []ListStreamResponseFormat {
 	return allowedListStreamResponseFormatEnumValues
 }

@@ -24,7 +24,7 @@ var allowedMetricsDataSourceEnumValues = []MetricsDataSource{
 	METRICSDATASOURCE_CLOUD_COST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricsDataSource) GetAllowedValues() []MetricsDataSource {
 	return allowedMetricsDataSourceEnumValues
 }

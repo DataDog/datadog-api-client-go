@@ -34,7 +34,7 @@ var allowedRumRetentionFilterEventTypeEnumValues = []RumRetentionFilterEventType
 	RUMRETENTIONFILTEREVENTTYPE_VITAL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RumRetentionFilterEventType) GetAllowedValues() []RumRetentionFilterEventType {
 	return allowedRumRetentionFilterEventTypeEnumValues
 }

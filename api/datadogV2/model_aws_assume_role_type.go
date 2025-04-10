@@ -22,7 +22,7 @@ var allowedAWSAssumeRoleTypeEnumValues = []AWSAssumeRoleType{
 	AWSASSUMEROLETYPE_AWSASSUMEROLE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AWSAssumeRoleType) GetAllowedValues() []AWSAssumeRoleType {
 	return allowedAWSAssumeRoleTypeEnumValues
 }

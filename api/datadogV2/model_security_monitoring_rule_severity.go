@@ -30,7 +30,7 @@ var allowedSecurityMonitoringRuleSeverityEnumValues = []SecurityMonitoringRuleSe
 	SECURITYMONITORINGRULESEVERITY_CRITICAL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringRuleSeverity) GetAllowedValues() []SecurityMonitoringRuleSeverity {
 	return allowedSecurityMonitoringRuleSeverityEnumValues
 }

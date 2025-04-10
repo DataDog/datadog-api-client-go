@@ -22,7 +22,7 @@ var allowedEntityV3QueueKindEnumValues = []EntityV3QueueKind{
 	ENTITYV3QUEUEKIND_QUEUE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EntityV3QueueKind) GetAllowedValues() []EntityV3QueueKind {
 	return allowedEntityV3QueueKindEnumValues
 }

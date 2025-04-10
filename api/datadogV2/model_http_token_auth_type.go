@@ -22,7 +22,7 @@ var allowedHTTPTokenAuthTypeEnumValues = []HTTPTokenAuthType{
 	HTTPTOKENAUTHTYPE_HTTPTOKENAUTH,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *HTTPTokenAuthType) GetAllowedValues() []HTTPTokenAuthType {
 	return allowedHTTPTokenAuthTypeEnumValues
 }

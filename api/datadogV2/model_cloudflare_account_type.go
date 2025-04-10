@@ -22,7 +22,7 @@ var allowedCloudflareAccountTypeEnumValues = []CloudflareAccountType{
 	CLOUDFLAREACCOUNTTYPE_CLOUDFLARE_ACCOUNTS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CloudflareAccountType) GetAllowedValues() []CloudflareAccountType {
 	return allowedCloudflareAccountTypeEnumValues
 }

@@ -27,7 +27,7 @@ var allowedAWSAccountPartitionEnumValues = []AWSAccountPartition{
 	AWSACCOUNTPARTITION_AWS_US_GOV,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AWSAccountPartition) GetAllowedValues() []AWSAccountPartition {
 	return allowedAWSAccountPartitionEnumValues
 }

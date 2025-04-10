@@ -24,7 +24,7 @@ var allowedMetricContentEncodingEnumValues = []MetricContentEncoding{
 	METRICCONTENTENCODING_GZIP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricContentEncoding) GetAllowedValues() []MetricContentEncoding {
 	return allowedMetricContentEncodingEnumValues
 }

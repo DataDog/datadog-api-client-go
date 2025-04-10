@@ -22,7 +22,7 @@ var allowedAWSAccountTypeEnumValues = []AWSAccountType{
 	AWSACCOUNTTYPE_ACCOUNT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AWSAccountType) GetAllowedValues() []AWSAccountType {
 	return allowedAWSAccountTypeEnumValues
 }

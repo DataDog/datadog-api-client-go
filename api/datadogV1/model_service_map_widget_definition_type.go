@@ -22,7 +22,7 @@ var allowedServiceMapWidgetDefinitionTypeEnumValues = []ServiceMapWidgetDefiniti
 	SERVICEMAPWIDGETDEFINITIONTYPE_SERVICEMAP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ServiceMapWidgetDefinitionType) GetAllowedValues() []ServiceMapWidgetDefinitionType {
 	return allowedServiceMapWidgetDefinitionTypeEnumValues
 }

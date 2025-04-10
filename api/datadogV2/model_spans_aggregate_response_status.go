@@ -24,7 +24,7 @@ var allowedSpansAggregateResponseStatusEnumValues = []SpansAggregateResponseStat
 	SPANSAGGREGATERESPONSESTATUS_TIMEOUT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SpansAggregateResponseStatus) GetAllowedValues() []SpansAggregateResponseStatus {
 	return allowedSpansAggregateResponseStatusEnumValues
 }

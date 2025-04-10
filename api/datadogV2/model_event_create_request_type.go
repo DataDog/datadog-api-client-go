@@ -22,7 +22,7 @@ var allowedEventCreateRequestTypeEnumValues = []EventCreateRequestType{
 	EVENTCREATEREQUESTTYPE_EVENT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EventCreateRequestType) GetAllowedValues() []EventCreateRequestType {
 	return allowedEventCreateRequestTypeEnumValues
 }

@@ -24,7 +24,7 @@ var allowedFormulaAndFunctionProcessQueryDataSourceEnumValues = []FormulaAndFunc
 	FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_CONTAINER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FormulaAndFunctionProcessQueryDataSource) GetAllowedValues() []FormulaAndFunctionProcessQueryDataSource {
 	return allowedFormulaAndFunctionProcessQueryDataSourceEnumValues
 }

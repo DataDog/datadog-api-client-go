@@ -24,7 +24,7 @@ var allowedCIAppPipelineEventStepStatusEnumValues = []CIAppPipelineEventStepStat
 	CIAPPPIPELINEEVENTSTEPSTATUS_ERROR,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CIAppPipelineEventStepStatus) GetAllowedValues() []CIAppPipelineEventStepStatus {
 	return allowedCIAppPipelineEventStepStatusEnumValues
 }

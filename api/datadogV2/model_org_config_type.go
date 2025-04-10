@@ -22,7 +22,7 @@ var allowedOrgConfigTypeEnumValues = []OrgConfigType{
 	ORGCONFIGTYPE_ORG_CONFIGS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *OrgConfigType) GetAllowedValues() []OrgConfigType {
 	return allowedOrgConfigTypeEnumValues
 }

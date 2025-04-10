@@ -22,7 +22,7 @@ var allowedLogsUserAgentParserTypeEnumValues = []LogsUserAgentParserType{
 	LOGSUSERAGENTPARSERTYPE_USER_AGENT_PARSER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsUserAgentParserType) GetAllowedValues() []LogsUserAgentParserType {
 	return allowedLogsUserAgentParserTypeEnumValues
 }

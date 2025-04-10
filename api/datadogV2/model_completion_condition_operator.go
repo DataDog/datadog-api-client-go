@@ -44,7 +44,7 @@ var allowedCompletionConditionOperatorEnumValues = []CompletionConditionOperator
 	COMPLETIONCONDITIONOPERATOR_OPERATOR_IS_NOT_EMPTY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CompletionConditionOperator) GetAllowedValues() []CompletionConditionOperator {
 	return allowedCompletionConditionOperatorEnumValues
 }

@@ -22,7 +22,7 @@ var allowedIncidentTimelineCellMarkdownContentTypeEnumValues = []IncidentTimelin
 	INCIDENTTIMELINECELLMARKDOWNCONTENTTYPE_MARKDOWN,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IncidentTimelineCellMarkdownContentType) GetAllowedValues() []IncidentTimelineCellMarkdownContentType {
 	return allowedIncidentTimelineCellMarkdownContentTypeEnumValues
 }

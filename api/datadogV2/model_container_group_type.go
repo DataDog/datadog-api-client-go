@@ -22,7 +22,7 @@ var allowedContainerGroupTypeEnumValues = []ContainerGroupType{
 	CONTAINERGROUPTYPE_CONTAINER_GROUP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ContainerGroupType) GetAllowedValues() []ContainerGroupType {
 	return allowedContainerGroupTypeEnumValues
 }

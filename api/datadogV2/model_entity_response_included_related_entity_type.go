@@ -22,7 +22,7 @@ var allowedEntityResponseIncludedRelatedEntityTypeEnumValues = []EntityResponseI
 	ENTITYRESPONSEINCLUDEDRELATEDENTITYTYPE_RELATED_ENTITY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EntityResponseIncludedRelatedEntityType) GetAllowedValues() []EntityResponseIncludedRelatedEntityType {
 	return allowedEntityResponseIncludedRelatedEntityTypeEnumValues
 }

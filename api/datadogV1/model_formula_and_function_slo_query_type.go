@@ -26,7 +26,7 @@ var allowedFormulaAndFunctionSLOQueryTypeEnumValues = []FormulaAndFunctionSLOQue
 	FORMULAANDFUNCTIONSLOQUERYTYPE_TIME_SLICE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FormulaAndFunctionSLOQueryType) GetAllowedValues() []FormulaAndFunctionSLOQueryType {
 	return allowedFormulaAndFunctionSLOQueryTypeEnumValues
 }

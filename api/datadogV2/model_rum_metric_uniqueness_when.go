@@ -24,7 +24,7 @@ var allowedRumMetricUniquenessWhenEnumValues = []RumMetricUniquenessWhen{
 	RUMMETRICUNIQUENESSWHEN_WHEN_END,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RumMetricUniquenessWhen) GetAllowedValues() []RumMetricUniquenessWhen {
 	return allowedRumMetricUniquenessWhenEnumValues
 }

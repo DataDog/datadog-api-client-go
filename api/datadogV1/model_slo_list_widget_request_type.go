@@ -22,7 +22,7 @@ var allowedSLOListWidgetRequestTypeEnumValues = []SLOListWidgetRequestType{
 	SLOLISTWIDGETREQUESTTYPE_SLO_LIST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SLOListWidgetRequestType) GetAllowedValues() []SLOListWidgetRequestType {
 	return allowedSLOListWidgetRequestTypeEnumValues
 }

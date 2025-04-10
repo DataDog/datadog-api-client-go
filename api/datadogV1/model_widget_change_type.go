@@ -24,7 +24,7 @@ var allowedWidgetChangeTypeEnumValues = []WidgetChangeType{
 	WIDGETCHANGETYPE_RELATIVE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetChangeType) GetAllowedValues() []WidgetChangeType {
 	return allowedWidgetChangeTypeEnumValues
 }

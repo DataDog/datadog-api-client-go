@@ -26,7 +26,7 @@ var allowedToplistWidgetLegendEnumValues = []ToplistWidgetLegend{
 	TOPLISTWIDGETLEGEND_NONE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ToplistWidgetLegend) GetAllowedValues() []ToplistWidgetLegend {
 	return allowedToplistWidgetLegendEnumValues
 }

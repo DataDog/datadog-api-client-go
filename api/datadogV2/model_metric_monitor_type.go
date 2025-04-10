@@ -22,7 +22,7 @@ var allowedMetricMonitorTypeEnumValues = []MetricMonitorType{
 	METRICMONITORTYPE_MONITORS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricMonitorType) GetAllowedValues() []MetricMonitorType {
 	return allowedMetricMonitorTypeEnumValues
 }

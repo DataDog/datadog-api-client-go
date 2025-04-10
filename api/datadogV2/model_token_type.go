@@ -22,7 +22,7 @@ var allowedTokenTypeEnumValues = []TokenType{
 	TOKENTYPE_SECRET,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TokenType) GetAllowedValues() []TokenType {
 	return allowedTokenTypeEnumValues
 }

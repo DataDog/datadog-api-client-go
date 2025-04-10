@@ -30,7 +30,7 @@ var allowedSyntheticsPlayingTabEnumValues = []SyntheticsPlayingTab{
 	SYNTHETICSPLAYINGTAB_TAB_3,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsPlayingTab) GetAllowedValues() []SyntheticsPlayingTab {
 	return allowedSyntheticsPlayingTabEnumValues
 }

@@ -22,7 +22,7 @@ var allowedSLOCorrectionTypeEnumValues = []SLOCorrectionType{
 	SLOCORRECTIONTYPE_CORRECTION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SLOCorrectionType) GetAllowedValues() []SLOCorrectionType {
 	return allowedSLOCorrectionTypeEnumValues
 }

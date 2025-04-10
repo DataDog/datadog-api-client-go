@@ -22,7 +22,7 @@ var allowedObservabilityPipelineParseJSONProcessorTypeEnumValues = []Observabili
 	OBSERVABILITYPIPELINEPARSEJSONPROCESSORTYPE_PARSE_JSON,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ObservabilityPipelineParseJSONProcessorType) GetAllowedValues() []ObservabilityPipelineParseJSONProcessorType {
 	return allowedObservabilityPipelineParseJSONProcessorTypeEnumValues
 }

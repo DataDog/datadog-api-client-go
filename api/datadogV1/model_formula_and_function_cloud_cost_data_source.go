@@ -22,7 +22,7 @@ var allowedFormulaAndFunctionCloudCostDataSourceEnumValues = []FormulaAndFunctio
 	FORMULAANDFUNCTIONCLOUDCOSTDATASOURCE_CLOUD_COST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FormulaAndFunctionCloudCostDataSource) GetAllowedValues() []FormulaAndFunctionCloudCostDataSource {
 	return allowedFormulaAndFunctionCloudCostDataSourceEnumValues
 }

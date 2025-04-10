@@ -22,7 +22,7 @@ var allowedSyntheticsBasicAuthNTLMTypeEnumValues = []SyntheticsBasicAuthNTLMType
 	SYNTHETICSBASICAUTHNTLMTYPE_NTLM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsBasicAuthNTLMType) GetAllowedValues() []SyntheticsBasicAuthNTLMType {
 	return allowedSyntheticsBasicAuthNTLMTypeEnumValues
 }

@@ -22,7 +22,7 @@ var allowedGCPSTSDelegateAccountTypeEnumValues = []GCPSTSDelegateAccountType{
 	GCPSTSDELEGATEACCOUNTTYPE_GCP_STS_DELEGATE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *GCPSTSDelegateAccountType) GetAllowedValues() []GCPSTSDelegateAccountType {
 	return allowedGCPSTSDelegateAccountTypeEnumValues
 }

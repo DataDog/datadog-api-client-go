@@ -26,7 +26,7 @@ var allowedDowntimeNotifyEndStateTypesEnumValues = []DowntimeNotifyEndStateTypes
 	DOWNTIMENOTIFYENDSTATETYPES_WARN,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DowntimeNotifyEndStateTypes) GetAllowedValues() []DowntimeNotifyEndStateTypes {
 	return allowedDowntimeNotifyEndStateTypesEnumValues
 }

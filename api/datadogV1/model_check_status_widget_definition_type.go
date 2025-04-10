@@ -22,7 +22,7 @@ var allowedCheckStatusWidgetDefinitionTypeEnumValues = []CheckStatusWidgetDefini
 	CHECKSTATUSWIDGETDEFINITIONTYPE_CHECK_STATUS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CheckStatusWidgetDefinitionType) GetAllowedValues() []CheckStatusWidgetDefinitionType {
 	return allowedCheckStatusWidgetDefinitionTypeEnumValues
 }

@@ -22,7 +22,7 @@ var allowedLogsURLParserTypeEnumValues = []LogsURLParserType{
 	LOGSURLPARSERTYPE_URL_PARSER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsURLParserType) GetAllowedValues() []LogsURLParserType {
 	return allowedLogsURLParserTypeEnumValues
 }

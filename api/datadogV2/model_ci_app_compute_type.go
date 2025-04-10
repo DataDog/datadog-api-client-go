@@ -24,7 +24,7 @@ var allowedCIAppComputeTypeEnumValues = []CIAppComputeType{
 	CIAPPCOMPUTETYPE_TOTAL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CIAppComputeType) GetAllowedValues() []CIAppComputeType {
 	return allowedCIAppComputeTypeEnumValues
 }

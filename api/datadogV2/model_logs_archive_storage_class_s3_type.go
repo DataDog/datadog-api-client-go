@@ -30,7 +30,7 @@ var allowedLogsArchiveStorageClassS3TypeEnumValues = []LogsArchiveStorageClassS3
 	LOGSARCHIVESTORAGECLASSS3TYPE_GLACIER_IR,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsArchiveStorageClassS3Type) GetAllowedValues() []LogsArchiveStorageClassS3Type {
 	return allowedLogsArchiveStorageClassS3TypeEnumValues
 }

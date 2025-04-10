@@ -22,7 +22,7 @@ var allowedConvertJobResultsToSignalsDataTypeEnumValues = []ConvertJobResultsToS
 	CONVERTJOBRESULTSTOSIGNALSDATATYPE_HISTORICALDETECTIONSJOBRESULTSIGNALCONVERSION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ConvertJobResultsToSignalsDataType) GetAllowedValues() []ConvertJobResultsToSignalsDataType {
 	return allowedConvertJobResultsToSignalsDataTypeEnumValues
 }

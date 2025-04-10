@@ -22,7 +22,7 @@ var allowedToplistWidgetDefinitionTypeEnumValues = []ToplistWidgetDefinitionType
 	TOPLISTWIDGETDEFINITIONTYPE_TOPLIST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ToplistWidgetDefinitionType) GetAllowedValues() []ToplistWidgetDefinitionType {
 	return allowedToplistWidgetDefinitionTypeEnumValues
 }

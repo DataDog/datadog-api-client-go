@@ -22,7 +22,7 @@ var allowedSyntheticsAssertionBodyHashTypeEnumValues = []SyntheticsAssertionBody
 	SYNTHETICSASSERTIONBODYHASHTYPE_BODY_HASH,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsAssertionBodyHashType) GetAllowedValues() []SyntheticsAssertionBodyHashType {
 	return allowedSyntheticsAssertionBodyHashTypeEnumValues
 }

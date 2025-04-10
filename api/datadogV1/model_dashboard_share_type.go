@@ -26,7 +26,7 @@ var allowedDashboardShareTypeEnumValues = []DashboardShareType{
 	DASHBOARDSHARETYPE_EMBED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DashboardShareType) GetAllowedValues() []DashboardShareType {
 	return allowedDashboardShareTypeEnumValues
 }

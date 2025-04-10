@@ -32,7 +32,7 @@ var allowedSecurityMonitoringStandardDataSourceEnumValues = []SecurityMonitoring
 	SECURITYMONITORINGSTANDARDDATASOURCE_NETWORK,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringStandardDataSource) GetAllowedValues() []SecurityMonitoringStandardDataSource {
 	return allowedSecurityMonitoringStandardDataSourceEnumValues
 }

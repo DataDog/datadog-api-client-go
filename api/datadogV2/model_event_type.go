@@ -22,7 +22,7 @@ var allowedEventTypeEnumValues = []EventType{
 	EVENTTYPE_EVENT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EventType) GetAllowedValues() []EventType {
 	return allowedEventTypeEnumValues
 }

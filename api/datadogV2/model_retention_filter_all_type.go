@@ -26,7 +26,7 @@ var allowedRetentionFilterAllTypeEnumValues = []RetentionFilterAllType{
 	RETENTIONFILTERALLTYPE_SPANS_APPSEC_SAMPLING_PROCESSOR,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RetentionFilterAllType) GetAllowedValues() []RetentionFilterAllType {
 	return allowedRetentionFilterAllTypeEnumValues
 }

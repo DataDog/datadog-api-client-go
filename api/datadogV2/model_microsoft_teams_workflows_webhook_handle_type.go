@@ -22,7 +22,7 @@ var allowedMicrosoftTeamsWorkflowsWebhookHandleTypeEnumValues = []MicrosoftTeams
 	MICROSOFTTEAMSWORKFLOWSWEBHOOKHANDLETYPE_WORKFLOWS_WEBHOOK_HANDLE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MicrosoftTeamsWorkflowsWebhookHandleType) GetAllowedValues() []MicrosoftTeamsWorkflowsWebhookHandleType {
 	return allowedMicrosoftTeamsWorkflowsWebhookHandleTypeEnumValues
 }

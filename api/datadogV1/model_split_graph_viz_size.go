@@ -28,7 +28,7 @@ var allowedSplitGraphVizSizeEnumValues = []SplitGraphVizSize{
 	SPLITGRAPHVIZSIZE_LG,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SplitGraphVizSize) GetAllowedValues() []SplitGraphVizSize {
 	return allowedSplitGraphVizSizeEnumValues
 }

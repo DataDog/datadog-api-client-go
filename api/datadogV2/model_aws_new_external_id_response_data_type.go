@@ -22,7 +22,7 @@ var allowedAWSNewExternalIDResponseDataTypeEnumValues = []AWSNewExternalIDRespon
 	AWSNEWEXTERNALIDRESPONSEDATATYPE_EXTERNAL_ID,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AWSNewExternalIDResponseDataType) GetAllowedValues() []AWSNewExternalIDResponseDataType {
 	return allowedAWSNewExternalIDResponseDataTypeEnumValues
 }

@@ -24,7 +24,7 @@ var allowedSunburstWidgetLegendInlineAutomaticTypeEnumValues = []SunburstWidgetL
 	SUNBURSTWIDGETLEGENDINLINEAUTOMATICTYPE_AUTOMATIC,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SunburstWidgetLegendInlineAutomaticType) GetAllowedValues() []SunburstWidgetLegendInlineAutomaticType {
 	return allowedSunburstWidgetLegendInlineAutomaticTypeEnumValues
 }

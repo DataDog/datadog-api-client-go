@@ -22,7 +22,7 @@ var allowedHistoricalJobDataTypeEnumValues = []HistoricalJobDataType{
 	HISTORICALJOBDATATYPE_HISTORICALDETECTIONSJOB,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *HistoricalJobDataType) GetAllowedValues() []HistoricalJobDataType {
 	return allowedHistoricalJobDataTypeEnumValues
 }

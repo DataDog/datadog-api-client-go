@@ -24,7 +24,7 @@ var allowedIncidentTodoAnonymousAssigneeSourceEnumValues = []IncidentTodoAnonymo
 	INCIDENTTODOANONYMOUSASSIGNEESOURCE_MICROSOFT_TEAMS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IncidentTodoAnonymousAssigneeSource) GetAllowedValues() []IncidentTodoAnonymousAssigneeSource {
 	return allowedIncidentTodoAnonymousAssigneeSourceEnumValues
 }

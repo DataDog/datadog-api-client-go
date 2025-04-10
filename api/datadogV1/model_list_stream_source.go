@@ -46,7 +46,7 @@ var allowedListStreamSourceEnumValues = []ListStreamSource{
 	LISTSTREAMSOURCE_LLM_OBSERVABILITY_STREAM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ListStreamSource) GetAllowedValues() []ListStreamSource {
 	return allowedListStreamSourceEnumValues
 }

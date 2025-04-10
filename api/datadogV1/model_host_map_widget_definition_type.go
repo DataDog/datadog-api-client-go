@@ -22,7 +22,7 @@ var allowedHostMapWidgetDefinitionTypeEnumValues = []HostMapWidgetDefinitionType
 	HOSTMAPWIDGETDEFINITIONTYPE_HOSTMAP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *HostMapWidgetDefinitionType) GetAllowedValues() []HostMapWidgetDefinitionType {
 	return allowedHostMapWidgetDefinitionTypeEnumValues
 }

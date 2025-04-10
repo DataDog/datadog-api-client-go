@@ -22,7 +22,7 @@ var allowedSingleAggregatedConnectionResponseDataTypeEnumValues = []SingleAggreg
 	SINGLEAGGREGATEDCONNECTIONRESPONSEDATATYPE_AGGREGATED_CONNECTION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SingleAggregatedConnectionResponseDataType) GetAllowedValues() []SingleAggregatedConnectionResponseDataType {
 	return allowedSingleAggregatedConnectionResponseDataTypeEnumValues
 }

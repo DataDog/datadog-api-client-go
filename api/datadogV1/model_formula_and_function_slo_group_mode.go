@@ -24,7 +24,7 @@ var allowedFormulaAndFunctionSLOGroupModeEnumValues = []FormulaAndFunctionSLOGro
 	FORMULAANDFUNCTIONSLOGROUPMODE_COMPONENTS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FormulaAndFunctionSLOGroupMode) GetAllowedValues() []FormulaAndFunctionSLOGroupMode {
 	return allowedFormulaAndFunctionSLOGroupModeEnumValues
 }

@@ -24,7 +24,7 @@ var allowedUsageSortDirectionEnumValues = []UsageSortDirection{
 	USAGESORTDIRECTION_ASC,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *UsageSortDirection) GetAllowedValues() []UsageSortDirection {
 	return allowedUsageSortDirectionEnumValues
 }

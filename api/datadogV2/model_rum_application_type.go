@@ -22,7 +22,7 @@ var allowedRUMApplicationTypeEnumValues = []RUMApplicationType{
 	RUMAPPLICATIONTYPE_RUM_APPLICATION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RUMApplicationType) GetAllowedValues() []RUMApplicationType {
 	return allowedRUMApplicationTypeEnumValues
 }

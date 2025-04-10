@@ -22,7 +22,7 @@ var allowedContainerImageGroupTypeEnumValues = []ContainerImageGroupType{
 	CONTAINERIMAGEGROUPTYPE_CONTAINER_IMAGE_GROUP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ContainerImageGroupType) GetAllowedValues() []ContainerImageGroupType {
 	return allowedContainerImageGroupTypeEnumValues
 }

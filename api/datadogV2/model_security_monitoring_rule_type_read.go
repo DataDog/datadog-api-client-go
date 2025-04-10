@@ -30,7 +30,7 @@ var allowedSecurityMonitoringRuleTypeReadEnumValues = []SecurityMonitoringRuleTy
 	SECURITYMONITORINGRULETYPEREAD_APPLICATION_SECURITY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringRuleTypeRead) GetAllowedValues() []SecurityMonitoringRuleTypeRead {
 	return allowedSecurityMonitoringRuleTypeReadEnumValues
 }

@@ -28,7 +28,7 @@ var allowedWidgetOrderByEnumValues = []WidgetOrderBy{
 	WIDGETORDERBY_PAST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetOrderBy) GetAllowedValues() []WidgetOrderBy {
 	return allowedWidgetOrderByEnumValues
 }

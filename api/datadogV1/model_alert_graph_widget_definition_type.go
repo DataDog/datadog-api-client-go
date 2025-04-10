@@ -22,7 +22,7 @@ var allowedAlertGraphWidgetDefinitionTypeEnumValues = []AlertGraphWidgetDefiniti
 	ALERTGRAPHWIDGETDEFINITIONTYPE_ALERT_GRAPH,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AlertGraphWidgetDefinitionType) GetAllowedValues() []AlertGraphWidgetDefinitionType {
 	return allowedAlertGraphWidgetDefinitionTypeEnumValues
 }

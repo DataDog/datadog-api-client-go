@@ -24,7 +24,7 @@ var allowedRUMComputeTypeEnumValues = []RUMComputeType{
 	RUMCOMPUTETYPE_TOTAL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RUMComputeType) GetAllowedValues() []RUMComputeType {
 	return allowedRUMComputeTypeEnumValues
 }

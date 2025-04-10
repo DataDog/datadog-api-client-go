@@ -28,7 +28,7 @@ var allowedServiceCheckStatusEnumValues = []ServiceCheckStatus{
 	SERVICECHECKSTATUS_UNKNOWN,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ServiceCheckStatus) GetAllowedValues() []ServiceCheckStatus {
 	return allowedServiceCheckStatusEnumValues
 }

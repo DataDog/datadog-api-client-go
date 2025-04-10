@@ -26,7 +26,7 @@ var allowedSearchSLOTimeframeEnumValues = []SearchSLOTimeframe{
 	SEARCHSLOTIMEFRAME_NINETY_DAYS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SearchSLOTimeframe) GetAllowedValues() []SearchSLOTimeframe {
 	return allowedSearchSLOTimeframeEnumValues
 }

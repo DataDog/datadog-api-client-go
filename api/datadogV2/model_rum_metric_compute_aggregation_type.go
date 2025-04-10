@@ -24,7 +24,7 @@ var allowedRumMetricComputeAggregationTypeEnumValues = []RumMetricComputeAggrega
 	RUMMETRICCOMPUTEAGGREGATIONTYPE_DISTRIBUTION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RumMetricComputeAggregationType) GetAllowedValues() []RumMetricComputeAggregationType {
 	return allowedRumMetricComputeAggregationTypeEnumValues
 }

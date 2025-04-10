@@ -22,7 +22,7 @@ var allowedMetricNotebookTypeEnumValues = []MetricNotebookType{
 	METRICNOTEBOOKTYPE_NOTEBOOKS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricNotebookType) GetAllowedValues() []MetricNotebookType {
 	return allowedMetricNotebookTypeEnumValues
 }

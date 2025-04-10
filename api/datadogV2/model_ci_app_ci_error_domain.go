@@ -26,7 +26,7 @@ var allowedCIAppCIErrorDomainEnumValues = []CIAppCIErrorDomain{
 	CIAPPCIERRORDOMAIN_UNKNOWN,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CIAppCIErrorDomain) GetAllowedValues() []CIAppCIErrorDomain {
 	return allowedCIAppCIErrorDomainEnumValues
 }

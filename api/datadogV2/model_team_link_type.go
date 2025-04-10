@@ -22,7 +22,7 @@ var allowedTeamLinkTypeEnumValues = []TeamLinkType{
 	TEAMLINKTYPE_TEAM_LINKS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TeamLinkType) GetAllowedValues() []TeamLinkType {
 	return allowedTeamLinkTypeEnumValues
 }

@@ -22,7 +22,7 @@ var allowedObservabilityPipelineDatadogLogsDestinationTypeEnumValues = []Observa
 	OBSERVABILITYPIPELINEDATADOGLOGSDESTINATIONTYPE_DATADOG_LOGS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ObservabilityPipelineDatadogLogsDestinationType) GetAllowedValues() []ObservabilityPipelineDatadogLogsDestinationType {
 	return allowedObservabilityPipelineDatadogLogsDestinationTypeEnumValues
 }

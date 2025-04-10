@@ -24,7 +24,7 @@ var allowedIncidentRelatedObjectEnumValues = []IncidentRelatedObject{
 	INCIDENTRELATEDOBJECT_ATTACHMENTS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IncidentRelatedObject) GetAllowedValues() []IncidentRelatedObject {
 	return allowedIncidentRelatedObjectEnumValues
 }

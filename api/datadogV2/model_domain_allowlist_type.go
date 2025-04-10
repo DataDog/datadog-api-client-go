@@ -22,7 +22,7 @@ var allowedDomainAllowlistTypeEnumValues = []DomainAllowlistType{
 	DOMAINALLOWLISTTYPE_DOMAIN_ALLOWLIST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DomainAllowlistType) GetAllowedValues() []DomainAllowlistType {
 	return allowedDomainAllowlistTypeEnumValues
 }

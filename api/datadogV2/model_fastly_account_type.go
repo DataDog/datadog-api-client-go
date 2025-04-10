@@ -22,7 +22,7 @@ var allowedFastlyAccountTypeEnumValues = []FastlyAccountType{
 	FASTLYACCOUNTTYPE_FASTLY_ACCOUNTS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FastlyAccountType) GetAllowedValues() []FastlyAccountType {
 	return allowedFastlyAccountTypeEnumValues
 }

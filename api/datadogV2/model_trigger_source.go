@@ -25,7 +25,7 @@ var allowedTriggerSourceEnumValues = []TriggerSource{
 	TRIGGERSOURCE_SECURITY_SIGNALS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TriggerSource) GetAllowedValues() []TriggerSource {
 	return allowedTriggerSourceEnumValues
 }

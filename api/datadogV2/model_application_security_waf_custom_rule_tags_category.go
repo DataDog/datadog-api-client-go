@@ -26,7 +26,7 @@ var allowedApplicationSecurityWafCustomRuleTagsCategoryEnumValues = []Applicatio
 	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_SECURITY_RESPONSE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ApplicationSecurityWafCustomRuleTagsCategory) GetAllowedValues() []ApplicationSecurityWafCustomRuleTagsCategory {
 	return allowedApplicationSecurityWafCustomRuleTagsCategoryEnumValues
 }

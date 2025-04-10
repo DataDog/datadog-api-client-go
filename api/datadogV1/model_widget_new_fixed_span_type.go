@@ -22,7 +22,7 @@ var allowedWidgetNewFixedSpanTypeEnumValues = []WidgetNewFixedSpanType{
 	WIDGETNEWFIXEDSPANTYPE_FIXED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetNewFixedSpanType) GetAllowedValues() []WidgetNewFixedSpanType {
 	return allowedWidgetNewFixedSpanTypeEnumValues
 }

@@ -32,7 +32,7 @@ var allowedSecurityMonitoringRuleNewValueOptionsForgetAfterEnumValues = []Securi
 	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_FOUR_WEEKS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringRuleNewValueOptionsForgetAfter) GetAllowedValues() []SecurityMonitoringRuleNewValueOptionsForgetAfter {
 	return allowedSecurityMonitoringRuleNewValueOptionsForgetAfterEnumValues
 }

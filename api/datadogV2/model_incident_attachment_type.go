@@ -22,7 +22,7 @@ var allowedIncidentAttachmentTypeEnumValues = []IncidentAttachmentType{
 	INCIDENTATTACHMENTTYPE_INCIDENT_ATTACHMENTS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IncidentAttachmentType) GetAllowedValues() []IncidentAttachmentType {
 	return allowedIncidentAttachmentTypeEnumValues
 }

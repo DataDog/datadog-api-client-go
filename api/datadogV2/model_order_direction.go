@@ -24,7 +24,7 @@ var allowedOrderDirectionEnumValues = []OrderDirection{
 	ORDERDIRECTION_DESC,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *OrderDirection) GetAllowedValues() []OrderDirection {
 	return allowedOrderDirectionEnumValues
 }

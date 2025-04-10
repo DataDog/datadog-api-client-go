@@ -28,7 +28,7 @@ var allowedSyntheticsTestProcessStatusEnumValues = []SyntheticsTestProcessStatus
 	SYNTHETICSTESTPROCESSSTATUS_FINISHED_WITH_ERROR,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsTestProcessStatus) GetAllowedValues() []SyntheticsTestProcessStatus {
 	return allowedSyntheticsTestProcessStatusEnumValues
 }

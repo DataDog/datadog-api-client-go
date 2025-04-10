@@ -28,7 +28,7 @@ var allowedWidgetCompareToEnumValues = []WidgetCompareTo{
 	WIDGETCOMPARETO_MONTH_BEFORE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetCompareTo) GetAllowedValues() []WidgetCompareTo {
 	return allowedWidgetCompareToEnumValues
 }

@@ -50,7 +50,7 @@ var allowedListStreamComputeAggregationEnumValues = []ListStreamComputeAggregati
 	LISTSTREAMCOMPUTEAGGREGATION_MOST_FREQUENT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ListStreamComputeAggregation) GetAllowedValues() []ListStreamComputeAggregation {
 	return allowedListStreamComputeAggregationEnumValues
 }

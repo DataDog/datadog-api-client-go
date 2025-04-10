@@ -22,7 +22,7 @@ var allowedCSMAgentsTypeEnumValues = []CSMAgentsType{
 	CSMAGENTSTYPE_DATADOG_AGENT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CSMAgentsType) GetAllowedValues() []CSMAgentsType {
 	return allowedCSMAgentsTypeEnumValues
 }

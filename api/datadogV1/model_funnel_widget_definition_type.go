@@ -22,7 +22,7 @@ var allowedFunnelWidgetDefinitionTypeEnumValues = []FunnelWidgetDefinitionType{
 	FUNNELWIDGETDEFINITIONTYPE_FUNNEL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FunnelWidgetDefinitionType) GetAllowedValues() []FunnelWidgetDefinitionType {
 	return allowedFunnelWidgetDefinitionTypeEnumValues
 }

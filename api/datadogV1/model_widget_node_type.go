@@ -24,7 +24,7 @@ var allowedWidgetNodeTypeEnumValues = []WidgetNodeType{
 	WIDGETNODETYPE_CONTAINER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetNodeType) GetAllowedValues() []WidgetNodeType {
 	return allowedWidgetNodeTypeEnumValues
 }

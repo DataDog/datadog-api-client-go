@@ -164,7 +164,7 @@ var allowedHourlyUsageAttributionUsageTypeEnumValues = []HourlyUsageAttributionU
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_WORKFLOW_EXECUTIONS_USAGE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *HourlyUsageAttributionUsageType) GetAllowedValues() []HourlyUsageAttributionUsageType {
 	return allowedHourlyUsageAttributionUsageTypeEnumValues
 }

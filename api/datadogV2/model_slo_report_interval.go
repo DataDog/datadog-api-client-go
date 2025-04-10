@@ -26,7 +26,7 @@ var allowedSLOReportIntervalEnumValues = []SLOReportInterval{
 	SLOREPORTINTERVAL_MONTHLY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SLOReportInterval) GetAllowedValues() []SLOReportInterval {
 	return allowedSLOReportIntervalEnumValues
 }

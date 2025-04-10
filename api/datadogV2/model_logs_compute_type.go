@@ -24,7 +24,7 @@ var allowedLogsComputeTypeEnumValues = []LogsComputeType{
 	LOGSCOMPUTETYPE_TOTAL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsComputeType) GetAllowedValues() []LogsComputeType {
 	return allowedLogsComputeTypeEnumValues
 }

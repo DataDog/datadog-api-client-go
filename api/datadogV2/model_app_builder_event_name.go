@@ -40,7 +40,7 @@ var allowedAppBuilderEventNameEnumValues = []AppBuilderEventName{
 	APPBUILDEREVENTNAME_EXECUTIONFINISHED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AppBuilderEventName) GetAllowedValues() []AppBuilderEventName {
 	return allowedAppBuilderEventNameEnumValues
 }

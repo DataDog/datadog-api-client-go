@@ -22,7 +22,7 @@ var allowedCustomDestinationResponseHttpDestinationAuthBasicTypeEnumValues = []C
 	CUSTOMDESTINATIONRESPONSEHTTPDESTINATIONAUTHBASICTYPE_BASIC,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CustomDestinationResponseHttpDestinationAuthBasicType) GetAllowedValues() []CustomDestinationResponseHttpDestinationAuthBasicType {
 	return allowedCustomDestinationResponseHttpDestinationAuthBasicTypeEnumValues
 }

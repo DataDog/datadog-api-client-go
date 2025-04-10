@@ -22,7 +22,7 @@ var allowedFreeTextWidgetDefinitionTypeEnumValues = []FreeTextWidgetDefinitionTy
 	FREETEXTWIDGETDEFINITIONTYPE_FREE_TEXT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FreeTextWidgetDefinitionType) GetAllowedValues() []FreeTextWidgetDefinitionType {
 	return allowedFreeTextWidgetDefinitionTypeEnumValues
 }

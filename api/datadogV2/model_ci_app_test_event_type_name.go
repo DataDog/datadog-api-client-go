@@ -22,7 +22,7 @@ var allowedCIAppTestEventTypeNameEnumValues = []CIAppTestEventTypeName{
 	CIAPPTESTEVENTTYPENAME_CITEST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CIAppTestEventTypeName) GetAllowedValues() []CIAppTestEventTypeName {
 	return allowedCIAppTestEventTypeNameEnumValues
 }

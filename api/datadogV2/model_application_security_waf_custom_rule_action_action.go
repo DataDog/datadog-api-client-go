@@ -24,7 +24,7 @@ var allowedApplicationSecurityWafCustomRuleActionActionEnumValues = []Applicatio
 	APPLICATIONSECURITYWAFCUSTOMRULEACTIONACTION_BLOCK_REQUEST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ApplicationSecurityWafCustomRuleActionAction) GetAllowedValues() []ApplicationSecurityWafCustomRuleActionAction {
 	return allowedApplicationSecurityWafCustomRuleActionActionEnumValues
 }

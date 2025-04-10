@@ -22,7 +22,7 @@ var allowedTopologyRequestTypeEnumValues = []TopologyRequestType{
 	TOPOLOGYREQUESTTYPE_TOPOLOGY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TopologyRequestType) GetAllowedValues() []TopologyRequestType {
 	return allowedTopologyRequestTypeEnumValues
 }

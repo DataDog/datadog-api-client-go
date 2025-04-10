@@ -22,7 +22,7 @@ var allowedIncidentUserDefinedFieldTypeEnumValues = []IncidentUserDefinedFieldTy
 	INCIDENTUSERDEFINEDFIELDTYPE_USER_DEFINED_FIELD,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IncidentUserDefinedFieldType) GetAllowedValues() []IncidentUserDefinedFieldType {
 	return allowedIncidentUserDefinedFieldTypeEnumValues
 }

@@ -24,7 +24,7 @@ var allowedLogsSortEnumValues = []LogsSort{
 	LOGSSORT_TIMESTAMP_DESCENDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsSort) GetAllowedValues() []LogsSort {
 	return allowedLogsSortEnumValues
 }

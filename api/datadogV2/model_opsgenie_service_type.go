@@ -22,7 +22,7 @@ var allowedOpsgenieServiceTypeEnumValues = []OpsgenieServiceType{
 	OPSGENIESERVICETYPE_OPSGENIE_SERVICE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *OpsgenieServiceType) GetAllowedValues() []OpsgenieServiceType {
 	return allowedOpsgenieServiceTypeEnumValues
 }

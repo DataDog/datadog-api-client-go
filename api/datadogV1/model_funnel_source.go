@@ -22,7 +22,7 @@ var allowedFunnelSourceEnumValues = []FunnelSource{
 	FUNNELSOURCE_RUM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FunnelSource) GetAllowedValues() []FunnelSource {
 	return allowedFunnelSourceEnumValues
 }

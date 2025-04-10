@@ -24,7 +24,7 @@ var allowedSecurityMonitoringRuleCaseActionTypeEnumValues = []SecurityMonitoring
 	SECURITYMONITORINGRULECASEACTIONTYPE_BLOCK_USER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringRuleCaseActionType) GetAllowedValues() []SecurityMonitoringRuleCaseActionType {
 	return allowedSecurityMonitoringRuleCaseActionTypeEnumValues
 }

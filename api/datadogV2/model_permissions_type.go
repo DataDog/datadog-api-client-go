@@ -22,7 +22,7 @@ var allowedPermissionsTypeEnumValues = []PermissionsType{
 	PERMISSIONSTYPE_PERMISSIONS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *PermissionsType) GetAllowedValues() []PermissionsType {
 	return allowedPermissionsTypeEnumValues
 }
