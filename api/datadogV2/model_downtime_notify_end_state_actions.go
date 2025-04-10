@@ -24,7 +24,7 @@ var allowedDowntimeNotifyEndStateActionsEnumValues = []DowntimeNotifyEndStateAct
 	DOWNTIMENOTIFYENDSTATEACTIONS_EXPIRED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DowntimeNotifyEndStateActions) GetAllowedValues() []DowntimeNotifyEndStateActions {
 	return allowedDowntimeNotifyEndStateActionsEnumValues
 }

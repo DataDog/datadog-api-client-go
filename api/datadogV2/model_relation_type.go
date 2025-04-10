@@ -40,7 +40,7 @@ var allowedRelationTypeEnumValues = []RelationType{
 	RELATIONTYPE_RELATIONTYPEIMPLEMENTS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RelationType) GetAllowedValues() []RelationType {
 	return allowedRelationTypeEnumValues
 }

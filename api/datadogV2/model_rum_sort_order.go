@@ -24,7 +24,7 @@ var allowedRUMSortOrderEnumValues = []RUMSortOrder{
 	RUMSORTORDER_DESCENDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RUMSortOrder) GetAllowedValues() []RUMSortOrder {
 	return allowedRUMSortOrderEnumValues
 }

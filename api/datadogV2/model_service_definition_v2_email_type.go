@@ -22,7 +22,7 @@ var allowedServiceDefinitionV2EmailTypeEnumValues = []ServiceDefinitionV2EmailTy
 	SERVICEDEFINITIONV2EMAILTYPE_EMAIL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ServiceDefinitionV2EmailType) GetAllowedValues() []ServiceDefinitionV2EmailType {
 	return allowedServiceDefinitionV2EmailTypeEnumValues
 }

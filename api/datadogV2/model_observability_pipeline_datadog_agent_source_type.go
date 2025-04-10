@@ -22,7 +22,7 @@ var allowedObservabilityPipelineDatadogAgentSourceTypeEnumValues = []Observabili
 	OBSERVABILITYPIPELINEDATADOGAGENTSOURCETYPE_DATADOG_AGENT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ObservabilityPipelineDatadogAgentSourceType) GetAllowedValues() []ObservabilityPipelineDatadogAgentSourceType {
 	return allowedObservabilityPipelineDatadogAgentSourceTypeEnumValues
 }

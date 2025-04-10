@@ -26,7 +26,7 @@ var allowedCaseStatusEnumValues = []CaseStatus{
 	CASESTATUS_CLOSED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CaseStatus) GetAllowedValues() []CaseStatus {
 	return allowedCaseStatusEnumValues
 }

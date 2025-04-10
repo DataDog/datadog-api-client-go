@@ -26,7 +26,7 @@ var allowedHourlyUsageTypeEnumValues = []HourlyUsageType{
 	HOURLYUSAGETYPE_LAMBDA_TRACED_INVOCATIONS_COUNT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *HourlyUsageType) GetAllowedValues() []HourlyUsageType {
 	return allowedHourlyUsageTypeEnumValues
 }

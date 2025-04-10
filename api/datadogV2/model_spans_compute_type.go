@@ -24,7 +24,7 @@ var allowedSpansComputeTypeEnumValues = []SpansComputeType{
 	SPANSCOMPUTETYPE_TOTAL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SpansComputeType) GetAllowedValues() []SpansComputeType {
 	return allowedSpansComputeTypeEnumValues
 }

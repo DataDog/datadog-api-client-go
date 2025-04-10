@@ -50,7 +50,7 @@ var allowedWidgetLiveSpanEnumValues = []WidgetLiveSpan{
 	WIDGETLIVESPAN_ALERT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetLiveSpan) GetAllowedValues() []WidgetLiveSpan {
 	return allowedWidgetLiveSpanEnumValues
 }

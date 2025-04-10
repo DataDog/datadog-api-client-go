@@ -22,7 +22,7 @@ var allowedEntityV3ServiceKindEnumValues = []EntityV3ServiceKind{
 	ENTITYV3SERVICEKIND_SERVICE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EntityV3ServiceKind) GetAllowedValues() []EntityV3ServiceKind {
 	return allowedEntityV3ServiceKindEnumValues
 }

@@ -30,7 +30,7 @@ var allowedIncludeTypeEnumValues = []IncludeType{
 	INCLUDETYPE_RELATION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IncludeType) GetAllowedValues() []IncludeType {
 	return allowedIncludeTypeEnumValues
 }

@@ -22,7 +22,7 @@ var allowedLogsAttributeRemapperTypeEnumValues = []LogsAttributeRemapperType{
 	LOGSATTRIBUTEREMAPPERTYPE_ATTRIBUTE_REMAPPER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsAttributeRemapperType) GetAllowedValues() []LogsAttributeRemapperType {
 	return allowedLogsAttributeRemapperTypeEnumValues
 }

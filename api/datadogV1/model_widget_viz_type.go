@@ -24,7 +24,7 @@ var allowedWidgetVizTypeEnumValues = []WidgetVizType{
 	WIDGETVIZTYPE_TOPLIST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetVizType) GetAllowedValues() []WidgetVizType {
 	return allowedWidgetVizTypeEnumValues
 }

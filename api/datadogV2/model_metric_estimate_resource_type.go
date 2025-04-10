@@ -22,7 +22,7 @@ var allowedMetricEstimateResourceTypeEnumValues = []MetricEstimateResourceType{
 	METRICESTIMATERESOURCETYPE_METRIC_CARDINALITY_ESTIMATE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricEstimateResourceType) GetAllowedValues() []MetricEstimateResourceType {
 	return allowedMetricEstimateResourceTypeEnumValues
 }

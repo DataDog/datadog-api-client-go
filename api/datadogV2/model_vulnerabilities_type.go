@@ -22,7 +22,7 @@ var allowedVulnerabilitiesTypeEnumValues = []VulnerabilitiesType{
 	VULNERABILITIESTYPE_VULNERABILITIES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *VulnerabilitiesType) GetAllowedValues() []VulnerabilitiesType {
 	return allowedVulnerabilitiesTypeEnumValues
 }

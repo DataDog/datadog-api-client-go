@@ -22,7 +22,7 @@ var allowedGCPServiceAccountTypeEnumValues = []GCPServiceAccountType{
 	GCPSERVICEACCOUNTTYPE_GCP_SERVICE_ACCOUNT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *GCPServiceAccountType) GetAllowedValues() []GCPServiceAccountType {
 	return allowedGCPServiceAccountTypeEnumValues
 }

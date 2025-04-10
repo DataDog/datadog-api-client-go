@@ -36,7 +36,7 @@ var allowedWidgetTimeWindowsEnumValues = []WidgetTimeWindows{
 	WIDGETTIMEWINDOWS_GLOBAL_TIME,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetTimeWindows) GetAllowedValues() []WidgetTimeWindows {
 	return allowedWidgetTimeWindowsEnumValues
 }

@@ -34,7 +34,7 @@ var allowedFindingMuteReasonEnumValues = []FindingMuteReason{
 	FINDINGMUTEREASON_OTHER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FindingMuteReason) GetAllowedValues() []FindingMuteReason {
 	return allowedFindingMuteReasonEnumValues
 }

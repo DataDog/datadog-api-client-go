@@ -32,7 +32,7 @@ var allowedWidgetLiveSpanUnitEnumValues = []WidgetLiveSpanUnit{
 	WIDGETLIVESPANUNIT_YEAR,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetLiveSpanUnit) GetAllowedValues() []WidgetLiveSpanUnit {
 	return allowedWidgetLiveSpanUnitEnumValues
 }

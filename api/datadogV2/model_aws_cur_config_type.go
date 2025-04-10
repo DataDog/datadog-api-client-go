@@ -22,7 +22,7 @@ var allowedAwsCURConfigTypeEnumValues = []AwsCURConfigType{
 	AWSCURCONFIGTYPE_AWS_CUR_CONFIG,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AwsCURConfigType) GetAllowedValues() []AwsCURConfigType {
 	return allowedAwsCURConfigTypeEnumValues
 }

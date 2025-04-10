@@ -28,7 +28,7 @@ var allowedSLOTimeSliceComparatorEnumValues = []SLOTimeSliceComparator{
 	SLOTIMESLICECOMPARATOR_LESS_EQUAL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SLOTimeSliceComparator) GetAllowedValues() []SLOTimeSliceComparator {
 	return allowedSLOTimeSliceComparatorEnumValues
 }

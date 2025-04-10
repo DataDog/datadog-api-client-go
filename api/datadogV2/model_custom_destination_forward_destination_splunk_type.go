@@ -22,7 +22,7 @@ var allowedCustomDestinationForwardDestinationSplunkTypeEnumValues = []CustomDes
 	CUSTOMDESTINATIONFORWARDDESTINATIONSPLUNKTYPE_SPLUNK_HEC,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CustomDestinationForwardDestinationSplunkType) GetAllowedValues() []CustomDestinationForwardDestinationSplunkType {
 	return allowedCustomDestinationForwardDestinationSplunkTypeEnumValues
 }

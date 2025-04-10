@@ -39,7 +39,7 @@ var allowedSyntheticsTestDetailsSubTypeEnumValues = []SyntheticsTestDetailsSubTy
 	SYNTHETICSTESTDETAILSSUBTYPE_GRPC,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsTestDetailsSubType) GetAllowedValues() []SyntheticsTestDetailsSubType {
 	return allowedSyntheticsTestDetailsSubTypeEnumValues
 }

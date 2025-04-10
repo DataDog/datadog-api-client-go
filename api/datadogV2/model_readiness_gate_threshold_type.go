@@ -24,7 +24,7 @@ var allowedReadinessGateThresholdTypeEnumValues = []ReadinessGateThresholdType{
 	READINESSGATETHRESHOLDTYPE_ALL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ReadinessGateThresholdType) GetAllowedValues() []ReadinessGateThresholdType {
 	return allowedReadinessGateThresholdTypeEnumValues
 }

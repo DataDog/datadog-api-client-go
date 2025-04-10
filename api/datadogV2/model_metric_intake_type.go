@@ -28,7 +28,7 @@ var allowedMetricIntakeTypeEnumValues = []MetricIntakeType{
 	METRICINTAKETYPE_GAUGE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricIntakeType) GetAllowedValues() []MetricIntakeType {
 	return allowedMetricIntakeTypeEnumValues
 }

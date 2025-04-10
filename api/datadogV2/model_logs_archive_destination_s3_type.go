@@ -22,7 +22,7 @@ var allowedLogsArchiveDestinationS3TypeEnumValues = []LogsArchiveDestinationS3Ty
 	LOGSARCHIVEDESTINATIONS3TYPE_S3,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsArchiveDestinationS3Type) GetAllowedValues() []LogsArchiveDestinationS3Type {
 	return allowedLogsArchiveDestinationS3TypeEnumValues
 }

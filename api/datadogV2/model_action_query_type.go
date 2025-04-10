@@ -22,7 +22,7 @@ var allowedActionQueryTypeEnumValues = []ActionQueryType{
 	ACTIONQUERYTYPE_ACTION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ActionQueryType) GetAllowedValues() []ActionQueryType {
 	return allowedActionQueryTypeEnumValues
 }

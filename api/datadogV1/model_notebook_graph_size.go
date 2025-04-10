@@ -30,7 +30,7 @@ var allowedNotebookGraphSizeEnumValues = []NotebookGraphSize{
 	NOTEBOOKGRAPHSIZE_EXTRA_LARGE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *NotebookGraphSize) GetAllowedValues() []NotebookGraphSize {
 	return allowedNotebookGraphSizeEnumValues
 }

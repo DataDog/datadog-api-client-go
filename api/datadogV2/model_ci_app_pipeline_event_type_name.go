@@ -22,7 +22,7 @@ var allowedCIAppPipelineEventTypeNameEnumValues = []CIAppPipelineEventTypeName{
 	CIAPPPIPELINEEVENTTYPENAME_CIPIPELINE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CIAppPipelineEventTypeName) GetAllowedValues() []CIAppPipelineEventTypeName {
 	return allowedCIAppPipelineEventTypeNameEnumValues
 }

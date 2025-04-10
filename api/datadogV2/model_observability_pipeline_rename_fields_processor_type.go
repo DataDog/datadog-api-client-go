@@ -22,7 +22,7 @@ var allowedObservabilityPipelineRenameFieldsProcessorTypeEnumValues = []Observab
 	OBSERVABILITYPIPELINERENAMEFIELDSPROCESSORTYPE_RENAME_FIELDS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ObservabilityPipelineRenameFieldsProcessorType) GetAllowedValues() []ObservabilityPipelineRenameFieldsProcessorType {
 	return allowedObservabilityPipelineRenameFieldsProcessorTypeEnumValues
 }

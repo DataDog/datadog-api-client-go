@@ -58,7 +58,7 @@ var allowedWidgetPaletteEnumValues = []WidgetPalette{
 	WIDGETPALETTE_BLACK_ON_LIGHT_RED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetPalette) GetAllowedValues() []WidgetPalette {
 	return allowedWidgetPaletteEnumValues
 }

@@ -22,7 +22,7 @@ var allowedDetailedFindingTypeEnumValues = []DetailedFindingType{
 	DETAILEDFINDINGTYPE_DETAILED_FINDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DetailedFindingType) GetAllowedValues() []DetailedFindingType {
 	return allowedDetailedFindingTypeEnumValues
 }

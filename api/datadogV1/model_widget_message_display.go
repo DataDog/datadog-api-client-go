@@ -26,7 +26,7 @@ var allowedWidgetMessageDisplayEnumValues = []WidgetMessageDisplay{
 	WIDGETMESSAGEDISPLAY_EXPANDED_LARGE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetMessageDisplay) GetAllowedValues() []WidgetMessageDisplay {
 	return allowedWidgetMessageDisplayEnumValues
 }

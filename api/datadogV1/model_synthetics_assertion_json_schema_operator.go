@@ -22,7 +22,7 @@ var allowedSyntheticsAssertionJSONSchemaOperatorEnumValues = []SyntheticsAsserti
 	SYNTHETICSASSERTIONJSONSCHEMAOPERATOR_VALIDATES_JSON_SCHEMA,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsAssertionJSONSchemaOperator) GetAllowedValues() []SyntheticsAssertionJSONSchemaOperator {
 	return allowedSyntheticsAssertionJSONSchemaOperatorEnumValues
 }

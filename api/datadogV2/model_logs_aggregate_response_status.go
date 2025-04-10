@@ -24,7 +24,7 @@ var allowedLogsAggregateResponseStatusEnumValues = []LogsAggregateResponseStatus
 	LOGSAGGREGATERESPONSESTATUS_TIMEOUT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsAggregateResponseStatus) GetAllowedValues() []LogsAggregateResponseStatus {
 	return allowedLogsAggregateResponseStatusEnumValues
 }

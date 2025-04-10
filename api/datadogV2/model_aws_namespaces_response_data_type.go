@@ -22,7 +22,7 @@ var allowedAWSNamespacesResponseDataTypeEnumValues = []AWSNamespacesResponseData
 	AWSNAMESPACESRESPONSEDATATYPE_NAMESPACES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AWSNamespacesResponseDataType) GetAllowedValues() []AWSNamespacesResponseDataType {
 	return allowedAWSNamespacesResponseDataTypeEnumValues
 }

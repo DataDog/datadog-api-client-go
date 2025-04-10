@@ -22,7 +22,7 @@ var allowedNotebookMarkdownCellDefinitionTypeEnumValues = []NotebookMarkdownCell
 	NOTEBOOKMARKDOWNCELLDEFINITIONTYPE_MARKDOWN,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *NotebookMarkdownCellDefinitionType) GetAllowedValues() []NotebookMarkdownCellDefinitionType {
 	return allowedNotebookMarkdownCellDefinitionTypeEnumValues
 }

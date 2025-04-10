@@ -22,7 +22,7 @@ var allowedUserTeamRoleEnumValues = []UserTeamRole{
 	USERTEAMROLE_ADMIN,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *UserTeamRole) GetAllowedValues() []UserTeamRole {
 	return allowedUserTeamRoleEnumValues
 }

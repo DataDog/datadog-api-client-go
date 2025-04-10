@@ -22,7 +22,7 @@ var allowedAzureUCConfigPatchRequestTypeEnumValues = []AzureUCConfigPatchRequest
 	AZUREUCCONFIGPATCHREQUESTTYPE_AZURE_UC_CONFIG_PATCH_REQUEST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AzureUCConfigPatchRequestType) GetAllowedValues() []AzureUCConfigPatchRequestType {
 	return allowedAzureUCConfigPatchRequestTypeEnumValues
 }

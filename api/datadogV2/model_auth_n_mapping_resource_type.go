@@ -24,7 +24,7 @@ var allowedAuthNMappingResourceTypeEnumValues = []AuthNMappingResourceType{
 	AUTHNMAPPINGRESOURCETYPE_TEAM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AuthNMappingResourceType) GetAllowedValues() []AuthNMappingResourceType {
 	return allowedAuthNMappingResourceTypeEnumValues
 }

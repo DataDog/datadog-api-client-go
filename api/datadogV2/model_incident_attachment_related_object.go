@@ -22,7 +22,7 @@ var allowedIncidentAttachmentRelatedObjectEnumValues = []IncidentAttachmentRelat
 	INCIDENTATTACHMENTRELATEDOBJECT_USERS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IncidentAttachmentRelatedObject) GetAllowedValues() []IncidentAttachmentRelatedObject {
 	return allowedIncidentAttachmentRelatedObjectEnumValues
 }

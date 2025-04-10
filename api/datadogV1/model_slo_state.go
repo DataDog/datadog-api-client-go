@@ -28,7 +28,7 @@ var allowedSLOStateEnumValues = []SLOState{
 	SLOSTATE_NO_DATA,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SLOState) GetAllowedValues() []SLOState {
 	return allowedSLOStateEnumValues
 }

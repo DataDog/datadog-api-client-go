@@ -22,7 +22,7 @@ var allowedRUMApplicationCreateTypeEnumValues = []RUMApplicationCreateType{
 	RUMAPPLICATIONCREATETYPE_RUM_APPLICATION_CREATE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RUMApplicationCreateType) GetAllowedValues() []RUMApplicationCreateType {
 	return allowedRUMApplicationCreateTypeEnumValues
 }

@@ -24,7 +24,7 @@ var allowedSyntheticsAPITestStepSubtypeEnumValues = []SyntheticsAPITestStepSubty
 	SYNTHETICSAPITESTSTEPSUBTYPE_GRPC,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsAPITestStepSubtype) GetAllowedValues() []SyntheticsAPITestStepSubtype {
 	return allowedSyntheticsAPITestStepSubtypeEnumValues
 }

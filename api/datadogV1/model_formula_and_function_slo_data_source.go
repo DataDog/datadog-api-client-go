@@ -22,7 +22,7 @@ var allowedFormulaAndFunctionSLODataSourceEnumValues = []FormulaAndFunctionSLODa
 	FORMULAANDFUNCTIONSLODATASOURCE_SLO,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FormulaAndFunctionSLODataSource) GetAllowedValues() []FormulaAndFunctionSLODataSource {
 	return allowedFormulaAndFunctionSLODataSourceEnumValues
 }
