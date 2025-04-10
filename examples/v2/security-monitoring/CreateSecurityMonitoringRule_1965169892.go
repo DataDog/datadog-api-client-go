@@ -42,6 +42,12 @@ func main() {
 								Duration: datadog.PtrInt64(900),
 							},
 						},
+						{
+							Type: datadogV2.SECURITYMONITORINGRULECASEACTIONTYPE_USER_BEHAVIOR.Ptr(),
+							Options: &datadogV2.SecurityMonitoringRuleCaseActionOptions{
+								UserBehaviorName: datadog.PtrString("behavior"),
+							},
+						},
 					},
 				},
 			},
