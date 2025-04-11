@@ -15,13 +15,15 @@ type SecurityMonitoringRuleCaseActionType string
 
 // List of SecurityMonitoringRuleCaseActionType.
 const (
-	SECURITYMONITORINGRULECASEACTIONTYPE_BLOCK_IP   SecurityMonitoringRuleCaseActionType = "block_ip"
-	SECURITYMONITORINGRULECASEACTIONTYPE_BLOCK_USER SecurityMonitoringRuleCaseActionType = "block_user"
+	SECURITYMONITORINGRULECASEACTIONTYPE_BLOCK_IP      SecurityMonitoringRuleCaseActionType = "block_ip"
+	SECURITYMONITORINGRULECASEACTIONTYPE_BLOCK_USER    SecurityMonitoringRuleCaseActionType = "block_user"
+	SECURITYMONITORINGRULECASEACTIONTYPE_USER_BEHAVIOR SecurityMonitoringRuleCaseActionType = "user_behavior"
 )
 
 var allowedSecurityMonitoringRuleCaseActionTypeEnumValues = []SecurityMonitoringRuleCaseActionType{
 	SECURITYMONITORINGRULECASEACTIONTYPE_BLOCK_IP,
 	SECURITYMONITORINGRULECASEACTIONTYPE_BLOCK_USER,
+	SECURITYMONITORINGRULECASEACTIONTYPE_USER_BEHAVIOR,
 }
 
 // GetAllowedValues reeturns the list of possible values.
