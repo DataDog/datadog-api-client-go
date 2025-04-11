@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"Any incidents that harm (or have the potential to) the confidentiality, integrity, or availability of our data.","is_default":false,"name":"Security Incident"},"type":"incident_types"}}
+      {"data":{"attributes":{"description":"Any incidents that harm (or have the potential to) the confidentiality, integrity, or availability of our data.","is_default":false,"name":"fa473c6f81961a61"},"type":"incident_types"}}
     form: {}
     headers:
       Accept:
@@ -12,10 +12,9 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/incidents/config/types
   response:
-    body: '{"data":{"id":"dbf7f2e1-8f37-4624-9762-6e744db257aa","type":"incident_types","attributes":{"createdAt":"2024-11-04T19:02:22.674338166Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"Any
+    body: '{"data":{"id":"dc0ba7fa-64c9-46bd-a93d-1249070b52b6","type":"incident_types","attributes":{"createdAt":"2025-04-09T20:37:30.487313985Z","createdBy":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","description":"Any
       incidents that harm (or have the potential to) the confidentiality, integrity,
-      or availability of our data.","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2024-11-04T19:02:22.674338166Z","name":"Security
-      Incident","prefix":"IR"}}}'
+      or availability of our data.","is_default":false,"lastModifiedBy":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","modifiedAt":"2025-04-09T20:37:30.487314108Z","name":"fa473c6f81961a61","prefix":"IR"},"relationships":{"created_by_user":{"data":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","type":"users"}},"google_meet_configuration":{"data":null},"last_modified_by_user":{"data":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","type":"users"}},"zoom_configuration":{"data":null}}}}'
     code: 201
     duration: 0ms
     headers:
@@ -30,7 +29,7 @@ interactions:
       - '*/*'
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/incidents/config/types/dbf7f2e1-8f37-4624-9762-6e744db257aa
+    url: https://api.datadoghq.com/api/v2/incidents/config/types/dc0ba7fa-64c9-46bd-a93d-1249070b52b6
   response:
     body: ''
     code: 204
@@ -45,11 +44,13 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/incidents/config/types/dbf7f2e1-8f37-4624-9762-6e744db257aa
+    url: https://api.datadoghq.com/api/v2/incidents/config/types/dc0ba7fa-64c9-46bd-a93d-1249070b52b6
   response:
-    body: ''
-    code: 204
+    body: '{"errors":[{"status":"404","title":"Not Found"}]}'
+    code: 404
     duration: 0ms
-    headers: {}
-    status: 204 No Content
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
 version: 2

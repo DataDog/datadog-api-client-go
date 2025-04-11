@@ -18,7 +18,7 @@ func main() {
 			Attributes: datadogV2.IncidentTypeAttributes{
 				Description: datadog.PtrString("Any incidents that harm (or have the potential to) the confidentiality, integrity, or availability of our data."),
 				IsDefault:   datadog.PtrBool(false),
-				Name:        "Security Incident",
+				Name:        "8d4bbb66dccf2456",
 			},
 			Type: datadogV2.INCIDENTTYPETYPE_INCIDENT_TYPES,
 		},
