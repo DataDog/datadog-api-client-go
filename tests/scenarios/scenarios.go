@@ -284,6 +284,7 @@ func GetClient(ctx gobdd.Context) reflect.Value {
 
 // GetApiByVersionAndName get reflected value of api.
 func GetApiByVersionAndName(ctx gobdd.Context, version string, name string) reflect.Value {
+	name = strings.Replace(name, "-", "", -1)
 	api, ok := apiMappings[version][name]
 	if !ok {
 		GetT(ctx).Fatalf("invalid api: %s", name)
