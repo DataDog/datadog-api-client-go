@@ -7,7 +7,7 @@ interactions:
       - application/json
     id: 0
     method: GET
-    url: https://api.datadoghq.com/api/v2/ndm/interfaces?device_id=default:1.2.3.4
+    url: https://api.datadoghq.com/api/v2/ndm/interfaces?device_id=default%3A1.2.3.4&get_ip_addresses=true
   response:
     body: '{"data":[{"id":"default:1.2.3.4:99","type":"interface","attributes":{"name":"if99","status":"up","description":"a
       network interface","mac_address":"00:00:00:00:00:00","ip_addresses":["1.1.1.1","1.1.1.2"],"alias":"interface_99","index":99}},{"id":"default:1.2.3.4:999","type":"interface","attributes":{"name":"if999","status":"down","description":"another
