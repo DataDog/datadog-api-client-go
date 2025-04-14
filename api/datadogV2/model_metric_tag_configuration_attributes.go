@@ -12,23 +12,6 @@ import (
 
 // MetricTagConfigurationAttributes Object containing the definition of a metric tag configuration attributes.
 type MetricTagConfigurationAttributes struct {
-	// A list of queryable aggregation combinations for a count, rate, or gauge metric.
-	// By default, count and rate metrics require the (time: sum, space: sum) aggregation and
-	// Gauge metrics require the (time: avg, space: avg) aggregation.
-	// Additional time & space combinations are also available:
-	//
-	// - time: avg, space: avg
-	// - time: avg, space: max
-	// - time: avg, space: min
-	// - time: avg, space: sum
-	// - time: count, space: sum
-	// - time: max, space: max
-	// - time: min, space: min
-	// - time: sum, space: avg
-	// - time: sum, space: sum
-	//
-	// Can only be applied to non_distribution metrics that have a `metric_type` of `count`, `rate`, or `gauge`.
-	Aggregations []MetricCustomAggregation `json:"aggregations,omitempty"`
 	// Timestamp when the tag configuration was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// When set to true, the configuration will exclude the configured tags and include any other submitted tags.
@@ -68,34 +51,6 @@ func NewMetricTagConfigurationAttributesWithDefaults() *MetricTagConfigurationAt
 	var metricType MetricTagConfigurationMetricTypes = METRICTAGCONFIGURATIONMETRICTYPES_GAUGE
 	this.MetricType = &metricType
 	return &this
-}
-
-// GetAggregations returns the Aggregations field value if set, zero value otherwise.
-func (o *MetricTagConfigurationAttributes) GetAggregations() []MetricCustomAggregation {
-	if o == nil || o.Aggregations == nil {
-		var ret []MetricCustomAggregation
-		return ret
-	}
-	return o.Aggregations
-}
-
-// GetAggregationsOk returns a tuple with the Aggregations field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MetricTagConfigurationAttributes) GetAggregationsOk() (*[]MetricCustomAggregation, bool) {
-	if o == nil || o.Aggregations == nil {
-		return nil, false
-	}
-	return &o.Aggregations, true
-}
-
-// HasAggregations returns a boolean if a field has been set.
-func (o *MetricTagConfigurationAttributes) HasAggregations() bool {
-	return o != nil && o.Aggregations != nil
-}
-
-// SetAggregations gets a reference to the given []MetricCustomAggregation and assigns it to the Aggregations field.
-func (o *MetricTagConfigurationAttributes) SetAggregations(v []MetricCustomAggregation) {
-	o.Aggregations = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -272,9 +227,6 @@ func (o MetricTagConfigurationAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Aggregations != nil {
-		toSerialize["aggregations"] = o.Aggregations
-	}
 	if o.CreatedAt != nil {
 		if o.CreatedAt.Nanosecond() == 0 {
 			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -311,7 +263,6 @@ func (o MetricTagConfigurationAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricTagConfigurationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aggregations       []MetricCustomAggregation          `json:"aggregations,omitempty"`
 		CreatedAt          *time.Time                         `json:"created_at,omitempty"`
 		ExcludeTagsMode    *bool                              `json:"exclude_tags_mode,omitempty"`
 		IncludePercentiles *bool                              `json:"include_percentiles,omitempty"`
@@ -324,13 +275,12 @@ func (o *MetricTagConfigurationAttributes) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregations", "created_at", "exclude_tags_mode", "include_percentiles", "metric_type", "modified_at", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "exclude_tags_mode", "include_percentiles", "metric_type", "modified_at", "tags"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	o.Aggregations = all.Aggregations
 	o.CreatedAt = all.CreatedAt
 	o.ExcludeTagsMode = all.ExcludeTagsMode
 	o.IncludePercentiles = all.IncludePercentiles

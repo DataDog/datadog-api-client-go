@@ -96,10 +96,9 @@ func (a *MetricsApi) CreateBulkTagsMetricsConfiguration(ctx _context.Context, bo
 
 // CreateTagConfiguration Create a tag configuration.
 // Create and define a list of queryable tag keys for an existing count/gauge/rate/distribution metric.
-// Optionally, include percentile aggregations on any distribution metric or configure custom aggregations
-// on any count, rate, or gauge metric. By setting `exclude_tags_mode` to true the behavior is changed
-// from an allow-list to a deny-list, and tags in the defined list will not be queryable.
-// Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
+// Optionally, include percentile aggregations on any distribution metric. By setting `exclude_tags_mode`
+// to true the behavior is changed from an allow-list to a deny-list, and tags in the defined list will not
+// be queryable. Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
 func (a *MetricsApi) CreateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -312,11 +311,10 @@ func (a *MetricsApi) DeleteTagConfiguration(ctx _context.Context, metricName str
 
 // EstimateMetricsOutputSeriesOptionalParameters holds optional parameters for EstimateMetricsOutputSeries.
 type EstimateMetricsOutputSeriesOptionalParameters struct {
-	FilterGroups          *string
-	FilterHoursAgo        *int32
-	FilterNumAggregations *int32
-	FilterPct             *bool
-	FilterTimespanH       *int32
+	FilterGroups    *string
+	FilterHoursAgo  *int32
+	FilterPct       *bool
+	FilterTimespanH *int32
 }
 
 // NewEstimateMetricsOutputSeriesOptionalParameters creates an empty struct for parameters.
@@ -337,12 +335,6 @@ func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterHoursAgo(filte
 	return r
 }
 
-// WithFilterNumAggregations sets the corresponding parameter name and returns the struct.
-func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterNumAggregations(filterNumAggregations int32) *EstimateMetricsOutputSeriesOptionalParameters {
-	r.FilterNumAggregations = &filterNumAggregations
-	return r
-}
-
 // WithFilterPct sets the corresponding parameter name and returns the struct.
 func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterPct(filterPct bool) *EstimateMetricsOutputSeriesOptionalParameters {
 	r.FilterPct = &filterPct
@@ -356,7 +348,7 @@ func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterTimespanH(filt
 }
 
 // EstimateMetricsOutputSeries Tag Configuration Cardinality Estimator.
-// Returns the estimated cardinality for a metric with a given tag, percentile and number of aggregations configuration using Metrics without Limits&trade;.
+// Returns the estimated cardinality for a metric with a given tag and percentile configuration using Metrics without Limits&trade;.
 func (a *MetricsApi) EstimateMetricsOutputSeries(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (MetricEstimateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -388,9 +380,6 @@ func (a *MetricsApi) EstimateMetricsOutputSeries(ctx _context.Context, metricNam
 	}
 	if optionalParams.FilterHoursAgo != nil {
 		localVarQueryParams.Add("filter[hours_ago]", datadog.ParameterToString(*optionalParams.FilterHoursAgo, ""))
-	}
-	if optionalParams.FilterNumAggregations != nil {
-		localVarQueryParams.Add("filter[num_aggregations]", datadog.ParameterToString(*optionalParams.FilterNumAggregations, ""))
 	}
 	if optionalParams.FilterPct != nil {
 		localVarQueryParams.Add("filter[pct]", datadog.ParameterToString(*optionalParams.FilterPct, ""))
@@ -466,8 +455,8 @@ func (r *ListActiveMetricConfigurationsOptionalParameters) WithWindowSeconds(win
 	return r
 }
 
-// ListActiveMetricConfigurations List active tags and aggregations.
-// List tags and aggregations that are actively queried on dashboards, notebooks, monitors, the Metrics Explorer, and using the API for a given metric name.
+// ListActiveMetricConfigurations List active tags.
+// List tags that are actively queried on dashboards, notebooks, monitors, the Metrics Explorer, and using the API for a given metric name.
 func (a *MetricsApi) ListActiveMetricConfigurations(ctx _context.Context, metricName string, o ...ListActiveMetricConfigurationsOptionalParameters) (MetricSuggestedTagsAndAggregationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1345,9 +1334,8 @@ func (a *MetricsApi) SubmitMetrics(ctx _context.Context, body MetricPayload, o .
 }
 
 // UpdateTagConfiguration Update a tag configuration.
-// Update the tag configuration of a metric or percentile aggregations of a distribution metric or custom aggregations
-// of a count, rate, or gauge metric. By setting `exclude_tags_mode` to true the behavior is changed
-// from an allow-list to a deny-list, and tags in the defined list will not be queryable.
+// Update the tag configuration of a metric or percentile aggregations of a distribution metric. By setting `exclude_tags_mode`
+// to true the behavior is changed from an allow-list to a deny-list, and tags in the defined list will not be queryable.
 // Can only be used with application keys from users with the `Manage Tags for Metrics` permission. This endpoint requires
 // a tag configuration to be created first.
 func (a *MetricsApi) UpdateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {

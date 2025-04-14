@@ -1,4 +1,4 @@
-// Tag Configuration Cardinality Estimator returns "Success" response
+// List active tags and aggregations returns "Success" response
 
 package main
 
@@ -17,13 +17,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMetricsApi(apiClient)
-	resp, r, err := api.EstimateMetricsOutputSeries(ctx, "system.cpu.idle", *datadogV2.NewEstimateMetricsOutputSeriesOptionalParameters().WithFilterGroups("app,host"))
+	resp, r, err := api.ListActiveMetricConfigurations(ctx, "static_test_metric_donotdelete", *datadogV2.NewListActiveMetricConfigurationsOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.EstimateMetricsOutputSeries`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListActiveMetricConfigurations`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `MetricsApi.EstimateMetricsOutputSeries`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `MetricsApi.ListActiveMetricConfigurations`:\n%s\n", responseContent)
 }

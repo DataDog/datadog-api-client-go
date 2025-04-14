@@ -12,23 +12,6 @@ import (
 
 // MetricTagConfigurationCreateAttributes Object containing the definition of a metric tag configuration to be created.
 type MetricTagConfigurationCreateAttributes struct {
-	// A list of queryable aggregation combinations for a count, rate, or gauge metric.
-	// By default, count and rate metrics require the (time: sum, space: sum) aggregation and
-	// Gauge metrics require the (time: avg, space: avg) aggregation.
-	// Additional time & space combinations are also available:
-	//
-	// - time: avg, space: avg
-	// - time: avg, space: max
-	// - time: avg, space: min
-	// - time: avg, space: sum
-	// - time: count, space: sum
-	// - time: max, space: max
-	// - time: min, space: min
-	// - time: sum, space: avg
-	// - time: sum, space: sum
-	//
-	// Can only be applied to non_distribution metrics that have a `metric_type` of `count`, `rate`, or `gauge`.
-	Aggregations []MetricCustomAggregation `json:"aggregations,omitempty"`
 	// When set to true, the configuration will exclude the configured tags and include any other submitted tags.
 	// When set to false, the configuration will include the configured tags and exclude any other submitted tags.
 	// Defaults to false. Requires `tags` property.
@@ -64,34 +47,6 @@ func NewMetricTagConfigurationCreateAttributesWithDefaults() *MetricTagConfigura
 	var metricType MetricTagConfigurationMetricTypes = METRICTAGCONFIGURATIONMETRICTYPES_GAUGE
 	this.MetricType = metricType
 	return &this
-}
-
-// GetAggregations returns the Aggregations field value if set, zero value otherwise.
-func (o *MetricTagConfigurationCreateAttributes) GetAggregations() []MetricCustomAggregation {
-	if o == nil || o.Aggregations == nil {
-		var ret []MetricCustomAggregation
-		return ret
-	}
-	return o.Aggregations
-}
-
-// GetAggregationsOk returns a tuple with the Aggregations field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MetricTagConfigurationCreateAttributes) GetAggregationsOk() (*[]MetricCustomAggregation, bool) {
-	if o == nil || o.Aggregations == nil {
-		return nil, false
-	}
-	return &o.Aggregations, true
-}
-
-// HasAggregations returns a boolean if a field has been set.
-func (o *MetricTagConfigurationCreateAttributes) HasAggregations() bool {
-	return o != nil && o.Aggregations != nil
-}
-
-// SetAggregations gets a reference to the given []MetricCustomAggregation and assigns it to the Aggregations field.
-func (o *MetricTagConfigurationCreateAttributes) SetAggregations(v []MetricCustomAggregation) {
-	o.Aggregations = v
 }
 
 // GetExcludeTagsMode returns the ExcludeTagsMode field value if set, zero value otherwise.
@@ -202,9 +157,6 @@ func (o MetricTagConfigurationCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Aggregations != nil {
-		toSerialize["aggregations"] = o.Aggregations
-	}
 	if o.ExcludeTagsMode != nil {
 		toSerialize["exclude_tags_mode"] = o.ExcludeTagsMode
 	}
@@ -223,7 +175,6 @@ func (o MetricTagConfigurationCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aggregations       []MetricCustomAggregation          `json:"aggregations,omitempty"`
 		ExcludeTagsMode    *bool                              `json:"exclude_tags_mode,omitempty"`
 		IncludePercentiles *bool                              `json:"include_percentiles,omitempty"`
 		MetricType         *MetricTagConfigurationMetricTypes `json:"metric_type"`
@@ -240,13 +191,12 @@ func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregations", "exclude_tags_mode", "include_percentiles", "metric_type", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"exclude_tags_mode", "include_percentiles", "metric_type", "tags"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	o.Aggregations = all.Aggregations
 	o.ExcludeTagsMode = all.ExcludeTagsMode
 	o.IncludePercentiles = all.IncludePercentiles
 	if !all.MetricType.IsValid() {
