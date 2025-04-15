@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"handle":"rreb","icon_url":"","name":"bare","requirements":[{"controls":[{"name":"sdee","rules_id":["tge-nhp-wjz"]}],"name":"serd"}],"version":"cr2e"},"type":"custom_framework"}}
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/cloud_security_management/custom_frameworks
+  response:
+    body: ''
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+version: 2
