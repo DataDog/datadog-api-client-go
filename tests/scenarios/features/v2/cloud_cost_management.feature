@@ -99,6 +99,20 @@ Feature: Cloud Cost Management
     When the request is sent
     Then the response status is 204 No Content
 
+  @team:Datadog/cloud-cost-management
+  Scenario: Delete a budget returns "Bad Request" response
+    Given new "DeleteBudget" request
+    And request contains "budget_id" parameter with value "1"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:Datadog/cloud-cost-management
+  Scenario: Delete a budget returns "No Content" response
+    Given new "DeleteBudget" request
+    And request contains "budget_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 204 No Content
+
   @replay-only @team:Datadog/cloud-cost-management
   Scenario: Get Custom Costs File returns "OK" response
     Given new "GetCustomCostsFile" request
@@ -112,6 +126,27 @@ Feature: Cloud Cost Management
   Scenario: Get Custom Costs file returns "OK" response
     Given new "GetCustomCostsFile" request
     And request contains "file_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:Datadog/cloud-cost-management
+  Scenario: Get a budget returns "Bad Request" response
+    Given new "GetBudget" request
+    And request contains "budget_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @team:Datadog/cloud-cost-management
+  Scenario: Get a budget returns "Not Found" response
+    Given new "GetBudget" request
+    And request contains "budget_id" parameter with value "9d055d22-0a0a-0a0a-aaa0-00000000000a"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @generated @skip @team:Datadog/cloud-cost-management
+  Scenario: Get a budget returns "OK" response
+    Given new "GetBudget" request
+    And request contains "budget_id" parameter from "REPLACE.ME"
     When the request is sent
     Then the response status is 200 OK
 
@@ -142,6 +177,12 @@ Feature: Cloud Cost Management
     When the request is sent
     Then the response status is 200 OK
 
+  @team:Datadog/cloud-cost-management
+  Scenario: List budgets returns "OK" response
+    Given new "ListBudgets" request
+    When the request is sent
+    Then the response status is 200 OK
+
   @replay-only @team:Datadog/cloud-cost-management
   Scenario: Update Cloud Cost Management AWS CUR config returns "OK" response
     Given new "UpdateCostAWSCURConfig" request
@@ -167,6 +208,27 @@ Feature: Cloud Cost Management
     When the request is sent
     Then the response status is 200 OK
     And the response "data.type" is equal to "azure_uc_configs"
+
+  @team:Datadog/cloud-cost-management
+  Scenario: Update if exists, or create a new budget returns "Bad Request" response
+    Given new "UpsertBudget" request
+    And body with value {"data": {"attributes": {}}}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @team:Datadog/cloud-cost-management
+  Scenario: Update if exists, or create a new budget returns "Not Found" response
+    Given new "UpsertBudget" request
+    And body with value {"data":{"attributes":{"metrics_query":"aws.cost.amortized{service:ec2} by {service}", "tags":["service"], "name":"my budget","start_month":202501,"end_month":202502,"entries":[{"amount":500,"month":202501,"tag_filters":[{"tag_key":"service","tag_value":"ec2"}]},{"amount":500,"month":202502,"tag_filters":[{"tag_key":"service","tag_value":"ec2"}]}]},"id":"00000000-0a0a-0a0a-aaa0-00000000000a","type":"budget"}}
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @generated @skip @team:Datadog/cloud-cost-management
+  Scenario: Update if exists, or create a new budget returns "OK" response
+    Given new "UpsertBudget" request
+    And body with value {"data": {"attributes": {"created_at": 1738258683590, "created_by": "00000000-0a0a-0a0a-aaa0-00000000000a", "end_month": 202502, "entries": [{"amount": 500, "month": 202501, "tag_filters": [{"tag_key": "service", "tag_value": "ec2"}]}, {"amount": 500, "month": 202502, "tag_filters": [{"tag_key": "service", "tag_value": "ec2"}]}], "metrics_query": "aws.cost.amortized{service:ec2} by {service}", "name": "my budget", "org_id": 123, "start_month": 202501, "tags": ["service"], "total_amount": 1000, "updated_at": 1738258683590, "updated_by": "00000000-0a0a-0a0a-aaa0-00000000000a"}, "id": "1", "type": "budget"}}
+    When the request is sent
+    Then the response status is 200 OK
 
   @replay-only @team:Datadog/cloud-cost-management
   Scenario: Upload Custom Costs File returns "Accepted" response
