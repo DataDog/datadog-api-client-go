@@ -23,7 +23,7 @@ type ScheduleUpdateRequestDataAttributesLayersItems struct {
 	Interval *ScheduleUpdateRequestDataAttributesLayersItemsInterval `json:"interval,omitempty"`
 	// The members assigned to this layer.
 	Members []ScheduleUpdateRequestDataAttributesLayersItemsMembersItems `json:"members,omitempty"`
-	// The name for this layer (for example, “Secondary Coverage”).
+	// The name for this layer (for example, "Secondary Coverage").
 	Name *string `json:"name,omitempty"`
 	// Any time restrictions that define when this layer is active.
 	Restrictions []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems `json:"restrictions,omitempty"`

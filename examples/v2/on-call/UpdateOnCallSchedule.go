@@ -21,8 +21,8 @@ func main() {
 	// there is a valid "user" in the system
 	UserDataID := os.Getenv("USER_DATA_ID")
 
-	// there is a valid "team" in the system
-	TeamDataID := os.Getenv("TEAM_DATA_ID")
+	// there is a valid "dd_team" in the system
+	DdTeamDataID := os.Getenv("DD_TEAM_DATA_ID")
 
 	body := datadogV2.ScheduleUpdateRequest{
 		Data: datadogV2.ScheduleUpdateRequestData{
@@ -67,7 +67,7 @@ func main() {
 				Teams: &datadogV2.ScheduleUpdateRequestDataRelationshipsTeams{
 					Data: []datadogV2.ScheduleUpdateRequestDataRelationshipsTeamsDataItems{
 						{
-							Id:   datadog.PtrString(TeamDataID),
+							Id:   datadog.PtrString(DdTeamDataID),
 							Type: datadogV2.SCHEDULEUPDATEREQUESTDATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS.Ptr(),
 						},
 					},

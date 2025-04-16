@@ -17,12 +17,12 @@ func main() {
 	// there is a valid "user" in the system
 	UserDataID := os.Getenv("USER_DATA_ID")
 
-	// there is a valid "team" in the system
-	TeamDataID := os.Getenv("TEAM_DATA_ID")
+	// there is a valid "dd_team" in the system
+	DdTeamDataID := os.Getenv("DD_TEAM_DATA_ID")
 
 	body := datadogV2.ScheduleCreateRequest{
 		Data: datadogV2.ScheduleCreateRequestData{
-			Attributes: datadogV2.ScheduleCreateRequestDataAttributes{
+			Attributes: &datadogV2.ScheduleCreateRequestDataAttributes{
 				Layers: []datadogV2.ScheduleCreateRequestDataAttributesLayersItems{
 					{
 						EffectiveDate: time.Now().AddDate(0, 0, -10),
@@ -60,7 +60,7 @@ func main() {
 				Teams: &datadogV2.ScheduleCreateRequestDataRelationshipsTeams{
 					Data: []datadogV2.ScheduleCreateRequestDataRelationshipsTeamsDataItems{
 						{
-							Id:   datadog.PtrString(TeamDataID),
+							Id:   datadog.PtrString(DdTeamDataID),
 							Type: datadogV2.SCHEDULECREATEREQUESTDATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS.Ptr(),
 						},
 					},
