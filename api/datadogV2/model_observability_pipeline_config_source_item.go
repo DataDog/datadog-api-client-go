@@ -12,6 +12,8 @@ import (
 type ObservabilityPipelineConfigSourceItem struct {
 	ObservabilityPipelineKafkaSource        *ObservabilityPipelineKafkaSource
 	ObservabilityPipelineDatadogAgentSource *ObservabilityPipelineDatadogAgentSource
+	ObservabilityPipelineFluentSource       *ObservabilityPipelineFluentSource
+	ObservabilityPipelineHttpServerSource   *ObservabilityPipelineHttpServerSource
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -25,6 +27,16 @@ func ObservabilityPipelineKafkaSourceAsObservabilityPipelineConfigSourceItem(v *
 // ObservabilityPipelineDatadogAgentSourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelineDatadogAgentSource wrapped in ObservabilityPipelineConfigSourceItem.
 func ObservabilityPipelineDatadogAgentSourceAsObservabilityPipelineConfigSourceItem(v *ObservabilityPipelineDatadogAgentSource) ObservabilityPipelineConfigSourceItem {
 	return ObservabilityPipelineConfigSourceItem{ObservabilityPipelineDatadogAgentSource: v}
+}
+
+// ObservabilityPipelineFluentSourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelineFluentSource wrapped in ObservabilityPipelineConfigSourceItem.
+func ObservabilityPipelineFluentSourceAsObservabilityPipelineConfigSourceItem(v *ObservabilityPipelineFluentSource) ObservabilityPipelineConfigSourceItem {
+	return ObservabilityPipelineConfigSourceItem{ObservabilityPipelineFluentSource: v}
+}
+
+// ObservabilityPipelineHttpServerSourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelineHttpServerSource wrapped in ObservabilityPipelineConfigSourceItem.
+func ObservabilityPipelineHttpServerSourceAsObservabilityPipelineConfigSourceItem(v *ObservabilityPipelineHttpServerSource) ObservabilityPipelineConfigSourceItem {
+	return ObservabilityPipelineConfigSourceItem{ObservabilityPipelineHttpServerSource: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -65,10 +77,46 @@ func (obj *ObservabilityPipelineConfigSourceItem) UnmarshalJSON(data []byte) err
 		obj.ObservabilityPipelineDatadogAgentSource = nil
 	}
 
+	// try to unmarshal data into ObservabilityPipelineFluentSource
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineFluentSource)
+	if err == nil {
+		if obj.ObservabilityPipelineFluentSource != nil && obj.ObservabilityPipelineFluentSource.UnparsedObject == nil {
+			jsonObservabilityPipelineFluentSource, _ := datadog.Marshal(obj.ObservabilityPipelineFluentSource)
+			if string(jsonObservabilityPipelineFluentSource) == "{}" { // empty struct
+				obj.ObservabilityPipelineFluentSource = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineFluentSource = nil
+		}
+	} else {
+		obj.ObservabilityPipelineFluentSource = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineHttpServerSource
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineHttpServerSource)
+	if err == nil {
+		if obj.ObservabilityPipelineHttpServerSource != nil && obj.ObservabilityPipelineHttpServerSource.UnparsedObject == nil {
+			jsonObservabilityPipelineHttpServerSource, _ := datadog.Marshal(obj.ObservabilityPipelineHttpServerSource)
+			if string(jsonObservabilityPipelineHttpServerSource) == "{}" { // empty struct
+				obj.ObservabilityPipelineHttpServerSource = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineHttpServerSource = nil
+		}
+	} else {
+		obj.ObservabilityPipelineHttpServerSource = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.ObservabilityPipelineKafkaSource = nil
 		obj.ObservabilityPipelineDatadogAgentSource = nil
+		obj.ObservabilityPipelineFluentSource = nil
+		obj.ObservabilityPipelineHttpServerSource = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -82,6 +130,14 @@ func (obj ObservabilityPipelineConfigSourceItem) MarshalJSON() ([]byte, error) {
 
 	if obj.ObservabilityPipelineDatadogAgentSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineDatadogAgentSource)
+	}
+
+	if obj.ObservabilityPipelineFluentSource != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineFluentSource)
+	}
+
+	if obj.ObservabilityPipelineHttpServerSource != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineHttpServerSource)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -98,6 +154,14 @@ func (obj *ObservabilityPipelineConfigSourceItem) GetActualInstance() interface{
 
 	if obj.ObservabilityPipelineDatadogAgentSource != nil {
 		return obj.ObservabilityPipelineDatadogAgentSource
+	}
+
+	if obj.ObservabilityPipelineFluentSource != nil {
+		return obj.ObservabilityPipelineFluentSource
+	}
+
+	if obj.ObservabilityPipelineHttpServerSource != nil {
+		return obj.ObservabilityPipelineHttpServerSource
 	}
 
 	// all schemas are nil
