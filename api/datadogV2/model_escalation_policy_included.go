@@ -54,7 +54,7 @@ func (obj *EscalationPolicyIncluded) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.TeamReference != nil && obj.TeamReference.UnparsedObject == nil {
 			jsonTeamReference, _ := datadog.Marshal(obj.TeamReference)
-			if string(jsonTeamReference) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonTeamReference) == "{}" { // empty struct
 				obj.TeamReference = nil
 			} else {
 				match++

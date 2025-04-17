@@ -5,15 +5,17 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ScheduleUpdateRequestDataRelationshipsTeamsDataItems Links the schedule to a team within an update request, identified by `id` and `type`.
 type ScheduleUpdateRequestDataRelationshipsTeamsDataItems struct {
 	// The unique team identifier.
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	// Teams resource type.
-	Type *ScheduleUpdateRequestDataRelationshipsTeamsDataItemsType `json:"type,omitempty"`
+	Type ScheduleUpdateRequestDataRelationshipsTeamsDataItemsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,10 +25,10 @@ type ScheduleUpdateRequestDataRelationshipsTeamsDataItems struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewScheduleUpdateRequestDataRelationshipsTeamsDataItems() *ScheduleUpdateRequestDataRelationshipsTeamsDataItems {
+func NewScheduleUpdateRequestDataRelationshipsTeamsDataItems(id string, typeVar ScheduleUpdateRequestDataRelationshipsTeamsDataItemsType) *ScheduleUpdateRequestDataRelationshipsTeamsDataItems {
 	this := ScheduleUpdateRequestDataRelationshipsTeamsDataItems{}
-	var typeVar ScheduleUpdateRequestDataRelationshipsTeamsDataItemsType = SCHEDULEUPDATEREQUESTDATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS
-	this.Type = &typeVar
+	this.Id = id
+	this.Type = typeVar
 	return &this
 }
 
@@ -36,64 +38,54 @@ func NewScheduleUpdateRequestDataRelationshipsTeamsDataItems() *ScheduleUpdateRe
 func NewScheduleUpdateRequestDataRelationshipsTeamsDataItemsWithDefaults() *ScheduleUpdateRequestDataRelationshipsTeamsDataItems {
 	this := ScheduleUpdateRequestDataRelationshipsTeamsDataItems{}
 	var typeVar ScheduleUpdateRequestDataRelationshipsTeamsDataItemsType = SCHEDULEUPDATEREQUESTDATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS
-	this.Type = &typeVar
+	this.Type = typeVar
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value.
 func (o *ScheduleUpdateRequestDataRelationshipsTeamsDataItems) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *ScheduleUpdateRequestDataRelationshipsTeamsDataItems) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *ScheduleUpdateRequestDataRelationshipsTeamsDataItems) HasId() bool {
-	return o != nil && o.Id != nil
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value.
 func (o *ScheduleUpdateRequestDataRelationshipsTeamsDataItems) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value.
 func (o *ScheduleUpdateRequestDataRelationshipsTeamsDataItems) GetType() ScheduleUpdateRequestDataRelationshipsTeamsDataItemsType {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret ScheduleUpdateRequestDataRelationshipsTeamsDataItemsType
 		return ret
 	}
-	return *o.Type
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ScheduleUpdateRequestDataRelationshipsTeamsDataItems) GetTypeOk() (*ScheduleUpdateRequestDataRelationshipsTeamsDataItemsType, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *ScheduleUpdateRequestDataRelationshipsTeamsDataItems) HasType() bool {
-	return o != nil && o.Type != nil
-}
-
-// SetType gets a reference to the given ScheduleUpdateRequestDataRelationshipsTeamsDataItemsType and assigns it to the Type field.
+// SetType sets field value.
 func (o *ScheduleUpdateRequestDataRelationshipsTeamsDataItems) SetType(v ScheduleUpdateRequestDataRelationshipsTeamsDataItemsType) {
-	o.Type = &v
+	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -102,12 +94,8 @@ func (o ScheduleUpdateRequestDataRelationshipsTeamsDataItems) MarshalJSON() ([]b
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -118,11 +106,17 @@ func (o ScheduleUpdateRequestDataRelationshipsTeamsDataItems) MarshalJSON() ([]b
 // UnmarshalJSON deserializes the given payload.
 func (o *ScheduleUpdateRequestDataRelationshipsTeamsDataItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                                                   `json:"id,omitempty"`
-		Type *ScheduleUpdateRequestDataRelationshipsTeamsDataItemsType `json:"type,omitempty"`
+		Id   *string                                                   `json:"id"`
+		Type *ScheduleUpdateRequestDataRelationshipsTeamsDataItemsType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -132,11 +126,11 @@ func (o *ScheduleUpdateRequestDataRelationshipsTeamsDataItems) UnmarshalJSON(byt
 	}
 
 	hasInvalidField := false
-	o.Id = all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	o.Id = *all.Id
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Type = all.Type
+		o.Type = *all.Type
 	}
 
 	if len(additionalProperties) > 0 {

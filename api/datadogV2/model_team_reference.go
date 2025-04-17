@@ -5,6 +5,8 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -17,7 +19,7 @@ type TeamReference struct {
 	// Collects the key relationship fields for a team reference, specifically on-call users.
 	Relationships *TeamReferenceRelationships `json:"relationships,omitempty"`
 	// Teams resource type.
-	Type *TeamReferenceType `json:"type,omitempty"`
+	Type TeamReferenceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -27,10 +29,9 @@ type TeamReference struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTeamReference() *TeamReference {
+func NewTeamReference(typeVar TeamReferenceType) *TeamReference {
 	this := TeamReference{}
-	var typeVar TeamReferenceType = TEAMREFERENCETYPE_TEAMS
-	this.Type = &typeVar
+	this.Type = typeVar
 	return &this
 }
 
@@ -40,7 +41,7 @@ func NewTeamReference() *TeamReference {
 func NewTeamReferenceWithDefaults() *TeamReference {
 	this := TeamReference{}
 	var typeVar TeamReferenceType = TEAMREFERENCETYPE_TEAMS
-	this.Type = &typeVar
+	this.Type = typeVar
 	return &this
 }
 
@@ -128,32 +129,27 @@ func (o *TeamReference) SetRelationships(v TeamReferenceRelationships) {
 	o.Relationships = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value.
 func (o *TeamReference) GetType() TeamReferenceType {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret TeamReferenceType
 		return ret
 	}
-	return *o.Type
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *TeamReference) GetTypeOk() (*TeamReferenceType, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *TeamReference) HasType() bool {
-	return o != nil && o.Type != nil
-}
-
-// SetType gets a reference to the given TeamReferenceType and assigns it to the Type field.
+// SetType sets field value.
 func (o *TeamReference) SetType(v TeamReferenceType) {
-	o.Type = &v
+	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -171,9 +167,7 @@ func (o TeamReference) MarshalJSON() ([]byte, error) {
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -187,10 +181,13 @@ func (o *TeamReference) UnmarshalJSON(bytes []byte) (err error) {
 		Attributes    *TeamReferenceAttributes    `json:"attributes,omitempty"`
 		Id            *string                     `json:"id,omitempty"`
 		Relationships *TeamReferenceRelationships `json:"relationships,omitempty"`
-		Type          *TeamReferenceType          `json:"type,omitempty"`
+		Type          *TeamReferenceType          `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -209,10 +206,10 @@ func (o *TeamReference) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships
-	if all.Type != nil && !all.Type.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Type = all.Type
+		o.Type = *all.Type
 	}
 
 	if len(additionalProperties) > 0 {

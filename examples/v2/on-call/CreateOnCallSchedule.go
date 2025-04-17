@@ -60,8 +60,8 @@ func main() {
 				Teams: &datadogV2.ScheduleCreateRequestDataRelationshipsTeams{
 					Data: []datadogV2.ScheduleCreateRequestDataRelationshipsTeamsDataItems{
 						{
-							Id:   datadog.PtrString(DdTeamDataID),
-							Type: datadogV2.SCHEDULECREATEREQUESTDATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS.Ptr(),
+							Id:   DdTeamDataID,
+							Type: datadogV2.SCHEDULECREATEREQUESTDATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS,
 						},
 					},
 				},

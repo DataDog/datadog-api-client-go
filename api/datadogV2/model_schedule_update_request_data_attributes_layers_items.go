@@ -5,6 +5,7 @@
 package datadogV2
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -14,21 +15,21 @@ import (
 // and optional restrictions.
 type ScheduleUpdateRequestDataAttributesLayersItems struct {
 	// When this updated layer takes effect (ISO 8601 format).
-	EffectiveDate *time.Time `json:"effective_date,omitempty"`
+	EffectiveDate time.Time `json:"effective_date"`
 	// When this updated layer should stop being active (ISO 8601 format).
 	EndDate *time.Time `json:"end_date,omitempty"`
 	// A unique identifier for the layer being updated.
 	Id *string `json:"id,omitempty"`
 	// Specifies how the rotation repeats: number of days, plus optional seconds, up to the given maximums.
-	Interval *ScheduleUpdateRequestDataAttributesLayersItemsInterval `json:"interval,omitempty"`
+	Interval ScheduleUpdateRequestDataAttributesLayersItemsInterval `json:"interval"`
 	// The members assigned to this layer.
-	Members []ScheduleUpdateRequestDataAttributesLayersItemsMembersItems `json:"members,omitempty"`
+	Members []ScheduleUpdateRequestDataAttributesLayersItemsMembersItems `json:"members"`
 	// The name for this layer (for example, "Secondary Coverage").
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// Any time restrictions that define when this layer is active.
 	Restrictions []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems `json:"restrictions,omitempty"`
 	// The date/time at which the rotation begins (ISO 8601 format).
-	RotationStart *time.Time `json:"rotation_start,omitempty"`
+	RotationStart time.Time `json:"rotation_start"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -38,8 +39,13 @@ type ScheduleUpdateRequestDataAttributesLayersItems struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewScheduleUpdateRequestDataAttributesLayersItems() *ScheduleUpdateRequestDataAttributesLayersItems {
+func NewScheduleUpdateRequestDataAttributesLayersItems(effectiveDate time.Time, interval ScheduleUpdateRequestDataAttributesLayersItemsInterval, members []ScheduleUpdateRequestDataAttributesLayersItemsMembersItems, name string, rotationStart time.Time) *ScheduleUpdateRequestDataAttributesLayersItems {
 	this := ScheduleUpdateRequestDataAttributesLayersItems{}
+	this.EffectiveDate = effectiveDate
+	this.Interval = interval
+	this.Members = members
+	this.Name = name
+	this.RotationStart = rotationStart
 	return &this
 }
 
@@ -51,32 +57,27 @@ func NewScheduleUpdateRequestDataAttributesLayersItemsWithDefaults() *ScheduleUp
 	return &this
 }
 
-// GetEffectiveDate returns the EffectiveDate field value if set, zero value otherwise.
+// GetEffectiveDate returns the EffectiveDate field value.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetEffectiveDate() time.Time {
-	if o == nil || o.EffectiveDate == nil {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.EffectiveDate
+	return o.EffectiveDate
 }
 
-// GetEffectiveDateOk returns a tuple with the EffectiveDate field value if set, nil otherwise
+// GetEffectiveDateOk returns a tuple with the EffectiveDate field value
 // and a boolean to check if the value has been set.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetEffectiveDateOk() (*time.Time, bool) {
-	if o == nil || o.EffectiveDate == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.EffectiveDate, true
+	return &o.EffectiveDate, true
 }
 
-// HasEffectiveDate returns a boolean if a field has been set.
-func (o *ScheduleUpdateRequestDataAttributesLayersItems) HasEffectiveDate() bool {
-	return o != nil && o.EffectiveDate != nil
-}
-
-// SetEffectiveDate gets a reference to the given time.Time and assigns it to the EffectiveDate field.
+// SetEffectiveDate sets field value.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetEffectiveDate(v time.Time) {
-	o.EffectiveDate = &v
+	o.EffectiveDate = v
 }
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
@@ -135,88 +136,73 @@ func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetId(v string) {
 	o.Id = &v
 }
 
-// GetInterval returns the Interval field value if set, zero value otherwise.
+// GetInterval returns the Interval field value.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetInterval() ScheduleUpdateRequestDataAttributesLayersItemsInterval {
-	if o == nil || o.Interval == nil {
+	if o == nil {
 		var ret ScheduleUpdateRequestDataAttributesLayersItemsInterval
 		return ret
 	}
-	return *o.Interval
+	return o.Interval
 }
 
-// GetIntervalOk returns a tuple with the Interval field value if set, nil otherwise
+// GetIntervalOk returns a tuple with the Interval field value
 // and a boolean to check if the value has been set.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetIntervalOk() (*ScheduleUpdateRequestDataAttributesLayersItemsInterval, bool) {
-	if o == nil || o.Interval == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Interval, true
+	return &o.Interval, true
 }
 
-// HasInterval returns a boolean if a field has been set.
-func (o *ScheduleUpdateRequestDataAttributesLayersItems) HasInterval() bool {
-	return o != nil && o.Interval != nil
-}
-
-// SetInterval gets a reference to the given ScheduleUpdateRequestDataAttributesLayersItemsInterval and assigns it to the Interval field.
+// SetInterval sets field value.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetInterval(v ScheduleUpdateRequestDataAttributesLayersItemsInterval) {
-	o.Interval = &v
+	o.Interval = v
 }
 
-// GetMembers returns the Members field value if set, zero value otherwise.
+// GetMembers returns the Members field value.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetMembers() []ScheduleUpdateRequestDataAttributesLayersItemsMembersItems {
-	if o == nil || o.Members == nil {
+	if o == nil {
 		var ret []ScheduleUpdateRequestDataAttributesLayersItemsMembersItems
 		return ret
 	}
 	return o.Members
 }
 
-// GetMembersOk returns a tuple with the Members field value if set, nil otherwise
+// GetMembersOk returns a tuple with the Members field value
 // and a boolean to check if the value has been set.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetMembersOk() (*[]ScheduleUpdateRequestDataAttributesLayersItemsMembersItems, bool) {
-	if o == nil || o.Members == nil {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Members, true
 }
 
-// HasMembers returns a boolean if a field has been set.
-func (o *ScheduleUpdateRequestDataAttributesLayersItems) HasMembers() bool {
-	return o != nil && o.Members != nil
-}
-
-// SetMembers gets a reference to the given []ScheduleUpdateRequestDataAttributesLayersItemsMembersItems and assigns it to the Members field.
+// SetMembers sets field value.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetMembers(v []ScheduleUpdateRequestDataAttributesLayersItemsMembersItems) {
 	o.Members = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *ScheduleUpdateRequestDataAttributesLayersItems) HasName() bool {
-	return o != nil && o.Name != nil
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetRestrictions returns the Restrictions field value if set, zero value otherwise.
@@ -247,32 +233,27 @@ func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetRestrictions(v []Sch
 	o.Restrictions = v
 }
 
-// GetRotationStart returns the RotationStart field value if set, zero value otherwise.
+// GetRotationStart returns the RotationStart field value.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetRotationStart() time.Time {
-	if o == nil || o.RotationStart == nil {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.RotationStart
+	return o.RotationStart
 }
 
-// GetRotationStartOk returns a tuple with the RotationStart field value if set, nil otherwise
+// GetRotationStartOk returns a tuple with the RotationStart field value
 // and a boolean to check if the value has been set.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetRotationStartOk() (*time.Time, bool) {
-	if o == nil || o.RotationStart == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.RotationStart, true
+	return &o.RotationStart, true
 }
 
-// HasRotationStart returns a boolean if a field has been set.
-func (o *ScheduleUpdateRequestDataAttributesLayersItems) HasRotationStart() bool {
-	return o != nil && o.RotationStart != nil
-}
-
-// SetRotationStart gets a reference to the given time.Time and assigns it to the RotationStart field.
+// SetRotationStart sets field value.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetRotationStart(v time.Time) {
-	o.RotationStart = &v
+	o.RotationStart = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -281,12 +262,10 @@ func (o ScheduleUpdateRequestDataAttributesLayersItems) MarshalJSON() ([]byte, e
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.EffectiveDate != nil {
-		if o.EffectiveDate.Nanosecond() == 0 {
-			toSerialize["effective_date"] = o.EffectiveDate.Format("2006-01-02T15:04:05Z07:00")
-		} else {
-			toSerialize["effective_date"] = o.EffectiveDate.Format("2006-01-02T15:04:05.000Z07:00")
-		}
+	if o.EffectiveDate.Nanosecond() == 0 {
+		toSerialize["effective_date"] = o.EffectiveDate.Format("2006-01-02T15:04:05Z07:00")
+	} else {
+		toSerialize["effective_date"] = o.EffectiveDate.Format("2006-01-02T15:04:05.000Z07:00")
 	}
 	if o.EndDate != nil {
 		if o.EndDate.Nanosecond() == 0 {
@@ -298,24 +277,16 @@ func (o ScheduleUpdateRequestDataAttributesLayersItems) MarshalJSON() ([]byte, e
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if o.Interval != nil {
-		toSerialize["interval"] = o.Interval
-	}
-	if o.Members != nil {
-		toSerialize["members"] = o.Members
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["interval"] = o.Interval
+	toSerialize["members"] = o.Members
+	toSerialize["name"] = o.Name
 	if o.Restrictions != nil {
 		toSerialize["restrictions"] = o.Restrictions
 	}
-	if o.RotationStart != nil {
-		if o.RotationStart.Nanosecond() == 0 {
-			toSerialize["rotation_start"] = o.RotationStart.Format("2006-01-02T15:04:05Z07:00")
-		} else {
-			toSerialize["rotation_start"] = o.RotationStart.Format("2006-01-02T15:04:05.000Z07:00")
-		}
+	if o.RotationStart.Nanosecond() == 0 {
+		toSerialize["rotation_start"] = o.RotationStart.Format("2006-01-02T15:04:05Z07:00")
+	} else {
+		toSerialize["rotation_start"] = o.RotationStart.Format("2006-01-02T15:04:05.000Z07:00")
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -327,17 +298,32 @@ func (o ScheduleUpdateRequestDataAttributesLayersItems) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EffectiveDate *time.Time                                                        `json:"effective_date,omitempty"`
+		EffectiveDate *time.Time                                                        `json:"effective_date"`
 		EndDate       *time.Time                                                        `json:"end_date,omitempty"`
 		Id            *string                                                           `json:"id,omitempty"`
-		Interval      *ScheduleUpdateRequestDataAttributesLayersItemsInterval           `json:"interval,omitempty"`
-		Members       []ScheduleUpdateRequestDataAttributesLayersItemsMembersItems      `json:"members,omitempty"`
-		Name          *string                                                           `json:"name,omitempty"`
+		Interval      *ScheduleUpdateRequestDataAttributesLayersItemsInterval           `json:"interval"`
+		Members       *[]ScheduleUpdateRequestDataAttributesLayersItemsMembersItems     `json:"members"`
+		Name          *string                                                           `json:"name"`
 		Restrictions  []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems `json:"restrictions,omitempty"`
-		RotationStart *time.Time                                                        `json:"rotation_start,omitempty"`
+		RotationStart *time.Time                                                        `json:"rotation_start"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.EffectiveDate == nil {
+		return fmt.Errorf("required field effective_date missing")
+	}
+	if all.Interval == nil {
+		return fmt.Errorf("required field interval missing")
+	}
+	if all.Members == nil {
+		return fmt.Errorf("required field members missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.RotationStart == nil {
+		return fmt.Errorf("required field rotation_start missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -347,17 +333,17 @@ func (o *ScheduleUpdateRequestDataAttributesLayersItems) UnmarshalJSON(bytes []b
 	}
 
 	hasInvalidField := false
-	o.EffectiveDate = all.EffectiveDate
+	o.EffectiveDate = *all.EffectiveDate
 	o.EndDate = all.EndDate
 	o.Id = all.Id
-	if all.Interval != nil && all.Interval.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Interval.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Interval = all.Interval
-	o.Members = all.Members
-	o.Name = all.Name
+	o.Interval = *all.Interval
+	o.Members = *all.Members
+	o.Name = *all.Name
 	o.Restrictions = all.Restrictions
-	o.RotationStart = all.RotationStart
+	o.RotationStart = *all.RotationStart
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
