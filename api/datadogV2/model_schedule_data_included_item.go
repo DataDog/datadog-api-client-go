@@ -48,7 +48,7 @@ func (obj *ScheduleDataIncludedItem) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.TeamReference != nil && obj.TeamReference.UnparsedObject == nil {
 			jsonTeamReference, _ := datadog.Marshal(obj.TeamReference)
-			if string(jsonTeamReference) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonTeamReference) == "{}" { // empty struct
 				obj.TeamReference = nil
 			} else {
 				match++
@@ -65,7 +65,7 @@ func (obj *ScheduleDataIncludedItem) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.Layer != nil && obj.Layer.UnparsedObject == nil {
 			jsonLayer, _ := datadog.Marshal(obj.Layer)
-			if string(jsonLayer) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonLayer) == "{}" { // empty struct
 				obj.Layer = nil
 			} else {
 				match++
@@ -82,7 +82,7 @@ func (obj *ScheduleDataIncludedItem) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.ScheduleMember != nil && obj.ScheduleMember.UnparsedObject == nil {
 			jsonScheduleMember, _ := datadog.Marshal(obj.ScheduleMember)
-			if string(jsonScheduleMember) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonScheduleMember) == "{}" { // empty struct
 				obj.ScheduleMember = nil
 			} else {
 				match++
@@ -99,7 +99,7 @@ func (obj *ScheduleDataIncludedItem) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.ScheduleUser != nil && obj.ScheduleUser.UnparsedObject == nil {
 			jsonScheduleUser, _ := datadog.Marshal(obj.ScheduleUser)
-			if string(jsonScheduleUser) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonScheduleUser) == "{}" { // empty struct
 				obj.ScheduleUser = nil
 			} else {
 				match++

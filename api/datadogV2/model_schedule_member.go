@@ -5,6 +5,8 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -15,7 +17,7 @@ type ScheduleMember struct {
 	// Defines relationships for a schedule member, primarily referencing a single user.
 	Relationships *ScheduleMemberRelationships `json:"relationships,omitempty"`
 	// Schedule Members resource type.
-	Type *ScheduleMemberType `json:"type,omitempty"`
+	Type ScheduleMemberType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -25,10 +27,9 @@ type ScheduleMember struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewScheduleMember() *ScheduleMember {
+func NewScheduleMember(typeVar ScheduleMemberType) *ScheduleMember {
 	this := ScheduleMember{}
-	var typeVar ScheduleMemberType = SCHEDULEMEMBERTYPE_MEMBERS
-	this.Type = &typeVar
+	this.Type = typeVar
 	return &this
 }
 
@@ -38,7 +39,7 @@ func NewScheduleMember() *ScheduleMember {
 func NewScheduleMemberWithDefaults() *ScheduleMember {
 	this := ScheduleMember{}
 	var typeVar ScheduleMemberType = SCHEDULEMEMBERTYPE_MEMBERS
-	this.Type = &typeVar
+	this.Type = typeVar
 	return &this
 }
 
@@ -98,32 +99,27 @@ func (o *ScheduleMember) SetRelationships(v ScheduleMemberRelationships) {
 	o.Relationships = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value.
 func (o *ScheduleMember) GetType() ScheduleMemberType {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret ScheduleMemberType
 		return ret
 	}
-	return *o.Type
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ScheduleMember) GetTypeOk() (*ScheduleMemberType, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *ScheduleMember) HasType() bool {
-	return o != nil && o.Type != nil
-}
-
-// SetType gets a reference to the given ScheduleMemberType and assigns it to the Type field.
+// SetType sets field value.
 func (o *ScheduleMember) SetType(v ScheduleMemberType) {
-	o.Type = &v
+	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -138,9 +134,7 @@ func (o ScheduleMember) MarshalJSON() ([]byte, error) {
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -153,10 +147,13 @@ func (o *ScheduleMember) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Id            *string                      `json:"id,omitempty"`
 		Relationships *ScheduleMemberRelationships `json:"relationships,omitempty"`
-		Type          *ScheduleMemberType          `json:"type,omitempty"`
+		Type          *ScheduleMemberType          `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -171,10 +168,10 @@ func (o *ScheduleMember) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships
-	if all.Type != nil && !all.Type.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Type = all.Type
+		o.Type = *all.Type
 	}
 
 	if len(additionalProperties) > 0 {

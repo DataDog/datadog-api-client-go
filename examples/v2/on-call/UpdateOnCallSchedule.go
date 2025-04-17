@@ -31,9 +31,9 @@ func main() {
 				Layers: []datadogV2.ScheduleUpdateRequestDataAttributesLayersItems{
 					{
 						Id:            datadog.PtrString(ScheduleDataRelationshipsLayersData0ID),
-						EffectiveDate: datadog.PtrTime(time.Now().AddDate(0, 0, -10)),
+						EffectiveDate: time.Now().AddDate(0, 0, -10),
 						EndDate:       datadog.PtrTime(time.Now().AddDate(0, 0, 10)),
-						Interval: &datadogV2.ScheduleUpdateRequestDataAttributesLayersItemsInterval{
+						Interval: datadogV2.ScheduleUpdateRequestDataAttributesLayersItemsInterval{
 							Seconds: datadog.PtrInt64(300),
 						},
 						Members: []datadogV2.ScheduleUpdateRequestDataAttributesLayersItemsMembersItems{
@@ -43,7 +43,7 @@ func main() {
 								},
 							},
 						},
-						Name: datadog.PtrString("Layer 1"),
+						Name: "Layer 1",
 						Restrictions: []datadogV2.ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems{
 							{
 								EndDay:    datadogV2.SCHEDULEUPDATEREQUESTDATAATTRIBUTESLAYERSITEMSRESTRICTIONSITEMSENDDAY_FRIDAY.Ptr(),
@@ -52,7 +52,7 @@ func main() {
 								StartTime: datadog.PtrString("09:00:00"),
 							},
 						},
-						RotationStart: datadog.PtrTime(time.Now().AddDate(0, 0, -5)),
+						RotationStart: time.Now().AddDate(0, 0, -5),
 					},
 				},
 				Name: "Example-On-Call",
@@ -67,8 +67,8 @@ func main() {
 				Teams: &datadogV2.ScheduleUpdateRequestDataRelationshipsTeams{
 					Data: []datadogV2.ScheduleUpdateRequestDataRelationshipsTeamsDataItems{
 						{
-							Id:   datadog.PtrString(DdTeamDataID),
-							Type: datadogV2.SCHEDULEUPDATEREQUESTDATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS.Ptr(),
+							Id:   DdTeamDataID,
+							Type: datadogV2.SCHEDULEUPDATEREQUESTDATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS,
 						},
 					},
 				},

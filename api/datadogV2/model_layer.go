@@ -5,6 +5,8 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -17,7 +19,7 @@ type Layer struct {
 	// Holds references to objects related to the Layer entity, such as its members.
 	Relationships *LayerRelationships `json:"relationships,omitempty"`
 	// Layers resource type.
-	Type *LayerType `json:"type,omitempty"`
+	Type LayerType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -27,10 +29,9 @@ type Layer struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLayer() *Layer {
+func NewLayer(typeVar LayerType) *Layer {
 	this := Layer{}
-	var typeVar LayerType = LAYERTYPE_LAYERS
-	this.Type = &typeVar
+	this.Type = typeVar
 	return &this
 }
 
@@ -40,7 +41,7 @@ func NewLayer() *Layer {
 func NewLayerWithDefaults() *Layer {
 	this := Layer{}
 	var typeVar LayerType = LAYERTYPE_LAYERS
-	this.Type = &typeVar
+	this.Type = typeVar
 	return &this
 }
 
@@ -128,32 +129,27 @@ func (o *Layer) SetRelationships(v LayerRelationships) {
 	o.Relationships = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value.
 func (o *Layer) GetType() LayerType {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret LayerType
 		return ret
 	}
-	return *o.Type
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *Layer) GetTypeOk() (*LayerType, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *Layer) HasType() bool {
-	return o != nil && o.Type != nil
-}
-
-// SetType gets a reference to the given LayerType and assigns it to the Type field.
+// SetType sets field value.
 func (o *Layer) SetType(v LayerType) {
-	o.Type = &v
+	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -171,9 +167,7 @@ func (o Layer) MarshalJSON() ([]byte, error) {
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -187,10 +181,13 @@ func (o *Layer) UnmarshalJSON(bytes []byte) (err error) {
 		Attributes    *LayerAttributes    `json:"attributes,omitempty"`
 		Id            *string             `json:"id,omitempty"`
 		Relationships *LayerRelationships `json:"relationships,omitempty"`
-		Type          *LayerType          `json:"type,omitempty"`
+		Type          *LayerType          `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -209,10 +206,10 @@ func (o *Layer) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships
-	if all.Type != nil && !all.Type.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Type = all.Type
+		o.Type = *all.Type
 	}
 
 	if len(additionalProperties) > 0 {
