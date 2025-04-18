@@ -1,4 +1,4 @@
-// Update on call escalation policy returns "OK" response
+// Update on-call escalation policy returns "OK" response
 
 package main
 

@@ -5,8 +5,6 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -19,7 +17,7 @@ type EscalationPolicyData struct {
 	// Represents the relationships for an escalation policy, including references to steps and teams.
 	Relationships *EscalationPolicyDataRelationships `json:"relationships,omitempty"`
 	// Indicates that the resource is of type `policies`.
-	Type EscalationPolicyDataType `json:"type"`
+	Type *EscalationPolicyDataType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -29,9 +27,10 @@ type EscalationPolicyData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewEscalationPolicyData(typeVar EscalationPolicyDataType) *EscalationPolicyData {
+func NewEscalationPolicyData() *EscalationPolicyData {
 	this := EscalationPolicyData{}
-	this.Type = typeVar
+	var typeVar EscalationPolicyDataType = ESCALATIONPOLICYDATATYPE_POLICIES
+	this.Type = &typeVar
 	return &this
 }
 
@@ -41,7 +40,7 @@ func NewEscalationPolicyData(typeVar EscalationPolicyDataType) *EscalationPolicy
 func NewEscalationPolicyDataWithDefaults() *EscalationPolicyData {
 	this := EscalationPolicyData{}
 	var typeVar EscalationPolicyDataType = ESCALATIONPOLICYDATATYPE_POLICIES
-	this.Type = typeVar
+	this.Type = &typeVar
 	return &this
 }
 
@@ -129,27 +128,32 @@ func (o *EscalationPolicyData) SetRelationships(v EscalationPolicyDataRelationsh
 	o.Relationships = &v
 }
 
-// GetType returns the Type field value.
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *EscalationPolicyData) GetType() EscalationPolicyDataType {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		var ret EscalationPolicyDataType
 		return ret
 	}
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EscalationPolicyData) GetTypeOk() (*EscalationPolicyDataType, bool) {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value.
+// HasType returns a boolean if a field has been set.
+func (o *EscalationPolicyData) HasType() bool {
+	return o != nil && o.Type != nil
+}
+
+// SetType gets a reference to the given EscalationPolicyDataType and assigns it to the Type field.
 func (o *EscalationPolicyData) SetType(v EscalationPolicyDataType) {
-	o.Type = v
+	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -167,7 +171,9 @@ func (o EscalationPolicyData) MarshalJSON() ([]byte, error) {
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
-	toSerialize["type"] = o.Type
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -181,13 +187,10 @@ func (o *EscalationPolicyData) UnmarshalJSON(bytes []byte) (err error) {
 		Attributes    *EscalationPolicyDataAttributes    `json:"attributes,omitempty"`
 		Id            *string                            `json:"id,omitempty"`
 		Relationships *EscalationPolicyDataRelationships `json:"relationships,omitempty"`
-		Type          *EscalationPolicyDataType          `json:"type"`
+		Type          *EscalationPolicyDataType          `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.Type == nil {
-		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -206,10 +209,10 @@ func (o *EscalationPolicyData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships
-	if !all.Type.IsValid() {
+	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Type = *all.Type
+		o.Type = all.Type
 	}
 
 	if len(additionalProperties) > 0 {

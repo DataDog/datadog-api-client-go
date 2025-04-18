@@ -32,7 +32,7 @@ func (r *CreateOnCallEscalationPolicyOptionalParameters) WithInclude(include str
 	return r
 }
 
-// CreateOnCallEscalationPolicy Create on call escalation policy.
+// CreateOnCallEscalationPolicy Create on-call escalation policy.
 // Create a new on-call escalation policy
 func (a *OnCallApi) CreateOnCallEscalationPolicy(ctx _context.Context, body EscalationPolicyCreateRequest, o ...CreateOnCallEscalationPolicyOptionalParameters) (EscalationPolicy, *_nethttp.Response, error) {
 	var (
@@ -217,7 +217,7 @@ func (a *OnCallApi) CreateOnCallSchedule(ctx _context.Context, body ScheduleCrea
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// DeleteOnCallEscalationPolicy Delete on call escalation policy.
+// DeleteOnCallEscalationPolicy Delete on-call escalation policy.
 // Delete an on-call escalation policy
 func (a *OnCallApi) DeleteOnCallEscalationPolicy(ctx _context.Context, policyId string) (*_nethttp.Response, error) {
 	var (
@@ -356,7 +356,7 @@ func (r *GetOnCallEscalationPolicyOptionalParameters) WithInclude(include string
 	return r
 }
 
-// GetOnCallEscalationPolicy Get on call escalation policy.
+// GetOnCallEscalationPolicy Get on-call escalation policy.
 // Get an on-call escalation policy
 func (a *OnCallApi) GetOnCallEscalationPolicy(ctx _context.Context, policyId string, o ...GetOnCallEscalationPolicyOptionalParameters) (EscalationPolicy, *_nethttp.Response, error) {
 	var (
@@ -554,7 +554,7 @@ func (r *UpdateOnCallEscalationPolicyOptionalParameters) WithInclude(include str
 	return r
 }
 
-// UpdateOnCallEscalationPolicy Update on call escalation policy.
+// UpdateOnCallEscalationPolicy Update on-call escalation policy.
 // Update an on-call escalation policy
 func (a *OnCallApi) UpdateOnCallEscalationPolicy(ctx _context.Context, policyId string, body EscalationPolicyUpdateRequest, o ...UpdateOnCallEscalationPolicyOptionalParameters) (EscalationPolicy, *_nethttp.Response, error) {
 	var (

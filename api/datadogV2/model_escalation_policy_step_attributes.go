@@ -10,7 +10,7 @@ import (
 
 // EscalationPolicyStepAttributes Defines attributes for an escalation policy step, such as assignment strategy and escalation timeout.
 type EscalationPolicyStepAttributes struct {
-	// Specifies how this escalation step will assign targets (example `default` or `round-robin`).
+	// Specifies how this escalation step will assign targets (example `default`).
 	Assignment *EscalationPolicyStepAttributesAssignment `json:"assignment,omitempty"`
 	// Specifies how many seconds to wait before escalating to the next step.
 	EscalateAfterSeconds *int64 `json:"escalate_after_seconds,omitempty"`

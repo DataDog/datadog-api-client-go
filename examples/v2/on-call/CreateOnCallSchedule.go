@@ -22,7 +22,7 @@ func main() {
 
 	body := datadogV2.ScheduleCreateRequest{
 		Data: datadogV2.ScheduleCreateRequestData{
-			Attributes: &datadogV2.ScheduleCreateRequestDataAttributes{
+			Attributes: datadogV2.ScheduleCreateRequestDataAttributes{
 				Layers: []datadogV2.ScheduleCreateRequestDataAttributesLayersItems{
 					{
 						EffectiveDate: time.Now().AddDate(0, 0, -10),
