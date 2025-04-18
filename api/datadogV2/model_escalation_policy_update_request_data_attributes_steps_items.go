@@ -12,7 +12,7 @@ import (
 
 // EscalationPolicyUpdateRequestDataAttributesStepsItems Defines a single escalation step within an escalation policy update request. Contains assignment strategy, escalation timeout, an optional step ID, and a list of targets.
 type EscalationPolicyUpdateRequestDataAttributesStepsItems struct {
-	// Specifies how this escalation step will assign targets (example `default` or `round-robin`).
+	// Specifies how this escalation step will assign targets (example `default`).
 	Assignment *EscalationPolicyUpdateRequestDataAttributesStepsItemsAssignment `json:"assignment,omitempty"`
 	// Defines how many seconds to wait before escalating to the next step.
 	EscalateAfterSeconds *int64 `json:"escalate_after_seconds,omitempty"`

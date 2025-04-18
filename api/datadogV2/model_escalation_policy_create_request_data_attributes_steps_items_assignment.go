@@ -10,18 +10,16 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment Specifies how this escalation step will assign targets (example `default` or `round-robin`).
+// EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment Specifies how this escalation step will assign targets (example `default`).
 type EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment string
 
 // List of EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment.
 const (
-	ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSASSIGNMENT_DEFAULT     EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment = "default"
-	ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSASSIGNMENT_ROUND_ROBIN EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment = "round-robin"
+	ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSASSIGNMENT_DEFAULT EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment = "default"
 )
 
 var allowedEscalationPolicyCreateRequestDataAttributesStepsItemsAssignmentEnumValues = []EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment{
 	ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSASSIGNMENT_DEFAULT,
-	ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSASSIGNMENT_ROUND_ROBIN,
 }
 
 // GetAllowedValues reeturns the list of possible values.

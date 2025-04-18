@@ -1,4 +1,4 @@
-// Create on call escalation policy returns "Created" response
+// Create on-call escalation policy returns "Created" response
 
 package main
 
@@ -42,16 +42,6 @@ func main() {
 								Id:   datadog.PtrString(ScheduleDataID),
 								Type: datadogV2.ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSTARGETSITEMSTYPE_SCHEDULES.Ptr(),
 							},
-							{
-								Id:   datadog.PtrString(DdTeamDataID),
-								Type: datadogV2.ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSTARGETSITEMSTYPE_TEAMS.Ptr(),
-							},
-						},
-					},
-					{
-						Assignment:           datadogV2.ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSASSIGNMENT_ROUND_ROBIN.Ptr(),
-						EscalateAfterSeconds: datadog.PtrInt64(3600),
-						Targets: []datadogV2.EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems{
 							{
 								Id:   datadog.PtrString(DdTeamDataID),
 								Type: datadogV2.ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSTARGETSITEMSTYPE_TEAMS.Ptr(),
