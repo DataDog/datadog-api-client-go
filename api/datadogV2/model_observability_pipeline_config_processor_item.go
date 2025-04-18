@@ -10,12 +10,13 @@ import (
 
 // ObservabilityPipelineConfigProcessorItem - A processor for the pipeline.
 type ObservabilityPipelineConfigProcessorItem struct {
-	ObservabilityPipelineFilterProcessor       *ObservabilityPipelineFilterProcessor
-	ObservabilityPipelineParseJSONProcessor    *ObservabilityPipelineParseJSONProcessor
-	ObservabilityPipelineQuotaProcessor        *ObservabilityPipelineQuotaProcessor
-	ObservabilityPipelineAddFieldsProcessor    *ObservabilityPipelineAddFieldsProcessor
-	ObservabilityPipelineRemoveFieldsProcessor *ObservabilityPipelineRemoveFieldsProcessor
-	ObservabilityPipelineRenameFieldsProcessor *ObservabilityPipelineRenameFieldsProcessor
+	ObservabilityPipelineFilterProcessor          *ObservabilityPipelineFilterProcessor
+	ObservabilityPipelineParseJSONProcessor       *ObservabilityPipelineParseJSONProcessor
+	ObservabilityPipelineQuotaProcessor           *ObservabilityPipelineQuotaProcessor
+	ObservabilityPipelineAddFieldsProcessor       *ObservabilityPipelineAddFieldsProcessor
+	ObservabilityPipelineRemoveFieldsProcessor    *ObservabilityPipelineRemoveFieldsProcessor
+	ObservabilityPipelineRenameFieldsProcessor    *ObservabilityPipelineRenameFieldsProcessor
+	ObservabilityPipelineGenerateMetricsProcessor *ObservabilityPipelineGenerateMetricsProcessor
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -49,6 +50,11 @@ func ObservabilityPipelineRemoveFieldsProcessorAsObservabilityPipelineConfigProc
 // ObservabilityPipelineRenameFieldsProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineRenameFieldsProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
 func ObservabilityPipelineRenameFieldsProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineRenameFieldsProcessor) ObservabilityPipelineConfigProcessorItem {
 	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineRenameFieldsProcessor: v}
+}
+
+// ObservabilityPipelineGenerateMetricsProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineGenerateMetricsProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineGenerateMetricsProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineGenerateMetricsProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineGenerateMetricsProcessor: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -157,6 +163,23 @@ func (obj *ObservabilityPipelineConfigProcessorItem) UnmarshalJSON(data []byte) 
 		obj.ObservabilityPipelineRenameFieldsProcessor = nil
 	}
 
+	// try to unmarshal data into ObservabilityPipelineGenerateMetricsProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineGenerateMetricsProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineGenerateMetricsProcessor != nil && obj.ObservabilityPipelineGenerateMetricsProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineGenerateMetricsProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineGenerateMetricsProcessor)
+			if string(jsonObservabilityPipelineGenerateMetricsProcessor) == "{}" { // empty struct
+				obj.ObservabilityPipelineGenerateMetricsProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineGenerateMetricsProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineGenerateMetricsProcessor = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.ObservabilityPipelineFilterProcessor = nil
@@ -165,6 +188,7 @@ func (obj *ObservabilityPipelineConfigProcessorItem) UnmarshalJSON(data []byte) 
 		obj.ObservabilityPipelineAddFieldsProcessor = nil
 		obj.ObservabilityPipelineRemoveFieldsProcessor = nil
 		obj.ObservabilityPipelineRenameFieldsProcessor = nil
+		obj.ObservabilityPipelineGenerateMetricsProcessor = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -194,6 +218,10 @@ func (obj ObservabilityPipelineConfigProcessorItem) MarshalJSON() ([]byte, error
 
 	if obj.ObservabilityPipelineRenameFieldsProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineRenameFieldsProcessor)
+	}
+
+	if obj.ObservabilityPipelineGenerateMetricsProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineGenerateMetricsProcessor)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -226,6 +254,10 @@ func (obj *ObservabilityPipelineConfigProcessorItem) GetActualInstance() interfa
 
 	if obj.ObservabilityPipelineRenameFieldsProcessor != nil {
 		return obj.ObservabilityPipelineRenameFieldsProcessor
+	}
+
+	if obj.ObservabilityPipelineGenerateMetricsProcessor != nil {
+		return obj.ObservabilityPipelineGenerateMetricsProcessor
 	}
 
 	// all schemas are nil
