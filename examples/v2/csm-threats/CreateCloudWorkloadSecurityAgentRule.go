@@ -16,9 +16,10 @@ func main() {
 	body := datadogV2.CloudWorkloadSecurityAgentRuleCreateRequest{
 		Data: datadogV2.CloudWorkloadSecurityAgentRuleCreateData{
 			Attributes: datadogV2.CloudWorkloadSecurityAgentRuleCreateAttributes{
-				Description: datadog.PtrString("Test Agent rule"),
+				Description: datadog.PtrString("My Agent rule"),
 				Enabled:     datadog.PtrBool(true),
 				Expression:  `exec.file.name == "sh"`,
+				Filters:     []string{},
 				Name:        "examplecsmthreat",
 			},
 			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,

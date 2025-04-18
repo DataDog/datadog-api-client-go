@@ -19,12 +19,11 @@ func main() {
 	body := datadogV2.CloudWorkloadSecurityAgentRuleUpdateRequest{
 		Data: datadogV2.CloudWorkloadSecurityAgentRuleUpdateData{
 			Attributes: datadogV2.CloudWorkloadSecurityAgentRuleUpdateAttributes{
-				Description: datadog.PtrString("Test Agent rule"),
-				Enabled:     datadog.PtrBool(true),
+				Description: datadog.PtrString("Updated Agent rule"),
 				Expression:  datadog.PtrString(`exec.file.name == "sh"`),
 			},
-			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
 			Id:   datadog.PtrString(AgentRuleDataID),
+			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

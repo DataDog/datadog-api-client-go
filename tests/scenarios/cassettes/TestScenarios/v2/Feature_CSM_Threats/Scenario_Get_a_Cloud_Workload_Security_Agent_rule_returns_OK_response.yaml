@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testgetacloudworkloadsecurityagentrulereturnsokresponse1713895068"},"type":"agent_rule"}}
+      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testgetacloudworkloadsecurityagentrulereturnsokresponse1744967413"},"type":"agent_rule"}}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,10 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules
   response:
-    body: '{"data":{"id":"ei4-rq6-ept","attributes":{"version":1,"name":"testgetacloudworkloadsecurityagentrulereturnsokresponse1713895068","description":"My
-      Agent rule","expression":"exec.file.name == \"sh\"","category":"Process Activity","creationAuthorUuId":"3ad549bf-eba0-11e9-a77a-0705486660d0","creationDate":1713895068731,"updateAuthorUuId":"3ad549bf-eba0-11e9-a77a-0705486660d0","updateDate":1713895068731,"filters":["os
-      == \"linux\""],"actions":[],"agentConstraint":"","enabled":true,"defaultRule":false,"creator":{"name":null,"handle":"frog@datadoghq.com"},"updater":{"name":null,"handle":"frog@datadoghq.com"}},"type":"agent_rule"}}
+    body: '{"data":{"id":"ajb-znb-t3g","attributes":{"version":1,"name":"testgetacloudworkloadsecurityagentrulereturnsokresponse1744967413","description":"My
+      Agent rule","expression":"exec.file.name == \"sh\"","category":"Process Activity","defaultRule":false,"enabled":true,"creationAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","creationDate":1744967414208,"updateAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","updateDate":1744967414208,"filters":["os
+      == \"linux\""],"actions":[],"agentConstraint":"","creator":{"name":"CI Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"updater":{"name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}},"type":"agent_rule"}}
 
       '
     code: 200
@@ -31,11 +32,12 @@ interactions:
       - application/json
     id: 1
     method: GET
-    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/ei4-rq6-ept
+    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/ajb-znb-t3g
   response:
-    body: '{"data":{"id":"ei4-rq6-ept","attributes":{"version":1,"name":"testgetacloudworkloadsecurityagentrulereturnsokresponse1713895068","description":"My
-      Agent rule","expression":"exec.file.name == \"sh\"","category":"Process Activity","creationAuthorUuId":"3ad549bf-eba0-11e9-a77a-0705486660d0","creationDate":1713895068731,"updateAuthorUuId":"3ad549bf-eba0-11e9-a77a-0705486660d0","updateDate":1713895068731,"filters":["os
-      == \"linux\""],"actions":[],"agentConstraint":"","enabled":true,"defaultRule":false,"creator":{"name":null,"handle":"frog@datadoghq.com"},"updater":{"name":null,"handle":"frog@datadoghq.com"}},"type":"agent_rule"}}
+    body: '{"data":{"id":"ajb-znb-t3g","attributes":{"version":1,"name":"testgetacloudworkloadsecurityagentrulereturnsokresponse1744967413","description":"My
+      Agent rule","expression":"exec.file.name == \"sh\"","category":"Process Activity","defaultRule":false,"enabled":true,"creationAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","creationDate":1744967414208,"updateAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","updateDate":1744967414208,"filters":["os
+      == \"linux\""],"actions":[],"agentConstraint":"","creator":{"name":"CI Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"updater":{"name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}},"type":"agent_rule"}}
 
       '
     code: 200
@@ -52,7 +54,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/ei4-rq6-ept
+    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/ajb-znb-t3g
   response:
     body: ''
     code: 204
