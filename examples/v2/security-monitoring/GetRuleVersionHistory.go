@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetRuleVersionHistory", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
 	resp, r, err := api.GetRuleVersionHistory(ctx, "rule_id", *datadogV2.NewGetRuleVersionHistoryOptionalParameters())
