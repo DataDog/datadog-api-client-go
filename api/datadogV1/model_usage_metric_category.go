@@ -24,7 +24,7 @@ var allowedUsageMetricCategoryEnumValues = []UsageMetricCategory{
 	USAGEMETRICCATEGORY_CUSTOM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *UsageMetricCategory) GetAllowedValues() []UsageMetricCategory {
 	return allowedUsageMetricCategoryEnumValues
 }

@@ -22,7 +22,7 @@ var allowedNotebookStatusEnumValues = []NotebookStatus{
 	NOTEBOOKSTATUS_PUBLISHED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *NotebookStatus) GetAllowedValues() []NotebookStatus {
 	return allowedNotebookStatusEnumValues
 }

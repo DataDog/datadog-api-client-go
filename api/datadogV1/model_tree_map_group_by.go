@@ -26,7 +26,7 @@ var allowedTreeMapGroupByEnumValues = []TreeMapGroupBy{
 	TREEMAPGROUPBY_PROCESS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TreeMapGroupBy) GetAllowedValues() []TreeMapGroupBy {
 	return allowedTreeMapGroupByEnumValues
 }

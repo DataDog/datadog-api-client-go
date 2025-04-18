@@ -22,7 +22,7 @@ var allowedLogsCategoryProcessorTypeEnumValues = []LogsCategoryProcessorType{
 	LOGSCATEGORYPROCESSORTYPE_CATEGORY_PROCESSOR,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsCategoryProcessorType) GetAllowedValues() []LogsCategoryProcessorType {
 	return allowedLogsCategoryProcessorTypeEnumValues
 }

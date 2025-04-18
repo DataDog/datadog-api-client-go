@@ -37,7 +37,7 @@ var allowedWidgetImageSizingEnumValues = []WidgetImageSizing{
 	WIDGETIMAGESIZING_CENTER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetImageSizing) GetAllowedValues() []WidgetImageSizing {
 	return allowedWidgetImageSizingEnumValues
 }

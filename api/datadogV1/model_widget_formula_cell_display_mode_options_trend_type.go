@@ -26,7 +26,7 @@ var allowedWidgetFormulaCellDisplayModeOptionsTrendTypeEnumValues = []WidgetForm
 	WIDGETFORMULACELLDISPLAYMODEOPTIONSTRENDTYPE_BARS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetFormulaCellDisplayModeOptionsTrendType) GetAllowedValues() []WidgetFormulaCellDisplayModeOptionsTrendType {
 	return allowedWidgetFormulaCellDisplayModeOptionsTrendTypeEnumValues
 }

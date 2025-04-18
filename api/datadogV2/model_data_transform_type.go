@@ -22,7 +22,7 @@ var allowedDataTransformTypeEnumValues = []DataTransformType{
 	DATATRANSFORMTYPE_DATATRANSFORM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DataTransformType) GetAllowedValues() []DataTransformType {
 	return allowedDataTransformTypeEnumValues
 }

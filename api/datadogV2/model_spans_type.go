@@ -22,7 +22,7 @@ var allowedSpansTypeEnumValues = []SpansType{
 	SPANSTYPE_SPANS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SpansType) GetAllowedValues() []SpansType {
 	return allowedSpansTypeEnumValues
 }

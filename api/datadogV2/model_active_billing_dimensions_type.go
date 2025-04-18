@@ -22,7 +22,7 @@ var allowedActiveBillingDimensionsTypeEnumValues = []ActiveBillingDimensionsType
 	ACTIVEBILLINGDIMENSIONSTYPE_BILLING_DIMENSIONS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ActiveBillingDimensionsType) GetAllowedValues() []ActiveBillingDimensionsType {
 	return allowedActiveBillingDimensionsTypeEnumValues
 }

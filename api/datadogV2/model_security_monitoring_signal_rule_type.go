@@ -22,7 +22,7 @@ var allowedSecurityMonitoringSignalRuleTypeEnumValues = []SecurityMonitoringSign
 	SECURITYMONITORINGSIGNALRULETYPE_SIGNAL_CORRELATION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringSignalRuleType) GetAllowedValues() []SecurityMonitoringSignalRuleType {
 	return allowedSecurityMonitoringSignalRuleTypeEnumValues
 }

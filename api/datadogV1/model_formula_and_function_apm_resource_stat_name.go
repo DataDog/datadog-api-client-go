@@ -42,7 +42,7 @@ var allowedFormulaAndFunctionApmResourceStatNameEnumValues = []FormulaAndFunctio
 	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_P99,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FormulaAndFunctionApmResourceStatName) GetAllowedValues() []FormulaAndFunctionApmResourceStatName {
 	return allowedFormulaAndFunctionApmResourceStatNameEnumValues
 }

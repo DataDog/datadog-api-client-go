@@ -28,7 +28,7 @@ var allowedSLOTypeNumericEnumValues = []SLOTypeNumeric{
 	SLOTYPENUMERIC_TIME_SLICE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SLOTypeNumeric) GetAllowedValues() []SLOTypeNumeric {
 	return allowedSLOTypeNumericEnumValues
 }

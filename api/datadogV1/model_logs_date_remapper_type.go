@@ -22,7 +22,7 @@ var allowedLogsDateRemapperTypeEnumValues = []LogsDateRemapperType{
 	LOGSDATEREMAPPERTYPE_DATE_REMAPPER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsDateRemapperType) GetAllowedValues() []LogsDateRemapperType {
 	return allowedLogsDateRemapperTypeEnumValues
 }

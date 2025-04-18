@@ -26,7 +26,7 @@ var allowedDashboardReflowTypeEnumValues = []DashboardReflowType{
 	DASHBOARDREFLOWTYPE_FIXED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DashboardReflowType) GetAllowedValues() []DashboardReflowType {
 	return allowedDashboardReflowTypeEnumValues
 }

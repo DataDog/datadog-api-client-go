@@ -26,7 +26,7 @@ var allowedWidgetTextAlignEnumValues = []WidgetTextAlign{
 	WIDGETTEXTALIGN_RIGHT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetTextAlign) GetAllowedValues() []WidgetTextAlign {
 	return allowedWidgetTextAlignEnumValues
 }

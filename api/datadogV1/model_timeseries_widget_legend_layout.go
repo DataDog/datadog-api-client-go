@@ -26,7 +26,7 @@ var allowedTimeseriesWidgetLegendLayoutEnumValues = []TimeseriesWidgetLegendLayo
 	TIMESERIESWIDGETLEGENDLAYOUT_VERTICAL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TimeseriesWidgetLegendLayout) GetAllowedValues() []TimeseriesWidgetLegendLayout {
 	return allowedTimeseriesWidgetLegendLayoutEnumValues
 }

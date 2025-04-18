@@ -22,7 +22,7 @@ var allowedLogsGeoIPParserTypeEnumValues = []LogsGeoIPParserType{
 	LOGSGEOIPPARSERTYPE_GEO_IP_PARSER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsGeoIPParserType) GetAllowedValues() []LogsGeoIPParserType {
 	return allowedLogsGeoIPParserTypeEnumValues
 }

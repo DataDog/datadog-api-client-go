@@ -22,7 +22,7 @@ var allowedSecurityMonitoringSuppressionTypeEnumValues = []SecurityMonitoringSup
 	SECURITYMONITORINGSUPPRESSIONTYPE_SUPPRESSIONS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringSuppressionType) GetAllowedValues() []SecurityMonitoringSuppressionType {
 	return allowedSecurityMonitoringSuppressionTypeEnumValues
 }

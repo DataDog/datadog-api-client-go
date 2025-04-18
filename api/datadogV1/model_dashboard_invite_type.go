@@ -22,7 +22,7 @@ var allowedDashboardInviteTypeEnumValues = []DashboardInviteType{
 	DASHBOARDINVITETYPE_PUBLIC_DASHBOARD_INVITATION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DashboardInviteType) GetAllowedValues() []DashboardInviteType {
 	return allowedDashboardInviteTypeEnumValues
 }

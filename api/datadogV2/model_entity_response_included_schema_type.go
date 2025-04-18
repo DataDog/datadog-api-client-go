@@ -22,7 +22,7 @@ var allowedEntityResponseIncludedSchemaTypeEnumValues = []EntityResponseIncluded
 	ENTITYRESPONSEINCLUDEDSCHEMATYPE_SCHEMA,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EntityResponseIncludedSchemaType) GetAllowedValues() []EntityResponseIncludedSchemaType {
 	return allowedEntityResponseIncludedSchemaTypeEnumValues
 }

@@ -22,7 +22,7 @@ var allowedUserTeamPermissionTypeEnumValues = []UserTeamPermissionType{
 	USERTEAMPERMISSIONTYPE_USER_TEAM_PERMISSIONS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *UserTeamPermissionType) GetAllowedValues() []UserTeamPermissionType {
 	return allowedUserTeamPermissionTypeEnumValues
 }

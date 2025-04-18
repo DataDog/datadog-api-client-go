@@ -22,7 +22,7 @@ var allowedFormulaAndFunctionApmResourceStatsDataSourceEnumValues = []FormulaAnd
 	FORMULAANDFUNCTIONAPMRESOURCESTATSDATASOURCE_APM_RESOURCE_STATS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FormulaAndFunctionApmResourceStatsDataSource) GetAllowedValues() []FormulaAndFunctionApmResourceStatsDataSource {
 	return allowedFormulaAndFunctionApmResourceStatsDataSourceEnumValues
 }

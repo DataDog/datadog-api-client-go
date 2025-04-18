@@ -22,7 +22,7 @@ var allowedSyntheticsWarningTypeEnumValues = []SyntheticsWarningType{
 	SYNTHETICSWARNINGTYPE_USER_LOCATOR,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsWarningType) GetAllowedValues() []SyntheticsWarningType {
 	return allowedSyntheticsWarningTypeEnumValues
 }

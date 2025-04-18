@@ -24,7 +24,7 @@ var allowedNotifyEndTypeEnumValues = []NotifyEndType{
 	NOTIFYENDTYPE_EXPIRED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *NotifyEndType) GetAllowedValues() []NotifyEndType {
 	return allowedNotifyEndTypeEnumValues
 }

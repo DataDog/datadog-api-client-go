@@ -22,7 +22,7 @@ var allowedChangeWidgetDefinitionTypeEnumValues = []ChangeWidgetDefinitionType{
 	CHANGEWIDGETDEFINITIONTYPE_CHANGE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ChangeWidgetDefinitionType) GetAllowedValues() []ChangeWidgetDefinitionType {
 	return allowedChangeWidgetDefinitionTypeEnumValues
 }

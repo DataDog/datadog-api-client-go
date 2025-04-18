@@ -22,7 +22,7 @@ var allowedConnectionEnvEnvEnumValues = []ConnectionEnvEnv{
 	CONNECTIONENVENV_DEFAULT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ConnectionEnvEnv) GetAllowedValues() []ConnectionEnvEnv {
 	return allowedConnectionEnvEnvEnumValues
 }

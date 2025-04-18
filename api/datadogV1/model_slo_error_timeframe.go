@@ -29,7 +29,7 @@ var allowedSLOErrorTimeframeEnumValues = []SLOErrorTimeframe{
 	SLOERRORTIMEFRAME_ALL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SLOErrorTimeframe) GetAllowedValues() []SLOErrorTimeframe {
 	return allowedSLOErrorTimeframeEnumValues
 }

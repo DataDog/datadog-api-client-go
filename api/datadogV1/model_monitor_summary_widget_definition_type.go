@@ -22,7 +22,7 @@ var allowedMonitorSummaryWidgetDefinitionTypeEnumValues = []MonitorSummaryWidget
 	MONITORSUMMARYWIDGETDEFINITIONTYPE_MANAGE_STATUS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MonitorSummaryWidgetDefinitionType) GetAllowedValues() []MonitorSummaryWidgetDefinitionType {
 	return allowedMonitorSummaryWidgetDefinitionTypeEnumValues
 }

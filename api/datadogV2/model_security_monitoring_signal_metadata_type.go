@@ -22,7 +22,7 @@ var allowedSecurityMonitoringSignalMetadataTypeEnumValues = []SecurityMonitoring
 	SECURITYMONITORINGSIGNALMETADATATYPE_SIGNAL_METADATA,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringSignalMetadataType) GetAllowedValues() []SecurityMonitoringSignalMetadataType {
 	return allowedSecurityMonitoringSignalMetadataTypeEnumValues
 }

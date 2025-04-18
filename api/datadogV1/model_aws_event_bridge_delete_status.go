@@ -22,7 +22,7 @@ var allowedAWSEventBridgeDeleteStatusEnumValues = []AWSEventBridgeDeleteStatus{
 	AWSEVENTBRIDGEDELETESTATUS_EMPTY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AWSEventBridgeDeleteStatus) GetAllowedValues() []AWSEventBridgeDeleteStatus {
 	return allowedAWSEventBridgeDeleteStatusEnumValues
 }

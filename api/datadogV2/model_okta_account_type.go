@@ -22,7 +22,7 @@ var allowedOktaAccountTypeEnumValues = []OktaAccountType{
 	OKTAACCOUNTTYPE_OKTA_ACCOUNTS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *OktaAccountType) GetAllowedValues() []OktaAccountType {
 	return allowedOktaAccountTypeEnumValues
 }

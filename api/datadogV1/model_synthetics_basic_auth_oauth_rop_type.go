@@ -22,7 +22,7 @@ var allowedSyntheticsBasicAuthOauthROPTypeEnumValues = []SyntheticsBasicAuthOaut
 	SYNTHETICSBASICAUTHOAUTHROPTYPE_OAUTH_ROP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsBasicAuthOauthROPType) GetAllowedValues() []SyntheticsBasicAuthOauthROPType {
 	return allowedSyntheticsBasicAuthOauthROPTypeEnumValues
 }

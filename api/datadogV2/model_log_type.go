@@ -22,7 +22,7 @@ var allowedLogTypeEnumValues = []LogType{
 	LOGTYPE_LOG,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogType) GetAllowedValues() []LogType {
 	return allowedLogTypeEnumValues
 }

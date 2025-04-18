@@ -42,7 +42,7 @@ var allowedEventsAggregationEnumValues = []EventsAggregation{
 	EVENTSAGGREGATION_AVG,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EventsAggregation) GetAllowedValues() []EventsAggregation {
 	return allowedEventsAggregationEnumValues
 }

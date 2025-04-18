@@ -28,7 +28,7 @@ var allowedWidgetTickEdgeEnumValues = []WidgetTickEdge{
 	WIDGETTICKEDGE_TOP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetTickEdge) GetAllowedValues() []WidgetTickEdge {
 	return allowedWidgetTickEdgeEnumValues
 }

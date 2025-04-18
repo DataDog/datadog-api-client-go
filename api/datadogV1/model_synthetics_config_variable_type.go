@@ -26,7 +26,7 @@ var allowedSyntheticsConfigVariableTypeEnumValues = []SyntheticsConfigVariableTy
 	SYNTHETICSCONFIGVARIABLETYPE_EMAIL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsConfigVariableType) GetAllowedValues() []SyntheticsConfigVariableType {
 	return allowedSyntheticsConfigVariableTypeEnumValues
 }

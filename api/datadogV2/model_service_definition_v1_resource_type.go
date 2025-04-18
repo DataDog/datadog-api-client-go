@@ -38,7 +38,7 @@ var allowedServiceDefinitionV1ResourceTypeEnumValues = []ServiceDefinitionV1Reso
 	SERVICEDEFINITIONV1RESOURCETYPE_LINK,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ServiceDefinitionV1ResourceType) GetAllowedValues() []ServiceDefinitionV1ResourceType {
 	return allowedServiceDefinitionV1ResourceTypeEnumValues
 }

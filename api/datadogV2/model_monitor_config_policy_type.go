@@ -22,7 +22,7 @@ var allowedMonitorConfigPolicyTypeEnumValues = []MonitorConfigPolicyType{
 	MONITORCONFIGPOLICYTYPE_TAG,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MonitorConfigPolicyType) GetAllowedValues() []MonitorConfigPolicyType {
 	return allowedMonitorConfigPolicyTypeEnumValues
 }

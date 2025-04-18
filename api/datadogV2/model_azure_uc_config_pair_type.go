@@ -22,7 +22,7 @@ var allowedAzureUCConfigPairTypeEnumValues = []AzureUCConfigPairType{
 	AZUREUCCONFIGPAIRTYPE_AZURE_UC_CONFIGS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AzureUCConfigPairType) GetAllowedValues() []AzureUCConfigPairType {
 	return allowedAzureUCConfigPairTypeEnumValues
 }

@@ -36,7 +36,7 @@ var allowedAppsSortFieldEnumValues = []AppsSortField{
 	APPSSORTFIELD_USER_NAME_DESC,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AppsSortField) GetAllowedValues() []AppsSortField {
 	return allowedAppsSortFieldEnumValues
 }

@@ -22,7 +22,7 @@ var allowedIPAllowlistTypeEnumValues = []IPAllowlistType{
 	IPALLOWLISTTYPE_IP_ALLOWLIST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IPAllowlistType) GetAllowedValues() []IPAllowlistType {
 	return allowedIPAllowlistTypeEnumValues
 }

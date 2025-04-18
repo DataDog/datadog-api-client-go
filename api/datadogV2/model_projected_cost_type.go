@@ -22,7 +22,7 @@ var allowedProjectedCostTypeEnumValues = []ProjectedCostType{
 	PROJECTEDCOSTTYPE_PROJECt_COST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ProjectedCostType) GetAllowedValues() []ProjectedCostType {
 	return allowedProjectedCostTypeEnumValues
 }

@@ -38,7 +38,7 @@ var allowedMetricsAggregatorEnumValues = []MetricsAggregator{
 	METRICSAGGREGATOR_AREA,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricsAggregator) GetAllowedValues() []MetricsAggregator {
 	return allowedMetricsAggregatorEnumValues
 }

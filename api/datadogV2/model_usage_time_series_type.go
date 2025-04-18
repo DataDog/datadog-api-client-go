@@ -22,7 +22,7 @@ var allowedUsageTimeSeriesTypeEnumValues = []UsageTimeSeriesType{
 	USAGETIMESERIESTYPE_USAGE_TIMESERIES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *UsageTimeSeriesType) GetAllowedValues() []UsageTimeSeriesType {
 	return allowedUsageTimeSeriesTypeEnumValues
 }

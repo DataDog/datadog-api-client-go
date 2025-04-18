@@ -22,7 +22,7 @@ var allowedEntityV3APIKindEnumValues = []EntityV3APIKind{
 	ENTITYV3APIKIND_API,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EntityV3APIKind) GetAllowedValues() []EntityV3APIKind {
 	return allowedEntityV3APIKindEnumValues
 }
