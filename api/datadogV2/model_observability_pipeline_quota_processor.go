@@ -24,7 +24,7 @@ type ObservabilityPipelineQuotaProcessor struct {
 	Inputs []string `json:"inputs"`
 	// The maximum amount of data or number of events allowed before the quota is enforced. Can be specified in bytes or events.
 	Limit ObservabilityPipelineQuotaProcessorLimit `json:"limit"`
-	// Name for identifying the processor.
+	// Name of the quota.
 	Name string `json:"name"`
 	// A list of alternate quota rules that apply to specific sets of events, identified by matching field values. Each override can define a custom limit.
 	Overrides []ObservabilityPipelineQuotaProcessorOverride `json:"overrides,omitempty"`

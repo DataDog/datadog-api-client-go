@@ -10,42 +10,42 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineDatadogAgentSource The `datadog_agent` source collects logs from the Datadog Agent.
-type ObservabilityPipelineDatadogAgentSource struct {
-	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (e.g., as input to downstream components).
+// ObservabilityPipelineFluentSource The `fluent` source ingests logs from a Fluentd-compatible service.
+type ObservabilityPipelineFluentSource struct {
+	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// Configuration for enabling TLS encryption between the pipeline component and external services.
 	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
-	// The source type. The value should always be `datadog_agent`.
-	Type ObservabilityPipelineDatadogAgentSourceType `json:"type"`
+	// The source type. The value should always be `fluent`.
+	Type ObservabilityPipelineFluentSourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewObservabilityPipelineDatadogAgentSource instantiates a new ObservabilityPipelineDatadogAgentSource object.
+// NewObservabilityPipelineFluentSource instantiates a new ObservabilityPipelineFluentSource object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineDatadogAgentSource(id string, typeVar ObservabilityPipelineDatadogAgentSourceType) *ObservabilityPipelineDatadogAgentSource {
-	this := ObservabilityPipelineDatadogAgentSource{}
+func NewObservabilityPipelineFluentSource(id string, typeVar ObservabilityPipelineFluentSourceType) *ObservabilityPipelineFluentSource {
+	this := ObservabilityPipelineFluentSource{}
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewObservabilityPipelineDatadogAgentSourceWithDefaults instantiates a new ObservabilityPipelineDatadogAgentSource object.
+// NewObservabilityPipelineFluentSourceWithDefaults instantiates a new ObservabilityPipelineFluentSource object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewObservabilityPipelineDatadogAgentSourceWithDefaults() *ObservabilityPipelineDatadogAgentSource {
-	this := ObservabilityPipelineDatadogAgentSource{}
-	var typeVar ObservabilityPipelineDatadogAgentSourceType = OBSERVABILITYPIPELINEDATADOGAGENTSOURCETYPE_DATADOG_AGENT
+func NewObservabilityPipelineFluentSourceWithDefaults() *ObservabilityPipelineFluentSource {
+	this := ObservabilityPipelineFluentSource{}
+	var typeVar ObservabilityPipelineFluentSourceType = OBSERVABILITYPIPELINEFLUENTSOURCETYPE_FLUENT
 	this.Type = typeVar
 	return &this
 }
 
 // GetId returns the Id field value.
-func (o *ObservabilityPipelineDatadogAgentSource) GetId() string {
+func (o *ObservabilityPipelineFluentSource) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -55,7 +55,7 @@ func (o *ObservabilityPipelineDatadogAgentSource) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineDatadogAgentSource) GetIdOk() (*string, bool) {
+func (o *ObservabilityPipelineFluentSource) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -63,12 +63,12 @@ func (o *ObservabilityPipelineDatadogAgentSource) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *ObservabilityPipelineDatadogAgentSource) SetId(v string) {
+func (o *ObservabilityPipelineFluentSource) SetId(v string) {
 	o.Id = v
 }
 
 // GetTls returns the Tls field value if set, zero value otherwise.
-func (o *ObservabilityPipelineDatadogAgentSource) GetTls() ObservabilityPipelineTls {
+func (o *ObservabilityPipelineFluentSource) GetTls() ObservabilityPipelineTls {
 	if o == nil || o.Tls == nil {
 		var ret ObservabilityPipelineTls
 		return ret
@@ -78,7 +78,7 @@ func (o *ObservabilityPipelineDatadogAgentSource) GetTls() ObservabilityPipeline
 
 // GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineDatadogAgentSource) GetTlsOk() (*ObservabilityPipelineTls, bool) {
+func (o *ObservabilityPipelineFluentSource) GetTlsOk() (*ObservabilityPipelineTls, bool) {
 	if o == nil || o.Tls == nil {
 		return nil, false
 	}
@@ -86,19 +86,19 @@ func (o *ObservabilityPipelineDatadogAgentSource) GetTlsOk() (*ObservabilityPipe
 }
 
 // HasTls returns a boolean if a field has been set.
-func (o *ObservabilityPipelineDatadogAgentSource) HasTls() bool {
+func (o *ObservabilityPipelineFluentSource) HasTls() bool {
 	return o != nil && o.Tls != nil
 }
 
 // SetTls gets a reference to the given ObservabilityPipelineTls and assigns it to the Tls field.
-func (o *ObservabilityPipelineDatadogAgentSource) SetTls(v ObservabilityPipelineTls) {
+func (o *ObservabilityPipelineFluentSource) SetTls(v ObservabilityPipelineTls) {
 	o.Tls = &v
 }
 
 // GetType returns the Type field value.
-func (o *ObservabilityPipelineDatadogAgentSource) GetType() ObservabilityPipelineDatadogAgentSourceType {
+func (o *ObservabilityPipelineFluentSource) GetType() ObservabilityPipelineFluentSourceType {
 	if o == nil {
-		var ret ObservabilityPipelineDatadogAgentSourceType
+		var ret ObservabilityPipelineFluentSourceType
 		return ret
 	}
 	return o.Type
@@ -106,7 +106,7 @@ func (o *ObservabilityPipelineDatadogAgentSource) GetType() ObservabilityPipelin
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineDatadogAgentSource) GetTypeOk() (*ObservabilityPipelineDatadogAgentSourceType, bool) {
+func (o *ObservabilityPipelineFluentSource) GetTypeOk() (*ObservabilityPipelineFluentSourceType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -114,12 +114,12 @@ func (o *ObservabilityPipelineDatadogAgentSource) GetTypeOk() (*ObservabilityPip
 }
 
 // SetType sets field value.
-func (o *ObservabilityPipelineDatadogAgentSource) SetType(v ObservabilityPipelineDatadogAgentSourceType) {
+func (o *ObservabilityPipelineFluentSource) SetType(v ObservabilityPipelineFluentSourceType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ObservabilityPipelineDatadogAgentSource) MarshalJSON() ([]byte, error) {
+func (o ObservabilityPipelineFluentSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -137,11 +137,11 @@ func (o ObservabilityPipelineDatadogAgentSource) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ObservabilityPipelineDatadogAgentSource) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ObservabilityPipelineFluentSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                                      `json:"id"`
-		Tls  *ObservabilityPipelineTls                    `json:"tls,omitempty"`
-		Type *ObservabilityPipelineDatadogAgentSourceType `json:"type"`
+		Id   *string                                `json:"id"`
+		Tls  *ObservabilityPipelineTls              `json:"tls,omitempty"`
+		Type *ObservabilityPipelineFluentSourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

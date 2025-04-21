@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineTls Configuration for enabling TLS encryption.
+// ObservabilityPipelineTls Configuration for enabling TLS encryption between the pipeline component and external services.
 type ObservabilityPipelineTls struct {
 	// Path to the Certificate Authority (CA) file used to validate the server’s TLS certificate.
 	CaFile *string `json:"ca_file,omitempty"`
