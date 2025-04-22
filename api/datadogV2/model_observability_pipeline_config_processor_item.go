@@ -10,12 +10,13 @@ import (
 
 // ObservabilityPipelineConfigProcessorItem - A processor for the pipeline.
 type ObservabilityPipelineConfigProcessorItem struct {
-	ObservabilityPipelineFilterProcessor       *ObservabilityPipelineFilterProcessor
-	ObservabilityPipelineParseJSONProcessor    *ObservabilityPipelineParseJSONProcessor
-	ObservabilityPipelineQuotaProcessor        *ObservabilityPipelineQuotaProcessor
-	ObservabilityPipelineAddFieldsProcessor    *ObservabilityPipelineAddFieldsProcessor
-	ObservabilityPipelineRemoveFieldsProcessor *ObservabilityPipelineRemoveFieldsProcessor
-	ObservabilityPipelineRenameFieldsProcessor *ObservabilityPipelineRenameFieldsProcessor
+	ObservabilityPipelineFilterProcessor               *ObservabilityPipelineFilterProcessor
+	ObservabilityPipelineParseJSONProcessor            *ObservabilityPipelineParseJSONProcessor
+	ObservabilityPipelineQuotaProcessor                *ObservabilityPipelineQuotaProcessor
+	ObservabilityPipelineAddFieldsProcessor            *ObservabilityPipelineAddFieldsProcessor
+	ObservabilityPipelineRemoveFieldsProcessor         *ObservabilityPipelineRemoveFieldsProcessor
+	ObservabilityPipelineRenameFieldsProcessor         *ObservabilityPipelineRenameFieldsProcessor
+	ObservabilityPipelineSensitiveDataScannerProcessor *ObservabilityPipelineSensitiveDataScannerProcessor
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -49,6 +50,11 @@ func ObservabilityPipelineRemoveFieldsProcessorAsObservabilityPipelineConfigProc
 // ObservabilityPipelineRenameFieldsProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineRenameFieldsProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
 func ObservabilityPipelineRenameFieldsProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineRenameFieldsProcessor) ObservabilityPipelineConfigProcessorItem {
 	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineRenameFieldsProcessor: v}
+}
+
+// ObservabilityPipelineSensitiveDataScannerProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineSensitiveDataScannerProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineSensitiveDataScannerProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineSensitiveDataScannerProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineSensitiveDataScannerProcessor: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -157,6 +163,23 @@ func (obj *ObservabilityPipelineConfigProcessorItem) UnmarshalJSON(data []byte) 
 		obj.ObservabilityPipelineRenameFieldsProcessor = nil
 	}
 
+	// try to unmarshal data into ObservabilityPipelineSensitiveDataScannerProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineSensitiveDataScannerProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineSensitiveDataScannerProcessor != nil && obj.ObservabilityPipelineSensitiveDataScannerProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineSensitiveDataScannerProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineSensitiveDataScannerProcessor)
+			if string(jsonObservabilityPipelineSensitiveDataScannerProcessor) == "{}" { // empty struct
+				obj.ObservabilityPipelineSensitiveDataScannerProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineSensitiveDataScannerProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineSensitiveDataScannerProcessor = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.ObservabilityPipelineFilterProcessor = nil
@@ -165,6 +188,7 @@ func (obj *ObservabilityPipelineConfigProcessorItem) UnmarshalJSON(data []byte) 
 		obj.ObservabilityPipelineAddFieldsProcessor = nil
 		obj.ObservabilityPipelineRemoveFieldsProcessor = nil
 		obj.ObservabilityPipelineRenameFieldsProcessor = nil
+		obj.ObservabilityPipelineSensitiveDataScannerProcessor = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -194,6 +218,10 @@ func (obj ObservabilityPipelineConfigProcessorItem) MarshalJSON() ([]byte, error
 
 	if obj.ObservabilityPipelineRenameFieldsProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineRenameFieldsProcessor)
+	}
+
+	if obj.ObservabilityPipelineSensitiveDataScannerProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineSensitiveDataScannerProcessor)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -226,6 +254,10 @@ func (obj *ObservabilityPipelineConfigProcessorItem) GetActualInstance() interfa
 
 	if obj.ObservabilityPipelineRenameFieldsProcessor != nil {
 		return obj.ObservabilityPipelineRenameFieldsProcessor
+	}
+
+	if obj.ObservabilityPipelineSensitiveDataScannerProcessor != nil {
+		return obj.ObservabilityPipelineSensitiveDataScannerProcessor
 	}
 
 	// all schemas are nil
