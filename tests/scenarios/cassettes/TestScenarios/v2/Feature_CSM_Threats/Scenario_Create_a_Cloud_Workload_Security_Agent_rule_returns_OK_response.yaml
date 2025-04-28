@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"Test Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testcreateacloudworkloadsecurityagentrulereturnsokresponse1713895065"},"type":"agent_rule"}}
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testcreateacloudworkloadsecurityagentrulereturnsokresponse1743517849"},"type":"policy"}}
     form: {}
     headers:
       Accept:
@@ -10,11 +10,34 @@ interactions:
       - application/json
     id: 0
     method: POST
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy
+  response:
+    body: '{"data":{"id":"4o4-2ha-t4b","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testcreateacloudworkloadsecurityagentrulereturnsokresponse1743517849","policyVersion":"1","priority":1000000001,"ruleCount":226,"updateDate":1743517849954,"updater":{"name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","filters":[],"name":"testcreateacloudworkloadsecurityagentrulereturnsokresponse1743517849"},"type":"agent_rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules
   response:
-    body: '{"data":{"id":"igj-qzb-9eq","attributes":{"version":1,"name":"testcreateacloudworkloadsecurityagentrulereturnsokresponse1713895065","description":"Test
-      Agent rule","expression":"exec.file.name == \"sh\"","category":"Process Activity","creationAuthorUuId":"3ad549bf-eba0-11e9-a77a-0705486660d0","creationDate":1713895065356,"updateAuthorUuId":"3ad549bf-eba0-11e9-a77a-0705486660d0","updateDate":1713895065356,"filters":["os
-      == \"linux\""],"actions":[],"agentConstraint":"","enabled":true,"defaultRule":false,"creator":{"name":null,"handle":"frog@datadoghq.com"},"updater":{"name":null,"handle":"frog@datadoghq.com"}},"type":"agent_rule"}}
+    body: '{"data":{"id":"amk-lsa-s1q","attributes":{"version":1,"name":"testcreateacloudworkloadsecurityagentrulereturnsokresponse1743517849","description":"My
+      Agent rule","expression":"exec.file.name == \"sh\"","category":"Process Activity","defaultRule":false,"enabled":true,"creationAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","creationDate":1743517850483,"updateAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","updateDate":1743517850483,"filters":[],"actions":[],"agentConstraint":"","creator":{"name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"updater":{"name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}},"type":"agent_rule"}}
 
       '
     code: 200
@@ -29,13 +52,30 @@ interactions:
     headers:
       Accept:
       - '*/*'
-    id: 1
+    id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/igj-qzb-9eq
+    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/amk-lsa-s1q
   response:
     body: ''
     code: 204
     duration: 0ms
     headers: {}
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 3
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/4o4-2ha-t4b
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
     status: 204 No Content
 version: 2
