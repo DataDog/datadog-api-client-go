@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"handle":"create-framework-new","icon_url":"test-url","name":"name","requirements":[{"controls":[{"name":"control","rules_id":["def-000-be9"]}],"name":"requirement"}],"version":"10"},"type":"custom_framework"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/cloud_security_management/custom_frameworks
+  response:
+    body: '{"data":{"id":"create-framework-new-10","type":"custom_framework","attributes":{"handle":"create-framework-new","version":"10"}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"handle":"create-framework-new","icon_url":"test-url","name":"name","requirements":[{"controls":[{"name":"control","rules_id":["def-000-be9"]}],"name":"requirement"}],"version":"10"},"type":"custom_framework"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
+    url: https://api.datadoghq.com/api/v2/cloud_security_management/custom_frameworks
+  response:
+    body: '{"errors":[{"status":"409","title":"Status Conflict","detail":"already_exists(Framework
+      ''create-framework-new'' already existed)"}]}'
+    code: 409
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 409 Conflict
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/cloud_security_management/custom_frameworks/create-framework-new/10
+  response:
+    body: '{"data":{"id":"create-framework-new-10","type":"custom_framework","attributes":{"created_at":1744297581542,"created_by":"frog@datadoghq.com","description":"","handle":"create-framework-new","icon_url":"test-url","modified_at":1745349916258,"name":"name","org_id":321813,"version":"10"}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2
