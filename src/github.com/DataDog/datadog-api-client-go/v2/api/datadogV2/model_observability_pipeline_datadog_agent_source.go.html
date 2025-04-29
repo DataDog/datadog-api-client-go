@@ -71,7 +71,7 @@
 <span id="L14" class="ln">    14  </span>type ObservabilityPipelineDatadogAgentSource struct {
 <span id="L15" class="ln">    15  </span>	<span class="comment">// The unique identifier for this component. Used to reference this component in other parts of the pipeline (e.g., as input to downstream components).</span>
 <span id="L16" class="ln">    16  </span>	Id string `json:&#34;id&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// Configuration for enabling TLS encryption.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Configuration for enabling TLS encryption between the pipeline component and external services.</span>
 <span id="L18" class="ln">    18  </span>	Tls *ObservabilityPipelineTls `json:&#34;tls,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// The source type. The value should always be `datadog_agent`.</span>
 <span id="L20" class="ln">    20  </span>	Type ObservabilityPipelineDatadogAgentSourceType `json:&#34;type&#34;`

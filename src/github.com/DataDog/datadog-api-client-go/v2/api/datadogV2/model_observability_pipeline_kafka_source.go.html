@@ -77,7 +77,7 @@
 <span id="L20" class="ln">    20  </span>	LibrdkafkaOptions []ObservabilityPipelineKafkaSourceLibrdkafkaOption `json:&#34;librdkafka_options,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// Specifies the SASL mechanism for authenticating with a Kafka cluster.</span>
 <span id="L22" class="ln">    22  </span>	Sasl *ObservabilityPipelineKafkaSourceSasl `json:&#34;sasl,omitempty&#34;`
-<span id="L23" class="ln">    23  </span>	<span class="comment">// Configuration for enabling TLS encryption.</span>
+<span id="L23" class="ln">    23  </span>	<span class="comment">// Configuration for enabling TLS encryption between the pipeline component and external services.</span>
 <span id="L24" class="ln">    24  </span>	Tls *ObservabilityPipelineTls `json:&#34;tls,omitempty&#34;`
 <span id="L25" class="ln">    25  </span>	<span class="comment">// A list of Kafka topic names to subscribe to. The source ingests messages from each topic specified.</span>
 <span id="L26" class="ln">    26  </span>	Topics []string `json:&#34;topics&#34;`
