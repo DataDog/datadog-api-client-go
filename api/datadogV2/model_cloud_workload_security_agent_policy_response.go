@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CloudWorkloadSecurityAgentRuleResponse Response object that includes an Agent rule
-type CloudWorkloadSecurityAgentRuleResponse struct {
-	// Object for a single Agent rule
-	Data *CloudWorkloadSecurityAgentRuleData `json:"data,omitempty"`
+// CloudWorkloadSecurityAgentPolicyResponse Response object that includes an Agent policy
+type CloudWorkloadSecurityAgentPolicyResponse struct {
+	// Object for a single Agent policy
+	Data *CloudWorkloadSecurityAgentPolicyData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewCloudWorkloadSecurityAgentRuleResponse instantiates a new CloudWorkloadSecurityAgentRuleResponse object.
+// NewCloudWorkloadSecurityAgentPolicyResponse instantiates a new CloudWorkloadSecurityAgentPolicyResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCloudWorkloadSecurityAgentRuleResponse() *CloudWorkloadSecurityAgentRuleResponse {
-	this := CloudWorkloadSecurityAgentRuleResponse{}
+func NewCloudWorkloadSecurityAgentPolicyResponse() *CloudWorkloadSecurityAgentPolicyResponse {
+	this := CloudWorkloadSecurityAgentPolicyResponse{}
 	return &this
 }
 
-// NewCloudWorkloadSecurityAgentRuleResponseWithDefaults instantiates a new CloudWorkloadSecurityAgentRuleResponse object.
+// NewCloudWorkloadSecurityAgentPolicyResponseWithDefaults instantiates a new CloudWorkloadSecurityAgentPolicyResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewCloudWorkloadSecurityAgentRuleResponseWithDefaults() *CloudWorkloadSecurityAgentRuleResponse {
-	this := CloudWorkloadSecurityAgentRuleResponse{}
+func NewCloudWorkloadSecurityAgentPolicyResponseWithDefaults() *CloudWorkloadSecurityAgentPolicyResponse {
+	this := CloudWorkloadSecurityAgentPolicyResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *CloudWorkloadSecurityAgentRuleResponse) GetData() CloudWorkloadSecurityAgentRuleData {
+func (o *CloudWorkloadSecurityAgentPolicyResponse) GetData() CloudWorkloadSecurityAgentPolicyData {
 	if o == nil || o.Data == nil {
-		var ret CloudWorkloadSecurityAgentRuleData
+		var ret CloudWorkloadSecurityAgentPolicyData
 		return ret
 	}
 	return *o.Data
@@ -45,7 +45,7 @@ func (o *CloudWorkloadSecurityAgentRuleResponse) GetData() CloudWorkloadSecurity
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CloudWorkloadSecurityAgentRuleResponse) GetDataOk() (*CloudWorkloadSecurityAgentRuleData, bool) {
+func (o *CloudWorkloadSecurityAgentPolicyResponse) GetDataOk() (*CloudWorkloadSecurityAgentPolicyData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *CloudWorkloadSecurityAgentRuleResponse) GetDataOk() (*CloudWorkloadSecu
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *CloudWorkloadSecurityAgentRuleResponse) HasData() bool {
+func (o *CloudWorkloadSecurityAgentPolicyResponse) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
-// SetData gets a reference to the given CloudWorkloadSecurityAgentRuleData and assigns it to the Data field.
-func (o *CloudWorkloadSecurityAgentRuleResponse) SetData(v CloudWorkloadSecurityAgentRuleData) {
+// SetData gets a reference to the given CloudWorkloadSecurityAgentPolicyData and assigns it to the Data field.
+func (o *CloudWorkloadSecurityAgentPolicyResponse) SetData(v CloudWorkloadSecurityAgentPolicyData) {
 	o.Data = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o CloudWorkloadSecurityAgentRuleResponse) MarshalJSON() ([]byte, error) {
+func (o CloudWorkloadSecurityAgentPolicyResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,9 +79,9 @@ func (o CloudWorkloadSecurityAgentRuleResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *CloudWorkloadSecurityAgentRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *CloudWorkloadSecurityAgentPolicyResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *CloudWorkloadSecurityAgentRuleData `json:"data,omitempty"`
+		Data *CloudWorkloadSecurityAgentPolicyData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

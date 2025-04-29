@@ -1,4 +1,4 @@
-// Get all CSM Threats Agent rules returns "OK" response
+// Get all CSM Threats Agent policies returns "OK" response
 
 package main
 
@@ -17,13 +17,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCSMThreatsApi(apiClient)
-	resp, r, err := api.ListCSMThreatsAgentRules(ctx, *datadogV2.NewListCSMThreatsAgentRulesOptionalParameters())
+	resp, r, err := api.ListCSMThreatsAgentPolicies(ctx)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.ListCSMThreatsAgentRules`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.ListCSMThreatsAgentPolicies`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `CSMThreatsApi.ListCSMThreatsAgentRules`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `CSMThreatsApi.ListCSMThreatsAgentPolicies`:\n%s\n", responseContent)
 }

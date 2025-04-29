@@ -1,10 +1,9 @@
-// Get all CSM Threats Agent rules returns "OK" response
+// Delete a CSM Threats Agent policy returns "OK" response
 
 package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,17 +12,17 @@ import (
 )
 
 func main() {
+	// there is a valid "policy_rc" in the system
+	PolicyDataID := os.Getenv("POLICY_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCSMThreatsApi(apiClient)
-	resp, r, err := api.ListCSMThreatsAgentRules(ctx, *datadogV2.NewListCSMThreatsAgentRulesOptionalParameters())
+	r, err := api.DeleteCSMThreatsAgentPolicy(ctx, PolicyDataID)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.ListCSMThreatsAgentRules`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.DeleteCSMThreatsAgentPolicy`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-
-	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `CSMThreatsApi.ListCSMThreatsAgentRules`:\n%s\n", responseContent)
 }

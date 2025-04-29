@@ -10,42 +10,42 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CloudWorkloadSecurityAgentRuleCreateData Object for a single Agent rule
-type CloudWorkloadSecurityAgentRuleCreateData struct {
-	// Create a new Cloud Workload Security Agent rule.
-	Attributes CloudWorkloadSecurityAgentRuleCreateAttributes `json:"attributes"`
-	// The type of the resource, must always be `agent_rule`
-	Type CloudWorkloadSecurityAgentRuleType `json:"type"`
+// CloudWorkloadSecurityAgentPolicyCreateData Object for a single Agent rule
+type CloudWorkloadSecurityAgentPolicyCreateData struct {
+	// Create a new Cloud Workload Security Agent policy
+	Attributes CloudWorkloadSecurityAgentPolicyCreateAttributes `json:"attributes"`
+	// The type of the resource, must always be `policy`
+	Type CloudWorkloadSecurityAgentPolicyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewCloudWorkloadSecurityAgentRuleCreateData instantiates a new CloudWorkloadSecurityAgentRuleCreateData object.
+// NewCloudWorkloadSecurityAgentPolicyCreateData instantiates a new CloudWorkloadSecurityAgentPolicyCreateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCloudWorkloadSecurityAgentRuleCreateData(attributes CloudWorkloadSecurityAgentRuleCreateAttributes, typeVar CloudWorkloadSecurityAgentRuleType) *CloudWorkloadSecurityAgentRuleCreateData {
-	this := CloudWorkloadSecurityAgentRuleCreateData{}
+func NewCloudWorkloadSecurityAgentPolicyCreateData(attributes CloudWorkloadSecurityAgentPolicyCreateAttributes, typeVar CloudWorkloadSecurityAgentPolicyType) *CloudWorkloadSecurityAgentPolicyCreateData {
+	this := CloudWorkloadSecurityAgentPolicyCreateData{}
 	this.Attributes = attributes
 	this.Type = typeVar
 	return &this
 }
 
-// NewCloudWorkloadSecurityAgentRuleCreateDataWithDefaults instantiates a new CloudWorkloadSecurityAgentRuleCreateData object.
+// NewCloudWorkloadSecurityAgentPolicyCreateDataWithDefaults instantiates a new CloudWorkloadSecurityAgentPolicyCreateData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewCloudWorkloadSecurityAgentRuleCreateDataWithDefaults() *CloudWorkloadSecurityAgentRuleCreateData {
-	this := CloudWorkloadSecurityAgentRuleCreateData{}
-	var typeVar CloudWorkloadSecurityAgentRuleType = CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE
+func NewCloudWorkloadSecurityAgentPolicyCreateDataWithDefaults() *CloudWorkloadSecurityAgentPolicyCreateData {
+	this := CloudWorkloadSecurityAgentPolicyCreateData{}
+	var typeVar CloudWorkloadSecurityAgentPolicyType = CLOUDWORKLOADSECURITYAGENTPOLICYTYPE_POLICY
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *CloudWorkloadSecurityAgentRuleCreateData) GetAttributes() CloudWorkloadSecurityAgentRuleCreateAttributes {
+func (o *CloudWorkloadSecurityAgentPolicyCreateData) GetAttributes() CloudWorkloadSecurityAgentPolicyCreateAttributes {
 	if o == nil {
-		var ret CloudWorkloadSecurityAgentRuleCreateAttributes
+		var ret CloudWorkloadSecurityAgentPolicyCreateAttributes
 		return ret
 	}
 	return o.Attributes
@@ -53,7 +53,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateData) GetAttributes() CloudWorkload
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *CloudWorkloadSecurityAgentRuleCreateData) GetAttributesOk() (*CloudWorkloadSecurityAgentRuleCreateAttributes, bool) {
+func (o *CloudWorkloadSecurityAgentPolicyCreateData) GetAttributesOk() (*CloudWorkloadSecurityAgentPolicyCreateAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,14 +61,14 @@ func (o *CloudWorkloadSecurityAgentRuleCreateData) GetAttributesOk() (*CloudWork
 }
 
 // SetAttributes sets field value.
-func (o *CloudWorkloadSecurityAgentRuleCreateData) SetAttributes(v CloudWorkloadSecurityAgentRuleCreateAttributes) {
+func (o *CloudWorkloadSecurityAgentPolicyCreateData) SetAttributes(v CloudWorkloadSecurityAgentPolicyCreateAttributes) {
 	o.Attributes = v
 }
 
 // GetType returns the Type field value.
-func (o *CloudWorkloadSecurityAgentRuleCreateData) GetType() CloudWorkloadSecurityAgentRuleType {
+func (o *CloudWorkloadSecurityAgentPolicyCreateData) GetType() CloudWorkloadSecurityAgentPolicyType {
 	if o == nil {
-		var ret CloudWorkloadSecurityAgentRuleType
+		var ret CloudWorkloadSecurityAgentPolicyType
 		return ret
 	}
 	return o.Type
@@ -76,7 +76,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateData) GetType() CloudWorkloadSecuri
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *CloudWorkloadSecurityAgentRuleCreateData) GetTypeOk() (*CloudWorkloadSecurityAgentRuleType, bool) {
+func (o *CloudWorkloadSecurityAgentPolicyCreateData) GetTypeOk() (*CloudWorkloadSecurityAgentPolicyType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,12 +84,12 @@ func (o *CloudWorkloadSecurityAgentRuleCreateData) GetTypeOk() (*CloudWorkloadSe
 }
 
 // SetType sets field value.
-func (o *CloudWorkloadSecurityAgentRuleCreateData) SetType(v CloudWorkloadSecurityAgentRuleType) {
+func (o *CloudWorkloadSecurityAgentPolicyCreateData) SetType(v CloudWorkloadSecurityAgentPolicyType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o CloudWorkloadSecurityAgentRuleCreateData) MarshalJSON() ([]byte, error) {
+func (o CloudWorkloadSecurityAgentPolicyCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -104,10 +104,10 @@ func (o CloudWorkloadSecurityAgentRuleCreateData) MarshalJSON() ([]byte, error) 
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *CloudWorkloadSecurityAgentRuleCreateData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *CloudWorkloadSecurityAgentPolicyCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *CloudWorkloadSecurityAgentRuleCreateAttributes `json:"attributes"`
-		Type       *CloudWorkloadSecurityAgentRuleType             `json:"type"`
+		Attributes *CloudWorkloadSecurityAgentPolicyCreateAttributes `json:"attributes"`
+		Type       *CloudWorkloadSecurityAgentPolicyType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

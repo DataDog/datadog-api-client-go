@@ -12,16 +12,22 @@ import (
 
 // CloudWorkloadSecurityAgentRuleCreateAttributes Create a new Cloud Workload Security Agent rule.
 type CloudWorkloadSecurityAgentRuleCreateAttributes struct {
+	// The array of actions the rule can perform if triggered
+	Actions []CloudWorkloadSecurityAgentRuleAction `json:"actions,omitempty"`
 	// The description of the Agent rule.
 	Description *string `json:"description,omitempty"`
-	// Whether the Agent rule is enabled.
+	// Whether the Agent rule is enabled
 	Enabled *bool `json:"enabled,omitempty"`
 	// The SECL expression of the Agent rule.
 	Expression string `json:"expression"`
-	// The platforms the Agent rule is supported on.
+	// The platforms the Agent rule is supported on
 	Filters []string `json:"filters,omitempty"`
 	// The name of the Agent rule.
 	Name string `json:"name"`
+	// The ID of the policy where the Agent rule is saved
+	PolicyId *string `json:"policy_id,omitempty"`
+	// The list of product tags associated with the rule
+	ProductTags []string `json:"product_tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -44,6 +50,35 @@ func NewCloudWorkloadSecurityAgentRuleCreateAttributes(expression string, name s
 func NewCloudWorkloadSecurityAgentRuleCreateAttributesWithDefaults() *CloudWorkloadSecurityAgentRuleCreateAttributes {
 	this := CloudWorkloadSecurityAgentRuleCreateAttributes{}
 	return &this
+}
+
+// GetActions returns the Actions field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetActions() []CloudWorkloadSecurityAgentRuleAction {
+	if o == nil {
+		var ret []CloudWorkloadSecurityAgentRuleAction
+		return ret
+	}
+	return o.Actions
+}
+
+// GetActionsOk returns a tuple with the Actions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetActionsOk() (*[]CloudWorkloadSecurityAgentRuleAction, bool) {
+	if o == nil || o.Actions == nil {
+		return nil, false
+	}
+	return &o.Actions, true
+}
+
+// HasActions returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) HasActions() bool {
+	return o != nil && o.Actions != nil
+}
+
+// SetActions gets a reference to the given []CloudWorkloadSecurityAgentRuleAction and assigns it to the Actions field.
+func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) SetActions(v []CloudWorkloadSecurityAgentRuleAction) {
+	o.Actions = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -176,11 +211,70 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) SetName(v string) {
 	o.Name = v
 }
 
+// GetPolicyId returns the PolicyId field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetPolicyId() string {
+	if o == nil || o.PolicyId == nil {
+		var ret string
+		return ret
+	}
+	return *o.PolicyId
+}
+
+// GetPolicyIdOk returns a tuple with the PolicyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetPolicyIdOk() (*string, bool) {
+	if o == nil || o.PolicyId == nil {
+		return nil, false
+	}
+	return o.PolicyId, true
+}
+
+// HasPolicyId returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) HasPolicyId() bool {
+	return o != nil && o.PolicyId != nil
+}
+
+// SetPolicyId gets a reference to the given string and assigns it to the PolicyId field.
+func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) SetPolicyId(v string) {
+	o.PolicyId = &v
+}
+
+// GetProductTags returns the ProductTags field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetProductTags() []string {
+	if o == nil || o.ProductTags == nil {
+		var ret []string
+		return ret
+	}
+	return o.ProductTags
+}
+
+// GetProductTagsOk returns a tuple with the ProductTags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetProductTagsOk() (*[]string, bool) {
+	if o == nil || o.ProductTags == nil {
+		return nil, false
+	}
+	return &o.ProductTags, true
+}
+
+// HasProductTags returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) HasProductTags() bool {
+	return o != nil && o.ProductTags != nil
+}
+
+// SetProductTags gets a reference to the given []string and assigns it to the ProductTags field.
+func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) SetProductTags(v []string) {
+	o.ProductTags = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudWorkloadSecurityAgentRuleCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
+	}
+	if o.Actions != nil {
+		toSerialize["actions"] = o.Actions
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
@@ -193,6 +287,12 @@ func (o CloudWorkloadSecurityAgentRuleCreateAttributes) MarshalJSON() ([]byte, e
 		toSerialize["filters"] = o.Filters
 	}
 	toSerialize["name"] = o.Name
+	if o.PolicyId != nil {
+		toSerialize["policy_id"] = o.PolicyId
+	}
+	if o.ProductTags != nil {
+		toSerialize["product_tags"] = o.ProductTags
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -203,11 +303,14 @@ func (o CloudWorkloadSecurityAgentRuleCreateAttributes) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description *string  `json:"description,omitempty"`
-		Enabled     *bool    `json:"enabled,omitempty"`
-		Expression  *string  `json:"expression"`
-		Filters     []string `json:"filters,omitempty"`
-		Name        *string  `json:"name"`
+		Actions     []CloudWorkloadSecurityAgentRuleAction `json:"actions,omitempty"`
+		Description *string                                `json:"description,omitempty"`
+		Enabled     *bool                                  `json:"enabled,omitempty"`
+		Expression  *string                                `json:"expression"`
+		Filters     []string                               `json:"filters,omitempty"`
+		Name        *string                                `json:"name"`
+		PolicyId    *string                                `json:"policy_id,omitempty"`
+		ProductTags []string                               `json:"product_tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -220,15 +323,18 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) UnmarshalJSON(bytes []b
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "enabled", "expression", "filters", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"actions", "description", "enabled", "expression", "filters", "name", "policy_id", "product_tags"})
 	} else {
 		return err
 	}
+	o.Actions = all.Actions
 	o.Description = all.Description
 	o.Enabled = all.Enabled
 	o.Expression = *all.Expression
 	o.Filters = all.Filters
 	o.Name = *all.Name
+	o.PolicyId = all.PolicyId
+	o.ProductTags = all.ProductTags
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
