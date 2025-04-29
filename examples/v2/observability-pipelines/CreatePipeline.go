@@ -13,8 +13,8 @@ import (
 )
 
 func main() {
-	body := datadogV2.ObservabilityPipelineCreateRequest{
-		Data: datadogV2.ObservabilityPipelineCreateRequestData{
+	body := datadogV2.ObservabilityPipelineSpec{
+		Data: datadogV2.ObservabilityPipelineSpecData{
 			Attributes: datadogV2.ObservabilityPipelineDataAttributes{
 				Config: datadogV2.ObservabilityPipelineConfig{
 					Destinations: []datadogV2.ObservabilityPipelineConfigDestinationItem{

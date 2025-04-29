@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineCreateRequest Top-level schema representing a pipeline.
-type ObservabilityPipelineCreateRequest struct {
-	// Contains the pipeline’s ID, type, and configuration attributes.
-	Data ObservabilityPipelineCreateRequestData `json:"data"`
+// ObservabilityPipelineSpec Input schema representing an observability pipeline configuration. Used in create and validate requests.
+type ObservabilityPipelineSpec struct {
+	// Contains the the pipeline configuration.
+	Data ObservabilityPipelineSpecData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewObservabilityPipelineCreateRequest instantiates a new ObservabilityPipelineCreateRequest object.
+// NewObservabilityPipelineSpec instantiates a new ObservabilityPipelineSpec object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineCreateRequest(data ObservabilityPipelineCreateRequestData) *ObservabilityPipelineCreateRequest {
-	this := ObservabilityPipelineCreateRequest{}
+func NewObservabilityPipelineSpec(data ObservabilityPipelineSpecData) *ObservabilityPipelineSpec {
+	this := ObservabilityPipelineSpec{}
 	this.Data = data
 	return &this
 }
 
-// NewObservabilityPipelineCreateRequestWithDefaults instantiates a new ObservabilityPipelineCreateRequest object.
+// NewObservabilityPipelineSpecWithDefaults instantiates a new ObservabilityPipelineSpec object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewObservabilityPipelineCreateRequestWithDefaults() *ObservabilityPipelineCreateRequest {
-	this := ObservabilityPipelineCreateRequest{}
+func NewObservabilityPipelineSpecWithDefaults() *ObservabilityPipelineSpec {
+	this := ObservabilityPipelineSpec{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *ObservabilityPipelineCreateRequest) GetData() ObservabilityPipelineCreateRequestData {
+func (o *ObservabilityPipelineSpec) GetData() ObservabilityPipelineSpecData {
 	if o == nil {
-		var ret ObservabilityPipelineCreateRequestData
+		var ret ObservabilityPipelineSpecData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *ObservabilityPipelineCreateRequest) GetData() ObservabilityPipelineCrea
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineCreateRequest) GetDataOk() (*ObservabilityPipelineCreateRequestData, bool) {
+func (o *ObservabilityPipelineSpec) GetDataOk() (*ObservabilityPipelineSpecData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *ObservabilityPipelineCreateRequest) GetDataOk() (*ObservabilityPipeline
 }
 
 // SetData sets field value.
-func (o *ObservabilityPipelineCreateRequest) SetData(v ObservabilityPipelineCreateRequestData) {
+func (o *ObservabilityPipelineSpec) SetData(v ObservabilityPipelineSpecData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ObservabilityPipelineCreateRequest) MarshalJSON() ([]byte, error) {
+func (o ObservabilityPipelineSpec) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o ObservabilityPipelineCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ObservabilityPipelineCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ObservabilityPipelineSpec) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *ObservabilityPipelineCreateRequestData `json:"data"`
+		Data *ObservabilityPipelineSpecData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

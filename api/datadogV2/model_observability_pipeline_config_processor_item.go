@@ -10,12 +10,22 @@ import (
 
 // ObservabilityPipelineConfigProcessorItem - A processor for the pipeline.
 type ObservabilityPipelineConfigProcessorItem struct {
-	ObservabilityPipelineFilterProcessor       *ObservabilityPipelineFilterProcessor
-	ObservabilityPipelineParseJSONProcessor    *ObservabilityPipelineParseJSONProcessor
-	ObservabilityPipelineQuotaProcessor        *ObservabilityPipelineQuotaProcessor
-	ObservabilityPipelineAddFieldsProcessor    *ObservabilityPipelineAddFieldsProcessor
-	ObservabilityPipelineRemoveFieldsProcessor *ObservabilityPipelineRemoveFieldsProcessor
-	ObservabilityPipelineRenameFieldsProcessor *ObservabilityPipelineRenameFieldsProcessor
+	ObservabilityPipelineFilterProcessor               *ObservabilityPipelineFilterProcessor
+	ObservabilityPipelineParseJSONProcessor            *ObservabilityPipelineParseJSONProcessor
+	ObservabilityPipelineQuotaProcessor                *ObservabilityPipelineQuotaProcessor
+	ObservabilityPipelineAddFieldsProcessor            *ObservabilityPipelineAddFieldsProcessor
+	ObservabilityPipelineRemoveFieldsProcessor         *ObservabilityPipelineRemoveFieldsProcessor
+	ObservabilityPipelineRenameFieldsProcessor         *ObservabilityPipelineRenameFieldsProcessor
+	ObservabilityPipelineGenerateMetricsProcessor      *ObservabilityPipelineGenerateMetricsProcessor
+	ObservabilityPipelineSampleProcessor               *ObservabilityPipelineSampleProcessor
+	ObservabilityPipelineParseGrokProcessor            *ObservabilityPipelineParseGrokProcessor
+	ObservabilityPipelineSensitiveDataScannerProcessor *ObservabilityPipelineSensitiveDataScannerProcessor
+	ObservabilityPipelineOcsfMapperProcessor           *ObservabilityPipelineOcsfMapperProcessor
+	ObservabilityPipelineAddEnvVarsProcessor           *ObservabilityPipelineAddEnvVarsProcessor
+	ObservabilityPipelineDedupeProcessor               *ObservabilityPipelineDedupeProcessor
+	ObservabilityPipelineEnrichmentTableProcessor      *ObservabilityPipelineEnrichmentTableProcessor
+	ObservabilityPipelineReduceProcessor               *ObservabilityPipelineReduceProcessor
+	ObservabilityPipelineThrottleProcessor             *ObservabilityPipelineThrottleProcessor
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -49,6 +59,56 @@ func ObservabilityPipelineRemoveFieldsProcessorAsObservabilityPipelineConfigProc
 // ObservabilityPipelineRenameFieldsProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineRenameFieldsProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
 func ObservabilityPipelineRenameFieldsProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineRenameFieldsProcessor) ObservabilityPipelineConfigProcessorItem {
 	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineRenameFieldsProcessor: v}
+}
+
+// ObservabilityPipelineGenerateMetricsProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineGenerateMetricsProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineGenerateMetricsProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineGenerateMetricsProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineGenerateMetricsProcessor: v}
+}
+
+// ObservabilityPipelineSampleProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineSampleProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineSampleProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineSampleProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineSampleProcessor: v}
+}
+
+// ObservabilityPipelineParseGrokProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineParseGrokProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineParseGrokProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineParseGrokProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineParseGrokProcessor: v}
+}
+
+// ObservabilityPipelineSensitiveDataScannerProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineSensitiveDataScannerProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineSensitiveDataScannerProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineSensitiveDataScannerProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineSensitiveDataScannerProcessor: v}
+}
+
+// ObservabilityPipelineOcsfMapperProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineOcsfMapperProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineOcsfMapperProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineOcsfMapperProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineOcsfMapperProcessor: v}
+}
+
+// ObservabilityPipelineAddEnvVarsProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineAddEnvVarsProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineAddEnvVarsProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineAddEnvVarsProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineAddEnvVarsProcessor: v}
+}
+
+// ObservabilityPipelineDedupeProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineDedupeProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineDedupeProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineDedupeProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineDedupeProcessor: v}
+}
+
+// ObservabilityPipelineEnrichmentTableProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineEnrichmentTableProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineEnrichmentTableProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineEnrichmentTableProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineEnrichmentTableProcessor: v}
+}
+
+// ObservabilityPipelineReduceProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineReduceProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineReduceProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineReduceProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineReduceProcessor: v}
+}
+
+// ObservabilityPipelineThrottleProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineThrottleProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineThrottleProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineThrottleProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineThrottleProcessor: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -157,6 +217,176 @@ func (obj *ObservabilityPipelineConfigProcessorItem) UnmarshalJSON(data []byte) 
 		obj.ObservabilityPipelineRenameFieldsProcessor = nil
 	}
 
+	// try to unmarshal data into ObservabilityPipelineGenerateMetricsProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineGenerateMetricsProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineGenerateMetricsProcessor != nil && obj.ObservabilityPipelineGenerateMetricsProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineGenerateMetricsProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineGenerateMetricsProcessor)
+			if string(jsonObservabilityPipelineGenerateMetricsProcessor) == "{}" { // empty struct
+				obj.ObservabilityPipelineGenerateMetricsProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineGenerateMetricsProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineGenerateMetricsProcessor = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineSampleProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineSampleProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineSampleProcessor != nil && obj.ObservabilityPipelineSampleProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineSampleProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineSampleProcessor)
+			if string(jsonObservabilityPipelineSampleProcessor) == "{}" { // empty struct
+				obj.ObservabilityPipelineSampleProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineSampleProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineSampleProcessor = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineParseGrokProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineParseGrokProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineParseGrokProcessor != nil && obj.ObservabilityPipelineParseGrokProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineParseGrokProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineParseGrokProcessor)
+			if string(jsonObservabilityPipelineParseGrokProcessor) == "{}" { // empty struct
+				obj.ObservabilityPipelineParseGrokProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineParseGrokProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineParseGrokProcessor = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineSensitiveDataScannerProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineSensitiveDataScannerProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineSensitiveDataScannerProcessor != nil && obj.ObservabilityPipelineSensitiveDataScannerProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineSensitiveDataScannerProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineSensitiveDataScannerProcessor)
+			if string(jsonObservabilityPipelineSensitiveDataScannerProcessor) == "{}" { // empty struct
+				obj.ObservabilityPipelineSensitiveDataScannerProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineSensitiveDataScannerProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineSensitiveDataScannerProcessor = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineOcsfMapperProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineOcsfMapperProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineOcsfMapperProcessor != nil && obj.ObservabilityPipelineOcsfMapperProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineOcsfMapperProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineOcsfMapperProcessor)
+			if string(jsonObservabilityPipelineOcsfMapperProcessor) == "{}" { // empty struct
+				obj.ObservabilityPipelineOcsfMapperProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineOcsfMapperProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineOcsfMapperProcessor = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineAddEnvVarsProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineAddEnvVarsProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineAddEnvVarsProcessor != nil && obj.ObservabilityPipelineAddEnvVarsProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineAddEnvVarsProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineAddEnvVarsProcessor)
+			if string(jsonObservabilityPipelineAddEnvVarsProcessor) == "{}" { // empty struct
+				obj.ObservabilityPipelineAddEnvVarsProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineAddEnvVarsProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineAddEnvVarsProcessor = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineDedupeProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineDedupeProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineDedupeProcessor != nil && obj.ObservabilityPipelineDedupeProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineDedupeProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineDedupeProcessor)
+			if string(jsonObservabilityPipelineDedupeProcessor) == "{}" { // empty struct
+				obj.ObservabilityPipelineDedupeProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineDedupeProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineDedupeProcessor = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineEnrichmentTableProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineEnrichmentTableProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineEnrichmentTableProcessor != nil && obj.ObservabilityPipelineEnrichmentTableProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineEnrichmentTableProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineEnrichmentTableProcessor)
+			if string(jsonObservabilityPipelineEnrichmentTableProcessor) == "{}" { // empty struct
+				obj.ObservabilityPipelineEnrichmentTableProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineEnrichmentTableProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineEnrichmentTableProcessor = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineReduceProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineReduceProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineReduceProcessor != nil && obj.ObservabilityPipelineReduceProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineReduceProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineReduceProcessor)
+			if string(jsonObservabilityPipelineReduceProcessor) == "{}" { // empty struct
+				obj.ObservabilityPipelineReduceProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineReduceProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineReduceProcessor = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineThrottleProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineThrottleProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineThrottleProcessor != nil && obj.ObservabilityPipelineThrottleProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineThrottleProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineThrottleProcessor)
+			if string(jsonObservabilityPipelineThrottleProcessor) == "{}" { // empty struct
+				obj.ObservabilityPipelineThrottleProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineThrottleProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineThrottleProcessor = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.ObservabilityPipelineFilterProcessor = nil
@@ -165,6 +395,16 @@ func (obj *ObservabilityPipelineConfigProcessorItem) UnmarshalJSON(data []byte) 
 		obj.ObservabilityPipelineAddFieldsProcessor = nil
 		obj.ObservabilityPipelineRemoveFieldsProcessor = nil
 		obj.ObservabilityPipelineRenameFieldsProcessor = nil
+		obj.ObservabilityPipelineGenerateMetricsProcessor = nil
+		obj.ObservabilityPipelineSampleProcessor = nil
+		obj.ObservabilityPipelineParseGrokProcessor = nil
+		obj.ObservabilityPipelineSensitiveDataScannerProcessor = nil
+		obj.ObservabilityPipelineOcsfMapperProcessor = nil
+		obj.ObservabilityPipelineAddEnvVarsProcessor = nil
+		obj.ObservabilityPipelineDedupeProcessor = nil
+		obj.ObservabilityPipelineEnrichmentTableProcessor = nil
+		obj.ObservabilityPipelineReduceProcessor = nil
+		obj.ObservabilityPipelineThrottleProcessor = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -194,6 +434,46 @@ func (obj ObservabilityPipelineConfigProcessorItem) MarshalJSON() ([]byte, error
 
 	if obj.ObservabilityPipelineRenameFieldsProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineRenameFieldsProcessor)
+	}
+
+	if obj.ObservabilityPipelineGenerateMetricsProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineGenerateMetricsProcessor)
+	}
+
+	if obj.ObservabilityPipelineSampleProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineSampleProcessor)
+	}
+
+	if obj.ObservabilityPipelineParseGrokProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineParseGrokProcessor)
+	}
+
+	if obj.ObservabilityPipelineSensitiveDataScannerProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineSensitiveDataScannerProcessor)
+	}
+
+	if obj.ObservabilityPipelineOcsfMapperProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineOcsfMapperProcessor)
+	}
+
+	if obj.ObservabilityPipelineAddEnvVarsProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineAddEnvVarsProcessor)
+	}
+
+	if obj.ObservabilityPipelineDedupeProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineDedupeProcessor)
+	}
+
+	if obj.ObservabilityPipelineEnrichmentTableProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineEnrichmentTableProcessor)
+	}
+
+	if obj.ObservabilityPipelineReduceProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineReduceProcessor)
+	}
+
+	if obj.ObservabilityPipelineThrottleProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineThrottleProcessor)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -226,6 +506,46 @@ func (obj *ObservabilityPipelineConfigProcessorItem) GetActualInstance() interfa
 
 	if obj.ObservabilityPipelineRenameFieldsProcessor != nil {
 		return obj.ObservabilityPipelineRenameFieldsProcessor
+	}
+
+	if obj.ObservabilityPipelineGenerateMetricsProcessor != nil {
+		return obj.ObservabilityPipelineGenerateMetricsProcessor
+	}
+
+	if obj.ObservabilityPipelineSampleProcessor != nil {
+		return obj.ObservabilityPipelineSampleProcessor
+	}
+
+	if obj.ObservabilityPipelineParseGrokProcessor != nil {
+		return obj.ObservabilityPipelineParseGrokProcessor
+	}
+
+	if obj.ObservabilityPipelineSensitiveDataScannerProcessor != nil {
+		return obj.ObservabilityPipelineSensitiveDataScannerProcessor
+	}
+
+	if obj.ObservabilityPipelineOcsfMapperProcessor != nil {
+		return obj.ObservabilityPipelineOcsfMapperProcessor
+	}
+
+	if obj.ObservabilityPipelineAddEnvVarsProcessor != nil {
+		return obj.ObservabilityPipelineAddEnvVarsProcessor
+	}
+
+	if obj.ObservabilityPipelineDedupeProcessor != nil {
+		return obj.ObservabilityPipelineDedupeProcessor
+	}
+
+	if obj.ObservabilityPipelineEnrichmentTableProcessor != nil {
+		return obj.ObservabilityPipelineEnrichmentTableProcessor
+	}
+
+	if obj.ObservabilityPipelineReduceProcessor != nil {
+		return obj.ObservabilityPipelineReduceProcessor
+	}
+
+	if obj.ObservabilityPipelineThrottleProcessor != nil {
+		return obj.ObservabilityPipelineThrottleProcessor
 	}
 
 	// all schemas are nil
