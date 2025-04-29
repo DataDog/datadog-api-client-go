@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineCreateRequestData Contains the pipeline’s ID, type, and configuration attributes.
-type ObservabilityPipelineCreateRequestData struct {
+// ObservabilityPipelineSpecData Contains the the pipeline configuration.
+type ObservabilityPipelineSpecData struct {
 	// Defines the pipeline’s name and its components (sources, processors, and destinations).
 	Attributes ObservabilityPipelineDataAttributes `json:"attributes"`
 	// The resource type identifier. For pipeline resources, this should always be set to `pipelines`.
@@ -21,29 +21,29 @@ type ObservabilityPipelineCreateRequestData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewObservabilityPipelineCreateRequestData instantiates a new ObservabilityPipelineCreateRequestData object.
+// NewObservabilityPipelineSpecData instantiates a new ObservabilityPipelineSpecData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineCreateRequestData(attributes ObservabilityPipelineDataAttributes, typeVar string) *ObservabilityPipelineCreateRequestData {
-	this := ObservabilityPipelineCreateRequestData{}
+func NewObservabilityPipelineSpecData(attributes ObservabilityPipelineDataAttributes, typeVar string) *ObservabilityPipelineSpecData {
+	this := ObservabilityPipelineSpecData{}
 	this.Attributes = attributes
 	this.Type = typeVar
 	return &this
 }
 
-// NewObservabilityPipelineCreateRequestDataWithDefaults instantiates a new ObservabilityPipelineCreateRequestData object.
+// NewObservabilityPipelineSpecDataWithDefaults instantiates a new ObservabilityPipelineSpecData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewObservabilityPipelineCreateRequestDataWithDefaults() *ObservabilityPipelineCreateRequestData {
-	this := ObservabilityPipelineCreateRequestData{}
+func NewObservabilityPipelineSpecDataWithDefaults() *ObservabilityPipelineSpecData {
+	this := ObservabilityPipelineSpecData{}
 	var typeVar string = "pipelines"
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *ObservabilityPipelineCreateRequestData) GetAttributes() ObservabilityPipelineDataAttributes {
+func (o *ObservabilityPipelineSpecData) GetAttributes() ObservabilityPipelineDataAttributes {
 	if o == nil {
 		var ret ObservabilityPipelineDataAttributes
 		return ret
@@ -53,7 +53,7 @@ func (o *ObservabilityPipelineCreateRequestData) GetAttributes() ObservabilityPi
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineCreateRequestData) GetAttributesOk() (*ObservabilityPipelineDataAttributes, bool) {
+func (o *ObservabilityPipelineSpecData) GetAttributesOk() (*ObservabilityPipelineDataAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,12 +61,12 @@ func (o *ObservabilityPipelineCreateRequestData) GetAttributesOk() (*Observabili
 }
 
 // SetAttributes sets field value.
-func (o *ObservabilityPipelineCreateRequestData) SetAttributes(v ObservabilityPipelineDataAttributes) {
+func (o *ObservabilityPipelineSpecData) SetAttributes(v ObservabilityPipelineDataAttributes) {
 	o.Attributes = v
 }
 
 // GetType returns the Type field value.
-func (o *ObservabilityPipelineCreateRequestData) GetType() string {
+func (o *ObservabilityPipelineSpecData) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -76,7 +76,7 @@ func (o *ObservabilityPipelineCreateRequestData) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineCreateRequestData) GetTypeOk() (*string, bool) {
+func (o *ObservabilityPipelineSpecData) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,12 +84,12 @@ func (o *ObservabilityPipelineCreateRequestData) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value.
-func (o *ObservabilityPipelineCreateRequestData) SetType(v string) {
+func (o *ObservabilityPipelineSpecData) SetType(v string) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ObservabilityPipelineCreateRequestData) MarshalJSON() ([]byte, error) {
+func (o ObservabilityPipelineSpecData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -104,7 +104,7 @@ func (o ObservabilityPipelineCreateRequestData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ObservabilityPipelineCreateRequestData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ObservabilityPipelineSpecData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *ObservabilityPipelineDataAttributes `json:"attributes"`
 		Type       *string                              `json:"type"`

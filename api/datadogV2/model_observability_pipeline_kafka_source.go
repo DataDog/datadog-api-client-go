@@ -20,7 +20,7 @@ type ObservabilityPipelineKafkaSource struct {
 	LibrdkafkaOptions []ObservabilityPipelineKafkaSourceLibrdkafkaOption `json:"librdkafka_options,omitempty"`
 	// Specifies the SASL mechanism for authenticating with a Kafka cluster.
 	Sasl *ObservabilityPipelineKafkaSourceSasl `json:"sasl,omitempty"`
-	// Configuration for enabling TLS encryption.
+	// Configuration for enabling TLS encryption between the pipeline component and external services.
 	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
 	// A list of Kafka topic names to subscribe to. The source ingests messages from each topic specified.
 	Topics []string `json:"topics"`
