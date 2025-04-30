@@ -513,6 +513,41 @@
       "type": "safe"
     }
   },
+  "CreateCustomFramework": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "operationId": "DeleteCustomFramework",
+      "parameters": [
+        {
+          "name": "handle",
+          "source": "data.attributes.handle"
+        },
+        {
+          "name": "version",
+          "source": "data.attributes.version"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteCustomFramework": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetCustomFramework": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateCustomFramework": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "ListContainerImages": {
     "tag": "Container Images",
     "undo": {
@@ -2063,6 +2098,12 @@
       "type": "safe"
     }
   },
+  "ListPipelines": {
+    "tag": "Observability Pipelines",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "CreatePipeline": {
     "tag": "Observability Pipelines",
     "undo": {
@@ -2074,6 +2115,12 @@
         }
       ],
       "type": "unsafe"
+    }
+  },
+  "ValidatePipeline": {
+    "tag": "Observability Pipelines",
+    "undo": {
+      "type": "safe"
     }
   },
   "DeletePipeline": {

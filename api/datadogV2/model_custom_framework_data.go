@@ -10,42 +10,42 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineCreateRequestData Contains the pipeline’s ID, type, and configuration attributes.
-type ObservabilityPipelineCreateRequestData struct {
-	// Defines the pipeline’s name and its components (sources, processors, and destinations).
-	Attributes ObservabilityPipelineDataAttributes `json:"attributes"`
-	// The resource type identifier. For pipeline resources, this should always be set to `pipelines`.
-	Type string `json:"type"`
+// CustomFrameworkData Contains type and attributes for custom frameworks.
+type CustomFrameworkData struct {
+	// Framework Data Attributes.
+	Attributes CustomFrameworkDataAttributes `json:"attributes"`
+	// The type of the resource. The value must be `custom_framework`.
+	Type CustomFrameworkType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewObservabilityPipelineCreateRequestData instantiates a new ObservabilityPipelineCreateRequestData object.
+// NewCustomFrameworkData instantiates a new CustomFrameworkData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineCreateRequestData(attributes ObservabilityPipelineDataAttributes, typeVar string) *ObservabilityPipelineCreateRequestData {
-	this := ObservabilityPipelineCreateRequestData{}
+func NewCustomFrameworkData(attributes CustomFrameworkDataAttributes, typeVar CustomFrameworkType) *CustomFrameworkData {
+	this := CustomFrameworkData{}
 	this.Attributes = attributes
 	this.Type = typeVar
 	return &this
 }
 
-// NewObservabilityPipelineCreateRequestDataWithDefaults instantiates a new ObservabilityPipelineCreateRequestData object.
+// NewCustomFrameworkDataWithDefaults instantiates a new CustomFrameworkData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewObservabilityPipelineCreateRequestDataWithDefaults() *ObservabilityPipelineCreateRequestData {
-	this := ObservabilityPipelineCreateRequestData{}
-	var typeVar string = "pipelines"
+func NewCustomFrameworkDataWithDefaults() *CustomFrameworkData {
+	this := CustomFrameworkData{}
+	var typeVar CustomFrameworkType = CUSTOMFRAMEWORKTYPE_CUSTOM_FRAMEWORK
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *ObservabilityPipelineCreateRequestData) GetAttributes() ObservabilityPipelineDataAttributes {
+func (o *CustomFrameworkData) GetAttributes() CustomFrameworkDataAttributes {
 	if o == nil {
-		var ret ObservabilityPipelineDataAttributes
+		var ret CustomFrameworkDataAttributes
 		return ret
 	}
 	return o.Attributes
@@ -53,7 +53,7 @@ func (o *ObservabilityPipelineCreateRequestData) GetAttributes() ObservabilityPi
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineCreateRequestData) GetAttributesOk() (*ObservabilityPipelineDataAttributes, bool) {
+func (o *CustomFrameworkData) GetAttributesOk() (*CustomFrameworkDataAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,14 +61,14 @@ func (o *ObservabilityPipelineCreateRequestData) GetAttributesOk() (*Observabili
 }
 
 // SetAttributes sets field value.
-func (o *ObservabilityPipelineCreateRequestData) SetAttributes(v ObservabilityPipelineDataAttributes) {
+func (o *CustomFrameworkData) SetAttributes(v CustomFrameworkDataAttributes) {
 	o.Attributes = v
 }
 
 // GetType returns the Type field value.
-func (o *ObservabilityPipelineCreateRequestData) GetType() string {
+func (o *CustomFrameworkData) GetType() CustomFrameworkType {
 	if o == nil {
-		var ret string
+		var ret CustomFrameworkType
 		return ret
 	}
 	return o.Type
@@ -76,7 +76,7 @@ func (o *ObservabilityPipelineCreateRequestData) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineCreateRequestData) GetTypeOk() (*string, bool) {
+func (o *CustomFrameworkData) GetTypeOk() (*CustomFrameworkType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,12 +84,12 @@ func (o *ObservabilityPipelineCreateRequestData) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value.
-func (o *ObservabilityPipelineCreateRequestData) SetType(v string) {
+func (o *CustomFrameworkData) SetType(v CustomFrameworkType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ObservabilityPipelineCreateRequestData) MarshalJSON() ([]byte, error) {
+func (o CustomFrameworkData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -104,10 +104,10 @@ func (o ObservabilityPipelineCreateRequestData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ObservabilityPipelineCreateRequestData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *CustomFrameworkData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *ObservabilityPipelineDataAttributes `json:"attributes"`
-		Type       *string                              `json:"type"`
+		Attributes *CustomFrameworkDataAttributes `json:"attributes"`
+		Type       *CustomFrameworkType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -130,7 +130,11 @@ func (o *ObservabilityPipelineCreateRequestData) UnmarshalJSON(bytes []byte) (er
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	o.Type = *all.Type
+	if !all.Type.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
