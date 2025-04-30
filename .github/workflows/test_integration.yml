@@ -65,6 +65,8 @@ jobs:
           go-version: 1.22.x
           cache: true
           cache-dependency-path: tests/go.sum
+      - name: Show Agent status
+        run: docker exec $(docker ps --format "{{.ID}}") agent status
       - name: Run integration tests
         shell: bash
         run: ./run-tests.sh
