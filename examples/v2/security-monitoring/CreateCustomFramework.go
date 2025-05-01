@@ -18,7 +18,7 @@ func main() {
 			Type: datadogV2.CUSTOMFRAMEWORKTYPE_CUSTOM_FRAMEWORK,
 			Attributes: datadogV2.CustomFrameworkDataAttributes{
 				Name:    "name",
-				Handle:  "create-framework-new",
+				Handle:  "",
 				Version: "10",
 				IconUrl: datadog.PtrString("test-url"),
 				Requirements: []datadogV2.CustomFrameworkRequirement{

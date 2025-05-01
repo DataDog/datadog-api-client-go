@@ -18,7 +18,7 @@ func main() {
 			Type: datadogV2.CUSTOMFRAMEWORKTYPE_CUSTOM_FRAMEWORK,
 			Attributes: datadogV2.CustomFrameworkDataAttributes{
 				Name:    "name",
-				Handle:  "create-framework-new",
+				Handle:  "",
 				Version: "10",
 				IconUrl: datadog.PtrString("test-url"),
 				Requirements: []datadogV2.CustomFrameworkRequirement{
@@ -41,7 +41,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.UpdateCustomFramework(ctx, "create-framework-new", "10", body)
+	resp, r, err := api.UpdateCustomFramework(ctx, "", "10", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.UpdateCustomFramework`: %v\n", err)
