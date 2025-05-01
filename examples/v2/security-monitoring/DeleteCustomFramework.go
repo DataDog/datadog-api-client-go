@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.DeleteCustomFramework(ctx, "create-framework-new", "10")
+	resp, r, err := api.DeleteCustomFramework(ctx, "", "10")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteCustomFramework`: %v\n", err)
