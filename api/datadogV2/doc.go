@@ -431,6 +431,7 @@
 //   - [ServiceScorecardsApi.UpdateScorecardRule]
 //   - [SoftwareCatalogApi.DeleteCatalogEntity]
 //   - [SoftwareCatalogApi.ListCatalogEntity]
+//   - [SoftwareCatalogApi.ListCatalogRelation]
 //   - [SoftwareCatalogApi.UpsertCatalogEntity]
 //   - [SpansApi.AggregateSpans]
 //   - [SpansApi.ListSpans]
