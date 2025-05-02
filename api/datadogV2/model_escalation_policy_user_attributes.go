@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ScheduleUserAttributes Provides basic user information for a schedule, including a name and email address.
-type ScheduleUserAttributes struct {
+// EscalationPolicyUserAttributes Provides basic user information for an escalation policy, including a name and email address.
+type EscalationPolicyUserAttributes struct {
 	// The user's email address.
 	Email *string `json:"email,omitempty"`
 	// The user's name.
@@ -21,25 +21,25 @@ type ScheduleUserAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewScheduleUserAttributes instantiates a new ScheduleUserAttributes object.
+// NewEscalationPolicyUserAttributes instantiates a new EscalationPolicyUserAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewScheduleUserAttributes() *ScheduleUserAttributes {
-	this := ScheduleUserAttributes{}
+func NewEscalationPolicyUserAttributes() *EscalationPolicyUserAttributes {
+	this := EscalationPolicyUserAttributes{}
 	return &this
 }
 
-// NewScheduleUserAttributesWithDefaults instantiates a new ScheduleUserAttributes object.
+// NewEscalationPolicyUserAttributesWithDefaults instantiates a new EscalationPolicyUserAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewScheduleUserAttributesWithDefaults() *ScheduleUserAttributes {
-	this := ScheduleUserAttributes{}
+func NewEscalationPolicyUserAttributesWithDefaults() *EscalationPolicyUserAttributes {
+	this := EscalationPolicyUserAttributes{}
 	return &this
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.
-func (o *ScheduleUserAttributes) GetEmail() string {
+func (o *EscalationPolicyUserAttributes) GetEmail() string {
 	if o == nil || o.Email == nil {
 		var ret string
 		return ret
@@ -49,7 +49,7 @@ func (o *ScheduleUserAttributes) GetEmail() string {
 
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScheduleUserAttributes) GetEmailOk() (*string, bool) {
+func (o *EscalationPolicyUserAttributes) GetEmailOk() (*string, bool) {
 	if o == nil || o.Email == nil {
 		return nil, false
 	}
@@ -57,17 +57,17 @@ func (o *ScheduleUserAttributes) GetEmailOk() (*string, bool) {
 }
 
 // HasEmail returns a boolean if a field has been set.
-func (o *ScheduleUserAttributes) HasEmail() bool {
+func (o *EscalationPolicyUserAttributes) HasEmail() bool {
 	return o != nil && o.Email != nil
 }
 
 // SetEmail gets a reference to the given string and assigns it to the Email field.
-func (o *ScheduleUserAttributes) SetEmail(v string) {
+func (o *EscalationPolicyUserAttributes) SetEmail(v string) {
 	o.Email = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *ScheduleUserAttributes) GetName() string {
+func (o *EscalationPolicyUserAttributes) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *ScheduleUserAttributes) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScheduleUserAttributes) GetNameOk() (*string, bool) {
+func (o *EscalationPolicyUserAttributes) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -85,17 +85,17 @@ func (o *ScheduleUserAttributes) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *ScheduleUserAttributes) HasName() bool {
+func (o *EscalationPolicyUserAttributes) HasName() bool {
 	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *ScheduleUserAttributes) SetName(v string) {
+func (o *EscalationPolicyUserAttributes) SetName(v string) {
 	o.Name = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ScheduleUserAttributes) GetStatus() UserAttributesStatus {
+func (o *EscalationPolicyUserAttributes) GetStatus() UserAttributesStatus {
 	if o == nil || o.Status == nil {
 		var ret UserAttributesStatus
 		return ret
@@ -105,7 +105,7 @@ func (o *ScheduleUserAttributes) GetStatus() UserAttributesStatus {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScheduleUserAttributes) GetStatusOk() (*UserAttributesStatus, bool) {
+func (o *EscalationPolicyUserAttributes) GetStatusOk() (*UserAttributesStatus, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -113,17 +113,17 @@ func (o *ScheduleUserAttributes) GetStatusOk() (*UserAttributesStatus, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *ScheduleUserAttributes) HasStatus() bool {
+func (o *EscalationPolicyUserAttributes) HasStatus() bool {
 	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given UserAttributesStatus and assigns it to the Status field.
-func (o *ScheduleUserAttributes) SetStatus(v UserAttributesStatus) {
+func (o *EscalationPolicyUserAttributes) SetStatus(v UserAttributesStatus) {
 	o.Status = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ScheduleUserAttributes) MarshalJSON() ([]byte, error) {
+func (o EscalationPolicyUserAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -145,7 +145,7 @@ func (o ScheduleUserAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ScheduleUserAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *EscalationPolicyUserAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Email  *string               `json:"email,omitempty"`
 		Name   *string               `json:"name,omitempty"`

@@ -12,9 +12,8 @@ import (
 type EscalationPolicyIncluded struct {
 	TeamReference        *TeamReference
 	EscalationPolicyStep *EscalationPolicyStep
-	UserTarget           *UserTarget
-	ScheduleTarget       *ScheduleTarget
-	TeamTarget           *TeamTarget
+	EscalationPolicyUser *EscalationPolicyUser
+	ScheduleData         *ScheduleData
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -30,19 +29,14 @@ func EscalationPolicyStepAsEscalationPolicyIncluded(v *EscalationPolicyStep) Esc
 	return EscalationPolicyIncluded{EscalationPolicyStep: v}
 }
 
-// UserTargetAsEscalationPolicyIncluded is a convenience function that returns UserTarget wrapped in EscalationPolicyIncluded.
-func UserTargetAsEscalationPolicyIncluded(v *UserTarget) EscalationPolicyIncluded {
-	return EscalationPolicyIncluded{UserTarget: v}
+// EscalationPolicyUserAsEscalationPolicyIncluded is a convenience function that returns EscalationPolicyUser wrapped in EscalationPolicyIncluded.
+func EscalationPolicyUserAsEscalationPolicyIncluded(v *EscalationPolicyUser) EscalationPolicyIncluded {
+	return EscalationPolicyIncluded{EscalationPolicyUser: v}
 }
 
-// ScheduleTargetAsEscalationPolicyIncluded is a convenience function that returns ScheduleTarget wrapped in EscalationPolicyIncluded.
-func ScheduleTargetAsEscalationPolicyIncluded(v *ScheduleTarget) EscalationPolicyIncluded {
-	return EscalationPolicyIncluded{ScheduleTarget: v}
-}
-
-// TeamTargetAsEscalationPolicyIncluded is a convenience function that returns TeamTarget wrapped in EscalationPolicyIncluded.
-func TeamTargetAsEscalationPolicyIncluded(v *TeamTarget) EscalationPolicyIncluded {
-	return EscalationPolicyIncluded{TeamTarget: v}
+// ScheduleDataAsEscalationPolicyIncluded is a convenience function that returns ScheduleData wrapped in EscalationPolicyIncluded.
+func ScheduleDataAsEscalationPolicyIncluded(v *ScheduleData) EscalationPolicyIncluded {
+	return EscalationPolicyIncluded{ScheduleData: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -83,64 +77,46 @@ func (obj *EscalationPolicyIncluded) UnmarshalJSON(data []byte) error {
 		obj.EscalationPolicyStep = nil
 	}
 
-	// try to unmarshal data into UserTarget
-	err = datadog.Unmarshal(data, &obj.UserTarget)
+	// try to unmarshal data into EscalationPolicyUser
+	err = datadog.Unmarshal(data, &obj.EscalationPolicyUser)
 	if err == nil {
-		if obj.UserTarget != nil && obj.UserTarget.UnparsedObject == nil {
-			jsonUserTarget, _ := datadog.Marshal(obj.UserTarget)
-			if string(jsonUserTarget) == "{}" { // empty struct
-				obj.UserTarget = nil
+		if obj.EscalationPolicyUser != nil && obj.EscalationPolicyUser.UnparsedObject == nil {
+			jsonEscalationPolicyUser, _ := datadog.Marshal(obj.EscalationPolicyUser)
+			if string(jsonEscalationPolicyUser) == "{}" { // empty struct
+				obj.EscalationPolicyUser = nil
 			} else {
 				match++
 			}
 		} else {
-			obj.UserTarget = nil
+			obj.EscalationPolicyUser = nil
 		}
 	} else {
-		obj.UserTarget = nil
+		obj.EscalationPolicyUser = nil
 	}
 
-	// try to unmarshal data into ScheduleTarget
-	err = datadog.Unmarshal(data, &obj.ScheduleTarget)
+	// try to unmarshal data into ScheduleData
+	err = datadog.Unmarshal(data, &obj.ScheduleData)
 	if err == nil {
-		if obj.ScheduleTarget != nil && obj.ScheduleTarget.UnparsedObject == nil {
-			jsonScheduleTarget, _ := datadog.Marshal(obj.ScheduleTarget)
-			if string(jsonScheduleTarget) == "{}" { // empty struct
-				obj.ScheduleTarget = nil
+		if obj.ScheduleData != nil && obj.ScheduleData.UnparsedObject == nil {
+			jsonScheduleData, _ := datadog.Marshal(obj.ScheduleData)
+			if string(jsonScheduleData) == "{}" { // empty struct
+				obj.ScheduleData = nil
 			} else {
 				match++
 			}
 		} else {
-			obj.ScheduleTarget = nil
+			obj.ScheduleData = nil
 		}
 	} else {
-		obj.ScheduleTarget = nil
-	}
-
-	// try to unmarshal data into TeamTarget
-	err = datadog.Unmarshal(data, &obj.TeamTarget)
-	if err == nil {
-		if obj.TeamTarget != nil && obj.TeamTarget.UnparsedObject == nil {
-			jsonTeamTarget, _ := datadog.Marshal(obj.TeamTarget)
-			if string(jsonTeamTarget) == "{}" { // empty struct
-				obj.TeamTarget = nil
-			} else {
-				match++
-			}
-		} else {
-			obj.TeamTarget = nil
-		}
-	} else {
-		obj.TeamTarget = nil
+		obj.ScheduleData = nil
 	}
 
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.TeamReference = nil
 		obj.EscalationPolicyStep = nil
-		obj.UserTarget = nil
-		obj.ScheduleTarget = nil
-		obj.TeamTarget = nil
+		obj.EscalationPolicyUser = nil
+		obj.ScheduleData = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -156,16 +132,12 @@ func (obj EscalationPolicyIncluded) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.EscalationPolicyStep)
 	}
 
-	if obj.UserTarget != nil {
-		return datadog.Marshal(&obj.UserTarget)
+	if obj.EscalationPolicyUser != nil {
+		return datadog.Marshal(&obj.EscalationPolicyUser)
 	}
 
-	if obj.ScheduleTarget != nil {
-		return datadog.Marshal(&obj.ScheduleTarget)
-	}
-
-	if obj.TeamTarget != nil {
-		return datadog.Marshal(&obj.TeamTarget)
+	if obj.ScheduleData != nil {
+		return datadog.Marshal(&obj.ScheduleData)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -184,16 +156,12 @@ func (obj *EscalationPolicyIncluded) GetActualInstance() interface{} {
 		return obj.EscalationPolicyStep
 	}
 
-	if obj.UserTarget != nil {
-		return obj.UserTarget
+	if obj.EscalationPolicyUser != nil {
+		return obj.EscalationPolicyUser
 	}
 
-	if obj.ScheduleTarget != nil {
-		return obj.ScheduleTarget
-	}
-
-	if obj.TeamTarget != nil {
-		return obj.TeamTarget
+	if obj.ScheduleData != nil {
+		return obj.ScheduleData
 	}
 
 	// all schemas are nil
