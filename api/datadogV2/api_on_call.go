@@ -537,6 +537,207 @@ func (a *OnCallApi) GetOnCallSchedule(ctx _context.Context, scheduleId string, o
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetOnCallTeamRoutingRulesOptionalParameters holds optional parameters for GetOnCallTeamRoutingRules.
+type GetOnCallTeamRoutingRulesOptionalParameters struct {
+	Include *string
+}
+
+// NewGetOnCallTeamRoutingRulesOptionalParameters creates an empty struct for parameters.
+func NewGetOnCallTeamRoutingRulesOptionalParameters() *GetOnCallTeamRoutingRulesOptionalParameters {
+	this := GetOnCallTeamRoutingRulesOptionalParameters{}
+	return &this
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *GetOnCallTeamRoutingRulesOptionalParameters) WithInclude(include string) *GetOnCallTeamRoutingRulesOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+// GetOnCallTeamRoutingRules Get on-call team routing rules.
+// Get a team's on-call routing rules
+func (a *OnCallApi) GetOnCallTeamRoutingRules(ctx _context.Context, teamId string, o ...GetOnCallTeamRoutingRulesOptionalParameters) (TeamRoutingRules, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue TeamRoutingRules
+		optionalParams      GetOnCallTeamRoutingRulesOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetOnCallTeamRoutingRulesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OnCallApi.GetOnCallTeamRoutingRules")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/on-call/teams/{team_id}/routing-rules"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{team_id}", _neturl.PathEscape(datadog.ParameterToString(teamId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// SetOnCallTeamRoutingRulesOptionalParameters holds optional parameters for SetOnCallTeamRoutingRules.
+type SetOnCallTeamRoutingRulesOptionalParameters struct {
+	Include *string
+}
+
+// NewSetOnCallTeamRoutingRulesOptionalParameters creates an empty struct for parameters.
+func NewSetOnCallTeamRoutingRulesOptionalParameters() *SetOnCallTeamRoutingRulesOptionalParameters {
+	this := SetOnCallTeamRoutingRulesOptionalParameters{}
+	return &this
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *SetOnCallTeamRoutingRulesOptionalParameters) WithInclude(include string) *SetOnCallTeamRoutingRulesOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+// SetOnCallTeamRoutingRules Set on-call team routing rules.
+// Set a team's on-call routing rules
+func (a *OnCallApi) SetOnCallTeamRoutingRules(ctx _context.Context, teamId string, body TeamRoutingRulesRequest, o ...SetOnCallTeamRoutingRulesOptionalParameters) (TeamRoutingRules, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue TeamRoutingRules
+		optionalParams      SetOnCallTeamRoutingRulesOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type SetOnCallTeamRoutingRulesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OnCallApi.SetOnCallTeamRoutingRules")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/on-call/teams/{team_id}/routing-rules"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{team_id}", _neturl.PathEscape(datadog.ParameterToString(teamId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // UpdateOnCallEscalationPolicyOptionalParameters holds optional parameters for UpdateOnCallEscalationPolicy.
 type UpdateOnCallEscalationPolicyOptionalParameters struct {
 	Include *string
