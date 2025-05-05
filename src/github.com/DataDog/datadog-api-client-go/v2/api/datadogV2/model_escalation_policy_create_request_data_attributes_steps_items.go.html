@@ -70,11 +70,11 @@
 <span id="L13" class="ln">    13  </span><span class="comment">// EscalationPolicyCreateRequestDataAttributesStepsItems Defines a single escalation step within an escalation policy creation request. Contains assignment strategy, escalation timeout, and a list of targets.</span>
 <span id="L14" class="ln">    14  </span>type EscalationPolicyCreateRequestDataAttributesStepsItems struct {
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Specifies how this escalation step will assign targets (example `default` or `round-robin`).</span>
-<span id="L16" class="ln">    16  </span>	Assignment *EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment `json:&#34;assignment,omitempty&#34;`
+<span id="L16" class="ln">    16  </span>	Assignment *EscalationPolicyStepAttributesAssignment `json:&#34;assignment,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// Defines how many seconds to wait before escalating to the next step.</span>
 <span id="L18" class="ln">    18  </span>	EscalateAfterSeconds *int64 `json:&#34;escalate_after_seconds,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// Specifies the collection of escalation targets for this step.</span>
-<span id="L20" class="ln">    20  </span>	Targets []EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems `json:&#34;targets&#34;`
+<span id="L20" class="ln">    20  </span>	Targets []EscalationPolicyStepTarget `json:&#34;targets&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L22" class="ln">    22  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L23" class="ln">    23  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -84,7 +84,7 @@
 <span id="L27" class="ln">    27  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L28" class="ln">    28  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L29" class="ln">    29  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L30" class="ln">    30  </span>func NewEscalationPolicyCreateRequestDataAttributesStepsItems(targets []EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) *EscalationPolicyCreateRequestDataAttributesStepsItems {
+<span id="L30" class="ln">    30  </span>func NewEscalationPolicyCreateRequestDataAttributesStepsItems(targets []EscalationPolicyStepTarget) *EscalationPolicyCreateRequestDataAttributesStepsItems {
 <span id="L31" class="ln">    31  </span>	this := EscalationPolicyCreateRequestDataAttributesStepsItems{}
 <span id="L32" class="ln">    32  </span>	this.Targets = targets
 <span id="L33" class="ln">    33  </span>	return &amp;this
@@ -99,9 +99,9 @@
 <span id="L42" class="ln">    42  </span>}
 <span id="L43" class="ln">    43  </span>
 <span id="L44" class="ln">    44  </span><span class="comment">// GetAssignment returns the Assignment field value if set, zero value otherwise.</span>
-<span id="L45" class="ln">    45  </span>func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetAssignment() EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment {
+<span id="L45" class="ln">    45  </span>func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetAssignment() EscalationPolicyStepAttributesAssignment {
 <span id="L46" class="ln">    46  </span>	if o == nil || o.Assignment == nil {
-<span id="L47" class="ln">    47  </span>		var ret EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment
+<span id="L47" class="ln">    47  </span>		var ret EscalationPolicyStepAttributesAssignment
 <span id="L48" class="ln">    48  </span>		return ret
 <span id="L49" class="ln">    49  </span>	}
 <span id="L50" class="ln">    50  </span>	return *o.Assignment
@@ -109,7 +109,7 @@
 <span id="L52" class="ln">    52  </span>
 <span id="L53" class="ln">    53  </span><span class="comment">// GetAssignmentOk returns a tuple with the Assignment field value if set, nil otherwise</span>
 <span id="L54" class="ln">    54  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L55" class="ln">    55  </span>func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetAssignmentOk() (*EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment, bool) {
+<span id="L55" class="ln">    55  </span>func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetAssignmentOk() (*EscalationPolicyStepAttributesAssignment, bool) {
 <span id="L56" class="ln">    56  </span>	if o == nil || o.Assignment == nil {
 <span id="L57" class="ln">    57  </span>		return nil, false
 <span id="L58" class="ln">    58  </span>	}
@@ -121,8 +121,8 @@
 <span id="L64" class="ln">    64  </span>	return o != nil &amp;&amp; o.Assignment != nil
 <span id="L65" class="ln">    65  </span>}
 <span id="L66" class="ln">    66  </span>
-<span id="L67" class="ln">    67  </span><span class="comment">// SetAssignment gets a reference to the given EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment and assigns it to the Assignment field.</span>
-<span id="L68" class="ln">    68  </span>func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) SetAssignment(v EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment) {
+<span id="L67" class="ln">    67  </span><span class="comment">// SetAssignment gets a reference to the given EscalationPolicyStepAttributesAssignment and assigns it to the Assignment field.</span>
+<span id="L68" class="ln">    68  </span>func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) SetAssignment(v EscalationPolicyStepAttributesAssignment) {
 <span id="L69" class="ln">    69  </span>	o.Assignment = &amp;v
 <span id="L70" class="ln">    70  </span>}
 <span id="L71" class="ln">    71  </span>
@@ -155,9 +155,9 @@
 <span id="L98" class="ln">    98  </span>}
 <span id="L99" class="ln">    99  </span>
 <span id="L100" class="ln">   100  </span><span class="comment">// GetTargets returns the Targets field value.</span>
-<span id="L101" class="ln">   101  </span>func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetTargets() []EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems {
+<span id="L101" class="ln">   101  </span>func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetTargets() []EscalationPolicyStepTarget {
 <span id="L102" class="ln">   102  </span>	if o == nil {
-<span id="L103" class="ln">   103  </span>		var ret []EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems
+<span id="L103" class="ln">   103  </span>		var ret []EscalationPolicyStepTarget
 <span id="L104" class="ln">   104  </span>		return ret
 <span id="L105" class="ln">   105  </span>	}
 <span id="L106" class="ln">   106  </span>	return o.Targets
@@ -165,7 +165,7 @@
 <span id="L108" class="ln">   108  </span>
 <span id="L109" class="ln">   109  </span><span class="comment">// GetTargetsOk returns a tuple with the Targets field value</span>
 <span id="L110" class="ln">   110  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L111" class="ln">   111  </span>func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetTargetsOk() (*[]EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems, bool) {
+<span id="L111" class="ln">   111  </span>func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetTargetsOk() (*[]EscalationPolicyStepTarget, bool) {
 <span id="L112" class="ln">   112  </span>	if o == nil {
 <span id="L113" class="ln">   113  </span>		return nil, false
 <span id="L114" class="ln">   114  </span>	}
@@ -173,7 +173,7 @@
 <span id="L116" class="ln">   116  </span>}
 <span id="L117" class="ln">   117  </span>
 <span id="L118" class="ln">   118  </span><span class="comment">// SetTargets sets field value.</span>
-<span id="L119" class="ln">   119  </span>func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) SetTargets(v []EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) {
+<span id="L119" class="ln">   119  </span>func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) SetTargets(v []EscalationPolicyStepTarget) {
 <span id="L120" class="ln">   120  </span>	o.Targets = v
 <span id="L121" class="ln">   121  </span>}
 <span id="L122" class="ln">   122  </span>
@@ -200,9 +200,9 @@
 <span id="L143" class="ln">   143  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L144" class="ln">   144  </span>func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L145" class="ln">   145  </span>	all := struct {
-<span id="L146" class="ln">   146  </span>		Assignment           *EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment     `json:&#34;assignment,omitempty&#34;`
-<span id="L147" class="ln">   147  </span>		EscalateAfterSeconds *int64                                                               `json:&#34;escalate_after_seconds,omitempty&#34;`
-<span id="L148" class="ln">   148  </span>		Targets              *[]EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems `json:&#34;targets&#34;`
+<span id="L146" class="ln">   146  </span>		Assignment           *EscalationPolicyStepAttributesAssignment `json:&#34;assignment,omitempty&#34;`
+<span id="L147" class="ln">   147  </span>		EscalateAfterSeconds *int64                                    `json:&#34;escalate_after_seconds,omitempty&#34;`
+<span id="L148" class="ln">   148  </span>		Targets              *[]EscalationPolicyStepTarget             `json:&#34;targets&#34;`
 <span id="L149" class="ln">   149  </span>	}{}
 <span id="L150" class="ln">   150  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L151" class="ln">   151  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)

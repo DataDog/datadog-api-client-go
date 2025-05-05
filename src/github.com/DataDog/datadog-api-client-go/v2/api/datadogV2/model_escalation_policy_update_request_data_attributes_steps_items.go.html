@@ -70,13 +70,13 @@
 <span id="L13" class="ln">    13  </span><span class="comment">// EscalationPolicyUpdateRequestDataAttributesStepsItems Defines a single escalation step within an escalation policy update request. Contains assignment strategy, escalation timeout, an optional step ID, and a list of targets.</span>
 <span id="L14" class="ln">    14  </span>type EscalationPolicyUpdateRequestDataAttributesStepsItems struct {
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Specifies how this escalation step will assign targets (example `default` or `round-robin`).</span>
-<span id="L16" class="ln">    16  </span>	Assignment *EscalationPolicyUpdateRequestDataAttributesStepsItemsAssignment `json:&#34;assignment,omitempty&#34;`
+<span id="L16" class="ln">    16  </span>	Assignment *EscalationPolicyStepAttributesAssignment `json:&#34;assignment,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// Defines how many seconds to wait before escalating to the next step.</span>
 <span id="L18" class="ln">    18  </span>	EscalateAfterSeconds *int64 `json:&#34;escalate_after_seconds,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// Specifies the unique identifier of this step.</span>
 <span id="L20" class="ln">    20  </span>	Id *string `json:&#34;id,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// Specifies the collection of escalation targets for this step.</span>
-<span id="L22" class="ln">    22  </span>	Targets []EscalationPolicyUpdateRequestDataAttributesStepsItemsTargetsItems `json:&#34;targets&#34;`
+<span id="L22" class="ln">    22  </span>	Targets []EscalationPolicyStepTarget `json:&#34;targets&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L24" class="ln">    24  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L25" class="ln">    25  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -86,7 +86,7 @@
 <span id="L29" class="ln">    29  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L30" class="ln">    30  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L31" class="ln">    31  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L32" class="ln">    32  </span>func NewEscalationPolicyUpdateRequestDataAttributesStepsItems(targets []EscalationPolicyUpdateRequestDataAttributesStepsItemsTargetsItems) *EscalationPolicyUpdateRequestDataAttributesStepsItems {
+<span id="L32" class="ln">    32  </span>func NewEscalationPolicyUpdateRequestDataAttributesStepsItems(targets []EscalationPolicyStepTarget) *EscalationPolicyUpdateRequestDataAttributesStepsItems {
 <span id="L33" class="ln">    33  </span>	this := EscalationPolicyUpdateRequestDataAttributesStepsItems{}
 <span id="L34" class="ln">    34  </span>	this.Targets = targets
 <span id="L35" class="ln">    35  </span>	return &amp;this
@@ -101,9 +101,9 @@
 <span id="L44" class="ln">    44  </span>}
 <span id="L45" class="ln">    45  </span>
 <span id="L46" class="ln">    46  </span><span class="comment">// GetAssignment returns the Assignment field value if set, zero value otherwise.</span>
-<span id="L47" class="ln">    47  </span>func (o *EscalationPolicyUpdateRequestDataAttributesStepsItems) GetAssignment() EscalationPolicyUpdateRequestDataAttributesStepsItemsAssignment {
+<span id="L47" class="ln">    47  </span>func (o *EscalationPolicyUpdateRequestDataAttributesStepsItems) GetAssignment() EscalationPolicyStepAttributesAssignment {
 <span id="L48" class="ln">    48  </span>	if o == nil || o.Assignment == nil {
-<span id="L49" class="ln">    49  </span>		var ret EscalationPolicyUpdateRequestDataAttributesStepsItemsAssignment
+<span id="L49" class="ln">    49  </span>		var ret EscalationPolicyStepAttributesAssignment
 <span id="L50" class="ln">    50  </span>		return ret
 <span id="L51" class="ln">    51  </span>	}
 <span id="L52" class="ln">    52  </span>	return *o.Assignment
@@ -111,7 +111,7 @@
 <span id="L54" class="ln">    54  </span>
 <span id="L55" class="ln">    55  </span><span class="comment">// GetAssignmentOk returns a tuple with the Assignment field value if set, nil otherwise</span>
 <span id="L56" class="ln">    56  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L57" class="ln">    57  </span>func (o *EscalationPolicyUpdateRequestDataAttributesStepsItems) GetAssignmentOk() (*EscalationPolicyUpdateRequestDataAttributesStepsItemsAssignment, bool) {
+<span id="L57" class="ln">    57  </span>func (o *EscalationPolicyUpdateRequestDataAttributesStepsItems) GetAssignmentOk() (*EscalationPolicyStepAttributesAssignment, bool) {
 <span id="L58" class="ln">    58  </span>	if o == nil || o.Assignment == nil {
 <span id="L59" class="ln">    59  </span>		return nil, false
 <span id="L60" class="ln">    60  </span>	}
@@ -123,8 +123,8 @@
 <span id="L66" class="ln">    66  </span>	return o != nil &amp;&amp; o.Assignment != nil
 <span id="L67" class="ln">    67  </span>}
 <span id="L68" class="ln">    68  </span>
-<span id="L69" class="ln">    69  </span><span class="comment">// SetAssignment gets a reference to the given EscalationPolicyUpdateRequestDataAttributesStepsItemsAssignment and assigns it to the Assignment field.</span>
-<span id="L70" class="ln">    70  </span>func (o *EscalationPolicyUpdateRequestDataAttributesStepsItems) SetAssignment(v EscalationPolicyUpdateRequestDataAttributesStepsItemsAssignment) {
+<span id="L69" class="ln">    69  </span><span class="comment">// SetAssignment gets a reference to the given EscalationPolicyStepAttributesAssignment and assigns it to the Assignment field.</span>
+<span id="L70" class="ln">    70  </span>func (o *EscalationPolicyUpdateRequestDataAttributesStepsItems) SetAssignment(v EscalationPolicyStepAttributesAssignment) {
 <span id="L71" class="ln">    71  </span>	o.Assignment = &amp;v
 <span id="L72" class="ln">    72  </span>}
 <span id="L73" class="ln">    73  </span>
@@ -185,9 +185,9 @@
 <span id="L128" class="ln">   128  </span>}
 <span id="L129" class="ln">   129  </span>
 <span id="L130" class="ln">   130  </span><span class="comment">// GetTargets returns the Targets field value.</span>
-<span id="L131" class="ln">   131  </span>func (o *EscalationPolicyUpdateRequestDataAttributesStepsItems) GetTargets() []EscalationPolicyUpdateRequestDataAttributesStepsItemsTargetsItems {
+<span id="L131" class="ln">   131  </span>func (o *EscalationPolicyUpdateRequestDataAttributesStepsItems) GetTargets() []EscalationPolicyStepTarget {
 <span id="L132" class="ln">   132  </span>	if o == nil {
-<span id="L133" class="ln">   133  </span>		var ret []EscalationPolicyUpdateRequestDataAttributesStepsItemsTargetsItems
+<span id="L133" class="ln">   133  </span>		var ret []EscalationPolicyStepTarget
 <span id="L134" class="ln">   134  </span>		return ret
 <span id="L135" class="ln">   135  </span>	}
 <span id="L136" class="ln">   136  </span>	return o.Targets
@@ -195,7 +195,7 @@
 <span id="L138" class="ln">   138  </span>
 <span id="L139" class="ln">   139  </span><span class="comment">// GetTargetsOk returns a tuple with the Targets field value</span>
 <span id="L140" class="ln">   140  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L141" class="ln">   141  </span>func (o *EscalationPolicyUpdateRequestDataAttributesStepsItems) GetTargetsOk() (*[]EscalationPolicyUpdateRequestDataAttributesStepsItemsTargetsItems, bool) {
+<span id="L141" class="ln">   141  </span>func (o *EscalationPolicyUpdateRequestDataAttributesStepsItems) GetTargetsOk() (*[]EscalationPolicyStepTarget, bool) {
 <span id="L142" class="ln">   142  </span>	if o == nil {
 <span id="L143" class="ln">   143  </span>		return nil, false
 <span id="L144" class="ln">   144  </span>	}
@@ -203,7 +203,7 @@
 <span id="L146" class="ln">   146  </span>}
 <span id="L147" class="ln">   147  </span>
 <span id="L148" class="ln">   148  </span><span class="comment">// SetTargets sets field value.</span>
-<span id="L149" class="ln">   149  </span>func (o *EscalationPolicyUpdateRequestDataAttributesStepsItems) SetTargets(v []EscalationPolicyUpdateRequestDataAttributesStepsItemsTargetsItems) {
+<span id="L149" class="ln">   149  </span>func (o *EscalationPolicyUpdateRequestDataAttributesStepsItems) SetTargets(v []EscalationPolicyStepTarget) {
 <span id="L150" class="ln">   150  </span>	o.Targets = v
 <span id="L151" class="ln">   151  </span>}
 <span id="L152" class="ln">   152  </span>
@@ -233,10 +233,10 @@
 <span id="L176" class="ln">   176  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L177" class="ln">   177  </span>func (o *EscalationPolicyUpdateRequestDataAttributesStepsItems) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L178" class="ln">   178  </span>	all := struct {
-<span id="L179" class="ln">   179  </span>		Assignment           *EscalationPolicyUpdateRequestDataAttributesStepsItemsAssignment     `json:&#34;assignment,omitempty&#34;`
-<span id="L180" class="ln">   180  </span>		EscalateAfterSeconds *int64                                                               `json:&#34;escalate_after_seconds,omitempty&#34;`
-<span id="L181" class="ln">   181  </span>		Id                   *string                                                              `json:&#34;id,omitempty&#34;`
-<span id="L182" class="ln">   182  </span>		Targets              *[]EscalationPolicyUpdateRequestDataAttributesStepsItemsTargetsItems `json:&#34;targets&#34;`
+<span id="L179" class="ln">   179  </span>		Assignment           *EscalationPolicyStepAttributesAssignment `json:&#34;assignment,omitempty&#34;`
+<span id="L180" class="ln">   180  </span>		EscalateAfterSeconds *int64                                    `json:&#34;escalate_after_seconds,omitempty&#34;`
+<span id="L181" class="ln">   181  </span>		Id                   *string                                   `json:&#34;id,omitempty&#34;`
+<span id="L182" class="ln">   182  </span>		Targets              *[]EscalationPolicyStepTarget             `json:&#34;targets&#34;`
 <span id="L183" class="ln">   183  </span>	}{}
 <span id="L184" class="ln">   184  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L185" class="ln">   185  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
