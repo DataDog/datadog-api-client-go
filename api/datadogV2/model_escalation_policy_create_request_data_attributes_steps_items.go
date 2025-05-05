@@ -13,11 +13,11 @@ import (
 // EscalationPolicyCreateRequestDataAttributesStepsItems Defines a single escalation step within an escalation policy creation request. Contains assignment strategy, escalation timeout, and a list of targets.
 type EscalationPolicyCreateRequestDataAttributesStepsItems struct {
 	// Specifies how this escalation step will assign targets (example `default` or `round-robin`).
-	Assignment *EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment `json:"assignment,omitempty"`
+	Assignment *EscalationPolicyStepAttributesAssignment `json:"assignment,omitempty"`
 	// Defines how many seconds to wait before escalating to the next step.
 	EscalateAfterSeconds *int64 `json:"escalate_after_seconds,omitempty"`
 	// Specifies the collection of escalation targets for this step.
-	Targets []EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems `json:"targets"`
+	Targets []EscalationPolicyStepTarget `json:"targets"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -27,7 +27,7 @@ type EscalationPolicyCreateRequestDataAttributesStepsItems struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewEscalationPolicyCreateRequestDataAttributesStepsItems(targets []EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) *EscalationPolicyCreateRequestDataAttributesStepsItems {
+func NewEscalationPolicyCreateRequestDataAttributesStepsItems(targets []EscalationPolicyStepTarget) *EscalationPolicyCreateRequestDataAttributesStepsItems {
 	this := EscalationPolicyCreateRequestDataAttributesStepsItems{}
 	this.Targets = targets
 	return &this
@@ -42,9 +42,9 @@ func NewEscalationPolicyCreateRequestDataAttributesStepsItemsWithDefaults() *Esc
 }
 
 // GetAssignment returns the Assignment field value if set, zero value otherwise.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetAssignment() EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment {
+func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetAssignment() EscalationPolicyStepAttributesAssignment {
 	if o == nil || o.Assignment == nil {
-		var ret EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment
+		var ret EscalationPolicyStepAttributesAssignment
 		return ret
 	}
 	return *o.Assignment
@@ -52,7 +52,7 @@ func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetAssignment() 
 
 // GetAssignmentOk returns a tuple with the Assignment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetAssignmentOk() (*EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment, bool) {
+func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetAssignmentOk() (*EscalationPolicyStepAttributesAssignment, bool) {
 	if o == nil || o.Assignment == nil {
 		return nil, false
 	}
@@ -64,8 +64,8 @@ func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) HasAssignment() 
 	return o != nil && o.Assignment != nil
 }
 
-// SetAssignment gets a reference to the given EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment and assigns it to the Assignment field.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) SetAssignment(v EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment) {
+// SetAssignment gets a reference to the given EscalationPolicyStepAttributesAssignment and assigns it to the Assignment field.
+func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) SetAssignment(v EscalationPolicyStepAttributesAssignment) {
 	o.Assignment = &v
 }
 
@@ -98,9 +98,9 @@ func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) SetEscalateAfter
 }
 
 // GetTargets returns the Targets field value.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetTargets() []EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems {
+func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetTargets() []EscalationPolicyStepTarget {
 	if o == nil {
-		var ret []EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems
+		var ret []EscalationPolicyStepTarget
 		return ret
 	}
 	return o.Targets
@@ -108,7 +108,7 @@ func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetTargets() []E
 
 // GetTargetsOk returns a tuple with the Targets field value
 // and a boolean to check if the value has been set.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetTargetsOk() (*[]EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems, bool) {
+func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetTargetsOk() (*[]EscalationPolicyStepTarget, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -116,7 +116,7 @@ func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) GetTargetsOk() (
 }
 
 // SetTargets sets field value.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) SetTargets(v []EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) {
+func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) SetTargets(v []EscalationPolicyStepTarget) {
 	o.Targets = v
 }
 
@@ -143,9 +143,9 @@ func (o EscalationPolicyCreateRequestDataAttributesStepsItems) MarshalJSON() ([]
 // UnmarshalJSON deserializes the given payload.
 func (o *EscalationPolicyCreateRequestDataAttributesStepsItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Assignment           *EscalationPolicyCreateRequestDataAttributesStepsItemsAssignment     `json:"assignment,omitempty"`
-		EscalateAfterSeconds *int64                                                               `json:"escalate_after_seconds,omitempty"`
-		Targets              *[]EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems `json:"targets"`
+		Assignment           *EscalationPolicyStepAttributesAssignment `json:"assignment,omitempty"`
+		EscalateAfterSeconds *int64                                    `json:"escalate_after_seconds,omitempty"`
+		Targets              *[]EscalationPolicyStepTarget             `json:"targets"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -32,13 +32,13 @@ func main() {
 				Retries:                datadog.PtrInt64(0),
 				Steps: []datadogV2.EscalationPolicyUpdateRequestDataAttributesStepsItems{
 					{
-						Assignment:           datadogV2.ESCALATIONPOLICYUPDATEREQUESTDATAATTRIBUTESSTEPSITEMSASSIGNMENT_DEFAULT.Ptr(),
+						Assignment:           datadogV2.ESCALATIONPOLICYSTEPATTRIBUTESASSIGNMENT_DEFAULT.Ptr(),
 						EscalateAfterSeconds: datadog.PtrInt64(3600),
 						Id:                   datadog.PtrString(EscalationPolicyDataRelationshipsStepsData0ID),
-						Targets: []datadogV2.EscalationPolicyUpdateRequestDataAttributesStepsItemsTargetsItems{
+						Targets: []datadogV2.EscalationPolicyStepTarget{
 							{
 								Id:   datadog.PtrString(UserDataID),
-								Type: datadogV2.ESCALATIONPOLICYUPDATEREQUESTDATAATTRIBUTESSTEPSITEMSTARGETSITEMSTYPE_USERS.Ptr(),
+								Type: datadogV2.ESCALATIONPOLICYSTEPTARGETTYPE_USERS.Ptr(),
 							},
 						},
 					},

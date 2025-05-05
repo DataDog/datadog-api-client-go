@@ -31,30 +31,30 @@ func main() {
 				Retries:                datadog.PtrInt64(2),
 				Steps: []datadogV2.EscalationPolicyCreateRequestDataAttributesStepsItems{
 					{
-						Assignment:           datadogV2.ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSASSIGNMENT_DEFAULT.Ptr(),
+						Assignment:           datadogV2.ESCALATIONPOLICYSTEPATTRIBUTESASSIGNMENT_DEFAULT.Ptr(),
 						EscalateAfterSeconds: datadog.PtrInt64(3600),
-						Targets: []datadogV2.EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems{
+						Targets: []datadogV2.EscalationPolicyStepTarget{
 							{
 								Id:   datadog.PtrString(UserDataID),
-								Type: datadogV2.ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSTARGETSITEMSTYPE_USERS.Ptr(),
+								Type: datadogV2.ESCALATIONPOLICYSTEPTARGETTYPE_USERS.Ptr(),
 							},
 							{
 								Id:   datadog.PtrString(ScheduleDataID),
-								Type: datadogV2.ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSTARGETSITEMSTYPE_SCHEDULES.Ptr(),
+								Type: datadogV2.ESCALATIONPOLICYSTEPTARGETTYPE_SCHEDULES.Ptr(),
 							},
 							{
 								Id:   datadog.PtrString(DdTeamDataID),
-								Type: datadogV2.ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSTARGETSITEMSTYPE_TEAMS.Ptr(),
+								Type: datadogV2.ESCALATIONPOLICYSTEPTARGETTYPE_TEAMS.Ptr(),
 							},
 						},
 					},
 					{
-						Assignment:           datadogV2.ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSASSIGNMENT_ROUND_ROBIN.Ptr(),
+						Assignment:           datadogV2.ESCALATIONPOLICYSTEPATTRIBUTESASSIGNMENT_ROUND_ROBIN.Ptr(),
 						EscalateAfterSeconds: datadog.PtrInt64(3600),
-						Targets: []datadogV2.EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems{
+						Targets: []datadogV2.EscalationPolicyStepTarget{
 							{
 								Id:   datadog.PtrString(DdTeamDataID),
-								Type: datadogV2.ESCALATIONPOLICYCREATEREQUESTDATAATTRIBUTESSTEPSITEMSTARGETSITEMSTYPE_TEAMS.Ptr(),
+								Type: datadogV2.ESCALATIONPOLICYSTEPTARGETTYPE_TEAMS.Ptr(),
 							},
 						},
 					},

@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems Defines a single escalation target within a step for an escalation policy creation request. Contains `id` and `type`.
-type EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems struct {
+// EscalationPolicyStepTarget Defines a single escalation target within a step for an escalation policy creation request. Contains `id` and `type`.
+type EscalationPolicyStepTarget struct {
 	// Specifies the unique identifier for this target.
 	Id *string `json:"id,omitempty"`
 	// Specifies the type of escalation target (example `users`, `schedules`, or `teams`).
-	Type *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItemsType `json:"type,omitempty"`
+	Type *EscalationPolicyStepTargetType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewEscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems instantiates a new EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems object.
+// NewEscalationPolicyStepTarget instantiates a new EscalationPolicyStepTarget object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewEscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems() *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems {
-	this := EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems{}
+func NewEscalationPolicyStepTarget() *EscalationPolicyStepTarget {
+	this := EscalationPolicyStepTarget{}
 	return &this
 }
 
-// NewEscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItemsWithDefaults instantiates a new EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems object.
+// NewEscalationPolicyStepTargetWithDefaults instantiates a new EscalationPolicyStepTarget object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewEscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItemsWithDefaults() *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems {
-	this := EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems{}
+func NewEscalationPolicyStepTargetWithDefaults() *EscalationPolicyStepTarget {
+	this := EscalationPolicyStepTarget{}
 	return &this
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) GetId() string {
+func (o *EscalationPolicyStepTarget) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -47,7 +47,7 @@ func (o *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) GetI
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) GetIdOk() (*string, bool) {
+func (o *EscalationPolicyStepTarget) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -55,19 +55,19 @@ func (o *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) GetI
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) HasId() bool {
+func (o *EscalationPolicyStepTarget) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) SetId(v string) {
+func (o *EscalationPolicyStepTarget) SetId(v string) {
 	o.Id = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) GetType() EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItemsType {
+func (o *EscalationPolicyStepTarget) GetType() EscalationPolicyStepTargetType {
 	if o == nil || o.Type == nil {
-		var ret EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItemsType
+		var ret EscalationPolicyStepTargetType
 		return ret
 	}
 	return *o.Type
@@ -75,7 +75,7 @@ func (o *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) GetT
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) GetTypeOk() (*EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItemsType, bool) {
+func (o *EscalationPolicyStepTarget) GetTypeOk() (*EscalationPolicyStepTargetType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -83,17 +83,17 @@ func (o *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) GetT
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) HasType() bool {
+func (o *EscalationPolicyStepTarget) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
-// SetType gets a reference to the given EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItemsType and assigns it to the Type field.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) SetType(v EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItemsType) {
+// SetType gets a reference to the given EscalationPolicyStepTargetType and assigns it to the Type field.
+func (o *EscalationPolicyStepTarget) SetType(v EscalationPolicyStepTargetType) {
 	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) MarshalJSON() ([]byte, error) {
+func (o EscalationPolicyStepTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -112,10 +112,10 @@ func (o EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) Marsh
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItems) UnmarshalJSON(bytes []byte) (err error) {
+func (o *EscalationPolicyStepTarget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                                                                `json:"id,omitempty"`
-		Type *EscalationPolicyCreateRequestDataAttributesStepsItemsTargetsItemsType `json:"type,omitempty"`
+		Id   *string                         `json:"id,omitempty"`
+		Type *EscalationPolicyStepTargetType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
