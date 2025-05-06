@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/cloud_security_management/resource_filters?cloud_provider=aws&account_id=123456789
+  response:
+    body: '{"data":{"id":"436195a0-5491-42a8-ac40-e0c0b61879bd","type":"csm_resource_filter","attributes":{"cloud_provider":{}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2
