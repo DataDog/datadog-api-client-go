@@ -258,8 +258,8 @@ func (a *NetworkDeviceMonitoringApi) ListDeviceUserTags(ctx _context.Context, de
 
 // ListDevicesOptionalParameters holds optional parameters for ListDevices.
 type ListDevicesOptionalParameters struct {
-	PageNumber *int64
 	PageSize   *int64
+	PageNumber *int64
 	Sort       *string
 	FilterTag  *string
 }
@@ -270,15 +270,15 @@ func NewListDevicesOptionalParameters() *ListDevicesOptionalParameters {
 	return &this
 }
 
-// WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListDevicesOptionalParameters) WithPageNumber(pageNumber int64) *ListDevicesOptionalParameters {
-	r.PageNumber = &pageNumber
-	return r
-}
-
 // WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListDevicesOptionalParameters) WithPageSize(pageSize int64) *ListDevicesOptionalParameters {
 	r.PageSize = &pageSize
+	return r
+}
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
+func (r *ListDevicesOptionalParameters) WithPageNumber(pageNumber int64) *ListDevicesOptionalParameters {
+	r.PageNumber = &pageNumber
 	return r
 }
 
@@ -321,11 +321,11 @@ func (a *NetworkDeviceMonitoringApi) ListDevices(ctx _context.Context, o ...List
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if optionalParams.PageNumber != nil {
-		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*optionalParams.PageNumber, ""))
-	}
 	if optionalParams.PageSize != nil {
 		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
+	}
+	if optionalParams.PageNumber != nil {
+		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*optionalParams.PageNumber, ""))
 	}
 	if optionalParams.Sort != nil {
 		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
@@ -382,6 +382,54 @@ func (a *NetworkDeviceMonitoringApi) ListDevices(ctx _context.Context, o ...List
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListDevicesWithPagination provides a paginated version of ListDevices returning a channel with all items.
+func (a *NetworkDeviceMonitoringApi) ListDevicesWithPagination(ctx _context.Context, o ...ListDevicesOptionalParameters) (<-chan datadog.PaginationResult[DevicesListData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(10)
+	if len(o) == 0 {
+		o = append(o, ListDevicesOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
+	}
+	o[0].PageSize = &pageSize_
+	page_ := int64(0)
+	o[0].PageNumber = &page_
+
+	items := make(chan datadog.PaginationResult[DevicesListData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListDevices(ctx, o...)
+			if err != nil {
+				var returnItem DevicesListData
+				items <- datadog.PaginationResult[DevicesListData]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[DevicesListData]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			pageOffset_ := *o[0].PageNumber + 1
+			o[0].PageNumber = &pageOffset_
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // UpdateDeviceUserTags Update the tags for a device.
