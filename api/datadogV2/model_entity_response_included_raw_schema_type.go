@@ -22,7 +22,7 @@ var allowedEntityResponseIncludedRawSchemaTypeEnumValues = []EntityResponseInclu
 	ENTITYRESPONSEINCLUDEDRAWSCHEMATYPE_RAW_SCHEMA,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EntityResponseIncludedRawSchemaType) GetAllowedValues() []EntityResponseIncludedRawSchemaType {
 	return allowedEntityResponseIncludedRawSchemaTypeEnumValues
 }

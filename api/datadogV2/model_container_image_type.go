@@ -22,7 +22,7 @@ var allowedContainerImageTypeEnumValues = []ContainerImageType{
 	CONTAINERIMAGETYPE_CONTAINER_IMAGE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ContainerImageType) GetAllowedValues() []ContainerImageType {
 	return allowedContainerImageTypeEnumValues
 }

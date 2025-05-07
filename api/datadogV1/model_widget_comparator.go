@@ -30,7 +30,7 @@ var allowedWidgetComparatorEnumValues = []WidgetComparator{
 	WIDGETCOMPARATOR_LESS_THAN_OR_EQUAL_TO,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetComparator) GetAllowedValues() []WidgetComparator {
 	return allowedWidgetComparatorEnumValues
 }

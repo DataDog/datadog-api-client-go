@@ -24,7 +24,7 @@ var allowedTopologyQueryDataSourceEnumValues = []TopologyQueryDataSource{
 	TOPOLOGYQUERYDATASOURCE_SERVICE_MAP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TopologyQueryDataSource) GetAllowedValues() []TopologyQueryDataSource {
 	return allowedTopologyQueryDataSourceEnumValues
 }

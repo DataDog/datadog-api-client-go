@@ -36,7 +36,7 @@ var allowedGetTeamMembershipsSortEnumValues = []GetTeamMembershipsSort{
 	GETTEAMMEMBERSHIPSSORT__EMAIL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *GetTeamMembershipsSort) GetAllowedValues() []GetTeamMembershipsSort {
 	return allowedGetTeamMembershipsSortEnumValues
 }

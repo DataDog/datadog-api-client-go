@@ -22,7 +22,7 @@ var allowedScalarColumnTypeGroupEnumValues = []ScalarColumnTypeGroup{
 	SCALARCOLUMNTYPEGROUP_GROUP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ScalarColumnTypeGroup) GetAllowedValues() []ScalarColumnTypeGroup {
 	return allowedScalarColumnTypeGroupEnumValues
 }

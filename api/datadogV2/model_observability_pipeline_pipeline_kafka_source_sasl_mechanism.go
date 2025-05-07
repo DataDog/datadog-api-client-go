@@ -26,7 +26,7 @@ var allowedObservabilityPipelinePipelineKafkaSourceSaslMechanismEnumValues = []O
 	OBSERVABILITYPIPELINEPIPELINEKAFKASOURCESASLMECHANISM_SCRAMNOT_SHANOT_512,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ObservabilityPipelinePipelineKafkaSourceSaslMechanism) GetAllowedValues() []ObservabilityPipelinePipelineKafkaSourceSaslMechanism {
 	return allowedObservabilityPipelinePipelineKafkaSourceSaslMechanismEnumValues
 }

@@ -22,7 +22,7 @@ var allowedGroupTypeEnumValues = []GroupType{
 	GROUPTYPE_GROUP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *GroupType) GetAllowedValues() []GroupType {
 	return allowedGroupTypeEnumValues
 }

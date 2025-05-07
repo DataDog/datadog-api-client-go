@@ -36,7 +36,7 @@ var allowedFormulaAndFunctionSLOMeasureEnumValues = []FormulaAndFunctionSLOMeasu
 	FORMULAANDFUNCTIONSLOMEASURE_ERROR_BUDGET_BURNDOWN,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FormulaAndFunctionSLOMeasure) GetAllowedValues() []FormulaAndFunctionSLOMeasure {
 	return allowedFormulaAndFunctionSLOMeasureEnumValues
 }

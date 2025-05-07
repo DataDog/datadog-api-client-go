@@ -22,7 +22,7 @@ var allowedIncidentTypeTypeEnumValues = []IncidentTypeType{
 	INCIDENTTYPETYPE_INCIDENT_TYPES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IncidentTypeType) GetAllowedValues() []IncidentTypeType {
 	return allowedIncidentTypeTypeEnumValues
 }

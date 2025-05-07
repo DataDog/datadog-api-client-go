@@ -22,7 +22,7 @@ var allowedProjectResourceTypeEnumValues = []ProjectResourceType{
 	PROJECTRESOURCETYPE_PROJECT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ProjectResourceType) GetAllowedValues() []ProjectResourceType {
 	return allowedProjectResourceTypeEnumValues
 }

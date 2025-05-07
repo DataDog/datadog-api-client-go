@@ -24,7 +24,7 @@ var allowedSecurityMonitoringFilterActionEnumValues = []SecurityMonitoringFilter
 	SECURITYMONITORINGFILTERACTION_SUPPRESS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringFilterAction) GetAllowedValues() []SecurityMonitoringFilterAction {
 	return allowedSecurityMonitoringFilterActionEnumValues
 }

@@ -28,7 +28,7 @@ var allowedSyntheticsBrowserVariableTypeEnumValues = []SyntheticsBrowserVariable
 	SYNTHETICSBROWSERVARIABLETYPE_TEXT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsBrowserVariableType) GetAllowedValues() []SyntheticsBrowserVariableType {
 	return allowedSyntheticsBrowserVariableTypeEnumValues
 }

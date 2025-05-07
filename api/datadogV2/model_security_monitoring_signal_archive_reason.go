@@ -30,7 +30,7 @@ var allowedSecurityMonitoringSignalArchiveReasonEnumValues = []SecurityMonitorin
 	SECURITYMONITORINGSIGNALARCHIVEREASON_OTHER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringSignalArchiveReason) GetAllowedValues() []SecurityMonitoringSignalArchiveReason {
 	return allowedSecurityMonitoringSignalArchiveReasonEnumValues
 }

@@ -36,7 +36,7 @@ var allowedAPIKeysSortEnumValues = []APIKeysSort{
 	APIKEYSSORT_NAME_DESCENDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *APIKeysSort) GetAllowedValues() []APIKeysSort {
 	return allowedAPIKeysSortEnumValues
 }

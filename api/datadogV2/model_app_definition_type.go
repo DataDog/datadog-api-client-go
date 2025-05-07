@@ -22,7 +22,7 @@ var allowedAppDefinitionTypeEnumValues = []AppDefinitionType{
 	APPDEFINITIONTYPE_APPDEFINITIONS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AppDefinitionType) GetAllowedValues() []AppDefinitionType {
 	return allowedAppDefinitionTypeEnumValues
 }

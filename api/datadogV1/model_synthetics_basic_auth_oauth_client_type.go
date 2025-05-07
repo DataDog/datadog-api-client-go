@@ -22,7 +22,7 @@ var allowedSyntheticsBasicAuthOauthClientTypeEnumValues = []SyntheticsBasicAuthO
 	SYNTHETICSBASICAUTHOAUTHCLIENTTYPE_OAUTH_CLIENT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsBasicAuthOauthClientType) GetAllowedValues() []SyntheticsBasicAuthOauthClientType {
 	return allowedSyntheticsBasicAuthOauthClientTypeEnumValues
 }

@@ -35,7 +35,7 @@ var allowedSensitiveDataScannerTextReplacementTypeEnumValues = []SensitiveDataSc
 	SENSITIVEDATASCANNERTEXTREPLACEMENTTYPE_PARTIAL_REPLACEMENT_FROM_END,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SensitiveDataScannerTextReplacementType) GetAllowedValues() []SensitiveDataScannerTextReplacementType {
 	return allowedSensitiveDataScannerTextReplacementTypeEnumValues
 }

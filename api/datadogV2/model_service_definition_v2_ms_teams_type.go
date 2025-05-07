@@ -22,7 +22,7 @@ var allowedServiceDefinitionV2MSTeamsTypeEnumValues = []ServiceDefinitionV2MSTea
 	SERVICEDEFINITIONV2MSTEAMSTYPE_MICROSOFT_TEAMS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ServiceDefinitionV2MSTeamsType) GetAllowedValues() []ServiceDefinitionV2MSTeamsType {
 	return allowedServiceDefinitionV2MSTeamsTypeEnumValues
 }

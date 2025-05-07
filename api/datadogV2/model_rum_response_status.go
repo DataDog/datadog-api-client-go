@@ -24,7 +24,7 @@ var allowedRUMResponseStatusEnumValues = []RUMResponseStatus{
 	RUMRESPONSESTATUS_TIMEOUT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RUMResponseStatus) GetAllowedValues() []RUMResponseStatus {
 	return allowedRUMResponseStatusEnumValues
 }

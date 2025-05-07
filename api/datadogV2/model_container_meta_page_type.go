@@ -22,7 +22,7 @@ var allowedContainerMetaPageTypeEnumValues = []ContainerMetaPageType{
 	CONTAINERMETAPAGETYPE_CURSOR_LIMIT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ContainerMetaPageType) GetAllowedValues() []ContainerMetaPageType {
 	return allowedContainerMetaPageTypeEnumValues
 }

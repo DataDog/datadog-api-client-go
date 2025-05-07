@@ -24,7 +24,7 @@ var allowedSyntheticsMobileStepParamsElementContextTypeEnumValues = []Synthetics
 	SYNTHETICSMOBILESTEPPARAMSELEMENTCONTEXTTYPE_WEB,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsMobileStepParamsElementContextType) GetAllowedValues() []SyntheticsMobileStepParamsElementContextType {
 	return allowedSyntheticsMobileStepParamsElementContextTypeEnumValues
 }

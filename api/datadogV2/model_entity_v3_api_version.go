@@ -22,7 +22,7 @@ var allowedEntityV3APIVersionEnumValues = []EntityV3APIVersion{
 	ENTITYV3APIVERSION_V3,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EntityV3APIVersion) GetAllowedValues() []EntityV3APIVersion {
 	return allowedEntityV3APIVersionEnumValues
 }

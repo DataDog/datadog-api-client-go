@@ -24,7 +24,7 @@ var allowedAuditLogsSortEnumValues = []AuditLogsSort{
 	AUDITLOGSSORT_TIMESTAMP_DESCENDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AuditLogsSort) GetAllowedValues() []AuditLogsSort {
 	return allowedAuditLogsSortEnumValues
 }

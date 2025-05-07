@@ -22,7 +22,7 @@ var allowedApplicationSecurityWafCustomRuleTypeEnumValues = []ApplicationSecurit
 	APPLICATIONSECURITYWAFCUSTOMRULETYPE_CUSTOM_RULE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ApplicationSecurityWafCustomRuleType) GetAllowedValues() []ApplicationSecurityWafCustomRuleType {
 	return allowedApplicationSecurityWafCustomRuleTypeEnumValues
 }

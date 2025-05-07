@@ -22,7 +22,7 @@ var allowedSpansAggregateRequestTypeEnumValues = []SpansAggregateRequestType{
 	SPANSAGGREGATEREQUESTTYPE_AGGREGATE_REQUEST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SpansAggregateRequestType) GetAllowedValues() []SpansAggregateRequestType {
 	return allowedSpansAggregateRequestTypeEnumValues
 }

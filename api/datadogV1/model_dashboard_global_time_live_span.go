@@ -36,7 +36,7 @@ var allowedDashboardGlobalTimeLiveSpanEnumValues = []DashboardGlobalTimeLiveSpan
 	DASHBOARDGLOBALTIMELIVESPAN_PAST_THREE_MONTHS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DashboardGlobalTimeLiveSpan) GetAllowedValues() []DashboardGlobalTimeLiveSpan {
 	return allowedDashboardGlobalTimeLiveSpanEnumValues
 }

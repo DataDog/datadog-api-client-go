@@ -24,7 +24,7 @@ var allowedLogsMetricResponseComputeAggregationTypeEnumValues = []LogsMetricResp
 	LOGSMETRICRESPONSECOMPUTEAGGREGATIONTYPE_DISTRIBUTION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsMetricResponseComputeAggregationType) GetAllowedValues() []LogsMetricResponseComputeAggregationType {
 	return allowedLogsMetricResponseComputeAggregationTypeEnumValues
 }

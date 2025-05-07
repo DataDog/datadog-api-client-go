@@ -24,7 +24,7 @@ var allowedCIAppResponseStatusEnumValues = []CIAppResponseStatus{
 	CIAPPRESPONSESTATUS_TIMEOUT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CIAppResponseStatus) GetAllowedValues() []CIAppResponseStatus {
 	return allowedCIAppResponseStatusEnumValues
 }

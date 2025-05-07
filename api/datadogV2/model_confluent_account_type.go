@@ -22,7 +22,7 @@ var allowedConfluentAccountTypeEnumValues = []ConfluentAccountType{
 	CONFLUENTACCOUNTTYPE_CONFLUENT_CLOUD_ACCOUNTS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ConfluentAccountType) GetAllowedValues() []ConfluentAccountType {
 	return allowedConfluentAccountTypeEnumValues
 }

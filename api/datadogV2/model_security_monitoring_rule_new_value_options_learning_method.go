@@ -24,7 +24,7 @@ var allowedSecurityMonitoringRuleNewValueOptionsLearningMethodEnumValues = []Sec
 	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGMETHOD_THRESHOLD,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringRuleNewValueOptionsLearningMethod) GetAllowedValues() []SecurityMonitoringRuleNewValueOptionsLearningMethod {
 	return allowedSecurityMonitoringRuleNewValueOptionsLearningMethodEnumValues
 }

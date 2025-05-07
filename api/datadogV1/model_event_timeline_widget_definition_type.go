@@ -22,7 +22,7 @@ var allowedEventTimelineWidgetDefinitionTypeEnumValues = []EventTimelineWidgetDe
 	EVENTTIMELINEWIDGETDEFINITIONTYPE_EVENT_TIMELINE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EventTimelineWidgetDefinitionType) GetAllowedValues() []EventTimelineWidgetDefinitionType {
 	return allowedEventTimelineWidgetDefinitionTypeEnumValues
 }

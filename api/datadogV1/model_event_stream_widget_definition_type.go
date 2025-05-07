@@ -22,7 +22,7 @@ var allowedEventStreamWidgetDefinitionTypeEnumValues = []EventStreamWidgetDefini
 	EVENTSTREAMWIDGETDEFINITIONTYPE_EVENT_STREAM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EventStreamWidgetDefinitionType) GetAllowedValues() []EventStreamWidgetDefinitionType {
 	return allowedEventStreamWidgetDefinitionTypeEnumValues
 }

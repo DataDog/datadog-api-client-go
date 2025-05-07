@@ -52,7 +52,7 @@ var allowedCIAppAggregationFunctionEnumValues = []CIAppAggregationFunction{
 	CIAPPAGGREGATIONFUNCTION_DELTA,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CIAppAggregationFunction) GetAllowedValues() []CIAppAggregationFunction {
 	return allowedCIAppAggregationFunctionEnumValues
 }
