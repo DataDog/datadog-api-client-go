@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMetricsApi(apiClient)
-	resp, r, err := api.EstimateMetricsOutputSeries(ctx, "system.cpu.idle", *datadogV2.NewEstimateMetricsOutputSeriesOptionalParameters().WithFilterGroups("app,host").WithFilterNumAggregations(4))
+	resp, r, err := api.EstimateMetricsOutputSeries(ctx, "system.cpu.idle", *datadogV2.NewEstimateMetricsOutputSeriesOptionalParameters().WithFilterGroups("app,host"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.EstimateMetricsOutputSeries`: %v\n", err)

@@ -11,6 +11,8 @@ import (
 )
 
 // MetricCustomAggregation A time and space aggregation combination for use in query.
+//
+// Deprecated: This model is deprecated.
 type MetricCustomAggregation struct {
 	// A space aggregation for use in query.
 	Space MetricCustomSpaceAggregation `json:"space"`

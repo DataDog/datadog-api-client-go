@@ -28,6 +28,7 @@ type MetricTagConfigurationCreateAttributes struct {
 	// - time: sum, space: sum
 	//
 	// Can only be applied to non_distribution metrics that have a `metric_type` of `count`, `rate`, or `gauge`.
+	// Deprecated
 	Aggregations []MetricCustomAggregation `json:"aggregations,omitempty"`
 	// When set to true, the configuration will exclude the configured tags and include any other submitted tags.
 	// When set to false, the configuration will include the configured tags and exclude any other submitted tags.
@@ -67,6 +68,7 @@ func NewMetricTagConfigurationCreateAttributesWithDefaults() *MetricTagConfigura
 }
 
 // GetAggregations returns the Aggregations field value if set, zero value otherwise.
+// Deprecated
 func (o *MetricTagConfigurationCreateAttributes) GetAggregations() []MetricCustomAggregation {
 	if o == nil || o.Aggregations == nil {
 		var ret []MetricCustomAggregation
@@ -77,6 +79,7 @@ func (o *MetricTagConfigurationCreateAttributes) GetAggregations() []MetricCusto
 
 // GetAggregationsOk returns a tuple with the Aggregations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *MetricTagConfigurationCreateAttributes) GetAggregationsOk() (*[]MetricCustomAggregation, bool) {
 	if o == nil || o.Aggregations == nil {
 		return nil, false
@@ -90,6 +93,7 @@ func (o *MetricTagConfigurationCreateAttributes) HasAggregations() bool {
 }
 
 // SetAggregations gets a reference to the given []MetricCustomAggregation and assigns it to the Aggregations field.
+// Deprecated
 func (o *MetricTagConfigurationCreateAttributes) SetAggregations(v []MetricCustomAggregation) {
 	o.Aggregations = v
 }
