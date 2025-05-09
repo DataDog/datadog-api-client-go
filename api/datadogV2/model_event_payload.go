@@ -16,8 +16,10 @@ type EventPayload struct {
 	AggregationKey *string `json:"aggregation_key,omitempty"`
 	// JSON object for custom attributes. Schema are different per each event category.
 	Attributes EventPayloadAttributes `json:"attributes"`
-	// Event category to identify the type of event. Only the value `change` is supported. Support for other categories are coming. please reach out to datadog support if you're interested.
+	// Event category to identify the type of event. For example, `change` or `alert`.
 	Category EventCategory `json:"category"`
+	// Integration IDs sourced from integration manifests. Currently, only `custom-events` is supported.
+	IntegrationId *EventPayloadIntegrationId `json:"integration_id,omitempty"`
 	// The body of the event. Limited to 4000 characters.
 	Message *string `json:"message,omitempty"`
 	// A list of tags to apply to the event.
@@ -126,6 +128,34 @@ func (o *EventPayload) GetCategoryOk() (*EventCategory, bool) {
 // SetCategory sets field value.
 func (o *EventPayload) SetCategory(v EventCategory) {
 	o.Category = v
+}
+
+// GetIntegrationId returns the IntegrationId field value if set, zero value otherwise.
+func (o *EventPayload) GetIntegrationId() EventPayloadIntegrationId {
+	if o == nil || o.IntegrationId == nil {
+		var ret EventPayloadIntegrationId
+		return ret
+	}
+	return *o.IntegrationId
+}
+
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventPayload) GetIntegrationIdOk() (*EventPayloadIntegrationId, bool) {
+	if o == nil || o.IntegrationId == nil {
+		return nil, false
+	}
+	return o.IntegrationId, true
+}
+
+// HasIntegrationId returns a boolean if a field has been set.
+func (o *EventPayload) HasIntegrationId() bool {
+	return o != nil && o.IntegrationId != nil
+}
+
+// SetIntegrationId gets a reference to the given EventPayloadIntegrationId and assigns it to the IntegrationId field.
+func (o *EventPayload) SetIntegrationId(v EventPayloadIntegrationId) {
+	o.IntegrationId = &v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
@@ -246,6 +276,9 @@ func (o EventPayload) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["attributes"] = o.Attributes
 	toSerialize["category"] = o.Category
+	if o.IntegrationId != nil {
+		toSerialize["integration_id"] = o.IntegrationId
+	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
 	}
@@ -266,13 +299,14 @@ func (o EventPayload) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventPayload) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AggregationKey *string                 `json:"aggregation_key,omitempty"`
-		Attributes     *EventPayloadAttributes `json:"attributes"`
-		Category       *EventCategory          `json:"category"`
-		Message        *string                 `json:"message,omitempty"`
-		Tags           []string                `json:"tags,omitempty"`
-		Timestamp      *string                 `json:"timestamp,omitempty"`
-		Title          *string                 `json:"title"`
+		AggregationKey *string                    `json:"aggregation_key,omitempty"`
+		Attributes     *EventPayloadAttributes    `json:"attributes"`
+		Category       *EventCategory             `json:"category"`
+		IntegrationId  *EventPayloadIntegrationId `json:"integration_id,omitempty"`
+		Message        *string                    `json:"message,omitempty"`
+		Tags           []string                   `json:"tags,omitempty"`
+		Timestamp      *string                    `json:"timestamp,omitempty"`
+		Title          *string                    `json:"title"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -288,7 +322,7 @@ func (o *EventPayload) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation_key", "attributes", "category", "message", "tags", "timestamp", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation_key", "attributes", "category", "integration_id", "message", "tags", "timestamp", "title"})
 	} else {
 		return err
 	}
@@ -300,6 +334,11 @@ func (o *EventPayload) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	} else {
 		o.Category = *all.Category
+	}
+	if all.IntegrationId != nil && !all.IntegrationId.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.IntegrationId = all.IntegrationId
 	}
 	o.Message = all.Message
 	o.Tags = all.Tags
