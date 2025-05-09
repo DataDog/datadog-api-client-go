@@ -84,7 +84,7 @@
 <span id="L27" class="ln">    27  </span>	<span class="comment">// The name for this layer (for example, &#34;Secondary Coverage&#34;).</span>
 <span id="L28" class="ln">    28  </span>	Name string `json:&#34;name&#34;`
 <span id="L29" class="ln">    29  </span>	<span class="comment">// Any time restrictions that define when this layer is active.</span>
-<span id="L30" class="ln">    30  </span>	Restrictions []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems `json:&#34;restrictions,omitempty&#34;`
+<span id="L30" class="ln">    30  </span>	Restrictions []TimeRestriction `json:&#34;restrictions,omitempty&#34;`
 <span id="L31" class="ln">    31  </span>	<span class="comment">// The date/time at which the rotation begins (ISO 8601 format).</span>
 <span id="L32" class="ln">    32  </span>	RotationStart time.Time `json:&#34;rotation_start&#34;`
 <span id="L33" class="ln">    33  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
@@ -263,9 +263,9 @@
 <span id="L206" class="ln">   206  </span>}
 <span id="L207" class="ln">   207  </span>
 <span id="L208" class="ln">   208  </span><span class="comment">// GetRestrictions returns the Restrictions field value if set, zero value otherwise.</span>
-<span id="L209" class="ln">   209  </span>func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetRestrictions() []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems {
+<span id="L209" class="ln">   209  </span>func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetRestrictions() []TimeRestriction {
 <span id="L210" class="ln">   210  </span>	if o == nil || o.Restrictions == nil {
-<span id="L211" class="ln">   211  </span>		var ret []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems
+<span id="L211" class="ln">   211  </span>		var ret []TimeRestriction
 <span id="L212" class="ln">   212  </span>		return ret
 <span id="L213" class="ln">   213  </span>	}
 <span id="L214" class="ln">   214  </span>	return o.Restrictions
@@ -273,7 +273,7 @@
 <span id="L216" class="ln">   216  </span>
 <span id="L217" class="ln">   217  </span><span class="comment">// GetRestrictionsOk returns a tuple with the Restrictions field value if set, nil otherwise</span>
 <span id="L218" class="ln">   218  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L219" class="ln">   219  </span>func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetRestrictionsOk() (*[]ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems, bool) {
+<span id="L219" class="ln">   219  </span>func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetRestrictionsOk() (*[]TimeRestriction, bool) {
 <span id="L220" class="ln">   220  </span>	if o == nil || o.Restrictions == nil {
 <span id="L221" class="ln">   221  </span>		return nil, false
 <span id="L222" class="ln">   222  </span>	}
@@ -285,8 +285,8 @@
 <span id="L228" class="ln">   228  </span>	return o != nil &amp;&amp; o.Restrictions != nil
 <span id="L229" class="ln">   229  </span>}
 <span id="L230" class="ln">   230  </span>
-<span id="L231" class="ln">   231  </span><span class="comment">// SetRestrictions gets a reference to the given []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems and assigns it to the Restrictions field.</span>
-<span id="L232" class="ln">   232  </span>func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetRestrictions(v []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems) {
+<span id="L231" class="ln">   231  </span><span class="comment">// SetRestrictions gets a reference to the given []TimeRestriction and assigns it to the Restrictions field.</span>
+<span id="L232" class="ln">   232  </span>func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetRestrictions(v []TimeRestriction) {
 <span id="L233" class="ln">   233  </span>	o.Restrictions = v
 <span id="L234" class="ln">   234  </span>}
 <span id="L235" class="ln">   235  </span>
@@ -355,14 +355,14 @@
 <span id="L298" class="ln">   298  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L299" class="ln">   299  </span>func (o *ScheduleUpdateRequestDataAttributesLayersItems) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L300" class="ln">   300  </span>	all := struct {
-<span id="L301" class="ln">   301  </span>		EffectiveDate *time.Time                                                        `json:&#34;effective_date&#34;`
-<span id="L302" class="ln">   302  </span>		EndDate       *time.Time                                                        `json:&#34;end_date,omitempty&#34;`
-<span id="L303" class="ln">   303  </span>		Id            *string                                                           `json:&#34;id,omitempty&#34;`
-<span id="L304" class="ln">   304  </span>		Interval      *ScheduleUpdateRequestDataAttributesLayersItemsInterval           `json:&#34;interval&#34;`
-<span id="L305" class="ln">   305  </span>		Members       *[]ScheduleUpdateRequestDataAttributesLayersItemsMembersItems     `json:&#34;members&#34;`
-<span id="L306" class="ln">   306  </span>		Name          *string                                                           `json:&#34;name&#34;`
-<span id="L307" class="ln">   307  </span>		Restrictions  []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems `json:&#34;restrictions,omitempty&#34;`
-<span id="L308" class="ln">   308  </span>		RotationStart *time.Time                                                        `json:&#34;rotation_start&#34;`
+<span id="L301" class="ln">   301  </span>		EffectiveDate *time.Time                                                    `json:&#34;effective_date&#34;`
+<span id="L302" class="ln">   302  </span>		EndDate       *time.Time                                                    `json:&#34;end_date,omitempty&#34;`
+<span id="L303" class="ln">   303  </span>		Id            *string                                                       `json:&#34;id,omitempty&#34;`
+<span id="L304" class="ln">   304  </span>		Interval      *ScheduleUpdateRequestDataAttributesLayersItemsInterval       `json:&#34;interval&#34;`
+<span id="L305" class="ln">   305  </span>		Members       *[]ScheduleUpdateRequestDataAttributesLayersItemsMembersItems `json:&#34;members&#34;`
+<span id="L306" class="ln">   306  </span>		Name          *string                                                       `json:&#34;name&#34;`
+<span id="L307" class="ln">   307  </span>		Restrictions  []TimeRestriction                                             `json:&#34;restrictions,omitempty&#34;`
+<span id="L308" class="ln">   308  </span>		RotationStart *time.Time                                                    `json:&#34;rotation_start&#34;`
 <span id="L309" class="ln">   309  </span>	}{}
 <span id="L310" class="ln">   310  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L311" class="ln">   311  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)

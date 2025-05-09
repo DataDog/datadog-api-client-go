@@ -78,7 +78,7 @@
 <span id="L21" class="ln">    21  </span>	<span class="comment">// The name of this layer.</span>
 <span id="L22" class="ln">    22  </span>	Name *string `json:&#34;name,omitempty&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// An optional list of time restrictions for when this layer is in effect.</span>
-<span id="L24" class="ln">    24  </span>	Restrictions []LayerAttributesRestrictionsItems `json:&#34;restrictions,omitempty&#34;`
+<span id="L24" class="ln">    24  </span>	Restrictions []TimeRestriction `json:&#34;restrictions,omitempty&#34;`
 <span id="L25" class="ln">    25  </span>	<span class="comment">// The date/time when the rotation starts (ISO 8601).</span>
 <span id="L26" class="ln">    26  </span>	RotationStart *time.Time `json:&#34;rotation_start,omitempty&#34;`
 <span id="L27" class="ln">    27  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
@@ -216,9 +216,9 @@
 <span id="L159" class="ln">   159  </span>}
 <span id="L160" class="ln">   160  </span>
 <span id="L161" class="ln">   161  </span><span class="comment">// GetRestrictions returns the Restrictions field value if set, zero value otherwise.</span>
-<span id="L162" class="ln">   162  </span>func (o *LayerAttributes) GetRestrictions() []LayerAttributesRestrictionsItems {
+<span id="L162" class="ln">   162  </span>func (o *LayerAttributes) GetRestrictions() []TimeRestriction {
 <span id="L163" class="ln">   163  </span>	if o == nil || o.Restrictions == nil {
-<span id="L164" class="ln">   164  </span>		var ret []LayerAttributesRestrictionsItems
+<span id="L164" class="ln">   164  </span>		var ret []TimeRestriction
 <span id="L165" class="ln">   165  </span>		return ret
 <span id="L166" class="ln">   166  </span>	}
 <span id="L167" class="ln">   167  </span>	return o.Restrictions
@@ -226,7 +226,7 @@
 <span id="L169" class="ln">   169  </span>
 <span id="L170" class="ln">   170  </span><span class="comment">// GetRestrictionsOk returns a tuple with the Restrictions field value if set, nil otherwise</span>
 <span id="L171" class="ln">   171  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L172" class="ln">   172  </span>func (o *LayerAttributes) GetRestrictionsOk() (*[]LayerAttributesRestrictionsItems, bool) {
+<span id="L172" class="ln">   172  </span>func (o *LayerAttributes) GetRestrictionsOk() (*[]TimeRestriction, bool) {
 <span id="L173" class="ln">   173  </span>	if o == nil || o.Restrictions == nil {
 <span id="L174" class="ln">   174  </span>		return nil, false
 <span id="L175" class="ln">   175  </span>	}
@@ -238,8 +238,8 @@
 <span id="L181" class="ln">   181  </span>	return o != nil &amp;&amp; o.Restrictions != nil
 <span id="L182" class="ln">   182  </span>}
 <span id="L183" class="ln">   183  </span>
-<span id="L184" class="ln">   184  </span><span class="comment">// SetRestrictions gets a reference to the given []LayerAttributesRestrictionsItems and assigns it to the Restrictions field.</span>
-<span id="L185" class="ln">   185  </span>func (o *LayerAttributes) SetRestrictions(v []LayerAttributesRestrictionsItems) {
+<span id="L184" class="ln">   184  </span><span class="comment">// SetRestrictions gets a reference to the given []TimeRestriction and assigns it to the Restrictions field.</span>
+<span id="L185" class="ln">   185  </span>func (o *LayerAttributes) SetRestrictions(v []TimeRestriction) {
 <span id="L186" class="ln">   186  </span>	o.Restrictions = v
 <span id="L187" class="ln">   187  </span>}
 <span id="L188" class="ln">   188  </span>
@@ -317,12 +317,12 @@
 <span id="L260" class="ln">   260  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L261" class="ln">   261  </span>func (o *LayerAttributes) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L262" class="ln">   262  </span>	all := struct {
-<span id="L263" class="ln">   263  </span>		EffectiveDate *time.Time                         `json:&#34;effective_date,omitempty&#34;`
-<span id="L264" class="ln">   264  </span>		EndDate       *time.Time                         `json:&#34;end_date,omitempty&#34;`
-<span id="L265" class="ln">   265  </span>		Interval      *LayerAttributesInterval           `json:&#34;interval,omitempty&#34;`
-<span id="L266" class="ln">   266  </span>		Name          *string                            `json:&#34;name,omitempty&#34;`
-<span id="L267" class="ln">   267  </span>		Restrictions  []LayerAttributesRestrictionsItems `json:&#34;restrictions,omitempty&#34;`
-<span id="L268" class="ln">   268  </span>		RotationStart *time.Time                         `json:&#34;rotation_start,omitempty&#34;`
+<span id="L263" class="ln">   263  </span>		EffectiveDate *time.Time               `json:&#34;effective_date,omitempty&#34;`
+<span id="L264" class="ln">   264  </span>		EndDate       *time.Time               `json:&#34;end_date,omitempty&#34;`
+<span id="L265" class="ln">   265  </span>		Interval      *LayerAttributesInterval `json:&#34;interval,omitempty&#34;`
+<span id="L266" class="ln">   266  </span>		Name          *string                  `json:&#34;name,omitempty&#34;`
+<span id="L267" class="ln">   267  </span>		Restrictions  []TimeRestriction        `json:&#34;restrictions,omitempty&#34;`
+<span id="L268" class="ln">   268  </span>		RotationStart *time.Time               `json:&#34;rotation_start,omitempty&#34;`
 <span id="L269" class="ln">   269  </span>	}{}
 <span id="L270" class="ln">   270  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L271" class="ln">   271  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
