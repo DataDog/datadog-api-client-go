@@ -13,7 +13,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"is_read_only":false,"layout_type":"free","title":"","widgets":[]}
+            {"layout_type":"free","title":"","widgets":[]}
         form: {}
         headers:
             Accept:
