@@ -12,6 +12,8 @@ import (
 type EventCreateResponse struct {
 	// JSON object containing all events attributes and their associated values.
 	Attributes *EventCreateResponseAttributes `json:"attributes,omitempty"`
+	// A numerical ID compatible with the V1 endpoint. This field is not populated in response from the V2 endpoint. To retrieve this ID, refer to the event attributes in the Event Explorer.
+	Id *string `json:"id,omitempty"`
 	// Event type
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -64,6 +66,34 @@ func (o *EventCreateResponse) SetAttributes(v EventCreateResponseAttributes) {
 	o.Attributes = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *EventCreateResponse) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EventCreateResponse) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *EventCreateResponse) HasId() bool {
+	return o != nil && o.Id != nil
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *EventCreateResponse) SetId(v string) {
+	o.Id = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *EventCreateResponse) GetType() string {
 	if o == nil || o.Type == nil {
@@ -101,6 +131,9 @@ func (o EventCreateResponse) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
@@ -115,6 +148,7 @@ func (o EventCreateResponse) MarshalJSON() ([]byte, error) {
 func (o *EventCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *EventCreateResponseAttributes `json:"attributes,omitempty"`
+		Id         *string                        `json:"id,omitempty"`
 		Type       *string                        `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +156,7 @@ func (o *EventCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
 	} else {
 		return err
 	}
@@ -132,6 +166,7 @@ func (o *EventCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
+	o.Id = all.Id
 	o.Type = all.Type
 
 	if len(additionalProperties) > 0 {
