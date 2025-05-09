@@ -27,7 +27,7 @@ type ScheduleUpdateRequestDataAttributesLayersItems struct {
 	// The name for this layer (for example, "Secondary Coverage").
 	Name string `json:"name"`
 	// Any time restrictions that define when this layer is active.
-	Restrictions []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems `json:"restrictions,omitempty"`
+	Restrictions []TimeRestriction `json:"restrictions,omitempty"`
 	// The date/time at which the rotation begins (ISO 8601 format).
 	RotationStart time.Time `json:"rotation_start"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -206,9 +206,9 @@ func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetName(v string) {
 }
 
 // GetRestrictions returns the Restrictions field value if set, zero value otherwise.
-func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetRestrictions() []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems {
+func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetRestrictions() []TimeRestriction {
 	if o == nil || o.Restrictions == nil {
-		var ret []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems
+		var ret []TimeRestriction
 		return ret
 	}
 	return o.Restrictions
@@ -216,7 +216,7 @@ func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetRestrictions() []Sch
 
 // GetRestrictionsOk returns a tuple with the Restrictions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetRestrictionsOk() (*[]ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems, bool) {
+func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetRestrictionsOk() (*[]TimeRestriction, bool) {
 	if o == nil || o.Restrictions == nil {
 		return nil, false
 	}
@@ -228,8 +228,8 @@ func (o *ScheduleUpdateRequestDataAttributesLayersItems) HasRestrictions() bool 
 	return o != nil && o.Restrictions != nil
 }
 
-// SetRestrictions gets a reference to the given []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems and assigns it to the Restrictions field.
-func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetRestrictions(v []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems) {
+// SetRestrictions gets a reference to the given []TimeRestriction and assigns it to the Restrictions field.
+func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetRestrictions(v []TimeRestriction) {
 	o.Restrictions = v
 }
 
@@ -298,14 +298,14 @@ func (o ScheduleUpdateRequestDataAttributesLayersItems) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EffectiveDate *time.Time                                                        `json:"effective_date"`
-		EndDate       *time.Time                                                        `json:"end_date,omitempty"`
-		Id            *string                                                           `json:"id,omitempty"`
-		Interval      *ScheduleUpdateRequestDataAttributesLayersItemsInterval           `json:"interval"`
-		Members       *[]ScheduleUpdateRequestDataAttributesLayersItemsMembersItems     `json:"members"`
-		Name          *string                                                           `json:"name"`
-		Restrictions  []ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems `json:"restrictions,omitempty"`
-		RotationStart *time.Time                                                        `json:"rotation_start"`
+		EffectiveDate *time.Time                                                    `json:"effective_date"`
+		EndDate       *time.Time                                                    `json:"end_date,omitempty"`
+		Id            *string                                                       `json:"id,omitempty"`
+		Interval      *ScheduleUpdateRequestDataAttributesLayersItemsInterval       `json:"interval"`
+		Members       *[]ScheduleUpdateRequestDataAttributesLayersItemsMembersItems `json:"members"`
+		Name          *string                                                       `json:"name"`
+		Restrictions  []TimeRestriction                                             `json:"restrictions,omitempty"`
+		RotationStart *time.Time                                                    `json:"rotation_start"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

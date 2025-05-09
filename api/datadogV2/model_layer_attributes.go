@@ -21,7 +21,7 @@ type LayerAttributes struct {
 	// The name of this layer.
 	Name *string `json:"name,omitempty"`
 	// An optional list of time restrictions for when this layer is in effect.
-	Restrictions []LayerAttributesRestrictionsItems `json:"restrictions,omitempty"`
+	Restrictions []TimeRestriction `json:"restrictions,omitempty"`
 	// The date/time when the rotation starts (ISO 8601).
 	RotationStart *time.Time `json:"rotation_start,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -159,9 +159,9 @@ func (o *LayerAttributes) SetName(v string) {
 }
 
 // GetRestrictions returns the Restrictions field value if set, zero value otherwise.
-func (o *LayerAttributes) GetRestrictions() []LayerAttributesRestrictionsItems {
+func (o *LayerAttributes) GetRestrictions() []TimeRestriction {
 	if o == nil || o.Restrictions == nil {
-		var ret []LayerAttributesRestrictionsItems
+		var ret []TimeRestriction
 		return ret
 	}
 	return o.Restrictions
@@ -169,7 +169,7 @@ func (o *LayerAttributes) GetRestrictions() []LayerAttributesRestrictionsItems {
 
 // GetRestrictionsOk returns a tuple with the Restrictions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LayerAttributes) GetRestrictionsOk() (*[]LayerAttributesRestrictionsItems, bool) {
+func (o *LayerAttributes) GetRestrictionsOk() (*[]TimeRestriction, bool) {
 	if o == nil || o.Restrictions == nil {
 		return nil, false
 	}
@@ -181,8 +181,8 @@ func (o *LayerAttributes) HasRestrictions() bool {
 	return o != nil && o.Restrictions != nil
 }
 
-// SetRestrictions gets a reference to the given []LayerAttributesRestrictionsItems and assigns it to the Restrictions field.
-func (o *LayerAttributes) SetRestrictions(v []LayerAttributesRestrictionsItems) {
+// SetRestrictions gets a reference to the given []TimeRestriction and assigns it to the Restrictions field.
+func (o *LayerAttributes) SetRestrictions(v []TimeRestriction) {
 	o.Restrictions = v
 }
 
@@ -260,12 +260,12 @@ func (o LayerAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LayerAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EffectiveDate *time.Time                         `json:"effective_date,omitempty"`
-		EndDate       *time.Time                         `json:"end_date,omitempty"`
-		Interval      *LayerAttributesInterval           `json:"interval,omitempty"`
-		Name          *string                            `json:"name,omitempty"`
-		Restrictions  []LayerAttributesRestrictionsItems `json:"restrictions,omitempty"`
-		RotationStart *time.Time                         `json:"rotation_start,omitempty"`
+		EffectiveDate *time.Time               `json:"effective_date,omitempty"`
+		EndDate       *time.Time               `json:"end_date,omitempty"`
+		Interval      *LayerAttributesInterval `json:"interval,omitempty"`
+		Name          *string                  `json:"name,omitempty"`
+		Restrictions  []TimeRestriction        `json:"restrictions,omitempty"`
+		RotationStart *time.Time               `json:"rotation_start,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

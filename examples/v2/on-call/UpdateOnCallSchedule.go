@@ -44,11 +44,11 @@ func main() {
 							},
 						},
 						Name: "Layer 1",
-						Restrictions: []datadogV2.ScheduleUpdateRequestDataAttributesLayersItemsRestrictionsItems{
+						Restrictions: []datadogV2.TimeRestriction{
 							{
-								EndDay:    datadogV2.SCHEDULEUPDATEREQUESTDATAATTRIBUTESLAYERSITEMSRESTRICTIONSITEMSENDDAY_FRIDAY.Ptr(),
+								EndDay:    datadogV2.WEEKDAY_FRIDAY.Ptr(),
 								EndTime:   datadog.PtrString("17:00:00"),
-								StartDay:  datadogV2.SCHEDULEUPDATEREQUESTDATAATTRIBUTESLAYERSITEMSRESTRICTIONSITEMSSTARTDAY_MONDAY.Ptr(),
+								StartDay:  datadogV2.WEEKDAY_MONDAY.Ptr(),
 								StartTime: datadog.PtrString("09:00:00"),
 							},
 						},
