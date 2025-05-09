@@ -321,6 +321,194 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
+			"v2.On-CallPagingApi.CreateOnCallPage": {
+				{
+					URL:         "https://{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "The globally available endpoint for On-Call.",
+							DefaultValue: "navy.oncall.datadoghq.com",
+							EnumValues: []string{
+								"saffron.oncall.datadoghq.com",
+								"navy.oncall.datadoghq.com",
+								"coral.oncall.datadoghq.com",
+								"teal.oncall.datadoghq.com",
+								"beige.oncall.datadoghq.eu",
+							},
+						},
+					},
+				},
+				{
+					URL:         "{protocol}://{name}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"name": {
+							Description:  "Full site DNS name.",
+							DefaultValue: "api.datadoghq.com",
+						},
+						"protocol": {
+							Description:  "The protocol for accessing the API.",
+							DefaultValue: "https",
+						},
+					},
+				},
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "Any Datadog deployment.",
+							DefaultValue: "datadoghq.com",
+						},
+						"subdomain": {
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "api",
+						},
+					},
+				},
+			},
+			"v2.On-CallPagingApi.AcknowledgeOnCallPage": {
+				{
+					URL:         "https://{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "The globally available endpoint for On-Call.",
+							DefaultValue: "navy.oncall.datadoghq.com",
+							EnumValues: []string{
+								"saffron.oncall.datadoghq.com",
+								"navy.oncall.datadoghq.com",
+								"coral.oncall.datadoghq.com",
+								"teal.oncall.datadoghq.com",
+								"beige.oncall.datadoghq.eu",
+							},
+						},
+					},
+				},
+				{
+					URL:         "{protocol}://{name}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"name": {
+							Description:  "Full site DNS name.",
+							DefaultValue: "api.datadoghq.com",
+						},
+						"protocol": {
+							Description:  "The protocol for accessing the API.",
+							DefaultValue: "https",
+						},
+					},
+				},
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "Any Datadog deployment.",
+							DefaultValue: "datadoghq.com",
+						},
+						"subdomain": {
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "api",
+						},
+					},
+				},
+			},
+			"v2.On-CallPagingApi.EscalateOnCallPage": {
+				{
+					URL:         "https://{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "The globally available endpoint for On-Call.",
+							DefaultValue: "navy.oncall.datadoghq.com",
+							EnumValues: []string{
+								"saffron.oncall.datadoghq.com",
+								"navy.oncall.datadoghq.com",
+								"coral.oncall.datadoghq.com",
+								"teal.oncall.datadoghq.com",
+								"beige.oncall.datadoghq.eu",
+							},
+						},
+					},
+				},
+				{
+					URL:         "{protocol}://{name}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"name": {
+							Description:  "Full site DNS name.",
+							DefaultValue: "api.datadoghq.com",
+						},
+						"protocol": {
+							Description:  "The protocol for accessing the API.",
+							DefaultValue: "https",
+						},
+					},
+				},
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "Any Datadog deployment.",
+							DefaultValue: "datadoghq.com",
+						},
+						"subdomain": {
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "api",
+						},
+					},
+				},
+			},
+			"v2.On-CallPagingApi.ResolveOnCallPage": {
+				{
+					URL:         "https://{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "The globally available endpoint for On-Call.",
+							DefaultValue: "navy.oncall.datadoghq.com",
+							EnumValues: []string{
+								"saffron.oncall.datadoghq.com",
+								"navy.oncall.datadoghq.com",
+								"coral.oncall.datadoghq.com",
+								"teal.oncall.datadoghq.com",
+								"beige.oncall.datadoghq.eu",
+							},
+						},
+					},
+				},
+				{
+					URL:         "{protocol}://{name}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"name": {
+							Description:  "Full site DNS name.",
+							DefaultValue: "api.datadoghq.com",
+						},
+						"protocol": {
+							Description:  "The protocol for accessing the API.",
+							DefaultValue: "https",
+						},
+					},
+				},
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "Any Datadog deployment.",
+							DefaultValue: "datadoghq.com",
+						},
+						"subdomain": {
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "api",
+						},
+					},
+				},
+			},
 		},
 		unstableOperations: map[string]bool{
 			"v2.CreateOpenAPI":                 false,
