@@ -13,11 +13,11 @@ import (
 // CustomFrameworkWithoutRequirements Framework without requirements.
 type CustomFrameworkWithoutRequirements struct {
 	// Framework Description
-	Description string `json:"description"`
+	Description *string `json:"description,omitempty"`
 	// Framework Handle
 	Handle string `json:"handle"`
 	// Framework Icon URL
-	IconUrl string `json:"icon_url"`
+	IconUrl *string `json:"icon_url,omitempty"`
 	// Framework Name
 	Name string `json:"name"`
 	// Framework Version
@@ -31,11 +31,9 @@ type CustomFrameworkWithoutRequirements struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCustomFrameworkWithoutRequirements(description string, handle string, iconUrl string, name string, version string) *CustomFrameworkWithoutRequirements {
+func NewCustomFrameworkWithoutRequirements(handle string, name string, version string) *CustomFrameworkWithoutRequirements {
 	this := CustomFrameworkWithoutRequirements{}
-	this.Description = description
 	this.Handle = handle
-	this.IconUrl = iconUrl
 	this.Name = name
 	this.Version = version
 	return &this
@@ -49,27 +47,32 @@ func NewCustomFrameworkWithoutRequirementsWithDefaults() *CustomFrameworkWithout
 	return &this
 }
 
-// GetDescription returns the Description field value.
+// GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CustomFrameworkWithoutRequirements) GetDescription() string {
-	if o == nil {
+	if o == nil || o.Description == nil {
 		var ret string
 		return ret
 	}
-	return o.Description
+	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomFrameworkWithoutRequirements) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Description == nil {
 		return nil, false
 	}
-	return &o.Description, true
+	return o.Description, true
 }
 
-// SetDescription sets field value.
+// HasDescription returns a boolean if a field has been set.
+func (o *CustomFrameworkWithoutRequirements) HasDescription() bool {
+	return o != nil && o.Description != nil
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *CustomFrameworkWithoutRequirements) SetDescription(v string) {
-	o.Description = v
+	o.Description = &v
 }
 
 // GetHandle returns the Handle field value.
@@ -95,27 +98,32 @@ func (o *CustomFrameworkWithoutRequirements) SetHandle(v string) {
 	o.Handle = v
 }
 
-// GetIconUrl returns the IconUrl field value.
+// GetIconUrl returns the IconUrl field value if set, zero value otherwise.
 func (o *CustomFrameworkWithoutRequirements) GetIconUrl() string {
-	if o == nil {
+	if o == nil || o.IconUrl == nil {
 		var ret string
 		return ret
 	}
-	return o.IconUrl
+	return *o.IconUrl
 }
 
-// GetIconUrlOk returns a tuple with the IconUrl field value
+// GetIconUrlOk returns a tuple with the IconUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomFrameworkWithoutRequirements) GetIconUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.IconUrl == nil {
 		return nil, false
 	}
-	return &o.IconUrl, true
+	return o.IconUrl, true
 }
 
-// SetIconUrl sets field value.
+// HasIconUrl returns a boolean if a field has been set.
+func (o *CustomFrameworkWithoutRequirements) HasIconUrl() bool {
+	return o != nil && o.IconUrl != nil
+}
+
+// SetIconUrl gets a reference to the given string and assigns it to the IconUrl field.
 func (o *CustomFrameworkWithoutRequirements) SetIconUrl(v string) {
-	o.IconUrl = v
+	o.IconUrl = &v
 }
 
 // GetName returns the Name field value.
@@ -170,9 +178,13 @@ func (o CustomFrameworkWithoutRequirements) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["description"] = o.Description
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
 	toSerialize["handle"] = o.Handle
-	toSerialize["icon_url"] = o.IconUrl
+	if o.IconUrl != nil {
+		toSerialize["icon_url"] = o.IconUrl
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["version"] = o.Version
 
@@ -185,23 +197,17 @@ func (o CustomFrameworkWithoutRequirements) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomFrameworkWithoutRequirements) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description *string `json:"description"`
+		Description *string `json:"description,omitempty"`
 		Handle      *string `json:"handle"`
-		IconUrl     *string `json:"icon_url"`
+		IconUrl     *string `json:"icon_url,omitempty"`
 		Name        *string `json:"name"`
 		Version     *string `json:"version"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Description == nil {
-		return fmt.Errorf("required field description missing")
-	}
 	if all.Handle == nil {
 		return fmt.Errorf("required field handle missing")
-	}
-	if all.IconUrl == nil {
-		return fmt.Errorf("required field icon_url missing")
 	}
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
@@ -215,9 +221,9 @@ func (o *CustomFrameworkWithoutRequirements) UnmarshalJSON(bytes []byte) (err er
 	} else {
 		return err
 	}
-	o.Description = *all.Description
+	o.Description = all.Description
 	o.Handle = *all.Handle
-	o.IconUrl = *all.IconUrl
+	o.IconUrl = all.IconUrl
 	o.Name = *all.Name
 	o.Version = *all.Version
 
