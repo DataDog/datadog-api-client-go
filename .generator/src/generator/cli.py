@@ -47,6 +47,7 @@ def cli(specs, output):
     env.filters["snake_case"] = formatter.snake_case
     env.filters["untitle_case"] = formatter.untitle_case
     env.filters["upperfirst"] = utils.upperfirst
+    env.filters["class_name"] = utils.class_name
     env.filters["variable_name"] = formatter.variable_name
 
     env.globals["enumerate"] = enumerate

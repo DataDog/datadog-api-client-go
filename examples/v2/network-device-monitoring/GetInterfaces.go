@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewNetworkDeviceMonitoringApi(apiClient)
-	resp, r, err := api.GetInterfaces(ctx, "default:1.2.3.4")
+	resp, r, err := api.GetInterfaces(ctx, "default:1.2.3.4", *datadogV2.NewGetInterfacesOptionalParameters().WithGetIpAddresses(true))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkDeviceMonitoringApi.GetInterfaces`: %v\n", err)

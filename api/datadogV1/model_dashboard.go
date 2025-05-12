@@ -64,8 +64,6 @@ type Dashboard struct {
 // will change when the set of required properties is changed.
 func NewDashboard(layoutType DashboardLayoutType, title string, widgets []Widget) *Dashboard {
 	this := Dashboard{}
-	var isReadOnly bool = false
-	this.IsReadOnly = &isReadOnly
 	this.LayoutType = layoutType
 	this.Title = title
 	this.Widgets = widgets
@@ -77,8 +75,6 @@ func NewDashboard(layoutType DashboardLayoutType, title string, widgets []Widget
 // but it doesn't guarantee that properties required by API are set.
 func NewDashboardWithDefaults() *Dashboard {
 	this := Dashboard{}
-	var isReadOnly bool = false
-	this.IsReadOnly = &isReadOnly
 	return &this
 }
 

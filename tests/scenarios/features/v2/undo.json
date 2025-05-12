@@ -513,6 +513,41 @@
       "type": "safe"
     }
   },
+  "CreateCustomFramework": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "operationId": "DeleteCustomFramework",
+      "parameters": [
+        {
+          "name": "handle",
+          "source": "data.attributes.handle"
+        },
+        {
+          "name": "version",
+          "source": "data.attributes.version"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteCustomFramework": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetCustomFramework": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateCustomFramework": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "ListContainerImages": {
     "tag": "Container Images",
     "undo": {
@@ -571,6 +606,37 @@
     "tag": "Cloud Cost Management",
     "undo": {
       "type": "idempotent"
+    }
+  },
+  "UpsertBudget": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "operationId": "DeleteBudget",
+      "parameters": [
+        {
+          "name": "budget_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteBudget": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetBudget": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListBudgets": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "safe"
     }
   },
   "ListCustomCostsFiles": {
@@ -1671,6 +1737,43 @@
       "type": "safe"
     }
   },
+  "GetMonitorNotificationRules": {
+    "tag": "Monitors",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateMonitorNotificationRule": {
+    "tag": "Monitors",
+    "undo": {
+      "operationId": "DeleteMonitorNotificationRule",
+      "parameters": [
+        {
+          "name": "rule_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteMonitorNotificationRule": {
+    "tag": "Monitors",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetMonitorNotificationRule": {
+    "tag": "Monitors",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateMonitorNotificationRule": {
+    "tag": "Monitors",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "ListMonitorConfigPolicies": {
     "tag": "Monitors",
     "undo": {
@@ -1748,6 +1851,108 @@
     "tag": "Cloud Network Monitoring",
     "undo": {
       "type": "safe"
+    }
+  },
+  "CreateOnCallEscalationPolicy": {
+    "tag": "On-Call",
+    "undo": {
+      "operationId": "DeleteOnCallEscalationPolicy",
+      "parameters": [
+        {
+          "name": "policy_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteOnCallEscalationPolicy": {
+    "tag": "On-Call",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetOnCallEscalationPolicy": {
+    "tag": "On-Call",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateOnCallEscalationPolicy": {
+    "tag": "On-Call",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "CreateOnCallPage": {
+    "tag": "On-Call Paging",
+    "undo": {
+      "parameters": [],
+      "type": "unsafe"
+    }
+  },
+  "AcknowledgeOnCallPage": {
+    "tag": "On-Call Paging",
+    "undo": {
+      "parameters": [],
+      "type": "unsafe"
+    }
+  },
+  "EscalateOnCallPage": {
+    "tag": "On-Call Paging",
+    "undo": {
+      "parameters": [],
+      "type": "unsafe"
+    }
+  },
+  "ResolveOnCallPage": {
+    "tag": "On-Call Paging",
+    "undo": {
+      "parameters": [],
+      "type": "unsafe"
+    }
+  },
+  "CreateOnCallSchedule": {
+    "tag": "On-Call",
+    "undo": {
+      "operationId": "DeleteOnCallSchedule",
+      "parameters": [
+        {
+          "name": "schedule_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteOnCallSchedule": {
+    "tag": "On-Call",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetOnCallSchedule": {
+    "tag": "On-Call",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateOnCallSchedule": {
+    "tag": "On-Call",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetOnCallTeamRoutingRules": {
+    "tag": "On-Call",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "SetOnCallTeamRoutingRules": {
+    "tag": "On-Call",
+    "undo": {
+      "type": "idempotent"
     }
   },
   "ListOrgConfigs": {
@@ -1958,8 +2163,51 @@
       "type": "idempotent"
     }
   },
+  "ListCSMThreatsAgentPolicies": {
+    "tag": "CSM Threats",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateCSMThreatsAgentPolicy": {
+    "tag": "CSM Threats",
+    "undo": {
+      "operationId": "DeleteCSMThreatsAgentPolicy",
+      "parameters": [
+        {
+          "name": "policy_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
   "DownloadCSMThreatsPolicy": {
     "tag": "CSM Threats",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "DeleteCSMThreatsAgentPolicy": {
+    "tag": "CSM Threats",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetCSMThreatsAgentPolicy": {
+    "tag": "CSM Threats",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateCSMThreatsAgentPolicy": {
+    "tag": "CSM Threats",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListPipelines": {
+    "tag": "Observability Pipelines",
     "undo": {
       "type": "safe"
     }
@@ -1975,6 +2223,12 @@
         }
       ],
       "type": "unsafe"
+    }
+  },
+  "ValidatePipeline": {
+    "tag": "Observability Pipelines",
+    "undo": {
+      "type": "safe"
     }
   },
   "DeletePipeline": {

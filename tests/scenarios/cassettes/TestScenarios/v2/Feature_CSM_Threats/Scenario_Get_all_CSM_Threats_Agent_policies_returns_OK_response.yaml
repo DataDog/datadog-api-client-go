@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy
+  response:
+    body: '{"data":[{"id":"CWS_CUSTOM-canary","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"disabledRulesCount":1,"enabled":false,"hostTags":[],"monitoringRulesCount":418,"name":"Datadog
+      Managed Policy","policyVersion":"53221","priority":1000000000,"ruleCount":419,"updateDate":1742473183000,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}},{"id":"CWS_DD","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":true,"disabledRulesCount":1,"enabled":true,"monitoringRulesCount":225,"name":"Datadog
+      Managed Policy","policyVersion":"1.40.0-rc76","priority":0,"ruleCount":226,"updateDate":1737661272000,"updater":{"name":"Datadog","handle":""}}}]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 2

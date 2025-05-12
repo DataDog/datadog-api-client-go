@@ -1,0 +1,26 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"handle":"","name":"","requirements":[{"controls":[{"name":"","rules_id":[""]}],"name":""}],"version":""},"type":"custom_framework"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PUT
+    url: https://api.datadoghq.com/api/v2/cloud_security_management/custom_frameworks/create-framework-new/10
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"input_validation_error(Field
+      ''data.attributes.requirements.name'' is invalid: field ''requirements.name''
+      must not be empty), input_validation_error(Field ''data.attributes.controls.name''
+      is invalid: field ''controls.name'' must not be empty), input_validation_error(Field
+      ''data.attributes.name'' is invalid: field ''name'' must not be empty)"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2

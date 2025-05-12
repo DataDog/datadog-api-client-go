@@ -13,7 +13,7 @@ import (
 	"{{ module }}/api/{{ common_package_name }}"
 )
 
-{%- set classname = name.replace(" ", "") + "Api" %}
+{%- set classname = name|class_name %}
 
 // {{ classname }} service type
 type {{ classname }} {{ common_package_name }}.Service

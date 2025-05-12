@@ -171,6 +171,7 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // Restriction policies can be applied to the following resources:
 // - Dashboards: `dashboard`
 // - Integration Accounts: `integration-account`
+// - Integration Services: `integration-service`
 // - Integration Webhooks: `integration-webhook`
 // - Notebooks: `notebook`
 // - Powerpacks: `powerpack`
@@ -191,6 +192,7 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // ----------------------------|--------------------------
 // Dashboards                  | `viewer`, `editor`
 // Integration Accounts        | `viewer`, `editor`
+// Integration Services        | `viewer`, `editor`
 // Integration Webhooks        | `viewer`, `editor`
 // Notebooks                   | `viewer`, `editor`
 // Powerpacks                  | `viewer`, `editor`

@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/cloud_security_management/custom_frameworks/handle-does-not-exist/version-does-not-exist
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
