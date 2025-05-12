@@ -4,14 +4,12 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json;datetime-format=rfc3339
+      - application/json;datetime-format=rfc3339, application/json
     id: 0
     method: GET
-    url: https://api.datadoghq.com/api/v2/usage/observability_pipelines?start_hr=2022-04-17T18%3A23%3A39.831Z&end_hr=2022-04-15T18%3A23%3A39.831Z
+    url: https://api.datadoghq.com/api/v2/usage/observability_pipelines?start_hr=2025-05-09T12%3A32%3A52.982Z&end_hr=2025-05-07T12%3A32%3A52.982Z
   response:
-    body: '{"errors":["start_hr [YYYY-MM-DDThh] must be before end_hr [YYYY-MM-DDThh]"]}
-
-      '
+    body: '{"errors":["start_hr [YYYY-MM-DDThh] must be before end_hr [YYYY-MM-DDThh]"]}'
     code: 400
     duration: 0ms
     headers:

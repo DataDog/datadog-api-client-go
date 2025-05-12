@@ -98,7 +98,7 @@ func (a *UsageMeteringApi) GetDailyCustomReports(ctx _context.Context, o ...GetD
 	if optionalParams.Sort != nil {
 		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -126,7 +126,7 @@ func (a *UsageMeteringApi) GetDailyCustomReports(ctx _context.Context, o ...GetD
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -244,7 +244,7 @@ func (a *UsageMeteringApi) GetHourlyUsageAttribution(ctx _context.Context, start
 	if optionalParams.IncludeDescendants != nil {
 		localVarQueryParams.Add("include_descendants", datadog.ParameterToString(*optionalParams.IncludeDescendants, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -272,7 +272,7 @@ func (a *UsageMeteringApi) GetHourlyUsageAttribution(ctx _context.Context, start
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -346,7 +346,7 @@ func (a *UsageMeteringApi) GetIncidentManagement(ctx _context.Context, startHr t
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -374,7 +374,7 @@ func (a *UsageMeteringApi) GetIncidentManagement(ctx _context.Context, startHr t
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -448,7 +448,7 @@ func (a *UsageMeteringApi) GetIngestedSpans(ctx _context.Context, startHr time.T
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -476,7 +476,7 @@ func (a *UsageMeteringApi) GetIngestedSpans(ctx _context.Context, startHr time.T
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -580,7 +580,7 @@ func (a *UsageMeteringApi) GetMonthlyCustomReports(ctx _context.Context, o ...Ge
 	if optionalParams.Sort != nil {
 		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -608,7 +608,7 @@ func (a *UsageMeteringApi) GetMonthlyCustomReports(ctx _context.Context, o ...Ge
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -746,7 +746,7 @@ func (a *UsageMeteringApi) GetMonthlyUsageAttribution(ctx _context.Context, star
 	if optionalParams.IncludeDescendants != nil {
 		localVarQueryParams.Add("include_descendants", datadog.ParameterToString(*optionalParams.IncludeDescendants, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -774,7 +774,7 @@ func (a *UsageMeteringApi) GetMonthlyUsageAttribution(ctx _context.Context, star
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -821,7 +821,7 @@ func (a *UsageMeteringApi) GetSpecifiedDailyCustomReports(ctx _context.Context, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -849,7 +849,7 @@ func (a *UsageMeteringApi) GetSpecifiedDailyCustomReports(ctx _context.Context, 
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -896,7 +896,7 @@ func (a *UsageMeteringApi) GetSpecifiedMonthlyCustomReports(ctx _context.Context
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -924,7 +924,7 @@ func (a *UsageMeteringApi) GetSpecifiedMonthlyCustomReports(ctx _context.Context
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -998,7 +998,7 @@ func (a *UsageMeteringApi) GetUsageAnalyzedLogs(ctx _context.Context, startHr ti
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -1026,7 +1026,7 @@ func (a *UsageMeteringApi) GetUsageAnalyzedLogs(ctx _context.Context, startHr ti
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1100,7 +1100,7 @@ func (a *UsageMeteringApi) GetUsageAuditLogs(ctx _context.Context, startHr time.
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -1128,7 +1128,7 @@ func (a *UsageMeteringApi) GetUsageAuditLogs(ctx _context.Context, startHr time.
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1210,7 +1210,7 @@ func (a *UsageMeteringApi) GetUsageBillableSummary(ctx _context.Context, o ...Ge
 	if optionalParams.IncludeConnectedAccounts != nil {
 		localVarQueryParams.Add("include_connected_accounts", datadog.ParameterToString(*optionalParams.IncludeConnectedAccounts, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -1238,7 +1238,7 @@ func (a *UsageMeteringApi) GetUsageBillableSummary(ctx _context.Context, o ...Ge
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1312,7 +1312,7 @@ func (a *UsageMeteringApi) GetUsageCIApp(ctx _context.Context, startHr time.Time
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -1340,7 +1340,7 @@ func (a *UsageMeteringApi) GetUsageCIApp(ctx _context.Context, startHr time.Time
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1414,7 +1414,7 @@ func (a *UsageMeteringApi) GetUsageCWS(ctx _context.Context, startHr time.Time, 
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -1442,7 +1442,7 @@ func (a *UsageMeteringApi) GetUsageCWS(ctx _context.Context, startHr time.Time, 
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1516,7 +1516,7 @@ func (a *UsageMeteringApi) GetUsageCloudSecurityPostureManagement(ctx _context.C
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -1544,7 +1544,7 @@ func (a *UsageMeteringApi) GetUsageCloudSecurityPostureManagement(ctx _context.C
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1618,7 +1618,7 @@ func (a *UsageMeteringApi) GetUsageDBM(ctx _context.Context, startHr time.Time, 
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -1646,7 +1646,7 @@ func (a *UsageMeteringApi) GetUsageDBM(ctx _context.Context, startHr time.Time, 
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1720,7 +1720,7 @@ func (a *UsageMeteringApi) GetUsageFargate(ctx _context.Context, startHr time.Ti
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -1748,7 +1748,7 @@ func (a *UsageMeteringApi) GetUsageFargate(ctx _context.Context, startHr time.Ti
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1822,7 +1822,7 @@ func (a *UsageMeteringApi) GetUsageHosts(ctx _context.Context, startHr time.Time
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -1850,7 +1850,7 @@ func (a *UsageMeteringApi) GetUsageHosts(ctx _context.Context, startHr time.Time
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1924,7 +1924,7 @@ func (a *UsageMeteringApi) GetUsageIndexedSpans(ctx _context.Context, startHr ti
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -1952,7 +1952,7 @@ func (a *UsageMeteringApi) GetUsageIndexedSpans(ctx _context.Context, startHr ti
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2026,7 +2026,7 @@ func (a *UsageMeteringApi) GetUsageInternetOfThings(ctx _context.Context, startH
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -2054,7 +2054,7 @@ func (a *UsageMeteringApi) GetUsageInternetOfThings(ctx _context.Context, startH
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2128,7 +2128,7 @@ func (a *UsageMeteringApi) GetUsageLambda(ctx _context.Context, startHr time.Tim
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -2156,7 +2156,7 @@ func (a *UsageMeteringApi) GetUsageLambda(ctx _context.Context, startHr time.Tim
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2230,7 +2230,7 @@ func (a *UsageMeteringApi) GetUsageLogs(ctx _context.Context, startHr time.Time,
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -2258,7 +2258,7 @@ func (a *UsageMeteringApi) GetUsageLogs(ctx _context.Context, startHr time.Time,
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2347,7 +2347,7 @@ func (a *UsageMeteringApi) GetUsageLogsByIndex(ctx _context.Context, startHr tim
 			localVarQueryParams.Add("index_name", datadog.ParameterToString(t, "multi"))
 		}
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -2375,7 +2375,7 @@ func (a *UsageMeteringApi) GetUsageLogsByIndex(ctx _context.Context, startHr tim
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2449,7 +2449,7 @@ func (a *UsageMeteringApi) GetUsageLogsByRetention(ctx _context.Context, startHr
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -2477,7 +2477,7 @@ func (a *UsageMeteringApi) GetUsageLogsByRetention(ctx _context.Context, startHr
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2551,7 +2551,7 @@ func (a *UsageMeteringApi) GetUsageNetworkFlows(ctx _context.Context, startHr ti
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -2579,7 +2579,7 @@ func (a *UsageMeteringApi) GetUsageNetworkFlows(ctx _context.Context, startHr ti
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2653,7 +2653,7 @@ func (a *UsageMeteringApi) GetUsageNetworkHosts(ctx _context.Context, startHr ti
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -2681,7 +2681,7 @@ func (a *UsageMeteringApi) GetUsageNetworkHosts(ctx _context.Context, startHr ti
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2755,7 +2755,7 @@ func (a *UsageMeteringApi) GetUsageOnlineArchive(ctx _context.Context, startHr t
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -2783,7 +2783,7 @@ func (a *UsageMeteringApi) GetUsageOnlineArchive(ctx _context.Context, startHr t
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2857,7 +2857,7 @@ func (a *UsageMeteringApi) GetUsageProfiling(ctx _context.Context, startHr time.
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -2885,7 +2885,7 @@ func (a *UsageMeteringApi) GetUsageProfiling(ctx _context.Context, startHr time.
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2969,7 +2969,7 @@ func (a *UsageMeteringApi) GetUsageRumSessions(ctx _context.Context, startHr tim
 	if optionalParams.Type != nil {
 		localVarQueryParams.Add("type", datadog.ParameterToString(*optionalParams.Type, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -2997,7 +2997,7 @@ func (a *UsageMeteringApi) GetUsageRumSessions(ctx _context.Context, startHr tim
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3071,7 +3071,7 @@ func (a *UsageMeteringApi) GetUsageRumUnits(ctx _context.Context, startHr time.T
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -3099,7 +3099,7 @@ func (a *UsageMeteringApi) GetUsageRumUnits(ctx _context.Context, startHr time.T
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3173,7 +3173,7 @@ func (a *UsageMeteringApi) GetUsageSDS(ctx _context.Context, startHr time.Time, 
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -3201,7 +3201,7 @@ func (a *UsageMeteringApi) GetUsageSDS(ctx _context.Context, startHr time.Time, 
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3275,7 +3275,7 @@ func (a *UsageMeteringApi) GetUsageSNMP(ctx _context.Context, startHr time.Time,
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -3303,7 +3303,7 @@ func (a *UsageMeteringApi) GetUsageSNMP(ctx _context.Context, startHr time.Time,
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3396,7 +3396,7 @@ func (a *UsageMeteringApi) GetUsageSummary(ctx _context.Context, startMonth time
 	if optionalParams.IncludeConnectedAccounts != nil {
 		localVarQueryParams.Add("include_connected_accounts", datadog.ParameterToString(*optionalParams.IncludeConnectedAccounts, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -3424,7 +3424,7 @@ func (a *UsageMeteringApi) GetUsageSummary(ctx _context.Context, startMonth time
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3498,7 +3498,7 @@ func (a *UsageMeteringApi) GetUsageSynthetics(ctx _context.Context, startHr time
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -3526,7 +3526,7 @@ func (a *UsageMeteringApi) GetUsageSynthetics(ctx _context.Context, startHr time
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3600,7 +3600,7 @@ func (a *UsageMeteringApi) GetUsageSyntheticsAPI(ctx _context.Context, startHr t
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -3628,7 +3628,7 @@ func (a *UsageMeteringApi) GetUsageSyntheticsAPI(ctx _context.Context, startHr t
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3702,7 +3702,7 @@ func (a *UsageMeteringApi) GetUsageSyntheticsBrowser(ctx _context.Context, start
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -3730,7 +3730,7 @@ func (a *UsageMeteringApi) GetUsageSyntheticsBrowser(ctx _context.Context, start
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3804,7 +3804,7 @@ func (a *UsageMeteringApi) GetUsageTimeseries(ctx _context.Context, startHr time
 	if optionalParams.EndHr != nil {
 		localVarQueryParams.Add("end_hr", datadog.ParameterToString(*optionalParams.EndHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -3832,7 +3832,7 @@ func (a *UsageMeteringApi) GetUsageTimeseries(ctx _context.Context, startHr time
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3950,7 +3950,7 @@ func (a *UsageMeteringApi) GetUsageTopAvgMetrics(ctx _context.Context, o ...GetU
 	if optionalParams.NextRecordId != nil {
 		localVarQueryParams.Add("next_record_id", datadog.ParameterToString(*optionalParams.NextRecordId, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
+	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
 		ctx,
@@ -3978,7 +3978,7 @@ func (a *UsageMeteringApi) GetUsageTopAvgMetrics(ctx _context.Context, o ...GetU
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

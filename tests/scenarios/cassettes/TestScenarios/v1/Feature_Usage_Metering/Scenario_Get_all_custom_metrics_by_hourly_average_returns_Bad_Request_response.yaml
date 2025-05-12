@@ -4,12 +4,12 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json;datetime-format=rfc3339
+      - application/json;datetime-format=rfc3339, application/json
     id: 0
     method: GET
     url: https://api.datadoghq.com/api/v1/usage/top_avg_metrics
   response:
-    body: '{"errors": ["The parameter ''month/day'' is required"]}'
+    body: '{"errors":["The parameter ''month/day'' is required"]}'
     code: 400
     duration: 0ms
     headers:

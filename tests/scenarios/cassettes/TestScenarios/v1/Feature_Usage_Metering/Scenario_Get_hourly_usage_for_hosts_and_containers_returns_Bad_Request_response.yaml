@@ -4,12 +4,12 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json;datetime-format=rfc3339
+      - application/json;datetime-format=rfc3339, application/json
     id: 0
     method: GET
-    url: https://api.datadoghq.com/api/v1/usage/hosts?start_hr=2022-03-29T00%3A41%3A30.106Z&end_hr=2022-03-27T00%3A41%3A30.106Z
+    url: https://api.datadoghq.com/api/v1/usage/hosts?start_hr=2025-05-09T11%3A35%3A58.489Z&end_hr=2025-05-07T11%3A35%3A58.489Z
   response:
-    body: '{"errors": ["start_hr [YYYY-MM-DDThh] must be before end_hr [YYYY-MM-DDThh]"]}'
+    body: '{"errors":["start_hr [YYYY-MM-DDThh] must be before end_hr [YYYY-MM-DDThh]"]}'
     code: 400
     duration: 0ms
     headers:
