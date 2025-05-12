@@ -4,7 +4,7 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json;datetime-format=rfc3339
+      - application/json;datetime-format=rfc3339, application/json
     id: 0
     method: GET
     url: https://api.datadoghq.com/api/v2/usage/projected_cost?view=sub-org

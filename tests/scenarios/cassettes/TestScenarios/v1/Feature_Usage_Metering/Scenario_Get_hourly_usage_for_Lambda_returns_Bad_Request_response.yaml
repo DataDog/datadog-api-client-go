@@ -4,12 +4,12 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json;datetime-format=rfc3339
+      - application/json;datetime-format=rfc3339, application/json
     id: 0
     method: GET
-    url: https://api.datadoghq.com/api/v1/usage/aws_lambda?start_hr=2022-03-29T00%3A41%3A23.917Z&end_hr=2022-03-27T00%3A41%3A23.917Z
+    url: https://api.datadoghq.com/api/v1/usage/aws_lambda?start_hr=2025-05-09T14%3A01%3A50.686Z&end_hr=2025-05-07T14%3A01%3A50.686Z
   response:
-    body: '{"errors": ["start_hr [YYYY-MM-DDThh] must be before end_hr [YYYY-MM-DDThh]"]}'
+    body: '{"errors":["start_hr [YYYY-MM-DDThh] must be before end_hr [YYYY-MM-DDThh]"]}'
     code: 400
     duration: 0ms
     headers:

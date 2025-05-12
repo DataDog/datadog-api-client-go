@@ -4,10 +4,10 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json;datetime-format=rfc3339
+      - application/json;datetime-format=rfc3339, application/json
     id: 0
     method: GET
-    url: https://api.datadoghq.com/api/v1/usage/ci-app?start_hr=2023-09-22T19%3A13%3A30.824Z&end_hr=2023-09-20T19%3A13%3A30.824Z
+    url: https://api.datadoghq.com/api/v1/usage/ci-app?start_hr=2025-05-09T11%3A35%3A34.125Z&end_hr=2025-05-07T11%3A35%3A34.125Z
   response:
     body: '{"errors":["start_hr [YYYY-MM-DDThh] must be before end_hr [YYYY-MM-DDThh]"]}'
     code: 400
