@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// EscalationPolicyDataRelationshipsTeams Defines the relationship to a collection of teams within an escalation policy. Contains an array of team data references.
-type EscalationPolicyDataRelationshipsTeams struct {
-	// An array of references to the teams associated with this escalation policy.
-	Data []EscalationPolicyDataRelationshipsTeamsDataItems `json:"data,omitempty"`
+// DataRelationshipsTeams Associates teams with this schedule in a data structure.
+type DataRelationshipsTeams struct {
+	// An array of team references for this schedule.
+	Data []DataRelationshipsTeamsDataItems `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewEscalationPolicyDataRelationshipsTeams instantiates a new EscalationPolicyDataRelationshipsTeams object.
+// NewDataRelationshipsTeams instantiates a new DataRelationshipsTeams object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewEscalationPolicyDataRelationshipsTeams() *EscalationPolicyDataRelationshipsTeams {
-	this := EscalationPolicyDataRelationshipsTeams{}
+func NewDataRelationshipsTeams() *DataRelationshipsTeams {
+	this := DataRelationshipsTeams{}
 	return &this
 }
 
-// NewEscalationPolicyDataRelationshipsTeamsWithDefaults instantiates a new EscalationPolicyDataRelationshipsTeams object.
+// NewDataRelationshipsTeamsWithDefaults instantiates a new DataRelationshipsTeams object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewEscalationPolicyDataRelationshipsTeamsWithDefaults() *EscalationPolicyDataRelationshipsTeams {
-	this := EscalationPolicyDataRelationshipsTeams{}
+func NewDataRelationshipsTeamsWithDefaults() *DataRelationshipsTeams {
+	this := DataRelationshipsTeams{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *EscalationPolicyDataRelationshipsTeams) GetData() []EscalationPolicyDataRelationshipsTeamsDataItems {
+func (o *DataRelationshipsTeams) GetData() []DataRelationshipsTeamsDataItems {
 	if o == nil || o.Data == nil {
-		var ret []EscalationPolicyDataRelationshipsTeamsDataItems
+		var ret []DataRelationshipsTeamsDataItems
 		return ret
 	}
 	return o.Data
@@ -45,7 +45,7 @@ func (o *EscalationPolicyDataRelationshipsTeams) GetData() []EscalationPolicyDat
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EscalationPolicyDataRelationshipsTeams) GetDataOk() (*[]EscalationPolicyDataRelationshipsTeamsDataItems, bool) {
+func (o *DataRelationshipsTeams) GetDataOk() (*[]DataRelationshipsTeamsDataItems, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *EscalationPolicyDataRelationshipsTeams) GetDataOk() (*[]EscalationPolic
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *EscalationPolicyDataRelationshipsTeams) HasData() bool {
+func (o *DataRelationshipsTeams) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
-// SetData gets a reference to the given []EscalationPolicyDataRelationshipsTeamsDataItems and assigns it to the Data field.
-func (o *EscalationPolicyDataRelationshipsTeams) SetData(v []EscalationPolicyDataRelationshipsTeamsDataItems) {
+// SetData gets a reference to the given []DataRelationshipsTeamsDataItems and assigns it to the Data field.
+func (o *DataRelationshipsTeams) SetData(v []DataRelationshipsTeamsDataItems) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o EscalationPolicyDataRelationshipsTeams) MarshalJSON() ([]byte, error) {
+func (o DataRelationshipsTeams) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,9 +79,9 @@ func (o EscalationPolicyDataRelationshipsTeams) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *EscalationPolicyDataRelationshipsTeams) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DataRelationshipsTeams) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []EscalationPolicyDataRelationshipsTeamsDataItems `json:"data,omitempty"`
+		Data []DataRelationshipsTeamsDataItems `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -13,7 +13,7 @@ type ScheduleDataRelationships struct {
 	// Associates layers with this schedule in a data structure.
 	Layers *ScheduleDataRelationshipsLayers `json:"layers,omitempty"`
 	// Associates teams with this schedule in a data structure.
-	Teams *ScheduleDataRelationshipsTeams `json:"teams,omitempty"`
+	Teams *DataRelationshipsTeams `json:"teams,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -65,9 +65,9 @@ func (o *ScheduleDataRelationships) SetLayers(v ScheduleDataRelationshipsLayers)
 }
 
 // GetTeams returns the Teams field value if set, zero value otherwise.
-func (o *ScheduleDataRelationships) GetTeams() ScheduleDataRelationshipsTeams {
+func (o *ScheduleDataRelationships) GetTeams() DataRelationshipsTeams {
 	if o == nil || o.Teams == nil {
-		var ret ScheduleDataRelationshipsTeams
+		var ret DataRelationshipsTeams
 		return ret
 	}
 	return *o.Teams
@@ -75,7 +75,7 @@ func (o *ScheduleDataRelationships) GetTeams() ScheduleDataRelationshipsTeams {
 
 // GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScheduleDataRelationships) GetTeamsOk() (*ScheduleDataRelationshipsTeams, bool) {
+func (o *ScheduleDataRelationships) GetTeamsOk() (*DataRelationshipsTeams, bool) {
 	if o == nil || o.Teams == nil {
 		return nil, false
 	}
@@ -87,8 +87,8 @@ func (o *ScheduleDataRelationships) HasTeams() bool {
 	return o != nil && o.Teams != nil
 }
 
-// SetTeams gets a reference to the given ScheduleDataRelationshipsTeams and assigns it to the Teams field.
-func (o *ScheduleDataRelationships) SetTeams(v ScheduleDataRelationshipsTeams) {
+// SetTeams gets a reference to the given DataRelationshipsTeams and assigns it to the Teams field.
+func (o *ScheduleDataRelationships) SetTeams(v DataRelationshipsTeams) {
 	o.Teams = &v
 }
 
@@ -115,7 +115,7 @@ func (o ScheduleDataRelationships) MarshalJSON() ([]byte, error) {
 func (o *ScheduleDataRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Layers *ScheduleDataRelationshipsLayers `json:"layers,omitempty"`
-		Teams  *ScheduleDataRelationshipsTeams  `json:"teams,omitempty"`
+		Teams  *DataRelationshipsTeams          `json:"teams,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

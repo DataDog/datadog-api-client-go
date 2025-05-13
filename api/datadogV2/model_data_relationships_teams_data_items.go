@@ -10,40 +10,40 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems Defines a single relationship to a team within an escalation policy update request. Contains the team's `id` and `type`.
-type EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems struct {
-	// Specifies the unique identifier for the related team.
+// DataRelationshipsTeamsDataItems Relates a team to this schedule, identified by `id` and `type` (must be `teams`).
+type DataRelationshipsTeamsDataItems struct {
+	// The unique identifier of the team in this relationship.
 	Id string `json:"id"`
-	// Indicates that the resource is of type `teams`.
-	Type EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItemsType `json:"type"`
+	// Teams resource type.
+	Type DataRelationshipsTeamsDataItemsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewEscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems instantiates a new EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems object.
+// NewDataRelationshipsTeamsDataItems instantiates a new DataRelationshipsTeamsDataItems object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewEscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems(id string, typeVar EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItemsType) *EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems {
-	this := EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems{}
+func NewDataRelationshipsTeamsDataItems(id string, typeVar DataRelationshipsTeamsDataItemsType) *DataRelationshipsTeamsDataItems {
+	this := DataRelationshipsTeamsDataItems{}
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewEscalationPolicyUpdateRequestDataRelationshipsTeamsDataItemsWithDefaults instantiates a new EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems object.
+// NewDataRelationshipsTeamsDataItemsWithDefaults instantiates a new DataRelationshipsTeamsDataItems object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewEscalationPolicyUpdateRequestDataRelationshipsTeamsDataItemsWithDefaults() *EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems {
-	this := EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems{}
-	var typeVar EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItemsType = ESCALATIONPOLICYUPDATEREQUESTDATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS
+func NewDataRelationshipsTeamsDataItemsWithDefaults() *DataRelationshipsTeamsDataItems {
+	this := DataRelationshipsTeamsDataItems{}
+	var typeVar DataRelationshipsTeamsDataItemsType = DATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS
 	this.Type = typeVar
 	return &this
 }
 
 // GetId returns the Id field value.
-func (o *EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems) GetId() string {
+func (o *DataRelationshipsTeamsDataItems) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -53,7 +53,7 @@ func (o *EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems) GetId() s
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems) GetIdOk() (*string, bool) {
+func (o *DataRelationshipsTeamsDataItems) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,14 +61,14 @@ func (o *EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems) GetIdOk()
 }
 
 // SetId sets field value.
-func (o *EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems) SetId(v string) {
+func (o *DataRelationshipsTeamsDataItems) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems) GetType() EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItemsType {
+func (o *DataRelationshipsTeamsDataItems) GetType() DataRelationshipsTeamsDataItemsType {
 	if o == nil {
-		var ret EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItemsType
+		var ret DataRelationshipsTeamsDataItemsType
 		return ret
 	}
 	return o.Type
@@ -76,7 +76,7 @@ func (o *EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems) GetType()
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems) GetTypeOk() (*EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItemsType, bool) {
+func (o *DataRelationshipsTeamsDataItems) GetTypeOk() (*DataRelationshipsTeamsDataItemsType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,12 +84,12 @@ func (o *EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems) GetTypeOk
 }
 
 // SetType sets field value.
-func (o *EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems) SetType(v EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItemsType) {
+func (o *DataRelationshipsTeamsDataItems) SetType(v DataRelationshipsTeamsDataItemsType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems) MarshalJSON() ([]byte, error) {
+func (o DataRelationshipsTeamsDataItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -104,10 +104,10 @@ func (o EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems) MarshalJSO
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DataRelationshipsTeamsDataItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                                                           `json:"id"`
-		Type *EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItemsType `json:"type"`
+		Id   *string                              `json:"id"`
+		Type *DataRelationshipsTeamsDataItemsType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

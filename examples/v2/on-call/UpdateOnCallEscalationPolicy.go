@@ -46,11 +46,11 @@ func main() {
 			},
 			Id: EscalationPolicyDataID,
 			Relationships: &datadogV2.EscalationPolicyUpdateRequestDataRelationships{
-				Teams: &datadogV2.EscalationPolicyUpdateRequestDataRelationshipsTeams{
-					Data: []datadogV2.EscalationPolicyUpdateRequestDataRelationshipsTeamsDataItems{
+				Teams: &datadogV2.DataRelationshipsTeams{
+					Data: []datadogV2.DataRelationshipsTeamsDataItems{
 						{
 							Id:   DdTeamDataID,
-							Type: datadogV2.ESCALATIONPOLICYUPDATEREQUESTDATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS,
+							Type: datadogV2.DATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS,
 						},
 					},
 				},

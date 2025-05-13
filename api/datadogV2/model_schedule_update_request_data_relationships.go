@@ -10,8 +10,8 @@ import (
 
 // ScheduleUpdateRequestDataRelationships Houses relationships for the schedule update, typically referencing teams.
 type ScheduleUpdateRequestDataRelationships struct {
-	// Defines the teams that this schedule update is associated with.
-	Teams *ScheduleUpdateRequestDataRelationshipsTeams `json:"teams,omitempty"`
+	// Associates teams with this schedule in a data structure.
+	Teams *DataRelationshipsTeams `json:"teams,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -35,9 +35,9 @@ func NewScheduleUpdateRequestDataRelationshipsWithDefaults() *ScheduleUpdateRequ
 }
 
 // GetTeams returns the Teams field value if set, zero value otherwise.
-func (o *ScheduleUpdateRequestDataRelationships) GetTeams() ScheduleUpdateRequestDataRelationshipsTeams {
+func (o *ScheduleUpdateRequestDataRelationships) GetTeams() DataRelationshipsTeams {
 	if o == nil || o.Teams == nil {
-		var ret ScheduleUpdateRequestDataRelationshipsTeams
+		var ret DataRelationshipsTeams
 		return ret
 	}
 	return *o.Teams
@@ -45,7 +45,7 @@ func (o *ScheduleUpdateRequestDataRelationships) GetTeams() ScheduleUpdateReques
 
 // GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScheduleUpdateRequestDataRelationships) GetTeamsOk() (*ScheduleUpdateRequestDataRelationshipsTeams, bool) {
+func (o *ScheduleUpdateRequestDataRelationships) GetTeamsOk() (*DataRelationshipsTeams, bool) {
 	if o == nil || o.Teams == nil {
 		return nil, false
 	}
@@ -57,8 +57,8 @@ func (o *ScheduleUpdateRequestDataRelationships) HasTeams() bool {
 	return o != nil && o.Teams != nil
 }
 
-// SetTeams gets a reference to the given ScheduleUpdateRequestDataRelationshipsTeams and assigns it to the Teams field.
-func (o *ScheduleUpdateRequestDataRelationships) SetTeams(v ScheduleUpdateRequestDataRelationshipsTeams) {
+// SetTeams gets a reference to the given DataRelationshipsTeams and assigns it to the Teams field.
+func (o *ScheduleUpdateRequestDataRelationships) SetTeams(v DataRelationshipsTeams) {
 	o.Teams = &v
 }
 
@@ -81,7 +81,7 @@ func (o ScheduleUpdateRequestDataRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScheduleUpdateRequestDataRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Teams *ScheduleUpdateRequestDataRelationshipsTeams `json:"teams,omitempty"`
+		Teams *DataRelationshipsTeams `json:"teams,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -27,12 +27,12 @@ func main() {
 					{
 						EffectiveDate: time.Now().AddDate(0, 0, -10),
 						EndDate:       datadog.PtrTime(time.Now().AddDate(0, 0, 10)),
-						Interval: datadogV2.ScheduleCreateRequestDataAttributesLayersItemsInterval{
+						Interval: datadogV2.LayerAttributesInterval{
 							Days: datadog.PtrInt32(1),
 						},
-						Members: []datadogV2.ScheduleCreateRequestDataAttributesLayersItemsMembersItems{
+						Members: []datadogV2.ScheduleRequestDataAttributesLayersItemsMembersItems{
 							{
-								User: &datadogV2.ScheduleCreateRequestDataAttributesLayersItemsMembersItemsUser{
+								User: &datadogV2.ScheduleRequestDataAttributesLayersItemsMembersItemsUser{
 									Id: datadog.PtrString(UserDataID),
 								},
 							},
@@ -57,11 +57,11 @@ func main() {
 				TimeZone: "America/New_York",
 			},
 			Relationships: &datadogV2.ScheduleCreateRequestDataRelationships{
-				Teams: &datadogV2.ScheduleCreateRequestDataRelationshipsTeams{
-					Data: []datadogV2.ScheduleCreateRequestDataRelationshipsTeamsDataItems{
+				Teams: &datadogV2.DataRelationshipsTeams{
+					Data: []datadogV2.DataRelationshipsTeamsDataItems{
 						{
 							Id:   DdTeamDataID,
-							Type: datadogV2.SCHEDULECREATEREQUESTDATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS,
+							Type: datadogV2.DATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS,
 						},
 					},
 				},
