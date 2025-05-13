@@ -29,7 +29,7 @@ interactions:
     method: GET
     url: https://api.datadoghq.com/api/v2/cloud_security_management/custom_frameworks/create-framework-new/10
   response:
-    body: '{"data":{"id":"create-framework-new-10","type":"custom_framework","attributes":{"description":"","handle":"create-framework-new","icon_url":"test-url","name":"name","requirements":[{"name":"requirement","controls":[{"name":"control","rules_id":["def-000-be9"]}]}],"version":"10"}}}'
+    body: '{"data":{"id":"create-framework-new-10","type":"custom_framework","attributes":{"handle":"create-framework-new","icon_url":"test-url","name":"name","requirements":[{"name":"requirement","controls":[{"name":"control","rules_id":["def-000-be9"]}]}],"version":"10"}}}'
     code: 200
     duration: 0ms
     headers:
