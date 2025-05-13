@@ -70,7 +70,7 @@
 <span id="L13" class="ln">    13  </span>	<span class="comment">// Associates layers with this schedule in a data structure.</span>
 <span id="L14" class="ln">    14  </span>	Layers *ScheduleDataRelationshipsLayers `json:&#34;layers,omitempty&#34;`
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Associates teams with this schedule in a data structure.</span>
-<span id="L16" class="ln">    16  </span>	Teams *ScheduleDataRelationshipsTeams `json:&#34;teams,omitempty&#34;`
+<span id="L16" class="ln">    16  </span>	Teams *DataRelationshipsTeams `json:&#34;teams,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L18" class="ln">    18  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L19" class="ln">    19  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -122,9 +122,9 @@
 <span id="L65" class="ln">    65  </span>}
 <span id="L66" class="ln">    66  </span>
 <span id="L67" class="ln">    67  </span><span class="comment">// GetTeams returns the Teams field value if set, zero value otherwise.</span>
-<span id="L68" class="ln">    68  </span>func (o *ScheduleDataRelationships) GetTeams() ScheduleDataRelationshipsTeams {
+<span id="L68" class="ln">    68  </span>func (o *ScheduleDataRelationships) GetTeams() DataRelationshipsTeams {
 <span id="L69" class="ln">    69  </span>	if o == nil || o.Teams == nil {
-<span id="L70" class="ln">    70  </span>		var ret ScheduleDataRelationshipsTeams
+<span id="L70" class="ln">    70  </span>		var ret DataRelationshipsTeams
 <span id="L71" class="ln">    71  </span>		return ret
 <span id="L72" class="ln">    72  </span>	}
 <span id="L73" class="ln">    73  </span>	return *o.Teams
@@ -132,7 +132,7 @@
 <span id="L75" class="ln">    75  </span>
 <span id="L76" class="ln">    76  </span><span class="comment">// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise</span>
 <span id="L77" class="ln">    77  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L78" class="ln">    78  </span>func (o *ScheduleDataRelationships) GetTeamsOk() (*ScheduleDataRelationshipsTeams, bool) {
+<span id="L78" class="ln">    78  </span>func (o *ScheduleDataRelationships) GetTeamsOk() (*DataRelationshipsTeams, bool) {
 <span id="L79" class="ln">    79  </span>	if o == nil || o.Teams == nil {
 <span id="L80" class="ln">    80  </span>		return nil, false
 <span id="L81" class="ln">    81  </span>	}
@@ -144,8 +144,8 @@
 <span id="L87" class="ln">    87  </span>	return o != nil &amp;&amp; o.Teams != nil
 <span id="L88" class="ln">    88  </span>}
 <span id="L89" class="ln">    89  </span>
-<span id="L90" class="ln">    90  </span><span class="comment">// SetTeams gets a reference to the given ScheduleDataRelationshipsTeams and assigns it to the Teams field.</span>
-<span id="L91" class="ln">    91  </span>func (o *ScheduleDataRelationships) SetTeams(v ScheduleDataRelationshipsTeams) {
+<span id="L90" class="ln">    90  </span><span class="comment">// SetTeams gets a reference to the given DataRelationshipsTeams and assigns it to the Teams field.</span>
+<span id="L91" class="ln">    91  </span>func (o *ScheduleDataRelationships) SetTeams(v DataRelationshipsTeams) {
 <span id="L92" class="ln">    92  </span>	o.Teams = &amp;v
 <span id="L93" class="ln">    93  </span>}
 <span id="L94" class="ln">    94  </span>
@@ -172,7 +172,7 @@
 <span id="L115" class="ln">   115  </span>func (o *ScheduleDataRelationships) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L116" class="ln">   116  </span>	all := struct {
 <span id="L117" class="ln">   117  </span>		Layers *ScheduleDataRelationshipsLayers `json:&#34;layers,omitempty&#34;`
-<span id="L118" class="ln">   118  </span>		Teams  *ScheduleDataRelationshipsTeams  `json:&#34;teams,omitempty&#34;`
+<span id="L118" class="ln">   118  </span>		Teams  *DataRelationshipsTeams          `json:&#34;teams,omitempty&#34;`
 <span id="L119" class="ln">   119  </span>	}{}
 <span id="L120" class="ln">   120  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L121" class="ln">   121  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)

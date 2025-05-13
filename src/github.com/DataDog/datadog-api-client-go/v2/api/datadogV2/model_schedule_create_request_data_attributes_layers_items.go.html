@@ -74,10 +74,10 @@
 <span id="L17" class="ln">    17  </span>	EffectiveDate time.Time `json:&#34;effective_date&#34;`
 <span id="L18" class="ln">    18  </span>	<span class="comment">// The date/time after which this layer no longer applies (in ISO 8601).</span>
 <span id="L19" class="ln">    19  </span>	EndDate *time.Time `json:&#34;end_date,omitempty&#34;`
-<span id="L20" class="ln">    20  </span>	<span class="comment">// Defines how frequently the rotation repeats, using days and/or seconds (up to certain limits).</span>
-<span id="L21" class="ln">    21  </span>	Interval ScheduleCreateRequestDataAttributesLayersItemsInterval `json:&#34;interval&#34;`
+<span id="L20" class="ln">    20  </span>	<span class="comment">// Defines how often the rotation repeats, using a combination of days and optional seconds.</span>
+<span id="L21" class="ln">    21  </span>	Interval LayerAttributesInterval `json:&#34;interval&#34;`
 <span id="L22" class="ln">    22  </span>	<span class="comment">// A list of members who participate in this layer&#39;s rotation.</span>
-<span id="L23" class="ln">    23  </span>	Members []ScheduleCreateRequestDataAttributesLayersItemsMembersItems `json:&#34;members&#34;`
+<span id="L23" class="ln">    23  </span>	Members []ScheduleRequestDataAttributesLayersItemsMembersItems `json:&#34;members&#34;`
 <span id="L24" class="ln">    24  </span>	<span class="comment">// The name of this layer.</span>
 <span id="L25" class="ln">    25  </span>	Name string `json:&#34;name&#34;`
 <span id="L26" class="ln">    26  </span>	<span class="comment">// Zero or more time-based restrictions (for example, only weekdays, during business hours).</span>
@@ -93,7 +93,7 @@
 <span id="L36" class="ln">    36  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L37" class="ln">    37  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L38" class="ln">    38  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L39" class="ln">    39  </span>func NewScheduleCreateRequestDataAttributesLayersItems(effectiveDate time.Time, interval ScheduleCreateRequestDataAttributesLayersItemsInterval, members []ScheduleCreateRequestDataAttributesLayersItemsMembersItems, name string, rotationStart time.Time) *ScheduleCreateRequestDataAttributesLayersItems {
+<span id="L39" class="ln">    39  </span>func NewScheduleCreateRequestDataAttributesLayersItems(effectiveDate time.Time, interval LayerAttributesInterval, members []ScheduleRequestDataAttributesLayersItemsMembersItems, name string, rotationStart time.Time) *ScheduleCreateRequestDataAttributesLayersItems {
 <span id="L40" class="ln">    40  </span>	this := ScheduleCreateRequestDataAttributesLayersItems{}
 <span id="L41" class="ln">    41  </span>	this.EffectiveDate = effectiveDate
 <span id="L42" class="ln">    42  </span>	this.Interval = interval
@@ -163,9 +163,9 @@
 <span id="L106" class="ln">   106  </span>}
 <span id="L107" class="ln">   107  </span>
 <span id="L108" class="ln">   108  </span><span class="comment">// GetInterval returns the Interval field value.</span>
-<span id="L109" class="ln">   109  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetInterval() ScheduleCreateRequestDataAttributesLayersItemsInterval {
+<span id="L109" class="ln">   109  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetInterval() LayerAttributesInterval {
 <span id="L110" class="ln">   110  </span>	if o == nil {
-<span id="L111" class="ln">   111  </span>		var ret ScheduleCreateRequestDataAttributesLayersItemsInterval
+<span id="L111" class="ln">   111  </span>		var ret LayerAttributesInterval
 <span id="L112" class="ln">   112  </span>		return ret
 <span id="L113" class="ln">   113  </span>	}
 <span id="L114" class="ln">   114  </span>	return o.Interval
@@ -173,7 +173,7 @@
 <span id="L116" class="ln">   116  </span>
 <span id="L117" class="ln">   117  </span><span class="comment">// GetIntervalOk returns a tuple with the Interval field value</span>
 <span id="L118" class="ln">   118  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L119" class="ln">   119  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetIntervalOk() (*ScheduleCreateRequestDataAttributesLayersItemsInterval, bool) {
+<span id="L119" class="ln">   119  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetIntervalOk() (*LayerAttributesInterval, bool) {
 <span id="L120" class="ln">   120  </span>	if o == nil {
 <span id="L121" class="ln">   121  </span>		return nil, false
 <span id="L122" class="ln">   122  </span>	}
@@ -181,14 +181,14 @@
 <span id="L124" class="ln">   124  </span>}
 <span id="L125" class="ln">   125  </span>
 <span id="L126" class="ln">   126  </span><span class="comment">// SetInterval sets field value.</span>
-<span id="L127" class="ln">   127  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetInterval(v ScheduleCreateRequestDataAttributesLayersItemsInterval) {
+<span id="L127" class="ln">   127  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetInterval(v LayerAttributesInterval) {
 <span id="L128" class="ln">   128  </span>	o.Interval = v
 <span id="L129" class="ln">   129  </span>}
 <span id="L130" class="ln">   130  </span>
 <span id="L131" class="ln">   131  </span><span class="comment">// GetMembers returns the Members field value.</span>
-<span id="L132" class="ln">   132  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetMembers() []ScheduleCreateRequestDataAttributesLayersItemsMembersItems {
+<span id="L132" class="ln">   132  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetMembers() []ScheduleRequestDataAttributesLayersItemsMembersItems {
 <span id="L133" class="ln">   133  </span>	if o == nil {
-<span id="L134" class="ln">   134  </span>		var ret []ScheduleCreateRequestDataAttributesLayersItemsMembersItems
+<span id="L134" class="ln">   134  </span>		var ret []ScheduleRequestDataAttributesLayersItemsMembersItems
 <span id="L135" class="ln">   135  </span>		return ret
 <span id="L136" class="ln">   136  </span>	}
 <span id="L137" class="ln">   137  </span>	return o.Members
@@ -196,7 +196,7 @@
 <span id="L139" class="ln">   139  </span>
 <span id="L140" class="ln">   140  </span><span class="comment">// GetMembersOk returns a tuple with the Members field value</span>
 <span id="L141" class="ln">   141  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L142" class="ln">   142  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetMembersOk() (*[]ScheduleCreateRequestDataAttributesLayersItemsMembersItems, bool) {
+<span id="L142" class="ln">   142  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetMembersOk() (*[]ScheduleRequestDataAttributesLayersItemsMembersItems, bool) {
 <span id="L143" class="ln">   143  </span>	if o == nil {
 <span id="L144" class="ln">   144  </span>		return nil, false
 <span id="L145" class="ln">   145  </span>	}
@@ -204,7 +204,7 @@
 <span id="L147" class="ln">   147  </span>}
 <span id="L148" class="ln">   148  </span>
 <span id="L149" class="ln">   149  </span><span class="comment">// SetMembers sets field value.</span>
-<span id="L150" class="ln">   150  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetMembers(v []ScheduleCreateRequestDataAttributesLayersItemsMembersItems) {
+<span id="L150" class="ln">   150  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetMembers(v []ScheduleRequestDataAttributesLayersItemsMembersItems) {
 <span id="L151" class="ln">   151  </span>	o.Members = v
 <span id="L152" class="ln">   152  </span>}
 <span id="L153" class="ln">   153  </span>
@@ -321,13 +321,13 @@
 <span id="L264" class="ln">   264  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L265" class="ln">   265  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L266" class="ln">   266  </span>	all := struct {
-<span id="L267" class="ln">   267  </span>		EffectiveDate *time.Time                                                    `json:&#34;effective_date&#34;`
-<span id="L268" class="ln">   268  </span>		EndDate       *time.Time                                                    `json:&#34;end_date,omitempty&#34;`
-<span id="L269" class="ln">   269  </span>		Interval      *ScheduleCreateRequestDataAttributesLayersItemsInterval       `json:&#34;interval&#34;`
-<span id="L270" class="ln">   270  </span>		Members       *[]ScheduleCreateRequestDataAttributesLayersItemsMembersItems `json:&#34;members&#34;`
-<span id="L271" class="ln">   271  </span>		Name          *string                                                       `json:&#34;name&#34;`
-<span id="L272" class="ln">   272  </span>		Restrictions  []TimeRestriction                                             `json:&#34;restrictions,omitempty&#34;`
-<span id="L273" class="ln">   273  </span>		RotationStart *time.Time                                                    `json:&#34;rotation_start&#34;`
+<span id="L267" class="ln">   267  </span>		EffectiveDate *time.Time                                              `json:&#34;effective_date&#34;`
+<span id="L268" class="ln">   268  </span>		EndDate       *time.Time                                              `json:&#34;end_date,omitempty&#34;`
+<span id="L269" class="ln">   269  </span>		Interval      *LayerAttributesInterval                                `json:&#34;interval&#34;`
+<span id="L270" class="ln">   270  </span>		Members       *[]ScheduleRequestDataAttributesLayersItemsMembersItems `json:&#34;members&#34;`
+<span id="L271" class="ln">   271  </span>		Name          *string                                                 `json:&#34;name&#34;`
+<span id="L272" class="ln">   272  </span>		Restrictions  []TimeRestriction                                       `json:&#34;restrictions,omitempty&#34;`
+<span id="L273" class="ln">   273  </span>		RotationStart *time.Time                                              `json:&#34;rotation_start&#34;`
 <span id="L274" class="ln">   274  </span>	}{}
 <span id="L275" class="ln">   275  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L276" class="ln">   276  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
