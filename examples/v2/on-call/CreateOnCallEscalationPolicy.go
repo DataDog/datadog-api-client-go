@@ -61,11 +61,11 @@ func main() {
 				},
 			},
 			Relationships: &datadogV2.EscalationPolicyCreateRequestDataRelationships{
-				Teams: &datadogV2.EscalationPolicyCreateRequestDataRelationshipsTeams{
-					Data: []datadogV2.EscalationPolicyCreateRequestDataRelationshipsTeamsDataItems{
+				Teams: &datadogV2.DataRelationshipsTeams{
+					Data: []datadogV2.DataRelationshipsTeamsDataItems{
 						{
 							Id:   DdTeamDataID,
-							Type: datadogV2.ESCALATIONPOLICYCREATEREQUESTDATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS,
+							Type: datadogV2.DATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS,
 						},
 					},
 				},
