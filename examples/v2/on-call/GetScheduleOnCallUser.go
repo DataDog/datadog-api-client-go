@@ -1,4 +1,4 @@
-// Get the schedule of an on-call user returns "OK" response
+// Get the schedule on-call user returns "OK" response
 
 package main
 
