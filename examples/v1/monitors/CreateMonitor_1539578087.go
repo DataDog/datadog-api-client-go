@@ -40,7 +40,8 @@ func main() {
 				},
 			},
 		},
-		Type: datadogV1.MONITORTYPE_QUERY_ALERT,
+		Type:        datadogV1.MONITORTYPE_QUERY_ALERT,
+		DraftStatus: datadogV1.MONITORDRAFTSTATUS_PUBLISHED.Ptr(),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
