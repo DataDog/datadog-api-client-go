@@ -452,6 +452,8 @@ def format_data_with_schema(
                 return "true" if x else "false"
 
             def format_int(x):
+                if not isinstance(x, int):
+                    raise TypeError(f"{x} is not supported type {schema}")
                 r = str(x)
                 if "{{" in r and "}}" in r:
                     # workaround to stop matching templated strings
