@@ -96,10 +96,10 @@ func (a *MetricsApi) CreateBulkTagsMetricsConfiguration(ctx _context.Context, bo
 
 // CreateTagConfiguration Create a tag configuration.
 // Create and define a list of queryable tag keys for an existing count/gauge/rate/distribution metric.
-// Optionally, include percentile aggregations on any distribution metric or configure custom aggregations
-// on any count, rate, or gauge metric. By setting `exclude_tags_mode` to true the behavior is changed
-// from an allow-list to a deny-list, and tags in the defined list will not be queryable.
-// Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
+// Optionally, include percentile aggregations on any distribution metric. By setting `exclude_tags_mode`
+// to true, the behavior is changed from an allow-list to a deny-list, and tags in the defined list are
+// not queryable. Can only be used with application keys of users with the `Manage Tags for Metrics`
+// permission.
 func (a *MetricsApi) CreateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
