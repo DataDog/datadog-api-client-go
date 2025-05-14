@@ -18,6 +18,10 @@ type MonitorUpdateRequest struct {
 	Creator *Creator `json:"creator,omitempty"`
 	// Whether or not the monitor is deleted. (Always `null`)
 	Deleted datadog.NullableTime `json:"deleted,omitempty"`
+	// Whether a monitor is in draft or published state. Draft monitors do not notify recipients. Draft monitors are currently in
+	// preview and the field is only processed for enabled customers. This accepts the values `draft`
+	// and `published`. Defaults to published.
+	DraftStatus *MonitorDraftStatus `json:"draft_status,omitempty"`
 	// ID of this monitor.
 	Id *int64 `json:"id,omitempty"`
 	// A message to include with notifications for this monitor.
@@ -55,6 +59,8 @@ type MonitorUpdateRequest struct {
 // will change when the set of required properties is changed.
 func NewMonitorUpdateRequest() *MonitorUpdateRequest {
 	this := MonitorUpdateRequest{}
+	var draftStatus MonitorDraftStatus = MONITORDRAFTSTATUS_PUBLISHED
+	this.DraftStatus = &draftStatus
 	return &this
 }
 
@@ -63,6 +69,8 @@ func NewMonitorUpdateRequest() *MonitorUpdateRequest {
 // but it doesn't guarantee that properties required by API are set.
 func NewMonitorUpdateRequestWithDefaults() *MonitorUpdateRequest {
 	this := MonitorUpdateRequest{}
+	var draftStatus MonitorDraftStatus = MONITORDRAFTSTATUS_PUBLISHED
+	this.DraftStatus = &draftStatus
 	return &this
 }
 
@@ -159,6 +167,34 @@ func (o *MonitorUpdateRequest) SetDeletedNil() {
 // UnsetDeleted ensures that no value is present for Deleted, not even an explicit nil.
 func (o *MonitorUpdateRequest) UnsetDeleted() {
 	o.Deleted.Unset()
+}
+
+// GetDraftStatus returns the DraftStatus field value if set, zero value otherwise.
+func (o *MonitorUpdateRequest) GetDraftStatus() MonitorDraftStatus {
+	if o == nil || o.DraftStatus == nil {
+		var ret MonitorDraftStatus
+		return ret
+	}
+	return *o.DraftStatus
+}
+
+// GetDraftStatusOk returns a tuple with the DraftStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorUpdateRequest) GetDraftStatusOk() (*MonitorDraftStatus, bool) {
+	if o == nil || o.DraftStatus == nil {
+		return nil, false
+	}
+	return o.DraftStatus, true
+}
+
+// HasDraftStatus returns a boolean if a field has been set.
+func (o *MonitorUpdateRequest) HasDraftStatus() bool {
+	return o != nil && o.DraftStatus != nil
+}
+
+// SetDraftStatus gets a reference to the given MonitorDraftStatus and assigns it to the DraftStatus field.
+func (o *MonitorUpdateRequest) SetDraftStatus(v MonitorDraftStatus) {
+	o.DraftStatus = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -566,6 +602,9 @@ func (o MonitorUpdateRequest) MarshalJSON() ([]byte, error) {
 	if o.Deleted.IsSet() {
 		toSerialize["deleted"] = o.Deleted.Get()
 	}
+	if o.DraftStatus != nil {
+		toSerialize["draft_status"] = o.DraftStatus
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
@@ -622,6 +661,7 @@ func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Created         *time.Time                   `json:"created,omitempty"`
 		Creator         *Creator                     `json:"creator,omitempty"`
 		Deleted         datadog.NullableTime         `json:"deleted,omitempty"`
+		DraftStatus     *MonitorDraftStatus          `json:"draft_status,omitempty"`
 		Id              *int64                       `json:"id,omitempty"`
 		Message         *string                      `json:"message,omitempty"`
 		Modified        *time.Time                   `json:"modified,omitempty"`
@@ -641,7 +681,7 @@ func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created", "creator", "deleted", "id", "message", "modified", "multi", "name", "options", "overall_state", "priority", "query", "restricted_roles", "state", "tags", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created", "creator", "deleted", "draft_status", "id", "message", "modified", "multi", "name", "options", "overall_state", "priority", "query", "restricted_roles", "state", "tags", "type"})
 	} else {
 		return err
 	}
@@ -653,6 +693,11 @@ func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Creator = all.Creator
 	o.Deleted = all.Deleted
+	if all.DraftStatus != nil && !all.DraftStatus.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.DraftStatus = all.DraftStatus
+	}
 	o.Id = all.Id
 	o.Message = all.Message
 	o.Modified = all.Modified
