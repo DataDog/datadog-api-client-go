@@ -26,8 +26,8 @@ type ObservabilityPipelineGoogleCloudStorageDestination struct {
 	Inputs []string `json:"inputs"`
 	// Optional prefix for object keys within the GCS bucket.
 	KeyPrefix *string `json:"key_prefix,omitempty"`
-	// Custom metadata key-value pairs added to each object.
-	Metadata []ObservabilityPipelineMetadataEntry `json:"metadata"`
+	// Custom metadata to attach to each object uploaded to the GCS bucket.
+	Metadata []ObservabilityPipelineMetadataEntry `json:"metadata,omitempty"`
 	// Storage class used for objects stored in GCS.
 	StorageClass ObservabilityPipelineGoogleCloudStorageDestinationStorageClass `json:"storage_class"`
 	// The destination type. Always `google_cloud_storage`.
@@ -41,14 +41,13 @@ type ObservabilityPipelineGoogleCloudStorageDestination struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineGoogleCloudStorageDestination(acl ObservabilityPipelineGoogleCloudStorageDestinationAcl, auth ObservabilityPipelineGcpAuth, bucket string, id string, inputs []string, metadata []ObservabilityPipelineMetadataEntry, storageClass ObservabilityPipelineGoogleCloudStorageDestinationStorageClass, typeVar ObservabilityPipelineGoogleCloudStorageDestinationType) *ObservabilityPipelineGoogleCloudStorageDestination {
+func NewObservabilityPipelineGoogleCloudStorageDestination(acl ObservabilityPipelineGoogleCloudStorageDestinationAcl, auth ObservabilityPipelineGcpAuth, bucket string, id string, inputs []string, storageClass ObservabilityPipelineGoogleCloudStorageDestinationStorageClass, typeVar ObservabilityPipelineGoogleCloudStorageDestinationType) *ObservabilityPipelineGoogleCloudStorageDestination {
 	this := ObservabilityPipelineGoogleCloudStorageDestination{}
 	this.Acl = acl
 	this.Auth = auth
 	this.Bucket = bucket
 	this.Id = id
 	this.Inputs = inputs
-	this.Metadata = metadata
 	this.StorageClass = storageClass
 	this.Type = typeVar
 	return &this
@@ -207,25 +206,30 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetKeyPrefix(v stri
 	o.KeyPrefix = &v
 }
 
-// GetMetadata returns the Metadata field value.
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetMetadata() []ObservabilityPipelineMetadataEntry {
-	if o == nil {
+	if o == nil || o.Metadata == nil {
 		var ret []ObservabilityPipelineMetadataEntry
 		return ret
 	}
 	return o.Metadata
 }
 
-// GetMetadataOk returns a tuple with the Metadata field value
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetMetadataOk() (*[]ObservabilityPipelineMetadataEntry, bool) {
-	if o == nil {
+	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
 	return &o.Metadata, true
 }
 
-// SetMetadata sets field value.
+// HasMetadata returns a boolean if a field has been set.
+func (o *ObservabilityPipelineGoogleCloudStorageDestination) HasMetadata() bool {
+	return o != nil && o.Metadata != nil
+}
+
+// SetMetadata gets a reference to the given []ObservabilityPipelineMetadataEntry and assigns it to the Metadata field.
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetMetadata(v []ObservabilityPipelineMetadataEntry) {
 	o.Metadata = v
 }
@@ -290,7 +294,9 @@ func (o ObservabilityPipelineGoogleCloudStorageDestination) MarshalJSON() ([]byt
 	if o.KeyPrefix != nil {
 		toSerialize["key_prefix"] = o.KeyPrefix
 	}
-	toSerialize["metadata"] = o.Metadata
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
+	}
 	toSerialize["storage_class"] = o.StorageClass
 	toSerialize["type"] = o.Type
 
@@ -309,7 +315,7 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) UnmarshalJSON(bytes
 		Id           *string                                                         `json:"id"`
 		Inputs       *[]string                                                       `json:"inputs"`
 		KeyPrefix    *string                                                         `json:"key_prefix,omitempty"`
-		Metadata     *[]ObservabilityPipelineMetadataEntry                           `json:"metadata"`
+		Metadata     []ObservabilityPipelineMetadataEntry                            `json:"metadata,omitempty"`
 		StorageClass *ObservabilityPipelineGoogleCloudStorageDestinationStorageClass `json:"storage_class"`
 		Type         *ObservabilityPipelineGoogleCloudStorageDestinationType         `json:"type"`
 	}{}
@@ -330,9 +336,6 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) UnmarshalJSON(bytes
 	}
 	if all.Inputs == nil {
 		return fmt.Errorf("required field inputs missing")
-	}
-	if all.Metadata == nil {
-		return fmt.Errorf("required field metadata missing")
 	}
 	if all.StorageClass == nil {
 		return fmt.Errorf("required field storage_class missing")
@@ -361,7 +364,7 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) UnmarshalJSON(bytes
 	o.Id = *all.Id
 	o.Inputs = *all.Inputs
 	o.KeyPrefix = all.KeyPrefix
-	o.Metadata = *all.Metadata
+	o.Metadata = all.Metadata
 	if !all.StorageClass.IsValid() {
 		hasInvalidField = true
 	} else {
