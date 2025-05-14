@@ -153,10 +153,10 @@
 <span id="L96" class="ln">    96  </span>
 <span id="L97" class="ln">    97  </span><span class="comment">// CreateTagConfiguration Create a tag configuration.</span>
 <span id="L98" class="ln">    98  </span><span class="comment">// Create and define a list of queryable tag keys for an existing count/gauge/rate/distribution metric.</span>
-<span id="L99" class="ln">    99  </span><span class="comment">// Optionally, include percentile aggregations on any distribution metric or configure custom aggregations</span>
-<span id="L100" class="ln">   100  </span><span class="comment">// on any count, rate, or gauge metric. By setting `exclude_tags_mode` to true the behavior is changed</span>
-<span id="L101" class="ln">   101  </span><span class="comment">// from an allow-list to a deny-list, and tags in the defined list will not be queryable.</span>
-<span id="L102" class="ln">   102  </span><span class="comment">// Can only be used with application keys of users with the `Manage Tags for Metrics` permission.</span>
+<span id="L99" class="ln">    99  </span><span class="comment">// Optionally, include percentile aggregations on any distribution metric. By setting `exclude_tags_mode`</span>
+<span id="L100" class="ln">   100  </span><span class="comment">// to true, the behavior is changed from an allow-list to a deny-list, and tags in the defined list are</span>
+<span id="L101" class="ln">   101  </span><span class="comment">// not queryable. Can only be used with application keys of users with the `Manage Tags for Metrics`</span>
+<span id="L102" class="ln">   102  </span><span class="comment">// permission.</span>
 <span id="L103" class="ln">   103  </span>func (a *MetricsApi) CreateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 <span id="L104" class="ln">   104  </span>	var (
 <span id="L105" class="ln">   105  </span>		localVarHTTPMethod  = _nethttp.MethodPost
