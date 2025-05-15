@@ -1,4 +1,4 @@
-// Get a CSM Threats Agent policy returns "OK" response
+// Get a Workload Protection policy returns "OK" response
 
 package main
 

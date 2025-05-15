@@ -1,4 +1,4 @@
-// Create a CSM Threats Agent policy returns "OK" response
+// Create a Workload Protection policy returns "OK" response
 
 package main
 

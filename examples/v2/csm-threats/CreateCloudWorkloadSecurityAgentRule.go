@@ -1,4 +1,4 @@
-// Create a Cloud Workload Security Agent rule returns "OK" response
+// Create a Workload Protection agent rule (US1-FED) returns "OK" response
 
 package main
 
