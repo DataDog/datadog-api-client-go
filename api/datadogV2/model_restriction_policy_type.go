@@ -22,7 +22,7 @@ var allowedRestrictionPolicyTypeEnumValues = []RestrictionPolicyType{
 	RESTRICTIONPOLICYTYPE_RESTRICTION_POLICY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RestrictionPolicyType) GetAllowedValues() []RestrictionPolicyType {
 	return allowedRestrictionPolicyTypeEnumValues
 }

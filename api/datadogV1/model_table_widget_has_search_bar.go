@@ -26,7 +26,7 @@ var allowedTableWidgetHasSearchBarEnumValues = []TableWidgetHasSearchBar{
 	TABLEWIDGETHASSEARCHBAR_AUTO,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TableWidgetHasSearchBar) GetAllowedValues() []TableWidgetHasSearchBar {
 	return allowedTableWidgetHasSearchBarEnumValues
 }

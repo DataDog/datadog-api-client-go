@@ -45,7 +45,7 @@ var allowedSecurityMonitoringRuleEvaluationWindowEnumValues = []SecurityMonitori
 	SECURITYMONITORINGRULEEVALUATIONWINDOW_ONE_DAY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringRuleEvaluationWindow) GetAllowedValues() []SecurityMonitoringRuleEvaluationWindow {
 	return allowedSecurityMonitoringRuleEvaluationWindowEnumValues
 }

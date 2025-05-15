@@ -22,7 +22,7 @@ var allowedLogsArithmeticProcessorTypeEnumValues = []LogsArithmeticProcessorType
 	LOGSARITHMETICPROCESSORTYPE_ARITHMETIC_PROCESSOR,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsArithmeticProcessorType) GetAllowedValues() []LogsArithmeticProcessorType {
 	return allowedLogsArithmeticProcessorTypeEnumValues
 }

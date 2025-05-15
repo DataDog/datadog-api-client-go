@@ -24,7 +24,7 @@ var allowedCIAppAggregateSortTypeEnumValues = []CIAppAggregateSortType{
 	CIAPPAGGREGATESORTTYPE_MEASURE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CIAppAggregateSortType) GetAllowedValues() []CIAppAggregateSortType {
 	return allowedCIAppAggregateSortTypeEnumValues
 }

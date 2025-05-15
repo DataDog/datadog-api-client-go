@@ -22,7 +22,7 @@ var allowedSBOMTypeEnumValues = []SBOMType{
 	SBOMTYPE_SBOMS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SBOMType) GetAllowedValues() []SBOMType {
 	return allowedSBOMTypeEnumValues
 }

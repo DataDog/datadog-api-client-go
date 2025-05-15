@@ -22,7 +22,7 @@ var allowedCostAttributionTypeEnumValues = []CostAttributionType{
 	COSTATTRIBUTIONTYPE_COST_BY_TAG,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CostAttributionType) GetAllowedValues() []CostAttributionType {
 	return allowedCostAttributionTypeEnumValues
 }

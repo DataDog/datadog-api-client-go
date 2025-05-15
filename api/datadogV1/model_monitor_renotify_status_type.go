@@ -26,7 +26,7 @@ var allowedMonitorRenotifyStatusTypeEnumValues = []MonitorRenotifyStatusType{
 	MONITORRENOTIFYSTATUSTYPE_NO_DATA,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MonitorRenotifyStatusType) GetAllowedValues() []MonitorRenotifyStatusType {
 	return allowedMonitorRenotifyStatusTypeEnumValues
 }

@@ -25,7 +25,7 @@ var allowedSyntheticsTestPauseStatusEnumValues = []SyntheticsTestPauseStatus{
 	SYNTHETICSTESTPAUSESTATUS_PAUSED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsTestPauseStatus) GetAllowedValues() []SyntheticsTestPauseStatus {
 	return allowedSyntheticsTestPauseStatusEnumValues
 }

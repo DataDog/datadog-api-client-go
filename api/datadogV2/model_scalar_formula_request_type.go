@@ -22,7 +22,7 @@ var allowedScalarFormulaRequestTypeEnumValues = []ScalarFormulaRequestType{
 	SCALARFORMULAREQUESTTYPE_SCALAR_REQUEST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ScalarFormulaRequestType) GetAllowedValues() []ScalarFormulaRequestType {
 	return allowedScalarFormulaRequestTypeEnumValues
 }

@@ -24,7 +24,7 @@ var allowedChangeEventCustomAttributesChangedResourceTypeEnumValues = []ChangeEv
 	CHANGEEVENTCUSTOMATTRIBUTESCHANGEDRESOURCETYPE_CONFIGURATION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ChangeEventCustomAttributesChangedResourceType) GetAllowedValues() []ChangeEventCustomAttributesChangedResourceType {
 	return allowedChangeEventCustomAttributesChangedResourceTypeEnumValues
 }

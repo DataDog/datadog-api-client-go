@@ -22,7 +22,7 @@ var allowedSyntheticsAPIWaitStepSubtypeEnumValues = []SyntheticsAPIWaitStepSubty
 	SYNTHETICSAPIWAITSTEPSUBTYPE_WAIT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsAPIWaitStepSubtype) GetAllowedValues() []SyntheticsAPIWaitStepSubtype {
 	return allowedSyntheticsAPIWaitStepSubtypeEnumValues
 }

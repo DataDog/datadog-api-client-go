@@ -22,7 +22,7 @@ var allowedObservabilityPipelineRemoveFieldsProcessorTypeEnumValues = []Observab
 	OBSERVABILITYPIPELINEREMOVEFIELDSPROCESSORTYPE_REMOVE_FIELDS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ObservabilityPipelineRemoveFieldsProcessorType) GetAllowedValues() []ObservabilityPipelineRemoveFieldsProcessorType {
 	return allowedObservabilityPipelineRemoveFieldsProcessorTypeEnumValues
 }

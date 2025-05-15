@@ -22,7 +22,7 @@ var allowedOrganizationsTypeEnumValues = []OrganizationsType{
 	ORGANIZATIONSTYPE_ORGS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *OrganizationsType) GetAllowedValues() []OrganizationsType {
 	return allowedOrganizationsTypeEnumValues
 }

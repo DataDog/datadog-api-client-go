@@ -24,7 +24,7 @@ var allowedObservabilityPipelineQuotaProcessorLimitEnforceTypeEnumValues = []Obs
 	OBSERVABILITYPIPELINEQUOTAPROCESSORLIMITENFORCETYPE_EVENTS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ObservabilityPipelineQuotaProcessorLimitEnforceType) GetAllowedValues() []ObservabilityPipelineQuotaProcessorLimitEnforceType {
 	return allowedObservabilityPipelineQuotaProcessorLimitEnforceTypeEnumValues
 }

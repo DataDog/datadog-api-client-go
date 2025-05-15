@@ -27,7 +27,7 @@ var allowedSecurityMonitoringRuleNewValueOptionsLearningDurationEnumValues = []S
 	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_SEVEN_DAYS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringRuleNewValueOptionsLearningDuration) GetAllowedValues() []SecurityMonitoringRuleNewValueOptionsLearningDuration {
 	return allowedSecurityMonitoringRuleNewValueOptionsLearningDurationEnumValues
 }

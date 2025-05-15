@@ -50,7 +50,7 @@ var allowedRuleTypesItemsEnumValues = []RuleTypesItems{
 	RULETYPESITEMS_API_SECURITY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RuleTypesItems) GetAllowedValues() []RuleTypesItems {
 	return allowedRuleTypesItemsEnumValues
 }

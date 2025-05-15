@@ -24,7 +24,7 @@ var allowedEventsSortEnumValues = []EventsSort{
 	EVENTSSORT_TIMESTAMP_DESCENDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EventsSort) GetAllowedValues() []EventsSort {
 	return allowedEventsSortEnumValues
 }

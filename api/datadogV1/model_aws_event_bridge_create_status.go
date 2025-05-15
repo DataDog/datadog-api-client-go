@@ -22,7 +22,7 @@ var allowedAWSEventBridgeCreateStatusEnumValues = []AWSEventBridgeCreateStatus{
 	AWSEVENTBRIDGECREATESTATUS_CREATED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AWSEventBridgeCreateStatus) GetAllowedValues() []AWSEventBridgeCreateStatus {
 	return allowedAWSEventBridgeCreateStatusEnumValues
 }

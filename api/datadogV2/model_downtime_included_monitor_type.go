@@ -22,7 +22,7 @@ var allowedDowntimeIncludedMonitorTypeEnumValues = []DowntimeIncludedMonitorType
 	DOWNTIMEINCLUDEDMONITORTYPE_MONITORS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DowntimeIncludedMonitorType) GetAllowedValues() []DowntimeIncludedMonitorType {
 	return allowedDowntimeIncludedMonitorTypeEnumValues
 }

@@ -22,7 +22,7 @@ var allowedLogsArchiveOrderDefinitionTypeEnumValues = []LogsArchiveOrderDefiniti
 	LOGSARCHIVEORDERDEFINITIONTYPE_ARCHIVE_ORDER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsArchiveOrderDefinitionType) GetAllowedValues() []LogsArchiveOrderDefinitionType {
 	return allowedLogsArchiveOrderDefinitionTypeEnumValues
 }

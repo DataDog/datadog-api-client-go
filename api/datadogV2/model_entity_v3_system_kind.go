@@ -22,7 +22,7 @@ var allowedEntityV3SystemKindEnumValues = []EntityV3SystemKind{
 	ENTITYV3SYSTEMKIND_SYSTEM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EntityV3SystemKind) GetAllowedValues() []EntityV3SystemKind {
 	return allowedEntityV3SystemKindEnumValues
 }

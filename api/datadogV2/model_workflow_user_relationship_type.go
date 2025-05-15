@@ -22,7 +22,7 @@ var allowedWorkflowUserRelationshipTypeEnumValues = []WorkflowUserRelationshipTy
 	WORKFLOWUSERRELATIONSHIPTYPE_USERS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WorkflowUserRelationshipType) GetAllowedValues() []WorkflowUserRelationshipType {
 	return allowedWorkflowUserRelationshipTypeEnumValues
 }

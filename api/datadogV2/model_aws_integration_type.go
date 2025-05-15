@@ -22,7 +22,7 @@ var allowedAWSIntegrationTypeEnumValues = []AWSIntegrationType{
 	AWSINTEGRATIONTYPE_AWS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AWSIntegrationType) GetAllowedValues() []AWSIntegrationType {
 	return allowedAWSIntegrationTypeEnumValues
 }

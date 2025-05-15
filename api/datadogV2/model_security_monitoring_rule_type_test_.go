@@ -22,7 +22,7 @@ var allowedSecurityMonitoringRuleTypeTestEnumValues = []SecurityMonitoringRuleTy
 	SECURITYMONITORINGRULETYPETEST_LOG_DETECTION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringRuleTypeTest) GetAllowedValues() []SecurityMonitoringRuleTypeTest {
 	return allowedSecurityMonitoringRuleTypeTestEnumValues
 }

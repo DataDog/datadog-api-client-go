@@ -22,7 +22,7 @@ var allowedFormulaAndFunctionMetricDataSourceEnumValues = []FormulaAndFunctionMe
 	FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FormulaAndFunctionMetricDataSource) GetAllowedValues() []FormulaAndFunctionMetricDataSource {
 	return allowedFormulaAndFunctionMetricDataSourceEnumValues
 }

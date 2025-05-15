@@ -22,7 +22,7 @@ var allowedRetentionFilterTypeEnumValues = []RetentionFilterType{
 	RETENTIONFILTERTYPE_SPANS_SAMPLING_PROCESSOR,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RetentionFilterType) GetAllowedValues() []RetentionFilterType {
 	return allowedRetentionFilterTypeEnumValues
 }

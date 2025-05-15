@@ -28,7 +28,7 @@ var allowedWidgetDisplayTypeEnumValues = []WidgetDisplayType{
 	WIDGETDISPLAYTYPE_OVERLAY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetDisplayType) GetAllowedValues() []WidgetDisplayType {
 	return allowedWidgetDisplayTypeEnumValues
 }

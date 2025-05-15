@@ -26,7 +26,7 @@ var allowedSyntheticsTestOptionsHTTPVersionEnumValues = []SyntheticsTestOptionsH
 	SYNTHETICSTESTOPTIONSHTTPVERSION_ANY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsTestOptionsHTTPVersion) GetAllowedValues() []SyntheticsTestOptionsHTTPVersion {
 	return allowedSyntheticsTestOptionsHTTPVersionEnumValues
 }

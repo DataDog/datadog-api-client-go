@@ -22,7 +22,7 @@ var allowedAwsScanOptionsTypeEnumValues = []AwsScanOptionsType{
 	AWSSCANOPTIONSTYPE_AWS_SCAN_OPTIONS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AwsScanOptionsType) GetAllowedValues() []AwsScanOptionsType {
 	return allowedAwsScanOptionsTypeEnumValues
 }

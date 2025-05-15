@@ -34,7 +34,7 @@ var allowedFormulaAndFunctionApmDependencyStatNameEnumValues = []FormulaAndFunct
 	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_TOTAL_TRACES_COUNT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FormulaAndFunctionApmDependencyStatName) GetAllowedValues() []FormulaAndFunctionApmDependencyStatName {
 	return allowedFormulaAndFunctionApmDependencyStatNameEnumValues
 }

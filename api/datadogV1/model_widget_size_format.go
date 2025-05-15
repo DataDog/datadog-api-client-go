@@ -26,7 +26,7 @@ var allowedWidgetSizeFormatEnumValues = []WidgetSizeFormat{
 	WIDGETSIZEFORMAT_LARGE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetSizeFormat) GetAllowedValues() []WidgetSizeFormat {
 	return allowedWidgetSizeFormatEnumValues
 }

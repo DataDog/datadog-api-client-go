@@ -26,7 +26,7 @@ var allowedMetricEstimateTypeEnumValues = []MetricEstimateType{
 	METRICESTIMATETYPE_PERCENTILE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricEstimateType) GetAllowedValues() []MetricEstimateType {
 	return allowedMetricEstimateTypeEnumValues
 }

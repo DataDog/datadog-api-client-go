@@ -28,7 +28,7 @@ var allowedSLOReportStatusEnumValues = []SLOReportStatus{
 	SLOREPORTSTATUS_FAILED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SLOReportStatus) GetAllowedValues() []SLOReportStatus {
 	return allowedSLOReportStatusEnumValues
 }

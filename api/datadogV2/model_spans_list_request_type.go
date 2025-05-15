@@ -22,7 +22,7 @@ var allowedSpansListRequestTypeEnumValues = []SpansListRequestType{
 	SPANSLISTREQUESTTYPE_SEARCH_REQUEST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SpansListRequestType) GetAllowedValues() []SpansListRequestType {
 	return allowedSpansListRequestTypeEnumValues
 }

@@ -22,7 +22,7 @@ var allowedRunHistoricalJobRequestDataTypeEnumValues = []RunHistoricalJobRequest
 	RUNHISTORICALJOBREQUESTDATATYPE_HISTORICALDETECTIONSJOBCREATE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RunHistoricalJobRequestDataType) GetAllowedValues() []RunHistoricalJobRequestDataType {
 	return allowedRunHistoricalJobRequestDataTypeEnumValues
 }

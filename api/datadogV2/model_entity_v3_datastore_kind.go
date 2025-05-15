@@ -22,7 +22,7 @@ var allowedEntityV3DatastoreKindEnumValues = []EntityV3DatastoreKind{
 	ENTITYV3DATASTOREKIND_DATASTORE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EntityV3DatastoreKind) GetAllowedValues() []EntityV3DatastoreKind {
 	return allowedEntityV3DatastoreKindEnumValues
 }

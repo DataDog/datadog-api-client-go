@@ -22,7 +22,7 @@ var allowedSyntheticsBasicAuthWebTypeEnumValues = []SyntheticsBasicAuthWebType{
 	SYNTHETICSBASICAUTHWEBTYPE_WEB,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsBasicAuthWebType) GetAllowedValues() []SyntheticsBasicAuthWebType {
 	return allowedSyntheticsBasicAuthWebTypeEnumValues
 }

@@ -30,7 +30,7 @@ var allowedTargetFormatTypeEnumValues = []TargetFormatType{
 	TARGETFORMATTYPE_DOUBLE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TargetFormatType) GetAllowedValues() []TargetFormatType {
 	return allowedTargetFormatTypeEnumValues
 }

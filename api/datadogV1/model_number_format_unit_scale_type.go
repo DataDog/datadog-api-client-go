@@ -22,7 +22,7 @@ var allowedNumberFormatUnitScaleTypeEnumValues = []NumberFormatUnitScaleType{
 	NUMBERFORMATUNITSCALETYPE_CANONICAL_UNIT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *NumberFormatUnitScaleType) GetAllowedValues() []NumberFormatUnitScaleType {
 	return allowedNumberFormatUnitScaleTypeEnumValues
 }

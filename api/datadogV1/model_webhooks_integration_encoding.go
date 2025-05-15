@@ -24,7 +24,7 @@ var allowedWebhooksIntegrationEncodingEnumValues = []WebhooksIntegrationEncoding
 	WEBHOOKSINTEGRATIONENCODING_FORM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WebhooksIntegrationEncoding) GetAllowedValues() []WebhooksIntegrationEncoding {
 	return allowedWebhooksIntegrationEncodingEnumValues
 }

@@ -24,7 +24,7 @@ var allowedAuditLogsResponseStatusEnumValues = []AuditLogsResponseStatus{
 	AUDITLOGSRESPONSESTATUS_TIMEOUT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AuditLogsResponseStatus) GetAllowedValues() []AuditLogsResponseStatus {
 	return allowedAuditLogsResponseStatusEnumValues
 }

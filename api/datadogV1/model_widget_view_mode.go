@@ -26,7 +26,7 @@ var allowedWidgetViewModeEnumValues = []WidgetViewMode{
 	WIDGETVIEWMODE_BOTH,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetViewMode) GetAllowedValues() []WidgetViewMode {
 	return allowedWidgetViewModeEnumValues
 }

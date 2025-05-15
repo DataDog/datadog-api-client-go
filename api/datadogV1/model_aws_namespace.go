@@ -36,7 +36,7 @@ var allowedAWSNamespaceEnumValues = []AWSNamespace{
 	AWSNAMESPACE_STEP_FUNCTIONS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AWSNamespace) GetAllowedValues() []AWSNamespace {
 	return allowedAWSNamespaceEnumValues
 }

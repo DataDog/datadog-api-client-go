@@ -22,7 +22,7 @@ var allowedSAMLAssertionAttributesTypeEnumValues = []SAMLAssertionAttributesType
 	SAMLASSERTIONATTRIBUTESTYPE_SAML_ASSERTION_ATTRIBUTES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SAMLAssertionAttributesType) GetAllowedValues() []SAMLAssertionAttributesType {
 	return allowedSAMLAssertionAttributesTypeEnumValues
 }

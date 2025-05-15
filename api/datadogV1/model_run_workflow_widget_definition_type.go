@@ -22,7 +22,7 @@ var allowedRunWorkflowWidgetDefinitionTypeEnumValues = []RunWorkflowWidgetDefini
 	RUNWORKFLOWWIDGETDEFINITIONTYPE_RUN_WORKFLOW,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RunWorkflowWidgetDefinitionType) GetAllowedValues() []RunWorkflowWidgetDefinitionType {
 	return allowedRunWorkflowWidgetDefinitionTypeEnumValues
 }

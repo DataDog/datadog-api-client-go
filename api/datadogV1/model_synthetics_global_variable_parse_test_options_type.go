@@ -28,7 +28,7 @@ var allowedSyntheticsGlobalVariableParseTestOptionsTypeEnumValues = []Synthetics
 	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_LOCAL_VARIABLE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsGlobalVariableParseTestOptionsType) GetAllowedValues() []SyntheticsGlobalVariableParseTestOptionsType {
 	return allowedSyntheticsGlobalVariableParseTestOptionsTypeEnumValues
 }

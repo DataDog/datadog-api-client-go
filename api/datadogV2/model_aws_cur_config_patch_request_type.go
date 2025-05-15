@@ -22,7 +22,7 @@ var allowedAwsCURConfigPatchRequestTypeEnumValues = []AwsCURConfigPatchRequestTy
 	AWSCURCONFIGPATCHREQUESTTYPE_AWS_CUR_CONFIG_PATCH_REQUEST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AwsCURConfigPatchRequestType) GetAllowedValues() []AwsCURConfigPatchRequestType {
 	return allowedAwsCURConfigPatchRequestTypeEnumValues
 }

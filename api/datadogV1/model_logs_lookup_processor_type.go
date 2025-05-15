@@ -22,7 +22,7 @@ var allowedLogsLookupProcessorTypeEnumValues = []LogsLookupProcessorType{
 	LOGSLOOKUPPROCESSORTYPE_LOOKUP_PROCESSOR,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsLookupProcessorType) GetAllowedValues() []LogsLookupProcessorType {
 	return allowedLogsLookupProcessorTypeEnumValues
 }

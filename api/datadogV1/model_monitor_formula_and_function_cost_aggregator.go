@@ -38,7 +38,7 @@ var allowedMonitorFormulaAndFunctionCostAggregatorEnumValues = []MonitorFormulaA
 	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_STDDEV,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MonitorFormulaAndFunctionCostAggregator) GetAllowedValues() []MonitorFormulaAndFunctionCostAggregator {
 	return allowedMonitorFormulaAndFunctionCostAggregatorEnumValues
 }

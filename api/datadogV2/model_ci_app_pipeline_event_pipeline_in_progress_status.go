@@ -22,7 +22,7 @@ var allowedCIAppPipelineEventPipelineInProgressStatusEnumValues = []CIAppPipelin
 	CIAPPPIPELINEEVENTPIPELINEINPROGRESSSTATUS_RUNNING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CIAppPipelineEventPipelineInProgressStatus) GetAllowedValues() []CIAppPipelineEventPipelineInProgressStatus {
 	return allowedCIAppPipelineEventPipelineInProgressStatusEnumValues
 }

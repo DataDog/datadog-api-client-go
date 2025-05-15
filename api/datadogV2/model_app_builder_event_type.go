@@ -36,7 +36,7 @@ var allowedAppBuilderEventTypeEnumValues = []AppBuilderEventType{
 	APPBUILDEREVENTTYPE_SETSTATEVARIABLEVALUE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AppBuilderEventType) GetAllowedValues() []AppBuilderEventType {
 	return allowedAppBuilderEventTypeEnumValues
 }

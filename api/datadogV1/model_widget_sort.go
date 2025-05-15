@@ -24,7 +24,7 @@ var allowedWidgetSortEnumValues = []WidgetSort{
 	WIDGETSORT_DESCENDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetSort) GetAllowedValues() []WidgetSort {
 	return allowedWidgetSortEnumValues
 }

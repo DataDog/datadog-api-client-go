@@ -22,7 +22,7 @@ var allowedLogsPipelineProcessorTypeEnumValues = []LogsPipelineProcessorType{
 	LOGSPIPELINEPROCESSORTYPE_PIPELINE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsPipelineProcessorType) GetAllowedValues() []LogsPipelineProcessorType {
 	return allowedLogsPipelineProcessorTypeEnumValues
 }

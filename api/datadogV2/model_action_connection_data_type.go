@@ -22,7 +22,7 @@ var allowedActionConnectionDataTypeEnumValues = []ActionConnectionDataType{
 	ACTIONCONNECTIONDATATYPE_ACTION_CONNECTION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ActionConnectionDataType) GetAllowedValues() []ActionConnectionDataType {
 	return allowedActionConnectionDataTypeEnumValues
 }

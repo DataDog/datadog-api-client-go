@@ -22,7 +22,7 @@ var allowedWidgetLayoutTypeEnumValues = []WidgetLayoutType{
 	WIDGETLAYOUTTYPE_ORDERED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetLayoutType) GetAllowedValues() []WidgetLayoutType {
 	return allowedWidgetLayoutTypeEnumValues
 }

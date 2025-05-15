@@ -22,7 +22,7 @@ var allowedUserTeamTeamTypeEnumValues = []UserTeamTeamType{
 	USERTEAMTEAMTYPE_TEAM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *UserTeamTeamType) GetAllowedValues() []UserTeamTeamType {
 	return allowedUserTeamTeamTypeEnumValues
 }

@@ -36,7 +36,7 @@ var allowedSecurityMonitoringRuleQueryAggregationEnumValues = []SecurityMonitori
 	SECURITYMONITORINGRULEQUERYAGGREGATION_NONE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringRuleQueryAggregation) GetAllowedValues() []SecurityMonitoringRuleQueryAggregation {
 	return allowedSecurityMonitoringRuleQueryAggregationEnumValues
 }

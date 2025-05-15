@@ -24,7 +24,7 @@ var allowedSyntheticsTestRestrictionPolicyBindingRelationEnumValues = []Syntheti
 	SYNTHETICSTESTRESTRICTIONPOLICYBINDINGRELATION_VIEWER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsTestRestrictionPolicyBindingRelation) GetAllowedValues() []SyntheticsTestRestrictionPolicyBindingRelation {
 	return allowedSyntheticsTestRestrictionPolicyBindingRelationEnumValues
 }

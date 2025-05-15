@@ -22,7 +22,7 @@ var allowedUserInvitationsTypeEnumValues = []UserInvitationsType{
 	USERINVITATIONSTYPE_USER_INVITATIONS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *UserInvitationsType) GetAllowedValues() []UserInvitationsType {
 	return allowedUserInvitationsTypeEnumValues
 }

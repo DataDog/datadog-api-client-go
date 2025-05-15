@@ -24,7 +24,7 @@ var allowedSyntheticsBasicAuthOauthTokenApiAuthenticationEnumValues = []Syntheti
 	SYNTHETICSBASICAUTHOAUTHTOKENAPIAUTHENTICATION_BODY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsBasicAuthOauthTokenApiAuthentication) GetAllowedValues() []SyntheticsBasicAuthOauthTokenApiAuthentication {
 	return allowedSyntheticsBasicAuthOauthTokenApiAuthenticationEnumValues
 }

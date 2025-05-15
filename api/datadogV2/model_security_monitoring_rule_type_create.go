@@ -26,7 +26,7 @@ var allowedSecurityMonitoringRuleTypeCreateEnumValues = []SecurityMonitoringRule
 	SECURITYMONITORINGRULETYPECREATE_WORKLOAD_SECURITY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringRuleTypeCreate) GetAllowedValues() []SecurityMonitoringRuleTypeCreate {
 	return allowedSecurityMonitoringRuleTypeCreateEnumValues
 }

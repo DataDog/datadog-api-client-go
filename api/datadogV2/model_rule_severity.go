@@ -32,7 +32,7 @@ var allowedRuleSeverityEnumValues = []RuleSeverity{
 	RULESEVERITY_INFO,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RuleSeverity) GetAllowedValues() []RuleSeverity {
 	return allowedRuleSeverityEnumValues
 }

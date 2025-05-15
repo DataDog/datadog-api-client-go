@@ -22,7 +22,7 @@ var allowedApmRetentionFilterTypeEnumValues = []ApmRetentionFilterType{
 	APMRETENTIONFILTERTYPE_apm_retention_filter,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ApmRetentionFilterType) GetAllowedValues() []ApmRetentionFilterType {
 	return allowedApmRetentionFilterTypeEnumValues
 }
