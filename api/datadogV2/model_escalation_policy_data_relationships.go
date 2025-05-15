@@ -14,8 +14,8 @@ import (
 type EscalationPolicyDataRelationships struct {
 	// Defines the relationship to a collection of steps within an escalation policy. Contains an array of step data references.
 	Steps EscalationPolicyDataRelationshipsSteps `json:"steps"`
-	// Defines the relationship to a collection of teams within an escalation policy. Contains an array of team data references.
-	Teams *EscalationPolicyDataRelationshipsTeams `json:"teams,omitempty"`
+	// Associates teams with this schedule in a data structure.
+	Teams *DataRelationshipsTeams `json:"teams,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -63,9 +63,9 @@ func (o *EscalationPolicyDataRelationships) SetSteps(v EscalationPolicyDataRelat
 }
 
 // GetTeams returns the Teams field value if set, zero value otherwise.
-func (o *EscalationPolicyDataRelationships) GetTeams() EscalationPolicyDataRelationshipsTeams {
+func (o *EscalationPolicyDataRelationships) GetTeams() DataRelationshipsTeams {
 	if o == nil || o.Teams == nil {
-		var ret EscalationPolicyDataRelationshipsTeams
+		var ret DataRelationshipsTeams
 		return ret
 	}
 	return *o.Teams
@@ -73,7 +73,7 @@ func (o *EscalationPolicyDataRelationships) GetTeams() EscalationPolicyDataRelat
 
 // GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EscalationPolicyDataRelationships) GetTeamsOk() (*EscalationPolicyDataRelationshipsTeams, bool) {
+func (o *EscalationPolicyDataRelationships) GetTeamsOk() (*DataRelationshipsTeams, bool) {
 	if o == nil || o.Teams == nil {
 		return nil, false
 	}
@@ -85,8 +85,8 @@ func (o *EscalationPolicyDataRelationships) HasTeams() bool {
 	return o != nil && o.Teams != nil
 }
 
-// SetTeams gets a reference to the given EscalationPolicyDataRelationshipsTeams and assigns it to the Teams field.
-func (o *EscalationPolicyDataRelationships) SetTeams(v EscalationPolicyDataRelationshipsTeams) {
+// SetTeams gets a reference to the given DataRelationshipsTeams and assigns it to the Teams field.
+func (o *EscalationPolicyDataRelationships) SetTeams(v DataRelationshipsTeams) {
 	o.Teams = &v
 }
 
@@ -111,7 +111,7 @@ func (o EscalationPolicyDataRelationships) MarshalJSON() ([]byte, error) {
 func (o *EscalationPolicyDataRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Steps *EscalationPolicyDataRelationshipsSteps `json:"steps"`
-		Teams *EscalationPolicyDataRelationshipsTeams `json:"teams,omitempty"`
+		Teams *DataRelationshipsTeams                 `json:"teams,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

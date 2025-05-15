@@ -20,10 +20,10 @@ type ScheduleUpdateRequestDataAttributesLayersItems struct {
 	EndDate *time.Time `json:"end_date,omitempty"`
 	// A unique identifier for the layer being updated.
 	Id *string `json:"id,omitempty"`
-	// Specifies how the rotation repeats: number of days, plus optional seconds, up to the given maximums.
-	Interval ScheduleUpdateRequestDataAttributesLayersItemsInterval `json:"interval"`
+	// Defines how often the rotation repeats, using a combination of days and optional seconds.
+	Interval LayerAttributesInterval `json:"interval"`
 	// The members assigned to this layer.
-	Members []ScheduleUpdateRequestDataAttributesLayersItemsMembersItems `json:"members"`
+	Members []ScheduleRequestDataAttributesLayersItemsMembersItems `json:"members"`
 	// The name for this layer (for example, "Secondary Coverage").
 	Name string `json:"name"`
 	// Any time restrictions that define when this layer is active.
@@ -39,7 +39,7 @@ type ScheduleUpdateRequestDataAttributesLayersItems struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewScheduleUpdateRequestDataAttributesLayersItems(effectiveDate time.Time, interval ScheduleUpdateRequestDataAttributesLayersItemsInterval, members []ScheduleUpdateRequestDataAttributesLayersItemsMembersItems, name string, rotationStart time.Time) *ScheduleUpdateRequestDataAttributesLayersItems {
+func NewScheduleUpdateRequestDataAttributesLayersItems(effectiveDate time.Time, interval LayerAttributesInterval, members []ScheduleRequestDataAttributesLayersItemsMembersItems, name string, rotationStart time.Time) *ScheduleUpdateRequestDataAttributesLayersItems {
 	this := ScheduleUpdateRequestDataAttributesLayersItems{}
 	this.EffectiveDate = effectiveDate
 	this.Interval = interval
@@ -137,9 +137,9 @@ func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetId(v string) {
 }
 
 // GetInterval returns the Interval field value.
-func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetInterval() ScheduleUpdateRequestDataAttributesLayersItemsInterval {
+func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetInterval() LayerAttributesInterval {
 	if o == nil {
-		var ret ScheduleUpdateRequestDataAttributesLayersItemsInterval
+		var ret LayerAttributesInterval
 		return ret
 	}
 	return o.Interval
@@ -147,7 +147,7 @@ func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetInterval() ScheduleU
 
 // GetIntervalOk returns a tuple with the Interval field value
 // and a boolean to check if the value has been set.
-func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetIntervalOk() (*ScheduleUpdateRequestDataAttributesLayersItemsInterval, bool) {
+func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetIntervalOk() (*LayerAttributesInterval, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -155,14 +155,14 @@ func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetIntervalOk() (*Sched
 }
 
 // SetInterval sets field value.
-func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetInterval(v ScheduleUpdateRequestDataAttributesLayersItemsInterval) {
+func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetInterval(v LayerAttributesInterval) {
 	o.Interval = v
 }
 
 // GetMembers returns the Members field value.
-func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetMembers() []ScheduleUpdateRequestDataAttributesLayersItemsMembersItems {
+func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetMembers() []ScheduleRequestDataAttributesLayersItemsMembersItems {
 	if o == nil {
-		var ret []ScheduleUpdateRequestDataAttributesLayersItemsMembersItems
+		var ret []ScheduleRequestDataAttributesLayersItemsMembersItems
 		return ret
 	}
 	return o.Members
@@ -170,7 +170,7 @@ func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetMembers() []Schedule
 
 // GetMembersOk returns a tuple with the Members field value
 // and a boolean to check if the value has been set.
-func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetMembersOk() (*[]ScheduleUpdateRequestDataAttributesLayersItemsMembersItems, bool) {
+func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetMembersOk() (*[]ScheduleRequestDataAttributesLayersItemsMembersItems, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -178,7 +178,7 @@ func (o *ScheduleUpdateRequestDataAttributesLayersItems) GetMembersOk() (*[]Sche
 }
 
 // SetMembers sets field value.
-func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetMembers(v []ScheduleUpdateRequestDataAttributesLayersItemsMembersItems) {
+func (o *ScheduleUpdateRequestDataAttributesLayersItems) SetMembers(v []ScheduleRequestDataAttributesLayersItemsMembersItems) {
 	o.Members = v
 }
 
@@ -298,14 +298,14 @@ func (o ScheduleUpdateRequestDataAttributesLayersItems) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *ScheduleUpdateRequestDataAttributesLayersItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EffectiveDate *time.Time                                                    `json:"effective_date"`
-		EndDate       *time.Time                                                    `json:"end_date,omitempty"`
-		Id            *string                                                       `json:"id,omitempty"`
-		Interval      *ScheduleUpdateRequestDataAttributesLayersItemsInterval       `json:"interval"`
-		Members       *[]ScheduleUpdateRequestDataAttributesLayersItemsMembersItems `json:"members"`
-		Name          *string                                                       `json:"name"`
-		Restrictions  []TimeRestriction                                             `json:"restrictions,omitempty"`
-		RotationStart *time.Time                                                    `json:"rotation_start"`
+		EffectiveDate *time.Time                                              `json:"effective_date"`
+		EndDate       *time.Time                                              `json:"end_date,omitempty"`
+		Id            *string                                                 `json:"id,omitempty"`
+		Interval      *LayerAttributesInterval                                `json:"interval"`
+		Members       *[]ScheduleRequestDataAttributesLayersItemsMembersItems `json:"members"`
+		Name          *string                                                 `json:"name"`
+		Restrictions  []TimeRestriction                                       `json:"restrictions,omitempty"`
+		RotationStart *time.Time                                              `json:"rotation_start"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

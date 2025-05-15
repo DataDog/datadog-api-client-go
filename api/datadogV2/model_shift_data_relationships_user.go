@@ -5,72 +5,68 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ScheduleDataRelationshipsTeams Associates teams with this schedule in a data structure.
-type ScheduleDataRelationshipsTeams struct {
-	// An array of team references for this schedule.
-	Data []ScheduleDataRelationshipsTeamsDataItems `json:"data,omitempty"`
+// ShiftDataRelationshipsUser Defines the relationship between a shift and the user who is working that shift.
+type ShiftDataRelationshipsUser struct {
+	// Represents a reference to the user assigned to this shift, containing the user's ID and resource type.
+	Data ShiftDataRelationshipsUserData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewScheduleDataRelationshipsTeams instantiates a new ScheduleDataRelationshipsTeams object.
+// NewShiftDataRelationshipsUser instantiates a new ShiftDataRelationshipsUser object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewScheduleDataRelationshipsTeams() *ScheduleDataRelationshipsTeams {
-	this := ScheduleDataRelationshipsTeams{}
+func NewShiftDataRelationshipsUser(data ShiftDataRelationshipsUserData) *ShiftDataRelationshipsUser {
+	this := ShiftDataRelationshipsUser{}
+	this.Data = data
 	return &this
 }
 
-// NewScheduleDataRelationshipsTeamsWithDefaults instantiates a new ScheduleDataRelationshipsTeams object.
+// NewShiftDataRelationshipsUserWithDefaults instantiates a new ShiftDataRelationshipsUser object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewScheduleDataRelationshipsTeamsWithDefaults() *ScheduleDataRelationshipsTeams {
-	this := ScheduleDataRelationshipsTeams{}
+func NewShiftDataRelationshipsUserWithDefaults() *ShiftDataRelationshipsUser {
+	this := ShiftDataRelationshipsUser{}
 	return &this
 }
 
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *ScheduleDataRelationshipsTeams) GetData() []ScheduleDataRelationshipsTeamsDataItems {
-	if o == nil || o.Data == nil {
-		var ret []ScheduleDataRelationshipsTeamsDataItems
+// GetData returns the Data field value.
+func (o *ShiftDataRelationshipsUser) GetData() ShiftDataRelationshipsUserData {
+	if o == nil {
+		var ret ShiftDataRelationshipsUserData
 		return ret
 	}
 	return o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ScheduleDataRelationshipsTeams) GetDataOk() (*[]ScheduleDataRelationshipsTeamsDataItems, bool) {
-	if o == nil || o.Data == nil {
+func (o *ShiftDataRelationshipsUser) GetDataOk() (*ShiftDataRelationshipsUserData, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Data, true
 }
 
-// HasData returns a boolean if a field has been set.
-func (o *ScheduleDataRelationshipsTeams) HasData() bool {
-	return o != nil && o.Data != nil
-}
-
-// SetData gets a reference to the given []ScheduleDataRelationshipsTeamsDataItems and assigns it to the Data field.
-func (o *ScheduleDataRelationshipsTeams) SetData(v []ScheduleDataRelationshipsTeamsDataItems) {
+// SetData sets field value.
+func (o *ShiftDataRelationshipsUser) SetData(v ShiftDataRelationshipsUserData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ScheduleDataRelationshipsTeams) MarshalJSON() ([]byte, error) {
+func (o ShiftDataRelationshipsUser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Data != nil {
-		toSerialize["data"] = o.Data
-	}
+	toSerialize["data"] = o.Data
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -79,12 +75,15 @@ func (o ScheduleDataRelationshipsTeams) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ScheduleDataRelationshipsTeams) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ShiftDataRelationshipsUser) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []ScheduleDataRelationshipsTeamsDataItems `json:"data,omitempty"`
+		Data *ShiftDataRelationshipsUserData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -92,10 +91,19 @@ func (o *ScheduleDataRelationshipsTeams) UnmarshalJSON(bytes []byte) (err error)
 	} else {
 		return err
 	}
-	o.Data = all.Data
+
+	hasInvalidField := false
+	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

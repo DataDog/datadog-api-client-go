@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ScheduleCreateRequestDataRelationshipsTeams Associates the new schedule with one or more teams.
-type ScheduleCreateRequestDataRelationshipsTeams struct {
+// DataRelationshipsTeams Associates teams with this schedule in a data structure.
+type DataRelationshipsTeams struct {
 	// An array of team references for this schedule.
-	Data []ScheduleCreateRequestDataRelationshipsTeamsDataItems `json:"data,omitempty"`
+	Data []DataRelationshipsTeamsDataItems `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewScheduleCreateRequestDataRelationshipsTeams instantiates a new ScheduleCreateRequestDataRelationshipsTeams object.
+// NewDataRelationshipsTeams instantiates a new DataRelationshipsTeams object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewScheduleCreateRequestDataRelationshipsTeams() *ScheduleCreateRequestDataRelationshipsTeams {
-	this := ScheduleCreateRequestDataRelationshipsTeams{}
+func NewDataRelationshipsTeams() *DataRelationshipsTeams {
+	this := DataRelationshipsTeams{}
 	return &this
 }
 
-// NewScheduleCreateRequestDataRelationshipsTeamsWithDefaults instantiates a new ScheduleCreateRequestDataRelationshipsTeams object.
+// NewDataRelationshipsTeamsWithDefaults instantiates a new DataRelationshipsTeams object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewScheduleCreateRequestDataRelationshipsTeamsWithDefaults() *ScheduleCreateRequestDataRelationshipsTeams {
-	this := ScheduleCreateRequestDataRelationshipsTeams{}
+func NewDataRelationshipsTeamsWithDefaults() *DataRelationshipsTeams {
+	this := DataRelationshipsTeams{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *ScheduleCreateRequestDataRelationshipsTeams) GetData() []ScheduleCreateRequestDataRelationshipsTeamsDataItems {
+func (o *DataRelationshipsTeams) GetData() []DataRelationshipsTeamsDataItems {
 	if o == nil || o.Data == nil {
-		var ret []ScheduleCreateRequestDataRelationshipsTeamsDataItems
+		var ret []DataRelationshipsTeamsDataItems
 		return ret
 	}
 	return o.Data
@@ -45,7 +45,7 @@ func (o *ScheduleCreateRequestDataRelationshipsTeams) GetData() []ScheduleCreate
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScheduleCreateRequestDataRelationshipsTeams) GetDataOk() (*[]ScheduleCreateRequestDataRelationshipsTeamsDataItems, bool) {
+func (o *DataRelationshipsTeams) GetDataOk() (*[]DataRelationshipsTeamsDataItems, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *ScheduleCreateRequestDataRelationshipsTeams) GetDataOk() (*[]ScheduleCr
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *ScheduleCreateRequestDataRelationshipsTeams) HasData() bool {
+func (o *DataRelationshipsTeams) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
-// SetData gets a reference to the given []ScheduleCreateRequestDataRelationshipsTeamsDataItems and assigns it to the Data field.
-func (o *ScheduleCreateRequestDataRelationshipsTeams) SetData(v []ScheduleCreateRequestDataRelationshipsTeamsDataItems) {
+// SetData gets a reference to the given []DataRelationshipsTeamsDataItems and assigns it to the Data field.
+func (o *DataRelationshipsTeams) SetData(v []DataRelationshipsTeamsDataItems) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ScheduleCreateRequestDataRelationshipsTeams) MarshalJSON() ([]byte, error) {
+func (o DataRelationshipsTeams) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,9 +79,9 @@ func (o ScheduleCreateRequestDataRelationshipsTeams) MarshalJSON() ([]byte, erro
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ScheduleCreateRequestDataRelationshipsTeams) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DataRelationshipsTeams) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []ScheduleCreateRequestDataRelationshipsTeamsDataItems `json:"data,omitempty"`
+		Data []DataRelationshipsTeamsDataItems `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

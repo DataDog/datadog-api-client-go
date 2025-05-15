@@ -10,40 +10,40 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ScheduleDataRelationshipsTeamsDataItems Relates a team to this schedule, identified by `id` and `type` (must be `teams`).
-type ScheduleDataRelationshipsTeamsDataItems struct {
-	// The unique identifier of the team in this relationship.
+// ShiftDataRelationshipsUserData Represents a reference to the user assigned to this shift, containing the user's ID and resource type.
+type ShiftDataRelationshipsUserData struct {
+	// Specifies the unique identifier of the user.
 	Id string `json:"id"`
-	// Teams resource type.
-	Type ScheduleDataRelationshipsTeamsDataItemsType `json:"type"`
+	// Indicates that the related resource is of type 'users'.
+	Type ShiftDataRelationshipsUserDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewScheduleDataRelationshipsTeamsDataItems instantiates a new ScheduleDataRelationshipsTeamsDataItems object.
+// NewShiftDataRelationshipsUserData instantiates a new ShiftDataRelationshipsUserData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewScheduleDataRelationshipsTeamsDataItems(id string, typeVar ScheduleDataRelationshipsTeamsDataItemsType) *ScheduleDataRelationshipsTeamsDataItems {
-	this := ScheduleDataRelationshipsTeamsDataItems{}
+func NewShiftDataRelationshipsUserData(id string, typeVar ShiftDataRelationshipsUserDataType) *ShiftDataRelationshipsUserData {
+	this := ShiftDataRelationshipsUserData{}
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewScheduleDataRelationshipsTeamsDataItemsWithDefaults instantiates a new ScheduleDataRelationshipsTeamsDataItems object.
+// NewShiftDataRelationshipsUserDataWithDefaults instantiates a new ShiftDataRelationshipsUserData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewScheduleDataRelationshipsTeamsDataItemsWithDefaults() *ScheduleDataRelationshipsTeamsDataItems {
-	this := ScheduleDataRelationshipsTeamsDataItems{}
-	var typeVar ScheduleDataRelationshipsTeamsDataItemsType = SCHEDULEDATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS
+func NewShiftDataRelationshipsUserDataWithDefaults() *ShiftDataRelationshipsUserData {
+	this := ShiftDataRelationshipsUserData{}
+	var typeVar ShiftDataRelationshipsUserDataType = SHIFTDATARELATIONSHIPSUSERDATATYPE_USERS
 	this.Type = typeVar
 	return &this
 }
 
 // GetId returns the Id field value.
-func (o *ScheduleDataRelationshipsTeamsDataItems) GetId() string {
+func (o *ShiftDataRelationshipsUserData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -53,7 +53,7 @@ func (o *ScheduleDataRelationshipsTeamsDataItems) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ScheduleDataRelationshipsTeamsDataItems) GetIdOk() (*string, bool) {
+func (o *ShiftDataRelationshipsUserData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,14 +61,14 @@ func (o *ScheduleDataRelationshipsTeamsDataItems) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *ScheduleDataRelationshipsTeamsDataItems) SetId(v string) {
+func (o *ShiftDataRelationshipsUserData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *ScheduleDataRelationshipsTeamsDataItems) GetType() ScheduleDataRelationshipsTeamsDataItemsType {
+func (o *ShiftDataRelationshipsUserData) GetType() ShiftDataRelationshipsUserDataType {
 	if o == nil {
-		var ret ScheduleDataRelationshipsTeamsDataItemsType
+		var ret ShiftDataRelationshipsUserDataType
 		return ret
 	}
 	return o.Type
@@ -76,7 +76,7 @@ func (o *ScheduleDataRelationshipsTeamsDataItems) GetType() ScheduleDataRelation
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ScheduleDataRelationshipsTeamsDataItems) GetTypeOk() (*ScheduleDataRelationshipsTeamsDataItemsType, bool) {
+func (o *ShiftDataRelationshipsUserData) GetTypeOk() (*ShiftDataRelationshipsUserDataType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,12 +84,12 @@ func (o *ScheduleDataRelationshipsTeamsDataItems) GetTypeOk() (*ScheduleDataRela
 }
 
 // SetType sets field value.
-func (o *ScheduleDataRelationshipsTeamsDataItems) SetType(v ScheduleDataRelationshipsTeamsDataItemsType) {
+func (o *ShiftDataRelationshipsUserData) SetType(v ShiftDataRelationshipsUserDataType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ScheduleDataRelationshipsTeamsDataItems) MarshalJSON() ([]byte, error) {
+func (o ShiftDataRelationshipsUserData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -104,10 +104,10 @@ func (o ScheduleDataRelationshipsTeamsDataItems) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ScheduleDataRelationshipsTeamsDataItems) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ShiftDataRelationshipsUserData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                                      `json:"id"`
-		Type *ScheduleDataRelationshipsTeamsDataItemsType `json:"type"`
+		Id   *string                             `json:"id"`
+		Type *ShiftDataRelationshipsUserDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

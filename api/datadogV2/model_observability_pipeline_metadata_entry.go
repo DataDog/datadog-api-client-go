@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineMetadataEntry A custom metadata entry to attach to each object uploaded to the GCS bucket.
+// ObservabilityPipelineMetadataEntry A custom metadata entry.
 type ObservabilityPipelineMetadataEntry struct {
 	// The metadata key.
 	Name string `json:"name"`

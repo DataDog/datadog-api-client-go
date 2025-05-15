@@ -33,12 +33,12 @@ func main() {
 						Id:            datadog.PtrString(ScheduleDataRelationshipsLayersData0ID),
 						EffectiveDate: time.Now().AddDate(0, 0, -10),
 						EndDate:       datadog.PtrTime(time.Now().AddDate(0, 0, 10)),
-						Interval: datadogV2.ScheduleUpdateRequestDataAttributesLayersItemsInterval{
+						Interval: datadogV2.LayerAttributesInterval{
 							Seconds: datadog.PtrInt64(300),
 						},
-						Members: []datadogV2.ScheduleUpdateRequestDataAttributesLayersItemsMembersItems{
+						Members: []datadogV2.ScheduleRequestDataAttributesLayersItemsMembersItems{
 							{
-								User: &datadogV2.ScheduleUpdateRequestDataAttributesLayersItemsMembersItemsUser{
+								User: &datadogV2.ScheduleRequestDataAttributesLayersItemsMembersItemsUser{
 									Id: datadog.PtrString(UserDataID),
 								},
 							},
@@ -64,11 +64,11 @@ func main() {
 				TimeZone: "America/New_York",
 			},
 			Relationships: &datadogV2.ScheduleUpdateRequestDataRelationships{
-				Teams: &datadogV2.ScheduleUpdateRequestDataRelationshipsTeams{
-					Data: []datadogV2.ScheduleUpdateRequestDataRelationshipsTeamsDataItems{
+				Teams: &datadogV2.DataRelationshipsTeams{
+					Data: []datadogV2.DataRelationshipsTeamsDataItems{
 						{
 							Id:   DdTeamDataID,
-							Type: datadogV2.SCHEDULEUPDATEREQUESTDATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS,
+							Type: datadogV2.DATARELATIONSHIPSTEAMSDATAITEMSTYPE_TEAMS,
 						},
 					},
 				},

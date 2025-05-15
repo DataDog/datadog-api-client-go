@@ -8,37 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ScheduleUpdateRequestDataAttributesLayersItemsMembersItems Defines a single member within a layer during an update request, referring
-// to a specific user.
-type ScheduleUpdateRequestDataAttributesLayersItemsMembersItems struct {
-	// Identifies the user who is assigned to this member object. Only `id` is required.
-	User *ScheduleUpdateRequestDataAttributesLayersItemsMembersItemsUser `json:"user,omitempty"`
+// ShiftDataRelationships The definition of `ShiftDataRelationships` object.
+type ShiftDataRelationships struct {
+	// Defines the relationship between a shift and the user who is working that shift.
+	User *ShiftDataRelationshipsUser `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewScheduleUpdateRequestDataAttributesLayersItemsMembersItems instantiates a new ScheduleUpdateRequestDataAttributesLayersItemsMembersItems object.
+// NewShiftDataRelationships instantiates a new ShiftDataRelationships object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewScheduleUpdateRequestDataAttributesLayersItemsMembersItems() *ScheduleUpdateRequestDataAttributesLayersItemsMembersItems {
-	this := ScheduleUpdateRequestDataAttributesLayersItemsMembersItems{}
+func NewShiftDataRelationships() *ShiftDataRelationships {
+	this := ShiftDataRelationships{}
 	return &this
 }
 
-// NewScheduleUpdateRequestDataAttributesLayersItemsMembersItemsWithDefaults instantiates a new ScheduleUpdateRequestDataAttributesLayersItemsMembersItems object.
+// NewShiftDataRelationshipsWithDefaults instantiates a new ShiftDataRelationships object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewScheduleUpdateRequestDataAttributesLayersItemsMembersItemsWithDefaults() *ScheduleUpdateRequestDataAttributesLayersItemsMembersItems {
-	this := ScheduleUpdateRequestDataAttributesLayersItemsMembersItems{}
+func NewShiftDataRelationshipsWithDefaults() *ShiftDataRelationships {
+	this := ShiftDataRelationships{}
 	return &this
 }
 
 // GetUser returns the User field value if set, zero value otherwise.
-func (o *ScheduleUpdateRequestDataAttributesLayersItemsMembersItems) GetUser() ScheduleUpdateRequestDataAttributesLayersItemsMembersItemsUser {
+func (o *ShiftDataRelationships) GetUser() ShiftDataRelationshipsUser {
 	if o == nil || o.User == nil {
-		var ret ScheduleUpdateRequestDataAttributesLayersItemsMembersItemsUser
+		var ret ShiftDataRelationshipsUser
 		return ret
 	}
 	return *o.User
@@ -46,7 +45,7 @@ func (o *ScheduleUpdateRequestDataAttributesLayersItemsMembersItems) GetUser() S
 
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScheduleUpdateRequestDataAttributesLayersItemsMembersItems) GetUserOk() (*ScheduleUpdateRequestDataAttributesLayersItemsMembersItemsUser, bool) {
+func (o *ShiftDataRelationships) GetUserOk() (*ShiftDataRelationshipsUser, bool) {
 	if o == nil || o.User == nil {
 		return nil, false
 	}
@@ -54,17 +53,17 @@ func (o *ScheduleUpdateRequestDataAttributesLayersItemsMembersItems) GetUserOk()
 }
 
 // HasUser returns a boolean if a field has been set.
-func (o *ScheduleUpdateRequestDataAttributesLayersItemsMembersItems) HasUser() bool {
+func (o *ShiftDataRelationships) HasUser() bool {
 	return o != nil && o.User != nil
 }
 
-// SetUser gets a reference to the given ScheduleUpdateRequestDataAttributesLayersItemsMembersItemsUser and assigns it to the User field.
-func (o *ScheduleUpdateRequestDataAttributesLayersItemsMembersItems) SetUser(v ScheduleUpdateRequestDataAttributesLayersItemsMembersItemsUser) {
+// SetUser gets a reference to the given ShiftDataRelationshipsUser and assigns it to the User field.
+func (o *ShiftDataRelationships) SetUser(v ShiftDataRelationshipsUser) {
 	o.User = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ScheduleUpdateRequestDataAttributesLayersItemsMembersItems) MarshalJSON() ([]byte, error) {
+func (o ShiftDataRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -80,9 +79,9 @@ func (o ScheduleUpdateRequestDataAttributesLayersItemsMembersItems) MarshalJSON(
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ScheduleUpdateRequestDataAttributesLayersItemsMembersItems) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ShiftDataRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		User *ScheduleUpdateRequestDataAttributesLayersItemsMembersItemsUser `json:"user,omitempty"`
+		User *ShiftDataRelationshipsUser `json:"user,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
