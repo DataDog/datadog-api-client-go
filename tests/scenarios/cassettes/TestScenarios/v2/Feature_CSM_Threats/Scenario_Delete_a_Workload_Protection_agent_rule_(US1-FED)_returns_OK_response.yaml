@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testdeleteaworkloadprotectionagentruleus1fedreturnsokresponse1747319662"},"type":"agent_rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules
+  response:
+    body: '{"data":{"id":"car-hil-x1c","attributes":{"version":1,"name":"testdeleteaworkloadprotectionagentruleus1fedreturnsokresponse1747319662","description":"My
+      Agent rule","expression":"exec.file.name == \"sh\"","category":"Process Activity","defaultRule":false,"enabled":true,"creationAuthorUuId":"3ad549bf-eba0-11e9-a77a-0705486660d0","creationDate":1747319662646,"updateAuthorUuId":"3ad549bf-eba0-11e9-a77a-0705486660d0","updateDate":1747319662646,"filters":["os
+      == \"linux\""],"actions":[],"agentConstraint":"","creator":{"name":"frog","handle":"frog@datadoghq.com"},"updater":{"name":"frog","handle":"frog@datadoghq.com"}},"type":"agent_rule"}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/car-hil-x1c
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/car-hil-x1c
+  response:
+    body: '{"errors":["not_found(Agent rule not found: agentRuleId=car-hil-x1c)"]}
+
+      '
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 2
