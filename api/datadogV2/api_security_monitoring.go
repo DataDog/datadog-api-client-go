@@ -1677,6 +1677,124 @@ func (a *SecurityMonitoringApi) GetHistoricalJob(ctx _context.Context, jobId str
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetResourceEvaluationFiltersOptionalParameters holds optional parameters for GetResourceEvaluationFilters.
+type GetResourceEvaluationFiltersOptionalParameters struct {
+	CloudProvider *string
+	AccountId     *string
+	SkipCache     *bool
+}
+
+// NewGetResourceEvaluationFiltersOptionalParameters creates an empty struct for parameters.
+func NewGetResourceEvaluationFiltersOptionalParameters() *GetResourceEvaluationFiltersOptionalParameters {
+	this := GetResourceEvaluationFiltersOptionalParameters{}
+	return &this
+}
+
+// WithCloudProvider sets the corresponding parameter name and returns the struct.
+func (r *GetResourceEvaluationFiltersOptionalParameters) WithCloudProvider(cloudProvider string) *GetResourceEvaluationFiltersOptionalParameters {
+	r.CloudProvider = &cloudProvider
+	return r
+}
+
+// WithAccountId sets the corresponding parameter name and returns the struct.
+func (r *GetResourceEvaluationFiltersOptionalParameters) WithAccountId(accountId string) *GetResourceEvaluationFiltersOptionalParameters {
+	r.AccountId = &accountId
+	return r
+}
+
+// WithSkipCache sets the corresponding parameter name and returns the struct.
+func (r *GetResourceEvaluationFiltersOptionalParameters) WithSkipCache(skipCache bool) *GetResourceEvaluationFiltersOptionalParameters {
+	r.SkipCache = &skipCache
+	return r
+}
+
+// GetResourceEvaluationFilters List resource filters.
+// List resource filters.
+func (a *SecurityMonitoringApi) GetResourceEvaluationFilters(ctx _context.Context, o ...GetResourceEvaluationFiltersOptionalParameters) (GetResourceEvaluationFiltersResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue GetResourceEvaluationFiltersResponse
+		optionalParams      GetResourceEvaluationFiltersOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetResourceEvaluationFiltersOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetResourceEvaluationFilters")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cloud_security_management/resource_filters"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.CloudProvider != nil {
+		localVarQueryParams.Add("cloud_provider", datadog.ParameterToString(*optionalParams.CloudProvider, ""))
+	}
+	if optionalParams.AccountId != nil {
+		localVarQueryParams.Add("account_id", datadog.ParameterToString(*optionalParams.AccountId, ""))
+	}
+	if optionalParams.SkipCache != nil {
+		localVarQueryParams.Add("skip_cache", datadog.ParameterToString(*optionalParams.SkipCache, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetRuleVersionHistoryOptionalParameters holds optional parameters for GetRuleVersionHistory.
 type GetRuleVersionHistoryOptionalParameters struct {
 	PageSize   *int64
@@ -4961,6 +5079,79 @@ func (a *SecurityMonitoringApi) UpdateCustomFramework(ctx _context.Context, hand
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 429 || localVarHTTPResponse.StatusCode == 500 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// UpdateResourceEvaluationFilters Update resource filters.
+// Update resource filters.
+func (a *SecurityMonitoringApi) UpdateResourceEvaluationFilters(ctx _context.Context, body UpdateResourceEvaluationFiltersRequest) (UpdateResourceEvaluationFiltersResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue UpdateResourceEvaluationFiltersResponse
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.UpdateResourceEvaluationFilters")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cloud_security_management/resource_filters"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
