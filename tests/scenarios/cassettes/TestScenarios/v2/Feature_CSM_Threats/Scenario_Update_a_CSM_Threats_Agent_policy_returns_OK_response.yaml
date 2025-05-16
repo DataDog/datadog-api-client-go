@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testupdateacsmthreatsagentpolicyreturnsokresponse1744708209"},"type":"policy"}}
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testupdateacsmthreatsagentpolicyreturnsokresponse1747407724"},"type":"policy"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy
   response:
-    body: '{"data":{"id":"99n-cjh-wuo","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
-      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testupdateacsmthreatsagentpolicyreturnsokresponse1744708209","policyVersion":"1","priority":1000000001,"ruleCount":226,"updateDate":1744708209551,"updater":{"name":"CI
+    body: '{"data":{"id":"c1c-817-2fv","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testupdateacsmthreatsagentpolicyreturnsokresponse1747407724","policyVersion":"1","priority":1000000070,"ruleCount":226,"updateDate":1747407724879,"updater":{"name":"CI
       Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
     code: 200
     duration: 0ms
@@ -23,7 +23,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"description":"Updated agent policy","enabled":true,"hostTagsLists":[["env:test"]],"name":"updated_agent_policy"},"id":"99n-cjh-wuo","type":"policy"}}
+      {"data":{"attributes":{"description":"Updated agent policy","enabled":true,"hostTagsLists":[["env:test"]],"name":"updated_agent_policy"},"id":"c1c-817-2fv","type":"policy"}}
     form: {}
     headers:
       Accept:
@@ -32,10 +32,10 @@ interactions:
       - application/json
     id: 1
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/99n-cjh-wuo
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/c1c-817-2fv
   response:
-    body: '{"data":{"id":"99n-cjh-wuo","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"Updated
-      agent policy","disabledRulesCount":1,"enabled":true,"hostTagsLists":[["env:test"]],"monitoringRulesCount":225,"name":"updated_agent_policy","policyVersion":"2","priority":1000000001,"ruleCount":226,"updateDate":1744708210164,"updater":{"name":"CI
+    body: '{"data":{"id":"c1c-817-2fv","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"Updated
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTagsLists":[["env:test"]],"monitoringRulesCount":225,"name":"updated_agent_policy","policyVersion":"2","priority":1000000070,"ruleCount":226,"updateDate":1747407725469,"updater":{"name":"CI
       Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
     code: 200
     duration: 0ms
@@ -51,7 +51,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/99n-cjh-wuo
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/c1c-817-2fv
   response:
     body: ''
     code: 204

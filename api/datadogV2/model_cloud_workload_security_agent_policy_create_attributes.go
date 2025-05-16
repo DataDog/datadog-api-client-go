@@ -12,6 +12,8 @@ import (
 
 // CloudWorkloadSecurityAgentPolicyCreateAttributes Create a new Cloud Workload Security Agent policy
 type CloudWorkloadSecurityAgentPolicyCreateAttributes struct {
+	// The array of actions the rule can perform if triggered
+	Actions []CloudWorkloadSecurityAgentRuleAction `json:"actions,omitempty"`
 	// The description of the policy
 	Description *string `json:"description,omitempty"`
 	// Whether the policy is enabled
@@ -43,6 +45,35 @@ func NewCloudWorkloadSecurityAgentPolicyCreateAttributes(name string) *CloudWork
 func NewCloudWorkloadSecurityAgentPolicyCreateAttributesWithDefaults() *CloudWorkloadSecurityAgentPolicyCreateAttributes {
 	this := CloudWorkloadSecurityAgentPolicyCreateAttributes{}
 	return &this
+}
+
+// GetActions returns the Actions field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CloudWorkloadSecurityAgentPolicyCreateAttributes) GetActions() []CloudWorkloadSecurityAgentRuleAction {
+	if o == nil {
+		var ret []CloudWorkloadSecurityAgentRuleAction
+		return ret
+	}
+	return o.Actions
+}
+
+// GetActionsOk returns a tuple with the Actions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *CloudWorkloadSecurityAgentPolicyCreateAttributes) GetActionsOk() (*[]CloudWorkloadSecurityAgentRuleAction, bool) {
+	if o == nil || o.Actions == nil {
+		return nil, false
+	}
+	return &o.Actions, true
+}
+
+// HasActions returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentPolicyCreateAttributes) HasActions() bool {
+	return o != nil && o.Actions != nil
+}
+
+// SetActions gets a reference to the given []CloudWorkloadSecurityAgentRuleAction and assigns it to the Actions field.
+func (o *CloudWorkloadSecurityAgentPolicyCreateAttributes) SetActions(v []CloudWorkloadSecurityAgentRuleAction) {
+	o.Actions = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -186,6 +217,9 @@ func (o CloudWorkloadSecurityAgentPolicyCreateAttributes) MarshalJSON() ([]byte,
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Actions != nil {
+		toSerialize["actions"] = o.Actions
+	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
@@ -209,11 +243,12 @@ func (o CloudWorkloadSecurityAgentPolicyCreateAttributes) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentPolicyCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description   *string    `json:"description,omitempty"`
-		Enabled       *bool      `json:"enabled,omitempty"`
-		HostTags      []string   `json:"hostTags,omitempty"`
-		HostTagsLists [][]string `json:"hostTagsLists,omitempty"`
-		Name          *string    `json:"name"`
+		Actions       []CloudWorkloadSecurityAgentRuleAction `json:"actions,omitempty"`
+		Description   *string                                `json:"description,omitempty"`
+		Enabled       *bool                                  `json:"enabled,omitempty"`
+		HostTags      []string                               `json:"hostTags,omitempty"`
+		HostTagsLists [][]string                             `json:"hostTagsLists,omitempty"`
+		Name          *string                                `json:"name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -223,10 +258,11 @@ func (o *CloudWorkloadSecurityAgentPolicyCreateAttributes) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "enabled", "hostTags", "hostTagsLists", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"actions", "description", "enabled", "hostTags", "hostTagsLists", "name"})
 	} else {
 		return err
 	}
+	o.Actions = all.Actions
 	o.Description = all.Description
 	o.Enabled = all.Enabled
 	o.HostTags = all.HostTags
