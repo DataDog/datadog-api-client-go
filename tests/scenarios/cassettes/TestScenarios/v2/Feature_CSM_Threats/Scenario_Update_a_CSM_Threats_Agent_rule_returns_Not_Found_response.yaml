@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testupdateacsmthreatsagentrulereturnsnotfoundresponse1743517862"},"type":"policy"}}
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testupdateacsmthreatsagentrulereturnsnotfoundresponse1747407729"},"type":"policy"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy
   response:
-    body: '{"data":{"id":"jnw-szj-ssb","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
-      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testupdateacsmthreatsagentrulereturnsnotfoundresponse1743517862","policyVersion":"1","priority":1000000001,"ruleCount":226,"updateDate":1743517862965,"updater":{"name":"CI
+    body: '{"data":{"id":"rk6-s7s-buu","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testupdateacsmthreatsagentrulereturnsnotfoundresponse1747407729","policyVersion":"1","priority":1000000070,"ruleCount":226,"updateDate":1747407729859,"updater":{"name":"CI
       Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
     code: 200
     duration: 0ms
@@ -23,7 +23,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","policy_id":"jnw-szj-ssb","product_tags":[]},"id":"non-existent-rule-id","type":"agent_rule"}}
+      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","policy_id":"rk6-s7s-buu","product_tags":[]},"id":"non-existent-rule-id","type":"agent_rule"}}
     form: {}
     headers:
       Accept:
@@ -51,7 +51,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/jnw-szj-ssb
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/rk6-s7s-buu
   response:
     body: ''
     code: 204

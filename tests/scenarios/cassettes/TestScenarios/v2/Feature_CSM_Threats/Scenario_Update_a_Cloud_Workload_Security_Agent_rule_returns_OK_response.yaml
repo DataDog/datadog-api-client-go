@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testupdateacloudworkloadsecurityagentrulereturnsokresponse1744967415"},"type":"agent_rule"}}
+      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testupdateacloudworkloadsecurityagentrulereturnsokresponse1747407732"},"type":"agent_rule"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules
   response:
-    body: '{"data":{"id":"szj-quo-wak","attributes":{"version":1,"name":"testupdateacloudworkloadsecurityagentrulereturnsokresponse1744967415","description":"My
-      Agent rule","expression":"exec.file.name == \"sh\"","category":"Process Activity","defaultRule":false,"enabled":true,"creationAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","creationDate":1744967416010,"updateAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","updateDate":1744967416010,"filters":["os
+    body: '{"data":{"id":"bst-uhg-xae","attributes":{"version":1,"name":"testupdateacloudworkloadsecurityagentrulereturnsokresponse1747407732","description":"My
+      Agent rule","expression":"exec.file.name == \"sh\"","category":"Process Activity","defaultRule":false,"enabled":true,"creationAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","creationDate":1747407732988,"updateAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","updateDate":1747407732988,"filters":["os
       == \"linux\""],"actions":[],"agentConstraint":"","creator":{"name":"CI Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"updater":{"name":"CI
       Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}},"type":"agent_rule"}}
 
@@ -26,7 +26,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"description":"Updated Agent rule","expression":"exec.file.name == \"sh\""},"id":"szj-quo-wak","type":"agent_rule"}}
+      {"data":{"attributes":{"description":"Updated Agent rule","expression":"exec.file.name == \"sh\""},"id":"bst-uhg-xae","type":"agent_rule"}}
     form: {}
     headers:
       Accept:
@@ -35,10 +35,10 @@ interactions:
       - application/json
     id: 1
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/szj-quo-wak
+    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/bst-uhg-xae
   response:
-    body: '{"data":{"id":"szj-quo-wak","attributes":{"version":2,"name":"testupdateacloudworkloadsecurityagentrulereturnsokresponse1744967415","description":"Updated
-      Agent rule","expression":"exec.file.name == \"sh\"","category":"Process Activity","defaultRule":false,"enabled":true,"creationAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","creationDate":1744967416010,"updateAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","updateDate":1744967416272,"filters":["os
+    body: '{"data":{"id":"bst-uhg-xae","attributes":{"version":2,"name":"testupdateacloudworkloadsecurityagentrulereturnsokresponse1747407732","description":"Updated
+      Agent rule","expression":"exec.file.name == \"sh\"","category":"Process Activity","defaultRule":false,"enabled":true,"creationAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","creationDate":1747407732988,"updateAuthorUuId":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","updateDate":1747407733338,"filters":["os
       == \"linux\""],"actions":[],"agentConstraint":"","creator":{"name":"CI Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"updater":{"name":"CI
       Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}},"type":"agent_rule"}}
 
@@ -57,7 +57,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/szj-quo-wak
+    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/bst-uhg-xae
   response:
     body: ''
     code: 204
