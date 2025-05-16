@@ -10,6 +10,10 @@ import (
 
 // FindingAttributes The JSON:API attributes of the finding.
 type FindingAttributes struct {
+	// The Datadog relative link for this finding.
+	DatadogLink *string `json:"datadog_link,omitempty"`
+	// The description and remediation steps for this finding.
+	Description *string `json:"description,omitempty"`
 	// The evaluation of the finding.
 	Evaluation *FindingEvaluation `json:"evaluation,omitempty"`
 	// The date on which the evaluation for this finding changed (Unix ms).
@@ -50,6 +54,62 @@ func NewFindingAttributes() *FindingAttributes {
 func NewFindingAttributesWithDefaults() *FindingAttributes {
 	this := FindingAttributes{}
 	return &this
+}
+
+// GetDatadogLink returns the DatadogLink field value if set, zero value otherwise.
+func (o *FindingAttributes) GetDatadogLink() string {
+	if o == nil || o.DatadogLink == nil {
+		var ret string
+		return ret
+	}
+	return *o.DatadogLink
+}
+
+// GetDatadogLinkOk returns a tuple with the DatadogLink field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FindingAttributes) GetDatadogLinkOk() (*string, bool) {
+	if o == nil || o.DatadogLink == nil {
+		return nil, false
+	}
+	return o.DatadogLink, true
+}
+
+// HasDatadogLink returns a boolean if a field has been set.
+func (o *FindingAttributes) HasDatadogLink() bool {
+	return o != nil && o.DatadogLink != nil
+}
+
+// SetDatadogLink gets a reference to the given string and assigns it to the DatadogLink field.
+func (o *FindingAttributes) SetDatadogLink(v string) {
+	o.DatadogLink = &v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *FindingAttributes) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FindingAttributes) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *FindingAttributes) HasDescription() bool {
+	return o != nil && o.Description != nil
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *FindingAttributes) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetEvaluation returns the Evaluation field value if set, zero value otherwise.
@@ -338,6 +398,12 @@ func (o FindingAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.DatadogLink != nil {
+		toSerialize["datadog_link"] = o.DatadogLink
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
 	if o.Evaluation != nil {
 		toSerialize["evaluation"] = o.Evaluation
 	}
@@ -378,6 +444,8 @@ func (o FindingAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		DatadogLink           *string                   `json:"datadog_link,omitempty"`
+		Description           *string                   `json:"description,omitempty"`
 		Evaluation            *FindingEvaluation        `json:"evaluation,omitempty"`
 		EvaluationChangedAt   *int64                    `json:"evaluation_changed_at,omitempty"`
 		Mute                  *FindingMute              `json:"mute,omitempty"`
@@ -394,12 +462,14 @@ func (o *FindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"evaluation", "evaluation_changed_at", "mute", "resource", "resource_discovery_date", "resource_type", "rule", "status", "tags", "vulnerability_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"datadog_link", "description", "evaluation", "evaluation_changed_at", "mute", "resource", "resource_discovery_date", "resource_type", "rule", "status", "tags", "vulnerability_type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.DatadogLink = all.DatadogLink
+	o.Description = all.Description
 	if all.Evaluation != nil && !all.Evaluation.IsValid() {
 		hasInvalidField = true
 	} else {
