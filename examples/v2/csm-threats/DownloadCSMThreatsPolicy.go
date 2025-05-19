@@ -1,4 +1,4 @@
-// Get the latest CSM Threats policy returns "OK" response
+// Download the Workload Protection policy returns "OK" response
 
 package main
 
