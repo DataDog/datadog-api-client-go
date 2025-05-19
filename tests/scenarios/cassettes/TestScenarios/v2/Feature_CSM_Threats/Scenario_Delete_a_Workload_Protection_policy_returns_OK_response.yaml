@@ -1,0 +1,59 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testdeleteaworkloadprotectionpolicyreturnsokresponse1747319667"},"type":"policy"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy
+  response:
+    body: '{"data":{"id":"koo-gxa-p0y","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testdeleteaworkloadprotectionpolicyreturnsokresponse1747319667","policyVersion":"1","priority":1000000070,"ruleCount":226,"updateDate":1747319667081,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/koo-gxa-p0y
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/koo-gxa-p0y
+  response:
+    body: '{"errors":[{"title":"failed to delete policy"}]}
+
+      '
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 2
