@@ -13,6 +13,8 @@ import (
 
 // Monitor Object describing a monitor.
 type Monitor struct {
+	// The classification of the monitor.
+	Classification *string `json:"classification,omitempty"`
 	// Timestamp of the monitor creation.
 	Created *time.Time `json:"created,omitempty"`
 	// Object describing the creator of the shared element.
@@ -69,6 +71,34 @@ func NewMonitor(query string, typeVar MonitorType) *Monitor {
 func NewMonitorWithDefaults() *Monitor {
 	this := Monitor{}
 	return &this
+}
+
+// GetClassification returns the Classification field value if set, zero value otherwise.
+func (o *Monitor) GetClassification() string {
+	if o == nil || o.Classification == nil {
+		var ret string
+		return ret
+	}
+	return *o.Classification
+}
+
+// GetClassificationOk returns a tuple with the Classification field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Monitor) GetClassificationOk() (*string, bool) {
+	if o == nil || o.Classification == nil {
+		return nil, false
+	}
+	return o.Classification, true
+}
+
+// HasClassification returns a boolean if a field has been set.
+func (o *Monitor) HasClassification() bool {
+	return o != nil && o.Classification != nil
+}
+
+// SetClassification gets a reference to the given string and assigns it to the Classification field.
+func (o *Monitor) SetClassification(v string) {
+	o.Classification = &v
 }
 
 // GetCreated returns the Created field value if set, zero value otherwise.
@@ -576,6 +606,9 @@ func (o Monitor) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Classification != nil {
+		toSerialize["classification"] = o.Classification
+	}
 	if o.Created != nil {
 		if o.Created.Nanosecond() == 0 {
 			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05Z07:00")
@@ -641,6 +674,7 @@ func (o Monitor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Classification    *string                      `json:"classification,omitempty"`
 		Created           *time.Time                   `json:"created,omitempty"`
 		Creator           *Creator                     `json:"creator,omitempty"`
 		Deleted           datadog.NullableTime         `json:"deleted,omitempty"`
@@ -670,12 +704,13 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created", "creator", "deleted", "id", "matching_downtimes", "message", "modified", "multi", "name", "options", "overall_state", "priority", "query", "restricted_roles", "state", "tags", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"classification", "created", "creator", "deleted", "id", "matching_downtimes", "message", "modified", "multi", "name", "options", "overall_state", "priority", "query", "restricted_roles", "state", "tags", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Classification = all.Classification
 	o.Created = all.Created
 	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
