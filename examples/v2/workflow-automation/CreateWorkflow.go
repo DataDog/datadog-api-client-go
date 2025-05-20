@@ -31,7 +31,6 @@ func main() {
 							Env: datadogV2.CONNECTIONENVENV_DEFAULT,
 						},
 					},
-					Handle: datadog.PtrString("my-handle"),
 					InputSchema: &datadogV2.InputSchema{
 						Parameters: []datadogV2.InputSchemaParameters{
 							{
