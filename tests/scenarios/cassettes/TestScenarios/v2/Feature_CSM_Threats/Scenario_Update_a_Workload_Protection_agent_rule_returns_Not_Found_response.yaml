@@ -1,0 +1,62 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testupdateaworkloadprotectionagentrulereturnsnotfoundresponse1747319695"},"type":"policy"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy
+  response:
+    body: '{"data":{"id":"ybs-zrz-2xw","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testupdateaworkloadprotectionagentrulereturnsnotfoundresponse1747319695","policyVersion":"1","priority":1000000070,"ruleCount":226,"updateDate":1747319695364,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","policy_id":"ybs-zrz-2xw","product_tags":[]},"id":"non-existent-rule-id","type":"agent_rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/non-existent-rule-id
+  response:
+    body: '{"errors":[{"title":"failed to update rule"}]}
+
+      '
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/ybs-zrz-2xw
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 204 No Content
+version: 2

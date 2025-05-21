@@ -1,4 +1,4 @@
-// Get all CSM Threats Agent rules returns "OK" response
+// Get all Workload Protection agent rules returns "OK" response
 
 package main
 

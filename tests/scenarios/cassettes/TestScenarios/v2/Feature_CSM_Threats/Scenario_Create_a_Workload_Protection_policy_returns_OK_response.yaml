@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTagsLists":[["env:test"]],"name":"my_agent_policy"},"type":"policy"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy
+  response:
+    body: '{"data":{"id":"krx-hib-ibo","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTagsLists":[["env:test"]],"monitoringRulesCount":225,"name":"my_agent_policy","policyVersion":"1","priority":1000000070,"ruleCount":226,"updateDate":1747319661338,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/krx-hib-ibo
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 204 No Content
+version: 2
