@@ -10,8 +10,8 @@ import (
 
 // EventCreateResponseAttributesAttributesEvt JSON object of event system attributes.
 type EventCreateResponseAttributesAttributesEvt struct {
-	// Event id
-	Id *string `json:"id,omitempty"`
+	// A unique identifier for the event. You can use this ID to query or reference the event in the V2 endpoint.
+	Uid *string `json:"uid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -34,32 +34,32 @@ func NewEventCreateResponseAttributesAttributesEvtWithDefaults() *EventCreateRes
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *EventCreateResponseAttributesAttributesEvt) GetId() string {
-	if o == nil || o.Id == nil {
+// GetUid returns the Uid field value if set, zero value otherwise.
+func (o *EventCreateResponseAttributesAttributesEvt) GetUid() string {
+	if o == nil || o.Uid == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return *o.Uid
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetUidOk returns a tuple with the Uid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventCreateResponseAttributesAttributesEvt) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+func (o *EventCreateResponseAttributesAttributesEvt) GetUidOk() (*string, bool) {
+	if o == nil || o.Uid == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Uid, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *EventCreateResponseAttributesAttributesEvt) HasId() bool {
-	return o != nil && o.Id != nil
+// HasUid returns a boolean if a field has been set.
+func (o *EventCreateResponseAttributesAttributesEvt) HasUid() bool {
+	return o != nil && o.Uid != nil
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *EventCreateResponseAttributesAttributesEvt) SetId(v string) {
-	o.Id = &v
+// SetUid gets a reference to the given string and assigns it to the Uid field.
+func (o *EventCreateResponseAttributesAttributesEvt) SetUid(v string) {
+	o.Uid = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -68,8 +68,8 @@ func (o EventCreateResponseAttributesAttributesEvt) MarshalJSON() ([]byte, error
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if o.Uid != nil {
+		toSerialize["uid"] = o.Uid
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -81,18 +81,18 @@ func (o EventCreateResponseAttributesAttributesEvt) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *EventCreateResponseAttributesAttributesEvt) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id *string `json:"id,omitempty"`
+		Uid *string `json:"uid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"uid"})
 	} else {
 		return err
 	}
-	o.Id = all.Id
+	o.Uid = all.Uid
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

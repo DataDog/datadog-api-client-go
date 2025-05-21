@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ChangeEventCustomAttributesAuthor Object representing the entity which made the change. Optional field but if provided should include `type` and `name`.
+// ChangeEventCustomAttributesAuthor Object representing the entity that made the change. Optional field but if provided should include type and name.
 type ChangeEventCustomAttributesAuthor struct {
 	// Author's name. Limited to 128 characters.
 	Name string `json:"name"`
