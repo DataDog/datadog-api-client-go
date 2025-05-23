@@ -28,7 +28,7 @@ var allowedSyntheticsGlobalVariableParserTypeEnumValues = []SyntheticsGlobalVari
 	SYNTHETICSGLOBALVARIABLEPARSERTYPE_X_PATH,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsGlobalVariableParserType) GetAllowedValues() []SyntheticsGlobalVariableParserType {
 	return allowedSyntheticsGlobalVariableParserTypeEnumValues
 }

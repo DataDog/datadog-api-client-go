@@ -38,7 +38,7 @@ var allowedEventStatusTypeEnumValues = []EventStatusType{
 	EVENTSTATUSTYPE_SNAPSHOT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EventStatusType) GetAllowedValues() []EventStatusType {
 	return allowedEventStatusTypeEnumValues
 }

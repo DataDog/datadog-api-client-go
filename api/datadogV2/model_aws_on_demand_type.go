@@ -22,7 +22,7 @@ var allowedAwsOnDemandTypeEnumValues = []AwsOnDemandType{
 	AWSONDEMANDTYPE_AWS_RESOURCE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AwsOnDemandType) GetAllowedValues() []AwsOnDemandType {
 	return allowedAwsOnDemandTypeEnumValues
 }

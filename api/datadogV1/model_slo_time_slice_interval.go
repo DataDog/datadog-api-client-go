@@ -26,7 +26,7 @@ var allowedSLOTimeSliceIntervalEnumValues = []SLOTimeSliceInterval{
 	SLOTIMESLICEINTERVAL_FIVE_MINUTES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SLOTimeSliceInterval) GetAllowedValues() []SLOTimeSliceInterval {
 	return allowedSLOTimeSliceIntervalEnumValues
 }

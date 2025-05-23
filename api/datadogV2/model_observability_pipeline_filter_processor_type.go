@@ -22,7 +22,7 @@ var allowedObservabilityPipelineFilterProcessorTypeEnumValues = []ObservabilityP
 	OBSERVABILITYPIPELINEFILTERPROCESSORTYPE_FILTER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ObservabilityPipelineFilterProcessorType) GetAllowedValues() []ObservabilityPipelineFilterProcessorType {
 	return allowedObservabilityPipelineFilterProcessorTypeEnumValues
 }

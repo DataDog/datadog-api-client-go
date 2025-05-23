@@ -22,7 +22,7 @@ var allowedCustomDestinationHttpDestinationAuthCustomHeaderTypeEnumValues = []Cu
 	CUSTOMDESTINATIONHTTPDESTINATIONAUTHCUSTOMHEADERTYPE_CUSTOM_HEADER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CustomDestinationHttpDestinationAuthCustomHeaderType) GetAllowedValues() []CustomDestinationHttpDestinationAuthCustomHeaderType {
 	return allowedCustomDestinationHttpDestinationAuthCustomHeaderTypeEnumValues
 }

@@ -22,7 +22,7 @@ var allowedSplitGraphWidgetDefinitionTypeEnumValues = []SplitGraphWidgetDefiniti
 	SPLITGRAPHWIDGETDEFINITIONTYPE_SPLIT_GROUP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SplitGraphWidgetDefinitionType) GetAllowedValues() []SplitGraphWidgetDefinitionType {
 	return allowedSplitGraphWidgetDefinitionTypeEnumValues
 }

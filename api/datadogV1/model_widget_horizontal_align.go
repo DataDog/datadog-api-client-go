@@ -26,7 +26,7 @@ var allowedWidgetHorizontalAlignEnumValues = []WidgetHorizontalAlign{
 	WIDGETHORIZONTALALIGN_RIGHT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetHorizontalAlign) GetAllowedValues() []WidgetHorizontalAlign {
 	return allowedWidgetHorizontalAlignEnumValues
 }

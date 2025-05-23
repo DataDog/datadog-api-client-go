@@ -22,7 +22,7 @@ var allowedSecurityMonitoringRuleHardcodedEvaluatorTypeEnumValues = []SecurityMo
 	SECURITYMONITORINGRULEHARDCODEDEVALUATORTYPE_LOG4SHELL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringRuleHardcodedEvaluatorType) GetAllowedValues() []SecurityMonitoringRuleHardcodedEvaluatorType {
 	return allowedSecurityMonitoringRuleHardcodedEvaluatorTypeEnumValues
 }

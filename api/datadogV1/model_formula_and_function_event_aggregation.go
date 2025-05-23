@@ -44,7 +44,7 @@ var allowedFormulaAndFunctionEventAggregationEnumValues = []FormulaAndFunctionEv
 	FORMULAANDFUNCTIONEVENTAGGREGATION_AVG,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FormulaAndFunctionEventAggregation) GetAllowedValues() []FormulaAndFunctionEventAggregation {
 	return allowedFormulaAndFunctionEventAggregationEnumValues
 }

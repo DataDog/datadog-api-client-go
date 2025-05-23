@@ -24,7 +24,7 @@ var allowedSyntheticsAssertionJSONSchemaMetaSchemaEnumValues = []SyntheticsAsser
 	SYNTHETICSASSERTIONJSONSCHEMAMETASCHEMA_DRAFT_06,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsAssertionJSONSchemaMetaSchema) GetAllowedValues() []SyntheticsAssertionJSONSchemaMetaSchema {
 	return allowedSyntheticsAssertionJSONSchemaMetaSchemaEnumValues
 }

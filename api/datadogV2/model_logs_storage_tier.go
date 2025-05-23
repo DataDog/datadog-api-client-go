@@ -26,7 +26,7 @@ var allowedLogsStorageTierEnumValues = []LogsStorageTier{
 	LOGSSTORAGETIER_FLEX,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsStorageTier) GetAllowedValues() []LogsStorageTier {
 	return allowedLogsStorageTierEnumValues
 }

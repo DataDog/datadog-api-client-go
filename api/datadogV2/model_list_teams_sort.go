@@ -28,7 +28,7 @@ var allowedListTeamsSortEnumValues = []ListTeamsSort{
 	LISTTEAMSSORT__USER_COUNT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ListTeamsSort) GetAllowedValues() []ListTeamsSort {
 	return allowedListTeamsSortEnumValues
 }

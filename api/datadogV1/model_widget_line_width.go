@@ -26,7 +26,7 @@ var allowedWidgetLineWidthEnumValues = []WidgetLineWidth{
 	WIDGETLINEWIDTH_THIN,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetLineWidth) GetAllowedValues() []WidgetLineWidth {
 	return allowedWidgetLineWidthEnumValues
 }

@@ -22,7 +22,7 @@ var allowedMetricDashboardTypeEnumValues = []MetricDashboardType{
 	METRICDASHBOARDTYPE_DASHBOARDS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricDashboardType) GetAllowedValues() []MetricDashboardType {
 	return allowedMetricDashboardTypeEnumValues
 }

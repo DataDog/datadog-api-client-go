@@ -22,7 +22,7 @@ var allowedServiceSummaryWidgetDefinitionTypeEnumValues = []ServiceSummaryWidget
 	SERVICESUMMARYWIDGETDEFINITIONTYPE_TRACE_SERVICE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ServiceSummaryWidgetDefinitionType) GetAllowedValues() []ServiceSummaryWidgetDefinitionType {
 	return allowedServiceSummaryWidgetDefinitionTypeEnumValues
 }

@@ -72,7 +72,7 @@ var allowedSyntheticsApiTestFailureCodeEnumValues = []SyntheticsApiTestFailureCo
 	SYNTHETICSAPITESTFAILURECODE_INTERNAL_ERROR,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsApiTestFailureCode) GetAllowedValues() []SyntheticsApiTestFailureCode {
 	return allowedSyntheticsApiTestFailureCodeEnumValues
 }

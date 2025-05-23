@@ -22,7 +22,7 @@ var allowedIFrameWidgetDefinitionTypeEnumValues = []IFrameWidgetDefinitionType{
 	IFRAMEWIDGETDEFINITIONTYPE_IFRAME,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IFrameWidgetDefinitionType) GetAllowedValues() []IFrameWidgetDefinitionType {
 	return allowedIFrameWidgetDefinitionTypeEnumValues
 }

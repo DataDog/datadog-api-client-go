@@ -32,7 +32,7 @@ var allowedRolesSortEnumValues = []RolesSort{
 	ROLESSORT_USER_COUNT_DESCENDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RolesSort) GetAllowedValues() []RolesSort {
 	return allowedRolesSortEnumValues
 }

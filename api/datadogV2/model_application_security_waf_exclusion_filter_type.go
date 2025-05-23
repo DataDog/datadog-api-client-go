@@ -22,7 +22,7 @@ var allowedApplicationSecurityWafExclusionFilterTypeEnumValues = []ApplicationSe
 	APPLICATIONSECURITYWAFEXCLUSIONFILTERTYPE_EXCLUSION_FILTER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ApplicationSecurityWafExclusionFilterType) GetAllowedValues() []ApplicationSecurityWafExclusionFilterType {
 	return allowedApplicationSecurityWafExclusionFilterTypeEnumValues
 }

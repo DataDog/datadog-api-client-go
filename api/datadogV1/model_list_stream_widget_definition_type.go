@@ -22,7 +22,7 @@ var allowedListStreamWidgetDefinitionTypeEnumValues = []ListStreamWidgetDefiniti
 	LISTSTREAMWIDGETDEFINITIONTYPE_LIST_STREAM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ListStreamWidgetDefinitionType) GetAllowedValues() []ListStreamWidgetDefinitionType {
 	return allowedListStreamWidgetDefinitionTypeEnumValues
 }

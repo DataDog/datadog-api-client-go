@@ -26,7 +26,7 @@ var allowedSyntheticsAssertionBodyHashOperatorEnumValues = []SyntheticsAssertion
 	SYNTHETICSASSERTIONBODYHASHOPERATOR_SHA256,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsAssertionBodyHashOperator) GetAllowedValues() []SyntheticsAssertionBodyHashOperator {
 	return allowedSyntheticsAssertionBodyHashOperatorEnumValues
 }

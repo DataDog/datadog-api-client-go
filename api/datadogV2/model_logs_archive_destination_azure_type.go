@@ -22,7 +22,7 @@ var allowedLogsArchiveDestinationAzureTypeEnumValues = []LogsArchiveDestinationA
 	LOGSARCHIVEDESTINATIONAZURETYPE_AZURE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsArchiveDestinationAzureType) GetAllowedValues() []LogsArchiveDestinationAzureType {
 	return allowedLogsArchiveDestinationAzureTypeEnumValues
 }

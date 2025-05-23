@@ -22,7 +22,7 @@ var allowedWorkflowDataTypeEnumValues = []WorkflowDataType{
 	WORKFLOWDATATYPE_WORKFLOWS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WorkflowDataType) GetAllowedValues() []WorkflowDataType {
 	return allowedWorkflowDataTypeEnumValues
 }

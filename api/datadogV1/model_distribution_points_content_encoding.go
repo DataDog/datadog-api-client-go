@@ -22,7 +22,7 @@ var allowedDistributionPointsContentEncodingEnumValues = []DistributionPointsCon
 	DISTRIBUTIONPOINTSCONTENTENCODING_DEFLATE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DistributionPointsContentEncoding) GetAllowedValues() []DistributionPointsContentEncoding {
 	return allowedDistributionPointsContentEncodingEnumValues
 }

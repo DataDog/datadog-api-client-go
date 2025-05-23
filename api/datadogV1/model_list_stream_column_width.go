@@ -26,7 +26,7 @@ var allowedListStreamColumnWidthEnumValues = []ListStreamColumnWidth{
 	LISTSTREAMCOLUMNWIDTH_FULL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ListStreamColumnWidth) GetAllowedValues() []ListStreamColumnWidth {
 	return allowedListStreamColumnWidthEnumValues
 }

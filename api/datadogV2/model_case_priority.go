@@ -32,7 +32,7 @@ var allowedCasePriorityEnumValues = []CasePriority{
 	CASEPRIORITY_P5,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CasePriority) GetAllowedValues() []CasePriority {
 	return allowedCasePriorityEnumValues
 }

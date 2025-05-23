@@ -22,7 +22,7 @@ var allowedCustomDestinationTypeEnumValues = []CustomDestinationType{
 	CUSTOMDESTINATIONTYPE_CUSTOM_DESTINATION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CustomDestinationType) GetAllowedValues() []CustomDestinationType {
 	return allowedCustomDestinationTypeEnumValues
 }

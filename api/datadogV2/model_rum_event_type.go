@@ -22,7 +22,7 @@ var allowedRUMEventTypeEnumValues = []RUMEventType{
 	RUMEVENTTYPE_RUM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RUMEventType) GetAllowedValues() []RUMEventType {
 	return allowedRUMEventTypeEnumValues
 }

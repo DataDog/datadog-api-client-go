@@ -26,7 +26,7 @@ var allowedFormulaAndFunctionResponseFormatEnumValues = []FormulaAndFunctionResp
 	FORMULAANDFUNCTIONRESPONSEFORMAT_EVENT_LIST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FormulaAndFunctionResponseFormat) GetAllowedValues() []FormulaAndFunctionResponseFormat {
 	return allowedFormulaAndFunctionResponseFormatEnumValues
 }

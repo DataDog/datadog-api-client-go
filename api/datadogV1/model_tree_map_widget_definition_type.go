@@ -22,7 +22,7 @@ var allowedTreeMapWidgetDefinitionTypeEnumValues = []TreeMapWidgetDefinitionType
 	TREEMAPWIDGETDEFINITIONTYPE_TREEMAP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TreeMapWidgetDefinitionType) GetAllowedValues() []TreeMapWidgetDefinitionType {
 	return allowedTreeMapWidgetDefinitionTypeEnumValues
 }

@@ -22,7 +22,7 @@ var allowedSunburstWidgetDefinitionTypeEnumValues = []SunburstWidgetDefinitionTy
 	SUNBURSTWIDGETDEFINITIONTYPE_SUNBURST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SunburstWidgetDefinitionType) GetAllowedValues() []SunburstWidgetDefinitionType {
 	return allowedSunburstWidgetDefinitionTypeEnumValues
 }

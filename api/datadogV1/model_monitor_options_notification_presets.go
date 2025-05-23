@@ -28,7 +28,7 @@ var allowedMonitorOptionsNotificationPresetsEnumValues = []MonitorOptionsNotific
 	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_ALL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MonitorOptionsNotificationPresets) GetAllowedValues() []MonitorOptionsNotificationPresets {
 	return allowedMonitorOptionsNotificationPresetsEnumValues
 }

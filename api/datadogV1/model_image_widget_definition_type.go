@@ -22,7 +22,7 @@ var allowedImageWidgetDefinitionTypeEnumValues = []ImageWidgetDefinitionType{
 	IMAGEWIDGETDEFINITIONTYPE_IMAGE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ImageWidgetDefinitionType) GetAllowedValues() []ImageWidgetDefinitionType {
 	return allowedImageWidgetDefinitionTypeEnumValues
 }

@@ -22,7 +22,7 @@ var allowedDowntimeResourceTypeEnumValues = []DowntimeResourceType{
 	DOWNTIMERESOURCETYPE_DOWNTIME,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DowntimeResourceType) GetAllowedValues() []DowntimeResourceType {
 	return allowedDowntimeResourceTypeEnumValues
 }

@@ -28,7 +28,7 @@ var allowedCIAppTestLevelEnumValues = []CIAppTestLevel{
 	CIAPPTESTLEVEL_TEST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CIAppTestLevel) GetAllowedValues() []CIAppTestLevel {
 	return allowedCIAppTestLevelEnumValues
 }

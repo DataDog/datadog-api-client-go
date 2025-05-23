@@ -42,7 +42,7 @@ var allowedApplicationSecurityWafCustomRuleConditionOperatorEnumValues = []Appli
 	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_CAPTURE_DATA,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ApplicationSecurityWafCustomRuleConditionOperator) GetAllowedValues() []ApplicationSecurityWafCustomRuleConditionOperator {
 	return allowedApplicationSecurityWafCustomRuleConditionOperatorEnumValues
 }

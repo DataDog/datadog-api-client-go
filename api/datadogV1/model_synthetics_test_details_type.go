@@ -26,7 +26,7 @@ var allowedSyntheticsTestDetailsTypeEnumValues = []SyntheticsTestDetailsType{
 	SYNTHETICSTESTDETAILSTYPE_MOBILE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsTestDetailsType) GetAllowedValues() []SyntheticsTestDetailsType {
 	return allowedSyntheticsTestDetailsTypeEnumValues
 }

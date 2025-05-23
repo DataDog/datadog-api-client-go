@@ -24,7 +24,7 @@ var allowedSyntheticsAssertionTimingsScopeEnumValues = []SyntheticsAssertionTimi
 	SYNTHETICSASSERTIONTIMINGSSCOPE_WITHOUT_DNS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsAssertionTimingsScope) GetAllowedValues() []SyntheticsAssertionTimingsScope {
 	return allowedSyntheticsAssertionTimingsScopeEnumValues
 }

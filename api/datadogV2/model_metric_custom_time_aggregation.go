@@ -30,7 +30,7 @@ var allowedMetricCustomTimeAggregationEnumValues = []MetricCustomTimeAggregation
 	METRICCUSTOMTIMEAGGREGATION_SUM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricCustomTimeAggregation) GetAllowedValues() []MetricCustomTimeAggregation {
 	return allowedMetricCustomTimeAggregationEnumValues
 }

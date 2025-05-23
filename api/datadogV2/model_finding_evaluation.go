@@ -24,7 +24,7 @@ var allowedFindingEvaluationEnumValues = []FindingEvaluation{
 	FINDINGEVALUATION_FAIL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FindingEvaluation) GetAllowedValues() []FindingEvaluation {
 	return allowedFindingEvaluationEnumValues
 }

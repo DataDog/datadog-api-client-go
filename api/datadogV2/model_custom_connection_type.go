@@ -22,7 +22,7 @@ var allowedCustomConnectionTypeEnumValues = []CustomConnectionType{
 	CUSTOMCONNECTIONTYPE_CUSTOM_CONNECTIONS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CustomConnectionType) GetAllowedValues() []CustomConnectionType {
 	return allowedCustomConnectionTypeEnumValues
 }

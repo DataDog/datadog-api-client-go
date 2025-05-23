@@ -48,7 +48,7 @@ var allowedSyntheticsCheckTypeEnumValues = []SyntheticsCheckType{
 	SYNTHETICSCHECKTYPE_NOT_IS_EMPTY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsCheckType) GetAllowedValues() []SyntheticsCheckType {
 	return allowedSyntheticsCheckTypeEnumValues
 }

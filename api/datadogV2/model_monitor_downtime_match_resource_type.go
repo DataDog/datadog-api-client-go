@@ -22,7 +22,7 @@ var allowedMonitorDowntimeMatchResourceTypeEnumValues = []MonitorDowntimeMatchRe
 	MONITORDOWNTIMEMATCHRESOURCETYPE_DOWNTIME_MATCH,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MonitorDowntimeMatchResourceType) GetAllowedValues() []MonitorDowntimeMatchResourceType {
 	return allowedMonitorDowntimeMatchResourceTypeEnumValues
 }

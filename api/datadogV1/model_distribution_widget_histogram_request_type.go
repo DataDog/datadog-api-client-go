@@ -22,7 +22,7 @@ var allowedDistributionWidgetHistogramRequestTypeEnumValues = []DistributionWidg
 	DISTRIBUTIONWIDGETHISTOGRAMREQUESTTYPE_HISTOGRAM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DistributionWidgetHistogramRequestType) GetAllowedValues() []DistributionWidgetHistogramRequestType {
 	return allowedDistributionWidgetHistogramRequestTypeEnumValues
 }

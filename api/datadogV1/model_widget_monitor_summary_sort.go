@@ -54,7 +54,7 @@ var allowedWidgetMonitorSummarySortEnumValues = []WidgetMonitorSummarySort{
 	WIDGETMONITORSUMMARYSORT_PRIORITY_DESCENDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetMonitorSummarySort) GetAllowedValues() []WidgetMonitorSummarySort {
 	return allowedWidgetMonitorSummarySortEnumValues
 }

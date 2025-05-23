@@ -38,7 +38,7 @@ var allowedMonitorDeviceIDEnumValues = []MonitorDeviceID{
 	MONITORDEVICEID_FIREFOX_MOBILE_SMALL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MonitorDeviceID) GetAllowedValues() []MonitorDeviceID {
 	return allowedMonitorDeviceIDEnumValues
 }

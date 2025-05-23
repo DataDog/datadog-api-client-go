@@ -24,7 +24,7 @@ var allowedSharedDashboardStatusEnumValues = []SharedDashboardStatus{
 	SHAREDDASHBOARDSTATUS_PAUSED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SharedDashboardStatus) GetAllowedValues() []SharedDashboardStatus {
 	return allowedSharedDashboardStatusEnumValues
 }

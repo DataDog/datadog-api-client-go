@@ -34,7 +34,7 @@ var allowedIncidentSeverityEnumValues = []IncidentSeverity{
 	INCIDENTSEVERITY_SEV_5,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IncidentSeverity) GetAllowedValues() []IncidentSeverity {
 	return allowedIncidentSeverityEnumValues
 }

@@ -26,7 +26,7 @@ var allowedOpsgenieServiceRegionTypeEnumValues = []OpsgenieServiceRegionType{
 	OPSGENIESERVICEREGIONTYPE_CUSTOM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *OpsgenieServiceRegionType) GetAllowedValues() []OpsgenieServiceRegionType {
 	return allowedOpsgenieServiceRegionTypeEnumValues
 }

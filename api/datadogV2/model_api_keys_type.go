@@ -22,7 +22,7 @@ var allowedAPIKeysTypeEnumValues = []APIKeysType{
 	APIKEYSTYPE_API_KEYS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *APIKeysType) GetAllowedValues() []APIKeysType {
 	return allowedAPIKeysTypeEnumValues
 }

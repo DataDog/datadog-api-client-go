@@ -26,7 +26,7 @@ var allowedSyntheticsTestExecutionRuleEnumValues = []SyntheticsTestExecutionRule
 	SYNTHETICSTESTEXECUTIONRULE_SKIPPED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsTestExecutionRule) GetAllowedValues() []SyntheticsTestExecutionRule {
 	return allowedSyntheticsTestExecutionRuleEnumValues
 }

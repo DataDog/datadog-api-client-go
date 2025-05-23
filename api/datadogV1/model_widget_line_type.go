@@ -26,7 +26,7 @@ var allowedWidgetLineTypeEnumValues = []WidgetLineType{
 	WIDGETLINETYPE_SOLID,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetLineType) GetAllowedValues() []WidgetLineType {
 	return allowedWidgetLineTypeEnumValues
 }

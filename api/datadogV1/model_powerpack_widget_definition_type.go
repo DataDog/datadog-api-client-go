@@ -22,7 +22,7 @@ var allowedPowerpackWidgetDefinitionTypeEnumValues = []PowerpackWidgetDefinition
 	POWERPACKWIDGETDEFINITIONTYPE_POWERPACK,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *PowerpackWidgetDefinitionType) GetAllowedValues() []PowerpackWidgetDefinitionType {
 	return allowedPowerpackWidgetDefinitionTypeEnumValues
 }

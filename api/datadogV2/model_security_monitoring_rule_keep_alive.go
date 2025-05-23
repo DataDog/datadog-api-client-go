@@ -45,7 +45,7 @@ var allowedSecurityMonitoringRuleKeepAliveEnumValues = []SecurityMonitoringRuleK
 	SECURITYMONITORINGRULEKEEPALIVE_ONE_DAY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringRuleKeepAlive) GetAllowedValues() []SecurityMonitoringRuleKeepAlive {
 	return allowedSecurityMonitoringRuleKeepAliveEnumValues
 }

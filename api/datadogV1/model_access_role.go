@@ -28,7 +28,7 @@ var allowedAccessRoleEnumValues = []AccessRole{
 	ACCESSROLE_ERROR,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AccessRole) GetAllowedValues() []AccessRole {
 	return allowedAccessRoleEnumValues
 }

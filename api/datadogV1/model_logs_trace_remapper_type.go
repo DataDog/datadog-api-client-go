@@ -22,7 +22,7 @@ var allowedLogsTraceRemapperTypeEnumValues = []LogsTraceRemapperType{
 	LOGSTRACEREMAPPERTYPE_TRACE_ID_REMAPPER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsTraceRemapperType) GetAllowedValues() []LogsTraceRemapperType {
 	return allowedLogsTraceRemapperTypeEnumValues
 }

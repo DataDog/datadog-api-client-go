@@ -22,7 +22,7 @@ var allowedIncidentIntegrationMetadataTypeEnumValues = []IncidentIntegrationMeta
 	INCIDENTINTEGRATIONMETADATATYPE_INCIDENT_INTEGRATIONS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IncidentIntegrationMetadataType) GetAllowedValues() []IncidentIntegrationMetadataType {
 	return allowedIncidentIntegrationMetadataTypeEnumValues
 }

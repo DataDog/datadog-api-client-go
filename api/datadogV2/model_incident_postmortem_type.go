@@ -22,7 +22,7 @@ var allowedIncidentPostmortemTypeEnumValues = []IncidentPostmortemType{
 	INCIDENTPOSTMORTEMTYPE_INCIDENT_POSTMORTEMS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IncidentPostmortemType) GetAllowedValues() []IncidentPostmortemType {
 	return allowedIncidentPostmortemTypeEnumValues
 }

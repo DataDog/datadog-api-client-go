@@ -22,7 +22,7 @@ var allowedCreateDataDeletionRequestBodyDataTypeEnumValues = []CreateDataDeletio
 	CREATEDATADELETIONREQUESTBODYDATATYPE_CREATE_DELETION_REQ,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CreateDataDeletionRequestBodyDataType) GetAllowedValues() []CreateDataDeletionRequestBodyDataType {
 	return allowedCreateDataDeletionRequestBodyDataTypeEnumValues
 }

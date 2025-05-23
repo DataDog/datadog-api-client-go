@@ -36,7 +36,7 @@ var allowedSyntheticsTestRequestBodyTypeEnumValues = []SyntheticsTestRequestBody
 	SYNTHETICSTESTREQUESTBODYTYPE_MULTIPART_FORM_DATA,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsTestRequestBodyType) GetAllowedValues() []SyntheticsTestRequestBodyType {
 	return allowedSyntheticsTestRequestBodyTypeEnumValues
 }

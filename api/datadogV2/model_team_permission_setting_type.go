@@ -22,7 +22,7 @@ var allowedTeamPermissionSettingTypeEnumValues = []TeamPermissionSettingType{
 	TEAMPERMISSIONSETTINGTYPE_TEAM_PERMISSION_SETTINGS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TeamPermissionSettingType) GetAllowedValues() []TeamPermissionSettingType {
 	return allowedTeamPermissionSettingTypeEnumValues
 }

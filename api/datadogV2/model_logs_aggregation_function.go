@@ -44,7 +44,7 @@ var allowedLogsAggregationFunctionEnumValues = []LogsAggregationFunction{
 	LOGSAGGREGATIONFUNCTION_MEDIAN,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsAggregationFunction) GetAllowedValues() []LogsAggregationFunction {
 	return allowedLogsAggregationFunctionEnumValues
 }

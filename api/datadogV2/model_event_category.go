@@ -22,7 +22,7 @@ var allowedEventCategoryEnumValues = []EventCategory{
 	EVENTCATEGORY_CHANGE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EventCategory) GetAllowedValues() []EventCategory {
 	return allowedEventCategoryEnumValues
 }

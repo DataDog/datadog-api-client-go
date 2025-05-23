@@ -28,7 +28,7 @@ var allowedLogsArchiveStateEnumValues = []LogsArchiveState{
 	LOGSARCHIVESTATE_WORKING_AUTH_LEGACY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsArchiveState) GetAllowedValues() []LogsArchiveState {
 	return allowedLogsArchiveStateEnumValues
 }

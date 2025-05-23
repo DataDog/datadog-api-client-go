@@ -24,7 +24,7 @@ var allowedMetricTagConfigurationMetricTypeCategoryEnumValues = []MetricTagConfi
 	METRICTAGCONFIGURATIONMETRICTYPECATEGORY_DISTRIBUTION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricTagConfigurationMetricTypeCategory) GetAllowedValues() []MetricTagConfigurationMetricTypeCategory {
 	return allowedMetricTagConfigurationMetricTypeCategoryEnumValues
 }

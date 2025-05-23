@@ -22,7 +22,7 @@ var allowedRolesTypeEnumValues = []RolesType{
 	ROLESTYPE_ROLES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RolesType) GetAllowedValues() []RolesType {
 	return allowedRolesTypeEnumValues
 }

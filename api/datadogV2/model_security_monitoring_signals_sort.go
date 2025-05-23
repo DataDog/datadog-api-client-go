@@ -24,7 +24,7 @@ var allowedSecurityMonitoringSignalsSortEnumValues = []SecurityMonitoringSignals
 	SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_DESCENDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringSignalsSort) GetAllowedValues() []SecurityMonitoringSignalsSort {
 	return allowedSecurityMonitoringSignalsSortEnumValues
 }
