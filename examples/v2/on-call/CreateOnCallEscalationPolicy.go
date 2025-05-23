@@ -1,4 +1,4 @@
-// Create on-call escalation policy returns "Created" response
+// Create On-Call escalation policy returns "Created" response
 
 package main
 
@@ -25,7 +25,6 @@ func main() {
 	body := datadogV2.EscalationPolicyCreateRequest{
 		Data: datadogV2.EscalationPolicyCreateRequestData{
 			Attributes: datadogV2.EscalationPolicyCreateRequestDataAttributes{
-				Description:            datadog.PtrString("Escalation Policy 1 description"),
 				Name:                   "Example-On-Call",
 				ResolvePageOnPolicyEnd: datadog.PtrBool(true),
 				Retries:                datadog.PtrInt64(2),
@@ -77,7 +76,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewOnCallApi(apiClient)
-	resp, r, err := api.CreateOnCallEscalationPolicy(ctx, body, *datadogV2.NewCreateOnCallEscalationPolicyOptionalParameters())
+	resp, r, err := api.CreateOnCallEscalationPolicy(ctx, body, *datadogV2.NewCreateOnCallEscalationPolicyOptionalParameters().WithInclude("steps.targets"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OnCallApi.CreateOnCallEscalationPolicy`: %v\n", err)

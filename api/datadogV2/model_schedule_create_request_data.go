@@ -12,7 +12,7 @@ import (
 
 // ScheduleCreateRequestData The core data wrapper for creating a schedule, encompassing attributes, relationships, and the resource type.
 type ScheduleCreateRequestData struct {
-	// Describes the main attributes for creating a new schedule, including name, layers, time zone, and tags.
+	// Describes the main attributes for creating a new schedule, including name, layers, and time zone.
 	Attributes ScheduleCreateRequestDataAttributes `json:"attributes"`
 	// Gathers relationship objects for the schedule creation request, including the teams to associate.
 	Relationships *ScheduleCreateRequestDataRelationships `json:"relationships,omitempty"`

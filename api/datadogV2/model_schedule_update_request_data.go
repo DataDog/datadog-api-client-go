@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ScheduleUpdateRequestData Contains all data needed to update an existing schedule, including its attributes (such as name, layers, or tags) and any relationships to teams.
+// ScheduleUpdateRequestData Contains all data needed to update an existing schedule, including its attributes (such as name and time zone) and any relationships to teams.
 type ScheduleUpdateRequestData struct {
-	// Defines the updatable attributes for a schedule, such as name, time zone, tags, and layers.
+	// Defines the updatable attributes for a schedule, such as name, time zone, and layers.
 	Attributes ScheduleUpdateRequestDataAttributes `json:"attributes"`
 	// The ID of the schedule to be updated.
 	Id string `json:"id"`

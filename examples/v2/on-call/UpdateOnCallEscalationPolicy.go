@@ -1,4 +1,4 @@
-// Update on-call escalation policy returns "OK" response
+// Update On-Call escalation policy returns "OK" response
 
 package main
 
@@ -26,7 +26,6 @@ func main() {
 	body := datadogV2.EscalationPolicyUpdateRequest{
 		Data: datadogV2.EscalationPolicyUpdateRequestData{
 			Attributes: datadogV2.EscalationPolicyUpdateRequestDataAttributes{
-				Description:            datadog.PtrString("Example-On-Call"),
 				Name:                   "Example-On-Call-updated",
 				ResolvePageOnPolicyEnd: datadog.PtrBool(false),
 				Retries:                datadog.PtrInt64(0),

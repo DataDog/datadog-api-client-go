@@ -10,10 +10,10 @@ import (
 
 // CreatePageRequestDataAttributesTarget Information about the target to notify (such as a team or user).
 type CreatePageRequestDataAttributesTarget struct {
-	// A unique ID for the target (for example, team handle or user UUID).
+	// Identifier for the target (for example, team handle or user ID).
 	Identifier *string `json:"identifier,omitempty"`
-	// The kind of target, `team_uuid` | `team_handle` | `user_uuid`.
-	Type *string `json:"type,omitempty"`
+	// The kind of target, `team_id` | `team_handle` | `user_id`.
+	Type *OnCallPageTargetType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -65,9 +65,9 @@ func (o *CreatePageRequestDataAttributesTarget) SetIdentifier(v string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *CreatePageRequestDataAttributesTarget) GetType() string {
+func (o *CreatePageRequestDataAttributesTarget) GetType() OnCallPageTargetType {
 	if o == nil || o.Type == nil {
-		var ret string
+		var ret OnCallPageTargetType
 		return ret
 	}
 	return *o.Type
@@ -75,7 +75,7 @@ func (o *CreatePageRequestDataAttributesTarget) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreatePageRequestDataAttributesTarget) GetTypeOk() (*string, bool) {
+func (o *CreatePageRequestDataAttributesTarget) GetTypeOk() (*OnCallPageTargetType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -87,8 +87,8 @@ func (o *CreatePageRequestDataAttributesTarget) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *CreatePageRequestDataAttributesTarget) SetType(v string) {
+// SetType gets a reference to the given OnCallPageTargetType and assigns it to the Type field.
+func (o *CreatePageRequestDataAttributesTarget) SetType(v OnCallPageTargetType) {
 	o.Type = &v
 }
 
@@ -114,8 +114,8 @@ func (o CreatePageRequestDataAttributesTarget) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreatePageRequestDataAttributesTarget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Identifier *string `json:"identifier,omitempty"`
-		Type       *string `json:"type,omitempty"`
+		Identifier *string               `json:"identifier,omitempty"`
+		Type       *OnCallPageTargetType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -126,11 +126,21 @@ func (o *CreatePageRequestDataAttributesTarget) UnmarshalJSON(bytes []byte) (err
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Identifier = all.Identifier
-	o.Type = all.Type
+	if all.Type != nil && !all.Type.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = all.Type
+	}
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
