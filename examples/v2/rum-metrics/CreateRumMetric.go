@@ -35,7 +35,7 @@ func main() {
 					When: datadogV2.RUMMETRICUNIQUENESSWHEN_WHEN_MATCH,
 				},
 			},
-			Id:   "rum.sessions.webui.count",
+			Id:   "examplerummetric",
 			Type: datadogV2.RUMMETRICTYPE_RUM_METRICS,
 		},
 	}
