@@ -1,4 +1,4 @@
-// Get on-call team routing rules returns "OK" response
+// Get On-Call team routing rules returns "OK" response
 
 package main
 

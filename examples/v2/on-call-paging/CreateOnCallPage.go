@@ -22,7 +22,7 @@ func main() {
 				},
 				Target: datadogV2.CreatePageRequestDataAttributesTarget{
 					Identifier: datadog.PtrString("my-team"),
-					Type:       datadog.PtrString("team_handle"),
+					Type:       datadogV2.ONCALLPAGETARGETTYPE_TEAM_HANDLE.Ptr(),
 				},
 				Title:   "Page title",
 				Urgency: datadogV2.PAGEURGENCY_LOW,
