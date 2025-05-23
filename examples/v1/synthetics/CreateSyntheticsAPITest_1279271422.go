@@ -32,7 +32,8 @@ func main() {
 								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
 									Type:     datadogV1.SYNTHETICSASSERTIONTYPE_STATUS_CODE,
-									Target:   200,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(200)},
 								}},
 						},
 						ExitIfSucceed: datadog.PtrBool(true),
@@ -84,7 +85,8 @@ func main() {
 								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
 									Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
-									Target:   1000,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(1000)},
 								}},
 						},
 						Request: datadogV1.SyntheticsTestRequest{

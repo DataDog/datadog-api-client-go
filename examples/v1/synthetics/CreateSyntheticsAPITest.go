@@ -19,8 +19,9 @@ func main() {
 				datadogV1.SyntheticsAssertion{
 					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
-						Target:   1000,
-						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+						Target: datadogV1.SyntheticsAssertionTargetValue{
+							SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(1000)},
+						Type: datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
 					}},
 			},
 			Request: &datadogV1.SyntheticsTestRequest{
