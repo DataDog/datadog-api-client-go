@@ -20,22 +20,25 @@ func main() {
 					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
 						Property: datadog.PtrString("{{ PROPERTY }}"),
-						Target:   "text/html",
-						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_HEADER,
+						Target: datadogV1.SyntheticsAssertionTargetValue{
+							SyntheticsAssertionTargetValueString: datadog.PtrString("text/html")},
+						Type: datadogV1.SYNTHETICSASSERTIONTYPE_HEADER,
 					}},
 				datadogV1.SyntheticsAssertion{
 					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
-						Target:   2000,
-						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+						Target: datadogV1.SyntheticsAssertionTargetValue{
+							SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(2000)},
+						Type: datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
 					}},
 				datadogV1.SyntheticsAssertion{
 					SyntheticsAssertionJSONPathTarget: &datadogV1.SyntheticsAssertionJSONPathTarget{
 						Operator: datadogV1.SYNTHETICSASSERTIONJSONPATHOPERATOR_VALIDATES_JSON_PATH,
 						Target: &datadogV1.SyntheticsAssertionJSONPathTargetTarget{
-							JsonPath:    datadog.PtrString("topKey"),
-							Operator:    datadog.PtrString("isNot"),
-							TargetValue: "0",
+							JsonPath: datadog.PtrString("topKey"),
+							Operator: datadog.PtrString("isNot"),
+							TargetValue: &datadogV1.SyntheticsAssertionTargetValue{
+								SyntheticsAssertionTargetValueString: datadog.PtrString("0")},
 						},
 						Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY,
 					}},
@@ -52,9 +55,10 @@ func main() {
 					SyntheticsAssertionXPathTarget: &datadogV1.SyntheticsAssertionXPathTarget{
 						Operator: datadogV1.SYNTHETICSASSERTIONXPATHOPERATOR_VALIDATES_X_PATH,
 						Target: &datadogV1.SyntheticsAssertionXPathTargetTarget{
-							XPath:       datadog.PtrString("target-xpath"),
-							TargetValue: "0",
-							Operator:    datadog.PtrString("contains"),
+							XPath: datadog.PtrString("target-xpath"),
+							TargetValue: &datadogV1.SyntheticsAssertionTargetValue{
+								SyntheticsAssertionTargetValueString: datadog.PtrString("0")},
+							Operator: datadog.PtrString("contains"),
 						},
 						Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY,
 					}},

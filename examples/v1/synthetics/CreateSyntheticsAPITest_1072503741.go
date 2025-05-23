@@ -19,8 +19,9 @@ func main() {
 				datadogV1.SyntheticsAssertion{
 					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN,
-						Target:   10,
-						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_CERTIFICATE,
+						Target: datadogV1.SyntheticsAssertionTargetValue{
+							SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(10)},
+						Type: datadogV1.SYNTHETICSASSERTIONTYPE_CERTIFICATE,
 					}},
 			},
 			Request: &datadogV1.SyntheticsTestRequest{

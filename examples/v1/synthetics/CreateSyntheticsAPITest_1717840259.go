@@ -23,7 +23,8 @@ func main() {
 								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
 									Type:     datadogV1.SYNTHETICSASSERTIONTYPE_STATUS_CODE,
-									Target:   200,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(200)},
 								}},
 						},
 						Name: "request is sent",
@@ -45,7 +46,8 @@ func main() {
 								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
 									Type:     datadogV1.SYNTHETICSASSERTIONTYPE_STATUS_CODE,
-									Target:   200,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(200)},
 								}},
 						},
 						Name: "request is sent",
@@ -68,7 +70,8 @@ func main() {
 								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
 									Type:     datadogV1.SYNTHETICSASSERTIONTYPE_STATUS_CODE,
-									Target:   200,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(200)},
 								}},
 						},
 						Name: "request is sent",
@@ -91,7 +94,8 @@ func main() {
 								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
 									Type:     datadogV1.SYNTHETICSASSERTIONTYPE_STATUS_CODE,
-									Target:   200,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(200)},
 								}},
 						},
 						Name: "request is sent",
@@ -112,7 +116,8 @@ func main() {
 								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
 									Type:     datadogV1.SYNTHETICSASSERTIONTYPE_STATUS_CODE,
-									Target:   200,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(200)},
 								}},
 						},
 						Name: "request is sent",
@@ -135,7 +140,8 @@ func main() {
 								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
 									Type:     datadogV1.SYNTHETICSASSERTIONTYPE_STATUS_CODE,
-									Target:   200,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(200)},
 								}},
 						},
 						Name: "request is sent",
@@ -160,7 +166,8 @@ func main() {
 								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
 									Type:     datadogV1.SYNTHETICSASSERTIONTYPE_STATUS_CODE,
-									Target:   200,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(200)},
 								}},
 						},
 						Name: "request is sent",

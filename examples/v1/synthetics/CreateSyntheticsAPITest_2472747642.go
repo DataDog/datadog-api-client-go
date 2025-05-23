@@ -19,14 +19,16 @@ func main() {
 				datadogV1.SyntheticsAssertion{
 					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
-						Target:   "message",
-						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RECEIVED_MESSAGE,
+						Target: datadogV1.SyntheticsAssertionTargetValue{
+							SyntheticsAssertionTargetValueString: datadog.PtrString("message")},
+						Type: datadogV1.SYNTHETICSASSERTIONTYPE_RECEIVED_MESSAGE,
 					}},
 				datadogV1.SyntheticsAssertion{
 					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
 						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
-						Target:   2000,
-						Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+						Target: datadogV1.SyntheticsAssertionTargetValue{
+							SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(2000)},
+						Type: datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
 					}},
 			},
 			ConfigVariables: []datadogV1.SyntheticsConfigVariable{},
