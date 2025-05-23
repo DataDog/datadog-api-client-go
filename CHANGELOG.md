@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 2.38.0/2025-05-23
+
+### Fixed
+* Make assertion target be int or string [#3093](https://github.com/DataDog/datadog-api-client-go/pull/3093)
+* Fix incorrect pattern for url [#3085](https://github.com/DataDog/datadog-api-client-go/pull/3085)
+* Make metadata optional for GCS destination [#3075](https://github.com/DataDog/datadog-api-client-go/pull/3075)
+* Remove isReadOnly default when creating dashboards [#3074](https://github.com/DataDog/datadog-api-client-go/pull/3074)
+* Update On-Call Escalation policies endpoints schemas and description [#3052](https://github.com/DataDog/datadog-api-client-go/pull/3052)
+
+### Added
+* Adding endpoints to manage Resource Evaluation Filters [#3091](https://github.com/DataDog/datadog-api-client-go/pull/3091)
+* Add Sev0 as a supported incident severity [#3087](https://github.com/DataDog/datadog-api-client-go/pull/3087)
+* Share timerestriction object [#3084](https://github.com/DataDog/datadog-api-client-go/pull/3084)
+* add On-Call Paging spec [#3078](https://github.com/DataDog/datadog-api-client-go/pull/3078)
+* Add pagination method for NDM ListDevices. [#3072](https://github.com/DataDog/datadog-api-client-go/pull/3072)
+* Add On-Call Team Rules [#3070](https://github.com/DataDog/datadog-api-client-go/pull/3070)
+* Complete Observability Pipelines API [#3056](https://github.com/DataDog/datadog-api-client-go/pull/3056)
+* datadog_integration_gcp_sts Add Support for IsPerProjectQuotaEnabled for GCP STS Service Accounts  [#3049](https://github.com/DataDog/datadog-api-client-go/pull/3049)
+
 ## 2.37.1 / 2025-04-14
 
 ### Fixed
