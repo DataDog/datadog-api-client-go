@@ -71,8 +71,8 @@
 <span id="L14" class="ln">    14  </span>type SyntheticsAssertionBodyHashTarget struct {
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Assertion operator to apply.</span>
 <span id="L16" class="ln">    16  </span>	Operator SyntheticsAssertionBodyHashOperator `json:&#34;operator&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// Value used by the operator.</span>
-<span id="L18" class="ln">    18  </span>	Target interface{} `json:&#34;target&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Value used by the operator in assertions. Can be either a number or string.</span>
+<span id="L18" class="ln">    18  </span>	Target SyntheticsAssertionTargetValue `json:&#34;target&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// Type of the assertion.</span>
 <span id="L20" class="ln">    20  </span>	Type SyntheticsAssertionBodyHashType `json:&#34;type&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
@@ -84,7 +84,7 @@
 <span id="L27" class="ln">    27  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L28" class="ln">    28  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L29" class="ln">    29  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L30" class="ln">    30  </span>func NewSyntheticsAssertionBodyHashTarget(operator SyntheticsAssertionBodyHashOperator, target interface{}, typeVar SyntheticsAssertionBodyHashType) *SyntheticsAssertionBodyHashTarget {
+<span id="L30" class="ln">    30  </span>func NewSyntheticsAssertionBodyHashTarget(operator SyntheticsAssertionBodyHashOperator, target SyntheticsAssertionTargetValue, typeVar SyntheticsAssertionBodyHashType) *SyntheticsAssertionBodyHashTarget {
 <span id="L31" class="ln">    31  </span>	this := SyntheticsAssertionBodyHashTarget{}
 <span id="L32" class="ln">    32  </span>	this.Operator = operator
 <span id="L33" class="ln">    33  </span>	this.Target = target
@@ -124,9 +124,9 @@
 <span id="L67" class="ln">    67  </span>}
 <span id="L68" class="ln">    68  </span>
 <span id="L69" class="ln">    69  </span><span class="comment">// GetTarget returns the Target field value.</span>
-<span id="L70" class="ln">    70  </span>func (o *SyntheticsAssertionBodyHashTarget) GetTarget() interface{} {
+<span id="L70" class="ln">    70  </span>func (o *SyntheticsAssertionBodyHashTarget) GetTarget() SyntheticsAssertionTargetValue {
 <span id="L71" class="ln">    71  </span>	if o == nil {
-<span id="L72" class="ln">    72  </span>		var ret interface{}
+<span id="L72" class="ln">    72  </span>		var ret SyntheticsAssertionTargetValue
 <span id="L73" class="ln">    73  </span>		return ret
 <span id="L74" class="ln">    74  </span>	}
 <span id="L75" class="ln">    75  </span>	return o.Target
@@ -134,7 +134,7 @@
 <span id="L77" class="ln">    77  </span>
 <span id="L78" class="ln">    78  </span><span class="comment">// GetTargetOk returns a tuple with the Target field value</span>
 <span id="L79" class="ln">    79  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L80" class="ln">    80  </span>func (o *SyntheticsAssertionBodyHashTarget) GetTargetOk() (*interface{}, bool) {
+<span id="L80" class="ln">    80  </span>func (o *SyntheticsAssertionBodyHashTarget) GetTargetOk() (*SyntheticsAssertionTargetValue, bool) {
 <span id="L81" class="ln">    81  </span>	if o == nil {
 <span id="L82" class="ln">    82  </span>		return nil, false
 <span id="L83" class="ln">    83  </span>	}
@@ -142,7 +142,7 @@
 <span id="L85" class="ln">    85  </span>}
 <span id="L86" class="ln">    86  </span>
 <span id="L87" class="ln">    87  </span><span class="comment">// SetTarget sets field value.</span>
-<span id="L88" class="ln">    88  </span>func (o *SyntheticsAssertionBodyHashTarget) SetTarget(v interface{}) {
+<span id="L88" class="ln">    88  </span>func (o *SyntheticsAssertionBodyHashTarget) SetTarget(v SyntheticsAssertionTargetValue) {
 <span id="L89" class="ln">    89  </span>	o.Target = v
 <span id="L90" class="ln">    90  </span>}
 <span id="L91" class="ln">    91  </span>
@@ -189,7 +189,7 @@
 <span id="L132" class="ln">   132  </span>func (o *SyntheticsAssertionBodyHashTarget) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L133" class="ln">   133  </span>	all := struct {
 <span id="L134" class="ln">   134  </span>		Operator *SyntheticsAssertionBodyHashOperator `json:&#34;operator&#34;`
-<span id="L135" class="ln">   135  </span>		Target   *interface{}                         `json:&#34;target&#34;`
+<span id="L135" class="ln">   135  </span>		Target   *SyntheticsAssertionTargetValue      `json:&#34;target&#34;`
 <span id="L136" class="ln">   136  </span>		Type     *SyntheticsAssertionBodyHashType     `json:&#34;type&#34;`
 <span id="L137" class="ln">   137  </span>	}{}
 <span id="L138" class="ln">   138  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
