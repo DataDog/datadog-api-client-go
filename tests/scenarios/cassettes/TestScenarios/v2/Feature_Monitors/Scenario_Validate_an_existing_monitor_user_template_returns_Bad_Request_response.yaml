@@ -1,0 +1,64 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"It's a threshold","monitor_definition":{"message":"cats","name":"High Error Rate on service","query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0} \u003e 100","type":"query alert"},"tags":["category:test"],"template_variables":[{"available_values":[],"defaults":["cats"],"name":"scope"}],"title":"api spec given template"},"type":"monitor-user-template"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json, */*
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/monitor/template
+  response:
+    body: '{"data":{"type":"monitor-user-template","attributes":{"description":"It''s
+      a threshold","tags":["category:test"],"monitor_definition":{"message":"cats","name":"High
+      Error Rate on service","query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0}
+      > 100","type":"query alert"},"title":"api spec given template","modified":"2025-05-24T02:17:43.409724+00:00","created":"2025-05-24T02:17:43.409724+00:00","creator_uuid":"3ad549bf-eba0-11e9-a77a-0705486660d0","version":0,"template_variables":[{"name":"scope","defaults":["cats"],"available_values":[]}]},"id":"6dbae147-405c-4b7e-978f-8d25fb547e12"}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"type":"monitor-user-template"}}}
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
+    url: https://api.datadoghq.com/api/v2/monitor/template/6dbae147-405c-4b7e-978f-8d25fb547e12/validate
+  response:
+    body: '{"errors":["Required parameter ''id'' is missing"]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/monitor/template/6dbae147-405c-4b7e-978f-8d25fb547e12
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+    status: 204 No Content
+version: 2
