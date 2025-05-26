@@ -67,9 +67,9 @@
 <span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
-<span id="L13" class="ln">    13  </span><span class="comment">// ScheduleUpdateRequestData Contains all data needed to update an existing schedule, including its attributes (such as name, layers, or tags) and any relationships to teams.</span>
+<span id="L13" class="ln">    13  </span><span class="comment">// ScheduleUpdateRequestData Contains all data needed to update an existing schedule, including its attributes (such as name and time zone) and any relationships to teams.</span>
 <span id="L14" class="ln">    14  </span>type ScheduleUpdateRequestData struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// Defines the updatable attributes for a schedule, such as name, time zone, tags, and layers.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Defines the updatable attributes for a schedule, such as name, time zone, and layers.</span>
 <span id="L16" class="ln">    16  </span>	Attributes ScheduleUpdateRequestDataAttributes `json:&#34;attributes&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// The ID of the schedule to be updated.</span>
 <span id="L18" class="ln">    18  </span>	Id string `json:&#34;id&#34;`

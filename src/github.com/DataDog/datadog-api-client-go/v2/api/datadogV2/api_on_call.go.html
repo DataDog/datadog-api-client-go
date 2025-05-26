@@ -89,8 +89,8 @@
 <span id="L32" class="ln">    32  </span>	return r
 <span id="L33" class="ln">    33  </span>}
 <span id="L34" class="ln">    34  </span>
-<span id="L35" class="ln">    35  </span><span class="comment">// CreateOnCallEscalationPolicy Create on-call escalation policy.</span>
-<span id="L36" class="ln">    36  </span><span class="comment">// Create a new on-call escalation policy</span>
+<span id="L35" class="ln">    35  </span><span class="comment">// CreateOnCallEscalationPolicy Create On-Call escalation policy.</span>
+<span id="L36" class="ln">    36  </span><span class="comment">// Create a new On-Call escalation policy</span>
 <span id="L37" class="ln">    37  </span>func (a *OnCallApi) CreateOnCallEscalationPolicy(ctx _context.Context, body EscalationPolicyCreateRequest, o ...CreateOnCallEscalationPolicyOptionalParameters) (EscalationPolicy, *_nethttp.Response, error) {
 <span id="L38" class="ln">    38  </span>	var (
 <span id="L39" class="ln">    39  </span>		localVarHTTPMethod  = _nethttp.MethodPost
@@ -190,8 +190,8 @@
 <span id="L133" class="ln">   133  </span>	return r
 <span id="L134" class="ln">   134  </span>}
 <span id="L135" class="ln">   135  </span>
-<span id="L136" class="ln">   136  </span><span class="comment">// CreateOnCallSchedule Create on-call schedule.</span>
-<span id="L137" class="ln">   137  </span><span class="comment">// Create a new on-call schedule</span>
+<span id="L136" class="ln">   136  </span><span class="comment">// CreateOnCallSchedule Create On-Call schedule.</span>
+<span id="L137" class="ln">   137  </span><span class="comment">// Create a new On-Call schedule</span>
 <span id="L138" class="ln">   138  </span>func (a *OnCallApi) CreateOnCallSchedule(ctx _context.Context, body ScheduleCreateRequest, o ...CreateOnCallScheduleOptionalParameters) (Schedule, *_nethttp.Response, error) {
 <span id="L139" class="ln">   139  </span>	var (
 <span id="L140" class="ln">   140  </span>		localVarHTTPMethod  = _nethttp.MethodPost
@@ -274,8 +274,8 @@
 <span id="L217" class="ln">   217  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L218" class="ln">   218  </span>}
 <span id="L219" class="ln">   219  </span>
-<span id="L220" class="ln">   220  </span><span class="comment">// DeleteOnCallEscalationPolicy Delete on-call escalation policy.</span>
-<span id="L221" class="ln">   221  </span><span class="comment">// Delete an on-call escalation policy</span>
+<span id="L220" class="ln">   220  </span><span class="comment">// DeleteOnCallEscalationPolicy Delete On-Call escalation policy.</span>
+<span id="L221" class="ln">   221  </span><span class="comment">// Delete an On-Call escalation policy</span>
 <span id="L222" class="ln">   222  </span>func (a *OnCallApi) DeleteOnCallEscalationPolicy(ctx _context.Context, policyId string) (*_nethttp.Response, error) {
 <span id="L223" class="ln">   223  </span>	var (
 <span id="L224" class="ln">   224  </span>		localVarHTTPMethod = _nethttp.MethodDelete
@@ -335,8 +335,8 @@
 <span id="L278" class="ln">   278  </span>	return localVarHTTPResponse, nil
 <span id="L279" class="ln">   279  </span>}
 <span id="L280" class="ln">   280  </span>
-<span id="L281" class="ln">   281  </span><span class="comment">// DeleteOnCallSchedule Delete on-call schedule.</span>
-<span id="L282" class="ln">   282  </span><span class="comment">// Delete an on-call schedule</span>
+<span id="L281" class="ln">   281  </span><span class="comment">// DeleteOnCallSchedule Delete On-Call schedule.</span>
+<span id="L282" class="ln">   282  </span><span class="comment">// Delete an On-Call schedule</span>
 <span id="L283" class="ln">   283  </span>func (a *OnCallApi) DeleteOnCallSchedule(ctx _context.Context, scheduleId string) (*_nethttp.Response, error) {
 <span id="L284" class="ln">   284  </span>	var (
 <span id="L285" class="ln">   285  </span>		localVarHTTPMethod = _nethttp.MethodDelete
@@ -413,8 +413,8 @@
 <span id="L356" class="ln">   356  </span>	return r
 <span id="L357" class="ln">   357  </span>}
 <span id="L358" class="ln">   358  </span>
-<span id="L359" class="ln">   359  </span><span class="comment">// GetOnCallEscalationPolicy Get on-call escalation policy.</span>
-<span id="L360" class="ln">   360  </span><span class="comment">// Get an on-call escalation policy</span>
+<span id="L359" class="ln">   359  </span><span class="comment">// GetOnCallEscalationPolicy Get On-Call escalation policy.</span>
+<span id="L360" class="ln">   360  </span><span class="comment">// Get an On-Call escalation policy</span>
 <span id="L361" class="ln">   361  </span>func (a *OnCallApi) GetOnCallEscalationPolicy(ctx _context.Context, policyId string, o ...GetOnCallEscalationPolicyOptionalParameters) (EscalationPolicy, *_nethttp.Response, error) {
 <span id="L362" class="ln">   362  </span>	var (
 <span id="L363" class="ln">   363  </span>		localVarHTTPMethod  = _nethttp.MethodGet
@@ -512,8 +512,8 @@
 <span id="L455" class="ln">   455  </span>	return r
 <span id="L456" class="ln">   456  </span>}
 <span id="L457" class="ln">   457  </span>
-<span id="L458" class="ln">   458  </span><span class="comment">// GetOnCallSchedule Get on-call schedule.</span>
-<span id="L459" class="ln">   459  </span><span class="comment">// Get an on-call schedule</span>
+<span id="L458" class="ln">   458  </span><span class="comment">// GetOnCallSchedule Get On-Call schedule.</span>
+<span id="L459" class="ln">   459  </span><span class="comment">// Get an On-Call schedule</span>
 <span id="L460" class="ln">   460  </span>func (a *OnCallApi) GetOnCallSchedule(ctx _context.Context, scheduleId string, o ...GetOnCallScheduleOptionalParameters) (Schedule, *_nethttp.Response, error) {
 <span id="L461" class="ln">   461  </span>	var (
 <span id="L462" class="ln">   462  </span>		localVarHTTPMethod  = _nethttp.MethodGet
@@ -611,8 +611,8 @@
 <span id="L554" class="ln">   554  </span>	return r
 <span id="L555" class="ln">   555  </span>}
 <span id="L556" class="ln">   556  </span>
-<span id="L557" class="ln">   557  </span><span class="comment">// GetOnCallTeamRoutingRules Get on-call team routing rules.</span>
-<span id="L558" class="ln">   558  </span><span class="comment">// Get a team&#39;s on-call routing rules</span>
+<span id="L557" class="ln">   557  </span><span class="comment">// GetOnCallTeamRoutingRules Get On-Call team routing rules.</span>
+<span id="L558" class="ln">   558  </span><span class="comment">// Get a team&#39;s On-Call routing rules</span>
 <span id="L559" class="ln">   559  </span>func (a *OnCallApi) GetOnCallTeamRoutingRules(ctx _context.Context, teamId string, o ...GetOnCallTeamRoutingRulesOptionalParameters) (TeamRoutingRules, *_nethttp.Response, error) {
 <span id="L560" class="ln">   560  </span>	var (
 <span id="L561" class="ln">   561  </span>		localVarHTTPMethod  = _nethttp.MethodGet
@@ -819,8 +819,8 @@
 <span id="L762" class="ln">   762  </span>	return r
 <span id="L763" class="ln">   763  </span>}
 <span id="L764" class="ln">   764  </span>
-<span id="L765" class="ln">   765  </span><span class="comment">// SetOnCallTeamRoutingRules Set on-call team routing rules.</span>
-<span id="L766" class="ln">   766  </span><span class="comment">// Set a team&#39;s on-call routing rules</span>
+<span id="L765" class="ln">   765  </span><span class="comment">// SetOnCallTeamRoutingRules Set On-Call team routing rules.</span>
+<span id="L766" class="ln">   766  </span><span class="comment">// Set a team&#39;s On-Call routing rules</span>
 <span id="L767" class="ln">   767  </span>func (a *OnCallApi) SetOnCallTeamRoutingRules(ctx _context.Context, teamId string, body TeamRoutingRulesRequest, o ...SetOnCallTeamRoutingRulesOptionalParameters) (TeamRoutingRules, *_nethttp.Response, error) {
 <span id="L768" class="ln">   768  </span>	var (
 <span id="L769" class="ln">   769  </span>		localVarHTTPMethod  = _nethttp.MethodPut
@@ -921,8 +921,8 @@
 <span id="L864" class="ln">   864  </span>	return r
 <span id="L865" class="ln">   865  </span>}
 <span id="L866" class="ln">   866  </span>
-<span id="L867" class="ln">   867  </span><span class="comment">// UpdateOnCallEscalationPolicy Update on-call escalation policy.</span>
-<span id="L868" class="ln">   868  </span><span class="comment">// Update an on-call escalation policy</span>
+<span id="L867" class="ln">   867  </span><span class="comment">// UpdateOnCallEscalationPolicy Update On-Call escalation policy.</span>
+<span id="L868" class="ln">   868  </span><span class="comment">// Update an On-Call escalation policy</span>
 <span id="L869" class="ln">   869  </span>func (a *OnCallApi) UpdateOnCallEscalationPolicy(ctx _context.Context, policyId string, body EscalationPolicyUpdateRequest, o ...UpdateOnCallEscalationPolicyOptionalParameters) (EscalationPolicy, *_nethttp.Response, error) {
 <span id="L870" class="ln">   870  </span>	var (
 <span id="L871" class="ln">   871  </span>		localVarHTTPMethod  = _nethttp.MethodPut
@@ -1023,8 +1023,8 @@
 <span id="L966" class="ln">   966  </span>	return r
 <span id="L967" class="ln">   967  </span>}
 <span id="L968" class="ln">   968  </span>
-<span id="L969" class="ln">   969  </span><span class="comment">// UpdateOnCallSchedule Update on-call schedule.</span>
-<span id="L970" class="ln">   970  </span><span class="comment">// Update a new on-call schedule</span>
+<span id="L969" class="ln">   969  </span><span class="comment">// UpdateOnCallSchedule Update On-Call schedule.</span>
+<span id="L970" class="ln">   970  </span><span class="comment">// Update a new On-Call schedule</span>
 <span id="L971" class="ln">   971  </span>func (a *OnCallApi) UpdateOnCallSchedule(ctx _context.Context, scheduleId string, body ScheduleUpdateRequest, o ...UpdateOnCallScheduleOptionalParameters) (Schedule, *_nethttp.Response, error) {
 <span id="L972" class="ln">   972  </span>	var (
 <span id="L973" class="ln">   973  </span>		localVarHTTPMethod  = _nethttp.MethodPut

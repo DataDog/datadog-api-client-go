@@ -67,10 +67,10 @@
 <span id="L10" class="ln">    10  </span>
 <span id="L11" class="ln">    11  </span><span class="comment">// CreatePageRequestDataAttributesTarget Information about the target to notify (such as a team or user).</span>
 <span id="L12" class="ln">    12  </span>type CreatePageRequestDataAttributesTarget struct {
-<span id="L13" class="ln">    13  </span>	<span class="comment">// A unique ID for the target (for example, team handle or user UUID).</span>
+<span id="L13" class="ln">    13  </span>	<span class="comment">// Identifier for the target (for example, team handle or user ID).</span>
 <span id="L14" class="ln">    14  </span>	Identifier *string `json:&#34;identifier,omitempty&#34;`
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The kind of target, `team_uuid` | `team_handle` | `user_uuid`.</span>
-<span id="L16" class="ln">    16  </span>	Type *string `json:&#34;type,omitempty&#34;`
+<span id="L15" class="ln">    15  </span>	<span class="comment">// The kind of target, `team_id` | `team_handle` | `user_id`.</span>
+<span id="L16" class="ln">    16  </span>	Type *OnCallPageTargetType `json:&#34;type,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L18" class="ln">    18  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L19" class="ln">    19  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -122,9 +122,9 @@
 <span id="L65" class="ln">    65  </span>}
 <span id="L66" class="ln">    66  </span>
 <span id="L67" class="ln">    67  </span><span class="comment">// GetType returns the Type field value if set, zero value otherwise.</span>
-<span id="L68" class="ln">    68  </span>func (o *CreatePageRequestDataAttributesTarget) GetType() string {
+<span id="L68" class="ln">    68  </span>func (o *CreatePageRequestDataAttributesTarget) GetType() OnCallPageTargetType {
 <span id="L69" class="ln">    69  </span>	if o == nil || o.Type == nil {
-<span id="L70" class="ln">    70  </span>		var ret string
+<span id="L70" class="ln">    70  </span>		var ret OnCallPageTargetType
 <span id="L71" class="ln">    71  </span>		return ret
 <span id="L72" class="ln">    72  </span>	}
 <span id="L73" class="ln">    73  </span>	return *o.Type
@@ -132,7 +132,7 @@
 <span id="L75" class="ln">    75  </span>
 <span id="L76" class="ln">    76  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value if set, nil otherwise</span>
 <span id="L77" class="ln">    77  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L78" class="ln">    78  </span>func (o *CreatePageRequestDataAttributesTarget) GetTypeOk() (*string, bool) {
+<span id="L78" class="ln">    78  </span>func (o *CreatePageRequestDataAttributesTarget) GetTypeOk() (*OnCallPageTargetType, bool) {
 <span id="L79" class="ln">    79  </span>	if o == nil || o.Type == nil {
 <span id="L80" class="ln">    80  </span>		return nil, false
 <span id="L81" class="ln">    81  </span>	}
@@ -144,8 +144,8 @@
 <span id="L87" class="ln">    87  </span>	return o != nil &amp;&amp; o.Type != nil
 <span id="L88" class="ln">    88  </span>}
 <span id="L89" class="ln">    89  </span>
-<span id="L90" class="ln">    90  </span><span class="comment">// SetType gets a reference to the given string and assigns it to the Type field.</span>
-<span id="L91" class="ln">    91  </span>func (o *CreatePageRequestDataAttributesTarget) SetType(v string) {
+<span id="L90" class="ln">    90  </span><span class="comment">// SetType gets a reference to the given OnCallPageTargetType and assigns it to the Type field.</span>
+<span id="L91" class="ln">    91  </span>func (o *CreatePageRequestDataAttributesTarget) SetType(v OnCallPageTargetType) {
 <span id="L92" class="ln">    92  </span>	o.Type = &amp;v
 <span id="L93" class="ln">    93  </span>}
 <span id="L94" class="ln">    94  </span>
@@ -171,8 +171,8 @@
 <span id="L114" class="ln">   114  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L115" class="ln">   115  </span>func (o *CreatePageRequestDataAttributesTarget) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L116" class="ln">   116  </span>	all := struct {
-<span id="L117" class="ln">   117  </span>		Identifier *string `json:&#34;identifier,omitempty&#34;`
-<span id="L118" class="ln">   118  </span>		Type       *string `json:&#34;type,omitempty&#34;`
+<span id="L117" class="ln">   117  </span>		Identifier *string               `json:&#34;identifier,omitempty&#34;`
+<span id="L118" class="ln">   118  </span>		Type       *OnCallPageTargetType `json:&#34;type,omitempty&#34;`
 <span id="L119" class="ln">   119  </span>	}{}
 <span id="L120" class="ln">   120  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L121" class="ln">   121  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
@@ -183,16 +183,26 @@
 <span id="L126" class="ln">   126  </span>	} else {
 <span id="L127" class="ln">   127  </span>		return err
 <span id="L128" class="ln">   128  </span>	}
-<span id="L129" class="ln">   129  </span>	o.Identifier = all.Identifier
-<span id="L130" class="ln">   130  </span>	o.Type = all.Type
-<span id="L131" class="ln">   131  </span>
-<span id="L132" class="ln">   132  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L133" class="ln">   133  </span>		o.AdditionalProperties = additionalProperties
-<span id="L134" class="ln">   134  </span>	}
-<span id="L135" class="ln">   135  </span>
-<span id="L136" class="ln">   136  </span>	return nil
-<span id="L137" class="ln">   137  </span>}
-<span id="L138" class="ln">   138  </span>
+<span id="L129" class="ln">   129  </span>
+<span id="L130" class="ln">   130  </span>	hasInvalidField := false
+<span id="L131" class="ln">   131  </span>	o.Identifier = all.Identifier
+<span id="L132" class="ln">   132  </span>	if all.Type != nil &amp;&amp; !all.Type.IsValid() {
+<span id="L133" class="ln">   133  </span>		hasInvalidField = true
+<span id="L134" class="ln">   134  </span>	} else {
+<span id="L135" class="ln">   135  </span>		o.Type = all.Type
+<span id="L136" class="ln">   136  </span>	}
+<span id="L137" class="ln">   137  </span>
+<span id="L138" class="ln">   138  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L139" class="ln">   139  </span>		o.AdditionalProperties = additionalProperties
+<span id="L140" class="ln">   140  </span>	}
+<span id="L141" class="ln">   141  </span>
+<span id="L142" class="ln">   142  </span>	if hasInvalidField {
+<span id="L143" class="ln">   143  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L144" class="ln">   144  </span>	}
+<span id="L145" class="ln">   145  </span>
+<span id="L146" class="ln">   146  </span>	return nil
+<span id="L147" class="ln">   147  </span>}
+<span id="L148" class="ln">   148  </span>
 </pre><p></p>
 
 <div id="footer">

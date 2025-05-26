@@ -69,7 +69,7 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// ScheduleUpdateRequest A top-level wrapper for a schedule update request, referring to the `data` object with the new details.</span>
 <span id="L14" class="ln">    14  </span>type ScheduleUpdateRequest struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// Contains all data needed to update an existing schedule, including its attributes (such as name, layers, or tags) and any relationships to teams.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Contains all data needed to update an existing schedule, including its attributes (such as name and time zone) and any relationships to teams.</span>
 <span id="L16" class="ln">    16  </span>	Data ScheduleUpdateRequestData `json:&#34;data&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L18" class="ln">    18  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`

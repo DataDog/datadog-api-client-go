@@ -69,7 +69,7 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// ScheduleCreateRequestData The core data wrapper for creating a schedule, encompassing attributes, relationships, and the resource type.</span>
 <span id="L14" class="ln">    14  </span>type ScheduleCreateRequestData struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// Describes the main attributes for creating a new schedule, including name, layers, time zone, and tags.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Describes the main attributes for creating a new schedule, including name, layers, and time zone.</span>
 <span id="L16" class="ln">    16  </span>	Attributes ScheduleCreateRequestDataAttributes `json:&#34;attributes&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// Gathers relationship objects for the schedule creation request, including the teams to associate.</span>
 <span id="L18" class="ln">    18  </span>	Relationships *ScheduleCreateRequestDataRelationships `json:&#34;relationships,omitempty&#34;`
