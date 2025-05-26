@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TeamReferenceRelationshipsOncallUsers Defines which users are on-call within a team, stored as an array of references.
-type TeamReferenceRelationshipsOncallUsers struct {
-	// The list of user references who are on-call for this team.
-	Data []TeamReferenceRelationshipsOncallUsersDataItems `json:"data,omitempty"`
+// EscalationTargets A list of escalation targets for a step
+type EscalationTargets struct {
+	// The `EscalationTargets` `data`.
+	Data []EscalationTarget `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTeamReferenceRelationshipsOncallUsers instantiates a new TeamReferenceRelationshipsOncallUsers object.
+// NewEscalationTargets instantiates a new EscalationTargets object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTeamReferenceRelationshipsOncallUsers() *TeamReferenceRelationshipsOncallUsers {
-	this := TeamReferenceRelationshipsOncallUsers{}
+func NewEscalationTargets() *EscalationTargets {
+	this := EscalationTargets{}
 	return &this
 }
 
-// NewTeamReferenceRelationshipsOncallUsersWithDefaults instantiates a new TeamReferenceRelationshipsOncallUsers object.
+// NewEscalationTargetsWithDefaults instantiates a new EscalationTargets object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTeamReferenceRelationshipsOncallUsersWithDefaults() *TeamReferenceRelationshipsOncallUsers {
-	this := TeamReferenceRelationshipsOncallUsers{}
+func NewEscalationTargetsWithDefaults() *EscalationTargets {
+	this := EscalationTargets{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *TeamReferenceRelationshipsOncallUsers) GetData() []TeamReferenceRelationshipsOncallUsersDataItems {
+func (o *EscalationTargets) GetData() []EscalationTarget {
 	if o == nil || o.Data == nil {
-		var ret []TeamReferenceRelationshipsOncallUsersDataItems
+		var ret []EscalationTarget
 		return ret
 	}
 	return o.Data
@@ -45,7 +45,7 @@ func (o *TeamReferenceRelationshipsOncallUsers) GetData() []TeamReferenceRelatio
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TeamReferenceRelationshipsOncallUsers) GetDataOk() (*[]TeamReferenceRelationshipsOncallUsersDataItems, bool) {
+func (o *EscalationTargets) GetDataOk() (*[]EscalationTarget, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *TeamReferenceRelationshipsOncallUsers) GetDataOk() (*[]TeamReferenceRel
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *TeamReferenceRelationshipsOncallUsers) HasData() bool {
+func (o *EscalationTargets) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
-// SetData gets a reference to the given []TeamReferenceRelationshipsOncallUsersDataItems and assigns it to the Data field.
-func (o *TeamReferenceRelationshipsOncallUsers) SetData(v []TeamReferenceRelationshipsOncallUsersDataItems) {
+// SetData gets a reference to the given []EscalationTarget and assigns it to the Data field.
+func (o *EscalationTargets) SetData(v []EscalationTarget) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TeamReferenceRelationshipsOncallUsers) MarshalJSON() ([]byte, error) {
+func (o EscalationTargets) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,9 +79,9 @@ func (o TeamReferenceRelationshipsOncallUsers) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TeamReferenceRelationshipsOncallUsers) UnmarshalJSON(bytes []byte) (err error) {
+func (o *EscalationTargets) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []TeamReferenceRelationshipsOncallUsersDataItems `json:"data,omitempty"`
+		Data []EscalationTarget `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -1,4 +1,4 @@
-// Update on-call schedule returns "OK" response
+// Update On-Call schedule returns "OK" response
 
 package main
 
@@ -55,12 +55,7 @@ func main() {
 						RotationStart: time.Now().AddDate(0, 0, -5),
 					},
 				},
-				Name: "Example-On-Call",
-				Tags: []string{
-					"tag1",
-					"tag2",
-					"tag3",
-				},
+				Name:     "Example-On-Call",
 				TimeZone: "America/New_York",
 			},
 			Relationships: &datadogV2.ScheduleUpdateRequestDataRelationships{

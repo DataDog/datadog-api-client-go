@@ -10,14 +10,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ScheduleUpdateRequestDataAttributes Defines the updatable attributes for a schedule, such as name, time zone, tags, and layers.
+// ScheduleUpdateRequestDataAttributes Defines the updatable attributes for a schedule, such as name, time zone, and layers.
 type ScheduleUpdateRequestDataAttributes struct {
 	// The updated list of layers (rotations) for this schedule.
 	Layers []ScheduleUpdateRequestDataAttributesLayersItems `json:"layers"`
 	// A short name for the schedule.
 	Name string `json:"name"`
-	// A list of tags that you can associate with this schedule.
-	Tags []string `json:"tags,omitempty"`
 	// The time zone used when interpreting rotation times.
 	TimeZone string `json:"time_zone"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -91,34 +89,6 @@ func (o *ScheduleUpdateRequestDataAttributes) SetName(v string) {
 	o.Name = v
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *ScheduleUpdateRequestDataAttributes) GetTags() []string {
-	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ScheduleUpdateRequestDataAttributes) GetTagsOk() (*[]string, bool) {
-	if o == nil || o.Tags == nil {
-		return nil, false
-	}
-	return &o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *ScheduleUpdateRequestDataAttributes) HasTags() bool {
-	return o != nil && o.Tags != nil
-}
-
-// SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *ScheduleUpdateRequestDataAttributes) SetTags(v []string) {
-	o.Tags = v
-}
-
 // GetTimeZone returns the TimeZone field value.
 func (o *ScheduleUpdateRequestDataAttributes) GetTimeZone() string {
 	if o == nil {
@@ -150,9 +120,6 @@ func (o ScheduleUpdateRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["layers"] = o.Layers
 	toSerialize["name"] = o.Name
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
-	}
 	toSerialize["time_zone"] = o.TimeZone
 
 	for key, value := range o.AdditionalProperties {
@@ -166,7 +133,6 @@ func (o *ScheduleUpdateRequestDataAttributes) UnmarshalJSON(bytes []byte) (err e
 	all := struct {
 		Layers   *[]ScheduleUpdateRequestDataAttributesLayersItems `json:"layers"`
 		Name     *string                                           `json:"name"`
-		Tags     []string                                          `json:"tags,omitempty"`
 		TimeZone *string                                           `json:"time_zone"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -183,13 +149,12 @@ func (o *ScheduleUpdateRequestDataAttributes) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"layers", "name", "tags", "time_zone"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"layers", "name", "time_zone"})
 	} else {
 		return err
 	}
 	o.Layers = *all.Layers
 	o.Name = *all.Name
-	o.Tags = all.Tags
 	o.TimeZone = *all.TimeZone
 
 	if len(additionalProperties) > 0 {

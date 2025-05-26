@@ -32,8 +32,8 @@ func (r *CreateOnCallEscalationPolicyOptionalParameters) WithInclude(include str
 	return r
 }
 
-// CreateOnCallEscalationPolicy Create on-call escalation policy.
-// Create a new on-call escalation policy
+// CreateOnCallEscalationPolicy Create On-Call escalation policy.
+// Create a new On-Call escalation policy
 func (a *OnCallApi) CreateOnCallEscalationPolicy(ctx _context.Context, body EscalationPolicyCreateRequest, o ...CreateOnCallEscalationPolicyOptionalParameters) (EscalationPolicy, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -133,8 +133,8 @@ func (r *CreateOnCallScheduleOptionalParameters) WithInclude(include string) *Cr
 	return r
 }
 
-// CreateOnCallSchedule Create on-call schedule.
-// Create a new on-call schedule
+// CreateOnCallSchedule Create On-Call schedule.
+// Create a new On-Call schedule
 func (a *OnCallApi) CreateOnCallSchedule(ctx _context.Context, body ScheduleCreateRequest, o ...CreateOnCallScheduleOptionalParameters) (Schedule, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -217,8 +217,8 @@ func (a *OnCallApi) CreateOnCallSchedule(ctx _context.Context, body ScheduleCrea
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// DeleteOnCallEscalationPolicy Delete on-call escalation policy.
-// Delete an on-call escalation policy
+// DeleteOnCallEscalationPolicy Delete On-Call escalation policy.
+// Delete an On-Call escalation policy
 func (a *OnCallApi) DeleteOnCallEscalationPolicy(ctx _context.Context, policyId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -278,8 +278,8 @@ func (a *OnCallApi) DeleteOnCallEscalationPolicy(ctx _context.Context, policyId 
 	return localVarHTTPResponse, nil
 }
 
-// DeleteOnCallSchedule Delete on-call schedule.
-// Delete an on-call schedule
+// DeleteOnCallSchedule Delete On-Call schedule.
+// Delete an On-Call schedule
 func (a *OnCallApi) DeleteOnCallSchedule(ctx _context.Context, scheduleId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -356,8 +356,8 @@ func (r *GetOnCallEscalationPolicyOptionalParameters) WithInclude(include string
 	return r
 }
 
-// GetOnCallEscalationPolicy Get on-call escalation policy.
-// Get an on-call escalation policy
+// GetOnCallEscalationPolicy Get On-Call escalation policy.
+// Get an On-Call escalation policy
 func (a *OnCallApi) GetOnCallEscalationPolicy(ctx _context.Context, policyId string, o ...GetOnCallEscalationPolicyOptionalParameters) (EscalationPolicy, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -455,8 +455,8 @@ func (r *GetOnCallScheduleOptionalParameters) WithInclude(include string) *GetOn
 	return r
 }
 
-// GetOnCallSchedule Get on-call schedule.
-// Get an on-call schedule
+// GetOnCallSchedule Get On-Call schedule.
+// Get an On-Call schedule
 func (a *OnCallApi) GetOnCallSchedule(ctx _context.Context, scheduleId string, o ...GetOnCallScheduleOptionalParameters) (Schedule, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -554,8 +554,8 @@ func (r *GetOnCallTeamRoutingRulesOptionalParameters) WithInclude(include string
 	return r
 }
 
-// GetOnCallTeamRoutingRules Get on-call team routing rules.
-// Get a team's on-call routing rules
+// GetOnCallTeamRoutingRules Get On-Call team routing rules.
+// Get a team's On-Call routing rules
 func (a *OnCallApi) GetOnCallTeamRoutingRules(ctx _context.Context, teamId string, o ...GetOnCallTeamRoutingRulesOptionalParameters) (TeamRoutingRules, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -762,8 +762,8 @@ func (r *SetOnCallTeamRoutingRulesOptionalParameters) WithInclude(include string
 	return r
 }
 
-// SetOnCallTeamRoutingRules Set on-call team routing rules.
-// Set a team's on-call routing rules
+// SetOnCallTeamRoutingRules Set On-Call team routing rules.
+// Set a team's On-Call routing rules
 func (a *OnCallApi) SetOnCallTeamRoutingRules(ctx _context.Context, teamId string, body TeamRoutingRulesRequest, o ...SetOnCallTeamRoutingRulesOptionalParameters) (TeamRoutingRules, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -864,8 +864,8 @@ func (r *UpdateOnCallEscalationPolicyOptionalParameters) WithInclude(include str
 	return r
 }
 
-// UpdateOnCallEscalationPolicy Update on-call escalation policy.
-// Update an on-call escalation policy
+// UpdateOnCallEscalationPolicy Update On-Call escalation policy.
+// Update an On-Call escalation policy
 func (a *OnCallApi) UpdateOnCallEscalationPolicy(ctx _context.Context, policyId string, body EscalationPolicyUpdateRequest, o ...UpdateOnCallEscalationPolicyOptionalParameters) (EscalationPolicy, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -966,8 +966,8 @@ func (r *UpdateOnCallScheduleOptionalParameters) WithInclude(include string) *Up
 	return r
 }
 
-// UpdateOnCallSchedule Update on-call schedule.
-// Update a new on-call schedule
+// UpdateOnCallSchedule Update On-Call schedule.
+// Update a new On-Call schedule
 func (a *OnCallApi) UpdateOnCallSchedule(ctx _context.Context, scheduleId string, body ScheduleUpdateRequest, o ...UpdateOnCallScheduleOptionalParameters) (Schedule, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut

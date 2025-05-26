@@ -12,7 +12,7 @@ import (
 
 // EscalationPolicyData Represents the data for a single escalation policy, including its attributes, ID, relationships, and resource type.
 type EscalationPolicyData struct {
-	// Defines the main attributes of an escalation policy, such as its description, name, and behavior on policy end.
+	// Defines the main attributes of an escalation policy, such as its name and behavior on policy end.
 	Attributes *EscalationPolicyDataAttributes `json:"attributes,omitempty"`
 	// Specifies the unique identifier of the escalation policy.
 	Id *string `json:"id,omitempty"`

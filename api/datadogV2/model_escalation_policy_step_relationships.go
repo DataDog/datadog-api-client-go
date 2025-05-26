@@ -10,8 +10,8 @@ import (
 
 // EscalationPolicyStepRelationships Represents the relationship of an escalation policy step to its targets.
 type EscalationPolicyStepRelationships struct {
-	// Represents an escalation target, which can be a team, user, or schedule.
-	Targets *EscalationTarget `json:"targets,omitempty"`
+	// A list of escalation targets for a step
+	Targets *EscalationTargets `json:"targets,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -35,9 +35,9 @@ func NewEscalationPolicyStepRelationshipsWithDefaults() *EscalationPolicyStepRel
 }
 
 // GetTargets returns the Targets field value if set, zero value otherwise.
-func (o *EscalationPolicyStepRelationships) GetTargets() EscalationTarget {
+func (o *EscalationPolicyStepRelationships) GetTargets() EscalationTargets {
 	if o == nil || o.Targets == nil {
-		var ret EscalationTarget
+		var ret EscalationTargets
 		return ret
 	}
 	return *o.Targets
@@ -45,7 +45,7 @@ func (o *EscalationPolicyStepRelationships) GetTargets() EscalationTarget {
 
 // GetTargetsOk returns a tuple with the Targets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EscalationPolicyStepRelationships) GetTargetsOk() (*EscalationTarget, bool) {
+func (o *EscalationPolicyStepRelationships) GetTargetsOk() (*EscalationTargets, bool) {
 	if o == nil || o.Targets == nil {
 		return nil, false
 	}
@@ -57,8 +57,8 @@ func (o *EscalationPolicyStepRelationships) HasTargets() bool {
 	return o != nil && o.Targets != nil
 }
 
-// SetTargets gets a reference to the given EscalationTarget and assigns it to the Targets field.
-func (o *EscalationPolicyStepRelationships) SetTargets(v EscalationTarget) {
+// SetTargets gets a reference to the given EscalationTargets and assigns it to the Targets field.
+func (o *EscalationPolicyStepRelationships) SetTargets(v EscalationTargets) {
 	o.Targets = &v
 }
 
@@ -81,7 +81,7 @@ func (o EscalationPolicyStepRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EscalationPolicyStepRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Targets *EscalationTarget `json:"targets,omitempty"`
+		Targets *EscalationTargets `json:"targets,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -92,10 +92,19 @@ func (o *EscalationPolicyStepRelationships) UnmarshalJSON(bytes []byte) (err err
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	if all.Targets != nil && all.Targets.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.Targets = all.Targets
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
