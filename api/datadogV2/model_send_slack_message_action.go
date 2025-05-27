@@ -10,12 +10,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SlackAction Sends a message to a Slack channel.
-type SlackAction struct {
+// SendSlackMessageAction Sends a message to a Slack channel.
+type SendSlackMessageAction struct {
 	// The channel ID.
 	Channel string `json:"channel"`
-	// Must be set to "send_slack_message".
-	Type string `json:"type"`
+	// Indicates that the action is a send Slack message action.
+	Type SendSlackMessageActionType `json:"type"`
 	// The workspace ID.
 	Workspace string `json:"workspace"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -23,28 +23,30 @@ type SlackAction struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewSlackAction instantiates a new SlackAction object.
+// NewSendSlackMessageAction instantiates a new SendSlackMessageAction object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSlackAction(channel string, typeVar string, workspace string) *SlackAction {
-	this := SlackAction{}
+func NewSendSlackMessageAction(channel string, typeVar SendSlackMessageActionType, workspace string) *SendSlackMessageAction {
+	this := SendSlackMessageAction{}
 	this.Channel = channel
 	this.Type = typeVar
 	this.Workspace = workspace
 	return &this
 }
 
-// NewSlackActionWithDefaults instantiates a new SlackAction object.
+// NewSendSlackMessageActionWithDefaults instantiates a new SendSlackMessageAction object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewSlackActionWithDefaults() *SlackAction {
-	this := SlackAction{}
+func NewSendSlackMessageActionWithDefaults() *SendSlackMessageAction {
+	this := SendSlackMessageAction{}
+	var typeVar SendSlackMessageActionType = SENDSLACKMESSAGEACTIONTYPE_SEND_SLACK_MESSAGE
+	this.Type = typeVar
 	return &this
 }
 
 // GetChannel returns the Channel field value.
-func (o *SlackAction) GetChannel() string {
+func (o *SendSlackMessageAction) GetChannel() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -54,7 +56,7 @@ func (o *SlackAction) GetChannel() string {
 
 // GetChannelOk returns a tuple with the Channel field value
 // and a boolean to check if the value has been set.
-func (o *SlackAction) GetChannelOk() (*string, bool) {
+func (o *SendSlackMessageAction) GetChannelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,14 +64,14 @@ func (o *SlackAction) GetChannelOk() (*string, bool) {
 }
 
 // SetChannel sets field value.
-func (o *SlackAction) SetChannel(v string) {
+func (o *SendSlackMessageAction) SetChannel(v string) {
 	o.Channel = v
 }
 
 // GetType returns the Type field value.
-func (o *SlackAction) GetType() string {
+func (o *SendSlackMessageAction) GetType() SendSlackMessageActionType {
 	if o == nil {
-		var ret string
+		var ret SendSlackMessageActionType
 		return ret
 	}
 	return o.Type
@@ -77,7 +79,7 @@ func (o *SlackAction) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *SlackAction) GetTypeOk() (*string, bool) {
+func (o *SendSlackMessageAction) GetTypeOk() (*SendSlackMessageActionType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,12 +87,12 @@ func (o *SlackAction) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value.
-func (o *SlackAction) SetType(v string) {
+func (o *SendSlackMessageAction) SetType(v SendSlackMessageActionType) {
 	o.Type = v
 }
 
 // GetWorkspace returns the Workspace field value.
-func (o *SlackAction) GetWorkspace() string {
+func (o *SendSlackMessageAction) GetWorkspace() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -100,7 +102,7 @@ func (o *SlackAction) GetWorkspace() string {
 
 // GetWorkspaceOk returns a tuple with the Workspace field value
 // and a boolean to check if the value has been set.
-func (o *SlackAction) GetWorkspaceOk() (*string, bool) {
+func (o *SendSlackMessageAction) GetWorkspaceOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,12 +110,12 @@ func (o *SlackAction) GetWorkspaceOk() (*string, bool) {
 }
 
 // SetWorkspace sets field value.
-func (o *SlackAction) SetWorkspace(v string) {
+func (o *SendSlackMessageAction) SetWorkspace(v string) {
 	o.Workspace = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o SlackAction) MarshalJSON() ([]byte, error) {
+func (o SendSlackMessageAction) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -129,11 +131,11 @@ func (o SlackAction) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *SlackAction) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SendSlackMessageAction) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Channel   *string `json:"channel"`
-		Type      *string `json:"type"`
-		Workspace *string `json:"workspace"`
+		Channel   *string                     `json:"channel"`
+		Type      *SendSlackMessageActionType `json:"type"`
+		Workspace *string                     `json:"workspace"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -153,12 +155,22 @@ func (o *SlackAction) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Channel = *all.Channel
-	o.Type = *all.Type
+	if !all.Type.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
 	o.Workspace = *all.Workspace
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
