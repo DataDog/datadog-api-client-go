@@ -34,15 +34,15 @@ jobs:
           ref: ${{ github.event.pull_request.base.ref }}
           fetch-depth: 0
 
-      - rname: Release packages
+      - name: Release packages
         env:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
         shell: bash
         run: |
-          CHANGED_PACKAGE_JSON_FILES=$(git diff --diff-filter=MACR --name-only $BASE_SHA...$HEAD_SHA \
-            | grep -E 'package\.json$' \
+          CHANGED_VERSION_GO_FILES=$(git diff --diff-filter=MACR --name-only $BASE_SHA...$HEAD_SHA \
+            | grep -E 'version\.go$' \
             | xargs dirname \
             | sort \
             | uniq)
