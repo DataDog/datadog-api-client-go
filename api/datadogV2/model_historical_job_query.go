@@ -12,7 +12,7 @@ import (
 type HistoricalJobQuery struct {
 	// The aggregation type.
 	Aggregation *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
-	// Source of events, either logs or audit trail.
+	// Source of events, either logs, audit trail, or Datadog events.
 	DataSource *SecurityMonitoringStandardDataSource `json:"dataSource,omitempty"`
 	// Field for which the cardinality is measured. Sent as an array.
 	DistinctFields []string `json:"distinctFields,omitempty"`
