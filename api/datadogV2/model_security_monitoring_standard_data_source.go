@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SecurityMonitoringStandardDataSource Source of events, either logs or audit trail.
+// SecurityMonitoringStandardDataSource Source of events, either logs, audit trail, or Datadog events.
 type SecurityMonitoringStandardDataSource string
 
 // List of SecurityMonitoringStandardDataSource.
@@ -21,6 +21,7 @@ const (
 	SECURITYMONITORINGSTANDARDDATASOURCE_SPANS            SecurityMonitoringStandardDataSource = "spans"
 	SECURITYMONITORINGSTANDARDDATASOURCE_SECURITY_RUNTIME SecurityMonitoringStandardDataSource = "security_runtime"
 	SECURITYMONITORINGSTANDARDDATASOURCE_NETWORK          SecurityMonitoringStandardDataSource = "network"
+	SECURITYMONITORINGSTANDARDDATASOURCE_EVENTS           SecurityMonitoringStandardDataSource = "events"
 )
 
 var allowedSecurityMonitoringStandardDataSourceEnumValues = []SecurityMonitoringStandardDataSource{
@@ -30,6 +31,7 @@ var allowedSecurityMonitoringStandardDataSourceEnumValues = []SecurityMonitoring
 	SECURITYMONITORINGSTANDARDDATASOURCE_SPANS,
 	SECURITYMONITORINGSTANDARDDATASOURCE_SECURITY_RUNTIME,
 	SECURITYMONITORINGSTANDARDDATASOURCE_NETWORK,
+	SECURITYMONITORINGSTANDARDDATASOURCE_EVENTS,
 }
 
 // GetAllowedValues reeturns the list of possible values.
