@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 2.38.0/2025-05-27
+
+### Fixed
+* add `include` parameter to On-Call team rules test [#3111](https://github.com/DataDog/datadog-api-client-go/pull/3111)
+* fix On-Call spec [#3102](https://github.com/DataDog/datadog-api-client-go/pull/3102)
+* Make assertion target be int or string [#3093](https://github.com/DataDog/datadog-api-client-go/pull/3093)
+* Fix incorrect pattern for url [#3085](https://github.com/DataDog/datadog-api-client-go/pull/3085)
+* Make metadata optional for GCS destination [#3075](https://github.com/DataDog/datadog-api-client-go/pull/3075)
+* Remove isReadOnly default when creating dashboards [#3074](https://github.com/DataDog/datadog-api-client-go/pull/3074)
+
+### Added
+* Add support for Datadog Events as a data source for rules [#3106](https://github.com/DataDog/datadog-api-client-go/pull/3106)
+* Add public APIs to search DORA events [#3103](https://github.com/DataDog/datadog-api-client-go/pull/3103)
+* Adding endpoints to manage Resource Evaluation Filters [#3091](https://github.com/DataDog/datadog-api-client-go/pull/3091)
+* Add Sev0 as a supported incident severity [#3087](https://github.com/DataDog/datadog-api-client-go/pull/3087)
+* Share timerestriction object [#3084](https://github.com/DataDog/datadog-api-client-go/pull/3084)
+* add On-Call Paging spec [#3078](https://github.com/DataDog/datadog-api-client-go/pull/3078)
+* Add pagination method for NDM ListDevices. [#3072](https://github.com/DataDog/datadog-api-client-go/pull/3072)
+* Add On-Call Team Rules [#3070](https://github.com/DataDog/datadog-api-client-go/pull/3070)
+
 ## 2.37.1 / 2025-04-14
 
 ### Fixed
