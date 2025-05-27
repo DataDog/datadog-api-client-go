@@ -1,4 +1,4 @@
-// Set on-call team routing rules returns "OK" response
+// Set On-Call team routing rules returns "OK" response
 
 package main
 
@@ -26,9 +26,9 @@ func main() {
 					{
 						Actions: []datadogV2.RoutingRuleAction{
 							datadogV2.RoutingRuleAction{
-								SlackAction: &datadogV2.SlackAction{
+								SendSlackMessageAction: &datadogV2.SendSlackMessageAction{
 									Channel:   "channel",
-									Type:      "send_slack_message",
+									Type:      datadogV2.SENDSLACKMESSAGEACTIONTYPE_SEND_SLACK_MESSAGE,
 									Workspace: "workspace",
 								}},
 						},
@@ -50,7 +50,6 @@ func main() {
 								},
 							},
 						},
-						Urgency: datadogV2.URGENCY_HIGH.Ptr(),
 					},
 					{
 						PolicyId: datadog.PtrString(EscalationPolicyDataID),
@@ -67,7 +66,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewOnCallApi(apiClient)
-	resp, r, err := api.SetOnCallTeamRoutingRules(ctx, DdTeamDataID, body, *datadogV2.NewSetOnCallTeamRoutingRulesOptionalParameters())
+	resp, r, err := api.SetOnCallTeamRoutingRules(ctx, DdTeamDataID, body, *datadogV2.NewSetOnCallTeamRoutingRulesOptionalParameters().WithInclude("rules"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OnCallApi.SetOnCallTeamRoutingRules`: %v\n", err)
