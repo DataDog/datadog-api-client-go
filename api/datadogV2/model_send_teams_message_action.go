@@ -10,27 +10,27 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TeamsAction Sends a message to a Microsoft Teams channel.
-type TeamsAction struct {
+// SendTeamsMessageAction Sends a message to a Microsoft Teams channel.
+type SendTeamsMessageAction struct {
 	// The channel ID.
 	Channel string `json:"channel"`
 	// The team ID.
 	Team string `json:"team"`
 	// The tenant ID.
 	Tenant string `json:"tenant"`
-	// Must be set to "send_teams_message".
-	Type string `json:"type"`
+	// Indicates that the action is a send Microsoft Teams message action.
+	Type SendTeamsMessageActionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTeamsAction instantiates a new TeamsAction object.
+// NewSendTeamsMessageAction instantiates a new SendTeamsMessageAction object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTeamsAction(channel string, team string, tenant string, typeVar string) *TeamsAction {
-	this := TeamsAction{}
+func NewSendTeamsMessageAction(channel string, team string, tenant string, typeVar SendTeamsMessageActionType) *SendTeamsMessageAction {
+	this := SendTeamsMessageAction{}
 	this.Channel = channel
 	this.Team = team
 	this.Tenant = tenant
@@ -38,16 +38,18 @@ func NewTeamsAction(channel string, team string, tenant string, typeVar string) 
 	return &this
 }
 
-// NewTeamsActionWithDefaults instantiates a new TeamsAction object.
+// NewSendTeamsMessageActionWithDefaults instantiates a new SendTeamsMessageAction object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTeamsActionWithDefaults() *TeamsAction {
-	this := TeamsAction{}
+func NewSendTeamsMessageActionWithDefaults() *SendTeamsMessageAction {
+	this := SendTeamsMessageAction{}
+	var typeVar SendTeamsMessageActionType = SENDTEAMSMESSAGEACTIONTYPE_SEND_TEAMS_MESSAGE
+	this.Type = typeVar
 	return &this
 }
 
 // GetChannel returns the Channel field value.
-func (o *TeamsAction) GetChannel() string {
+func (o *SendTeamsMessageAction) GetChannel() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -57,7 +59,7 @@ func (o *TeamsAction) GetChannel() string {
 
 // GetChannelOk returns a tuple with the Channel field value
 // and a boolean to check if the value has been set.
-func (o *TeamsAction) GetChannelOk() (*string, bool) {
+func (o *SendTeamsMessageAction) GetChannelOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,12 +67,12 @@ func (o *TeamsAction) GetChannelOk() (*string, bool) {
 }
 
 // SetChannel sets field value.
-func (o *TeamsAction) SetChannel(v string) {
+func (o *SendTeamsMessageAction) SetChannel(v string) {
 	o.Channel = v
 }
 
 // GetTeam returns the Team field value.
-func (o *TeamsAction) GetTeam() string {
+func (o *SendTeamsMessageAction) GetTeam() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -80,7 +82,7 @@ func (o *TeamsAction) GetTeam() string {
 
 // GetTeamOk returns a tuple with the Team field value
 // and a boolean to check if the value has been set.
-func (o *TeamsAction) GetTeamOk() (*string, bool) {
+func (o *SendTeamsMessageAction) GetTeamOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -88,12 +90,12 @@ func (o *TeamsAction) GetTeamOk() (*string, bool) {
 }
 
 // SetTeam sets field value.
-func (o *TeamsAction) SetTeam(v string) {
+func (o *SendTeamsMessageAction) SetTeam(v string) {
 	o.Team = v
 }
 
 // GetTenant returns the Tenant field value.
-func (o *TeamsAction) GetTenant() string {
+func (o *SendTeamsMessageAction) GetTenant() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -103,7 +105,7 @@ func (o *TeamsAction) GetTenant() string {
 
 // GetTenantOk returns a tuple with the Tenant field value
 // and a boolean to check if the value has been set.
-func (o *TeamsAction) GetTenantOk() (*string, bool) {
+func (o *SendTeamsMessageAction) GetTenantOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -111,14 +113,14 @@ func (o *TeamsAction) GetTenantOk() (*string, bool) {
 }
 
 // SetTenant sets field value.
-func (o *TeamsAction) SetTenant(v string) {
+func (o *SendTeamsMessageAction) SetTenant(v string) {
 	o.Tenant = v
 }
 
 // GetType returns the Type field value.
-func (o *TeamsAction) GetType() string {
+func (o *SendTeamsMessageAction) GetType() SendTeamsMessageActionType {
 	if o == nil {
-		var ret string
+		var ret SendTeamsMessageActionType
 		return ret
 	}
 	return o.Type
@@ -126,7 +128,7 @@ func (o *TeamsAction) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *TeamsAction) GetTypeOk() (*string, bool) {
+func (o *SendTeamsMessageAction) GetTypeOk() (*SendTeamsMessageActionType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -134,12 +136,12 @@ func (o *TeamsAction) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value.
-func (o *TeamsAction) SetType(v string) {
+func (o *SendTeamsMessageAction) SetType(v SendTeamsMessageActionType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TeamsAction) MarshalJSON() ([]byte, error) {
+func (o SendTeamsMessageAction) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -156,12 +158,12 @@ func (o TeamsAction) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TeamsAction) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SendTeamsMessageAction) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Channel *string `json:"channel"`
-		Team    *string `json:"team"`
-		Tenant  *string `json:"tenant"`
-		Type    *string `json:"type"`
+		Channel *string                     `json:"channel"`
+		Team    *string                     `json:"team"`
+		Tenant  *string                     `json:"tenant"`
+		Type    *SendTeamsMessageActionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -184,13 +186,23 @@ func (o *TeamsAction) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Channel = *all.Channel
 	o.Team = *all.Team
 	o.Tenant = *all.Tenant
-	o.Type = *all.Type
+	if !all.Type.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

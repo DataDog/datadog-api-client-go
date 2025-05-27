@@ -5,15 +5,13 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // RoutingRuleRelationshipsPolicy Defines the relationship that links a routing rule to a policy.
 type RoutingRuleRelationshipsPolicy struct {
 	// Represents the policy data reference, containing the policy's ID and resource type.
-	Data RoutingRuleRelationshipsPolicyData `json:"data"`
+	Data *RoutingRuleRelationshipsPolicyData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,9 +21,8 @@ type RoutingRuleRelationshipsPolicy struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRoutingRuleRelationshipsPolicy(data RoutingRuleRelationshipsPolicyData) *RoutingRuleRelationshipsPolicy {
+func NewRoutingRuleRelationshipsPolicy() *RoutingRuleRelationshipsPolicy {
 	this := RoutingRuleRelationshipsPolicy{}
-	this.Data = data
 	return &this
 }
 
@@ -37,27 +34,32 @@ func NewRoutingRuleRelationshipsPolicyWithDefaults() *RoutingRuleRelationshipsPo
 	return &this
 }
 
-// GetData returns the Data field value.
+// GetData returns the Data field value if set, zero value otherwise.
 func (o *RoutingRuleRelationshipsPolicy) GetData() RoutingRuleRelationshipsPolicyData {
-	if o == nil {
+	if o == nil || o.Data == nil {
 		var ret RoutingRuleRelationshipsPolicyData
 		return ret
 	}
-	return o.Data
+	return *o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RoutingRuleRelationshipsPolicy) GetDataOk() (*RoutingRuleRelationshipsPolicyData, bool) {
-	if o == nil {
+	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return &o.Data, true
+	return o.Data, true
 }
 
-// SetData sets field value.
+// HasData returns a boolean if a field has been set.
+func (o *RoutingRuleRelationshipsPolicy) HasData() bool {
+	return o != nil && o.Data != nil
+}
+
+// SetData gets a reference to the given RoutingRuleRelationshipsPolicyData and assigns it to the Data field.
 func (o *RoutingRuleRelationshipsPolicy) SetData(v RoutingRuleRelationshipsPolicyData) {
-	o.Data = v
+	o.Data = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -66,7 +68,9 @@ func (o RoutingRuleRelationshipsPolicy) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["data"] = o.Data
+	if o.Data != nil {
+		toSerialize["data"] = o.Data
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -77,13 +81,10 @@ func (o RoutingRuleRelationshipsPolicy) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RoutingRuleRelationshipsPolicy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *RoutingRuleRelationshipsPolicyData `json:"data"`
+		Data *RoutingRuleRelationshipsPolicyData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.Data == nil {
-		return fmt.Errorf("required field data missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -93,10 +94,10 @@ func (o *RoutingRuleRelationshipsPolicy) UnmarshalJSON(bytes []byte) (err error)
 	}
 
 	hasInvalidField := false
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Data = *all.Data
+	o.Data = all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
