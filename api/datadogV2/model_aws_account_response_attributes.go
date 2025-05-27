@@ -5,7 +5,6 @@
 package datadogV2
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
@@ -18,7 +17,7 @@ type AWSAccountResponseAttributes struct {
 	// AWS Authentication config.
 	AuthConfig *AWSAuthConfig `json:"auth_config,omitempty"`
 	// AWS Account ID.
-	AwsAccountId string `json:"aws_account_id"`
+	AwsAccountId *string `json:"aws_account_id,omitempty"`
 	// AWS partition your AWS account is scoped to. Defaults to `aws`.
 	// See [Partitions](https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/partitions.html) in the AWS documentation for more information.
 	AwsPartition *AWSAccountPartition `json:"aws_partition,omitempty"`
@@ -45,9 +44,8 @@ type AWSAccountResponseAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAWSAccountResponseAttributes(awsAccountId string) *AWSAccountResponseAttributes {
+func NewAWSAccountResponseAttributes() *AWSAccountResponseAttributes {
 	this := AWSAccountResponseAttributes{}
-	this.AwsAccountId = awsAccountId
 	return &this
 }
 
@@ -126,27 +124,32 @@ func (o *AWSAccountResponseAttributes) SetAuthConfig(v AWSAuthConfig) {
 	o.AuthConfig = &v
 }
 
-// GetAwsAccountId returns the AwsAccountId field value.
+// GetAwsAccountId returns the AwsAccountId field value if set, zero value otherwise.
 func (o *AWSAccountResponseAttributes) GetAwsAccountId() string {
-	if o == nil {
+	if o == nil || o.AwsAccountId == nil {
 		var ret string
 		return ret
 	}
-	return o.AwsAccountId
+	return *o.AwsAccountId
 }
 
-// GetAwsAccountIdOk returns a tuple with the AwsAccountId field value
+// GetAwsAccountIdOk returns a tuple with the AwsAccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AWSAccountResponseAttributes) GetAwsAccountIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.AwsAccountId == nil {
 		return nil, false
 	}
-	return &o.AwsAccountId, true
+	return o.AwsAccountId, true
 }
 
-// SetAwsAccountId sets field value.
+// HasAwsAccountId returns a boolean if a field has been set.
+func (o *AWSAccountResponseAttributes) HasAwsAccountId() bool {
+	return o != nil && o.AwsAccountId != nil
+}
+
+// SetAwsAccountId gets a reference to the given string and assigns it to the AwsAccountId field.
 func (o *AWSAccountResponseAttributes) SetAwsAccountId(v string) {
-	o.AwsAccountId = v
+	o.AwsAccountId = &v
 }
 
 // GetAwsPartition returns the AwsPartition field value if set, zero value otherwise.
@@ -385,7 +388,9 @@ func (o AWSAccountResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.AuthConfig != nil {
 		toSerialize["auth_config"] = o.AuthConfig
 	}
-	toSerialize["aws_account_id"] = o.AwsAccountId
+	if o.AwsAccountId != nil {
+		toSerialize["aws_account_id"] = o.AwsAccountId
+	}
 	if o.AwsPartition != nil {
 		toSerialize["aws_partition"] = o.AwsPartition
 	}
@@ -430,7 +435,7 @@ func (o *AWSAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AccountTags     datadog.NullableList[string] `json:"account_tags,omitempty"`
 		AuthConfig      *AWSAuthConfig               `json:"auth_config,omitempty"`
-		AwsAccountId    *string                      `json:"aws_account_id"`
+		AwsAccountId    *string                      `json:"aws_account_id,omitempty"`
 		AwsPartition    *AWSAccountPartition         `json:"aws_partition,omitempty"`
 		AwsRegions      *AWSRegions                  `json:"aws_regions,omitempty"`
 		CreatedAt       *time.Time                   `json:"created_at,omitempty"`
@@ -443,9 +448,6 @@ func (o *AWSAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.AwsAccountId == nil {
-		return fmt.Errorf("required field aws_account_id missing")
-	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"account_tags", "auth_config", "aws_account_id", "aws_partition", "aws_regions", "created_at", "logs_config", "metrics_config", "modified_at", "resources_config", "traces_config"})
@@ -456,7 +458,7 @@ func (o *AWSAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.AccountTags = all.AccountTags
 	o.AuthConfig = all.AuthConfig
-	o.AwsAccountId = *all.AwsAccountId
+	o.AwsAccountId = all.AwsAccountId
 	if all.AwsPartition != nil && !all.AwsPartition.IsValid() {
 		hasInvalidField = true
 	} else {
