@@ -48,7 +48,7 @@ jobs:
             | uniq)
 
           declare -A versions
-          for package in $CHANGED_PACKAGE_JSON_FILES; do
+          for package in $CHANGED_VERSION_GO_FILES; do
             base_version=$(git show $BASE_SHA:$package/version.go | grep "Version =" | sed 's/.*"\(.*\)".*/\1/')
             head_version=$(git show $HEAD_SHA:$package/version.go | grep "Version =" | sed 's/.*"\(.*\)".*/\1/')
 
