@@ -307,6 +307,7 @@
 //   - [On-CallApi.GetOnCallSchedule]
 //   - [On-CallApi.GetOnCallTeamRoutingRules]
 //   - [On-CallApi.GetScheduleOnCallUser]
+//   - [On-CallApi.GetTeamOnCallUsers]
 //   - [On-CallApi.SetOnCallTeamRoutingRules]
 //   - [On-CallApi.UpdateOnCallEscalationPolicy]
 //   - [On-CallApi.UpdateOnCallSchedule]
