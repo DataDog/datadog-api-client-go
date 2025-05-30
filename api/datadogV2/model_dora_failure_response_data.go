@@ -10,41 +10,41 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORAIncidentResponseData Response after receiving a DORA incident event.
-type DORAIncidentResponseData struct {
-	// The ID of the received DORA incident event.
+// DORAFailureResponseData Response after receiving a DORA failure event.
+type DORAFailureResponseData struct {
+	// The ID of the received DORA failure event.
 	Id string `json:"id"`
-	// JSON:API type for DORA incident events.
-	Type *DORAIncidentType `json:"type,omitempty"`
+	// JSON:API type for DORA failure events.
+	Type *DORAFailureType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDORAIncidentResponseData instantiates a new DORAIncidentResponseData object.
+// NewDORAFailureResponseData instantiates a new DORAFailureResponseData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDORAIncidentResponseData(id string) *DORAIncidentResponseData {
-	this := DORAIncidentResponseData{}
+func NewDORAFailureResponseData(id string) *DORAFailureResponseData {
+	this := DORAFailureResponseData{}
 	this.Id = id
-	var typeVar DORAIncidentType = DORAINCIDENTTYPE_DORA_INCIDENT
+	var typeVar DORAFailureType = DORAFAILURETYPE_DORA_FAILURE
 	this.Type = &typeVar
 	return &this
 }
 
-// NewDORAIncidentResponseDataWithDefaults instantiates a new DORAIncidentResponseData object.
+// NewDORAFailureResponseDataWithDefaults instantiates a new DORAFailureResponseData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDORAIncidentResponseDataWithDefaults() *DORAIncidentResponseData {
-	this := DORAIncidentResponseData{}
-	var typeVar DORAIncidentType = DORAINCIDENTTYPE_DORA_INCIDENT
+func NewDORAFailureResponseDataWithDefaults() *DORAFailureResponseData {
+	this := DORAFailureResponseData{}
+	var typeVar DORAFailureType = DORAFAILURETYPE_DORA_FAILURE
 	this.Type = &typeVar
 	return &this
 }
 
 // GetId returns the Id field value.
-func (o *DORAIncidentResponseData) GetId() string {
+func (o *DORAFailureResponseData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -54,7 +54,7 @@ func (o *DORAIncidentResponseData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentResponseData) GetIdOk() (*string, bool) {
+func (o *DORAFailureResponseData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,14 +62,14 @@ func (o *DORAIncidentResponseData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *DORAIncidentResponseData) SetId(v string) {
+func (o *DORAFailureResponseData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *DORAIncidentResponseData) GetType() DORAIncidentType {
+func (o *DORAFailureResponseData) GetType() DORAFailureType {
 	if o == nil || o.Type == nil {
-		var ret DORAIncidentType
+		var ret DORAFailureType
 		return ret
 	}
 	return *o.Type
@@ -77,7 +77,7 @@ func (o *DORAIncidentResponseData) GetType() DORAIncidentType {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentResponseData) GetTypeOk() (*DORAIncidentType, bool) {
+func (o *DORAFailureResponseData) GetTypeOk() (*DORAFailureType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -85,17 +85,17 @@ func (o *DORAIncidentResponseData) GetTypeOk() (*DORAIncidentType, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *DORAIncidentResponseData) HasType() bool {
+func (o *DORAFailureResponseData) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
-// SetType gets a reference to the given DORAIncidentType and assigns it to the Type field.
-func (o *DORAIncidentResponseData) SetType(v DORAIncidentType) {
+// SetType gets a reference to the given DORAFailureType and assigns it to the Type field.
+func (o *DORAFailureResponseData) SetType(v DORAFailureType) {
 	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DORAIncidentResponseData) MarshalJSON() ([]byte, error) {
+func (o DORAFailureResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -112,10 +112,10 @@ func (o DORAIncidentResponseData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DORAIncidentResponseData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DORAFailureResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string           `json:"id"`
-		Type *DORAIncidentType `json:"type,omitempty"`
+		Id   *string          `json:"id"`
+		Type *DORAFailureType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

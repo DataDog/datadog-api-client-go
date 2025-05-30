@@ -135,6 +135,7 @@
 //   - [ContainerImagesApi.ListContainerImages]
 //   - [ContainersApi.ListContainers]
 //   - [DORAMetricsApi.CreateDORADeployment]
+//   - [DORAMetricsApi.CreateDORAFailure]
 //   - [DORAMetricsApi.CreateDORAIncident]
 //   - [DORAMetricsApi.GetDORADeployment]
 //   - [DORAMetricsApi.GetDORAFailure]
