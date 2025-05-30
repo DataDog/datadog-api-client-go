@@ -17,6 +17,8 @@ import (
 	client "github.com/DataDog/datadog-api-client-go/v2"
 )
 
+//go:generate mockgen -source=./configuration.go -destination=../../tests/api/mocks/configuration.go -package=mocks
+
 // contextKeys are used to identify the type of value in the context.
 // Since these are string, it is possible to get a short description of the
 // context key for logging and debugging using key.String().
@@ -39,6 +41,9 @@ var (
 
 	// ContextAPIKeys takes a string apikey as authentication for the request
 	ContextAPIKeys = contextKey("apiKeys")
+
+	// ContextDelegatedToken takes a string delegated token as authentication for the request
+	ContextDelegatedToken = contextKey("delegatedToken")
 
 	// ContextHttpSignatureAuth takes HttpSignatureAuth as authentication for the request.
 	ContextHttpSignatureAuth = contextKey("httpsignature")
@@ -66,6 +71,34 @@ type BasicAuth struct {
 type APIKey struct {
 	Key    string
 	Prefix string
+}
+
+type DelegatedTokenCredentials struct {
+	OrgUUID        string
+	DelegatedToken string
+	DelegatedProof string
+	Expiration     time.Time
+}
+
+func NewDefaultDelegatedTokenCredentials() (*DelegatedTokenCredentials, error) {
+	if orgUUID, ok := os.LookupEnv("DD_ORG_UUID"); ok {
+		return &DelegatedTokenCredentials{
+			OrgUUID: orgUUID,
+		}, nil
+	}
+	return nil, fmt.Errorf("DD_ORG_UUID environment variable not set")
+}
+
+// DelegatedTokenConfig provides cloud provider based authentication to a request passed via context using ContextDelegatedToken.
+type DelegatedTokenConfig struct {
+	DelegatedTokenCredentials
+	ProviderAuth DelegatedTokenProvider
+	Provider     string
+}
+
+// DelegatedTokenProvider is an interface for getting a delegated token utilizing different methods.
+type DelegatedTokenProvider interface {
+	Authenticate(ctx context.Context) (*DelegatedTokenCredentials, error)
 }
 
 // ServerVariable stores the information about a server variable.
@@ -113,7 +146,7 @@ type RetryConfiguration struct {
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader: make(map[string]string),
-		UserAgent:     getUserAgent(),
+		UserAgent:     GetUserAgent(),
 		Debug:         false,
 		Compress:      true,
 		Servers: ServerConfigurations{
@@ -761,7 +794,7 @@ func (c *Configuration) IsUnstableOperationEnabled(operation string) bool {
 	return false
 }
 
-func getUserAgent() string {
+func GetUserAgent() string {
 	return fmt.Sprintf(
 		"datadog-api-client-go/%s (go %s; os %s; arch %s)",
 		client.Version,

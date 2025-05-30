@@ -8,6 +8,7 @@ require (
 	github.com/DataDog/dd-sdk-go-testing v0.0.3
 	github.com/cucumber/messages-go/v12 v12.0.0
 	github.com/go-bdd/gobdd v1.1.4-0.20211209204431-ca566a78d075
+	github.com/golang/mock v1.6.0
 	github.com/jonboulle/clockwork v0.1.0
 	github.com/stretchr/testify v1.7.0
 	golang.org/x/net v0.36.0
