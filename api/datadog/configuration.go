@@ -532,8 +532,6 @@ func NewConfiguration() *Configuration {
 			"v2.CancelDataDeletionRequest":     false,
 			"v2.CreateDataDeletionRequest":     false,
 			"v2.GetDataDeletionRequests":       false,
-			"v2.CreateDORADeployment":          false,
-			"v2.CreateDORAIncident":            false,
 			"v2.CreateIncident":                false,
 			"v2.CreateIncidentIntegration":     false,
 			"v2.CreateIncidentTodo":            false,

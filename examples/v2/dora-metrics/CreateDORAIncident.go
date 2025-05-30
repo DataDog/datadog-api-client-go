@@ -13,20 +13,21 @@ import (
 )
 
 func main() {
-	body := datadogV2.DORAIncidentRequest{
-		Data: datadogV2.DORAIncidentRequestData{
-			Attributes: datadogV2.DORAIncidentRequestAttributes{
-				FinishedAt: datadog.PtrInt64(1707842944600000000),
+	body := datadogV2.DORAFailureRequest{
+		Data: datadogV2.DORAFailureRequestData{
+			Attributes: datadogV2.DORAFailureRequestAttributes{
+				Env:        datadog.PtrString("staging"),
+				FinishedAt: datadog.PtrInt64(1693491984000000000),
 				Git: &datadogV2.DORAGitInfo{
 					CommitSha:     "66adc9350f2cc9b250b69abddab733dd55e1a588",
 					RepositoryUrl: "https://github.com/organization/example-repository",
 				},
-				Name: datadog.PtrString("Webserver is down failing all requests"),
+				Name: datadog.PtrString("Webserver is down failing all requests."),
 				Services: []string{
 					"shopist",
 				},
 				Severity:  datadog.PtrString("High"),
-				StartedAt: 1707842944500000000,
+				StartedAt: 1693491974000000000,
 				Team:      datadog.PtrString("backend"),
 				Version:   datadog.PtrString("v1.12.07"),
 			},
@@ -34,7 +35,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.CreateDORAIncident", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewDORAMetricsApi(apiClient)
 	resp, r, err := api.CreateDORAIncident(ctx, body)

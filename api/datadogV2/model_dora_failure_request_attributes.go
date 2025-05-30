@@ -10,23 +10,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORAIncidentRequestAttributes Attributes to create a DORA incident event.
-type DORAIncidentRequestAttributes struct {
-	// Environment name that was impacted by the incident.
+// DORAFailureRequestAttributes Attributes to create a DORA failure event.
+type DORAFailureRequestAttributes struct {
+	// Environment name that was impacted by the failure.
 	Env *string `json:"env,omitempty"`
-	// Unix timestamp when the incident finished. It must be in nanoseconds, milliseconds, or seconds, and it should not be older than 1 hour.
+	// Unix timestamp when the failure finished. It must be in nanoseconds, milliseconds, or seconds, and it should not be older than 1 hour.
 	FinishedAt *int64 `json:"finished_at,omitempty"`
 	// Git info for DORA Metrics events.
 	Git *DORAGitInfo `json:"git,omitempty"`
-	// Incident ID. Must have at least 16 characters. Required to update a previously sent incident.
+	// Failure ID. Must have at least 16 characters. Required to update a previously sent failure.
 	Id *string `json:"id,omitempty"`
-	// Incident name.
+	// Failure name.
 	Name *string `json:"name,omitempty"`
-	// Service names impacted by the incident. If possible, use names registered in the Service Catalog. Required when the team field is not provided.
+	// Service names impacted by the failure. If possible, use names registered in the Service Catalog. Required when the team field is not provided.
 	Services []string `json:"services,omitempty"`
-	// Incident severity.
+	// Failure severity.
 	Severity *string `json:"severity,omitempty"`
-	// Unix timestamp when the incident started. It must be in nanoseconds, milliseconds, or seconds.
+	// Unix timestamp when the failure started. It must be in nanoseconds, milliseconds, or seconds.
 	StartedAt int64 `json:"started_at"`
 	// Name of the team owning the services impacted. If possible, use team handles registered in Datadog. Required when the services field is not provided.
 	Team *string `json:"team,omitempty"`
@@ -37,26 +37,26 @@ type DORAIncidentRequestAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDORAIncidentRequestAttributes instantiates a new DORAIncidentRequestAttributes object.
+// NewDORAFailureRequestAttributes instantiates a new DORAFailureRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDORAIncidentRequestAttributes(startedAt int64) *DORAIncidentRequestAttributes {
-	this := DORAIncidentRequestAttributes{}
+func NewDORAFailureRequestAttributes(startedAt int64) *DORAFailureRequestAttributes {
+	this := DORAFailureRequestAttributes{}
 	this.StartedAt = startedAt
 	return &this
 }
 
-// NewDORAIncidentRequestAttributesWithDefaults instantiates a new DORAIncidentRequestAttributes object.
+// NewDORAFailureRequestAttributesWithDefaults instantiates a new DORAFailureRequestAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDORAIncidentRequestAttributesWithDefaults() *DORAIncidentRequestAttributes {
-	this := DORAIncidentRequestAttributes{}
+func NewDORAFailureRequestAttributesWithDefaults() *DORAFailureRequestAttributes {
+	this := DORAFailureRequestAttributes{}
 	return &this
 }
 
 // GetEnv returns the Env field value if set, zero value otherwise.
-func (o *DORAIncidentRequestAttributes) GetEnv() string {
+func (o *DORAFailureRequestAttributes) GetEnv() string {
 	if o == nil || o.Env == nil {
 		var ret string
 		return ret
@@ -66,7 +66,7 @@ func (o *DORAIncidentRequestAttributes) GetEnv() string {
 
 // GetEnvOk returns a tuple with the Env field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentRequestAttributes) GetEnvOk() (*string, bool) {
+func (o *DORAFailureRequestAttributes) GetEnvOk() (*string, bool) {
 	if o == nil || o.Env == nil {
 		return nil, false
 	}
@@ -74,17 +74,17 @@ func (o *DORAIncidentRequestAttributes) GetEnvOk() (*string, bool) {
 }
 
 // HasEnv returns a boolean if a field has been set.
-func (o *DORAIncidentRequestAttributes) HasEnv() bool {
+func (o *DORAFailureRequestAttributes) HasEnv() bool {
 	return o != nil && o.Env != nil
 }
 
 // SetEnv gets a reference to the given string and assigns it to the Env field.
-func (o *DORAIncidentRequestAttributes) SetEnv(v string) {
+func (o *DORAFailureRequestAttributes) SetEnv(v string) {
 	o.Env = &v
 }
 
 // GetFinishedAt returns the FinishedAt field value if set, zero value otherwise.
-func (o *DORAIncidentRequestAttributes) GetFinishedAt() int64 {
+func (o *DORAFailureRequestAttributes) GetFinishedAt() int64 {
 	if o == nil || o.FinishedAt == nil {
 		var ret int64
 		return ret
@@ -94,7 +94,7 @@ func (o *DORAIncidentRequestAttributes) GetFinishedAt() int64 {
 
 // GetFinishedAtOk returns a tuple with the FinishedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentRequestAttributes) GetFinishedAtOk() (*int64, bool) {
+func (o *DORAFailureRequestAttributes) GetFinishedAtOk() (*int64, bool) {
 	if o == nil || o.FinishedAt == nil {
 		return nil, false
 	}
@@ -102,17 +102,17 @@ func (o *DORAIncidentRequestAttributes) GetFinishedAtOk() (*int64, bool) {
 }
 
 // HasFinishedAt returns a boolean if a field has been set.
-func (o *DORAIncidentRequestAttributes) HasFinishedAt() bool {
+func (o *DORAFailureRequestAttributes) HasFinishedAt() bool {
 	return o != nil && o.FinishedAt != nil
 }
 
 // SetFinishedAt gets a reference to the given int64 and assigns it to the FinishedAt field.
-func (o *DORAIncidentRequestAttributes) SetFinishedAt(v int64) {
+func (o *DORAFailureRequestAttributes) SetFinishedAt(v int64) {
 	o.FinishedAt = &v
 }
 
 // GetGit returns the Git field value if set, zero value otherwise.
-func (o *DORAIncidentRequestAttributes) GetGit() DORAGitInfo {
+func (o *DORAFailureRequestAttributes) GetGit() DORAGitInfo {
 	if o == nil || o.Git == nil {
 		var ret DORAGitInfo
 		return ret
@@ -122,7 +122,7 @@ func (o *DORAIncidentRequestAttributes) GetGit() DORAGitInfo {
 
 // GetGitOk returns a tuple with the Git field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentRequestAttributes) GetGitOk() (*DORAGitInfo, bool) {
+func (o *DORAFailureRequestAttributes) GetGitOk() (*DORAGitInfo, bool) {
 	if o == nil || o.Git == nil {
 		return nil, false
 	}
@@ -130,17 +130,17 @@ func (o *DORAIncidentRequestAttributes) GetGitOk() (*DORAGitInfo, bool) {
 }
 
 // HasGit returns a boolean if a field has been set.
-func (o *DORAIncidentRequestAttributes) HasGit() bool {
+func (o *DORAFailureRequestAttributes) HasGit() bool {
 	return o != nil && o.Git != nil
 }
 
 // SetGit gets a reference to the given DORAGitInfo and assigns it to the Git field.
-func (o *DORAIncidentRequestAttributes) SetGit(v DORAGitInfo) {
+func (o *DORAFailureRequestAttributes) SetGit(v DORAGitInfo) {
 	o.Git = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *DORAIncidentRequestAttributes) GetId() string {
+func (o *DORAFailureRequestAttributes) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -150,7 +150,7 @@ func (o *DORAIncidentRequestAttributes) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentRequestAttributes) GetIdOk() (*string, bool) {
+func (o *DORAFailureRequestAttributes) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -158,17 +158,17 @@ func (o *DORAIncidentRequestAttributes) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *DORAIncidentRequestAttributes) HasId() bool {
+func (o *DORAFailureRequestAttributes) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *DORAIncidentRequestAttributes) SetId(v string) {
+func (o *DORAFailureRequestAttributes) SetId(v string) {
 	o.Id = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *DORAIncidentRequestAttributes) GetName() string {
+func (o *DORAFailureRequestAttributes) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -178,7 +178,7 @@ func (o *DORAIncidentRequestAttributes) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentRequestAttributes) GetNameOk() (*string, bool) {
+func (o *DORAFailureRequestAttributes) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -186,17 +186,17 @@ func (o *DORAIncidentRequestAttributes) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *DORAIncidentRequestAttributes) HasName() bool {
+func (o *DORAFailureRequestAttributes) HasName() bool {
 	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *DORAIncidentRequestAttributes) SetName(v string) {
+func (o *DORAFailureRequestAttributes) SetName(v string) {
 	o.Name = &v
 }
 
 // GetServices returns the Services field value if set, zero value otherwise.
-func (o *DORAIncidentRequestAttributes) GetServices() []string {
+func (o *DORAFailureRequestAttributes) GetServices() []string {
 	if o == nil || o.Services == nil {
 		var ret []string
 		return ret
@@ -206,7 +206,7 @@ func (o *DORAIncidentRequestAttributes) GetServices() []string {
 
 // GetServicesOk returns a tuple with the Services field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentRequestAttributes) GetServicesOk() (*[]string, bool) {
+func (o *DORAFailureRequestAttributes) GetServicesOk() (*[]string, bool) {
 	if o == nil || o.Services == nil {
 		return nil, false
 	}
@@ -214,17 +214,17 @@ func (o *DORAIncidentRequestAttributes) GetServicesOk() (*[]string, bool) {
 }
 
 // HasServices returns a boolean if a field has been set.
-func (o *DORAIncidentRequestAttributes) HasServices() bool {
+func (o *DORAFailureRequestAttributes) HasServices() bool {
 	return o != nil && o.Services != nil
 }
 
 // SetServices gets a reference to the given []string and assigns it to the Services field.
-func (o *DORAIncidentRequestAttributes) SetServices(v []string) {
+func (o *DORAFailureRequestAttributes) SetServices(v []string) {
 	o.Services = v
 }
 
 // GetSeverity returns the Severity field value if set, zero value otherwise.
-func (o *DORAIncidentRequestAttributes) GetSeverity() string {
+func (o *DORAFailureRequestAttributes) GetSeverity() string {
 	if o == nil || o.Severity == nil {
 		var ret string
 		return ret
@@ -234,7 +234,7 @@ func (o *DORAIncidentRequestAttributes) GetSeverity() string {
 
 // GetSeverityOk returns a tuple with the Severity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentRequestAttributes) GetSeverityOk() (*string, bool) {
+func (o *DORAFailureRequestAttributes) GetSeverityOk() (*string, bool) {
 	if o == nil || o.Severity == nil {
 		return nil, false
 	}
@@ -242,17 +242,17 @@ func (o *DORAIncidentRequestAttributes) GetSeverityOk() (*string, bool) {
 }
 
 // HasSeverity returns a boolean if a field has been set.
-func (o *DORAIncidentRequestAttributes) HasSeverity() bool {
+func (o *DORAFailureRequestAttributes) HasSeverity() bool {
 	return o != nil && o.Severity != nil
 }
 
 // SetSeverity gets a reference to the given string and assigns it to the Severity field.
-func (o *DORAIncidentRequestAttributes) SetSeverity(v string) {
+func (o *DORAFailureRequestAttributes) SetSeverity(v string) {
 	o.Severity = &v
 }
 
 // GetStartedAt returns the StartedAt field value.
-func (o *DORAIncidentRequestAttributes) GetStartedAt() int64 {
+func (o *DORAFailureRequestAttributes) GetStartedAt() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -262,7 +262,7 @@ func (o *DORAIncidentRequestAttributes) GetStartedAt() int64 {
 
 // GetStartedAtOk returns a tuple with the StartedAt field value
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentRequestAttributes) GetStartedAtOk() (*int64, bool) {
+func (o *DORAFailureRequestAttributes) GetStartedAtOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -270,12 +270,12 @@ func (o *DORAIncidentRequestAttributes) GetStartedAtOk() (*int64, bool) {
 }
 
 // SetStartedAt sets field value.
-func (o *DORAIncidentRequestAttributes) SetStartedAt(v int64) {
+func (o *DORAFailureRequestAttributes) SetStartedAt(v int64) {
 	o.StartedAt = v
 }
 
 // GetTeam returns the Team field value if set, zero value otherwise.
-func (o *DORAIncidentRequestAttributes) GetTeam() string {
+func (o *DORAFailureRequestAttributes) GetTeam() string {
 	if o == nil || o.Team == nil {
 		var ret string
 		return ret
@@ -285,7 +285,7 @@ func (o *DORAIncidentRequestAttributes) GetTeam() string {
 
 // GetTeamOk returns a tuple with the Team field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentRequestAttributes) GetTeamOk() (*string, bool) {
+func (o *DORAFailureRequestAttributes) GetTeamOk() (*string, bool) {
 	if o == nil || o.Team == nil {
 		return nil, false
 	}
@@ -293,17 +293,17 @@ func (o *DORAIncidentRequestAttributes) GetTeamOk() (*string, bool) {
 }
 
 // HasTeam returns a boolean if a field has been set.
-func (o *DORAIncidentRequestAttributes) HasTeam() bool {
+func (o *DORAFailureRequestAttributes) HasTeam() bool {
 	return o != nil && o.Team != nil
 }
 
 // SetTeam gets a reference to the given string and assigns it to the Team field.
-func (o *DORAIncidentRequestAttributes) SetTeam(v string) {
+func (o *DORAFailureRequestAttributes) SetTeam(v string) {
 	o.Team = &v
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
-func (o *DORAIncidentRequestAttributes) GetVersion() string {
+func (o *DORAFailureRequestAttributes) GetVersion() string {
 	if o == nil || o.Version == nil {
 		var ret string
 		return ret
@@ -313,7 +313,7 @@ func (o *DORAIncidentRequestAttributes) GetVersion() string {
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentRequestAttributes) GetVersionOk() (*string, bool) {
+func (o *DORAFailureRequestAttributes) GetVersionOk() (*string, bool) {
 	if o == nil || o.Version == nil {
 		return nil, false
 	}
@@ -321,17 +321,17 @@ func (o *DORAIncidentRequestAttributes) GetVersionOk() (*string, bool) {
 }
 
 // HasVersion returns a boolean if a field has been set.
-func (o *DORAIncidentRequestAttributes) HasVersion() bool {
+func (o *DORAFailureRequestAttributes) HasVersion() bool {
 	return o != nil && o.Version != nil
 }
 
 // SetVersion gets a reference to the given string and assigns it to the Version field.
-func (o *DORAIncidentRequestAttributes) SetVersion(v string) {
+func (o *DORAFailureRequestAttributes) SetVersion(v string) {
 	o.Version = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DORAIncidentRequestAttributes) MarshalJSON() ([]byte, error) {
+func (o DORAFailureRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -372,7 +372,7 @@ func (o DORAIncidentRequestAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DORAIncidentRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DORAFailureRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Env        *string      `json:"env,omitempty"`
 		FinishedAt *int64       `json:"finished_at,omitempty"`
