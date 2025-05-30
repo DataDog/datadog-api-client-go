@@ -13,7 +13,7 @@ interactions:
         remote_addr: ""
         request_uri: ""
         body: |
-            {"type":"composite"}
+            {"draft_status":"published","type":"composite"}
         form: {}
         headers:
             Accept:
