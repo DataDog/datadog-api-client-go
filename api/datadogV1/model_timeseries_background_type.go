@@ -24,7 +24,7 @@ var allowedTimeseriesBackgroundTypeEnumValues = []TimeseriesBackgroundType{
 	TIMESERIESBACKGROUNDTYPE_AREA,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TimeseriesBackgroundType) GetAllowedValues() []TimeseriesBackgroundType {
 	return allowedTimeseriesBackgroundTypeEnumValues
 }

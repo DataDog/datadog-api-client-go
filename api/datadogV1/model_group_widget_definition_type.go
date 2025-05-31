@@ -22,7 +22,7 @@ var allowedGroupWidgetDefinitionTypeEnumValues = []GroupWidgetDefinitionType{
 	GROUPWIDGETDEFINITIONTYPE_GROUP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *GroupWidgetDefinitionType) GetAllowedValues() []GroupWidgetDefinitionType {
 	return allowedGroupWidgetDefinitionTypeEnumValues
 }

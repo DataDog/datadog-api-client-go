@@ -22,7 +22,7 @@ var allowedSyntheticsBasicAuthDigestTypeEnumValues = []SyntheticsBasicAuthDigest
 	SYNTHETICSBASICAUTHDIGESTTYPE_DIGEST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsBasicAuthDigestType) GetAllowedValues() []SyntheticsBasicAuthDigestType {
 	return allowedSyntheticsBasicAuthDigestTypeEnumValues
 }

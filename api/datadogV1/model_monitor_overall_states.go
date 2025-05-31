@@ -34,7 +34,7 @@ var allowedMonitorOverallStatesEnumValues = []MonitorOverallStates{
 	MONITOROVERALLSTATES_WARN,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MonitorOverallStates) GetAllowedValues() []MonitorOverallStates {
 	return allowedMonitorOverallStatesEnumValues
 }

@@ -22,7 +22,7 @@ var allowedTableWidgetTextFormatReplaceAllTypeEnumValues = []TableWidgetTextForm
 	TABLEWIDGETTEXTFORMATREPLACEALLTYPE_ALL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TableWidgetTextFormatReplaceAllType) GetAllowedValues() []TableWidgetTextFormatReplaceAllType {
 	return allowedTableWidgetTextFormatReplaceAllTypeEnumValues
 }

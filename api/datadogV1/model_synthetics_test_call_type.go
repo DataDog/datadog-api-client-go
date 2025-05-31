@@ -24,7 +24,7 @@ var allowedSyntheticsTestCallTypeEnumValues = []SyntheticsTestCallType{
 	SYNTHETICSTESTCALLTYPE_UNARY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsTestCallType) GetAllowedValues() []SyntheticsTestCallType {
 	return allowedSyntheticsTestCallTypeEnumValues
 }

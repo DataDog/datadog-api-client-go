@@ -22,7 +22,7 @@ var allowedMicrosoftTeamsTenantBasedHandleTypeEnumValues = []MicrosoftTeamsTenan
 	MICROSOFTTEAMSTENANTBASEDHANDLETYPE_TENANT_BASED_HANDLE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MicrosoftTeamsTenantBasedHandleType) GetAllowedValues() []MicrosoftTeamsTenantBasedHandleType {
 	return allowedMicrosoftTeamsTenantBasedHandleTypeEnumValues
 }

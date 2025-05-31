@@ -22,7 +22,7 @@ var allowedCloudWorkloadSecurityAgentRuleTypeEnumValues = []CloudWorkloadSecurit
 	CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CloudWorkloadSecurityAgentRuleType) GetAllowedValues() []CloudWorkloadSecurityAgentRuleType {
 	return allowedCloudWorkloadSecurityAgentRuleTypeEnumValues
 }

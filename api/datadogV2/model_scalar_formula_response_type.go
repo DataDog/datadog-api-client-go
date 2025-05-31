@@ -22,7 +22,7 @@ var allowedScalarFormulaResponseTypeEnumValues = []ScalarFormulaResponseType{
 	SCALARFORMULARESPONSETYPE_SCALAR_RESPONSE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ScalarFormulaResponseType) GetAllowedValues() []ScalarFormulaResponseType {
 	return allowedScalarFormulaResponseTypeEnumValues
 }

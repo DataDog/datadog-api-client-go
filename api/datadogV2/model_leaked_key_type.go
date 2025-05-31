@@ -22,7 +22,7 @@ var allowedLeakedKeyTypeEnumValues = []LeakedKeyType{
 	LEAKEDKEYTYPE_LEAKED_KEYS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LeakedKeyType) GetAllowedValues() []LeakedKeyType {
 	return allowedLeakedKeyTypeEnumValues
 }

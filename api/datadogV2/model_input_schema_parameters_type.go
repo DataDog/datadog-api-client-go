@@ -36,7 +36,7 @@ var allowedInputSchemaParametersTypeEnumValues = []InputSchemaParametersType{
 	INPUTSCHEMAPARAMETERSTYPE_ARRAY_OBJECT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *InputSchemaParametersType) GetAllowedValues() []InputSchemaParametersType {
 	return allowedInputSchemaParametersTypeEnumValues
 }

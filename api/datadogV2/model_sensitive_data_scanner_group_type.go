@@ -22,7 +22,7 @@ var allowedSensitiveDataScannerGroupTypeEnumValues = []SensitiveDataScannerGroup
 	SENSITIVEDATASCANNERGROUPTYPE_SENSITIVE_DATA_SCANNER_GROUP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SensitiveDataScannerGroupType) GetAllowedValues() []SensitiveDataScannerGroupType {
 	return allowedSensitiveDataScannerGroupTypeEnumValues
 }

@@ -54,7 +54,7 @@ var allowedSyntheticsMobileStepTypeEnumValues = []SyntheticsMobileStepType{
 	SYNTHETICSMOBILESTEPTYPE_WAIT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsMobileStepType) GetAllowedValues() []SyntheticsMobileStepType {
 	return allowedSyntheticsMobileStepTypeEnumValues
 }

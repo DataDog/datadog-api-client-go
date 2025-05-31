@@ -22,7 +22,7 @@ var allowedGetRuleVersionHistoryDataTypeEnumValues = []GetRuleVersionHistoryData
 	GETRULEVERSIONHISTORYDATATYPE_GETRULEVERSIONHISTORYRESPONSE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *GetRuleVersionHistoryDataType) GetAllowedValues() []GetRuleVersionHistoryDataType {
 	return allowedGetRuleVersionHistoryDataTypeEnumValues
 }

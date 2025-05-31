@@ -22,7 +22,7 @@ var allowedAuditLogsEventTypeEnumValues = []AuditLogsEventType{
 	AUDITLOGSEVENTTYPE_Audit,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AuditLogsEventType) GetAllowedValues() []AuditLogsEventType {
 	return allowedAuditLogsEventTypeEnumValues
 }

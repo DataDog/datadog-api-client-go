@@ -26,7 +26,7 @@ var allowedCase3rdPartyTicketStatusEnumValues = []Case3rdPartyTicketStatus{
 	CASE3RDPARTYTICKETSTATUS_FAILED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *Case3rdPartyTicketStatus) GetAllowedValues() []Case3rdPartyTicketStatus {
 	return allowedCase3rdPartyTicketStatusEnumValues
 }

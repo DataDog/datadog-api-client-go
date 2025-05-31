@@ -22,7 +22,7 @@ var allowedAwsCURConfigPostRequestTypeEnumValues = []AwsCURConfigPostRequestType
 	AWSCURCONFIGPOSTREQUESTTYPE_AWS_CUR_CONFIG_POST_REQUEST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AwsCURConfigPostRequestType) GetAllowedValues() []AwsCURConfigPostRequestType {
 	return allowedAwsCURConfigPostRequestTypeEnumValues
 }

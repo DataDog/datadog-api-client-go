@@ -22,7 +22,7 @@ var allowedEntityResponseIncludedOncallTypeEnumValues = []EntityResponseIncluded
 	ENTITYRESPONSEINCLUDEDONCALLTYPE_ONCALL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EntityResponseIncludedOncallType) GetAllowedValues() []EntityResponseIncludedOncallType {
 	return allowedEntityResponseIncludedOncallTypeEnumValues
 }

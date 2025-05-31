@@ -22,7 +22,7 @@ var allowedEntityResponseIncludedIncidentTypeEnumValues = []EntityResponseInclud
 	ENTITYRESPONSEINCLUDEDINCIDENTTYPE_INCIDENT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EntityResponseIncludedIncidentType) GetAllowedValues() []EntityResponseIncludedIncidentType {
 	return allowedEntityResponseIncludedIncidentTypeEnumValues
 }

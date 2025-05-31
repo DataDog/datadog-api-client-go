@@ -22,7 +22,7 @@ var allowedObservabilityPipelineAddFieldsProcessorTypeEnumValues = []Observabili
 	OBSERVABILITYPIPELINEADDFIELDSPROCESSORTYPE_ADD_FIELDS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ObservabilityPipelineAddFieldsProcessorType) GetAllowedValues() []ObservabilityPipelineAddFieldsProcessorType {
 	return allowedObservabilityPipelineAddFieldsProcessorTypeEnumValues
 }

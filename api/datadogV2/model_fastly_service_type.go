@@ -22,7 +22,7 @@ var allowedFastlyServiceTypeEnumValues = []FastlyServiceType{
 	FASTLYSERVICETYPE_FASTLY_SERVICES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FastlyServiceType) GetAllowedValues() []FastlyServiceType {
 	return allowedFastlyServiceTypeEnumValues
 }

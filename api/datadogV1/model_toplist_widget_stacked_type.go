@@ -22,7 +22,7 @@ var allowedToplistWidgetStackedTypeEnumValues = []ToplistWidgetStackedType{
 	TOPLISTWIDGETSTACKEDTYPE_STACKED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ToplistWidgetStackedType) GetAllowedValues() []ToplistWidgetStackedType {
 	return allowedToplistWidgetStackedTypeEnumValues
 }

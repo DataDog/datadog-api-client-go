@@ -22,7 +22,7 @@ var allowedCustomDestinationForwardDestinationElasticsearchTypeEnumValues = []Cu
 	CUSTOMDESTINATIONFORWARDDESTINATIONELASTICSEARCHTYPE_ELASTICSEARCH,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CustomDestinationForwardDestinationElasticsearchType) GetAllowedValues() []CustomDestinationForwardDestinationElasticsearchType {
 	return allowedCustomDestinationForwardDestinationElasticsearchTypeEnumValues
 }

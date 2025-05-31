@@ -28,7 +28,7 @@ var allowedMetricCustomSpaceAggregationEnumValues = []MetricCustomSpaceAggregati
 	METRICCUSTOMSPACEAGGREGATION_SUM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricCustomSpaceAggregation) GetAllowedValues() []MetricCustomSpaceAggregation {
 	return allowedMetricCustomSpaceAggregationEnumValues
 }

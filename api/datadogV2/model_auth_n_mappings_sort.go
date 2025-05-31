@@ -44,7 +44,7 @@ var allowedAuthNMappingsSortEnumValues = []AuthNMappingsSort{
 	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_VALUE_DESCENDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AuthNMappingsSort) GetAllowedValues() []AuthNMappingsSort {
 	return allowedAuthNMappingsSortEnumValues
 }

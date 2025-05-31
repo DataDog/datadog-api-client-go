@@ -22,7 +22,7 @@ var allowedChangeEventCustomAttributesImpactedResourcesItemsTypeEnumValues = []C
 	CHANGEEVENTCUSTOMATTRIBUTESIMPACTEDRESOURCESITEMSTYPE_SERVICE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ChangeEventCustomAttributesImpactedResourcesItemsType) GetAllowedValues() []ChangeEventCustomAttributesImpactedResourcesItemsType {
 	return allowedChangeEventCustomAttributesImpactedResourcesItemsTypeEnumValues
 }

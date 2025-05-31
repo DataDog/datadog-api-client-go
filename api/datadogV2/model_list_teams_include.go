@@ -24,7 +24,7 @@ var allowedListTeamsIncludeEnumValues = []ListTeamsInclude{
 	LISTTEAMSINCLUDE_USER_TEAM_PERMISSIONS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ListTeamsInclude) GetAllowedValues() []ListTeamsInclude {
 	return allowedListTeamsIncludeEnumValues
 }

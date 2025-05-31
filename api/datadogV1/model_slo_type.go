@@ -26,7 +26,7 @@ var allowedSLOTypeEnumValues = []SLOType{
 	SLOTYPE_TIME_SLICE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SLOType) GetAllowedValues() []SLOType {
 	return allowedSLOTypeEnumValues
 }

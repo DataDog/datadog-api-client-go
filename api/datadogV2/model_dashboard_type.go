@@ -30,7 +30,7 @@ var allowedDashboardTypeEnumValues = []DashboardType{
 	DASHBOARDTYPE_HOST_TIMEBOARD,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DashboardType) GetAllowedValues() []DashboardType {
 	return allowedDashboardTypeEnumValues
 }

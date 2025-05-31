@@ -36,7 +36,7 @@ var allowedEventAlertTypeEnumValues = []EventAlertType{
 	EVENTALERTTYPE_SNAPSHOT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EventAlertType) GetAllowedValues() []EventAlertType {
 	return allowedEventAlertTypeEnumValues
 }

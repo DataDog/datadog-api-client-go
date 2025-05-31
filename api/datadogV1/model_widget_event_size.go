@@ -24,7 +24,7 @@ var allowedWidgetEventSizeEnumValues = []WidgetEventSize{
 	WIDGETEVENTSIZE_LARGE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetEventSize) GetAllowedValues() []WidgetEventSize {
 	return allowedWidgetEventSizeEnumValues
 }

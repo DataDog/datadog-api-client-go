@@ -34,7 +34,7 @@ var allowedSecurityMonitoringRuleDetectionMethodEnumValues = []SecurityMonitorin
 	SECURITYMONITORINGRULEDETECTIONMETHOD_ANOMALY_THRESHOLD,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringRuleDetectionMethod) GetAllowedValues() []SecurityMonitoringRuleDetectionMethod {
 	return allowedSecurityMonitoringRuleDetectionMethodEnumValues
 }

@@ -30,7 +30,7 @@ var allowedSyntheticsMobileStepParamsElementUserLocatorValuesItemsTypeEnumValues
 	SYNTHETICSMOBILESTEPPARAMSELEMENTUSERLOCATORVALUESITEMSTYPE_XPATH,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsMobileStepParamsElementUserLocatorValuesItemsType) GetAllowedValues() []SyntheticsMobileStepParamsElementUserLocatorValuesItemsType {
 	return allowedSyntheticsMobileStepParamsElementUserLocatorValuesItemsTypeEnumValues
 }

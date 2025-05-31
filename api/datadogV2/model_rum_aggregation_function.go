@@ -44,7 +44,7 @@ var allowedRUMAggregationFunctionEnumValues = []RUMAggregationFunction{
 	RUMAGGREGATIONFUNCTION_MEDIAN,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RUMAggregationFunction) GetAllowedValues() []RUMAggregationFunction {
 	return allowedRUMAggregationFunctionEnumValues
 }

@@ -28,7 +28,7 @@ var allowedCustomDestinationAttributeTagsRestrictionListTypeEnumValues = []Custo
 	CUSTOMDESTINATIONATTRIBUTETAGSRESTRICTIONLISTTYPE_BLOCK_LIST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CustomDestinationAttributeTagsRestrictionListType) GetAllowedValues() []CustomDestinationAttributeTagsRestrictionListType {
 	return allowedCustomDestinationAttributeTagsRestrictionListTypeEnumValues
 }

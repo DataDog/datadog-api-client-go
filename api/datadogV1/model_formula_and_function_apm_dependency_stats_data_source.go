@@ -22,7 +22,7 @@ var allowedFormulaAndFunctionApmDependencyStatsDataSourceEnumValues = []FormulaA
 	FORMULAANDFUNCTIONAPMDEPENDENCYSTATSDATASOURCE_APM_DEPENDENCY_STATS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *FormulaAndFunctionApmDependencyStatsDataSource) GetAllowedValues() []FormulaAndFunctionApmDependencyStatsDataSource {
 	return allowedFormulaAndFunctionApmDependencyStatsDataSourceEnumValues
 }

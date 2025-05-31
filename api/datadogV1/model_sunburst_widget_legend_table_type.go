@@ -24,7 +24,7 @@ var allowedSunburstWidgetLegendTableTypeEnumValues = []SunburstWidgetLegendTable
 	SUNBURSTWIDGETLEGENDTABLETYPE_NONE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SunburstWidgetLegendTableType) GetAllowedValues() []SunburstWidgetLegendTableType {
 	return allowedSunburstWidgetLegendTableTypeEnumValues
 }

@@ -22,7 +22,7 @@ var allowedMetricActiveConfigurationTypeEnumValues = []MetricActiveConfiguration
 	METRICACTIVECONFIGURATIONTYPE_ACTIVELY_QUERIED_CONFIGURATIONS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricActiveConfigurationType) GetAllowedValues() []MetricActiveConfigurationType {
 	return allowedMetricActiveConfigurationTypeEnumValues
 }

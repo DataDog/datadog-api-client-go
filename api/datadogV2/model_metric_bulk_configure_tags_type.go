@@ -22,7 +22,7 @@ var allowedMetricBulkConfigureTagsTypeEnumValues = []MetricBulkConfigureTagsType
 	METRICBULKCONFIGURETAGSTYPE_BULK_MANAGE_TAGS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricBulkConfigureTagsType) GetAllowedValues() []MetricBulkConfigureTagsType {
 	return allowedMetricBulkConfigureTagsTypeEnumValues
 }

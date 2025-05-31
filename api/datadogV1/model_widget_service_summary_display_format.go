@@ -26,7 +26,7 @@ var allowedWidgetServiceSummaryDisplayFormatEnumValues = []WidgetServiceSummaryD
 	WIDGETSERVICESUMMARYDISPLAYFORMAT_THREE_COLUMN,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetServiceSummaryDisplayFormat) GetAllowedValues() []WidgetServiceSummaryDisplayFormat {
 	return allowedWidgetServiceSummaryDisplayFormatEnumValues
 }

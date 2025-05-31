@@ -22,7 +22,7 @@ var allowedQueryValueWidgetDefinitionTypeEnumValues = []QueryValueWidgetDefiniti
 	QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *QueryValueWidgetDefinitionType) GetAllowedValues() []QueryValueWidgetDefinitionType {
 	return allowedQueryValueWidgetDefinitionTypeEnumValues
 }

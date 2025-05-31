@@ -32,7 +32,7 @@ var allowedOnMissingDataOptionEnumValues = []OnMissingDataOption{
 	ONMISSINGDATAOPTION_RESOLVE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *OnMissingDataOption) GetAllowedValues() []OnMissingDataOption {
 	return allowedOnMissingDataOptionEnumValues
 }

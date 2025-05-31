@@ -22,7 +22,7 @@ var allowedTopologyMapWidgetDefinitionTypeEnumValues = []TopologyMapWidgetDefini
 	TOPOLOGYMAPWIDGETDEFINITIONTYPE_TOPOLOGY_MAP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TopologyMapWidgetDefinitionType) GetAllowedValues() []TopologyMapWidgetDefinitionType {
 	return allowedTopologyMapWidgetDefinitionTypeEnumValues
 }

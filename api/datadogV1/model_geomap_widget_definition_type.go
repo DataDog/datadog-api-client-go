@@ -22,7 +22,7 @@ var allowedGeomapWidgetDefinitionTypeEnumValues = []GeomapWidgetDefinitionType{
 	GEOMAPWIDGETDEFINITIONTYPE_GEOMAP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *GeomapWidgetDefinitionType) GetAllowedValues() []GeomapWidgetDefinitionType {
 	return allowedGeomapWidgetDefinitionTypeEnumValues
 }

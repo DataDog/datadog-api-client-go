@@ -22,7 +22,7 @@ var allowedRumRetentionFilterTypeEnumValues = []RumRetentionFilterType{
 	RUMRETENTIONFILTERTYPE_RETENTION_FILTERS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RumRetentionFilterType) GetAllowedValues() []RumRetentionFilterType {
 	return allowedRumRetentionFilterTypeEnumValues
 }

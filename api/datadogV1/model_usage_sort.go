@@ -28,7 +28,7 @@ var allowedUsageSortEnumValues = []UsageSort{
 	USAGESORT_END_DATE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *UsageSort) GetAllowedValues() []UsageSort {
 	return allowedUsageSortEnumValues
 }

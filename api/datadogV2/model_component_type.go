@@ -60,7 +60,7 @@ var allowedComponentTypeEnumValues = []ComponentType{
 	COMPONENTTYPE_CALLOUTVALUE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ComponentType) GetAllowedValues() []ComponentType {
 	return allowedComponentTypeEnumValues
 }

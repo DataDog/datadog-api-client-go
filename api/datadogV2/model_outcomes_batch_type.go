@@ -22,7 +22,7 @@ var allowedOutcomesBatchTypeEnumValues = []OutcomesBatchType{
 	OUTCOMESBATCHTYPE_BATCHED_OUTCOME,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *OutcomesBatchType) GetAllowedValues() []OutcomesBatchType {
 	return allowedOutcomesBatchTypeEnumValues
 }

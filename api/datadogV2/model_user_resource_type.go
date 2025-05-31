@@ -22,7 +22,7 @@ var allowedUserResourceTypeEnumValues = []UserResourceType{
 	USERRESOURCETYPE_USER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *UserResourceType) GetAllowedValues() []UserResourceType {
 	return allowedUserResourceTypeEnumValues
 }

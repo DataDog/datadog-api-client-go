@@ -22,7 +22,7 @@ var allowedDistributionPointsTypeEnumValues = []DistributionPointsType{
 	DISTRIBUTIONPOINTSTYPE_DISTRIBUTION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DistributionPointsType) GetAllowedValues() []DistributionPointsType {
 	return allowedDistributionPointsTypeEnumValues
 }

@@ -62,7 +62,7 @@ var allowedApplicationSecurityWafCustomRuleConditionInputAddressEnumValues = []A
 	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_HTTP_CLIENT_IP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ApplicationSecurityWafCustomRuleConditionInputAddress) GetAllowedValues() []ApplicationSecurityWafCustomRuleConditionInputAddress {
 	return allowedApplicationSecurityWafCustomRuleConditionInputAddressEnumValues
 }

@@ -26,7 +26,7 @@ var allowedLogsArchiveEncryptionS3TypeEnumValues = []LogsArchiveEncryptionS3Type
 	LOGSARCHIVEENCRYPTIONS3TYPE_SSE_KMS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsArchiveEncryptionS3Type) GetAllowedValues() []LogsArchiveEncryptionS3Type {
 	return allowedLogsArchiveEncryptionS3TypeEnumValues
 }

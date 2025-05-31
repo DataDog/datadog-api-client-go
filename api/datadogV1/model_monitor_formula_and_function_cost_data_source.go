@@ -26,7 +26,7 @@ var allowedMonitorFormulaAndFunctionCostDataSourceEnumValues = []MonitorFormulaA
 	MONITORFORMULAANDFUNCTIONCOSTDATASOURCE_DATADOG_USAGE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MonitorFormulaAndFunctionCostDataSource) GetAllowedValues() []MonitorFormulaAndFunctionCostDataSource {
 	return allowedMonitorFormulaAndFunctionCostDataSourceEnumValues
 }

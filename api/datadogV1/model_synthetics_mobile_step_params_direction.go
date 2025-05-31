@@ -28,7 +28,7 @@ var allowedSyntheticsMobileStepParamsDirectionEnumValues = []SyntheticsMobileSte
 	SYNTHETICSMOBILESTEPPARAMSDIRECTION_RIGHT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsMobileStepParamsDirection) GetAllowedValues() []SyntheticsMobileStepParamsDirection {
 	return allowedSyntheticsMobileStepParamsDirectionEnumValues
 }

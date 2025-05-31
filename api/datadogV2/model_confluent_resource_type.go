@@ -22,7 +22,7 @@ var allowedConfluentResourceTypeEnumValues = []ConfluentResourceType{
 	CONFLUENTRESOURCETYPE_CONFLUENT_CLOUD_RESOURCES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ConfluentResourceType) GetAllowedValues() []ConfluentResourceType {
 	return allowedConfluentResourceTypeEnumValues
 }

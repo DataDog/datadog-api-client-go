@@ -26,7 +26,7 @@ var allowedNotifyEndStateEnumValues = []NotifyEndState{
 	NOTIFYENDSTATE_WARN,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *NotifyEndState) GetAllowedValues() []NotifyEndState {
 	return allowedNotifyEndStateEnumValues
 }

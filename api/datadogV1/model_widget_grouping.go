@@ -24,7 +24,7 @@ var allowedWidgetGroupingEnumValues = []WidgetGrouping{
 	WIDGETGROUPING_CLUSTER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetGrouping) GetAllowedValues() []WidgetGrouping {
 	return allowedWidgetGroupingEnumValues
 }

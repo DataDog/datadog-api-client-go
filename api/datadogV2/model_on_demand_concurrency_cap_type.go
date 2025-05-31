@@ -22,7 +22,7 @@ var allowedOnDemandConcurrencyCapTypeEnumValues = []OnDemandConcurrencyCapType{
 	ONDEMANDCONCURRENCYCAPTYPE_ON_DEMAND_CONCURRENCY_CAP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *OnDemandConcurrencyCapType) GetAllowedValues() []OnDemandConcurrencyCapType {
 	return allowedOnDemandConcurrencyCapTypeEnumValues
 }

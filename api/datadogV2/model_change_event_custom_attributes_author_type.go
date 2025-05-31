@@ -24,7 +24,7 @@ var allowedChangeEventCustomAttributesAuthorTypeEnumValues = []ChangeEventCustom
 	CHANGEEVENTCUSTOMATTRIBUTESAUTHORTYPE_SYSTEM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ChangeEventCustomAttributesAuthorType) GetAllowedValues() []ChangeEventCustomAttributesAuthorType {
 	return allowedChangeEventCustomAttributesAuthorTypeEnumValues
 }

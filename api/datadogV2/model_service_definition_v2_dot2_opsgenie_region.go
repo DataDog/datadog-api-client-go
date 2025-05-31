@@ -24,7 +24,7 @@ var allowedServiceDefinitionV2Dot2OpsgenieRegionEnumValues = []ServiceDefinition
 	SERVICEDEFINITIONV2DOT2OPSGENIEREGION_EU,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ServiceDefinitionV2Dot2OpsgenieRegion) GetAllowedValues() []ServiceDefinitionV2Dot2OpsgenieRegion {
 	return allowedServiceDefinitionV2Dot2OpsgenieRegionEnumValues
 }

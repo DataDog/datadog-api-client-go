@@ -22,7 +22,7 @@ var allowedSyntheticsAssertionJavascriptTypeEnumValues = []SyntheticsAssertionJa
 	SYNTHETICSASSERTIONJAVASCRIPTTYPE_JAVASCRIPT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsAssertionJavascriptType) GetAllowedValues() []SyntheticsAssertionJavascriptType {
 	return allowedSyntheticsAssertionJavascriptTypeEnumValues
 }

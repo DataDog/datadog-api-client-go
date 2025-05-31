@@ -22,7 +22,7 @@ var allowedCustomDestinationForwardDestinationHttpTypeEnumValues = []CustomDesti
 	CUSTOMDESTINATIONFORWARDDESTINATIONHTTPTYPE_HTTP,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CustomDestinationForwardDestinationHttpType) GetAllowedValues() []CustomDestinationForwardDestinationHttpType {
 	return allowedCustomDestinationForwardDestinationHttpTypeEnumValues
 }

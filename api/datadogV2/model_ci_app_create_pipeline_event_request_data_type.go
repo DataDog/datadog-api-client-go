@@ -22,7 +22,7 @@ var allowedCIAppCreatePipelineEventRequestDataTypeEnumValues = []CIAppCreatePipe
 	CIAPPCREATEPIPELINEEVENTREQUESTDATATYPE_CIPIPELINE_RESOURCE_REQUEST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CIAppCreatePipelineEventRequestDataType) GetAllowedValues() []CIAppCreatePipelineEventRequestDataType {
 	return allowedCIAppCreatePipelineEventRequestDataTypeEnumValues
 }

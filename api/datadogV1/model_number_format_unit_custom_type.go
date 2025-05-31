@@ -22,7 +22,7 @@ var allowedNumberFormatUnitCustomTypeEnumValues = []NumberFormatUnitCustomType{
 	NUMBERFORMATUNITCUSTOMTYPE_CUSTOM_UNIT_LABEL,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *NumberFormatUnitCustomType) GetAllowedValues() []NumberFormatUnitCustomType {
 	return allowedNumberFormatUnitCustomTypeEnumValues
 }

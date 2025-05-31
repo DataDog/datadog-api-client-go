@@ -45,7 +45,7 @@ var allowedSecurityMonitoringRuleMaxSignalDurationEnumValues = []SecurityMonitor
 	SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringRuleMaxSignalDuration) GetAllowedValues() []SecurityMonitoringRuleMaxSignalDuration {
 	return allowedSecurityMonitoringRuleMaxSignalDurationEnumValues
 }

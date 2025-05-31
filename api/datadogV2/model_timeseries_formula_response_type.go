@@ -22,7 +22,7 @@ var allowedTimeseriesFormulaResponseTypeEnumValues = []TimeseriesFormulaResponse
 	TIMESERIESFORMULARESPONSETYPE_TIMESERIES_RESPONSE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TimeseriesFormulaResponseType) GetAllowedValues() []TimeseriesFormulaResponseType {
 	return allowedTimeseriesFormulaResponseTypeEnumValues
 }

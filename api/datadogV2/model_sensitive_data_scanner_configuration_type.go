@@ -22,7 +22,7 @@ var allowedSensitiveDataScannerConfigurationTypeEnumValues = []SensitiveDataScan
 	SENSITIVEDATASCANNERCONFIGURATIONTYPE_SENSITIVE_DATA_SCANNER_CONFIGURATIONS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SensitiveDataScannerConfigurationType) GetAllowedValues() []SensitiveDataScannerConfigurationType {
 	return allowedSensitiveDataScannerConfigurationTypeEnumValues
 }

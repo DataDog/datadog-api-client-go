@@ -32,7 +32,7 @@ var allowedSyntheticsPatchTestOperationNameEnumValues = []SyntheticsPatchTestOpe
 	SYNTHETICSPATCHTESTOPERATIONNAME_TEST,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsPatchTestOperationName) GetAllowedValues() []SyntheticsPatchTestOperationName {
 	return allowedSyntheticsPatchTestOperationNameEnumValues
 }

@@ -22,7 +22,7 @@ var allowedAssetEntityTypeEnumValues = []AssetEntityType{
 	ASSETENTITYTYPE_ASSETS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AssetEntityType) GetAllowedValues() []AssetEntityType {
 	return allowedAssetEntityTypeEnumValues
 }

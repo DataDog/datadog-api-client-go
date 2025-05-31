@@ -26,7 +26,7 @@ var allowedRuleVersionUpdateTypeEnumValues = []RuleVersionUpdateType{
 	RULEVERSIONUPDATETYPE_DELETE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *RuleVersionUpdateType) GetAllowedValues() []RuleVersionUpdateType {
 	return allowedRuleVersionUpdateTypeEnumValues
 }

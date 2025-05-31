@@ -24,7 +24,7 @@ var allowedEventsSortTypeEnumValues = []EventsSortType{
 	EVENTSSORTTYPE_MEASURE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EventsSortType) GetAllowedValues() []EventsSortType {
 	return allowedEventsSortTypeEnumValues
 }

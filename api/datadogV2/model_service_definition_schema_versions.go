@@ -28,7 +28,7 @@ var allowedServiceDefinitionSchemaVersionsEnumValues = []ServiceDefinitionSchema
 	SERVICEDEFINITIONSCHEMAVERSIONS_V2_2,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ServiceDefinitionSchemaVersions) GetAllowedValues() []ServiceDefinitionSchemaVersions {
 	return allowedServiceDefinitionSchemaVersionsEnumValues
 }

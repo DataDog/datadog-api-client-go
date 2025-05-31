@@ -22,7 +22,7 @@ var allowedCloudConfigurationRuleTypeEnumValues = []CloudConfigurationRuleType{
 	CLOUDCONFIGURATIONRULETYPE_CLOUD_CONFIGURATION,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CloudConfigurationRuleType) GetAllowedValues() []CloudConfigurationRuleType {
 	return allowedCloudConfigurationRuleTypeEnumValues
 }

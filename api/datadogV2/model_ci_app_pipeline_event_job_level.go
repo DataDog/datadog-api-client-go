@@ -22,7 +22,7 @@ var allowedCIAppPipelineEventJobLevelEnumValues = []CIAppPipelineEventJobLevel{
 	CIAPPPIPELINEEVENTJOBLEVEL_JOB,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CIAppPipelineEventJobLevel) GetAllowedValues() []CIAppPipelineEventJobLevel {
 	return allowedCIAppPipelineEventJobLevelEnumValues
 }

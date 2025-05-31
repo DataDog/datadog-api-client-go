@@ -24,7 +24,7 @@ var allowedIncidentFieldAttributesSingleValueTypeEnumValues = []IncidentFieldAtt
 	INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_TEXTBOX,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IncidentFieldAttributesSingleValueType) GetAllowedValues() []IncidentFieldAttributesSingleValueType {
 	return allowedIncidentFieldAttributesSingleValueTypeEnumValues
 }

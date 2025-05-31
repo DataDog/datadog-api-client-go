@@ -30,7 +30,7 @@ var allowedSyntheticsLocalVariableParsingOptionsTypeEnumValues = []SyntheticsLoc
 	SYNTHETICSLOCALVARIABLEPARSINGOPTIONSTYPE_HTTP_STATUS_CODE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsLocalVariableParsingOptionsType) GetAllowedValues() []SyntheticsLocalVariableParsingOptionsType {
 	return allowedSyntheticsLocalVariableParsingOptionsTypeEnumValues
 }

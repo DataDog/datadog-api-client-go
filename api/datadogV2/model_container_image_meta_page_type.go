@@ -22,7 +22,7 @@ var allowedContainerImageMetaPageTypeEnumValues = []ContainerImageMetaPageType{
 	CONTAINERIMAGEMETAPAGETYPE_CURSOR_LIMIT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ContainerImageMetaPageType) GetAllowedValues() []ContainerImageMetaPageType {
 	return allowedContainerImageMetaPageTypeEnumValues
 }

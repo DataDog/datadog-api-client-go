@@ -30,7 +30,7 @@ var allowedCIAppPipelineLevelEnumValues = []CIAppPipelineLevel{
 	CIAPPPIPELINELEVEL_CUSTOM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CIAppPipelineLevel) GetAllowedValues() []CIAppPipelineLevel {
 	return allowedCIAppPipelineLevelEnumValues
 }

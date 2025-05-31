@@ -26,7 +26,7 @@ var allowedWidgetSummaryTypeEnumValues = []WidgetSummaryType{
 	WIDGETSUMMARYTYPE_COMBINED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetSummaryType) GetAllowedValues() []WidgetSummaryType {
 	return allowedWidgetSummaryTypeEnumValues
 }

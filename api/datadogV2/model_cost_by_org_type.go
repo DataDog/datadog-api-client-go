@@ -22,7 +22,7 @@ var allowedCostByOrgTypeEnumValues = []CostByOrgType{
 	COSTBYORGTYPE_COST_BY_ORG,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CostByOrgType) GetAllowedValues() []CostByOrgType {
 	return allowedCostByOrgTypeEnumValues
 }

@@ -22,7 +22,7 @@ var allowedCaseResourceTypeEnumValues = []CaseResourceType{
 	CASERESOURCETYPE_CASE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *CaseResourceType) GetAllowedValues() []CaseResourceType {
 	return allowedCaseResourceTypeEnumValues
 }

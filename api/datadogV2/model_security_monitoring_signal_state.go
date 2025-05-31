@@ -26,7 +26,7 @@ var allowedSecurityMonitoringSignalStateEnumValues = []SecurityMonitoringSignalS
 	SECURITYMONITORINGSIGNALSTATE_UNDER_REVIEW,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SecurityMonitoringSignalState) GetAllowedValues() []SecurityMonitoringSignalState {
 	return allowedSecurityMonitoringSignalStateEnumValues
 }

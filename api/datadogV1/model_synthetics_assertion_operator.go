@@ -50,7 +50,7 @@ var allowedSyntheticsAssertionOperatorEnumValues = []SyntheticsAssertionOperator
 	SYNTHETICSASSERTIONOPERATOR_IS_UNDEFINED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsAssertionOperator) GetAllowedValues() []SyntheticsAssertionOperator {
 	return allowedSyntheticsAssertionOperatorEnumValues
 }

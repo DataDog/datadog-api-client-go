@@ -32,7 +32,7 @@ var allowedWidgetAggregatorEnumValues = []WidgetAggregator{
 	WIDGETAGGREGATOR_PERCENTILE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *WidgetAggregator) GetAllowedValues() []WidgetAggregator {
 	return allowedWidgetAggregatorEnumValues
 }

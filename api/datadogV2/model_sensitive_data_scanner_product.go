@@ -28,7 +28,7 @@ var allowedSensitiveDataScannerProductEnumValues = []SensitiveDataScannerProduct
 	SENSITIVEDATASCANNERPRODUCT_APM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SensitiveDataScannerProduct) GetAllowedValues() []SensitiveDataScannerProduct {
 	return allowedSensitiveDataScannerProductEnumValues
 }

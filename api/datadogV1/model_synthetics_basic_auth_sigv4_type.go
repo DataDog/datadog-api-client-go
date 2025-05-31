@@ -22,7 +22,7 @@ var allowedSyntheticsBasicAuthSigv4TypeEnumValues = []SyntheticsBasicAuthSigv4Ty
 	SYNTHETICSBASICAUTHSIGV4TYPE_SIGV4,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsBasicAuthSigv4Type) GetAllowedValues() []SyntheticsBasicAuthSigv4Type {
 	return allowedSyntheticsBasicAuthSigv4TypeEnumValues
 }

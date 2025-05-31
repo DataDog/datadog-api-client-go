@@ -22,7 +22,7 @@ var allowedLogsSpanRemapperTypeEnumValues = []LogsSpanRemapperType{
 	LOGSSPANREMAPPERTYPE_SPAN_ID_REMAPPER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsSpanRemapperType) GetAllowedValues() []LogsSpanRemapperType {
 	return allowedLogsSpanRemapperTypeEnumValues
 }

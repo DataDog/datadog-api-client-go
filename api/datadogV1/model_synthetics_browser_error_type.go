@@ -24,7 +24,7 @@ var allowedSyntheticsBrowserErrorTypeEnumValues = []SyntheticsBrowserErrorType{
 	SYNTHETICSBROWSERERRORTYPE_JS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsBrowserErrorType) GetAllowedValues() []SyntheticsBrowserErrorType {
 	return allowedSyntheticsBrowserErrorTypeEnumValues
 }

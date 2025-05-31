@@ -34,7 +34,7 @@ var allowedSignalArchiveReasonEnumValues = []SignalArchiveReason{
 	SIGNALARCHIVEREASON_OTHER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SignalArchiveReason) GetAllowedValues() []SignalArchiveReason {
 	return allowedSignalArchiveReasonEnumValues
 }

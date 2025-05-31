@@ -22,7 +22,7 @@ var allowedTimeseriesWidgetDefinitionTypeEnumValues = []TimeseriesWidgetDefiniti
 	TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TimeseriesWidgetDefinitionType) GetAllowedValues() []TimeseriesWidgetDefinitionType {
 	return allowedTimeseriesWidgetDefinitionTypeEnumValues
 }

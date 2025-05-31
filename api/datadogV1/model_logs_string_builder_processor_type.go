@@ -22,7 +22,7 @@ var allowedLogsStringBuilderProcessorTypeEnumValues = []LogsStringBuilderProcess
 	LOGSSTRINGBUILDERPROCESSORTYPE_STRING_BUILDER_PROCESSOR,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsStringBuilderProcessorType) GetAllowedValues() []LogsStringBuilderProcessorType {
 	return allowedLogsStringBuilderProcessorTypeEnumValues
 }

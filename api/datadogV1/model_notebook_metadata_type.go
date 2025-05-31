@@ -30,7 +30,7 @@ var allowedNotebookMetadataTypeEnumValues = []NotebookMetadataType{
 	NOTEBOOKMETADATATYPE_REPORT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *NotebookMetadataType) GetAllowedValues() []NotebookMetadataType {
 	return allowedNotebookMetadataTypeEnumValues
 }

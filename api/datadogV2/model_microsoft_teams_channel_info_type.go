@@ -22,7 +22,7 @@ var allowedMicrosoftTeamsChannelInfoTypeEnumValues = []MicrosoftTeamsChannelInfo
 	MICROSOFTTEAMSCHANNELINFOTYPE_MS_TEAMS_CHANNEL_INFO,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MicrosoftTeamsChannelInfoType) GetAllowedValues() []MicrosoftTeamsChannelInfoType {
 	return allowedMicrosoftTeamsChannelInfoTypeEnumValues
 }

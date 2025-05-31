@@ -24,7 +24,7 @@ var allowedTreeMapSizeByEnumValues = []TreeMapSizeBy{
 	TREEMAPSIZEBY_PCT_MEM,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *TreeMapSizeBy) GetAllowedValues() []TreeMapSizeBy {
 	return allowedTreeMapSizeByEnumValues
 }

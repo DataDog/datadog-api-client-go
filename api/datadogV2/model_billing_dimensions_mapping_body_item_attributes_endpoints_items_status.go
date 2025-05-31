@@ -24,7 +24,7 @@ var allowedBillingDimensionsMappingBodyItemAttributesEndpointsItemsStatusEnumVal
 	BILLINGDIMENSIONSMAPPINGBODYITEMATTRIBUTESENDPOINTSITEMSSTATUS_NOT_FOUND,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *BillingDimensionsMappingBodyItemAttributesEndpointsItemsStatus) GetAllowedValues() []BillingDimensionsMappingBodyItemAttributesEndpointsItemsStatus {
 	return allowedBillingDimensionsMappingBodyItemAttributesEndpointsItemsStatusEnumValues
 }

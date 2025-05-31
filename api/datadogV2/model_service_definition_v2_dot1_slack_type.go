@@ -22,7 +22,7 @@ var allowedServiceDefinitionV2Dot1SlackTypeEnumValues = []ServiceDefinitionV2Dot
 	SERVICEDEFINITIONV2DOT1SLACKTYPE_SLACK,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *ServiceDefinitionV2Dot1SlackType) GetAllowedValues() []ServiceDefinitionV2Dot1SlackType {
 	return allowedServiceDefinitionV2Dot1SlackTypeEnumValues
 }

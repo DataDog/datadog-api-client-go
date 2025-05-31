@@ -22,7 +22,7 @@ var allowedLogsStatusRemapperTypeEnumValues = []LogsStatusRemapperType{
 	LOGSSTATUSREMAPPERTYPE_STATUS_REMAPPER,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *LogsStatusRemapperType) GetAllowedValues() []LogsStatusRemapperType {
 	return allowedLogsStatusRemapperTypeEnumValues
 }

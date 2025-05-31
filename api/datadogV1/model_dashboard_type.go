@@ -24,7 +24,7 @@ var allowedDashboardTypeEnumValues = []DashboardType{
 	DASHBOARDTYPE_CUSTOM_SCREENBOARD,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DashboardType) GetAllowedValues() []DashboardType {
 	return allowedDashboardTypeEnumValues
 }

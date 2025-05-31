@@ -24,7 +24,7 @@ var allowedEventPriorityEnumValues = []EventPriority{
 	EVENTPRIORITY_LOW,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *EventPriority) GetAllowedValues() []EventPriority {
 	return allowedEventPriorityEnumValues
 }

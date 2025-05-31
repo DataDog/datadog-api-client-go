@@ -24,7 +24,7 @@ var allowedIncidentSearchSortOrderEnumValues = []IncidentSearchSortOrder{
 	INCIDENTSEARCHSORTORDER_CREATED_DESCENDING,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *IncidentSearchSortOrder) GetAllowedValues() []IncidentSearchSortOrder {
 	return allowedIncidentSearchSortOrderEnumValues
 }

@@ -22,7 +22,7 @@ var allowedSyntheticsAssertionXPathOperatorEnumValues = []SyntheticsAssertionXPa
 	SYNTHETICSASSERTIONXPATHOPERATOR_VALIDATES_X_PATH,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsAssertionXPathOperator) GetAllowedValues() []SyntheticsAssertionXPathOperator {
 	return allowedSyntheticsAssertionXPathOperatorEnumValues
 }

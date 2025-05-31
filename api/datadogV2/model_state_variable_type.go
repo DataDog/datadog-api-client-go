@@ -22,7 +22,7 @@ var allowedStateVariableTypeEnumValues = []StateVariableType{
 	STATEVARIABLETYPE_STATEVARIABLE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *StateVariableType) GetAllowedValues() []StateVariableType {
 	return allowedStateVariableTypeEnumValues
 }

@@ -22,7 +22,7 @@ var allowedUsageReportsTypeEnumValues = []UsageReportsType{
 	USAGEREPORTSTYPE_REPORTS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *UsageReportsType) GetAllowedValues() []UsageReportsType {
 	return allowedUsageReportsTypeEnumValues
 }

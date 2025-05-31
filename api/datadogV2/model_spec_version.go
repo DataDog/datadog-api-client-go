@@ -32,7 +32,7 @@ var allowedSpecVersionEnumValues = []SpecVersion{
 	SPECVERSION_ONE_FIVE,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SpecVersion) GetAllowedValues() []SpecVersion {
 	return allowedSpecVersionEnumValues
 }

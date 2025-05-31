@@ -22,7 +22,7 @@ var allowedSpansMetricTypeEnumValues = []SpansMetricType{
 	SPANSMETRICTYPE_SPANS_METRICS,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SpansMetricType) GetAllowedValues() []SpansMetricType {
 	return allowedSpansMetricTypeEnumValues
 }

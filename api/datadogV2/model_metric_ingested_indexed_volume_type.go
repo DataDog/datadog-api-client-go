@@ -22,7 +22,7 @@ var allowedMetricIngestedIndexedVolumeTypeEnumValues = []MetricIngestedIndexedVo
 	METRICINGESTEDINDEXEDVOLUMETYPE_METRIC_VOLUMES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MetricIngestedIndexedVolumeType) GetAllowedValues() []MetricIngestedIndexedVolumeType {
 	return allowedMetricIngestedIndexedVolumeTypeEnumValues
 }

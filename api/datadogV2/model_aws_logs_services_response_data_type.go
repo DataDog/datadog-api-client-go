@@ -22,7 +22,7 @@ var allowedAWSLogsServicesResponseDataTypeEnumValues = []AWSLogsServicesResponse
 	AWSLOGSSERVICESRESPONSEDATATYPE_LOGS_SERVICES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *AWSLogsServicesResponseDataType) GetAllowedValues() []AWSLogsServicesResponseDataType {
 	return allowedAWSLogsServicesResponseDataTypeEnumValues
 }

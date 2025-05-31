@@ -28,7 +28,7 @@ var allowedSyntheticsTestOptionsMonitorOptionsNotificationPresetNameEnumValues =
 	SYNTHETICSTESTOPTIONSMONITOROPTIONSNOTIFICATIONPRESETNAME_HIDE_HANDLES,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *SyntheticsTestOptionsMonitorOptionsNotificationPresetName) GetAllowedValues() []SyntheticsTestOptionsMonitorOptionsNotificationPresetName {
 	return allowedSyntheticsTestOptionsMonitorOptionsNotificationPresetNameEnumValues
 }

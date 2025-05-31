@@ -22,7 +22,7 @@ var allowedDORAIncidentTypeEnumValues = []DORAIncidentType{
 	DORAINCIDENTTYPE_DORA_INCIDENT,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DORAIncidentType) GetAllowedValues() []DORAIncidentType {
 	return allowedDORAIncidentTypeEnumValues
 }

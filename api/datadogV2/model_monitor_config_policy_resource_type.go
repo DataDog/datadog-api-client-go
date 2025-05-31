@@ -22,7 +22,7 @@ var allowedMonitorConfigPolicyResourceTypeEnumValues = []MonitorConfigPolicyReso
 	MONITORCONFIGPOLICYRESOURCETYPE_MONITOR_CONFIG_POLICY,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *MonitorConfigPolicyResourceType) GetAllowedValues() []MonitorConfigPolicyResourceType {
 	return allowedMonitorConfigPolicyResourceTypeEnumValues
 }

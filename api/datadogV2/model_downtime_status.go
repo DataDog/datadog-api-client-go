@@ -28,7 +28,7 @@ var allowedDowntimeStatusEnumValues = []DowntimeStatus{
 	DOWNTIMESTATUS_SCHEDULED,
 }
 
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values.
 func (v *DowntimeStatus) GetAllowedValues() []DowntimeStatus {
 	return allowedDowntimeStatusEnumValues
 }
