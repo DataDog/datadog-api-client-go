@@ -1,4 +1,4 @@
-// Create on-call schedule returns "Created" response
+// Create On-Call schedule returns "Created" response
 
 package main
 
@@ -49,11 +49,7 @@ func main() {
 						RotationStart: time.Now().AddDate(0, 0, -5),
 					},
 				},
-				Name: "Example-On-Call",
-				Tags: []string{
-					"tag1",
-					"tag2",
-				},
+				Name:     "Example-On-Call",
 				TimeZone: "America/New_York",
 			},
 			Relationships: &datadogV2.ScheduleCreateRequestDataRelationships{

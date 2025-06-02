@@ -13,7 +13,8 @@ interactions:
     url: https://api.datadoghq.com/api/v2/workflows
   response:
     body: '{"errors":[{"detail":"workflow description exceeds size limit of [300]
-      characters"}]}'
+      characters"},{"detail":"spec is invalid"},{"detail":"no trigger found. At least
+      one trigger is required."}]}'
     code: 400
     duration: 0ms
     headers:

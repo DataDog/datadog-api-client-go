@@ -16,8 +16,6 @@ type TeamReference struct {
 	Attributes *TeamReferenceAttributes `json:"attributes,omitempty"`
 	// The team's unique identifier.
 	Id *string `json:"id,omitempty"`
-	// Collects the key relationship fields for a team reference, specifically on-call users.
-	Relationships *TeamReferenceRelationships `json:"relationships,omitempty"`
 	// Teams resource type.
 	Type TeamReferenceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -101,34 +99,6 @@ func (o *TeamReference) SetId(v string) {
 	o.Id = &v
 }
 
-// GetRelationships returns the Relationships field value if set, zero value otherwise.
-func (o *TeamReference) GetRelationships() TeamReferenceRelationships {
-	if o == nil || o.Relationships == nil {
-		var ret TeamReferenceRelationships
-		return ret
-	}
-	return *o.Relationships
-}
-
-// GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TeamReference) GetRelationshipsOk() (*TeamReferenceRelationships, bool) {
-	if o == nil || o.Relationships == nil {
-		return nil, false
-	}
-	return o.Relationships, true
-}
-
-// HasRelationships returns a boolean if a field has been set.
-func (o *TeamReference) HasRelationships() bool {
-	return o != nil && o.Relationships != nil
-}
-
-// SetRelationships gets a reference to the given TeamReferenceRelationships and assigns it to the Relationships field.
-func (o *TeamReference) SetRelationships(v TeamReferenceRelationships) {
-	o.Relationships = &v
-}
-
 // GetType returns the Type field value.
 func (o *TeamReference) GetType() TeamReferenceType {
 	if o == nil {
@@ -164,9 +134,6 @@ func (o TeamReference) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if o.Relationships != nil {
-		toSerialize["relationships"] = o.Relationships
-	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -178,10 +145,9 @@ func (o TeamReference) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamReference) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *TeamReferenceAttributes    `json:"attributes,omitempty"`
-		Id            *string                     `json:"id,omitempty"`
-		Relationships *TeamReferenceRelationships `json:"relationships,omitempty"`
-		Type          *TeamReferenceType          `json:"type"`
+		Attributes *TeamReferenceAttributes `json:"attributes,omitempty"`
+		Id         *string                  `json:"id,omitempty"`
+		Type       *TeamReferenceType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -191,7 +157,7 @@ func (o *TeamReference) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
 	} else {
 		return err
 	}
@@ -202,10 +168,6 @@ func (o *TeamReference) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.Relationships = all.Relationships
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

@@ -12,8 +12,6 @@ import (
 
 // EscalationPolicyUpdateRequestDataAttributes Defines the attributes that can be updated for an escalation policy, such as description, name, resolution behavior, retries, and steps.
 type EscalationPolicyUpdateRequestDataAttributes struct {
-	// Provides a detailed text description of the escalation policy.
-	Description *string `json:"description,omitempty"`
 	// Specifies the name of the escalation policy.
 	Name string `json:"name"`
 	// Indicates whether the page is automatically resolved when the policy ends.
@@ -44,34 +42,6 @@ func NewEscalationPolicyUpdateRequestDataAttributes(name string, steps []Escalat
 func NewEscalationPolicyUpdateRequestDataAttributesWithDefaults() *EscalationPolicyUpdateRequestDataAttributes {
 	this := EscalationPolicyUpdateRequestDataAttributes{}
 	return &this
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *EscalationPolicyUpdateRequestDataAttributes) GetDescription() string {
-	if o == nil || o.Description == nil {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EscalationPolicyUpdateRequestDataAttributes) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *EscalationPolicyUpdateRequestDataAttributes) HasDescription() bool {
-	return o != nil && o.Description != nil
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *EscalationPolicyUpdateRequestDataAttributes) SetDescription(v string) {
-	o.Description = &v
 }
 
 // GetName returns the Name field value.
@@ -182,9 +152,6 @@ func (o EscalationPolicyUpdateRequestDataAttributes) MarshalJSON() ([]byte, erro
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
 	toSerialize["name"] = o.Name
 	if o.ResolvePageOnPolicyEnd != nil {
 		toSerialize["resolve_page_on_policy_end"] = o.ResolvePageOnPolicyEnd
@@ -203,7 +170,6 @@ func (o EscalationPolicyUpdateRequestDataAttributes) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *EscalationPolicyUpdateRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description            *string                                                  `json:"description,omitempty"`
 		Name                   *string                                                  `json:"name"`
 		ResolvePageOnPolicyEnd *bool                                                    `json:"resolve_page_on_policy_end,omitempty"`
 		Retries                *int64                                                   `json:"retries,omitempty"`
@@ -220,11 +186,10 @@ func (o *EscalationPolicyUpdateRequestDataAttributes) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "name", "resolve_page_on_policy_end", "retries", "steps"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"name", "resolve_page_on_policy_end", "retries", "steps"})
 	} else {
 		return err
 	}
-	o.Description = all.Description
 	o.Name = *all.Name
 	o.ResolvePageOnPolicyEnd = all.ResolvePageOnPolicyEnd
 	o.Retries = all.Retries

@@ -1,4 +1,4 @@
-// Get on-call escalation policy returns "OK" response
+// Get On-Call escalation policy returns "OK" response
 
 package main
 
@@ -20,7 +20,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewOnCallApi(apiClient)
-	resp, r, err := api.GetOnCallEscalationPolicy(ctx, EscalationPolicyDataID, *datadogV2.NewGetOnCallEscalationPolicyOptionalParameters())
+	resp, r, err := api.GetOnCallEscalationPolicy(ctx, EscalationPolicyDataID, *datadogV2.NewGetOnCallEscalationPolicyOptionalParameters().WithInclude("steps.targets"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OnCallApi.GetOnCallEscalationPolicy`: %v\n", err)

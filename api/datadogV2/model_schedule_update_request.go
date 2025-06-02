@@ -12,7 +12,7 @@ import (
 
 // ScheduleUpdateRequest A top-level wrapper for a schedule update request, referring to the `data` object with the new details.
 type ScheduleUpdateRequest struct {
-	// Contains all data needed to update an existing schedule, including its attributes (such as name, layers, or tags) and any relationships to teams.
+	// Contains all data needed to update an existing schedule, including its attributes (such as name and time zone) and any relationships to teams.
 	Data ScheduleUpdateRequestData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,10 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// EscalationPolicyDataAttributes Defines the main attributes of an escalation policy, such as its description, name, and behavior on policy end.
+// EscalationPolicyDataAttributes Defines the main attributes of an escalation policy, such as its name and behavior on policy end.
 type EscalationPolicyDataAttributes struct {
-	// Provides a detailed text description of the escalation policy.
-	Description *string `json:"description,omitempty"`
 	// Specifies the name of the escalation policy.
 	Name string `json:"name"`
 	// Indicates whether the page is automatically resolved when the policy ends.
@@ -41,34 +39,6 @@ func NewEscalationPolicyDataAttributes(name string) *EscalationPolicyDataAttribu
 func NewEscalationPolicyDataAttributesWithDefaults() *EscalationPolicyDataAttributes {
 	this := EscalationPolicyDataAttributes{}
 	return &this
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *EscalationPolicyDataAttributes) GetDescription() string {
-	if o == nil || o.Description == nil {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EscalationPolicyDataAttributes) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *EscalationPolicyDataAttributes) HasDescription() bool {
-	return o != nil && o.Description != nil
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *EscalationPolicyDataAttributes) SetDescription(v string) {
-	o.Description = &v
 }
 
 // GetName returns the Name field value.
@@ -156,9 +126,6 @@ func (o EscalationPolicyDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
 	toSerialize["name"] = o.Name
 	if o.ResolvePageOnPolicyEnd != nil {
 		toSerialize["resolve_page_on_policy_end"] = o.ResolvePageOnPolicyEnd
@@ -176,7 +143,6 @@ func (o EscalationPolicyDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EscalationPolicyDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description            *string `json:"description,omitempty"`
 		Name                   *string `json:"name"`
 		ResolvePageOnPolicyEnd *bool   `json:"resolve_page_on_policy_end,omitempty"`
 		Retries                *int64  `json:"retries,omitempty"`
@@ -189,11 +155,10 @@ func (o *EscalationPolicyDataAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "name", "resolve_page_on_policy_end", "retries"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"name", "resolve_page_on_policy_end", "retries"})
 	} else {
 		return err
 	}
-	o.Description = all.Description
 	o.Name = *all.Name
 	o.ResolvePageOnPolicyEnd = all.ResolvePageOnPolicyEnd
 	o.Retries = all.Retries

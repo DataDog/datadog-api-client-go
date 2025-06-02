@@ -1,4 +1,4 @@
-// Delete on-call schedule returns "No Content" response
+// Delete On-Call schedule returns "No Content" response
 
 package main
 
