@@ -80,7 +80,7 @@ type DelegatedTokenCredentials struct {
 	Expiration     time.Time
 }
 
-func NewDefaultDelegatedTokenCredentials() (*DelegatedTokenCredentials, error) {
+func NewDelegatedTokenCredentialsFromEnv() (*DelegatedTokenCredentials, error) {
 	if orgUUID, ok := os.LookupEnv("DD_ORG_UUID"); ok {
 		return &DelegatedTokenCredentials{
 			OrgUUID: orgUUID,

@@ -488,12 +488,11 @@ func CallDelegatedTokenAuthenticate(ctx context.Context, config *DelegatedTokenC
 	creds, err := config.ProviderAuth.Authenticate(ctx)
 	if err != nil || creds == nil {
 		return nil, err
-	} else {
-		config.OrgUUID = creds.OrgUUID
-		config.DelegatedProof = creds.DelegatedProof
-		config.DelegatedToken = creds.DelegatedToken
-		config.Expiration = creds.Expiration
 	}
+	config.OrgUUID = creds.OrgUUID
+	config.DelegatedProof = creds.DelegatedProof
+	config.DelegatedToken = creds.DelegatedToken
+	config.Expiration = creds.Expiration
 	return config, nil
 }
 
