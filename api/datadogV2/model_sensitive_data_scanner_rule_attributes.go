@@ -21,6 +21,8 @@ type SensitiveDataScannerRuleAttributes struct {
 	IncludedKeywordConfiguration *SensitiveDataScannerIncludedKeywordConfiguration `json:"included_keyword_configuration,omitempty"`
 	// Whether or not the rule is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
+	// List of labels.
+	Labels []string `json:"labels,omitempty"`
 	// Name of the rule.
 	Name *string `json:"name,omitempty"`
 	// Attributes included in the scan. If namespaces is empty or missing, all attributes except excluded_namespaces are scanned.
@@ -166,6 +168,34 @@ func (o *SensitiveDataScannerRuleAttributes) HasIsEnabled() bool {
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
 func (o *SensitiveDataScannerRuleAttributes) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *SensitiveDataScannerRuleAttributes) GetLabels() []string {
+	if o == nil || o.Labels == nil {
+		var ret []string
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SensitiveDataScannerRuleAttributes) GetLabelsOk() (*[]string, bool) {
+	if o == nil || o.Labels == nil {
+		return nil, false
+	}
+	return &o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *SensitiveDataScannerRuleAttributes) HasLabels() bool {
+	return o != nil && o.Labels != nil
+}
+
+// SetLabels gets a reference to the given []string and assigns it to the Labels field.
+func (o *SensitiveDataScannerRuleAttributes) SetLabels(v []string) {
+	o.Labels = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -354,6 +384,9 @@ func (o SensitiveDataScannerRuleAttributes) MarshalJSON() ([]byte, error) {
 	if o.IsEnabled != nil {
 		toSerialize["is_enabled"] = o.IsEnabled
 	}
+	if o.Labels != nil {
+		toSerialize["labels"] = o.Labels
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
@@ -386,6 +419,7 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 		ExcludedNamespaces           []string                                          `json:"excluded_namespaces,omitempty"`
 		IncludedKeywordConfiguration *SensitiveDataScannerIncludedKeywordConfiguration `json:"included_keyword_configuration,omitempty"`
 		IsEnabled                    *bool                                             `json:"is_enabled,omitempty"`
+		Labels                       []string                                          `json:"labels,omitempty"`
 		Name                         *string                                           `json:"name,omitempty"`
 		Namespaces                   []string                                          `json:"namespaces,omitempty"`
 		Pattern                      *string                                           `json:"pattern,omitempty"`
@@ -398,7 +432,7 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "excluded_namespaces", "included_keyword_configuration", "is_enabled", "name", "namespaces", "pattern", "priority", "tags", "text_replacement"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "excluded_namespaces", "included_keyword_configuration", "is_enabled", "labels", "name", "namespaces", "pattern", "priority", "tags", "text_replacement"})
 	} else {
 		return err
 	}
@@ -411,6 +445,7 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	o.IncludedKeywordConfiguration = all.IncludedKeywordConfiguration
 	o.IsEnabled = all.IsEnabled
+	o.Labels = all.Labels
 	o.Name = all.Name
 	o.Namespaces = all.Namespaces
 	o.Pattern = all.Pattern
