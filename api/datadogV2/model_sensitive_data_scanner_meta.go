@@ -20,8 +20,12 @@ type SensitiveDataScannerMeta struct {
 	// (Deprecated) Whether or not scanned events have multi-pass enabled.
 	// Deprecated
 	HasMultiPassEnabled *bool `json:"has_multi_pass_enabled,omitempty"`
+	// Whether or not the sampling rate for products can be set to a float point number (as opposed to an integer).
+	IsFloatSamplingRateEnabled *bool `json:"is_float_sampling_rate_enabled,omitempty"`
 	// Whether or not the org is compliant to the payment card industry standard.
 	IsPciCompliant *bool `json:"is_pci_compliant,omitempty"`
+	// Global minimum sampling rate allowed for all product within the org.
+	MinSamplingRate *float64 `json:"min_sampling_rate,omitempty"`
 	// Version of the API.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -168,6 +172,34 @@ func (o *SensitiveDataScannerMeta) SetHasMultiPassEnabled(v bool) {
 	o.HasMultiPassEnabled = &v
 }
 
+// GetIsFloatSamplingRateEnabled returns the IsFloatSamplingRateEnabled field value if set, zero value otherwise.
+func (o *SensitiveDataScannerMeta) GetIsFloatSamplingRateEnabled() bool {
+	if o == nil || o.IsFloatSamplingRateEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsFloatSamplingRateEnabled
+}
+
+// GetIsFloatSamplingRateEnabledOk returns a tuple with the IsFloatSamplingRateEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SensitiveDataScannerMeta) GetIsFloatSamplingRateEnabledOk() (*bool, bool) {
+	if o == nil || o.IsFloatSamplingRateEnabled == nil {
+		return nil, false
+	}
+	return o.IsFloatSamplingRateEnabled, true
+}
+
+// HasIsFloatSamplingRateEnabled returns a boolean if a field has been set.
+func (o *SensitiveDataScannerMeta) HasIsFloatSamplingRateEnabled() bool {
+	return o != nil && o.IsFloatSamplingRateEnabled != nil
+}
+
+// SetIsFloatSamplingRateEnabled gets a reference to the given bool and assigns it to the IsFloatSamplingRateEnabled field.
+func (o *SensitiveDataScannerMeta) SetIsFloatSamplingRateEnabled(v bool) {
+	o.IsFloatSamplingRateEnabled = &v
+}
+
 // GetIsPciCompliant returns the IsPciCompliant field value if set, zero value otherwise.
 func (o *SensitiveDataScannerMeta) GetIsPciCompliant() bool {
 	if o == nil || o.IsPciCompliant == nil {
@@ -194,6 +226,34 @@ func (o *SensitiveDataScannerMeta) HasIsPciCompliant() bool {
 // SetIsPciCompliant gets a reference to the given bool and assigns it to the IsPciCompliant field.
 func (o *SensitiveDataScannerMeta) SetIsPciCompliant(v bool) {
 	o.IsPciCompliant = &v
+}
+
+// GetMinSamplingRate returns the MinSamplingRate field value if set, zero value otherwise.
+func (o *SensitiveDataScannerMeta) GetMinSamplingRate() float64 {
+	if o == nil || o.MinSamplingRate == nil {
+		var ret float64
+		return ret
+	}
+	return *o.MinSamplingRate
+}
+
+// GetMinSamplingRateOk returns a tuple with the MinSamplingRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SensitiveDataScannerMeta) GetMinSamplingRateOk() (*float64, bool) {
+	if o == nil || o.MinSamplingRate == nil {
+		return nil, false
+	}
+	return o.MinSamplingRate, true
+}
+
+// HasMinSamplingRate returns a boolean if a field has been set.
+func (o *SensitiveDataScannerMeta) HasMinSamplingRate() bool {
+	return o != nil && o.MinSamplingRate != nil
+}
+
+// SetMinSamplingRate gets a reference to the given float64 and assigns it to the MinSamplingRate field.
+func (o *SensitiveDataScannerMeta) SetMinSamplingRate(v float64) {
+	o.MinSamplingRate = &v
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
@@ -242,8 +302,14 @@ func (o SensitiveDataScannerMeta) MarshalJSON() ([]byte, error) {
 	if o.HasMultiPassEnabled != nil {
 		toSerialize["has_multi_pass_enabled"] = o.HasMultiPassEnabled
 	}
+	if o.IsFloatSamplingRateEnabled != nil {
+		toSerialize["is_float_sampling_rate_enabled"] = o.IsFloatSamplingRateEnabled
+	}
 	if o.IsPciCompliant != nil {
 		toSerialize["is_pci_compliant"] = o.IsPciCompliant
+	}
+	if o.MinSamplingRate != nil {
+		toSerialize["min_sampling_rate"] = o.MinSamplingRate
 	}
 	if o.Version != nil {
 		toSerialize["version"] = o.Version
@@ -258,19 +324,21 @@ func (o SensitiveDataScannerMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CountLimit          *int64 `json:"count_limit,omitempty"`
-		GroupCountLimit     *int64 `json:"group_count_limit,omitempty"`
-		HasHighlightEnabled *bool  `json:"has_highlight_enabled,omitempty"`
-		HasMultiPassEnabled *bool  `json:"has_multi_pass_enabled,omitempty"`
-		IsPciCompliant      *bool  `json:"is_pci_compliant,omitempty"`
-		Version             *int64 `json:"version,omitempty"`
+		CountLimit                 *int64   `json:"count_limit,omitempty"`
+		GroupCountLimit            *int64   `json:"group_count_limit,omitempty"`
+		HasHighlightEnabled        *bool    `json:"has_highlight_enabled,omitempty"`
+		HasMultiPassEnabled        *bool    `json:"has_multi_pass_enabled,omitempty"`
+		IsFloatSamplingRateEnabled *bool    `json:"is_float_sampling_rate_enabled,omitempty"`
+		IsPciCompliant             *bool    `json:"is_pci_compliant,omitempty"`
+		MinSamplingRate            *float64 `json:"min_sampling_rate,omitempty"`
+		Version                    *int64   `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count_limit", "group_count_limit", "has_highlight_enabled", "has_multi_pass_enabled", "is_pci_compliant", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"count_limit", "group_count_limit", "has_highlight_enabled", "has_multi_pass_enabled", "is_float_sampling_rate_enabled", "is_pci_compliant", "min_sampling_rate", "version"})
 	} else {
 		return err
 	}
@@ -278,7 +346,9 @@ func (o *SensitiveDataScannerMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupCountLimit = all.GroupCountLimit
 	o.HasHighlightEnabled = all.HasHighlightEnabled
 	o.HasMultiPassEnabled = all.HasMultiPassEnabled
+	o.IsFloatSamplingRateEnabled = all.IsFloatSamplingRateEnabled
 	o.IsPciCompliant = all.IsPciCompliant
+	o.MinSamplingRate = all.MinSamplingRate
 	o.Version = all.Version
 
 	if len(additionalProperties) > 0 {
