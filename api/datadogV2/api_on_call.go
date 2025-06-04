@@ -745,6 +745,105 @@ func (a *OnCallApi) GetScheduleOnCallUser(ctx _context.Context, scheduleId strin
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetTeamOnCallUsersOptionalParameters holds optional parameters for GetTeamOnCallUsers.
+type GetTeamOnCallUsersOptionalParameters struct {
+	Include *string
+}
+
+// NewGetTeamOnCallUsersOptionalParameters creates an empty struct for parameters.
+func NewGetTeamOnCallUsersOptionalParameters() *GetTeamOnCallUsersOptionalParameters {
+	this := GetTeamOnCallUsersOptionalParameters{}
+	return &this
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *GetTeamOnCallUsersOptionalParameters) WithInclude(include string) *GetTeamOnCallUsersOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+// GetTeamOnCallUsers Get team on-call users.
+// Get a team's on-call users at a given time
+func (a *OnCallApi) GetTeamOnCallUsers(ctx _context.Context, teamId string, o ...GetTeamOnCallUsersOptionalParameters) (TeamOnCallResponders, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue TeamOnCallResponders
+		optionalParams      GetTeamOnCallUsersOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetTeamOnCallUsersOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OnCallApi.GetTeamOnCallUsers")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/on-call/teams/{team_id}/on-call"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{team_id}", _neturl.PathEscape(datadog.ParameterToString(teamId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // SetOnCallTeamRoutingRulesOptionalParameters holds optional parameters for SetOnCallTeamRoutingRules.
 type SetOnCallTeamRoutingRulesOptionalParameters struct {
 	Include *string
