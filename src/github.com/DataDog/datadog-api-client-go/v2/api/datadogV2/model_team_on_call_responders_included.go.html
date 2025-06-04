@@ -1,0 +1,174 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_team_on_call_responders_included.go - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.22.12";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_team_on_call_responders_included.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">github.com/DataDog/datadog-api-client-go/v2/api/datadogV2</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span><span class="comment">// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.</span>
+<span id="L2" class="ln">     2  </span><span class="comment">// This product includes software developed at Datadog (https://www.datadoghq.com/).</span>
+<span id="L3" class="ln">     3  </span><span class="comment">// Copyright 2019-Present Datadog, Inc.</span>
+<span id="L4" class="ln">     4  </span>
+<span id="L5" class="ln">     5  </span>package datadogV2
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>import (
+<span id="L8" class="ln">     8  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
+<span id="L9" class="ln">     9  </span>)
+<span id="L10" class="ln">    10  </span>
+<span id="L11" class="ln">    11  </span><span class="comment">// TeamOnCallRespondersIncluded - Represents an union of related resources included in the response, such as users and escalation steps.</span>
+<span id="L12" class="ln">    12  </span>type TeamOnCallRespondersIncluded struct {
+<span id="L13" class="ln">    13  </span>	User       *User
+<span id="L14" class="ln">    14  </span>	Escalation *Escalation
+<span id="L15" class="ln">    15  </span>
+<span id="L16" class="ln">    16  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L17" class="ln">    17  </span>	UnparsedObject interface{}
+<span id="L18" class="ln">    18  </span>}
+<span id="L19" class="ln">    19  </span>
+<span id="L20" class="ln">    20  </span><span class="comment">// UserAsTeamOnCallRespondersIncluded is a convenience function that returns User wrapped in TeamOnCallRespondersIncluded.</span>
+<span id="L21" class="ln">    21  </span>func UserAsTeamOnCallRespondersIncluded(v *User) TeamOnCallRespondersIncluded {
+<span id="L22" class="ln">    22  </span>	return TeamOnCallRespondersIncluded{User: v}
+<span id="L23" class="ln">    23  </span>}
+<span id="L24" class="ln">    24  </span>
+<span id="L25" class="ln">    25  </span><span class="comment">// EscalationAsTeamOnCallRespondersIncluded is a convenience function that returns Escalation wrapped in TeamOnCallRespondersIncluded.</span>
+<span id="L26" class="ln">    26  </span>func EscalationAsTeamOnCallRespondersIncluded(v *Escalation) TeamOnCallRespondersIncluded {
+<span id="L27" class="ln">    27  </span>	return TeamOnCallRespondersIncluded{Escalation: v}
+<span id="L28" class="ln">    28  </span>}
+<span id="L29" class="ln">    29  </span>
+<span id="L30" class="ln">    30  </span><span class="comment">// UnmarshalJSON turns data into one of the pointers in the struct.</span>
+<span id="L31" class="ln">    31  </span>func (obj *TeamOnCallRespondersIncluded) UnmarshalJSON(data []byte) error {
+<span id="L32" class="ln">    32  </span>	var err error
+<span id="L33" class="ln">    33  </span>	match := 0
+<span id="L34" class="ln">    34  </span>	<span class="comment">// try to unmarshal data into User</span>
+<span id="L35" class="ln">    35  </span>	err = datadog.Unmarshal(data, &amp;obj.User)
+<span id="L36" class="ln">    36  </span>	if err == nil {
+<span id="L37" class="ln">    37  </span>		if obj.User != nil &amp;&amp; obj.User.UnparsedObject == nil {
+<span id="L38" class="ln">    38  </span>			jsonUser, _ := datadog.Marshal(obj.User)
+<span id="L39" class="ln">    39  </span>			if string(jsonUser) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L40" class="ln">    40  </span>				obj.User = nil
+<span id="L41" class="ln">    41  </span>			} else {
+<span id="L42" class="ln">    42  </span>				match++
+<span id="L43" class="ln">    43  </span>			}
+<span id="L44" class="ln">    44  </span>		} else {
+<span id="L45" class="ln">    45  </span>			obj.User = nil
+<span id="L46" class="ln">    46  </span>		}
+<span id="L47" class="ln">    47  </span>	} else {
+<span id="L48" class="ln">    48  </span>		obj.User = nil
+<span id="L49" class="ln">    49  </span>	}
+<span id="L50" class="ln">    50  </span>
+<span id="L51" class="ln">    51  </span>	<span class="comment">// try to unmarshal data into Escalation</span>
+<span id="L52" class="ln">    52  </span>	err = datadog.Unmarshal(data, &amp;obj.Escalation)
+<span id="L53" class="ln">    53  </span>	if err == nil {
+<span id="L54" class="ln">    54  </span>		if obj.Escalation != nil &amp;&amp; obj.Escalation.UnparsedObject == nil {
+<span id="L55" class="ln">    55  </span>			jsonEscalation, _ := datadog.Marshal(obj.Escalation)
+<span id="L56" class="ln">    56  </span>			if string(jsonEscalation) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L57" class="ln">    57  </span>				obj.Escalation = nil
+<span id="L58" class="ln">    58  </span>			} else {
+<span id="L59" class="ln">    59  </span>				match++
+<span id="L60" class="ln">    60  </span>			}
+<span id="L61" class="ln">    61  </span>		} else {
+<span id="L62" class="ln">    62  </span>			obj.Escalation = nil
+<span id="L63" class="ln">    63  </span>		}
+<span id="L64" class="ln">    64  </span>	} else {
+<span id="L65" class="ln">    65  </span>		obj.Escalation = nil
+<span id="L66" class="ln">    66  </span>	}
+<span id="L67" class="ln">    67  </span>
+<span id="L68" class="ln">    68  </span>	if match != 1 { <span class="comment">// more than 1 match</span>
+<span id="L69" class="ln">    69  </span>		<span class="comment">// reset to nil</span>
+<span id="L70" class="ln">    70  </span>		obj.User = nil
+<span id="L71" class="ln">    71  </span>		obj.Escalation = nil
+<span id="L72" class="ln">    72  </span>		return datadog.Unmarshal(data, &amp;obj.UnparsedObject)
+<span id="L73" class="ln">    73  </span>	}
+<span id="L74" class="ln">    74  </span>	return nil <span class="comment">// exactly one match</span>
+<span id="L75" class="ln">    75  </span>}
+<span id="L76" class="ln">    76  </span>
+<span id="L77" class="ln">    77  </span><span class="comment">// MarshalJSON turns data from the first non-nil pointers in the struct to JSON.</span>
+<span id="L78" class="ln">    78  </span>func (obj TeamOnCallRespondersIncluded) MarshalJSON() ([]byte, error) {
+<span id="L79" class="ln">    79  </span>	if obj.User != nil {
+<span id="L80" class="ln">    80  </span>		return datadog.Marshal(&amp;obj.User)
+<span id="L81" class="ln">    81  </span>	}
+<span id="L82" class="ln">    82  </span>
+<span id="L83" class="ln">    83  </span>	if obj.Escalation != nil {
+<span id="L84" class="ln">    84  </span>		return datadog.Marshal(&amp;obj.Escalation)
+<span id="L85" class="ln">    85  </span>	}
+<span id="L86" class="ln">    86  </span>
+<span id="L87" class="ln">    87  </span>	if obj.UnparsedObject != nil {
+<span id="L88" class="ln">    88  </span>		return datadog.Marshal(obj.UnparsedObject)
+<span id="L89" class="ln">    89  </span>	}
+<span id="L90" class="ln">    90  </span>	return nil, nil <span class="comment">// no data in oneOf schemas</span>
+<span id="L91" class="ln">    91  </span>}
+<span id="L92" class="ln">    92  </span>
+<span id="L93" class="ln">    93  </span><span class="comment">// GetActualInstance returns the actual instance.</span>
+<span id="L94" class="ln">    94  </span>func (obj *TeamOnCallRespondersIncluded) GetActualInstance() interface{} {
+<span id="L95" class="ln">    95  </span>	if obj.User != nil {
+<span id="L96" class="ln">    96  </span>		return obj.User
+<span id="L97" class="ln">    97  </span>	}
+<span id="L98" class="ln">    98  </span>
+<span id="L99" class="ln">    99  </span>	if obj.Escalation != nil {
+<span id="L100" class="ln">   100  </span>		return obj.Escalation
+<span id="L101" class="ln">   101  </span>	}
+<span id="L102" class="ln">   102  </span>
+<span id="L103" class="ln">   103  </span>	<span class="comment">// all schemas are nil</span>
+<span id="L104" class="ln">   104  </span>	return nil
+<span id="L105" class="ln">   105  </span>}
+<span id="L106" class="ln">   106  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.22.12.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>
