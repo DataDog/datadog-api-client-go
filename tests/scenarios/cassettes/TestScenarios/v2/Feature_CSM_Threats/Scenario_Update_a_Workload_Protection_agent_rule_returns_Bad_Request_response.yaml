@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testupdateaworkloadprotectionagentrulereturnsbadrequestresponse1747319692"},"type":"policy"}}
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testupdateaworkloadprotectionagentrulereturnsbadrequestresponse1748341517"},"type":"policy"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy
   response:
-    body: '{"data":{"id":"cas-zuo-dud","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
-      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testupdateaworkloadprotectionagentrulereturnsbadrequestresponse1747319692","policyVersion":"1","priority":1000000070,"ruleCount":226,"updateDate":1747319692308,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+    body: '{"data":{"id":"3f2-3l2-9wi","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testupdateaworkloadprotectionagentrulereturnsbadrequestresponse1748341517","policyVersion":"1","priority":1000000011,"ruleCount":226,"updateDate":1748341517477,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
     code: 200
     duration: 0ms
     headers:
@@ -22,7 +22,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testupdateaworkloadprotectionagentrulereturnsbadrequestresponse1747319692","policy_id":"cas-zuo-dud","product_tags":["security:attack","technique:T1059"]},"type":"agent_rule"}}
+      {"data":{"attributes":{"actions":[{"set":{"name":"test_set","scope":"process","value":"test_value"}}],"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testupdateaworkloadprotectionagentrulereturnsbadrequestresponse1748341517","policy_id":"3f2-3l2-9wi","product_tags":["security:attack","technique:T1059"]},"type":"agent_rule"}}
     form: {}
     headers:
       Accept:
@@ -33,10 +33,10 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules
   response:
-    body: '{"data":{"id":"sa6-p9i-qqx","type":"agent_rule","attributes":{"category":"Process
-      Activity","creationDate":1747319692771,"creator":{"name":"frog","handle":"frog@datadoghq.com"},"defaultRule":false,"description":"My
+    body: '{"data":{"id":"rhm-wzc-6qu","type":"agent_rule","attributes":{"actions":[{"set":{"name":"test_set","value":"test_value","scope":"process"},"disabled":false}],"category":"Process
+      Activity","creationDate":1748341518091,"creator":{"name":"frog","handle":"frog@datadoghq.com"},"defaultRule":false,"description":"My
       Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","filters":["os
-      == \"linux\""],"monitoring":["cas-zuo-dud"],"name":"testupdateaworkloadprotectionagentrulereturnsbadrequestresponse1747319692","product_tags":["security:attack","technique:T1059"],"updateDate":1747319692771,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+      == \"linux\""],"monitoring":["3f2-3l2-9wi"],"name":"testupdateaworkloadprotectionagentrulereturnsbadrequestresponse1748341517","product_tags":["security:attack","technique:T1059"],"updateDate":1748341518091,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
     code: 200
     duration: 0ms
     headers:
@@ -45,7 +45,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","policy_id":"cas-zuo-dud","product_tags":[]},"id":"invalid-agent-rule-id","type":"agent_rule"}}
+      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","policy_id":"3f2-3l2-9wi","product_tags":[]},"id":"invalid-agent-rule-id","type":"agent_rule"}}
     form: {}
     headers:
       Accept:
@@ -54,7 +54,7 @@ interactions:
       - application/json
     id: 2
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/sa6-p9i-qqx
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/rhm-wzc-6qu
   response:
     body: '{"errors":[{"title":"failed to update rule"}]}
 
@@ -73,7 +73,7 @@ interactions:
       - '*/*'
     id: 3
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/sa6-p9i-qqx
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/rhm-wzc-6qu
   response:
     body: ''
     code: 204
@@ -90,7 +90,7 @@ interactions:
       - '*/*'
     id: 4
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/cas-zuo-dud
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/3f2-3l2-9wi
   response:
     body: ''
     code: 204
