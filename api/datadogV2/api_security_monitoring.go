@@ -2615,6 +2615,7 @@ type ListFindingsOptionalParameters struct {
 	FilterEvaluation          *FindingEvaluation
 	FilterStatus              *FindingStatus
 	FilterVulnerabilityType   *[]FindingVulnerabilityType
+	DetailedFindings          *bool
 }
 
 // NewListFindingsOptionalParameters creates an empty struct for parameters.
@@ -2701,6 +2702,12 @@ func (r *ListFindingsOptionalParameters) WithFilterVulnerabilityType(filterVulne
 	return r
 }
 
+// WithDetailedFindings sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithDetailedFindings(detailedFindings bool) *ListFindingsOptionalParameters {
+	r.DetailedFindings = &detailedFindings
+	return r
+}
+
 // ListFindings List findings.
 // Get a list of findings. These include both misconfigurations and identity risks.
 //
@@ -2723,6 +2730,17 @@ func (r *ListFindingsOptionalParameters) WithFilterVulnerabilityType(filterVulne
 // The operator must come after the equal sign. For example, to filter with the `>=` operator, add the operator after the equal sign: `filter[evaluation_changed_at]=>=1678809373257`.
 //
 // Query parameters must be only among the documented ones and with values of correct types. Duplicated query parameters (e.g. `filter[status]=low&filter[status]=info`) are not allowed.
+//
+// ### Additional extension fields
+//
+// Additional extension fields are available for some findings.
+//
+// The data is available when you include the query parameter `?detailed_findings=true` in the request.
+//
+// The following fields are available for findings:
+// - `external_id`: The resource external ID related to the finding.
+// - `description`: The description and remediation steps for the finding.
+// - `datadog_link`: The Datadog relative link for the finding.
 //
 // ### Response
 //
@@ -2814,6 +2832,9 @@ func (a *SecurityMonitoringApi) ListFindings(ctx _context.Context, o ...ListFind
 		} else {
 			localVarQueryParams.Add("filter[vulnerability_type]", datadog.ParameterToString(t, "multi"))
 		}
+	}
+	if optionalParams.DetailedFindings != nil {
+		localVarQueryParams.Add("detailed_findings", datadog.ParameterToString(*optionalParams.DetailedFindings, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
