@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/dora/incident
   response:
-    body: '{"data":{"id":"2775a2d3-6c28-4934-ae60-0ef9ce3720ee","type":"dora_incident"}}'
+    body: '{"data":{"id":"2775a2d3-6c28-4934-ae60-0ef9ce3720ee","type":"dora_failure"}}'
     code: 200
     duration: 0ms
     headers:
