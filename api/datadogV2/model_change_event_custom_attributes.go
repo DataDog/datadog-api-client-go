@@ -12,22 +12,21 @@ import (
 
 // ChangeEventCustomAttributes Object representing custom change event attributes.
 type ChangeEventCustomAttributes struct {
-	// Object representing the entity which made the change. Optional field but if provided should include `type` and `name`.
+	// Object representing the entity that made the change. Optional field but if provided should include `type` and `name`.
 	Author *ChangeEventCustomAttributesAuthor `json:"author,omitempty"`
 	// Free form object with information related to the `change` event. Can be arbitrarily nested and contain any valid JSON.
 	ChangeMetadata map[string]interface{} `json:"change_metadata,omitempty"`
 	// Object representing a uniquely identified resource.
 	ChangedResource ChangeEventCustomAttributesChangedResource `json:"changed_resource"`
 	// A list of resources impacted by this change. It is recommended to provide an impacted resource to display
-	// the change event at the right location. Only resources of type `service` are supported.
+	// the change event at the right location. Only resources of type `service` are supported. Maximum of 100 impacted resources allowed.
 	ImpactedResources []ChangeEventCustomAttributesImpactedResourcesItems `json:"impacted_resources,omitempty"`
 	// Free form object to track new value of the changed resource.
 	NewValue map[string]interface{} `json:"new_value,omitempty"`
 	// Free form object to track previous value of the changed resource.
 	PrevValue map[string]interface{} `json:"prev_value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewChangeEventCustomAttributes instantiates a new ChangeEventCustomAttributes object.
@@ -233,10 +232,6 @@ func (o ChangeEventCustomAttributes) MarshalJSON() ([]byte, error) {
 	if o.PrevValue != nil {
 		toSerialize["prev_value"] = o.PrevValue
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -256,12 +251,6 @@ func (o *ChangeEventCustomAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	if all.ChangedResource == nil {
 		return fmt.Errorf("required field changed_resource missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"author", "change_metadata", "changed_resource", "impacted_resources", "new_value", "prev_value"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	if all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -276,10 +265,6 @@ func (o *ChangeEventCustomAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.ImpactedResources = all.ImpactedResources
 	o.NewValue = all.NewValue
 	o.PrevValue = all.PrevValue
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
