@@ -12,7 +12,7 @@ import (
 type EventCreateResponse struct {
 	// JSON object containing all events attributes and their associated values.
 	Attributes *EventCreateResponseAttributes `json:"attributes,omitempty"`
-	// Event type
+	// Event type.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
