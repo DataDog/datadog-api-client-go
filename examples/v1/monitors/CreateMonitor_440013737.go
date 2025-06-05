@@ -28,6 +28,7 @@ func main() {
 				Critical: datadog.PtrFloat64(1),
 			},
 		},
+		DraftStatus: datadogV1.MONITORDRAFTSTATUS_DRAFT.Ptr(),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
