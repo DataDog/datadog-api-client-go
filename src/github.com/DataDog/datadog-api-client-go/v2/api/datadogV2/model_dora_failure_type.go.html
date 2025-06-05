@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="theme-color" content="#375EAB"/>
 
-  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_dora_incident_type.go - Datadog</title>
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_dora_failure_type.go - Datadog</title>
 
 <link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
 
@@ -38,7 +38,7 @@
 
   <h1>
     Source file
-    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_dora_incident_type.go</span>
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_dora_failure_type.go</span>
   </h1>
 
 
@@ -67,47 +67,47 @@
 <span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
-<span id="L13" class="ln">    13  </span><span class="comment">// DORAIncidentType JSON:API type for DORA incident events.</span>
-<span id="L14" class="ln">    14  </span>type DORAIncidentType string
+<span id="L13" class="ln">    13  </span><span class="comment">// DORAFailureType JSON:API type for DORA failure events.</span>
+<span id="L14" class="ln">    14  </span>type DORAFailureType string
 <span id="L15" class="ln">    15  </span>
-<span id="L16" class="ln">    16  </span><span class="comment">// List of DORAIncidentType.</span>
+<span id="L16" class="ln">    16  </span><span class="comment">// List of DORAFailureType.</span>
 <span id="L17" class="ln">    17  </span>const (
-<span id="L18" class="ln">    18  </span>	DORAINCIDENTTYPE_DORA_INCIDENT DORAIncidentType = &#34;dora_incident&#34;
+<span id="L18" class="ln">    18  </span>	DORAFAILURETYPE_DORA_FAILURE DORAFailureType = &#34;dora_failure&#34;
 <span id="L19" class="ln">    19  </span>)
 <span id="L20" class="ln">    20  </span>
-<span id="L21" class="ln">    21  </span>var allowedDORAIncidentTypeEnumValues = []DORAIncidentType{
-<span id="L22" class="ln">    22  </span>	DORAINCIDENTTYPE_DORA_INCIDENT,
+<span id="L21" class="ln">    21  </span>var allowedDORAFailureTypeEnumValues = []DORAFailureType{
+<span id="L22" class="ln">    22  </span>	DORAFAILURETYPE_DORA_FAILURE,
 <span id="L23" class="ln">    23  </span>}
 <span id="L24" class="ln">    24  </span>
 <span id="L25" class="ln">    25  </span><span class="comment">// GetAllowedValues reeturns the list of possible values.</span>
-<span id="L26" class="ln">    26  </span>func (v *DORAIncidentType) GetAllowedValues() []DORAIncidentType {
-<span id="L27" class="ln">    27  </span>	return allowedDORAIncidentTypeEnumValues
+<span id="L26" class="ln">    26  </span>func (v *DORAFailureType) GetAllowedValues() []DORAFailureType {
+<span id="L27" class="ln">    27  </span>	return allowedDORAFailureTypeEnumValues
 <span id="L28" class="ln">    28  </span>}
 <span id="L29" class="ln">    29  </span>
 <span id="L30" class="ln">    30  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L31" class="ln">    31  </span>func (v *DORAIncidentType) UnmarshalJSON(src []byte) error {
+<span id="L31" class="ln">    31  </span>func (v *DORAFailureType) UnmarshalJSON(src []byte) error {
 <span id="L32" class="ln">    32  </span>	var value string
 <span id="L33" class="ln">    33  </span>	err := datadog.Unmarshal(src, &amp;value)
 <span id="L34" class="ln">    34  </span>	if err != nil {
 <span id="L35" class="ln">    35  </span>		return err
 <span id="L36" class="ln">    36  </span>	}
-<span id="L37" class="ln">    37  </span>	*v = DORAIncidentType(value)
+<span id="L37" class="ln">    37  </span>	*v = DORAFailureType(value)
 <span id="L38" class="ln">    38  </span>	return nil
 <span id="L39" class="ln">    39  </span>}
 <span id="L40" class="ln">    40  </span>
-<span id="L41" class="ln">    41  </span><span class="comment">// NewDORAIncidentTypeFromValue returns a pointer to a valid DORAIncidentType</span>
+<span id="L41" class="ln">    41  </span><span class="comment">// NewDORAFailureTypeFromValue returns a pointer to a valid DORAFailureType</span>
 <span id="L42" class="ln">    42  </span><span class="comment">// for the value passed as argument, or an error if the value passed is not allowed by the enum.</span>
-<span id="L43" class="ln">    43  </span>func NewDORAIncidentTypeFromValue(v string) (*DORAIncidentType, error) {
-<span id="L44" class="ln">    44  </span>	ev := DORAIncidentType(v)
+<span id="L43" class="ln">    43  </span>func NewDORAFailureTypeFromValue(v string) (*DORAFailureType, error) {
+<span id="L44" class="ln">    44  </span>	ev := DORAFailureType(v)
 <span id="L45" class="ln">    45  </span>	if ev.IsValid() {
 <span id="L46" class="ln">    46  </span>		return &amp;ev, nil
 <span id="L47" class="ln">    47  </span>	}
-<span id="L48" class="ln">    48  </span>	return nil, fmt.Errorf(&#34;invalid value &#39;%v&#39; for DORAIncidentType: valid values are %v&#34;, v, allowedDORAIncidentTypeEnumValues)
+<span id="L48" class="ln">    48  </span>	return nil, fmt.Errorf(&#34;invalid value &#39;%v&#39; for DORAFailureType: valid values are %v&#34;, v, allowedDORAFailureTypeEnumValues)
 <span id="L49" class="ln">    49  </span>}
 <span id="L50" class="ln">    50  </span>
 <span id="L51" class="ln">    51  </span><span class="comment">// IsValid return true if the value is valid for the enum, false otherwise.</span>
-<span id="L52" class="ln">    52  </span>func (v DORAIncidentType) IsValid() bool {
-<span id="L53" class="ln">    53  </span>	for _, existing := range allowedDORAIncidentTypeEnumValues {
+<span id="L52" class="ln">    52  </span>func (v DORAFailureType) IsValid() bool {
+<span id="L53" class="ln">    53  </span>	for _, existing := range allowedDORAFailureTypeEnumValues {
 <span id="L54" class="ln">    54  </span>		if existing == v {
 <span id="L55" class="ln">    55  </span>			return true
 <span id="L56" class="ln">    56  </span>		}
@@ -115,8 +115,8 @@
 <span id="L58" class="ln">    58  </span>	return false
 <span id="L59" class="ln">    59  </span>}
 <span id="L60" class="ln">    60  </span>
-<span id="L61" class="ln">    61  </span><span class="comment">// Ptr returns reference to DORAIncidentType value.</span>
-<span id="L62" class="ln">    62  </span>func (v DORAIncidentType) Ptr() *DORAIncidentType {
+<span id="L61" class="ln">    61  </span><span class="comment">// Ptr returns reference to DORAFailureType value.</span>
+<span id="L62" class="ln">    62  </span>func (v DORAFailureType) Ptr() *DORAFailureType {
 <span id="L63" class="ln">    63  </span>	return &amp;v
 <span id="L64" class="ln">    64  </span>}
 <span id="L65" class="ln">    65  </span>

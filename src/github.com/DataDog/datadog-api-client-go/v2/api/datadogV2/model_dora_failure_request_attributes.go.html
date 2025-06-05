@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="theme-color" content="#375EAB"/>
 
-  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_dora_incident_request_attributes.go - Datadog</title>
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_dora_failure_request_attributes.go - Datadog</title>
 
 <link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
 
@@ -38,7 +38,7 @@
 
   <h1>
     Source file
-    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_dora_incident_request_attributes.go</span>
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_dora_failure_request_attributes.go</span>
   </h1>
 
 
@@ -67,23 +67,23 @@
 <span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
-<span id="L13" class="ln">    13  </span><span class="comment">// DORAIncidentRequestAttributes Attributes to create a DORA incident event.</span>
-<span id="L14" class="ln">    14  </span>type DORAIncidentRequestAttributes struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// Environment name that was impacted by the incident.</span>
+<span id="L13" class="ln">    13  </span><span class="comment">// DORAFailureRequestAttributes Attributes to create a DORA failure event.</span>
+<span id="L14" class="ln">    14  </span>type DORAFailureRequestAttributes struct {
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Environment name that was impacted by the failure.</span>
 <span id="L16" class="ln">    16  </span>	Env *string `json:&#34;env,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// Unix timestamp when the incident finished. It must be in nanoseconds, milliseconds, or seconds, and it should not be older than 1 hour.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Unix timestamp when the failure finished. It must be in nanoseconds, milliseconds, or seconds, and it should not be older than 1 hour.</span>
 <span id="L18" class="ln">    18  </span>	FinishedAt *int64 `json:&#34;finished_at,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// Git info for DORA Metrics events.</span>
 <span id="L20" class="ln">    20  </span>	Git *DORAGitInfo `json:&#34;git,omitempty&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// Incident ID. Must have at least 16 characters. Required to update a previously sent incident.</span>
+<span id="L21" class="ln">    21  </span>	<span class="comment">// Failure ID. Must have at least 16 characters. Required to update a previously sent failure.</span>
 <span id="L22" class="ln">    22  </span>	Id *string `json:&#34;id,omitempty&#34;`
-<span id="L23" class="ln">    23  </span>	<span class="comment">// Incident name.</span>
+<span id="L23" class="ln">    23  </span>	<span class="comment">// Failure name.</span>
 <span id="L24" class="ln">    24  </span>	Name *string `json:&#34;name,omitempty&#34;`
-<span id="L25" class="ln">    25  </span>	<span class="comment">// Service names impacted by the incident. If possible, use names registered in the Service Catalog. Required when the team field is not provided.</span>
+<span id="L25" class="ln">    25  </span>	<span class="comment">// Service names impacted by the failure. If possible, use names registered in the Service Catalog. Required when the team field is not provided.</span>
 <span id="L26" class="ln">    26  </span>	Services []string `json:&#34;services,omitempty&#34;`
-<span id="L27" class="ln">    27  </span>	<span class="comment">// Incident severity.</span>
+<span id="L27" class="ln">    27  </span>	<span class="comment">// Failure severity.</span>
 <span id="L28" class="ln">    28  </span>	Severity *string `json:&#34;severity,omitempty&#34;`
-<span id="L29" class="ln">    29  </span>	<span class="comment">// Unix timestamp when the incident started. It must be in nanoseconds, milliseconds, or seconds.</span>
+<span id="L29" class="ln">    29  </span>	<span class="comment">// Unix timestamp when the failure started. It must be in nanoseconds, milliseconds, or seconds.</span>
 <span id="L30" class="ln">    30  </span>	StartedAt int64 `json:&#34;started_at&#34;`
 <span id="L31" class="ln">    31  </span>	<span class="comment">// Name of the team owning the services impacted. If possible, use team handles registered in Datadog. Required when the services field is not provided.</span>
 <span id="L32" class="ln">    32  </span>	Team *string `json:&#34;team,omitempty&#34;`
@@ -94,26 +94,26 @@
 <span id="L37" class="ln">    37  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
 <span id="L38" class="ln">    38  </span>}
 <span id="L39" class="ln">    39  </span>
-<span id="L40" class="ln">    40  </span><span class="comment">// NewDORAIncidentRequestAttributes instantiates a new DORAIncidentRequestAttributes object.</span>
+<span id="L40" class="ln">    40  </span><span class="comment">// NewDORAFailureRequestAttributes instantiates a new DORAFailureRequestAttributes object.</span>
 <span id="L41" class="ln">    41  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L42" class="ln">    42  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L43" class="ln">    43  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L44" class="ln">    44  </span>func NewDORAIncidentRequestAttributes(startedAt int64) *DORAIncidentRequestAttributes {
-<span id="L45" class="ln">    45  </span>	this := DORAIncidentRequestAttributes{}
+<span id="L44" class="ln">    44  </span>func NewDORAFailureRequestAttributes(startedAt int64) *DORAFailureRequestAttributes {
+<span id="L45" class="ln">    45  </span>	this := DORAFailureRequestAttributes{}
 <span id="L46" class="ln">    46  </span>	this.StartedAt = startedAt
 <span id="L47" class="ln">    47  </span>	return &amp;this
 <span id="L48" class="ln">    48  </span>}
 <span id="L49" class="ln">    49  </span>
-<span id="L50" class="ln">    50  </span><span class="comment">// NewDORAIncidentRequestAttributesWithDefaults instantiates a new DORAIncidentRequestAttributes object.</span>
+<span id="L50" class="ln">    50  </span><span class="comment">// NewDORAFailureRequestAttributesWithDefaults instantiates a new DORAFailureRequestAttributes object.</span>
 <span id="L51" class="ln">    51  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
 <span id="L52" class="ln">    52  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L53" class="ln">    53  </span>func NewDORAIncidentRequestAttributesWithDefaults() *DORAIncidentRequestAttributes {
-<span id="L54" class="ln">    54  </span>	this := DORAIncidentRequestAttributes{}
+<span id="L53" class="ln">    53  </span>func NewDORAFailureRequestAttributesWithDefaults() *DORAFailureRequestAttributes {
+<span id="L54" class="ln">    54  </span>	this := DORAFailureRequestAttributes{}
 <span id="L55" class="ln">    55  </span>	return &amp;this
 <span id="L56" class="ln">    56  </span>}
 <span id="L57" class="ln">    57  </span>
 <span id="L58" class="ln">    58  </span><span class="comment">// GetEnv returns the Env field value if set, zero value otherwise.</span>
-<span id="L59" class="ln">    59  </span>func (o *DORAIncidentRequestAttributes) GetEnv() string {
+<span id="L59" class="ln">    59  </span>func (o *DORAFailureRequestAttributes) GetEnv() string {
 <span id="L60" class="ln">    60  </span>	if o == nil || o.Env == nil {
 <span id="L61" class="ln">    61  </span>		var ret string
 <span id="L62" class="ln">    62  </span>		return ret
@@ -123,7 +123,7 @@
 <span id="L66" class="ln">    66  </span>
 <span id="L67" class="ln">    67  </span><span class="comment">// GetEnvOk returns a tuple with the Env field value if set, nil otherwise</span>
 <span id="L68" class="ln">    68  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L69" class="ln">    69  </span>func (o *DORAIncidentRequestAttributes) GetEnvOk() (*string, bool) {
+<span id="L69" class="ln">    69  </span>func (o *DORAFailureRequestAttributes) GetEnvOk() (*string, bool) {
 <span id="L70" class="ln">    70  </span>	if o == nil || o.Env == nil {
 <span id="L71" class="ln">    71  </span>		return nil, false
 <span id="L72" class="ln">    72  </span>	}
@@ -131,17 +131,17 @@
 <span id="L74" class="ln">    74  </span>}
 <span id="L75" class="ln">    75  </span>
 <span id="L76" class="ln">    76  </span><span class="comment">// HasEnv returns a boolean if a field has been set.</span>
-<span id="L77" class="ln">    77  </span>func (o *DORAIncidentRequestAttributes) HasEnv() bool {
+<span id="L77" class="ln">    77  </span>func (o *DORAFailureRequestAttributes) HasEnv() bool {
 <span id="L78" class="ln">    78  </span>	return o != nil &amp;&amp; o.Env != nil
 <span id="L79" class="ln">    79  </span>}
 <span id="L80" class="ln">    80  </span>
 <span id="L81" class="ln">    81  </span><span class="comment">// SetEnv gets a reference to the given string and assigns it to the Env field.</span>
-<span id="L82" class="ln">    82  </span>func (o *DORAIncidentRequestAttributes) SetEnv(v string) {
+<span id="L82" class="ln">    82  </span>func (o *DORAFailureRequestAttributes) SetEnv(v string) {
 <span id="L83" class="ln">    83  </span>	o.Env = &amp;v
 <span id="L84" class="ln">    84  </span>}
 <span id="L85" class="ln">    85  </span>
 <span id="L86" class="ln">    86  </span><span class="comment">// GetFinishedAt returns the FinishedAt field value if set, zero value otherwise.</span>
-<span id="L87" class="ln">    87  </span>func (o *DORAIncidentRequestAttributes) GetFinishedAt() int64 {
+<span id="L87" class="ln">    87  </span>func (o *DORAFailureRequestAttributes) GetFinishedAt() int64 {
 <span id="L88" class="ln">    88  </span>	if o == nil || o.FinishedAt == nil {
 <span id="L89" class="ln">    89  </span>		var ret int64
 <span id="L90" class="ln">    90  </span>		return ret
@@ -151,7 +151,7 @@
 <span id="L94" class="ln">    94  </span>
 <span id="L95" class="ln">    95  </span><span class="comment">// GetFinishedAtOk returns a tuple with the FinishedAt field value if set, nil otherwise</span>
 <span id="L96" class="ln">    96  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L97" class="ln">    97  </span>func (o *DORAIncidentRequestAttributes) GetFinishedAtOk() (*int64, bool) {
+<span id="L97" class="ln">    97  </span>func (o *DORAFailureRequestAttributes) GetFinishedAtOk() (*int64, bool) {
 <span id="L98" class="ln">    98  </span>	if o == nil || o.FinishedAt == nil {
 <span id="L99" class="ln">    99  </span>		return nil, false
 <span id="L100" class="ln">   100  </span>	}
@@ -159,17 +159,17 @@
 <span id="L102" class="ln">   102  </span>}
 <span id="L103" class="ln">   103  </span>
 <span id="L104" class="ln">   104  </span><span class="comment">// HasFinishedAt returns a boolean if a field has been set.</span>
-<span id="L105" class="ln">   105  </span>func (o *DORAIncidentRequestAttributes) HasFinishedAt() bool {
+<span id="L105" class="ln">   105  </span>func (o *DORAFailureRequestAttributes) HasFinishedAt() bool {
 <span id="L106" class="ln">   106  </span>	return o != nil &amp;&amp; o.FinishedAt != nil
 <span id="L107" class="ln">   107  </span>}
 <span id="L108" class="ln">   108  </span>
 <span id="L109" class="ln">   109  </span><span class="comment">// SetFinishedAt gets a reference to the given int64 and assigns it to the FinishedAt field.</span>
-<span id="L110" class="ln">   110  </span>func (o *DORAIncidentRequestAttributes) SetFinishedAt(v int64) {
+<span id="L110" class="ln">   110  </span>func (o *DORAFailureRequestAttributes) SetFinishedAt(v int64) {
 <span id="L111" class="ln">   111  </span>	o.FinishedAt = &amp;v
 <span id="L112" class="ln">   112  </span>}
 <span id="L113" class="ln">   113  </span>
 <span id="L114" class="ln">   114  </span><span class="comment">// GetGit returns the Git field value if set, zero value otherwise.</span>
-<span id="L115" class="ln">   115  </span>func (o *DORAIncidentRequestAttributes) GetGit() DORAGitInfo {
+<span id="L115" class="ln">   115  </span>func (o *DORAFailureRequestAttributes) GetGit() DORAGitInfo {
 <span id="L116" class="ln">   116  </span>	if o == nil || o.Git == nil {
 <span id="L117" class="ln">   117  </span>		var ret DORAGitInfo
 <span id="L118" class="ln">   118  </span>		return ret
@@ -179,7 +179,7 @@
 <span id="L122" class="ln">   122  </span>
 <span id="L123" class="ln">   123  </span><span class="comment">// GetGitOk returns a tuple with the Git field value if set, nil otherwise</span>
 <span id="L124" class="ln">   124  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L125" class="ln">   125  </span>func (o *DORAIncidentRequestAttributes) GetGitOk() (*DORAGitInfo, bool) {
+<span id="L125" class="ln">   125  </span>func (o *DORAFailureRequestAttributes) GetGitOk() (*DORAGitInfo, bool) {
 <span id="L126" class="ln">   126  </span>	if o == nil || o.Git == nil {
 <span id="L127" class="ln">   127  </span>		return nil, false
 <span id="L128" class="ln">   128  </span>	}
@@ -187,17 +187,17 @@
 <span id="L130" class="ln">   130  </span>}
 <span id="L131" class="ln">   131  </span>
 <span id="L132" class="ln">   132  </span><span class="comment">// HasGit returns a boolean if a field has been set.</span>
-<span id="L133" class="ln">   133  </span>func (o *DORAIncidentRequestAttributes) HasGit() bool {
+<span id="L133" class="ln">   133  </span>func (o *DORAFailureRequestAttributes) HasGit() bool {
 <span id="L134" class="ln">   134  </span>	return o != nil &amp;&amp; o.Git != nil
 <span id="L135" class="ln">   135  </span>}
 <span id="L136" class="ln">   136  </span>
 <span id="L137" class="ln">   137  </span><span class="comment">// SetGit gets a reference to the given DORAGitInfo and assigns it to the Git field.</span>
-<span id="L138" class="ln">   138  </span>func (o *DORAIncidentRequestAttributes) SetGit(v DORAGitInfo) {
+<span id="L138" class="ln">   138  </span>func (o *DORAFailureRequestAttributes) SetGit(v DORAGitInfo) {
 <span id="L139" class="ln">   139  </span>	o.Git = &amp;v
 <span id="L140" class="ln">   140  </span>}
 <span id="L141" class="ln">   141  </span>
 <span id="L142" class="ln">   142  </span><span class="comment">// GetId returns the Id field value if set, zero value otherwise.</span>
-<span id="L143" class="ln">   143  </span>func (o *DORAIncidentRequestAttributes) GetId() string {
+<span id="L143" class="ln">   143  </span>func (o *DORAFailureRequestAttributes) GetId() string {
 <span id="L144" class="ln">   144  </span>	if o == nil || o.Id == nil {
 <span id="L145" class="ln">   145  </span>		var ret string
 <span id="L146" class="ln">   146  </span>		return ret
@@ -207,7 +207,7 @@
 <span id="L150" class="ln">   150  </span>
 <span id="L151" class="ln">   151  </span><span class="comment">// GetIdOk returns a tuple with the Id field value if set, nil otherwise</span>
 <span id="L152" class="ln">   152  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L153" class="ln">   153  </span>func (o *DORAIncidentRequestAttributes) GetIdOk() (*string, bool) {
+<span id="L153" class="ln">   153  </span>func (o *DORAFailureRequestAttributes) GetIdOk() (*string, bool) {
 <span id="L154" class="ln">   154  </span>	if o == nil || o.Id == nil {
 <span id="L155" class="ln">   155  </span>		return nil, false
 <span id="L156" class="ln">   156  </span>	}
@@ -215,17 +215,17 @@
 <span id="L158" class="ln">   158  </span>}
 <span id="L159" class="ln">   159  </span>
 <span id="L160" class="ln">   160  </span><span class="comment">// HasId returns a boolean if a field has been set.</span>
-<span id="L161" class="ln">   161  </span>func (o *DORAIncidentRequestAttributes) HasId() bool {
+<span id="L161" class="ln">   161  </span>func (o *DORAFailureRequestAttributes) HasId() bool {
 <span id="L162" class="ln">   162  </span>	return o != nil &amp;&amp; o.Id != nil
 <span id="L163" class="ln">   163  </span>}
 <span id="L164" class="ln">   164  </span>
 <span id="L165" class="ln">   165  </span><span class="comment">// SetId gets a reference to the given string and assigns it to the Id field.</span>
-<span id="L166" class="ln">   166  </span>func (o *DORAIncidentRequestAttributes) SetId(v string) {
+<span id="L166" class="ln">   166  </span>func (o *DORAFailureRequestAttributes) SetId(v string) {
 <span id="L167" class="ln">   167  </span>	o.Id = &amp;v
 <span id="L168" class="ln">   168  </span>}
 <span id="L169" class="ln">   169  </span>
 <span id="L170" class="ln">   170  </span><span class="comment">// GetName returns the Name field value if set, zero value otherwise.</span>
-<span id="L171" class="ln">   171  </span>func (o *DORAIncidentRequestAttributes) GetName() string {
+<span id="L171" class="ln">   171  </span>func (o *DORAFailureRequestAttributes) GetName() string {
 <span id="L172" class="ln">   172  </span>	if o == nil || o.Name == nil {
 <span id="L173" class="ln">   173  </span>		var ret string
 <span id="L174" class="ln">   174  </span>		return ret
@@ -235,7 +235,7 @@
 <span id="L178" class="ln">   178  </span>
 <span id="L179" class="ln">   179  </span><span class="comment">// GetNameOk returns a tuple with the Name field value if set, nil otherwise</span>
 <span id="L180" class="ln">   180  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L181" class="ln">   181  </span>func (o *DORAIncidentRequestAttributes) GetNameOk() (*string, bool) {
+<span id="L181" class="ln">   181  </span>func (o *DORAFailureRequestAttributes) GetNameOk() (*string, bool) {
 <span id="L182" class="ln">   182  </span>	if o == nil || o.Name == nil {
 <span id="L183" class="ln">   183  </span>		return nil, false
 <span id="L184" class="ln">   184  </span>	}
@@ -243,17 +243,17 @@
 <span id="L186" class="ln">   186  </span>}
 <span id="L187" class="ln">   187  </span>
 <span id="L188" class="ln">   188  </span><span class="comment">// HasName returns a boolean if a field has been set.</span>
-<span id="L189" class="ln">   189  </span>func (o *DORAIncidentRequestAttributes) HasName() bool {
+<span id="L189" class="ln">   189  </span>func (o *DORAFailureRequestAttributes) HasName() bool {
 <span id="L190" class="ln">   190  </span>	return o != nil &amp;&amp; o.Name != nil
 <span id="L191" class="ln">   191  </span>}
 <span id="L192" class="ln">   192  </span>
 <span id="L193" class="ln">   193  </span><span class="comment">// SetName gets a reference to the given string and assigns it to the Name field.</span>
-<span id="L194" class="ln">   194  </span>func (o *DORAIncidentRequestAttributes) SetName(v string) {
+<span id="L194" class="ln">   194  </span>func (o *DORAFailureRequestAttributes) SetName(v string) {
 <span id="L195" class="ln">   195  </span>	o.Name = &amp;v
 <span id="L196" class="ln">   196  </span>}
 <span id="L197" class="ln">   197  </span>
 <span id="L198" class="ln">   198  </span><span class="comment">// GetServices returns the Services field value if set, zero value otherwise.</span>
-<span id="L199" class="ln">   199  </span>func (o *DORAIncidentRequestAttributes) GetServices() []string {
+<span id="L199" class="ln">   199  </span>func (o *DORAFailureRequestAttributes) GetServices() []string {
 <span id="L200" class="ln">   200  </span>	if o == nil || o.Services == nil {
 <span id="L201" class="ln">   201  </span>		var ret []string
 <span id="L202" class="ln">   202  </span>		return ret
@@ -263,7 +263,7 @@
 <span id="L206" class="ln">   206  </span>
 <span id="L207" class="ln">   207  </span><span class="comment">// GetServicesOk returns a tuple with the Services field value if set, nil otherwise</span>
 <span id="L208" class="ln">   208  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L209" class="ln">   209  </span>func (o *DORAIncidentRequestAttributes) GetServicesOk() (*[]string, bool) {
+<span id="L209" class="ln">   209  </span>func (o *DORAFailureRequestAttributes) GetServicesOk() (*[]string, bool) {
 <span id="L210" class="ln">   210  </span>	if o == nil || o.Services == nil {
 <span id="L211" class="ln">   211  </span>		return nil, false
 <span id="L212" class="ln">   212  </span>	}
@@ -271,17 +271,17 @@
 <span id="L214" class="ln">   214  </span>}
 <span id="L215" class="ln">   215  </span>
 <span id="L216" class="ln">   216  </span><span class="comment">// HasServices returns a boolean if a field has been set.</span>
-<span id="L217" class="ln">   217  </span>func (o *DORAIncidentRequestAttributes) HasServices() bool {
+<span id="L217" class="ln">   217  </span>func (o *DORAFailureRequestAttributes) HasServices() bool {
 <span id="L218" class="ln">   218  </span>	return o != nil &amp;&amp; o.Services != nil
 <span id="L219" class="ln">   219  </span>}
 <span id="L220" class="ln">   220  </span>
 <span id="L221" class="ln">   221  </span><span class="comment">// SetServices gets a reference to the given []string and assigns it to the Services field.</span>
-<span id="L222" class="ln">   222  </span>func (o *DORAIncidentRequestAttributes) SetServices(v []string) {
+<span id="L222" class="ln">   222  </span>func (o *DORAFailureRequestAttributes) SetServices(v []string) {
 <span id="L223" class="ln">   223  </span>	o.Services = v
 <span id="L224" class="ln">   224  </span>}
 <span id="L225" class="ln">   225  </span>
 <span id="L226" class="ln">   226  </span><span class="comment">// GetSeverity returns the Severity field value if set, zero value otherwise.</span>
-<span id="L227" class="ln">   227  </span>func (o *DORAIncidentRequestAttributes) GetSeverity() string {
+<span id="L227" class="ln">   227  </span>func (o *DORAFailureRequestAttributes) GetSeverity() string {
 <span id="L228" class="ln">   228  </span>	if o == nil || o.Severity == nil {
 <span id="L229" class="ln">   229  </span>		var ret string
 <span id="L230" class="ln">   230  </span>		return ret
@@ -291,7 +291,7 @@
 <span id="L234" class="ln">   234  </span>
 <span id="L235" class="ln">   235  </span><span class="comment">// GetSeverityOk returns a tuple with the Severity field value if set, nil otherwise</span>
 <span id="L236" class="ln">   236  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L237" class="ln">   237  </span>func (o *DORAIncidentRequestAttributes) GetSeverityOk() (*string, bool) {
+<span id="L237" class="ln">   237  </span>func (o *DORAFailureRequestAttributes) GetSeverityOk() (*string, bool) {
 <span id="L238" class="ln">   238  </span>	if o == nil || o.Severity == nil {
 <span id="L239" class="ln">   239  </span>		return nil, false
 <span id="L240" class="ln">   240  </span>	}
@@ -299,17 +299,17 @@
 <span id="L242" class="ln">   242  </span>}
 <span id="L243" class="ln">   243  </span>
 <span id="L244" class="ln">   244  </span><span class="comment">// HasSeverity returns a boolean if a field has been set.</span>
-<span id="L245" class="ln">   245  </span>func (o *DORAIncidentRequestAttributes) HasSeverity() bool {
+<span id="L245" class="ln">   245  </span>func (o *DORAFailureRequestAttributes) HasSeverity() bool {
 <span id="L246" class="ln">   246  </span>	return o != nil &amp;&amp; o.Severity != nil
 <span id="L247" class="ln">   247  </span>}
 <span id="L248" class="ln">   248  </span>
 <span id="L249" class="ln">   249  </span><span class="comment">// SetSeverity gets a reference to the given string and assigns it to the Severity field.</span>
-<span id="L250" class="ln">   250  </span>func (o *DORAIncidentRequestAttributes) SetSeverity(v string) {
+<span id="L250" class="ln">   250  </span>func (o *DORAFailureRequestAttributes) SetSeverity(v string) {
 <span id="L251" class="ln">   251  </span>	o.Severity = &amp;v
 <span id="L252" class="ln">   252  </span>}
 <span id="L253" class="ln">   253  </span>
 <span id="L254" class="ln">   254  </span><span class="comment">// GetStartedAt returns the StartedAt field value.</span>
-<span id="L255" class="ln">   255  </span>func (o *DORAIncidentRequestAttributes) GetStartedAt() int64 {
+<span id="L255" class="ln">   255  </span>func (o *DORAFailureRequestAttributes) GetStartedAt() int64 {
 <span id="L256" class="ln">   256  </span>	if o == nil {
 <span id="L257" class="ln">   257  </span>		var ret int64
 <span id="L258" class="ln">   258  </span>		return ret
@@ -319,7 +319,7 @@
 <span id="L262" class="ln">   262  </span>
 <span id="L263" class="ln">   263  </span><span class="comment">// GetStartedAtOk returns a tuple with the StartedAt field value</span>
 <span id="L264" class="ln">   264  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L265" class="ln">   265  </span>func (o *DORAIncidentRequestAttributes) GetStartedAtOk() (*int64, bool) {
+<span id="L265" class="ln">   265  </span>func (o *DORAFailureRequestAttributes) GetStartedAtOk() (*int64, bool) {
 <span id="L266" class="ln">   266  </span>	if o == nil {
 <span id="L267" class="ln">   267  </span>		return nil, false
 <span id="L268" class="ln">   268  </span>	}
@@ -327,12 +327,12 @@
 <span id="L270" class="ln">   270  </span>}
 <span id="L271" class="ln">   271  </span>
 <span id="L272" class="ln">   272  </span><span class="comment">// SetStartedAt sets field value.</span>
-<span id="L273" class="ln">   273  </span>func (o *DORAIncidentRequestAttributes) SetStartedAt(v int64) {
+<span id="L273" class="ln">   273  </span>func (o *DORAFailureRequestAttributes) SetStartedAt(v int64) {
 <span id="L274" class="ln">   274  </span>	o.StartedAt = v
 <span id="L275" class="ln">   275  </span>}
 <span id="L276" class="ln">   276  </span>
 <span id="L277" class="ln">   277  </span><span class="comment">// GetTeam returns the Team field value if set, zero value otherwise.</span>
-<span id="L278" class="ln">   278  </span>func (o *DORAIncidentRequestAttributes) GetTeam() string {
+<span id="L278" class="ln">   278  </span>func (o *DORAFailureRequestAttributes) GetTeam() string {
 <span id="L279" class="ln">   279  </span>	if o == nil || o.Team == nil {
 <span id="L280" class="ln">   280  </span>		var ret string
 <span id="L281" class="ln">   281  </span>		return ret
@@ -342,7 +342,7 @@
 <span id="L285" class="ln">   285  </span>
 <span id="L286" class="ln">   286  </span><span class="comment">// GetTeamOk returns a tuple with the Team field value if set, nil otherwise</span>
 <span id="L287" class="ln">   287  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L288" class="ln">   288  </span>func (o *DORAIncidentRequestAttributes) GetTeamOk() (*string, bool) {
+<span id="L288" class="ln">   288  </span>func (o *DORAFailureRequestAttributes) GetTeamOk() (*string, bool) {
 <span id="L289" class="ln">   289  </span>	if o == nil || o.Team == nil {
 <span id="L290" class="ln">   290  </span>		return nil, false
 <span id="L291" class="ln">   291  </span>	}
@@ -350,17 +350,17 @@
 <span id="L293" class="ln">   293  </span>}
 <span id="L294" class="ln">   294  </span>
 <span id="L295" class="ln">   295  </span><span class="comment">// HasTeam returns a boolean if a field has been set.</span>
-<span id="L296" class="ln">   296  </span>func (o *DORAIncidentRequestAttributes) HasTeam() bool {
+<span id="L296" class="ln">   296  </span>func (o *DORAFailureRequestAttributes) HasTeam() bool {
 <span id="L297" class="ln">   297  </span>	return o != nil &amp;&amp; o.Team != nil
 <span id="L298" class="ln">   298  </span>}
 <span id="L299" class="ln">   299  </span>
 <span id="L300" class="ln">   300  </span><span class="comment">// SetTeam gets a reference to the given string and assigns it to the Team field.</span>
-<span id="L301" class="ln">   301  </span>func (o *DORAIncidentRequestAttributes) SetTeam(v string) {
+<span id="L301" class="ln">   301  </span>func (o *DORAFailureRequestAttributes) SetTeam(v string) {
 <span id="L302" class="ln">   302  </span>	o.Team = &amp;v
 <span id="L303" class="ln">   303  </span>}
 <span id="L304" class="ln">   304  </span>
 <span id="L305" class="ln">   305  </span><span class="comment">// GetVersion returns the Version field value if set, zero value otherwise.</span>
-<span id="L306" class="ln">   306  </span>func (o *DORAIncidentRequestAttributes) GetVersion() string {
+<span id="L306" class="ln">   306  </span>func (o *DORAFailureRequestAttributes) GetVersion() string {
 <span id="L307" class="ln">   307  </span>	if o == nil || o.Version == nil {
 <span id="L308" class="ln">   308  </span>		var ret string
 <span id="L309" class="ln">   309  </span>		return ret
@@ -370,7 +370,7 @@
 <span id="L313" class="ln">   313  </span>
 <span id="L314" class="ln">   314  </span><span class="comment">// GetVersionOk returns a tuple with the Version field value if set, nil otherwise</span>
 <span id="L315" class="ln">   315  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L316" class="ln">   316  </span>func (o *DORAIncidentRequestAttributes) GetVersionOk() (*string, bool) {
+<span id="L316" class="ln">   316  </span>func (o *DORAFailureRequestAttributes) GetVersionOk() (*string, bool) {
 <span id="L317" class="ln">   317  </span>	if o == nil || o.Version == nil {
 <span id="L318" class="ln">   318  </span>		return nil, false
 <span id="L319" class="ln">   319  </span>	}
@@ -378,17 +378,17 @@
 <span id="L321" class="ln">   321  </span>}
 <span id="L322" class="ln">   322  </span>
 <span id="L323" class="ln">   323  </span><span class="comment">// HasVersion returns a boolean if a field has been set.</span>
-<span id="L324" class="ln">   324  </span>func (o *DORAIncidentRequestAttributes) HasVersion() bool {
+<span id="L324" class="ln">   324  </span>func (o *DORAFailureRequestAttributes) HasVersion() bool {
 <span id="L325" class="ln">   325  </span>	return o != nil &amp;&amp; o.Version != nil
 <span id="L326" class="ln">   326  </span>}
 <span id="L327" class="ln">   327  </span>
 <span id="L328" class="ln">   328  </span><span class="comment">// SetVersion gets a reference to the given string and assigns it to the Version field.</span>
-<span id="L329" class="ln">   329  </span>func (o *DORAIncidentRequestAttributes) SetVersion(v string) {
+<span id="L329" class="ln">   329  </span>func (o *DORAFailureRequestAttributes) SetVersion(v string) {
 <span id="L330" class="ln">   330  </span>	o.Version = &amp;v
 <span id="L331" class="ln">   331  </span>}
 <span id="L332" class="ln">   332  </span>
 <span id="L333" class="ln">   333  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L334" class="ln">   334  </span>func (o DORAIncidentRequestAttributes) MarshalJSON() ([]byte, error) {
+<span id="L334" class="ln">   334  </span>func (o DORAFailureRequestAttributes) MarshalJSON() ([]byte, error) {
 <span id="L335" class="ln">   335  </span>	toSerialize := map[string]interface{}{}
 <span id="L336" class="ln">   336  </span>	if o.UnparsedObject != nil {
 <span id="L337" class="ln">   337  </span>		return datadog.Marshal(o.UnparsedObject)
@@ -429,7 +429,7 @@
 <span id="L372" class="ln">   372  </span>}
 <span id="L373" class="ln">   373  </span>
 <span id="L374" class="ln">   374  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L375" class="ln">   375  </span>func (o *DORAIncidentRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L375" class="ln">   375  </span>func (o *DORAFailureRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L376" class="ln">   376  </span>	all := struct {
 <span id="L377" class="ln">   377  </span>		Env        *string      `json:&#34;env,omitempty&#34;`
 <span id="L378" class="ln">   378  </span>		FinishedAt *int64       `json:&#34;finished_at,omitempty&#34;`
