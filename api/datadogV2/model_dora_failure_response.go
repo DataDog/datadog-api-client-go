@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORAIncidentRequest Request to create a DORA incident event.
-type DORAIncidentRequest struct {
-	// The JSON:API data.
-	Data DORAIncidentRequestData `json:"data"`
+// DORAFailureResponse Response after receiving a DORA failure event.
+type DORAFailureResponse struct {
+	// Response after receiving a DORA failure event.
+	Data DORAFailureResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDORAIncidentRequest instantiates a new DORAIncidentRequest object.
+// NewDORAFailureResponse instantiates a new DORAFailureResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDORAIncidentRequest(data DORAIncidentRequestData) *DORAIncidentRequest {
-	this := DORAIncidentRequest{}
+func NewDORAFailureResponse(data DORAFailureResponseData) *DORAFailureResponse {
+	this := DORAFailureResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewDORAIncidentRequestWithDefaults instantiates a new DORAIncidentRequest object.
+// NewDORAFailureResponseWithDefaults instantiates a new DORAFailureResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDORAIncidentRequestWithDefaults() *DORAIncidentRequest {
-	this := DORAIncidentRequest{}
+func NewDORAFailureResponseWithDefaults() *DORAFailureResponse {
+	this := DORAFailureResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *DORAIncidentRequest) GetData() DORAIncidentRequestData {
+func (o *DORAFailureResponse) GetData() DORAFailureResponseData {
 	if o == nil {
-		var ret DORAIncidentRequestData
+		var ret DORAFailureResponseData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *DORAIncidentRequest) GetData() DORAIncidentRequestData {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentRequest) GetDataOk() (*DORAIncidentRequestData, bool) {
+func (o *DORAFailureResponse) GetDataOk() (*DORAFailureResponseData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *DORAIncidentRequest) GetDataOk() (*DORAIncidentRequestData, bool) {
 }
 
 // SetData sets field value.
-func (o *DORAIncidentRequest) SetData(v DORAIncidentRequestData) {
+func (o *DORAFailureResponse) SetData(v DORAFailureResponseData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DORAIncidentRequest) MarshalJSON() ([]byte, error) {
+func (o DORAFailureResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o DORAIncidentRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DORAIncidentRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DORAFailureResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *DORAIncidentRequestData `json:"data"`
+		Data *DORAFailureResponseData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
