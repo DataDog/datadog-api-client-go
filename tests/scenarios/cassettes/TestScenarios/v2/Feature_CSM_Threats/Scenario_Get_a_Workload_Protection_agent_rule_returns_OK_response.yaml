@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testgetaworkloadprotectionagentrulereturnsokresponse1747319670"},"type":"policy"}}
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testgetaworkloadprotectionagentrulereturnsokresponse1748341511"},"type":"policy"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy
   response:
-    body: '{"data":{"id":"1it-bne-ftb","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
-      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testgetaworkloadprotectionagentrulereturnsokresponse1747319670","policyVersion":"1","priority":1000000070,"ruleCount":226,"updateDate":1747319670515,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+    body: '{"data":{"id":"rb7-4db-zo7","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testgetaworkloadprotectionagentrulereturnsokresponse1748341511","policyVersion":"1","priority":1000000011,"ruleCount":226,"updateDate":1748341511524,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
     code: 200
     duration: 0ms
     headers:
@@ -22,7 +22,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testgetaworkloadprotectionagentrulereturnsokresponse1747319670","policy_id":"1it-bne-ftb","product_tags":["security:attack","technique:T1059"]},"type":"agent_rule"}}
+      {"data":{"attributes":{"actions":[{"set":{"name":"test_set","scope":"process","value":"test_value"}}],"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testgetaworkloadprotectionagentrulereturnsokresponse1748341511","policy_id":"rb7-4db-zo7","product_tags":["security:attack","technique:T1059"]},"type":"agent_rule"}}
     form: {}
     headers:
       Accept:
@@ -33,10 +33,10 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules
   response:
-    body: '{"data":{"id":"23k-ekw-ia2","type":"agent_rule","attributes":{"category":"Process
-      Activity","creationDate":1747319671106,"creator":{"name":"frog","handle":"frog@datadoghq.com"},"defaultRule":false,"description":"My
+    body: '{"data":{"id":"xll-jfj-cti","type":"agent_rule","attributes":{"actions":[{"set":{"name":"test_set","value":"test_value","scope":"process"},"disabled":false}],"category":"Process
+      Activity","creationDate":1748341512094,"creator":{"name":"frog","handle":"frog@datadoghq.com"},"defaultRule":false,"description":"My
       Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","filters":["os
-      == \"linux\""],"monitoring":["1it-bne-ftb"],"name":"testgetaworkloadprotectionagentrulereturnsokresponse1747319670","product_tags":["security:attack","technique:T1059"],"updateDate":1747319671106,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+      == \"linux\""],"monitoring":["rb7-4db-zo7"],"name":"testgetaworkloadprotectionagentrulereturnsokresponse1748341511","product_tags":["security:attack","technique:T1059"],"updateDate":1748341512094,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
     code: 200
     duration: 0ms
     headers:
@@ -51,12 +51,12 @@ interactions:
       - application/json
     id: 2
     method: GET
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/23k-ekw-ia2?policy_id=1it-bne-ftb
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/xll-jfj-cti?policy_id=rb7-4db-zo7
   response:
-    body: '{"data":{"id":"23k-ekw-ia2","type":"agent_rule","attributes":{"category":"Process
-      Activity","creationDate":1747319671106,"creator":{"name":"frog","handle":"frog@datadoghq.com"},"defaultRule":false,"description":"My
+    body: '{"data":{"id":"xll-jfj-cti","type":"agent_rule","attributes":{"actions":[{"set":{"name":"test_set","value":"test_value","scope":"process"},"disabled":false}],"category":"Process
+      Activity","creationDate":1748341512094,"creator":{"name":"frog","handle":"frog@datadoghq.com"},"defaultRule":false,"description":"My
       Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","filters":["os
-      == \"linux\""],"monitoring":["1it-bne-ftb"],"name":"testgetaworkloadprotectionagentrulereturnsokresponse1747319670","product_tags":["security:attack","technique:T1059"],"updateDate":1747319671106,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+      == \"linux\""],"monitoring":["rb7-4db-zo7"],"name":"testgetaworkloadprotectionagentrulereturnsokresponse1748341511","product_tags":["security:attack","technique:T1059"],"updateDate":1748341512094,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
     code: 200
     duration: 0ms
     headers:
@@ -71,7 +71,7 @@ interactions:
       - '*/*'
     id: 3
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/23k-ekw-ia2
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/xll-jfj-cti
   response:
     body: ''
     code: 204
@@ -88,7 +88,7 @@ interactions:
       - '*/*'
     id: 4
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/1it-bne-ftb
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/rb7-4db-zo7
   response:
     body: ''
     code: 204

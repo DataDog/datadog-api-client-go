@@ -5,68 +5,72 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORAIncidentResponse Response after receiving a DORA incident event.
-type DORAIncidentResponse struct {
-	// Response after receiving a DORA incident event.
-	Data DORAIncidentResponseData `json:"data"`
+// KindResponseMeta Kind response metadata.
+type KindResponseMeta struct {
+	// Total kinds count.
+	Count *int64 `json:"count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDORAIncidentResponse instantiates a new DORAIncidentResponse object.
+// NewKindResponseMeta instantiates a new KindResponseMeta object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDORAIncidentResponse(data DORAIncidentResponseData) *DORAIncidentResponse {
-	this := DORAIncidentResponse{}
-	this.Data = data
+func NewKindResponseMeta() *KindResponseMeta {
+	this := KindResponseMeta{}
 	return &this
 }
 
-// NewDORAIncidentResponseWithDefaults instantiates a new DORAIncidentResponse object.
+// NewKindResponseMetaWithDefaults instantiates a new KindResponseMeta object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDORAIncidentResponseWithDefaults() *DORAIncidentResponse {
-	this := DORAIncidentResponse{}
+func NewKindResponseMetaWithDefaults() *KindResponseMeta {
+	this := KindResponseMeta{}
 	return &this
 }
 
-// GetData returns the Data field value.
-func (o *DORAIncidentResponse) GetData() DORAIncidentResponseData {
-	if o == nil {
-		var ret DORAIncidentResponseData
+// GetCount returns the Count field value if set, zero value otherwise.
+func (o *KindResponseMeta) GetCount() int64 {
+	if o == nil || o.Count == nil {
+		var ret int64
 		return ret
 	}
-	return o.Data
+	return *o.Count
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentResponse) GetDataOk() (*DORAIncidentResponseData, bool) {
-	if o == nil {
+func (o *KindResponseMeta) GetCountOk() (*int64, bool) {
+	if o == nil || o.Count == nil {
 		return nil, false
 	}
-	return &o.Data, true
+	return o.Count, true
 }
 
-// SetData sets field value.
-func (o *DORAIncidentResponse) SetData(v DORAIncidentResponseData) {
-	o.Data = v
+// HasCount returns a boolean if a field has been set.
+func (o *KindResponseMeta) HasCount() bool {
+	return o != nil && o.Count != nil
+}
+
+// SetCount gets a reference to the given int64 and assigns it to the Count field.
+func (o *KindResponseMeta) SetCount(v int64) {
+	o.Count = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DORAIncidentResponse) MarshalJSON() ([]byte, error) {
+func (o KindResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["data"] = o.Data
+	if o.Count != nil {
+		toSerialize["count"] = o.Count
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,35 +79,23 @@ func (o DORAIncidentResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DORAIncidentResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *KindResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *DORAIncidentResponseData `json:"data"`
+		Count *int64 `json:"count,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Data == nil {
-		return fmt.Errorf("required field data missing")
-	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"count"})
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.Data = *all.Data
+	o.Count = all.Count
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

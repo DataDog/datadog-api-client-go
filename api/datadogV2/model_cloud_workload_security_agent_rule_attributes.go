@@ -14,6 +14,8 @@ type CloudWorkloadSecurityAgentRuleAttributes struct {
 	Actions []CloudWorkloadSecurityAgentRuleAction `json:"actions,omitempty"`
 	// The version of the Agent
 	AgentConstraint *string `json:"agentConstraint,omitempty"`
+	// The blocking policies that the rule belongs to
+	Blocking []string `json:"blocking,omitempty"`
 	// The category of the Agent rule
 	Category *string `json:"category,omitempty"`
 	// The ID of the user who created the rule
@@ -26,12 +28,16 @@ type CloudWorkloadSecurityAgentRuleAttributes struct {
 	DefaultRule *bool `json:"defaultRule,omitempty"`
 	// The description of the Agent rule
 	Description *string `json:"description,omitempty"`
+	// The disabled policies that the rule belongs to
+	Disabled []string `json:"disabled,omitempty"`
 	// Whether the Agent rule is enabled
 	Enabled *bool `json:"enabled,omitempty"`
 	// The SECL expression of the Agent rule
 	Expression *string `json:"expression,omitempty"`
 	// The platforms the Agent rule is supported on
 	Filters []string `json:"filters,omitempty"`
+	// The monitoring policies that the rule belongs to
+	Monitoring []string `json:"monitoring,omitempty"`
 	// The name of the Agent rule
 	Name *string `json:"name,omitempty"`
 	// The list of product tags associated with the rule
@@ -123,6 +129,34 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) HasAgentConstraint() bool {
 // SetAgentConstraint gets a reference to the given string and assigns it to the AgentConstraint field.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) SetAgentConstraint(v string) {
 	o.AgentConstraint = &v
+}
+
+// GetBlocking returns the Blocking field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) GetBlocking() []string {
+	if o == nil || o.Blocking == nil {
+		var ret []string
+		return ret
+	}
+	return o.Blocking
+}
+
+// GetBlockingOk returns a tuple with the Blocking field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) GetBlockingOk() (*[]string, bool) {
+	if o == nil || o.Blocking == nil {
+		return nil, false
+	}
+	return &o.Blocking, true
+}
+
+// HasBlocking returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) HasBlocking() bool {
+	return o != nil && o.Blocking != nil
+}
+
+// SetBlocking gets a reference to the given []string and assigns it to the Blocking field.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) SetBlocking(v []string) {
+	o.Blocking = v
 }
 
 // GetCategory returns the Category field value if set, zero value otherwise.
@@ -293,6 +327,34 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetDisabled returns the Disabled field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) GetDisabled() []string {
+	if o == nil || o.Disabled == nil {
+		var ret []string
+		return ret
+	}
+	return o.Disabled
+}
+
+// GetDisabledOk returns a tuple with the Disabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) GetDisabledOk() (*[]string, bool) {
+	if o == nil || o.Disabled == nil {
+		return nil, false
+	}
+	return &o.Disabled, true
+}
+
+// HasDisabled returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) HasDisabled() bool {
+	return o != nil && o.Disabled != nil
+}
+
+// SetDisabled gets a reference to the given []string and assigns it to the Disabled field.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) SetDisabled(v []string) {
+	o.Disabled = v
+}
+
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
@@ -375,6 +437,34 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) HasFilters() bool {
 // SetFilters gets a reference to the given []string and assigns it to the Filters field.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) SetFilters(v []string) {
 	o.Filters = v
+}
+
+// GetMonitoring returns the Monitoring field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) GetMonitoring() []string {
+	if o == nil || o.Monitoring == nil {
+		var ret []string
+		return ret
+	}
+	return o.Monitoring
+}
+
+// GetMonitoringOk returns a tuple with the Monitoring field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) GetMonitoringOk() (*[]string, bool) {
+	if o == nil || o.Monitoring == nil {
+		return nil, false
+	}
+	return &o.Monitoring, true
+}
+
+// HasMonitoring returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) HasMonitoring() bool {
+	return o != nil && o.Monitoring != nil
+}
+
+// SetMonitoring gets a reference to the given []string and assigns it to the Monitoring field.
+func (o *CloudWorkloadSecurityAgentRuleAttributes) SetMonitoring(v []string) {
+	o.Monitoring = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -585,6 +675,9 @@ func (o CloudWorkloadSecurityAgentRuleAttributes) MarshalJSON() ([]byte, error) 
 	if o.AgentConstraint != nil {
 		toSerialize["agentConstraint"] = o.AgentConstraint
 	}
+	if o.Blocking != nil {
+		toSerialize["blocking"] = o.Blocking
+	}
 	if o.Category != nil {
 		toSerialize["category"] = o.Category
 	}
@@ -603,6 +696,9 @@ func (o CloudWorkloadSecurityAgentRuleAttributes) MarshalJSON() ([]byte, error) 
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
+	if o.Disabled != nil {
+		toSerialize["disabled"] = o.Disabled
+	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
@@ -611,6 +707,9 @@ func (o CloudWorkloadSecurityAgentRuleAttributes) MarshalJSON() ([]byte, error) 
 	}
 	if o.Filters != nil {
 		toSerialize["filters"] = o.Filters
+	}
+	if o.Monitoring != nil {
+		toSerialize["monitoring"] = o.Monitoring
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
@@ -645,15 +744,18 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	all := struct {
 		Actions            []CloudWorkloadSecurityAgentRuleAction           `json:"actions,omitempty"`
 		AgentConstraint    *string                                          `json:"agentConstraint,omitempty"`
+		Blocking           []string                                         `json:"blocking,omitempty"`
 		Category           *string                                          `json:"category,omitempty"`
 		CreationAuthorUuId *string                                          `json:"creationAuthorUuId,omitempty"`
 		CreationDate       *int64                                           `json:"creationDate,omitempty"`
 		Creator            *CloudWorkloadSecurityAgentRuleCreatorAttributes `json:"creator,omitempty"`
 		DefaultRule        *bool                                            `json:"defaultRule,omitempty"`
 		Description        *string                                          `json:"description,omitempty"`
+		Disabled           []string                                         `json:"disabled,omitempty"`
 		Enabled            *bool                                            `json:"enabled,omitempty"`
 		Expression         *string                                          `json:"expression,omitempty"`
 		Filters            []string                                         `json:"filters,omitempty"`
+		Monitoring         []string                                         `json:"monitoring,omitempty"`
 		Name               *string                                          `json:"name,omitempty"`
 		ProductTags        []string                                         `json:"product_tags,omitempty"`
 		UpdateAuthorUuId   *string                                          `json:"updateAuthorUuId,omitempty"`
@@ -667,7 +769,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"actions", "agentConstraint", "category", "creationAuthorUuId", "creationDate", "creator", "defaultRule", "description", "enabled", "expression", "filters", "name", "product_tags", "updateAuthorUuId", "updateDate", "updatedAt", "updater", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"actions", "agentConstraint", "blocking", "category", "creationAuthorUuId", "creationDate", "creator", "defaultRule", "description", "disabled", "enabled", "expression", "filters", "monitoring", "name", "product_tags", "updateAuthorUuId", "updateDate", "updatedAt", "updater", "version"})
 	} else {
 		return err
 	}
@@ -675,6 +777,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	hasInvalidField := false
 	o.Actions = all.Actions
 	o.AgentConstraint = all.AgentConstraint
+	o.Blocking = all.Blocking
 	o.Category = all.Category
 	o.CreationAuthorUuId = all.CreationAuthorUuId
 	o.CreationDate = all.CreationDate
@@ -684,9 +787,11 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	o.Creator = all.Creator
 	o.DefaultRule = all.DefaultRule
 	o.Description = all.Description
+	o.Disabled = all.Disabled
 	o.Enabled = all.Enabled
 	o.Expression = all.Expression
 	o.Filters = all.Filters
+	o.Monitoring = all.Monitoring
 	o.Name = all.Name
 	o.ProductTags = all.ProductTags
 	o.UpdateAuthorUuId = all.UpdateAuthorUuId

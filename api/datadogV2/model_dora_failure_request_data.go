@@ -10,63 +10,63 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORAIncidentRequest Request to create a DORA incident event.
-type DORAIncidentRequest struct {
-	// The JSON:API data.
-	Data DORAIncidentRequestData `json:"data"`
+// DORAFailureRequestData The JSON:API data.
+type DORAFailureRequestData struct {
+	// Attributes to create a DORA failure event.
+	Attributes DORAFailureRequestAttributes `json:"attributes"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDORAIncidentRequest instantiates a new DORAIncidentRequest object.
+// NewDORAFailureRequestData instantiates a new DORAFailureRequestData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDORAIncidentRequest(data DORAIncidentRequestData) *DORAIncidentRequest {
-	this := DORAIncidentRequest{}
-	this.Data = data
+func NewDORAFailureRequestData(attributes DORAFailureRequestAttributes) *DORAFailureRequestData {
+	this := DORAFailureRequestData{}
+	this.Attributes = attributes
 	return &this
 }
 
-// NewDORAIncidentRequestWithDefaults instantiates a new DORAIncidentRequest object.
+// NewDORAFailureRequestDataWithDefaults instantiates a new DORAFailureRequestData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDORAIncidentRequestWithDefaults() *DORAIncidentRequest {
-	this := DORAIncidentRequest{}
+func NewDORAFailureRequestDataWithDefaults() *DORAFailureRequestData {
+	this := DORAFailureRequestData{}
 	return &this
 }
 
-// GetData returns the Data field value.
-func (o *DORAIncidentRequest) GetData() DORAIncidentRequestData {
+// GetAttributes returns the Attributes field value.
+func (o *DORAFailureRequestData) GetAttributes() DORAFailureRequestAttributes {
 	if o == nil {
-		var ret DORAIncidentRequestData
+		var ret DORAFailureRequestAttributes
 		return ret
 	}
-	return o.Data
+	return o.Attributes
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentRequest) GetDataOk() (*DORAIncidentRequestData, bool) {
+func (o *DORAFailureRequestData) GetAttributesOk() (*DORAFailureRequestAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Data, true
+	return &o.Attributes, true
 }
 
-// SetData sets field value.
-func (o *DORAIncidentRequest) SetData(v DORAIncidentRequestData) {
-	o.Data = v
+// SetAttributes sets field value.
+func (o *DORAFailureRequestData) SetAttributes(v DORAFailureRequestAttributes) {
+	o.Attributes = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DORAIncidentRequest) MarshalJSON() ([]byte, error) {
+func (o DORAFailureRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["data"] = o.Data
+	toSerialize["attributes"] = o.Attributes
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,28 +75,28 @@ func (o DORAIncidentRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DORAIncidentRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DORAFailureRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *DORAIncidentRequestData `json:"data"`
+		Attributes *DORAFailureRequestAttributes `json:"attributes"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Data == nil {
-		return fmt.Errorf("required field data missing")
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Data = *all.Data
+	o.Attributes = *all.Attributes
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

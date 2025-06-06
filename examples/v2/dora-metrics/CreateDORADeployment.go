@@ -29,7 +29,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.CreateDORADeployment", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewDORAMetricsApi(apiClient)
 	resp, r, err := api.CreateDORADeployment(ctx, body)
