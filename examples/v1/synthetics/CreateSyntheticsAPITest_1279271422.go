@@ -101,6 +101,170 @@ func main() {
 							CallType:                 datadogV1.SYNTHETICSTESTCALLTYPE_UNARY.Ptr(),
 						},
 					}},
+				datadogV1.SyntheticsAPIStep{
+					SyntheticsAPITestStep: &datadogV1.SyntheticsAPITestStep{
+						Name:         "SSL step",
+						Subtype:      datadogV1.SYNTHETICSAPITESTSTEPSUBTYPE_SSL,
+						AllowFailure: datadog.PtrBool(false),
+						IsCritical:   datadog.PtrBool(true),
+						Retry: &datadogV1.SyntheticsTestOptionsRetry{
+							Count:    datadog.PtrInt64(0),
+							Interval: datadog.PtrFloat64(300),
+						},
+						Assertions: []datadogV1.SyntheticsAssertion{
+							datadogV1.SyntheticsAssertion{
+								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN,
+									Type:     datadogV1.SYNTHETICSASSERTIONTYPE_CERTIFICATE,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(10)},
+								}},
+						},
+						Request: datadogV1.SyntheticsTestRequest{
+							CheckCertificateRevocation: datadog.PtrBool(true),
+							Host:                       datadog.PtrString("example.org"),
+							Port: &datadogV1.SyntheticsTestRequestPort{
+								SyntheticsTestRequestNumericalPort: datadog.PtrInt64(443)},
+						},
+					}},
+				datadogV1.SyntheticsAPIStep{
+					SyntheticsAPITestStep: &datadogV1.SyntheticsAPITestStep{
+						Name:         "DNS step",
+						Subtype:      datadogV1.SYNTHETICSAPITESTSTEPSUBTYPE_DNS,
+						AllowFailure: datadog.PtrBool(false),
+						IsCritical:   datadog.PtrBool(true),
+						Retry: &datadogV1.SyntheticsTestOptionsRetry{
+							Count:    datadog.PtrInt64(0),
+							Interval: datadog.PtrFloat64(300),
+						},
+						Assertions: []datadogV1.SyntheticsAssertion{
+							datadogV1.SyntheticsAssertion{
+								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
+									Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(1000)},
+								}},
+						},
+						Request: datadogV1.SyntheticsTestRequest{
+							Host:          datadog.PtrString("troisdizaines.com"),
+							DnsServer:     datadog.PtrString("8.8.8.8"),
+							DnsServerPort: datadog.PtrString("53"),
+						},
+					}},
+				datadogV1.SyntheticsAPIStep{
+					SyntheticsAPITestStep: &datadogV1.SyntheticsAPITestStep{
+						Name:         "TCP step",
+						Subtype:      datadogV1.SYNTHETICSAPITESTSTEPSUBTYPE_TCP,
+						AllowFailure: datadog.PtrBool(false),
+						IsCritical:   datadog.PtrBool(true),
+						Retry: &datadogV1.SyntheticsTestOptionsRetry{
+							Count:    datadog.PtrInt64(0),
+							Interval: datadog.PtrFloat64(300),
+						},
+						Assertions: []datadogV1.SyntheticsAssertion{
+							datadogV1.SyntheticsAssertion{
+								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
+									Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(1000)},
+								}},
+						},
+						Request: datadogV1.SyntheticsTestRequest{
+							Host: datadog.PtrString("34.95.79.70"),
+							Port: &datadogV1.SyntheticsTestRequestPort{
+								SyntheticsTestRequestNumericalPort: datadog.PtrInt64(80)},
+							ShouldTrackHops: datadog.PtrBool(true),
+							Timeout:         datadog.PtrFloat64(32),
+						},
+					}},
+				datadogV1.SyntheticsAPIStep{
+					SyntheticsAPITestStep: &datadogV1.SyntheticsAPITestStep{
+						Name:         "ICMP step",
+						Subtype:      datadogV1.SYNTHETICSAPITESTSTEPSUBTYPE_ICMP,
+						AllowFailure: datadog.PtrBool(false),
+						IsCritical:   datadog.PtrBool(true),
+						Retry: &datadogV1.SyntheticsTestOptionsRetry{
+							Count:    datadog.PtrInt64(0),
+							Interval: datadog.PtrFloat64(300),
+						},
+						Assertions: []datadogV1.SyntheticsAssertion{
+							datadogV1.SyntheticsAssertion{
+								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(0)},
+									Type: datadogV1.SYNTHETICSASSERTIONTYPE_PACKET_LOSS_PERCENTAGE,
+								}},
+						},
+						Request: datadogV1.SyntheticsTestRequest{
+							Host:            datadog.PtrString("34.95.79.70"),
+							NumberOfPackets: datadog.PtrInt32(4),
+							ShouldTrackHops: datadog.PtrBool(true),
+							Timeout:         datadog.PtrFloat64(38),
+						},
+					}},
+				datadogV1.SyntheticsAPIStep{
+					SyntheticsAPITestStep: &datadogV1.SyntheticsAPITestStep{
+						Name:         "Websocket step",
+						Subtype:      datadogV1.SYNTHETICSAPITESTSTEPSUBTYPE_WEBSOCKET,
+						AllowFailure: datadog.PtrBool(false),
+						IsCritical:   datadog.PtrBool(true),
+						Retry: &datadogV1.SyntheticsTestOptionsRetry{
+							Count:    datadog.PtrInt64(0),
+							Interval: datadog.PtrFloat64(300),
+						},
+						Assertions: []datadogV1.SyntheticsAssertion{
+							datadogV1.SyntheticsAssertion{
+								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
+									Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(1000)},
+								}},
+						},
+						Request: datadogV1.SyntheticsTestRequest{
+							Url:                    datadog.PtrString("ws://34.95.79.70/web-socket"),
+							Message:                datadog.PtrString("My message"),
+							IsMessageBase64Encoded: datadog.PtrBool(true),
+							Headers: map[string]string{
+								"f": "g",
+							},
+							BasicAuth: &datadogV1.SyntheticsBasicAuth{
+								SyntheticsBasicAuthWeb: &datadogV1.SyntheticsBasicAuthWeb{
+									Type:     datadogV1.SYNTHETICSBASICAUTHWEBTYPE_WEB.Ptr(),
+									Username: "user",
+									Password: "password",
+								}},
+						},
+					}},
+				datadogV1.SyntheticsAPIStep{
+					SyntheticsAPITestStep: &datadogV1.SyntheticsAPITestStep{
+						Name:         "UDP step",
+						Subtype:      datadogV1.SYNTHETICSAPITESTSTEPSUBTYPE_UDP,
+						AllowFailure: datadog.PtrBool(false),
+						IsCritical:   datadog.PtrBool(true),
+						Retry: &datadogV1.SyntheticsTestOptionsRetry{
+							Count:    datadog.PtrInt64(0),
+							Interval: datadog.PtrFloat64(300),
+						},
+						Assertions: []datadogV1.SyntheticsAssertion{
+							datadogV1.SyntheticsAssertion{
+								SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+									Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
+									Type:     datadogV1.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+									Target: datadogV1.SyntheticsAssertionTargetValue{
+										SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(1000)},
+								}},
+						},
+						Request: datadogV1.SyntheticsTestRequest{
+							Host: datadog.PtrString("8.8.8.8"),
+							Port: &datadogV1.SyntheticsTestRequestPort{
+								SyntheticsTestRequestNumericalPort: datadog.PtrInt64(53)},
+							Message: datadog.PtrString("A image.google.com"),
+						},
+					}},
 			},
 		},
 		Locations: []string{
