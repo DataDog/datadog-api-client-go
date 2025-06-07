@@ -9,6 +9,7 @@ import (
 	"io"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -113,6 +114,7 @@ func getSite(serverVars map[string]string) (string, error) {
 	if site == "" {
 		name := serverVars["name"]
 		if name != "" {
+			name = strings.TrimPrefix(name, "api.")
 			return name, nil
 		}
 		return "", datadog.ReportError("site not found in server variables")
