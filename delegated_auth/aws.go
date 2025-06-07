@@ -64,6 +64,9 @@ func (a *AWSAuth) Authenticate(ctx context.Context) (*datadog.DelegatedTokenCred
 	creds := a.getCredentials()
 
 	orgUUID := ctx.Value(datadog.ContextDelegatedToken).(*datadog.DelegatedTokenConfig).OrgUUID
+	if orgUUID == "" {
+		return nil, fmt.Errorf("missing org UUID in context")
+	}
 
 	// Use the credentials to generate the signing data
 	data, err := a.generateAwsAuthData(orgUUID, creds)
@@ -89,16 +92,29 @@ func (a *AWSAuth) getCredentials() *Credentials {
 	}
 }
 
-func (a *AWSAuth) generateAwsAuthData(orgUUID string, creds *Credentials) (*SigningData, error) {
-	// Default to the default global STS Host (see here: https://docs.aws.amazon.com/general/latest/gr/sts.html)
-	stsFullURL := fmt.Sprintf("https://%s/", defaultStsHost)
+func (a *AWSAuth) getConnectionParameters() (string, string, string) {
 	region := a.AwsRegion
+	var host string
+	// Default to the default global STS Host (see here: https://docs.aws.amazon.com/general/latest/gr/sts.html)
 	if region == "" {
 		region = defaultRegion
+		host = defaultStsHost
 	} else {
 		// If the region is not empty, use the regional STS host
-		stsFullURL = fmt.Sprintf("https://%s", fmt.Sprintf(regionalStsHost, region))
+		host = fmt.Sprintf(regionalStsHost, region)
 	}
+	stsFullURL := fmt.Sprintf("https://%s", host)
+	return stsFullURL, region, host
+}
+
+func (a *AWSAuth) generateAwsAuthData(orgUUID string, creds *Credentials) (*SigningData, error) {
+	if orgUUID == "" {
+		return nil, fmt.Errorf("missing org UUID")
+	}
+	if creds == nil || (creds.AccessKeyID == "" && creds.SecretAccessKey == "") || creds.SessionToken == "" {
+		return nil, fmt.Errorf("missing AWS credentials")
+	}
+	stsFullURL, region, host := a.getConnectionParameters()
 
 	now := time.Now().UTC()
 
@@ -124,7 +140,7 @@ func (a *AWSAuth) generateAwsAuthData(orgUUID string, creds *Credentials) (*Sign
 			creds.SessionToken,
 		},
 		hostHeader: {
-			defaultStsHost,
+			host,
 		},
 	}
 
@@ -177,7 +193,6 @@ func (a *AWSAuth) generateAwsAuthData(orgUUID string, creds *Credentials) (*Sign
 		algorithm, credential, signedHeaders, stringToSign)
 
 	headerMap["Authorization"] = []string{authHeader}
-	delete(headerMap, hostHeader)
 	headerMap["User-Agent"] = []string{datadog.GetUserAgent()}
 	headersJSON, err := json.Marshal(headerMap)
 	if err != nil {

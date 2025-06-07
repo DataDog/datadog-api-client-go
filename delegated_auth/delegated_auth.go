@@ -24,16 +24,10 @@ const (
 )
 
 func getDelegatedToken(ctx context.Context, orgUUID, delegatedAuthProof string) (*datadog.DelegatedTokenCredentials, error) {
-	// Get site, api subdomain, and orgUUID from the context
-	serverVars := getServerVariables(ctx)
-	site, err := getSite(serverVars)
+	url, err := getUrl(ctx)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to get URL for delegated token: %w", err)
 	}
-	subdomain := getApiSubdomain(serverVars)
-
-	// Call the token endpoint to get a temporary token
-	url := fmt.Sprintf(tokenUrlEndpoint, subdomain, site)
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewBuffer([]byte("")))
 	if err != nil {
 		return nil, err
@@ -56,9 +50,17 @@ func getDelegatedToken(ctx context.Context, orgUUID, delegatedAuthProof string) 
 		return nil, fmt.Errorf("failed to get token: %s", resp.Status)
 	}
 
+	creds, err := parseTokenResponse(tokenBytes, orgUUID, delegatedAuthProof)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse token response: %w", err)
+	}
+	return creds, nil
+}
+
+func parseTokenResponse(tokenBytes []byte, orgUUID, delegatedAuthProof string) (*datadog.DelegatedTokenCredentials, error) {
 	// Parse the response to get the token
 	var tokenResponse map[string]interface{}
-	err = json.Unmarshal(tokenBytes, &tokenResponse)
+	err := json.Unmarshal(tokenBytes, &tokenResponse)
 	if err != nil {
 		return nil, err
 	}
@@ -128,4 +130,18 @@ func getApiSubdomain(serverVars map[string]string) string {
 		return "api"
 	}
 	return apiName
+}
+
+func getUrl(ctx context.Context) (string, error) {
+	// Get site, api subdomain, and orgUUID from the context
+	serverVars := getServerVariables(ctx)
+	site, err := getSite(serverVars)
+	if err != nil {
+		return "", err
+	}
+	subdomain := getApiSubdomain(serverVars)
+
+	// Call the token endpoint to get a temporary token
+	url := fmt.Sprintf(tokenUrlEndpoint, subdomain, site)
+	return url, nil
 }
