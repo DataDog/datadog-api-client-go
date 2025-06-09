@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"fmt"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/tests/api/mocks"
 	"github.com/golang/mock/gomock"
@@ -12,7 +13,7 @@ import (
 
 const FAKE_TOKEN = "fake-token"
 
-func TestPreAuthenticate(t *testing.T) {
+func TestDelegatedPreAuthenticate(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	awsAuth := mocks.NewMockDelegatedTokenProvider(ctrl)
 	awsAuth.EXPECT().Authenticate(gomock.Any()).Return(
@@ -45,10 +46,10 @@ func TestPreAuthenticate(t *testing.T) {
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
 	assert.NotEmpty(t, headers)
-	assert.Equal(t, headers["dd-auth-token"], FAKE_TOKEN)
+	assert.Equal(t, headers["Authorization"], fmt.Sprintf("Bearer %s", FAKE_TOKEN))
 }
 
-func TestNoPreAuthenticate(t *testing.T) {
+func TestDelegatedNoPreAuthenticate(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	awsAuth := mocks.NewMockDelegatedTokenProvider(ctrl)
 	awsAuth.EXPECT().Authenticate(gomock.Any()).Return(
@@ -76,10 +77,10 @@ func TestNoPreAuthenticate(t *testing.T) {
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
 	assert.NotEmpty(t, headers)
-	assert.Equal(t, headers["dd-auth-token"], FAKE_TOKEN)
+	assert.Equal(t, headers["Authorization"], fmt.Sprintf("Bearer %s", FAKE_TOKEN))
 }
 
-func TestReAuthenticate(t *testing.T) {
+func TestDelegatedReAuthenticate(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	awsAuth := mocks.NewMockDelegatedTokenProvider(ctrl)
 	firstCall := awsAuth.EXPECT().Authenticate(gomock.Any()).Return(
@@ -118,5 +119,30 @@ func TestReAuthenticate(t *testing.T) {
 		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
 	)
 	assert.NotEmpty(t, headers)
-	assert.Equal(t, headers["dd-auth-token"], FAKE_TOKEN)
+	assert.Equal(t, headers["Authorization"], fmt.Sprintf("Bearer %s", FAKE_TOKEN))
+}
+
+func TestApiAppKeyAuthenticate(t *testing.T) {
+	apiKey := "api-key"
+	appKey := "app-key"
+	keys := map[string]datadog.APIKey{
+		"apiKeyAuth": {Key: apiKey},
+		"appKeyAuth": {Key: appKey},
+	}
+	testAuthCtx := context.WithValue(
+		context.Background(),
+		datadog.ContextAPIKeys,
+		keys,
+	)
+
+	headers := map[string]string{}
+	datadog.SetAuthKeys(
+		testAuthCtx,
+		&headers,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	assert.NotEmpty(t, headers)
+	assert.Equal(t, headers["DD-API-KEY"], apiKey)
+	assert.Equal(t, headers["DD-APPLICATION-KEY"], appKey)
 }
