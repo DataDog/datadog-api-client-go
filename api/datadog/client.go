@@ -34,6 +34,9 @@ var (
 	jsonCheck            = regexp.MustCompile(`(?i:(?:application|text)/(?:vnd\.[^;]+\+)?json)`)
 	xmlCheck             = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 	rateLimitResetHeader = "X-Ratelimit-Reset"
+	authorizationHeader  = "Authorization"
+	bearerTokenFormat    = "Bearer %s"
+	appKeyAuthType       = "appKeyAuth"
 )
 
 // APIClient manages communication with the Datadog API V2 Collection API v1.0.
@@ -62,7 +65,7 @@ func SetAuthKeys(ctx context.Context, headerParams *map[string]string, keys ...[
 		if delegatedTokenConfig, ok := ctx.Value(ContextDelegatedToken).(*DelegatedTokenConfig); ok {
 			methodUsesAppKeyAuth := false
 			for _, key := range keys {
-				if key[0] == "appKeyAuth" {
+				if key[0] == appKeyAuthType {
 					methodUsesAppKeyAuth = true
 					break
 				}
@@ -79,7 +82,7 @@ func SetAuthKeys(ctx context.Context, headerParams *map[string]string, keys ...[
 				}
 				// If authentication worked use delegated token auth
 				if delegatedTokenConfig.DelegatedToken != "" {
-					(*headerParams)["dd-auth-token"] = delegatedTokenConfig.DelegatedToken
+					(*headerParams)[authorizationHeader] = fmt.Sprintf(bearerTokenFormat, delegatedTokenConfig.DelegatedToken)
 					hasDelegatedTokenAuth = true
 				}
 			}
