@@ -33,8 +33,8 @@ var (
 	xmlCheck             = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 	rateLimitResetHeader = "X-Ratelimit-Reset"
 	authorizationHeader  = "Authorization"
-    bearerTokenFormat    = "Bearer %s"
-    appKeyAuthType       = "appKeyAuth"
+	bearerTokenFormat    = "Bearer %s"
+	appKeyAuthType       = "appKeyAuth"
 )
 
 // APIClient manages communication with the {{ openapi.info.title }} API v{{ openapi.info.version}}.
@@ -58,44 +58,44 @@ type Service struct {
 // SetAuthKeys sets the appropriate values in the headers parameter.
 func SetAuthKeys(ctx context.Context, headerParams *map[string]string, keys ...[2]string) {
 	if ctx != nil {
-        // If we have delegated token auth configured and the method uses appKeyAuth, use that over the app key auth headers
-        hasDelegatedTokenAuth := false
-        if delegatedTokenConfig, ok := ctx.Value(ContextDelegatedToken).(*DelegatedTokenConfig); ok {
-            methodUsesAppKeyAuth := false
-            for _, key := range keys {
-                if key[0] == appKeyAuthType {
-                    methodUsesAppKeyAuth = true
-                    break
-                }
-            }
+		// If we have delegated token auth configured and the method uses appKeyAuth, use that over the app key auth headers
+		hasDelegatedTokenAuth := false
+		if delegatedTokenConfig, ok := ctx.Value(ContextDelegatedToken).(*DelegatedTokenConfig); ok {
+			methodUsesAppKeyAuth := false
+			for _, key := range keys {
+				if key[0] == appKeyAuthType {
+					methodUsesAppKeyAuth = true
+					break
+				}
+			}
 
-            if methodUsesAppKeyAuth {
-                // If we have no token or the token we have is expired then authenticate
-                if delegatedTokenConfig.DelegatedToken == "" || time.Now().After(delegatedTokenConfig.Expiration) {
-                    log.Println("Performing delegated token auth")
-                    _, err := CallDelegatedTokenAuthenticate(ctx, delegatedTokenConfig)
-                    if err != nil {
-                        log.Printf("Failed to retrieve delegated token: %v", err)
-                    }
-                }
-                // If authentication worked use delegated token auth
-                if delegatedTokenConfig.DelegatedToken != "" {
-                    (*headerParams)[authorizationHeader] = fmt.Sprintf(bearerTokenFormat, delegatedTokenConfig.DelegatedToken)
-                    hasDelegatedTokenAuth = true
-                }
-            }
-        }
+			if methodUsesAppKeyAuth {
+				// If we have no token or the token we have is expired then authenticate
+				if delegatedTokenConfig.DelegatedToken == "" || time.Now().After(delegatedTokenConfig.Expiration) {
+					log.Println("Performing delegated token auth")
+					_, err := CallDelegatedTokenAuthenticate(ctx, delegatedTokenConfig)
+					if err != nil {
+						log.Printf("Failed to retrieve delegated token: %v", err)
+					}
+				}
+				// If authentication worked use delegated token auth
+				if delegatedTokenConfig.DelegatedToken != "" {
+					(*headerParams)[authorizationHeader] = fmt.Sprintf(bearerTokenFormat, delegatedTokenConfig.DelegatedToken)
+					hasDelegatedTokenAuth = true
+				}
+			}
+		}
 
-        if !hasDelegatedTokenAuth {
-            for _, key := range keys {
-                if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-                    if apiKey, ok := auth[key[0]]; ok {
-                        (*headerParams)[key[1]] = apiKey.Key
-                    }
-                }
-            }
-        }
-    }
+		if !hasDelegatedTokenAuth {
+			for _, key := range keys {
+				if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+					if apiKey, ok := auth[key[0]]; ok {
+						(*headerParams)[key[1]] = apiKey.Key
+					}
+				}
+			}
+		}
+	}
 }
 
 // ReadBody returns the byte content of the response and make it available again on the response object.
@@ -498,10 +498,10 @@ func CallDelegatedTokenAuthenticate(ctx context.Context, config *DelegatedTokenC
 	if err != nil || creds == nil {
 		return nil, err
 	}
-    config.OrgUUID = creds.OrgUUID
-    config.DelegatedProof = creds.DelegatedProof
-    config.DelegatedToken = creds.DelegatedToken
-    config.Expiration = creds.Expiration
+	config.OrgUUID = creds.OrgUUID
+	config.DelegatedProof = creds.DelegatedProof
+	config.DelegatedToken = creds.DelegatedToken
+	config.Expiration = creds.Expiration
 	return config, nil
 }
 
