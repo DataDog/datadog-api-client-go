@@ -10,71 +10,65 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TeamOnCallRespondersData Defines the main on-call responder object for a team, including relationships.
-type TeamOnCallRespondersData struct {
-	// Unique identifier of the on-call responder configuration.
-	Id *string `json:"id,omitempty"`
-	// Relationship objects linked to a team's on-call responder configuration, including escalations and responders.
-	Relationships *TeamOnCallRespondersDataRelationships `json:"relationships,omitempty"`
-	// Represents the resource type for a group of users assigned to handle on-call duties within a team.
-	Type TeamOnCallRespondersDataType `json:"type"`
+// OverrideCreateData The definition of `OverrideCreateData` object.
+type OverrideCreateData struct {
+	// The definition of `OverrideCreateDataAttributes` object.
+	Attributes OverrideCreateDataAttributes `json:"attributes"`
+	// The definition of `OverrideCreateDataRelationships` object.
+	Relationships *OverrideCreateDataRelationships `json:"relationships,omitempty"`
+	// The definition of `OverrideCreateDataType` object.
+	Type OverrideCreateDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTeamOnCallRespondersData instantiates a new TeamOnCallRespondersData object.
+// NewOverrideCreateData instantiates a new OverrideCreateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTeamOnCallRespondersData(typeVar TeamOnCallRespondersDataType) *TeamOnCallRespondersData {
-	this := TeamOnCallRespondersData{}
+func NewOverrideCreateData(attributes OverrideCreateDataAttributes, typeVar OverrideCreateDataType) *OverrideCreateData {
+	this := OverrideCreateData{}
+	this.Attributes = attributes
 	this.Type = typeVar
 	return &this
 }
 
-// NewTeamOnCallRespondersDataWithDefaults instantiates a new TeamOnCallRespondersData object.
+// NewOverrideCreateDataWithDefaults instantiates a new OverrideCreateData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTeamOnCallRespondersDataWithDefaults() *TeamOnCallRespondersData {
-	this := TeamOnCallRespondersData{}
-	var typeVar TeamOnCallRespondersDataType = TEAMONCALLRESPONDERSDATATYPE_TEAM_ONCALL_RESPONDERS
-	this.Type = typeVar
+func NewOverrideCreateDataWithDefaults() *OverrideCreateData {
+	this := OverrideCreateData{}
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *TeamOnCallRespondersData) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
+// GetAttributes returns the Attributes field value.
+func (o *OverrideCreateData) GetAttributes() OverrideCreateDataAttributes {
+	if o == nil {
+		var ret OverrideCreateDataAttributes
 		return ret
 	}
-	return *o.Id
+	return o.Attributes
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *TeamOnCallRespondersData) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+func (o *OverrideCreateData) GetAttributesOk() (*OverrideCreateDataAttributes, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Attributes, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *TeamOnCallRespondersData) HasId() bool {
-	return o != nil && o.Id != nil
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *TeamOnCallRespondersData) SetId(v string) {
-	o.Id = &v
+// SetAttributes sets field value.
+func (o *OverrideCreateData) SetAttributes(v OverrideCreateDataAttributes) {
+	o.Attributes = v
 }
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
-func (o *TeamOnCallRespondersData) GetRelationships() TeamOnCallRespondersDataRelationships {
+func (o *OverrideCreateData) GetRelationships() OverrideCreateDataRelationships {
 	if o == nil || o.Relationships == nil {
-		var ret TeamOnCallRespondersDataRelationships
+		var ret OverrideCreateDataRelationships
 		return ret
 	}
 	return *o.Relationships
@@ -82,7 +76,7 @@ func (o *TeamOnCallRespondersData) GetRelationships() TeamOnCallRespondersDataRe
 
 // GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TeamOnCallRespondersData) GetRelationshipsOk() (*TeamOnCallRespondersDataRelationships, bool) {
+func (o *OverrideCreateData) GetRelationshipsOk() (*OverrideCreateDataRelationships, bool) {
 	if o == nil || o.Relationships == nil {
 		return nil, false
 	}
@@ -90,19 +84,19 @@ func (o *TeamOnCallRespondersData) GetRelationshipsOk() (*TeamOnCallRespondersDa
 }
 
 // HasRelationships returns a boolean if a field has been set.
-func (o *TeamOnCallRespondersData) HasRelationships() bool {
+func (o *OverrideCreateData) HasRelationships() bool {
 	return o != nil && o.Relationships != nil
 }
 
-// SetRelationships gets a reference to the given TeamOnCallRespondersDataRelationships and assigns it to the Relationships field.
-func (o *TeamOnCallRespondersData) SetRelationships(v TeamOnCallRespondersDataRelationships) {
+// SetRelationships gets a reference to the given OverrideCreateDataRelationships and assigns it to the Relationships field.
+func (o *OverrideCreateData) SetRelationships(v OverrideCreateDataRelationships) {
 	o.Relationships = &v
 }
 
 // GetType returns the Type field value.
-func (o *TeamOnCallRespondersData) GetType() TeamOnCallRespondersDataType {
+func (o *OverrideCreateData) GetType() OverrideCreateDataType {
 	if o == nil {
-		var ret TeamOnCallRespondersDataType
+		var ret OverrideCreateDataType
 		return ret
 	}
 	return o.Type
@@ -110,7 +104,7 @@ func (o *TeamOnCallRespondersData) GetType() TeamOnCallRespondersDataType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *TeamOnCallRespondersData) GetTypeOk() (*TeamOnCallRespondersDataType, bool) {
+func (o *OverrideCreateData) GetTypeOk() (*OverrideCreateDataType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -118,19 +112,17 @@ func (o *TeamOnCallRespondersData) GetTypeOk() (*TeamOnCallRespondersDataType, b
 }
 
 // SetType sets field value.
-func (o *TeamOnCallRespondersData) SetType(v TeamOnCallRespondersDataType) {
+func (o *OverrideCreateData) SetType(v OverrideCreateDataType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TeamOnCallRespondersData) MarshalJSON() ([]byte, error) {
+func (o OverrideCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["attributes"] = o.Attributes
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
@@ -143,27 +135,33 @@ func (o TeamOnCallRespondersData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TeamOnCallRespondersData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *OverrideCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id            *string                                `json:"id,omitempty"`
-		Relationships *TeamOnCallRespondersDataRelationships `json:"relationships,omitempty"`
-		Type          *TeamOnCallRespondersDataType          `json:"type"`
+		Attributes    *OverrideCreateDataAttributes    `json:"attributes"`
+		Relationships *OverrideCreateDataRelationships `json:"relationships,omitempty"`
+		Type          *OverrideCreateDataType          `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
 	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "relationships", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	o.Id = all.Id
+	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Attributes = *all.Attributes
 	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
