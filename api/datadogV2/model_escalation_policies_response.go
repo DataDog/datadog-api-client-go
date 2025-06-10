@@ -8,66 +8,66 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TeamOnCallResponders Root object representing a team's on-call responder configuration.
-type TeamOnCallResponders struct {
-	// Defines the main on-call responder object for a team, including relationships.
-	Data *TeamOnCallRespondersData `json:"data,omitempty"`
-	// The `TeamOnCallResponders` `included`.
-	Included []TeamOnCallRespondersIncluded `json:"included,omitempty"`
+// EscalationPoliciesResponse Response with a list of escalation policies.
+type EscalationPoliciesResponse struct {
+	// A list of escalation policies.
+	Data []EscalationPolicyData `json:"data,omitempty"`
+	// Provides any included related resources, such as steps or targets, returned with the policy.
+	Included []EscalationPolicyIncluded `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTeamOnCallResponders instantiates a new TeamOnCallResponders object.
+// NewEscalationPoliciesResponse instantiates a new EscalationPoliciesResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTeamOnCallResponders() *TeamOnCallResponders {
-	this := TeamOnCallResponders{}
+func NewEscalationPoliciesResponse() *EscalationPoliciesResponse {
+	this := EscalationPoliciesResponse{}
 	return &this
 }
 
-// NewTeamOnCallRespondersWithDefaults instantiates a new TeamOnCallResponders object.
+// NewEscalationPoliciesResponseWithDefaults instantiates a new EscalationPoliciesResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTeamOnCallRespondersWithDefaults() *TeamOnCallResponders {
-	this := TeamOnCallResponders{}
+func NewEscalationPoliciesResponseWithDefaults() *EscalationPoliciesResponse {
+	this := EscalationPoliciesResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *TeamOnCallResponders) GetData() TeamOnCallRespondersData {
+func (o *EscalationPoliciesResponse) GetData() []EscalationPolicyData {
 	if o == nil || o.Data == nil {
-		var ret TeamOnCallRespondersData
+		var ret []EscalationPolicyData
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TeamOnCallResponders) GetDataOk() (*TeamOnCallRespondersData, bool) {
+func (o *EscalationPoliciesResponse) GetDataOk() (*[]EscalationPolicyData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *TeamOnCallResponders) HasData() bool {
+func (o *EscalationPoliciesResponse) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
-// SetData gets a reference to the given TeamOnCallRespondersData and assigns it to the Data field.
-func (o *TeamOnCallResponders) SetData(v TeamOnCallRespondersData) {
-	o.Data = &v
+// SetData gets a reference to the given []EscalationPolicyData and assigns it to the Data field.
+func (o *EscalationPoliciesResponse) SetData(v []EscalationPolicyData) {
+	o.Data = v
 }
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
-func (o *TeamOnCallResponders) GetIncluded() []TeamOnCallRespondersIncluded {
+func (o *EscalationPoliciesResponse) GetIncluded() []EscalationPolicyIncluded {
 	if o == nil || o.Included == nil {
-		var ret []TeamOnCallRespondersIncluded
+		var ret []EscalationPolicyIncluded
 		return ret
 	}
 	return o.Included
@@ -75,7 +75,7 @@ func (o *TeamOnCallResponders) GetIncluded() []TeamOnCallRespondersIncluded {
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TeamOnCallResponders) GetIncludedOk() (*[]TeamOnCallRespondersIncluded, bool) {
+func (o *EscalationPoliciesResponse) GetIncludedOk() (*[]EscalationPolicyIncluded, bool) {
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
@@ -83,17 +83,17 @@ func (o *TeamOnCallResponders) GetIncludedOk() (*[]TeamOnCallRespondersIncluded,
 }
 
 // HasIncluded returns a boolean if a field has been set.
-func (o *TeamOnCallResponders) HasIncluded() bool {
+func (o *EscalationPoliciesResponse) HasIncluded() bool {
 	return o != nil && o.Included != nil
 }
 
-// SetIncluded gets a reference to the given []TeamOnCallRespondersIncluded and assigns it to the Included field.
-func (o *TeamOnCallResponders) SetIncluded(v []TeamOnCallRespondersIncluded) {
+// SetIncluded gets a reference to the given []EscalationPolicyIncluded and assigns it to the Included field.
+func (o *EscalationPoliciesResponse) SetIncluded(v []EscalationPolicyIncluded) {
 	o.Included = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TeamOnCallResponders) MarshalJSON() ([]byte, error) {
+func (o EscalationPoliciesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -112,10 +112,10 @@ func (o TeamOnCallResponders) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TeamOnCallResponders) UnmarshalJSON(bytes []byte) (err error) {
+func (o *EscalationPoliciesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     *TeamOnCallRespondersData      `json:"data,omitempty"`
-		Included []TeamOnCallRespondersIncluded `json:"included,omitempty"`
+		Data     []EscalationPolicyData     `json:"data,omitempty"`
+		Included []EscalationPolicyIncluded `json:"included,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -126,20 +126,11 @@ func (o *TeamOnCallResponders) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Data = all.Data
 	o.Included = all.Included
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
