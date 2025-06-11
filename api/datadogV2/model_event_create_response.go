@@ -10,9 +10,9 @@ import (
 
 // EventCreateResponse Object containing an event response.
 type EventCreateResponse struct {
-	// JSON object containing all events attributes and their associated values.
+	// JSON object containing event attributes and their associated values.
 	Attributes *EventCreateResponseAttributes `json:"attributes,omitempty"`
-	// Event type
+	// Entity type.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
