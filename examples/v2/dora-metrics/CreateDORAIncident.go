@@ -16,6 +16,10 @@ func main() {
 	body := datadogV2.DORAFailureRequest{
 		Data: datadogV2.DORAFailureRequestData{
 			Attributes: datadogV2.DORAFailureRequestAttributes{
+				CustomTags: *datadog.NewNullableList(&[]string{
+					"language:java",
+					"department:engineering",
+				}),
 				Env:        datadog.PtrString("staging"),
 				FinishedAt: datadog.PtrInt64(1693491984000000000),
 				Git: &datadogV2.DORAGitInfo{
