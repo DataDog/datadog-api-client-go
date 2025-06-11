@@ -321,7 +321,7 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
-			"v2.On-CallPagingApi.CreateOnCallPage": {
+			"v2.OnCallPagingApi.CreateOnCallPage": {
 				{
 					URL:         "https://{site}",
 					Description: "No description provided",
@@ -368,7 +368,7 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
-			"v2.On-CallPagingApi.AcknowledgeOnCallPage": {
+			"v2.OnCallPagingApi.AcknowledgeOnCallPage": {
 				{
 					URL:         "https://{site}",
 					Description: "No description provided",
@@ -415,7 +415,7 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
-			"v2.On-CallPagingApi.EscalateOnCallPage": {
+			"v2.OnCallPagingApi.EscalateOnCallPage": {
 				{
 					URL:         "https://{site}",
 					Description: "No description provided",
@@ -462,7 +462,7 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
-			"v2.On-CallPagingApi.ResolveOnCallPage": {
+			"v2.OnCallPagingApi.ResolveOnCallPage": {
 				{
 					URL:         "https://{site}",
 					Description: "No description provided",
