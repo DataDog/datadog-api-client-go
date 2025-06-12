@@ -1,109 +1,15 @@
-package delegated_auth
+package api
 
 import (
 	"context"
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-func TestGetServerVariables(t *testing.T) {
-	testOrgUuid := "12345678-1234-1234-1234-123456789012"
-	serverVars := map[string]string{
-		"api_subdomain": "api",
-		"org_uuid":      testOrgUuid,
-	}
-
-	ctx := context.WithValue(context.Background(), datadog.ContextServerVariables, serverVars)
-
-	retrievedVars := getServerVariables(ctx)
-	if retrievedVars["api_subdomain"] != "api" {
-		t.Errorf("expected api_subdomain to be 'api', got '%s'", retrievedVars["api_subdomain"])
-	}
-	if retrievedVars["org_uuid"] != testOrgUuid {
-		t.Errorf("expected org_uuid to be '%s', got '%s'", testOrgUuid, retrievedVars["org_uuid"])
-	}
-}
-
-func TestGetSite(t *testing.T) {
-	testSite := "datadoghq.com"
-
-	type testCase struct {
-		name         string
-		serverVars   map[string]string
-		expectedSite string
-	}
-
-	testCases := []testCase{
-		{
-			name:         "Default Site",
-			serverVars:   map[string]string{"site": testSite},
-			expectedSite: testSite,
-		},
-		{
-			name:         "Site from name",
-			serverVars:   map[string]string{"name": testSite},
-			expectedSite: testSite,
-		},
-		{
-			name:         "Site from name with subdomain",
-			serverVars:   map[string]string{"name": "dd.datadoghq.com"},
-			expectedSite: "dd.datadoghq.com",
-		},
-		{
-			name:         "Site from name using api subdomain",
-			serverVars:   map[string]string{"name": "api.datadoghq.com"},
-			expectedSite: testSite,
-		},
-	}
-	for _, tc := range testCases {
-		t.Run(tc.name, func(t *testing.T) {
-			site, err := getSite(tc.serverVars)
-			if err != nil {
-				t.Errorf("unexpected error: %v", err)
-			}
-			if site != tc.expectedSite {
-				t.Errorf("expected site '%s', got '%s'", tc.expectedSite, site)
-			}
-		})
-	}
-}
-
-func TestGetApiSubdomain(t *testing.T) {
-	testCases := []struct {
-		name           string
-		serverVars     map[string]string
-		expectedSubdom string
-	}{
-		{
-			name:           "Default API Subdomain",
-			serverVars:     map[string]string{"subdomain": "api"},
-			expectedSubdom: "api",
-		},
-		{
-			name:           "Custom API Subdomain",
-			serverVars:     map[string]string{"subdomain": "custom"},
-			expectedSubdom: "custom",
-		},
-		{
-			name:           "Empty API Subdomain",
-			serverVars:     map[string]string{},
-			expectedSubdom: "api",
-		},
-	}
-
-	for _, tc := range testCases {
-		t.Run(tc.name, func(t *testing.T) {
-			subdom := getApiSubdomain(tc.serverVars)
-			if subdom != tc.expectedSubdom {
-				t.Errorf("expected subdomain '%s', got '%s'", tc.expectedSubdom, subdom)
-			}
-		})
-	}
-}
-
-func TestGetUrl(t *testing.T) {
+func TestGetDelegatedTokenUrl(t *testing.T) {
 	testCases := []struct {
 		name           string
 		serverVars     map[string]string
@@ -163,7 +69,7 @@ func TestGetUrl(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			ctx := context.WithValue(context.Background(), datadog.ContextServerVariables, tc.serverVars)
-			url, err := getUrl(ctx)
+			url, err := datadog.GetDelegatedTokenUrl(ctx)
 			if err != nil && err.Error() != tc.expectedErrMsg {
 				t.Errorf("expected error '%s', got '%v'", tc.expectedErrMsg, err)
 			}
@@ -281,7 +187,7 @@ func TestParseTokenResponse(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			creds, err := parseTokenResponse(tc.tokenResponse, testOrgUuid, testProof)
+			creds, err := datadog.ParseDelegatedTokenResponse(tc.tokenResponse, testOrgUuid, testProof)
 			if err != nil && tc.expectedErrorMsg == "" {
 				t.Errorf("unexpected error: %v", err)
 			}

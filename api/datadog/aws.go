@@ -1,4 +1,8 @@
-package delegated_auth
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
+
+package datadog
 
 import (
 	"context"
@@ -13,8 +17,6 @@ import (
 	"sort"
 	"strings"
 	"time"
-
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 type Credentials struct {
@@ -39,9 +41,10 @@ const (
 	applicationForm = "application/x-www-form-urlencoded; charset=utf-8"
 
 	// AWS specific constants
-	awsAccessKeyName      = "AWS_ACCESS_KEY_ID"
-	awsSecretKeyName      = "AWS_SECRET_ACCESS_KEY"
-	awsSessionToken       = "AWS_SESSION_TOKEN"
+	AWSAccessKeyName = "AWS_ACCESS_KEY_ID"
+	AWSSecretKeyName = "AWS_SECRET_ACCESS_KEY"
+	AWSSessionToken  = "AWS_SESSION_TOKEN"
+
 	amzDateHeader         = "X-Amz-Date"
 	amzTokenHeader        = "X-Amz-Security-Token"
 	amzDateFormat         = "20060102"
@@ -55,21 +58,23 @@ const (
 	getCallerIdentityBody = "Action=GetCallerIdentity&Version=2011-06-15"
 )
 
+const ProviderAWS = "aws"
+
 type AWSAuth struct {
 	AwsRegion string
 }
 
-func (a *AWSAuth) Authenticate(ctx context.Context) (*datadog.DelegatedTokenCredentials, error) {
+func (a *AWSAuth) Authenticate(ctx context.Context) (*DelegatedTokenCredentials, error) {
 	// Get local AWS Credentials
-	creds := a.getCredentials()
+	creds := a.GetCredentials()
 
-	orgUUID := ctx.Value(datadog.ContextDelegatedToken).(*datadog.DelegatedTokenConfig).OrgUUID
+	orgUUID := ctx.Value(ContextDelegatedToken).(*DelegatedTokenConfig).OrgUUID
 	if orgUUID == "" {
 		return nil, fmt.Errorf("missing org UUID in context")
 	}
 
 	// Use the credentials to generate the signing data
-	data, err := a.generateAwsAuthData(orgUUID, creds)
+	data, err := a.GenerateAwsAuthData(orgUUID, creds)
 	if err != nil {
 		return nil, err
 	}
@@ -77,14 +82,14 @@ func (a *AWSAuth) Authenticate(ctx context.Context) (*datadog.DelegatedTokenCred
 	// Generate the auth string passed to the token endpoint
 	authString := data.BodyEncoded + "|" + data.HeadersEncoded + "|" + data.Method + "|" + data.URLEncoded
 
-	authResponse, err := getDelegatedToken(ctx, orgUUID, authString)
+	authResponse, err := GetDelegatedToken(ctx, orgUUID, authString)
 	return authResponse, err
 }
 
-func (a *AWSAuth) getCredentials() *Credentials {
-	accessKey := os.Getenv(awsAccessKeyName)
-	secretKey := os.Getenv(awsSecretKeyName)
-	sessionToken := os.Getenv(awsSessionToken)
+func (a *AWSAuth) GetCredentials() *Credentials {
+	accessKey := os.Getenv(AWSAccessKeyName)
+	secretKey := os.Getenv(AWSSecretKeyName)
+	sessionToken := os.Getenv(AWSSessionToken)
 	return &Credentials{
 		AccessKeyID:     accessKey,
 		SecretAccessKey: secretKey,
@@ -107,7 +112,7 @@ func (a *AWSAuth) getConnectionParameters() (string, string, string) {
 	return stsFullURL, region, host
 }
 
-func (a *AWSAuth) generateAwsAuthData(orgUUID string, creds *Credentials) (*SigningData, error) {
+func (a *AWSAuth) GenerateAwsAuthData(orgUUID string, creds *Credentials) (*SigningData, error) {
 	if orgUUID == "" {
 		return nil, fmt.Errorf("missing org UUID")
 	}
@@ -193,7 +198,7 @@ func (a *AWSAuth) generateAwsAuthData(orgUUID string, creds *Credentials) (*Sign
 		algorithm, credential, signedHeaders, stringToSign)
 
 	headerMap["Authorization"] = []string{authHeader}
-	headerMap["User-Agent"] = []string{datadog.GetUserAgent()}
+	headerMap["User-Agent"] = []string{GetUserAgent()}
 	headersJSON, err := json.Marshal(headerMap)
 	if err != nil {
 		return nil, err

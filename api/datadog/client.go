@@ -72,18 +72,19 @@ func SetAuthKeys(ctx context.Context, headerParams *map[string]string, keys ...[
 			}
 
 			if methodUsesAppKeyAuth {
+				hasDelegatedTokenAuth = true
 				// If we have no token or the token we have is expired then authenticate
 				if delegatedTokenConfig.DelegatedToken == "" || time.Now().After(delegatedTokenConfig.Expiration) {
-					log.Println("Performing delegated token auth")
 					_, err := CallDelegatedTokenAuthenticate(ctx, delegatedTokenConfig)
 					if err != nil {
 						log.Printf("Failed to retrieve delegated token: %v", err)
+						// Reset the token if authentication failed
+						delegatedTokenConfig.DelegatedToken = ""
 					}
 				}
-				// If authentication worked use delegated token auth
+				// If authentication succeeded use delegated token auth
 				if delegatedTokenConfig.DelegatedToken != "" {
 					(*headerParams)[authorizationHeader] = fmt.Sprintf(bearerTokenFormat, delegatedTokenConfig.DelegatedToken)
-					hasDelegatedTokenAuth = true
 				}
 			}
 		}

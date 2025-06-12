@@ -4,10 +4,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"os"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
-	"github.com/DataDog/datadog-api-client-go/v2/delegated_auth"
-	"os"
 )
 
 func main() {
@@ -19,8 +19,8 @@ func main() {
 			DelegatedTokenCredentials: datadog.DelegatedTokenCredentials{
 				OrgUUID: os.Getenv("DD_TEST_ORG_UUID"),
 			},
-			ProviderAuth: &delegated_auth.AWSAuth{},
-			Provider:     "aws",
+			ProviderAuth: &datadog.AWSAuth{},
+			Provider:     datadog.ProviderAWS,
 		},
 	)
 

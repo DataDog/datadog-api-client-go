@@ -1,11 +1,11 @@
-package delegated_auth
+{% include "partial_header.j2" %}
+package {{ common_package_name }}
 
 import (
 	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"io"
 	"net/http"
 	"strconv"
@@ -14,17 +14,16 @@ import (
 )
 
 const (
-	tokenUrlEndpoint    = "https://%s.%s/api/v2/delegated-token"
-	authorizationHeader = "Authorization"
-	authorizationType   = "Delegated"
+	tokenUrlEndpoint  = "https://%s.%s/api/v2/delegated-token"
+	authorizationType = "Delegated"
 
 	contentTypeHeader   = "Content-Type"
 	contextLengthHeader = "Content-Length"
 	applicationJson     = "application/json"
 )
 
-func getDelegatedToken(ctx context.Context, orgUUID, delegatedAuthProof string) (*datadog.DelegatedTokenCredentials, error) {
-	url, err := getUrl(ctx)
+func GetDelegatedToken(ctx context.Context, orgUUID, delegatedAuthProof string) (*DelegatedTokenCredentials, error) {
+	url, err := GetDelegatedTokenUrl(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get URL for delegated token: %w", err)
 	}
@@ -50,14 +49,14 @@ func getDelegatedToken(ctx context.Context, orgUUID, delegatedAuthProof string) 
 		return nil, fmt.Errorf("failed to get token: %s", resp.Status)
 	}
 
-	creds, err := parseTokenResponse(tokenBytes, orgUUID, delegatedAuthProof)
+	creds, err := ParseDelegatedTokenResponse(tokenBytes, orgUUID, delegatedAuthProof)
 	if err != nil {
 		return nil, fmt.Errorf("failed to parse token response: %w", err)
 	}
 	return creds, nil
 }
 
-func parseTokenResponse(tokenBytes []byte, orgUUID, delegatedAuthProof string) (*datadog.DelegatedTokenCredentials, error) {
+func ParseDelegatedTokenResponse(tokenBytes []byte, orgUUID, delegatedAuthProof string) (*DelegatedTokenCredentials, error) {
 	// Parse the response to get the token
 	var tokenResponse map[string]interface{}
 	err := json.Unmarshal(tokenBytes, &tokenResponse)
@@ -95,20 +94,12 @@ func parseTokenResponse(tokenBytes []byte, orgUUID, delegatedAuthProof string) (
 		}
 	}
 
-	return &datadog.DelegatedTokenCredentials{
+	return &DelegatedTokenCredentials{
 		OrgUUID:        orgUUID,
 		DelegatedToken: token,
 		DelegatedProof: delegatedAuthProof,
 		Expiration:     expirationTime,
 	}, nil
-}
-
-func getServerVariables(ctx context.Context) map[string]string {
-	vars := ctx.Value(datadog.ContextServerVariables)
-	if vars == nil {
-		return map[string]string{}
-	}
-	return vars.(map[string]string)
 }
 
 func getSite(serverVars map[string]string) (string, error) {
@@ -119,7 +110,7 @@ func getSite(serverVars map[string]string) (string, error) {
 			name = strings.TrimPrefix(name, "api.")
 			return name, nil
 		}
-		return "", datadog.ReportError("site not found in server variables")
+		return "", ReportError("site not found in server variables")
 	}
 	return site, nil
 }
@@ -132,9 +123,12 @@ func getApiSubdomain(serverVars map[string]string) string {
 	return apiName
 }
 
-func getUrl(ctx context.Context) (string, error) {
+func GetDelegatedTokenUrl(ctx context.Context) (string, error) {
 	// Get site, api subdomain, and orgUUID from the context
-	serverVars := getServerVariables(ctx)
+	serverVars, err := getServerVariables(ctx)
+	if err != nil {
+		return "", err
+	}
 	site, err := getSite(serverVars)
 	if err != nil {
 		return "", err
