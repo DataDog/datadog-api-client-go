@@ -117,6 +117,11 @@ func TestGenerateAWSAuthData(t *testing.T) {
 				t.Error("expected non-nil SigningData")
 			}
 
+			if (err != nil) && tc.expectedErr {
+				// If we expect an error, we should not proceed further
+				return
+			}
+
 			url, err := url.Parse(tc.expectedUrl)
 			if err != nil {
 				t.Errorf("failed to parse expected URL %s: %v", tc.expectedUrl, err)
