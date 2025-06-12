@@ -12,6 +12,8 @@ import (
 type SecurityMonitoringStandardRuleQuery struct {
 	// The aggregation type.
 	Aggregation *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
+	// Query extension to append to the logs query.
+	CustomQueryExtension *string `json:"customQueryExtension,omitempty"`
 	// Source of events, either logs, audit trail, or Datadog events.
 	DataSource *SecurityMonitoringStandardDataSource `json:"dataSource,omitempty"`
 	// Field for which the cardinality is measured. Sent as an array.
@@ -82,6 +84,34 @@ func (o *SecurityMonitoringStandardRuleQuery) HasAggregation() bool {
 // SetAggregation gets a reference to the given SecurityMonitoringRuleQueryAggregation and assigns it to the Aggregation field.
 func (o *SecurityMonitoringStandardRuleQuery) SetAggregation(v SecurityMonitoringRuleQueryAggregation) {
 	o.Aggregation = &v
+}
+
+// GetCustomQueryExtension returns the CustomQueryExtension field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleQuery) GetCustomQueryExtension() string {
+	if o == nil || o.CustomQueryExtension == nil {
+		var ret string
+		return ret
+	}
+	return *o.CustomQueryExtension
+}
+
+// GetCustomQueryExtensionOk returns a tuple with the CustomQueryExtension field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleQuery) GetCustomQueryExtensionOk() (*string, bool) {
+	if o == nil || o.CustomQueryExtension == nil {
+		return nil, false
+	}
+	return o.CustomQueryExtension, true
+}
+
+// HasCustomQueryExtension returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleQuery) HasCustomQueryExtension() bool {
+	return o != nil && o.CustomQueryExtension != nil
+}
+
+// SetCustomQueryExtension gets a reference to the given string and assigns it to the CustomQueryExtension field.
+func (o *SecurityMonitoringStandardRuleQuery) SetCustomQueryExtension(v string) {
+	o.CustomQueryExtension = &v
 }
 
 // GetDataSource returns the DataSource field value if set, zero value otherwise.
@@ -320,6 +350,9 @@ func (o SecurityMonitoringStandardRuleQuery) MarshalJSON() ([]byte, error) {
 	if o.Aggregation != nil {
 		toSerialize["aggregation"] = o.Aggregation
 	}
+	if o.CustomQueryExtension != nil {
+		toSerialize["customQueryExtension"] = o.CustomQueryExtension
+	}
 	if o.DataSource != nil {
 		toSerialize["dataSource"] = o.DataSource
 	}
@@ -355,6 +388,7 @@ func (o SecurityMonitoringStandardRuleQuery) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Aggregation              *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
+		CustomQueryExtension     *string                                 `json:"customQueryExtension,omitempty"`
 		DataSource               *SecurityMonitoringStandardDataSource   `json:"dataSource,omitempty"`
 		DistinctFields           []string                                `json:"distinctFields,omitempty"`
 		GroupByFields            []string                                `json:"groupByFields,omitempty"`
@@ -369,7 +403,7 @@ func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "dataSource", "distinctFields", "groupByFields", "hasOptionalGroupByFields", "metric", "metrics", "name", "query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "customQueryExtension", "dataSource", "distinctFields", "groupByFields", "hasOptionalGroupByFields", "metric", "metrics", "name", "query"})
 	} else {
 		return err
 	}
@@ -380,6 +414,7 @@ func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err e
 	} else {
 		o.Aggregation = all.Aggregation
 	}
+	o.CustomQueryExtension = all.CustomQueryExtension
 	if all.DataSource != nil && !all.DataSource.IsValid() {
 		hasInvalidField = true
 	} else {
