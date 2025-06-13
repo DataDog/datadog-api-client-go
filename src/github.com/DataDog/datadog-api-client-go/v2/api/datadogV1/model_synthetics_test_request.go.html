@@ -91,1184 +91,1219 @@
 <span id="L34" class="ln">    34  </span>	DnsServer *string `json:&#34;dnsServer,omitempty&#34;`
 <span id="L35" class="ln">    35  </span>	<span class="comment">// DNS server port to use for DNS tests.</span>
 <span id="L36" class="ln">    36  </span>	DnsServerPort *string `json:&#34;dnsServerPort,omitempty&#34;`
-<span id="L37" class="ln">    37  </span>	<span class="comment">// Files to be used as part of the request in the test.</span>
+<span id="L37" class="ln">    37  </span>	<span class="comment">// Files to be used as part of the request in the test. Only valid if `bodyType` is `multipart/form-data`.</span>
 <span id="L38" class="ln">    38  </span>	Files []SyntheticsTestRequestBodyFile `json:&#34;files,omitempty&#34;`
 <span id="L39" class="ln">    39  </span>	<span class="comment">// Specifies whether or not the request follows redirects.</span>
 <span id="L40" class="ln">    40  </span>	FollowRedirects *bool `json:&#34;follow_redirects,omitempty&#34;`
-<span id="L41" class="ln">    41  </span>	<span class="comment">// Headers to include when performing the test.</span>
-<span id="L42" class="ln">    42  </span>	Headers map[string]string `json:&#34;headers,omitempty&#34;`
-<span id="L43" class="ln">    43  </span>	<span class="comment">// Host name to perform the test with.</span>
-<span id="L44" class="ln">    44  </span>	Host *string `json:&#34;host,omitempty&#34;`
-<span id="L45" class="ln">    45  </span>	<span class="comment">// HTTP version to use for a Synthetic test.</span>
-<span id="L46" class="ln">    46  </span>	HttpVersion *SyntheticsTestOptionsHTTPVersion `json:&#34;httpVersion,omitempty&#34;`
-<span id="L47" class="ln">    47  </span>	<span class="comment">// Whether the message is base64 encoded.</span>
-<span id="L48" class="ln">    48  </span>	IsMessageBase64Encoded *bool `json:&#34;isMessageBase64Encoded,omitempty&#34;`
-<span id="L49" class="ln">    49  </span>	<span class="comment">// Message to send for UDP or WebSocket tests.</span>
-<span id="L50" class="ln">    50  </span>	Message *string `json:&#34;message,omitempty&#34;`
-<span id="L51" class="ln">    51  </span>	<span class="comment">// Metadata to include when performing the gRPC test.</span>
-<span id="L52" class="ln">    52  </span>	Metadata map[string]string `json:&#34;metadata,omitempty&#34;`
-<span id="L53" class="ln">    53  </span>	<span class="comment">// Either the HTTP method/verb to use or a gRPC method available on the service set in the `service` field. Required if `subtype` is `HTTP` or if `subtype` is `grpc` and `callType` is `unary`.</span>
-<span id="L54" class="ln">    54  </span>	Method *string `json:&#34;method,omitempty&#34;`
-<span id="L55" class="ln">    55  </span>	<span class="comment">// Determines whether or not to save the response body.</span>
-<span id="L56" class="ln">    56  </span>	NoSavingResponseBody *bool `json:&#34;noSavingResponseBody,omitempty&#34;`
-<span id="L57" class="ln">    57  </span>	<span class="comment">// Number of pings to use per test.</span>
-<span id="L58" class="ln">    58  </span>	NumberOfPackets *int32 `json:&#34;numberOfPackets,omitempty&#34;`
-<span id="L59" class="ln">    59  </span>	<span class="comment">// Persist cookies across redirects.</span>
-<span id="L60" class="ln">    60  </span>	PersistCookies *bool `json:&#34;persistCookies,omitempty&#34;`
-<span id="L61" class="ln">    61  </span>	<span class="comment">// Port to use when performing the test.</span>
-<span id="L62" class="ln">    62  </span>	Port *SyntheticsTestRequestPort `json:&#34;port,omitempty&#34;`
-<span id="L63" class="ln">    63  </span>	<span class="comment">// The proxy to perform the test.</span>
-<span id="L64" class="ln">    64  </span>	Proxy *SyntheticsTestRequestProxy `json:&#34;proxy,omitempty&#34;`
-<span id="L65" class="ln">    65  </span>	<span class="comment">// Query to use for the test.</span>
-<span id="L66" class="ln">    66  </span>	Query interface{} `json:&#34;query,omitempty&#34;`
-<span id="L67" class="ln">    67  </span>	<span class="comment">// For SSL tests, it specifies on which server you want to initiate the TLS handshake,</span>
-<span id="L68" class="ln">    68  </span>	<span class="comment">// allowing the server to present one of multiple possible certificates on</span>
-<span id="L69" class="ln">    69  </span>	<span class="comment">// the same IP address and TCP port number.</span>
-<span id="L70" class="ln">    70  </span>	Servername *string `json:&#34;servername,omitempty&#34;`
-<span id="L71" class="ln">    71  </span>	<span class="comment">// The gRPC service on which you want to perform the gRPC call.</span>
-<span id="L72" class="ln">    72  </span>	Service *string `json:&#34;service,omitempty&#34;`
-<span id="L73" class="ln">    73  </span>	<span class="comment">// Turns on a traceroute probe to discover all gateways along the path to the host destination.</span>
-<span id="L74" class="ln">    74  </span>	ShouldTrackHops *bool `json:&#34;shouldTrackHops,omitempty&#34;`
-<span id="L75" class="ln">    75  </span>	<span class="comment">// Timeout in seconds for the test.</span>
-<span id="L76" class="ln">    76  </span>	Timeout *float64 `json:&#34;timeout,omitempty&#34;`
-<span id="L77" class="ln">    77  </span>	<span class="comment">// URL to perform the test with.</span>
-<span id="L78" class="ln">    78  </span>	Url *string `json:&#34;url,omitempty&#34;`
-<span id="L79" class="ln">    79  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
-<span id="L80" class="ln">    80  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L81" class="ln">    81  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
-<span id="L82" class="ln">    82  </span>}
-<span id="L83" class="ln">    83  </span>
-<span id="L84" class="ln">    84  </span><span class="comment">// NewSyntheticsTestRequest instantiates a new SyntheticsTestRequest object.</span>
-<span id="L85" class="ln">    85  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
-<span id="L86" class="ln">    86  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
-<span id="L87" class="ln">    87  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L88" class="ln">    88  </span>func NewSyntheticsTestRequest() *SyntheticsTestRequest {
-<span id="L89" class="ln">    89  </span>	this := SyntheticsTestRequest{}
-<span id="L90" class="ln">    90  </span>	return &amp;this
-<span id="L91" class="ln">    91  </span>}
-<span id="L92" class="ln">    92  </span>
-<span id="L93" class="ln">    93  </span><span class="comment">// NewSyntheticsTestRequestWithDefaults instantiates a new SyntheticsTestRequest object.</span>
-<span id="L94" class="ln">    94  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
-<span id="L95" class="ln">    95  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L96" class="ln">    96  </span>func NewSyntheticsTestRequestWithDefaults() *SyntheticsTestRequest {
-<span id="L97" class="ln">    97  </span>	this := SyntheticsTestRequest{}
-<span id="L98" class="ln">    98  </span>	return &amp;this
-<span id="L99" class="ln">    99  </span>}
-<span id="L100" class="ln">   100  </span>
-<span id="L101" class="ln">   101  </span><span class="comment">// GetAllowInsecure returns the AllowInsecure field value if set, zero value otherwise.</span>
-<span id="L102" class="ln">   102  </span>func (o *SyntheticsTestRequest) GetAllowInsecure() bool {
-<span id="L103" class="ln">   103  </span>	if o == nil || o.AllowInsecure == nil {
-<span id="L104" class="ln">   104  </span>		var ret bool
-<span id="L105" class="ln">   105  </span>		return ret
-<span id="L106" class="ln">   106  </span>	}
-<span id="L107" class="ln">   107  </span>	return *o.AllowInsecure
-<span id="L108" class="ln">   108  </span>}
-<span id="L109" class="ln">   109  </span>
-<span id="L110" class="ln">   110  </span><span class="comment">// GetAllowInsecureOk returns a tuple with the AllowInsecure field value if set, nil otherwise</span>
-<span id="L111" class="ln">   111  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L112" class="ln">   112  </span>func (o *SyntheticsTestRequest) GetAllowInsecureOk() (*bool, bool) {
-<span id="L113" class="ln">   113  </span>	if o == nil || o.AllowInsecure == nil {
-<span id="L114" class="ln">   114  </span>		return nil, false
-<span id="L115" class="ln">   115  </span>	}
-<span id="L116" class="ln">   116  </span>	return o.AllowInsecure, true
-<span id="L117" class="ln">   117  </span>}
-<span id="L118" class="ln">   118  </span>
-<span id="L119" class="ln">   119  </span><span class="comment">// HasAllowInsecure returns a boolean if a field has been set.</span>
-<span id="L120" class="ln">   120  </span>func (o *SyntheticsTestRequest) HasAllowInsecure() bool {
-<span id="L121" class="ln">   121  </span>	return o != nil &amp;&amp; o.AllowInsecure != nil
-<span id="L122" class="ln">   122  </span>}
-<span id="L123" class="ln">   123  </span>
-<span id="L124" class="ln">   124  </span><span class="comment">// SetAllowInsecure gets a reference to the given bool and assigns it to the AllowInsecure field.</span>
-<span id="L125" class="ln">   125  </span>func (o *SyntheticsTestRequest) SetAllowInsecure(v bool) {
-<span id="L126" class="ln">   126  </span>	o.AllowInsecure = &amp;v
-<span id="L127" class="ln">   127  </span>}
-<span id="L128" class="ln">   128  </span>
-<span id="L129" class="ln">   129  </span><span class="comment">// GetBasicAuth returns the BasicAuth field value if set, zero value otherwise.</span>
-<span id="L130" class="ln">   130  </span>func (o *SyntheticsTestRequest) GetBasicAuth() SyntheticsBasicAuth {
-<span id="L131" class="ln">   131  </span>	if o == nil || o.BasicAuth == nil {
-<span id="L132" class="ln">   132  </span>		var ret SyntheticsBasicAuth
-<span id="L133" class="ln">   133  </span>		return ret
-<span id="L134" class="ln">   134  </span>	}
-<span id="L135" class="ln">   135  </span>	return *o.BasicAuth
-<span id="L136" class="ln">   136  </span>}
-<span id="L137" class="ln">   137  </span>
-<span id="L138" class="ln">   138  </span><span class="comment">// GetBasicAuthOk returns a tuple with the BasicAuth field value if set, nil otherwise</span>
-<span id="L139" class="ln">   139  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L140" class="ln">   140  </span>func (o *SyntheticsTestRequest) GetBasicAuthOk() (*SyntheticsBasicAuth, bool) {
-<span id="L141" class="ln">   141  </span>	if o == nil || o.BasicAuth == nil {
-<span id="L142" class="ln">   142  </span>		return nil, false
-<span id="L143" class="ln">   143  </span>	}
-<span id="L144" class="ln">   144  </span>	return o.BasicAuth, true
-<span id="L145" class="ln">   145  </span>}
-<span id="L146" class="ln">   146  </span>
-<span id="L147" class="ln">   147  </span><span class="comment">// HasBasicAuth returns a boolean if a field has been set.</span>
-<span id="L148" class="ln">   148  </span>func (o *SyntheticsTestRequest) HasBasicAuth() bool {
-<span id="L149" class="ln">   149  </span>	return o != nil &amp;&amp; o.BasicAuth != nil
-<span id="L150" class="ln">   150  </span>}
-<span id="L151" class="ln">   151  </span>
-<span id="L152" class="ln">   152  </span><span class="comment">// SetBasicAuth gets a reference to the given SyntheticsBasicAuth and assigns it to the BasicAuth field.</span>
-<span id="L153" class="ln">   153  </span>func (o *SyntheticsTestRequest) SetBasicAuth(v SyntheticsBasicAuth) {
-<span id="L154" class="ln">   154  </span>	o.BasicAuth = &amp;v
-<span id="L155" class="ln">   155  </span>}
-<span id="L156" class="ln">   156  </span>
-<span id="L157" class="ln">   157  </span><span class="comment">// GetBody returns the Body field value if set, zero value otherwise.</span>
-<span id="L158" class="ln">   158  </span>func (o *SyntheticsTestRequest) GetBody() string {
-<span id="L159" class="ln">   159  </span>	if o == nil || o.Body == nil {
-<span id="L160" class="ln">   160  </span>		var ret string
-<span id="L161" class="ln">   161  </span>		return ret
-<span id="L162" class="ln">   162  </span>	}
-<span id="L163" class="ln">   163  </span>	return *o.Body
-<span id="L164" class="ln">   164  </span>}
-<span id="L165" class="ln">   165  </span>
-<span id="L166" class="ln">   166  </span><span class="comment">// GetBodyOk returns a tuple with the Body field value if set, nil otherwise</span>
-<span id="L167" class="ln">   167  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L168" class="ln">   168  </span>func (o *SyntheticsTestRequest) GetBodyOk() (*string, bool) {
-<span id="L169" class="ln">   169  </span>	if o == nil || o.Body == nil {
-<span id="L170" class="ln">   170  </span>		return nil, false
-<span id="L171" class="ln">   171  </span>	}
-<span id="L172" class="ln">   172  </span>	return o.Body, true
-<span id="L173" class="ln">   173  </span>}
-<span id="L174" class="ln">   174  </span>
-<span id="L175" class="ln">   175  </span><span class="comment">// HasBody returns a boolean if a field has been set.</span>
-<span id="L176" class="ln">   176  </span>func (o *SyntheticsTestRequest) HasBody() bool {
-<span id="L177" class="ln">   177  </span>	return o != nil &amp;&amp; o.Body != nil
-<span id="L178" class="ln">   178  </span>}
-<span id="L179" class="ln">   179  </span>
-<span id="L180" class="ln">   180  </span><span class="comment">// SetBody gets a reference to the given string and assigns it to the Body field.</span>
-<span id="L181" class="ln">   181  </span>func (o *SyntheticsTestRequest) SetBody(v string) {
-<span id="L182" class="ln">   182  </span>	o.Body = &amp;v
-<span id="L183" class="ln">   183  </span>}
-<span id="L184" class="ln">   184  </span>
-<span id="L185" class="ln">   185  </span><span class="comment">// GetBodyType returns the BodyType field value if set, zero value otherwise.</span>
-<span id="L186" class="ln">   186  </span>func (o *SyntheticsTestRequest) GetBodyType() SyntheticsTestRequestBodyType {
-<span id="L187" class="ln">   187  </span>	if o == nil || o.BodyType == nil {
-<span id="L188" class="ln">   188  </span>		var ret SyntheticsTestRequestBodyType
-<span id="L189" class="ln">   189  </span>		return ret
-<span id="L190" class="ln">   190  </span>	}
-<span id="L191" class="ln">   191  </span>	return *o.BodyType
-<span id="L192" class="ln">   192  </span>}
-<span id="L193" class="ln">   193  </span>
-<span id="L194" class="ln">   194  </span><span class="comment">// GetBodyTypeOk returns a tuple with the BodyType field value if set, nil otherwise</span>
-<span id="L195" class="ln">   195  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L196" class="ln">   196  </span>func (o *SyntheticsTestRequest) GetBodyTypeOk() (*SyntheticsTestRequestBodyType, bool) {
-<span id="L197" class="ln">   197  </span>	if o == nil || o.BodyType == nil {
-<span id="L198" class="ln">   198  </span>		return nil, false
-<span id="L199" class="ln">   199  </span>	}
-<span id="L200" class="ln">   200  </span>	return o.BodyType, true
-<span id="L201" class="ln">   201  </span>}
-<span id="L202" class="ln">   202  </span>
-<span id="L203" class="ln">   203  </span><span class="comment">// HasBodyType returns a boolean if a field has been set.</span>
-<span id="L204" class="ln">   204  </span>func (o *SyntheticsTestRequest) HasBodyType() bool {
-<span id="L205" class="ln">   205  </span>	return o != nil &amp;&amp; o.BodyType != nil
-<span id="L206" class="ln">   206  </span>}
-<span id="L207" class="ln">   207  </span>
-<span id="L208" class="ln">   208  </span><span class="comment">// SetBodyType gets a reference to the given SyntheticsTestRequestBodyType and assigns it to the BodyType field.</span>
-<span id="L209" class="ln">   209  </span>func (o *SyntheticsTestRequest) SetBodyType(v SyntheticsTestRequestBodyType) {
-<span id="L210" class="ln">   210  </span>	o.BodyType = &amp;v
-<span id="L211" class="ln">   211  </span>}
-<span id="L212" class="ln">   212  </span>
-<span id="L213" class="ln">   213  </span><span class="comment">// GetCallType returns the CallType field value if set, zero value otherwise.</span>
-<span id="L214" class="ln">   214  </span>func (o *SyntheticsTestRequest) GetCallType() SyntheticsTestCallType {
-<span id="L215" class="ln">   215  </span>	if o == nil || o.CallType == nil {
-<span id="L216" class="ln">   216  </span>		var ret SyntheticsTestCallType
-<span id="L217" class="ln">   217  </span>		return ret
-<span id="L218" class="ln">   218  </span>	}
-<span id="L219" class="ln">   219  </span>	return *o.CallType
-<span id="L220" class="ln">   220  </span>}
-<span id="L221" class="ln">   221  </span>
-<span id="L222" class="ln">   222  </span><span class="comment">// GetCallTypeOk returns a tuple with the CallType field value if set, nil otherwise</span>
-<span id="L223" class="ln">   223  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L224" class="ln">   224  </span>func (o *SyntheticsTestRequest) GetCallTypeOk() (*SyntheticsTestCallType, bool) {
-<span id="L225" class="ln">   225  </span>	if o == nil || o.CallType == nil {
-<span id="L226" class="ln">   226  </span>		return nil, false
-<span id="L227" class="ln">   227  </span>	}
-<span id="L228" class="ln">   228  </span>	return o.CallType, true
-<span id="L229" class="ln">   229  </span>}
-<span id="L230" class="ln">   230  </span>
-<span id="L231" class="ln">   231  </span><span class="comment">// HasCallType returns a boolean if a field has been set.</span>
-<span id="L232" class="ln">   232  </span>func (o *SyntheticsTestRequest) HasCallType() bool {
-<span id="L233" class="ln">   233  </span>	return o != nil &amp;&amp; o.CallType != nil
-<span id="L234" class="ln">   234  </span>}
-<span id="L235" class="ln">   235  </span>
-<span id="L236" class="ln">   236  </span><span class="comment">// SetCallType gets a reference to the given SyntheticsTestCallType and assigns it to the CallType field.</span>
-<span id="L237" class="ln">   237  </span>func (o *SyntheticsTestRequest) SetCallType(v SyntheticsTestCallType) {
-<span id="L238" class="ln">   238  </span>	o.CallType = &amp;v
-<span id="L239" class="ln">   239  </span>}
-<span id="L240" class="ln">   240  </span>
-<span id="L241" class="ln">   241  </span><span class="comment">// GetCertificate returns the Certificate field value if set, zero value otherwise.</span>
-<span id="L242" class="ln">   242  </span>func (o *SyntheticsTestRequest) GetCertificate() SyntheticsTestRequestCertificate {
-<span id="L243" class="ln">   243  </span>	if o == nil || o.Certificate == nil {
-<span id="L244" class="ln">   244  </span>		var ret SyntheticsTestRequestCertificate
-<span id="L245" class="ln">   245  </span>		return ret
-<span id="L246" class="ln">   246  </span>	}
-<span id="L247" class="ln">   247  </span>	return *o.Certificate
-<span id="L248" class="ln">   248  </span>}
-<span id="L249" class="ln">   249  </span>
-<span id="L250" class="ln">   250  </span><span class="comment">// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise</span>
-<span id="L251" class="ln">   251  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L252" class="ln">   252  </span>func (o *SyntheticsTestRequest) GetCertificateOk() (*SyntheticsTestRequestCertificate, bool) {
-<span id="L253" class="ln">   253  </span>	if o == nil || o.Certificate == nil {
-<span id="L254" class="ln">   254  </span>		return nil, false
-<span id="L255" class="ln">   255  </span>	}
-<span id="L256" class="ln">   256  </span>	return o.Certificate, true
-<span id="L257" class="ln">   257  </span>}
-<span id="L258" class="ln">   258  </span>
-<span id="L259" class="ln">   259  </span><span class="comment">// HasCertificate returns a boolean if a field has been set.</span>
-<span id="L260" class="ln">   260  </span>func (o *SyntheticsTestRequest) HasCertificate() bool {
-<span id="L261" class="ln">   261  </span>	return o != nil &amp;&amp; o.Certificate != nil
-<span id="L262" class="ln">   262  </span>}
-<span id="L263" class="ln">   263  </span>
-<span id="L264" class="ln">   264  </span><span class="comment">// SetCertificate gets a reference to the given SyntheticsTestRequestCertificate and assigns it to the Certificate field.</span>
-<span id="L265" class="ln">   265  </span>func (o *SyntheticsTestRequest) SetCertificate(v SyntheticsTestRequestCertificate) {
-<span id="L266" class="ln">   266  </span>	o.Certificate = &amp;v
-<span id="L267" class="ln">   267  </span>}
-<span id="L268" class="ln">   268  </span>
-<span id="L269" class="ln">   269  </span><span class="comment">// GetCertificateDomains returns the CertificateDomains field value if set, zero value otherwise.</span>
-<span id="L270" class="ln">   270  </span>func (o *SyntheticsTestRequest) GetCertificateDomains() []string {
-<span id="L271" class="ln">   271  </span>	if o == nil || o.CertificateDomains == nil {
-<span id="L272" class="ln">   272  </span>		var ret []string
-<span id="L273" class="ln">   273  </span>		return ret
-<span id="L274" class="ln">   274  </span>	}
-<span id="L275" class="ln">   275  </span>	return o.CertificateDomains
-<span id="L276" class="ln">   276  </span>}
-<span id="L277" class="ln">   277  </span>
-<span id="L278" class="ln">   278  </span><span class="comment">// GetCertificateDomainsOk returns a tuple with the CertificateDomains field value if set, nil otherwise</span>
-<span id="L279" class="ln">   279  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L280" class="ln">   280  </span>func (o *SyntheticsTestRequest) GetCertificateDomainsOk() (*[]string, bool) {
-<span id="L281" class="ln">   281  </span>	if o == nil || o.CertificateDomains == nil {
-<span id="L282" class="ln">   282  </span>		return nil, false
-<span id="L283" class="ln">   283  </span>	}
-<span id="L284" class="ln">   284  </span>	return &amp;o.CertificateDomains, true
-<span id="L285" class="ln">   285  </span>}
-<span id="L286" class="ln">   286  </span>
-<span id="L287" class="ln">   287  </span><span class="comment">// HasCertificateDomains returns a boolean if a field has been set.</span>
-<span id="L288" class="ln">   288  </span>func (o *SyntheticsTestRequest) HasCertificateDomains() bool {
-<span id="L289" class="ln">   289  </span>	return o != nil &amp;&amp; o.CertificateDomains != nil
-<span id="L290" class="ln">   290  </span>}
-<span id="L291" class="ln">   291  </span>
-<span id="L292" class="ln">   292  </span><span class="comment">// SetCertificateDomains gets a reference to the given []string and assigns it to the CertificateDomains field.</span>
-<span id="L293" class="ln">   293  </span>func (o *SyntheticsTestRequest) SetCertificateDomains(v []string) {
-<span id="L294" class="ln">   294  </span>	o.CertificateDomains = v
-<span id="L295" class="ln">   295  </span>}
-<span id="L296" class="ln">   296  </span>
-<span id="L297" class="ln">   297  </span><span class="comment">// GetCheckCertificateRevocation returns the CheckCertificateRevocation field value if set, zero value otherwise.</span>
-<span id="L298" class="ln">   298  </span>func (o *SyntheticsTestRequest) GetCheckCertificateRevocation() bool {
-<span id="L299" class="ln">   299  </span>	if o == nil || o.CheckCertificateRevocation == nil {
-<span id="L300" class="ln">   300  </span>		var ret bool
-<span id="L301" class="ln">   301  </span>		return ret
-<span id="L302" class="ln">   302  </span>	}
-<span id="L303" class="ln">   303  </span>	return *o.CheckCertificateRevocation
-<span id="L304" class="ln">   304  </span>}
-<span id="L305" class="ln">   305  </span>
-<span id="L306" class="ln">   306  </span><span class="comment">// GetCheckCertificateRevocationOk returns a tuple with the CheckCertificateRevocation field value if set, nil otherwise</span>
-<span id="L307" class="ln">   307  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L308" class="ln">   308  </span>func (o *SyntheticsTestRequest) GetCheckCertificateRevocationOk() (*bool, bool) {
-<span id="L309" class="ln">   309  </span>	if o == nil || o.CheckCertificateRevocation == nil {
-<span id="L310" class="ln">   310  </span>		return nil, false
-<span id="L311" class="ln">   311  </span>	}
-<span id="L312" class="ln">   312  </span>	return o.CheckCertificateRevocation, true
-<span id="L313" class="ln">   313  </span>}
-<span id="L314" class="ln">   314  </span>
-<span id="L315" class="ln">   315  </span><span class="comment">// HasCheckCertificateRevocation returns a boolean if a field has been set.</span>
-<span id="L316" class="ln">   316  </span>func (o *SyntheticsTestRequest) HasCheckCertificateRevocation() bool {
-<span id="L317" class="ln">   317  </span>	return o != nil &amp;&amp; o.CheckCertificateRevocation != nil
-<span id="L318" class="ln">   318  </span>}
-<span id="L319" class="ln">   319  </span>
-<span id="L320" class="ln">   320  </span><span class="comment">// SetCheckCertificateRevocation gets a reference to the given bool and assigns it to the CheckCertificateRevocation field.</span>
-<span id="L321" class="ln">   321  </span>func (o *SyntheticsTestRequest) SetCheckCertificateRevocation(v bool) {
-<span id="L322" class="ln">   322  </span>	o.CheckCertificateRevocation = &amp;v
-<span id="L323" class="ln">   323  </span>}
-<span id="L324" class="ln">   324  </span>
-<span id="L325" class="ln">   325  </span><span class="comment">// GetCompressedJsonDescriptor returns the CompressedJsonDescriptor field value if set, zero value otherwise.</span>
-<span id="L326" class="ln">   326  </span>func (o *SyntheticsTestRequest) GetCompressedJsonDescriptor() string {
-<span id="L327" class="ln">   327  </span>	if o == nil || o.CompressedJsonDescriptor == nil {
-<span id="L328" class="ln">   328  </span>		var ret string
-<span id="L329" class="ln">   329  </span>		return ret
-<span id="L330" class="ln">   330  </span>	}
-<span id="L331" class="ln">   331  </span>	return *o.CompressedJsonDescriptor
-<span id="L332" class="ln">   332  </span>}
-<span id="L333" class="ln">   333  </span>
-<span id="L334" class="ln">   334  </span><span class="comment">// GetCompressedJsonDescriptorOk returns a tuple with the CompressedJsonDescriptor field value if set, nil otherwise</span>
-<span id="L335" class="ln">   335  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L336" class="ln">   336  </span>func (o *SyntheticsTestRequest) GetCompressedJsonDescriptorOk() (*string, bool) {
-<span id="L337" class="ln">   337  </span>	if o == nil || o.CompressedJsonDescriptor == nil {
-<span id="L338" class="ln">   338  </span>		return nil, false
-<span id="L339" class="ln">   339  </span>	}
-<span id="L340" class="ln">   340  </span>	return o.CompressedJsonDescriptor, true
-<span id="L341" class="ln">   341  </span>}
-<span id="L342" class="ln">   342  </span>
-<span id="L343" class="ln">   343  </span><span class="comment">// HasCompressedJsonDescriptor returns a boolean if a field has been set.</span>
-<span id="L344" class="ln">   344  </span>func (o *SyntheticsTestRequest) HasCompressedJsonDescriptor() bool {
-<span id="L345" class="ln">   345  </span>	return o != nil &amp;&amp; o.CompressedJsonDescriptor != nil
-<span id="L346" class="ln">   346  </span>}
-<span id="L347" class="ln">   347  </span>
-<span id="L348" class="ln">   348  </span><span class="comment">// SetCompressedJsonDescriptor gets a reference to the given string and assigns it to the CompressedJsonDescriptor field.</span>
-<span id="L349" class="ln">   349  </span>func (o *SyntheticsTestRequest) SetCompressedJsonDescriptor(v string) {
-<span id="L350" class="ln">   350  </span>	o.CompressedJsonDescriptor = &amp;v
-<span id="L351" class="ln">   351  </span>}
-<span id="L352" class="ln">   352  </span>
-<span id="L353" class="ln">   353  </span><span class="comment">// GetCompressedProtoFile returns the CompressedProtoFile field value if set, zero value otherwise.</span>
-<span id="L354" class="ln">   354  </span>func (o *SyntheticsTestRequest) GetCompressedProtoFile() string {
-<span id="L355" class="ln">   355  </span>	if o == nil || o.CompressedProtoFile == nil {
-<span id="L356" class="ln">   356  </span>		var ret string
-<span id="L357" class="ln">   357  </span>		return ret
-<span id="L358" class="ln">   358  </span>	}
-<span id="L359" class="ln">   359  </span>	return *o.CompressedProtoFile
-<span id="L360" class="ln">   360  </span>}
-<span id="L361" class="ln">   361  </span>
-<span id="L362" class="ln">   362  </span><span class="comment">// GetCompressedProtoFileOk returns a tuple with the CompressedProtoFile field value if set, nil otherwise</span>
-<span id="L363" class="ln">   363  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L364" class="ln">   364  </span>func (o *SyntheticsTestRequest) GetCompressedProtoFileOk() (*string, bool) {
-<span id="L365" class="ln">   365  </span>	if o == nil || o.CompressedProtoFile == nil {
-<span id="L366" class="ln">   366  </span>		return nil, false
-<span id="L367" class="ln">   367  </span>	}
-<span id="L368" class="ln">   368  </span>	return o.CompressedProtoFile, true
-<span id="L369" class="ln">   369  </span>}
-<span id="L370" class="ln">   370  </span>
-<span id="L371" class="ln">   371  </span><span class="comment">// HasCompressedProtoFile returns a boolean if a field has been set.</span>
-<span id="L372" class="ln">   372  </span>func (o *SyntheticsTestRequest) HasCompressedProtoFile() bool {
-<span id="L373" class="ln">   373  </span>	return o != nil &amp;&amp; o.CompressedProtoFile != nil
-<span id="L374" class="ln">   374  </span>}
-<span id="L375" class="ln">   375  </span>
-<span id="L376" class="ln">   376  </span><span class="comment">// SetCompressedProtoFile gets a reference to the given string and assigns it to the CompressedProtoFile field.</span>
-<span id="L377" class="ln">   377  </span>func (o *SyntheticsTestRequest) SetCompressedProtoFile(v string) {
-<span id="L378" class="ln">   378  </span>	o.CompressedProtoFile = &amp;v
-<span id="L379" class="ln">   379  </span>}
-<span id="L380" class="ln">   380  </span>
-<span id="L381" class="ln">   381  </span><span class="comment">// GetDnsServer returns the DnsServer field value if set, zero value otherwise.</span>
-<span id="L382" class="ln">   382  </span>func (o *SyntheticsTestRequest) GetDnsServer() string {
-<span id="L383" class="ln">   383  </span>	if o == nil || o.DnsServer == nil {
-<span id="L384" class="ln">   384  </span>		var ret string
-<span id="L385" class="ln">   385  </span>		return ret
-<span id="L386" class="ln">   386  </span>	}
-<span id="L387" class="ln">   387  </span>	return *o.DnsServer
-<span id="L388" class="ln">   388  </span>}
-<span id="L389" class="ln">   389  </span>
-<span id="L390" class="ln">   390  </span><span class="comment">// GetDnsServerOk returns a tuple with the DnsServer field value if set, nil otherwise</span>
-<span id="L391" class="ln">   391  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L392" class="ln">   392  </span>func (o *SyntheticsTestRequest) GetDnsServerOk() (*string, bool) {
-<span id="L393" class="ln">   393  </span>	if o == nil || o.DnsServer == nil {
-<span id="L394" class="ln">   394  </span>		return nil, false
-<span id="L395" class="ln">   395  </span>	}
-<span id="L396" class="ln">   396  </span>	return o.DnsServer, true
-<span id="L397" class="ln">   397  </span>}
-<span id="L398" class="ln">   398  </span>
-<span id="L399" class="ln">   399  </span><span class="comment">// HasDnsServer returns a boolean if a field has been set.</span>
-<span id="L400" class="ln">   400  </span>func (o *SyntheticsTestRequest) HasDnsServer() bool {
-<span id="L401" class="ln">   401  </span>	return o != nil &amp;&amp; o.DnsServer != nil
-<span id="L402" class="ln">   402  </span>}
-<span id="L403" class="ln">   403  </span>
-<span id="L404" class="ln">   404  </span><span class="comment">// SetDnsServer gets a reference to the given string and assigns it to the DnsServer field.</span>
-<span id="L405" class="ln">   405  </span>func (o *SyntheticsTestRequest) SetDnsServer(v string) {
-<span id="L406" class="ln">   406  </span>	o.DnsServer = &amp;v
-<span id="L407" class="ln">   407  </span>}
-<span id="L408" class="ln">   408  </span>
-<span id="L409" class="ln">   409  </span><span class="comment">// GetDnsServerPort returns the DnsServerPort field value if set, zero value otherwise.</span>
-<span id="L410" class="ln">   410  </span>func (o *SyntheticsTestRequest) GetDnsServerPort() string {
-<span id="L411" class="ln">   411  </span>	if o == nil || o.DnsServerPort == nil {
-<span id="L412" class="ln">   412  </span>		var ret string
-<span id="L413" class="ln">   413  </span>		return ret
-<span id="L414" class="ln">   414  </span>	}
-<span id="L415" class="ln">   415  </span>	return *o.DnsServerPort
-<span id="L416" class="ln">   416  </span>}
-<span id="L417" class="ln">   417  </span>
-<span id="L418" class="ln">   418  </span><span class="comment">// GetDnsServerPortOk returns a tuple with the DnsServerPort field value if set, nil otherwise</span>
-<span id="L419" class="ln">   419  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L420" class="ln">   420  </span>func (o *SyntheticsTestRequest) GetDnsServerPortOk() (*string, bool) {
-<span id="L421" class="ln">   421  </span>	if o == nil || o.DnsServerPort == nil {
-<span id="L422" class="ln">   422  </span>		return nil, false
-<span id="L423" class="ln">   423  </span>	}
-<span id="L424" class="ln">   424  </span>	return o.DnsServerPort, true
-<span id="L425" class="ln">   425  </span>}
-<span id="L426" class="ln">   426  </span>
-<span id="L427" class="ln">   427  </span><span class="comment">// HasDnsServerPort returns a boolean if a field has been set.</span>
-<span id="L428" class="ln">   428  </span>func (o *SyntheticsTestRequest) HasDnsServerPort() bool {
-<span id="L429" class="ln">   429  </span>	return o != nil &amp;&amp; o.DnsServerPort != nil
-<span id="L430" class="ln">   430  </span>}
-<span id="L431" class="ln">   431  </span>
-<span id="L432" class="ln">   432  </span><span class="comment">// SetDnsServerPort gets a reference to the given string and assigns it to the DnsServerPort field.</span>
-<span id="L433" class="ln">   433  </span>func (o *SyntheticsTestRequest) SetDnsServerPort(v string) {
-<span id="L434" class="ln">   434  </span>	o.DnsServerPort = &amp;v
-<span id="L435" class="ln">   435  </span>}
-<span id="L436" class="ln">   436  </span>
-<span id="L437" class="ln">   437  </span><span class="comment">// GetFiles returns the Files field value if set, zero value otherwise.</span>
-<span id="L438" class="ln">   438  </span>func (o *SyntheticsTestRequest) GetFiles() []SyntheticsTestRequestBodyFile {
-<span id="L439" class="ln">   439  </span>	if o == nil || o.Files == nil {
-<span id="L440" class="ln">   440  </span>		var ret []SyntheticsTestRequestBodyFile
-<span id="L441" class="ln">   441  </span>		return ret
-<span id="L442" class="ln">   442  </span>	}
-<span id="L443" class="ln">   443  </span>	return o.Files
-<span id="L444" class="ln">   444  </span>}
-<span id="L445" class="ln">   445  </span>
-<span id="L446" class="ln">   446  </span><span class="comment">// GetFilesOk returns a tuple with the Files field value if set, nil otherwise</span>
-<span id="L447" class="ln">   447  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L448" class="ln">   448  </span>func (o *SyntheticsTestRequest) GetFilesOk() (*[]SyntheticsTestRequestBodyFile, bool) {
-<span id="L449" class="ln">   449  </span>	if o == nil || o.Files == nil {
-<span id="L450" class="ln">   450  </span>		return nil, false
-<span id="L451" class="ln">   451  </span>	}
-<span id="L452" class="ln">   452  </span>	return &amp;o.Files, true
-<span id="L453" class="ln">   453  </span>}
-<span id="L454" class="ln">   454  </span>
-<span id="L455" class="ln">   455  </span><span class="comment">// HasFiles returns a boolean if a field has been set.</span>
-<span id="L456" class="ln">   456  </span>func (o *SyntheticsTestRequest) HasFiles() bool {
-<span id="L457" class="ln">   457  </span>	return o != nil &amp;&amp; o.Files != nil
-<span id="L458" class="ln">   458  </span>}
-<span id="L459" class="ln">   459  </span>
-<span id="L460" class="ln">   460  </span><span class="comment">// SetFiles gets a reference to the given []SyntheticsTestRequestBodyFile and assigns it to the Files field.</span>
-<span id="L461" class="ln">   461  </span>func (o *SyntheticsTestRequest) SetFiles(v []SyntheticsTestRequestBodyFile) {
-<span id="L462" class="ln">   462  </span>	o.Files = v
-<span id="L463" class="ln">   463  </span>}
-<span id="L464" class="ln">   464  </span>
-<span id="L465" class="ln">   465  </span><span class="comment">// GetFollowRedirects returns the FollowRedirects field value if set, zero value otherwise.</span>
-<span id="L466" class="ln">   466  </span>func (o *SyntheticsTestRequest) GetFollowRedirects() bool {
-<span id="L467" class="ln">   467  </span>	if o == nil || o.FollowRedirects == nil {
-<span id="L468" class="ln">   468  </span>		var ret bool
-<span id="L469" class="ln">   469  </span>		return ret
-<span id="L470" class="ln">   470  </span>	}
-<span id="L471" class="ln">   471  </span>	return *o.FollowRedirects
-<span id="L472" class="ln">   472  </span>}
-<span id="L473" class="ln">   473  </span>
-<span id="L474" class="ln">   474  </span><span class="comment">// GetFollowRedirectsOk returns a tuple with the FollowRedirects field value if set, nil otherwise</span>
-<span id="L475" class="ln">   475  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L476" class="ln">   476  </span>func (o *SyntheticsTestRequest) GetFollowRedirectsOk() (*bool, bool) {
-<span id="L477" class="ln">   477  </span>	if o == nil || o.FollowRedirects == nil {
-<span id="L478" class="ln">   478  </span>		return nil, false
-<span id="L479" class="ln">   479  </span>	}
-<span id="L480" class="ln">   480  </span>	return o.FollowRedirects, true
-<span id="L481" class="ln">   481  </span>}
-<span id="L482" class="ln">   482  </span>
-<span id="L483" class="ln">   483  </span><span class="comment">// HasFollowRedirects returns a boolean if a field has been set.</span>
-<span id="L484" class="ln">   484  </span>func (o *SyntheticsTestRequest) HasFollowRedirects() bool {
-<span id="L485" class="ln">   485  </span>	return o != nil &amp;&amp; o.FollowRedirects != nil
-<span id="L486" class="ln">   486  </span>}
-<span id="L487" class="ln">   487  </span>
-<span id="L488" class="ln">   488  </span><span class="comment">// SetFollowRedirects gets a reference to the given bool and assigns it to the FollowRedirects field.</span>
-<span id="L489" class="ln">   489  </span>func (o *SyntheticsTestRequest) SetFollowRedirects(v bool) {
-<span id="L490" class="ln">   490  </span>	o.FollowRedirects = &amp;v
-<span id="L491" class="ln">   491  </span>}
-<span id="L492" class="ln">   492  </span>
-<span id="L493" class="ln">   493  </span><span class="comment">// GetHeaders returns the Headers field value if set, zero value otherwise.</span>
-<span id="L494" class="ln">   494  </span>func (o *SyntheticsTestRequest) GetHeaders() map[string]string {
-<span id="L495" class="ln">   495  </span>	if o == nil || o.Headers == nil {
-<span id="L496" class="ln">   496  </span>		var ret map[string]string
-<span id="L497" class="ln">   497  </span>		return ret
-<span id="L498" class="ln">   498  </span>	}
-<span id="L499" class="ln">   499  </span>	return o.Headers
-<span id="L500" class="ln">   500  </span>}
-<span id="L501" class="ln">   501  </span>
-<span id="L502" class="ln">   502  </span><span class="comment">// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise</span>
-<span id="L503" class="ln">   503  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L504" class="ln">   504  </span>func (o *SyntheticsTestRequest) GetHeadersOk() (*map[string]string, bool) {
-<span id="L505" class="ln">   505  </span>	if o == nil || o.Headers == nil {
-<span id="L506" class="ln">   506  </span>		return nil, false
-<span id="L507" class="ln">   507  </span>	}
-<span id="L508" class="ln">   508  </span>	return &amp;o.Headers, true
-<span id="L509" class="ln">   509  </span>}
-<span id="L510" class="ln">   510  </span>
-<span id="L511" class="ln">   511  </span><span class="comment">// HasHeaders returns a boolean if a field has been set.</span>
-<span id="L512" class="ln">   512  </span>func (o *SyntheticsTestRequest) HasHeaders() bool {
-<span id="L513" class="ln">   513  </span>	return o != nil &amp;&amp; o.Headers != nil
-<span id="L514" class="ln">   514  </span>}
-<span id="L515" class="ln">   515  </span>
-<span id="L516" class="ln">   516  </span><span class="comment">// SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.</span>
-<span id="L517" class="ln">   517  </span>func (o *SyntheticsTestRequest) SetHeaders(v map[string]string) {
-<span id="L518" class="ln">   518  </span>	o.Headers = v
-<span id="L519" class="ln">   519  </span>}
-<span id="L520" class="ln">   520  </span>
-<span id="L521" class="ln">   521  </span><span class="comment">// GetHost returns the Host field value if set, zero value otherwise.</span>
-<span id="L522" class="ln">   522  </span>func (o *SyntheticsTestRequest) GetHost() string {
-<span id="L523" class="ln">   523  </span>	if o == nil || o.Host == nil {
-<span id="L524" class="ln">   524  </span>		var ret string
-<span id="L525" class="ln">   525  </span>		return ret
-<span id="L526" class="ln">   526  </span>	}
-<span id="L527" class="ln">   527  </span>	return *o.Host
-<span id="L528" class="ln">   528  </span>}
-<span id="L529" class="ln">   529  </span>
-<span id="L530" class="ln">   530  </span><span class="comment">// GetHostOk returns a tuple with the Host field value if set, nil otherwise</span>
-<span id="L531" class="ln">   531  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L532" class="ln">   532  </span>func (o *SyntheticsTestRequest) GetHostOk() (*string, bool) {
-<span id="L533" class="ln">   533  </span>	if o == nil || o.Host == nil {
-<span id="L534" class="ln">   534  </span>		return nil, false
-<span id="L535" class="ln">   535  </span>	}
-<span id="L536" class="ln">   536  </span>	return o.Host, true
-<span id="L537" class="ln">   537  </span>}
-<span id="L538" class="ln">   538  </span>
-<span id="L539" class="ln">   539  </span><span class="comment">// HasHost returns a boolean if a field has been set.</span>
-<span id="L540" class="ln">   540  </span>func (o *SyntheticsTestRequest) HasHost() bool {
-<span id="L541" class="ln">   541  </span>	return o != nil &amp;&amp; o.Host != nil
-<span id="L542" class="ln">   542  </span>}
-<span id="L543" class="ln">   543  </span>
-<span id="L544" class="ln">   544  </span><span class="comment">// SetHost gets a reference to the given string and assigns it to the Host field.</span>
-<span id="L545" class="ln">   545  </span>func (o *SyntheticsTestRequest) SetHost(v string) {
-<span id="L546" class="ln">   546  </span>	o.Host = &amp;v
-<span id="L547" class="ln">   547  </span>}
-<span id="L548" class="ln">   548  </span>
-<span id="L549" class="ln">   549  </span><span class="comment">// GetHttpVersion returns the HttpVersion field value if set, zero value otherwise.</span>
-<span id="L550" class="ln">   550  </span>func (o *SyntheticsTestRequest) GetHttpVersion() SyntheticsTestOptionsHTTPVersion {
-<span id="L551" class="ln">   551  </span>	if o == nil || o.HttpVersion == nil {
-<span id="L552" class="ln">   552  </span>		var ret SyntheticsTestOptionsHTTPVersion
-<span id="L553" class="ln">   553  </span>		return ret
-<span id="L554" class="ln">   554  </span>	}
-<span id="L555" class="ln">   555  </span>	return *o.HttpVersion
-<span id="L556" class="ln">   556  </span>}
-<span id="L557" class="ln">   557  </span>
-<span id="L558" class="ln">   558  </span><span class="comment">// GetHttpVersionOk returns a tuple with the HttpVersion field value if set, nil otherwise</span>
-<span id="L559" class="ln">   559  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L560" class="ln">   560  </span>func (o *SyntheticsTestRequest) GetHttpVersionOk() (*SyntheticsTestOptionsHTTPVersion, bool) {
-<span id="L561" class="ln">   561  </span>	if o == nil || o.HttpVersion == nil {
-<span id="L562" class="ln">   562  </span>		return nil, false
-<span id="L563" class="ln">   563  </span>	}
-<span id="L564" class="ln">   564  </span>	return o.HttpVersion, true
-<span id="L565" class="ln">   565  </span>}
-<span id="L566" class="ln">   566  </span>
-<span id="L567" class="ln">   567  </span><span class="comment">// HasHttpVersion returns a boolean if a field has been set.</span>
-<span id="L568" class="ln">   568  </span>func (o *SyntheticsTestRequest) HasHttpVersion() bool {
-<span id="L569" class="ln">   569  </span>	return o != nil &amp;&amp; o.HttpVersion != nil
-<span id="L570" class="ln">   570  </span>}
-<span id="L571" class="ln">   571  </span>
-<span id="L572" class="ln">   572  </span><span class="comment">// SetHttpVersion gets a reference to the given SyntheticsTestOptionsHTTPVersion and assigns it to the HttpVersion field.</span>
-<span id="L573" class="ln">   573  </span>func (o *SyntheticsTestRequest) SetHttpVersion(v SyntheticsTestOptionsHTTPVersion) {
-<span id="L574" class="ln">   574  </span>	o.HttpVersion = &amp;v
-<span id="L575" class="ln">   575  </span>}
-<span id="L576" class="ln">   576  </span>
-<span id="L577" class="ln">   577  </span><span class="comment">// GetIsMessageBase64Encoded returns the IsMessageBase64Encoded field value if set, zero value otherwise.</span>
-<span id="L578" class="ln">   578  </span>func (o *SyntheticsTestRequest) GetIsMessageBase64Encoded() bool {
-<span id="L579" class="ln">   579  </span>	if o == nil || o.IsMessageBase64Encoded == nil {
-<span id="L580" class="ln">   580  </span>		var ret bool
-<span id="L581" class="ln">   581  </span>		return ret
-<span id="L582" class="ln">   582  </span>	}
-<span id="L583" class="ln">   583  </span>	return *o.IsMessageBase64Encoded
-<span id="L584" class="ln">   584  </span>}
-<span id="L585" class="ln">   585  </span>
-<span id="L586" class="ln">   586  </span><span class="comment">// GetIsMessageBase64EncodedOk returns a tuple with the IsMessageBase64Encoded field value if set, nil otherwise</span>
-<span id="L587" class="ln">   587  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L588" class="ln">   588  </span>func (o *SyntheticsTestRequest) GetIsMessageBase64EncodedOk() (*bool, bool) {
-<span id="L589" class="ln">   589  </span>	if o == nil || o.IsMessageBase64Encoded == nil {
-<span id="L590" class="ln">   590  </span>		return nil, false
-<span id="L591" class="ln">   591  </span>	}
-<span id="L592" class="ln">   592  </span>	return o.IsMessageBase64Encoded, true
-<span id="L593" class="ln">   593  </span>}
-<span id="L594" class="ln">   594  </span>
-<span id="L595" class="ln">   595  </span><span class="comment">// HasIsMessageBase64Encoded returns a boolean if a field has been set.</span>
-<span id="L596" class="ln">   596  </span>func (o *SyntheticsTestRequest) HasIsMessageBase64Encoded() bool {
-<span id="L597" class="ln">   597  </span>	return o != nil &amp;&amp; o.IsMessageBase64Encoded != nil
-<span id="L598" class="ln">   598  </span>}
-<span id="L599" class="ln">   599  </span>
-<span id="L600" class="ln">   600  </span><span class="comment">// SetIsMessageBase64Encoded gets a reference to the given bool and assigns it to the IsMessageBase64Encoded field.</span>
-<span id="L601" class="ln">   601  </span>func (o *SyntheticsTestRequest) SetIsMessageBase64Encoded(v bool) {
-<span id="L602" class="ln">   602  </span>	o.IsMessageBase64Encoded = &amp;v
-<span id="L603" class="ln">   603  </span>}
-<span id="L604" class="ln">   604  </span>
-<span id="L605" class="ln">   605  </span><span class="comment">// GetMessage returns the Message field value if set, zero value otherwise.</span>
-<span id="L606" class="ln">   606  </span>func (o *SyntheticsTestRequest) GetMessage() string {
-<span id="L607" class="ln">   607  </span>	if o == nil || o.Message == nil {
-<span id="L608" class="ln">   608  </span>		var ret string
-<span id="L609" class="ln">   609  </span>		return ret
-<span id="L610" class="ln">   610  </span>	}
-<span id="L611" class="ln">   611  </span>	return *o.Message
-<span id="L612" class="ln">   612  </span>}
-<span id="L613" class="ln">   613  </span>
-<span id="L614" class="ln">   614  </span><span class="comment">// GetMessageOk returns a tuple with the Message field value if set, nil otherwise</span>
-<span id="L615" class="ln">   615  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L616" class="ln">   616  </span>func (o *SyntheticsTestRequest) GetMessageOk() (*string, bool) {
-<span id="L617" class="ln">   617  </span>	if o == nil || o.Message == nil {
-<span id="L618" class="ln">   618  </span>		return nil, false
-<span id="L619" class="ln">   619  </span>	}
-<span id="L620" class="ln">   620  </span>	return o.Message, true
-<span id="L621" class="ln">   621  </span>}
-<span id="L622" class="ln">   622  </span>
-<span id="L623" class="ln">   623  </span><span class="comment">// HasMessage returns a boolean if a field has been set.</span>
-<span id="L624" class="ln">   624  </span>func (o *SyntheticsTestRequest) HasMessage() bool {
-<span id="L625" class="ln">   625  </span>	return o != nil &amp;&amp; o.Message != nil
-<span id="L626" class="ln">   626  </span>}
-<span id="L627" class="ln">   627  </span>
-<span id="L628" class="ln">   628  </span><span class="comment">// SetMessage gets a reference to the given string and assigns it to the Message field.</span>
-<span id="L629" class="ln">   629  </span>func (o *SyntheticsTestRequest) SetMessage(v string) {
-<span id="L630" class="ln">   630  </span>	o.Message = &amp;v
-<span id="L631" class="ln">   631  </span>}
-<span id="L632" class="ln">   632  </span>
-<span id="L633" class="ln">   633  </span><span class="comment">// GetMetadata returns the Metadata field value if set, zero value otherwise.</span>
-<span id="L634" class="ln">   634  </span>func (o *SyntheticsTestRequest) GetMetadata() map[string]string {
-<span id="L635" class="ln">   635  </span>	if o == nil || o.Metadata == nil {
-<span id="L636" class="ln">   636  </span>		var ret map[string]string
-<span id="L637" class="ln">   637  </span>		return ret
-<span id="L638" class="ln">   638  </span>	}
-<span id="L639" class="ln">   639  </span>	return o.Metadata
-<span id="L640" class="ln">   640  </span>}
-<span id="L641" class="ln">   641  </span>
-<span id="L642" class="ln">   642  </span><span class="comment">// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise</span>
-<span id="L643" class="ln">   643  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L644" class="ln">   644  </span>func (o *SyntheticsTestRequest) GetMetadataOk() (*map[string]string, bool) {
-<span id="L645" class="ln">   645  </span>	if o == nil || o.Metadata == nil {
-<span id="L646" class="ln">   646  </span>		return nil, false
-<span id="L647" class="ln">   647  </span>	}
-<span id="L648" class="ln">   648  </span>	return &amp;o.Metadata, true
-<span id="L649" class="ln">   649  </span>}
-<span id="L650" class="ln">   650  </span>
-<span id="L651" class="ln">   651  </span><span class="comment">// HasMetadata returns a boolean if a field has been set.</span>
-<span id="L652" class="ln">   652  </span>func (o *SyntheticsTestRequest) HasMetadata() bool {
-<span id="L653" class="ln">   653  </span>	return o != nil &amp;&amp; o.Metadata != nil
-<span id="L654" class="ln">   654  </span>}
-<span id="L655" class="ln">   655  </span>
-<span id="L656" class="ln">   656  </span><span class="comment">// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.</span>
-<span id="L657" class="ln">   657  </span>func (o *SyntheticsTestRequest) SetMetadata(v map[string]string) {
-<span id="L658" class="ln">   658  </span>	o.Metadata = v
-<span id="L659" class="ln">   659  </span>}
-<span id="L660" class="ln">   660  </span>
-<span id="L661" class="ln">   661  </span><span class="comment">// GetMethod returns the Method field value if set, zero value otherwise.</span>
-<span id="L662" class="ln">   662  </span>func (o *SyntheticsTestRequest) GetMethod() string {
-<span id="L663" class="ln">   663  </span>	if o == nil || o.Method == nil {
-<span id="L664" class="ln">   664  </span>		var ret string
-<span id="L665" class="ln">   665  </span>		return ret
-<span id="L666" class="ln">   666  </span>	}
-<span id="L667" class="ln">   667  </span>	return *o.Method
-<span id="L668" class="ln">   668  </span>}
-<span id="L669" class="ln">   669  </span>
-<span id="L670" class="ln">   670  </span><span class="comment">// GetMethodOk returns a tuple with the Method field value if set, nil otherwise</span>
-<span id="L671" class="ln">   671  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L672" class="ln">   672  </span>func (o *SyntheticsTestRequest) GetMethodOk() (*string, bool) {
-<span id="L673" class="ln">   673  </span>	if o == nil || o.Method == nil {
-<span id="L674" class="ln">   674  </span>		return nil, false
-<span id="L675" class="ln">   675  </span>	}
-<span id="L676" class="ln">   676  </span>	return o.Method, true
-<span id="L677" class="ln">   677  </span>}
-<span id="L678" class="ln">   678  </span>
-<span id="L679" class="ln">   679  </span><span class="comment">// HasMethod returns a boolean if a field has been set.</span>
-<span id="L680" class="ln">   680  </span>func (o *SyntheticsTestRequest) HasMethod() bool {
-<span id="L681" class="ln">   681  </span>	return o != nil &amp;&amp; o.Method != nil
-<span id="L682" class="ln">   682  </span>}
-<span id="L683" class="ln">   683  </span>
-<span id="L684" class="ln">   684  </span><span class="comment">// SetMethod gets a reference to the given string and assigns it to the Method field.</span>
-<span id="L685" class="ln">   685  </span>func (o *SyntheticsTestRequest) SetMethod(v string) {
-<span id="L686" class="ln">   686  </span>	o.Method = &amp;v
-<span id="L687" class="ln">   687  </span>}
-<span id="L688" class="ln">   688  </span>
-<span id="L689" class="ln">   689  </span><span class="comment">// GetNoSavingResponseBody returns the NoSavingResponseBody field value if set, zero value otherwise.</span>
-<span id="L690" class="ln">   690  </span>func (o *SyntheticsTestRequest) GetNoSavingResponseBody() bool {
-<span id="L691" class="ln">   691  </span>	if o == nil || o.NoSavingResponseBody == nil {
-<span id="L692" class="ln">   692  </span>		var ret bool
-<span id="L693" class="ln">   693  </span>		return ret
-<span id="L694" class="ln">   694  </span>	}
-<span id="L695" class="ln">   695  </span>	return *o.NoSavingResponseBody
-<span id="L696" class="ln">   696  </span>}
-<span id="L697" class="ln">   697  </span>
-<span id="L698" class="ln">   698  </span><span class="comment">// GetNoSavingResponseBodyOk returns a tuple with the NoSavingResponseBody field value if set, nil otherwise</span>
-<span id="L699" class="ln">   699  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L700" class="ln">   700  </span>func (o *SyntheticsTestRequest) GetNoSavingResponseBodyOk() (*bool, bool) {
-<span id="L701" class="ln">   701  </span>	if o == nil || o.NoSavingResponseBody == nil {
-<span id="L702" class="ln">   702  </span>		return nil, false
-<span id="L703" class="ln">   703  </span>	}
-<span id="L704" class="ln">   704  </span>	return o.NoSavingResponseBody, true
-<span id="L705" class="ln">   705  </span>}
-<span id="L706" class="ln">   706  </span>
-<span id="L707" class="ln">   707  </span><span class="comment">// HasNoSavingResponseBody returns a boolean if a field has been set.</span>
-<span id="L708" class="ln">   708  </span>func (o *SyntheticsTestRequest) HasNoSavingResponseBody() bool {
-<span id="L709" class="ln">   709  </span>	return o != nil &amp;&amp; o.NoSavingResponseBody != nil
-<span id="L710" class="ln">   710  </span>}
-<span id="L711" class="ln">   711  </span>
-<span id="L712" class="ln">   712  </span><span class="comment">// SetNoSavingResponseBody gets a reference to the given bool and assigns it to the NoSavingResponseBody field.</span>
-<span id="L713" class="ln">   713  </span>func (o *SyntheticsTestRequest) SetNoSavingResponseBody(v bool) {
-<span id="L714" class="ln">   714  </span>	o.NoSavingResponseBody = &amp;v
-<span id="L715" class="ln">   715  </span>}
-<span id="L716" class="ln">   716  </span>
-<span id="L717" class="ln">   717  </span><span class="comment">// GetNumberOfPackets returns the NumberOfPackets field value if set, zero value otherwise.</span>
-<span id="L718" class="ln">   718  </span>func (o *SyntheticsTestRequest) GetNumberOfPackets() int32 {
-<span id="L719" class="ln">   719  </span>	if o == nil || o.NumberOfPackets == nil {
-<span id="L720" class="ln">   720  </span>		var ret int32
-<span id="L721" class="ln">   721  </span>		return ret
-<span id="L722" class="ln">   722  </span>	}
-<span id="L723" class="ln">   723  </span>	return *o.NumberOfPackets
-<span id="L724" class="ln">   724  </span>}
-<span id="L725" class="ln">   725  </span>
-<span id="L726" class="ln">   726  </span><span class="comment">// GetNumberOfPacketsOk returns a tuple with the NumberOfPackets field value if set, nil otherwise</span>
-<span id="L727" class="ln">   727  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L728" class="ln">   728  </span>func (o *SyntheticsTestRequest) GetNumberOfPacketsOk() (*int32, bool) {
-<span id="L729" class="ln">   729  </span>	if o == nil || o.NumberOfPackets == nil {
-<span id="L730" class="ln">   730  </span>		return nil, false
-<span id="L731" class="ln">   731  </span>	}
-<span id="L732" class="ln">   732  </span>	return o.NumberOfPackets, true
-<span id="L733" class="ln">   733  </span>}
-<span id="L734" class="ln">   734  </span>
-<span id="L735" class="ln">   735  </span><span class="comment">// HasNumberOfPackets returns a boolean if a field has been set.</span>
-<span id="L736" class="ln">   736  </span>func (o *SyntheticsTestRequest) HasNumberOfPackets() bool {
-<span id="L737" class="ln">   737  </span>	return o != nil &amp;&amp; o.NumberOfPackets != nil
-<span id="L738" class="ln">   738  </span>}
-<span id="L739" class="ln">   739  </span>
-<span id="L740" class="ln">   740  </span><span class="comment">// SetNumberOfPackets gets a reference to the given int32 and assigns it to the NumberOfPackets field.</span>
-<span id="L741" class="ln">   741  </span>func (o *SyntheticsTestRequest) SetNumberOfPackets(v int32) {
-<span id="L742" class="ln">   742  </span>	o.NumberOfPackets = &amp;v
-<span id="L743" class="ln">   743  </span>}
-<span id="L744" class="ln">   744  </span>
-<span id="L745" class="ln">   745  </span><span class="comment">// GetPersistCookies returns the PersistCookies field value if set, zero value otherwise.</span>
-<span id="L746" class="ln">   746  </span>func (o *SyntheticsTestRequest) GetPersistCookies() bool {
-<span id="L747" class="ln">   747  </span>	if o == nil || o.PersistCookies == nil {
-<span id="L748" class="ln">   748  </span>		var ret bool
-<span id="L749" class="ln">   749  </span>		return ret
-<span id="L750" class="ln">   750  </span>	}
-<span id="L751" class="ln">   751  </span>	return *o.PersistCookies
-<span id="L752" class="ln">   752  </span>}
-<span id="L753" class="ln">   753  </span>
-<span id="L754" class="ln">   754  </span><span class="comment">// GetPersistCookiesOk returns a tuple with the PersistCookies field value if set, nil otherwise</span>
-<span id="L755" class="ln">   755  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L756" class="ln">   756  </span>func (o *SyntheticsTestRequest) GetPersistCookiesOk() (*bool, bool) {
-<span id="L757" class="ln">   757  </span>	if o == nil || o.PersistCookies == nil {
-<span id="L758" class="ln">   758  </span>		return nil, false
-<span id="L759" class="ln">   759  </span>	}
-<span id="L760" class="ln">   760  </span>	return o.PersistCookies, true
-<span id="L761" class="ln">   761  </span>}
-<span id="L762" class="ln">   762  </span>
-<span id="L763" class="ln">   763  </span><span class="comment">// HasPersistCookies returns a boolean if a field has been set.</span>
-<span id="L764" class="ln">   764  </span>func (o *SyntheticsTestRequest) HasPersistCookies() bool {
-<span id="L765" class="ln">   765  </span>	return o != nil &amp;&amp; o.PersistCookies != nil
-<span id="L766" class="ln">   766  </span>}
-<span id="L767" class="ln">   767  </span>
-<span id="L768" class="ln">   768  </span><span class="comment">// SetPersistCookies gets a reference to the given bool and assigns it to the PersistCookies field.</span>
-<span id="L769" class="ln">   769  </span>func (o *SyntheticsTestRequest) SetPersistCookies(v bool) {
-<span id="L770" class="ln">   770  </span>	o.PersistCookies = &amp;v
-<span id="L771" class="ln">   771  </span>}
-<span id="L772" class="ln">   772  </span>
-<span id="L773" class="ln">   773  </span><span class="comment">// GetPort returns the Port field value if set, zero value otherwise.</span>
-<span id="L774" class="ln">   774  </span>func (o *SyntheticsTestRequest) GetPort() SyntheticsTestRequestPort {
-<span id="L775" class="ln">   775  </span>	if o == nil || o.Port == nil {
-<span id="L776" class="ln">   776  </span>		var ret SyntheticsTestRequestPort
-<span id="L777" class="ln">   777  </span>		return ret
-<span id="L778" class="ln">   778  </span>	}
-<span id="L779" class="ln">   779  </span>	return *o.Port
-<span id="L780" class="ln">   780  </span>}
-<span id="L781" class="ln">   781  </span>
-<span id="L782" class="ln">   782  </span><span class="comment">// GetPortOk returns a tuple with the Port field value if set, nil otherwise</span>
-<span id="L783" class="ln">   783  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L784" class="ln">   784  </span>func (o *SyntheticsTestRequest) GetPortOk() (*SyntheticsTestRequestPort, bool) {
-<span id="L785" class="ln">   785  </span>	if o == nil || o.Port == nil {
-<span id="L786" class="ln">   786  </span>		return nil, false
-<span id="L787" class="ln">   787  </span>	}
-<span id="L788" class="ln">   788  </span>	return o.Port, true
-<span id="L789" class="ln">   789  </span>}
-<span id="L790" class="ln">   790  </span>
-<span id="L791" class="ln">   791  </span><span class="comment">// HasPort returns a boolean if a field has been set.</span>
-<span id="L792" class="ln">   792  </span>func (o *SyntheticsTestRequest) HasPort() bool {
-<span id="L793" class="ln">   793  </span>	return o != nil &amp;&amp; o.Port != nil
-<span id="L794" class="ln">   794  </span>}
-<span id="L795" class="ln">   795  </span>
-<span id="L796" class="ln">   796  </span><span class="comment">// SetPort gets a reference to the given SyntheticsTestRequestPort and assigns it to the Port field.</span>
-<span id="L797" class="ln">   797  </span>func (o *SyntheticsTestRequest) SetPort(v SyntheticsTestRequestPort) {
-<span id="L798" class="ln">   798  </span>	o.Port = &amp;v
-<span id="L799" class="ln">   799  </span>}
-<span id="L800" class="ln">   800  </span>
-<span id="L801" class="ln">   801  </span><span class="comment">// GetProxy returns the Proxy field value if set, zero value otherwise.</span>
-<span id="L802" class="ln">   802  </span>func (o *SyntheticsTestRequest) GetProxy() SyntheticsTestRequestProxy {
-<span id="L803" class="ln">   803  </span>	if o == nil || o.Proxy == nil {
-<span id="L804" class="ln">   804  </span>		var ret SyntheticsTestRequestProxy
-<span id="L805" class="ln">   805  </span>		return ret
-<span id="L806" class="ln">   806  </span>	}
-<span id="L807" class="ln">   807  </span>	return *o.Proxy
-<span id="L808" class="ln">   808  </span>}
-<span id="L809" class="ln">   809  </span>
-<span id="L810" class="ln">   810  </span><span class="comment">// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise</span>
-<span id="L811" class="ln">   811  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L812" class="ln">   812  </span>func (o *SyntheticsTestRequest) GetProxyOk() (*SyntheticsTestRequestProxy, bool) {
-<span id="L813" class="ln">   813  </span>	if o == nil || o.Proxy == nil {
-<span id="L814" class="ln">   814  </span>		return nil, false
-<span id="L815" class="ln">   815  </span>	}
-<span id="L816" class="ln">   816  </span>	return o.Proxy, true
-<span id="L817" class="ln">   817  </span>}
-<span id="L818" class="ln">   818  </span>
-<span id="L819" class="ln">   819  </span><span class="comment">// HasProxy returns a boolean if a field has been set.</span>
-<span id="L820" class="ln">   820  </span>func (o *SyntheticsTestRequest) HasProxy() bool {
-<span id="L821" class="ln">   821  </span>	return o != nil &amp;&amp; o.Proxy != nil
-<span id="L822" class="ln">   822  </span>}
-<span id="L823" class="ln">   823  </span>
-<span id="L824" class="ln">   824  </span><span class="comment">// SetProxy gets a reference to the given SyntheticsTestRequestProxy and assigns it to the Proxy field.</span>
-<span id="L825" class="ln">   825  </span>func (o *SyntheticsTestRequest) SetProxy(v SyntheticsTestRequestProxy) {
-<span id="L826" class="ln">   826  </span>	o.Proxy = &amp;v
-<span id="L827" class="ln">   827  </span>}
-<span id="L828" class="ln">   828  </span>
-<span id="L829" class="ln">   829  </span><span class="comment">// GetQuery returns the Query field value if set, zero value otherwise.</span>
-<span id="L830" class="ln">   830  </span>func (o *SyntheticsTestRequest) GetQuery() interface{} {
-<span id="L831" class="ln">   831  </span>	if o == nil || o.Query == nil {
-<span id="L832" class="ln">   832  </span>		var ret interface{}
-<span id="L833" class="ln">   833  </span>		return ret
-<span id="L834" class="ln">   834  </span>	}
-<span id="L835" class="ln">   835  </span>	return o.Query
-<span id="L836" class="ln">   836  </span>}
-<span id="L837" class="ln">   837  </span>
-<span id="L838" class="ln">   838  </span><span class="comment">// GetQueryOk returns a tuple with the Query field value if set, nil otherwise</span>
-<span id="L839" class="ln">   839  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L840" class="ln">   840  </span>func (o *SyntheticsTestRequest) GetQueryOk() (*interface{}, bool) {
-<span id="L841" class="ln">   841  </span>	if o == nil || o.Query == nil {
-<span id="L842" class="ln">   842  </span>		return nil, false
-<span id="L843" class="ln">   843  </span>	}
-<span id="L844" class="ln">   844  </span>	return &amp;o.Query, true
-<span id="L845" class="ln">   845  </span>}
-<span id="L846" class="ln">   846  </span>
-<span id="L847" class="ln">   847  </span><span class="comment">// HasQuery returns a boolean if a field has been set.</span>
-<span id="L848" class="ln">   848  </span>func (o *SyntheticsTestRequest) HasQuery() bool {
-<span id="L849" class="ln">   849  </span>	return o != nil &amp;&amp; o.Query != nil
-<span id="L850" class="ln">   850  </span>}
-<span id="L851" class="ln">   851  </span>
-<span id="L852" class="ln">   852  </span><span class="comment">// SetQuery gets a reference to the given interface{} and assigns it to the Query field.</span>
-<span id="L853" class="ln">   853  </span>func (o *SyntheticsTestRequest) SetQuery(v interface{}) {
-<span id="L854" class="ln">   854  </span>	o.Query = v
-<span id="L855" class="ln">   855  </span>}
-<span id="L856" class="ln">   856  </span>
-<span id="L857" class="ln">   857  </span><span class="comment">// GetServername returns the Servername field value if set, zero value otherwise.</span>
-<span id="L858" class="ln">   858  </span>func (o *SyntheticsTestRequest) GetServername() string {
-<span id="L859" class="ln">   859  </span>	if o == nil || o.Servername == nil {
-<span id="L860" class="ln">   860  </span>		var ret string
-<span id="L861" class="ln">   861  </span>		return ret
-<span id="L862" class="ln">   862  </span>	}
-<span id="L863" class="ln">   863  </span>	return *o.Servername
-<span id="L864" class="ln">   864  </span>}
-<span id="L865" class="ln">   865  </span>
-<span id="L866" class="ln">   866  </span><span class="comment">// GetServernameOk returns a tuple with the Servername field value if set, nil otherwise</span>
-<span id="L867" class="ln">   867  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L868" class="ln">   868  </span>func (o *SyntheticsTestRequest) GetServernameOk() (*string, bool) {
-<span id="L869" class="ln">   869  </span>	if o == nil || o.Servername == nil {
-<span id="L870" class="ln">   870  </span>		return nil, false
-<span id="L871" class="ln">   871  </span>	}
-<span id="L872" class="ln">   872  </span>	return o.Servername, true
-<span id="L873" class="ln">   873  </span>}
-<span id="L874" class="ln">   874  </span>
-<span id="L875" class="ln">   875  </span><span class="comment">// HasServername returns a boolean if a field has been set.</span>
-<span id="L876" class="ln">   876  </span>func (o *SyntheticsTestRequest) HasServername() bool {
-<span id="L877" class="ln">   877  </span>	return o != nil &amp;&amp; o.Servername != nil
-<span id="L878" class="ln">   878  </span>}
-<span id="L879" class="ln">   879  </span>
-<span id="L880" class="ln">   880  </span><span class="comment">// SetServername gets a reference to the given string and assigns it to the Servername field.</span>
-<span id="L881" class="ln">   881  </span>func (o *SyntheticsTestRequest) SetServername(v string) {
-<span id="L882" class="ln">   882  </span>	o.Servername = &amp;v
-<span id="L883" class="ln">   883  </span>}
-<span id="L884" class="ln">   884  </span>
-<span id="L885" class="ln">   885  </span><span class="comment">// GetService returns the Service field value if set, zero value otherwise.</span>
-<span id="L886" class="ln">   886  </span>func (o *SyntheticsTestRequest) GetService() string {
-<span id="L887" class="ln">   887  </span>	if o == nil || o.Service == nil {
-<span id="L888" class="ln">   888  </span>		var ret string
-<span id="L889" class="ln">   889  </span>		return ret
-<span id="L890" class="ln">   890  </span>	}
-<span id="L891" class="ln">   891  </span>	return *o.Service
-<span id="L892" class="ln">   892  </span>}
-<span id="L893" class="ln">   893  </span>
-<span id="L894" class="ln">   894  </span><span class="comment">// GetServiceOk returns a tuple with the Service field value if set, nil otherwise</span>
-<span id="L895" class="ln">   895  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L896" class="ln">   896  </span>func (o *SyntheticsTestRequest) GetServiceOk() (*string, bool) {
-<span id="L897" class="ln">   897  </span>	if o == nil || o.Service == nil {
-<span id="L898" class="ln">   898  </span>		return nil, false
-<span id="L899" class="ln">   899  </span>	}
-<span id="L900" class="ln">   900  </span>	return o.Service, true
-<span id="L901" class="ln">   901  </span>}
-<span id="L902" class="ln">   902  </span>
-<span id="L903" class="ln">   903  </span><span class="comment">// HasService returns a boolean if a field has been set.</span>
-<span id="L904" class="ln">   904  </span>func (o *SyntheticsTestRequest) HasService() bool {
-<span id="L905" class="ln">   905  </span>	return o != nil &amp;&amp; o.Service != nil
-<span id="L906" class="ln">   906  </span>}
-<span id="L907" class="ln">   907  </span>
-<span id="L908" class="ln">   908  </span><span class="comment">// SetService gets a reference to the given string and assigns it to the Service field.</span>
-<span id="L909" class="ln">   909  </span>func (o *SyntheticsTestRequest) SetService(v string) {
-<span id="L910" class="ln">   910  </span>	o.Service = &amp;v
-<span id="L911" class="ln">   911  </span>}
-<span id="L912" class="ln">   912  </span>
-<span id="L913" class="ln">   913  </span><span class="comment">// GetShouldTrackHops returns the ShouldTrackHops field value if set, zero value otherwise.</span>
-<span id="L914" class="ln">   914  </span>func (o *SyntheticsTestRequest) GetShouldTrackHops() bool {
-<span id="L915" class="ln">   915  </span>	if o == nil || o.ShouldTrackHops == nil {
-<span id="L916" class="ln">   916  </span>		var ret bool
-<span id="L917" class="ln">   917  </span>		return ret
-<span id="L918" class="ln">   918  </span>	}
-<span id="L919" class="ln">   919  </span>	return *o.ShouldTrackHops
-<span id="L920" class="ln">   920  </span>}
-<span id="L921" class="ln">   921  </span>
-<span id="L922" class="ln">   922  </span><span class="comment">// GetShouldTrackHopsOk returns a tuple with the ShouldTrackHops field value if set, nil otherwise</span>
-<span id="L923" class="ln">   923  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L924" class="ln">   924  </span>func (o *SyntheticsTestRequest) GetShouldTrackHopsOk() (*bool, bool) {
-<span id="L925" class="ln">   925  </span>	if o == nil || o.ShouldTrackHops == nil {
-<span id="L926" class="ln">   926  </span>		return nil, false
-<span id="L927" class="ln">   927  </span>	}
-<span id="L928" class="ln">   928  </span>	return o.ShouldTrackHops, true
-<span id="L929" class="ln">   929  </span>}
-<span id="L930" class="ln">   930  </span>
-<span id="L931" class="ln">   931  </span><span class="comment">// HasShouldTrackHops returns a boolean if a field has been set.</span>
-<span id="L932" class="ln">   932  </span>func (o *SyntheticsTestRequest) HasShouldTrackHops() bool {
-<span id="L933" class="ln">   933  </span>	return o != nil &amp;&amp; o.ShouldTrackHops != nil
-<span id="L934" class="ln">   934  </span>}
-<span id="L935" class="ln">   935  </span>
-<span id="L936" class="ln">   936  </span><span class="comment">// SetShouldTrackHops gets a reference to the given bool and assigns it to the ShouldTrackHops field.</span>
-<span id="L937" class="ln">   937  </span>func (o *SyntheticsTestRequest) SetShouldTrackHops(v bool) {
-<span id="L938" class="ln">   938  </span>	o.ShouldTrackHops = &amp;v
-<span id="L939" class="ln">   939  </span>}
-<span id="L940" class="ln">   940  </span>
-<span id="L941" class="ln">   941  </span><span class="comment">// GetTimeout returns the Timeout field value if set, zero value otherwise.</span>
-<span id="L942" class="ln">   942  </span>func (o *SyntheticsTestRequest) GetTimeout() float64 {
-<span id="L943" class="ln">   943  </span>	if o == nil || o.Timeout == nil {
-<span id="L944" class="ln">   944  </span>		var ret float64
-<span id="L945" class="ln">   945  </span>		return ret
-<span id="L946" class="ln">   946  </span>	}
-<span id="L947" class="ln">   947  </span>	return *o.Timeout
-<span id="L948" class="ln">   948  </span>}
-<span id="L949" class="ln">   949  </span>
-<span id="L950" class="ln">   950  </span><span class="comment">// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise</span>
-<span id="L951" class="ln">   951  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L952" class="ln">   952  </span>func (o *SyntheticsTestRequest) GetTimeoutOk() (*float64, bool) {
-<span id="L953" class="ln">   953  </span>	if o == nil || o.Timeout == nil {
-<span id="L954" class="ln">   954  </span>		return nil, false
-<span id="L955" class="ln">   955  </span>	}
-<span id="L956" class="ln">   956  </span>	return o.Timeout, true
-<span id="L957" class="ln">   957  </span>}
-<span id="L958" class="ln">   958  </span>
-<span id="L959" class="ln">   959  </span><span class="comment">// HasTimeout returns a boolean if a field has been set.</span>
-<span id="L960" class="ln">   960  </span>func (o *SyntheticsTestRequest) HasTimeout() bool {
-<span id="L961" class="ln">   961  </span>	return o != nil &amp;&amp; o.Timeout != nil
-<span id="L962" class="ln">   962  </span>}
-<span id="L963" class="ln">   963  </span>
-<span id="L964" class="ln">   964  </span><span class="comment">// SetTimeout gets a reference to the given float64 and assigns it to the Timeout field.</span>
-<span id="L965" class="ln">   965  </span>func (o *SyntheticsTestRequest) SetTimeout(v float64) {
-<span id="L966" class="ln">   966  </span>	o.Timeout = &amp;v
-<span id="L967" class="ln">   967  </span>}
-<span id="L968" class="ln">   968  </span>
-<span id="L969" class="ln">   969  </span><span class="comment">// GetUrl returns the Url field value if set, zero value otherwise.</span>
-<span id="L970" class="ln">   970  </span>func (o *SyntheticsTestRequest) GetUrl() string {
-<span id="L971" class="ln">   971  </span>	if o == nil || o.Url == nil {
-<span id="L972" class="ln">   972  </span>		var ret string
-<span id="L973" class="ln">   973  </span>		return ret
-<span id="L974" class="ln">   974  </span>	}
-<span id="L975" class="ln">   975  </span>	return *o.Url
-<span id="L976" class="ln">   976  </span>}
-<span id="L977" class="ln">   977  </span>
-<span id="L978" class="ln">   978  </span><span class="comment">// GetUrlOk returns a tuple with the Url field value if set, nil otherwise</span>
-<span id="L979" class="ln">   979  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L980" class="ln">   980  </span>func (o *SyntheticsTestRequest) GetUrlOk() (*string, bool) {
-<span id="L981" class="ln">   981  </span>	if o == nil || o.Url == nil {
-<span id="L982" class="ln">   982  </span>		return nil, false
-<span id="L983" class="ln">   983  </span>	}
-<span id="L984" class="ln">   984  </span>	return o.Url, true
-<span id="L985" class="ln">   985  </span>}
-<span id="L986" class="ln">   986  </span>
-<span id="L987" class="ln">   987  </span><span class="comment">// HasUrl returns a boolean if a field has been set.</span>
-<span id="L988" class="ln">   988  </span>func (o *SyntheticsTestRequest) HasUrl() bool {
-<span id="L989" class="ln">   989  </span>	return o != nil &amp;&amp; o.Url != nil
-<span id="L990" class="ln">   990  </span>}
-<span id="L991" class="ln">   991  </span>
-<span id="L992" class="ln">   992  </span><span class="comment">// SetUrl gets a reference to the given string and assigns it to the Url field.</span>
-<span id="L993" class="ln">   993  </span>func (o *SyntheticsTestRequest) SetUrl(v string) {
-<span id="L994" class="ln">   994  </span>	o.Url = &amp;v
-<span id="L995" class="ln">   995  </span>}
-<span id="L996" class="ln">   996  </span>
-<span id="L997" class="ln">   997  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L998" class="ln">   998  </span>func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
-<span id="L999" class="ln">   999  </span>	toSerialize := map[string]interface{}{}
-<span id="L1000" class="ln">  1000  </span>	if o.UnparsedObject != nil {
-<span id="L1001" class="ln">  1001  </span>		return datadog.Marshal(o.UnparsedObject)
-<span id="L1002" class="ln">  1002  </span>	}
-<span id="L1003" class="ln">  1003  </span>	if o.AllowInsecure != nil {
-<span id="L1004" class="ln">  1004  </span>		toSerialize[&#34;allow_insecure&#34;] = o.AllowInsecure
-<span id="L1005" class="ln">  1005  </span>	}
-<span id="L1006" class="ln">  1006  </span>	if o.BasicAuth != nil {
-<span id="L1007" class="ln">  1007  </span>		toSerialize[&#34;basicAuth&#34;] = o.BasicAuth
-<span id="L1008" class="ln">  1008  </span>	}
-<span id="L1009" class="ln">  1009  </span>	if o.Body != nil {
-<span id="L1010" class="ln">  1010  </span>		toSerialize[&#34;body&#34;] = o.Body
-<span id="L1011" class="ln">  1011  </span>	}
-<span id="L1012" class="ln">  1012  </span>	if o.BodyType != nil {
-<span id="L1013" class="ln">  1013  </span>		toSerialize[&#34;bodyType&#34;] = o.BodyType
-<span id="L1014" class="ln">  1014  </span>	}
-<span id="L1015" class="ln">  1015  </span>	if o.CallType != nil {
-<span id="L1016" class="ln">  1016  </span>		toSerialize[&#34;callType&#34;] = o.CallType
-<span id="L1017" class="ln">  1017  </span>	}
-<span id="L1018" class="ln">  1018  </span>	if o.Certificate != nil {
-<span id="L1019" class="ln">  1019  </span>		toSerialize[&#34;certificate&#34;] = o.Certificate
-<span id="L1020" class="ln">  1020  </span>	}
-<span id="L1021" class="ln">  1021  </span>	if o.CertificateDomains != nil {
-<span id="L1022" class="ln">  1022  </span>		toSerialize[&#34;certificateDomains&#34;] = o.CertificateDomains
-<span id="L1023" class="ln">  1023  </span>	}
-<span id="L1024" class="ln">  1024  </span>	if o.CheckCertificateRevocation != nil {
-<span id="L1025" class="ln">  1025  </span>		toSerialize[&#34;checkCertificateRevocation&#34;] = o.CheckCertificateRevocation
-<span id="L1026" class="ln">  1026  </span>	}
-<span id="L1027" class="ln">  1027  </span>	if o.CompressedJsonDescriptor != nil {
-<span id="L1028" class="ln">  1028  </span>		toSerialize[&#34;compressedJsonDescriptor&#34;] = o.CompressedJsonDescriptor
-<span id="L1029" class="ln">  1029  </span>	}
-<span id="L1030" class="ln">  1030  </span>	if o.CompressedProtoFile != nil {
-<span id="L1031" class="ln">  1031  </span>		toSerialize[&#34;compressedProtoFile&#34;] = o.CompressedProtoFile
+<span id="L41" class="ln">    41  </span>	<span class="comment">// Form to be used as part of the request in the test. Only valid if `bodyType` is `multipart/form-data`.</span>
+<span id="L42" class="ln">    42  </span>	Form map[string]string `json:&#34;form,omitempty&#34;`
+<span id="L43" class="ln">    43  </span>	<span class="comment">// Headers to include when performing the test.</span>
+<span id="L44" class="ln">    44  </span>	Headers map[string]string `json:&#34;headers,omitempty&#34;`
+<span id="L45" class="ln">    45  </span>	<span class="comment">// Host name to perform the test with.</span>
+<span id="L46" class="ln">    46  </span>	Host *string `json:&#34;host,omitempty&#34;`
+<span id="L47" class="ln">    47  </span>	<span class="comment">// HTTP version to use for a Synthetic test.</span>
+<span id="L48" class="ln">    48  </span>	HttpVersion *SyntheticsTestOptionsHTTPVersion `json:&#34;httpVersion,omitempty&#34;`
+<span id="L49" class="ln">    49  </span>	<span class="comment">// Whether the message is base64 encoded.</span>
+<span id="L50" class="ln">    50  </span>	IsMessageBase64Encoded *bool `json:&#34;isMessageBase64Encoded,omitempty&#34;`
+<span id="L51" class="ln">    51  </span>	<span class="comment">// Message to send for UDP or WebSocket tests.</span>
+<span id="L52" class="ln">    52  </span>	Message *string `json:&#34;message,omitempty&#34;`
+<span id="L53" class="ln">    53  </span>	<span class="comment">// Metadata to include when performing the gRPC test.</span>
+<span id="L54" class="ln">    54  </span>	Metadata map[string]string `json:&#34;metadata,omitempty&#34;`
+<span id="L55" class="ln">    55  </span>	<span class="comment">// Either the HTTP method/verb to use or a gRPC method available on the service set in the `service` field. Required if `subtype` is `HTTP` or if `subtype` is `grpc` and `callType` is `unary`.</span>
+<span id="L56" class="ln">    56  </span>	Method *string `json:&#34;method,omitempty&#34;`
+<span id="L57" class="ln">    57  </span>	<span class="comment">// Determines whether or not to save the response body.</span>
+<span id="L58" class="ln">    58  </span>	NoSavingResponseBody *bool `json:&#34;noSavingResponseBody,omitempty&#34;`
+<span id="L59" class="ln">    59  </span>	<span class="comment">// Number of pings to use per test.</span>
+<span id="L60" class="ln">    60  </span>	NumberOfPackets *int32 `json:&#34;numberOfPackets,omitempty&#34;`
+<span id="L61" class="ln">    61  </span>	<span class="comment">// Persist cookies across redirects.</span>
+<span id="L62" class="ln">    62  </span>	PersistCookies *bool `json:&#34;persistCookies,omitempty&#34;`
+<span id="L63" class="ln">    63  </span>	<span class="comment">// Port to use when performing the test.</span>
+<span id="L64" class="ln">    64  </span>	Port *SyntheticsTestRequestPort `json:&#34;port,omitempty&#34;`
+<span id="L65" class="ln">    65  </span>	<span class="comment">// The proxy to perform the test.</span>
+<span id="L66" class="ln">    66  </span>	Proxy *SyntheticsTestRequestProxy `json:&#34;proxy,omitempty&#34;`
+<span id="L67" class="ln">    67  </span>	<span class="comment">// Query to use for the test.</span>
+<span id="L68" class="ln">    68  </span>	Query interface{} `json:&#34;query,omitempty&#34;`
+<span id="L69" class="ln">    69  </span>	<span class="comment">// For SSL tests, it specifies on which server you want to initiate the TLS handshake,</span>
+<span id="L70" class="ln">    70  </span>	<span class="comment">// allowing the server to present one of multiple possible certificates on</span>
+<span id="L71" class="ln">    71  </span>	<span class="comment">// the same IP address and TCP port number.</span>
+<span id="L72" class="ln">    72  </span>	Servername *string `json:&#34;servername,omitempty&#34;`
+<span id="L73" class="ln">    73  </span>	<span class="comment">// The gRPC service on which you want to perform the gRPC call.</span>
+<span id="L74" class="ln">    74  </span>	Service *string `json:&#34;service,omitempty&#34;`
+<span id="L75" class="ln">    75  </span>	<span class="comment">// Turns on a traceroute probe to discover all gateways along the path to the host destination.</span>
+<span id="L76" class="ln">    76  </span>	ShouldTrackHops *bool `json:&#34;shouldTrackHops,omitempty&#34;`
+<span id="L77" class="ln">    77  </span>	<span class="comment">// Timeout in seconds for the test.</span>
+<span id="L78" class="ln">    78  </span>	Timeout *float64 `json:&#34;timeout,omitempty&#34;`
+<span id="L79" class="ln">    79  </span>	<span class="comment">// URL to perform the test with.</span>
+<span id="L80" class="ln">    80  </span>	Url *string `json:&#34;url,omitempty&#34;`
+<span id="L81" class="ln">    81  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L82" class="ln">    82  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L83" class="ln">    83  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L84" class="ln">    84  </span>}
+<span id="L85" class="ln">    85  </span>
+<span id="L86" class="ln">    86  </span><span class="comment">// NewSyntheticsTestRequest instantiates a new SyntheticsTestRequest object.</span>
+<span id="L87" class="ln">    87  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L88" class="ln">    88  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L89" class="ln">    89  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L90" class="ln">    90  </span>func NewSyntheticsTestRequest() *SyntheticsTestRequest {
+<span id="L91" class="ln">    91  </span>	this := SyntheticsTestRequest{}
+<span id="L92" class="ln">    92  </span>	return &amp;this
+<span id="L93" class="ln">    93  </span>}
+<span id="L94" class="ln">    94  </span>
+<span id="L95" class="ln">    95  </span><span class="comment">// NewSyntheticsTestRequestWithDefaults instantiates a new SyntheticsTestRequest object.</span>
+<span id="L96" class="ln">    96  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L97" class="ln">    97  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L98" class="ln">    98  </span>func NewSyntheticsTestRequestWithDefaults() *SyntheticsTestRequest {
+<span id="L99" class="ln">    99  </span>	this := SyntheticsTestRequest{}
+<span id="L100" class="ln">   100  </span>	return &amp;this
+<span id="L101" class="ln">   101  </span>}
+<span id="L102" class="ln">   102  </span>
+<span id="L103" class="ln">   103  </span><span class="comment">// GetAllowInsecure returns the AllowInsecure field value if set, zero value otherwise.</span>
+<span id="L104" class="ln">   104  </span>func (o *SyntheticsTestRequest) GetAllowInsecure() bool {
+<span id="L105" class="ln">   105  </span>	if o == nil || o.AllowInsecure == nil {
+<span id="L106" class="ln">   106  </span>		var ret bool
+<span id="L107" class="ln">   107  </span>		return ret
+<span id="L108" class="ln">   108  </span>	}
+<span id="L109" class="ln">   109  </span>	return *o.AllowInsecure
+<span id="L110" class="ln">   110  </span>}
+<span id="L111" class="ln">   111  </span>
+<span id="L112" class="ln">   112  </span><span class="comment">// GetAllowInsecureOk returns a tuple with the AllowInsecure field value if set, nil otherwise</span>
+<span id="L113" class="ln">   113  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L114" class="ln">   114  </span>func (o *SyntheticsTestRequest) GetAllowInsecureOk() (*bool, bool) {
+<span id="L115" class="ln">   115  </span>	if o == nil || o.AllowInsecure == nil {
+<span id="L116" class="ln">   116  </span>		return nil, false
+<span id="L117" class="ln">   117  </span>	}
+<span id="L118" class="ln">   118  </span>	return o.AllowInsecure, true
+<span id="L119" class="ln">   119  </span>}
+<span id="L120" class="ln">   120  </span>
+<span id="L121" class="ln">   121  </span><span class="comment">// HasAllowInsecure returns a boolean if a field has been set.</span>
+<span id="L122" class="ln">   122  </span>func (o *SyntheticsTestRequest) HasAllowInsecure() bool {
+<span id="L123" class="ln">   123  </span>	return o != nil &amp;&amp; o.AllowInsecure != nil
+<span id="L124" class="ln">   124  </span>}
+<span id="L125" class="ln">   125  </span>
+<span id="L126" class="ln">   126  </span><span class="comment">// SetAllowInsecure gets a reference to the given bool and assigns it to the AllowInsecure field.</span>
+<span id="L127" class="ln">   127  </span>func (o *SyntheticsTestRequest) SetAllowInsecure(v bool) {
+<span id="L128" class="ln">   128  </span>	o.AllowInsecure = &amp;v
+<span id="L129" class="ln">   129  </span>}
+<span id="L130" class="ln">   130  </span>
+<span id="L131" class="ln">   131  </span><span class="comment">// GetBasicAuth returns the BasicAuth field value if set, zero value otherwise.</span>
+<span id="L132" class="ln">   132  </span>func (o *SyntheticsTestRequest) GetBasicAuth() SyntheticsBasicAuth {
+<span id="L133" class="ln">   133  </span>	if o == nil || o.BasicAuth == nil {
+<span id="L134" class="ln">   134  </span>		var ret SyntheticsBasicAuth
+<span id="L135" class="ln">   135  </span>		return ret
+<span id="L136" class="ln">   136  </span>	}
+<span id="L137" class="ln">   137  </span>	return *o.BasicAuth
+<span id="L138" class="ln">   138  </span>}
+<span id="L139" class="ln">   139  </span>
+<span id="L140" class="ln">   140  </span><span class="comment">// GetBasicAuthOk returns a tuple with the BasicAuth field value if set, nil otherwise</span>
+<span id="L141" class="ln">   141  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L142" class="ln">   142  </span>func (o *SyntheticsTestRequest) GetBasicAuthOk() (*SyntheticsBasicAuth, bool) {
+<span id="L143" class="ln">   143  </span>	if o == nil || o.BasicAuth == nil {
+<span id="L144" class="ln">   144  </span>		return nil, false
+<span id="L145" class="ln">   145  </span>	}
+<span id="L146" class="ln">   146  </span>	return o.BasicAuth, true
+<span id="L147" class="ln">   147  </span>}
+<span id="L148" class="ln">   148  </span>
+<span id="L149" class="ln">   149  </span><span class="comment">// HasBasicAuth returns a boolean if a field has been set.</span>
+<span id="L150" class="ln">   150  </span>func (o *SyntheticsTestRequest) HasBasicAuth() bool {
+<span id="L151" class="ln">   151  </span>	return o != nil &amp;&amp; o.BasicAuth != nil
+<span id="L152" class="ln">   152  </span>}
+<span id="L153" class="ln">   153  </span>
+<span id="L154" class="ln">   154  </span><span class="comment">// SetBasicAuth gets a reference to the given SyntheticsBasicAuth and assigns it to the BasicAuth field.</span>
+<span id="L155" class="ln">   155  </span>func (o *SyntheticsTestRequest) SetBasicAuth(v SyntheticsBasicAuth) {
+<span id="L156" class="ln">   156  </span>	o.BasicAuth = &amp;v
+<span id="L157" class="ln">   157  </span>}
+<span id="L158" class="ln">   158  </span>
+<span id="L159" class="ln">   159  </span><span class="comment">// GetBody returns the Body field value if set, zero value otherwise.</span>
+<span id="L160" class="ln">   160  </span>func (o *SyntheticsTestRequest) GetBody() string {
+<span id="L161" class="ln">   161  </span>	if o == nil || o.Body == nil {
+<span id="L162" class="ln">   162  </span>		var ret string
+<span id="L163" class="ln">   163  </span>		return ret
+<span id="L164" class="ln">   164  </span>	}
+<span id="L165" class="ln">   165  </span>	return *o.Body
+<span id="L166" class="ln">   166  </span>}
+<span id="L167" class="ln">   167  </span>
+<span id="L168" class="ln">   168  </span><span class="comment">// GetBodyOk returns a tuple with the Body field value if set, nil otherwise</span>
+<span id="L169" class="ln">   169  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L170" class="ln">   170  </span>func (o *SyntheticsTestRequest) GetBodyOk() (*string, bool) {
+<span id="L171" class="ln">   171  </span>	if o == nil || o.Body == nil {
+<span id="L172" class="ln">   172  </span>		return nil, false
+<span id="L173" class="ln">   173  </span>	}
+<span id="L174" class="ln">   174  </span>	return o.Body, true
+<span id="L175" class="ln">   175  </span>}
+<span id="L176" class="ln">   176  </span>
+<span id="L177" class="ln">   177  </span><span class="comment">// HasBody returns a boolean if a field has been set.</span>
+<span id="L178" class="ln">   178  </span>func (o *SyntheticsTestRequest) HasBody() bool {
+<span id="L179" class="ln">   179  </span>	return o != nil &amp;&amp; o.Body != nil
+<span id="L180" class="ln">   180  </span>}
+<span id="L181" class="ln">   181  </span>
+<span id="L182" class="ln">   182  </span><span class="comment">// SetBody gets a reference to the given string and assigns it to the Body field.</span>
+<span id="L183" class="ln">   183  </span>func (o *SyntheticsTestRequest) SetBody(v string) {
+<span id="L184" class="ln">   184  </span>	o.Body = &amp;v
+<span id="L185" class="ln">   185  </span>}
+<span id="L186" class="ln">   186  </span>
+<span id="L187" class="ln">   187  </span><span class="comment">// GetBodyType returns the BodyType field value if set, zero value otherwise.</span>
+<span id="L188" class="ln">   188  </span>func (o *SyntheticsTestRequest) GetBodyType() SyntheticsTestRequestBodyType {
+<span id="L189" class="ln">   189  </span>	if o == nil || o.BodyType == nil {
+<span id="L190" class="ln">   190  </span>		var ret SyntheticsTestRequestBodyType
+<span id="L191" class="ln">   191  </span>		return ret
+<span id="L192" class="ln">   192  </span>	}
+<span id="L193" class="ln">   193  </span>	return *o.BodyType
+<span id="L194" class="ln">   194  </span>}
+<span id="L195" class="ln">   195  </span>
+<span id="L196" class="ln">   196  </span><span class="comment">// GetBodyTypeOk returns a tuple with the BodyType field value if set, nil otherwise</span>
+<span id="L197" class="ln">   197  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L198" class="ln">   198  </span>func (o *SyntheticsTestRequest) GetBodyTypeOk() (*SyntheticsTestRequestBodyType, bool) {
+<span id="L199" class="ln">   199  </span>	if o == nil || o.BodyType == nil {
+<span id="L200" class="ln">   200  </span>		return nil, false
+<span id="L201" class="ln">   201  </span>	}
+<span id="L202" class="ln">   202  </span>	return o.BodyType, true
+<span id="L203" class="ln">   203  </span>}
+<span id="L204" class="ln">   204  </span>
+<span id="L205" class="ln">   205  </span><span class="comment">// HasBodyType returns a boolean if a field has been set.</span>
+<span id="L206" class="ln">   206  </span>func (o *SyntheticsTestRequest) HasBodyType() bool {
+<span id="L207" class="ln">   207  </span>	return o != nil &amp;&amp; o.BodyType != nil
+<span id="L208" class="ln">   208  </span>}
+<span id="L209" class="ln">   209  </span>
+<span id="L210" class="ln">   210  </span><span class="comment">// SetBodyType gets a reference to the given SyntheticsTestRequestBodyType and assigns it to the BodyType field.</span>
+<span id="L211" class="ln">   211  </span>func (o *SyntheticsTestRequest) SetBodyType(v SyntheticsTestRequestBodyType) {
+<span id="L212" class="ln">   212  </span>	o.BodyType = &amp;v
+<span id="L213" class="ln">   213  </span>}
+<span id="L214" class="ln">   214  </span>
+<span id="L215" class="ln">   215  </span><span class="comment">// GetCallType returns the CallType field value if set, zero value otherwise.</span>
+<span id="L216" class="ln">   216  </span>func (o *SyntheticsTestRequest) GetCallType() SyntheticsTestCallType {
+<span id="L217" class="ln">   217  </span>	if o == nil || o.CallType == nil {
+<span id="L218" class="ln">   218  </span>		var ret SyntheticsTestCallType
+<span id="L219" class="ln">   219  </span>		return ret
+<span id="L220" class="ln">   220  </span>	}
+<span id="L221" class="ln">   221  </span>	return *o.CallType
+<span id="L222" class="ln">   222  </span>}
+<span id="L223" class="ln">   223  </span>
+<span id="L224" class="ln">   224  </span><span class="comment">// GetCallTypeOk returns a tuple with the CallType field value if set, nil otherwise</span>
+<span id="L225" class="ln">   225  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L226" class="ln">   226  </span>func (o *SyntheticsTestRequest) GetCallTypeOk() (*SyntheticsTestCallType, bool) {
+<span id="L227" class="ln">   227  </span>	if o == nil || o.CallType == nil {
+<span id="L228" class="ln">   228  </span>		return nil, false
+<span id="L229" class="ln">   229  </span>	}
+<span id="L230" class="ln">   230  </span>	return o.CallType, true
+<span id="L231" class="ln">   231  </span>}
+<span id="L232" class="ln">   232  </span>
+<span id="L233" class="ln">   233  </span><span class="comment">// HasCallType returns a boolean if a field has been set.</span>
+<span id="L234" class="ln">   234  </span>func (o *SyntheticsTestRequest) HasCallType() bool {
+<span id="L235" class="ln">   235  </span>	return o != nil &amp;&amp; o.CallType != nil
+<span id="L236" class="ln">   236  </span>}
+<span id="L237" class="ln">   237  </span>
+<span id="L238" class="ln">   238  </span><span class="comment">// SetCallType gets a reference to the given SyntheticsTestCallType and assigns it to the CallType field.</span>
+<span id="L239" class="ln">   239  </span>func (o *SyntheticsTestRequest) SetCallType(v SyntheticsTestCallType) {
+<span id="L240" class="ln">   240  </span>	o.CallType = &amp;v
+<span id="L241" class="ln">   241  </span>}
+<span id="L242" class="ln">   242  </span>
+<span id="L243" class="ln">   243  </span><span class="comment">// GetCertificate returns the Certificate field value if set, zero value otherwise.</span>
+<span id="L244" class="ln">   244  </span>func (o *SyntheticsTestRequest) GetCertificate() SyntheticsTestRequestCertificate {
+<span id="L245" class="ln">   245  </span>	if o == nil || o.Certificate == nil {
+<span id="L246" class="ln">   246  </span>		var ret SyntheticsTestRequestCertificate
+<span id="L247" class="ln">   247  </span>		return ret
+<span id="L248" class="ln">   248  </span>	}
+<span id="L249" class="ln">   249  </span>	return *o.Certificate
+<span id="L250" class="ln">   250  </span>}
+<span id="L251" class="ln">   251  </span>
+<span id="L252" class="ln">   252  </span><span class="comment">// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise</span>
+<span id="L253" class="ln">   253  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L254" class="ln">   254  </span>func (o *SyntheticsTestRequest) GetCertificateOk() (*SyntheticsTestRequestCertificate, bool) {
+<span id="L255" class="ln">   255  </span>	if o == nil || o.Certificate == nil {
+<span id="L256" class="ln">   256  </span>		return nil, false
+<span id="L257" class="ln">   257  </span>	}
+<span id="L258" class="ln">   258  </span>	return o.Certificate, true
+<span id="L259" class="ln">   259  </span>}
+<span id="L260" class="ln">   260  </span>
+<span id="L261" class="ln">   261  </span><span class="comment">// HasCertificate returns a boolean if a field has been set.</span>
+<span id="L262" class="ln">   262  </span>func (o *SyntheticsTestRequest) HasCertificate() bool {
+<span id="L263" class="ln">   263  </span>	return o != nil &amp;&amp; o.Certificate != nil
+<span id="L264" class="ln">   264  </span>}
+<span id="L265" class="ln">   265  </span>
+<span id="L266" class="ln">   266  </span><span class="comment">// SetCertificate gets a reference to the given SyntheticsTestRequestCertificate and assigns it to the Certificate field.</span>
+<span id="L267" class="ln">   267  </span>func (o *SyntheticsTestRequest) SetCertificate(v SyntheticsTestRequestCertificate) {
+<span id="L268" class="ln">   268  </span>	o.Certificate = &amp;v
+<span id="L269" class="ln">   269  </span>}
+<span id="L270" class="ln">   270  </span>
+<span id="L271" class="ln">   271  </span><span class="comment">// GetCertificateDomains returns the CertificateDomains field value if set, zero value otherwise.</span>
+<span id="L272" class="ln">   272  </span>func (o *SyntheticsTestRequest) GetCertificateDomains() []string {
+<span id="L273" class="ln">   273  </span>	if o == nil || o.CertificateDomains == nil {
+<span id="L274" class="ln">   274  </span>		var ret []string
+<span id="L275" class="ln">   275  </span>		return ret
+<span id="L276" class="ln">   276  </span>	}
+<span id="L277" class="ln">   277  </span>	return o.CertificateDomains
+<span id="L278" class="ln">   278  </span>}
+<span id="L279" class="ln">   279  </span>
+<span id="L280" class="ln">   280  </span><span class="comment">// GetCertificateDomainsOk returns a tuple with the CertificateDomains field value if set, nil otherwise</span>
+<span id="L281" class="ln">   281  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L282" class="ln">   282  </span>func (o *SyntheticsTestRequest) GetCertificateDomainsOk() (*[]string, bool) {
+<span id="L283" class="ln">   283  </span>	if o == nil || o.CertificateDomains == nil {
+<span id="L284" class="ln">   284  </span>		return nil, false
+<span id="L285" class="ln">   285  </span>	}
+<span id="L286" class="ln">   286  </span>	return &amp;o.CertificateDomains, true
+<span id="L287" class="ln">   287  </span>}
+<span id="L288" class="ln">   288  </span>
+<span id="L289" class="ln">   289  </span><span class="comment">// HasCertificateDomains returns a boolean if a field has been set.</span>
+<span id="L290" class="ln">   290  </span>func (o *SyntheticsTestRequest) HasCertificateDomains() bool {
+<span id="L291" class="ln">   291  </span>	return o != nil &amp;&amp; o.CertificateDomains != nil
+<span id="L292" class="ln">   292  </span>}
+<span id="L293" class="ln">   293  </span>
+<span id="L294" class="ln">   294  </span><span class="comment">// SetCertificateDomains gets a reference to the given []string and assigns it to the CertificateDomains field.</span>
+<span id="L295" class="ln">   295  </span>func (o *SyntheticsTestRequest) SetCertificateDomains(v []string) {
+<span id="L296" class="ln">   296  </span>	o.CertificateDomains = v
+<span id="L297" class="ln">   297  </span>}
+<span id="L298" class="ln">   298  </span>
+<span id="L299" class="ln">   299  </span><span class="comment">// GetCheckCertificateRevocation returns the CheckCertificateRevocation field value if set, zero value otherwise.</span>
+<span id="L300" class="ln">   300  </span>func (o *SyntheticsTestRequest) GetCheckCertificateRevocation() bool {
+<span id="L301" class="ln">   301  </span>	if o == nil || o.CheckCertificateRevocation == nil {
+<span id="L302" class="ln">   302  </span>		var ret bool
+<span id="L303" class="ln">   303  </span>		return ret
+<span id="L304" class="ln">   304  </span>	}
+<span id="L305" class="ln">   305  </span>	return *o.CheckCertificateRevocation
+<span id="L306" class="ln">   306  </span>}
+<span id="L307" class="ln">   307  </span>
+<span id="L308" class="ln">   308  </span><span class="comment">// GetCheckCertificateRevocationOk returns a tuple with the CheckCertificateRevocation field value if set, nil otherwise</span>
+<span id="L309" class="ln">   309  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L310" class="ln">   310  </span>func (o *SyntheticsTestRequest) GetCheckCertificateRevocationOk() (*bool, bool) {
+<span id="L311" class="ln">   311  </span>	if o == nil || o.CheckCertificateRevocation == nil {
+<span id="L312" class="ln">   312  </span>		return nil, false
+<span id="L313" class="ln">   313  </span>	}
+<span id="L314" class="ln">   314  </span>	return o.CheckCertificateRevocation, true
+<span id="L315" class="ln">   315  </span>}
+<span id="L316" class="ln">   316  </span>
+<span id="L317" class="ln">   317  </span><span class="comment">// HasCheckCertificateRevocation returns a boolean if a field has been set.</span>
+<span id="L318" class="ln">   318  </span>func (o *SyntheticsTestRequest) HasCheckCertificateRevocation() bool {
+<span id="L319" class="ln">   319  </span>	return o != nil &amp;&amp; o.CheckCertificateRevocation != nil
+<span id="L320" class="ln">   320  </span>}
+<span id="L321" class="ln">   321  </span>
+<span id="L322" class="ln">   322  </span><span class="comment">// SetCheckCertificateRevocation gets a reference to the given bool and assigns it to the CheckCertificateRevocation field.</span>
+<span id="L323" class="ln">   323  </span>func (o *SyntheticsTestRequest) SetCheckCertificateRevocation(v bool) {
+<span id="L324" class="ln">   324  </span>	o.CheckCertificateRevocation = &amp;v
+<span id="L325" class="ln">   325  </span>}
+<span id="L326" class="ln">   326  </span>
+<span id="L327" class="ln">   327  </span><span class="comment">// GetCompressedJsonDescriptor returns the CompressedJsonDescriptor field value if set, zero value otherwise.</span>
+<span id="L328" class="ln">   328  </span>func (o *SyntheticsTestRequest) GetCompressedJsonDescriptor() string {
+<span id="L329" class="ln">   329  </span>	if o == nil || o.CompressedJsonDescriptor == nil {
+<span id="L330" class="ln">   330  </span>		var ret string
+<span id="L331" class="ln">   331  </span>		return ret
+<span id="L332" class="ln">   332  </span>	}
+<span id="L333" class="ln">   333  </span>	return *o.CompressedJsonDescriptor
+<span id="L334" class="ln">   334  </span>}
+<span id="L335" class="ln">   335  </span>
+<span id="L336" class="ln">   336  </span><span class="comment">// GetCompressedJsonDescriptorOk returns a tuple with the CompressedJsonDescriptor field value if set, nil otherwise</span>
+<span id="L337" class="ln">   337  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L338" class="ln">   338  </span>func (o *SyntheticsTestRequest) GetCompressedJsonDescriptorOk() (*string, bool) {
+<span id="L339" class="ln">   339  </span>	if o == nil || o.CompressedJsonDescriptor == nil {
+<span id="L340" class="ln">   340  </span>		return nil, false
+<span id="L341" class="ln">   341  </span>	}
+<span id="L342" class="ln">   342  </span>	return o.CompressedJsonDescriptor, true
+<span id="L343" class="ln">   343  </span>}
+<span id="L344" class="ln">   344  </span>
+<span id="L345" class="ln">   345  </span><span class="comment">// HasCompressedJsonDescriptor returns a boolean if a field has been set.</span>
+<span id="L346" class="ln">   346  </span>func (o *SyntheticsTestRequest) HasCompressedJsonDescriptor() bool {
+<span id="L347" class="ln">   347  </span>	return o != nil &amp;&amp; o.CompressedJsonDescriptor != nil
+<span id="L348" class="ln">   348  </span>}
+<span id="L349" class="ln">   349  </span>
+<span id="L350" class="ln">   350  </span><span class="comment">// SetCompressedJsonDescriptor gets a reference to the given string and assigns it to the CompressedJsonDescriptor field.</span>
+<span id="L351" class="ln">   351  </span>func (o *SyntheticsTestRequest) SetCompressedJsonDescriptor(v string) {
+<span id="L352" class="ln">   352  </span>	o.CompressedJsonDescriptor = &amp;v
+<span id="L353" class="ln">   353  </span>}
+<span id="L354" class="ln">   354  </span>
+<span id="L355" class="ln">   355  </span><span class="comment">// GetCompressedProtoFile returns the CompressedProtoFile field value if set, zero value otherwise.</span>
+<span id="L356" class="ln">   356  </span>func (o *SyntheticsTestRequest) GetCompressedProtoFile() string {
+<span id="L357" class="ln">   357  </span>	if o == nil || o.CompressedProtoFile == nil {
+<span id="L358" class="ln">   358  </span>		var ret string
+<span id="L359" class="ln">   359  </span>		return ret
+<span id="L360" class="ln">   360  </span>	}
+<span id="L361" class="ln">   361  </span>	return *o.CompressedProtoFile
+<span id="L362" class="ln">   362  </span>}
+<span id="L363" class="ln">   363  </span>
+<span id="L364" class="ln">   364  </span><span class="comment">// GetCompressedProtoFileOk returns a tuple with the CompressedProtoFile field value if set, nil otherwise</span>
+<span id="L365" class="ln">   365  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L366" class="ln">   366  </span>func (o *SyntheticsTestRequest) GetCompressedProtoFileOk() (*string, bool) {
+<span id="L367" class="ln">   367  </span>	if o == nil || o.CompressedProtoFile == nil {
+<span id="L368" class="ln">   368  </span>		return nil, false
+<span id="L369" class="ln">   369  </span>	}
+<span id="L370" class="ln">   370  </span>	return o.CompressedProtoFile, true
+<span id="L371" class="ln">   371  </span>}
+<span id="L372" class="ln">   372  </span>
+<span id="L373" class="ln">   373  </span><span class="comment">// HasCompressedProtoFile returns a boolean if a field has been set.</span>
+<span id="L374" class="ln">   374  </span>func (o *SyntheticsTestRequest) HasCompressedProtoFile() bool {
+<span id="L375" class="ln">   375  </span>	return o != nil &amp;&amp; o.CompressedProtoFile != nil
+<span id="L376" class="ln">   376  </span>}
+<span id="L377" class="ln">   377  </span>
+<span id="L378" class="ln">   378  </span><span class="comment">// SetCompressedProtoFile gets a reference to the given string and assigns it to the CompressedProtoFile field.</span>
+<span id="L379" class="ln">   379  </span>func (o *SyntheticsTestRequest) SetCompressedProtoFile(v string) {
+<span id="L380" class="ln">   380  </span>	o.CompressedProtoFile = &amp;v
+<span id="L381" class="ln">   381  </span>}
+<span id="L382" class="ln">   382  </span>
+<span id="L383" class="ln">   383  </span><span class="comment">// GetDnsServer returns the DnsServer field value if set, zero value otherwise.</span>
+<span id="L384" class="ln">   384  </span>func (o *SyntheticsTestRequest) GetDnsServer() string {
+<span id="L385" class="ln">   385  </span>	if o == nil || o.DnsServer == nil {
+<span id="L386" class="ln">   386  </span>		var ret string
+<span id="L387" class="ln">   387  </span>		return ret
+<span id="L388" class="ln">   388  </span>	}
+<span id="L389" class="ln">   389  </span>	return *o.DnsServer
+<span id="L390" class="ln">   390  </span>}
+<span id="L391" class="ln">   391  </span>
+<span id="L392" class="ln">   392  </span><span class="comment">// GetDnsServerOk returns a tuple with the DnsServer field value if set, nil otherwise</span>
+<span id="L393" class="ln">   393  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L394" class="ln">   394  </span>func (o *SyntheticsTestRequest) GetDnsServerOk() (*string, bool) {
+<span id="L395" class="ln">   395  </span>	if o == nil || o.DnsServer == nil {
+<span id="L396" class="ln">   396  </span>		return nil, false
+<span id="L397" class="ln">   397  </span>	}
+<span id="L398" class="ln">   398  </span>	return o.DnsServer, true
+<span id="L399" class="ln">   399  </span>}
+<span id="L400" class="ln">   400  </span>
+<span id="L401" class="ln">   401  </span><span class="comment">// HasDnsServer returns a boolean if a field has been set.</span>
+<span id="L402" class="ln">   402  </span>func (o *SyntheticsTestRequest) HasDnsServer() bool {
+<span id="L403" class="ln">   403  </span>	return o != nil &amp;&amp; o.DnsServer != nil
+<span id="L404" class="ln">   404  </span>}
+<span id="L405" class="ln">   405  </span>
+<span id="L406" class="ln">   406  </span><span class="comment">// SetDnsServer gets a reference to the given string and assigns it to the DnsServer field.</span>
+<span id="L407" class="ln">   407  </span>func (o *SyntheticsTestRequest) SetDnsServer(v string) {
+<span id="L408" class="ln">   408  </span>	o.DnsServer = &amp;v
+<span id="L409" class="ln">   409  </span>}
+<span id="L410" class="ln">   410  </span>
+<span id="L411" class="ln">   411  </span><span class="comment">// GetDnsServerPort returns the DnsServerPort field value if set, zero value otherwise.</span>
+<span id="L412" class="ln">   412  </span>func (o *SyntheticsTestRequest) GetDnsServerPort() string {
+<span id="L413" class="ln">   413  </span>	if o == nil || o.DnsServerPort == nil {
+<span id="L414" class="ln">   414  </span>		var ret string
+<span id="L415" class="ln">   415  </span>		return ret
+<span id="L416" class="ln">   416  </span>	}
+<span id="L417" class="ln">   417  </span>	return *o.DnsServerPort
+<span id="L418" class="ln">   418  </span>}
+<span id="L419" class="ln">   419  </span>
+<span id="L420" class="ln">   420  </span><span class="comment">// GetDnsServerPortOk returns a tuple with the DnsServerPort field value if set, nil otherwise</span>
+<span id="L421" class="ln">   421  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L422" class="ln">   422  </span>func (o *SyntheticsTestRequest) GetDnsServerPortOk() (*string, bool) {
+<span id="L423" class="ln">   423  </span>	if o == nil || o.DnsServerPort == nil {
+<span id="L424" class="ln">   424  </span>		return nil, false
+<span id="L425" class="ln">   425  </span>	}
+<span id="L426" class="ln">   426  </span>	return o.DnsServerPort, true
+<span id="L427" class="ln">   427  </span>}
+<span id="L428" class="ln">   428  </span>
+<span id="L429" class="ln">   429  </span><span class="comment">// HasDnsServerPort returns a boolean if a field has been set.</span>
+<span id="L430" class="ln">   430  </span>func (o *SyntheticsTestRequest) HasDnsServerPort() bool {
+<span id="L431" class="ln">   431  </span>	return o != nil &amp;&amp; o.DnsServerPort != nil
+<span id="L432" class="ln">   432  </span>}
+<span id="L433" class="ln">   433  </span>
+<span id="L434" class="ln">   434  </span><span class="comment">// SetDnsServerPort gets a reference to the given string and assigns it to the DnsServerPort field.</span>
+<span id="L435" class="ln">   435  </span>func (o *SyntheticsTestRequest) SetDnsServerPort(v string) {
+<span id="L436" class="ln">   436  </span>	o.DnsServerPort = &amp;v
+<span id="L437" class="ln">   437  </span>}
+<span id="L438" class="ln">   438  </span>
+<span id="L439" class="ln">   439  </span><span class="comment">// GetFiles returns the Files field value if set, zero value otherwise.</span>
+<span id="L440" class="ln">   440  </span>func (o *SyntheticsTestRequest) GetFiles() []SyntheticsTestRequestBodyFile {
+<span id="L441" class="ln">   441  </span>	if o == nil || o.Files == nil {
+<span id="L442" class="ln">   442  </span>		var ret []SyntheticsTestRequestBodyFile
+<span id="L443" class="ln">   443  </span>		return ret
+<span id="L444" class="ln">   444  </span>	}
+<span id="L445" class="ln">   445  </span>	return o.Files
+<span id="L446" class="ln">   446  </span>}
+<span id="L447" class="ln">   447  </span>
+<span id="L448" class="ln">   448  </span><span class="comment">// GetFilesOk returns a tuple with the Files field value if set, nil otherwise</span>
+<span id="L449" class="ln">   449  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L450" class="ln">   450  </span>func (o *SyntheticsTestRequest) GetFilesOk() (*[]SyntheticsTestRequestBodyFile, bool) {
+<span id="L451" class="ln">   451  </span>	if o == nil || o.Files == nil {
+<span id="L452" class="ln">   452  </span>		return nil, false
+<span id="L453" class="ln">   453  </span>	}
+<span id="L454" class="ln">   454  </span>	return &amp;o.Files, true
+<span id="L455" class="ln">   455  </span>}
+<span id="L456" class="ln">   456  </span>
+<span id="L457" class="ln">   457  </span><span class="comment">// HasFiles returns a boolean if a field has been set.</span>
+<span id="L458" class="ln">   458  </span>func (o *SyntheticsTestRequest) HasFiles() bool {
+<span id="L459" class="ln">   459  </span>	return o != nil &amp;&amp; o.Files != nil
+<span id="L460" class="ln">   460  </span>}
+<span id="L461" class="ln">   461  </span>
+<span id="L462" class="ln">   462  </span><span class="comment">// SetFiles gets a reference to the given []SyntheticsTestRequestBodyFile and assigns it to the Files field.</span>
+<span id="L463" class="ln">   463  </span>func (o *SyntheticsTestRequest) SetFiles(v []SyntheticsTestRequestBodyFile) {
+<span id="L464" class="ln">   464  </span>	o.Files = v
+<span id="L465" class="ln">   465  </span>}
+<span id="L466" class="ln">   466  </span>
+<span id="L467" class="ln">   467  </span><span class="comment">// GetFollowRedirects returns the FollowRedirects field value if set, zero value otherwise.</span>
+<span id="L468" class="ln">   468  </span>func (o *SyntheticsTestRequest) GetFollowRedirects() bool {
+<span id="L469" class="ln">   469  </span>	if o == nil || o.FollowRedirects == nil {
+<span id="L470" class="ln">   470  </span>		var ret bool
+<span id="L471" class="ln">   471  </span>		return ret
+<span id="L472" class="ln">   472  </span>	}
+<span id="L473" class="ln">   473  </span>	return *o.FollowRedirects
+<span id="L474" class="ln">   474  </span>}
+<span id="L475" class="ln">   475  </span>
+<span id="L476" class="ln">   476  </span><span class="comment">// GetFollowRedirectsOk returns a tuple with the FollowRedirects field value if set, nil otherwise</span>
+<span id="L477" class="ln">   477  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L478" class="ln">   478  </span>func (o *SyntheticsTestRequest) GetFollowRedirectsOk() (*bool, bool) {
+<span id="L479" class="ln">   479  </span>	if o == nil || o.FollowRedirects == nil {
+<span id="L480" class="ln">   480  </span>		return nil, false
+<span id="L481" class="ln">   481  </span>	}
+<span id="L482" class="ln">   482  </span>	return o.FollowRedirects, true
+<span id="L483" class="ln">   483  </span>}
+<span id="L484" class="ln">   484  </span>
+<span id="L485" class="ln">   485  </span><span class="comment">// HasFollowRedirects returns a boolean if a field has been set.</span>
+<span id="L486" class="ln">   486  </span>func (o *SyntheticsTestRequest) HasFollowRedirects() bool {
+<span id="L487" class="ln">   487  </span>	return o != nil &amp;&amp; o.FollowRedirects != nil
+<span id="L488" class="ln">   488  </span>}
+<span id="L489" class="ln">   489  </span>
+<span id="L490" class="ln">   490  </span><span class="comment">// SetFollowRedirects gets a reference to the given bool and assigns it to the FollowRedirects field.</span>
+<span id="L491" class="ln">   491  </span>func (o *SyntheticsTestRequest) SetFollowRedirects(v bool) {
+<span id="L492" class="ln">   492  </span>	o.FollowRedirects = &amp;v
+<span id="L493" class="ln">   493  </span>}
+<span id="L494" class="ln">   494  </span>
+<span id="L495" class="ln">   495  </span><span class="comment">// GetForm returns the Form field value if set, zero value otherwise.</span>
+<span id="L496" class="ln">   496  </span>func (o *SyntheticsTestRequest) GetForm() map[string]string {
+<span id="L497" class="ln">   497  </span>	if o == nil || o.Form == nil {
+<span id="L498" class="ln">   498  </span>		var ret map[string]string
+<span id="L499" class="ln">   499  </span>		return ret
+<span id="L500" class="ln">   500  </span>	}
+<span id="L501" class="ln">   501  </span>	return o.Form
+<span id="L502" class="ln">   502  </span>}
+<span id="L503" class="ln">   503  </span>
+<span id="L504" class="ln">   504  </span><span class="comment">// GetFormOk returns a tuple with the Form field value if set, nil otherwise</span>
+<span id="L505" class="ln">   505  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L506" class="ln">   506  </span>func (o *SyntheticsTestRequest) GetFormOk() (*map[string]string, bool) {
+<span id="L507" class="ln">   507  </span>	if o == nil || o.Form == nil {
+<span id="L508" class="ln">   508  </span>		return nil, false
+<span id="L509" class="ln">   509  </span>	}
+<span id="L510" class="ln">   510  </span>	return &amp;o.Form, true
+<span id="L511" class="ln">   511  </span>}
+<span id="L512" class="ln">   512  </span>
+<span id="L513" class="ln">   513  </span><span class="comment">// HasForm returns a boolean if a field has been set.</span>
+<span id="L514" class="ln">   514  </span>func (o *SyntheticsTestRequest) HasForm() bool {
+<span id="L515" class="ln">   515  </span>	return o != nil &amp;&amp; o.Form != nil
+<span id="L516" class="ln">   516  </span>}
+<span id="L517" class="ln">   517  </span>
+<span id="L518" class="ln">   518  </span><span class="comment">// SetForm gets a reference to the given map[string]string and assigns it to the Form field.</span>
+<span id="L519" class="ln">   519  </span>func (o *SyntheticsTestRequest) SetForm(v map[string]string) {
+<span id="L520" class="ln">   520  </span>	o.Form = v
+<span id="L521" class="ln">   521  </span>}
+<span id="L522" class="ln">   522  </span>
+<span id="L523" class="ln">   523  </span><span class="comment">// GetHeaders returns the Headers field value if set, zero value otherwise.</span>
+<span id="L524" class="ln">   524  </span>func (o *SyntheticsTestRequest) GetHeaders() map[string]string {
+<span id="L525" class="ln">   525  </span>	if o == nil || o.Headers == nil {
+<span id="L526" class="ln">   526  </span>		var ret map[string]string
+<span id="L527" class="ln">   527  </span>		return ret
+<span id="L528" class="ln">   528  </span>	}
+<span id="L529" class="ln">   529  </span>	return o.Headers
+<span id="L530" class="ln">   530  </span>}
+<span id="L531" class="ln">   531  </span>
+<span id="L532" class="ln">   532  </span><span class="comment">// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise</span>
+<span id="L533" class="ln">   533  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L534" class="ln">   534  </span>func (o *SyntheticsTestRequest) GetHeadersOk() (*map[string]string, bool) {
+<span id="L535" class="ln">   535  </span>	if o == nil || o.Headers == nil {
+<span id="L536" class="ln">   536  </span>		return nil, false
+<span id="L537" class="ln">   537  </span>	}
+<span id="L538" class="ln">   538  </span>	return &amp;o.Headers, true
+<span id="L539" class="ln">   539  </span>}
+<span id="L540" class="ln">   540  </span>
+<span id="L541" class="ln">   541  </span><span class="comment">// HasHeaders returns a boolean if a field has been set.</span>
+<span id="L542" class="ln">   542  </span>func (o *SyntheticsTestRequest) HasHeaders() bool {
+<span id="L543" class="ln">   543  </span>	return o != nil &amp;&amp; o.Headers != nil
+<span id="L544" class="ln">   544  </span>}
+<span id="L545" class="ln">   545  </span>
+<span id="L546" class="ln">   546  </span><span class="comment">// SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.</span>
+<span id="L547" class="ln">   547  </span>func (o *SyntheticsTestRequest) SetHeaders(v map[string]string) {
+<span id="L548" class="ln">   548  </span>	o.Headers = v
+<span id="L549" class="ln">   549  </span>}
+<span id="L550" class="ln">   550  </span>
+<span id="L551" class="ln">   551  </span><span class="comment">// GetHost returns the Host field value if set, zero value otherwise.</span>
+<span id="L552" class="ln">   552  </span>func (o *SyntheticsTestRequest) GetHost() string {
+<span id="L553" class="ln">   553  </span>	if o == nil || o.Host == nil {
+<span id="L554" class="ln">   554  </span>		var ret string
+<span id="L555" class="ln">   555  </span>		return ret
+<span id="L556" class="ln">   556  </span>	}
+<span id="L557" class="ln">   557  </span>	return *o.Host
+<span id="L558" class="ln">   558  </span>}
+<span id="L559" class="ln">   559  </span>
+<span id="L560" class="ln">   560  </span><span class="comment">// GetHostOk returns a tuple with the Host field value if set, nil otherwise</span>
+<span id="L561" class="ln">   561  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L562" class="ln">   562  </span>func (o *SyntheticsTestRequest) GetHostOk() (*string, bool) {
+<span id="L563" class="ln">   563  </span>	if o == nil || o.Host == nil {
+<span id="L564" class="ln">   564  </span>		return nil, false
+<span id="L565" class="ln">   565  </span>	}
+<span id="L566" class="ln">   566  </span>	return o.Host, true
+<span id="L567" class="ln">   567  </span>}
+<span id="L568" class="ln">   568  </span>
+<span id="L569" class="ln">   569  </span><span class="comment">// HasHost returns a boolean if a field has been set.</span>
+<span id="L570" class="ln">   570  </span>func (o *SyntheticsTestRequest) HasHost() bool {
+<span id="L571" class="ln">   571  </span>	return o != nil &amp;&amp; o.Host != nil
+<span id="L572" class="ln">   572  </span>}
+<span id="L573" class="ln">   573  </span>
+<span id="L574" class="ln">   574  </span><span class="comment">// SetHost gets a reference to the given string and assigns it to the Host field.</span>
+<span id="L575" class="ln">   575  </span>func (o *SyntheticsTestRequest) SetHost(v string) {
+<span id="L576" class="ln">   576  </span>	o.Host = &amp;v
+<span id="L577" class="ln">   577  </span>}
+<span id="L578" class="ln">   578  </span>
+<span id="L579" class="ln">   579  </span><span class="comment">// GetHttpVersion returns the HttpVersion field value if set, zero value otherwise.</span>
+<span id="L580" class="ln">   580  </span>func (o *SyntheticsTestRequest) GetHttpVersion() SyntheticsTestOptionsHTTPVersion {
+<span id="L581" class="ln">   581  </span>	if o == nil || o.HttpVersion == nil {
+<span id="L582" class="ln">   582  </span>		var ret SyntheticsTestOptionsHTTPVersion
+<span id="L583" class="ln">   583  </span>		return ret
+<span id="L584" class="ln">   584  </span>	}
+<span id="L585" class="ln">   585  </span>	return *o.HttpVersion
+<span id="L586" class="ln">   586  </span>}
+<span id="L587" class="ln">   587  </span>
+<span id="L588" class="ln">   588  </span><span class="comment">// GetHttpVersionOk returns a tuple with the HttpVersion field value if set, nil otherwise</span>
+<span id="L589" class="ln">   589  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L590" class="ln">   590  </span>func (o *SyntheticsTestRequest) GetHttpVersionOk() (*SyntheticsTestOptionsHTTPVersion, bool) {
+<span id="L591" class="ln">   591  </span>	if o == nil || o.HttpVersion == nil {
+<span id="L592" class="ln">   592  </span>		return nil, false
+<span id="L593" class="ln">   593  </span>	}
+<span id="L594" class="ln">   594  </span>	return o.HttpVersion, true
+<span id="L595" class="ln">   595  </span>}
+<span id="L596" class="ln">   596  </span>
+<span id="L597" class="ln">   597  </span><span class="comment">// HasHttpVersion returns a boolean if a field has been set.</span>
+<span id="L598" class="ln">   598  </span>func (o *SyntheticsTestRequest) HasHttpVersion() bool {
+<span id="L599" class="ln">   599  </span>	return o != nil &amp;&amp; o.HttpVersion != nil
+<span id="L600" class="ln">   600  </span>}
+<span id="L601" class="ln">   601  </span>
+<span id="L602" class="ln">   602  </span><span class="comment">// SetHttpVersion gets a reference to the given SyntheticsTestOptionsHTTPVersion and assigns it to the HttpVersion field.</span>
+<span id="L603" class="ln">   603  </span>func (o *SyntheticsTestRequest) SetHttpVersion(v SyntheticsTestOptionsHTTPVersion) {
+<span id="L604" class="ln">   604  </span>	o.HttpVersion = &amp;v
+<span id="L605" class="ln">   605  </span>}
+<span id="L606" class="ln">   606  </span>
+<span id="L607" class="ln">   607  </span><span class="comment">// GetIsMessageBase64Encoded returns the IsMessageBase64Encoded field value if set, zero value otherwise.</span>
+<span id="L608" class="ln">   608  </span>func (o *SyntheticsTestRequest) GetIsMessageBase64Encoded() bool {
+<span id="L609" class="ln">   609  </span>	if o == nil || o.IsMessageBase64Encoded == nil {
+<span id="L610" class="ln">   610  </span>		var ret bool
+<span id="L611" class="ln">   611  </span>		return ret
+<span id="L612" class="ln">   612  </span>	}
+<span id="L613" class="ln">   613  </span>	return *o.IsMessageBase64Encoded
+<span id="L614" class="ln">   614  </span>}
+<span id="L615" class="ln">   615  </span>
+<span id="L616" class="ln">   616  </span><span class="comment">// GetIsMessageBase64EncodedOk returns a tuple with the IsMessageBase64Encoded field value if set, nil otherwise</span>
+<span id="L617" class="ln">   617  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L618" class="ln">   618  </span>func (o *SyntheticsTestRequest) GetIsMessageBase64EncodedOk() (*bool, bool) {
+<span id="L619" class="ln">   619  </span>	if o == nil || o.IsMessageBase64Encoded == nil {
+<span id="L620" class="ln">   620  </span>		return nil, false
+<span id="L621" class="ln">   621  </span>	}
+<span id="L622" class="ln">   622  </span>	return o.IsMessageBase64Encoded, true
+<span id="L623" class="ln">   623  </span>}
+<span id="L624" class="ln">   624  </span>
+<span id="L625" class="ln">   625  </span><span class="comment">// HasIsMessageBase64Encoded returns a boolean if a field has been set.</span>
+<span id="L626" class="ln">   626  </span>func (o *SyntheticsTestRequest) HasIsMessageBase64Encoded() bool {
+<span id="L627" class="ln">   627  </span>	return o != nil &amp;&amp; o.IsMessageBase64Encoded != nil
+<span id="L628" class="ln">   628  </span>}
+<span id="L629" class="ln">   629  </span>
+<span id="L630" class="ln">   630  </span><span class="comment">// SetIsMessageBase64Encoded gets a reference to the given bool and assigns it to the IsMessageBase64Encoded field.</span>
+<span id="L631" class="ln">   631  </span>func (o *SyntheticsTestRequest) SetIsMessageBase64Encoded(v bool) {
+<span id="L632" class="ln">   632  </span>	o.IsMessageBase64Encoded = &amp;v
+<span id="L633" class="ln">   633  </span>}
+<span id="L634" class="ln">   634  </span>
+<span id="L635" class="ln">   635  </span><span class="comment">// GetMessage returns the Message field value if set, zero value otherwise.</span>
+<span id="L636" class="ln">   636  </span>func (o *SyntheticsTestRequest) GetMessage() string {
+<span id="L637" class="ln">   637  </span>	if o == nil || o.Message == nil {
+<span id="L638" class="ln">   638  </span>		var ret string
+<span id="L639" class="ln">   639  </span>		return ret
+<span id="L640" class="ln">   640  </span>	}
+<span id="L641" class="ln">   641  </span>	return *o.Message
+<span id="L642" class="ln">   642  </span>}
+<span id="L643" class="ln">   643  </span>
+<span id="L644" class="ln">   644  </span><span class="comment">// GetMessageOk returns a tuple with the Message field value if set, nil otherwise</span>
+<span id="L645" class="ln">   645  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L646" class="ln">   646  </span>func (o *SyntheticsTestRequest) GetMessageOk() (*string, bool) {
+<span id="L647" class="ln">   647  </span>	if o == nil || o.Message == nil {
+<span id="L648" class="ln">   648  </span>		return nil, false
+<span id="L649" class="ln">   649  </span>	}
+<span id="L650" class="ln">   650  </span>	return o.Message, true
+<span id="L651" class="ln">   651  </span>}
+<span id="L652" class="ln">   652  </span>
+<span id="L653" class="ln">   653  </span><span class="comment">// HasMessage returns a boolean if a field has been set.</span>
+<span id="L654" class="ln">   654  </span>func (o *SyntheticsTestRequest) HasMessage() bool {
+<span id="L655" class="ln">   655  </span>	return o != nil &amp;&amp; o.Message != nil
+<span id="L656" class="ln">   656  </span>}
+<span id="L657" class="ln">   657  </span>
+<span id="L658" class="ln">   658  </span><span class="comment">// SetMessage gets a reference to the given string and assigns it to the Message field.</span>
+<span id="L659" class="ln">   659  </span>func (o *SyntheticsTestRequest) SetMessage(v string) {
+<span id="L660" class="ln">   660  </span>	o.Message = &amp;v
+<span id="L661" class="ln">   661  </span>}
+<span id="L662" class="ln">   662  </span>
+<span id="L663" class="ln">   663  </span><span class="comment">// GetMetadata returns the Metadata field value if set, zero value otherwise.</span>
+<span id="L664" class="ln">   664  </span>func (o *SyntheticsTestRequest) GetMetadata() map[string]string {
+<span id="L665" class="ln">   665  </span>	if o == nil || o.Metadata == nil {
+<span id="L666" class="ln">   666  </span>		var ret map[string]string
+<span id="L667" class="ln">   667  </span>		return ret
+<span id="L668" class="ln">   668  </span>	}
+<span id="L669" class="ln">   669  </span>	return o.Metadata
+<span id="L670" class="ln">   670  </span>}
+<span id="L671" class="ln">   671  </span>
+<span id="L672" class="ln">   672  </span><span class="comment">// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise</span>
+<span id="L673" class="ln">   673  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L674" class="ln">   674  </span>func (o *SyntheticsTestRequest) GetMetadataOk() (*map[string]string, bool) {
+<span id="L675" class="ln">   675  </span>	if o == nil || o.Metadata == nil {
+<span id="L676" class="ln">   676  </span>		return nil, false
+<span id="L677" class="ln">   677  </span>	}
+<span id="L678" class="ln">   678  </span>	return &amp;o.Metadata, true
+<span id="L679" class="ln">   679  </span>}
+<span id="L680" class="ln">   680  </span>
+<span id="L681" class="ln">   681  </span><span class="comment">// HasMetadata returns a boolean if a field has been set.</span>
+<span id="L682" class="ln">   682  </span>func (o *SyntheticsTestRequest) HasMetadata() bool {
+<span id="L683" class="ln">   683  </span>	return o != nil &amp;&amp; o.Metadata != nil
+<span id="L684" class="ln">   684  </span>}
+<span id="L685" class="ln">   685  </span>
+<span id="L686" class="ln">   686  </span><span class="comment">// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.</span>
+<span id="L687" class="ln">   687  </span>func (o *SyntheticsTestRequest) SetMetadata(v map[string]string) {
+<span id="L688" class="ln">   688  </span>	o.Metadata = v
+<span id="L689" class="ln">   689  </span>}
+<span id="L690" class="ln">   690  </span>
+<span id="L691" class="ln">   691  </span><span class="comment">// GetMethod returns the Method field value if set, zero value otherwise.</span>
+<span id="L692" class="ln">   692  </span>func (o *SyntheticsTestRequest) GetMethod() string {
+<span id="L693" class="ln">   693  </span>	if o == nil || o.Method == nil {
+<span id="L694" class="ln">   694  </span>		var ret string
+<span id="L695" class="ln">   695  </span>		return ret
+<span id="L696" class="ln">   696  </span>	}
+<span id="L697" class="ln">   697  </span>	return *o.Method
+<span id="L698" class="ln">   698  </span>}
+<span id="L699" class="ln">   699  </span>
+<span id="L700" class="ln">   700  </span><span class="comment">// GetMethodOk returns a tuple with the Method field value if set, nil otherwise</span>
+<span id="L701" class="ln">   701  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L702" class="ln">   702  </span>func (o *SyntheticsTestRequest) GetMethodOk() (*string, bool) {
+<span id="L703" class="ln">   703  </span>	if o == nil || o.Method == nil {
+<span id="L704" class="ln">   704  </span>		return nil, false
+<span id="L705" class="ln">   705  </span>	}
+<span id="L706" class="ln">   706  </span>	return o.Method, true
+<span id="L707" class="ln">   707  </span>}
+<span id="L708" class="ln">   708  </span>
+<span id="L709" class="ln">   709  </span><span class="comment">// HasMethod returns a boolean if a field has been set.</span>
+<span id="L710" class="ln">   710  </span>func (o *SyntheticsTestRequest) HasMethod() bool {
+<span id="L711" class="ln">   711  </span>	return o != nil &amp;&amp; o.Method != nil
+<span id="L712" class="ln">   712  </span>}
+<span id="L713" class="ln">   713  </span>
+<span id="L714" class="ln">   714  </span><span class="comment">// SetMethod gets a reference to the given string and assigns it to the Method field.</span>
+<span id="L715" class="ln">   715  </span>func (o *SyntheticsTestRequest) SetMethod(v string) {
+<span id="L716" class="ln">   716  </span>	o.Method = &amp;v
+<span id="L717" class="ln">   717  </span>}
+<span id="L718" class="ln">   718  </span>
+<span id="L719" class="ln">   719  </span><span class="comment">// GetNoSavingResponseBody returns the NoSavingResponseBody field value if set, zero value otherwise.</span>
+<span id="L720" class="ln">   720  </span>func (o *SyntheticsTestRequest) GetNoSavingResponseBody() bool {
+<span id="L721" class="ln">   721  </span>	if o == nil || o.NoSavingResponseBody == nil {
+<span id="L722" class="ln">   722  </span>		var ret bool
+<span id="L723" class="ln">   723  </span>		return ret
+<span id="L724" class="ln">   724  </span>	}
+<span id="L725" class="ln">   725  </span>	return *o.NoSavingResponseBody
+<span id="L726" class="ln">   726  </span>}
+<span id="L727" class="ln">   727  </span>
+<span id="L728" class="ln">   728  </span><span class="comment">// GetNoSavingResponseBodyOk returns a tuple with the NoSavingResponseBody field value if set, nil otherwise</span>
+<span id="L729" class="ln">   729  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L730" class="ln">   730  </span>func (o *SyntheticsTestRequest) GetNoSavingResponseBodyOk() (*bool, bool) {
+<span id="L731" class="ln">   731  </span>	if o == nil || o.NoSavingResponseBody == nil {
+<span id="L732" class="ln">   732  </span>		return nil, false
+<span id="L733" class="ln">   733  </span>	}
+<span id="L734" class="ln">   734  </span>	return o.NoSavingResponseBody, true
+<span id="L735" class="ln">   735  </span>}
+<span id="L736" class="ln">   736  </span>
+<span id="L737" class="ln">   737  </span><span class="comment">// HasNoSavingResponseBody returns a boolean if a field has been set.</span>
+<span id="L738" class="ln">   738  </span>func (o *SyntheticsTestRequest) HasNoSavingResponseBody() bool {
+<span id="L739" class="ln">   739  </span>	return o != nil &amp;&amp; o.NoSavingResponseBody != nil
+<span id="L740" class="ln">   740  </span>}
+<span id="L741" class="ln">   741  </span>
+<span id="L742" class="ln">   742  </span><span class="comment">// SetNoSavingResponseBody gets a reference to the given bool and assigns it to the NoSavingResponseBody field.</span>
+<span id="L743" class="ln">   743  </span>func (o *SyntheticsTestRequest) SetNoSavingResponseBody(v bool) {
+<span id="L744" class="ln">   744  </span>	o.NoSavingResponseBody = &amp;v
+<span id="L745" class="ln">   745  </span>}
+<span id="L746" class="ln">   746  </span>
+<span id="L747" class="ln">   747  </span><span class="comment">// GetNumberOfPackets returns the NumberOfPackets field value if set, zero value otherwise.</span>
+<span id="L748" class="ln">   748  </span>func (o *SyntheticsTestRequest) GetNumberOfPackets() int32 {
+<span id="L749" class="ln">   749  </span>	if o == nil || o.NumberOfPackets == nil {
+<span id="L750" class="ln">   750  </span>		var ret int32
+<span id="L751" class="ln">   751  </span>		return ret
+<span id="L752" class="ln">   752  </span>	}
+<span id="L753" class="ln">   753  </span>	return *o.NumberOfPackets
+<span id="L754" class="ln">   754  </span>}
+<span id="L755" class="ln">   755  </span>
+<span id="L756" class="ln">   756  </span><span class="comment">// GetNumberOfPacketsOk returns a tuple with the NumberOfPackets field value if set, nil otherwise</span>
+<span id="L757" class="ln">   757  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L758" class="ln">   758  </span>func (o *SyntheticsTestRequest) GetNumberOfPacketsOk() (*int32, bool) {
+<span id="L759" class="ln">   759  </span>	if o == nil || o.NumberOfPackets == nil {
+<span id="L760" class="ln">   760  </span>		return nil, false
+<span id="L761" class="ln">   761  </span>	}
+<span id="L762" class="ln">   762  </span>	return o.NumberOfPackets, true
+<span id="L763" class="ln">   763  </span>}
+<span id="L764" class="ln">   764  </span>
+<span id="L765" class="ln">   765  </span><span class="comment">// HasNumberOfPackets returns a boolean if a field has been set.</span>
+<span id="L766" class="ln">   766  </span>func (o *SyntheticsTestRequest) HasNumberOfPackets() bool {
+<span id="L767" class="ln">   767  </span>	return o != nil &amp;&amp; o.NumberOfPackets != nil
+<span id="L768" class="ln">   768  </span>}
+<span id="L769" class="ln">   769  </span>
+<span id="L770" class="ln">   770  </span><span class="comment">// SetNumberOfPackets gets a reference to the given int32 and assigns it to the NumberOfPackets field.</span>
+<span id="L771" class="ln">   771  </span>func (o *SyntheticsTestRequest) SetNumberOfPackets(v int32) {
+<span id="L772" class="ln">   772  </span>	o.NumberOfPackets = &amp;v
+<span id="L773" class="ln">   773  </span>}
+<span id="L774" class="ln">   774  </span>
+<span id="L775" class="ln">   775  </span><span class="comment">// GetPersistCookies returns the PersistCookies field value if set, zero value otherwise.</span>
+<span id="L776" class="ln">   776  </span>func (o *SyntheticsTestRequest) GetPersistCookies() bool {
+<span id="L777" class="ln">   777  </span>	if o == nil || o.PersistCookies == nil {
+<span id="L778" class="ln">   778  </span>		var ret bool
+<span id="L779" class="ln">   779  </span>		return ret
+<span id="L780" class="ln">   780  </span>	}
+<span id="L781" class="ln">   781  </span>	return *o.PersistCookies
+<span id="L782" class="ln">   782  </span>}
+<span id="L783" class="ln">   783  </span>
+<span id="L784" class="ln">   784  </span><span class="comment">// GetPersistCookiesOk returns a tuple with the PersistCookies field value if set, nil otherwise</span>
+<span id="L785" class="ln">   785  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L786" class="ln">   786  </span>func (o *SyntheticsTestRequest) GetPersistCookiesOk() (*bool, bool) {
+<span id="L787" class="ln">   787  </span>	if o == nil || o.PersistCookies == nil {
+<span id="L788" class="ln">   788  </span>		return nil, false
+<span id="L789" class="ln">   789  </span>	}
+<span id="L790" class="ln">   790  </span>	return o.PersistCookies, true
+<span id="L791" class="ln">   791  </span>}
+<span id="L792" class="ln">   792  </span>
+<span id="L793" class="ln">   793  </span><span class="comment">// HasPersistCookies returns a boolean if a field has been set.</span>
+<span id="L794" class="ln">   794  </span>func (o *SyntheticsTestRequest) HasPersistCookies() bool {
+<span id="L795" class="ln">   795  </span>	return o != nil &amp;&amp; o.PersistCookies != nil
+<span id="L796" class="ln">   796  </span>}
+<span id="L797" class="ln">   797  </span>
+<span id="L798" class="ln">   798  </span><span class="comment">// SetPersistCookies gets a reference to the given bool and assigns it to the PersistCookies field.</span>
+<span id="L799" class="ln">   799  </span>func (o *SyntheticsTestRequest) SetPersistCookies(v bool) {
+<span id="L800" class="ln">   800  </span>	o.PersistCookies = &amp;v
+<span id="L801" class="ln">   801  </span>}
+<span id="L802" class="ln">   802  </span>
+<span id="L803" class="ln">   803  </span><span class="comment">// GetPort returns the Port field value if set, zero value otherwise.</span>
+<span id="L804" class="ln">   804  </span>func (o *SyntheticsTestRequest) GetPort() SyntheticsTestRequestPort {
+<span id="L805" class="ln">   805  </span>	if o == nil || o.Port == nil {
+<span id="L806" class="ln">   806  </span>		var ret SyntheticsTestRequestPort
+<span id="L807" class="ln">   807  </span>		return ret
+<span id="L808" class="ln">   808  </span>	}
+<span id="L809" class="ln">   809  </span>	return *o.Port
+<span id="L810" class="ln">   810  </span>}
+<span id="L811" class="ln">   811  </span>
+<span id="L812" class="ln">   812  </span><span class="comment">// GetPortOk returns a tuple with the Port field value if set, nil otherwise</span>
+<span id="L813" class="ln">   813  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L814" class="ln">   814  </span>func (o *SyntheticsTestRequest) GetPortOk() (*SyntheticsTestRequestPort, bool) {
+<span id="L815" class="ln">   815  </span>	if o == nil || o.Port == nil {
+<span id="L816" class="ln">   816  </span>		return nil, false
+<span id="L817" class="ln">   817  </span>	}
+<span id="L818" class="ln">   818  </span>	return o.Port, true
+<span id="L819" class="ln">   819  </span>}
+<span id="L820" class="ln">   820  </span>
+<span id="L821" class="ln">   821  </span><span class="comment">// HasPort returns a boolean if a field has been set.</span>
+<span id="L822" class="ln">   822  </span>func (o *SyntheticsTestRequest) HasPort() bool {
+<span id="L823" class="ln">   823  </span>	return o != nil &amp;&amp; o.Port != nil
+<span id="L824" class="ln">   824  </span>}
+<span id="L825" class="ln">   825  </span>
+<span id="L826" class="ln">   826  </span><span class="comment">// SetPort gets a reference to the given SyntheticsTestRequestPort and assigns it to the Port field.</span>
+<span id="L827" class="ln">   827  </span>func (o *SyntheticsTestRequest) SetPort(v SyntheticsTestRequestPort) {
+<span id="L828" class="ln">   828  </span>	o.Port = &amp;v
+<span id="L829" class="ln">   829  </span>}
+<span id="L830" class="ln">   830  </span>
+<span id="L831" class="ln">   831  </span><span class="comment">// GetProxy returns the Proxy field value if set, zero value otherwise.</span>
+<span id="L832" class="ln">   832  </span>func (o *SyntheticsTestRequest) GetProxy() SyntheticsTestRequestProxy {
+<span id="L833" class="ln">   833  </span>	if o == nil || o.Proxy == nil {
+<span id="L834" class="ln">   834  </span>		var ret SyntheticsTestRequestProxy
+<span id="L835" class="ln">   835  </span>		return ret
+<span id="L836" class="ln">   836  </span>	}
+<span id="L837" class="ln">   837  </span>	return *o.Proxy
+<span id="L838" class="ln">   838  </span>}
+<span id="L839" class="ln">   839  </span>
+<span id="L840" class="ln">   840  </span><span class="comment">// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise</span>
+<span id="L841" class="ln">   841  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L842" class="ln">   842  </span>func (o *SyntheticsTestRequest) GetProxyOk() (*SyntheticsTestRequestProxy, bool) {
+<span id="L843" class="ln">   843  </span>	if o == nil || o.Proxy == nil {
+<span id="L844" class="ln">   844  </span>		return nil, false
+<span id="L845" class="ln">   845  </span>	}
+<span id="L846" class="ln">   846  </span>	return o.Proxy, true
+<span id="L847" class="ln">   847  </span>}
+<span id="L848" class="ln">   848  </span>
+<span id="L849" class="ln">   849  </span><span class="comment">// HasProxy returns a boolean if a field has been set.</span>
+<span id="L850" class="ln">   850  </span>func (o *SyntheticsTestRequest) HasProxy() bool {
+<span id="L851" class="ln">   851  </span>	return o != nil &amp;&amp; o.Proxy != nil
+<span id="L852" class="ln">   852  </span>}
+<span id="L853" class="ln">   853  </span>
+<span id="L854" class="ln">   854  </span><span class="comment">// SetProxy gets a reference to the given SyntheticsTestRequestProxy and assigns it to the Proxy field.</span>
+<span id="L855" class="ln">   855  </span>func (o *SyntheticsTestRequest) SetProxy(v SyntheticsTestRequestProxy) {
+<span id="L856" class="ln">   856  </span>	o.Proxy = &amp;v
+<span id="L857" class="ln">   857  </span>}
+<span id="L858" class="ln">   858  </span>
+<span id="L859" class="ln">   859  </span><span class="comment">// GetQuery returns the Query field value if set, zero value otherwise.</span>
+<span id="L860" class="ln">   860  </span>func (o *SyntheticsTestRequest) GetQuery() interface{} {
+<span id="L861" class="ln">   861  </span>	if o == nil || o.Query == nil {
+<span id="L862" class="ln">   862  </span>		var ret interface{}
+<span id="L863" class="ln">   863  </span>		return ret
+<span id="L864" class="ln">   864  </span>	}
+<span id="L865" class="ln">   865  </span>	return o.Query
+<span id="L866" class="ln">   866  </span>}
+<span id="L867" class="ln">   867  </span>
+<span id="L868" class="ln">   868  </span><span class="comment">// GetQueryOk returns a tuple with the Query field value if set, nil otherwise</span>
+<span id="L869" class="ln">   869  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L870" class="ln">   870  </span>func (o *SyntheticsTestRequest) GetQueryOk() (*interface{}, bool) {
+<span id="L871" class="ln">   871  </span>	if o == nil || o.Query == nil {
+<span id="L872" class="ln">   872  </span>		return nil, false
+<span id="L873" class="ln">   873  </span>	}
+<span id="L874" class="ln">   874  </span>	return &amp;o.Query, true
+<span id="L875" class="ln">   875  </span>}
+<span id="L876" class="ln">   876  </span>
+<span id="L877" class="ln">   877  </span><span class="comment">// HasQuery returns a boolean if a field has been set.</span>
+<span id="L878" class="ln">   878  </span>func (o *SyntheticsTestRequest) HasQuery() bool {
+<span id="L879" class="ln">   879  </span>	return o != nil &amp;&amp; o.Query != nil
+<span id="L880" class="ln">   880  </span>}
+<span id="L881" class="ln">   881  </span>
+<span id="L882" class="ln">   882  </span><span class="comment">// SetQuery gets a reference to the given interface{} and assigns it to the Query field.</span>
+<span id="L883" class="ln">   883  </span>func (o *SyntheticsTestRequest) SetQuery(v interface{}) {
+<span id="L884" class="ln">   884  </span>	o.Query = v
+<span id="L885" class="ln">   885  </span>}
+<span id="L886" class="ln">   886  </span>
+<span id="L887" class="ln">   887  </span><span class="comment">// GetServername returns the Servername field value if set, zero value otherwise.</span>
+<span id="L888" class="ln">   888  </span>func (o *SyntheticsTestRequest) GetServername() string {
+<span id="L889" class="ln">   889  </span>	if o == nil || o.Servername == nil {
+<span id="L890" class="ln">   890  </span>		var ret string
+<span id="L891" class="ln">   891  </span>		return ret
+<span id="L892" class="ln">   892  </span>	}
+<span id="L893" class="ln">   893  </span>	return *o.Servername
+<span id="L894" class="ln">   894  </span>}
+<span id="L895" class="ln">   895  </span>
+<span id="L896" class="ln">   896  </span><span class="comment">// GetServernameOk returns a tuple with the Servername field value if set, nil otherwise</span>
+<span id="L897" class="ln">   897  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L898" class="ln">   898  </span>func (o *SyntheticsTestRequest) GetServernameOk() (*string, bool) {
+<span id="L899" class="ln">   899  </span>	if o == nil || o.Servername == nil {
+<span id="L900" class="ln">   900  </span>		return nil, false
+<span id="L901" class="ln">   901  </span>	}
+<span id="L902" class="ln">   902  </span>	return o.Servername, true
+<span id="L903" class="ln">   903  </span>}
+<span id="L904" class="ln">   904  </span>
+<span id="L905" class="ln">   905  </span><span class="comment">// HasServername returns a boolean if a field has been set.</span>
+<span id="L906" class="ln">   906  </span>func (o *SyntheticsTestRequest) HasServername() bool {
+<span id="L907" class="ln">   907  </span>	return o != nil &amp;&amp; o.Servername != nil
+<span id="L908" class="ln">   908  </span>}
+<span id="L909" class="ln">   909  </span>
+<span id="L910" class="ln">   910  </span><span class="comment">// SetServername gets a reference to the given string and assigns it to the Servername field.</span>
+<span id="L911" class="ln">   911  </span>func (o *SyntheticsTestRequest) SetServername(v string) {
+<span id="L912" class="ln">   912  </span>	o.Servername = &amp;v
+<span id="L913" class="ln">   913  </span>}
+<span id="L914" class="ln">   914  </span>
+<span id="L915" class="ln">   915  </span><span class="comment">// GetService returns the Service field value if set, zero value otherwise.</span>
+<span id="L916" class="ln">   916  </span>func (o *SyntheticsTestRequest) GetService() string {
+<span id="L917" class="ln">   917  </span>	if o == nil || o.Service == nil {
+<span id="L918" class="ln">   918  </span>		var ret string
+<span id="L919" class="ln">   919  </span>		return ret
+<span id="L920" class="ln">   920  </span>	}
+<span id="L921" class="ln">   921  </span>	return *o.Service
+<span id="L922" class="ln">   922  </span>}
+<span id="L923" class="ln">   923  </span>
+<span id="L924" class="ln">   924  </span><span class="comment">// GetServiceOk returns a tuple with the Service field value if set, nil otherwise</span>
+<span id="L925" class="ln">   925  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L926" class="ln">   926  </span>func (o *SyntheticsTestRequest) GetServiceOk() (*string, bool) {
+<span id="L927" class="ln">   927  </span>	if o == nil || o.Service == nil {
+<span id="L928" class="ln">   928  </span>		return nil, false
+<span id="L929" class="ln">   929  </span>	}
+<span id="L930" class="ln">   930  </span>	return o.Service, true
+<span id="L931" class="ln">   931  </span>}
+<span id="L932" class="ln">   932  </span>
+<span id="L933" class="ln">   933  </span><span class="comment">// HasService returns a boolean if a field has been set.</span>
+<span id="L934" class="ln">   934  </span>func (o *SyntheticsTestRequest) HasService() bool {
+<span id="L935" class="ln">   935  </span>	return o != nil &amp;&amp; o.Service != nil
+<span id="L936" class="ln">   936  </span>}
+<span id="L937" class="ln">   937  </span>
+<span id="L938" class="ln">   938  </span><span class="comment">// SetService gets a reference to the given string and assigns it to the Service field.</span>
+<span id="L939" class="ln">   939  </span>func (o *SyntheticsTestRequest) SetService(v string) {
+<span id="L940" class="ln">   940  </span>	o.Service = &amp;v
+<span id="L941" class="ln">   941  </span>}
+<span id="L942" class="ln">   942  </span>
+<span id="L943" class="ln">   943  </span><span class="comment">// GetShouldTrackHops returns the ShouldTrackHops field value if set, zero value otherwise.</span>
+<span id="L944" class="ln">   944  </span>func (o *SyntheticsTestRequest) GetShouldTrackHops() bool {
+<span id="L945" class="ln">   945  </span>	if o == nil || o.ShouldTrackHops == nil {
+<span id="L946" class="ln">   946  </span>		var ret bool
+<span id="L947" class="ln">   947  </span>		return ret
+<span id="L948" class="ln">   948  </span>	}
+<span id="L949" class="ln">   949  </span>	return *o.ShouldTrackHops
+<span id="L950" class="ln">   950  </span>}
+<span id="L951" class="ln">   951  </span>
+<span id="L952" class="ln">   952  </span><span class="comment">// GetShouldTrackHopsOk returns a tuple with the ShouldTrackHops field value if set, nil otherwise</span>
+<span id="L953" class="ln">   953  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L954" class="ln">   954  </span>func (o *SyntheticsTestRequest) GetShouldTrackHopsOk() (*bool, bool) {
+<span id="L955" class="ln">   955  </span>	if o == nil || o.ShouldTrackHops == nil {
+<span id="L956" class="ln">   956  </span>		return nil, false
+<span id="L957" class="ln">   957  </span>	}
+<span id="L958" class="ln">   958  </span>	return o.ShouldTrackHops, true
+<span id="L959" class="ln">   959  </span>}
+<span id="L960" class="ln">   960  </span>
+<span id="L961" class="ln">   961  </span><span class="comment">// HasShouldTrackHops returns a boolean if a field has been set.</span>
+<span id="L962" class="ln">   962  </span>func (o *SyntheticsTestRequest) HasShouldTrackHops() bool {
+<span id="L963" class="ln">   963  </span>	return o != nil &amp;&amp; o.ShouldTrackHops != nil
+<span id="L964" class="ln">   964  </span>}
+<span id="L965" class="ln">   965  </span>
+<span id="L966" class="ln">   966  </span><span class="comment">// SetShouldTrackHops gets a reference to the given bool and assigns it to the ShouldTrackHops field.</span>
+<span id="L967" class="ln">   967  </span>func (o *SyntheticsTestRequest) SetShouldTrackHops(v bool) {
+<span id="L968" class="ln">   968  </span>	o.ShouldTrackHops = &amp;v
+<span id="L969" class="ln">   969  </span>}
+<span id="L970" class="ln">   970  </span>
+<span id="L971" class="ln">   971  </span><span class="comment">// GetTimeout returns the Timeout field value if set, zero value otherwise.</span>
+<span id="L972" class="ln">   972  </span>func (o *SyntheticsTestRequest) GetTimeout() float64 {
+<span id="L973" class="ln">   973  </span>	if o == nil || o.Timeout == nil {
+<span id="L974" class="ln">   974  </span>		var ret float64
+<span id="L975" class="ln">   975  </span>		return ret
+<span id="L976" class="ln">   976  </span>	}
+<span id="L977" class="ln">   977  </span>	return *o.Timeout
+<span id="L978" class="ln">   978  </span>}
+<span id="L979" class="ln">   979  </span>
+<span id="L980" class="ln">   980  </span><span class="comment">// GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise</span>
+<span id="L981" class="ln">   981  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L982" class="ln">   982  </span>func (o *SyntheticsTestRequest) GetTimeoutOk() (*float64, bool) {
+<span id="L983" class="ln">   983  </span>	if o == nil || o.Timeout == nil {
+<span id="L984" class="ln">   984  </span>		return nil, false
+<span id="L985" class="ln">   985  </span>	}
+<span id="L986" class="ln">   986  </span>	return o.Timeout, true
+<span id="L987" class="ln">   987  </span>}
+<span id="L988" class="ln">   988  </span>
+<span id="L989" class="ln">   989  </span><span class="comment">// HasTimeout returns a boolean if a field has been set.</span>
+<span id="L990" class="ln">   990  </span>func (o *SyntheticsTestRequest) HasTimeout() bool {
+<span id="L991" class="ln">   991  </span>	return o != nil &amp;&amp; o.Timeout != nil
+<span id="L992" class="ln">   992  </span>}
+<span id="L993" class="ln">   993  </span>
+<span id="L994" class="ln">   994  </span><span class="comment">// SetTimeout gets a reference to the given float64 and assigns it to the Timeout field.</span>
+<span id="L995" class="ln">   995  </span>func (o *SyntheticsTestRequest) SetTimeout(v float64) {
+<span id="L996" class="ln">   996  </span>	o.Timeout = &amp;v
+<span id="L997" class="ln">   997  </span>}
+<span id="L998" class="ln">   998  </span>
+<span id="L999" class="ln">   999  </span><span class="comment">// GetUrl returns the Url field value if set, zero value otherwise.</span>
+<span id="L1000" class="ln">  1000  </span>func (o *SyntheticsTestRequest) GetUrl() string {
+<span id="L1001" class="ln">  1001  </span>	if o == nil || o.Url == nil {
+<span id="L1002" class="ln">  1002  </span>		var ret string
+<span id="L1003" class="ln">  1003  </span>		return ret
+<span id="L1004" class="ln">  1004  </span>	}
+<span id="L1005" class="ln">  1005  </span>	return *o.Url
+<span id="L1006" class="ln">  1006  </span>}
+<span id="L1007" class="ln">  1007  </span>
+<span id="L1008" class="ln">  1008  </span><span class="comment">// GetUrlOk returns a tuple with the Url field value if set, nil otherwise</span>
+<span id="L1009" class="ln">  1009  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L1010" class="ln">  1010  </span>func (o *SyntheticsTestRequest) GetUrlOk() (*string, bool) {
+<span id="L1011" class="ln">  1011  </span>	if o == nil || o.Url == nil {
+<span id="L1012" class="ln">  1012  </span>		return nil, false
+<span id="L1013" class="ln">  1013  </span>	}
+<span id="L1014" class="ln">  1014  </span>	return o.Url, true
+<span id="L1015" class="ln">  1015  </span>}
+<span id="L1016" class="ln">  1016  </span>
+<span id="L1017" class="ln">  1017  </span><span class="comment">// HasUrl returns a boolean if a field has been set.</span>
+<span id="L1018" class="ln">  1018  </span>func (o *SyntheticsTestRequest) HasUrl() bool {
+<span id="L1019" class="ln">  1019  </span>	return o != nil &amp;&amp; o.Url != nil
+<span id="L1020" class="ln">  1020  </span>}
+<span id="L1021" class="ln">  1021  </span>
+<span id="L1022" class="ln">  1022  </span><span class="comment">// SetUrl gets a reference to the given string and assigns it to the Url field.</span>
+<span id="L1023" class="ln">  1023  </span>func (o *SyntheticsTestRequest) SetUrl(v string) {
+<span id="L1024" class="ln">  1024  </span>	o.Url = &amp;v
+<span id="L1025" class="ln">  1025  </span>}
+<span id="L1026" class="ln">  1026  </span>
+<span id="L1027" class="ln">  1027  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L1028" class="ln">  1028  </span>func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
+<span id="L1029" class="ln">  1029  </span>	toSerialize := map[string]interface{}{}
+<span id="L1030" class="ln">  1030  </span>	if o.UnparsedObject != nil {
+<span id="L1031" class="ln">  1031  </span>		return datadog.Marshal(o.UnparsedObject)
 <span id="L1032" class="ln">  1032  </span>	}
-<span id="L1033" class="ln">  1033  </span>	if o.DnsServer != nil {
-<span id="L1034" class="ln">  1034  </span>		toSerialize[&#34;dnsServer&#34;] = o.DnsServer
+<span id="L1033" class="ln">  1033  </span>	if o.AllowInsecure != nil {
+<span id="L1034" class="ln">  1034  </span>		toSerialize[&#34;allow_insecure&#34;] = o.AllowInsecure
 <span id="L1035" class="ln">  1035  </span>	}
-<span id="L1036" class="ln">  1036  </span>	if o.DnsServerPort != nil {
-<span id="L1037" class="ln">  1037  </span>		toSerialize[&#34;dnsServerPort&#34;] = o.DnsServerPort
+<span id="L1036" class="ln">  1036  </span>	if o.BasicAuth != nil {
+<span id="L1037" class="ln">  1037  </span>		toSerialize[&#34;basicAuth&#34;] = o.BasicAuth
 <span id="L1038" class="ln">  1038  </span>	}
-<span id="L1039" class="ln">  1039  </span>	if o.Files != nil {
-<span id="L1040" class="ln">  1040  </span>		toSerialize[&#34;files&#34;] = o.Files
+<span id="L1039" class="ln">  1039  </span>	if o.Body != nil {
+<span id="L1040" class="ln">  1040  </span>		toSerialize[&#34;body&#34;] = o.Body
 <span id="L1041" class="ln">  1041  </span>	}
-<span id="L1042" class="ln">  1042  </span>	if o.FollowRedirects != nil {
-<span id="L1043" class="ln">  1043  </span>		toSerialize[&#34;follow_redirects&#34;] = o.FollowRedirects
+<span id="L1042" class="ln">  1042  </span>	if o.BodyType != nil {
+<span id="L1043" class="ln">  1043  </span>		toSerialize[&#34;bodyType&#34;] = o.BodyType
 <span id="L1044" class="ln">  1044  </span>	}
-<span id="L1045" class="ln">  1045  </span>	if o.Headers != nil {
-<span id="L1046" class="ln">  1046  </span>		toSerialize[&#34;headers&#34;] = o.Headers
+<span id="L1045" class="ln">  1045  </span>	if o.CallType != nil {
+<span id="L1046" class="ln">  1046  </span>		toSerialize[&#34;callType&#34;] = o.CallType
 <span id="L1047" class="ln">  1047  </span>	}
-<span id="L1048" class="ln">  1048  </span>	if o.Host != nil {
-<span id="L1049" class="ln">  1049  </span>		toSerialize[&#34;host&#34;] = o.Host
+<span id="L1048" class="ln">  1048  </span>	if o.Certificate != nil {
+<span id="L1049" class="ln">  1049  </span>		toSerialize[&#34;certificate&#34;] = o.Certificate
 <span id="L1050" class="ln">  1050  </span>	}
-<span id="L1051" class="ln">  1051  </span>	if o.HttpVersion != nil {
-<span id="L1052" class="ln">  1052  </span>		toSerialize[&#34;httpVersion&#34;] = o.HttpVersion
+<span id="L1051" class="ln">  1051  </span>	if o.CertificateDomains != nil {
+<span id="L1052" class="ln">  1052  </span>		toSerialize[&#34;certificateDomains&#34;] = o.CertificateDomains
 <span id="L1053" class="ln">  1053  </span>	}
-<span id="L1054" class="ln">  1054  </span>	if o.IsMessageBase64Encoded != nil {
-<span id="L1055" class="ln">  1055  </span>		toSerialize[&#34;isMessageBase64Encoded&#34;] = o.IsMessageBase64Encoded
+<span id="L1054" class="ln">  1054  </span>	if o.CheckCertificateRevocation != nil {
+<span id="L1055" class="ln">  1055  </span>		toSerialize[&#34;checkCertificateRevocation&#34;] = o.CheckCertificateRevocation
 <span id="L1056" class="ln">  1056  </span>	}
-<span id="L1057" class="ln">  1057  </span>	if o.Message != nil {
-<span id="L1058" class="ln">  1058  </span>		toSerialize[&#34;message&#34;] = o.Message
+<span id="L1057" class="ln">  1057  </span>	if o.CompressedJsonDescriptor != nil {
+<span id="L1058" class="ln">  1058  </span>		toSerialize[&#34;compressedJsonDescriptor&#34;] = o.CompressedJsonDescriptor
 <span id="L1059" class="ln">  1059  </span>	}
-<span id="L1060" class="ln">  1060  </span>	if o.Metadata != nil {
-<span id="L1061" class="ln">  1061  </span>		toSerialize[&#34;metadata&#34;] = o.Metadata
+<span id="L1060" class="ln">  1060  </span>	if o.CompressedProtoFile != nil {
+<span id="L1061" class="ln">  1061  </span>		toSerialize[&#34;compressedProtoFile&#34;] = o.CompressedProtoFile
 <span id="L1062" class="ln">  1062  </span>	}
-<span id="L1063" class="ln">  1063  </span>	if o.Method != nil {
-<span id="L1064" class="ln">  1064  </span>		toSerialize[&#34;method&#34;] = o.Method
+<span id="L1063" class="ln">  1063  </span>	if o.DnsServer != nil {
+<span id="L1064" class="ln">  1064  </span>		toSerialize[&#34;dnsServer&#34;] = o.DnsServer
 <span id="L1065" class="ln">  1065  </span>	}
-<span id="L1066" class="ln">  1066  </span>	if o.NoSavingResponseBody != nil {
-<span id="L1067" class="ln">  1067  </span>		toSerialize[&#34;noSavingResponseBody&#34;] = o.NoSavingResponseBody
+<span id="L1066" class="ln">  1066  </span>	if o.DnsServerPort != nil {
+<span id="L1067" class="ln">  1067  </span>		toSerialize[&#34;dnsServerPort&#34;] = o.DnsServerPort
 <span id="L1068" class="ln">  1068  </span>	}
-<span id="L1069" class="ln">  1069  </span>	if o.NumberOfPackets != nil {
-<span id="L1070" class="ln">  1070  </span>		toSerialize[&#34;numberOfPackets&#34;] = o.NumberOfPackets
+<span id="L1069" class="ln">  1069  </span>	if o.Files != nil {
+<span id="L1070" class="ln">  1070  </span>		toSerialize[&#34;files&#34;] = o.Files
 <span id="L1071" class="ln">  1071  </span>	}
-<span id="L1072" class="ln">  1072  </span>	if o.PersistCookies != nil {
-<span id="L1073" class="ln">  1073  </span>		toSerialize[&#34;persistCookies&#34;] = o.PersistCookies
+<span id="L1072" class="ln">  1072  </span>	if o.FollowRedirects != nil {
+<span id="L1073" class="ln">  1073  </span>		toSerialize[&#34;follow_redirects&#34;] = o.FollowRedirects
 <span id="L1074" class="ln">  1074  </span>	}
-<span id="L1075" class="ln">  1075  </span>	if o.Port != nil {
-<span id="L1076" class="ln">  1076  </span>		toSerialize[&#34;port&#34;] = o.Port
+<span id="L1075" class="ln">  1075  </span>	if o.Form != nil {
+<span id="L1076" class="ln">  1076  </span>		toSerialize[&#34;form&#34;] = o.Form
 <span id="L1077" class="ln">  1077  </span>	}
-<span id="L1078" class="ln">  1078  </span>	if o.Proxy != nil {
-<span id="L1079" class="ln">  1079  </span>		toSerialize[&#34;proxy&#34;] = o.Proxy
+<span id="L1078" class="ln">  1078  </span>	if o.Headers != nil {
+<span id="L1079" class="ln">  1079  </span>		toSerialize[&#34;headers&#34;] = o.Headers
 <span id="L1080" class="ln">  1080  </span>	}
-<span id="L1081" class="ln">  1081  </span>	if o.Query != nil {
-<span id="L1082" class="ln">  1082  </span>		toSerialize[&#34;query&#34;] = o.Query
+<span id="L1081" class="ln">  1081  </span>	if o.Host != nil {
+<span id="L1082" class="ln">  1082  </span>		toSerialize[&#34;host&#34;] = o.Host
 <span id="L1083" class="ln">  1083  </span>	}
-<span id="L1084" class="ln">  1084  </span>	if o.Servername != nil {
-<span id="L1085" class="ln">  1085  </span>		toSerialize[&#34;servername&#34;] = o.Servername
+<span id="L1084" class="ln">  1084  </span>	if o.HttpVersion != nil {
+<span id="L1085" class="ln">  1085  </span>		toSerialize[&#34;httpVersion&#34;] = o.HttpVersion
 <span id="L1086" class="ln">  1086  </span>	}
-<span id="L1087" class="ln">  1087  </span>	if o.Service != nil {
-<span id="L1088" class="ln">  1088  </span>		toSerialize[&#34;service&#34;] = o.Service
+<span id="L1087" class="ln">  1087  </span>	if o.IsMessageBase64Encoded != nil {
+<span id="L1088" class="ln">  1088  </span>		toSerialize[&#34;isMessageBase64Encoded&#34;] = o.IsMessageBase64Encoded
 <span id="L1089" class="ln">  1089  </span>	}
-<span id="L1090" class="ln">  1090  </span>	if o.ShouldTrackHops != nil {
-<span id="L1091" class="ln">  1091  </span>		toSerialize[&#34;shouldTrackHops&#34;] = o.ShouldTrackHops
+<span id="L1090" class="ln">  1090  </span>	if o.Message != nil {
+<span id="L1091" class="ln">  1091  </span>		toSerialize[&#34;message&#34;] = o.Message
 <span id="L1092" class="ln">  1092  </span>	}
-<span id="L1093" class="ln">  1093  </span>	if o.Timeout != nil {
-<span id="L1094" class="ln">  1094  </span>		toSerialize[&#34;timeout&#34;] = o.Timeout
+<span id="L1093" class="ln">  1093  </span>	if o.Metadata != nil {
+<span id="L1094" class="ln">  1094  </span>		toSerialize[&#34;metadata&#34;] = o.Metadata
 <span id="L1095" class="ln">  1095  </span>	}
-<span id="L1096" class="ln">  1096  </span>	if o.Url != nil {
-<span id="L1097" class="ln">  1097  </span>		toSerialize[&#34;url&#34;] = o.Url
+<span id="L1096" class="ln">  1096  </span>	if o.Method != nil {
+<span id="L1097" class="ln">  1097  </span>		toSerialize[&#34;method&#34;] = o.Method
 <span id="L1098" class="ln">  1098  </span>	}
-<span id="L1099" class="ln">  1099  </span>
-<span id="L1100" class="ln">  1100  </span>	for key, value := range o.AdditionalProperties {
-<span id="L1101" class="ln">  1101  </span>		toSerialize[key] = value
-<span id="L1102" class="ln">  1102  </span>	}
-<span id="L1103" class="ln">  1103  </span>	return datadog.Marshal(toSerialize)
-<span id="L1104" class="ln">  1104  </span>}
-<span id="L1105" class="ln">  1105  </span>
-<span id="L1106" class="ln">  1106  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L1107" class="ln">  1107  </span>func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
-<span id="L1108" class="ln">  1108  </span>	all := struct {
-<span id="L1109" class="ln">  1109  </span>		AllowInsecure              *bool                             `json:&#34;allow_insecure,omitempty&#34;`
-<span id="L1110" class="ln">  1110  </span>		BasicAuth                  *SyntheticsBasicAuth              `json:&#34;basicAuth,omitempty&#34;`
-<span id="L1111" class="ln">  1111  </span>		Body                       *string                           `json:&#34;body,omitempty&#34;`
-<span id="L1112" class="ln">  1112  </span>		BodyType                   *SyntheticsTestRequestBodyType    `json:&#34;bodyType,omitempty&#34;`
-<span id="L1113" class="ln">  1113  </span>		CallType                   *SyntheticsTestCallType           `json:&#34;callType,omitempty&#34;`
-<span id="L1114" class="ln">  1114  </span>		Certificate                *SyntheticsTestRequestCertificate `json:&#34;certificate,omitempty&#34;`
-<span id="L1115" class="ln">  1115  </span>		CertificateDomains         []string                          `json:&#34;certificateDomains,omitempty&#34;`
-<span id="L1116" class="ln">  1116  </span>		CheckCertificateRevocation *bool                             `json:&#34;checkCertificateRevocation,omitempty&#34;`
-<span id="L1117" class="ln">  1117  </span>		CompressedJsonDescriptor   *string                           `json:&#34;compressedJsonDescriptor,omitempty&#34;`
-<span id="L1118" class="ln">  1118  </span>		CompressedProtoFile        *string                           `json:&#34;compressedProtoFile,omitempty&#34;`
-<span id="L1119" class="ln">  1119  </span>		DnsServer                  *string                           `json:&#34;dnsServer,omitempty&#34;`
-<span id="L1120" class="ln">  1120  </span>		DnsServerPort              *string                           `json:&#34;dnsServerPort,omitempty&#34;`
-<span id="L1121" class="ln">  1121  </span>		Files                      []SyntheticsTestRequestBodyFile   `json:&#34;files,omitempty&#34;`
-<span id="L1122" class="ln">  1122  </span>		FollowRedirects            *bool                             `json:&#34;follow_redirects,omitempty&#34;`
-<span id="L1123" class="ln">  1123  </span>		Headers                    map[string]string                 `json:&#34;headers,omitempty&#34;`
-<span id="L1124" class="ln">  1124  </span>		Host                       *string                           `json:&#34;host,omitempty&#34;`
-<span id="L1125" class="ln">  1125  </span>		HttpVersion                *SyntheticsTestOptionsHTTPVersion `json:&#34;httpVersion,omitempty&#34;`
-<span id="L1126" class="ln">  1126  </span>		IsMessageBase64Encoded     *bool                             `json:&#34;isMessageBase64Encoded,omitempty&#34;`
-<span id="L1127" class="ln">  1127  </span>		Message                    *string                           `json:&#34;message,omitempty&#34;`
-<span id="L1128" class="ln">  1128  </span>		Metadata                   map[string]string                 `json:&#34;metadata,omitempty&#34;`
-<span id="L1129" class="ln">  1129  </span>		Method                     *string                           `json:&#34;method,omitempty&#34;`
-<span id="L1130" class="ln">  1130  </span>		NoSavingResponseBody       *bool                             `json:&#34;noSavingResponseBody,omitempty&#34;`
-<span id="L1131" class="ln">  1131  </span>		NumberOfPackets            *int32                            `json:&#34;numberOfPackets,omitempty&#34;`
-<span id="L1132" class="ln">  1132  </span>		PersistCookies             *bool                             `json:&#34;persistCookies,omitempty&#34;`
-<span id="L1133" class="ln">  1133  </span>		Port                       *SyntheticsTestRequestPort        `json:&#34;port,omitempty&#34;`
-<span id="L1134" class="ln">  1134  </span>		Proxy                      *SyntheticsTestRequestProxy       `json:&#34;proxy,omitempty&#34;`
-<span id="L1135" class="ln">  1135  </span>		Query                      interface{}                       `json:&#34;query,omitempty&#34;`
-<span id="L1136" class="ln">  1136  </span>		Servername                 *string                           `json:&#34;servername,omitempty&#34;`
-<span id="L1137" class="ln">  1137  </span>		Service                    *string                           `json:&#34;service,omitempty&#34;`
-<span id="L1138" class="ln">  1138  </span>		ShouldTrackHops            *bool                             `json:&#34;shouldTrackHops,omitempty&#34;`
-<span id="L1139" class="ln">  1139  </span>		Timeout                    *float64                          `json:&#34;timeout,omitempty&#34;`
-<span id="L1140" class="ln">  1140  </span>		Url                        *string                           `json:&#34;url,omitempty&#34;`
-<span id="L1141" class="ln">  1141  </span>	}{}
-<span id="L1142" class="ln">  1142  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
-<span id="L1143" class="ln">  1143  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L1144" class="ln">  1144  </span>	}
-<span id="L1145" class="ln">  1145  </span>	additionalProperties := make(map[string]interface{})
-<span id="L1146" class="ln">  1146  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L1147" class="ln">  1147  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;allow_insecure&#34;, &#34;basicAuth&#34;, &#34;body&#34;, &#34;bodyType&#34;, &#34;callType&#34;, &#34;certificate&#34;, &#34;certificateDomains&#34;, &#34;checkCertificateRevocation&#34;, &#34;compressedJsonDescriptor&#34;, &#34;compressedProtoFile&#34;, &#34;dnsServer&#34;, &#34;dnsServerPort&#34;, &#34;files&#34;, &#34;follow_redirects&#34;, &#34;headers&#34;, &#34;host&#34;, &#34;httpVersion&#34;, &#34;isMessageBase64Encoded&#34;, &#34;message&#34;, &#34;metadata&#34;, &#34;method&#34;, &#34;noSavingResponseBody&#34;, &#34;numberOfPackets&#34;, &#34;persistCookies&#34;, &#34;port&#34;, &#34;proxy&#34;, &#34;query&#34;, &#34;servername&#34;, &#34;service&#34;, &#34;shouldTrackHops&#34;, &#34;timeout&#34;, &#34;url&#34;})
-<span id="L1148" class="ln">  1148  </span>	} else {
-<span id="L1149" class="ln">  1149  </span>		return err
-<span id="L1150" class="ln">  1150  </span>	}
-<span id="L1151" class="ln">  1151  </span>
-<span id="L1152" class="ln">  1152  </span>	hasInvalidField := false
-<span id="L1153" class="ln">  1153  </span>	o.AllowInsecure = all.AllowInsecure
-<span id="L1154" class="ln">  1154  </span>	o.BasicAuth = all.BasicAuth
-<span id="L1155" class="ln">  1155  </span>	o.Body = all.Body
-<span id="L1156" class="ln">  1156  </span>	if all.BodyType != nil &amp;&amp; !all.BodyType.IsValid() {
-<span id="L1157" class="ln">  1157  </span>		hasInvalidField = true
-<span id="L1158" class="ln">  1158  </span>	} else {
-<span id="L1159" class="ln">  1159  </span>		o.BodyType = all.BodyType
-<span id="L1160" class="ln">  1160  </span>	}
-<span id="L1161" class="ln">  1161  </span>	if all.CallType != nil &amp;&amp; !all.CallType.IsValid() {
-<span id="L1162" class="ln">  1162  </span>		hasInvalidField = true
-<span id="L1163" class="ln">  1163  </span>	} else {
-<span id="L1164" class="ln">  1164  </span>		o.CallType = all.CallType
-<span id="L1165" class="ln">  1165  </span>	}
-<span id="L1166" class="ln">  1166  </span>	if all.Certificate != nil &amp;&amp; all.Certificate.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L1167" class="ln">  1167  </span>		hasInvalidField = true
-<span id="L1168" class="ln">  1168  </span>	}
-<span id="L1169" class="ln">  1169  </span>	o.Certificate = all.Certificate
-<span id="L1170" class="ln">  1170  </span>	o.CertificateDomains = all.CertificateDomains
-<span id="L1171" class="ln">  1171  </span>	o.CheckCertificateRevocation = all.CheckCertificateRevocation
-<span id="L1172" class="ln">  1172  </span>	o.CompressedJsonDescriptor = all.CompressedJsonDescriptor
-<span id="L1173" class="ln">  1173  </span>	o.CompressedProtoFile = all.CompressedProtoFile
-<span id="L1174" class="ln">  1174  </span>	o.DnsServer = all.DnsServer
-<span id="L1175" class="ln">  1175  </span>	o.DnsServerPort = all.DnsServerPort
-<span id="L1176" class="ln">  1176  </span>	o.Files = all.Files
-<span id="L1177" class="ln">  1177  </span>	o.FollowRedirects = all.FollowRedirects
-<span id="L1178" class="ln">  1178  </span>	o.Headers = all.Headers
-<span id="L1179" class="ln">  1179  </span>	o.Host = all.Host
-<span id="L1180" class="ln">  1180  </span>	if all.HttpVersion != nil &amp;&amp; !all.HttpVersion.IsValid() {
-<span id="L1181" class="ln">  1181  </span>		hasInvalidField = true
+<span id="L1099" class="ln">  1099  </span>	if o.NoSavingResponseBody != nil {
+<span id="L1100" class="ln">  1100  </span>		toSerialize[&#34;noSavingResponseBody&#34;] = o.NoSavingResponseBody
+<span id="L1101" class="ln">  1101  </span>	}
+<span id="L1102" class="ln">  1102  </span>	if o.NumberOfPackets != nil {
+<span id="L1103" class="ln">  1103  </span>		toSerialize[&#34;numberOfPackets&#34;] = o.NumberOfPackets
+<span id="L1104" class="ln">  1104  </span>	}
+<span id="L1105" class="ln">  1105  </span>	if o.PersistCookies != nil {
+<span id="L1106" class="ln">  1106  </span>		toSerialize[&#34;persistCookies&#34;] = o.PersistCookies
+<span id="L1107" class="ln">  1107  </span>	}
+<span id="L1108" class="ln">  1108  </span>	if o.Port != nil {
+<span id="L1109" class="ln">  1109  </span>		toSerialize[&#34;port&#34;] = o.Port
+<span id="L1110" class="ln">  1110  </span>	}
+<span id="L1111" class="ln">  1111  </span>	if o.Proxy != nil {
+<span id="L1112" class="ln">  1112  </span>		toSerialize[&#34;proxy&#34;] = o.Proxy
+<span id="L1113" class="ln">  1113  </span>	}
+<span id="L1114" class="ln">  1114  </span>	if o.Query != nil {
+<span id="L1115" class="ln">  1115  </span>		toSerialize[&#34;query&#34;] = o.Query
+<span id="L1116" class="ln">  1116  </span>	}
+<span id="L1117" class="ln">  1117  </span>	if o.Servername != nil {
+<span id="L1118" class="ln">  1118  </span>		toSerialize[&#34;servername&#34;] = o.Servername
+<span id="L1119" class="ln">  1119  </span>	}
+<span id="L1120" class="ln">  1120  </span>	if o.Service != nil {
+<span id="L1121" class="ln">  1121  </span>		toSerialize[&#34;service&#34;] = o.Service
+<span id="L1122" class="ln">  1122  </span>	}
+<span id="L1123" class="ln">  1123  </span>	if o.ShouldTrackHops != nil {
+<span id="L1124" class="ln">  1124  </span>		toSerialize[&#34;shouldTrackHops&#34;] = o.ShouldTrackHops
+<span id="L1125" class="ln">  1125  </span>	}
+<span id="L1126" class="ln">  1126  </span>	if o.Timeout != nil {
+<span id="L1127" class="ln">  1127  </span>		toSerialize[&#34;timeout&#34;] = o.Timeout
+<span id="L1128" class="ln">  1128  </span>	}
+<span id="L1129" class="ln">  1129  </span>	if o.Url != nil {
+<span id="L1130" class="ln">  1130  </span>		toSerialize[&#34;url&#34;] = o.Url
+<span id="L1131" class="ln">  1131  </span>	}
+<span id="L1132" class="ln">  1132  </span>
+<span id="L1133" class="ln">  1133  </span>	for key, value := range o.AdditionalProperties {
+<span id="L1134" class="ln">  1134  </span>		toSerialize[key] = value
+<span id="L1135" class="ln">  1135  </span>	}
+<span id="L1136" class="ln">  1136  </span>	return datadog.Marshal(toSerialize)
+<span id="L1137" class="ln">  1137  </span>}
+<span id="L1138" class="ln">  1138  </span>
+<span id="L1139" class="ln">  1139  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L1140" class="ln">  1140  </span>func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L1141" class="ln">  1141  </span>	all := struct {
+<span id="L1142" class="ln">  1142  </span>		AllowInsecure              *bool                             `json:&#34;allow_insecure,omitempty&#34;`
+<span id="L1143" class="ln">  1143  </span>		BasicAuth                  *SyntheticsBasicAuth              `json:&#34;basicAuth,omitempty&#34;`
+<span id="L1144" class="ln">  1144  </span>		Body                       *string                           `json:&#34;body,omitempty&#34;`
+<span id="L1145" class="ln">  1145  </span>		BodyType                   *SyntheticsTestRequestBodyType    `json:&#34;bodyType,omitempty&#34;`
+<span id="L1146" class="ln">  1146  </span>		CallType                   *SyntheticsTestCallType           `json:&#34;callType,omitempty&#34;`
+<span id="L1147" class="ln">  1147  </span>		Certificate                *SyntheticsTestRequestCertificate `json:&#34;certificate,omitempty&#34;`
+<span id="L1148" class="ln">  1148  </span>		CertificateDomains         []string                          `json:&#34;certificateDomains,omitempty&#34;`
+<span id="L1149" class="ln">  1149  </span>		CheckCertificateRevocation *bool                             `json:&#34;checkCertificateRevocation,omitempty&#34;`
+<span id="L1150" class="ln">  1150  </span>		CompressedJsonDescriptor   *string                           `json:&#34;compressedJsonDescriptor,omitempty&#34;`
+<span id="L1151" class="ln">  1151  </span>		CompressedProtoFile        *string                           `json:&#34;compressedProtoFile,omitempty&#34;`
+<span id="L1152" class="ln">  1152  </span>		DnsServer                  *string                           `json:&#34;dnsServer,omitempty&#34;`
+<span id="L1153" class="ln">  1153  </span>		DnsServerPort              *string                           `json:&#34;dnsServerPort,omitempty&#34;`
+<span id="L1154" class="ln">  1154  </span>		Files                      []SyntheticsTestRequestBodyFile   `json:&#34;files,omitempty&#34;`
+<span id="L1155" class="ln">  1155  </span>		FollowRedirects            *bool                             `json:&#34;follow_redirects,omitempty&#34;`
+<span id="L1156" class="ln">  1156  </span>		Form                       map[string]string                 `json:&#34;form,omitempty&#34;`
+<span id="L1157" class="ln">  1157  </span>		Headers                    map[string]string                 `json:&#34;headers,omitempty&#34;`
+<span id="L1158" class="ln">  1158  </span>		Host                       *string                           `json:&#34;host,omitempty&#34;`
+<span id="L1159" class="ln">  1159  </span>		HttpVersion                *SyntheticsTestOptionsHTTPVersion `json:&#34;httpVersion,omitempty&#34;`
+<span id="L1160" class="ln">  1160  </span>		IsMessageBase64Encoded     *bool                             `json:&#34;isMessageBase64Encoded,omitempty&#34;`
+<span id="L1161" class="ln">  1161  </span>		Message                    *string                           `json:&#34;message,omitempty&#34;`
+<span id="L1162" class="ln">  1162  </span>		Metadata                   map[string]string                 `json:&#34;metadata,omitempty&#34;`
+<span id="L1163" class="ln">  1163  </span>		Method                     *string                           `json:&#34;method,omitempty&#34;`
+<span id="L1164" class="ln">  1164  </span>		NoSavingResponseBody       *bool                             `json:&#34;noSavingResponseBody,omitempty&#34;`
+<span id="L1165" class="ln">  1165  </span>		NumberOfPackets            *int32                            `json:&#34;numberOfPackets,omitempty&#34;`
+<span id="L1166" class="ln">  1166  </span>		PersistCookies             *bool                             `json:&#34;persistCookies,omitempty&#34;`
+<span id="L1167" class="ln">  1167  </span>		Port                       *SyntheticsTestRequestPort        `json:&#34;port,omitempty&#34;`
+<span id="L1168" class="ln">  1168  </span>		Proxy                      *SyntheticsTestRequestProxy       `json:&#34;proxy,omitempty&#34;`
+<span id="L1169" class="ln">  1169  </span>		Query                      interface{}                       `json:&#34;query,omitempty&#34;`
+<span id="L1170" class="ln">  1170  </span>		Servername                 *string                           `json:&#34;servername,omitempty&#34;`
+<span id="L1171" class="ln">  1171  </span>		Service                    *string                           `json:&#34;service,omitempty&#34;`
+<span id="L1172" class="ln">  1172  </span>		ShouldTrackHops            *bool                             `json:&#34;shouldTrackHops,omitempty&#34;`
+<span id="L1173" class="ln">  1173  </span>		Timeout                    *float64                          `json:&#34;timeout,omitempty&#34;`
+<span id="L1174" class="ln">  1174  </span>		Url                        *string                           `json:&#34;url,omitempty&#34;`
+<span id="L1175" class="ln">  1175  </span>	}{}
+<span id="L1176" class="ln">  1176  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L1177" class="ln">  1177  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L1178" class="ln">  1178  </span>	}
+<span id="L1179" class="ln">  1179  </span>	additionalProperties := make(map[string]interface{})
+<span id="L1180" class="ln">  1180  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L1181" class="ln">  1181  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;allow_insecure&#34;, &#34;basicAuth&#34;, &#34;body&#34;, &#34;bodyType&#34;, &#34;callType&#34;, &#34;certificate&#34;, &#34;certificateDomains&#34;, &#34;checkCertificateRevocation&#34;, &#34;compressedJsonDescriptor&#34;, &#34;compressedProtoFile&#34;, &#34;dnsServer&#34;, &#34;dnsServerPort&#34;, &#34;files&#34;, &#34;follow_redirects&#34;, &#34;form&#34;, &#34;headers&#34;, &#34;host&#34;, &#34;httpVersion&#34;, &#34;isMessageBase64Encoded&#34;, &#34;message&#34;, &#34;metadata&#34;, &#34;method&#34;, &#34;noSavingResponseBody&#34;, &#34;numberOfPackets&#34;, &#34;persistCookies&#34;, &#34;port&#34;, &#34;proxy&#34;, &#34;query&#34;, &#34;servername&#34;, &#34;service&#34;, &#34;shouldTrackHops&#34;, &#34;timeout&#34;, &#34;url&#34;})
 <span id="L1182" class="ln">  1182  </span>	} else {
-<span id="L1183" class="ln">  1183  </span>		o.HttpVersion = all.HttpVersion
+<span id="L1183" class="ln">  1183  </span>		return err
 <span id="L1184" class="ln">  1184  </span>	}
-<span id="L1185" class="ln">  1185  </span>	o.IsMessageBase64Encoded = all.IsMessageBase64Encoded
-<span id="L1186" class="ln">  1186  </span>	o.Message = all.Message
-<span id="L1187" class="ln">  1187  </span>	o.Metadata = all.Metadata
-<span id="L1188" class="ln">  1188  </span>	o.Method = all.Method
-<span id="L1189" class="ln">  1189  </span>	o.NoSavingResponseBody = all.NoSavingResponseBody
-<span id="L1190" class="ln">  1190  </span>	o.NumberOfPackets = all.NumberOfPackets
-<span id="L1191" class="ln">  1191  </span>	o.PersistCookies = all.PersistCookies
-<span id="L1192" class="ln">  1192  </span>	o.Port = all.Port
-<span id="L1193" class="ln">  1193  </span>	if all.Proxy != nil &amp;&amp; all.Proxy.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L1194" class="ln">  1194  </span>		hasInvalidField = true
-<span id="L1195" class="ln">  1195  </span>	}
-<span id="L1196" class="ln">  1196  </span>	o.Proxy = all.Proxy
-<span id="L1197" class="ln">  1197  </span>	o.Query = all.Query
-<span id="L1198" class="ln">  1198  </span>	o.Servername = all.Servername
-<span id="L1199" class="ln">  1199  </span>	o.Service = all.Service
-<span id="L1200" class="ln">  1200  </span>	o.ShouldTrackHops = all.ShouldTrackHops
-<span id="L1201" class="ln">  1201  </span>	o.Timeout = all.Timeout
-<span id="L1202" class="ln">  1202  </span>	o.Url = all.Url
-<span id="L1203" class="ln">  1203  </span>
-<span id="L1204" class="ln">  1204  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L1205" class="ln">  1205  </span>		o.AdditionalProperties = additionalProperties
-<span id="L1206" class="ln">  1206  </span>	}
-<span id="L1207" class="ln">  1207  </span>
-<span id="L1208" class="ln">  1208  </span>	if hasInvalidField {
-<span id="L1209" class="ln">  1209  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L1210" class="ln">  1210  </span>	}
-<span id="L1211" class="ln">  1211  </span>
-<span id="L1212" class="ln">  1212  </span>	return nil
-<span id="L1213" class="ln">  1213  </span>}
-<span id="L1214" class="ln">  1214  </span>
+<span id="L1185" class="ln">  1185  </span>
+<span id="L1186" class="ln">  1186  </span>	hasInvalidField := false
+<span id="L1187" class="ln">  1187  </span>	o.AllowInsecure = all.AllowInsecure
+<span id="L1188" class="ln">  1188  </span>	o.BasicAuth = all.BasicAuth
+<span id="L1189" class="ln">  1189  </span>	o.Body = all.Body
+<span id="L1190" class="ln">  1190  </span>	if all.BodyType != nil &amp;&amp; !all.BodyType.IsValid() {
+<span id="L1191" class="ln">  1191  </span>		hasInvalidField = true
+<span id="L1192" class="ln">  1192  </span>	} else {
+<span id="L1193" class="ln">  1193  </span>		o.BodyType = all.BodyType
+<span id="L1194" class="ln">  1194  </span>	}
+<span id="L1195" class="ln">  1195  </span>	if all.CallType != nil &amp;&amp; !all.CallType.IsValid() {
+<span id="L1196" class="ln">  1196  </span>		hasInvalidField = true
+<span id="L1197" class="ln">  1197  </span>	} else {
+<span id="L1198" class="ln">  1198  </span>		o.CallType = all.CallType
+<span id="L1199" class="ln">  1199  </span>	}
+<span id="L1200" class="ln">  1200  </span>	if all.Certificate != nil &amp;&amp; all.Certificate.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L1201" class="ln">  1201  </span>		hasInvalidField = true
+<span id="L1202" class="ln">  1202  </span>	}
+<span id="L1203" class="ln">  1203  </span>	o.Certificate = all.Certificate
+<span id="L1204" class="ln">  1204  </span>	o.CertificateDomains = all.CertificateDomains
+<span id="L1205" class="ln">  1205  </span>	o.CheckCertificateRevocation = all.CheckCertificateRevocation
+<span id="L1206" class="ln">  1206  </span>	o.CompressedJsonDescriptor = all.CompressedJsonDescriptor
+<span id="L1207" class="ln">  1207  </span>	o.CompressedProtoFile = all.CompressedProtoFile
+<span id="L1208" class="ln">  1208  </span>	o.DnsServer = all.DnsServer
+<span id="L1209" class="ln">  1209  </span>	o.DnsServerPort = all.DnsServerPort
+<span id="L1210" class="ln">  1210  </span>	o.Files = all.Files
+<span id="L1211" class="ln">  1211  </span>	o.FollowRedirects = all.FollowRedirects
+<span id="L1212" class="ln">  1212  </span>	o.Form = all.Form
+<span id="L1213" class="ln">  1213  </span>	o.Headers = all.Headers
+<span id="L1214" class="ln">  1214  </span>	o.Host = all.Host
+<span id="L1215" class="ln">  1215  </span>	if all.HttpVersion != nil &amp;&amp; !all.HttpVersion.IsValid() {
+<span id="L1216" class="ln">  1216  </span>		hasInvalidField = true
+<span id="L1217" class="ln">  1217  </span>	} else {
+<span id="L1218" class="ln">  1218  </span>		o.HttpVersion = all.HttpVersion
+<span id="L1219" class="ln">  1219  </span>	}
+<span id="L1220" class="ln">  1220  </span>	o.IsMessageBase64Encoded = all.IsMessageBase64Encoded
+<span id="L1221" class="ln">  1221  </span>	o.Message = all.Message
+<span id="L1222" class="ln">  1222  </span>	o.Metadata = all.Metadata
+<span id="L1223" class="ln">  1223  </span>	o.Method = all.Method
+<span id="L1224" class="ln">  1224  </span>	o.NoSavingResponseBody = all.NoSavingResponseBody
+<span id="L1225" class="ln">  1225  </span>	o.NumberOfPackets = all.NumberOfPackets
+<span id="L1226" class="ln">  1226  </span>	o.PersistCookies = all.PersistCookies
+<span id="L1227" class="ln">  1227  </span>	o.Port = all.Port
+<span id="L1228" class="ln">  1228  </span>	if all.Proxy != nil &amp;&amp; all.Proxy.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L1229" class="ln">  1229  </span>		hasInvalidField = true
+<span id="L1230" class="ln">  1230  </span>	}
+<span id="L1231" class="ln">  1231  </span>	o.Proxy = all.Proxy
+<span id="L1232" class="ln">  1232  </span>	o.Query = all.Query
+<span id="L1233" class="ln">  1233  </span>	o.Servername = all.Servername
+<span id="L1234" class="ln">  1234  </span>	o.Service = all.Service
+<span id="L1235" class="ln">  1235  </span>	o.ShouldTrackHops = all.ShouldTrackHops
+<span id="L1236" class="ln">  1236  </span>	o.Timeout = all.Timeout
+<span id="L1237" class="ln">  1237  </span>	o.Url = all.Url
+<span id="L1238" class="ln">  1238  </span>
+<span id="L1239" class="ln">  1239  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L1240" class="ln">  1240  </span>		o.AdditionalProperties = additionalProperties
+<span id="L1241" class="ln">  1241  </span>	}
+<span id="L1242" class="ln">  1242  </span>
+<span id="L1243" class="ln">  1243  </span>	if hasInvalidField {
+<span id="L1244" class="ln">  1244  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L1245" class="ln">  1245  </span>	}
+<span id="L1246" class="ln">  1246  </span>
+<span id="L1247" class="ln">  1247  </span>	return nil
+<span id="L1248" class="ln">  1248  </span>}
+<span id="L1249" class="ln">  1249  </span>
 </pre><p></p>
 
 <div id="footer">
