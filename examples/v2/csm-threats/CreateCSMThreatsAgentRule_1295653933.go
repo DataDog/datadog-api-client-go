@@ -34,6 +34,9 @@ func main() {
 							Scope: datadog.PtrString("process"),
 						},
 					},
+					{
+						Hash: map[string]interface{}{},
+					},
 				},
 			},
 			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
