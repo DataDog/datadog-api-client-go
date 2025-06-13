@@ -1,10 +1,9 @@
-import pathlib
-
 import click
+import pathlib
 from jinja2 import Environment, FileSystemLoader
 
-from . import openapi
 from . import formatter
+from . import openapi
 from . import utils
 
 MODULE = "github.com/DataDog/datadog-api-client-go/v2"
@@ -67,8 +66,10 @@ def cli(specs, output):
     doc_j2 = env.get_template("doc.j2")
 
     extra_files = {
+        "aws.go": env.get_template("aws.j2"),
         "client.go": env.get_template("client.j2"),
         "configuration.go": env.get_template("configuration.j2"),
+        "delegated_auth.go": env.get_template("delegated_auth.j2"),
         "utils.go": env.get_template("utils.j2"),
         "zstd.go": env.get_template("zstd.j2"),
         "no_zstd.go": env.get_template("no_zstd.j2"),
