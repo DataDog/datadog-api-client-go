@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 2.39.0/2025-06-16
+
+### Fixed
+* sanitize configuration keys correctly [#3143](https://github.com/DataDog/datadog-api-client-go/pull/3143)
+
+### Changed
+* Add billing read permission [#3139](https://github.com/DataDog/datadog-api-client-go/pull/3139)
+* Update DORA endpoints [#3119](https://github.com/DataDog/datadog-api-client-go/pull/3119)
+
+### Added
+* Add `form` field for `multipart/form-data` HTTP API tests [#3135](https://github.com/DataDog/datadog-api-client-go/pull/3135)
+* Add new endpoint to upsert/list/delete custom kinds [#3128](https://github.com/DataDog/datadog-api-client-go/pull/3128)
+* Add spec for team on-call endpoint [#3126](https://github.com/DataDog/datadog-api-client-go/pull/3126)
+* Add support for all subtypes in multistep steps [#3100](https://github.com/DataDog/datadog-api-client-go/pull/3100)
+* Exposing set action on Terraform V2 [#3099](https://github.com/DataDog/datadog-api-client-go/pull/3099)
+* Added new optional field definition to include more detail in findings for '/api/v2/posture_management/findings'  [#3096](https://github.com/DataDog/datadog-api-client-go/pull/3096)
+* Add monitor draft status field [#3095](https://github.com/DataDog/datadog-api-client-go/pull/3095)
+* Add rum application to restriction policy [#2984](https://github.com/DataDog/datadog-api-client-go/pull/2984)
+
 ## 2.38.0/2025-05-28
 
 ### Fixed
