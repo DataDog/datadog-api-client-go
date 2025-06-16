@@ -17,7 +17,7 @@ func main() {
 		Data: datadogV2.MicrosoftTeamsWorkflowsWebhookHandleRequestData{
 			Attributes: datadogV2.MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes{
 				Name: "Example-Microsoft-Teams-Integration",
-				Url:  "https://fake.url.com",
+				Url:  "https://example.logic.azure.com/workflows/123",
 			},
 			Type: datadogV2.MICROSOFTTEAMSWORKFLOWSWEBHOOKHANDLETYPE_WORKFLOWS_WEBHOOK_HANDLE,
 		},
