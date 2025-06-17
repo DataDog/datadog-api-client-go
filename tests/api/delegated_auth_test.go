@@ -42,9 +42,9 @@ func TestGetDelegatedTokenUrl(t *testing.T) {
 		},
 		{
 			name:        "Valid URL from name no subdomain",
-			serverVars:  map[string]string{"name": "datadoghq.com"},
+			serverVars:  map[string]string{"name": "ap1.datadoghq.com"},
 			serverIndex: 1,
-			expectedUrl: "https://api.datadoghq.com/api/v2/delegated-token",
+			expectedUrl: "https://ap1.datadoghq.com/api/v2/delegated-token",
 		},
 		{
 			name:           "Invalid URL with missing site and subdomain",
