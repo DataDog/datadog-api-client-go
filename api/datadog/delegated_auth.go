@@ -12,11 +12,12 @@ import (
 	"io"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 )
 
 const (
-	tokenUrlEndpoint  = "%s/api/v2/delegated-token"
+	tokenUrlEndpoint  = "https://%s.%s/api/v2/delegated-token"
 	authorizationType = "Delegated"
 
 	contentTypeHeader   = "Content-Type"
@@ -104,15 +105,40 @@ func ParseDelegatedTokenResponse(tokenBytes []byte, orgUUID, delegatedAuthProof 
 	}, nil
 }
 
+func getSite(serverVars map[string]string) (string, error) {
+	site := serverVars["site"]
+	if site == "" {
+		name := serverVars["name"]
+		if name != "" {
+			name = strings.TrimPrefix(name, "api.")
+			return name, nil
+		}
+		return "", ReportError("site not found in server variables")
+	}
+	return site, nil
+}
+
+func getApiSubdomain(serverVars map[string]string) string {
+	apiName := serverVars["subdomain"]
+	if apiName == "" {
+		return "api"
+	}
+	return apiName
+}
+
 func GetDelegatedTokenUrl(ctx context.Context) (string, error) {
 	// Get site, api subdomain, and orgUUID from the context
-	config := NewConfiguration()
-	url, err := config.ServerURLWithContext(ctx, "")
+	serverVars, err := getServerVariables(ctx)
 	if err != nil {
 		return "", err
 	}
+	site, err := getSite(serverVars)
+	if err != nil {
+		return "", err
+	}
+	subdomain := getApiSubdomain(serverVars)
 
 	// Call the token endpoint to get a temporary token
-	url = fmt.Sprintf(tokenUrlEndpoint, url)
+	url := fmt.Sprintf(tokenUrlEndpoint, subdomain, site)
 	return url, nil
 }
