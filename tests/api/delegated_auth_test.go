@@ -13,6 +13,7 @@ func TestGetDelegatedTokenUrl(t *testing.T) {
 	testCases := []struct {
 		name           string
 		serverVars     map[string]string
+		serverIndex    int
 		expectedUrl    string
 		expectedErrMsg string
 	}{
@@ -25,7 +26,7 @@ func TestGetDelegatedTokenUrl(t *testing.T) {
 		{
 			name:           "Missing Site",
 			serverVars:     map[string]string{"subdomain": "api"},
-			expectedUrl:    "",
+			expectedUrl:    "https://api.datadoghq.com/api/v2/delegated-token",
 			expectedErrMsg: "site not found in server variables",
 		},
 		{
@@ -35,18 +36,20 @@ func TestGetDelegatedTokenUrl(t *testing.T) {
 		},
 		{
 			name:        "Valid URL from name",
-			serverVars:  map[string]string{"name": "api.datadoghq.com"},
-			expectedUrl: "https://api.datadoghq.com/api/v2/delegated-token",
+			serverVars:  map[string]string{"name": "api.datadoghq.eu"},
+			serverIndex: 1,
+			expectedUrl: "https://api.datadoghq.eu/api/v2/delegated-token",
 		},
 		{
 			name:        "Valid URL from name no subdomain",
 			serverVars:  map[string]string{"name": "datadoghq.com"},
+			serverIndex: 1,
 			expectedUrl: "https://api.datadoghq.com/api/v2/delegated-token",
 		},
 		{
 			name:           "Invalid URL with missing site and subdomain",
 			serverVars:     map[string]string{},
-			expectedUrl:    "",
+			expectedUrl:    "https://api.datadoghq.com/api/v2/delegated-token",
 			expectedErrMsg: "site not found in server variables",
 		},
 		{
@@ -69,6 +72,7 @@ func TestGetDelegatedTokenUrl(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			ctx := context.WithValue(context.Background(), datadog.ContextServerVariables, tc.serverVars)
+			ctx = context.WithValue(ctx, datadog.ContextServerIndex, tc.serverIndex)
 			url, err := datadog.GetDelegatedTokenUrl(ctx)
 			if err != nil && err.Error() != tc.expectedErrMsg {
 				t.Errorf("expected error '%s', got '%v'", tc.expectedErrMsg, err)
