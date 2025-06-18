@@ -71,560 +71,630 @@
 <span id="L14" class="ln">    14  </span>	Cases []SecurityMonitoringRuleCase `json:&#34;cases,omitempty&#34;`
 <span id="L15" class="ln">    15  </span>	<span class="comment">// How to generate compliance signals. Useful for cloud_configuration rules only.</span>
 <span id="L16" class="ln">    16  </span>	ComplianceSignalOptions *CloudConfigurationRuleComplianceSignalOptions `json:&#34;complianceSignalOptions,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// Additional queries to filter matched events before they are processed. This field is deprecated for log detection, signal correlation, and workload security rules.</span>
-<span id="L18" class="ln">    18  </span>	Filters []SecurityMonitoringFilter `json:&#34;filters,omitempty&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// Additional grouping to perform on top of the existing groups in the query section. Must be a subset of the existing groups.</span>
-<span id="L20" class="ln">    20  </span>	GroupSignalsBy []string `json:&#34;groupSignalsBy,omitempty&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// Whether the notifications include the triggering group-by values in their title.</span>
-<span id="L22" class="ln">    22  </span>	HasExtendedTitle *bool `json:&#34;hasExtendedTitle,omitempty&#34;`
-<span id="L23" class="ln">    23  </span>	<span class="comment">// Whether the rule is enabled.</span>
-<span id="L24" class="ln">    24  </span>	IsEnabled *bool `json:&#34;isEnabled,omitempty&#34;`
-<span id="L25" class="ln">    25  </span>	<span class="comment">// Message for generated signals.</span>
-<span id="L26" class="ln">    26  </span>	Message *string `json:&#34;message,omitempty&#34;`
-<span id="L27" class="ln">    27  </span>	<span class="comment">// Name of the rule.</span>
-<span id="L28" class="ln">    28  </span>	Name *string `json:&#34;name,omitempty&#34;`
-<span id="L29" class="ln">    29  </span>	<span class="comment">// Options.</span>
-<span id="L30" class="ln">    30  </span>	Options *SecurityMonitoringRuleOptions `json:&#34;options,omitempty&#34;`
-<span id="L31" class="ln">    31  </span>	<span class="comment">// Queries for selecting logs which are part of the rule.</span>
-<span id="L32" class="ln">    32  </span>	Queries []SecurityMonitoringRuleQuery `json:&#34;queries,omitempty&#34;`
-<span id="L33" class="ln">    33  </span>	<span class="comment">// Reference tables for the rule.</span>
-<span id="L34" class="ln">    34  </span>	ReferenceTables []SecurityMonitoringReferenceTable `json:&#34;referenceTables,omitempty&#34;`
-<span id="L35" class="ln">    35  </span>	<span class="comment">// Tags for generated signals.</span>
-<span id="L36" class="ln">    36  </span>	Tags []string `json:&#34;tags,omitempty&#34;`
-<span id="L37" class="ln">    37  </span>	<span class="comment">// Cases for generating signals from third-party rules. Only available for third-party rules.</span>
-<span id="L38" class="ln">    38  </span>	ThirdPartyCases []SecurityMonitoringThirdPartyRuleCase `json:&#34;thirdPartyCases,omitempty&#34;`
-<span id="L39" class="ln">    39  </span>	<span class="comment">// The version of the rule being updated.</span>
-<span id="L40" class="ln">    40  </span>	Version *int32 `json:&#34;version,omitempty&#34;`
-<span id="L41" class="ln">    41  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
-<span id="L42" class="ln">    42  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L43" class="ln">    43  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
-<span id="L44" class="ln">    44  </span>}
-<span id="L45" class="ln">    45  </span>
-<span id="L46" class="ln">    46  </span><span class="comment">// NewSecurityMonitoringRuleUpdatePayload instantiates a new SecurityMonitoringRuleUpdatePayload object.</span>
-<span id="L47" class="ln">    47  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
-<span id="L48" class="ln">    48  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
-<span id="L49" class="ln">    49  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L50" class="ln">    50  </span>func NewSecurityMonitoringRuleUpdatePayload() *SecurityMonitoringRuleUpdatePayload {
-<span id="L51" class="ln">    51  </span>	this := SecurityMonitoringRuleUpdatePayload{}
-<span id="L52" class="ln">    52  </span>	return &amp;this
-<span id="L53" class="ln">    53  </span>}
-<span id="L54" class="ln">    54  </span>
-<span id="L55" class="ln">    55  </span><span class="comment">// NewSecurityMonitoringRuleUpdatePayloadWithDefaults instantiates a new SecurityMonitoringRuleUpdatePayload object.</span>
-<span id="L56" class="ln">    56  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
-<span id="L57" class="ln">    57  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L58" class="ln">    58  </span>func NewSecurityMonitoringRuleUpdatePayloadWithDefaults() *SecurityMonitoringRuleUpdatePayload {
-<span id="L59" class="ln">    59  </span>	this := SecurityMonitoringRuleUpdatePayload{}
-<span id="L60" class="ln">    60  </span>	return &amp;this
-<span id="L61" class="ln">    61  </span>}
-<span id="L62" class="ln">    62  </span>
-<span id="L63" class="ln">    63  </span><span class="comment">// GetCases returns the Cases field value if set, zero value otherwise.</span>
-<span id="L64" class="ln">    64  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetCases() []SecurityMonitoringRuleCase {
-<span id="L65" class="ln">    65  </span>	if o == nil || o.Cases == nil {
-<span id="L66" class="ln">    66  </span>		var ret []SecurityMonitoringRuleCase
-<span id="L67" class="ln">    67  </span>		return ret
-<span id="L68" class="ln">    68  </span>	}
-<span id="L69" class="ln">    69  </span>	return o.Cases
-<span id="L70" class="ln">    70  </span>}
-<span id="L71" class="ln">    71  </span>
-<span id="L72" class="ln">    72  </span><span class="comment">// GetCasesOk returns a tuple with the Cases field value if set, nil otherwise</span>
-<span id="L73" class="ln">    73  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L74" class="ln">    74  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetCasesOk() (*[]SecurityMonitoringRuleCase, bool) {
-<span id="L75" class="ln">    75  </span>	if o == nil || o.Cases == nil {
-<span id="L76" class="ln">    76  </span>		return nil, false
-<span id="L77" class="ln">    77  </span>	}
-<span id="L78" class="ln">    78  </span>	return &amp;o.Cases, true
-<span id="L79" class="ln">    79  </span>}
-<span id="L80" class="ln">    80  </span>
-<span id="L81" class="ln">    81  </span><span class="comment">// HasCases returns a boolean if a field has been set.</span>
-<span id="L82" class="ln">    82  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasCases() bool {
-<span id="L83" class="ln">    83  </span>	return o != nil &amp;&amp; o.Cases != nil
-<span id="L84" class="ln">    84  </span>}
-<span id="L85" class="ln">    85  </span>
-<span id="L86" class="ln">    86  </span><span class="comment">// SetCases gets a reference to the given []SecurityMonitoringRuleCase and assigns it to the Cases field.</span>
-<span id="L87" class="ln">    87  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetCases(v []SecurityMonitoringRuleCase) {
-<span id="L88" class="ln">    88  </span>	o.Cases = v
-<span id="L89" class="ln">    89  </span>}
-<span id="L90" class="ln">    90  </span>
-<span id="L91" class="ln">    91  </span><span class="comment">// GetComplianceSignalOptions returns the ComplianceSignalOptions field value if set, zero value otherwise.</span>
-<span id="L92" class="ln">    92  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetComplianceSignalOptions() CloudConfigurationRuleComplianceSignalOptions {
-<span id="L93" class="ln">    93  </span>	if o == nil || o.ComplianceSignalOptions == nil {
-<span id="L94" class="ln">    94  </span>		var ret CloudConfigurationRuleComplianceSignalOptions
-<span id="L95" class="ln">    95  </span>		return ret
-<span id="L96" class="ln">    96  </span>	}
-<span id="L97" class="ln">    97  </span>	return *o.ComplianceSignalOptions
-<span id="L98" class="ln">    98  </span>}
-<span id="L99" class="ln">    99  </span>
-<span id="L100" class="ln">   100  </span><span class="comment">// GetComplianceSignalOptionsOk returns a tuple with the ComplianceSignalOptions field value if set, nil otherwise</span>
-<span id="L101" class="ln">   101  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L102" class="ln">   102  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetComplianceSignalOptionsOk() (*CloudConfigurationRuleComplianceSignalOptions, bool) {
-<span id="L103" class="ln">   103  </span>	if o == nil || o.ComplianceSignalOptions == nil {
-<span id="L104" class="ln">   104  </span>		return nil, false
-<span id="L105" class="ln">   105  </span>	}
-<span id="L106" class="ln">   106  </span>	return o.ComplianceSignalOptions, true
-<span id="L107" class="ln">   107  </span>}
-<span id="L108" class="ln">   108  </span>
-<span id="L109" class="ln">   109  </span><span class="comment">// HasComplianceSignalOptions returns a boolean if a field has been set.</span>
-<span id="L110" class="ln">   110  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasComplianceSignalOptions() bool {
-<span id="L111" class="ln">   111  </span>	return o != nil &amp;&amp; o.ComplianceSignalOptions != nil
-<span id="L112" class="ln">   112  </span>}
-<span id="L113" class="ln">   113  </span>
-<span id="L114" class="ln">   114  </span><span class="comment">// SetComplianceSignalOptions gets a reference to the given CloudConfigurationRuleComplianceSignalOptions and assigns it to the ComplianceSignalOptions field.</span>
-<span id="L115" class="ln">   115  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetComplianceSignalOptions(v CloudConfigurationRuleComplianceSignalOptions) {
-<span id="L116" class="ln">   116  </span>	o.ComplianceSignalOptions = &amp;v
-<span id="L117" class="ln">   117  </span>}
-<span id="L118" class="ln">   118  </span>
-<span id="L119" class="ln">   119  </span><span class="comment">// GetFilters returns the Filters field value if set, zero value otherwise.</span>
-<span id="L120" class="ln">   120  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetFilters() []SecurityMonitoringFilter {
-<span id="L121" class="ln">   121  </span>	if o == nil || o.Filters == nil {
-<span id="L122" class="ln">   122  </span>		var ret []SecurityMonitoringFilter
-<span id="L123" class="ln">   123  </span>		return ret
-<span id="L124" class="ln">   124  </span>	}
-<span id="L125" class="ln">   125  </span>	return o.Filters
-<span id="L126" class="ln">   126  </span>}
-<span id="L127" class="ln">   127  </span>
-<span id="L128" class="ln">   128  </span><span class="comment">// GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise</span>
-<span id="L129" class="ln">   129  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L130" class="ln">   130  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetFiltersOk() (*[]SecurityMonitoringFilter, bool) {
-<span id="L131" class="ln">   131  </span>	if o == nil || o.Filters == nil {
-<span id="L132" class="ln">   132  </span>		return nil, false
-<span id="L133" class="ln">   133  </span>	}
-<span id="L134" class="ln">   134  </span>	return &amp;o.Filters, true
-<span id="L135" class="ln">   135  </span>}
-<span id="L136" class="ln">   136  </span>
-<span id="L137" class="ln">   137  </span><span class="comment">// HasFilters returns a boolean if a field has been set.</span>
-<span id="L138" class="ln">   138  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasFilters() bool {
-<span id="L139" class="ln">   139  </span>	return o != nil &amp;&amp; o.Filters != nil
-<span id="L140" class="ln">   140  </span>}
-<span id="L141" class="ln">   141  </span>
-<span id="L142" class="ln">   142  </span><span class="comment">// SetFilters gets a reference to the given []SecurityMonitoringFilter and assigns it to the Filters field.</span>
-<span id="L143" class="ln">   143  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetFilters(v []SecurityMonitoringFilter) {
-<span id="L144" class="ln">   144  </span>	o.Filters = v
-<span id="L145" class="ln">   145  </span>}
-<span id="L146" class="ln">   146  </span>
-<span id="L147" class="ln">   147  </span><span class="comment">// GetGroupSignalsBy returns the GroupSignalsBy field value if set, zero value otherwise.</span>
-<span id="L148" class="ln">   148  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetGroupSignalsBy() []string {
-<span id="L149" class="ln">   149  </span>	if o == nil || o.GroupSignalsBy == nil {
-<span id="L150" class="ln">   150  </span>		var ret []string
-<span id="L151" class="ln">   151  </span>		return ret
-<span id="L152" class="ln">   152  </span>	}
-<span id="L153" class="ln">   153  </span>	return o.GroupSignalsBy
-<span id="L154" class="ln">   154  </span>}
-<span id="L155" class="ln">   155  </span>
-<span id="L156" class="ln">   156  </span><span class="comment">// GetGroupSignalsByOk returns a tuple with the GroupSignalsBy field value if set, nil otherwise</span>
-<span id="L157" class="ln">   157  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L158" class="ln">   158  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetGroupSignalsByOk() (*[]string, bool) {
-<span id="L159" class="ln">   159  </span>	if o == nil || o.GroupSignalsBy == nil {
-<span id="L160" class="ln">   160  </span>		return nil, false
-<span id="L161" class="ln">   161  </span>	}
-<span id="L162" class="ln">   162  </span>	return &amp;o.GroupSignalsBy, true
-<span id="L163" class="ln">   163  </span>}
-<span id="L164" class="ln">   164  </span>
-<span id="L165" class="ln">   165  </span><span class="comment">// HasGroupSignalsBy returns a boolean if a field has been set.</span>
-<span id="L166" class="ln">   166  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasGroupSignalsBy() bool {
-<span id="L167" class="ln">   167  </span>	return o != nil &amp;&amp; o.GroupSignalsBy != nil
-<span id="L168" class="ln">   168  </span>}
-<span id="L169" class="ln">   169  </span>
-<span id="L170" class="ln">   170  </span><span class="comment">// SetGroupSignalsBy gets a reference to the given []string and assigns it to the GroupSignalsBy field.</span>
-<span id="L171" class="ln">   171  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetGroupSignalsBy(v []string) {
-<span id="L172" class="ln">   172  </span>	o.GroupSignalsBy = v
-<span id="L173" class="ln">   173  </span>}
-<span id="L174" class="ln">   174  </span>
-<span id="L175" class="ln">   175  </span><span class="comment">// GetHasExtendedTitle returns the HasExtendedTitle field value if set, zero value otherwise.</span>
-<span id="L176" class="ln">   176  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetHasExtendedTitle() bool {
-<span id="L177" class="ln">   177  </span>	if o == nil || o.HasExtendedTitle == nil {
-<span id="L178" class="ln">   178  </span>		var ret bool
-<span id="L179" class="ln">   179  </span>		return ret
-<span id="L180" class="ln">   180  </span>	}
-<span id="L181" class="ln">   181  </span>	return *o.HasExtendedTitle
-<span id="L182" class="ln">   182  </span>}
-<span id="L183" class="ln">   183  </span>
-<span id="L184" class="ln">   184  </span><span class="comment">// GetHasExtendedTitleOk returns a tuple with the HasExtendedTitle field value if set, nil otherwise</span>
-<span id="L185" class="ln">   185  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L186" class="ln">   186  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetHasExtendedTitleOk() (*bool, bool) {
-<span id="L187" class="ln">   187  </span>	if o == nil || o.HasExtendedTitle == nil {
-<span id="L188" class="ln">   188  </span>		return nil, false
-<span id="L189" class="ln">   189  </span>	}
-<span id="L190" class="ln">   190  </span>	return o.HasExtendedTitle, true
-<span id="L191" class="ln">   191  </span>}
-<span id="L192" class="ln">   192  </span>
-<span id="L193" class="ln">   193  </span><span class="comment">// HasHasExtendedTitle returns a boolean if a field has been set.</span>
-<span id="L194" class="ln">   194  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasHasExtendedTitle() bool {
-<span id="L195" class="ln">   195  </span>	return o != nil &amp;&amp; o.HasExtendedTitle != nil
-<span id="L196" class="ln">   196  </span>}
-<span id="L197" class="ln">   197  </span>
-<span id="L198" class="ln">   198  </span><span class="comment">// SetHasExtendedTitle gets a reference to the given bool and assigns it to the HasExtendedTitle field.</span>
-<span id="L199" class="ln">   199  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetHasExtendedTitle(v bool) {
-<span id="L200" class="ln">   200  </span>	o.HasExtendedTitle = &amp;v
-<span id="L201" class="ln">   201  </span>}
-<span id="L202" class="ln">   202  </span>
-<span id="L203" class="ln">   203  </span><span class="comment">// GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.</span>
-<span id="L204" class="ln">   204  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetIsEnabled() bool {
-<span id="L205" class="ln">   205  </span>	if o == nil || o.IsEnabled == nil {
-<span id="L206" class="ln">   206  </span>		var ret bool
-<span id="L207" class="ln">   207  </span>		return ret
-<span id="L208" class="ln">   208  </span>	}
-<span id="L209" class="ln">   209  </span>	return *o.IsEnabled
-<span id="L210" class="ln">   210  </span>}
-<span id="L211" class="ln">   211  </span>
-<span id="L212" class="ln">   212  </span><span class="comment">// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise</span>
-<span id="L213" class="ln">   213  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L214" class="ln">   214  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetIsEnabledOk() (*bool, bool) {
-<span id="L215" class="ln">   215  </span>	if o == nil || o.IsEnabled == nil {
-<span id="L216" class="ln">   216  </span>		return nil, false
-<span id="L217" class="ln">   217  </span>	}
-<span id="L218" class="ln">   218  </span>	return o.IsEnabled, true
-<span id="L219" class="ln">   219  </span>}
-<span id="L220" class="ln">   220  </span>
-<span id="L221" class="ln">   221  </span><span class="comment">// HasIsEnabled returns a boolean if a field has been set.</span>
-<span id="L222" class="ln">   222  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasIsEnabled() bool {
-<span id="L223" class="ln">   223  </span>	return o != nil &amp;&amp; o.IsEnabled != nil
-<span id="L224" class="ln">   224  </span>}
-<span id="L225" class="ln">   225  </span>
-<span id="L226" class="ln">   226  </span><span class="comment">// SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.</span>
-<span id="L227" class="ln">   227  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetIsEnabled(v bool) {
-<span id="L228" class="ln">   228  </span>	o.IsEnabled = &amp;v
-<span id="L229" class="ln">   229  </span>}
-<span id="L230" class="ln">   230  </span>
-<span id="L231" class="ln">   231  </span><span class="comment">// GetMessage returns the Message field value if set, zero value otherwise.</span>
-<span id="L232" class="ln">   232  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetMessage() string {
-<span id="L233" class="ln">   233  </span>	if o == nil || o.Message == nil {
-<span id="L234" class="ln">   234  </span>		var ret string
-<span id="L235" class="ln">   235  </span>		return ret
-<span id="L236" class="ln">   236  </span>	}
-<span id="L237" class="ln">   237  </span>	return *o.Message
-<span id="L238" class="ln">   238  </span>}
-<span id="L239" class="ln">   239  </span>
-<span id="L240" class="ln">   240  </span><span class="comment">// GetMessageOk returns a tuple with the Message field value if set, nil otherwise</span>
-<span id="L241" class="ln">   241  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L242" class="ln">   242  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetMessageOk() (*string, bool) {
-<span id="L243" class="ln">   243  </span>	if o == nil || o.Message == nil {
-<span id="L244" class="ln">   244  </span>		return nil, false
-<span id="L245" class="ln">   245  </span>	}
-<span id="L246" class="ln">   246  </span>	return o.Message, true
-<span id="L247" class="ln">   247  </span>}
-<span id="L248" class="ln">   248  </span>
-<span id="L249" class="ln">   249  </span><span class="comment">// HasMessage returns a boolean if a field has been set.</span>
-<span id="L250" class="ln">   250  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasMessage() bool {
-<span id="L251" class="ln">   251  </span>	return o != nil &amp;&amp; o.Message != nil
-<span id="L252" class="ln">   252  </span>}
-<span id="L253" class="ln">   253  </span>
-<span id="L254" class="ln">   254  </span><span class="comment">// SetMessage gets a reference to the given string and assigns it to the Message field.</span>
-<span id="L255" class="ln">   255  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetMessage(v string) {
-<span id="L256" class="ln">   256  </span>	o.Message = &amp;v
-<span id="L257" class="ln">   257  </span>}
-<span id="L258" class="ln">   258  </span>
-<span id="L259" class="ln">   259  </span><span class="comment">// GetName returns the Name field value if set, zero value otherwise.</span>
-<span id="L260" class="ln">   260  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetName() string {
-<span id="L261" class="ln">   261  </span>	if o == nil || o.Name == nil {
-<span id="L262" class="ln">   262  </span>		var ret string
-<span id="L263" class="ln">   263  </span>		return ret
-<span id="L264" class="ln">   264  </span>	}
-<span id="L265" class="ln">   265  </span>	return *o.Name
-<span id="L266" class="ln">   266  </span>}
-<span id="L267" class="ln">   267  </span>
-<span id="L268" class="ln">   268  </span><span class="comment">// GetNameOk returns a tuple with the Name field value if set, nil otherwise</span>
-<span id="L269" class="ln">   269  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L270" class="ln">   270  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetNameOk() (*string, bool) {
-<span id="L271" class="ln">   271  </span>	if o == nil || o.Name == nil {
-<span id="L272" class="ln">   272  </span>		return nil, false
-<span id="L273" class="ln">   273  </span>	}
-<span id="L274" class="ln">   274  </span>	return o.Name, true
-<span id="L275" class="ln">   275  </span>}
-<span id="L276" class="ln">   276  </span>
-<span id="L277" class="ln">   277  </span><span class="comment">// HasName returns a boolean if a field has been set.</span>
-<span id="L278" class="ln">   278  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasName() bool {
-<span id="L279" class="ln">   279  </span>	return o != nil &amp;&amp; o.Name != nil
-<span id="L280" class="ln">   280  </span>}
-<span id="L281" class="ln">   281  </span>
-<span id="L282" class="ln">   282  </span><span class="comment">// SetName gets a reference to the given string and assigns it to the Name field.</span>
-<span id="L283" class="ln">   283  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetName(v string) {
-<span id="L284" class="ln">   284  </span>	o.Name = &amp;v
-<span id="L285" class="ln">   285  </span>}
-<span id="L286" class="ln">   286  </span>
-<span id="L287" class="ln">   287  </span><span class="comment">// GetOptions returns the Options field value if set, zero value otherwise.</span>
-<span id="L288" class="ln">   288  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetOptions() SecurityMonitoringRuleOptions {
-<span id="L289" class="ln">   289  </span>	if o == nil || o.Options == nil {
-<span id="L290" class="ln">   290  </span>		var ret SecurityMonitoringRuleOptions
-<span id="L291" class="ln">   291  </span>		return ret
-<span id="L292" class="ln">   292  </span>	}
-<span id="L293" class="ln">   293  </span>	return *o.Options
-<span id="L294" class="ln">   294  </span>}
-<span id="L295" class="ln">   295  </span>
-<span id="L296" class="ln">   296  </span><span class="comment">// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise</span>
-<span id="L297" class="ln">   297  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L298" class="ln">   298  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetOptionsOk() (*SecurityMonitoringRuleOptions, bool) {
-<span id="L299" class="ln">   299  </span>	if o == nil || o.Options == nil {
-<span id="L300" class="ln">   300  </span>		return nil, false
-<span id="L301" class="ln">   301  </span>	}
-<span id="L302" class="ln">   302  </span>	return o.Options, true
-<span id="L303" class="ln">   303  </span>}
-<span id="L304" class="ln">   304  </span>
-<span id="L305" class="ln">   305  </span><span class="comment">// HasOptions returns a boolean if a field has been set.</span>
-<span id="L306" class="ln">   306  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasOptions() bool {
-<span id="L307" class="ln">   307  </span>	return o != nil &amp;&amp; o.Options != nil
-<span id="L308" class="ln">   308  </span>}
-<span id="L309" class="ln">   309  </span>
-<span id="L310" class="ln">   310  </span><span class="comment">// SetOptions gets a reference to the given SecurityMonitoringRuleOptions and assigns it to the Options field.</span>
-<span id="L311" class="ln">   311  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetOptions(v SecurityMonitoringRuleOptions) {
-<span id="L312" class="ln">   312  </span>	o.Options = &amp;v
-<span id="L313" class="ln">   313  </span>}
-<span id="L314" class="ln">   314  </span>
-<span id="L315" class="ln">   315  </span><span class="comment">// GetQueries returns the Queries field value if set, zero value otherwise.</span>
-<span id="L316" class="ln">   316  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetQueries() []SecurityMonitoringRuleQuery {
-<span id="L317" class="ln">   317  </span>	if o == nil || o.Queries == nil {
-<span id="L318" class="ln">   318  </span>		var ret []SecurityMonitoringRuleQuery
-<span id="L319" class="ln">   319  </span>		return ret
-<span id="L320" class="ln">   320  </span>	}
-<span id="L321" class="ln">   321  </span>	return o.Queries
-<span id="L322" class="ln">   322  </span>}
-<span id="L323" class="ln">   323  </span>
-<span id="L324" class="ln">   324  </span><span class="comment">// GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise</span>
-<span id="L325" class="ln">   325  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L326" class="ln">   326  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetQueriesOk() (*[]SecurityMonitoringRuleQuery, bool) {
-<span id="L327" class="ln">   327  </span>	if o == nil || o.Queries == nil {
-<span id="L328" class="ln">   328  </span>		return nil, false
-<span id="L329" class="ln">   329  </span>	}
-<span id="L330" class="ln">   330  </span>	return &amp;o.Queries, true
-<span id="L331" class="ln">   331  </span>}
-<span id="L332" class="ln">   332  </span>
-<span id="L333" class="ln">   333  </span><span class="comment">// HasQueries returns a boolean if a field has been set.</span>
-<span id="L334" class="ln">   334  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasQueries() bool {
-<span id="L335" class="ln">   335  </span>	return o != nil &amp;&amp; o.Queries != nil
-<span id="L336" class="ln">   336  </span>}
-<span id="L337" class="ln">   337  </span>
-<span id="L338" class="ln">   338  </span><span class="comment">// SetQueries gets a reference to the given []SecurityMonitoringRuleQuery and assigns it to the Queries field.</span>
-<span id="L339" class="ln">   339  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetQueries(v []SecurityMonitoringRuleQuery) {
-<span id="L340" class="ln">   340  </span>	o.Queries = v
-<span id="L341" class="ln">   341  </span>}
-<span id="L342" class="ln">   342  </span>
-<span id="L343" class="ln">   343  </span><span class="comment">// GetReferenceTables returns the ReferenceTables field value if set, zero value otherwise.</span>
-<span id="L344" class="ln">   344  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetReferenceTables() []SecurityMonitoringReferenceTable {
-<span id="L345" class="ln">   345  </span>	if o == nil || o.ReferenceTables == nil {
-<span id="L346" class="ln">   346  </span>		var ret []SecurityMonitoringReferenceTable
-<span id="L347" class="ln">   347  </span>		return ret
-<span id="L348" class="ln">   348  </span>	}
-<span id="L349" class="ln">   349  </span>	return o.ReferenceTables
-<span id="L350" class="ln">   350  </span>}
-<span id="L351" class="ln">   351  </span>
-<span id="L352" class="ln">   352  </span><span class="comment">// GetReferenceTablesOk returns a tuple with the ReferenceTables field value if set, nil otherwise</span>
-<span id="L353" class="ln">   353  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L354" class="ln">   354  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetReferenceTablesOk() (*[]SecurityMonitoringReferenceTable, bool) {
-<span id="L355" class="ln">   355  </span>	if o == nil || o.ReferenceTables == nil {
-<span id="L356" class="ln">   356  </span>		return nil, false
-<span id="L357" class="ln">   357  </span>	}
-<span id="L358" class="ln">   358  </span>	return &amp;o.ReferenceTables, true
-<span id="L359" class="ln">   359  </span>}
-<span id="L360" class="ln">   360  </span>
-<span id="L361" class="ln">   361  </span><span class="comment">// HasReferenceTables returns a boolean if a field has been set.</span>
-<span id="L362" class="ln">   362  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasReferenceTables() bool {
-<span id="L363" class="ln">   363  </span>	return o != nil &amp;&amp; o.ReferenceTables != nil
-<span id="L364" class="ln">   364  </span>}
-<span id="L365" class="ln">   365  </span>
-<span id="L366" class="ln">   366  </span><span class="comment">// SetReferenceTables gets a reference to the given []SecurityMonitoringReferenceTable and assigns it to the ReferenceTables field.</span>
-<span id="L367" class="ln">   367  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetReferenceTables(v []SecurityMonitoringReferenceTable) {
-<span id="L368" class="ln">   368  </span>	o.ReferenceTables = v
-<span id="L369" class="ln">   369  </span>}
-<span id="L370" class="ln">   370  </span>
-<span id="L371" class="ln">   371  </span><span class="comment">// GetTags returns the Tags field value if set, zero value otherwise.</span>
-<span id="L372" class="ln">   372  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetTags() []string {
-<span id="L373" class="ln">   373  </span>	if o == nil || o.Tags == nil {
-<span id="L374" class="ln">   374  </span>		var ret []string
-<span id="L375" class="ln">   375  </span>		return ret
-<span id="L376" class="ln">   376  </span>	}
-<span id="L377" class="ln">   377  </span>	return o.Tags
-<span id="L378" class="ln">   378  </span>}
-<span id="L379" class="ln">   379  </span>
-<span id="L380" class="ln">   380  </span><span class="comment">// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise</span>
-<span id="L381" class="ln">   381  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L382" class="ln">   382  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetTagsOk() (*[]string, bool) {
-<span id="L383" class="ln">   383  </span>	if o == nil || o.Tags == nil {
-<span id="L384" class="ln">   384  </span>		return nil, false
-<span id="L385" class="ln">   385  </span>	}
-<span id="L386" class="ln">   386  </span>	return &amp;o.Tags, true
-<span id="L387" class="ln">   387  </span>}
-<span id="L388" class="ln">   388  </span>
-<span id="L389" class="ln">   389  </span><span class="comment">// HasTags returns a boolean if a field has been set.</span>
-<span id="L390" class="ln">   390  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasTags() bool {
-<span id="L391" class="ln">   391  </span>	return o != nil &amp;&amp; o.Tags != nil
-<span id="L392" class="ln">   392  </span>}
-<span id="L393" class="ln">   393  </span>
-<span id="L394" class="ln">   394  </span><span class="comment">// SetTags gets a reference to the given []string and assigns it to the Tags field.</span>
-<span id="L395" class="ln">   395  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetTags(v []string) {
-<span id="L396" class="ln">   396  </span>	o.Tags = v
-<span id="L397" class="ln">   397  </span>}
-<span id="L398" class="ln">   398  </span>
-<span id="L399" class="ln">   399  </span><span class="comment">// GetThirdPartyCases returns the ThirdPartyCases field value if set, zero value otherwise.</span>
-<span id="L400" class="ln">   400  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetThirdPartyCases() []SecurityMonitoringThirdPartyRuleCase {
-<span id="L401" class="ln">   401  </span>	if o == nil || o.ThirdPartyCases == nil {
-<span id="L402" class="ln">   402  </span>		var ret []SecurityMonitoringThirdPartyRuleCase
-<span id="L403" class="ln">   403  </span>		return ret
-<span id="L404" class="ln">   404  </span>	}
-<span id="L405" class="ln">   405  </span>	return o.ThirdPartyCases
-<span id="L406" class="ln">   406  </span>}
-<span id="L407" class="ln">   407  </span>
-<span id="L408" class="ln">   408  </span><span class="comment">// GetThirdPartyCasesOk returns a tuple with the ThirdPartyCases field value if set, nil otherwise</span>
-<span id="L409" class="ln">   409  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L410" class="ln">   410  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetThirdPartyCasesOk() (*[]SecurityMonitoringThirdPartyRuleCase, bool) {
-<span id="L411" class="ln">   411  </span>	if o == nil || o.ThirdPartyCases == nil {
-<span id="L412" class="ln">   412  </span>		return nil, false
-<span id="L413" class="ln">   413  </span>	}
-<span id="L414" class="ln">   414  </span>	return &amp;o.ThirdPartyCases, true
-<span id="L415" class="ln">   415  </span>}
-<span id="L416" class="ln">   416  </span>
-<span id="L417" class="ln">   417  </span><span class="comment">// HasThirdPartyCases returns a boolean if a field has been set.</span>
-<span id="L418" class="ln">   418  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasThirdPartyCases() bool {
-<span id="L419" class="ln">   419  </span>	return o != nil &amp;&amp; o.ThirdPartyCases != nil
-<span id="L420" class="ln">   420  </span>}
-<span id="L421" class="ln">   421  </span>
-<span id="L422" class="ln">   422  </span><span class="comment">// SetThirdPartyCases gets a reference to the given []SecurityMonitoringThirdPartyRuleCase and assigns it to the ThirdPartyCases field.</span>
-<span id="L423" class="ln">   423  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetThirdPartyCases(v []SecurityMonitoringThirdPartyRuleCase) {
-<span id="L424" class="ln">   424  </span>	o.ThirdPartyCases = v
-<span id="L425" class="ln">   425  </span>}
-<span id="L426" class="ln">   426  </span>
-<span id="L427" class="ln">   427  </span><span class="comment">// GetVersion returns the Version field value if set, zero value otherwise.</span>
-<span id="L428" class="ln">   428  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetVersion() int32 {
-<span id="L429" class="ln">   429  </span>	if o == nil || o.Version == nil {
-<span id="L430" class="ln">   430  </span>		var ret int32
-<span id="L431" class="ln">   431  </span>		return ret
-<span id="L432" class="ln">   432  </span>	}
-<span id="L433" class="ln">   433  </span>	return *o.Version
-<span id="L434" class="ln">   434  </span>}
-<span id="L435" class="ln">   435  </span>
-<span id="L436" class="ln">   436  </span><span class="comment">// GetVersionOk returns a tuple with the Version field value if set, nil otherwise</span>
-<span id="L437" class="ln">   437  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L438" class="ln">   438  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetVersionOk() (*int32, bool) {
-<span id="L439" class="ln">   439  </span>	if o == nil || o.Version == nil {
-<span id="L440" class="ln">   440  </span>		return nil, false
-<span id="L441" class="ln">   441  </span>	}
-<span id="L442" class="ln">   442  </span>	return o.Version, true
-<span id="L443" class="ln">   443  </span>}
-<span id="L444" class="ln">   444  </span>
-<span id="L445" class="ln">   445  </span><span class="comment">// HasVersion returns a boolean if a field has been set.</span>
-<span id="L446" class="ln">   446  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasVersion() bool {
-<span id="L447" class="ln">   447  </span>	return o != nil &amp;&amp; o.Version != nil
-<span id="L448" class="ln">   448  </span>}
-<span id="L449" class="ln">   449  </span>
-<span id="L450" class="ln">   450  </span><span class="comment">// SetVersion gets a reference to the given int32 and assigns it to the Version field.</span>
-<span id="L451" class="ln">   451  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetVersion(v int32) {
-<span id="L452" class="ln">   452  </span>	o.Version = &amp;v
-<span id="L453" class="ln">   453  </span>}
-<span id="L454" class="ln">   454  </span>
-<span id="L455" class="ln">   455  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L456" class="ln">   456  </span>func (o SecurityMonitoringRuleUpdatePayload) MarshalJSON() ([]byte, error) {
-<span id="L457" class="ln">   457  </span>	toSerialize := map[string]interface{}{}
-<span id="L458" class="ln">   458  </span>	if o.UnparsedObject != nil {
-<span id="L459" class="ln">   459  </span>		return datadog.Marshal(o.UnparsedObject)
-<span id="L460" class="ln">   460  </span>	}
-<span id="L461" class="ln">   461  </span>	if o.Cases != nil {
-<span id="L462" class="ln">   462  </span>		toSerialize[&#34;cases&#34;] = o.Cases
-<span id="L463" class="ln">   463  </span>	}
-<span id="L464" class="ln">   464  </span>	if o.ComplianceSignalOptions != nil {
-<span id="L465" class="ln">   465  </span>		toSerialize[&#34;complianceSignalOptions&#34;] = o.ComplianceSignalOptions
-<span id="L466" class="ln">   466  </span>	}
-<span id="L467" class="ln">   467  </span>	if o.Filters != nil {
-<span id="L468" class="ln">   468  </span>		toSerialize[&#34;filters&#34;] = o.Filters
-<span id="L469" class="ln">   469  </span>	}
-<span id="L470" class="ln">   470  </span>	if o.GroupSignalsBy != nil {
-<span id="L471" class="ln">   471  </span>		toSerialize[&#34;groupSignalsBy&#34;] = o.GroupSignalsBy
-<span id="L472" class="ln">   472  </span>	}
-<span id="L473" class="ln">   473  </span>	if o.HasExtendedTitle != nil {
-<span id="L474" class="ln">   474  </span>		toSerialize[&#34;hasExtendedTitle&#34;] = o.HasExtendedTitle
-<span id="L475" class="ln">   475  </span>	}
-<span id="L476" class="ln">   476  </span>	if o.IsEnabled != nil {
-<span id="L477" class="ln">   477  </span>		toSerialize[&#34;isEnabled&#34;] = o.IsEnabled
-<span id="L478" class="ln">   478  </span>	}
-<span id="L479" class="ln">   479  </span>	if o.Message != nil {
-<span id="L480" class="ln">   480  </span>		toSerialize[&#34;message&#34;] = o.Message
-<span id="L481" class="ln">   481  </span>	}
-<span id="L482" class="ln">   482  </span>	if o.Name != nil {
-<span id="L483" class="ln">   483  </span>		toSerialize[&#34;name&#34;] = o.Name
-<span id="L484" class="ln">   484  </span>	}
-<span id="L485" class="ln">   485  </span>	if o.Options != nil {
-<span id="L486" class="ln">   486  </span>		toSerialize[&#34;options&#34;] = o.Options
-<span id="L487" class="ln">   487  </span>	}
-<span id="L488" class="ln">   488  </span>	if o.Queries != nil {
-<span id="L489" class="ln">   489  </span>		toSerialize[&#34;queries&#34;] = o.Queries
-<span id="L490" class="ln">   490  </span>	}
-<span id="L491" class="ln">   491  </span>	if o.ReferenceTables != nil {
-<span id="L492" class="ln">   492  </span>		toSerialize[&#34;referenceTables&#34;] = o.ReferenceTables
-<span id="L493" class="ln">   493  </span>	}
-<span id="L494" class="ln">   494  </span>	if o.Tags != nil {
-<span id="L495" class="ln">   495  </span>		toSerialize[&#34;tags&#34;] = o.Tags
-<span id="L496" class="ln">   496  </span>	}
-<span id="L497" class="ln">   497  </span>	if o.ThirdPartyCases != nil {
-<span id="L498" class="ln">   498  </span>		toSerialize[&#34;thirdPartyCases&#34;] = o.ThirdPartyCases
-<span id="L499" class="ln">   499  </span>	}
-<span id="L500" class="ln">   500  </span>	if o.Version != nil {
-<span id="L501" class="ln">   501  </span>		toSerialize[&#34;version&#34;] = o.Version
-<span id="L502" class="ln">   502  </span>	}
-<span id="L503" class="ln">   503  </span>
-<span id="L504" class="ln">   504  </span>	for key, value := range o.AdditionalProperties {
-<span id="L505" class="ln">   505  </span>		toSerialize[key] = value
-<span id="L506" class="ln">   506  </span>	}
-<span id="L507" class="ln">   507  </span>	return datadog.Marshal(toSerialize)
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Custom/Overridden Message for generated signals (used in case of Default rule update).</span>
+<span id="L18" class="ln">    18  </span>	CustomMessage *string `json:&#34;customMessage,omitempty&#34;`
+<span id="L19" class="ln">    19  </span>	<span class="comment">// Custom/Overridden name (used in case of Default rule update).</span>
+<span id="L20" class="ln">    20  </span>	CustomName *string `json:&#34;customName,omitempty&#34;`
+<span id="L21" class="ln">    21  </span>	<span class="comment">// Additional queries to filter matched events before they are processed. This field is deprecated for log detection, signal correlation, and workload security rules.</span>
+<span id="L22" class="ln">    22  </span>	Filters []SecurityMonitoringFilter `json:&#34;filters,omitempty&#34;`
+<span id="L23" class="ln">    23  </span>	<span class="comment">// Additional grouping to perform on top of the existing groups in the query section. Must be a subset of the existing groups.</span>
+<span id="L24" class="ln">    24  </span>	GroupSignalsBy []string `json:&#34;groupSignalsBy,omitempty&#34;`
+<span id="L25" class="ln">    25  </span>	<span class="comment">// Whether the notifications include the triggering group-by values in their title.</span>
+<span id="L26" class="ln">    26  </span>	HasExtendedTitle *bool `json:&#34;hasExtendedTitle,omitempty&#34;`
+<span id="L27" class="ln">    27  </span>	<span class="comment">// Whether the rule is enabled.</span>
+<span id="L28" class="ln">    28  </span>	IsEnabled *bool `json:&#34;isEnabled,omitempty&#34;`
+<span id="L29" class="ln">    29  </span>	<span class="comment">// Message for generated signals.</span>
+<span id="L30" class="ln">    30  </span>	Message *string `json:&#34;message,omitempty&#34;`
+<span id="L31" class="ln">    31  </span>	<span class="comment">// Name of the rule.</span>
+<span id="L32" class="ln">    32  </span>	Name *string `json:&#34;name,omitempty&#34;`
+<span id="L33" class="ln">    33  </span>	<span class="comment">// Options.</span>
+<span id="L34" class="ln">    34  </span>	Options *SecurityMonitoringRuleOptions `json:&#34;options,omitempty&#34;`
+<span id="L35" class="ln">    35  </span>	<span class="comment">// Queries for selecting logs which are part of the rule.</span>
+<span id="L36" class="ln">    36  </span>	Queries []SecurityMonitoringRuleQuery `json:&#34;queries,omitempty&#34;`
+<span id="L37" class="ln">    37  </span>	<span class="comment">// Reference tables for the rule.</span>
+<span id="L38" class="ln">    38  </span>	ReferenceTables []SecurityMonitoringReferenceTable `json:&#34;referenceTables,omitempty&#34;`
+<span id="L39" class="ln">    39  </span>	<span class="comment">// Tags for generated signals.</span>
+<span id="L40" class="ln">    40  </span>	Tags []string `json:&#34;tags,omitempty&#34;`
+<span id="L41" class="ln">    41  </span>	<span class="comment">// Cases for generating signals from third-party rules. Only available for third-party rules.</span>
+<span id="L42" class="ln">    42  </span>	ThirdPartyCases []SecurityMonitoringThirdPartyRuleCase `json:&#34;thirdPartyCases,omitempty&#34;`
+<span id="L43" class="ln">    43  </span>	<span class="comment">// The version of the rule being updated.</span>
+<span id="L44" class="ln">    44  </span>	Version *int32 `json:&#34;version,omitempty&#34;`
+<span id="L45" class="ln">    45  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L46" class="ln">    46  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L47" class="ln">    47  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L48" class="ln">    48  </span>}
+<span id="L49" class="ln">    49  </span>
+<span id="L50" class="ln">    50  </span><span class="comment">// NewSecurityMonitoringRuleUpdatePayload instantiates a new SecurityMonitoringRuleUpdatePayload object.</span>
+<span id="L51" class="ln">    51  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L52" class="ln">    52  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L53" class="ln">    53  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L54" class="ln">    54  </span>func NewSecurityMonitoringRuleUpdatePayload() *SecurityMonitoringRuleUpdatePayload {
+<span id="L55" class="ln">    55  </span>	this := SecurityMonitoringRuleUpdatePayload{}
+<span id="L56" class="ln">    56  </span>	return &amp;this
+<span id="L57" class="ln">    57  </span>}
+<span id="L58" class="ln">    58  </span>
+<span id="L59" class="ln">    59  </span><span class="comment">// NewSecurityMonitoringRuleUpdatePayloadWithDefaults instantiates a new SecurityMonitoringRuleUpdatePayload object.</span>
+<span id="L60" class="ln">    60  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L61" class="ln">    61  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L62" class="ln">    62  </span>func NewSecurityMonitoringRuleUpdatePayloadWithDefaults() *SecurityMonitoringRuleUpdatePayload {
+<span id="L63" class="ln">    63  </span>	this := SecurityMonitoringRuleUpdatePayload{}
+<span id="L64" class="ln">    64  </span>	return &amp;this
+<span id="L65" class="ln">    65  </span>}
+<span id="L66" class="ln">    66  </span>
+<span id="L67" class="ln">    67  </span><span class="comment">// GetCases returns the Cases field value if set, zero value otherwise.</span>
+<span id="L68" class="ln">    68  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetCases() []SecurityMonitoringRuleCase {
+<span id="L69" class="ln">    69  </span>	if o == nil || o.Cases == nil {
+<span id="L70" class="ln">    70  </span>		var ret []SecurityMonitoringRuleCase
+<span id="L71" class="ln">    71  </span>		return ret
+<span id="L72" class="ln">    72  </span>	}
+<span id="L73" class="ln">    73  </span>	return o.Cases
+<span id="L74" class="ln">    74  </span>}
+<span id="L75" class="ln">    75  </span>
+<span id="L76" class="ln">    76  </span><span class="comment">// GetCasesOk returns a tuple with the Cases field value if set, nil otherwise</span>
+<span id="L77" class="ln">    77  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L78" class="ln">    78  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetCasesOk() (*[]SecurityMonitoringRuleCase, bool) {
+<span id="L79" class="ln">    79  </span>	if o == nil || o.Cases == nil {
+<span id="L80" class="ln">    80  </span>		return nil, false
+<span id="L81" class="ln">    81  </span>	}
+<span id="L82" class="ln">    82  </span>	return &amp;o.Cases, true
+<span id="L83" class="ln">    83  </span>}
+<span id="L84" class="ln">    84  </span>
+<span id="L85" class="ln">    85  </span><span class="comment">// HasCases returns a boolean if a field has been set.</span>
+<span id="L86" class="ln">    86  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasCases() bool {
+<span id="L87" class="ln">    87  </span>	return o != nil &amp;&amp; o.Cases != nil
+<span id="L88" class="ln">    88  </span>}
+<span id="L89" class="ln">    89  </span>
+<span id="L90" class="ln">    90  </span><span class="comment">// SetCases gets a reference to the given []SecurityMonitoringRuleCase and assigns it to the Cases field.</span>
+<span id="L91" class="ln">    91  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetCases(v []SecurityMonitoringRuleCase) {
+<span id="L92" class="ln">    92  </span>	o.Cases = v
+<span id="L93" class="ln">    93  </span>}
+<span id="L94" class="ln">    94  </span>
+<span id="L95" class="ln">    95  </span><span class="comment">// GetComplianceSignalOptions returns the ComplianceSignalOptions field value if set, zero value otherwise.</span>
+<span id="L96" class="ln">    96  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetComplianceSignalOptions() CloudConfigurationRuleComplianceSignalOptions {
+<span id="L97" class="ln">    97  </span>	if o == nil || o.ComplianceSignalOptions == nil {
+<span id="L98" class="ln">    98  </span>		var ret CloudConfigurationRuleComplianceSignalOptions
+<span id="L99" class="ln">    99  </span>		return ret
+<span id="L100" class="ln">   100  </span>	}
+<span id="L101" class="ln">   101  </span>	return *o.ComplianceSignalOptions
+<span id="L102" class="ln">   102  </span>}
+<span id="L103" class="ln">   103  </span>
+<span id="L104" class="ln">   104  </span><span class="comment">// GetComplianceSignalOptionsOk returns a tuple with the ComplianceSignalOptions field value if set, nil otherwise</span>
+<span id="L105" class="ln">   105  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L106" class="ln">   106  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetComplianceSignalOptionsOk() (*CloudConfigurationRuleComplianceSignalOptions, bool) {
+<span id="L107" class="ln">   107  </span>	if o == nil || o.ComplianceSignalOptions == nil {
+<span id="L108" class="ln">   108  </span>		return nil, false
+<span id="L109" class="ln">   109  </span>	}
+<span id="L110" class="ln">   110  </span>	return o.ComplianceSignalOptions, true
+<span id="L111" class="ln">   111  </span>}
+<span id="L112" class="ln">   112  </span>
+<span id="L113" class="ln">   113  </span><span class="comment">// HasComplianceSignalOptions returns a boolean if a field has been set.</span>
+<span id="L114" class="ln">   114  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasComplianceSignalOptions() bool {
+<span id="L115" class="ln">   115  </span>	return o != nil &amp;&amp; o.ComplianceSignalOptions != nil
+<span id="L116" class="ln">   116  </span>}
+<span id="L117" class="ln">   117  </span>
+<span id="L118" class="ln">   118  </span><span class="comment">// SetComplianceSignalOptions gets a reference to the given CloudConfigurationRuleComplianceSignalOptions and assigns it to the ComplianceSignalOptions field.</span>
+<span id="L119" class="ln">   119  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetComplianceSignalOptions(v CloudConfigurationRuleComplianceSignalOptions) {
+<span id="L120" class="ln">   120  </span>	o.ComplianceSignalOptions = &amp;v
+<span id="L121" class="ln">   121  </span>}
+<span id="L122" class="ln">   122  </span>
+<span id="L123" class="ln">   123  </span><span class="comment">// GetCustomMessage returns the CustomMessage field value if set, zero value otherwise.</span>
+<span id="L124" class="ln">   124  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetCustomMessage() string {
+<span id="L125" class="ln">   125  </span>	if o == nil || o.CustomMessage == nil {
+<span id="L126" class="ln">   126  </span>		var ret string
+<span id="L127" class="ln">   127  </span>		return ret
+<span id="L128" class="ln">   128  </span>	}
+<span id="L129" class="ln">   129  </span>	return *o.CustomMessage
+<span id="L130" class="ln">   130  </span>}
+<span id="L131" class="ln">   131  </span>
+<span id="L132" class="ln">   132  </span><span class="comment">// GetCustomMessageOk returns a tuple with the CustomMessage field value if set, nil otherwise</span>
+<span id="L133" class="ln">   133  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L134" class="ln">   134  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetCustomMessageOk() (*string, bool) {
+<span id="L135" class="ln">   135  </span>	if o == nil || o.CustomMessage == nil {
+<span id="L136" class="ln">   136  </span>		return nil, false
+<span id="L137" class="ln">   137  </span>	}
+<span id="L138" class="ln">   138  </span>	return o.CustomMessage, true
+<span id="L139" class="ln">   139  </span>}
+<span id="L140" class="ln">   140  </span>
+<span id="L141" class="ln">   141  </span><span class="comment">// HasCustomMessage returns a boolean if a field has been set.</span>
+<span id="L142" class="ln">   142  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasCustomMessage() bool {
+<span id="L143" class="ln">   143  </span>	return o != nil &amp;&amp; o.CustomMessage != nil
+<span id="L144" class="ln">   144  </span>}
+<span id="L145" class="ln">   145  </span>
+<span id="L146" class="ln">   146  </span><span class="comment">// SetCustomMessage gets a reference to the given string and assigns it to the CustomMessage field.</span>
+<span id="L147" class="ln">   147  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetCustomMessage(v string) {
+<span id="L148" class="ln">   148  </span>	o.CustomMessage = &amp;v
+<span id="L149" class="ln">   149  </span>}
+<span id="L150" class="ln">   150  </span>
+<span id="L151" class="ln">   151  </span><span class="comment">// GetCustomName returns the CustomName field value if set, zero value otherwise.</span>
+<span id="L152" class="ln">   152  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetCustomName() string {
+<span id="L153" class="ln">   153  </span>	if o == nil || o.CustomName == nil {
+<span id="L154" class="ln">   154  </span>		var ret string
+<span id="L155" class="ln">   155  </span>		return ret
+<span id="L156" class="ln">   156  </span>	}
+<span id="L157" class="ln">   157  </span>	return *o.CustomName
+<span id="L158" class="ln">   158  </span>}
+<span id="L159" class="ln">   159  </span>
+<span id="L160" class="ln">   160  </span><span class="comment">// GetCustomNameOk returns a tuple with the CustomName field value if set, nil otherwise</span>
+<span id="L161" class="ln">   161  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L162" class="ln">   162  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetCustomNameOk() (*string, bool) {
+<span id="L163" class="ln">   163  </span>	if o == nil || o.CustomName == nil {
+<span id="L164" class="ln">   164  </span>		return nil, false
+<span id="L165" class="ln">   165  </span>	}
+<span id="L166" class="ln">   166  </span>	return o.CustomName, true
+<span id="L167" class="ln">   167  </span>}
+<span id="L168" class="ln">   168  </span>
+<span id="L169" class="ln">   169  </span><span class="comment">// HasCustomName returns a boolean if a field has been set.</span>
+<span id="L170" class="ln">   170  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasCustomName() bool {
+<span id="L171" class="ln">   171  </span>	return o != nil &amp;&amp; o.CustomName != nil
+<span id="L172" class="ln">   172  </span>}
+<span id="L173" class="ln">   173  </span>
+<span id="L174" class="ln">   174  </span><span class="comment">// SetCustomName gets a reference to the given string and assigns it to the CustomName field.</span>
+<span id="L175" class="ln">   175  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetCustomName(v string) {
+<span id="L176" class="ln">   176  </span>	o.CustomName = &amp;v
+<span id="L177" class="ln">   177  </span>}
+<span id="L178" class="ln">   178  </span>
+<span id="L179" class="ln">   179  </span><span class="comment">// GetFilters returns the Filters field value if set, zero value otherwise.</span>
+<span id="L180" class="ln">   180  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetFilters() []SecurityMonitoringFilter {
+<span id="L181" class="ln">   181  </span>	if o == nil || o.Filters == nil {
+<span id="L182" class="ln">   182  </span>		var ret []SecurityMonitoringFilter
+<span id="L183" class="ln">   183  </span>		return ret
+<span id="L184" class="ln">   184  </span>	}
+<span id="L185" class="ln">   185  </span>	return o.Filters
+<span id="L186" class="ln">   186  </span>}
+<span id="L187" class="ln">   187  </span>
+<span id="L188" class="ln">   188  </span><span class="comment">// GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise</span>
+<span id="L189" class="ln">   189  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L190" class="ln">   190  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetFiltersOk() (*[]SecurityMonitoringFilter, bool) {
+<span id="L191" class="ln">   191  </span>	if o == nil || o.Filters == nil {
+<span id="L192" class="ln">   192  </span>		return nil, false
+<span id="L193" class="ln">   193  </span>	}
+<span id="L194" class="ln">   194  </span>	return &amp;o.Filters, true
+<span id="L195" class="ln">   195  </span>}
+<span id="L196" class="ln">   196  </span>
+<span id="L197" class="ln">   197  </span><span class="comment">// HasFilters returns a boolean if a field has been set.</span>
+<span id="L198" class="ln">   198  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasFilters() bool {
+<span id="L199" class="ln">   199  </span>	return o != nil &amp;&amp; o.Filters != nil
+<span id="L200" class="ln">   200  </span>}
+<span id="L201" class="ln">   201  </span>
+<span id="L202" class="ln">   202  </span><span class="comment">// SetFilters gets a reference to the given []SecurityMonitoringFilter and assigns it to the Filters field.</span>
+<span id="L203" class="ln">   203  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetFilters(v []SecurityMonitoringFilter) {
+<span id="L204" class="ln">   204  </span>	o.Filters = v
+<span id="L205" class="ln">   205  </span>}
+<span id="L206" class="ln">   206  </span>
+<span id="L207" class="ln">   207  </span><span class="comment">// GetGroupSignalsBy returns the GroupSignalsBy field value if set, zero value otherwise.</span>
+<span id="L208" class="ln">   208  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetGroupSignalsBy() []string {
+<span id="L209" class="ln">   209  </span>	if o == nil || o.GroupSignalsBy == nil {
+<span id="L210" class="ln">   210  </span>		var ret []string
+<span id="L211" class="ln">   211  </span>		return ret
+<span id="L212" class="ln">   212  </span>	}
+<span id="L213" class="ln">   213  </span>	return o.GroupSignalsBy
+<span id="L214" class="ln">   214  </span>}
+<span id="L215" class="ln">   215  </span>
+<span id="L216" class="ln">   216  </span><span class="comment">// GetGroupSignalsByOk returns a tuple with the GroupSignalsBy field value if set, nil otherwise</span>
+<span id="L217" class="ln">   217  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L218" class="ln">   218  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetGroupSignalsByOk() (*[]string, bool) {
+<span id="L219" class="ln">   219  </span>	if o == nil || o.GroupSignalsBy == nil {
+<span id="L220" class="ln">   220  </span>		return nil, false
+<span id="L221" class="ln">   221  </span>	}
+<span id="L222" class="ln">   222  </span>	return &amp;o.GroupSignalsBy, true
+<span id="L223" class="ln">   223  </span>}
+<span id="L224" class="ln">   224  </span>
+<span id="L225" class="ln">   225  </span><span class="comment">// HasGroupSignalsBy returns a boolean if a field has been set.</span>
+<span id="L226" class="ln">   226  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasGroupSignalsBy() bool {
+<span id="L227" class="ln">   227  </span>	return o != nil &amp;&amp; o.GroupSignalsBy != nil
+<span id="L228" class="ln">   228  </span>}
+<span id="L229" class="ln">   229  </span>
+<span id="L230" class="ln">   230  </span><span class="comment">// SetGroupSignalsBy gets a reference to the given []string and assigns it to the GroupSignalsBy field.</span>
+<span id="L231" class="ln">   231  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetGroupSignalsBy(v []string) {
+<span id="L232" class="ln">   232  </span>	o.GroupSignalsBy = v
+<span id="L233" class="ln">   233  </span>}
+<span id="L234" class="ln">   234  </span>
+<span id="L235" class="ln">   235  </span><span class="comment">// GetHasExtendedTitle returns the HasExtendedTitle field value if set, zero value otherwise.</span>
+<span id="L236" class="ln">   236  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetHasExtendedTitle() bool {
+<span id="L237" class="ln">   237  </span>	if o == nil || o.HasExtendedTitle == nil {
+<span id="L238" class="ln">   238  </span>		var ret bool
+<span id="L239" class="ln">   239  </span>		return ret
+<span id="L240" class="ln">   240  </span>	}
+<span id="L241" class="ln">   241  </span>	return *o.HasExtendedTitle
+<span id="L242" class="ln">   242  </span>}
+<span id="L243" class="ln">   243  </span>
+<span id="L244" class="ln">   244  </span><span class="comment">// GetHasExtendedTitleOk returns a tuple with the HasExtendedTitle field value if set, nil otherwise</span>
+<span id="L245" class="ln">   245  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L246" class="ln">   246  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetHasExtendedTitleOk() (*bool, bool) {
+<span id="L247" class="ln">   247  </span>	if o == nil || o.HasExtendedTitle == nil {
+<span id="L248" class="ln">   248  </span>		return nil, false
+<span id="L249" class="ln">   249  </span>	}
+<span id="L250" class="ln">   250  </span>	return o.HasExtendedTitle, true
+<span id="L251" class="ln">   251  </span>}
+<span id="L252" class="ln">   252  </span>
+<span id="L253" class="ln">   253  </span><span class="comment">// HasHasExtendedTitle returns a boolean if a field has been set.</span>
+<span id="L254" class="ln">   254  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasHasExtendedTitle() bool {
+<span id="L255" class="ln">   255  </span>	return o != nil &amp;&amp; o.HasExtendedTitle != nil
+<span id="L256" class="ln">   256  </span>}
+<span id="L257" class="ln">   257  </span>
+<span id="L258" class="ln">   258  </span><span class="comment">// SetHasExtendedTitle gets a reference to the given bool and assigns it to the HasExtendedTitle field.</span>
+<span id="L259" class="ln">   259  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetHasExtendedTitle(v bool) {
+<span id="L260" class="ln">   260  </span>	o.HasExtendedTitle = &amp;v
+<span id="L261" class="ln">   261  </span>}
+<span id="L262" class="ln">   262  </span>
+<span id="L263" class="ln">   263  </span><span class="comment">// GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.</span>
+<span id="L264" class="ln">   264  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetIsEnabled() bool {
+<span id="L265" class="ln">   265  </span>	if o == nil || o.IsEnabled == nil {
+<span id="L266" class="ln">   266  </span>		var ret bool
+<span id="L267" class="ln">   267  </span>		return ret
+<span id="L268" class="ln">   268  </span>	}
+<span id="L269" class="ln">   269  </span>	return *o.IsEnabled
+<span id="L270" class="ln">   270  </span>}
+<span id="L271" class="ln">   271  </span>
+<span id="L272" class="ln">   272  </span><span class="comment">// GetIsEnabledOk returns a tuple with the IsEnabled field value if set, nil otherwise</span>
+<span id="L273" class="ln">   273  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L274" class="ln">   274  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetIsEnabledOk() (*bool, bool) {
+<span id="L275" class="ln">   275  </span>	if o == nil || o.IsEnabled == nil {
+<span id="L276" class="ln">   276  </span>		return nil, false
+<span id="L277" class="ln">   277  </span>	}
+<span id="L278" class="ln">   278  </span>	return o.IsEnabled, true
+<span id="L279" class="ln">   279  </span>}
+<span id="L280" class="ln">   280  </span>
+<span id="L281" class="ln">   281  </span><span class="comment">// HasIsEnabled returns a boolean if a field has been set.</span>
+<span id="L282" class="ln">   282  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasIsEnabled() bool {
+<span id="L283" class="ln">   283  </span>	return o != nil &amp;&amp; o.IsEnabled != nil
+<span id="L284" class="ln">   284  </span>}
+<span id="L285" class="ln">   285  </span>
+<span id="L286" class="ln">   286  </span><span class="comment">// SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.</span>
+<span id="L287" class="ln">   287  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetIsEnabled(v bool) {
+<span id="L288" class="ln">   288  </span>	o.IsEnabled = &amp;v
+<span id="L289" class="ln">   289  </span>}
+<span id="L290" class="ln">   290  </span>
+<span id="L291" class="ln">   291  </span><span class="comment">// GetMessage returns the Message field value if set, zero value otherwise.</span>
+<span id="L292" class="ln">   292  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetMessage() string {
+<span id="L293" class="ln">   293  </span>	if o == nil || o.Message == nil {
+<span id="L294" class="ln">   294  </span>		var ret string
+<span id="L295" class="ln">   295  </span>		return ret
+<span id="L296" class="ln">   296  </span>	}
+<span id="L297" class="ln">   297  </span>	return *o.Message
+<span id="L298" class="ln">   298  </span>}
+<span id="L299" class="ln">   299  </span>
+<span id="L300" class="ln">   300  </span><span class="comment">// GetMessageOk returns a tuple with the Message field value if set, nil otherwise</span>
+<span id="L301" class="ln">   301  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L302" class="ln">   302  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetMessageOk() (*string, bool) {
+<span id="L303" class="ln">   303  </span>	if o == nil || o.Message == nil {
+<span id="L304" class="ln">   304  </span>		return nil, false
+<span id="L305" class="ln">   305  </span>	}
+<span id="L306" class="ln">   306  </span>	return o.Message, true
+<span id="L307" class="ln">   307  </span>}
+<span id="L308" class="ln">   308  </span>
+<span id="L309" class="ln">   309  </span><span class="comment">// HasMessage returns a boolean if a field has been set.</span>
+<span id="L310" class="ln">   310  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasMessage() bool {
+<span id="L311" class="ln">   311  </span>	return o != nil &amp;&amp; o.Message != nil
+<span id="L312" class="ln">   312  </span>}
+<span id="L313" class="ln">   313  </span>
+<span id="L314" class="ln">   314  </span><span class="comment">// SetMessage gets a reference to the given string and assigns it to the Message field.</span>
+<span id="L315" class="ln">   315  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetMessage(v string) {
+<span id="L316" class="ln">   316  </span>	o.Message = &amp;v
+<span id="L317" class="ln">   317  </span>}
+<span id="L318" class="ln">   318  </span>
+<span id="L319" class="ln">   319  </span><span class="comment">// GetName returns the Name field value if set, zero value otherwise.</span>
+<span id="L320" class="ln">   320  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetName() string {
+<span id="L321" class="ln">   321  </span>	if o == nil || o.Name == nil {
+<span id="L322" class="ln">   322  </span>		var ret string
+<span id="L323" class="ln">   323  </span>		return ret
+<span id="L324" class="ln">   324  </span>	}
+<span id="L325" class="ln">   325  </span>	return *o.Name
+<span id="L326" class="ln">   326  </span>}
+<span id="L327" class="ln">   327  </span>
+<span id="L328" class="ln">   328  </span><span class="comment">// GetNameOk returns a tuple with the Name field value if set, nil otherwise</span>
+<span id="L329" class="ln">   329  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L330" class="ln">   330  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetNameOk() (*string, bool) {
+<span id="L331" class="ln">   331  </span>	if o == nil || o.Name == nil {
+<span id="L332" class="ln">   332  </span>		return nil, false
+<span id="L333" class="ln">   333  </span>	}
+<span id="L334" class="ln">   334  </span>	return o.Name, true
+<span id="L335" class="ln">   335  </span>}
+<span id="L336" class="ln">   336  </span>
+<span id="L337" class="ln">   337  </span><span class="comment">// HasName returns a boolean if a field has been set.</span>
+<span id="L338" class="ln">   338  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasName() bool {
+<span id="L339" class="ln">   339  </span>	return o != nil &amp;&amp; o.Name != nil
+<span id="L340" class="ln">   340  </span>}
+<span id="L341" class="ln">   341  </span>
+<span id="L342" class="ln">   342  </span><span class="comment">// SetName gets a reference to the given string and assigns it to the Name field.</span>
+<span id="L343" class="ln">   343  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetName(v string) {
+<span id="L344" class="ln">   344  </span>	o.Name = &amp;v
+<span id="L345" class="ln">   345  </span>}
+<span id="L346" class="ln">   346  </span>
+<span id="L347" class="ln">   347  </span><span class="comment">// GetOptions returns the Options field value if set, zero value otherwise.</span>
+<span id="L348" class="ln">   348  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetOptions() SecurityMonitoringRuleOptions {
+<span id="L349" class="ln">   349  </span>	if o == nil || o.Options == nil {
+<span id="L350" class="ln">   350  </span>		var ret SecurityMonitoringRuleOptions
+<span id="L351" class="ln">   351  </span>		return ret
+<span id="L352" class="ln">   352  </span>	}
+<span id="L353" class="ln">   353  </span>	return *o.Options
+<span id="L354" class="ln">   354  </span>}
+<span id="L355" class="ln">   355  </span>
+<span id="L356" class="ln">   356  </span><span class="comment">// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise</span>
+<span id="L357" class="ln">   357  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L358" class="ln">   358  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetOptionsOk() (*SecurityMonitoringRuleOptions, bool) {
+<span id="L359" class="ln">   359  </span>	if o == nil || o.Options == nil {
+<span id="L360" class="ln">   360  </span>		return nil, false
+<span id="L361" class="ln">   361  </span>	}
+<span id="L362" class="ln">   362  </span>	return o.Options, true
+<span id="L363" class="ln">   363  </span>}
+<span id="L364" class="ln">   364  </span>
+<span id="L365" class="ln">   365  </span><span class="comment">// HasOptions returns a boolean if a field has been set.</span>
+<span id="L366" class="ln">   366  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasOptions() bool {
+<span id="L367" class="ln">   367  </span>	return o != nil &amp;&amp; o.Options != nil
+<span id="L368" class="ln">   368  </span>}
+<span id="L369" class="ln">   369  </span>
+<span id="L370" class="ln">   370  </span><span class="comment">// SetOptions gets a reference to the given SecurityMonitoringRuleOptions and assigns it to the Options field.</span>
+<span id="L371" class="ln">   371  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetOptions(v SecurityMonitoringRuleOptions) {
+<span id="L372" class="ln">   372  </span>	o.Options = &amp;v
+<span id="L373" class="ln">   373  </span>}
+<span id="L374" class="ln">   374  </span>
+<span id="L375" class="ln">   375  </span><span class="comment">// GetQueries returns the Queries field value if set, zero value otherwise.</span>
+<span id="L376" class="ln">   376  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetQueries() []SecurityMonitoringRuleQuery {
+<span id="L377" class="ln">   377  </span>	if o == nil || o.Queries == nil {
+<span id="L378" class="ln">   378  </span>		var ret []SecurityMonitoringRuleQuery
+<span id="L379" class="ln">   379  </span>		return ret
+<span id="L380" class="ln">   380  </span>	}
+<span id="L381" class="ln">   381  </span>	return o.Queries
+<span id="L382" class="ln">   382  </span>}
+<span id="L383" class="ln">   383  </span>
+<span id="L384" class="ln">   384  </span><span class="comment">// GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise</span>
+<span id="L385" class="ln">   385  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L386" class="ln">   386  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetQueriesOk() (*[]SecurityMonitoringRuleQuery, bool) {
+<span id="L387" class="ln">   387  </span>	if o == nil || o.Queries == nil {
+<span id="L388" class="ln">   388  </span>		return nil, false
+<span id="L389" class="ln">   389  </span>	}
+<span id="L390" class="ln">   390  </span>	return &amp;o.Queries, true
+<span id="L391" class="ln">   391  </span>}
+<span id="L392" class="ln">   392  </span>
+<span id="L393" class="ln">   393  </span><span class="comment">// HasQueries returns a boolean if a field has been set.</span>
+<span id="L394" class="ln">   394  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasQueries() bool {
+<span id="L395" class="ln">   395  </span>	return o != nil &amp;&amp; o.Queries != nil
+<span id="L396" class="ln">   396  </span>}
+<span id="L397" class="ln">   397  </span>
+<span id="L398" class="ln">   398  </span><span class="comment">// SetQueries gets a reference to the given []SecurityMonitoringRuleQuery and assigns it to the Queries field.</span>
+<span id="L399" class="ln">   399  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetQueries(v []SecurityMonitoringRuleQuery) {
+<span id="L400" class="ln">   400  </span>	o.Queries = v
+<span id="L401" class="ln">   401  </span>}
+<span id="L402" class="ln">   402  </span>
+<span id="L403" class="ln">   403  </span><span class="comment">// GetReferenceTables returns the ReferenceTables field value if set, zero value otherwise.</span>
+<span id="L404" class="ln">   404  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetReferenceTables() []SecurityMonitoringReferenceTable {
+<span id="L405" class="ln">   405  </span>	if o == nil || o.ReferenceTables == nil {
+<span id="L406" class="ln">   406  </span>		var ret []SecurityMonitoringReferenceTable
+<span id="L407" class="ln">   407  </span>		return ret
+<span id="L408" class="ln">   408  </span>	}
+<span id="L409" class="ln">   409  </span>	return o.ReferenceTables
+<span id="L410" class="ln">   410  </span>}
+<span id="L411" class="ln">   411  </span>
+<span id="L412" class="ln">   412  </span><span class="comment">// GetReferenceTablesOk returns a tuple with the ReferenceTables field value if set, nil otherwise</span>
+<span id="L413" class="ln">   413  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L414" class="ln">   414  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetReferenceTablesOk() (*[]SecurityMonitoringReferenceTable, bool) {
+<span id="L415" class="ln">   415  </span>	if o == nil || o.ReferenceTables == nil {
+<span id="L416" class="ln">   416  </span>		return nil, false
+<span id="L417" class="ln">   417  </span>	}
+<span id="L418" class="ln">   418  </span>	return &amp;o.ReferenceTables, true
+<span id="L419" class="ln">   419  </span>}
+<span id="L420" class="ln">   420  </span>
+<span id="L421" class="ln">   421  </span><span class="comment">// HasReferenceTables returns a boolean if a field has been set.</span>
+<span id="L422" class="ln">   422  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasReferenceTables() bool {
+<span id="L423" class="ln">   423  </span>	return o != nil &amp;&amp; o.ReferenceTables != nil
+<span id="L424" class="ln">   424  </span>}
+<span id="L425" class="ln">   425  </span>
+<span id="L426" class="ln">   426  </span><span class="comment">// SetReferenceTables gets a reference to the given []SecurityMonitoringReferenceTable and assigns it to the ReferenceTables field.</span>
+<span id="L427" class="ln">   427  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetReferenceTables(v []SecurityMonitoringReferenceTable) {
+<span id="L428" class="ln">   428  </span>	o.ReferenceTables = v
+<span id="L429" class="ln">   429  </span>}
+<span id="L430" class="ln">   430  </span>
+<span id="L431" class="ln">   431  </span><span class="comment">// GetTags returns the Tags field value if set, zero value otherwise.</span>
+<span id="L432" class="ln">   432  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetTags() []string {
+<span id="L433" class="ln">   433  </span>	if o == nil || o.Tags == nil {
+<span id="L434" class="ln">   434  </span>		var ret []string
+<span id="L435" class="ln">   435  </span>		return ret
+<span id="L436" class="ln">   436  </span>	}
+<span id="L437" class="ln">   437  </span>	return o.Tags
+<span id="L438" class="ln">   438  </span>}
+<span id="L439" class="ln">   439  </span>
+<span id="L440" class="ln">   440  </span><span class="comment">// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise</span>
+<span id="L441" class="ln">   441  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L442" class="ln">   442  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetTagsOk() (*[]string, bool) {
+<span id="L443" class="ln">   443  </span>	if o == nil || o.Tags == nil {
+<span id="L444" class="ln">   444  </span>		return nil, false
+<span id="L445" class="ln">   445  </span>	}
+<span id="L446" class="ln">   446  </span>	return &amp;o.Tags, true
+<span id="L447" class="ln">   447  </span>}
+<span id="L448" class="ln">   448  </span>
+<span id="L449" class="ln">   449  </span><span class="comment">// HasTags returns a boolean if a field has been set.</span>
+<span id="L450" class="ln">   450  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasTags() bool {
+<span id="L451" class="ln">   451  </span>	return o != nil &amp;&amp; o.Tags != nil
+<span id="L452" class="ln">   452  </span>}
+<span id="L453" class="ln">   453  </span>
+<span id="L454" class="ln">   454  </span><span class="comment">// SetTags gets a reference to the given []string and assigns it to the Tags field.</span>
+<span id="L455" class="ln">   455  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetTags(v []string) {
+<span id="L456" class="ln">   456  </span>	o.Tags = v
+<span id="L457" class="ln">   457  </span>}
+<span id="L458" class="ln">   458  </span>
+<span id="L459" class="ln">   459  </span><span class="comment">// GetThirdPartyCases returns the ThirdPartyCases field value if set, zero value otherwise.</span>
+<span id="L460" class="ln">   460  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetThirdPartyCases() []SecurityMonitoringThirdPartyRuleCase {
+<span id="L461" class="ln">   461  </span>	if o == nil || o.ThirdPartyCases == nil {
+<span id="L462" class="ln">   462  </span>		var ret []SecurityMonitoringThirdPartyRuleCase
+<span id="L463" class="ln">   463  </span>		return ret
+<span id="L464" class="ln">   464  </span>	}
+<span id="L465" class="ln">   465  </span>	return o.ThirdPartyCases
+<span id="L466" class="ln">   466  </span>}
+<span id="L467" class="ln">   467  </span>
+<span id="L468" class="ln">   468  </span><span class="comment">// GetThirdPartyCasesOk returns a tuple with the ThirdPartyCases field value if set, nil otherwise</span>
+<span id="L469" class="ln">   469  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L470" class="ln">   470  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetThirdPartyCasesOk() (*[]SecurityMonitoringThirdPartyRuleCase, bool) {
+<span id="L471" class="ln">   471  </span>	if o == nil || o.ThirdPartyCases == nil {
+<span id="L472" class="ln">   472  </span>		return nil, false
+<span id="L473" class="ln">   473  </span>	}
+<span id="L474" class="ln">   474  </span>	return &amp;o.ThirdPartyCases, true
+<span id="L475" class="ln">   475  </span>}
+<span id="L476" class="ln">   476  </span>
+<span id="L477" class="ln">   477  </span><span class="comment">// HasThirdPartyCases returns a boolean if a field has been set.</span>
+<span id="L478" class="ln">   478  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasThirdPartyCases() bool {
+<span id="L479" class="ln">   479  </span>	return o != nil &amp;&amp; o.ThirdPartyCases != nil
+<span id="L480" class="ln">   480  </span>}
+<span id="L481" class="ln">   481  </span>
+<span id="L482" class="ln">   482  </span><span class="comment">// SetThirdPartyCases gets a reference to the given []SecurityMonitoringThirdPartyRuleCase and assigns it to the ThirdPartyCases field.</span>
+<span id="L483" class="ln">   483  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetThirdPartyCases(v []SecurityMonitoringThirdPartyRuleCase) {
+<span id="L484" class="ln">   484  </span>	o.ThirdPartyCases = v
+<span id="L485" class="ln">   485  </span>}
+<span id="L486" class="ln">   486  </span>
+<span id="L487" class="ln">   487  </span><span class="comment">// GetVersion returns the Version field value if set, zero value otherwise.</span>
+<span id="L488" class="ln">   488  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetVersion() int32 {
+<span id="L489" class="ln">   489  </span>	if o == nil || o.Version == nil {
+<span id="L490" class="ln">   490  </span>		var ret int32
+<span id="L491" class="ln">   491  </span>		return ret
+<span id="L492" class="ln">   492  </span>	}
+<span id="L493" class="ln">   493  </span>	return *o.Version
+<span id="L494" class="ln">   494  </span>}
+<span id="L495" class="ln">   495  </span>
+<span id="L496" class="ln">   496  </span><span class="comment">// GetVersionOk returns a tuple with the Version field value if set, nil otherwise</span>
+<span id="L497" class="ln">   497  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L498" class="ln">   498  </span>func (o *SecurityMonitoringRuleUpdatePayload) GetVersionOk() (*int32, bool) {
+<span id="L499" class="ln">   499  </span>	if o == nil || o.Version == nil {
+<span id="L500" class="ln">   500  </span>		return nil, false
+<span id="L501" class="ln">   501  </span>	}
+<span id="L502" class="ln">   502  </span>	return o.Version, true
+<span id="L503" class="ln">   503  </span>}
+<span id="L504" class="ln">   504  </span>
+<span id="L505" class="ln">   505  </span><span class="comment">// HasVersion returns a boolean if a field has been set.</span>
+<span id="L506" class="ln">   506  </span>func (o *SecurityMonitoringRuleUpdatePayload) HasVersion() bool {
+<span id="L507" class="ln">   507  </span>	return o != nil &amp;&amp; o.Version != nil
 <span id="L508" class="ln">   508  </span>}
 <span id="L509" class="ln">   509  </span>
-<span id="L510" class="ln">   510  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L511" class="ln">   511  </span>func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err error) {
-<span id="L512" class="ln">   512  </span>	all := struct {
-<span id="L513" class="ln">   513  </span>		Cases                   []SecurityMonitoringRuleCase                   `json:&#34;cases,omitempty&#34;`
-<span id="L514" class="ln">   514  </span>		ComplianceSignalOptions *CloudConfigurationRuleComplianceSignalOptions `json:&#34;complianceSignalOptions,omitempty&#34;`
-<span id="L515" class="ln">   515  </span>		Filters                 []SecurityMonitoringFilter                     `json:&#34;filters,omitempty&#34;`
-<span id="L516" class="ln">   516  </span>		GroupSignalsBy          []string                                       `json:&#34;groupSignalsBy,omitempty&#34;`
-<span id="L517" class="ln">   517  </span>		HasExtendedTitle        *bool                                          `json:&#34;hasExtendedTitle,omitempty&#34;`
-<span id="L518" class="ln">   518  </span>		IsEnabled               *bool                                          `json:&#34;isEnabled,omitempty&#34;`
-<span id="L519" class="ln">   519  </span>		Message                 *string                                        `json:&#34;message,omitempty&#34;`
-<span id="L520" class="ln">   520  </span>		Name                    *string                                        `json:&#34;name,omitempty&#34;`
-<span id="L521" class="ln">   521  </span>		Options                 *SecurityMonitoringRuleOptions                 `json:&#34;options,omitempty&#34;`
-<span id="L522" class="ln">   522  </span>		Queries                 []SecurityMonitoringRuleQuery                  `json:&#34;queries,omitempty&#34;`
-<span id="L523" class="ln">   523  </span>		ReferenceTables         []SecurityMonitoringReferenceTable             `json:&#34;referenceTables,omitempty&#34;`
-<span id="L524" class="ln">   524  </span>		Tags                    []string                                       `json:&#34;tags,omitempty&#34;`
-<span id="L525" class="ln">   525  </span>		ThirdPartyCases         []SecurityMonitoringThirdPartyRuleCase         `json:&#34;thirdPartyCases,omitempty&#34;`
-<span id="L526" class="ln">   526  </span>		Version                 *int32                                         `json:&#34;version,omitempty&#34;`
-<span id="L527" class="ln">   527  </span>	}{}
-<span id="L528" class="ln">   528  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
-<span id="L529" class="ln">   529  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L530" class="ln">   530  </span>	}
-<span id="L531" class="ln">   531  </span>	additionalProperties := make(map[string]interface{})
-<span id="L532" class="ln">   532  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L533" class="ln">   533  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;cases&#34;, &#34;complianceSignalOptions&#34;, &#34;filters&#34;, &#34;groupSignalsBy&#34;, &#34;hasExtendedTitle&#34;, &#34;isEnabled&#34;, &#34;message&#34;, &#34;name&#34;, &#34;options&#34;, &#34;queries&#34;, &#34;referenceTables&#34;, &#34;tags&#34;, &#34;thirdPartyCases&#34;, &#34;version&#34;})
-<span id="L534" class="ln">   534  </span>	} else {
-<span id="L535" class="ln">   535  </span>		return err
-<span id="L536" class="ln">   536  </span>	}
-<span id="L537" class="ln">   537  </span>
-<span id="L538" class="ln">   538  </span>	hasInvalidField := false
-<span id="L539" class="ln">   539  </span>	o.Cases = all.Cases
-<span id="L540" class="ln">   540  </span>	if all.ComplianceSignalOptions != nil &amp;&amp; all.ComplianceSignalOptions.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L541" class="ln">   541  </span>		hasInvalidField = true
-<span id="L542" class="ln">   542  </span>	}
-<span id="L543" class="ln">   543  </span>	o.ComplianceSignalOptions = all.ComplianceSignalOptions
-<span id="L544" class="ln">   544  </span>	o.Filters = all.Filters
-<span id="L545" class="ln">   545  </span>	o.GroupSignalsBy = all.GroupSignalsBy
-<span id="L546" class="ln">   546  </span>	o.HasExtendedTitle = all.HasExtendedTitle
-<span id="L547" class="ln">   547  </span>	o.IsEnabled = all.IsEnabled
-<span id="L548" class="ln">   548  </span>	o.Message = all.Message
-<span id="L549" class="ln">   549  </span>	o.Name = all.Name
-<span id="L550" class="ln">   550  </span>	if all.Options != nil &amp;&amp; all.Options.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L551" class="ln">   551  </span>		hasInvalidField = true
-<span id="L552" class="ln">   552  </span>	}
-<span id="L553" class="ln">   553  </span>	o.Options = all.Options
-<span id="L554" class="ln">   554  </span>	o.Queries = all.Queries
-<span id="L555" class="ln">   555  </span>	o.ReferenceTables = all.ReferenceTables
-<span id="L556" class="ln">   556  </span>	o.Tags = all.Tags
-<span id="L557" class="ln">   557  </span>	o.ThirdPartyCases = all.ThirdPartyCases
-<span id="L558" class="ln">   558  </span>	o.Version = all.Version
-<span id="L559" class="ln">   559  </span>
-<span id="L560" class="ln">   560  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L561" class="ln">   561  </span>		o.AdditionalProperties = additionalProperties
+<span id="L510" class="ln">   510  </span><span class="comment">// SetVersion gets a reference to the given int32 and assigns it to the Version field.</span>
+<span id="L511" class="ln">   511  </span>func (o *SecurityMonitoringRuleUpdatePayload) SetVersion(v int32) {
+<span id="L512" class="ln">   512  </span>	o.Version = &amp;v
+<span id="L513" class="ln">   513  </span>}
+<span id="L514" class="ln">   514  </span>
+<span id="L515" class="ln">   515  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L516" class="ln">   516  </span>func (o SecurityMonitoringRuleUpdatePayload) MarshalJSON() ([]byte, error) {
+<span id="L517" class="ln">   517  </span>	toSerialize := map[string]interface{}{}
+<span id="L518" class="ln">   518  </span>	if o.UnparsedObject != nil {
+<span id="L519" class="ln">   519  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L520" class="ln">   520  </span>	}
+<span id="L521" class="ln">   521  </span>	if o.Cases != nil {
+<span id="L522" class="ln">   522  </span>		toSerialize[&#34;cases&#34;] = o.Cases
+<span id="L523" class="ln">   523  </span>	}
+<span id="L524" class="ln">   524  </span>	if o.ComplianceSignalOptions != nil {
+<span id="L525" class="ln">   525  </span>		toSerialize[&#34;complianceSignalOptions&#34;] = o.ComplianceSignalOptions
+<span id="L526" class="ln">   526  </span>	}
+<span id="L527" class="ln">   527  </span>	if o.CustomMessage != nil {
+<span id="L528" class="ln">   528  </span>		toSerialize[&#34;customMessage&#34;] = o.CustomMessage
+<span id="L529" class="ln">   529  </span>	}
+<span id="L530" class="ln">   530  </span>	if o.CustomName != nil {
+<span id="L531" class="ln">   531  </span>		toSerialize[&#34;customName&#34;] = o.CustomName
+<span id="L532" class="ln">   532  </span>	}
+<span id="L533" class="ln">   533  </span>	if o.Filters != nil {
+<span id="L534" class="ln">   534  </span>		toSerialize[&#34;filters&#34;] = o.Filters
+<span id="L535" class="ln">   535  </span>	}
+<span id="L536" class="ln">   536  </span>	if o.GroupSignalsBy != nil {
+<span id="L537" class="ln">   537  </span>		toSerialize[&#34;groupSignalsBy&#34;] = o.GroupSignalsBy
+<span id="L538" class="ln">   538  </span>	}
+<span id="L539" class="ln">   539  </span>	if o.HasExtendedTitle != nil {
+<span id="L540" class="ln">   540  </span>		toSerialize[&#34;hasExtendedTitle&#34;] = o.HasExtendedTitle
+<span id="L541" class="ln">   541  </span>	}
+<span id="L542" class="ln">   542  </span>	if o.IsEnabled != nil {
+<span id="L543" class="ln">   543  </span>		toSerialize[&#34;isEnabled&#34;] = o.IsEnabled
+<span id="L544" class="ln">   544  </span>	}
+<span id="L545" class="ln">   545  </span>	if o.Message != nil {
+<span id="L546" class="ln">   546  </span>		toSerialize[&#34;message&#34;] = o.Message
+<span id="L547" class="ln">   547  </span>	}
+<span id="L548" class="ln">   548  </span>	if o.Name != nil {
+<span id="L549" class="ln">   549  </span>		toSerialize[&#34;name&#34;] = o.Name
+<span id="L550" class="ln">   550  </span>	}
+<span id="L551" class="ln">   551  </span>	if o.Options != nil {
+<span id="L552" class="ln">   552  </span>		toSerialize[&#34;options&#34;] = o.Options
+<span id="L553" class="ln">   553  </span>	}
+<span id="L554" class="ln">   554  </span>	if o.Queries != nil {
+<span id="L555" class="ln">   555  </span>		toSerialize[&#34;queries&#34;] = o.Queries
+<span id="L556" class="ln">   556  </span>	}
+<span id="L557" class="ln">   557  </span>	if o.ReferenceTables != nil {
+<span id="L558" class="ln">   558  </span>		toSerialize[&#34;referenceTables&#34;] = o.ReferenceTables
+<span id="L559" class="ln">   559  </span>	}
+<span id="L560" class="ln">   560  </span>	if o.Tags != nil {
+<span id="L561" class="ln">   561  </span>		toSerialize[&#34;tags&#34;] = o.Tags
 <span id="L562" class="ln">   562  </span>	}
-<span id="L563" class="ln">   563  </span>
-<span id="L564" class="ln">   564  </span>	if hasInvalidField {
-<span id="L565" class="ln">   565  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L566" class="ln">   566  </span>	}
-<span id="L567" class="ln">   567  </span>
-<span id="L568" class="ln">   568  </span>	return nil
-<span id="L569" class="ln">   569  </span>}
-<span id="L570" class="ln">   570  </span>
+<span id="L563" class="ln">   563  </span>	if o.ThirdPartyCases != nil {
+<span id="L564" class="ln">   564  </span>		toSerialize[&#34;thirdPartyCases&#34;] = o.ThirdPartyCases
+<span id="L565" class="ln">   565  </span>	}
+<span id="L566" class="ln">   566  </span>	if o.Version != nil {
+<span id="L567" class="ln">   567  </span>		toSerialize[&#34;version&#34;] = o.Version
+<span id="L568" class="ln">   568  </span>	}
+<span id="L569" class="ln">   569  </span>
+<span id="L570" class="ln">   570  </span>	for key, value := range o.AdditionalProperties {
+<span id="L571" class="ln">   571  </span>		toSerialize[key] = value
+<span id="L572" class="ln">   572  </span>	}
+<span id="L573" class="ln">   573  </span>	return datadog.Marshal(toSerialize)
+<span id="L574" class="ln">   574  </span>}
+<span id="L575" class="ln">   575  </span>
+<span id="L576" class="ln">   576  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L577" class="ln">   577  </span>func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L578" class="ln">   578  </span>	all := struct {
+<span id="L579" class="ln">   579  </span>		Cases                   []SecurityMonitoringRuleCase                   `json:&#34;cases,omitempty&#34;`
+<span id="L580" class="ln">   580  </span>		ComplianceSignalOptions *CloudConfigurationRuleComplianceSignalOptions `json:&#34;complianceSignalOptions,omitempty&#34;`
+<span id="L581" class="ln">   581  </span>		CustomMessage           *string                                        `json:&#34;customMessage,omitempty&#34;`
+<span id="L582" class="ln">   582  </span>		CustomName              *string                                        `json:&#34;customName,omitempty&#34;`
+<span id="L583" class="ln">   583  </span>		Filters                 []SecurityMonitoringFilter                     `json:&#34;filters,omitempty&#34;`
+<span id="L584" class="ln">   584  </span>		GroupSignalsBy          []string                                       `json:&#34;groupSignalsBy,omitempty&#34;`
+<span id="L585" class="ln">   585  </span>		HasExtendedTitle        *bool                                          `json:&#34;hasExtendedTitle,omitempty&#34;`
+<span id="L586" class="ln">   586  </span>		IsEnabled               *bool                                          `json:&#34;isEnabled,omitempty&#34;`
+<span id="L587" class="ln">   587  </span>		Message                 *string                                        `json:&#34;message,omitempty&#34;`
+<span id="L588" class="ln">   588  </span>		Name                    *string                                        `json:&#34;name,omitempty&#34;`
+<span id="L589" class="ln">   589  </span>		Options                 *SecurityMonitoringRuleOptions                 `json:&#34;options,omitempty&#34;`
+<span id="L590" class="ln">   590  </span>		Queries                 []SecurityMonitoringRuleQuery                  `json:&#34;queries,omitempty&#34;`
+<span id="L591" class="ln">   591  </span>		ReferenceTables         []SecurityMonitoringReferenceTable             `json:&#34;referenceTables,omitempty&#34;`
+<span id="L592" class="ln">   592  </span>		Tags                    []string                                       `json:&#34;tags,omitempty&#34;`
+<span id="L593" class="ln">   593  </span>		ThirdPartyCases         []SecurityMonitoringThirdPartyRuleCase         `json:&#34;thirdPartyCases,omitempty&#34;`
+<span id="L594" class="ln">   594  </span>		Version                 *int32                                         `json:&#34;version,omitempty&#34;`
+<span id="L595" class="ln">   595  </span>	}{}
+<span id="L596" class="ln">   596  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L597" class="ln">   597  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L598" class="ln">   598  </span>	}
+<span id="L599" class="ln">   599  </span>	additionalProperties := make(map[string]interface{})
+<span id="L600" class="ln">   600  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L601" class="ln">   601  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;cases&#34;, &#34;complianceSignalOptions&#34;, &#34;customMessage&#34;, &#34;customName&#34;, &#34;filters&#34;, &#34;groupSignalsBy&#34;, &#34;hasExtendedTitle&#34;, &#34;isEnabled&#34;, &#34;message&#34;, &#34;name&#34;, &#34;options&#34;, &#34;queries&#34;, &#34;referenceTables&#34;, &#34;tags&#34;, &#34;thirdPartyCases&#34;, &#34;version&#34;})
+<span id="L602" class="ln">   602  </span>	} else {
+<span id="L603" class="ln">   603  </span>		return err
+<span id="L604" class="ln">   604  </span>	}
+<span id="L605" class="ln">   605  </span>
+<span id="L606" class="ln">   606  </span>	hasInvalidField := false
+<span id="L607" class="ln">   607  </span>	o.Cases = all.Cases
+<span id="L608" class="ln">   608  </span>	if all.ComplianceSignalOptions != nil &amp;&amp; all.ComplianceSignalOptions.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L609" class="ln">   609  </span>		hasInvalidField = true
+<span id="L610" class="ln">   610  </span>	}
+<span id="L611" class="ln">   611  </span>	o.ComplianceSignalOptions = all.ComplianceSignalOptions
+<span id="L612" class="ln">   612  </span>	o.CustomMessage = all.CustomMessage
+<span id="L613" class="ln">   613  </span>	o.CustomName = all.CustomName
+<span id="L614" class="ln">   614  </span>	o.Filters = all.Filters
+<span id="L615" class="ln">   615  </span>	o.GroupSignalsBy = all.GroupSignalsBy
+<span id="L616" class="ln">   616  </span>	o.HasExtendedTitle = all.HasExtendedTitle
+<span id="L617" class="ln">   617  </span>	o.IsEnabled = all.IsEnabled
+<span id="L618" class="ln">   618  </span>	o.Message = all.Message
+<span id="L619" class="ln">   619  </span>	o.Name = all.Name
+<span id="L620" class="ln">   620  </span>	if all.Options != nil &amp;&amp; all.Options.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L621" class="ln">   621  </span>		hasInvalidField = true
+<span id="L622" class="ln">   622  </span>	}
+<span id="L623" class="ln">   623  </span>	o.Options = all.Options
+<span id="L624" class="ln">   624  </span>	o.Queries = all.Queries
+<span id="L625" class="ln">   625  </span>	o.ReferenceTables = all.ReferenceTables
+<span id="L626" class="ln">   626  </span>	o.Tags = all.Tags
+<span id="L627" class="ln">   627  </span>	o.ThirdPartyCases = all.ThirdPartyCases
+<span id="L628" class="ln">   628  </span>	o.Version = all.Version
+<span id="L629" class="ln">   629  </span>
+<span id="L630" class="ln">   630  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L631" class="ln">   631  </span>		o.AdditionalProperties = additionalProperties
+<span id="L632" class="ln">   632  </span>	}
+<span id="L633" class="ln">   633  </span>
+<span id="L634" class="ln">   634  </span>	if hasInvalidField {
+<span id="L635" class="ln">   635  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L636" class="ln">   636  </span>	}
+<span id="L637" class="ln">   637  </span>
+<span id="L638" class="ln">   638  </span>	return nil
+<span id="L639" class="ln">   639  </span>}
+<span id="L640" class="ln">   640  </span>
 </pre><p></p>
 
 <div id="footer">
