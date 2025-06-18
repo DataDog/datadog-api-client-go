@@ -14,12 +14,13 @@ import (
 
 func main() {
 	body := datadogV2.EventCreateRequestPayload{
-		Data: &datadogV2.EventCreateRequest{
-			Attributes: &datadogV2.EventPayload{
+		Data: datadogV2.EventCreateRequest{
+			Attributes: datadogV2.EventPayload{
+				AggregationKey: datadog.PtrString("aggregation_key_123"),
 				Attributes: datadogV2.EventPayloadAttributes{
 					ChangeEventCustomAttributes: &datadogV2.ChangeEventCustomAttributes{
 						Author: &datadogV2.ChangeEventCustomAttributesAuthor{
-							Name: "datadog@datadog.com",
+							Name: "example@datadog.com",
 							Type: datadogV2.CHANGEEVENTCUSTOMATTRIBUTESAUTHORTYPE_USER,
 						},
 						ChangeMetadata: map[string]interface{}{
@@ -47,14 +48,15 @@ func main() {
 							"rule":       "{'datacenter': 'devcycle.us1.prod'}",
 						},
 					}},
-				Category: datadogV2.EVENTCATEGORY_CHANGE,
-				Message:  datadog.PtrString("payment_processed feature flag has been enabled"),
+				Category:      datadogV2.EVENTCATEGORY_CHANGE,
+				IntegrationId: datadogV2.EVENTPAYLOADINTEGRATIONID_CUSTOM_EVENTS.Ptr(),
+				Message:       datadog.PtrString("payment_processed feature flag has been enabled"),
 				Tags: []string{
-					"env:test",
+					"env:api_client_test",
 				},
 				Title: "payment_processed feature flag updated",
 			},
-			Type: datadogV2.EVENTCREATEREQUESTTYPE_EVENT.Ptr(),
+			Type: datadogV2.EVENTCREATEREQUESTTYPE_EVENT,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
