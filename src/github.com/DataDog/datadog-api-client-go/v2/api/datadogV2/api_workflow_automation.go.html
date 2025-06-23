@@ -73,7 +73,7 @@
 <span id="L16" class="ln">    16  </span>type WorkflowAutomationApi datadog.Service
 <span id="L17" class="ln">    17  </span>
 <span id="L18" class="ln">    18  </span><span class="comment">// CancelWorkflowInstance Cancel a workflow instance.</span>
-<span id="L19" class="ln">    19  </span><span class="comment">// Cancels a specific execution of a given workflow. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
+<span id="L19" class="ln">    19  </span><span class="comment">// Cancels a specific execution of a given workflow. This API requires an application key scoped with the workflows_run permission.</span>
 <span id="L20" class="ln">    20  </span>func (a *WorkflowAutomationApi) CancelWorkflowInstance(ctx _context.Context, workflowId string, instanceId string) (WorklflowCancelInstanceResponse, *_nethttp.Response, error) {
 <span id="L21" class="ln">    21  </span>	var (
 <span id="L22" class="ln">    22  </span>		localVarHTTPMethod  = _nethttp.MethodPut
@@ -145,7 +145,7 @@
 <span id="L88" class="ln">    88  </span>}
 <span id="L89" class="ln">    89  </span>
 <span id="L90" class="ln">    90  </span><span class="comment">// CreateWorkflow Create a Workflow.</span>
-<span id="L91" class="ln">    91  </span><span class="comment">// Create a new workflow, returning the workflow ID. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
+<span id="L91" class="ln">    91  </span><span class="comment">// Create a new workflow, returning the workflow ID. This API requires an application key scoped with the `workflows_write` permission.</span>
 <span id="L92" class="ln">    92  </span>func (a *WorkflowAutomationApi) CreateWorkflow(ctx _context.Context, body CreateWorkflowRequest) (CreateWorkflowResponse, *_nethttp.Response, error) {
 <span id="L93" class="ln">    93  </span>	var (
 <span id="L94" class="ln">    94  </span>		localVarHTTPMethod  = _nethttp.MethodPost
@@ -218,7 +218,7 @@
 <span id="L161" class="ln">   161  </span>}
 <span id="L162" class="ln">   162  </span>
 <span id="L163" class="ln">   163  </span><span class="comment">// CreateWorkflowInstance Execute a workflow.</span>
-<span id="L164" class="ln">   164  </span><span class="comment">// Execute the given workflow. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
+<span id="L164" class="ln">   164  </span><span class="comment">// Execute the given workflow. This API requires an application key scoped with the workflows_run permission.</span>
 <span id="L165" class="ln">   165  </span>func (a *WorkflowAutomationApi) CreateWorkflowInstance(ctx _context.Context, workflowId string, body WorkflowInstanceCreateRequest) (WorkflowInstanceCreateResponse, *_nethttp.Response, error) {
 <span id="L166" class="ln">   166  </span>	var (
 <span id="L167" class="ln">   167  </span>		localVarHTTPMethod  = _nethttp.MethodPost
@@ -292,7 +292,7 @@
 <span id="L235" class="ln">   235  </span>}
 <span id="L236" class="ln">   236  </span>
 <span id="L237" class="ln">   237  </span><span class="comment">// DeleteWorkflow Delete an existing Workflow.</span>
-<span id="L238" class="ln">   238  </span><span class="comment">// Delete a workflow by ID. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
+<span id="L238" class="ln">   238  </span><span class="comment">// Delete a workflow by ID. This API requires an application key scoped with the `workflows_write` permission.</span>
 <span id="L239" class="ln">   239  </span>func (a *WorkflowAutomationApi) DeleteWorkflow(ctx _context.Context, workflowId string) (*_nethttp.Response, error) {
 <span id="L240" class="ln">   240  </span>	var (
 <span id="L241" class="ln">   241  </span>		localVarHTTPMethod = _nethttp.MethodDelete
@@ -353,7 +353,7 @@
 <span id="L296" class="ln">   296  </span>}
 <span id="L297" class="ln">   297  </span>
 <span id="L298" class="ln">   298  </span><span class="comment">// GetWorkflow Get an existing Workflow.</span>
-<span id="L299" class="ln">   299  </span><span class="comment">// Get a workflow by ID. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
+<span id="L299" class="ln">   299  </span><span class="comment">// Get a workflow by ID.  This API requires an application key scoped with the `workflows_read` permission.</span>
 <span id="L300" class="ln">   300  </span>func (a *WorkflowAutomationApi) GetWorkflow(ctx _context.Context, workflowId string) (GetWorkflowResponse, *_nethttp.Response, error) {
 <span id="L301" class="ln">   301  </span>	var (
 <span id="L302" class="ln">   302  </span>		localVarHTTPMethod  = _nethttp.MethodGet
@@ -424,7 +424,7 @@
 <span id="L367" class="ln">   367  </span>}
 <span id="L368" class="ln">   368  </span>
 <span id="L369" class="ln">   369  </span><span class="comment">// GetWorkflowInstance Get a workflow instance.</span>
-<span id="L370" class="ln">   370  </span><span class="comment">// Get a specific execution of a given workflow. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
+<span id="L370" class="ln">   370  </span><span class="comment">// Get a specific execution of a given workflow. This API requires an application key scoped with the workflows_read permission.</span>
 <span id="L371" class="ln">   371  </span>func (a *WorkflowAutomationApi) GetWorkflowInstance(ctx _context.Context, workflowId string, instanceId string) (WorklflowGetInstanceResponse, *_nethttp.Response, error) {
 <span id="L372" class="ln">   372  </span>	var (
 <span id="L373" class="ln">   373  </span>		localVarHTTPMethod  = _nethttp.MethodGet
@@ -520,7 +520,7 @@
 <span id="L463" class="ln">   463  </span>}
 <span id="L464" class="ln">   464  </span>
 <span id="L465" class="ln">   465  </span><span class="comment">// ListWorkflowInstances List workflow instances.</span>
-<span id="L466" class="ln">   466  </span><span class="comment">// List all instances of a given workflow. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
+<span id="L466" class="ln">   466  </span><span class="comment">// List all instances of a given workflow. This API requires an application key scoped with the workflows_read permission.</span>
 <span id="L467" class="ln">   467  </span>func (a *WorkflowAutomationApi) ListWorkflowInstances(ctx _context.Context, workflowId string, o ...ListWorkflowInstancesOptionalParameters) (WorkflowListInstancesResponse, *_nethttp.Response, error) {
 <span id="L468" class="ln">   468  </span>	var (
 <span id="L469" class="ln">   469  </span>		localVarHTTPMethod  = _nethttp.MethodGet
@@ -605,7 +605,7 @@
 <span id="L548" class="ln">   548  </span>}
 <span id="L549" class="ln">   549  </span>
 <span id="L550" class="ln">   550  </span><span class="comment">// UpdateWorkflow Update an existing Workflow.</span>
-<span id="L551" class="ln">   551  </span><span class="comment">// Update a workflow by ID. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
+<span id="L551" class="ln">   551  </span><span class="comment">// Update a workflow by ID. This API requires an application key scoped with the `workflows_write` permission.</span>
 <span id="L552" class="ln">   552  </span>func (a *WorkflowAutomationApi) UpdateWorkflow(ctx _context.Context, workflowId string, body UpdateWorkflowRequest) (UpdateWorkflowResponse, *_nethttp.Response, error) {
 <span id="L553" class="ln">   553  </span>	var (
 <span id="L554" class="ln">   554  </span>		localVarHTTPMethod  = _nethttp.MethodPatch
