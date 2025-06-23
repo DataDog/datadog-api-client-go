@@ -117,7 +117,7 @@
 <span id="L60" class="ln">    60  </span>	if err == nil {
 <span id="L61" class="ln">    61  </span>		if obj.SyntheticsBasicAuthWeb != nil &amp;&amp; obj.SyntheticsBasicAuthWeb.UnparsedObject == nil {
 <span id="L62" class="ln">    62  </span>			jsonSyntheticsBasicAuthWeb, _ := datadog.Marshal(obj.SyntheticsBasicAuthWeb)
-<span id="L63" class="ln">    63  </span>			if string(jsonSyntheticsBasicAuthWeb) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L63" class="ln">    63  </span>			if string(jsonSyntheticsBasicAuthWeb) == &#34;{}&#34; &amp;&amp; string(data) != &#34;{}&#34; { <span class="comment">// empty struct</span>
 <span id="L64" class="ln">    64  </span>				obj.SyntheticsBasicAuthWeb = nil
 <span id="L65" class="ln">    65  </span>			} else {
 <span id="L66" class="ln">    66  </span>				match++
