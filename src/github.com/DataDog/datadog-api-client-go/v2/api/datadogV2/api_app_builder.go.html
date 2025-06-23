@@ -74,7 +74,7 @@
 <span id="L17" class="ln">    17  </span>type AppBuilderApi datadog.Service
 <span id="L18" class="ln">    18  </span>
 <span id="L19" class="ln">    19  </span><span class="comment">// CreateApp Create App.</span>
-<span id="L20" class="ln">    20  </span><span class="comment">// Create a new app, returning the app ID.</span>
+<span id="L20" class="ln">    20  </span><span class="comment">// Create a new app, returning the app ID. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
 <span id="L21" class="ln">    21  </span>func (a *AppBuilderApi) CreateApp(ctx _context.Context, body CreateAppRequest) (CreateAppResponse, *_nethttp.Response, error) {
 <span id="L22" class="ln">    22  </span>	var (
 <span id="L23" class="ln">    23  </span>		localVarHTTPMethod  = _nethttp.MethodPost
@@ -156,7 +156,7 @@
 <span id="L99" class="ln">    99  </span>}
 <span id="L100" class="ln">   100  </span>
 <span id="L101" class="ln">   101  </span><span class="comment">// DeleteApp Delete App.</span>
-<span id="L102" class="ln">   102  </span><span class="comment">// Delete a single app.</span>
+<span id="L102" class="ln">   102  </span><span class="comment">// Delete a single app. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
 <span id="L103" class="ln">   103  </span>func (a *AppBuilderApi) DeleteApp(ctx _context.Context, appId uuid.UUID) (DeleteAppResponse, *_nethttp.Response, error) {
 <span id="L104" class="ln">   104  </span>	var (
 <span id="L105" class="ln">   105  </span>		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -236,7 +236,7 @@
 <span id="L179" class="ln">   179  </span>}
 <span id="L180" class="ln">   180  </span>
 <span id="L181" class="ln">   181  </span><span class="comment">// DeleteApps Delete Multiple Apps.</span>
-<span id="L182" class="ln">   182  </span><span class="comment">// Delete multiple apps in a single request from a list of app IDs.</span>
+<span id="L182" class="ln">   182  </span><span class="comment">// Delete multiple apps in a single request from a list of app IDs. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
 <span id="L183" class="ln">   183  </span>func (a *AppBuilderApi) DeleteApps(ctx _context.Context, body DeleteAppsRequest) (DeleteAppsResponse, *_nethttp.Response, error) {
 <span id="L184" class="ln">   184  </span>	var (
 <span id="L185" class="ln">   185  </span>		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -335,7 +335,7 @@
 <span id="L278" class="ln">   278  </span>}
 <span id="L279" class="ln">   279  </span>
 <span id="L280" class="ln">   280  </span><span class="comment">// GetApp Get App.</span>
-<span id="L281" class="ln">   281  </span><span class="comment">// Get the full definition of an app.</span>
+<span id="L281" class="ln">   281  </span><span class="comment">// Get the full definition of an app. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
 <span id="L282" class="ln">   282  </span>func (a *AppBuilderApi) GetApp(ctx _context.Context, appId uuid.UUID, o ...GetAppOptionalParameters) (GetAppResponse, *_nethttp.Response, error) {
 <span id="L283" class="ln">   283  </span>	var (
 <span id="L284" class="ln">   284  </span>		localVarHTTPMethod  = _nethttp.MethodGet
@@ -513,7 +513,7 @@
 <span id="L456" class="ln">   456  </span>}
 <span id="L457" class="ln">   457  </span>
 <span id="L458" class="ln">   458  </span><span class="comment">// ListApps List Apps.</span>
-<span id="L459" class="ln">   459  </span><span class="comment">// List all apps, with optional filters and sorting. This endpoint is paginated. Only basic app information such as the app ID, name, and description is returned by this endpoint.</span>
+<span id="L459" class="ln">   459  </span><span class="comment">// List all apps, with optional filters and sorting. This endpoint is paginated. Only basic app information such as the app ID, name, and description is returned by this endpoint. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
 <span id="L460" class="ln">   460  </span>func (a *AppBuilderApi) ListApps(ctx _context.Context, o ...ListAppsOptionalParameters) (ListAppsResponse, *_nethttp.Response, error) {
 <span id="L461" class="ln">   461  </span>	var (
 <span id="L462" class="ln">   462  </span>		localVarHTTPMethod  = _nethttp.MethodGet
@@ -633,7 +633,7 @@
 <span id="L576" class="ln">   576  </span>}
 <span id="L577" class="ln">   577  </span>
 <span id="L578" class="ln">   578  </span><span class="comment">// PublishApp Publish App.</span>
-<span id="L579" class="ln">   579  </span><span class="comment">// Publish an app for use by other users. To ensure the app is accessible to the correct users, you also need to set a [Restriction Policy](https://docs.datadoghq.com/api/latest/restriction-policies/) on the app if a policy does not yet exist.</span>
+<span id="L579" class="ln">   579  </span><span class="comment">// Publish an app for use by other users. To ensure the app is accessible to the correct users, you also need to set a [Restriction Policy](https://docs.datadoghq.com/api/latest/restriction-policies/) on the app if a policy does not yet exist. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
 <span id="L580" class="ln">   580  </span>func (a *AppBuilderApi) PublishApp(ctx _context.Context, appId uuid.UUID) (PublishAppResponse, *_nethttp.Response, error) {
 <span id="L581" class="ln">   581  </span>	var (
 <span id="L582" class="ln">   582  </span>		localVarHTTPMethod  = _nethttp.MethodPost
@@ -713,7 +713,7 @@
 <span id="L656" class="ln">   656  </span>}
 <span id="L657" class="ln">   657  </span>
 <span id="L658" class="ln">   658  </span><span class="comment">// UnpublishApp Unpublish App.</span>
-<span id="L659" class="ln">   659  </span><span class="comment">// Unpublish an app, removing the live version of the app. Unpublishing creates a new instance of a `deployment` object on the app, with a nil `app_version_id` (`00000000-0000-0000-0000-000000000000`). The app can still be updated and published again in the future.</span>
+<span id="L659" class="ln">   659  </span><span class="comment">// Unpublish an app, removing the live version of the app. Unpublishing creates a new instance of a `deployment` object on the app, with a nil `app_version_id` (`00000000-0000-0000-0000-000000000000`). The app can still be updated and published again in the future. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
 <span id="L660" class="ln">   660  </span>func (a *AppBuilderApi) UnpublishApp(ctx _context.Context, appId uuid.UUID) (UnpublishAppResponse, *_nethttp.Response, error) {
 <span id="L661" class="ln">   661  </span>	var (
 <span id="L662" class="ln">   662  </span>		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -793,7 +793,7 @@
 <span id="L736" class="ln">   736  </span>}
 <span id="L737" class="ln">   737  </span>
 <span id="L738" class="ln">   738  </span><span class="comment">// UpdateApp Update App.</span>
-<span id="L739" class="ln">   739  </span><span class="comment">// Update an existing app. This creates a new version of the app.</span>
+<span id="L739" class="ln">   739  </span><span class="comment">// Update an existing app. This creates a new version of the app. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).</span>
 <span id="L740" class="ln">   740  </span>func (a *AppBuilderApi) UpdateApp(ctx _context.Context, appId uuid.UUID, body UpdateAppRequest) (UpdateAppResponse, *_nethttp.Response, error) {
 <span id="L741" class="ln">   741  </span>	var (
 <span id="L742" class="ln">   742  </span>		localVarHTTPMethod  = _nethttp.MethodPatch
