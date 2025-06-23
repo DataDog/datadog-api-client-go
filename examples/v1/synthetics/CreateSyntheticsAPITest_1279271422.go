@@ -234,8 +234,8 @@ func main() {
 							BasicAuth: &datadogV1.SyntheticsBasicAuth{
 								SyntheticsBasicAuthWeb: &datadogV1.SyntheticsBasicAuthWeb{
 									Type:     datadogV1.SYNTHETICSBASICAUTHWEBTYPE_WEB.Ptr(),
-									Username: "user",
-									Password: "password",
+									Username: datadog.PtrString("user"),
+									Password: datadog.PtrString("password"),
 								}},
 						},
 					}},
