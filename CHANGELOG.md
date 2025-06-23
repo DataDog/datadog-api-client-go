@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 2.41.0/2025-06-23
+
+### Fixed
+* Fix basic auth requirements [#3163](https://github.com/DataDog/datadog-api-client-go/pull/3163)
+
+### Added
+* Microsoft Sentinel Public API support [#3161](https://github.com/DataDog/datadog-api-client-go/pull/3161)
+* Add the AP2 datacenter. [#3159](https://github.com/DataDog/datadog-api-client-go/pull/3159)
+
 ## 2.40.0/2025-06-23
 
 ### Fixed
