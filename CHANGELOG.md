@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 2.40.0/2025-06-23
+
+### Fixed
+* Fix basic auth requirements [#3163](https://github.com/DataDog/datadog-api-client-go/pull/3163)
+* Add support for the api_security detection rule type [#3158](https://github.com/DataDog/datadog-api-client-go/pull/3158)
+
+### Added
+* Microsoft Sentinel Public API support [#3161](https://github.com/DataDog/datadog-api-client-go/pull/3161)
+* Add custom fields to Rule update/validate API public documentation. [#3150](https://github.com/DataDog/datadog-api-client-go/pull/3150)
+* Add hash field to actions in CWS agent rules [#3147](https://github.com/DataDog/datadog-api-client-go/pull/3147)
+* SDCD-1142: adding `custom_tags` optional attribute to DORA API spec [#3134](https://github.com/DataDog/datadog-api-client-go/pull/3134)
+* Add sampling fields to SDS spec [#3129](https://github.com/DataDog/datadog-api-client-go/pull/3129)
+* Add API spec for team hierarchy APIs [#3105](https://github.com/DataDog/datadog-api-client-go/pull/3105)
+
+### Changed
+* Update events intake specs for v2 Events post endpoint [#3144](https://github.com/DataDog/datadog-api-client-go/pull/3144)
+
 ## 2.39.0/2025-06-16
 
 ### Fixed
