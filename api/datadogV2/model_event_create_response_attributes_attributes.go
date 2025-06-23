@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// EventCreateResponseAttributesAttributes JSON object for category-specific attributes.
+// EventCreateResponseAttributesAttributes JSON object of attributes from your events.
 type EventCreateResponseAttributesAttributes struct {
 	// JSON object of event system attributes.
 	Evt *EventCreateResponseAttributesAttributesEvt `json:"evt,omitempty"`

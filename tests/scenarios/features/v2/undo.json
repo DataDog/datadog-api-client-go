@@ -1,28 +1,4 @@
 {
-  "ListAppKeyRegistrations": {
-    "tag": "Action Connection",
-    "undo": {
-      "type": "safe"
-    }
-  },
-  "UnregisterAppKey": {
-    "tag": "Action Connection",
-    "undo": {
-      "type": "idempotent"
-    }
-  },
-  "GetAppKeyRegistration": {
-    "tag": "Action Connection",
-    "undo": {
-      "type": "safe"
-    }
-  },
-  "RegisterAppKey": {
-    "tag": "Action Connection",
-    "undo": {
-      "type": "idempotent"
-    }
-  },
   "CreateActionConnection": {
     "tag": "Action Connection",
     "undo": {
@@ -958,7 +934,7 @@
   "CreateEvent": {
     "tag": "Events",
     "undo": {
-      "type": "safe"
+      "type": "unsafe"
     }
   },
   "SearchEvents": {

@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// EventCreateResponse Event object.
+// EventCreateResponse Object containing an event response.
 type EventCreateResponse struct {
-	// Event attributes.
+	// JSON object containing all events attributes and their associated values.
 	Attributes *EventCreateResponseAttributes `json:"attributes,omitempty"`
-	// Entity type.
+	// Event type
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

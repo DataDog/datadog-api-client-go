@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ChangeEventCustomAttributesImpactedResourcesItemsType The type of the impacted resource.
+// ChangeEventCustomAttributesImpactedResourcesItemsType Resource's type.
 type ChangeEventCustomAttributesImpactedResourcesItemsType string
 
 // List of ChangeEventCustomAttributesImpactedResourcesItemsType.
