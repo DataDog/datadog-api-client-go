@@ -253,6 +253,7 @@
 //   - [MetricsApi.DeleteBulkTagsMetricsConfiguration]
 //   - [MetricsApi.DeleteTagConfiguration]
 //   - [MetricsApi.EstimateMetricsOutputSeries]
+//   - [MetricsApi.GetTagKeyCardinalityDetails]
 //   - [MetricsApi.ListActiveMetricConfigurations]
 //   - [MetricsApi.ListMetricAssets]
 //   - [MetricsApi.ListTagConfigurationByName]
