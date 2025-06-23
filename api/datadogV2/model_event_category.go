@@ -10,18 +10,16 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// EventCategory Event category identifying the type of event.
+// EventCategory Event category to identify the type of event. Only the value `change` is supported. Support for other categories are coming. please reach out to datadog support if you're interested.
 type EventCategory string
 
 // List of EventCategory.
 const (
 	EVENTCATEGORY_CHANGE EventCategory = "change"
-	EVENTCATEGORY_ALERT  EventCategory = "alert"
 )
 
 var allowedEventCategoryEnumValues = []EventCategory{
 	EVENTCATEGORY_CHANGE,
-	EVENTCATEGORY_ALERT,
 }
 
 // GetAllowedValues reeturns the list of possible values.
