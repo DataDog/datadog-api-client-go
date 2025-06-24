@@ -16,7 +16,7 @@ type UsageSummaryDate struct {
 	AgentHostTop99p *int64 `json:"agent_host_top99p,omitempty"`
 	// Shows the 99th percentile of all Azure app services using APM over all hours in the current date all organizations.
 	ApmAzureAppServiceHostTop99p *int64 `json:"apm_azure_app_service_host_top99p,omitempty"`
-	// Shows the 99th percentile of all APM DevSecOps hosts over all hours in the current date for the given org.
+	// Shows the 99th percentile of all APM DevSecOps hosts over all hours in the current date for all organizations.
 	ApmDevsecopsHostTop99p *int64 `json:"apm_devsecops_host_top99p,omitempty"`
 	// Shows the average of all APM ECS Fargate tasks over all hours in the current date for all organizations.
 	ApmFargateCountAvg *int64 `json:"apm_fargate_count_avg,omitempty"`
@@ -51,31 +51,31 @@ type UsageSummaryDate struct {
 	// Shows the sum of all browser RUM units over all hours in the current date for all organizations (To be deprecated on October 1st, 2024).
 	// Deprecated
 	BrowserRumUnitsSum *int64 `json:"browser_rum_units_sum,omitempty"`
-	// Shows the sum of all CI pipeline indexed spans over all hours in the current month for all organizations.
+	// Shows the sum of all CI pipeline indexed spans over all hours in the current date for all organizations.
 	CiPipelineIndexedSpansSum *int64 `json:"ci_pipeline_indexed_spans_sum,omitempty"`
-	// Shows the sum of all CI test indexed spans over all hours in the current month for all organizations.
+	// Shows the sum of all CI test indexed spans over all hours in the current date for all organizations.
 	CiTestIndexedSpansSum *int64 `json:"ci_test_indexed_spans_sum,omitempty"`
-	// Shows the high-water mark of all CI visibility intelligent test runner committers over all hours in the current month for all organizations.
+	// Shows the high-water mark of all CI visibility intelligent test runner committers over all hours in the current date for all organizations.
 	CiVisibilityItrCommittersHwm *int64 `json:"ci_visibility_itr_committers_hwm,omitempty"`
-	// Shows the high-water mark of all CI visibility pipeline committers over all hours in the current month for all organizations.
+	// Shows the high-water mark of all CI visibility pipeline committers over all hours in the current date for all organizations.
 	CiVisibilityPipelineCommittersHwm *int64 `json:"ci_visibility_pipeline_committers_hwm,omitempty"`
-	// Shows the high-water mark of all CI visibility test committers over all hours in the current month for all organizations.
+	// Shows the high-water mark of all CI visibility test committers over all hours in the current date for all organizations.
 	CiVisibilityTestCommittersHwm *int64 `json:"ci_visibility_test_committers_hwm,omitempty"`
-	// Host count average of Cloud Cost Management for AWS for the given date and given organization.
+	// Host count average for Cloud Cost Management for AWS for the given date for all organizations.
 	CloudCostManagementAwsHostCountAvg *int64 `json:"cloud_cost_management_aws_host_count_avg,omitempty"`
-	// Host count average of Cloud Cost Management for Azure for the given date and given organization.
+	// Host count average for Cloud Cost Management for Azure for the given date for all organizations.
 	CloudCostManagementAzureHostCountAvg *int64 `json:"cloud_cost_management_azure_host_count_avg,omitempty"`
-	// Host count average of Cloud Cost Management for GCP for the given date and given organization.
+	// Host count average for Cloud Cost Management for GCP for the given date for all organizations.
 	CloudCostManagementGcpHostCountAvg *int64 `json:"cloud_cost_management_gcp_host_count_avg,omitempty"`
-	// Host count average of Cloud Cost Management for all cloud providers for the given date and given organization.
+	// Host count average for Cloud Cost Management for all cloud providers for the given date for all organizations.
 	CloudCostManagementHostCountAvg *int64 `json:"cloud_cost_management_host_count_avg,omitempty"`
-	// Shows the sum of all Cloud Security Information and Event Management events over all hours in the current date for the given org.
+	// Shows the sum of all Cloud Security Information and Event Management events over all hours in the current date for all organizations.
 	CloudSiemEventsSum *int64 `json:"cloud_siem_events_sum,omitempty"`
-	// Shows the high-water mark of all Static Analysis committers over all hours in the current date for the given org.
+	// Shows the high-water mark of all Static Analysis committers over all hours in the current date for all organizations.
 	CodeAnalysisSaCommittersHwm *int64 `json:"code_analysis_sa_committers_hwm,omitempty"`
-	// Shows the high-water mark of all static Software Composition Analysis committers over all hours in the current date for the given org.
+	// Shows the high-water mark of all static Software Composition Analysis committers over all hours in the current date for all organizations.
 	CodeAnalysisScaCommittersHwm *int64 `json:"code_analysis_sca_committers_hwm,omitempty"`
-	// Shows the 99th percentile of all Code Security hosts over all hours in the current date for the given org.
+	// Shows the 99th percentile of all Code Security hosts over all hours in the current date for all organizations.
 	CodeSecurityHostTop99p *int64 `json:"code_security_host_top99p,omitempty"`
 	// Shows the average of all distinct containers over all hours in the current date for all organizations.
 	ContainerAvg *int64 `json:"container_avg,omitempty"`
@@ -83,25 +83,25 @@ type UsageSummaryDate struct {
 	ContainerExclAgentAvg *int64 `json:"container_excl_agent_avg,omitempty"`
 	// Shows the high-water mark of all distinct containers over all hours in the current date for all organizations.
 	ContainerHwm *int64 `json:"container_hwm,omitempty"`
-	// Shows the sum of all Cloud Security Management Enterprise compliance containers over all hours in the current date for the given org.
+	// Shows the sum of all Cloud Security Management Enterprise compliance containers over all hours in the current date for all organizations.
 	CsmContainerEnterpriseComplianceCountSum *int64 `json:"csm_container_enterprise_compliance_count_sum,omitempty"`
-	// Shows the sum of all Cloud Security Management Enterprise Cloud Workload Security containers over all hours in the current date for the given org.
+	// Shows the sum of all Cloud Security Management Enterprise Cloud Workload Security containers over all hours in the current date for all organizations.
 	CsmContainerEnterpriseCwsCountSum *int64 `json:"csm_container_enterprise_cws_count_sum,omitempty"`
-	// Shows the sum of all Cloud Security Management Enterprise containers over all hours in the current date for the given org.
+	// Shows the sum of all Cloud Security Management Enterprise containers over all hours in the current date for all organizations.
 	CsmContainerEnterpriseTotalCountSum *int64 `json:"csm_container_enterprise_total_count_sum,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Enterprise Azure app services hosts over all hours in the current date for the given org.
+	// Shows the 99th percentile of all Cloud Security Management Enterprise Azure app services hosts over all hours in the current date for all organizations.
 	CsmHostEnterpriseAasHostCountTop99p *int64 `json:"csm_host_enterprise_aas_host_count_top99p,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Enterprise AWS hosts over all hours in the current date for the given org.
+	// Shows the 99th percentile of all Cloud Security Management Enterprise AWS hosts over all hours on the current date for all organizations.
 	CsmHostEnterpriseAwsHostCountTop99p *int64 `json:"csm_host_enterprise_aws_host_count_top99p,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Enterprise Azure hosts over all hours in the current date for the given org.
+	// Shows the 99th percentile of all Cloud Security Management Enterprise Azure hosts over all hours on the current date for all organizations.
 	CsmHostEnterpriseAzureHostCountTop99p *int64 `json:"csm_host_enterprise_azure_host_count_top99p,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Enterprise compliance hosts over all hours in the current date for the given org.
+	// Shows the 99th percentile of all Cloud Security Management Enterprise compliance hosts over all hours on the current date for all organizations.
 	CsmHostEnterpriseComplianceHostCountTop99p *int64 `json:"csm_host_enterprise_compliance_host_count_top99p,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Enterprise Cloud Workload Security hosts over all hours in the current date for the given org.
+	// Shows the 99th percentile of all Cloud Security Management Enterprise Cloud Workload Security hosts over all hours on the current date for all organizations.
 	CsmHostEnterpriseCwsHostCountTop99p *int64 `json:"csm_host_enterprise_cws_host_count_top99p,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Enterprise GCP hosts over all hours in the current date for the given org.
+	// Shows the 99th percentile of all Cloud Security Management Enterprise GCP hosts over all hours in the current date for all organizations.
 	CsmHostEnterpriseGcpHostCountTop99p *int64 `json:"csm_host_enterprise_gcp_host_count_top99p,omitempty"`
-	// Shows the 99th percentile of all Cloud Security Management Enterprise hosts over all hours in the current date for the given org.
+	// Shows the 99th percentile of all Cloud Security Management Enterprise hosts over all hours in the current date for all organizations.
 	CsmHostEnterpriseTotalHostCountTop99p *int64 `json:"csm_host_enterprise_total_host_count_top99p,omitempty"`
 	// Shows the 99th percentile of all Cloud Security Management Pro Azure app services hosts over all hours in the current date for all organizations.
 	CspmAasHostTop99p *int64 `json:"cspm_aas_host_top99p,omitempty"`
@@ -125,7 +125,7 @@ type UsageSummaryDate struct {
 	CwsFargateTaskAvg *int64 `json:"cws_fargate_task_avg,omitempty"`
 	// Shows the 99th percentile of all Cloud Workload Security hosts over all hours in the current date for all organizations.
 	CwsHostTop99p *int64 `json:"cws_host_top99p,omitempty"`
-	// Shows the sum of all Data Jobs Monitoring hosts over all hours in the current date for the given org.
+	// Shows the sum of all Data Jobs Monitoring hosts over all hours in the current date for all organizations.
 	DataJobsMonitoringHostHrSum *int64 `json:"data_jobs_monitoring_host_hr_sum,omitempty"`
 	// The date for the usage.
 	Date *time.Time `json:"date,omitempty"`
@@ -133,39 +133,39 @@ type UsageSummaryDate struct {
 	DbmHostTop99p *int64 `json:"dbm_host_top99p,omitempty"`
 	// Shows the average of all normalized Database Monitoring queries over all hours in the current date for all organizations.
 	DbmQueriesCountAvg *int64 `json:"dbm_queries_count_avg,omitempty"`
-	// Shows the sum of all ephemeral infrastructure hosts with the Datadog Agent over all hours in the current date for the given org.
+	// Shows the sum of all ephemeral infrastructure hosts with the Datadog Agent over all hours in the current date for all organizations.
 	EphInfraHostAgentSum *int64 `json:"eph_infra_host_agent_sum,omitempty"`
-	// Shows the sum of all ephemeral infrastructure hosts on Alibaba over all hours in the current date for the given org.
+	// Shows the sum of all ephemeral infrastructure hosts on Alibaba over all hours in the current date for all organizations.
 	EphInfraHostAlibabaSum *int64 `json:"eph_infra_host_alibaba_sum,omitempty"`
-	// Shows the sum of all ephemeral infrastructure hosts on AWS over all hours in the current date for the given org.
+	// Shows the sum of all ephemeral infrastructure hosts on AWS over all hours in the current date for all organizations.
 	EphInfraHostAwsSum *int64 `json:"eph_infra_host_aws_sum,omitempty"`
-	// Shows the sum of all ephemeral infrastructure hosts on Azure over all hours in the current date for the given org.
+	// Shows the sum of all ephemeral infrastructure hosts on Azure over all hours in the current date for all organizations.
 	EphInfraHostAzureSum *int64 `json:"eph_infra_host_azure_sum,omitempty"`
-	// Shows the sum of all ephemeral infrastructure hosts for Enterprise over all hours in the current date for the given org.
+	// Shows the sum of all ephemeral infrastructure hosts for Enterprise over all hours in the current date for all organizations.
 	EphInfraHostEntSum *int64 `json:"eph_infra_host_ent_sum,omitempty"`
-	// Shows the sum of all ephemeral infrastructure hosts on GCP over all hours in the current date for the given org.
+	// Shows the sum of all ephemeral infrastructure hosts on GCP over all hours in the current date for all organizations.
 	EphInfraHostGcpSum *int64 `json:"eph_infra_host_gcp_sum,omitempty"`
-	// Shows the sum of all ephemeral infrastructure hosts on Heroku over all hours in the current date for the given org.
+	// Shows the sum of all ephemeral infrastructure hosts on Heroku over all hours in the current date for all organizations.
 	EphInfraHostHerokuSum *int64 `json:"eph_infra_host_heroku_sum,omitempty"`
-	// Shows the sum of all ephemeral infrastructure hosts with only Azure App Services over all hours in the current date for the given org.
+	// Shows the sum of all ephemeral infrastructure hosts with only Azure App Services over all hours in the current date for all organizations.
 	EphInfraHostOnlyAasSum *int64 `json:"eph_infra_host_only_aas_sum,omitempty"`
-	// Shows the sum of all ephemeral infrastructure hosts with only vSphere over all hours in the current date for the given org.
+	// Shows the sum of all ephemeral infrastructure hosts with only vSphere over all hours in the current date for all organizations.
 	EphInfraHostOnlyVsphereSum *int64 `json:"eph_infra_host_only_vsphere_sum,omitempty"`
-	// Shows the sum of all ephemeral APM hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for the given org.
+	// Shows the sum of all ephemeral APM hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for all organizations.
 	EphInfraHostOpentelemetryApmSum *int64 `json:"eph_infra_host_opentelemetry_apm_sum,omitempty"`
-	// Shows the sum of all ephemeral hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for the given org.
+	// Shows the sum of all ephemeral hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for all organizations.
 	EphInfraHostOpentelemetrySum *int64 `json:"eph_infra_host_opentelemetry_sum,omitempty"`
-	// Shows the sum of all ephemeral infrastructure hosts for Pro over all hours in the current date for the given org.
+	// Shows the sum of all ephemeral infrastructure hosts for Pro over all hours in the current date for all organizations.
 	EphInfraHostProSum *int64 `json:"eph_infra_host_pro_sum,omitempty"`
-	// Shows the sum of all ephemeral infrastructure hosts for Pro Plus over all hours in the current date for the given org.
+	// Shows the sum of all ephemeral infrastructure hosts for Pro Plus over all hours in the current date for all organizations.
 	EphInfraHostProplusSum *int64 `json:"eph_infra_host_proplus_sum,omitempty"`
-	// Shows the sum of all Error Tracking APM error events over all hours in the current date for the given org.
+	// Shows the sum of all Error Tracking APM error events over all hours in the current date for all organizations.
 	ErrorTrackingApmErrorEventsSum *int64 `json:"error_tracking_apm_error_events_sum,omitempty"`
-	// Shows the sum of all Error Tracking error events over all hours in the current date for the given org.
+	// Shows the sum of all Error Tracking error events over all hours in the current date for all organizations.
 	ErrorTrackingErrorEventsSum *int64 `json:"error_tracking_error_events_sum,omitempty"`
-	// Shows the sum of all Error Tracking events over all hours in the current date for the given org.
+	// Shows the sum of all Error Tracking events over all hours in the current date for all organizations.
 	ErrorTrackingEventsSum *int64 `json:"error_tracking_events_sum,omitempty"`
-	// Shows the sum of all Error Tracking RUM error events over all hours in the current date for the given org.
+	// Shows the sum of all Error Tracking RUM error events over all hours in the current date for all organizations.
 	ErrorTrackingRumErrorEventsSum *int64 `json:"error_tracking_rum_error_events_sum,omitempty"`
 	// The average number of Profiling Fargate tasks over all hours in the current date for all organizations.
 	FargateContainerProfilerProfilingFargateAvg *int64 `json:"fargate_container_profiler_profiling_fargate_avg,omitempty"`
@@ -175,21 +175,21 @@ type UsageSummaryDate struct {
 	FargateTasksCountAvg *int64 `json:"fargate_tasks_count_avg,omitempty"`
 	// Shows the average of all Fargate tasks over all hours in the current date for all organizations.
 	FargateTasksCountHwm *int64 `json:"fargate_tasks_count_hwm,omitempty"`
-	// Shows the average number of Flex Logs Compute Large Instances over all hours in the current date for the given org.
+	// Shows the average number of Flex Logs Compute Large Instances over all hours in the current date for all organizations.
 	FlexLogsComputeLargeAvg *int64 `json:"flex_logs_compute_large_avg,omitempty"`
-	// Shows the average number of Flex Logs Compute Medium Instances over all hours in the current date for the given org.
+	// Shows the average number of Flex Logs Compute Medium Instances over all hours in the current date for all organizations.
 	FlexLogsComputeMediumAvg *int64 `json:"flex_logs_compute_medium_avg,omitempty"`
-	// Shows the average number of Flex Logs Compute Small Instances over all hours in the current date for the given org.
+	// Shows the average number of Flex Logs Compute Small Instances over all hours in the current date for all organizations.
 	FlexLogsComputeSmallAvg *int64 `json:"flex_logs_compute_small_avg,omitempty"`
-	// Shows the average number of Flex Logs Compute Extra Small Instances over all hours in the current date for the given org.
+	// Shows the average number of Flex Logs Compute Extra Small Instances over all hours in the current date for all organizations.
 	FlexLogsComputeXsmallAvg *int64 `json:"flex_logs_compute_xsmall_avg,omitempty"`
-	// Shows the average number of Flex Logs Starter Instances over all hours in the current date for the given org.
+	// Shows the average number of Flex Logs Starter Instances over all hours in the current date for all organizations.
 	FlexLogsStarterAvg *int64 `json:"flex_logs_starter_avg,omitempty"`
-	// Shows the average number of Flex Logs Starter Storage Index Instances over all hours in the current date for the given org.
+	// Shows the average number of Flex Logs Starter Storage Index Instances over all hours in the current date for all organizations.
 	FlexLogsStarterStorageIndexAvg *int64 `json:"flex_logs_starter_storage_index_avg,omitempty"`
-	// Shows the average number of Flex Logs Starter Storage Retention Adjustment Instances over all hours in the current date for the given org.
+	// Shows the average number of Flex Logs Starter Storage Retention Adjustment Instances over all hours in the current date for all organizations.
 	FlexLogsStarterStorageRetentionAdjustmentAvg *int64 `json:"flex_logs_starter_storage_retention_adjustment_avg,omitempty"`
-	// Shows the average of all Flex Stored Logs over all hours in the current date for the given org.
+	// Shows the average of all Flex Stored Logs over all hours in the current date for all organizations.
 	FlexStoredLogsAvg *int64 `json:"flex_stored_logs_avg,omitempty"`
 	// Shows the sum of all log bytes forwarded over all hours in the current date for all organizations.
 	ForwardingEventsBytesSum *int64 `json:"forwarding_events_bytes_sum,omitempty"`
@@ -233,18 +233,18 @@ type UsageSummaryDate struct {
 	// Shows the sum of all mobile RUM units over all hours in the current date for all organizations (To be deprecated on October 1st, 2024).
 	// Deprecated
 	MobileRumUnitsSum *int64 `json:"mobile_rum_units_sum,omitempty"`
-	// Shows the sum of all Network Device Monitoring NetFlow events over all hours in the current date for the given org.
+	// Shows the sum of all Network Device Monitoring NetFlow events over all hours in the current date for all organizations.
 	NdmNetflowEventsSum *int64 `json:"ndm_netflow_events_sum,omitempty"`
 	// Shows the sum of all Network flows indexed over all hours in the current date for all organizations (To be deprecated on October 1st, 2024).
 	// Deprecated
 	NetflowIndexedEventsCountSum *int64 `json:"netflow_indexed_events_count_sum,omitempty"`
 	// Shows the 99th percentile of all distinct Cloud Network Monitoring hosts (formerly known as Network hosts) over all hours in the current date for all organizations.
 	NpmHostTop99p *int64 `json:"npm_host_top99p,omitempty"`
-	// Sum of all observability pipelines bytes processed over all hours in the current date for the given org.
+	// Sum of all observability pipelines bytes processed over all hours in the current date for all organizations.
 	ObservabilityPipelinesBytesProcessedSum *int64 `json:"observability_pipelines_bytes_processed_sum,omitempty"`
-	// Shows the sum of all Oracle Cloud Infrastructure hosts over all hours in the current date for the given org.
+	// Shows the sum of all Oracle Cloud Infrastructure hosts over all hours in the current date for all organizations.
 	OciHostSum *int64 `json:"oci_host_sum,omitempty"`
-	// Shows the 99th percentile of all Oracle Cloud Infrastructure hosts over all hours in the current date for the given org.
+	// Shows the 99th percentile of all Oracle Cloud Infrastructure hosts over all hours in the current date for all organizations.
 	OciHostTop99p *int64 `json:"oci_host_top99p,omitempty"`
 	// Sum of all online archived events over all hours in the current date for all organizations.
 	OnlineArchiveEventsCountSum *int64 `json:"online_archive_events_count_sum,omitempty"`
@@ -254,11 +254,13 @@ type UsageSummaryDate struct {
 	OpentelemetryHostTop99p *int64 `json:"opentelemetry_host_top99p,omitempty"`
 	// Organizations associated with a user.
 	Orgs []UsageSummaryDateOrg `json:"orgs,omitempty"`
+	// Sum of all product analytics sessions over all hours in the current date for all organizations.
+	ProductAnalyticsSum *int64 `json:"product_analytics_sum,omitempty"`
 	// Shows the 99th percentile of all profiled Azure app services over all hours in the current date for all organizations.
 	ProfilingAasCountTop99p *int64 `json:"profiling_aas_count_top99p,omitempty"`
 	// Shows the 99th percentile of all profiled hosts over all hours within the current date for all organizations.
 	ProfilingHostTop99p *int64 `json:"profiling_host_top99p,omitempty"`
-	// Shows the sum of all mobile sessions and all browser lite and legacy sessions over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
+	// Shows the sum of all mobile sessions and all browser lite and legacy sessions over all hours in the current date for all organizations (To be deprecated on October 1st, 2024).
 	RumBrowserAndMobileSessionCount *int64 `json:"rum_browser_and_mobile_session_count,omitempty"`
 	// Shows the sum of all browser RUM legacy sessions over all hours in the current date for all organizations (To be introduced on October 1st, 2024).
 	RumBrowserLegacySessionCountSum *int64 `json:"rum_browser_legacy_session_count_sum,omitempty"`
@@ -310,27 +312,27 @@ type UsageSummaryDate struct {
 	// Shows the sum of all browser and mobile RUM units over all hours in the current date for all organizations (To be deprecated on October 1st, 2024).
 	// Deprecated
 	RumUnitsSum *int64 `json:"rum_units_sum,omitempty"`
-	// Shows the average of all Software Composition Analysis Fargate tasks over all hours in the current date for the given org.
+	// Shows the average of all Software Composition Analysis Fargate tasks over all hours in the current date for all organizations.
 	ScaFargateCountAvg *int64 `json:"sca_fargate_count_avg,omitempty"`
-	// Shows the sum of the high-water marks of all Software Composition Analysis Fargate tasks over all hours in the current date for the given org.
+	// Shows the sum of the high-water marks of all Software Composition Analysis Fargate tasks over all hours in the current date for all organizations.
 	ScaFargateCountHwm *int64 `json:"sca_fargate_count_hwm,omitempty"`
 	// Sum of all APM bytes scanned with sensitive data scanner over all hours in the current date for all organizations.
 	SdsApmScannedBytesSum *int64 `json:"sds_apm_scanned_bytes_sum,omitempty"`
 	// Sum of all event stream events bytes scanned with sensitive data scanner over all hours in the current date for all organizations.
 	SdsEventsScannedBytesSum *int64 `json:"sds_events_scanned_bytes_sum,omitempty"`
-	// Shows the sum of all bytes scanned of logs usage by the Sensitive Data Scanner over all hours in the current month for all organizations.
+	// Shows the sum of all bytes scanned by the Sensitive Data Scanner for logs usage across all organizations over all hours on the current date.
 	SdsLogsScannedBytesSum *int64 `json:"sds_logs_scanned_bytes_sum,omitempty"`
 	// Sum of all RUM bytes scanned with sensitive data scanner over all hours in the current date for all organizations.
 	SdsRumScannedBytesSum *int64 `json:"sds_rum_scanned_bytes_sum,omitempty"`
-	// Shows the sum of all bytes scanned across all usage types by the Sensitive Data Scanner over all hours in the current month for all organizations.
+	// Shows the sum of all bytes scanned by the Sensitive Data Scanner across all usage types over all hours of the current date for all organizations.
 	SdsTotalScannedBytesSum *int64 `json:"sds_total_scanned_bytes_sum,omitempty"`
-	// Shows the average of the number of Serverless Apps for Azure for the given date and given org.
+	// Shows the average number of Serverless Apps for Azure for the given date for all organizations.
 	ServerlessAppsAzureCountAvg *int64 `json:"serverless_apps_azure_count_avg,omitempty"`
-	// Shows the average of the number of Serverless Apps for Google Cloud for the given date and given org.
+	// Shows the average number of Serverless Apps for Google Cloud for the given date for all organizations.
 	ServerlessAppsGoogleCountAvg *int64 `json:"serverless_apps_google_count_avg,omitempty"`
-	// Shows the average of the number of Serverless Apps for Azure and Google Cloud for the given date and given org.
+	// Shows the average number of Serverless Apps for Azure and Google Cloud for the given date for all organizations.
 	ServerlessAppsTotalCountAvg *int64 `json:"serverless_apps_total_count_avg,omitempty"`
-	// Shows the sum of all log events analyzed by Cloud SIEM over all hours in the current date for the given org.
+	// Shows the sum of all log events analyzed by Cloud SIEM over all hours in the current date for all organizations.
 	SiemAnalyzedLogsAddOnCountSum *int64 `json:"siem_analyzed_logs_add_on_count_sum,omitempty"`
 	// Shows the sum of all Synthetic browser tests over all hours in the current date for all organizations.
 	SyntheticsBrowserCheckCallsCountSum *int64 `json:"synthetics_browser_check_calls_count_sum,omitempty"`
@@ -344,11 +346,11 @@ type UsageSummaryDate struct {
 	TraceSearchIndexedEventsCountSum *int64 `json:"trace_search_indexed_events_count_sum,omitempty"`
 	// Shows the sum of all ingested APM span bytes over all hours in the current date for all organizations.
 	TwolIngestedEventsBytesSum *int64 `json:"twol_ingested_events_bytes_sum,omitempty"`
-	// Shows the 99th percentile of all universal service management hosts over all hours in the current date for the given org.
+	// Shows the 99th percentile of all universal service management hosts over all hours on the current date for all organizations.
 	UniversalServiceMonitoringHostTop99p *int64 `json:"universal_service_monitoring_host_top99p,omitempty"`
 	// Shows the 99th percentile of all vSphere hosts over all hours in the current date for all organizations.
 	VsphereHostTop99p *int64 `json:"vsphere_host_top99p,omitempty"`
-	// Shows the 99th percentile of all Application Vulnerability Management hosts over all hours in the current date for the given org.
+	// Shows the 99th percentile of all Application Vulnerability Management hosts over all hours on the current date for all organizations.
 	VulnManagementHostCountTop99p *int64 `json:"vuln_management_host_count_top99p,omitempty"`
 	// Sum of all workflows executed over all hours in the current date for all organizations.
 	WorkflowExecutionsUsageSum *int64 `json:"workflow_executions_usage_sum,omitempty"`
@@ -3630,6 +3632,34 @@ func (o *UsageSummaryDate) SetOrgs(v []UsageSummaryDateOrg) {
 	o.Orgs = v
 }
 
+// GetProductAnalyticsSum returns the ProductAnalyticsSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetProductAnalyticsSum() int64 {
+	if o == nil || o.ProductAnalyticsSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ProductAnalyticsSum
+}
+
+// GetProductAnalyticsSumOk returns a tuple with the ProductAnalyticsSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetProductAnalyticsSumOk() (*int64, bool) {
+	if o == nil || o.ProductAnalyticsSum == nil {
+		return nil, false
+	}
+	return o.ProductAnalyticsSum, true
+}
+
+// HasProductAnalyticsSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasProductAnalyticsSum() bool {
+	return o != nil && o.ProductAnalyticsSum != nil
+}
+
+// SetProductAnalyticsSum gets a reference to the given int64 and assigns it to the ProductAnalyticsSum field.
+func (o *UsageSummaryDate) SetProductAnalyticsSum(v int64) {
+	o.ProductAnalyticsSum = &v
+}
+
 // GetProfilingAasCountTop99p returns the ProfilingAasCountTop99p field value if set, zero value otherwise.
 func (o *UsageSummaryDate) GetProfilingAasCountTop99p() int64 {
 	if o == nil || o.ProfilingAasCountTop99p == nil {
@@ -5335,6 +5365,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.Orgs != nil {
 		toSerialize["orgs"] = o.Orgs
 	}
+	if o.ProductAnalyticsSum != nil {
+		toSerialize["product_analytics_sum"] = o.ProductAnalyticsSum
+	}
 	if o.ProfilingAasCountTop99p != nil {
 		toSerialize["profiling_aas_count_top99p"] = o.ProfilingAasCountTop99p
 	}
@@ -5604,6 +5637,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 		OpentelemetryApmHostTop99p                        *int64                `json:"opentelemetry_apm_host_top99p,omitempty"`
 		OpentelemetryHostTop99p                           *int64                `json:"opentelemetry_host_top99p,omitempty"`
 		Orgs                                              []UsageSummaryDateOrg `json:"orgs,omitempty"`
+		ProductAnalyticsSum                               *int64                `json:"product_analytics_sum,omitempty"`
 		ProfilingAasCountTop99p                           *int64                `json:"profiling_aas_count_top99p,omitempty"`
 		ProfilingHostTop99p                               *int64                `json:"profiling_host_top99p,omitempty"`
 		RumBrowserAndMobileSessionCount                   *int64                `json:"rum_browser_and_mobile_session_count,omitempty"`
@@ -5658,7 +5692,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p", "apm_azure_app_service_host_top99p", "apm_devsecops_host_top99p", "apm_fargate_count_avg", "apm_host_top99p", "appsec_fargate_count_avg", "asm_serverless_sum", "audit_logs_lines_indexed_sum", "audit_trail_enabled_hwm", "avg_profiled_fargate_tasks", "aws_host_top99p", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p", "billable_ingested_bytes_sum", "browser_rum_lite_session_count_sum", "browser_rum_replay_session_count_sum", "browser_rum_units_sum", "ci_pipeline_indexed_spans_sum", "ci_test_indexed_spans_sum", "ci_visibility_itr_committers_hwm", "ci_visibility_pipeline_committers_hwm", "ci_visibility_test_committers_hwm", "cloud_cost_management_aws_host_count_avg", "cloud_cost_management_azure_host_count_avg", "cloud_cost_management_gcp_host_count_avg", "cloud_cost_management_host_count_avg", "cloud_siem_events_sum", "code_analysis_sa_committers_hwm", "code_analysis_sca_committers_hwm", "code_security_host_top99p", "container_avg", "container_excl_agent_avg", "container_hwm", "csm_container_enterprise_compliance_count_sum", "csm_container_enterprise_cws_count_sum", "csm_container_enterprise_total_count_sum", "csm_host_enterprise_aas_host_count_top99p", "csm_host_enterprise_aws_host_count_top99p", "csm_host_enterprise_azure_host_count_top99p", "csm_host_enterprise_compliance_host_count_top99p", "csm_host_enterprise_cws_host_count_top99p", "csm_host_enterprise_gcp_host_count_top99p", "csm_host_enterprise_total_host_count_top99p", "cspm_aas_host_top99p", "cspm_aws_host_top99p", "cspm_azure_host_top99p", "cspm_container_avg", "cspm_container_hwm", "cspm_gcp_host_top99p", "cspm_host_top99p", "custom_ts_avg", "cws_container_count_avg", "cws_fargate_task_avg", "cws_host_top99p", "data_jobs_monitoring_host_hr_sum", "date", "dbm_host_top99p", "dbm_queries_count_avg", "eph_infra_host_agent_sum", "eph_infra_host_alibaba_sum", "eph_infra_host_aws_sum", "eph_infra_host_azure_sum", "eph_infra_host_ent_sum", "eph_infra_host_gcp_sum", "eph_infra_host_heroku_sum", "eph_infra_host_only_aas_sum", "eph_infra_host_only_vsphere_sum", "eph_infra_host_opentelemetry_apm_sum", "eph_infra_host_opentelemetry_sum", "eph_infra_host_pro_sum", "eph_infra_host_proplus_sum", "error_tracking_apm_error_events_sum", "error_tracking_error_events_sum", "error_tracking_events_sum", "error_tracking_rum_error_events_sum", "fargate_container_profiler_profiling_fargate_avg", "fargate_container_profiler_profiling_fargate_eks_avg", "fargate_tasks_count_avg", "fargate_tasks_count_hwm", "flex_logs_compute_large_avg", "flex_logs_compute_medium_avg", "flex_logs_compute_small_avg", "flex_logs_compute_xsmall_avg", "flex_logs_starter_avg", "flex_logs_starter_storage_index_avg", "flex_logs_starter_storage_retention_adjustment_avg", "flex_stored_logs_avg", "forwarding_events_bytes_sum", "gcp_host_top99p", "heroku_host_top99p", "incident_management_monthly_active_users_hwm", "indexed_events_count_sum", "infra_host_top99p", "ingested_events_bytes_sum", "iot_device_sum", "iot_device_top99p", "mobile_rum_lite_session_count_sum", "mobile_rum_session_count_android_sum", "mobile_rum_session_count_flutter_sum", "mobile_rum_session_count_ios_sum", "mobile_rum_session_count_reactnative_sum", "mobile_rum_session_count_roku_sum", "mobile_rum_session_count_sum", "mobile_rum_units_sum", "ndm_netflow_events_sum", "netflow_indexed_events_count_sum", "npm_host_top99p", "observability_pipelines_bytes_processed_sum", "oci_host_sum", "oci_host_top99p", "online_archive_events_count_sum", "opentelemetry_apm_host_top99p", "opentelemetry_host_top99p", "orgs", "profiling_aas_count_top99p", "profiling_host_top99p", "rum_browser_and_mobile_session_count", "rum_browser_legacy_session_count_sum", "rum_browser_lite_session_count_sum", "rum_browser_replay_session_count_sum", "rum_lite_session_count_sum", "rum_mobile_legacy_session_count_android_sum", "rum_mobile_legacy_session_count_flutter_sum", "rum_mobile_legacy_session_count_ios_sum", "rum_mobile_legacy_session_count_reactnative_sum", "rum_mobile_legacy_session_count_roku_sum", "rum_mobile_lite_session_count_android_sum", "rum_mobile_lite_session_count_flutter_sum", "rum_mobile_lite_session_count_ios_sum", "rum_mobile_lite_session_count_kotlinmultiplatform_sum", "rum_mobile_lite_session_count_reactnative_sum", "rum_mobile_lite_session_count_roku_sum", "rum_mobile_lite_session_count_unity_sum", "rum_mobile_replay_session_count_android_sum", "rum_mobile_replay_session_count_ios_sum", "rum_mobile_replay_session_count_kotlinmultiplatform_sum", "rum_mobile_replay_session_count_reactnative_sum", "rum_replay_session_count_sum", "rum_session_count_sum", "rum_total_session_count_sum", "rum_units_sum", "sca_fargate_count_avg", "sca_fargate_count_hwm", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_azure_count_avg", "serverless_apps_google_count_avg", "serverless_apps_total_count_avg", "siem_analyzed_logs_add_on_count_sum", "synthetics_browser_check_calls_count_sum", "synthetics_check_calls_count_sum", "synthetics_mobile_test_runs_sum", "synthetics_parallel_testing_max_slots_hwm", "trace_search_indexed_events_count_sum", "twol_ingested_events_bytes_sum", "universal_service_monitoring_host_top99p", "vsphere_host_top99p", "vuln_management_host_count_top99p", "workflow_executions_usage_sum"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p", "apm_azure_app_service_host_top99p", "apm_devsecops_host_top99p", "apm_fargate_count_avg", "apm_host_top99p", "appsec_fargate_count_avg", "asm_serverless_sum", "audit_logs_lines_indexed_sum", "audit_trail_enabled_hwm", "avg_profiled_fargate_tasks", "aws_host_top99p", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p", "billable_ingested_bytes_sum", "browser_rum_lite_session_count_sum", "browser_rum_replay_session_count_sum", "browser_rum_units_sum", "ci_pipeline_indexed_spans_sum", "ci_test_indexed_spans_sum", "ci_visibility_itr_committers_hwm", "ci_visibility_pipeline_committers_hwm", "ci_visibility_test_committers_hwm", "cloud_cost_management_aws_host_count_avg", "cloud_cost_management_azure_host_count_avg", "cloud_cost_management_gcp_host_count_avg", "cloud_cost_management_host_count_avg", "cloud_siem_events_sum", "code_analysis_sa_committers_hwm", "code_analysis_sca_committers_hwm", "code_security_host_top99p", "container_avg", "container_excl_agent_avg", "container_hwm", "csm_container_enterprise_compliance_count_sum", "csm_container_enterprise_cws_count_sum", "csm_container_enterprise_total_count_sum", "csm_host_enterprise_aas_host_count_top99p", "csm_host_enterprise_aws_host_count_top99p", "csm_host_enterprise_azure_host_count_top99p", "csm_host_enterprise_compliance_host_count_top99p", "csm_host_enterprise_cws_host_count_top99p", "csm_host_enterprise_gcp_host_count_top99p", "csm_host_enterprise_total_host_count_top99p", "cspm_aas_host_top99p", "cspm_aws_host_top99p", "cspm_azure_host_top99p", "cspm_container_avg", "cspm_container_hwm", "cspm_gcp_host_top99p", "cspm_host_top99p", "custom_ts_avg", "cws_container_count_avg", "cws_fargate_task_avg", "cws_host_top99p", "data_jobs_monitoring_host_hr_sum", "date", "dbm_host_top99p", "dbm_queries_count_avg", "eph_infra_host_agent_sum", "eph_infra_host_alibaba_sum", "eph_infra_host_aws_sum", "eph_infra_host_azure_sum", "eph_infra_host_ent_sum", "eph_infra_host_gcp_sum", "eph_infra_host_heroku_sum", "eph_infra_host_only_aas_sum", "eph_infra_host_only_vsphere_sum", "eph_infra_host_opentelemetry_apm_sum", "eph_infra_host_opentelemetry_sum", "eph_infra_host_pro_sum", "eph_infra_host_proplus_sum", "error_tracking_apm_error_events_sum", "error_tracking_error_events_sum", "error_tracking_events_sum", "error_tracking_rum_error_events_sum", "fargate_container_profiler_profiling_fargate_avg", "fargate_container_profiler_profiling_fargate_eks_avg", "fargate_tasks_count_avg", "fargate_tasks_count_hwm", "flex_logs_compute_large_avg", "flex_logs_compute_medium_avg", "flex_logs_compute_small_avg", "flex_logs_compute_xsmall_avg", "flex_logs_starter_avg", "flex_logs_starter_storage_index_avg", "flex_logs_starter_storage_retention_adjustment_avg", "flex_stored_logs_avg", "forwarding_events_bytes_sum", "gcp_host_top99p", "heroku_host_top99p", "incident_management_monthly_active_users_hwm", "indexed_events_count_sum", "infra_host_top99p", "ingested_events_bytes_sum", "iot_device_sum", "iot_device_top99p", "mobile_rum_lite_session_count_sum", "mobile_rum_session_count_android_sum", "mobile_rum_session_count_flutter_sum", "mobile_rum_session_count_ios_sum", "mobile_rum_session_count_reactnative_sum", "mobile_rum_session_count_roku_sum", "mobile_rum_session_count_sum", "mobile_rum_units_sum", "ndm_netflow_events_sum", "netflow_indexed_events_count_sum", "npm_host_top99p", "observability_pipelines_bytes_processed_sum", "oci_host_sum", "oci_host_top99p", "online_archive_events_count_sum", "opentelemetry_apm_host_top99p", "opentelemetry_host_top99p", "orgs", "product_analytics_sum", "profiling_aas_count_top99p", "profiling_host_top99p", "rum_browser_and_mobile_session_count", "rum_browser_legacy_session_count_sum", "rum_browser_lite_session_count_sum", "rum_browser_replay_session_count_sum", "rum_lite_session_count_sum", "rum_mobile_legacy_session_count_android_sum", "rum_mobile_legacy_session_count_flutter_sum", "rum_mobile_legacy_session_count_ios_sum", "rum_mobile_legacy_session_count_reactnative_sum", "rum_mobile_legacy_session_count_roku_sum", "rum_mobile_lite_session_count_android_sum", "rum_mobile_lite_session_count_flutter_sum", "rum_mobile_lite_session_count_ios_sum", "rum_mobile_lite_session_count_kotlinmultiplatform_sum", "rum_mobile_lite_session_count_reactnative_sum", "rum_mobile_lite_session_count_roku_sum", "rum_mobile_lite_session_count_unity_sum", "rum_mobile_replay_session_count_android_sum", "rum_mobile_replay_session_count_ios_sum", "rum_mobile_replay_session_count_kotlinmultiplatform_sum", "rum_mobile_replay_session_count_reactnative_sum", "rum_replay_session_count_sum", "rum_session_count_sum", "rum_total_session_count_sum", "rum_units_sum", "sca_fargate_count_avg", "sca_fargate_count_hwm", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_azure_count_avg", "serverless_apps_google_count_avg", "serverless_apps_total_count_avg", "siem_analyzed_logs_add_on_count_sum", "synthetics_browser_check_calls_count_sum", "synthetics_check_calls_count_sum", "synthetics_mobile_test_runs_sum", "synthetics_parallel_testing_max_slots_hwm", "trace_search_indexed_events_count_sum", "twol_ingested_events_bytes_sum", "universal_service_monitoring_host_top99p", "vsphere_host_top99p", "vuln_management_host_count_top99p", "workflow_executions_usage_sum"})
 	} else {
 		return err
 	}
@@ -5777,6 +5811,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	o.OpentelemetryApmHostTop99p = all.OpentelemetryApmHostTop99p
 	o.OpentelemetryHostTop99p = all.OpentelemetryHostTop99p
 	o.Orgs = all.Orgs
+	o.ProductAnalyticsSum = all.ProductAnalyticsSum
 	o.ProfilingAasCountTop99p = all.ProfilingAasCountTop99p
 	o.ProfilingHostTop99p = all.ProfilingHostTop99p
 	o.RumBrowserAndMobileSessionCount = all.RumBrowserAndMobileSessionCount
