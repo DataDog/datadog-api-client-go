@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"policy":{"tag_key":"testgetamonitorconfigurationpolicyreturnsokresponse1682627702","tag_key_required":false,"valid_tag_values":["prod","staging"]},"policy_type":"tag"},"type":"monitor-config-policy"}}
+      {"data":{"attributes":{"policy":{"tag_key":"testgetamonitorconfigurationpolicyreturnsokresponse1748486178","tag_key_required":false,"valid_tag_values":["prod","staging"]},"policy_type":"tag"},"type":"monitor-config-policy"}}
     form: {}
     headers:
       Accept:
@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/monitor/policy
   response:
-    body: '{"data":{"type":"monitor-config-policy","attributes":{"policy_type":"tag","policy":{"tag_key":"testgetamonitorconfigurationpolicyreturnsokresponse1682627702","valid_tag_values":["prod","staging"],"tag_key_required":false}},"id":"fcd6f8ec-e53a-11ed-8b5f-da7ad0900002"}}
+    body: '{"data":{"type":"monitor-config-policy","attributes":{"policy":{"valid_tag_values":["prod","staging"],"tag_key_required":false,"tag_key":"testgetamonitorconfigurationpolicyreturnsokresponse1748486178"},"policy_type":"tag"},"id":"7916e37f-b0fe-4f9d-bf9e-37ee3e7a5460"}}
 
       '
     code: 200
@@ -29,9 +29,9 @@ interactions:
       - application/json
     id: 1
     method: GET
-    url: https://api.datadoghq.com/api/v2/monitor/policy/fcd6f8ec-e53a-11ed-8b5f-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/monitor/policy/7916e37f-b0fe-4f9d-bf9e-37ee3e7a5460
   response:
-    body: '{"data":{"type":"monitor-config-policy","attributes":{"policy_type":"tag","policy":{"tag_key_required":false,"tag_key":"testgetamonitorconfigurationpolicyreturnsokresponse1682627702","valid_tag_values":["prod","staging"]}},"id":"fcd6f8ec-e53a-11ed-8b5f-da7ad0900002"}}
+    body: '{"data":{"type":"monitor-config-policy","attributes":{"policy_type":"tag","policy":{"tag_key_required":false,"tag_key":"testgetamonitorconfigurationpolicyreturnsokresponse1748486178","valid_tag_values":["prod","staging"]}},"id":"7916e37f-b0fe-4f9d-bf9e-37ee3e7a5460"}}
 
       '
     code: 200
@@ -48,7 +48,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/monitor/policy/fcd6f8ec-e53a-11ed-8b5f-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/monitor/policy/7916e37f-b0fe-4f9d-bf9e-37ee3e7a5460
   response:
     body: ''
     code: 204
