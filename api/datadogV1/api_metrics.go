@@ -112,6 +112,9 @@ func (r *ListActiveMetricsOptionalParameters) WithTagFilter(tagFilter string) *L
 
 // ListActiveMetrics Get active metrics list.
 // Get the list of actively reporting metrics from a given time until now.
+// The tag service resets daily at midnight UTC. This endpoint returns only
+// metrics that have reported since the last reset, even if the `from`
+// parameter specifies an earlier time.
 func (a *MetricsApi) ListActiveMetrics(ctx _context.Context, from int64, o ...ListActiveMetricsOptionalParameters) (MetricsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
