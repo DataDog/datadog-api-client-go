@@ -5,68 +5,72 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// EventCreateRequestPayload Payload for creating an event.
-type EventCreateRequestPayload struct {
-	// An event object.
-	Data EventCreateRequest `json:"data"`
+// EventCreateResponsePayloadLinks Links to the event.
+type EventCreateResponsePayloadLinks struct {
+	// The URL of the event. This link is only functional when using the default subdomain.
+	Self *string `json:"self,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewEventCreateRequestPayload instantiates a new EventCreateRequestPayload object.
+// NewEventCreateResponsePayloadLinks instantiates a new EventCreateResponsePayloadLinks object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewEventCreateRequestPayload(data EventCreateRequest) *EventCreateRequestPayload {
-	this := EventCreateRequestPayload{}
-	this.Data = data
+func NewEventCreateResponsePayloadLinks() *EventCreateResponsePayloadLinks {
+	this := EventCreateResponsePayloadLinks{}
 	return &this
 }
 
-// NewEventCreateRequestPayloadWithDefaults instantiates a new EventCreateRequestPayload object.
+// NewEventCreateResponsePayloadLinksWithDefaults instantiates a new EventCreateResponsePayloadLinks object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewEventCreateRequestPayloadWithDefaults() *EventCreateRequestPayload {
-	this := EventCreateRequestPayload{}
+func NewEventCreateResponsePayloadLinksWithDefaults() *EventCreateResponsePayloadLinks {
+	this := EventCreateResponsePayloadLinks{}
 	return &this
 }
 
-// GetData returns the Data field value.
-func (o *EventCreateRequestPayload) GetData() EventCreateRequest {
-	if o == nil {
-		var ret EventCreateRequest
+// GetSelf returns the Self field value if set, zero value otherwise.
+func (o *EventCreateResponsePayloadLinks) GetSelf() string {
+	if o == nil || o.Self == nil {
+		var ret string
 		return ret
 	}
-	return o.Data
+	return *o.Self
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetSelfOk returns a tuple with the Self field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventCreateRequestPayload) GetDataOk() (*EventCreateRequest, bool) {
-	if o == nil {
+func (o *EventCreateResponsePayloadLinks) GetSelfOk() (*string, bool) {
+	if o == nil || o.Self == nil {
 		return nil, false
 	}
-	return &o.Data, true
+	return o.Self, true
 }
 
-// SetData sets field value.
-func (o *EventCreateRequestPayload) SetData(v EventCreateRequest) {
-	o.Data = v
+// HasSelf returns a boolean if a field has been set.
+func (o *EventCreateResponsePayloadLinks) HasSelf() bool {
+	return o != nil && o.Self != nil
+}
+
+// SetSelf gets a reference to the given string and assigns it to the Self field.
+func (o *EventCreateResponsePayloadLinks) SetSelf(v string) {
+	o.Self = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o EventCreateRequestPayload) MarshalJSON() ([]byte, error) {
+func (o EventCreateResponsePayloadLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["data"] = o.Data
+	if o.Self != nil {
+		toSerialize["self"] = o.Self
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,35 +79,23 @@ func (o EventCreateRequestPayload) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *EventCreateRequestPayload) UnmarshalJSON(bytes []byte) (err error) {
+func (o *EventCreateResponsePayloadLinks) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *EventCreateRequest `json:"data"`
+		Self *string `json:"self,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Data == nil {
-		return fmt.Errorf("required field data missing")
-	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"self"})
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.Data = *all.Data
+	o.Self = all.Self
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
