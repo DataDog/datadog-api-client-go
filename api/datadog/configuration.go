@@ -272,6 +272,58 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
+			"v2.EventsApi.CreateEvent": {
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "The regional site for customers.",
+							DefaultValue: "datadoghq.com",
+							EnumValues: []string{
+								"datadoghq.com",
+								"us3.datadoghq.com",
+								"us5.datadoghq.com",
+								"ap1.datadoghq.com",
+								"datadoghq.eu",
+								"ddog-gov.com",
+							},
+						},
+						"subdomain": {
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "event-management-intake",
+						},
+					},
+				},
+				{
+					URL:         "{protocol}://{name}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"name": {
+							Description:  "Full site DNS name.",
+							DefaultValue: "event-management-intake.datadoghq.com",
+						},
+						"protocol": {
+							Description:  "The protocol for accessing the API.",
+							DefaultValue: "https",
+						},
+					},
+				},
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "Any Datadog deployment.",
+							DefaultValue: "datadoghq.com",
+						},
+						"subdomain": {
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "event-management-intake",
+						},
+					},
+				},
+			},
 			"v2.LogsApi.SubmitLog": {
 				{
 					URL:         "https://{subdomain}.{site}",
