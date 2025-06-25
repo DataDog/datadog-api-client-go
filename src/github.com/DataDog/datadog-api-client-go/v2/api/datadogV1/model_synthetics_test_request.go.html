@@ -90,7 +90,7 @@
 <span id="L33" class="ln">    33  </span>	<span class="comment">// DNS server to use for DNS tests.</span>
 <span id="L34" class="ln">    34  </span>	DnsServer *string `json:&#34;dnsServer,omitempty&#34;`
 <span id="L35" class="ln">    35  </span>	<span class="comment">// DNS server port to use for DNS tests.</span>
-<span id="L36" class="ln">    36  </span>	DnsServerPort *string `json:&#34;dnsServerPort,omitempty&#34;`
+<span id="L36" class="ln">    36  </span>	DnsServerPort *SyntheticsTestRequestDNSServerPort `json:&#34;dnsServerPort,omitempty&#34;`
 <span id="L37" class="ln">    37  </span>	<span class="comment">// Files to be used as part of the request in the test. Only valid if `bodyType` is `multipart/form-data`.</span>
 <span id="L38" class="ln">    38  </span>	Files []SyntheticsTestRequestBodyFile `json:&#34;files,omitempty&#34;`
 <span id="L39" class="ln">    39  </span>	<span class="comment">// Specifies whether or not the request follows redirects.</span>
@@ -466,9 +466,9 @@
 <span id="L409" class="ln">   409  </span>}
 <span id="L410" class="ln">   410  </span>
 <span id="L411" class="ln">   411  </span><span class="comment">// GetDnsServerPort returns the DnsServerPort field value if set, zero value otherwise.</span>
-<span id="L412" class="ln">   412  </span>func (o *SyntheticsTestRequest) GetDnsServerPort() string {
+<span id="L412" class="ln">   412  </span>func (o *SyntheticsTestRequest) GetDnsServerPort() SyntheticsTestRequestDNSServerPort {
 <span id="L413" class="ln">   413  </span>	if o == nil || o.DnsServerPort == nil {
-<span id="L414" class="ln">   414  </span>		var ret string
+<span id="L414" class="ln">   414  </span>		var ret SyntheticsTestRequestDNSServerPort
 <span id="L415" class="ln">   415  </span>		return ret
 <span id="L416" class="ln">   416  </span>	}
 <span id="L417" class="ln">   417  </span>	return *o.DnsServerPort
@@ -476,7 +476,7 @@
 <span id="L419" class="ln">   419  </span>
 <span id="L420" class="ln">   420  </span><span class="comment">// GetDnsServerPortOk returns a tuple with the DnsServerPort field value if set, nil otherwise</span>
 <span id="L421" class="ln">   421  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L422" class="ln">   422  </span>func (o *SyntheticsTestRequest) GetDnsServerPortOk() (*string, bool) {
+<span id="L422" class="ln">   422  </span>func (o *SyntheticsTestRequest) GetDnsServerPortOk() (*SyntheticsTestRequestDNSServerPort, bool) {
 <span id="L423" class="ln">   423  </span>	if o == nil || o.DnsServerPort == nil {
 <span id="L424" class="ln">   424  </span>		return nil, false
 <span id="L425" class="ln">   425  </span>	}
@@ -488,8 +488,8 @@
 <span id="L431" class="ln">   431  </span>	return o != nil &amp;&amp; o.DnsServerPort != nil
 <span id="L432" class="ln">   432  </span>}
 <span id="L433" class="ln">   433  </span>
-<span id="L434" class="ln">   434  </span><span class="comment">// SetDnsServerPort gets a reference to the given string and assigns it to the DnsServerPort field.</span>
-<span id="L435" class="ln">   435  </span>func (o *SyntheticsTestRequest) SetDnsServerPort(v string) {
+<span id="L434" class="ln">   434  </span><span class="comment">// SetDnsServerPort gets a reference to the given SyntheticsTestRequestDNSServerPort and assigns it to the DnsServerPort field.</span>
+<span id="L435" class="ln">   435  </span>func (o *SyntheticsTestRequest) SetDnsServerPort(v SyntheticsTestRequestDNSServerPort) {
 <span id="L436" class="ln">   436  </span>	o.DnsServerPort = &amp;v
 <span id="L437" class="ln">   437  </span>}
 <span id="L438" class="ln">   438  </span>
@@ -1196,39 +1196,39 @@
 <span id="L1139" class="ln">  1139  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L1140" class="ln">  1140  </span>func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L1141" class="ln">  1141  </span>	all := struct {
-<span id="L1142" class="ln">  1142  </span>		AllowInsecure              *bool                             `json:&#34;allow_insecure,omitempty&#34;`
-<span id="L1143" class="ln">  1143  </span>		BasicAuth                  *SyntheticsBasicAuth              `json:&#34;basicAuth,omitempty&#34;`
-<span id="L1144" class="ln">  1144  </span>		Body                       *string                           `json:&#34;body,omitempty&#34;`
-<span id="L1145" class="ln">  1145  </span>		BodyType                   *SyntheticsTestRequestBodyType    `json:&#34;bodyType,omitempty&#34;`
-<span id="L1146" class="ln">  1146  </span>		CallType                   *SyntheticsTestCallType           `json:&#34;callType,omitempty&#34;`
-<span id="L1147" class="ln">  1147  </span>		Certificate                *SyntheticsTestRequestCertificate `json:&#34;certificate,omitempty&#34;`
-<span id="L1148" class="ln">  1148  </span>		CertificateDomains         []string                          `json:&#34;certificateDomains,omitempty&#34;`
-<span id="L1149" class="ln">  1149  </span>		CheckCertificateRevocation *bool                             `json:&#34;checkCertificateRevocation,omitempty&#34;`
-<span id="L1150" class="ln">  1150  </span>		CompressedJsonDescriptor   *string                           `json:&#34;compressedJsonDescriptor,omitempty&#34;`
-<span id="L1151" class="ln">  1151  </span>		CompressedProtoFile        *string                           `json:&#34;compressedProtoFile,omitempty&#34;`
-<span id="L1152" class="ln">  1152  </span>		DnsServer                  *string                           `json:&#34;dnsServer,omitempty&#34;`
-<span id="L1153" class="ln">  1153  </span>		DnsServerPort              *string                           `json:&#34;dnsServerPort,omitempty&#34;`
-<span id="L1154" class="ln">  1154  </span>		Files                      []SyntheticsTestRequestBodyFile   `json:&#34;files,omitempty&#34;`
-<span id="L1155" class="ln">  1155  </span>		FollowRedirects            *bool                             `json:&#34;follow_redirects,omitempty&#34;`
-<span id="L1156" class="ln">  1156  </span>		Form                       map[string]string                 `json:&#34;form,omitempty&#34;`
-<span id="L1157" class="ln">  1157  </span>		Headers                    map[string]string                 `json:&#34;headers,omitempty&#34;`
-<span id="L1158" class="ln">  1158  </span>		Host                       *string                           `json:&#34;host,omitempty&#34;`
-<span id="L1159" class="ln">  1159  </span>		HttpVersion                *SyntheticsTestOptionsHTTPVersion `json:&#34;httpVersion,omitempty&#34;`
-<span id="L1160" class="ln">  1160  </span>		IsMessageBase64Encoded     *bool                             `json:&#34;isMessageBase64Encoded,omitempty&#34;`
-<span id="L1161" class="ln">  1161  </span>		Message                    *string                           `json:&#34;message,omitempty&#34;`
-<span id="L1162" class="ln">  1162  </span>		Metadata                   map[string]string                 `json:&#34;metadata,omitempty&#34;`
-<span id="L1163" class="ln">  1163  </span>		Method                     *string                           `json:&#34;method,omitempty&#34;`
-<span id="L1164" class="ln">  1164  </span>		NoSavingResponseBody       *bool                             `json:&#34;noSavingResponseBody,omitempty&#34;`
-<span id="L1165" class="ln">  1165  </span>		NumberOfPackets            *int32                            `json:&#34;numberOfPackets,omitempty&#34;`
-<span id="L1166" class="ln">  1166  </span>		PersistCookies             *bool                             `json:&#34;persistCookies,omitempty&#34;`
-<span id="L1167" class="ln">  1167  </span>		Port                       *SyntheticsTestRequestPort        `json:&#34;port,omitempty&#34;`
-<span id="L1168" class="ln">  1168  </span>		Proxy                      *SyntheticsTestRequestProxy       `json:&#34;proxy,omitempty&#34;`
-<span id="L1169" class="ln">  1169  </span>		Query                      interface{}                       `json:&#34;query,omitempty&#34;`
-<span id="L1170" class="ln">  1170  </span>		Servername                 *string                           `json:&#34;servername,omitempty&#34;`
-<span id="L1171" class="ln">  1171  </span>		Service                    *string                           `json:&#34;service,omitempty&#34;`
-<span id="L1172" class="ln">  1172  </span>		ShouldTrackHops            *bool                             `json:&#34;shouldTrackHops,omitempty&#34;`
-<span id="L1173" class="ln">  1173  </span>		Timeout                    *float64                          `json:&#34;timeout,omitempty&#34;`
-<span id="L1174" class="ln">  1174  </span>		Url                        *string                           `json:&#34;url,omitempty&#34;`
+<span id="L1142" class="ln">  1142  </span>		AllowInsecure              *bool                               `json:&#34;allow_insecure,omitempty&#34;`
+<span id="L1143" class="ln">  1143  </span>		BasicAuth                  *SyntheticsBasicAuth                `json:&#34;basicAuth,omitempty&#34;`
+<span id="L1144" class="ln">  1144  </span>		Body                       *string                             `json:&#34;body,omitempty&#34;`
+<span id="L1145" class="ln">  1145  </span>		BodyType                   *SyntheticsTestRequestBodyType      `json:&#34;bodyType,omitempty&#34;`
+<span id="L1146" class="ln">  1146  </span>		CallType                   *SyntheticsTestCallType             `json:&#34;callType,omitempty&#34;`
+<span id="L1147" class="ln">  1147  </span>		Certificate                *SyntheticsTestRequestCertificate   `json:&#34;certificate,omitempty&#34;`
+<span id="L1148" class="ln">  1148  </span>		CertificateDomains         []string                            `json:&#34;certificateDomains,omitempty&#34;`
+<span id="L1149" class="ln">  1149  </span>		CheckCertificateRevocation *bool                               `json:&#34;checkCertificateRevocation,omitempty&#34;`
+<span id="L1150" class="ln">  1150  </span>		CompressedJsonDescriptor   *string                             `json:&#34;compressedJsonDescriptor,omitempty&#34;`
+<span id="L1151" class="ln">  1151  </span>		CompressedProtoFile        *string                             `json:&#34;compressedProtoFile,omitempty&#34;`
+<span id="L1152" class="ln">  1152  </span>		DnsServer                  *string                             `json:&#34;dnsServer,omitempty&#34;`
+<span id="L1153" class="ln">  1153  </span>		DnsServerPort              *SyntheticsTestRequestDNSServerPort `json:&#34;dnsServerPort,omitempty&#34;`
+<span id="L1154" class="ln">  1154  </span>		Files                      []SyntheticsTestRequestBodyFile     `json:&#34;files,omitempty&#34;`
+<span id="L1155" class="ln">  1155  </span>		FollowRedirects            *bool                               `json:&#34;follow_redirects,omitempty&#34;`
+<span id="L1156" class="ln">  1156  </span>		Form                       map[string]string                   `json:&#34;form,omitempty&#34;`
+<span id="L1157" class="ln">  1157  </span>		Headers                    map[string]string                   `json:&#34;headers,omitempty&#34;`
+<span id="L1158" class="ln">  1158  </span>		Host                       *string                             `json:&#34;host,omitempty&#34;`
+<span id="L1159" class="ln">  1159  </span>		HttpVersion                *SyntheticsTestOptionsHTTPVersion   `json:&#34;httpVersion,omitempty&#34;`
+<span id="L1160" class="ln">  1160  </span>		IsMessageBase64Encoded     *bool                               `json:&#34;isMessageBase64Encoded,omitempty&#34;`
+<span id="L1161" class="ln">  1161  </span>		Message                    *string                             `json:&#34;message,omitempty&#34;`
+<span id="L1162" class="ln">  1162  </span>		Metadata                   map[string]string                   `json:&#34;metadata,omitempty&#34;`
+<span id="L1163" class="ln">  1163  </span>		Method                     *string                             `json:&#34;method,omitempty&#34;`
+<span id="L1164" class="ln">  1164  </span>		NoSavingResponseBody       *bool                               `json:&#34;noSavingResponseBody,omitempty&#34;`
+<span id="L1165" class="ln">  1165  </span>		NumberOfPackets            *int32                              `json:&#34;numberOfPackets,omitempty&#34;`
+<span id="L1166" class="ln">  1166  </span>		PersistCookies             *bool                               `json:&#34;persistCookies,omitempty&#34;`
+<span id="L1167" class="ln">  1167  </span>		Port                       *SyntheticsTestRequestPort          `json:&#34;port,omitempty&#34;`
+<span id="L1168" class="ln">  1168  </span>		Proxy                      *SyntheticsTestRequestProxy         `json:&#34;proxy,omitempty&#34;`
+<span id="L1169" class="ln">  1169  </span>		Query                      interface{}                         `json:&#34;query,omitempty&#34;`
+<span id="L1170" class="ln">  1170  </span>		Servername                 *string                             `json:&#34;servername,omitempty&#34;`
+<span id="L1171" class="ln">  1171  </span>		Service                    *string                             `json:&#34;service,omitempty&#34;`
+<span id="L1172" class="ln">  1172  </span>		ShouldTrackHops            *bool                               `json:&#34;shouldTrackHops,omitempty&#34;`
+<span id="L1173" class="ln">  1173  </span>		Timeout                    *float64                            `json:&#34;timeout,omitempty&#34;`
+<span id="L1174" class="ln">  1174  </span>		Url                        *string                             `json:&#34;url,omitempty&#34;`
 <span id="L1175" class="ln">  1175  </span>	}{}
 <span id="L1176" class="ln">  1176  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L1177" class="ln">  1177  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
