@@ -329,7 +329,7 @@
 <span id="L272" class="ln">   272  </span>					},
 <span id="L273" class="ln">   273  </span>				},
 <span id="L274" class="ln">   274  </span>			},
-<span id="L275" class="ln">   275  </span>			&#34;v2.LogsApi.SubmitLog&#34;: {
+<span id="L275" class="ln">   275  </span>			&#34;v2.EventsApi.CreateEvent&#34;: {
 <span id="L276" class="ln">   276  </span>				{
 <span id="L277" class="ln">   277  </span>					URL:         &#34;https://{subdomain}.{site}&#34;,
 <span id="L278" class="ln">   278  </span>					Description: &#34;No description provided&#34;,
@@ -342,534 +342,586 @@
 <span id="L285" class="ln">   285  </span>								&#34;us3.datadoghq.com&#34;,
 <span id="L286" class="ln">   286  </span>								&#34;us5.datadoghq.com&#34;,
 <span id="L287" class="ln">   287  </span>								&#34;ap1.datadoghq.com&#34;,
-<span id="L288" class="ln">   288  </span>								&#34;ap2.datadoghq.com&#34;,
-<span id="L289" class="ln">   289  </span>								&#34;datadoghq.eu&#34;,
-<span id="L290" class="ln">   290  </span>								&#34;ddog-gov.com&#34;,
-<span id="L291" class="ln">   291  </span>							},
-<span id="L292" class="ln">   292  </span>						},
-<span id="L293" class="ln">   293  </span>						&#34;subdomain&#34;: {
-<span id="L294" class="ln">   294  </span>							Description:  &#34;The subdomain where the API is deployed.&#34;,
-<span id="L295" class="ln">   295  </span>							DefaultValue: &#34;http-intake.logs&#34;,
-<span id="L296" class="ln">   296  </span>						},
-<span id="L297" class="ln">   297  </span>					},
-<span id="L298" class="ln">   298  </span>				},
-<span id="L299" class="ln">   299  </span>				{
-<span id="L300" class="ln">   300  </span>					URL:         &#34;{protocol}://{name}&#34;,
-<span id="L301" class="ln">   301  </span>					Description: &#34;No description provided&#34;,
-<span id="L302" class="ln">   302  </span>					Variables: map[string]ServerVariable{
-<span id="L303" class="ln">   303  </span>						&#34;name&#34;: {
-<span id="L304" class="ln">   304  </span>							Description:  &#34;Full site DNS name.&#34;,
-<span id="L305" class="ln">   305  </span>							DefaultValue: &#34;http-intake.logs.datadoghq.com&#34;,
-<span id="L306" class="ln">   306  </span>						},
-<span id="L307" class="ln">   307  </span>						&#34;protocol&#34;: {
-<span id="L308" class="ln">   308  </span>							Description:  &#34;The protocol for accessing the API.&#34;,
-<span id="L309" class="ln">   309  </span>							DefaultValue: &#34;https&#34;,
-<span id="L310" class="ln">   310  </span>						},
-<span id="L311" class="ln">   311  </span>					},
-<span id="L312" class="ln">   312  </span>				},
-<span id="L313" class="ln">   313  </span>				{
-<span id="L314" class="ln">   314  </span>					URL:         &#34;https://{subdomain}.{site}&#34;,
-<span id="L315" class="ln">   315  </span>					Description: &#34;No description provided&#34;,
-<span id="L316" class="ln">   316  </span>					Variables: map[string]ServerVariable{
-<span id="L317" class="ln">   317  </span>						&#34;site&#34;: {
-<span id="L318" class="ln">   318  </span>							Description:  &#34;Any Datadog deployment.&#34;,
-<span id="L319" class="ln">   319  </span>							DefaultValue: &#34;datadoghq.com&#34;,
-<span id="L320" class="ln">   320  </span>						},
-<span id="L321" class="ln">   321  </span>						&#34;subdomain&#34;: {
-<span id="L322" class="ln">   322  </span>							Description:  &#34;The subdomain where the API is deployed.&#34;,
-<span id="L323" class="ln">   323  </span>							DefaultValue: &#34;http-intake.logs&#34;,
-<span id="L324" class="ln">   324  </span>						},
-<span id="L325" class="ln">   325  </span>					},
-<span id="L326" class="ln">   326  </span>				},
-<span id="L327" class="ln">   327  </span>			},
-<span id="L328" class="ln">   328  </span>			&#34;v2.OnCallPagingApi.CreateOnCallPage&#34;: {
-<span id="L329" class="ln">   329  </span>				{
-<span id="L330" class="ln">   330  </span>					URL:         &#34;https://{site}&#34;,
-<span id="L331" class="ln">   331  </span>					Description: &#34;No description provided&#34;,
-<span id="L332" class="ln">   332  </span>					Variables: map[string]ServerVariable{
-<span id="L333" class="ln">   333  </span>						&#34;site&#34;: {
-<span id="L334" class="ln">   334  </span>							Description:  &#34;The globally available endpoint for On-Call.&#34;,
-<span id="L335" class="ln">   335  </span>							DefaultValue: &#34;navy.oncall.datadoghq.com&#34;,
-<span id="L336" class="ln">   336  </span>							EnumValues: []string{
-<span id="L337" class="ln">   337  </span>								&#34;saffron.oncall.datadoghq.com&#34;,
-<span id="L338" class="ln">   338  </span>								&#34;navy.oncall.datadoghq.com&#34;,
-<span id="L339" class="ln">   339  </span>								&#34;coral.oncall.datadoghq.com&#34;,
-<span id="L340" class="ln">   340  </span>								&#34;teal.oncall.datadoghq.com&#34;,
-<span id="L341" class="ln">   341  </span>								&#34;beige.oncall.datadoghq.eu&#34;,
-<span id="L342" class="ln">   342  </span>							},
-<span id="L343" class="ln">   343  </span>						},
-<span id="L344" class="ln">   344  </span>					},
-<span id="L345" class="ln">   345  </span>				},
-<span id="L346" class="ln">   346  </span>				{
-<span id="L347" class="ln">   347  </span>					URL:         &#34;{protocol}://{name}&#34;,
-<span id="L348" class="ln">   348  </span>					Description: &#34;No description provided&#34;,
-<span id="L349" class="ln">   349  </span>					Variables: map[string]ServerVariable{
-<span id="L350" class="ln">   350  </span>						&#34;name&#34;: {
-<span id="L351" class="ln">   351  </span>							Description:  &#34;Full site DNS name.&#34;,
-<span id="L352" class="ln">   352  </span>							DefaultValue: &#34;api.datadoghq.com&#34;,
-<span id="L353" class="ln">   353  </span>						},
-<span id="L354" class="ln">   354  </span>						&#34;protocol&#34;: {
-<span id="L355" class="ln">   355  </span>							Description:  &#34;The protocol for accessing the API.&#34;,
-<span id="L356" class="ln">   356  </span>							DefaultValue: &#34;https&#34;,
-<span id="L357" class="ln">   357  </span>						},
-<span id="L358" class="ln">   358  </span>					},
-<span id="L359" class="ln">   359  </span>				},
-<span id="L360" class="ln">   360  </span>				{
-<span id="L361" class="ln">   361  </span>					URL:         &#34;https://{subdomain}.{site}&#34;,
-<span id="L362" class="ln">   362  </span>					Description: &#34;No description provided&#34;,
-<span id="L363" class="ln">   363  </span>					Variables: map[string]ServerVariable{
-<span id="L364" class="ln">   364  </span>						&#34;site&#34;: {
-<span id="L365" class="ln">   365  </span>							Description:  &#34;Any Datadog deployment.&#34;,
-<span id="L366" class="ln">   366  </span>							DefaultValue: &#34;datadoghq.com&#34;,
-<span id="L367" class="ln">   367  </span>						},
-<span id="L368" class="ln">   368  </span>						&#34;subdomain&#34;: {
-<span id="L369" class="ln">   369  </span>							Description:  &#34;The subdomain where the API is deployed.&#34;,
-<span id="L370" class="ln">   370  </span>							DefaultValue: &#34;api&#34;,
-<span id="L371" class="ln">   371  </span>						},
-<span id="L372" class="ln">   372  </span>					},
-<span id="L373" class="ln">   373  </span>				},
-<span id="L374" class="ln">   374  </span>			},
-<span id="L375" class="ln">   375  </span>			&#34;v2.OnCallPagingApi.AcknowledgeOnCallPage&#34;: {
-<span id="L376" class="ln">   376  </span>				{
-<span id="L377" class="ln">   377  </span>					URL:         &#34;https://{site}&#34;,
-<span id="L378" class="ln">   378  </span>					Description: &#34;No description provided&#34;,
-<span id="L379" class="ln">   379  </span>					Variables: map[string]ServerVariable{
-<span id="L380" class="ln">   380  </span>						&#34;site&#34;: {
-<span id="L381" class="ln">   381  </span>							Description:  &#34;The globally available endpoint for On-Call.&#34;,
-<span id="L382" class="ln">   382  </span>							DefaultValue: &#34;navy.oncall.datadoghq.com&#34;,
-<span id="L383" class="ln">   383  </span>							EnumValues: []string{
-<span id="L384" class="ln">   384  </span>								&#34;saffron.oncall.datadoghq.com&#34;,
-<span id="L385" class="ln">   385  </span>								&#34;navy.oncall.datadoghq.com&#34;,
-<span id="L386" class="ln">   386  </span>								&#34;coral.oncall.datadoghq.com&#34;,
-<span id="L387" class="ln">   387  </span>								&#34;teal.oncall.datadoghq.com&#34;,
-<span id="L388" class="ln">   388  </span>								&#34;beige.oncall.datadoghq.eu&#34;,
-<span id="L389" class="ln">   389  </span>							},
-<span id="L390" class="ln">   390  </span>						},
-<span id="L391" class="ln">   391  </span>					},
-<span id="L392" class="ln">   392  </span>				},
-<span id="L393" class="ln">   393  </span>				{
-<span id="L394" class="ln">   394  </span>					URL:         &#34;{protocol}://{name}&#34;,
-<span id="L395" class="ln">   395  </span>					Description: &#34;No description provided&#34;,
-<span id="L396" class="ln">   396  </span>					Variables: map[string]ServerVariable{
-<span id="L397" class="ln">   397  </span>						&#34;name&#34;: {
-<span id="L398" class="ln">   398  </span>							Description:  &#34;Full site DNS name.&#34;,
-<span id="L399" class="ln">   399  </span>							DefaultValue: &#34;api.datadoghq.com&#34;,
-<span id="L400" class="ln">   400  </span>						},
-<span id="L401" class="ln">   401  </span>						&#34;protocol&#34;: {
-<span id="L402" class="ln">   402  </span>							Description:  &#34;The protocol for accessing the API.&#34;,
-<span id="L403" class="ln">   403  </span>							DefaultValue: &#34;https&#34;,
-<span id="L404" class="ln">   404  </span>						},
-<span id="L405" class="ln">   405  </span>					},
-<span id="L406" class="ln">   406  </span>				},
-<span id="L407" class="ln">   407  </span>				{
-<span id="L408" class="ln">   408  </span>					URL:         &#34;https://{subdomain}.{site}&#34;,
-<span id="L409" class="ln">   409  </span>					Description: &#34;No description provided&#34;,
-<span id="L410" class="ln">   410  </span>					Variables: map[string]ServerVariable{
-<span id="L411" class="ln">   411  </span>						&#34;site&#34;: {
-<span id="L412" class="ln">   412  </span>							Description:  &#34;Any Datadog deployment.&#34;,
-<span id="L413" class="ln">   413  </span>							DefaultValue: &#34;datadoghq.com&#34;,
-<span id="L414" class="ln">   414  </span>						},
-<span id="L415" class="ln">   415  </span>						&#34;subdomain&#34;: {
-<span id="L416" class="ln">   416  </span>							Description:  &#34;The subdomain where the API is deployed.&#34;,
-<span id="L417" class="ln">   417  </span>							DefaultValue: &#34;api&#34;,
-<span id="L418" class="ln">   418  </span>						},
-<span id="L419" class="ln">   419  </span>					},
-<span id="L420" class="ln">   420  </span>				},
-<span id="L421" class="ln">   421  </span>			},
-<span id="L422" class="ln">   422  </span>			&#34;v2.OnCallPagingApi.EscalateOnCallPage&#34;: {
-<span id="L423" class="ln">   423  </span>				{
-<span id="L424" class="ln">   424  </span>					URL:         &#34;https://{site}&#34;,
-<span id="L425" class="ln">   425  </span>					Description: &#34;No description provided&#34;,
-<span id="L426" class="ln">   426  </span>					Variables: map[string]ServerVariable{
-<span id="L427" class="ln">   427  </span>						&#34;site&#34;: {
-<span id="L428" class="ln">   428  </span>							Description:  &#34;The globally available endpoint for On-Call.&#34;,
-<span id="L429" class="ln">   429  </span>							DefaultValue: &#34;navy.oncall.datadoghq.com&#34;,
-<span id="L430" class="ln">   430  </span>							EnumValues: []string{
-<span id="L431" class="ln">   431  </span>								&#34;saffron.oncall.datadoghq.com&#34;,
-<span id="L432" class="ln">   432  </span>								&#34;navy.oncall.datadoghq.com&#34;,
-<span id="L433" class="ln">   433  </span>								&#34;coral.oncall.datadoghq.com&#34;,
-<span id="L434" class="ln">   434  </span>								&#34;teal.oncall.datadoghq.com&#34;,
-<span id="L435" class="ln">   435  </span>								&#34;beige.oncall.datadoghq.eu&#34;,
-<span id="L436" class="ln">   436  </span>							},
-<span id="L437" class="ln">   437  </span>						},
-<span id="L438" class="ln">   438  </span>					},
-<span id="L439" class="ln">   439  </span>				},
-<span id="L440" class="ln">   440  </span>				{
-<span id="L441" class="ln">   441  </span>					URL:         &#34;{protocol}://{name}&#34;,
-<span id="L442" class="ln">   442  </span>					Description: &#34;No description provided&#34;,
-<span id="L443" class="ln">   443  </span>					Variables: map[string]ServerVariable{
-<span id="L444" class="ln">   444  </span>						&#34;name&#34;: {
-<span id="L445" class="ln">   445  </span>							Description:  &#34;Full site DNS name.&#34;,
-<span id="L446" class="ln">   446  </span>							DefaultValue: &#34;api.datadoghq.com&#34;,
-<span id="L447" class="ln">   447  </span>						},
-<span id="L448" class="ln">   448  </span>						&#34;protocol&#34;: {
-<span id="L449" class="ln">   449  </span>							Description:  &#34;The protocol for accessing the API.&#34;,
-<span id="L450" class="ln">   450  </span>							DefaultValue: &#34;https&#34;,
-<span id="L451" class="ln">   451  </span>						},
-<span id="L452" class="ln">   452  </span>					},
-<span id="L453" class="ln">   453  </span>				},
-<span id="L454" class="ln">   454  </span>				{
-<span id="L455" class="ln">   455  </span>					URL:         &#34;https://{subdomain}.{site}&#34;,
-<span id="L456" class="ln">   456  </span>					Description: &#34;No description provided&#34;,
-<span id="L457" class="ln">   457  </span>					Variables: map[string]ServerVariable{
-<span id="L458" class="ln">   458  </span>						&#34;site&#34;: {
-<span id="L459" class="ln">   459  </span>							Description:  &#34;Any Datadog deployment.&#34;,
-<span id="L460" class="ln">   460  </span>							DefaultValue: &#34;datadoghq.com&#34;,
-<span id="L461" class="ln">   461  </span>						},
-<span id="L462" class="ln">   462  </span>						&#34;subdomain&#34;: {
-<span id="L463" class="ln">   463  </span>							Description:  &#34;The subdomain where the API is deployed.&#34;,
-<span id="L464" class="ln">   464  </span>							DefaultValue: &#34;api&#34;,
-<span id="L465" class="ln">   465  </span>						},
-<span id="L466" class="ln">   466  </span>					},
-<span id="L467" class="ln">   467  </span>				},
-<span id="L468" class="ln">   468  </span>			},
-<span id="L469" class="ln">   469  </span>			&#34;v2.OnCallPagingApi.ResolveOnCallPage&#34;: {
-<span id="L470" class="ln">   470  </span>				{
-<span id="L471" class="ln">   471  </span>					URL:         &#34;https://{site}&#34;,
-<span id="L472" class="ln">   472  </span>					Description: &#34;No description provided&#34;,
-<span id="L473" class="ln">   473  </span>					Variables: map[string]ServerVariable{
-<span id="L474" class="ln">   474  </span>						&#34;site&#34;: {
-<span id="L475" class="ln">   475  </span>							Description:  &#34;The globally available endpoint for On-Call.&#34;,
-<span id="L476" class="ln">   476  </span>							DefaultValue: &#34;navy.oncall.datadoghq.com&#34;,
-<span id="L477" class="ln">   477  </span>							EnumValues: []string{
-<span id="L478" class="ln">   478  </span>								&#34;saffron.oncall.datadoghq.com&#34;,
-<span id="L479" class="ln">   479  </span>								&#34;navy.oncall.datadoghq.com&#34;,
-<span id="L480" class="ln">   480  </span>								&#34;coral.oncall.datadoghq.com&#34;,
-<span id="L481" class="ln">   481  </span>								&#34;teal.oncall.datadoghq.com&#34;,
-<span id="L482" class="ln">   482  </span>								&#34;beige.oncall.datadoghq.eu&#34;,
-<span id="L483" class="ln">   483  </span>							},
-<span id="L484" class="ln">   484  </span>						},
-<span id="L485" class="ln">   485  </span>					},
-<span id="L486" class="ln">   486  </span>				},
-<span id="L487" class="ln">   487  </span>				{
-<span id="L488" class="ln">   488  </span>					URL:         &#34;{protocol}://{name}&#34;,
-<span id="L489" class="ln">   489  </span>					Description: &#34;No description provided&#34;,
-<span id="L490" class="ln">   490  </span>					Variables: map[string]ServerVariable{
-<span id="L491" class="ln">   491  </span>						&#34;name&#34;: {
-<span id="L492" class="ln">   492  </span>							Description:  &#34;Full site DNS name.&#34;,
-<span id="L493" class="ln">   493  </span>							DefaultValue: &#34;api.datadoghq.com&#34;,
-<span id="L494" class="ln">   494  </span>						},
-<span id="L495" class="ln">   495  </span>						&#34;protocol&#34;: {
-<span id="L496" class="ln">   496  </span>							Description:  &#34;The protocol for accessing the API.&#34;,
-<span id="L497" class="ln">   497  </span>							DefaultValue: &#34;https&#34;,
-<span id="L498" class="ln">   498  </span>						},
-<span id="L499" class="ln">   499  </span>					},
-<span id="L500" class="ln">   500  </span>				},
-<span id="L501" class="ln">   501  </span>				{
-<span id="L502" class="ln">   502  </span>					URL:         &#34;https://{subdomain}.{site}&#34;,
-<span id="L503" class="ln">   503  </span>					Description: &#34;No description provided&#34;,
-<span id="L504" class="ln">   504  </span>					Variables: map[string]ServerVariable{
-<span id="L505" class="ln">   505  </span>						&#34;site&#34;: {
-<span id="L506" class="ln">   506  </span>							Description:  &#34;Any Datadog deployment.&#34;,
-<span id="L507" class="ln">   507  </span>							DefaultValue: &#34;datadoghq.com&#34;,
-<span id="L508" class="ln">   508  </span>						},
-<span id="L509" class="ln">   509  </span>						&#34;subdomain&#34;: {
-<span id="L510" class="ln">   510  </span>							Description:  &#34;The subdomain where the API is deployed.&#34;,
-<span id="L511" class="ln">   511  </span>							DefaultValue: &#34;api&#34;,
-<span id="L512" class="ln">   512  </span>						},
-<span id="L513" class="ln">   513  </span>					},
-<span id="L514" class="ln">   514  </span>				},
-<span id="L515" class="ln">   515  </span>			},
-<span id="L516" class="ln">   516  </span>		},
-<span id="L517" class="ln">   517  </span>		unstableOperations: map[string]bool{
-<span id="L518" class="ln">   518  </span>			&#34;v2.CreateOpenAPI&#34;:                       false,
-<span id="L519" class="ln">   519  </span>			&#34;v2.DeleteOpenAPI&#34;:                       false,
-<span id="L520" class="ln">   520  </span>			&#34;v2.GetOpenAPI&#34;:                          false,
-<span id="L521" class="ln">   521  </span>			&#34;v2.ListAPIs&#34;:                            false,
-<span id="L522" class="ln">   522  </span>			&#34;v2.UpdateOpenAPI&#34;:                       false,
-<span id="L523" class="ln">   523  </span>			&#34;v2.CancelHistoricalJob&#34;:                 false,
-<span id="L524" class="ln">   524  </span>			&#34;v2.ConvertJobResultToSignal&#34;:            false,
-<span id="L525" class="ln">   525  </span>			&#34;v2.DeleteHistoricalJob&#34;:                 false,
-<span id="L526" class="ln">   526  </span>			&#34;v2.GetFinding&#34;:                          false,
-<span id="L527" class="ln">   527  </span>			&#34;v2.GetHistoricalJob&#34;:                    false,
-<span id="L528" class="ln">   528  </span>			&#34;v2.GetRuleVersionHistory&#34;:               false,
-<span id="L529" class="ln">   529  </span>			&#34;v2.GetSBOM&#34;:                             false,
-<span id="L530" class="ln">   530  </span>			&#34;v2.ListFindings&#34;:                        false,
-<span id="L531" class="ln">   531  </span>			&#34;v2.ListHistoricalJobs&#34;:                  false,
-<span id="L532" class="ln">   532  </span>			&#34;v2.ListVulnerabilities&#34;:                 false,
-<span id="L533" class="ln">   533  </span>			&#34;v2.ListVulnerableAssets&#34;:                false,
-<span id="L534" class="ln">   534  </span>			&#34;v2.MuteFindings&#34;:                        false,
-<span id="L535" class="ln">   535  </span>			&#34;v2.RunHistoricalJob&#34;:                    false,
-<span id="L536" class="ln">   536  </span>			&#34;v2.CancelDataDeletionRequest&#34;:           false,
-<span id="L537" class="ln">   537  </span>			&#34;v2.CreateDataDeletionRequest&#34;:           false,
-<span id="L538" class="ln">   538  </span>			&#34;v2.GetDataDeletionRequests&#34;:             false,
-<span id="L539" class="ln">   539  </span>			&#34;v2.CreateIncident&#34;:                      false,
-<span id="L540" class="ln">   540  </span>			&#34;v2.CreateIncidentIntegration&#34;:           false,
-<span id="L541" class="ln">   541  </span>			&#34;v2.CreateIncidentTodo&#34;:                  false,
-<span id="L542" class="ln">   542  </span>			&#34;v2.CreateIncidentType&#34;:                  false,
-<span id="L543" class="ln">   543  </span>			&#34;v2.DeleteIncident&#34;:                      false,
-<span id="L544" class="ln">   544  </span>			&#34;v2.DeleteIncidentIntegration&#34;:           false,
-<span id="L545" class="ln">   545  </span>			&#34;v2.DeleteIncidentTodo&#34;:                  false,
-<span id="L546" class="ln">   546  </span>			&#34;v2.DeleteIncidentType&#34;:                  false,
-<span id="L547" class="ln">   547  </span>			&#34;v2.GetIncident&#34;:                         false,
-<span id="L548" class="ln">   548  </span>			&#34;v2.GetIncidentIntegration&#34;:              false,
-<span id="L549" class="ln">   549  </span>			&#34;v2.GetIncidentTodo&#34;:                     false,
-<span id="L550" class="ln">   550  </span>			&#34;v2.GetIncidentType&#34;:                     false,
-<span id="L551" class="ln">   551  </span>			&#34;v2.ListIncidentAttachments&#34;:             false,
-<span id="L552" class="ln">   552  </span>			&#34;v2.ListIncidentIntegrations&#34;:            false,
-<span id="L553" class="ln">   553  </span>			&#34;v2.ListIncidents&#34;:                       false,
-<span id="L554" class="ln">   554  </span>			&#34;v2.ListIncidentTodos&#34;:                   false,
-<span id="L555" class="ln">   555  </span>			&#34;v2.ListIncidentTypes&#34;:                   false,
-<span id="L556" class="ln">   556  </span>			&#34;v2.SearchIncidents&#34;:                     false,
-<span id="L557" class="ln">   557  </span>			&#34;v2.UpdateIncident&#34;:                      false,
-<span id="L558" class="ln">   558  </span>			&#34;v2.UpdateIncidentAttachments&#34;:           false,
-<span id="L559" class="ln">   559  </span>			&#34;v2.UpdateIncidentIntegration&#34;:           false,
-<span id="L560" class="ln">   560  </span>			&#34;v2.UpdateIncidentTodo&#34;:                  false,
-<span id="L561" class="ln">   561  </span>			&#34;v2.UpdateIncidentType&#34;:                  false,
-<span id="L562" class="ln">   562  </span>			&#34;v2.CreateAWSAccount&#34;:                    false,
-<span id="L563" class="ln">   563  </span>			&#34;v2.CreateNewAWSExternalID&#34;:              false,
-<span id="L564" class="ln">   564  </span>			&#34;v2.DeleteAWSAccount&#34;:                    false,
-<span id="L565" class="ln">   565  </span>			&#34;v2.GetAWSAccount&#34;:                       false,
-<span id="L566" class="ln">   566  </span>			&#34;v2.ListAWSAccounts&#34;:                     false,
-<span id="L567" class="ln">   567  </span>			&#34;v2.ListAWSNamespaces&#34;:                   false,
-<span id="L568" class="ln">   568  </span>			&#34;v2.UpdateAWSAccount&#34;:                    false,
-<span id="L569" class="ln">   569  </span>			&#34;v2.ListAWSLogsServices&#34;:                 false,
-<span id="L570" class="ln">   570  </span>			&#34;v2.CreateMonitorNotificationRule&#34;:       false,
-<span id="L571" class="ln">   571  </span>			&#34;v2.CreateMonitorUserTemplate&#34;:           false,
-<span id="L572" class="ln">   572  </span>			&#34;v2.DeleteMonitorNotificationRule&#34;:       false,
-<span id="L573" class="ln">   573  </span>			&#34;v2.DeleteMonitorUserTemplate&#34;:           false,
-<span id="L574" class="ln">   574  </span>			&#34;v2.GetMonitorNotificationRule&#34;:          false,
-<span id="L575" class="ln">   575  </span>			&#34;v2.GetMonitorNotificationRules&#34;:         false,
-<span id="L576" class="ln">   576  </span>			&#34;v2.GetMonitorUserTemplate&#34;:              false,
-<span id="L577" class="ln">   577  </span>			&#34;v2.ListMonitorUserTemplates&#34;:            false,
-<span id="L578" class="ln">   578  </span>			&#34;v2.UpdateMonitorNotificationRule&#34;:       false,
-<span id="L579" class="ln">   579  </span>			&#34;v2.UpdateMonitorUserTemplate&#34;:           false,
-<span id="L580" class="ln">   580  </span>			&#34;v2.ValidateExistingMonitorUserTemplate&#34;: false,
-<span id="L581" class="ln">   581  </span>			&#34;v2.ValidateMonitorUserTemplate&#34;:         false,
-<span id="L582" class="ln">   582  </span>			&#34;v2.GetAggregatedConnections&#34;:            false,
-<span id="L583" class="ln">   583  </span>			&#34;v2.CreatePipeline&#34;:                      false,
-<span id="L584" class="ln">   584  </span>			&#34;v2.DeletePipeline&#34;:                      false,
-<span id="L585" class="ln">   585  </span>			&#34;v2.GetPipeline&#34;:                         false,
-<span id="L586" class="ln">   586  </span>			&#34;v2.ListPipelines&#34;:                       false,
-<span id="L587" class="ln">   587  </span>			&#34;v2.UpdatePipeline&#34;:                      false,
-<span id="L588" class="ln">   588  </span>			&#34;v2.ValidatePipeline&#34;:                    false,
-<span id="L589" class="ln">   589  </span>			&#34;v2.CreateScorecardOutcomesBatch&#34;:        false,
-<span id="L590" class="ln">   590  </span>			&#34;v2.CreateScorecardRule&#34;:                 false,
-<span id="L591" class="ln">   591  </span>			&#34;v2.DeleteScorecardRule&#34;:                 false,
-<span id="L592" class="ln">   592  </span>			&#34;v2.ListScorecardOutcomes&#34;:               false,
-<span id="L593" class="ln">   593  </span>			&#34;v2.ListScorecardRules&#34;:                  false,
-<span id="L594" class="ln">   594  </span>			&#34;v2.UpdateScorecardRule&#34;:                 false,
-<span id="L595" class="ln">   595  </span>			&#34;v2.CreateIncidentService&#34;:               false,
-<span id="L596" class="ln">   596  </span>			&#34;v2.DeleteIncidentService&#34;:               false,
-<span id="L597" class="ln">   597  </span>			&#34;v2.GetIncidentService&#34;:                  false,
-<span id="L598" class="ln">   598  </span>			&#34;v2.ListIncidentServices&#34;:                false,
-<span id="L599" class="ln">   599  </span>			&#34;v2.UpdateIncidentService&#34;:               false,
-<span id="L600" class="ln">   600  </span>			&#34;v2.CreateSLOReportJob&#34;:                  false,
-<span id="L601" class="ln">   601  </span>			&#34;v2.GetSLOReport&#34;:                        false,
-<span id="L602" class="ln">   602  </span>			&#34;v2.GetSLOReportJobStatus&#34;:               false,
-<span id="L603" class="ln">   603  </span>			&#34;v2.AddMemberTeam&#34;:                       false,
-<span id="L604" class="ln">   604  </span>			&#34;v2.ListMemberTeams&#34;:                     false,
-<span id="L605" class="ln">   605  </span>			&#34;v2.RemoveMemberTeam&#34;:                    false,
-<span id="L606" class="ln">   606  </span>			&#34;v2.CreateIncidentTeam&#34;:                  false,
-<span id="L607" class="ln">   607  </span>			&#34;v2.DeleteIncidentTeam&#34;:                  false,
-<span id="L608" class="ln">   608  </span>			&#34;v2.GetIncidentTeam&#34;:                     false,
-<span id="L609" class="ln">   609  </span>			&#34;v2.ListIncidentTeams&#34;:                   false,
-<span id="L610" class="ln">   610  </span>			&#34;v2.UpdateIncidentTeam&#34;:                  false,
-<span id="L611" class="ln">   611  </span>		},
-<span id="L612" class="ln">   612  </span>		RetryConfiguration: RetryConfiguration{
-<span id="L613" class="ln">   613  </span>			EnableRetry:       false,
-<span id="L614" class="ln">   614  </span>			BackOffMultiplier: 2,
-<span id="L615" class="ln">   615  </span>			BackOffBase:       2,
-<span id="L616" class="ln">   616  </span>			HTTPRetryTimeout:  60 * time.Second,
-<span id="L617" class="ln">   617  </span>			MaxRetries:        3,
-<span id="L618" class="ln">   618  </span>		},
-<span id="L619" class="ln">   619  </span>	}
-<span id="L620" class="ln">   620  </span>	return cfg
-<span id="L621" class="ln">   621  </span>}
-<span id="L622" class="ln">   622  </span>
-<span id="L623" class="ln">   623  </span><span class="comment">// AddDefaultHeader adds a new HTTP header to the default header in the request.</span>
-<span id="L624" class="ln">   624  </span>func (c *Configuration) AddDefaultHeader(key string, value string) {
-<span id="L625" class="ln">   625  </span>	c.DefaultHeader[key] = value
-<span id="L626" class="ln">   626  </span>}
-<span id="L627" class="ln">   627  </span>
-<span id="L628" class="ln">   628  </span><span class="comment">// URL formats template on a index using given variables.</span>
-<span id="L629" class="ln">   629  </span>func (sc ServerConfigurations) URL(index int, variables map[string]string) (string, error) {
-<span id="L630" class="ln">   630  </span>	if index &lt; 0 || len(sc) &lt;= index {
-<span id="L631" class="ln">   631  </span>		return &#34;&#34;, fmt.Errorf(&#34;index %v out of range %v&#34;, index, len(sc)-1)
-<span id="L632" class="ln">   632  </span>	}
-<span id="L633" class="ln">   633  </span>	server := sc[index]
-<span id="L634" class="ln">   634  </span>	url := server.URL
-<span id="L635" class="ln">   635  </span>
-<span id="L636" class="ln">   636  </span>	<span class="comment">// go through variables and replace placeholders</span>
-<span id="L637" class="ln">   637  </span>	for name, variable := range server.Variables {
-<span id="L638" class="ln">   638  </span>		if value, ok := variables[name]; ok {
-<span id="L639" class="ln">   639  </span>			found := bool(len(variable.EnumValues) == 0)
-<span id="L640" class="ln">   640  </span>			for _, enumValue := range variable.EnumValues {
-<span id="L641" class="ln">   641  </span>				if value == enumValue {
-<span id="L642" class="ln">   642  </span>					found = true
-<span id="L643" class="ln">   643  </span>				}
-<span id="L644" class="ln">   644  </span>			}
-<span id="L645" class="ln">   645  </span>			if !found {
-<span id="L646" class="ln">   646  </span>				return &#34;&#34;, fmt.Errorf(&#34;the variable %s in the server URL has invalid value %v. Must be %v&#34;, name, value, variable.EnumValues)
-<span id="L647" class="ln">   647  </span>			}
-<span id="L648" class="ln">   648  </span>			url = strings.Replace(url, &#34;{&#34;+name+&#34;}&#34;, value, -1)
-<span id="L649" class="ln">   649  </span>		} else {
-<span id="L650" class="ln">   650  </span>			url = strings.Replace(url, &#34;{&#34;+name+&#34;}&#34;, variable.DefaultValue, -1)
-<span id="L651" class="ln">   651  </span>		}
-<span id="L652" class="ln">   652  </span>	}
-<span id="L653" class="ln">   653  </span>	return url, nil
-<span id="L654" class="ln">   654  </span>}
-<span id="L655" class="ln">   655  </span>
-<span id="L656" class="ln">   656  </span><span class="comment">// ServerURL returns URL based on server settings.</span>
-<span id="L657" class="ln">   657  </span>func (c *Configuration) ServerURL(index int, variables map[string]string) (string, error) {
-<span id="L658" class="ln">   658  </span>	return c.Servers.URL(index, variables)
-<span id="L659" class="ln">   659  </span>}
-<span id="L660" class="ln">   660  </span>
-<span id="L661" class="ln">   661  </span>func getServerIndex(ctx context.Context) (int, error) {
-<span id="L662" class="ln">   662  </span>	si := ctx.Value(ContextServerIndex)
-<span id="L663" class="ln">   663  </span>	if si != nil {
-<span id="L664" class="ln">   664  </span>		if index, ok := si.(int); ok {
-<span id="L665" class="ln">   665  </span>			return index, nil
-<span id="L666" class="ln">   666  </span>		}
-<span id="L667" class="ln">   667  </span>		return 0, ReportError(&#34;invalid type %T should be int&#34;, si)
-<span id="L668" class="ln">   668  </span>	}
-<span id="L669" class="ln">   669  </span>	return 0, nil
-<span id="L670" class="ln">   670  </span>}
-<span id="L671" class="ln">   671  </span>
-<span id="L672" class="ln">   672  </span>func getServerOperationIndex(ctx context.Context, endpoint string) (int, error) {
-<span id="L673" class="ln">   673  </span>	osi := ctx.Value(ContextOperationServerIndices)
-<span id="L674" class="ln">   674  </span>	if osi != nil {
-<span id="L675" class="ln">   675  </span>		operationIndices, ok := osi.(map[string]int)
-<span id="L676" class="ln">   676  </span>		if !ok {
-<span id="L677" class="ln">   677  </span>			return 0, ReportError(&#34;invalid type %T should be map[string]int&#34;, osi)
-<span id="L678" class="ln">   678  </span>		}
-<span id="L679" class="ln">   679  </span>		index, ok := operationIndices[endpoint]
-<span id="L680" class="ln">   680  </span>		if ok {
-<span id="L681" class="ln">   681  </span>			return index, nil
-<span id="L682" class="ln">   682  </span>		}
-<span id="L683" class="ln">   683  </span>	}
-<span id="L684" class="ln">   684  </span>	return getServerIndex(ctx)
-<span id="L685" class="ln">   685  </span>}
-<span id="L686" class="ln">   686  </span>
-<span id="L687" class="ln">   687  </span>func getServerVariables(ctx context.Context) (map[string]string, error) {
-<span id="L688" class="ln">   688  </span>	sv := ctx.Value(ContextServerVariables)
-<span id="L689" class="ln">   689  </span>	if sv != nil {
-<span id="L690" class="ln">   690  </span>		if variables, ok := sv.(map[string]string); ok {
-<span id="L691" class="ln">   691  </span>			return variables, nil
-<span id="L692" class="ln">   692  </span>		}
-<span id="L693" class="ln">   693  </span>		return nil, ReportError(&#34;ctx value of ContextServerVariables has invalid type %T should be map[string]string&#34;, sv)
-<span id="L694" class="ln">   694  </span>	}
-<span id="L695" class="ln">   695  </span>	return nil, nil
-<span id="L696" class="ln">   696  </span>}
-<span id="L697" class="ln">   697  </span>
-<span id="L698" class="ln">   698  </span>func getServerOperationVariables(ctx context.Context, endpoint string) (map[string]string, error) {
-<span id="L699" class="ln">   699  </span>	osv := ctx.Value(ContextOperationServerVariables)
-<span id="L700" class="ln">   700  </span>	if osv != nil {
-<span id="L701" class="ln">   701  </span>		operationVariables, ok := osv.(map[string]map[string]string)
-<span id="L702" class="ln">   702  </span>		if !ok {
-<span id="L703" class="ln">   703  </span>			return nil, ReportError(&#34;ctx value of ContextOperationServerVariables has invalid type %T should be map[string]map[string]string&#34;, osv)
-<span id="L704" class="ln">   704  </span>		}
-<span id="L705" class="ln">   705  </span>		variables, ok := operationVariables[endpoint]
-<span id="L706" class="ln">   706  </span>		if ok {
-<span id="L707" class="ln">   707  </span>			return variables, nil
-<span id="L708" class="ln">   708  </span>		}
-<span id="L709" class="ln">   709  </span>	}
-<span id="L710" class="ln">   710  </span>	return getServerVariables(ctx)
+<span id="L288" class="ln">   288  </span>								&#34;datadoghq.eu&#34;,
+<span id="L289" class="ln">   289  </span>								&#34;ddog-gov.com&#34;,
+<span id="L290" class="ln">   290  </span>							},
+<span id="L291" class="ln">   291  </span>						},
+<span id="L292" class="ln">   292  </span>						&#34;subdomain&#34;: {
+<span id="L293" class="ln">   293  </span>							Description:  &#34;The subdomain where the API is deployed.&#34;,
+<span id="L294" class="ln">   294  </span>							DefaultValue: &#34;event-management-intake&#34;,
+<span id="L295" class="ln">   295  </span>						},
+<span id="L296" class="ln">   296  </span>					},
+<span id="L297" class="ln">   297  </span>				},
+<span id="L298" class="ln">   298  </span>				{
+<span id="L299" class="ln">   299  </span>					URL:         &#34;{protocol}://{name}&#34;,
+<span id="L300" class="ln">   300  </span>					Description: &#34;No description provided&#34;,
+<span id="L301" class="ln">   301  </span>					Variables: map[string]ServerVariable{
+<span id="L302" class="ln">   302  </span>						&#34;name&#34;: {
+<span id="L303" class="ln">   303  </span>							Description:  &#34;Full site DNS name.&#34;,
+<span id="L304" class="ln">   304  </span>							DefaultValue: &#34;event-management-intake.datadoghq.com&#34;,
+<span id="L305" class="ln">   305  </span>						},
+<span id="L306" class="ln">   306  </span>						&#34;protocol&#34;: {
+<span id="L307" class="ln">   307  </span>							Description:  &#34;The protocol for accessing the API.&#34;,
+<span id="L308" class="ln">   308  </span>							DefaultValue: &#34;https&#34;,
+<span id="L309" class="ln">   309  </span>						},
+<span id="L310" class="ln">   310  </span>					},
+<span id="L311" class="ln">   311  </span>				},
+<span id="L312" class="ln">   312  </span>				{
+<span id="L313" class="ln">   313  </span>					URL:         &#34;https://{subdomain}.{site}&#34;,
+<span id="L314" class="ln">   314  </span>					Description: &#34;No description provided&#34;,
+<span id="L315" class="ln">   315  </span>					Variables: map[string]ServerVariable{
+<span id="L316" class="ln">   316  </span>						&#34;site&#34;: {
+<span id="L317" class="ln">   317  </span>							Description:  &#34;Any Datadog deployment.&#34;,
+<span id="L318" class="ln">   318  </span>							DefaultValue: &#34;datadoghq.com&#34;,
+<span id="L319" class="ln">   319  </span>						},
+<span id="L320" class="ln">   320  </span>						&#34;subdomain&#34;: {
+<span id="L321" class="ln">   321  </span>							Description:  &#34;The subdomain where the API is deployed.&#34;,
+<span id="L322" class="ln">   322  </span>							DefaultValue: &#34;event-management-intake&#34;,
+<span id="L323" class="ln">   323  </span>						},
+<span id="L324" class="ln">   324  </span>					},
+<span id="L325" class="ln">   325  </span>				},
+<span id="L326" class="ln">   326  </span>			},
+<span id="L327" class="ln">   327  </span>			&#34;v2.LogsApi.SubmitLog&#34;: {
+<span id="L328" class="ln">   328  </span>				{
+<span id="L329" class="ln">   329  </span>					URL:         &#34;https://{subdomain}.{site}&#34;,
+<span id="L330" class="ln">   330  </span>					Description: &#34;No description provided&#34;,
+<span id="L331" class="ln">   331  </span>					Variables: map[string]ServerVariable{
+<span id="L332" class="ln">   332  </span>						&#34;site&#34;: {
+<span id="L333" class="ln">   333  </span>							Description:  &#34;The regional site for customers.&#34;,
+<span id="L334" class="ln">   334  </span>							DefaultValue: &#34;datadoghq.com&#34;,
+<span id="L335" class="ln">   335  </span>							EnumValues: []string{
+<span id="L336" class="ln">   336  </span>								&#34;datadoghq.com&#34;,
+<span id="L337" class="ln">   337  </span>								&#34;us3.datadoghq.com&#34;,
+<span id="L338" class="ln">   338  </span>								&#34;us5.datadoghq.com&#34;,
+<span id="L339" class="ln">   339  </span>								&#34;ap1.datadoghq.com&#34;,
+<span id="L340" class="ln">   340  </span>								&#34;ap2.datadoghq.com&#34;,
+<span id="L341" class="ln">   341  </span>								&#34;datadoghq.eu&#34;,
+<span id="L342" class="ln">   342  </span>								&#34;ddog-gov.com&#34;,
+<span id="L343" class="ln">   343  </span>							},
+<span id="L344" class="ln">   344  </span>						},
+<span id="L345" class="ln">   345  </span>						&#34;subdomain&#34;: {
+<span id="L346" class="ln">   346  </span>							Description:  &#34;The subdomain where the API is deployed.&#34;,
+<span id="L347" class="ln">   347  </span>							DefaultValue: &#34;http-intake.logs&#34;,
+<span id="L348" class="ln">   348  </span>						},
+<span id="L349" class="ln">   349  </span>					},
+<span id="L350" class="ln">   350  </span>				},
+<span id="L351" class="ln">   351  </span>				{
+<span id="L352" class="ln">   352  </span>					URL:         &#34;{protocol}://{name}&#34;,
+<span id="L353" class="ln">   353  </span>					Description: &#34;No description provided&#34;,
+<span id="L354" class="ln">   354  </span>					Variables: map[string]ServerVariable{
+<span id="L355" class="ln">   355  </span>						&#34;name&#34;: {
+<span id="L356" class="ln">   356  </span>							Description:  &#34;Full site DNS name.&#34;,
+<span id="L357" class="ln">   357  </span>							DefaultValue: &#34;http-intake.logs.datadoghq.com&#34;,
+<span id="L358" class="ln">   358  </span>						},
+<span id="L359" class="ln">   359  </span>						&#34;protocol&#34;: {
+<span id="L360" class="ln">   360  </span>							Description:  &#34;The protocol for accessing the API.&#34;,
+<span id="L361" class="ln">   361  </span>							DefaultValue: &#34;https&#34;,
+<span id="L362" class="ln">   362  </span>						},
+<span id="L363" class="ln">   363  </span>					},
+<span id="L364" class="ln">   364  </span>				},
+<span id="L365" class="ln">   365  </span>				{
+<span id="L366" class="ln">   366  </span>					URL:         &#34;https://{subdomain}.{site}&#34;,
+<span id="L367" class="ln">   367  </span>					Description: &#34;No description provided&#34;,
+<span id="L368" class="ln">   368  </span>					Variables: map[string]ServerVariable{
+<span id="L369" class="ln">   369  </span>						&#34;site&#34;: {
+<span id="L370" class="ln">   370  </span>							Description:  &#34;Any Datadog deployment.&#34;,
+<span id="L371" class="ln">   371  </span>							DefaultValue: &#34;datadoghq.com&#34;,
+<span id="L372" class="ln">   372  </span>						},
+<span id="L373" class="ln">   373  </span>						&#34;subdomain&#34;: {
+<span id="L374" class="ln">   374  </span>							Description:  &#34;The subdomain where the API is deployed.&#34;,
+<span id="L375" class="ln">   375  </span>							DefaultValue: &#34;http-intake.logs&#34;,
+<span id="L376" class="ln">   376  </span>						},
+<span id="L377" class="ln">   377  </span>					},
+<span id="L378" class="ln">   378  </span>				},
+<span id="L379" class="ln">   379  </span>			},
+<span id="L380" class="ln">   380  </span>			&#34;v2.OnCallPagingApi.CreateOnCallPage&#34;: {
+<span id="L381" class="ln">   381  </span>				{
+<span id="L382" class="ln">   382  </span>					URL:         &#34;https://{site}&#34;,
+<span id="L383" class="ln">   383  </span>					Description: &#34;No description provided&#34;,
+<span id="L384" class="ln">   384  </span>					Variables: map[string]ServerVariable{
+<span id="L385" class="ln">   385  </span>						&#34;site&#34;: {
+<span id="L386" class="ln">   386  </span>							Description:  &#34;The globally available endpoint for On-Call.&#34;,
+<span id="L387" class="ln">   387  </span>							DefaultValue: &#34;navy.oncall.datadoghq.com&#34;,
+<span id="L388" class="ln">   388  </span>							EnumValues: []string{
+<span id="L389" class="ln">   389  </span>								&#34;saffron.oncall.datadoghq.com&#34;,
+<span id="L390" class="ln">   390  </span>								&#34;navy.oncall.datadoghq.com&#34;,
+<span id="L391" class="ln">   391  </span>								&#34;coral.oncall.datadoghq.com&#34;,
+<span id="L392" class="ln">   392  </span>								&#34;teal.oncall.datadoghq.com&#34;,
+<span id="L393" class="ln">   393  </span>								&#34;beige.oncall.datadoghq.eu&#34;,
+<span id="L394" class="ln">   394  </span>							},
+<span id="L395" class="ln">   395  </span>						},
+<span id="L396" class="ln">   396  </span>					},
+<span id="L397" class="ln">   397  </span>				},
+<span id="L398" class="ln">   398  </span>				{
+<span id="L399" class="ln">   399  </span>					URL:         &#34;{protocol}://{name}&#34;,
+<span id="L400" class="ln">   400  </span>					Description: &#34;No description provided&#34;,
+<span id="L401" class="ln">   401  </span>					Variables: map[string]ServerVariable{
+<span id="L402" class="ln">   402  </span>						&#34;name&#34;: {
+<span id="L403" class="ln">   403  </span>							Description:  &#34;Full site DNS name.&#34;,
+<span id="L404" class="ln">   404  </span>							DefaultValue: &#34;api.datadoghq.com&#34;,
+<span id="L405" class="ln">   405  </span>						},
+<span id="L406" class="ln">   406  </span>						&#34;protocol&#34;: {
+<span id="L407" class="ln">   407  </span>							Description:  &#34;The protocol for accessing the API.&#34;,
+<span id="L408" class="ln">   408  </span>							DefaultValue: &#34;https&#34;,
+<span id="L409" class="ln">   409  </span>						},
+<span id="L410" class="ln">   410  </span>					},
+<span id="L411" class="ln">   411  </span>				},
+<span id="L412" class="ln">   412  </span>				{
+<span id="L413" class="ln">   413  </span>					URL:         &#34;https://{subdomain}.{site}&#34;,
+<span id="L414" class="ln">   414  </span>					Description: &#34;No description provided&#34;,
+<span id="L415" class="ln">   415  </span>					Variables: map[string]ServerVariable{
+<span id="L416" class="ln">   416  </span>						&#34;site&#34;: {
+<span id="L417" class="ln">   417  </span>							Description:  &#34;Any Datadog deployment.&#34;,
+<span id="L418" class="ln">   418  </span>							DefaultValue: &#34;datadoghq.com&#34;,
+<span id="L419" class="ln">   419  </span>						},
+<span id="L420" class="ln">   420  </span>						&#34;subdomain&#34;: {
+<span id="L421" class="ln">   421  </span>							Description:  &#34;The subdomain where the API is deployed.&#34;,
+<span id="L422" class="ln">   422  </span>							DefaultValue: &#34;api&#34;,
+<span id="L423" class="ln">   423  </span>						},
+<span id="L424" class="ln">   424  </span>					},
+<span id="L425" class="ln">   425  </span>				},
+<span id="L426" class="ln">   426  </span>			},
+<span id="L427" class="ln">   427  </span>			&#34;v2.OnCallPagingApi.AcknowledgeOnCallPage&#34;: {
+<span id="L428" class="ln">   428  </span>				{
+<span id="L429" class="ln">   429  </span>					URL:         &#34;https://{site}&#34;,
+<span id="L430" class="ln">   430  </span>					Description: &#34;No description provided&#34;,
+<span id="L431" class="ln">   431  </span>					Variables: map[string]ServerVariable{
+<span id="L432" class="ln">   432  </span>						&#34;site&#34;: {
+<span id="L433" class="ln">   433  </span>							Description:  &#34;The globally available endpoint for On-Call.&#34;,
+<span id="L434" class="ln">   434  </span>							DefaultValue: &#34;navy.oncall.datadoghq.com&#34;,
+<span id="L435" class="ln">   435  </span>							EnumValues: []string{
+<span id="L436" class="ln">   436  </span>								&#34;saffron.oncall.datadoghq.com&#34;,
+<span id="L437" class="ln">   437  </span>								&#34;navy.oncall.datadoghq.com&#34;,
+<span id="L438" class="ln">   438  </span>								&#34;coral.oncall.datadoghq.com&#34;,
+<span id="L439" class="ln">   439  </span>								&#34;teal.oncall.datadoghq.com&#34;,
+<span id="L440" class="ln">   440  </span>								&#34;beige.oncall.datadoghq.eu&#34;,
+<span id="L441" class="ln">   441  </span>							},
+<span id="L442" class="ln">   442  </span>						},
+<span id="L443" class="ln">   443  </span>					},
+<span id="L444" class="ln">   444  </span>				},
+<span id="L445" class="ln">   445  </span>				{
+<span id="L446" class="ln">   446  </span>					URL:         &#34;{protocol}://{name}&#34;,
+<span id="L447" class="ln">   447  </span>					Description: &#34;No description provided&#34;,
+<span id="L448" class="ln">   448  </span>					Variables: map[string]ServerVariable{
+<span id="L449" class="ln">   449  </span>						&#34;name&#34;: {
+<span id="L450" class="ln">   450  </span>							Description:  &#34;Full site DNS name.&#34;,
+<span id="L451" class="ln">   451  </span>							DefaultValue: &#34;api.datadoghq.com&#34;,
+<span id="L452" class="ln">   452  </span>						},
+<span id="L453" class="ln">   453  </span>						&#34;protocol&#34;: {
+<span id="L454" class="ln">   454  </span>							Description:  &#34;The protocol for accessing the API.&#34;,
+<span id="L455" class="ln">   455  </span>							DefaultValue: &#34;https&#34;,
+<span id="L456" class="ln">   456  </span>						},
+<span id="L457" class="ln">   457  </span>					},
+<span id="L458" class="ln">   458  </span>				},
+<span id="L459" class="ln">   459  </span>				{
+<span id="L460" class="ln">   460  </span>					URL:         &#34;https://{subdomain}.{site}&#34;,
+<span id="L461" class="ln">   461  </span>					Description: &#34;No description provided&#34;,
+<span id="L462" class="ln">   462  </span>					Variables: map[string]ServerVariable{
+<span id="L463" class="ln">   463  </span>						&#34;site&#34;: {
+<span id="L464" class="ln">   464  </span>							Description:  &#34;Any Datadog deployment.&#34;,
+<span id="L465" class="ln">   465  </span>							DefaultValue: &#34;datadoghq.com&#34;,
+<span id="L466" class="ln">   466  </span>						},
+<span id="L467" class="ln">   467  </span>						&#34;subdomain&#34;: {
+<span id="L468" class="ln">   468  </span>							Description:  &#34;The subdomain where the API is deployed.&#34;,
+<span id="L469" class="ln">   469  </span>							DefaultValue: &#34;api&#34;,
+<span id="L470" class="ln">   470  </span>						},
+<span id="L471" class="ln">   471  </span>					},
+<span id="L472" class="ln">   472  </span>				},
+<span id="L473" class="ln">   473  </span>			},
+<span id="L474" class="ln">   474  </span>			&#34;v2.OnCallPagingApi.EscalateOnCallPage&#34;: {
+<span id="L475" class="ln">   475  </span>				{
+<span id="L476" class="ln">   476  </span>					URL:         &#34;https://{site}&#34;,
+<span id="L477" class="ln">   477  </span>					Description: &#34;No description provided&#34;,
+<span id="L478" class="ln">   478  </span>					Variables: map[string]ServerVariable{
+<span id="L479" class="ln">   479  </span>						&#34;site&#34;: {
+<span id="L480" class="ln">   480  </span>							Description:  &#34;The globally available endpoint for On-Call.&#34;,
+<span id="L481" class="ln">   481  </span>							DefaultValue: &#34;navy.oncall.datadoghq.com&#34;,
+<span id="L482" class="ln">   482  </span>							EnumValues: []string{
+<span id="L483" class="ln">   483  </span>								&#34;saffron.oncall.datadoghq.com&#34;,
+<span id="L484" class="ln">   484  </span>								&#34;navy.oncall.datadoghq.com&#34;,
+<span id="L485" class="ln">   485  </span>								&#34;coral.oncall.datadoghq.com&#34;,
+<span id="L486" class="ln">   486  </span>								&#34;teal.oncall.datadoghq.com&#34;,
+<span id="L487" class="ln">   487  </span>								&#34;beige.oncall.datadoghq.eu&#34;,
+<span id="L488" class="ln">   488  </span>							},
+<span id="L489" class="ln">   489  </span>						},
+<span id="L490" class="ln">   490  </span>					},
+<span id="L491" class="ln">   491  </span>				},
+<span id="L492" class="ln">   492  </span>				{
+<span id="L493" class="ln">   493  </span>					URL:         &#34;{protocol}://{name}&#34;,
+<span id="L494" class="ln">   494  </span>					Description: &#34;No description provided&#34;,
+<span id="L495" class="ln">   495  </span>					Variables: map[string]ServerVariable{
+<span id="L496" class="ln">   496  </span>						&#34;name&#34;: {
+<span id="L497" class="ln">   497  </span>							Description:  &#34;Full site DNS name.&#34;,
+<span id="L498" class="ln">   498  </span>							DefaultValue: &#34;api.datadoghq.com&#34;,
+<span id="L499" class="ln">   499  </span>						},
+<span id="L500" class="ln">   500  </span>						&#34;protocol&#34;: {
+<span id="L501" class="ln">   501  </span>							Description:  &#34;The protocol for accessing the API.&#34;,
+<span id="L502" class="ln">   502  </span>							DefaultValue: &#34;https&#34;,
+<span id="L503" class="ln">   503  </span>						},
+<span id="L504" class="ln">   504  </span>					},
+<span id="L505" class="ln">   505  </span>				},
+<span id="L506" class="ln">   506  </span>				{
+<span id="L507" class="ln">   507  </span>					URL:         &#34;https://{subdomain}.{site}&#34;,
+<span id="L508" class="ln">   508  </span>					Description: &#34;No description provided&#34;,
+<span id="L509" class="ln">   509  </span>					Variables: map[string]ServerVariable{
+<span id="L510" class="ln">   510  </span>						&#34;site&#34;: {
+<span id="L511" class="ln">   511  </span>							Description:  &#34;Any Datadog deployment.&#34;,
+<span id="L512" class="ln">   512  </span>							DefaultValue: &#34;datadoghq.com&#34;,
+<span id="L513" class="ln">   513  </span>						},
+<span id="L514" class="ln">   514  </span>						&#34;subdomain&#34;: {
+<span id="L515" class="ln">   515  </span>							Description:  &#34;The subdomain where the API is deployed.&#34;,
+<span id="L516" class="ln">   516  </span>							DefaultValue: &#34;api&#34;,
+<span id="L517" class="ln">   517  </span>						},
+<span id="L518" class="ln">   518  </span>					},
+<span id="L519" class="ln">   519  </span>				},
+<span id="L520" class="ln">   520  </span>			},
+<span id="L521" class="ln">   521  </span>			&#34;v2.OnCallPagingApi.ResolveOnCallPage&#34;: {
+<span id="L522" class="ln">   522  </span>				{
+<span id="L523" class="ln">   523  </span>					URL:         &#34;https://{site}&#34;,
+<span id="L524" class="ln">   524  </span>					Description: &#34;No description provided&#34;,
+<span id="L525" class="ln">   525  </span>					Variables: map[string]ServerVariable{
+<span id="L526" class="ln">   526  </span>						&#34;site&#34;: {
+<span id="L527" class="ln">   527  </span>							Description:  &#34;The globally available endpoint for On-Call.&#34;,
+<span id="L528" class="ln">   528  </span>							DefaultValue: &#34;navy.oncall.datadoghq.com&#34;,
+<span id="L529" class="ln">   529  </span>							EnumValues: []string{
+<span id="L530" class="ln">   530  </span>								&#34;saffron.oncall.datadoghq.com&#34;,
+<span id="L531" class="ln">   531  </span>								&#34;navy.oncall.datadoghq.com&#34;,
+<span id="L532" class="ln">   532  </span>								&#34;coral.oncall.datadoghq.com&#34;,
+<span id="L533" class="ln">   533  </span>								&#34;teal.oncall.datadoghq.com&#34;,
+<span id="L534" class="ln">   534  </span>								&#34;beige.oncall.datadoghq.eu&#34;,
+<span id="L535" class="ln">   535  </span>							},
+<span id="L536" class="ln">   536  </span>						},
+<span id="L537" class="ln">   537  </span>					},
+<span id="L538" class="ln">   538  </span>				},
+<span id="L539" class="ln">   539  </span>				{
+<span id="L540" class="ln">   540  </span>					URL:         &#34;{protocol}://{name}&#34;,
+<span id="L541" class="ln">   541  </span>					Description: &#34;No description provided&#34;,
+<span id="L542" class="ln">   542  </span>					Variables: map[string]ServerVariable{
+<span id="L543" class="ln">   543  </span>						&#34;name&#34;: {
+<span id="L544" class="ln">   544  </span>							Description:  &#34;Full site DNS name.&#34;,
+<span id="L545" class="ln">   545  </span>							DefaultValue: &#34;api.datadoghq.com&#34;,
+<span id="L546" class="ln">   546  </span>						},
+<span id="L547" class="ln">   547  </span>						&#34;protocol&#34;: {
+<span id="L548" class="ln">   548  </span>							Description:  &#34;The protocol for accessing the API.&#34;,
+<span id="L549" class="ln">   549  </span>							DefaultValue: &#34;https&#34;,
+<span id="L550" class="ln">   550  </span>						},
+<span id="L551" class="ln">   551  </span>					},
+<span id="L552" class="ln">   552  </span>				},
+<span id="L553" class="ln">   553  </span>				{
+<span id="L554" class="ln">   554  </span>					URL:         &#34;https://{subdomain}.{site}&#34;,
+<span id="L555" class="ln">   555  </span>					Description: &#34;No description provided&#34;,
+<span id="L556" class="ln">   556  </span>					Variables: map[string]ServerVariable{
+<span id="L557" class="ln">   557  </span>						&#34;site&#34;: {
+<span id="L558" class="ln">   558  </span>							Description:  &#34;Any Datadog deployment.&#34;,
+<span id="L559" class="ln">   559  </span>							DefaultValue: &#34;datadoghq.com&#34;,
+<span id="L560" class="ln">   560  </span>						},
+<span id="L561" class="ln">   561  </span>						&#34;subdomain&#34;: {
+<span id="L562" class="ln">   562  </span>							Description:  &#34;The subdomain where the API is deployed.&#34;,
+<span id="L563" class="ln">   563  </span>							DefaultValue: &#34;api&#34;,
+<span id="L564" class="ln">   564  </span>						},
+<span id="L565" class="ln">   565  </span>					},
+<span id="L566" class="ln">   566  </span>				},
+<span id="L567" class="ln">   567  </span>			},
+<span id="L568" class="ln">   568  </span>		},
+<span id="L569" class="ln">   569  </span>		unstableOperations: map[string]bool{
+<span id="L570" class="ln">   570  </span>			&#34;v2.CreateOpenAPI&#34;:                       false,
+<span id="L571" class="ln">   571  </span>			&#34;v2.DeleteOpenAPI&#34;:                       false,
+<span id="L572" class="ln">   572  </span>			&#34;v2.GetOpenAPI&#34;:                          false,
+<span id="L573" class="ln">   573  </span>			&#34;v2.ListAPIs&#34;:                            false,
+<span id="L574" class="ln">   574  </span>			&#34;v2.UpdateOpenAPI&#34;:                       false,
+<span id="L575" class="ln">   575  </span>			&#34;v2.CancelHistoricalJob&#34;:                 false,
+<span id="L576" class="ln">   576  </span>			&#34;v2.ConvertJobResultToSignal&#34;:            false,
+<span id="L577" class="ln">   577  </span>			&#34;v2.DeleteHistoricalJob&#34;:                 false,
+<span id="L578" class="ln">   578  </span>			&#34;v2.GetFinding&#34;:                          false,
+<span id="L579" class="ln">   579  </span>			&#34;v2.GetHistoricalJob&#34;:                    false,
+<span id="L580" class="ln">   580  </span>			&#34;v2.GetRuleVersionHistory&#34;:               false,
+<span id="L581" class="ln">   581  </span>			&#34;v2.GetSBOM&#34;:                             false,
+<span id="L582" class="ln">   582  </span>			&#34;v2.ListFindings&#34;:                        false,
+<span id="L583" class="ln">   583  </span>			&#34;v2.ListHistoricalJobs&#34;:                  false,
+<span id="L584" class="ln">   584  </span>			&#34;v2.ListVulnerabilities&#34;:                 false,
+<span id="L585" class="ln">   585  </span>			&#34;v2.ListVulnerableAssets&#34;:                false,
+<span id="L586" class="ln">   586  </span>			&#34;v2.MuteFindings&#34;:                        false,
+<span id="L587" class="ln">   587  </span>			&#34;v2.RunHistoricalJob&#34;:                    false,
+<span id="L588" class="ln">   588  </span>			&#34;v2.CancelDataDeletionRequest&#34;:           false,
+<span id="L589" class="ln">   589  </span>			&#34;v2.CreateDataDeletionRequest&#34;:           false,
+<span id="L590" class="ln">   590  </span>			&#34;v2.GetDataDeletionRequests&#34;:             false,
+<span id="L591" class="ln">   591  </span>			&#34;v2.CreateIncident&#34;:                      false,
+<span id="L592" class="ln">   592  </span>			&#34;v2.CreateIncidentIntegration&#34;:           false,
+<span id="L593" class="ln">   593  </span>			&#34;v2.CreateIncidentTodo&#34;:                  false,
+<span id="L594" class="ln">   594  </span>			&#34;v2.CreateIncidentType&#34;:                  false,
+<span id="L595" class="ln">   595  </span>			&#34;v2.DeleteIncident&#34;:                      false,
+<span id="L596" class="ln">   596  </span>			&#34;v2.DeleteIncidentIntegration&#34;:           false,
+<span id="L597" class="ln">   597  </span>			&#34;v2.DeleteIncidentTodo&#34;:                  false,
+<span id="L598" class="ln">   598  </span>			&#34;v2.DeleteIncidentType&#34;:                  false,
+<span id="L599" class="ln">   599  </span>			&#34;v2.GetIncident&#34;:                         false,
+<span id="L600" class="ln">   600  </span>			&#34;v2.GetIncidentIntegration&#34;:              false,
+<span id="L601" class="ln">   601  </span>			&#34;v2.GetIncidentTodo&#34;:                     false,
+<span id="L602" class="ln">   602  </span>			&#34;v2.GetIncidentType&#34;:                     false,
+<span id="L603" class="ln">   603  </span>			&#34;v2.ListIncidentAttachments&#34;:             false,
+<span id="L604" class="ln">   604  </span>			&#34;v2.ListIncidentIntegrations&#34;:            false,
+<span id="L605" class="ln">   605  </span>			&#34;v2.ListIncidents&#34;:                       false,
+<span id="L606" class="ln">   606  </span>			&#34;v2.ListIncidentTodos&#34;:                   false,
+<span id="L607" class="ln">   607  </span>			&#34;v2.ListIncidentTypes&#34;:                   false,
+<span id="L608" class="ln">   608  </span>			&#34;v2.SearchIncidents&#34;:                     false,
+<span id="L609" class="ln">   609  </span>			&#34;v2.UpdateIncident&#34;:                      false,
+<span id="L610" class="ln">   610  </span>			&#34;v2.UpdateIncidentAttachments&#34;:           false,
+<span id="L611" class="ln">   611  </span>			&#34;v2.UpdateIncidentIntegration&#34;:           false,
+<span id="L612" class="ln">   612  </span>			&#34;v2.UpdateIncidentTodo&#34;:                  false,
+<span id="L613" class="ln">   613  </span>			&#34;v2.UpdateIncidentType&#34;:                  false,
+<span id="L614" class="ln">   614  </span>			&#34;v2.CreateAWSAccount&#34;:                    false,
+<span id="L615" class="ln">   615  </span>			&#34;v2.CreateNewAWSExternalID&#34;:              false,
+<span id="L616" class="ln">   616  </span>			&#34;v2.DeleteAWSAccount&#34;:                    false,
+<span id="L617" class="ln">   617  </span>			&#34;v2.GetAWSAccount&#34;:                       false,
+<span id="L618" class="ln">   618  </span>			&#34;v2.ListAWSAccounts&#34;:                     false,
+<span id="L619" class="ln">   619  </span>			&#34;v2.ListAWSNamespaces&#34;:                   false,
+<span id="L620" class="ln">   620  </span>			&#34;v2.UpdateAWSAccount&#34;:                    false,
+<span id="L621" class="ln">   621  </span>			&#34;v2.ListAWSLogsServices&#34;:                 false,
+<span id="L622" class="ln">   622  </span>			&#34;v2.CreateMonitorNotificationRule&#34;:       false,
+<span id="L623" class="ln">   623  </span>			&#34;v2.CreateMonitorUserTemplate&#34;:           false,
+<span id="L624" class="ln">   624  </span>			&#34;v2.DeleteMonitorNotificationRule&#34;:       false,
+<span id="L625" class="ln">   625  </span>			&#34;v2.DeleteMonitorUserTemplate&#34;:           false,
+<span id="L626" class="ln">   626  </span>			&#34;v2.GetMonitorNotificationRule&#34;:          false,
+<span id="L627" class="ln">   627  </span>			&#34;v2.GetMonitorNotificationRules&#34;:         false,
+<span id="L628" class="ln">   628  </span>			&#34;v2.GetMonitorUserTemplate&#34;:              false,
+<span id="L629" class="ln">   629  </span>			&#34;v2.ListMonitorUserTemplates&#34;:            false,
+<span id="L630" class="ln">   630  </span>			&#34;v2.UpdateMonitorNotificationRule&#34;:       false,
+<span id="L631" class="ln">   631  </span>			&#34;v2.UpdateMonitorUserTemplate&#34;:           false,
+<span id="L632" class="ln">   632  </span>			&#34;v2.ValidateExistingMonitorUserTemplate&#34;: false,
+<span id="L633" class="ln">   633  </span>			&#34;v2.ValidateMonitorUserTemplate&#34;:         false,
+<span id="L634" class="ln">   634  </span>			&#34;v2.GetAggregatedConnections&#34;:            false,
+<span id="L635" class="ln">   635  </span>			&#34;v2.CreatePipeline&#34;:                      false,
+<span id="L636" class="ln">   636  </span>			&#34;v2.DeletePipeline&#34;:                      false,
+<span id="L637" class="ln">   637  </span>			&#34;v2.GetPipeline&#34;:                         false,
+<span id="L638" class="ln">   638  </span>			&#34;v2.ListPipelines&#34;:                       false,
+<span id="L639" class="ln">   639  </span>			&#34;v2.UpdatePipeline&#34;:                      false,
+<span id="L640" class="ln">   640  </span>			&#34;v2.ValidatePipeline&#34;:                    false,
+<span id="L641" class="ln">   641  </span>			&#34;v2.CreateScorecardOutcomesBatch&#34;:        false,
+<span id="L642" class="ln">   642  </span>			&#34;v2.CreateScorecardRule&#34;:                 false,
+<span id="L643" class="ln">   643  </span>			&#34;v2.DeleteScorecardRule&#34;:                 false,
+<span id="L644" class="ln">   644  </span>			&#34;v2.ListScorecardOutcomes&#34;:               false,
+<span id="L645" class="ln">   645  </span>			&#34;v2.ListScorecardRules&#34;:                  false,
+<span id="L646" class="ln">   646  </span>			&#34;v2.UpdateScorecardRule&#34;:                 false,
+<span id="L647" class="ln">   647  </span>			&#34;v2.CreateIncidentService&#34;:               false,
+<span id="L648" class="ln">   648  </span>			&#34;v2.DeleteIncidentService&#34;:               false,
+<span id="L649" class="ln">   649  </span>			&#34;v2.GetIncidentService&#34;:                  false,
+<span id="L650" class="ln">   650  </span>			&#34;v2.ListIncidentServices&#34;:                false,
+<span id="L651" class="ln">   651  </span>			&#34;v2.UpdateIncidentService&#34;:               false,
+<span id="L652" class="ln">   652  </span>			&#34;v2.CreateSLOReportJob&#34;:                  false,
+<span id="L653" class="ln">   653  </span>			&#34;v2.GetSLOReport&#34;:                        false,
+<span id="L654" class="ln">   654  </span>			&#34;v2.GetSLOReportJobStatus&#34;:               false,
+<span id="L655" class="ln">   655  </span>			&#34;v2.AddMemberTeam&#34;:                       false,
+<span id="L656" class="ln">   656  </span>			&#34;v2.ListMemberTeams&#34;:                     false,
+<span id="L657" class="ln">   657  </span>			&#34;v2.RemoveMemberTeam&#34;:                    false,
+<span id="L658" class="ln">   658  </span>			&#34;v2.CreateIncidentTeam&#34;:                  false,
+<span id="L659" class="ln">   659  </span>			&#34;v2.DeleteIncidentTeam&#34;:                  false,
+<span id="L660" class="ln">   660  </span>			&#34;v2.GetIncidentTeam&#34;:                     false,
+<span id="L661" class="ln">   661  </span>			&#34;v2.ListIncidentTeams&#34;:                   false,
+<span id="L662" class="ln">   662  </span>			&#34;v2.UpdateIncidentTeam&#34;:                  false,
+<span id="L663" class="ln">   663  </span>		},
+<span id="L664" class="ln">   664  </span>		RetryConfiguration: RetryConfiguration{
+<span id="L665" class="ln">   665  </span>			EnableRetry:       false,
+<span id="L666" class="ln">   666  </span>			BackOffMultiplier: 2,
+<span id="L667" class="ln">   667  </span>			BackOffBase:       2,
+<span id="L668" class="ln">   668  </span>			HTTPRetryTimeout:  60 * time.Second,
+<span id="L669" class="ln">   669  </span>			MaxRetries:        3,
+<span id="L670" class="ln">   670  </span>		},
+<span id="L671" class="ln">   671  </span>	}
+<span id="L672" class="ln">   672  </span>	return cfg
+<span id="L673" class="ln">   673  </span>}
+<span id="L674" class="ln">   674  </span>
+<span id="L675" class="ln">   675  </span><span class="comment">// AddDefaultHeader adds a new HTTP header to the default header in the request.</span>
+<span id="L676" class="ln">   676  </span>func (c *Configuration) AddDefaultHeader(key string, value string) {
+<span id="L677" class="ln">   677  </span>	c.DefaultHeader[key] = value
+<span id="L678" class="ln">   678  </span>}
+<span id="L679" class="ln">   679  </span>
+<span id="L680" class="ln">   680  </span><span class="comment">// URL formats template on a index using given variables.</span>
+<span id="L681" class="ln">   681  </span>func (sc ServerConfigurations) URL(index int, variables map[string]string) (string, error) {
+<span id="L682" class="ln">   682  </span>	if index &lt; 0 || len(sc) &lt;= index {
+<span id="L683" class="ln">   683  </span>		return &#34;&#34;, fmt.Errorf(&#34;index %v out of range %v&#34;, index, len(sc)-1)
+<span id="L684" class="ln">   684  </span>	}
+<span id="L685" class="ln">   685  </span>	server := sc[index]
+<span id="L686" class="ln">   686  </span>	url := server.URL
+<span id="L687" class="ln">   687  </span>
+<span id="L688" class="ln">   688  </span>	<span class="comment">// go through variables and replace placeholders</span>
+<span id="L689" class="ln">   689  </span>	for name, variable := range server.Variables {
+<span id="L690" class="ln">   690  </span>		if value, ok := variables[name]; ok {
+<span id="L691" class="ln">   691  </span>			found := bool(len(variable.EnumValues) == 0)
+<span id="L692" class="ln">   692  </span>			for _, enumValue := range variable.EnumValues {
+<span id="L693" class="ln">   693  </span>				if value == enumValue {
+<span id="L694" class="ln">   694  </span>					found = true
+<span id="L695" class="ln">   695  </span>				}
+<span id="L696" class="ln">   696  </span>			}
+<span id="L697" class="ln">   697  </span>			if !found {
+<span id="L698" class="ln">   698  </span>				return &#34;&#34;, fmt.Errorf(&#34;the variable %s in the server URL has invalid value %v. Must be %v&#34;, name, value, variable.EnumValues)
+<span id="L699" class="ln">   699  </span>			}
+<span id="L700" class="ln">   700  </span>			url = strings.Replace(url, &#34;{&#34;+name+&#34;}&#34;, value, -1)
+<span id="L701" class="ln">   701  </span>		} else {
+<span id="L702" class="ln">   702  </span>			url = strings.Replace(url, &#34;{&#34;+name+&#34;}&#34;, variable.DefaultValue, -1)
+<span id="L703" class="ln">   703  </span>		}
+<span id="L704" class="ln">   704  </span>	}
+<span id="L705" class="ln">   705  </span>	return url, nil
+<span id="L706" class="ln">   706  </span>}
+<span id="L707" class="ln">   707  </span>
+<span id="L708" class="ln">   708  </span><span class="comment">// ServerURL returns URL based on server settings.</span>
+<span id="L709" class="ln">   709  </span>func (c *Configuration) ServerURL(index int, variables map[string]string) (string, error) {
+<span id="L710" class="ln">   710  </span>	return c.Servers.URL(index, variables)
 <span id="L711" class="ln">   711  </span>}
 <span id="L712" class="ln">   712  </span>
-<span id="L713" class="ln">   713  </span><span class="comment">// ServerURLWithContext returns a new server URL given an endpoint.</span>
-<span id="L714" class="ln">   714  </span>func (c *Configuration) ServerURLWithContext(ctx context.Context, endpoint string) (string, error) {
-<span id="L715" class="ln">   715  </span>	sc, ok := c.OperationServers[endpoint]
-<span id="L716" class="ln">   716  </span>	if !ok {
-<span id="L717" class="ln">   717  </span>		sc = c.Servers
-<span id="L718" class="ln">   718  </span>	}
-<span id="L719" class="ln">   719  </span>
-<span id="L720" class="ln">   720  </span>	if ctx == nil {
-<span id="L721" class="ln">   721  </span>		return sc.URL(0, nil)
-<span id="L722" class="ln">   722  </span>	}
+<span id="L713" class="ln">   713  </span>func getServerIndex(ctx context.Context) (int, error) {
+<span id="L714" class="ln">   714  </span>	si := ctx.Value(ContextServerIndex)
+<span id="L715" class="ln">   715  </span>	if si != nil {
+<span id="L716" class="ln">   716  </span>		if index, ok := si.(int); ok {
+<span id="L717" class="ln">   717  </span>			return index, nil
+<span id="L718" class="ln">   718  </span>		}
+<span id="L719" class="ln">   719  </span>		return 0, ReportError(&#34;invalid type %T should be int&#34;, si)
+<span id="L720" class="ln">   720  </span>	}
+<span id="L721" class="ln">   721  </span>	return 0, nil
+<span id="L722" class="ln">   722  </span>}
 <span id="L723" class="ln">   723  </span>
-<span id="L724" class="ln">   724  </span>	index, err := getServerOperationIndex(ctx, endpoint)
-<span id="L725" class="ln">   725  </span>	if err != nil {
-<span id="L726" class="ln">   726  </span>		return &#34;&#34;, err
-<span id="L727" class="ln">   727  </span>	}
-<span id="L728" class="ln">   728  </span>
-<span id="L729" class="ln">   729  </span>	variables, err := getServerOperationVariables(ctx, endpoint)
-<span id="L730" class="ln">   730  </span>	if err != nil {
-<span id="L731" class="ln">   731  </span>		return &#34;&#34;, err
-<span id="L732" class="ln">   732  </span>	}
-<span id="L733" class="ln">   733  </span>
-<span id="L734" class="ln">   734  </span>	return sc.URL(index, variables)
-<span id="L735" class="ln">   735  </span>}
-<span id="L736" class="ln">   736  </span>
-<span id="L737" class="ln">   737  </span><span class="comment">// GetUnstableOperations returns a slice with all unstable operation Ids.</span>
-<span id="L738" class="ln">   738  </span>func (c *Configuration) GetUnstableOperations() []string {
-<span id="L739" class="ln">   739  </span>	ids := make([]string, len(c.unstableOperations))
-<span id="L740" class="ln">   740  </span>	for id := range c.unstableOperations {
-<span id="L741" class="ln">   741  </span>		ids = append(ids, id)
-<span id="L742" class="ln">   742  </span>	}
-<span id="L743" class="ln">   743  </span>	return ids
-<span id="L744" class="ln">   744  </span>}
-<span id="L745" class="ln">   745  </span>
-<span id="L746" class="ln">   746  </span><span class="comment">// SetUnstableOperationEnabled sets an unstable operation as enabled (true) or disabled (false).</span>
-<span id="L747" class="ln">   747  </span><span class="comment">// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &#34;CreateFoo&#34;</span>
-<span id="L748" class="ln">   748  </span><span class="comment">// Returns true if the operation is marked as unstable and thus was enabled/disabled, false otherwise.</span>
-<span id="L749" class="ln">   749  </span>func (c *Configuration) SetUnstableOperationEnabled(operation string, enabled bool) bool {
-<span id="L750" class="ln">   750  </span>	if _, ok := c.unstableOperations[operation]; ok {
-<span id="L751" class="ln">   751  </span>		c.unstableOperations[operation] = enabled
-<span id="L752" class="ln">   752  </span>		return true
-<span id="L753" class="ln">   753  </span>	}
-<span id="L754" class="ln">   754  </span>	log.Printf(&#34;WARNING: &#39;%s&#39; is not an unstable operation, can&#39;t enable/disable&#34;, operation)
-<span id="L755" class="ln">   755  </span>	return false
-<span id="L756" class="ln">   756  </span>}
-<span id="L757" class="ln">   757  </span>
-<span id="L758" class="ln">   758  </span><span class="comment">// IsUnstableOperation determines whether an operation is an unstable operation.</span>
-<span id="L759" class="ln">   759  </span><span class="comment">// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &#34;CreateFoo&#34;.</span>
-<span id="L760" class="ln">   760  </span>func (c *Configuration) IsUnstableOperation(operation string) bool {
-<span id="L761" class="ln">   761  </span>	_, present := c.unstableOperations[operation]
-<span id="L762" class="ln">   762  </span>	return present
+<span id="L724" class="ln">   724  </span>func getServerOperationIndex(ctx context.Context, endpoint string) (int, error) {
+<span id="L725" class="ln">   725  </span>	osi := ctx.Value(ContextOperationServerIndices)
+<span id="L726" class="ln">   726  </span>	if osi != nil {
+<span id="L727" class="ln">   727  </span>		operationIndices, ok := osi.(map[string]int)
+<span id="L728" class="ln">   728  </span>		if !ok {
+<span id="L729" class="ln">   729  </span>			return 0, ReportError(&#34;invalid type %T should be map[string]int&#34;, osi)
+<span id="L730" class="ln">   730  </span>		}
+<span id="L731" class="ln">   731  </span>		index, ok := operationIndices[endpoint]
+<span id="L732" class="ln">   732  </span>		if ok {
+<span id="L733" class="ln">   733  </span>			return index, nil
+<span id="L734" class="ln">   734  </span>		}
+<span id="L735" class="ln">   735  </span>	}
+<span id="L736" class="ln">   736  </span>	return getServerIndex(ctx)
+<span id="L737" class="ln">   737  </span>}
+<span id="L738" class="ln">   738  </span>
+<span id="L739" class="ln">   739  </span>func getServerVariables(ctx context.Context) (map[string]string, error) {
+<span id="L740" class="ln">   740  </span>	sv := ctx.Value(ContextServerVariables)
+<span id="L741" class="ln">   741  </span>	if sv != nil {
+<span id="L742" class="ln">   742  </span>		if variables, ok := sv.(map[string]string); ok {
+<span id="L743" class="ln">   743  </span>			return variables, nil
+<span id="L744" class="ln">   744  </span>		}
+<span id="L745" class="ln">   745  </span>		return nil, ReportError(&#34;ctx value of ContextServerVariables has invalid type %T should be map[string]string&#34;, sv)
+<span id="L746" class="ln">   746  </span>	}
+<span id="L747" class="ln">   747  </span>	return nil, nil
+<span id="L748" class="ln">   748  </span>}
+<span id="L749" class="ln">   749  </span>
+<span id="L750" class="ln">   750  </span>func getServerOperationVariables(ctx context.Context, endpoint string) (map[string]string, error) {
+<span id="L751" class="ln">   751  </span>	osv := ctx.Value(ContextOperationServerVariables)
+<span id="L752" class="ln">   752  </span>	if osv != nil {
+<span id="L753" class="ln">   753  </span>		operationVariables, ok := osv.(map[string]map[string]string)
+<span id="L754" class="ln">   754  </span>		if !ok {
+<span id="L755" class="ln">   755  </span>			return nil, ReportError(&#34;ctx value of ContextOperationServerVariables has invalid type %T should be map[string]map[string]string&#34;, osv)
+<span id="L756" class="ln">   756  </span>		}
+<span id="L757" class="ln">   757  </span>		variables, ok := operationVariables[endpoint]
+<span id="L758" class="ln">   758  </span>		if ok {
+<span id="L759" class="ln">   759  </span>			return variables, nil
+<span id="L760" class="ln">   760  </span>		}
+<span id="L761" class="ln">   761  </span>	}
+<span id="L762" class="ln">   762  </span>	return getServerVariables(ctx)
 <span id="L763" class="ln">   763  </span>}
 <span id="L764" class="ln">   764  </span>
-<span id="L765" class="ln">   765  </span><span class="comment">// IsUnstableOperationEnabled determines whether an unstable operation is enabled.</span>
-<span id="L766" class="ln">   766  </span><span class="comment">// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &#34;CreateFoo&#34;</span>
-<span id="L767" class="ln">   767  </span><span class="comment">// Returns true if the operation is unstable and it is enabled, false otherwise.</span>
-<span id="L768" class="ln">   768  </span>func (c *Configuration) IsUnstableOperationEnabled(operation string) bool {
-<span id="L769" class="ln">   769  </span>	if enabled, present := c.unstableOperations[operation]; present {
-<span id="L770" class="ln">   770  </span>		return enabled
-<span id="L771" class="ln">   771  </span>	}
-<span id="L772" class="ln">   772  </span>	log.Printf(&#34;WARNING: &#39;%s&#39; is not an unstable operation, is always enabled&#34;, operation)
-<span id="L773" class="ln">   773  </span>	return false
-<span id="L774" class="ln">   774  </span>}
+<span id="L765" class="ln">   765  </span><span class="comment">// ServerURLWithContext returns a new server URL given an endpoint.</span>
+<span id="L766" class="ln">   766  </span>func (c *Configuration) ServerURLWithContext(ctx context.Context, endpoint string) (string, error) {
+<span id="L767" class="ln">   767  </span>	sc, ok := c.OperationServers[endpoint]
+<span id="L768" class="ln">   768  </span>	if !ok {
+<span id="L769" class="ln">   769  </span>		sc = c.Servers
+<span id="L770" class="ln">   770  </span>	}
+<span id="L771" class="ln">   771  </span>
+<span id="L772" class="ln">   772  </span>	if ctx == nil {
+<span id="L773" class="ln">   773  </span>		return sc.URL(0, nil)
+<span id="L774" class="ln">   774  </span>	}
 <span id="L775" class="ln">   775  </span>
-<span id="L776" class="ln">   776  </span>func getUserAgent() string {
-<span id="L777" class="ln">   777  </span>	return fmt.Sprintf(
-<span id="L778" class="ln">   778  </span>		&#34;datadog-api-client-go/%s (go %s; os %s; arch %s)&#34;,
-<span id="L779" class="ln">   779  </span>		client.Version,
-<span id="L780" class="ln">   780  </span>		runtime.Version(),
-<span id="L781" class="ln">   781  </span>		runtime.GOOS,
-<span id="L782" class="ln">   782  </span>		runtime.GOARCH,
-<span id="L783" class="ln">   783  </span>	)
-<span id="L784" class="ln">   784  </span>}
+<span id="L776" class="ln">   776  </span>	index, err := getServerOperationIndex(ctx, endpoint)
+<span id="L777" class="ln">   777  </span>	if err != nil {
+<span id="L778" class="ln">   778  </span>		return &#34;&#34;, err
+<span id="L779" class="ln">   779  </span>	}
+<span id="L780" class="ln">   780  </span>
+<span id="L781" class="ln">   781  </span>	variables, err := getServerOperationVariables(ctx, endpoint)
+<span id="L782" class="ln">   782  </span>	if err != nil {
+<span id="L783" class="ln">   783  </span>		return &#34;&#34;, err
+<span id="L784" class="ln">   784  </span>	}
 <span id="L785" class="ln">   785  </span>
-<span id="L786" class="ln">   786  </span><span class="comment">// NewDefaultContext returns a new context setup with environment variables.</span>
-<span id="L787" class="ln">   787  </span>func NewDefaultContext(ctx context.Context) context.Context {
-<span id="L788" class="ln">   788  </span>	if ctx == nil {
-<span id="L789" class="ln">   789  </span>		ctx = context.Background()
-<span id="L790" class="ln">   790  </span>	}
-<span id="L791" class="ln">   791  </span>
-<span id="L792" class="ln">   792  </span>	if site, ok := os.LookupEnv(&#34;DD_SITE&#34;); ok {
-<span id="L793" class="ln">   793  </span>		ctx = context.WithValue(
-<span id="L794" class="ln">   794  </span>			ctx,
-<span id="L795" class="ln">   795  </span>			ContextServerVariables,
-<span id="L796" class="ln">   796  </span>			map[string]string{&#34;site&#34;: site},
-<span id="L797" class="ln">   797  </span>		)
-<span id="L798" class="ln">   798  </span>	}
-<span id="L799" class="ln">   799  </span>
-<span id="L800" class="ln">   800  </span>	keys := make(map[string]APIKey)
-<span id="L801" class="ln">   801  </span>	if apiKey, ok := os.LookupEnv(&#34;DD_API_KEY&#34;); ok {
-<span id="L802" class="ln">   802  </span>		keys[&#34;apiKeyAuth&#34;] = APIKey{Key: apiKey}
-<span id="L803" class="ln">   803  </span>	}
-<span id="L804" class="ln">   804  </span>	if apiKey, ok := os.LookupEnv(&#34;DD_APP_KEY&#34;); ok {
-<span id="L805" class="ln">   805  </span>		keys[&#34;appKeyAuth&#34;] = APIKey{Key: apiKey}
-<span id="L806" class="ln">   806  </span>	}
-<span id="L807" class="ln">   807  </span>	ctx = context.WithValue(
-<span id="L808" class="ln">   808  </span>		ctx,
-<span id="L809" class="ln">   809  </span>		ContextAPIKeys,
-<span id="L810" class="ln">   810  </span>		keys,
-<span id="L811" class="ln">   811  </span>	)
-<span id="L812" class="ln">   812  </span>
-<span id="L813" class="ln">   813  </span>	return ctx
-<span id="L814" class="ln">   814  </span>}
-<span id="L815" class="ln">   815  </span>
+<span id="L786" class="ln">   786  </span>	return sc.URL(index, variables)
+<span id="L787" class="ln">   787  </span>}
+<span id="L788" class="ln">   788  </span>
+<span id="L789" class="ln">   789  </span><span class="comment">// GetUnstableOperations returns a slice with all unstable operation Ids.</span>
+<span id="L790" class="ln">   790  </span>func (c *Configuration) GetUnstableOperations() []string {
+<span id="L791" class="ln">   791  </span>	ids := make([]string, len(c.unstableOperations))
+<span id="L792" class="ln">   792  </span>	for id := range c.unstableOperations {
+<span id="L793" class="ln">   793  </span>		ids = append(ids, id)
+<span id="L794" class="ln">   794  </span>	}
+<span id="L795" class="ln">   795  </span>	return ids
+<span id="L796" class="ln">   796  </span>}
+<span id="L797" class="ln">   797  </span>
+<span id="L798" class="ln">   798  </span><span class="comment">// SetUnstableOperationEnabled sets an unstable operation as enabled (true) or disabled (false).</span>
+<span id="L799" class="ln">   799  </span><span class="comment">// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &#34;CreateFoo&#34;</span>
+<span id="L800" class="ln">   800  </span><span class="comment">// Returns true if the operation is marked as unstable and thus was enabled/disabled, false otherwise.</span>
+<span id="L801" class="ln">   801  </span>func (c *Configuration) SetUnstableOperationEnabled(operation string, enabled bool) bool {
+<span id="L802" class="ln">   802  </span>	if _, ok := c.unstableOperations[operation]; ok {
+<span id="L803" class="ln">   803  </span>		c.unstableOperations[operation] = enabled
+<span id="L804" class="ln">   804  </span>		return true
+<span id="L805" class="ln">   805  </span>	}
+<span id="L806" class="ln">   806  </span>	log.Printf(&#34;WARNING: &#39;%s&#39; is not an unstable operation, can&#39;t enable/disable&#34;, operation)
+<span id="L807" class="ln">   807  </span>	return false
+<span id="L808" class="ln">   808  </span>}
+<span id="L809" class="ln">   809  </span>
+<span id="L810" class="ln">   810  </span><span class="comment">// IsUnstableOperation determines whether an operation is an unstable operation.</span>
+<span id="L811" class="ln">   811  </span><span class="comment">// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &#34;CreateFoo&#34;.</span>
+<span id="L812" class="ln">   812  </span>func (c *Configuration) IsUnstableOperation(operation string) bool {
+<span id="L813" class="ln">   813  </span>	_, present := c.unstableOperations[operation]
+<span id="L814" class="ln">   814  </span>	return present
+<span id="L815" class="ln">   815  </span>}
+<span id="L816" class="ln">   816  </span>
+<span id="L817" class="ln">   817  </span><span class="comment">// IsUnstableOperationEnabled determines whether an unstable operation is enabled.</span>
+<span id="L818" class="ln">   818  </span><span class="comment">// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &#34;CreateFoo&#34;</span>
+<span id="L819" class="ln">   819  </span><span class="comment">// Returns true if the operation is unstable and it is enabled, false otherwise.</span>
+<span id="L820" class="ln">   820  </span>func (c *Configuration) IsUnstableOperationEnabled(operation string) bool {
+<span id="L821" class="ln">   821  </span>	if enabled, present := c.unstableOperations[operation]; present {
+<span id="L822" class="ln">   822  </span>		return enabled
+<span id="L823" class="ln">   823  </span>	}
+<span id="L824" class="ln">   824  </span>	log.Printf(&#34;WARNING: &#39;%s&#39; is not an unstable operation, is always enabled&#34;, operation)
+<span id="L825" class="ln">   825  </span>	return false
+<span id="L826" class="ln">   826  </span>}
+<span id="L827" class="ln">   827  </span>
+<span id="L828" class="ln">   828  </span>func getUserAgent() string {
+<span id="L829" class="ln">   829  </span>	return fmt.Sprintf(
+<span id="L830" class="ln">   830  </span>		&#34;datadog-api-client-go/%s (go %s; os %s; arch %s)&#34;,
+<span id="L831" class="ln">   831  </span>		client.Version,
+<span id="L832" class="ln">   832  </span>		runtime.Version(),
+<span id="L833" class="ln">   833  </span>		runtime.GOOS,
+<span id="L834" class="ln">   834  </span>		runtime.GOARCH,
+<span id="L835" class="ln">   835  </span>	)
+<span id="L836" class="ln">   836  </span>}
+<span id="L837" class="ln">   837  </span>
+<span id="L838" class="ln">   838  </span><span class="comment">// NewDefaultContext returns a new context setup with environment variables.</span>
+<span id="L839" class="ln">   839  </span>func NewDefaultContext(ctx context.Context) context.Context {
+<span id="L840" class="ln">   840  </span>	if ctx == nil {
+<span id="L841" class="ln">   841  </span>		ctx = context.Background()
+<span id="L842" class="ln">   842  </span>	}
+<span id="L843" class="ln">   843  </span>
+<span id="L844" class="ln">   844  </span>	if site, ok := os.LookupEnv(&#34;DD_SITE&#34;); ok {
+<span id="L845" class="ln">   845  </span>		ctx = context.WithValue(
+<span id="L846" class="ln">   846  </span>			ctx,
+<span id="L847" class="ln">   847  </span>			ContextServerVariables,
+<span id="L848" class="ln">   848  </span>			map[string]string{&#34;site&#34;: site},
+<span id="L849" class="ln">   849  </span>		)
+<span id="L850" class="ln">   850  </span>	}
+<span id="L851" class="ln">   851  </span>
+<span id="L852" class="ln">   852  </span>	keys := make(map[string]APIKey)
+<span id="L853" class="ln">   853  </span>	if apiKey, ok := os.LookupEnv(&#34;DD_API_KEY&#34;); ok {
+<span id="L854" class="ln">   854  </span>		keys[&#34;apiKeyAuth&#34;] = APIKey{Key: apiKey}
+<span id="L855" class="ln">   855  </span>	}
+<span id="L856" class="ln">   856  </span>	if apiKey, ok := os.LookupEnv(&#34;DD_APP_KEY&#34;); ok {
+<span id="L857" class="ln">   857  </span>		keys[&#34;appKeyAuth&#34;] = APIKey{Key: apiKey}
+<span id="L858" class="ln">   858  </span>	}
+<span id="L859" class="ln">   859  </span>	ctx = context.WithValue(
+<span id="L860" class="ln">   860  </span>		ctx,
+<span id="L861" class="ln">   861  </span>		ContextAPIKeys,
+<span id="L862" class="ln">   862  </span>		keys,
+<span id="L863" class="ln">   863  </span>	)
+<span id="L864" class="ln">   864  </span>
+<span id="L865" class="ln">   865  </span>	return ctx
+<span id="L866" class="ln">   866  </span>}
+<span id="L867" class="ln">   867  </span>
 </pre><p></p>
 
 <div id="footer">
