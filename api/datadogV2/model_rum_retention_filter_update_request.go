@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionFilterUpdateRequest The RUM retention filter body to update.
+// RumRetentionFilterUpdateRequest The RUM retention filter body to update
 type RumRetentionFilterUpdateRequest struct {
 	// The new RUM retention filter properties to update.
 	Data RumRetentionFilterUpdateData `json:"data"`
