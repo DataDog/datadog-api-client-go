@@ -65,7 +65,7 @@ func main() {
 							PaletteFlip: false,
 						},
 						View: datadogV1.GeomapWidgetDefinitionView{
-							Focus: "WORLD",
+							Focus: datadog.PtrString("WORLD"),
 						},
 					}},
 				Layout: &datadogV1.WidgetLayout{
