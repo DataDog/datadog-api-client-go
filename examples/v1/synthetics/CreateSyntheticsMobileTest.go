@@ -20,7 +20,7 @@ func main() {
 		Config: datadogV1.SyntheticsMobileTestConfig{
 			Variables: []datadogV1.SyntheticsConfigVariable{},
 		},
-		Message: datadog.PtrString(""),
+		Message: "",
 		Options: datadogV1.SyntheticsMobileTestOptions{
 			DeviceIds: []string{
 				"synthetics:mobile:device:iphone_15_ios_17",
