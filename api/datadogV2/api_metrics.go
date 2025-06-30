@@ -1010,16 +1010,41 @@ func (a *MetricsApi) ListTagsByMetricName(ctx _context.Context, metricName strin
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListVolumesByMetricNameOptionalParameters holds optional parameters for ListVolumesByMetricName.
+type ListVolumesByMetricNameOptionalParameters struct {
+	WindowSeconds *int64
+}
+
+// NewListVolumesByMetricNameOptionalParameters creates an empty struct for parameters.
+func NewListVolumesByMetricNameOptionalParameters() *ListVolumesByMetricNameOptionalParameters {
+	this := ListVolumesByMetricNameOptionalParameters{}
+	return &this
+}
+
+// WithWindowSeconds sets the corresponding parameter name and returns the struct.
+func (r *ListVolumesByMetricNameOptionalParameters) WithWindowSeconds(windowSeconds int64) *ListVolumesByMetricNameOptionalParameters {
+	r.WindowSeconds = &windowSeconds
+	return r
+}
+
 // ListVolumesByMetricName List distinct metric volumes by metric name.
 // View distinct metrics volumes for the given metric name.
 //
 // Custom metrics generated in-app from other products will return `null` for ingested volumes.
-func (a *MetricsApi) ListVolumesByMetricName(ctx _context.Context, metricName string) (MetricVolumesResponse, *_nethttp.Response, error) {
+func (a *MetricsApi) ListVolumesByMetricName(ctx _context.Context, metricName string, o ...ListVolumesByMetricNameOptionalParameters) (MetricVolumesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricVolumesResponse
+		optionalParams      ListVolumesByMetricNameOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListVolumesByMetricNameOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.ListVolumesByMetricName")
 	if err != nil {
@@ -1032,6 +1057,9 @@ func (a *MetricsApi) ListVolumesByMetricName(ctx _context.Context, metricName st
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.WindowSeconds != nil {
+		localVarQueryParams.Add("window[seconds]", datadog.ParameterToString(*optionalParams.WindowSeconds, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	datadog.SetAuthKeys(
