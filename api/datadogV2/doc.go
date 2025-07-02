@@ -18,6 +18,7 @@
 //   - [AWSIntegrationApi.CreateNewAWSExternalID]
 //   - [AWSIntegrationApi.DeleteAWSAccount]
 //   - [AWSIntegrationApi.GetAWSAccount]
+//   - [AWSIntegrationApi.GetAWSIntegrationIAMPermissions]
 //   - [AWSIntegrationApi.ListAWSAccounts]
 //   - [AWSIntegrationApi.ListAWSNamespaces]
 //   - [AWSIntegrationApi.UpdateAWSAccount]
