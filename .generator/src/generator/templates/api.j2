@@ -243,12 +243,12 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	{%- set authMethods = operation.security if "security" in operation else openapi.security %}
 	{%- set appKeyNs = namespace(hasAppKeyAuth=false) %}
 	{%- for authMethod in authMethods %}
-    {%- for name in authMethod %}
-    {%- if name == "appKeyAuth" %}
-    {%- set appKeyNs.hasAppKeyAuth = true %}
-    {%- endif %}
-    {%- endfor %}
-    {%- endfor %}
+		{%- for name in authMethod %}
+			{%- if name == "appKeyAuth" %}
+				{%- set appKeyNs.hasAppKeyAuth = true %}
+			{%- endif %}
+		{%- endfor %}
+	{%- endfor %}
 	{%- if authMethods %}
 	{%- if appKeyNs.hasAppKeyAuth %}
 		if a.Client.Cfg.DelegatedTokenConfig != nil {
