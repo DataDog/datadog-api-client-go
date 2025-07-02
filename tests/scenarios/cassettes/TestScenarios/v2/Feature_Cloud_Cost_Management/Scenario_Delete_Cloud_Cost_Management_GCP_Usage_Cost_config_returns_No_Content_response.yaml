@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 0
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/cost/gcp_uc_config/100
+  response:
+    body: '{"errors":[{"status":"204","title":"No Content"}]}'
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 204 No Content
+version: 2

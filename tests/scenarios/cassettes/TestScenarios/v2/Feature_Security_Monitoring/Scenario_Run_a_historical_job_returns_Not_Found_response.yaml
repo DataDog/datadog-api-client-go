@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"fromRule":{"caseIndex":0,"from":1730201035064,"id":"non-existng","index":"main","notifications":[],"to":1730204635115}},"type":"historicalDetectionsJobCreate"}}
+      {"data":{"attributes":{"fromRule":{"from":1730201035064,"id":"non-existng","index":"main","notifications":[],"to":1730204635115}},"type":"historicalDetectionsJobCreate"}}
     form: {}
     headers:
       Accept:
@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs
   response:
-    body: '{"errors":[{"status":"404","detail":"failed to get rule details"}]}'
+    body: '{"errors":[{"status":"404","title":"Not Found"}]}'
     code: 404
     duration: 0ms
     headers:

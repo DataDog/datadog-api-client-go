@@ -1,0 +1,45 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"A description.","monitor_definition":{"message":"A msg.","name":"A name test-create_a_monitor_user_template_returns_ok_response-1748486176","query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0} \u003e 100","type":"query alert"},"tags":["integration:Azure"],"template_variables":[{"available_values":["value1","value2"],"defaults":["defaultValue"],"name":"regionName","tag_key":"datacenter"}],"title":"Postgres DB test-create_a_monitor_user_template_returns_ok_response-1748486176"},"type":"monitor-user-template"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/monitor/template
+  response:
+    body: '{"data":{"type":"monitor-user-template","attributes":{"modified":"2025-05-29T02:36:16.272266+00:00","tags":["integration:Azure"],"monitor_definition":{"message":"A
+      msg.","name":"A name test-create_a_monitor_user_template_returns_ok_response-1748486176","query":"avg(last_5m):sum:system.net.bytes_rcvd{host:host0}
+      > 100","type":"query alert"},"template_variables":[{"available_values":["value1","value2"],"defaults":["defaultValue"],"tag_key":"datacenter","name":"regionName"}],"description":"A
+      description.","version":0,"creator_uuid":"3ad549bf-eba0-11e9-a77a-0705486660d0","created":"2025-05-29T02:36:16.272266+00:00","title":"Postgres
+      DB test-create_a_monitor_user_template_returns_ok_response-1748486176"},"id":"15c66feb-f77d-407b-bf4c-615d3dc4fa50"}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/monitor/template/15c66feb-f77d-407b-bf4c-615d3dc4fa50
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+    status: 204 No Content
+version: 2

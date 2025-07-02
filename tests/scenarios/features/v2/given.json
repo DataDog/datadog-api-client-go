@@ -488,6 +488,18 @@
     "parameters": [
       {
         "name": "body",
+        "value": "{\n  \"data\": {\n    \"type\": \"monitor-user-template\",\n    \"attributes\": {\n      \"description\": \"It's a threshold\",\n      \"title\": \"api spec given template {{ unique_lower }}\",\n      \"monitor_definition\": {\n        \"message\": \"cats\",\n        \"name\": \"High Error Rate on service\",\n        \"query\": \"avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100\",\n        \"type\": \"query alert\"\n      },\n      \"template_variables\": [{\"name\": \"scope\", \"available_values\": [], \"defaults\": [\"cats\"]}],\n      \"tags\": [\"category:test\"]\n    }\n  }\n}"
+      }
+    ],
+    "step": "there is a valid \"monitor_user_template\" in the system",
+    "key": "monitor_user_template",
+    "tag": "Monitors",
+    "operationId": "CreateMonitorUserTemplate"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
         "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"{{ unique }}\",\n      \"resolve_page_on_policy_end\": true,\n      \"retries\": 2,\n      \"steps\": [\n        {\n          \"assignment\": \"default\",\n          \"escalate_after_seconds\": 3600,\n          \"targets\": [\n            {\n              \"id\": \"{{ dd_team.data.id }}\",\n              \"type\": \"teams\"\n            },\n            {\n              \"id\": \"{{ schedule.data.id }}\",\n              \"type\": \"schedules\"\n            },\n            {\n              \"id\": \"{{ user.data.id }}\",\n              \"type\": \"users\"\n            }\n          ]\n        },\n        {\n          \"assignment\": \"round-robin\",\n          \"escalate_after_seconds\": 3600,\n          \"targets\": [\n            {\n              \"id\": \"{{ dd_team.data.id }}\",\n              \"type\": \"teams\"\n            }\n          ]\n        }\n      ]\n    },\n    \"relationships\": {\n      \"teams\": {\n        \"data\": [\n          {\n            \"id\": \"{{ dd_team.data.id }}\",\n            \"type\": \"teams\"\n          }\n        ]\n      }\n    },\n    \"type\": \"policies\"\n  }\n}"
       }
     ],
@@ -571,7 +583,7 @@
     "parameters": [
       {
         "name": "body",
-        "value": "{\n  \"data\": {\n    \"type\": \"agent_rule\",\n    \"attributes\": {\n      \"name\": \"{{ unique_lower_alnum }}\",\n      \"description\": \"My Agent rule\",\n      \"expression\": \"exec.file.name == \\\"sh\\\"\",\n      \"enabled\": true,\n      \"product_tags\": [\"security:attack\", \"technique:T1059\"],\n      \"actions\": [{\"set\": {\"name\": \"test_set\", \"value\": \"test_value\", \"scope\": \"process\"}}],\n      \"policy_id\": \"{{ policy.data.id }}\"\n     }\n  }\n}"
+        "value": "{\n  \"data\": {\n    \"type\": \"agent_rule\",\n    \"attributes\": {\n      \"name\": \"{{ unique_lower_alnum }}\",\n      \"description\": \"My Agent rule\",\n      \"expression\": \"exec.file.name == \\\"sh\\\"\",\n      \"enabled\": true,\n      \"product_tags\": [\"security:attack\", \"technique:T1059\"],\n      \"actions\": [{\"set\": {\"name\": \"test_set\", \"value\": \"test_value\", \"scope\": \"process\"}}, {\"hash\": {}}],\n      \"policy_id\": \"{{ policy.data.id }}\"\n     }\n  }\n}"
       }
     ],
     "step": "there is a valid \"agent_rule_rc\" in the system",
@@ -789,7 +801,7 @@
     "parameters": [
       {
         "name": "body",
-        "value": "{\n  \"data\": {\n    \"type\": \"sensitive_data_scanner_group\",\n    \"attributes\": {\n      \"name\": \"my-test-group\",\n      \"is_enabled\": false,\n      \"product_list\": [\n          \"logs\"\n      ],\n      \"filter\": {\n          \"query\": \"*\"\n      }\n    },\n    \"relationships\": {\n      \"configuration\": {\n        \"data\": {\n          \"id\": \"{{ configuration.data.id }}\",\n          \"type\": \"{{ configuration.data.type }}\"\n        }\n      },\n      \"rules\": {\n          \"data\": []\n      }\n    }\n  },\n  \"meta\": {}\n}"
+        "value": "{\n  \"data\": {\n    \"type\": \"sensitive_data_scanner_group\",\n    \"attributes\": {\n      \"name\": \"my-test-group\",\n      \"is_enabled\": false,\n      \"product_list\": [\n          \"logs\"\n      ],\n      \"filter\": {\n          \"query\": \"*\"\n      },\n      \"samplings\": [{\"product\": \"logs\", \"rate\": 100}]\n    },\n    \"relationships\": {\n      \"configuration\": {\n        \"data\": {\n          \"id\": \"{{ configuration.data.id }}\",\n          \"type\": \"{{ configuration.data.type }}\"\n        }\n      },\n      \"rules\": {\n          \"data\": []\n      }\n    }\n  },\n  \"meta\": {}\n}"
       }
     ],
     "step": "there is a valid \"scanning_group\" in the system",

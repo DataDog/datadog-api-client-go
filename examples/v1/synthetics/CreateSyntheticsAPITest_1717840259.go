@@ -33,8 +33,8 @@ func main() {
 							Method: datadog.PtrString("GET"),
 							BasicAuth: &datadogV1.SyntheticsBasicAuth{
 								SyntheticsBasicAuthWeb: &datadogV1.SyntheticsBasicAuthWeb{
-									Password: "password",
-									Username: "username",
+									Password: datadog.PtrString("password"),
+									Username: datadog.PtrString("username"),
 								}},
 						},
 						Subtype: datadogV1.SYNTHETICSAPITESTSTEPSUBTYPE_HTTP,
@@ -56,8 +56,8 @@ func main() {
 							Method: datadog.PtrString("GET"),
 							BasicAuth: &datadogV1.SyntheticsBasicAuth{
 								SyntheticsBasicAuthWeb: &datadogV1.SyntheticsBasicAuthWeb{
-									Password: "password",
-									Username: "username",
+									Password: datadog.PtrString("password"),
+									Username: datadog.PtrString("username"),
 									Type:     datadogV1.SYNTHETICSBASICAUTHWEBTYPE_WEB.Ptr(),
 								}},
 						},

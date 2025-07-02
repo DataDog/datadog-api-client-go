@@ -183,7 +183,7 @@ func NewConfiguration() *Configuration {
 			{%- for operation in path.values() %}
 			{%- for server in operation.servers %}
 			{%- if loop.first %}
-			"{{ version }}.{{ operation.tags[0].replace(" ", "") }}Api.{{ operation.operationId }}": {
+			"{{ version }}.{{ operation.tags[0] | class_name }}.{{ operation.operationId }}": {
 			{%- endif %}
 				{{ server_configuration(server)|indent("\t"*4) }},
 			{%- if loop.last %}

@@ -147,9 +147,10 @@ func main() {
 								}},
 						},
 						Request: datadogV1.SyntheticsTestRequest{
-							Host:          datadog.PtrString("troisdizaines.com"),
-							DnsServer:     datadog.PtrString("8.8.8.8"),
-							DnsServerPort: datadog.PtrString("53"),
+							Host:      datadog.PtrString("troisdizaines.com"),
+							DnsServer: datadog.PtrString("8.8.8.8"),
+							DnsServerPort: &datadogV1.SyntheticsTestRequestDNSServerPort{
+								SyntheticsTestRequestVariableDNSServerPort: datadog.PtrString("53")},
 						},
 					}},
 				datadogV1.SyntheticsAPIStep{
@@ -234,8 +235,8 @@ func main() {
 							BasicAuth: &datadogV1.SyntheticsBasicAuth{
 								SyntheticsBasicAuthWeb: &datadogV1.SyntheticsBasicAuthWeb{
 									Type:     datadogV1.SYNTHETICSBASICAUTHWEBTYPE_WEB.Ptr(),
-									Username: "user",
-									Password: "password",
+									Username: datadog.PtrString("user"),
+									Password: datadog.PtrString("password"),
 								}},
 						},
 					}},

@@ -26,9 +26,9 @@ func main() {
 			Request: datadogV1.SyntheticsTestRequest{
 				BasicAuth: &datadogV1.SyntheticsBasicAuth{
 					SyntheticsBasicAuthWeb: &datadogV1.SyntheticsBasicAuthWeb{
-						Password: "PaSSw0RD!",
+						Password: datadog.PtrString("PaSSw0RD!"),
 						Type:     datadogV1.SYNTHETICSBASICAUTHWEBTYPE_WEB.Ptr(),
-						Username: "my_username",
+						Username: datadog.PtrString("my_username"),
 					}},
 				BodyType: datadogV1.SYNTHETICSTESTREQUESTBODYTYPE_TEXT_PLAIN.Ptr(),
 				CallType: datadogV1.SYNTHETICSTESTCALLTYPE_UNARY.Ptr(),

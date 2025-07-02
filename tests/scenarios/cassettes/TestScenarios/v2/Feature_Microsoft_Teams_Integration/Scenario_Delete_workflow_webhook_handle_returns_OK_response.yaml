@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"Test-Delete_workflow_webhook_handle_returns_OK_response-1738093013","url":"https://prod-100.westus.logic.azure.com:443/workflows/abcd1234"},"type":"workflows-webhook-handle"}}
+      {"data":{"attributes":{"name":"Test-Delete_workflow_webhook_handle_returns_OK_response-1748457950","url":"https://prod-100.westus.logic.azure.com:443/workflows/abcd1234"},"type":"workflows-webhook-handle"}}
     form: {}
     headers:
       Accept:
@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/integration/ms-teams/configuration/workflows-webhook-handles
   response:
-    body: '{"data":{"id":"859e58f9-f63e-4ead-bde4-31265b79c6a7","type":"workflows-webhook-handle","attributes":{"name":"Test-Delete_workflow_webhook_handle_returns_OK_response-1738093013"}}}'
+    body: '{"data":{"id":"9d270a4a-287c-4225-a1cf-3b657416a471","type":"workflows-webhook-handle","attributes":{"name":"Test-Delete_workflow_webhook_handle_returns_OK_response-1748457950"}}}'
     code: 201
     duration: 0ms
     headers:
@@ -27,7 +27,7 @@ interactions:
       - '*/*'
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/integration/ms-teams/configuration/workflows-webhook-handles/859e58f9-f63e-4ead-bde4-31265b79c6a7
+    url: https://api.datadoghq.com/api/v2/integration/ms-teams/configuration/workflows-webhook-handles/9d270a4a-287c-4225-a1cf-3b657416a471
   response:
     body: ''
     code: 204
@@ -42,7 +42,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/integration/ms-teams/configuration/workflows-webhook-handles/859e58f9-f63e-4ead-bde4-31265b79c6a7
+    url: https://api.datadoghq.com/api/v2/integration/ms-teams/configuration/workflows-webhook-handles/9d270a4a-287c-4225-a1cf-3b657416a471
   response:
     body: ''
     code: 204

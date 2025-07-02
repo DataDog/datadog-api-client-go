@@ -1,4 +1,28 @@
 {
+  "ListAppKeyRegistrations": {
+    "tag": "Action Connection",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UnregisterAppKey": {
+    "tag": "Action Connection",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetAppKeyRegistration": {
+    "tag": "Action Connection",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "RegisterAppKey": {
+    "tag": "Action Connection",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "CreateActionConnection": {
     "tag": "Action Connection",
     "undo": {
@@ -706,6 +730,30 @@
       "type": "safe"
     }
   },
+  "ListCostGCPUsageCostConfigs": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateCostGCPUsageCostConfig": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DeleteCostGCPUsageCostConfig": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "UpdateCostGCPUsageCostConfig": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "GetActiveBillingDimensions": {
     "tag": "Usage Metering",
     "undo": {
@@ -934,7 +982,7 @@
   "CreateEvent": {
     "tag": "Events",
     "undo": {
-      "type": "unsafe"
+      "type": "safe"
     }
   },
   "SearchEvents": {
@@ -1161,6 +1209,12 @@
     }
   },
   "CreateNewAWSExternalID": {
+    "tag": "AWS Integration",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetAWSIntegrationIAMPermissions": {
     "tag": "AWS Integration",
     "undo": {
       "type": "safe"
@@ -1879,6 +1933,55 @@
     }
   },
   "UpdateMonitorConfigPolicy": {
+    "tag": "Monitors",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListMonitorUserTemplates": {
+    "tag": "Monitors",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateMonitorUserTemplate": {
+    "tag": "Monitors",
+    "undo": {
+      "operationId": "DeleteMonitorUserTemplate",
+      "parameters": [
+        {
+          "name": "template_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "ValidateMonitorUserTemplate": {
+    "tag": "Monitors",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DeleteMonitorUserTemplate": {
+    "tag": "Monitors",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetMonitorUserTemplate": {
+    "tag": "Monitors",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateMonitorUserTemplate": {
+    "tag": "Monitors",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ValidateExistingMonitorUserTemplate": {
     "tag": "Monitors",
     "undo": {
       "type": "idempotent"
@@ -3239,6 +3342,25 @@
         }
       ],
       "type": "unsafe"
+    }
+  },
+  "ListMemberTeams": {
+    "tag": "Teams",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "AddMemberTeam": {
+    "tag": "Teams",
+    "undo": {
+      "operationId": "RemoveMemberTeam",
+      "type": "unsafe"
+    }
+  },
+  "RemoveMemberTeam": {
+    "tag": "Teams",
+    "undo": {
+      "type": "idempotent"
     }
   },
   "DeleteTeam": {

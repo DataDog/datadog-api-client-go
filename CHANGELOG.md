@@ -1,5 +1,70 @@
 # CHANGELOG
 
+## 2.42.0/2025-06-30
+
+### Fixed
+* Synthetics mobile test `message` field is now required [#3182](https://github.com/DataDog/datadog-api-client-go/pull/3182)
+* Make dns port be string and number [#3166](https://github.com/DataDog/datadog-api-client-go/pull/3166)
+
+### Security
+* Remove caseIndex from historical jobs api spec [#3181](https://github.com/DataDog/datadog-api-client-go/pull/3181)
+
+### Changed
+* Update events intake specs for v2 Events post endpoint [#3177](https://github.com/DataDog/datadog-api-client-go/pull/3177)
+
+### Added
+* Update Incident API specs to include `is_test` in `POST /incidents` and incidents response [#3176](https://github.com/DataDog/datadog-api-client-go/pull/3176)
+* Add App Key Registration API  [#3170](https://github.com/DataDog/datadog-api-client-go/pull/3170)
+* Add Monitor Template API [#3110](https://github.com/DataDog/datadog-api-client-go/pull/3110)
+
+### Deprecated
+* Deprecate SLO metadata fields in api spec [#3137](https://github.com/DataDog/datadog-api-client-go/pull/3137)
+
+## 2.41.0/2025-06-24
+
+### Fixed
+* Fix basic auth requirements [#3163](https://github.com/DataDog/datadog-api-client-go/pull/3163)
+
+### Added
+* Microsoft Sentinel Public API support [#3161](https://github.com/DataDog/datadog-api-client-go/pull/3161)
+* Add the AP2 datacenter. [#3159](https://github.com/DataDog/datadog-api-client-go/pull/3159)
+
+## 2.40.0/2025-06-23
+
+### Fixed
+* Fix basic auth requirements [#3163](https://github.com/DataDog/datadog-api-client-go/pull/3163)
+* Add support for the api_security detection rule type [#3158](https://github.com/DataDog/datadog-api-client-go/pull/3158)
+
+### Added
+* Microsoft Sentinel Public API support [#3161](https://github.com/DataDog/datadog-api-client-go/pull/3161)
+* Add custom fields to Rule update/validate API public documentation. [#3150](https://github.com/DataDog/datadog-api-client-go/pull/3150)
+* Add hash field to actions in CWS agent rules [#3147](https://github.com/DataDog/datadog-api-client-go/pull/3147)
+* SDCD-1142: adding `custom_tags` optional attribute to DORA API spec [#3134](https://github.com/DataDog/datadog-api-client-go/pull/3134)
+* Add sampling fields to SDS spec [#3129](https://github.com/DataDog/datadog-api-client-go/pull/3129)
+* Add API spec for team hierarchy APIs [#3105](https://github.com/DataDog/datadog-api-client-go/pull/3105)
+
+### Changed
+* Update events intake specs for v2 Events post endpoint [#3144](https://github.com/DataDog/datadog-api-client-go/pull/3144)
+
+## 2.39.0/2025-06-16
+
+### Fixed
+* sanitize configuration keys correctly [#3143](https://github.com/DataDog/datadog-api-client-go/pull/3143)
+
+### Changed
+* Add billing read permission [#3139](https://github.com/DataDog/datadog-api-client-go/pull/3139)
+* Update DORA endpoints [#3119](https://github.com/DataDog/datadog-api-client-go/pull/3119)
+
+### Added
+* Add `form` field for `multipart/form-data` HTTP API tests [#3135](https://github.com/DataDog/datadog-api-client-go/pull/3135)
+* Add new endpoint to upsert/list/delete custom kinds [#3128](https://github.com/DataDog/datadog-api-client-go/pull/3128)
+* Add spec for team on-call endpoint [#3126](https://github.com/DataDog/datadog-api-client-go/pull/3126)
+* Add support for all subtypes in multistep steps [#3100](https://github.com/DataDog/datadog-api-client-go/pull/3100)
+* Exposing set action on Terraform V2 [#3099](https://github.com/DataDog/datadog-api-client-go/pull/3099)
+* Added new optional field definition to include more detail in findings for '/api/v2/posture_management/findings'  [#3096](https://github.com/DataDog/datadog-api-client-go/pull/3096)
+* Add monitor draft status field [#3095](https://github.com/DataDog/datadog-api-client-go/pull/3095)
+* Add rum application to restriction policy [#2984](https://github.com/DataDog/datadog-api-client-go/pull/2984)
+
 ## 2.38.0/2025-05-28
 
 ### Fixed
