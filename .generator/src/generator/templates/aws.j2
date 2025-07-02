@@ -38,9 +38,9 @@ const (
 	applicationForm = "application/x-www-form-urlencoded; charset=utf-8"
 
 	// AWS specific constants
-	AWSAccessKeyName = "AWS_ACCESS_KEY_ID"
-	AWSSecretKeyName = "AWS_SECRET_ACCESS_KEY"
-	AWSSessionToken  = "AWS_SESSION_TOKEN"
+	AWSAccessKeyIdName     = "AWS_ACCESS_KEY_ID"
+	AWSSecretAccessKeyName = "AWS_SECRET_ACCESS_KEY"
+	AWSSessionTokenName    = "AWS_SESSION_TOKEN"
 
 	amzDateHeader         = "X-Amz-Date"
 	amzTokenHeader        = "X-Amz-Security-Token"
@@ -88,20 +88,20 @@ func (a *AWSAuth) GetCredentials(ctx context.Context) *Credentials {
 	if keys != nil {
 		keysMap := keys.(map[string]string)
 		creds := Credentials{}
-		if accessKey, ok := keysMap[AWSAccessKeyName]; ok {
+		if accessKey, ok := keysMap[AWSAccessKeyIdName]; ok {
 			creds.AccessKeyID = accessKey
 		}
-		if secretKey, ok := keysMap[AWSSecretKeyName]; ok {
+		if secretKey, ok := keysMap[AWSSecretAccessKeyName]; ok {
 			creds.SecretAccessKey = secretKey
 		}
-		if sessionToken, ok := keysMap[AWSSessionToken]; ok {
+		if sessionToken, ok := keysMap[AWSSessionTokenName]; ok {
 			creds.SessionToken = sessionToken
 		}
 		return &creds
 	} else {
-		accessKey := os.Getenv(AWSAccessKeyName)
-		secretKey := os.Getenv(AWSSecretKeyName)
-		sessionToken := os.Getenv(AWSSessionToken)
+		accessKey := os.Getenv(AWSAccessKeyIdName)
+		secretKey := os.Getenv(AWSSecretAccessKeyName)
+		sessionToken := os.Getenv(AWSSessionTokenName)
 		return &Credentials{
 			AccessKeyID:     accessKey,
 			SecretAccessKey: secretKey,

@@ -31,9 +31,9 @@ func TestGetCredentials(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			// Set environment variables
-			t.Setenv(datadog.AWSAccessKeyName, tc.awsAccessKeyName)
-			t.Setenv(datadog.AWSSecretKeyName, tc.awsSecretKeyName)
-			t.Setenv(datadog.AWSSessionToken, tc.awsSessionToken)
+			t.Setenv(datadog.AWSAccessKeyIdName, tc.awsAccessKeyName)
+			t.Setenv(datadog.AWSSecretAccessKeyName, tc.awsSecretKeyName)
+			t.Setenv(datadog.AWSSessionTokenName, tc.awsSessionToken)
 
 			awsAuth := datadog.AWSAuth{}
 			creds := awsAuth.GetCredentials(context.Background())

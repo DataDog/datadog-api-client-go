@@ -887,14 +887,14 @@ func NewDefaultContext(ctx context.Context) context.Context {
 	}
 
 	awsKeys := make(map[string]string)
-	if accessKey, ok := os.LookupEnv(AWSAccessKeyName); ok {
-		awsKeys[AWSAccessKeyName] = accessKey
+	if accessKey, ok := os.LookupEnv(AWSAccessKeyIdName); ok {
+		awsKeys[AWSAccessKeyIdName] = accessKey
 	}
-	if secretKey, ok := os.LookupEnv(AWSSecretKeyName); ok {
-		awsKeys[AWSSecretKeyName] = secretKey
+	if secretKey, ok := os.LookupEnv(AWSSecretAccessKeyName); ok {
+		awsKeys[AWSSecretAccessKeyName] = secretKey
 	}
-	if sessionToken, ok := os.LookupEnv(AWSSessionToken); ok {
-		awsKeys[AWSSessionToken] = sessionToken
+	if sessionToken, ok := os.LookupEnv(AWSSessionTokenName); ok {
+		awsKeys[AWSSessionTokenName] = sessionToken
 	}
 	ctx = context.WithValue(
 		ctx,
