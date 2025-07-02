@@ -219,12 +219,19 @@ func (a *MonitorsApi) CreateMonitorUserTemplate(ctx _context.Context, body Monit
 
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
-		ctx,
-		&localVarHeaderParams,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -443,12 +450,19 @@ func (a *MonitorsApi) DeleteMonitorUserTemplate(ctx _context.Context, templateId
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "*/*"
 
-	datadog.SetAuthKeys(
-		ctx,
-		&localVarHeaderParams,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
@@ -849,12 +863,19 @@ func (a *MonitorsApi) GetMonitorUserTemplate(ctx _context.Context, templateId st
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
-		ctx,
-		&localVarHeaderParams,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1005,12 +1026,19 @@ func (a *MonitorsApi) ListMonitorUserTemplates(ctx _context.Context) (MonitorUse
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
-		ctx,
-		&localVarHeaderParams,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1259,12 +1287,19 @@ func (a *MonitorsApi) UpdateMonitorUserTemplate(ctx _context.Context, templateId
 
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
-		ctx,
-		&localVarHeaderParams,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1341,12 +1376,19 @@ func (a *MonitorsApi) ValidateExistingMonitorUserTemplate(ctx _context.Context, 
 
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
-		ctx,
-		&localVarHeaderParams,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
@@ -1413,12 +1455,19 @@ func (a *MonitorsApi) ValidateMonitorUserTemplate(ctx _context.Context, body Mon
 
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
-		ctx,
-		&localVarHeaderParams,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err

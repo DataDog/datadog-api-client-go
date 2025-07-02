@@ -199,12 +199,19 @@ func (a *CloudCostManagementApi) CreateCostGCPUsageCostConfig(ctx _context.Conte
 
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
-		ctx,
-		&localVarHeaderParams,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -473,12 +480,19 @@ func (a *CloudCostManagementApi) DeleteCostGCPUsageCostConfig(ctx _context.Conte
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "*/*"
 
-	datadog.SetAuthKeys(
-		ctx,
-		&localVarHeaderParams,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
@@ -989,12 +1003,19 @@ func (a *CloudCostManagementApi) ListCostGCPUsageCostConfigs(ctx _context.Contex
 	localVarFormParams := _neturl.Values{}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	datadog.SetAuthKeys(
-		ctx,
-		&localVarHeaderParams,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1302,12 +1323,19 @@ func (a *CloudCostManagementApi) UpdateCostGCPUsageCostConfig(ctx _context.Conte
 
 	// body params
 	localVarPostBody = &body
-	datadog.SetAuthKeys(
-		ctx,
-		&localVarHeaderParams,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
