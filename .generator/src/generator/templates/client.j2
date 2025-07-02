@@ -55,44 +55,35 @@ type Service struct {
 	Client *APIClient
 }
 
+// UseDelegatedTokenAuth sets the Authorization header with a delegated token if available in the context.
+func UseDelegatedTokenAuth(ctx context.Context, headerParams *map[string]string, delegatedTokenConfig *DelegatedTokenConfig) error {
+	if ctx != nil {
+		if delegatedTokenCreds, ok := ctx.Value(ContextDelegatedToken).(*DelegatedTokenCredentials); ok {
+			if delegatedTokenCreds.DelegatedToken == "" || time.Now().After(delegatedTokenCreds.Expiration) {
+				_, err := CallDelegatedTokenAuthenticate(ctx, delegatedTokenConfig)
+				if err != nil {
+					log.Printf("Failed to retrieve delegated token: %v", err)
+					// Reset the token if authentication failed
+					delegatedTokenCreds.DelegatedToken = ""
+					return err
+				}
+			}
+			// If authentication succeeded use delegated token auth
+			if delegatedTokenCreds.DelegatedToken != "" {
+				(*headerParams)[authorizationHeader] = fmt.Sprintf(bearerTokenFormat, delegatedTokenCreds.DelegatedToken)
+			}
+		}
+	}
+	return nil
+}
+
 // SetAuthKeys sets the appropriate values in the headers parameter.
 func SetAuthKeys(ctx context.Context, headerParams *map[string]string, keys ...[2]string) {
 	if ctx != nil {
-		// If we have delegated token auth configured and the method uses appKeyAuth, use that over the app key auth headers
-		hasDelegatedTokenAuth := false
-		if delegatedTokenConfig, ok := ctx.Value(ContextDelegatedToken).(*DelegatedTokenConfig); ok {
-			methodUsesAppKeyAuth := false
-			for _, key := range keys {
-				if key[0] == appKeyAuthType {
-					methodUsesAppKeyAuth = true
-					break
-				}
-			}
-
-			if methodUsesAppKeyAuth {
-				hasDelegatedTokenAuth = true
-				// If we have no token or the token we have is expired then authenticate
-				if delegatedTokenConfig.DelegatedToken == "" || time.Now().After(delegatedTokenConfig.Expiration) {
-					_, err := CallDelegatedTokenAuthenticate(ctx, delegatedTokenConfig)
-					if err != nil {
-						log.Printf("Failed to retrieve delegated token: %v", err)
-						// Reset the token if authentication failed
-						delegatedTokenConfig.DelegatedToken = ""
-					}
-				}
-				// If authentication succeeded use delegated token auth
-				if delegatedTokenConfig.DelegatedToken != "" {
-					(*headerParams)[authorizationHeader] = fmt.Sprintf(bearerTokenFormat, delegatedTokenConfig.DelegatedToken)
-				}
-			}
-		}
-
-		if !hasDelegatedTokenAuth {
-			for _, key := range keys {
-				if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-					if apiKey, ok := auth[key[0]]; ok {
-						(*headerParams)[key[1]] = apiKey.Key
-					}
+		for _, key := range keys {
+			if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+				if apiKey, ok := auth[key[0]]; ok {
+					(*headerParams)[key[1]] = apiKey.Key
 				}
 			}
 		}
@@ -485,25 +476,21 @@ func (c *APIClient) Decode(v interface{}, b []byte, contentType string) (err err
 }
 
 // GetDelegatedToken will call CallDelegatedTokenAuthenticate if delegated token auth is found in the context.
-func (c *APIClient) GetDelegatedToken(ctx context.Context) (*DelegatedTokenConfig, error) {
-	if cloudProviderConfig, ok := ctx.Value(ContextDelegatedToken).(*DelegatedTokenConfig); ok {
-		log.Println("Performing delegated token authentication")
-		_, err := CallDelegatedTokenAuthenticate(ctx, cloudProviderConfig)
-		return cloudProviderConfig, err
-	}
-	return nil, fmt.Errorf("delegated token auth not found in context")
+func (c *APIClient) GetDelegatedToken(ctx context.Context) (*DelegatedTokenCredentials, error) {
+	log.Println("Performing delegated token authentication")
+	creds, err := CallDelegatedTokenAuthenticate(ctx, c.Cfg.DelegatedTokenConfig)
+	return creds, err
 }
 
-func CallDelegatedTokenAuthenticate(ctx context.Context, config *DelegatedTokenConfig) (*DelegatedTokenConfig, error) {
+func CallDelegatedTokenAuthenticate(ctx context.Context, config *DelegatedTokenConfig) (*DelegatedTokenCredentials, error) {
+	if config == nil {
+		return nil, nil
+	}
 	creds, err := config.ProviderAuth.Authenticate(ctx)
 	if err != nil || creds == nil {
 		return nil, err
 	}
-	config.OrgUUID = creds.OrgUUID
-	config.DelegatedProof = creds.DelegatedProof
-	config.DelegatedToken = creds.DelegatedToken
-	config.Expiration = creds.Expiration
-	return config, nil
+	return creds, nil
 }
 
 // Add a file to the multipart request.

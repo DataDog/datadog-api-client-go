@@ -1,6 +1,7 @@
 package api
 
 import (
+	"context"
 	"encoding/base64"
 	"encoding/json"
 	"net/url"
@@ -35,7 +36,7 @@ func TestGetCredentials(t *testing.T) {
 			t.Setenv(datadog.AWSSessionToken, tc.awsSessionToken)
 
 			awsAuth := datadog.AWSAuth{}
-			creds := awsAuth.GetCredentials()
+			creds := awsAuth.GetCredentials(context.Background())
 
 			if creds.AccessKeyID != tc.awsAccessKeyName {
 				t.Errorf("expected AccessKeyID %s, got %s", tc.awsAccessKeyName, creds.AccessKeyID)

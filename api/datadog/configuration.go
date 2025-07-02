@@ -45,6 +45,9 @@ var (
 	// ContextDelegatedToken takes a string delegated token as authentication for the request
 	ContextDelegatedToken = contextKey("delegatedToken")
 
+	// ContextAWSVariables takes AWS credentials as authentication for the request.
+	ContextAWSVariables = contextKey("awsVariables")
+
 	// ContextHttpSignatureAuth takes HttpSignatureAuth as authentication for the request.
 	ContextHttpSignatureAuth = contextKey("httpsignature")
 
@@ -73,6 +76,7 @@ type APIKey struct {
 	Prefix string
 }
 
+// DelegatedTokenCredentials delegated token authentication to a request passed via context using ContextDelegatedToken.
 type DelegatedTokenCredentials struct {
 	OrgUUID        string
 	DelegatedToken string
@@ -80,20 +84,11 @@ type DelegatedTokenCredentials struct {
 	Expiration     time.Time
 }
 
-func NewDelegatedTokenCredentialsFromEnv() (*DelegatedTokenCredentials, error) {
-	if orgUUID, ok := os.LookupEnv("DD_ORG_UUID"); ok {
-		return &DelegatedTokenCredentials{
-			OrgUUID: orgUUID,
-		}, nil
-	}
-	return nil, fmt.Errorf("DD_ORG_UUID environment variable not set")
-}
-
-// DelegatedTokenConfig provides cloud provider based authentication to a request passed via context using ContextDelegatedToken.
+// DelegatedTokenConfig provides cloud provider based authentication configuration.
 type DelegatedTokenConfig struct {
-	DelegatedTokenCredentials
-	ProviderAuth DelegatedTokenProvider
+	OrgUUID      string
 	Provider     string
+	ProviderAuth DelegatedTokenProvider
 }
 
 // DelegatedTokenProvider is an interface for getting a delegated token utilizing different methods.
@@ -120,17 +115,18 @@ type ServerConfigurations []ServerConfiguration
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	Host               string            `json:"host,omitempty"`
-	Scheme             string            `json:"scheme,omitempty"`
-	DefaultHeader      map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent          string            `json:"userAgent,omitempty"`
-	Debug              bool              `json:"debug,omitempty"`
-	Compress           bool              `json:"compress,omitempty"`
-	Servers            ServerConfigurations
-	OperationServers   map[string]ServerConfigurations
-	HTTPClient         *http.Client
-	unstableOperations map[string]bool
-	RetryConfiguration RetryConfiguration
+	Host                 string            `json:"host,omitempty"`
+	Scheme               string            `json:"scheme,omitempty"`
+	DefaultHeader        map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent            string            `json:"userAgent,omitempty"`
+	Debug                bool              `json:"debug,omitempty"`
+	Compress             bool              `json:"compress,omitempty"`
+	Servers              ServerConfigurations
+	OperationServers     map[string]ServerConfigurations
+	HTTPClient           *http.Client
+	unstableOperations   map[string]bool
+	RetryConfiguration   RetryConfiguration
+	DelegatedTokenConfig *DelegatedTokenConfig
 }
 
 // RetryConfiguration stores the configuration of the retry behavior of the api client
@@ -823,6 +819,23 @@ func NewDefaultContext(ctx context.Context) context.Context {
 	if apiKey, ok := os.LookupEnv("DD_APP_KEY"); ok {
 		keys["appKeyAuth"] = APIKey{Key: apiKey}
 	}
+
+	awsKeys := make(map[string]string)
+	if accessKey, ok := os.LookupEnv(AWSAccessKeyName); ok {
+		awsKeys[AWSAccessKeyName] = accessKey
+	}
+	if secretKey, ok := os.LookupEnv(AWSSecretKeyName); ok {
+		awsKeys[AWSSecretKeyName] = secretKey
+	}
+	if sessionToken, ok := os.LookupEnv(AWSSessionToken); ok {
+		awsKeys[AWSSessionToken] = sessionToken
+	}
+	ctx = context.WithValue(
+		ctx,
+		ContextAWSVariables,
+		awsKeys,
+	)
+
 	ctx = context.WithValue(
 		ctx,
 		ContextAPIKeys,

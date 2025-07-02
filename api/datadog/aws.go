@@ -66,7 +66,7 @@ type AWSAuth struct {
 
 func (a *AWSAuth) Authenticate(ctx context.Context) (*DelegatedTokenCredentials, error) {
 	// Get local AWS Credentials
-	creds := a.GetCredentials()
+	creds := a.GetCredentials(ctx)
 
 	orgUUID := ctx.Value(ContextDelegatedToken).(*DelegatedTokenConfig).OrgUUID
 	if orgUUID == "" {
@@ -86,14 +86,30 @@ func (a *AWSAuth) Authenticate(ctx context.Context) (*DelegatedTokenCredentials,
 	return authResponse, err
 }
 
-func (a *AWSAuth) GetCredentials() *Credentials {
-	accessKey := os.Getenv(AWSAccessKeyName)
-	secretKey := os.Getenv(AWSSecretKeyName)
-	sessionToken := os.Getenv(AWSSessionToken)
-	return &Credentials{
-		AccessKeyID:     accessKey,
-		SecretAccessKey: secretKey,
-		SessionToken:    sessionToken,
+func (a *AWSAuth) GetCredentials(ctx context.Context) *Credentials {
+	keys := ctx.Value(ContextAWSVariables)
+	if keys != nil {
+		keysMap := keys.(map[string]string)
+		creds := Credentials{}
+		if accessKey, ok := keysMap[AWSAccessKeyName]; ok {
+			creds.AccessKeyID = accessKey
+		}
+		if secretKey, ok := keysMap[AWSSecretKeyName]; ok {
+			creds.SecretAccessKey = secretKey
+		}
+		if sessionToken, ok := keysMap[AWSSessionToken]; ok {
+			creds.SessionToken = sessionToken
+		}
+		return &creds
+	} else {
+		accessKey := os.Getenv(AWSAccessKeyName)
+		secretKey := os.Getenv(AWSSecretKeyName)
+		sessionToken := os.Getenv(AWSSessionToken)
+		return &Credentials{
+			AccessKeyID:     accessKey,
+			SecretAccessKey: secretKey,
+			SessionToken:    sessionToken,
+		}
 	}
 }
 
