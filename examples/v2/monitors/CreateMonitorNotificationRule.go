@@ -33,7 +33,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.CreateMonitorNotificationRule", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMonitorsApi(apiClient)
 	resp, r, err := api.CreateMonitorNotificationRule(ctx, body)

@@ -17,7 +17,6 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.DeleteMonitorNotificationRule", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMonitorsApi(apiClient)
 	r, err := api.DeleteMonitorNotificationRule(ctx, MonitorNotificationRuleDataID)
