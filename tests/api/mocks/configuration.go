@@ -36,16 +36,16 @@ func (m *MockDelegatedTokenProvider) EXPECT() *MockDelegatedTokenProviderMockRec
 }
 
 // Authenticate mocks base method.
-func (m *MockDelegatedTokenProvider) Authenticate(ctx context.Context) (*datadog.DelegatedTokenCredentials, error) {
+func (m *MockDelegatedTokenProvider) Authenticate(ctx context.Context, config *datadog.DelegatedTokenConfig) (*datadog.DelegatedTokenCredentials, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Authenticate", ctx)
+	ret := m.ctrl.Call(m, "Authenticate", ctx, config)
 	ret0, _ := ret[0].(*datadog.DelegatedTokenCredentials)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // Authenticate indicates an expected call of Authenticate.
-func (mr *MockDelegatedTokenProviderMockRecorder) Authenticate(ctx interface{}) *gomock.Call {
+func (mr *MockDelegatedTokenProviderMockRecorder) Authenticate(ctx, config interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Authenticate", reflect.TypeOf((*MockDelegatedTokenProvider)(nil).Authenticate), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Authenticate", reflect.TypeOf((*MockDelegatedTokenProvider)(nil).Authenticate), ctx, config)
 }

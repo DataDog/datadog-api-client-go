@@ -16,7 +16,7 @@ const FAKE_TOKEN = "fake-token"
 func TestDelegatedPreAuthenticate(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	awsAuth := mocks.NewMockDelegatedTokenProvider(ctrl)
-	awsAuth.EXPECT().Authenticate(gomock.Any()).Return(
+	awsAuth.EXPECT().Authenticate(gomock.Any(), gomock.Any()).Return(
 		&datadog.DelegatedTokenCredentials{
 			OrgUUID:        "1234",
 			DelegatedToken: FAKE_TOKEN,
@@ -24,27 +24,30 @@ func TestDelegatedPreAuthenticate(t *testing.T) {
 			Expiration:     time.Now().Add(time.Duration(10) * time.Minute),
 		}, nil)
 
-	testAuthCtx := context.WithValue(
-		context.Background(),
-		datadog.ContextDelegatedToken,
-		&datadog.DelegatedTokenConfig{
-			ProviderAuth: awsAuth,
-			Provider:     "aws",
+	testAuthCtx := datadog.NewDefaultContext(context.Background())
+	testAuthCtx = context.WithValue(
+		testAuthCtx,
+		datadog.ContextAWSVariables,
+		map[string]string{
+			"aws_access_key_id":     "fake-access-key-id",
+			"aws_secret_access_key": "fake-secret-access-key",
+			"aws_session_token":     "fake-session-token",
 		},
 	)
+
 	config := datadog.NewConfiguration()
+	config.DelegatedTokenConfig = &datadog.DelegatedTokenConfig{
+		OrgUUID:      "1234",
+		ProviderAuth: awsAuth,
+		Provider:     "aws",
+	}
 	testAPIClient := datadog.NewAPIClient(config)
 	token, err := testAPIClient.GetDelegatedToken(testAuthCtx)
 	assert.Nil(t, err)
 	assert.Equal(t, token.DelegatedToken, FAKE_TOKEN)
 
 	headers := map[string]string{}
-	datadog.SetAuthKeys(
-		testAuthCtx,
-		&headers,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
+	datadog.UseDelegatedTokenAuth(testAuthCtx, &headers, config.DelegatedTokenConfig)
 	assert.NotEmpty(t, headers)
 	assert.Equal(t, headers["Authorization"], fmt.Sprintf("Bearer %s", FAKE_TOKEN))
 }
@@ -52,7 +55,7 @@ func TestDelegatedPreAuthenticate(t *testing.T) {
 func TestDelegatedNoPreAuthenticate(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	awsAuth := mocks.NewMockDelegatedTokenProvider(ctrl)
-	awsAuth.EXPECT().Authenticate(gomock.Any()).Return(
+	awsAuth.EXPECT().Authenticate(gomock.Any(), gomock.Any()).Return(
 		&datadog.DelegatedTokenCredentials{
 			OrgUUID:        "1234",
 			DelegatedToken: FAKE_TOKEN,
@@ -60,22 +63,26 @@ func TestDelegatedNoPreAuthenticate(t *testing.T) {
 			Expiration:     time.Now().Add(time.Duration(10) * time.Minute),
 		}, nil)
 
-	testAuthCtx := context.WithValue(
-		context.Background(),
-		datadog.ContextDelegatedToken,
-		&datadog.DelegatedTokenConfig{
-			ProviderAuth: awsAuth,
-			Provider:     "aws",
+	testAuthCtx := datadog.NewDefaultContext(context.Background())
+	testAuthCtx = context.WithValue(
+		testAuthCtx,
+		datadog.ContextAWSVariables,
+		map[string]string{
+			"aws_access_key_id":     "fake-access-key-id",
+			"aws_secret_access_key": "fake-secret-access-key",
+			"aws_session_token":     "fake-session-token",
 		},
 	)
 
+	config := datadog.NewConfiguration()
+	config.DelegatedTokenConfig = &datadog.DelegatedTokenConfig{
+		OrgUUID:      "1234",
+		ProviderAuth: awsAuth,
+		Provider:     "aws",
+	}
+
 	headers := map[string]string{}
-	datadog.SetAuthKeys(
-		testAuthCtx,
-		&headers,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
+	datadog.UseDelegatedTokenAuth(testAuthCtx, &headers, config.DelegatedTokenConfig)
 	assert.NotEmpty(t, headers)
 	assert.Equal(t, headers["Authorization"], fmt.Sprintf("Bearer %s", FAKE_TOKEN))
 }
@@ -83,14 +90,14 @@ func TestDelegatedNoPreAuthenticate(t *testing.T) {
 func TestDelegatedReAuthenticate(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	awsAuth := mocks.NewMockDelegatedTokenProvider(ctrl)
-	firstCall := awsAuth.EXPECT().Authenticate(gomock.Any()).Return(
+	firstCall := awsAuth.EXPECT().Authenticate(gomock.Any(), gomock.Any()).Return(
 		&datadog.DelegatedTokenCredentials{
 			OrgUUID:        "1234",
 			DelegatedToken: FAKE_TOKEN,
 			DelegatedProof: "proof",
 			Expiration:     time.Now().Add(time.Duration(-16) * time.Minute),
 		}, nil)
-	awsAuth.EXPECT().Authenticate(gomock.Any()).After(firstCall).Return(
+	awsAuth.EXPECT().Authenticate(gomock.Any(), gomock.Any()).After(firstCall).Return(
 		&datadog.DelegatedTokenCredentials{
 			OrgUUID:        "1234",
 			DelegatedToken: FAKE_TOKEN,
@@ -98,26 +105,28 @@ func TestDelegatedReAuthenticate(t *testing.T) {
 			Expiration:     time.Now().Add(time.Duration(10) * time.Minute),
 		}, nil)
 
-	testAuthCtx := context.WithValue(
-		context.Background(),
-		datadog.ContextDelegatedToken,
-		&datadog.DelegatedTokenConfig{
-			ProviderAuth: awsAuth,
-			Provider:     "aws",
+	testAuthCtx := datadog.NewDefaultContext(context.Background())
+	testAuthCtx = context.WithValue(
+		testAuthCtx,
+		datadog.ContextAWSVariables,
+		map[string]string{
+			"aws_access_key_id":     "fake-access-key-id",
+			"aws_secret_access_key": "fake-secret-access-key",
+			"aws_session_token":     "fake-session-token",
 		},
 	)
 
 	config := datadog.NewConfiguration()
+	config.DelegatedTokenConfig = &datadog.DelegatedTokenConfig{
+		OrgUUID:      "1234",
+		ProviderAuth: awsAuth,
+		Provider:     "aws",
+	}
 	testAPIClient := datadog.NewAPIClient(config)
 	testAPIClient.GetDelegatedToken(testAuthCtx)
 
 	headers := map[string]string{}
-	datadog.SetAuthKeys(
-		testAuthCtx,
-		&headers,
-		[2]string{"apiKeyAuth", "DD-API-KEY"},
-		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-	)
+	datadog.UseDelegatedTokenAuth(testAuthCtx, &headers, config.DelegatedTokenConfig)
 	assert.NotEmpty(t, headers)
 	assert.Equal(t, headers["Authorization"], fmt.Sprintf("Bearer %s", FAKE_TOKEN))
 }

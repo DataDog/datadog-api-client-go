@@ -61,17 +61,16 @@ type AWSAuth struct {
 	AwsRegion string
 }
 
-func (a *AWSAuth) Authenticate(ctx context.Context) (*DelegatedTokenCredentials, error) {
+func (a *AWSAuth) Authenticate(ctx context.Context, config *DelegatedTokenConfig) (*DelegatedTokenCredentials, error) {
 	// Get local AWS Credentials
 	creds := a.GetCredentials(ctx)
 
-	orgUUID := ctx.Value(ContextDelegatedToken).(*DelegatedTokenConfig).OrgUUID
-	if orgUUID == "" {
-		return nil, fmt.Errorf("missing org UUID in context")
+	if config == nil || config.OrgUUID == "" {
+		return nil, fmt.Errorf("missing org UUID in config")
 	}
 
 	// Use the credentials to generate the signing data
-	data, err := a.GenerateAwsAuthData(orgUUID, creds)
+	data, err := a.GenerateAwsAuthData(config.OrgUUID, creds)
 	if err != nil {
 		return nil, err
 	}
@@ -79,7 +78,7 @@ func (a *AWSAuth) Authenticate(ctx context.Context) (*DelegatedTokenCredentials,
 	// Generate the auth string passed to the token endpoint
 	authString := data.BodyEncoded + "|" + data.HeadersEncoded + "|" + data.Method + "|" + data.URLEncoded
 
-	authResponse, err := GetDelegatedToken(ctx, orgUUID, authString)
+	authResponse, err := GetDelegatedToken(ctx, config.OrgUUID, authString)
 	return authResponse, err
 }
 

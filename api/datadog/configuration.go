@@ -93,7 +93,7 @@ type DelegatedTokenConfig struct {
 
 // DelegatedTokenProvider is an interface for getting a delegated token utilizing different methods.
 type DelegatedTokenProvider interface {
-	Authenticate(ctx context.Context) (*DelegatedTokenCredentials, error)
+	Authenticate(ctx context.Context, config *DelegatedTokenConfig) (*DelegatedTokenCredentials, error)
 }
 
 // ServerVariable stores the information about a server variable.
@@ -908,5 +908,10 @@ func NewDefaultContext(ctx context.Context) context.Context {
 		keys,
 	)
 
+	ctx = context.WithValue(
+		ctx,
+		ContextDelegatedToken,
+		&DelegatedTokenCredentials{},
+	)
 	return ctx
 }
