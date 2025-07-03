@@ -1,0 +1,43 @@
+interactions:
+- request:
+    body: |
+      {"filter":{"query":"source:python"},"name":"testPipelineArraySelect","processors":[{"is_enabled":true,"name":"extract_referrer","operation":{"filter":"name:Referrer","source":"httpRequest.headers","target":"referrer","type":"select","value_to_extract":"value"},"type":"array-processor"}],"tags":[]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines
+  response:
+    body: '{"id":"e3TVPUCYQ7a37CTTJB1HcA","type":"pipeline","name":"testPipelineArraySelect","is_enabled":false,"is_read_only":false,"filter":{"query":"source:python"},"processors":[{"name":"extract_referrer","is_enabled":true,"operation":{"source":"httpRequest.headers","target":"referrer","filter":"name:Referrer","value_to_extract":"value","type":"select"},"type":"array-processor"}],"tags":[]}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/e3TVPUCYQ7a37CTTJB1HcA
+  response:
+    body: '{}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 2
