@@ -11,20 +11,13 @@ import (
 )
 
 func main() {
-	// Set your site with the `DD_SITE` environment variable
-	ctx := context.WithValue(
-		datadog.NewDefaultContext(context.Background()),
-		datadog.ContextDelegatedToken,
-		&datadog.DelegatedTokenConfig{
-			DelegatedTokenCredentials: datadog.DelegatedTokenCredentials{
-				OrgUUID: os.Getenv("DD_TEST_ORG_UUID"),
-			},
-			ProviderAuth: &datadog.AWSAuth{},
-			Provider:     datadog.ProviderAWS,
-		},
-	)
-
+	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.DelegatedTokenConfig = &datadog.DelegatedTokenConfig{
+		OrgUUID:      os.Getenv("DD_TEST_ORG_UUID"),
+		ProviderAuth: &datadog.AWSAuth{},
+		Provider:     datadog.ProviderAWS,
+	}
 	apiClient := datadog.NewAPIClient(configuration)
 
 	// Make example API call using the Public Token Config
