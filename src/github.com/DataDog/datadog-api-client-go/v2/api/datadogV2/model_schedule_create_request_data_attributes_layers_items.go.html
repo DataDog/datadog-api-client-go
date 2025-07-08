@@ -74,7 +74,7 @@
 <span id="L17" class="ln">    17  </span>	EffectiveDate time.Time `json:&#34;effective_date&#34;`
 <span id="L18" class="ln">    18  </span>	<span class="comment">// The date/time after which this layer no longer applies (in ISO 8601).</span>
 <span id="L19" class="ln">    19  </span>	EndDate *time.Time `json:&#34;end_date,omitempty&#34;`
-<span id="L20" class="ln">    20  </span>	<span class="comment">// Defines how often the rotation repeats, using a combination of days and optional seconds.</span>
+<span id="L20" class="ln">    20  </span>	<span class="comment">// Defines how often the rotation repeats, using a combination of days and optional seconds. Should be at least 1 hour.</span>
 <span id="L21" class="ln">    21  </span>	Interval LayerAttributesInterval `json:&#34;interval&#34;`
 <span id="L22" class="ln">    22  </span>	<span class="comment">// A list of members who participate in this layer&#39;s rotation.</span>
 <span id="L23" class="ln">    23  </span>	Members []ScheduleRequestDataAttributesLayersItemsMembersItems `json:&#34;members&#34;`

@@ -244,118 +244,120 @@
 <span id="L187" class="ln">   187  </span><span class="comment">// - Connections: `connection`</span>
 <span id="L188" class="ln">   188  </span><span class="comment">// - Connection Groups: `connection-group`</span>
 <span id="L189" class="ln">   189  </span><span class="comment">// - RUM Applications: `rum-application`</span>
-<span id="L190" class="ln">   190  </span><span class="comment">//</span>
-<span id="L191" class="ln">   191  </span><span class="comment">// #### Supported relations for resources</span>
-<span id="L192" class="ln">   192  </span><span class="comment">// Resource Type               | Supported Relations</span>
-<span id="L193" class="ln">   193  </span><span class="comment">// ----------------------------|--------------------------</span>
-<span id="L194" class="ln">   194  </span><span class="comment">// Dashboards                  | `viewer`, `editor`</span>
-<span id="L195" class="ln">   195  </span><span class="comment">// Integration Accounts        | `viewer`, `editor`</span>
-<span id="L196" class="ln">   196  </span><span class="comment">// Integration Services        | `viewer`, `editor`</span>
-<span id="L197" class="ln">   197  </span><span class="comment">// Integration Webhooks        | `viewer`, `editor`</span>
-<span id="L198" class="ln">   198  </span><span class="comment">// Notebooks                   | `viewer`, `editor`</span>
-<span id="L199" class="ln">   199  </span><span class="comment">// Powerpacks                  | `viewer`, `editor`</span>
-<span id="L200" class="ln">   200  </span><span class="comment">// Security Rules              | `viewer`, `editor`</span>
-<span id="L201" class="ln">   201  </span><span class="comment">// Service Level Objectives    | `viewer`, `editor`</span>
-<span id="L202" class="ln">   202  </span><span class="comment">// Synthetic Global Variables  | `viewer`, `editor`</span>
-<span id="L203" class="ln">   203  </span><span class="comment">// Synthetic Tests             | `viewer`, `editor`</span>
-<span id="L204" class="ln">   204  </span><span class="comment">// Synthetic Private Locations | `viewer`, `editor`</span>
-<span id="L205" class="ln">   205  </span><span class="comment">// Monitors                    | `viewer`, `editor`</span>
-<span id="L206" class="ln">   206  </span><span class="comment">// Reference Tables            | `viewer`, `editor`</span>
-<span id="L207" class="ln">   207  </span><span class="comment">// Workflows                   | `viewer`, `runner`, `editor`</span>
-<span id="L208" class="ln">   208  </span><span class="comment">// App Builder Apps            | `viewer`, `editor`</span>
-<span id="L209" class="ln">   209  </span><span class="comment">// Connections                 | `viewer`, `resolver`, `editor`</span>
-<span id="L210" class="ln">   210  </span><span class="comment">// Connection Groups           | `viewer`, `editor`</span>
-<span id="L211" class="ln">   211  </span><span class="comment">// RUM Application             | `viewer`, `editor`</span>
-<span id="L212" class="ln">   212  </span>func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest, o ...UpdateRestrictionPolicyOptionalParameters) (RestrictionPolicyResponse, *_nethttp.Response, error) {
-<span id="L213" class="ln">   213  </span>	var (
-<span id="L214" class="ln">   214  </span>		localVarHTTPMethod  = _nethttp.MethodPost
-<span id="L215" class="ln">   215  </span>		localVarPostBody    interface{}
-<span id="L216" class="ln">   216  </span>		localVarReturnValue RestrictionPolicyResponse
-<span id="L217" class="ln">   217  </span>		optionalParams      UpdateRestrictionPolicyOptionalParameters
-<span id="L218" class="ln">   218  </span>	)
-<span id="L219" class="ln">   219  </span>
-<span id="L220" class="ln">   220  </span>	if len(o) &gt; 1 {
-<span id="L221" class="ln">   221  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type UpdateRestrictionPolicyOptionalParameters is allowed&#34;)
-<span id="L222" class="ln">   222  </span>	}
-<span id="L223" class="ln">   223  </span>	if len(o) == 1 {
-<span id="L224" class="ln">   224  </span>		optionalParams = o[0]
-<span id="L225" class="ln">   225  </span>	}
-<span id="L226" class="ln">   226  </span>
-<span id="L227" class="ln">   227  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.RestrictionPoliciesApi.UpdateRestrictionPolicy&#34;)
-<span id="L228" class="ln">   228  </span>	if err != nil {
-<span id="L229" class="ln">   229  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L230" class="ln">   230  </span>	}
-<span id="L231" class="ln">   231  </span>
-<span id="L232" class="ln">   232  </span>	localVarPath := localBasePath + &#34;/api/v2/restriction_policy/{resource_id}&#34;
-<span id="L233" class="ln">   233  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{resource_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(resourceId, &#34;&#34;)))
-<span id="L234" class="ln">   234  </span>
-<span id="L235" class="ln">   235  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L236" class="ln">   236  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L237" class="ln">   237  </span>	localVarFormParams := _neturl.Values{}
-<span id="L238" class="ln">   238  </span>	if optionalParams.AllowSelfLockout != nil {
-<span id="L239" class="ln">   239  </span>		localVarQueryParams.Add(&#34;allow_self_lockout&#34;, datadog.ParameterToString(*optionalParams.AllowSelfLockout, &#34;&#34;))
-<span id="L240" class="ln">   240  </span>	}
-<span id="L241" class="ln">   241  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
-<span id="L242" class="ln">   242  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L243" class="ln">   243  </span>
-<span id="L244" class="ln">   244  </span>	<span class="comment">// body params</span>
-<span id="L245" class="ln">   245  </span>	localVarPostBody = &amp;body
-<span id="L246" class="ln">   246  </span>	datadog.SetAuthKeys(
-<span id="L247" class="ln">   247  </span>		ctx,
-<span id="L248" class="ln">   248  </span>		&amp;localVarHeaderParams,
-<span id="L249" class="ln">   249  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L250" class="ln">   250  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L251" class="ln">   251  </span>	)
-<span id="L252" class="ln">   252  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L253" class="ln">   253  </span>	if err != nil {
-<span id="L254" class="ln">   254  </span>		return localVarReturnValue, nil, err
-<span id="L255" class="ln">   255  </span>	}
-<span id="L256" class="ln">   256  </span>
-<span id="L257" class="ln">   257  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L258" class="ln">   258  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L259" class="ln">   259  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L260" class="ln">   260  </span>	}
-<span id="L261" class="ln">   261  </span>
-<span id="L262" class="ln">   262  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L263" class="ln">   263  </span>	if err != nil {
-<span id="L264" class="ln">   264  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L265" class="ln">   265  </span>	}
-<span id="L266" class="ln">   266  </span>
-<span id="L267" class="ln">   267  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L268" class="ln">   268  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L269" class="ln">   269  </span>			ErrorBody:    localVarBody,
-<span id="L270" class="ln">   270  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L271" class="ln">   271  </span>		}
-<span id="L272" class="ln">   272  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L273" class="ln">   273  </span>			var v APIErrorResponse
-<span id="L274" class="ln">   274  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L275" class="ln">   275  </span>			if err != nil {
-<span id="L276" class="ln">   276  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L277" class="ln">   277  </span>			}
-<span id="L278" class="ln">   278  </span>			newErr.ErrorModel = v
-<span id="L279" class="ln">   279  </span>		}
-<span id="L280" class="ln">   280  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L281" class="ln">   281  </span>	}
-<span id="L282" class="ln">   282  </span>
-<span id="L283" class="ln">   283  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L284" class="ln">   284  </span>	if err != nil {
-<span id="L285" class="ln">   285  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L286" class="ln">   286  </span>			ErrorBody:    localVarBody,
-<span id="L287" class="ln">   287  </span>			ErrorMessage: err.Error(),
-<span id="L288" class="ln">   288  </span>		}
-<span id="L289" class="ln">   289  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L290" class="ln">   290  </span>	}
-<span id="L291" class="ln">   291  </span>
-<span id="L292" class="ln">   292  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L293" class="ln">   293  </span>}
-<span id="L294" class="ln">   294  </span>
-<span id="L295" class="ln">   295  </span><span class="comment">// NewRestrictionPoliciesApi Returns NewRestrictionPoliciesApi.</span>
-<span id="L296" class="ln">   296  </span>func NewRestrictionPoliciesApi(client *datadog.APIClient) *RestrictionPoliciesApi {
-<span id="L297" class="ln">   297  </span>	return &amp;RestrictionPoliciesApi{
-<span id="L298" class="ln">   298  </span>		Client: client,
-<span id="L299" class="ln">   299  </span>	}
-<span id="L300" class="ln">   300  </span>}
-<span id="L301" class="ln">   301  </span>
+<span id="L190" class="ln">   190  </span><span class="comment">// - Cross Org Connections: `cross-org-connection`</span>
+<span id="L191" class="ln">   191  </span><span class="comment">//</span>
+<span id="L192" class="ln">   192  </span><span class="comment">// #### Supported relations for resources</span>
+<span id="L193" class="ln">   193  </span><span class="comment">// Resource Type               | Supported Relations</span>
+<span id="L194" class="ln">   194  </span><span class="comment">// ----------------------------|--------------------------</span>
+<span id="L195" class="ln">   195  </span><span class="comment">// Dashboards                  | `viewer`, `editor`</span>
+<span id="L196" class="ln">   196  </span><span class="comment">// Integration Accounts        | `viewer`, `editor`</span>
+<span id="L197" class="ln">   197  </span><span class="comment">// Integration Services        | `viewer`, `editor`</span>
+<span id="L198" class="ln">   198  </span><span class="comment">// Integration Webhooks        | `viewer`, `editor`</span>
+<span id="L199" class="ln">   199  </span><span class="comment">// Notebooks                   | `viewer`, `editor`</span>
+<span id="L200" class="ln">   200  </span><span class="comment">// Powerpacks                  | `viewer`, `editor`</span>
+<span id="L201" class="ln">   201  </span><span class="comment">// Security Rules              | `viewer`, `editor`</span>
+<span id="L202" class="ln">   202  </span><span class="comment">// Service Level Objectives    | `viewer`, `editor`</span>
+<span id="L203" class="ln">   203  </span><span class="comment">// Synthetic Global Variables  | `viewer`, `editor`</span>
+<span id="L204" class="ln">   204  </span><span class="comment">// Synthetic Tests             | `viewer`, `editor`</span>
+<span id="L205" class="ln">   205  </span><span class="comment">// Synthetic Private Locations | `viewer`, `editor`</span>
+<span id="L206" class="ln">   206  </span><span class="comment">// Monitors                    | `viewer`, `editor`</span>
+<span id="L207" class="ln">   207  </span><span class="comment">// Reference Tables            | `viewer`, `editor`</span>
+<span id="L208" class="ln">   208  </span><span class="comment">// Workflows                   | `viewer`, `runner`, `editor`</span>
+<span id="L209" class="ln">   209  </span><span class="comment">// App Builder Apps            | `viewer`, `editor`</span>
+<span id="L210" class="ln">   210  </span><span class="comment">// Connections                 | `viewer`, `resolver`, `editor`</span>
+<span id="L211" class="ln">   211  </span><span class="comment">// Connection Groups           | `viewer`, `editor`</span>
+<span id="L212" class="ln">   212  </span><span class="comment">// RUM Application             | `viewer`, `editor`</span>
+<span id="L213" class="ln">   213  </span><span class="comment">// Cross Org Connections       | `viewer`, `editor`</span>
+<span id="L214" class="ln">   214  </span>func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest, o ...UpdateRestrictionPolicyOptionalParameters) (RestrictionPolicyResponse, *_nethttp.Response, error) {
+<span id="L215" class="ln">   215  </span>	var (
+<span id="L216" class="ln">   216  </span>		localVarHTTPMethod  = _nethttp.MethodPost
+<span id="L217" class="ln">   217  </span>		localVarPostBody    interface{}
+<span id="L218" class="ln">   218  </span>		localVarReturnValue RestrictionPolicyResponse
+<span id="L219" class="ln">   219  </span>		optionalParams      UpdateRestrictionPolicyOptionalParameters
+<span id="L220" class="ln">   220  </span>	)
+<span id="L221" class="ln">   221  </span>
+<span id="L222" class="ln">   222  </span>	if len(o) &gt; 1 {
+<span id="L223" class="ln">   223  </span>		return localVarReturnValue, nil, datadog.ReportError(&#34;only one argument of type UpdateRestrictionPolicyOptionalParameters is allowed&#34;)
+<span id="L224" class="ln">   224  </span>	}
+<span id="L225" class="ln">   225  </span>	if len(o) == 1 {
+<span id="L226" class="ln">   226  </span>		optionalParams = o[0]
+<span id="L227" class="ln">   227  </span>	}
+<span id="L228" class="ln">   228  </span>
+<span id="L229" class="ln">   229  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.RestrictionPoliciesApi.UpdateRestrictionPolicy&#34;)
+<span id="L230" class="ln">   230  </span>	if err != nil {
+<span id="L231" class="ln">   231  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L232" class="ln">   232  </span>	}
+<span id="L233" class="ln">   233  </span>
+<span id="L234" class="ln">   234  </span>	localVarPath := localBasePath + &#34;/api/v2/restriction_policy/{resource_id}&#34;
+<span id="L235" class="ln">   235  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{resource_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(resourceId, &#34;&#34;)))
+<span id="L236" class="ln">   236  </span>
+<span id="L237" class="ln">   237  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L238" class="ln">   238  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L239" class="ln">   239  </span>	localVarFormParams := _neturl.Values{}
+<span id="L240" class="ln">   240  </span>	if optionalParams.AllowSelfLockout != nil {
+<span id="L241" class="ln">   241  </span>		localVarQueryParams.Add(&#34;allow_self_lockout&#34;, datadog.ParameterToString(*optionalParams.AllowSelfLockout, &#34;&#34;))
+<span id="L242" class="ln">   242  </span>	}
+<span id="L243" class="ln">   243  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L244" class="ln">   244  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L245" class="ln">   245  </span>
+<span id="L246" class="ln">   246  </span>	<span class="comment">// body params</span>
+<span id="L247" class="ln">   247  </span>	localVarPostBody = &amp;body
+<span id="L248" class="ln">   248  </span>	datadog.SetAuthKeys(
+<span id="L249" class="ln">   249  </span>		ctx,
+<span id="L250" class="ln">   250  </span>		&amp;localVarHeaderParams,
+<span id="L251" class="ln">   251  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L252" class="ln">   252  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L253" class="ln">   253  </span>	)
+<span id="L254" class="ln">   254  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L255" class="ln">   255  </span>	if err != nil {
+<span id="L256" class="ln">   256  </span>		return localVarReturnValue, nil, err
+<span id="L257" class="ln">   257  </span>	}
+<span id="L258" class="ln">   258  </span>
+<span id="L259" class="ln">   259  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L260" class="ln">   260  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L261" class="ln">   261  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L262" class="ln">   262  </span>	}
+<span id="L263" class="ln">   263  </span>
+<span id="L264" class="ln">   264  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L265" class="ln">   265  </span>	if err != nil {
+<span id="L266" class="ln">   266  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L267" class="ln">   267  </span>	}
+<span id="L268" class="ln">   268  </span>
+<span id="L269" class="ln">   269  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L270" class="ln">   270  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L271" class="ln">   271  </span>			ErrorBody:    localVarBody,
+<span id="L272" class="ln">   272  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L273" class="ln">   273  </span>		}
+<span id="L274" class="ln">   274  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L275" class="ln">   275  </span>			var v APIErrorResponse
+<span id="L276" class="ln">   276  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L277" class="ln">   277  </span>			if err != nil {
+<span id="L278" class="ln">   278  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L279" class="ln">   279  </span>			}
+<span id="L280" class="ln">   280  </span>			newErr.ErrorModel = v
+<span id="L281" class="ln">   281  </span>		}
+<span id="L282" class="ln">   282  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L283" class="ln">   283  </span>	}
+<span id="L284" class="ln">   284  </span>
+<span id="L285" class="ln">   285  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L286" class="ln">   286  </span>	if err != nil {
+<span id="L287" class="ln">   287  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L288" class="ln">   288  </span>			ErrorBody:    localVarBody,
+<span id="L289" class="ln">   289  </span>			ErrorMessage: err.Error(),
+<span id="L290" class="ln">   290  </span>		}
+<span id="L291" class="ln">   291  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L292" class="ln">   292  </span>	}
+<span id="L293" class="ln">   293  </span>
+<span id="L294" class="ln">   294  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L295" class="ln">   295  </span>}
+<span id="L296" class="ln">   296  </span>
+<span id="L297" class="ln">   297  </span><span class="comment">// NewRestrictionPoliciesApi Returns NewRestrictionPoliciesApi.</span>
+<span id="L298" class="ln">   298  </span>func NewRestrictionPoliciesApi(client *datadog.APIClient) *RestrictionPoliciesApi {
+<span id="L299" class="ln">   299  </span>	return &amp;RestrictionPoliciesApi{
+<span id="L300" class="ln">   300  </span>		Client: client,
+<span id="L301" class="ln">   301  </span>	}
+<span id="L302" class="ln">   302  </span>}
+<span id="L303" class="ln">   303  </span>
 </pre><p></p>
 
 <div id="footer">

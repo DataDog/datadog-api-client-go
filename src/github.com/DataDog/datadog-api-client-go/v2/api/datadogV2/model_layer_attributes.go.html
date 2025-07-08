@@ -73,7 +73,7 @@
 <span id="L16" class="ln">    16  </span>	EffectiveDate *time.Time `json:&#34;effective_date,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// When the layer ceases to be active (ISO 8601).</span>
 <span id="L18" class="ln">    18  </span>	EndDate *time.Time `json:&#34;end_date,omitempty&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// Defines how often the rotation repeats, using a combination of days and optional seconds.</span>
+<span id="L19" class="ln">    19  </span>	<span class="comment">// Defines how often the rotation repeats, using a combination of days and optional seconds. Should be at least 1 hour.</span>
 <span id="L20" class="ln">    20  </span>	Interval *LayerAttributesInterval `json:&#34;interval,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// The name of this layer.</span>
 <span id="L22" class="ln">    22  </span>	Name *string `json:&#34;name,omitempty&#34;`
