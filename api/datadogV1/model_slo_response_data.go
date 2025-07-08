@@ -48,8 +48,6 @@ type SLOResponseData struct {
 	// affect which monitors are included in the service level objective (that is
 	// determined entirely by the `monitor_ids` field).
 	MonitorTags []string `json:"monitor_tags,omitempty"`
-	// The name of the service level objective object.
-	Name *string `json:"name,omitempty"`
 	// A metric-based SLO. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
 	// to be used because this will sum up all request counts instead of averaging them, or taking the max or
 	// min of all of those requests.
@@ -361,34 +359,6 @@ func (o *SLOResponseData) SetMonitorTags(v []string) {
 	o.MonitorTags = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *SLOResponseData) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SLOResponseData) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *SLOResponseData) HasName() bool {
-	return o != nil && o.Name != nil
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *SLOResponseData) SetName(v string) {
-	o.Name = &v
-}
-
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *SLOResponseData) GetQuery() ServiceLevelObjectiveQuery {
 	if o == nil || o.Query == nil {
@@ -646,9 +616,6 @@ func (o SLOResponseData) MarshalJSON() ([]byte, error) {
 	if o.MonitorTags != nil {
 		toSerialize["monitor_tags"] = o.MonitorTags
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
 	if o.Query != nil {
 		toSerialize["query"] = o.Query
 	}
@@ -692,7 +659,6 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		ModifiedAt         *int64                      `json:"modified_at,omitempty"`
 		MonitorIds         []int64                     `json:"monitor_ids,omitempty"`
 		MonitorTags        []string                    `json:"monitor_tags,omitempty"`
-		Name               *string                     `json:"name,omitempty"`
 		Query              *ServiceLevelObjectiveQuery `json:"query,omitempty"`
 		SliSpecification   *SLOSliSpec                 `json:"sli_specification,omitempty"`
 		Tags               []string                    `json:"tags,omitempty"`
@@ -707,7 +673,7 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"configured_alert_ids", "created_at", "creator", "description", "groups", "id", "modified_at", "monitor_ids", "monitor_tags", "name", "query", "sli_specification", "tags", "target_threshold", "thresholds", "timeframe", "type", "warning_threshold"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"configured_alert_ids", "created_at", "creator", "description", "groups", "id", "modified_at", "monitor_ids", "monitor_tags", "query", "sli_specification", "tags", "target_threshold", "thresholds", "timeframe", "type", "warning_threshold"})
 	} else {
 		return err
 	}
@@ -725,7 +691,6 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.ModifiedAt = all.ModifiedAt
 	o.MonitorIds = all.MonitorIds
 	o.MonitorTags = all.MonitorTags
-	o.Name = all.Name
 	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
