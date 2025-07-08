@@ -34,7 +34,7 @@ func main() {
 						EffectiveDate: time.Now().AddDate(0, 0, -10),
 						EndDate:       datadog.PtrTime(time.Now().AddDate(0, 0, 10)),
 						Interval: datadogV2.LayerAttributesInterval{
-							Seconds: datadog.PtrInt64(300),
+							Seconds: datadog.PtrInt64(3600),
 						},
 						Members: []datadogV2.ScheduleRequestDataAttributesLayersItemsMembersItems{
 							{
