@@ -10,10 +10,11 @@ import (
 
 // CustomDestinationResponseForwardDestination - A custom destination's location to forward logs.
 type CustomDestinationResponseForwardDestination struct {
-	CustomDestinationResponseForwardDestinationHttp              *CustomDestinationResponseForwardDestinationHttp
-	CustomDestinationResponseForwardDestinationSplunk            *CustomDestinationResponseForwardDestinationSplunk
-	CustomDestinationResponseForwardDestinationElasticsearch     *CustomDestinationResponseForwardDestinationElasticsearch
-	CustomDestinationResponseForwardDestinationMicrosoftSentinel *CustomDestinationResponseForwardDestinationMicrosoftSentinel
+	CustomDestinationResponseForwardDestinationHttp                     *CustomDestinationResponseForwardDestinationHttp
+	CustomDestinationResponseForwardDestinationSplunk                   *CustomDestinationResponseForwardDestinationSplunk
+	CustomDestinationResponseForwardDestinationElasticsearch            *CustomDestinationResponseForwardDestinationElasticsearch
+	CustomDestinationResponseForwardDestinationMicrosoftSentinel        *CustomDestinationResponseForwardDestinationMicrosoftSentinel
+	CustomDestinationResponseForwardDestinationGoogleSecurityOperations *CustomDestinationResponseForwardDestinationGoogleSecurityOperations
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -37,6 +38,11 @@ func CustomDestinationResponseForwardDestinationElasticsearchAsCustomDestination
 // CustomDestinationResponseForwardDestinationMicrosoftSentinelAsCustomDestinationResponseForwardDestination is a convenience function that returns CustomDestinationResponseForwardDestinationMicrosoftSentinel wrapped in CustomDestinationResponseForwardDestination.
 func CustomDestinationResponseForwardDestinationMicrosoftSentinelAsCustomDestinationResponseForwardDestination(v *CustomDestinationResponseForwardDestinationMicrosoftSentinel) CustomDestinationResponseForwardDestination {
 	return CustomDestinationResponseForwardDestination{CustomDestinationResponseForwardDestinationMicrosoftSentinel: v}
+}
+
+// CustomDestinationResponseForwardDestinationGoogleSecurityOperationsAsCustomDestinationResponseForwardDestination is a convenience function that returns CustomDestinationResponseForwardDestinationGoogleSecurityOperations wrapped in CustomDestinationResponseForwardDestination.
+func CustomDestinationResponseForwardDestinationGoogleSecurityOperationsAsCustomDestinationResponseForwardDestination(v *CustomDestinationResponseForwardDestinationGoogleSecurityOperations) CustomDestinationResponseForwardDestination {
+	return CustomDestinationResponseForwardDestination{CustomDestinationResponseForwardDestinationGoogleSecurityOperations: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -111,12 +117,30 @@ func (obj *CustomDestinationResponseForwardDestination) UnmarshalJSON(data []byt
 		obj.CustomDestinationResponseForwardDestinationMicrosoftSentinel = nil
 	}
 
+	// try to unmarshal data into CustomDestinationResponseForwardDestinationGoogleSecurityOperations
+	err = datadog.Unmarshal(data, &obj.CustomDestinationResponseForwardDestinationGoogleSecurityOperations)
+	if err == nil {
+		if obj.CustomDestinationResponseForwardDestinationGoogleSecurityOperations != nil && obj.CustomDestinationResponseForwardDestinationGoogleSecurityOperations.UnparsedObject == nil {
+			jsonCustomDestinationResponseForwardDestinationGoogleSecurityOperations, _ := datadog.Marshal(obj.CustomDestinationResponseForwardDestinationGoogleSecurityOperations)
+			if string(jsonCustomDestinationResponseForwardDestinationGoogleSecurityOperations) == "{}" { // empty struct
+				obj.CustomDestinationResponseForwardDestinationGoogleSecurityOperations = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.CustomDestinationResponseForwardDestinationGoogleSecurityOperations = nil
+		}
+	} else {
+		obj.CustomDestinationResponseForwardDestinationGoogleSecurityOperations = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.CustomDestinationResponseForwardDestinationHttp = nil
 		obj.CustomDestinationResponseForwardDestinationSplunk = nil
 		obj.CustomDestinationResponseForwardDestinationElasticsearch = nil
 		obj.CustomDestinationResponseForwardDestinationMicrosoftSentinel = nil
+		obj.CustomDestinationResponseForwardDestinationGoogleSecurityOperations = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -138,6 +162,10 @@ func (obj CustomDestinationResponseForwardDestination) MarshalJSON() ([]byte, er
 
 	if obj.CustomDestinationResponseForwardDestinationMicrosoftSentinel != nil {
 		return datadog.Marshal(&obj.CustomDestinationResponseForwardDestinationMicrosoftSentinel)
+	}
+
+	if obj.CustomDestinationResponseForwardDestinationGoogleSecurityOperations != nil {
+		return datadog.Marshal(&obj.CustomDestinationResponseForwardDestinationGoogleSecurityOperations)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -162,6 +190,10 @@ func (obj *CustomDestinationResponseForwardDestination) GetActualInstance() inte
 
 	if obj.CustomDestinationResponseForwardDestinationMicrosoftSentinel != nil {
 		return obj.CustomDestinationResponseForwardDestinationMicrosoftSentinel
+	}
+
+	if obj.CustomDestinationResponseForwardDestinationGoogleSecurityOperations != nil {
+		return obj.CustomDestinationResponseForwardDestinationGoogleSecurityOperations
 	}
 
 	// all schemas are nil
