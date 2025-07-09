@@ -400,6 +400,11 @@ func NewDefaultContext(ctx context.Context) context.Context {
 	}
 
 	{%- endfor %}
+	ctx = context.WithValue(
+		ctx,
+		ContextAPIKeys,
+		keys,
+	)
 
 	awsKeys := make(map[string]string)
 	if accessKey, ok := os.LookupEnv(AWSAccessKeyIdName); ok {
@@ -415,12 +420,6 @@ func NewDefaultContext(ctx context.Context) context.Context {
 		ctx,
 		ContextAWSVariables,
 		awsKeys,
-	)
-
-	ctx = context.WithValue(
-		ctx,
-		ContextAPIKeys,
-		keys,
 	)
 
 	ctx = context.WithValue(

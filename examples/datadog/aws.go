@@ -20,7 +20,7 @@ func main() {
 	}
 	apiClient := datadog.NewAPIClient(configuration)
 
-	// Make example API call using the Public Token Config
+	// Make example API call using the DelegatedTokenConfig
 	api := datadogV2.NewTeamsApi(apiClient)
 	resp, r, err := api.ListTeams(ctx, *datadogV2.NewListTeamsOptionalParameters())
 

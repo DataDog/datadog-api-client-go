@@ -885,6 +885,11 @@ func NewDefaultContext(ctx context.Context) context.Context {
 	if apiKey, ok := os.LookupEnv("DD_APP_KEY"); ok {
 		keys["appKeyAuth"] = APIKey{Key: apiKey}
 	}
+	ctx = context.WithValue(
+		ctx,
+		ContextAPIKeys,
+		keys,
+	)
 
 	awsKeys := make(map[string]string)
 	if accessKey, ok := os.LookupEnv(AWSAccessKeyIdName); ok {
@@ -900,12 +905,6 @@ func NewDefaultContext(ctx context.Context) context.Context {
 		ctx,
 		ContextAWSVariables,
 		awsKeys,
-	)
-
-	ctx = context.WithValue(
-		ctx,
-		ContextAPIKeys,
-		keys,
 	)
 
 	ctx = context.WithValue(
