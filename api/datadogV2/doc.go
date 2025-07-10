@@ -416,6 +416,7 @@
 //   - [SecurityMonitoringApi.GetSignalNotificationRules]
 //   - [SecurityMonitoringApi.GetVulnerabilityNotificationRule]
 //   - [SecurityMonitoringApi.GetVulnerabilityNotificationRules]
+//   - [SecurityMonitoringApi.ListAssetsSBOMs]
 //   - [SecurityMonitoringApi.ListFindings]
 //   - [SecurityMonitoringApi.ListHistoricalJobs]
 //   - [SecurityMonitoringApi.ListSecurityFilters]
