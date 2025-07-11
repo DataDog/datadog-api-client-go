@@ -121,8 +121,9 @@ func main() {
 								}},
 						},
 						Request: datadogV1.SyntheticsTestRequest{
-							CheckCertificateRevocation: datadog.PtrBool(true),
-							Host:                       datadog.PtrString("example.org"),
+							CheckCertificateRevocation:     datadog.PtrBool(true),
+							DisableAiaIntermediateFetching: datadog.PtrBool(true),
+							Host:                           datadog.PtrString("example.org"),
 							Port: &datadogV1.SyntheticsTestRequestPort{
 								SyntheticsTestRequestNumericalPort: datadog.PtrInt64(443)},
 						},

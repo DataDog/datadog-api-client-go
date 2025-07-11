@@ -36,9 +36,10 @@ func main() {
 		Message: "BDD test payload: synthetics_api_ssl_test_payload.json",
 		Name:    "Example-Synthetic",
 		Options: datadogV1.SyntheticsTestOptions{
-			AcceptSelfSigned:           datadog.PtrBool(true),
-			CheckCertificateRevocation: datadog.PtrBool(true),
-			TickEvery:                  datadog.PtrInt64(60),
+			AcceptSelfSigned:               datadog.PtrBool(true),
+			CheckCertificateRevocation:     datadog.PtrBool(true),
+			DisableAiaIntermediateFetching: datadog.PtrBool(true),
+			TickEvery:                      datadog.PtrInt64(60),
 		},
 		Subtype: datadogV1.SYNTHETICSTESTDETAILSSUBTYPE_SSL.Ptr(),
 		Tags: []string{
