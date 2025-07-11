@@ -241,7 +241,23 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	{%- endif %}
 
 	{%- set authMethods = operation.security if "security" in operation else openapi.security %}
+	{%- set appKeyNs = namespace(hasAppKeyAuth=false) %}
+	{%- for authMethod in authMethods %}
+		{%- for name in authMethod %}
+			{%- if name == "appKeyAuth" %}
+				{%- set appKeyNs.hasAppKeyAuth = true %}
+			{%- endif %}
+		{%- endfor %}
+	{%- endfor %}
 	{%- if authMethods %}
+	{%- if appKeyNs.hasAppKeyAuth %}
+		if a.Client.Cfg.DelegatedTokenConfig != nil {
+			err = {{ common_package_name }}.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+			if err != nil {
+				return {% if returnType %}localVarReturnValue, {% endif %}nil, err
+			}
+		} else {
+	{%- endif %}
         {{ common_package_name }}.SetAuthKeys(
 		ctx,
 		&localVarHeaderParams,
@@ -254,6 +270,7 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	{%- endfor %}
 	{%- endfor %}
 	)
+	{% if appKeyNs.hasAppKeyAuth %} } {% endif %}
 	{%- endif %}
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, {% if formParameter %}&formFile{% else %}nil{% endif %})
 	if err != nil {
