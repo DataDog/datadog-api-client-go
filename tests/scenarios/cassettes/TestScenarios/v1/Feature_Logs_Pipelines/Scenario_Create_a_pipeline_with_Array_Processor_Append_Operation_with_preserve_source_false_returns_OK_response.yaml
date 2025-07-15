@@ -1,0 +1,43 @@
+interactions:
+- request:
+    body: |
+      {"filter":{"query":"source:python"},"name":"testPipelineArrayAppendNoPreserve","processors":[{"is_enabled":true,"name":"append_ip_and_remove_source","operation":{"preserve_source":false,"source":"network.client.ip","target":"sourceIps","type":"append"},"type":"array-processor"}],"tags":[]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines
+  response:
+    body: '{"id":"B91fO94kQnCeZ4bOoZQOWg","type":"pipeline","name":"testPipelineArrayAppendNoPreserve","is_enabled":false,"is_read_only":false,"filter":{"query":"source:python"},"processors":[{"name":"append_ip_and_remove_source","is_enabled":true,"operation":{"source":"network.client.ip","target":"sourceIps","preserve_source":false,"type":"append"},"type":"array-processor"}],"tags":[]}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/B91fO94kQnCeZ4bOoZQOWg
+  response:
+    body: '{}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 2

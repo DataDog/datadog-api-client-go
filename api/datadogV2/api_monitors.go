@@ -106,15 +106,6 @@ func (a *MonitorsApi) CreateMonitorNotificationRule(ctx _context.Context, body M
 		localVarReturnValue MonitorNotificationRuleResponse
 	)
 
-	operationId := "v2.CreateMonitorNotificationRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MonitorsApi.CreateMonitorNotificationRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -350,15 +341,6 @@ func (a *MonitorsApi) DeleteMonitorNotificationRule(ctx _context.Context, ruleId
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.DeleteMonitorNotificationRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MonitorsApi.DeleteMonitorNotificationRule")
 	if err != nil {
@@ -609,15 +591,6 @@ func (a *MonitorsApi) GetMonitorNotificationRule(ctx _context.Context, ruleId st
 		optionalParams = o[0]
 	}
 
-	operationId := "v2.GetMonitorNotificationRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MonitorsApi.GetMonitorNotificationRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -722,15 +695,6 @@ func (a *MonitorsApi) GetMonitorNotificationRules(ctx _context.Context, o ...Get
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
-	}
-
-	operationId := "v2.GetMonitorNotificationRules"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MonitorsApi.GetMonitorNotificationRules")
@@ -1171,15 +1135,6 @@ func (a *MonitorsApi) UpdateMonitorNotificationRule(ctx _context.Context, ruleId
 		localVarPostBody    interface{}
 		localVarReturnValue MonitorNotificationRuleResponse
 	)
-
-	operationId := "v2.UpdateMonitorNotificationRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MonitorsApi.UpdateMonitorNotificationRule")
 	if err != nil {
