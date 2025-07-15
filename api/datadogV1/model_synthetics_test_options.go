@@ -10,17 +10,19 @@ import (
 
 // SyntheticsTestOptions Object describing the extra options for a Synthetic test.
 type SyntheticsTestOptions struct {
-	// For SSL test, whether or not the test should allow self signed
+	// For SSL tests, whether or not the test should allow self signed
 	// certificates.
 	AcceptSelfSigned *bool `json:"accept_self_signed,omitempty"`
 	// Allows loading insecure content for an HTTP request in an API test.
 	AllowInsecure *bool `json:"allow_insecure,omitempty"`
-	// For SSL test, whether or not the test should fail on revoked certificate in stapled OCSP.
+	// For SSL tests, whether or not the test should fail on revoked certificate in stapled OCSP.
 	CheckCertificateRevocation *bool `json:"checkCertificateRevocation,omitempty"`
 	// CI/CD options for a Synthetic test.
 	Ci *SyntheticsTestCiOptions `json:"ci,omitempty"`
 	// For browser test, array with the different device IDs used to run the test.
 	DeviceIds []string `json:"device_ids,omitempty"`
+	// For SSL tests, whether or not the test should disable fetching intermediate certificates from AIA.
+	DisableAiaIntermediateFetching *bool `json:"disableAiaIntermediateFetching,omitempty"`
 	// Whether or not to disable CORS mechanism.
 	DisableCors *bool `json:"disableCors,omitempty"`
 	// Disable Content Security Policy for browser tests.
@@ -232,6 +234,34 @@ func (o *SyntheticsTestOptions) HasDeviceIds() bool {
 // SetDeviceIds gets a reference to the given []string and assigns it to the DeviceIds field.
 func (o *SyntheticsTestOptions) SetDeviceIds(v []string) {
 	o.DeviceIds = v
+}
+
+// GetDisableAiaIntermediateFetching returns the DisableAiaIntermediateFetching field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetDisableAiaIntermediateFetching() bool {
+	if o == nil || o.DisableAiaIntermediateFetching == nil {
+		var ret bool
+		return ret
+	}
+	return *o.DisableAiaIntermediateFetching
+}
+
+// GetDisableAiaIntermediateFetchingOk returns a tuple with the DisableAiaIntermediateFetching field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetDisableAiaIntermediateFetchingOk() (*bool, bool) {
+	if o == nil || o.DisableAiaIntermediateFetching == nil {
+		return nil, false
+	}
+	return o.DisableAiaIntermediateFetching, true
+}
+
+// HasDisableAiaIntermediateFetching returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasDisableAiaIntermediateFetching() bool {
+	return o != nil && o.DisableAiaIntermediateFetching != nil
+}
+
+// SetDisableAiaIntermediateFetching gets a reference to the given bool and assigns it to the DisableAiaIntermediateFetching field.
+func (o *SyntheticsTestOptions) SetDisableAiaIntermediateFetching(v bool) {
+	o.DisableAiaIntermediateFetching = &v
 }
 
 // GetDisableCors returns the DisableCors field value if set, zero value otherwise.
@@ -790,6 +820,9 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	if o.DeviceIds != nil {
 		toSerialize["device_ids"] = o.DeviceIds
 	}
+	if o.DisableAiaIntermediateFetching != nil {
+		toSerialize["disableAiaIntermediateFetching"] = o.DisableAiaIntermediateFetching
+	}
 	if o.DisableCors != nil {
 		toSerialize["disableCors"] = o.DisableCors
 	}
@@ -857,37 +890,38 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AcceptSelfSigned             *bool                                `json:"accept_self_signed,omitempty"`
-		AllowInsecure                *bool                                `json:"allow_insecure,omitempty"`
-		CheckCertificateRevocation   *bool                                `json:"checkCertificateRevocation,omitempty"`
-		Ci                           *SyntheticsTestCiOptions             `json:"ci,omitempty"`
-		DeviceIds                    []string                             `json:"device_ids,omitempty"`
-		DisableCors                  *bool                                `json:"disableCors,omitempty"`
-		DisableCsp                   *bool                                `json:"disableCsp,omitempty"`
-		EnableProfiling              *bool                                `json:"enableProfiling,omitempty"`
-		EnableSecurityTesting        *bool                                `json:"enableSecurityTesting,omitempty"`
-		FollowRedirects              *bool                                `json:"follow_redirects,omitempty"`
-		HttpVersion                  *SyntheticsTestOptionsHTTPVersion    `json:"httpVersion,omitempty"`
-		IgnoreServerCertificateError *bool                                `json:"ignoreServerCertificateError,omitempty"`
-		InitialNavigationTimeout     *int64                               `json:"initialNavigationTimeout,omitempty"`
-		MinFailureDuration           *int64                               `json:"min_failure_duration,omitempty"`
-		MinLocationFailed            *int64                               `json:"min_location_failed,omitempty"`
-		MonitorName                  *string                              `json:"monitor_name,omitempty"`
-		MonitorOptions               *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
-		MonitorPriority              *int32                               `json:"monitor_priority,omitempty"`
-		NoScreenshot                 *bool                                `json:"noScreenshot,omitempty"`
-		RestrictedRoles              []string                             `json:"restricted_roles,omitempty"`
-		Retry                        *SyntheticsTestOptionsRetry          `json:"retry,omitempty"`
-		RumSettings                  *SyntheticsBrowserTestRumSettings    `json:"rumSettings,omitempty"`
-		Scheduling                   *SyntheticsTestOptionsScheduling     `json:"scheduling,omitempty"`
-		TickEvery                    *int64                               `json:"tick_every,omitempty"`
+		AcceptSelfSigned               *bool                                `json:"accept_self_signed,omitempty"`
+		AllowInsecure                  *bool                                `json:"allow_insecure,omitempty"`
+		CheckCertificateRevocation     *bool                                `json:"checkCertificateRevocation,omitempty"`
+		Ci                             *SyntheticsTestCiOptions             `json:"ci,omitempty"`
+		DeviceIds                      []string                             `json:"device_ids,omitempty"`
+		DisableAiaIntermediateFetching *bool                                `json:"disableAiaIntermediateFetching,omitempty"`
+		DisableCors                    *bool                                `json:"disableCors,omitempty"`
+		DisableCsp                     *bool                                `json:"disableCsp,omitempty"`
+		EnableProfiling                *bool                                `json:"enableProfiling,omitempty"`
+		EnableSecurityTesting          *bool                                `json:"enableSecurityTesting,omitempty"`
+		FollowRedirects                *bool                                `json:"follow_redirects,omitempty"`
+		HttpVersion                    *SyntheticsTestOptionsHTTPVersion    `json:"httpVersion,omitempty"`
+		IgnoreServerCertificateError   *bool                                `json:"ignoreServerCertificateError,omitempty"`
+		InitialNavigationTimeout       *int64                               `json:"initialNavigationTimeout,omitempty"`
+		MinFailureDuration             *int64                               `json:"min_failure_duration,omitempty"`
+		MinLocationFailed              *int64                               `json:"min_location_failed,omitempty"`
+		MonitorName                    *string                              `json:"monitor_name,omitempty"`
+		MonitorOptions                 *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
+		MonitorPriority                *int32                               `json:"monitor_priority,omitempty"`
+		NoScreenshot                   *bool                                `json:"noScreenshot,omitempty"`
+		RestrictedRoles                []string                             `json:"restricted_roles,omitempty"`
+		Retry                          *SyntheticsTestOptionsRetry          `json:"retry,omitempty"`
+		RumSettings                    *SyntheticsBrowserTestRumSettings    `json:"rumSettings,omitempty"`
+		Scheduling                     *SyntheticsTestOptionsScheduling     `json:"scheduling,omitempty"`
+		TickEvery                      *int64                               `json:"tick_every,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"accept_self_signed", "allow_insecure", "checkCertificateRevocation", "ci", "device_ids", "disableCors", "disableCsp", "enableProfiling", "enableSecurityTesting", "follow_redirects", "httpVersion", "ignoreServerCertificateError", "initialNavigationTimeout", "min_failure_duration", "min_location_failed", "monitor_name", "monitor_options", "monitor_priority", "noScreenshot", "restricted_roles", "retry", "rumSettings", "scheduling", "tick_every"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"accept_self_signed", "allow_insecure", "checkCertificateRevocation", "ci", "device_ids", "disableAiaIntermediateFetching", "disableCors", "disableCsp", "enableProfiling", "enableSecurityTesting", "follow_redirects", "httpVersion", "ignoreServerCertificateError", "initialNavigationTimeout", "min_failure_duration", "min_location_failed", "monitor_name", "monitor_options", "monitor_priority", "noScreenshot", "restricted_roles", "retry", "rumSettings", "scheduling", "tick_every"})
 	} else {
 		return err
 	}
@@ -901,6 +935,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Ci = all.Ci
 	o.DeviceIds = all.DeviceIds
+	o.DisableAiaIntermediateFetching = all.DisableAiaIntermediateFetching
 	o.DisableCors = all.DisableCors
 	o.DisableCsp = all.DisableCsp
 	o.EnableProfiling = all.EnableProfiling
