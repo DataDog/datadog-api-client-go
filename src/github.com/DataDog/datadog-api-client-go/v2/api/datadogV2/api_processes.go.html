@@ -171,120 +171,127 @@
 <span id="L114" class="ln">   114  </span>	}
 <span id="L115" class="ln">   115  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
 <span id="L116" class="ln">   116  </span>
-<span id="L117" class="ln">   117  </span>	datadog.SetAuthKeys(
-<span id="L118" class="ln">   118  </span>		ctx,
-<span id="L119" class="ln">   119  </span>		&amp;localVarHeaderParams,
-<span id="L120" class="ln">   120  </span>		[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L121" class="ln">   121  </span>		[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L122" class="ln">   122  </span>	)
-<span id="L123" class="ln">   123  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L124" class="ln">   124  </span>	if err != nil {
-<span id="L125" class="ln">   125  </span>		return localVarReturnValue, nil, err
-<span id="L126" class="ln">   126  </span>	}
-<span id="L127" class="ln">   127  </span>
-<span id="L128" class="ln">   128  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L129" class="ln">   129  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L130" class="ln">   130  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L131" class="ln">   131  </span>	}
-<span id="L132" class="ln">   132  </span>
-<span id="L133" class="ln">   133  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L134" class="ln">   134  </span>	if err != nil {
-<span id="L135" class="ln">   135  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L136" class="ln">   136  </span>	}
-<span id="L137" class="ln">   137  </span>
-<span id="L138" class="ln">   138  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L139" class="ln">   139  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L140" class="ln">   140  </span>			ErrorBody:    localVarBody,
-<span id="L141" class="ln">   141  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L142" class="ln">   142  </span>		}
-<span id="L143" class="ln">   143  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L144" class="ln">   144  </span>			var v APIErrorResponse
-<span id="L145" class="ln">   145  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L146" class="ln">   146  </span>			if err != nil {
-<span id="L147" class="ln">   147  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L148" class="ln">   148  </span>			}
-<span id="L149" class="ln">   149  </span>			newErr.ErrorModel = v
-<span id="L150" class="ln">   150  </span>		}
-<span id="L151" class="ln">   151  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L152" class="ln">   152  </span>	}
-<span id="L153" class="ln">   153  </span>
-<span id="L154" class="ln">   154  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L155" class="ln">   155  </span>	if err != nil {
-<span id="L156" class="ln">   156  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L157" class="ln">   157  </span>			ErrorBody:    localVarBody,
-<span id="L158" class="ln">   158  </span>			ErrorMessage: err.Error(),
-<span id="L159" class="ln">   159  </span>		}
-<span id="L160" class="ln">   160  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L161" class="ln">   161  </span>	}
-<span id="L162" class="ln">   162  </span>
-<span id="L163" class="ln">   163  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L164" class="ln">   164  </span>}
-<span id="L165" class="ln">   165  </span>
-<span id="L166" class="ln">   166  </span><span class="comment">// ListProcessesWithPagination provides a paginated version of ListProcesses returning a channel with all items.</span>
-<span id="L167" class="ln">   167  </span>func (a *ProcessesApi) ListProcessesWithPagination(ctx _context.Context, o ...ListProcessesOptionalParameters) (&lt;-chan datadog.PaginationResult[ProcessSummary], func()) {
-<span id="L168" class="ln">   168  </span>	ctx, cancel := _context.WithCancel(ctx)
-<span id="L169" class="ln">   169  </span>	pageSize_ := int32(1000)
-<span id="L170" class="ln">   170  </span>	if len(o) == 0 {
-<span id="L171" class="ln">   171  </span>		o = append(o, ListProcessesOptionalParameters{})
-<span id="L172" class="ln">   172  </span>	}
-<span id="L173" class="ln">   173  </span>	if o[0].PageLimit != nil {
-<span id="L174" class="ln">   174  </span>		pageSize_ = *o[0].PageLimit
-<span id="L175" class="ln">   175  </span>	}
-<span id="L176" class="ln">   176  </span>	o[0].PageLimit = &amp;pageSize_
-<span id="L177" class="ln">   177  </span>
-<span id="L178" class="ln">   178  </span>	items := make(chan datadog.PaginationResult[ProcessSummary], pageSize_)
-<span id="L179" class="ln">   179  </span>	go func() {
-<span id="L180" class="ln">   180  </span>		for {
-<span id="L181" class="ln">   181  </span>			resp, _, err := a.ListProcesses(ctx, o...)
-<span id="L182" class="ln">   182  </span>			if err != nil {
-<span id="L183" class="ln">   183  </span>				var returnItem ProcessSummary
-<span id="L184" class="ln">   184  </span>				items &lt;- datadog.PaginationResult[ProcessSummary]{Item: returnItem, Error: err}
-<span id="L185" class="ln">   185  </span>				break
-<span id="L186" class="ln">   186  </span>			}
-<span id="L187" class="ln">   187  </span>			respData, ok := resp.GetDataOk()
-<span id="L188" class="ln">   188  </span>			if !ok {
-<span id="L189" class="ln">   189  </span>				break
-<span id="L190" class="ln">   190  </span>			}
-<span id="L191" class="ln">   191  </span>			results := *respData
-<span id="L192" class="ln">   192  </span>
-<span id="L193" class="ln">   193  </span>			for _, item := range results {
-<span id="L194" class="ln">   194  </span>				select {
-<span id="L195" class="ln">   195  </span>				case items &lt;- datadog.PaginationResult[ProcessSummary]{Item: item, Error: nil}:
-<span id="L196" class="ln">   196  </span>				case &lt;-ctx.Done():
-<span id="L197" class="ln">   197  </span>					close(items)
-<span id="L198" class="ln">   198  </span>					return
-<span id="L199" class="ln">   199  </span>				}
-<span id="L200" class="ln">   200  </span>			}
-<span id="L201" class="ln">   201  </span>			if len(results) &lt; int(pageSize_) {
-<span id="L202" class="ln">   202  </span>				break
-<span id="L203" class="ln">   203  </span>			}
-<span id="L204" class="ln">   204  </span>			cursorMeta, ok := resp.GetMetaOk()
-<span id="L205" class="ln">   205  </span>			if !ok {
-<span id="L206" class="ln">   206  </span>				break
+<span id="L117" class="ln">   117  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
+<span id="L118" class="ln">   118  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+<span id="L119" class="ln">   119  </span>		if err != nil {
+<span id="L120" class="ln">   120  </span>			return localVarReturnValue, nil, err
+<span id="L121" class="ln">   121  </span>		}
+<span id="L122" class="ln">   122  </span>	} else {
+<span id="L123" class="ln">   123  </span>		datadog.SetAuthKeys(
+<span id="L124" class="ln">   124  </span>			ctx,
+<span id="L125" class="ln">   125  </span>			&amp;localVarHeaderParams,
+<span id="L126" class="ln">   126  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L127" class="ln">   127  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L128" class="ln">   128  </span>		)
+<span id="L129" class="ln">   129  </span>	}
+<span id="L130" class="ln">   130  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L131" class="ln">   131  </span>	if err != nil {
+<span id="L132" class="ln">   132  </span>		return localVarReturnValue, nil, err
+<span id="L133" class="ln">   133  </span>	}
+<span id="L134" class="ln">   134  </span>
+<span id="L135" class="ln">   135  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L136" class="ln">   136  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L137" class="ln">   137  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L138" class="ln">   138  </span>	}
+<span id="L139" class="ln">   139  </span>
+<span id="L140" class="ln">   140  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L141" class="ln">   141  </span>	if err != nil {
+<span id="L142" class="ln">   142  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L143" class="ln">   143  </span>	}
+<span id="L144" class="ln">   144  </span>
+<span id="L145" class="ln">   145  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L146" class="ln">   146  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L147" class="ln">   147  </span>			ErrorBody:    localVarBody,
+<span id="L148" class="ln">   148  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L149" class="ln">   149  </span>		}
+<span id="L150" class="ln">   150  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L151" class="ln">   151  </span>			var v APIErrorResponse
+<span id="L152" class="ln">   152  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L153" class="ln">   153  </span>			if err != nil {
+<span id="L154" class="ln">   154  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L155" class="ln">   155  </span>			}
+<span id="L156" class="ln">   156  </span>			newErr.ErrorModel = v
+<span id="L157" class="ln">   157  </span>		}
+<span id="L158" class="ln">   158  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L159" class="ln">   159  </span>	}
+<span id="L160" class="ln">   160  </span>
+<span id="L161" class="ln">   161  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L162" class="ln">   162  </span>	if err != nil {
+<span id="L163" class="ln">   163  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L164" class="ln">   164  </span>			ErrorBody:    localVarBody,
+<span id="L165" class="ln">   165  </span>			ErrorMessage: err.Error(),
+<span id="L166" class="ln">   166  </span>		}
+<span id="L167" class="ln">   167  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L168" class="ln">   168  </span>	}
+<span id="L169" class="ln">   169  </span>
+<span id="L170" class="ln">   170  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L171" class="ln">   171  </span>}
+<span id="L172" class="ln">   172  </span>
+<span id="L173" class="ln">   173  </span><span class="comment">// ListProcessesWithPagination provides a paginated version of ListProcesses returning a channel with all items.</span>
+<span id="L174" class="ln">   174  </span>func (a *ProcessesApi) ListProcessesWithPagination(ctx _context.Context, o ...ListProcessesOptionalParameters) (&lt;-chan datadog.PaginationResult[ProcessSummary], func()) {
+<span id="L175" class="ln">   175  </span>	ctx, cancel := _context.WithCancel(ctx)
+<span id="L176" class="ln">   176  </span>	pageSize_ := int32(1000)
+<span id="L177" class="ln">   177  </span>	if len(o) == 0 {
+<span id="L178" class="ln">   178  </span>		o = append(o, ListProcessesOptionalParameters{})
+<span id="L179" class="ln">   179  </span>	}
+<span id="L180" class="ln">   180  </span>	if o[0].PageLimit != nil {
+<span id="L181" class="ln">   181  </span>		pageSize_ = *o[0].PageLimit
+<span id="L182" class="ln">   182  </span>	}
+<span id="L183" class="ln">   183  </span>	o[0].PageLimit = &amp;pageSize_
+<span id="L184" class="ln">   184  </span>
+<span id="L185" class="ln">   185  </span>	items := make(chan datadog.PaginationResult[ProcessSummary], pageSize_)
+<span id="L186" class="ln">   186  </span>	go func() {
+<span id="L187" class="ln">   187  </span>		for {
+<span id="L188" class="ln">   188  </span>			resp, _, err := a.ListProcesses(ctx, o...)
+<span id="L189" class="ln">   189  </span>			if err != nil {
+<span id="L190" class="ln">   190  </span>				var returnItem ProcessSummary
+<span id="L191" class="ln">   191  </span>				items &lt;- datadog.PaginationResult[ProcessSummary]{Item: returnItem, Error: err}
+<span id="L192" class="ln">   192  </span>				break
+<span id="L193" class="ln">   193  </span>			}
+<span id="L194" class="ln">   194  </span>			respData, ok := resp.GetDataOk()
+<span id="L195" class="ln">   195  </span>			if !ok {
+<span id="L196" class="ln">   196  </span>				break
+<span id="L197" class="ln">   197  </span>			}
+<span id="L198" class="ln">   198  </span>			results := *respData
+<span id="L199" class="ln">   199  </span>
+<span id="L200" class="ln">   200  </span>			for _, item := range results {
+<span id="L201" class="ln">   201  </span>				select {
+<span id="L202" class="ln">   202  </span>				case items &lt;- datadog.PaginationResult[ProcessSummary]{Item: item, Error: nil}:
+<span id="L203" class="ln">   203  </span>				case &lt;-ctx.Done():
+<span id="L204" class="ln">   204  </span>					close(items)
+<span id="L205" class="ln">   205  </span>					return
+<span id="L206" class="ln">   206  </span>				}
 <span id="L207" class="ln">   207  </span>			}
-<span id="L208" class="ln">   208  </span>			cursorMetaPage, ok := cursorMeta.GetPageOk()
-<span id="L209" class="ln">   209  </span>			if !ok {
-<span id="L210" class="ln">   210  </span>				break
-<span id="L211" class="ln">   211  </span>			}
-<span id="L212" class="ln">   212  </span>			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
-<span id="L213" class="ln">   213  </span>			if !ok {
-<span id="L214" class="ln">   214  </span>				break
-<span id="L215" class="ln">   215  </span>			}
-<span id="L216" class="ln">   216  </span>
-<span id="L217" class="ln">   217  </span>			o[0].PageCursor = cursorMetaPageAfter
-<span id="L218" class="ln">   218  </span>		}
-<span id="L219" class="ln">   219  </span>		close(items)
-<span id="L220" class="ln">   220  </span>	}()
-<span id="L221" class="ln">   221  </span>	return items, cancel
-<span id="L222" class="ln">   222  </span>}
+<span id="L208" class="ln">   208  </span>			if len(results) &lt; int(pageSize_) {
+<span id="L209" class="ln">   209  </span>				break
+<span id="L210" class="ln">   210  </span>			}
+<span id="L211" class="ln">   211  </span>			cursorMeta, ok := resp.GetMetaOk()
+<span id="L212" class="ln">   212  </span>			if !ok {
+<span id="L213" class="ln">   213  </span>				break
+<span id="L214" class="ln">   214  </span>			}
+<span id="L215" class="ln">   215  </span>			cursorMetaPage, ok := cursorMeta.GetPageOk()
+<span id="L216" class="ln">   216  </span>			if !ok {
+<span id="L217" class="ln">   217  </span>				break
+<span id="L218" class="ln">   218  </span>			}
+<span id="L219" class="ln">   219  </span>			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+<span id="L220" class="ln">   220  </span>			if !ok {
+<span id="L221" class="ln">   221  </span>				break
+<span id="L222" class="ln">   222  </span>			}
 <span id="L223" class="ln">   223  </span>
-<span id="L224" class="ln">   224  </span><span class="comment">// NewProcessesApi Returns NewProcessesApi.</span>
-<span id="L225" class="ln">   225  </span>func NewProcessesApi(client *datadog.APIClient) *ProcessesApi {
-<span id="L226" class="ln">   226  </span>	return &amp;ProcessesApi{
-<span id="L227" class="ln">   227  </span>		Client: client,
-<span id="L228" class="ln">   228  </span>	}
+<span id="L224" class="ln">   224  </span>			o[0].PageCursor = cursorMetaPageAfter
+<span id="L225" class="ln">   225  </span>		}
+<span id="L226" class="ln">   226  </span>		close(items)
+<span id="L227" class="ln">   227  </span>	}()
+<span id="L228" class="ln">   228  </span>	return items, cancel
 <span id="L229" class="ln">   229  </span>}
 <span id="L230" class="ln">   230  </span>
+<span id="L231" class="ln">   231  </span><span class="comment">// NewProcessesApi Returns NewProcessesApi.</span>
+<span id="L232" class="ln">   232  </span>func NewProcessesApi(client *datadog.APIClient) *ProcessesApi {
+<span id="L233" class="ln">   233  </span>	return &amp;ProcessesApi{
+<span id="L234" class="ln">   234  </span>		Client: client,
+<span id="L235" class="ln">   235  </span>	}
+<span id="L236" class="ln">   236  </span>}
+<span id="L237" class="ln">   237  </span>
 </pre><p></p>
 
 <div id="footer">

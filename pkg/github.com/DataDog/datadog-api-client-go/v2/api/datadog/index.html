@@ -105,6 +105,8 @@
 			<div id="manual-nav">
 			<dl>
 			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
 			
 				<dd><a href="#pkg-variables">Variables</a></dd>
 			
@@ -114,6 +116,12 @@
 			
 				
 				<dd><a href="#DeleteKeys">func DeleteKeys[V any](obj map[string]V, keysToDelete *[]string)</a></dd>
+			
+				
+				<dd><a href="#GetDelegatedTokenUrl">func GetDelegatedTokenUrl(ctx context.Context) (string, error)</a></dd>
+			
+				
+				<dd><a href="#GetUserAgent">func GetUserAgent() string</a></dd>
 			
 				
 				<dd><a href="#Marshal">func Marshal(v interface{}) ([]byte, error)</a></dd>
@@ -172,6 +180,9 @@
 				
 				<dd><a href="#Unmarshal">func Unmarshal(data []byte, v interface{}) error</a></dd>
 			
+				
+				<dd><a href="#UseDelegatedTokenAuth">func UseDelegatedTokenAuth(ctx context.Context, headerParams *map[string]string, delegatedTokenConfig *DelegatedTokenConfig) error</a></dd>
+			
 			
 				
 				<dd><a href="#APIClient">type APIClient</a></dd>
@@ -190,12 +201,29 @@
 					<dd>&nbsp; &nbsp; <a href="#APIClient.GetConfig">func (c *APIClient) GetConfig() *Configuration</a></dd>
 				
 					
+					<dd>&nbsp; &nbsp; <a href="#APIClient.GetDelegatedToken">func (c *APIClient) GetDelegatedToken(ctx context.Context) (*DelegatedTokenCredentials, error)</a></dd>
+				
+					
 					<dd>&nbsp; &nbsp; <a href="#APIClient.PrepareRequest">func (c *APIClient) PrepareRequest(ctx context.Context, path string, method string, postBody interface{}, headerParams map[string]string, queryParams url.Values, formParams url.Values, formFile *FormFile) (localVarRequest *http.Request, err error)</a></dd>
 				
 			
 				
 				<dd><a href="#APIKey">type APIKey</a></dd>
 				
+				
+			
+				
+				<dd><a href="#AWSAuth">type AWSAuth</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#AWSAuth.Authenticate">func (a *AWSAuth) Authenticate(ctx context.Context, config *DelegatedTokenConfig) (*DelegatedTokenCredentials, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#AWSAuth.GenerateAwsAuthData">func (a *AWSAuth) GenerateAwsAuthData(orgUUID string, creds *Credentials) (*SigningData, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#AWSAuth.GetCredentials">func (a *AWSAuth) GetCredentials(ctx context.Context) *Credentials</a></dd>
 				
 			
 				
@@ -230,6 +258,35 @@
 				
 					
 					<dd>&nbsp; &nbsp; <a href="#Configuration.SetUnstableOperationEnabled">func (c *Configuration) SetUnstableOperationEnabled(operation string, enabled bool) bool</a></dd>
+				
+			
+				
+				<dd><a href="#Credentials">type Credentials</a></dd>
+				
+				
+			
+				
+				<dd><a href="#DelegatedTokenConfig">type DelegatedTokenConfig</a></dd>
+				
+				
+			
+				
+				<dd><a href="#DelegatedTokenCredentials">type DelegatedTokenCredentials</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#CallDelegatedTokenAuthenticate">func CallDelegatedTokenAuthenticate(ctx context.Context, config *DelegatedTokenConfig) (*DelegatedTokenCredentials, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#GetDelegatedToken">func GetDelegatedToken(ctx context.Context, orgUUID, delegatedAuthProof string) (*DelegatedTokenCredentials, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ParseDelegatedTokenResponse">func ParseDelegatedTokenResponse(tokenBytes []byte, orgUUID, delegatedAuthProof string) (*DelegatedTokenCredentials, error)</a></dd>
+				
+				
+			
+				
+				<dd><a href="#DelegatedTokenProvider">type DelegatedTokenProvider</a></dd>
+				
 				
 			
 				
@@ -518,6 +575,11 @@
 				
 				
 			
+				
+				<dd><a href="#SigningData">type SigningData</a></dd>
+				
+				
+			
 			
 			</dl>
 			</div><!-- #manual-nav -->
@@ -529,9 +591,13 @@
 			<p>
 			<span style="font-size:90%">
 			
+				<a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/aws.go">aws.go</a>
+			
 				<a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go">client.go</a>
 			
 				<a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go">configuration.go</a>
+			
+				<a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/delegated_auth.go">delegated_auth.go</a>
 			
 				<a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/encoding_json.go">encoding_json.go</a>
 			
@@ -547,6 +613,21 @@
 
 		
 
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				
+				<pre>const (
+
+    <span class="comment">// AWS specific constants</span>
+    <span id="AWSAccessKeyIdName">AWSAccessKeyIdName</span>     = &#34;AWS_ACCESS_KEY_ID&#34;
+    <span id="AWSSecretAccessKeyName">AWSSecretAccessKeyName</span> = &#34;AWS_SECRET_ACCESS_KEY&#34;
+    <span id="AWSSessionTokenName">AWSSessionTokenName</span>    = &#34;AWS_SESSION_TOKEN&#34;
+)</pre>
+			
+				
+				<pre>const <span id="ProviderAWS">ProviderAWS</span> = &#34;aws&#34;</pre>
+			
 		
 		
 			<h2 id="pkg-variables">Variables</h2>
@@ -564,6 +645,12 @@
 
     <span class="comment">// ContextAPIKeys takes a string apikey as authentication for the request</span>
     <span id="ContextAPIKeys">ContextAPIKeys</span> = contextKey(&#34;apiKeys&#34;)
+
+    <span class="comment">// ContextDelegatedToken takes a string delegated token as authentication for the request</span>
+    <span id="ContextDelegatedToken">ContextDelegatedToken</span> = contextKey(&#34;delegatedToken&#34;)
+
+    <span class="comment">// ContextAWSVariables takes AWS credentials as authentication for the request.</span>
+    <span id="ContextAWSVariables">ContextAWSVariables</span> = contextKey(&#34;awsVariables&#34;)
 
     <span class="comment">// ContextHttpSignatureAuth takes HttpSignatureAuth as authentication for the request.</span>
     <span id="ContextHttpSignatureAuth">ContextHttpSignatureAuth</span> = contextKey(&#34;httpsignature&#34;)
@@ -613,6 +700,32 @@
 		
 			
 			
+			<h2 id="GetDelegatedTokenUrl">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/delegated_auth.go#L107">GetDelegatedTokenUrl</a>
+				<a class="permalink" href="#GetDelegatedTokenUrl">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetDelegatedTokenUrl(ctx <a href="https://pkg.go.dev/context/">context</a>.<a href="https://pkg.go.dev/context/#Context">Context</a>) (<a href="https://pkg.go.dev/builtin/#string">string</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+			
+			
+			
+
+		
+			
+			
+			<h2 id="GetUserAgent">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L853">GetUserAgent</a>
+				<a class="permalink" href="#GetUserAgent">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func GetUserAgent() <a href="https://pkg.go.dev/builtin/#string">string</a></pre>
+			
+			
+			
+
+		
+			
+			
 			<h2 id="Marshal">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/encoding_json.go#L14">Marshal</a>
 				<a class="permalink" href="#Marshal">&#xb6;</a>
 				
@@ -639,7 +752,7 @@
 		
 			
 			
-			<h2 id="NewDefaultContext">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L835">NewDefaultContext</a>
+			<h2 id="NewDefaultContext">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L864">NewDefaultContext</a>
 				<a class="permalink" href="#NewDefaultContext">&#xb6;</a>
 				
 				
@@ -666,7 +779,7 @@
 		
 			
 			
-			<h2 id="ParameterToString">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L97">ParameterToString</a>
+			<h2 id="ParameterToString">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L128">ParameterToString</a>
 				<a class="permalink" href="#ParameterToString">&#xb6;</a>
 				
 				
@@ -792,7 +905,7 @@
 		
 			
 			
-			<h2 id="ReadBody">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L71">ReadBody</a>
+			<h2 id="ReadBody">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L102">ReadBody</a>
 				<a class="permalink" href="#ReadBody">&#xb6;</a>
 				
 				
@@ -806,7 +919,7 @@
 		
 			
 			
-			<h2 id="ReplacePathParameter">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L124">ReplacePathParameter</a>
+			<h2 id="ReplacePathParameter">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L155">ReplacePathParameter</a>
 				<a class="permalink" href="#ReplacePathParameter">&#xb6;</a>
 				
 				
@@ -820,7 +933,7 @@
 		
 			
 			
-			<h2 id="ReportError">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L465">ReportError</a>
+			<h2 id="ReportError">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L522">ReportError</a>
 				<a class="permalink" href="#ReportError">&#xb6;</a>
 				
 				
@@ -834,7 +947,7 @@
 		
 			
 			
-			<h2 id="SetAuthKeys">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L58">SetAuthKeys</a>
+			<h2 id="SetAuthKeys">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L89">SetAuthKeys</a>
 				<a class="permalink" href="#SetAuthKeys">&#xb6;</a>
 				
 				
@@ -873,10 +986,24 @@
 			
 
 		
+			
+			
+			<h2 id="UseDelegatedTokenAuth">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L61">UseDelegatedTokenAuth</a>
+				<a class="permalink" href="#UseDelegatedTokenAuth">&#xb6;</a>
+				
+				
+			</h2>
+			<pre>func UseDelegatedTokenAuth(ctx <a href="https://pkg.go.dev/context/">context</a>.<a href="https://pkg.go.dev/context/#Context">Context</a>, headerParams *map[<a href="https://pkg.go.dev/builtin/#string">string</a>]<a href="https://pkg.go.dev/builtin/#string">string</a>, delegatedTokenConfig *<a href="#DelegatedTokenConfig">DelegatedTokenConfig</a>) <a href="https://pkg.go.dev/builtin/#error">error</a></pre>
+			<p>UseDelegatedTokenAuth sets the Authorization header with a delegated token if available in the context.
+
+			
+			
+
+		
 		
 			
 			
-			<h2 id="APIClient">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L41">APIClient</a>
+			<h2 id="APIClient">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L44">APIClient</a>
 				<a class="permalink" href="#APIClient">&#xb6;</a>
 				
 				
@@ -899,7 +1026,7 @@ In most cases there should be only one, shared, APIClient.
 
 			
 				
-				<h3 id="NewAPIClient">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L80">NewAPIClient</a>
+				<h3 id="NewAPIClient">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L111">NewAPIClient</a>
 					<a class="permalink" href="#NewAPIClient">&#xb6;</a>
 					
 					
@@ -914,7 +1041,7 @@ optionally a custom http.Client to allow for advanced features such as caching.
 
 			
 				
-				<h3 id="APIClient.CallAPI">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L129">CallAPI</a>
+				<h3 id="APIClient.CallAPI">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L160">CallAPI</a>
 					<a class="permalink" href="#APIClient.CallAPI">&#xb6;</a>
 					
 					
@@ -927,7 +1054,7 @@ optionally a custom http.Client to allow for advanced features such as caching.
 				
 			
 				
-				<h3 id="APIClient.Decode">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L419">Decode</a>
+				<h3 id="APIClient.Decode">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L450">Decode</a>
 					<a class="permalink" href="#APIClient.Decode">&#xb6;</a>
 					
 					
@@ -940,7 +1067,7 @@ optionally a custom http.Client to allow for advanced features such as caching.
 				
 			
 				
-				<h3 id="APIClient.GetConfig">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L219">GetConfig</a>
+				<h3 id="APIClient.GetConfig">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L250">GetConfig</a>
 					<a class="permalink" href="#APIClient.GetConfig">&#xb6;</a>
 					
 					
@@ -954,7 +1081,20 @@ Caution: modifying the configuration while live can cause data races and potenti
 				
 			
 				
-				<h3 id="APIClient.PrepareRequest">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L224">PrepareRequest</a>
+				<h3 id="APIClient.GetDelegatedToken">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L479">GetDelegatedToken</a>
+					<a class="permalink" href="#APIClient.GetDelegatedToken">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#APIClient">APIClient</a>) GetDelegatedToken(ctx <a href="https://pkg.go.dev/context/">context</a>.<a href="https://pkg.go.dev/context/#Context">Context</a>) (*<a href="#DelegatedTokenCredentials">DelegatedTokenCredentials</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				<p>GetDelegatedToken will call CallDelegatedTokenAuthenticate if delegated token auth is found in the context.
+
+				
+				
+				
+			
+				
+				<h3 id="APIClient.PrepareRequest">func (*APIClient) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L255">PrepareRequest</a>
 					<a class="permalink" href="#APIClient.PrepareRequest">&#xb6;</a>
 					
 					
@@ -976,7 +1116,7 @@ Caution: modifying the configuration while live can cause data races and potenti
 		
 			
 			
-			<h2 id="APIKey">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L66">APIKey</a>
+			<h2 id="APIKey">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L74">APIKey</a>
 				<a class="permalink" href="#APIKey">&#xb6;</a>
 				
 				
@@ -1003,7 +1143,68 @@ Caution: modifying the configuration while live can cause data races and potenti
 		
 			
 			
-			<h2 id="BasicAuth">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L60">BasicAuth</a>
+			<h2 id="AWSAuth">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/aws.go#L63">AWSAuth</a>
+				<a class="permalink" href="#AWSAuth">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type AWSAuth struct {
+<span id="AWSAuth.AwsRegion"></span>    AwsRegion <a href="https://pkg.go.dev/builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="AWSAuth.Authenticate">func (*AWSAuth) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/aws.go#L67">Authenticate</a>
+					<a class="permalink" href="#AWSAuth.Authenticate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="#AWSAuth">AWSAuth</a>) Authenticate(ctx <a href="https://pkg.go.dev/context/">context</a>.<a href="https://pkg.go.dev/context/#Context">Context</a>, config *<a href="#DelegatedTokenConfig">DelegatedTokenConfig</a>) (*<a href="#DelegatedTokenCredentials">DelegatedTokenCredentials</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="AWSAuth.GenerateAwsAuthData">func (*AWSAuth) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/aws.go#L130">GenerateAwsAuthData</a>
+					<a class="permalink" href="#AWSAuth.GenerateAwsAuthData">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="#AWSAuth">AWSAuth</a>) GenerateAwsAuthData(orgUUID <a href="https://pkg.go.dev/builtin/#string">string</a>, creds *<a href="#Credentials">Credentials</a>) (*<a href="#SigningData">SigningData</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="AWSAuth.GetCredentials">func (*AWSAuth) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/aws.go#L88">GetCredentials</a>
+					<a class="permalink" href="#AWSAuth.GetCredentials">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (a *<a href="#AWSAuth">AWSAuth</a>) GetCredentials(ctx <a href="https://pkg.go.dev/context/">context</a>.<a href="https://pkg.go.dev/context/#Context">Context</a>) *<a href="#Credentials">Credentials</a></pre>
+				
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="BasicAuth">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L68">BasicAuth</a>
 				<a class="permalink" href="#BasicAuth">&#xb6;</a>
 				
 				
@@ -1030,7 +1231,7 @@ Caution: modifying the configuration while live can cause data races and potenti
 		
 			
 			
-			<h2 id="Configuration">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L89">Configuration</a>
+			<h2 id="Configuration">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L117">Configuration</a>
 				<a class="permalink" href="#Configuration">&#xb6;</a>
 				
 				
@@ -1048,7 +1249,8 @@ Caution: modifying the configuration while live can cause data races and potenti
 <span id="Configuration.OperationServers"></span>    OperationServers map[<a href="https://pkg.go.dev/builtin/#string">string</a>]<a href="#ServerConfigurations">ServerConfigurations</a>
 <span id="Configuration.HTTPClient"></span>    HTTPClient       *<a href="https://pkg.go.dev/net/http/">http</a>.<a href="https://pkg.go.dev/net/http/#Client">Client</a>
 
-<span id="Configuration.RetryConfiguration"></span>    RetryConfiguration <a href="#RetryConfiguration">RetryConfiguration</a>
+<span id="Configuration.RetryConfiguration"></span>    RetryConfiguration   <a href="#RetryConfiguration">RetryConfiguration</a>
+<span id="Configuration.DelegatedTokenConfig"></span>    DelegatedTokenConfig *<a href="#DelegatedTokenConfig">DelegatedTokenConfig</a>
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -1063,7 +1265,7 @@ Caution: modifying the configuration while live can cause data races and potenti
 
 			
 				
-				<h3 id="NewConfiguration">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L113">NewConfiguration</a>
+				<h3 id="NewConfiguration">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L142">NewConfiguration</a>
 					<a class="permalink" href="#NewConfiguration">&#xb6;</a>
 					
 					
@@ -1077,7 +1279,7 @@ Caution: modifying the configuration while live can cause data races and potenti
 
 			
 				
-				<h3 id="Configuration.AddDefaultHeader">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L672">AddDefaultHeader</a>
+				<h3 id="Configuration.AddDefaultHeader">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L701">AddDefaultHeader</a>
 					<a class="permalink" href="#Configuration.AddDefaultHeader">&#xb6;</a>
 					
 					
@@ -1090,7 +1292,7 @@ Caution: modifying the configuration while live can cause data races and potenti
 				
 			
 				
-				<h3 id="Configuration.GetUnstableOperations">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L786">GetUnstableOperations</a>
+				<h3 id="Configuration.GetUnstableOperations">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L815">GetUnstableOperations</a>
 					<a class="permalink" href="#Configuration.GetUnstableOperations">&#xb6;</a>
 					
 					
@@ -1103,7 +1305,7 @@ Caution: modifying the configuration while live can cause data races and potenti
 				
 			
 				
-				<h3 id="Configuration.IsUnstableOperation">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L808">IsUnstableOperation</a>
+				<h3 id="Configuration.IsUnstableOperation">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L837">IsUnstableOperation</a>
 					<a class="permalink" href="#Configuration.IsUnstableOperation">&#xb6;</a>
 					
 					
@@ -1117,7 +1319,7 @@ This function accepts operation ID as an argument - this is the name of the meth
 				
 			
 				
-				<h3 id="Configuration.IsUnstableOperationEnabled">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L816">IsUnstableOperationEnabled</a>
+				<h3 id="Configuration.IsUnstableOperationEnabled">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L845">IsUnstableOperationEnabled</a>
 					<a class="permalink" href="#Configuration.IsUnstableOperationEnabled">&#xb6;</a>
 					
 					
@@ -1132,7 +1334,7 @@ Returns true if the operation is unstable and it is enabled, false otherwise.
 				
 			
 				
-				<h3 id="Configuration.ServerURL">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L705">ServerURL</a>
+				<h3 id="Configuration.ServerURL">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L734">ServerURL</a>
 					<a class="permalink" href="#Configuration.ServerURL">&#xb6;</a>
 					
 					
@@ -1145,7 +1347,7 @@ Returns true if the operation is unstable and it is enabled, false otherwise.
 				
 			
 				
-				<h3 id="Configuration.ServerURLWithContext">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L762">ServerURLWithContext</a>
+				<h3 id="Configuration.ServerURLWithContext">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L791">ServerURLWithContext</a>
 					<a class="permalink" href="#Configuration.ServerURLWithContext">&#xb6;</a>
 					
 					
@@ -1158,7 +1360,7 @@ Returns true if the operation is unstable and it is enabled, false otherwise.
 				
 			
 				
-				<h3 id="Configuration.SetUnstableOperationEnabled">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L797">SetUnstableOperationEnabled</a>
+				<h3 id="Configuration.SetUnstableOperationEnabled">func (*Configuration) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L826">SetUnstableOperationEnabled</a>
 					<a class="permalink" href="#Configuration.SetUnstableOperationEnabled">&#xb6;</a>
 					
 					
@@ -1175,7 +1377,149 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 		
 			
 			
-			<h2 id="FormFile">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L46">FormFile</a>
+			<h2 id="Credentials">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/aws.go#L22">Credentials</a>
+				<a class="permalink" href="#Credentials">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type Credentials struct {
+<span id="Credentials.AccessKeyID"></span>    AccessKeyID     <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="Credentials.SecretAccessKey"></span>    SecretAccessKey <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="Credentials.SessionToken"></span>    SessionToken    <a href="https://pkg.go.dev/builtin/#string">string</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DelegatedTokenConfig">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L88">DelegatedTokenConfig</a>
+				<a class="permalink" href="#DelegatedTokenConfig">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DelegatedTokenConfig provides cloud provider based authentication configuration.
+
+			<pre>type DelegatedTokenConfig struct {
+<span id="DelegatedTokenConfig.OrgUUID"></span>    OrgUUID      <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="DelegatedTokenConfig.Provider"></span>    Provider     <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="DelegatedTokenConfig.ProviderAuth"></span>    ProviderAuth <a href="#DelegatedTokenProvider">DelegatedTokenProvider</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="DelegatedTokenCredentials">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L80">DelegatedTokenCredentials</a>
+				<a class="permalink" href="#DelegatedTokenCredentials">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DelegatedTokenCredentials delegated token authentication to a request passed via context using ContextDelegatedToken.
+
+			<pre>type DelegatedTokenCredentials struct {
+<span id="DelegatedTokenCredentials.OrgUUID"></span>    OrgUUID        <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="DelegatedTokenCredentials.DelegatedToken"></span>    DelegatedToken <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="DelegatedTokenCredentials.DelegatedProof"></span>    DelegatedProof <a href="https://pkg.go.dev/builtin/#string">string</a>
+<span id="DelegatedTokenCredentials.Expiration"></span>    Expiration     <a href="https://pkg.go.dev/time/">time</a>.<a href="https://pkg.go.dev/time/#Time">Time</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="CallDelegatedTokenAuthenticate">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L485">CallDelegatedTokenAuthenticate</a>
+					<a class="permalink" href="#CallDelegatedTokenAuthenticate">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func CallDelegatedTokenAuthenticate(ctx <a href="https://pkg.go.dev/context/">context</a>.<a href="https://pkg.go.dev/context/#Context">Context</a>, config *<a href="#DelegatedTokenConfig">DelegatedTokenConfig</a>) (*<a href="#DelegatedTokenCredentials">DelegatedTokenCredentials</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+				
+				<h3 id="GetDelegatedToken">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/delegated_auth.go#L27">GetDelegatedToken</a>
+					<a class="permalink" href="#GetDelegatedToken">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func GetDelegatedToken(ctx <a href="https://pkg.go.dev/context/">context</a>.<a href="https://pkg.go.dev/context/#Context">Context</a>, orgUUID, delegatedAuthProof <a href="https://pkg.go.dev/builtin/#string">string</a>) (*<a href="#DelegatedTokenCredentials">DelegatedTokenCredentials</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+				
+				<h3 id="ParseDelegatedTokenResponse">func <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/delegated_auth.go#L61">ParseDelegatedTokenResponse</a>
+					<a class="permalink" href="#ParseDelegatedTokenResponse">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func ParseDelegatedTokenResponse(tokenBytes []<a href="https://pkg.go.dev/builtin/#byte">byte</a>, orgUUID, delegatedAuthProof <a href="https://pkg.go.dev/builtin/#string">string</a>) (*<a href="#DelegatedTokenCredentials">DelegatedTokenCredentials</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)</pre>
+				
+				
+				
+			
+
+			
+		
+			
+			
+			<h2 id="DelegatedTokenProvider">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L95">DelegatedTokenProvider</a>
+				<a class="permalink" href="#DelegatedTokenProvider">&#xb6;</a>
+				
+				
+			</h2>
+			<p>DelegatedTokenProvider is an interface for getting a delegated token utilizing different methods.
+
+			<pre>type DelegatedTokenProvider interface {
+    Authenticate(ctx <a href="https://pkg.go.dev/context/">context</a>.<a href="https://pkg.go.dev/context/#Context">Context</a>, config *<a href="#DelegatedTokenConfig">DelegatedTokenConfig</a>) (*<a href="#DelegatedTokenCredentials">DelegatedTokenCredentials</a>, <a href="https://pkg.go.dev/builtin/#error">error</a>)
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="FormFile">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L49">FormFile</a>
 				<a class="permalink" href="#FormFile">&#xb6;</a>
 				
 				
@@ -1203,7 +1547,7 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 		
 			
 			
-			<h2 id="GenericOpenAPIError">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L527">GenericOpenAPIError</a>
+			<h2 id="GenericOpenAPIError">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L584">GenericOpenAPIError</a>
 				<a class="permalink" href="#GenericOpenAPIError">&#xb6;</a>
 				
 				
@@ -1229,7 +1573,7 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 
 			
 				
-				<h3 id="GenericOpenAPIError.Body">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L539">Body</a>
+				<h3 id="GenericOpenAPIError.Body">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L596">Body</a>
 					<a class="permalink" href="#GenericOpenAPIError.Body">&#xb6;</a>
 					
 					
@@ -1242,7 +1586,7 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 				
 			
 				
-				<h3 id="GenericOpenAPIError.Error">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L534">Error</a>
+				<h3 id="GenericOpenAPIError.Error">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L591">Error</a>
 					<a class="permalink" href="#GenericOpenAPIError.Error">&#xb6;</a>
 					
 					
@@ -1255,7 +1599,7 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 				
 			
 				
-				<h3 id="GenericOpenAPIError.Model">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L544">Model</a>
+				<h3 id="GenericOpenAPIError.Model">func (GenericOpenAPIError) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L601">Model</a>
 					<a class="permalink" href="#GenericOpenAPIError.Model">&#xb6;</a>
 					
 					
@@ -2341,7 +2685,7 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 		
 			
 			
-			<h2 id="RetryConfiguration">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L104">RetryConfiguration</a>
+			<h2 id="RetryConfiguration">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L133">RetryConfiguration</a>
 				<a class="permalink" href="#RetryConfiguration">&#xb6;</a>
 				
 				
@@ -2371,7 +2715,7 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 		
 			
 			
-			<h2 id="ServerConfiguration">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L79">ServerConfiguration</a>
+			<h2 id="ServerConfiguration">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L107">ServerConfiguration</a>
 				<a class="permalink" href="#ServerConfiguration">&#xb6;</a>
 				
 				
@@ -2399,7 +2743,7 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 		
 			
 			
-			<h2 id="ServerConfigurations">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L86">ServerConfigurations</a>
+			<h2 id="ServerConfigurations">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L114">ServerConfigurations</a>
 				<a class="permalink" href="#ServerConfigurations">&#xb6;</a>
 				
 				
@@ -2420,7 +2764,7 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 
 			
 				
-				<h3 id="ServerConfigurations.URL">func (ServerConfigurations) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L677">URL</a>
+				<h3 id="ServerConfigurations.URL">func (ServerConfigurations) <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L706">URL</a>
 					<a class="permalink" href="#ServerConfigurations.URL">&#xb6;</a>
 					
 					
@@ -2435,7 +2779,7 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 		
 			
 			
-			<h2 id="ServerVariable">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L72">ServerVariable</a>
+			<h2 id="ServerVariable">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/configuration.go#L100">ServerVariable</a>
 				<a class="permalink" href="#ServerVariable">&#xb6;</a>
 				
 				
@@ -2463,7 +2807,7 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 		
 			
 			
-			<h2 id="Service">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L53">Service</a>
+			<h2 id="Service">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/client.go#L56">Service</a>
 				<a class="permalink" href="#Service">&#xb6;</a>
 				
 				
@@ -2472,6 +2816,35 @@ Returns true if the operation is marked as unstable and thus was enabled/disable
 
 			<pre>type Service struct {
 <span id="Service.Client"></span>    Client *<a href="#APIClient">APIClient</a>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="SigningData">type <a href="https://github.com/DataDog/datadog-api-client-go/blob/master/api/datadog/aws.go#L29">SigningData</a>
+				<a class="permalink" href="#SigningData">&#xb6;</a>
+				
+				
+			</h2>
+			<p>SigningData is the data structure that represents the Data used to generate and AWS Proof
+
+			<pre>type SigningData struct {
+<span id="SigningData.HeadersEncoded"></span>    HeadersEncoded <a href="https://pkg.go.dev/builtin/#string">string</a> `json:&#34;iam_headers_encoded&#34;`
+<span id="SigningData.BodyEncoded"></span>    BodyEncoded    <a href="https://pkg.go.dev/builtin/#string">string</a> `json:&#34;iam_body_encoded&#34;`
+<span id="SigningData.URLEncoded"></span>    URLEncoded     <a href="https://pkg.go.dev/builtin/#string">string</a> `json:&#34;iam_url_encoded&#34;`
+<span id="SigningData.Method"></span>    Method         <a href="https://pkg.go.dev/builtin/#string">string</a> `json:&#34;iam_method&#34;`
 }
 </pre>
 
