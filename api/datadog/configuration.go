@@ -17,6 +17,8 @@ import (
 	client "github.com/DataDog/datadog-api-client-go/v2"
 )
 
+//go:generate mockgen -source=./configuration.go -destination=../../tests/api/mocks/configuration.go -package=mocks
+
 // contextKeys are used to identify the type of value in the context.
 // Since these are string, it is possible to get a short description of the
 // context key for logging and debugging using key.String().
@@ -39,6 +41,12 @@ var (
 
 	// ContextAPIKeys takes a string apikey as authentication for the request
 	ContextAPIKeys = contextKey("apiKeys")
+
+	// ContextDelegatedToken takes a string delegated token as authentication for the request
+	ContextDelegatedToken = contextKey("delegatedToken")
+
+	// ContextAWSVariables takes AWS credentials as authentication for the request.
+	ContextAWSVariables = contextKey("awsVariables")
 
 	// ContextHttpSignatureAuth takes HttpSignatureAuth as authentication for the request.
 	ContextHttpSignatureAuth = contextKey("httpsignature")
@@ -68,6 +76,26 @@ type APIKey struct {
 	Prefix string
 }
 
+// DelegatedTokenCredentials delegated token authentication to a request passed via context using ContextDelegatedToken.
+type DelegatedTokenCredentials struct {
+	OrgUUID        string
+	DelegatedToken string
+	DelegatedProof string
+	Expiration     time.Time
+}
+
+// DelegatedTokenConfig provides cloud provider based authentication configuration.
+type DelegatedTokenConfig struct {
+	OrgUUID      string
+	Provider     string
+	ProviderAuth DelegatedTokenProvider
+}
+
+// DelegatedTokenProvider is an interface for getting a delegated token utilizing different methods.
+type DelegatedTokenProvider interface {
+	Authenticate(ctx context.Context, config *DelegatedTokenConfig) (*DelegatedTokenCredentials, error)
+}
+
 // ServerVariable stores the information about a server variable.
 type ServerVariable struct {
 	Description  string
@@ -87,17 +115,18 @@ type ServerConfigurations []ServerConfiguration
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	Host               string            `json:"host,omitempty"`
-	Scheme             string            `json:"scheme,omitempty"`
-	DefaultHeader      map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent          string            `json:"userAgent,omitempty"`
-	Debug              bool              `json:"debug,omitempty"`
-	Compress           bool              `json:"compress,omitempty"`
-	Servers            ServerConfigurations
-	OperationServers   map[string]ServerConfigurations
-	HTTPClient         *http.Client
-	unstableOperations map[string]bool
-	RetryConfiguration RetryConfiguration
+	Host                 string            `json:"host,omitempty"`
+	Scheme               string            `json:"scheme,omitempty"`
+	DefaultHeader        map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent            string            `json:"userAgent,omitempty"`
+	Debug                bool              `json:"debug,omitempty"`
+	Compress             bool              `json:"compress,omitempty"`
+	Servers              ServerConfigurations
+	OperationServers     map[string]ServerConfigurations
+	HTTPClient           *http.Client
+	unstableOperations   map[string]bool
+	RetryConfiguration   RetryConfiguration
+	DelegatedTokenConfig *DelegatedTokenConfig
 }
 
 // RetryConfiguration stores the configuration of the retry behavior of the api client
@@ -113,7 +142,7 @@ type RetryConfiguration struct {
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader: make(map[string]string),
-		UserAgent:     getUserAgent(),
+		UserAgent:     GetUserAgent(),
 		Debug:         false,
 		Compress:      true,
 		Servers: ServerConfigurations{
@@ -821,7 +850,7 @@ func (c *Configuration) IsUnstableOperationEnabled(operation string) bool {
 	return false
 }
 
-func getUserAgent() string {
+func GetUserAgent() string {
 	return fmt.Sprintf(
 		"datadog-api-client-go/%s (go %s; os %s; arch %s)",
 		client.Version,
@@ -858,5 +887,26 @@ func NewDefaultContext(ctx context.Context) context.Context {
 		keys,
 	)
 
+	awsKeys := make(map[string]string)
+	if accessKey, ok := os.LookupEnv(AWSAccessKeyIdName); ok {
+		awsKeys[AWSAccessKeyIdName] = accessKey
+	}
+	if secretKey, ok := os.LookupEnv(AWSSecretAccessKeyName); ok {
+		awsKeys[AWSSecretAccessKeyName] = secretKey
+	}
+	if sessionToken, ok := os.LookupEnv(AWSSessionTokenName); ok {
+		awsKeys[AWSSessionTokenName] = sessionToken
+	}
+	ctx = context.WithValue(
+		ctx,
+		ContextAWSVariables,
+		awsKeys,
+	)
+
+	ctx = context.WithValue(
+		ctx,
+		ContextDelegatedToken,
+		&DelegatedTokenCredentials{},
+	)
 	return ctx
 }
