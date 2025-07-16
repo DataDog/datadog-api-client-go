@@ -656,7 +656,6 @@ func NewConfiguration() *Configuration {
 			"v2.UpdateMonitorUserTemplate":           false,
 			"v2.ValidateExistingMonitorUserTemplate": false,
 			"v2.ValidateMonitorUserTemplate":         false,
-			"v2.GetAggregatedConnections":            false,
 			"v2.CreatePipeline":                      false,
 			"v2.DeletePipeline":                      false,
 			"v2.GetPipeline":                         false,

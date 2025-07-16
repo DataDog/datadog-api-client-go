@@ -7,7 +7,7 @@ interactions:
       - application/json
     id: 0
     method: GET
-    url: https://api.datadoghq.com/api/v2/network/connections/aggregate?limit=6000
+    url: https://api.datadoghq.com/api/v2/network/connections/aggregate?limit=8000
   response:
     body: '{"errors":[{"status":"400","title":"Invalid limit"}]}'
     code: 400
