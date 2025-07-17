@@ -415,6 +415,7 @@ func NewConfiguration() *Configuration {
 							Description:  "The globally available endpoint for On-Call.",
 							DefaultValue: "navy.oncall.datadoghq.com",
 							EnumValues: []string{
+								"lava.oncall.datadoghq.com",
 								"saffron.oncall.datadoghq.com",
 								"navy.oncall.datadoghq.com",
 								"coral.oncall.datadoghq.com",
@@ -462,6 +463,7 @@ func NewConfiguration() *Configuration {
 							Description:  "The globally available endpoint for On-Call.",
 							DefaultValue: "navy.oncall.datadoghq.com",
 							EnumValues: []string{
+								"lava.oncall.datadoghq.com",
 								"saffron.oncall.datadoghq.com",
 								"navy.oncall.datadoghq.com",
 								"coral.oncall.datadoghq.com",
@@ -509,6 +511,7 @@ func NewConfiguration() *Configuration {
 							Description:  "The globally available endpoint for On-Call.",
 							DefaultValue: "navy.oncall.datadoghq.com",
 							EnumValues: []string{
+								"lava.oncall.datadoghq.com",
 								"saffron.oncall.datadoghq.com",
 								"navy.oncall.datadoghq.com",
 								"coral.oncall.datadoghq.com",
@@ -556,6 +559,7 @@ func NewConfiguration() *Configuration {
 							Description:  "The globally available endpoint for On-Call.",
 							DefaultValue: "navy.oncall.datadoghq.com",
 							EnumValues: []string{
+								"lava.oncall.datadoghq.com",
 								"saffron.oncall.datadoghq.com",
 								"navy.oncall.datadoghq.com",
 								"coral.oncall.datadoghq.com",
