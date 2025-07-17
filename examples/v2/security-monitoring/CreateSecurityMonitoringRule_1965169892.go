@@ -48,6 +48,12 @@ func main() {
 								UserBehaviorName: datadog.PtrString("behavior"),
 							},
 						},
+						{
+							Type: datadogV2.SECURITYMONITORINGRULECASEACTIONTYPE_FLAG_IP.Ptr(),
+							Options: &datadogV2.SecurityMonitoringRuleCaseActionOptions{
+								FlaggedIpType: datadogV2.SECURITYMONITORINGRULECASEACTIONOPTIONSFLAGGEDIPTYPE_FLAGGED.Ptr(),
+							},
+						},
 					},
 				},
 			},
