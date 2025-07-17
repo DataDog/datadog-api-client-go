@@ -26,6 +26,7 @@ type ObservabilityPipelineConfigProcessorItem struct {
 	ObservabilityPipelineEnrichmentTableProcessor      *ObservabilityPipelineEnrichmentTableProcessor
 	ObservabilityPipelineReduceProcessor               *ObservabilityPipelineReduceProcessor
 	ObservabilityPipelineThrottleProcessor             *ObservabilityPipelineThrottleProcessor
+	ObservabilityPipelineCustomProcessorProcessor      *ObservabilityPipelineCustomProcessorProcessor
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -109,6 +110,11 @@ func ObservabilityPipelineReduceProcessorAsObservabilityPipelineConfigProcessorI
 // ObservabilityPipelineThrottleProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineThrottleProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
 func ObservabilityPipelineThrottleProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineThrottleProcessor) ObservabilityPipelineConfigProcessorItem {
 	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineThrottleProcessor: v}
+}
+
+// ObservabilityPipelineCustomProcessorProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineCustomProcessorProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineCustomProcessorProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineCustomProcessorProcessor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineCustomProcessorProcessor: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -387,6 +393,23 @@ func (obj *ObservabilityPipelineConfigProcessorItem) UnmarshalJSON(data []byte) 
 		obj.ObservabilityPipelineThrottleProcessor = nil
 	}
 
+	// try to unmarshal data into ObservabilityPipelineCustomProcessorProcessor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineCustomProcessorProcessor)
+	if err == nil {
+		if obj.ObservabilityPipelineCustomProcessorProcessor != nil && obj.ObservabilityPipelineCustomProcessorProcessor.UnparsedObject == nil {
+			jsonObservabilityPipelineCustomProcessorProcessor, _ := datadog.Marshal(obj.ObservabilityPipelineCustomProcessorProcessor)
+			if string(jsonObservabilityPipelineCustomProcessorProcessor) == "{}" { // empty struct
+				obj.ObservabilityPipelineCustomProcessorProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineCustomProcessorProcessor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineCustomProcessorProcessor = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.ObservabilityPipelineFilterProcessor = nil
@@ -405,6 +428,7 @@ func (obj *ObservabilityPipelineConfigProcessorItem) UnmarshalJSON(data []byte) 
 		obj.ObservabilityPipelineEnrichmentTableProcessor = nil
 		obj.ObservabilityPipelineReduceProcessor = nil
 		obj.ObservabilityPipelineThrottleProcessor = nil
+		obj.ObservabilityPipelineCustomProcessorProcessor = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -474,6 +498,10 @@ func (obj ObservabilityPipelineConfigProcessorItem) MarshalJSON() ([]byte, error
 
 	if obj.ObservabilityPipelineThrottleProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineThrottleProcessor)
+	}
+
+	if obj.ObservabilityPipelineCustomProcessorProcessor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineCustomProcessorProcessor)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -546,6 +574,10 @@ func (obj *ObservabilityPipelineConfigProcessorItem) GetActualInstance() interfa
 
 	if obj.ObservabilityPipelineThrottleProcessor != nil {
 		return obj.ObservabilityPipelineThrottleProcessor
+	}
+
+	if obj.ObservabilityPipelineCustomProcessorProcessor != nil {
+		return obj.ObservabilityPipelineCustomProcessorProcessor
 	}
 
 	// all schemas are nil
