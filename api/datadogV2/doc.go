@@ -170,6 +170,7 @@
 //   - [DowntimesApi.ListMonitorDowntimes]
 //   - [DowntimesApi.UpdateDowntime]
 //   - [EventsApi.CreateEvent]
+//   - [EventsApi.GetEvent]
 //   - [EventsApi.ListEvents]
 //   - [EventsApi.SearchEvents]
 //   - [FastlyIntegrationApi.CreateFastlyAccount]
