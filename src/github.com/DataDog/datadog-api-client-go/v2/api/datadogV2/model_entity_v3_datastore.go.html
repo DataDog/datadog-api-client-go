@@ -69,7 +69,7 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// EntityV3Datastore Schema for datastore entities.</span>
 <span id="L14" class="ln">    14  </span>type EntityV3Datastore struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The schema version of entity type. The field is known as schema-version in the previous version.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// The version of the schema data that was used to populate this entity&#39;s data. This could be via the API, Terraform, or YAML file in a repository. The field is known as schema-version in the previous version.</span>
 <span id="L16" class="ln">    16  </span>	ApiVersion EntityV3APIVersion `json:&#34;apiVersion&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// Datadog product integrations for the datastore entity.</span>
 <span id="L18" class="ln">    18  </span>	Datadog *EntityV3DatastoreDatadog `json:&#34;datadog,omitempty&#34;`
