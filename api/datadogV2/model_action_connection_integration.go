@@ -10,8 +10,9 @@ import (
 
 // ActionConnectionIntegration - The definition of `ActionConnectionIntegration` object.
 type ActionConnectionIntegration struct {
-	AWSIntegration  *AWSIntegration
-	HTTPIntegration *HTTPIntegration
+	AWSIntegration     *AWSIntegration
+	DatadogIntegration *DatadogIntegration
+	HTTPIntegration    *HTTPIntegration
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -20,6 +21,11 @@ type ActionConnectionIntegration struct {
 // AWSIntegrationAsActionConnectionIntegration is a convenience function that returns AWSIntegration wrapped in ActionConnectionIntegration.
 func AWSIntegrationAsActionConnectionIntegration(v *AWSIntegration) ActionConnectionIntegration {
 	return ActionConnectionIntegration{AWSIntegration: v}
+}
+
+// DatadogIntegrationAsActionConnectionIntegration is a convenience function that returns DatadogIntegration wrapped in ActionConnectionIntegration.
+func DatadogIntegrationAsActionConnectionIntegration(v *DatadogIntegration) ActionConnectionIntegration {
+	return ActionConnectionIntegration{DatadogIntegration: v}
 }
 
 // HTTPIntegrationAsActionConnectionIntegration is a convenience function that returns HTTPIntegration wrapped in ActionConnectionIntegration.
@@ -48,6 +54,23 @@ func (obj *ActionConnectionIntegration) UnmarshalJSON(data []byte) error {
 		obj.AWSIntegration = nil
 	}
 
+	// try to unmarshal data into DatadogIntegration
+	err = datadog.Unmarshal(data, &obj.DatadogIntegration)
+	if err == nil {
+		if obj.DatadogIntegration != nil && obj.DatadogIntegration.UnparsedObject == nil {
+			jsonDatadogIntegration, _ := datadog.Marshal(obj.DatadogIntegration)
+			if string(jsonDatadogIntegration) == "{}" { // empty struct
+				obj.DatadogIntegration = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.DatadogIntegration = nil
+		}
+	} else {
+		obj.DatadogIntegration = nil
+	}
+
 	// try to unmarshal data into HTTPIntegration
 	err = datadog.Unmarshal(data, &obj.HTTPIntegration)
 	if err == nil {
@@ -68,6 +91,7 @@ func (obj *ActionConnectionIntegration) UnmarshalJSON(data []byte) error {
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.AWSIntegration = nil
+		obj.DatadogIntegration = nil
 		obj.HTTPIntegration = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
@@ -78,6 +102,10 @@ func (obj *ActionConnectionIntegration) UnmarshalJSON(data []byte) error {
 func (obj ActionConnectionIntegration) MarshalJSON() ([]byte, error) {
 	if obj.AWSIntegration != nil {
 		return datadog.Marshal(&obj.AWSIntegration)
+	}
+
+	if obj.DatadogIntegration != nil {
+		return datadog.Marshal(&obj.DatadogIntegration)
 	}
 
 	if obj.HTTPIntegration != nil {
@@ -94,6 +122,10 @@ func (obj ActionConnectionIntegration) MarshalJSON() ([]byte, error) {
 func (obj *ActionConnectionIntegration) GetActualInstance() interface{} {
 	if obj.AWSIntegration != nil {
 		return obj.AWSIntegration
+	}
+
+	if obj.DatadogIntegration != nil {
+		return obj.DatadogIntegration
 	}
 
 	if obj.HTTPIntegration != nil {
