@@ -10,10 +10,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseAttributes Case attributes
-type CaseAttributes struct {
+// CaseResourceAttributes Case resource attributes
+type CaseResourceAttributes struct {
 	// Timestamp of when the case was archived
 	ArchivedAt datadog.NullableTime `json:"archived_at,omitempty"`
+	// The definition of `CaseAttributes` object.
+	Attributes map[string][]string `json:"attributes,omitempty"`
 	// Timestamp of when the case was closed
 	ClosedAt datadog.NullableTime `json:"closed_at,omitempty"`
 	// Timestamp of when the case was created
@@ -41,29 +43,29 @@ type CaseAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewCaseAttributes instantiates a new CaseAttributes object.
+// NewCaseResourceAttributes instantiates a new CaseResourceAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCaseAttributes() *CaseAttributes {
-	this := CaseAttributes{}
+func NewCaseResourceAttributes() *CaseResourceAttributes {
+	this := CaseResourceAttributes{}
 	var priority CasePriority = CASEPRIORITY_NOT_DEFINED
 	this.Priority = &priority
 	return &this
 }
 
-// NewCaseAttributesWithDefaults instantiates a new CaseAttributes object.
+// NewCaseResourceAttributesWithDefaults instantiates a new CaseResourceAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewCaseAttributesWithDefaults() *CaseAttributes {
-	this := CaseAttributes{}
+func NewCaseResourceAttributesWithDefaults() *CaseResourceAttributes {
+	this := CaseResourceAttributes{}
 	var priority CasePriority = CASEPRIORITY_NOT_DEFINED
 	this.Priority = &priority
 	return &this
 }
 
 // GetArchivedAt returns the ArchivedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CaseAttributes) GetArchivedAt() time.Time {
+func (o *CaseResourceAttributes) GetArchivedAt() time.Time {
 	if o == nil || o.ArchivedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -74,7 +76,7 @@ func (o *CaseAttributes) GetArchivedAt() time.Time {
 // GetArchivedAtOk returns a tuple with the ArchivedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *CaseAttributes) GetArchivedAtOk() (*time.Time, bool) {
+func (o *CaseResourceAttributes) GetArchivedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,27 +84,55 @@ func (o *CaseAttributes) GetArchivedAtOk() (*time.Time, bool) {
 }
 
 // HasArchivedAt returns a boolean if a field has been set.
-func (o *CaseAttributes) HasArchivedAt() bool {
+func (o *CaseResourceAttributes) HasArchivedAt() bool {
 	return o != nil && o.ArchivedAt.IsSet()
 }
 
 // SetArchivedAt gets a reference to the given datadog.NullableTime and assigns it to the ArchivedAt field.
-func (o *CaseAttributes) SetArchivedAt(v time.Time) {
+func (o *CaseResourceAttributes) SetArchivedAt(v time.Time) {
 	o.ArchivedAt.Set(&v)
 }
 
 // SetArchivedAtNil sets the value for ArchivedAt to be an explicit nil.
-func (o *CaseAttributes) SetArchivedAtNil() {
+func (o *CaseResourceAttributes) SetArchivedAtNil() {
 	o.ArchivedAt.Set(nil)
 }
 
 // UnsetArchivedAt ensures that no value is present for ArchivedAt, not even an explicit nil.
-func (o *CaseAttributes) UnsetArchivedAt() {
+func (o *CaseResourceAttributes) UnsetArchivedAt() {
 	o.ArchivedAt.Unset()
 }
 
+// GetAttributes returns the Attributes field value if set, zero value otherwise.
+func (o *CaseResourceAttributes) GetAttributes() map[string][]string {
+	if o == nil || o.Attributes == nil {
+		var ret map[string][]string
+		return ret
+	}
+	return o.Attributes
+}
+
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CaseResourceAttributes) GetAttributesOk() (*map[string][]string, bool) {
+	if o == nil || o.Attributes == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
+}
+
+// HasAttributes returns a boolean if a field has been set.
+func (o *CaseResourceAttributes) HasAttributes() bool {
+	return o != nil && o.Attributes != nil
+}
+
+// SetAttributes gets a reference to the given map[string][]string and assigns it to the Attributes field.
+func (o *CaseResourceAttributes) SetAttributes(v map[string][]string) {
+	o.Attributes = v
+}
+
 // GetClosedAt returns the ClosedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CaseAttributes) GetClosedAt() time.Time {
+func (o *CaseResourceAttributes) GetClosedAt() time.Time {
 	if o == nil || o.ClosedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -113,7 +143,7 @@ func (o *CaseAttributes) GetClosedAt() time.Time {
 // GetClosedAtOk returns a tuple with the ClosedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *CaseAttributes) GetClosedAtOk() (*time.Time, bool) {
+func (o *CaseResourceAttributes) GetClosedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -121,27 +151,27 @@ func (o *CaseAttributes) GetClosedAtOk() (*time.Time, bool) {
 }
 
 // HasClosedAt returns a boolean if a field has been set.
-func (o *CaseAttributes) HasClosedAt() bool {
+func (o *CaseResourceAttributes) HasClosedAt() bool {
 	return o != nil && o.ClosedAt.IsSet()
 }
 
 // SetClosedAt gets a reference to the given datadog.NullableTime and assigns it to the ClosedAt field.
-func (o *CaseAttributes) SetClosedAt(v time.Time) {
+func (o *CaseResourceAttributes) SetClosedAt(v time.Time) {
 	o.ClosedAt.Set(&v)
 }
 
 // SetClosedAtNil sets the value for ClosedAt to be an explicit nil.
-func (o *CaseAttributes) SetClosedAtNil() {
+func (o *CaseResourceAttributes) SetClosedAtNil() {
 	o.ClosedAt.Set(nil)
 }
 
 // UnsetClosedAt ensures that no value is present for ClosedAt, not even an explicit nil.
-func (o *CaseAttributes) UnsetClosedAt() {
+func (o *CaseResourceAttributes) UnsetClosedAt() {
 	o.ClosedAt.Unset()
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *CaseAttributes) GetCreatedAt() time.Time {
+func (o *CaseResourceAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
 		var ret time.Time
 		return ret
@@ -151,7 +181,7 @@ func (o *CaseAttributes) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CaseAttributes) GetCreatedAtOk() (*time.Time, bool) {
+func (o *CaseResourceAttributes) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
@@ -159,17 +189,17 @@ func (o *CaseAttributes) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *CaseAttributes) HasCreatedAt() bool {
+func (o *CaseResourceAttributes) HasCreatedAt() bool {
 	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *CaseAttributes) SetCreatedAt(v time.Time) {
+func (o *CaseResourceAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *CaseAttributes) GetDescription() string {
+func (o *CaseResourceAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
 		var ret string
 		return ret
@@ -179,7 +209,7 @@ func (o *CaseAttributes) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CaseAttributes) GetDescriptionOk() (*string, bool) {
+func (o *CaseResourceAttributes) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
 		return nil, false
 	}
@@ -187,17 +217,17 @@ func (o *CaseAttributes) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *CaseAttributes) HasDescription() bool {
+func (o *CaseResourceAttributes) HasDescription() bool {
 	return o != nil && o.Description != nil
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *CaseAttributes) SetDescription(v string) {
+func (o *CaseResourceAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetJiraIssue returns the JiraIssue field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CaseAttributes) GetJiraIssue() JiraIssue {
+func (o *CaseResourceAttributes) GetJiraIssue() JiraIssue {
 	if o == nil || o.JiraIssue.Get() == nil {
 		var ret JiraIssue
 		return ret
@@ -208,7 +238,7 @@ func (o *CaseAttributes) GetJiraIssue() JiraIssue {
 // GetJiraIssueOk returns a tuple with the JiraIssue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *CaseAttributes) GetJiraIssueOk() (*JiraIssue, bool) {
+func (o *CaseResourceAttributes) GetJiraIssueOk() (*JiraIssue, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -216,27 +246,27 @@ func (o *CaseAttributes) GetJiraIssueOk() (*JiraIssue, bool) {
 }
 
 // HasJiraIssue returns a boolean if a field has been set.
-func (o *CaseAttributes) HasJiraIssue() bool {
+func (o *CaseResourceAttributes) HasJiraIssue() bool {
 	return o != nil && o.JiraIssue.IsSet()
 }
 
 // SetJiraIssue gets a reference to the given NullableJiraIssue and assigns it to the JiraIssue field.
-func (o *CaseAttributes) SetJiraIssue(v JiraIssue) {
+func (o *CaseResourceAttributes) SetJiraIssue(v JiraIssue) {
 	o.JiraIssue.Set(&v)
 }
 
 // SetJiraIssueNil sets the value for JiraIssue to be an explicit nil.
-func (o *CaseAttributes) SetJiraIssueNil() {
+func (o *CaseResourceAttributes) SetJiraIssueNil() {
 	o.JiraIssue.Set(nil)
 }
 
 // UnsetJiraIssue ensures that no value is present for JiraIssue, not even an explicit nil.
-func (o *CaseAttributes) UnsetJiraIssue() {
+func (o *CaseResourceAttributes) UnsetJiraIssue() {
 	o.JiraIssue.Unset()
 }
 
 // GetKey returns the Key field value if set, zero value otherwise.
-func (o *CaseAttributes) GetKey() string {
+func (o *CaseResourceAttributes) GetKey() string {
 	if o == nil || o.Key == nil {
 		var ret string
 		return ret
@@ -246,7 +276,7 @@ func (o *CaseAttributes) GetKey() string {
 
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CaseAttributes) GetKeyOk() (*string, bool) {
+func (o *CaseResourceAttributes) GetKeyOk() (*string, bool) {
 	if o == nil || o.Key == nil {
 		return nil, false
 	}
@@ -254,17 +284,17 @@ func (o *CaseAttributes) GetKeyOk() (*string, bool) {
 }
 
 // HasKey returns a boolean if a field has been set.
-func (o *CaseAttributes) HasKey() bool {
+func (o *CaseResourceAttributes) HasKey() bool {
 	return o != nil && o.Key != nil
 }
 
 // SetKey gets a reference to the given string and assigns it to the Key field.
-func (o *CaseAttributes) SetKey(v string) {
+func (o *CaseResourceAttributes) SetKey(v string) {
 	o.Key = &v
 }
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CaseAttributes) GetModifiedAt() time.Time {
+func (o *CaseResourceAttributes) GetModifiedAt() time.Time {
 	if o == nil || o.ModifiedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -275,7 +305,7 @@ func (o *CaseAttributes) GetModifiedAt() time.Time {
 // GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *CaseAttributes) GetModifiedAtOk() (*time.Time, bool) {
+func (o *CaseResourceAttributes) GetModifiedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -283,27 +313,27 @@ func (o *CaseAttributes) GetModifiedAtOk() (*time.Time, bool) {
 }
 
 // HasModifiedAt returns a boolean if a field has been set.
-func (o *CaseAttributes) HasModifiedAt() bool {
+func (o *CaseResourceAttributes) HasModifiedAt() bool {
 	return o != nil && o.ModifiedAt.IsSet()
 }
 
 // SetModifiedAt gets a reference to the given datadog.NullableTime and assigns it to the ModifiedAt field.
-func (o *CaseAttributes) SetModifiedAt(v time.Time) {
+func (o *CaseResourceAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt.Set(&v)
 }
 
 // SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil.
-func (o *CaseAttributes) SetModifiedAtNil() {
+func (o *CaseResourceAttributes) SetModifiedAtNil() {
 	o.ModifiedAt.Set(nil)
 }
 
 // UnsetModifiedAt ensures that no value is present for ModifiedAt, not even an explicit nil.
-func (o *CaseAttributes) UnsetModifiedAt() {
+func (o *CaseResourceAttributes) UnsetModifiedAt() {
 	o.ModifiedAt.Unset()
 }
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
-func (o *CaseAttributes) GetPriority() CasePriority {
+func (o *CaseResourceAttributes) GetPriority() CasePriority {
 	if o == nil || o.Priority == nil {
 		var ret CasePriority
 		return ret
@@ -313,7 +343,7 @@ func (o *CaseAttributes) GetPriority() CasePriority {
 
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CaseAttributes) GetPriorityOk() (*CasePriority, bool) {
+func (o *CaseResourceAttributes) GetPriorityOk() (*CasePriority, bool) {
 	if o == nil || o.Priority == nil {
 		return nil, false
 	}
@@ -321,17 +351,17 @@ func (o *CaseAttributes) GetPriorityOk() (*CasePriority, bool) {
 }
 
 // HasPriority returns a boolean if a field has been set.
-func (o *CaseAttributes) HasPriority() bool {
+func (o *CaseResourceAttributes) HasPriority() bool {
 	return o != nil && o.Priority != nil
 }
 
 // SetPriority gets a reference to the given CasePriority and assigns it to the Priority field.
-func (o *CaseAttributes) SetPriority(v CasePriority) {
+func (o *CaseResourceAttributes) SetPriority(v CasePriority) {
 	o.Priority = &v
 }
 
 // GetServiceNowTicket returns the ServiceNowTicket field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CaseAttributes) GetServiceNowTicket() ServiceNowTicket {
+func (o *CaseResourceAttributes) GetServiceNowTicket() ServiceNowTicket {
 	if o == nil || o.ServiceNowTicket.Get() == nil {
 		var ret ServiceNowTicket
 		return ret
@@ -342,7 +372,7 @@ func (o *CaseAttributes) GetServiceNowTicket() ServiceNowTicket {
 // GetServiceNowTicketOk returns a tuple with the ServiceNowTicket field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *CaseAttributes) GetServiceNowTicketOk() (*ServiceNowTicket, bool) {
+func (o *CaseResourceAttributes) GetServiceNowTicketOk() (*ServiceNowTicket, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -350,27 +380,27 @@ func (o *CaseAttributes) GetServiceNowTicketOk() (*ServiceNowTicket, bool) {
 }
 
 // HasServiceNowTicket returns a boolean if a field has been set.
-func (o *CaseAttributes) HasServiceNowTicket() bool {
+func (o *CaseResourceAttributes) HasServiceNowTicket() bool {
 	return o != nil && o.ServiceNowTicket.IsSet()
 }
 
 // SetServiceNowTicket gets a reference to the given NullableServiceNowTicket and assigns it to the ServiceNowTicket field.
-func (o *CaseAttributes) SetServiceNowTicket(v ServiceNowTicket) {
+func (o *CaseResourceAttributes) SetServiceNowTicket(v ServiceNowTicket) {
 	o.ServiceNowTicket.Set(&v)
 }
 
 // SetServiceNowTicketNil sets the value for ServiceNowTicket to be an explicit nil.
-func (o *CaseAttributes) SetServiceNowTicketNil() {
+func (o *CaseResourceAttributes) SetServiceNowTicketNil() {
 	o.ServiceNowTicket.Set(nil)
 }
 
 // UnsetServiceNowTicket ensures that no value is present for ServiceNowTicket, not even an explicit nil.
-func (o *CaseAttributes) UnsetServiceNowTicket() {
+func (o *CaseResourceAttributes) UnsetServiceNowTicket() {
 	o.ServiceNowTicket.Unset()
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *CaseAttributes) GetStatus() CaseStatus {
+func (o *CaseResourceAttributes) GetStatus() CaseStatus {
 	if o == nil || o.Status == nil {
 		var ret CaseStatus
 		return ret
@@ -380,7 +410,7 @@ func (o *CaseAttributes) GetStatus() CaseStatus {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CaseAttributes) GetStatusOk() (*CaseStatus, bool) {
+func (o *CaseResourceAttributes) GetStatusOk() (*CaseStatus, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -388,17 +418,17 @@ func (o *CaseAttributes) GetStatusOk() (*CaseStatus, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *CaseAttributes) HasStatus() bool {
+func (o *CaseResourceAttributes) HasStatus() bool {
 	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given CaseStatus and assigns it to the Status field.
-func (o *CaseAttributes) SetStatus(v CaseStatus) {
+func (o *CaseResourceAttributes) SetStatus(v CaseStatus) {
 	o.Status = &v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
-func (o *CaseAttributes) GetTitle() string {
+func (o *CaseResourceAttributes) GetTitle() string {
 	if o == nil || o.Title == nil {
 		var ret string
 		return ret
@@ -408,7 +438,7 @@ func (o *CaseAttributes) GetTitle() string {
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CaseAttributes) GetTitleOk() (*string, bool) {
+func (o *CaseResourceAttributes) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
 		return nil, false
 	}
@@ -416,17 +446,17 @@ func (o *CaseAttributes) GetTitleOk() (*string, bool) {
 }
 
 // HasTitle returns a boolean if a field has been set.
-func (o *CaseAttributes) HasTitle() bool {
+func (o *CaseResourceAttributes) HasTitle() bool {
 	return o != nil && o.Title != nil
 }
 
 // SetTitle gets a reference to the given string and assigns it to the Title field.
-func (o *CaseAttributes) SetTitle(v string) {
+func (o *CaseResourceAttributes) SetTitle(v string) {
 	o.Title = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *CaseAttributes) GetType() CaseType {
+func (o *CaseResourceAttributes) GetType() CaseType {
 	if o == nil || o.Type == nil {
 		var ret CaseType
 		return ret
@@ -436,7 +466,7 @@ func (o *CaseAttributes) GetType() CaseType {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CaseAttributes) GetTypeOk() (*CaseType, bool) {
+func (o *CaseResourceAttributes) GetTypeOk() (*CaseType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -444,23 +474,26 @@ func (o *CaseAttributes) GetTypeOk() (*CaseType, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *CaseAttributes) HasType() bool {
+func (o *CaseResourceAttributes) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given CaseType and assigns it to the Type field.
-func (o *CaseAttributes) SetType(v CaseType) {
+func (o *CaseResourceAttributes) SetType(v CaseType) {
 	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o CaseAttributes) MarshalJSON() ([]byte, error) {
+func (o CaseResourceAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.ArchivedAt.IsSet() {
 		toSerialize["archived_at"] = o.ArchivedAt.Get()
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
 	}
 	if o.ClosedAt.IsSet() {
 		toSerialize["closed_at"] = o.ClosedAt.Get()
@@ -507,9 +540,10 @@ func (o CaseAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *CaseAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *CaseResourceAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ArchivedAt       datadog.NullableTime     `json:"archived_at,omitempty"`
+		Attributes       map[string][]string      `json:"attributes,omitempty"`
 		ClosedAt         datadog.NullableTime     `json:"closed_at,omitempty"`
 		CreatedAt        *time.Time               `json:"created_at,omitempty"`
 		Description      *string                  `json:"description,omitempty"`
@@ -527,13 +561,14 @@ func (o *CaseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "closed_at", "created_at", "description", "jira_issue", "key", "modified_at", "priority", "service_now_ticket", "status", "title", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "attributes", "closed_at", "created_at", "description", "jira_issue", "key", "modified_at", "priority", "service_now_ticket", "status", "title", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.ArchivedAt = all.ArchivedAt
+	o.Attributes = all.Attributes
 	o.ClosedAt = all.ClosedAt
 	o.CreatedAt = all.CreatedAt
 	o.Description = all.Description
