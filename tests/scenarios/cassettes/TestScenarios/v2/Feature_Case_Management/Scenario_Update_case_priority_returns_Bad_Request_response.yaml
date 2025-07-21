@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/cases
   response:
-    body: '{"data":{"id":"683c81be-fa27-42c8-957c-897923a2f660","type":"case","attributes":{"attributes":{},"created_at":"2024-02-14T18:55:18.846163387Z","creation_source":"MANUAL","description":"","insights":[],"internal_id":"683c81be-fa27-42c8-957c-897923a2f660","key":"DDFC-192","priority":"P4","public_id":"252","status":"OPEN","title":"My
-      new case","type":"STANDARD"},"relationships":{"created_by":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"user"}},"project":{"data":{"id":"d4bbe1af-f36e-42f1-87c1-493ca35c320e","type":"project"}}}},"included":[{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"user","attributes":{"email":"frog@datadoghq.com","handle":"frog@datadoghq.com","name":""}}]}'
+    body: '{"data":{"id":"57868e9a-2697-4384-b724-8e118b20a7f3","type":"case","attributes":{"attributes":{},"comment_count":0,"created_at":"2025-07-21T13:52:56.317328Z","creation_source":"MANUAL","custom_attributes":{},"description":"","insights":[],"internal_id":"57868e9a-2697-4384-b724-8e118b20a7f3","key":"DDFC-72329","merge_status":"NOT_MERGED","priority":"P4","public_id":"72389","status":"OPEN","title":"My
+      new case","type":"STANDARD","type_id":"00000000-0000-0000-0000-000000000001"},"relationships":{"created_by":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"user"}},"project":{"data":{"id":"d4bbe1af-f36e-42f1-87c1-493ca35c320e","type":"project"}}}},"included":[{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"user","attributes":{"active":true,"email":"frog@datadoghq.com","handle":"frog@datadoghq.com","name":"frog"}}]}'
     code: 201
     duration: 0ms
     headers:
@@ -31,10 +31,10 @@ interactions:
       - application/json
     id: 1
     method: POST
-    url: https://api.datadoghq.com/api/v2/cases/683c81be-fa27-42c8-957c-897923a2f660/priority
+    url: https://api.datadoghq.com/api/v2/cases/57868e9a-2697-4384-b724-8e118b20a7f3/priority
   response:
     body: '{"errors":[{"title":"Generic Error","detail":"invalid priority P1234. Must
-      be one of P1, P2, P3, P4, P5, NOT_DEFINED"}]}'
+      be one of P2, P3, P4, P5, NOT_DEFINED, P1"}]}'
     code: 400
     duration: 0ms
     headers:

@@ -103,6 +103,7 @@
 //   - [CaseManagementApi.SearchCases]
 //   - [CaseManagementApi.UnarchiveCase]
 //   - [CaseManagementApi.UnassignCase]
+//   - [CaseManagementApi.UpdateAttributes]
 //   - [CaseManagementApi.UpdatePriority]
 //   - [CaseManagementApi.UpdateStatus]
 //   - [CloudCostManagementApi.CreateCostAWSCURConfig]
