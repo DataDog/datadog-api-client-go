@@ -2246,6 +2246,7 @@ func (a *SyntheticsApi) PatchTest(ctx _context.Context, publicId string, body Sy
 
 // SearchTestsOptionalParameters holds optional parameters for SearchTests.
 type SearchTestsOptionalParameters struct {
+	Text              *string
 	IncludeFullConfig *bool
 	SearchSuites      *bool
 	FacetsOnly        *bool
@@ -2258,6 +2259,12 @@ type SearchTestsOptionalParameters struct {
 func NewSearchTestsOptionalParameters() *SearchTestsOptionalParameters {
 	this := SearchTestsOptionalParameters{}
 	return &this
+}
+
+// WithText sets the corresponding parameter name and returns the struct.
+func (r *SearchTestsOptionalParameters) WithText(text string) *SearchTestsOptionalParameters {
+	r.Text = &text
+	return r
 }
 
 // WithIncludeFullConfig sets the corresponding parameter name and returns the struct.
@@ -2323,6 +2330,9 @@ func (a *SyntheticsApi) SearchTests(ctx _context.Context, o ...SearchTestsOption
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.Text != nil {
+		localVarQueryParams.Add("text", datadog.ParameterToString(*optionalParams.Text, ""))
+	}
 	if optionalParams.IncludeFullConfig != nil {
 		localVarQueryParams.Add("include_full_config", datadog.ParameterToString(*optionalParams.IncludeFullConfig, ""))
 	}
