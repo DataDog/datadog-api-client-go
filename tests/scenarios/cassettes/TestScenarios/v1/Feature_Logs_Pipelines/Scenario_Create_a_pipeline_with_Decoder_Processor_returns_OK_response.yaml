@@ -1,0 +1,43 @@
+interactions:
+- request:
+    body: |
+      {"filter":{"query":"source:python"},"name":"testDecoderProcessor","processors":[{"binary_to_text_encoding":"base16","input_representation":"utf_8","is_enabled":true,"name":"test_decoder","source":"encoded.field","target":"decoded.field","type":"decoder-processor"}],"tags":[]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines
+  response:
+    body: '{"id":"BEg5CcvmSfyIGoMi9PWyTQ","type":"pipeline","name":"testDecoderProcessor","is_enabled":false,"is_read_only":false,"filter":{"query":"source:python"},"processors":[{"name":"test_decoder","is_enabled":true,"source":"encoded.field","target":"decoded.field","binary_to_text_encoding":"base16","input_representation":"utf_8","type":"decoder-processor"}],"tags":[]}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/BEg5CcvmSfyIGoMi9PWyTQ
+  response:
+    body: '{}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 2
