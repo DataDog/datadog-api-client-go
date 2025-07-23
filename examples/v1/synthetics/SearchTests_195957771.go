@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewSyntheticsApi(apiClient)
-	resp, r, err := api.SearchTests(ctx, *datadogV1.NewSearchTestsOptionalParameters().WithIncludeFullConfig(true).WithSearchSuites(true).WithFacetsOnly(true).WithStart(10).WithCount(5).WithSort("name,desc"))
+	resp, r, err := api.SearchTests(ctx, *datadogV1.NewSearchTestsOptionalParameters().WithText("tag:value").WithIncludeFullConfig(true).WithSearchSuites(true).WithFacetsOnly(true).WithStart(10).WithCount(5).WithSort("name,desc"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.SearchTests`: %v\n", err)
