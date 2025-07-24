@@ -203,6 +203,9 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // - RUM Applications: `rum-application`
 // - Cross Org Connections: `cross-org-connection`
 // - Spreadsheets: `spreadsheet`
+// - On-Call Schedules: `on-call-schedule`
+// - On-Call Escalation Policies: `on-call-escalation-policy`
+// - On-Call Team Routing Rules: `on-call-team-routing-rules`
 //
 // #### Supported relations for resources
 // Resource Type               | Supported Relations
@@ -227,6 +230,9 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // RUM Application             | `viewer`, `editor`
 // Cross Org Connections       | `viewer`, `editor`
 // Spreadsheets                | `viewer`, `editor`
+// On-Call Schedules           | `viewer`, `overrider`, `editor`
+// On-Call Escalation Policies | `viewer`, `editor`
+// On-Call Team Routing Rules  | `viewer`, `editor`
 func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest, o ...UpdateRestrictionPolicyOptionalParameters) (RestrictionPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
