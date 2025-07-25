@@ -375,13 +375,94 @@
 <span id="L318" class="ln">   318  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L319" class="ln">   319  </span>}
 <span id="L320" class="ln">   320  </span>
-<span id="L321" class="ln">   321  </span><span class="comment">// NewDatasetsApi Returns NewDatasetsApi.</span>
-<span id="L322" class="ln">   322  </span>func NewDatasetsApi(client *datadog.APIClient) *DatasetsApi {
-<span id="L323" class="ln">   323  </span>	return &amp;DatasetsApi{
-<span id="L324" class="ln">   324  </span>		Client: client,
-<span id="L325" class="ln">   325  </span>	}
-<span id="L326" class="ln">   326  </span>}
-<span id="L327" class="ln">   327  </span>
+<span id="L321" class="ln">   321  </span><span class="comment">// UpdateDataset Edit a dataset.</span>
+<span id="L322" class="ln">   322  </span><span class="comment">// Edits the dataset associated with the ID.</span>
+<span id="L323" class="ln">   323  </span>func (a *DatasetsApi) UpdateDataset(ctx _context.Context, datasetId string, body DatasetUpdateRequest) (DatasetResponseSingle, *_nethttp.Response, error) {
+<span id="L324" class="ln">   324  </span>	var (
+<span id="L325" class="ln">   325  </span>		localVarHTTPMethod  = _nethttp.MethodPut
+<span id="L326" class="ln">   326  </span>		localVarPostBody    interface{}
+<span id="L327" class="ln">   327  </span>		localVarReturnValue DatasetResponseSingle
+<span id="L328" class="ln">   328  </span>	)
+<span id="L329" class="ln">   329  </span>
+<span id="L330" class="ln">   330  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.DatasetsApi.UpdateDataset&#34;)
+<span id="L331" class="ln">   331  </span>	if err != nil {
+<span id="L332" class="ln">   332  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L333" class="ln">   333  </span>	}
+<span id="L334" class="ln">   334  </span>
+<span id="L335" class="ln">   335  </span>	localVarPath := localBasePath + &#34;/api/v2/datasets/{dataset_id}&#34;
+<span id="L336" class="ln">   336  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{dataset_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(datasetId, &#34;&#34;)))
+<span id="L337" class="ln">   337  </span>
+<span id="L338" class="ln">   338  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L339" class="ln">   339  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L340" class="ln">   340  </span>	localVarFormParams := _neturl.Values{}
+<span id="L341" class="ln">   341  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L342" class="ln">   342  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L343" class="ln">   343  </span>
+<span id="L344" class="ln">   344  </span>	<span class="comment">// body params</span>
+<span id="L345" class="ln">   345  </span>	localVarPostBody = &amp;body
+<span id="L346" class="ln">   346  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
+<span id="L347" class="ln">   347  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+<span id="L348" class="ln">   348  </span>		if err != nil {
+<span id="L349" class="ln">   349  </span>			return localVarReturnValue, nil, err
+<span id="L350" class="ln">   350  </span>		}
+<span id="L351" class="ln">   351  </span>	} else {
+<span id="L352" class="ln">   352  </span>		datadog.SetAuthKeys(
+<span id="L353" class="ln">   353  </span>			ctx,
+<span id="L354" class="ln">   354  </span>			&amp;localVarHeaderParams,
+<span id="L355" class="ln">   355  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L356" class="ln">   356  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L357" class="ln">   357  </span>		)
+<span id="L358" class="ln">   358  </span>	}
+<span id="L359" class="ln">   359  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L360" class="ln">   360  </span>	if err != nil {
+<span id="L361" class="ln">   361  </span>		return localVarReturnValue, nil, err
+<span id="L362" class="ln">   362  </span>	}
+<span id="L363" class="ln">   363  </span>
+<span id="L364" class="ln">   364  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L365" class="ln">   365  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L366" class="ln">   366  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L367" class="ln">   367  </span>	}
+<span id="L368" class="ln">   368  </span>
+<span id="L369" class="ln">   369  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L370" class="ln">   370  </span>	if err != nil {
+<span id="L371" class="ln">   371  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L372" class="ln">   372  </span>	}
+<span id="L373" class="ln">   373  </span>
+<span id="L374" class="ln">   374  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L375" class="ln">   375  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L376" class="ln">   376  </span>			ErrorBody:    localVarBody,
+<span id="L377" class="ln">   377  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L378" class="ln">   378  </span>		}
+<span id="L379" class="ln">   379  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L380" class="ln">   380  </span>			var v APIErrorResponse
+<span id="L381" class="ln">   381  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L382" class="ln">   382  </span>			if err != nil {
+<span id="L383" class="ln">   383  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L384" class="ln">   384  </span>			}
+<span id="L385" class="ln">   385  </span>			newErr.ErrorModel = v
+<span id="L386" class="ln">   386  </span>		}
+<span id="L387" class="ln">   387  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L388" class="ln">   388  </span>	}
+<span id="L389" class="ln">   389  </span>
+<span id="L390" class="ln">   390  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L391" class="ln">   391  </span>	if err != nil {
+<span id="L392" class="ln">   392  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L393" class="ln">   393  </span>			ErrorBody:    localVarBody,
+<span id="L394" class="ln">   394  </span>			ErrorMessage: err.Error(),
+<span id="L395" class="ln">   395  </span>		}
+<span id="L396" class="ln">   396  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L397" class="ln">   397  </span>	}
+<span id="L398" class="ln">   398  </span>
+<span id="L399" class="ln">   399  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L400" class="ln">   400  </span>}
+<span id="L401" class="ln">   401  </span>
+<span id="L402" class="ln">   402  </span><span class="comment">// NewDatasetsApi Returns NewDatasetsApi.</span>
+<span id="L403" class="ln">   403  </span>func NewDatasetsApi(client *datadog.APIClient) *DatasetsApi {
+<span id="L404" class="ln">   404  </span>	return &amp;DatasetsApi{
+<span id="L405" class="ln">   405  </span>		Client: client,
+<span id="L406" class="ln">   406  </span>	}
+<span id="L407" class="ln">   407  </span>}
+<span id="L408" class="ln">   408  </span>
 </pre><p></p>
 
 <div id="footer">

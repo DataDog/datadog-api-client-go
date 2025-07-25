@@ -74,8 +74,8 @@
 <span id="L17" class="ln">    17  </span>	<span class="comment">// Datadog (such as `@tag.key:value`), and only one tag or attribute may be used to define the access strategy</span>
 <span id="L18" class="ln">    18  </span>	<span class="comment">// per telemetry type.</span>
 <span id="L19" class="ln">    19  </span>	Filters []string `json:&#34;filters&#34;`
-<span id="L20" class="ln">    20  </span>	<span class="comment">// Name of the product the dataset is for. Possible values are &#39;apm&#39;, &#39;rum&#39;, &#39;synthetics&#39;,</span>
-<span id="L21" class="ln">    21  </span>	<span class="comment">// &#39;metrics&#39;, &#39;logs&#39;, &#39;sd_repoinfo&#39;, &#39;error_tracking&#39;, &#39;cloud_cost&#39;, and &#39;ml_obs&#39;.</span>
+<span id="L20" class="ln">    20  </span>	<span class="comment">// Name of the product the dataset is for. Possible values are &#39;apm&#39;, &#39;rum&#39;,</span>
+<span id="L21" class="ln">    21  </span>	<span class="comment">// &#39;metrics&#39;, &#39;logs&#39;, &#39;error_tracking&#39;, and &#39;cloud_cost&#39;.</span>
 <span id="L22" class="ln">    22  </span>	Product string `json:&#34;product&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L24" class="ln">    24  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
