@@ -161,6 +161,7 @@
 //   - [DatasetsApi.DeleteDataset]
 //   - [DatasetsApi.GetAllDatasets]
 //   - [DatasetsApi.GetDataset]
+//   - [DatasetsApi.UpdateDataset]
 //   - [DomainAllowlistApi.GetDomainAllowlist]
 //   - [DomainAllowlistApi.PatchDomainAllowlist]
 //   - [DowntimesApi.CancelDowntime]

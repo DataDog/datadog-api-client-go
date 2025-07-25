@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DatasetCreateRequest Create request for a dataset.
-type DatasetCreateRequest struct {
+// DatasetUpdateRequest Edit request for a dataset.
+type DatasetUpdateRequest struct {
 	// Dataset object.
 	//
 	// ### Datasets Constraints
@@ -31,26 +31,26 @@ type DatasetCreateRequest struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDatasetCreateRequest instantiates a new DatasetCreateRequest object.
+// NewDatasetUpdateRequest instantiates a new DatasetUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDatasetCreateRequest(data Dataset) *DatasetCreateRequest {
-	this := DatasetCreateRequest{}
+func NewDatasetUpdateRequest(data Dataset) *DatasetUpdateRequest {
+	this := DatasetUpdateRequest{}
 	this.Data = data
 	return &this
 }
 
-// NewDatasetCreateRequestWithDefaults instantiates a new DatasetCreateRequest object.
+// NewDatasetUpdateRequestWithDefaults instantiates a new DatasetUpdateRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDatasetCreateRequestWithDefaults() *DatasetCreateRequest {
-	this := DatasetCreateRequest{}
+func NewDatasetUpdateRequestWithDefaults() *DatasetUpdateRequest {
+	this := DatasetUpdateRequest{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *DatasetCreateRequest) GetData() Dataset {
+func (o *DatasetUpdateRequest) GetData() Dataset {
 	if o == nil {
 		var ret Dataset
 		return ret
@@ -60,7 +60,7 @@ func (o *DatasetCreateRequest) GetData() Dataset {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *DatasetCreateRequest) GetDataOk() (*Dataset, bool) {
+func (o *DatasetUpdateRequest) GetDataOk() (*Dataset, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,12 +68,12 @@ func (o *DatasetCreateRequest) GetDataOk() (*Dataset, bool) {
 }
 
 // SetData sets field value.
-func (o *DatasetCreateRequest) SetData(v Dataset) {
+func (o *DatasetUpdateRequest) SetData(v Dataset) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DatasetCreateRequest) MarshalJSON() ([]byte, error) {
+func (o DatasetUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -87,7 +87,7 @@ func (o DatasetCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DatasetCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DatasetUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data *Dataset `json:"data"`
 	}{}
