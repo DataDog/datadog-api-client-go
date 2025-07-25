@@ -126,6 +126,7 @@
 //   - [CloudCostManagementApi.UploadCustomCostsFile]
 //   - [CloudCostManagementApi.UpsertBudget]
 //   - [CloudNetworkMonitoringApi.GetAggregatedConnections]
+//   - [CloudNetworkMonitoringApi.GetAggregatedDns]
 //   - [CloudflareIntegrationApi.CreateCloudflareAccount]
 //   - [CloudflareIntegrationApi.DeleteCloudflareAccount]
 //   - [CloudflareIntegrationApi.GetCloudflareAccount]
