@@ -7,10 +7,10 @@ interactions:
       - application/json
     id: 0
     method: GET
-    url: https://api.datadoghq.com/api/v2/network/connections/aggregate?limit=8000
+    url: https://api.datadoghq.com/api/v2/network/dns/aggregate?group_by=server_ungrouped%2Cserver_service
   response:
-    body: '{"errors":[{"status":"400","title":"Invalid limit","detail":"Limit must
-      meet requirements listed in https://docs.datadoghq.com/api/latest/cloud-network-monitoring/"}]}'
+    body: '{"errors":[{"status":"400","title":"Cannot combine server_ungrouped with
+      other server groupings or network.dns_query"}]}'
     code: 400
     duration: 0ms
     headers:
