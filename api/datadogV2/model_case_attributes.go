@@ -10,10 +10,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseAttributes Case attributes
+// CaseAttributes Case resource attributes
 type CaseAttributes struct {
 	// Timestamp of when the case was archived
 	ArchivedAt datadog.NullableTime `json:"archived_at,omitempty"`
+	// The definition of `CaseObjectAttributes` object.
+	Attributes map[string][]string `json:"attributes,omitempty"`
 	// Timestamp of when the case was closed
 	ClosedAt datadog.NullableTime `json:"closed_at,omitempty"`
 	// Timestamp of when the case was created
@@ -99,6 +101,34 @@ func (o *CaseAttributes) SetArchivedAtNil() {
 // UnsetArchivedAt ensures that no value is present for ArchivedAt, not even an explicit nil.
 func (o *CaseAttributes) UnsetArchivedAt() {
 	o.ArchivedAt.Unset()
+}
+
+// GetAttributes returns the Attributes field value if set, zero value otherwise.
+func (o *CaseAttributes) GetAttributes() map[string][]string {
+	if o == nil || o.Attributes == nil {
+		var ret map[string][]string
+		return ret
+	}
+	return o.Attributes
+}
+
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CaseAttributes) GetAttributesOk() (*map[string][]string, bool) {
+	if o == nil || o.Attributes == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
+}
+
+// HasAttributes returns a boolean if a field has been set.
+func (o *CaseAttributes) HasAttributes() bool {
+	return o != nil && o.Attributes != nil
+}
+
+// SetAttributes gets a reference to the given map[string][]string and assigns it to the Attributes field.
+func (o *CaseAttributes) SetAttributes(v map[string][]string) {
+	o.Attributes = v
 }
 
 // GetClosedAt returns the ClosedAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -462,6 +492,9 @@ func (o CaseAttributes) MarshalJSON() ([]byte, error) {
 	if o.ArchivedAt.IsSet() {
 		toSerialize["archived_at"] = o.ArchivedAt.Get()
 	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
 	if o.ClosedAt.IsSet() {
 		toSerialize["closed_at"] = o.ClosedAt.Get()
 	}
@@ -510,6 +543,7 @@ func (o CaseAttributes) MarshalJSON() ([]byte, error) {
 func (o *CaseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ArchivedAt       datadog.NullableTime     `json:"archived_at,omitempty"`
+		Attributes       map[string][]string      `json:"attributes,omitempty"`
 		ClosedAt         datadog.NullableTime     `json:"closed_at,omitempty"`
 		CreatedAt        *time.Time               `json:"created_at,omitempty"`
 		Description      *string                  `json:"description,omitempty"`
@@ -527,13 +561,14 @@ func (o *CaseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "closed_at", "created_at", "description", "jira_issue", "key", "modified_at", "priority", "service_now_ticket", "status", "title", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "attributes", "closed_at", "created_at", "description", "jira_issue", "key", "modified_at", "priority", "service_now_ticket", "status", "title", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.ArchivedAt = all.ArchivedAt
+	o.Attributes = all.Attributes
 	o.ClosedAt = all.ClosedAt
 	o.CreatedAt = all.CreatedAt
 	o.Description = all.Description
