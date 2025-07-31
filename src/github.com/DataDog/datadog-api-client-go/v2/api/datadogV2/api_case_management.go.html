@@ -1050,21 +1050,21 @@
 <span id="L993" class="ln">   993  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L994" class="ln">   994  </span>}
 <span id="L995" class="ln">   995  </span>
-<span id="L996" class="ln">   996  </span><span class="comment">// UpdatePriority Update case priority.</span>
-<span id="L997" class="ln">   997  </span><span class="comment">// Update case priority</span>
-<span id="L998" class="ln">   998  </span>func (a *CaseManagementApi) UpdatePriority(ctx _context.Context, caseId string, body CaseUpdatePriorityRequest) (CaseResponse, *_nethttp.Response, error) {
+<span id="L996" class="ln">   996  </span><span class="comment">// UpdateAttributes Update case attributes.</span>
+<span id="L997" class="ln">   997  </span><span class="comment">// Update case attributes</span>
+<span id="L998" class="ln">   998  </span>func (a *CaseManagementApi) UpdateAttributes(ctx _context.Context, caseId string, body CaseUpdateAttributesRequest) (CaseResponse, *_nethttp.Response, error) {
 <span id="L999" class="ln">   999  </span>	var (
 <span id="L1000" class="ln">  1000  </span>		localVarHTTPMethod  = _nethttp.MethodPost
 <span id="L1001" class="ln">  1001  </span>		localVarPostBody    interface{}
 <span id="L1002" class="ln">  1002  </span>		localVarReturnValue CaseResponse
 <span id="L1003" class="ln">  1003  </span>	)
 <span id="L1004" class="ln">  1004  </span>
-<span id="L1005" class="ln">  1005  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CaseManagementApi.UpdatePriority&#34;)
+<span id="L1005" class="ln">  1005  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CaseManagementApi.UpdateAttributes&#34;)
 <span id="L1006" class="ln">  1006  </span>	if err != nil {
 <span id="L1007" class="ln">  1007  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L1008" class="ln">  1008  </span>	}
 <span id="L1009" class="ln">  1009  </span>
-<span id="L1010" class="ln">  1010  </span>	localVarPath := localBasePath + &#34;/api/v2/cases/{case_id}/priority&#34;
+<span id="L1010" class="ln">  1010  </span>	localVarPath := localBasePath + &#34;/api/v2/cases/{case_id}/attributes&#34;
 <span id="L1011" class="ln">  1011  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{case_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(caseId, &#34;&#34;)))
 <span id="L1012" class="ln">  1012  </span>
 <span id="L1013" class="ln">  1013  </span>	localVarHeaderParams := make(map[string]string)
@@ -1131,21 +1131,21 @@
 <span id="L1074" class="ln">  1074  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1075" class="ln">  1075  </span>}
 <span id="L1076" class="ln">  1076  </span>
-<span id="L1077" class="ln">  1077  </span><span class="comment">// UpdateStatus Update case status.</span>
-<span id="L1078" class="ln">  1078  </span><span class="comment">// Update case status</span>
-<span id="L1079" class="ln">  1079  </span>func (a *CaseManagementApi) UpdateStatus(ctx _context.Context, caseId string, body CaseUpdateStatusRequest) (CaseResponse, *_nethttp.Response, error) {
+<span id="L1077" class="ln">  1077  </span><span class="comment">// UpdatePriority Update case priority.</span>
+<span id="L1078" class="ln">  1078  </span><span class="comment">// Update case priority</span>
+<span id="L1079" class="ln">  1079  </span>func (a *CaseManagementApi) UpdatePriority(ctx _context.Context, caseId string, body CaseUpdatePriorityRequest) (CaseResponse, *_nethttp.Response, error) {
 <span id="L1080" class="ln">  1080  </span>	var (
 <span id="L1081" class="ln">  1081  </span>		localVarHTTPMethod  = _nethttp.MethodPost
 <span id="L1082" class="ln">  1082  </span>		localVarPostBody    interface{}
 <span id="L1083" class="ln">  1083  </span>		localVarReturnValue CaseResponse
 <span id="L1084" class="ln">  1084  </span>	)
 <span id="L1085" class="ln">  1085  </span>
-<span id="L1086" class="ln">  1086  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CaseManagementApi.UpdateStatus&#34;)
+<span id="L1086" class="ln">  1086  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CaseManagementApi.UpdatePriority&#34;)
 <span id="L1087" class="ln">  1087  </span>	if err != nil {
 <span id="L1088" class="ln">  1088  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L1089" class="ln">  1089  </span>	}
 <span id="L1090" class="ln">  1090  </span>
-<span id="L1091" class="ln">  1091  </span>	localVarPath := localBasePath + &#34;/api/v2/cases/{case_id}/status&#34;
+<span id="L1091" class="ln">  1091  </span>	localVarPath := localBasePath + &#34;/api/v2/cases/{case_id}/priority&#34;
 <span id="L1092" class="ln">  1092  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{case_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(caseId, &#34;&#34;)))
 <span id="L1093" class="ln">  1093  </span>
 <span id="L1094" class="ln">  1094  </span>	localVarHeaderParams := make(map[string]string)
@@ -1212,13 +1212,94 @@
 <span id="L1155" class="ln">  1155  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1156" class="ln">  1156  </span>}
 <span id="L1157" class="ln">  1157  </span>
-<span id="L1158" class="ln">  1158  </span><span class="comment">// NewCaseManagementApi Returns NewCaseManagementApi.</span>
-<span id="L1159" class="ln">  1159  </span>func NewCaseManagementApi(client *datadog.APIClient) *CaseManagementApi {
-<span id="L1160" class="ln">  1160  </span>	return &amp;CaseManagementApi{
-<span id="L1161" class="ln">  1161  </span>		Client: client,
-<span id="L1162" class="ln">  1162  </span>	}
-<span id="L1163" class="ln">  1163  </span>}
-<span id="L1164" class="ln">  1164  </span>
+<span id="L1158" class="ln">  1158  </span><span class="comment">// UpdateStatus Update case status.</span>
+<span id="L1159" class="ln">  1159  </span><span class="comment">// Update case status</span>
+<span id="L1160" class="ln">  1160  </span>func (a *CaseManagementApi) UpdateStatus(ctx _context.Context, caseId string, body CaseUpdateStatusRequest) (CaseResponse, *_nethttp.Response, error) {
+<span id="L1161" class="ln">  1161  </span>	var (
+<span id="L1162" class="ln">  1162  </span>		localVarHTTPMethod  = _nethttp.MethodPost
+<span id="L1163" class="ln">  1163  </span>		localVarPostBody    interface{}
+<span id="L1164" class="ln">  1164  </span>		localVarReturnValue CaseResponse
+<span id="L1165" class="ln">  1165  </span>	)
+<span id="L1166" class="ln">  1166  </span>
+<span id="L1167" class="ln">  1167  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CaseManagementApi.UpdateStatus&#34;)
+<span id="L1168" class="ln">  1168  </span>	if err != nil {
+<span id="L1169" class="ln">  1169  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L1170" class="ln">  1170  </span>	}
+<span id="L1171" class="ln">  1171  </span>
+<span id="L1172" class="ln">  1172  </span>	localVarPath := localBasePath + &#34;/api/v2/cases/{case_id}/status&#34;
+<span id="L1173" class="ln">  1173  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{case_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(caseId, &#34;&#34;)))
+<span id="L1174" class="ln">  1174  </span>
+<span id="L1175" class="ln">  1175  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L1176" class="ln">  1176  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L1177" class="ln">  1177  </span>	localVarFormParams := _neturl.Values{}
+<span id="L1178" class="ln">  1178  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L1179" class="ln">  1179  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L1180" class="ln">  1180  </span>
+<span id="L1181" class="ln">  1181  </span>	<span class="comment">// body params</span>
+<span id="L1182" class="ln">  1182  </span>	localVarPostBody = &amp;body
+<span id="L1183" class="ln">  1183  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
+<span id="L1184" class="ln">  1184  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+<span id="L1185" class="ln">  1185  </span>		if err != nil {
+<span id="L1186" class="ln">  1186  </span>			return localVarReturnValue, nil, err
+<span id="L1187" class="ln">  1187  </span>		}
+<span id="L1188" class="ln">  1188  </span>	} else {
+<span id="L1189" class="ln">  1189  </span>		datadog.SetAuthKeys(
+<span id="L1190" class="ln">  1190  </span>			ctx,
+<span id="L1191" class="ln">  1191  </span>			&amp;localVarHeaderParams,
+<span id="L1192" class="ln">  1192  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L1193" class="ln">  1193  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L1194" class="ln">  1194  </span>		)
+<span id="L1195" class="ln">  1195  </span>	}
+<span id="L1196" class="ln">  1196  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L1197" class="ln">  1197  </span>	if err != nil {
+<span id="L1198" class="ln">  1198  </span>		return localVarReturnValue, nil, err
+<span id="L1199" class="ln">  1199  </span>	}
+<span id="L1200" class="ln">  1200  </span>
+<span id="L1201" class="ln">  1201  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L1202" class="ln">  1202  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L1203" class="ln">  1203  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L1204" class="ln">  1204  </span>	}
+<span id="L1205" class="ln">  1205  </span>
+<span id="L1206" class="ln">  1206  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L1207" class="ln">  1207  </span>	if err != nil {
+<span id="L1208" class="ln">  1208  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L1209" class="ln">  1209  </span>	}
+<span id="L1210" class="ln">  1210  </span>
+<span id="L1211" class="ln">  1211  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L1212" class="ln">  1212  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L1213" class="ln">  1213  </span>			ErrorBody:    localVarBody,
+<span id="L1214" class="ln">  1214  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L1215" class="ln">  1215  </span>		}
+<span id="L1216" class="ln">  1216  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L1217" class="ln">  1217  </span>			var v APIErrorResponse
+<span id="L1218" class="ln">  1218  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L1219" class="ln">  1219  </span>			if err != nil {
+<span id="L1220" class="ln">  1220  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1221" class="ln">  1221  </span>			}
+<span id="L1222" class="ln">  1222  </span>			newErr.ErrorModel = v
+<span id="L1223" class="ln">  1223  </span>		}
+<span id="L1224" class="ln">  1224  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1225" class="ln">  1225  </span>	}
+<span id="L1226" class="ln">  1226  </span>
+<span id="L1227" class="ln">  1227  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L1228" class="ln">  1228  </span>	if err != nil {
+<span id="L1229" class="ln">  1229  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L1230" class="ln">  1230  </span>			ErrorBody:    localVarBody,
+<span id="L1231" class="ln">  1231  </span>			ErrorMessage: err.Error(),
+<span id="L1232" class="ln">  1232  </span>		}
+<span id="L1233" class="ln">  1233  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L1234" class="ln">  1234  </span>	}
+<span id="L1235" class="ln">  1235  </span>
+<span id="L1236" class="ln">  1236  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L1237" class="ln">  1237  </span>}
+<span id="L1238" class="ln">  1238  </span>
+<span id="L1239" class="ln">  1239  </span><span class="comment">// NewCaseManagementApi Returns NewCaseManagementApi.</span>
+<span id="L1240" class="ln">  1240  </span>func NewCaseManagementApi(client *datadog.APIClient) *CaseManagementApi {
+<span id="L1241" class="ln">  1241  </span>	return &amp;CaseManagementApi{
+<span id="L1242" class="ln">  1242  </span>		Client: client,
+<span id="L1243" class="ln">  1243  </span>	}
+<span id="L1244" class="ln">  1244  </span>}
+<span id="L1245" class="ln">  1245  </span>
 </pre><p></p>
 
 <div id="footer">
