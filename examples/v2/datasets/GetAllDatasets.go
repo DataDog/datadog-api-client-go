@@ -15,6 +15,7 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.GetAllDatasets", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewDatasetsApi(apiClient)
 	resp, r, err := api.GetAllDatasets(ctx)

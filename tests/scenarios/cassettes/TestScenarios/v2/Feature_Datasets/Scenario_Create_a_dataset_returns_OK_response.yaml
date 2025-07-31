@@ -1,0 +1,42 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Security Audit Dataset","principals":["role:94172442-be03-11e9-a77a-3b7612558ac1"],"product_filters":[{"filters":["@application.id:ABCD"],"product":"metrics"}]},"type":"dataset"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/datasets
+  response:
+    body: '{"data":{"type":"dataset","id":"86f67664-8b7b-49ae-b671-919ebe11886c","attributes":{"name":"Security
+      Audit Dataset","product_filters":[{"product":"metrics","filters":["@application.id:ABCD"]}],"principals":["role:94172442-be03-11e9-a77a-3b7612558ac1"]}}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/datasets/86f67664-8b7b-49ae-b671-919ebe11886c
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 204 No Content
+version: 2
