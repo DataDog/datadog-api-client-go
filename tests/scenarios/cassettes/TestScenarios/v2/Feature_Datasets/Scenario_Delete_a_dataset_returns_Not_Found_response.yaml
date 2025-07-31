@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 0
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/datasets/00000000-0000-0000-0000-000000000000
+  response:
+    body: '{"errors":["Invalid request: [DatasetNotFound] dataset \"00000000-0000-0000-0000-000000000000\"
+      not found"]}
+
+      '
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 2

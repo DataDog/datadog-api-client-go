@@ -13,11 +13,15 @@ import (
 )
 
 func main() {
+	// there is a valid "dataset" in the system
+	DatasetDataID := os.Getenv("DATASET_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.GetDataset", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewDatasetsApi(apiClient)
-	resp, r, err := api.GetDataset(ctx, "dataset_id")
+	resp, r, err := api.GetDataset(ctx, DatasetDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DatasetsApi.GetDataset`: %v\n", err)

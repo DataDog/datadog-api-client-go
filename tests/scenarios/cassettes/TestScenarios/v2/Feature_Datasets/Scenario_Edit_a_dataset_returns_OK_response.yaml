@@ -1,0 +1,65 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Security Audit Dataset","principals":["role:94172442-be03-11e9-a77a-3b7612558ac1"],"product_filters":[{"filters":["@application.id:ABCD"],"product":"metrics"}]},"type":"dataset"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/datasets
+  response:
+    body: '{"data":{"type":"dataset","id":"2bf848a1-b18a-4602-8348-814a53862c52","attributes":{"name":"Security
+      Audit Dataset","product_filters":[{"product":"metrics","filters":["@application.id:ABCD"]}],"principals":["role:94172442-be03-11e9-a77a-3b7612558ac1"]}}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Security Audit Dataset","principals":["role:94172442-be03-11e9-a77a-3b7612558ac1"],"product_filters":[{"filters":["@application.id:1234"],"product":"metrics"}]},"type":"dataset"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PUT
+    url: https://api.datadoghq.com/api/v2/datasets/2bf848a1-b18a-4602-8348-814a53862c52
+  response:
+    body: '{"data":{"type":"dataset","id":"2bf848a1-b18a-4602-8348-814a53862c52","attributes":{"name":"Security
+      Audit Dataset","product_filters":[{"product":"metrics","filters":["@application.id:1234"]}],"principals":["role:94172442-be03-11e9-a77a-3b7612558ac1"]}}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/datasets/2bf848a1-b18a-4602-8348-814a53862c52
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 204 No Content
+version: 2

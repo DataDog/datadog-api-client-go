@@ -14,28 +14,27 @@ import (
 
 func main() {
 	body := datadogV2.DatasetCreateRequest{
-		Data: datadogV2.Dataset{
-			Attributes: datadogV2.DatasetAttributes{
-				CreatedAt: *datadog.NewNullableTime(nil),
-				Name:      "Security Audit Dataset",
+		Data: datadogV2.DatasetRequest{
+			Attributes: datadogV2.DatasetAttributesRequest{
+				Name: "Security Audit Dataset",
 				Principals: []string{
-					"role:86245fce-0a4e-11f0-92bd-da7ad0900002",
+					"role:94172442-be03-11e9-a77a-3b7612558ac1",
 				},
 				ProductFilters: []datadogV2.FiltersPerProduct{
 					{
 						Filters: []string{
 							"@application.id:ABCD",
 						},
-						Product: "logs",
+						Product: "metrics",
 					},
 				},
 			},
-			Id:   datadog.PtrString("123e4567-e89b-12d3-a456-426614174000"),
 			Type: "dataset",
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.CreateDataset", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewDatasetsApi(apiClient)
 	resp, r, err := api.CreateDataset(ctx, body)

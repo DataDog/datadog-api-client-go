@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"test":"bad_request"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/datasets
+  response:
+    body: '{"errors":["Invalid request: Request body contains invalid json"]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 2
