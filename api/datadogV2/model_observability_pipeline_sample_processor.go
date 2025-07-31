@@ -12,6 +12,8 @@ import (
 
 // ObservabilityPipelineSampleProcessor The `sample` processor allows probabilistic sampling of logs at a fixed rate.
 type ObservabilityPipelineSampleProcessor struct {
+	// Optional list of fields to group events by. Each group will be sampled independently
+	GroupBy []string `json:"group_by,omitempty"`
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// A Datadog search query used to determine which logs this processor targets.
@@ -50,6 +52,34 @@ func NewObservabilityPipelineSampleProcessorWithDefaults() *ObservabilityPipelin
 	var typeVar ObservabilityPipelineSampleProcessorType = OBSERVABILITYPIPELINESAMPLEPROCESSORTYPE_SAMPLE
 	this.Type = typeVar
 	return &this
+}
+
+// GetGroupBy returns the GroupBy field value if set, zero value otherwise.
+func (o *ObservabilityPipelineSampleProcessor) GetGroupBy() []string {
+	if o == nil || o.GroupBy == nil {
+		var ret []string
+		return ret
+	}
+	return o.GroupBy
+}
+
+// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineSampleProcessor) GetGroupByOk() (*[]string, bool) {
+	if o == nil || o.GroupBy == nil {
+		return nil, false
+	}
+	return &o.GroupBy, true
+}
+
+// HasGroupBy returns a boolean if a field has been set.
+func (o *ObservabilityPipelineSampleProcessor) HasGroupBy() bool {
+	return o != nil && o.GroupBy != nil
+}
+
+// SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
+func (o *ObservabilityPipelineSampleProcessor) SetGroupBy(v []string) {
+	o.GroupBy = v
 }
 
 // GetId returns the Id field value.
@@ -206,6 +236,9 @@ func (o ObservabilityPipelineSampleProcessor) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.GroupBy != nil {
+		toSerialize["group_by"] = o.GroupBy
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["include"] = o.Include
 	toSerialize["inputs"] = o.Inputs
@@ -226,6 +259,7 @@ func (o ObservabilityPipelineSampleProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSampleProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		GroupBy    []string                                  `json:"group_by,omitempty"`
 		Id         *string                                   `json:"id"`
 		Include    *string                                   `json:"include"`
 		Inputs     *[]string                                 `json:"inputs"`
@@ -250,12 +284,13 @@ func (o *ObservabilityPipelineSampleProcessor) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "include", "inputs", "percentage", "rate", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"group_by", "id", "include", "inputs", "percentage", "rate", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.GroupBy = all.GroupBy
 	o.Id = *all.Id
 	o.Include = *all.Include
 	o.Inputs = *all.Inputs
