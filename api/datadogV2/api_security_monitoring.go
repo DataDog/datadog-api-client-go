@@ -3054,6 +3054,7 @@ type ListFindingsOptionalParameters struct {
 	FilterRuleId              *string
 	FilterRuleName            *string
 	FilterResourceType        *string
+	FilterResourceId          *string
 	FilterDiscoveryTimestamp  *string
 	FilterEvaluation          *FindingEvaluation
 	FilterStatus              *FindingStatus
@@ -3121,6 +3122,12 @@ func (r *ListFindingsOptionalParameters) WithFilterResourceType(filterResourceTy
 	return r
 }
 
+// WithFilterResourceId sets the corresponding parameter name and returns the struct.
+func (r *ListFindingsOptionalParameters) WithFilterResourceId(filterResourceId string) *ListFindingsOptionalParameters {
+	r.FilterResourceId = &filterResourceId
+	return r
+}
+
 // WithFilterDiscoveryTimestamp sets the corresponding parameter name and returns the struct.
 func (r *ListFindingsOptionalParameters) WithFilterDiscoveryTimestamp(filterDiscoveryTimestamp string) *ListFindingsOptionalParameters {
 	r.FilterDiscoveryTimestamp = &filterDiscoveryTimestamp
@@ -3184,6 +3191,7 @@ func (r *ListFindingsOptionalParameters) WithDetailedFindings(detailedFindings b
 // - `external_id`: The resource external ID related to the finding.
 // - `description`: The description and remediation steps for the finding.
 // - `datadog_link`: The Datadog relative link for the finding.
+// - `ip_addresses`: The list of private IP addresses for the resource related to the finding.
 //
 // ### Response
 //
@@ -3255,6 +3263,9 @@ func (a *SecurityMonitoringApi) ListFindings(ctx _context.Context, o ...ListFind
 	}
 	if optionalParams.FilterResourceType != nil {
 		localVarQueryParams.Add("filter[resource_type]", datadog.ParameterToString(*optionalParams.FilterResourceType, ""))
+	}
+	if optionalParams.FilterResourceId != nil {
+		localVarQueryParams.Add("filter[@resource_id]", datadog.ParameterToString(*optionalParams.FilterResourceId, ""))
 	}
 	if optionalParams.FilterDiscoveryTimestamp != nil {
 		localVarQueryParams.Add("filter[discovery_timestamp]", datadog.ParameterToString(*optionalParams.FilterDiscoveryTimestamp, ""))
