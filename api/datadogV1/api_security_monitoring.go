@@ -97,7 +97,9 @@ func (a *SecurityMonitoringApi) AddSecurityMonitoringSignalToIncident(ctx _conte
 }
 
 // EditSecurityMonitoringSignalAssignee Modify the triage assignee of a security signal.
-// Modify the triage assignee of a security signal.
+// This endpoint is deprecated - Modify the triage assignee of a security signal.
+//
+// Deprecated: This API is deprecated.
 func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalAssignee(ctx _context.Context, signalId string, body SignalAssigneeUpdateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -178,7 +180,9 @@ func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalAssignee(ctx _contex
 }
 
 // EditSecurityMonitoringSignalState Change the triage state of a security signal.
-// Change the triage state of a security signal.
+// This endpoint is deprecated - Change the triage state of a security signal.
+//
+// Deprecated: This API is deprecated.
 func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalState(ctx _context.Context, signalId string, body SignalStateUpdateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
