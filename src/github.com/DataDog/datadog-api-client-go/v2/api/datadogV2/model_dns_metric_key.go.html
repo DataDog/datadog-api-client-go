@@ -1,0 +1,151 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_dns_metric_key.go - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.22.12";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_dns_metric_key.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">github.com/DataDog/datadog-api-client-go/v2/api/datadogV2</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span><span class="comment">// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.</span>
+<span id="L2" class="ln">     2  </span><span class="comment">// This product includes software developed at Datadog (https://www.datadoghq.com/).</span>
+<span id="L3" class="ln">     3  </span><span class="comment">// Copyright 2019-Present Datadog, Inc.</span>
+<span id="L4" class="ln">     4  </span>
+<span id="L5" class="ln">     5  </span>package datadogV2
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>import (
+<span id="L8" class="ln">     8  </span>	&#34;fmt&#34;
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
+<span id="L11" class="ln">    11  </span>)
+<span id="L12" class="ln">    12  </span>
+<span id="L13" class="ln">    13  </span><span class="comment">// DnsMetricKey The metric key for DNS metrics.</span>
+<span id="L14" class="ln">    14  </span>type DnsMetricKey string
+<span id="L15" class="ln">    15  </span>
+<span id="L16" class="ln">    16  </span><span class="comment">// List of DnsMetricKey.</span>
+<span id="L17" class="ln">    17  </span>const (
+<span id="L18" class="ln">    18  </span>	DNSMETRICKEY_DNS_TOTAL_REQUESTS             DnsMetricKey = &#34;dns_total_requests&#34;
+<span id="L19" class="ln">    19  </span>	DNSMETRICKEY_DNS_FAILURES                   DnsMetricKey = &#34;dns_failures&#34;
+<span id="L20" class="ln">    20  </span>	DNSMETRICKEY_DNS_SUCCESSFUL_RESPONSES       DnsMetricKey = &#34;dns_successful_responses&#34;
+<span id="L21" class="ln">    21  </span>	DNSMETRICKEY_DNS_FAILED_RESPONSES           DnsMetricKey = &#34;dns_failed_responses&#34;
+<span id="L22" class="ln">    22  </span>	DNSMETRICKEY_DNS_TIMEOUTS                   DnsMetricKey = &#34;dns_timeouts&#34;
+<span id="L23" class="ln">    23  </span>	DNSMETRICKEY_DNS_RESPONSES_NXDOMAIN         DnsMetricKey = &#34;dns_responses.nxdomain&#34;
+<span id="L24" class="ln">    24  </span>	DNSMETRICKEY_DNS_RESPONSES_SERVFAIL         DnsMetricKey = &#34;dns_responses.servfail&#34;
+<span id="L25" class="ln">    25  </span>	DNSMETRICKEY_DNS_RESPONSES_OTHER            DnsMetricKey = &#34;dns_responses.other&#34;
+<span id="L26" class="ln">    26  </span>	DNSMETRICKEY_DNS_SUCCESS_LATENCY_PERCENTILE DnsMetricKey = &#34;dns_success_latency_percentile&#34;
+<span id="L27" class="ln">    27  </span>	DNSMETRICKEY_DNS_FAILURE_LATENCY_PERCENTILE DnsMetricKey = &#34;dns_failure_latency_percentile&#34;
+<span id="L28" class="ln">    28  </span>)
+<span id="L29" class="ln">    29  </span>
+<span id="L30" class="ln">    30  </span>var allowedDnsMetricKeyEnumValues = []DnsMetricKey{
+<span id="L31" class="ln">    31  </span>	DNSMETRICKEY_DNS_TOTAL_REQUESTS,
+<span id="L32" class="ln">    32  </span>	DNSMETRICKEY_DNS_FAILURES,
+<span id="L33" class="ln">    33  </span>	DNSMETRICKEY_DNS_SUCCESSFUL_RESPONSES,
+<span id="L34" class="ln">    34  </span>	DNSMETRICKEY_DNS_FAILED_RESPONSES,
+<span id="L35" class="ln">    35  </span>	DNSMETRICKEY_DNS_TIMEOUTS,
+<span id="L36" class="ln">    36  </span>	DNSMETRICKEY_DNS_RESPONSES_NXDOMAIN,
+<span id="L37" class="ln">    37  </span>	DNSMETRICKEY_DNS_RESPONSES_SERVFAIL,
+<span id="L38" class="ln">    38  </span>	DNSMETRICKEY_DNS_RESPONSES_OTHER,
+<span id="L39" class="ln">    39  </span>	DNSMETRICKEY_DNS_SUCCESS_LATENCY_PERCENTILE,
+<span id="L40" class="ln">    40  </span>	DNSMETRICKEY_DNS_FAILURE_LATENCY_PERCENTILE,
+<span id="L41" class="ln">    41  </span>}
+<span id="L42" class="ln">    42  </span>
+<span id="L43" class="ln">    43  </span><span class="comment">// GetAllowedValues reeturns the list of possible values.</span>
+<span id="L44" class="ln">    44  </span>func (v *DnsMetricKey) GetAllowedValues() []DnsMetricKey {
+<span id="L45" class="ln">    45  </span>	return allowedDnsMetricKeyEnumValues
+<span id="L46" class="ln">    46  </span>}
+<span id="L47" class="ln">    47  </span>
+<span id="L48" class="ln">    48  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L49" class="ln">    49  </span>func (v *DnsMetricKey) UnmarshalJSON(src []byte) error {
+<span id="L50" class="ln">    50  </span>	var value string
+<span id="L51" class="ln">    51  </span>	err := datadog.Unmarshal(src, &amp;value)
+<span id="L52" class="ln">    52  </span>	if err != nil {
+<span id="L53" class="ln">    53  </span>		return err
+<span id="L54" class="ln">    54  </span>	}
+<span id="L55" class="ln">    55  </span>	*v = DnsMetricKey(value)
+<span id="L56" class="ln">    56  </span>	return nil
+<span id="L57" class="ln">    57  </span>}
+<span id="L58" class="ln">    58  </span>
+<span id="L59" class="ln">    59  </span><span class="comment">// NewDnsMetricKeyFromValue returns a pointer to a valid DnsMetricKey</span>
+<span id="L60" class="ln">    60  </span><span class="comment">// for the value passed as argument, or an error if the value passed is not allowed by the enum.</span>
+<span id="L61" class="ln">    61  </span>func NewDnsMetricKeyFromValue(v string) (*DnsMetricKey, error) {
+<span id="L62" class="ln">    62  </span>	ev := DnsMetricKey(v)
+<span id="L63" class="ln">    63  </span>	if ev.IsValid() {
+<span id="L64" class="ln">    64  </span>		return &amp;ev, nil
+<span id="L65" class="ln">    65  </span>	}
+<span id="L66" class="ln">    66  </span>	return nil, fmt.Errorf(&#34;invalid value &#39;%v&#39; for DnsMetricKey: valid values are %v&#34;, v, allowedDnsMetricKeyEnumValues)
+<span id="L67" class="ln">    67  </span>}
+<span id="L68" class="ln">    68  </span>
+<span id="L69" class="ln">    69  </span><span class="comment">// IsValid return true if the value is valid for the enum, false otherwise.</span>
+<span id="L70" class="ln">    70  </span>func (v DnsMetricKey) IsValid() bool {
+<span id="L71" class="ln">    71  </span>	for _, existing := range allowedDnsMetricKeyEnumValues {
+<span id="L72" class="ln">    72  </span>		if existing == v {
+<span id="L73" class="ln">    73  </span>			return true
+<span id="L74" class="ln">    74  </span>		}
+<span id="L75" class="ln">    75  </span>	}
+<span id="L76" class="ln">    76  </span>	return false
+<span id="L77" class="ln">    77  </span>}
+<span id="L78" class="ln">    78  </span>
+<span id="L79" class="ln">    79  </span><span class="comment">// Ptr returns reference to DnsMetricKey value.</span>
+<span id="L80" class="ln">    80  </span>func (v DnsMetricKey) Ptr() *DnsMetricKey {
+<span id="L81" class="ln">    81  </span>	return &amp;v
+<span id="L82" class="ln">    82  </span>}
+<span id="L83" class="ln">    83  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.22.12.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>
