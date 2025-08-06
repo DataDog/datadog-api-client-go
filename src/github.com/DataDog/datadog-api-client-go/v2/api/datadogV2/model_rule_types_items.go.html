@@ -71,7 +71,7 @@
 <span id="L14" class="ln">    14  </span><span class="comment">// Signal-based notification rules can filter signals based on rule types application_security, log_detection,</span>
 <span id="L15" class="ln">    15  </span><span class="comment">// workload_security, signal_correlation, cloud_configuration and infrastructure_configuration.</span>
 <span id="L16" class="ln">    16  </span><span class="comment">// Vulnerability-based notification rules can filter vulnerabilities based on rule types application_code_vulnerability,</span>
-<span id="L17" class="ln">    17  </span><span class="comment">// application_library_vulnerability, attack_path, container_image_vulnerability, identity_risk, misconfiguration, and api_security.</span>
+<span id="L17" class="ln">    17  </span><span class="comment">// application_library_vulnerability, attack_path, container_image_vulnerability, identity_risk, misconfiguration, api_security, host_vulnerability and iac_misconfiguration.</span>
 <span id="L18" class="ln">    18  </span>type RuleTypesItems string
 <span id="L19" class="ln">    19  </span>
 <span id="L20" class="ln">    20  </span><span class="comment">// List of RuleTypesItems.</span>
@@ -89,65 +89,69 @@
 <span id="L32" class="ln">    32  </span>	RULETYPESITEMS_IDENTITY_RISK                     RuleTypesItems = &#34;identity_risk&#34;
 <span id="L33" class="ln">    33  </span>	RULETYPESITEMS_MISCONFIGURATION                  RuleTypesItems = &#34;misconfiguration&#34;
 <span id="L34" class="ln">    34  </span>	RULETYPESITEMS_API_SECURITY                      RuleTypesItems = &#34;api_security&#34;
-<span id="L35" class="ln">    35  </span>)
-<span id="L36" class="ln">    36  </span>
-<span id="L37" class="ln">    37  </span>var allowedRuleTypesItemsEnumValues = []RuleTypesItems{
-<span id="L38" class="ln">    38  </span>	RULETYPESITEMS_APPLICATION_SECURITY,
-<span id="L39" class="ln">    39  </span>	RULETYPESITEMS_LOG_DETECTION,
-<span id="L40" class="ln">    40  </span>	RULETYPESITEMS_WORKLOAD_SECURITY,
-<span id="L41" class="ln">    41  </span>	RULETYPESITEMS_SIGNAL_CORRELATION,
-<span id="L42" class="ln">    42  </span>	RULETYPESITEMS_CLOUD_CONFIGURATION,
-<span id="L43" class="ln">    43  </span>	RULETYPESITEMS_INFRASTRUCTURE_CONFIGURATION,
-<span id="L44" class="ln">    44  </span>	RULETYPESITEMS_APPLICATION_CODE_VULNERABILITY,
-<span id="L45" class="ln">    45  </span>	RULETYPESITEMS_APPLICATION_LIBRARY_VULNERABILITY,
-<span id="L46" class="ln">    46  </span>	RULETYPESITEMS_ATTACK_PATH,
-<span id="L47" class="ln">    47  </span>	RULETYPESITEMS_CONTAINER_IMAGE_VULNERABILITY,
-<span id="L48" class="ln">    48  </span>	RULETYPESITEMS_IDENTITY_RISK,
-<span id="L49" class="ln">    49  </span>	RULETYPESITEMS_MISCONFIGURATION,
-<span id="L50" class="ln">    50  </span>	RULETYPESITEMS_API_SECURITY,
-<span id="L51" class="ln">    51  </span>}
-<span id="L52" class="ln">    52  </span>
-<span id="L53" class="ln">    53  </span><span class="comment">// GetAllowedValues reeturns the list of possible values.</span>
-<span id="L54" class="ln">    54  </span>func (v *RuleTypesItems) GetAllowedValues() []RuleTypesItems {
-<span id="L55" class="ln">    55  </span>	return allowedRuleTypesItemsEnumValues
-<span id="L56" class="ln">    56  </span>}
-<span id="L57" class="ln">    57  </span>
-<span id="L58" class="ln">    58  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L59" class="ln">    59  </span>func (v *RuleTypesItems) UnmarshalJSON(src []byte) error {
-<span id="L60" class="ln">    60  </span>	var value string
-<span id="L61" class="ln">    61  </span>	err := datadog.Unmarshal(src, &amp;value)
-<span id="L62" class="ln">    62  </span>	if err != nil {
-<span id="L63" class="ln">    63  </span>		return err
-<span id="L64" class="ln">    64  </span>	}
-<span id="L65" class="ln">    65  </span>	*v = RuleTypesItems(value)
-<span id="L66" class="ln">    66  </span>	return nil
-<span id="L67" class="ln">    67  </span>}
-<span id="L68" class="ln">    68  </span>
-<span id="L69" class="ln">    69  </span><span class="comment">// NewRuleTypesItemsFromValue returns a pointer to a valid RuleTypesItems</span>
-<span id="L70" class="ln">    70  </span><span class="comment">// for the value passed as argument, or an error if the value passed is not allowed by the enum.</span>
-<span id="L71" class="ln">    71  </span>func NewRuleTypesItemsFromValue(v string) (*RuleTypesItems, error) {
-<span id="L72" class="ln">    72  </span>	ev := RuleTypesItems(v)
-<span id="L73" class="ln">    73  </span>	if ev.IsValid() {
-<span id="L74" class="ln">    74  </span>		return &amp;ev, nil
-<span id="L75" class="ln">    75  </span>	}
-<span id="L76" class="ln">    76  </span>	return nil, fmt.Errorf(&#34;invalid value &#39;%v&#39; for RuleTypesItems: valid values are %v&#34;, v, allowedRuleTypesItemsEnumValues)
-<span id="L77" class="ln">    77  </span>}
-<span id="L78" class="ln">    78  </span>
-<span id="L79" class="ln">    79  </span><span class="comment">// IsValid return true if the value is valid for the enum, false otherwise.</span>
-<span id="L80" class="ln">    80  </span>func (v RuleTypesItems) IsValid() bool {
-<span id="L81" class="ln">    81  </span>	for _, existing := range allowedRuleTypesItemsEnumValues {
-<span id="L82" class="ln">    82  </span>		if existing == v {
-<span id="L83" class="ln">    83  </span>			return true
-<span id="L84" class="ln">    84  </span>		}
-<span id="L85" class="ln">    85  </span>	}
-<span id="L86" class="ln">    86  </span>	return false
-<span id="L87" class="ln">    87  </span>}
-<span id="L88" class="ln">    88  </span>
-<span id="L89" class="ln">    89  </span><span class="comment">// Ptr returns reference to RuleTypesItems value.</span>
-<span id="L90" class="ln">    90  </span>func (v RuleTypesItems) Ptr() *RuleTypesItems {
-<span id="L91" class="ln">    91  </span>	return &amp;v
-<span id="L92" class="ln">    92  </span>}
-<span id="L93" class="ln">    93  </span>
+<span id="L35" class="ln">    35  </span>	RULETYPESITEMS_HOST_VULNERABILITY                RuleTypesItems = &#34;host_vulnerability&#34;
+<span id="L36" class="ln">    36  </span>	RULETYPESITEMS_IAC_MISCONFIGURATION              RuleTypesItems = &#34;iac_misconfiguration&#34;
+<span id="L37" class="ln">    37  </span>)
+<span id="L38" class="ln">    38  </span>
+<span id="L39" class="ln">    39  </span>var allowedRuleTypesItemsEnumValues = []RuleTypesItems{
+<span id="L40" class="ln">    40  </span>	RULETYPESITEMS_APPLICATION_SECURITY,
+<span id="L41" class="ln">    41  </span>	RULETYPESITEMS_LOG_DETECTION,
+<span id="L42" class="ln">    42  </span>	RULETYPESITEMS_WORKLOAD_SECURITY,
+<span id="L43" class="ln">    43  </span>	RULETYPESITEMS_SIGNAL_CORRELATION,
+<span id="L44" class="ln">    44  </span>	RULETYPESITEMS_CLOUD_CONFIGURATION,
+<span id="L45" class="ln">    45  </span>	RULETYPESITEMS_INFRASTRUCTURE_CONFIGURATION,
+<span id="L46" class="ln">    46  </span>	RULETYPESITEMS_APPLICATION_CODE_VULNERABILITY,
+<span id="L47" class="ln">    47  </span>	RULETYPESITEMS_APPLICATION_LIBRARY_VULNERABILITY,
+<span id="L48" class="ln">    48  </span>	RULETYPESITEMS_ATTACK_PATH,
+<span id="L49" class="ln">    49  </span>	RULETYPESITEMS_CONTAINER_IMAGE_VULNERABILITY,
+<span id="L50" class="ln">    50  </span>	RULETYPESITEMS_IDENTITY_RISK,
+<span id="L51" class="ln">    51  </span>	RULETYPESITEMS_MISCONFIGURATION,
+<span id="L52" class="ln">    52  </span>	RULETYPESITEMS_API_SECURITY,
+<span id="L53" class="ln">    53  </span>	RULETYPESITEMS_HOST_VULNERABILITY,
+<span id="L54" class="ln">    54  </span>	RULETYPESITEMS_IAC_MISCONFIGURATION,
+<span id="L55" class="ln">    55  </span>}
+<span id="L56" class="ln">    56  </span>
+<span id="L57" class="ln">    57  </span><span class="comment">// GetAllowedValues reeturns the list of possible values.</span>
+<span id="L58" class="ln">    58  </span>func (v *RuleTypesItems) GetAllowedValues() []RuleTypesItems {
+<span id="L59" class="ln">    59  </span>	return allowedRuleTypesItemsEnumValues
+<span id="L60" class="ln">    60  </span>}
+<span id="L61" class="ln">    61  </span>
+<span id="L62" class="ln">    62  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L63" class="ln">    63  </span>func (v *RuleTypesItems) UnmarshalJSON(src []byte) error {
+<span id="L64" class="ln">    64  </span>	var value string
+<span id="L65" class="ln">    65  </span>	err := datadog.Unmarshal(src, &amp;value)
+<span id="L66" class="ln">    66  </span>	if err != nil {
+<span id="L67" class="ln">    67  </span>		return err
+<span id="L68" class="ln">    68  </span>	}
+<span id="L69" class="ln">    69  </span>	*v = RuleTypesItems(value)
+<span id="L70" class="ln">    70  </span>	return nil
+<span id="L71" class="ln">    71  </span>}
+<span id="L72" class="ln">    72  </span>
+<span id="L73" class="ln">    73  </span><span class="comment">// NewRuleTypesItemsFromValue returns a pointer to a valid RuleTypesItems</span>
+<span id="L74" class="ln">    74  </span><span class="comment">// for the value passed as argument, or an error if the value passed is not allowed by the enum.</span>
+<span id="L75" class="ln">    75  </span>func NewRuleTypesItemsFromValue(v string) (*RuleTypesItems, error) {
+<span id="L76" class="ln">    76  </span>	ev := RuleTypesItems(v)
+<span id="L77" class="ln">    77  </span>	if ev.IsValid() {
+<span id="L78" class="ln">    78  </span>		return &amp;ev, nil
+<span id="L79" class="ln">    79  </span>	}
+<span id="L80" class="ln">    80  </span>	return nil, fmt.Errorf(&#34;invalid value &#39;%v&#39; for RuleTypesItems: valid values are %v&#34;, v, allowedRuleTypesItemsEnumValues)
+<span id="L81" class="ln">    81  </span>}
+<span id="L82" class="ln">    82  </span>
+<span id="L83" class="ln">    83  </span><span class="comment">// IsValid return true if the value is valid for the enum, false otherwise.</span>
+<span id="L84" class="ln">    84  </span>func (v RuleTypesItems) IsValid() bool {
+<span id="L85" class="ln">    85  </span>	for _, existing := range allowedRuleTypesItemsEnumValues {
+<span id="L86" class="ln">    86  </span>		if existing == v {
+<span id="L87" class="ln">    87  </span>			return true
+<span id="L88" class="ln">    88  </span>		}
+<span id="L89" class="ln">    89  </span>	}
+<span id="L90" class="ln">    90  </span>	return false
+<span id="L91" class="ln">    91  </span>}
+<span id="L92" class="ln">    92  </span>
+<span id="L93" class="ln">    93  </span><span class="comment">// Ptr returns reference to RuleTypesItems value.</span>
+<span id="L94" class="ln">    94  </span>func (v RuleTypesItems) Ptr() *RuleTypesItems {
+<span id="L95" class="ln">    95  </span>	return &amp;v
+<span id="L96" class="ln">    96  </span>}
+<span id="L97" class="ln">    97  </span>
 </pre><p></p>
 
 <div id="footer">
