@@ -12,7 +12,7 @@ import (
 
 // RelationshipToIncidentUserDefinedFieldData Relationship to impact object.
 type RelationshipToIncidentUserDefinedFieldData struct {
-	// A unique identifier that represents the responder.
+	// A unique identifier that represents the user defined field.
 	Id string `json:"id"`
 	// The incident user defined fields type.
 	Type IncidentUserDefinedFieldType `json:"type"`
