@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetAggregatedDns", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudNetworkMonitoringApi(apiClient)
 	resp, r, err := api.GetAggregatedDns(ctx, *datadogV2.NewGetAggregatedDnsOptionalParameters())
