@@ -31,6 +31,16 @@ func main() {
 						Lambdas: []string{
 							"arn:aws:lambda:us-east-1:123456789012:function:DatadogLambdaLogForwarder",
 						},
+						LogSourceConfig: &datadogV2.AWSLambdaForwarderConfigLogSourceConfig{
+							TagFilters: []datadogV2.AWSLogSourceTagFilter{
+								{
+									Source: datadog.PtrString("s3"),
+									Tags: *datadog.NewNullableList(&[]string{
+										"test:test",
+									}),
+								},
+							},
+						},
 						Sources: []string{
 							"s3",
 						},
