@@ -10,15 +10,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAssumeRoleUpdate The definition of `AWSAssumeRoleUpdate` object.
+// AWSAssumeRoleUpdate The definition of the `AWSAssumeRole` object.
 type AWSAssumeRoleUpdate struct {
-	// AWS account the connection is created for
+	// AWS account the connection is created for.
 	AccountId *string `json:"account_id,omitempty"`
-	// The `AWSAssumeRoleUpdate` `generate_new_external_id`.
+	// Pass true if the `external_id` should be regenerated.
 	GenerateNewExternalId *bool `json:"generate_new_external_id,omitempty"`
-	// Role to assume
+	// Role to assume.
 	Role *string `json:"role,omitempty"`
-	// The definition of `AWSAssumeRoleType` object.
+	// The definition of the `AWSAssumeRole` object.
 	Type AWSAssumeRoleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

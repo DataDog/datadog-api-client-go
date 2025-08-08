@@ -10,17 +10,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAssumeRole The definition of `AWSAssumeRole` object.
+// AWSAssumeRole The definition of the `AWSAssumeRole` object.
 type AWSAssumeRole struct {
-	// AWS account the connection is created for
+	// AWS account the connection is created for.
 	AccountId string `json:"account_id"`
-	// External ID used to scope which connection can be used to assume the role
+	// External ID used to scope which connection can be used to assume the role.
 	ExternalId *string `json:"external_id,omitempty"`
-	// AWS account that will assume the role
+	// Pass true if the `external_id` should be regenerated.
+	GenerateNewExternalId *bool `json:"generate_new_external_id,omitempty"`
+	// AWS account that will assume the role.
 	PrincipalId *string `json:"principal_id,omitempty"`
-	// Role to assume
+	// Role to assume.
 	Role string `json:"role"`
-	// The definition of `AWSAssumeRoleType` object.
+	// The definition of the `AWSAssumeRole` object.
 	Type AWSAssumeRoleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -96,6 +98,34 @@ func (o *AWSAssumeRole) HasExternalId() bool {
 // SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
 func (o *AWSAssumeRole) SetExternalId(v string) {
 	o.ExternalId = &v
+}
+
+// GetGenerateNewExternalId returns the GenerateNewExternalId field value if set, zero value otherwise.
+func (o *AWSAssumeRole) GetGenerateNewExternalId() bool {
+	if o == nil || o.GenerateNewExternalId == nil {
+		var ret bool
+		return ret
+	}
+	return *o.GenerateNewExternalId
+}
+
+// GetGenerateNewExternalIdOk returns a tuple with the GenerateNewExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AWSAssumeRole) GetGenerateNewExternalIdOk() (*bool, bool) {
+	if o == nil || o.GenerateNewExternalId == nil {
+		return nil, false
+	}
+	return o.GenerateNewExternalId, true
+}
+
+// HasGenerateNewExternalId returns a boolean if a field has been set.
+func (o *AWSAssumeRole) HasGenerateNewExternalId() bool {
+	return o != nil && o.GenerateNewExternalId != nil
+}
+
+// SetGenerateNewExternalId gets a reference to the given bool and assigns it to the GenerateNewExternalId field.
+func (o *AWSAssumeRole) SetGenerateNewExternalId(v bool) {
+	o.GenerateNewExternalId = &v
 }
 
 // GetPrincipalId returns the PrincipalId field value if set, zero value otherwise.
@@ -182,6 +212,9 @@ func (o AWSAssumeRole) MarshalJSON() ([]byte, error) {
 	if o.ExternalId != nil {
 		toSerialize["external_id"] = o.ExternalId
 	}
+	if o.GenerateNewExternalId != nil {
+		toSerialize["generate_new_external_id"] = o.GenerateNewExternalId
+	}
 	if o.PrincipalId != nil {
 		toSerialize["principal_id"] = o.PrincipalId
 	}
@@ -197,11 +230,12 @@ func (o AWSAssumeRole) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSAssumeRole) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountId   *string            `json:"account_id"`
-		ExternalId  *string            `json:"external_id,omitempty"`
-		PrincipalId *string            `json:"principal_id,omitempty"`
-		Role        *string            `json:"role"`
-		Type        *AWSAssumeRoleType `json:"type"`
+		AccountId             *string            `json:"account_id"`
+		ExternalId            *string            `json:"external_id,omitempty"`
+		GenerateNewExternalId *bool              `json:"generate_new_external_id,omitempty"`
+		PrincipalId           *string            `json:"principal_id,omitempty"`
+		Role                  *string            `json:"role"`
+		Type                  *AWSAssumeRoleType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -217,7 +251,7 @@ func (o *AWSAssumeRole) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "external_id", "principal_id", "role", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "external_id", "generate_new_external_id", "principal_id", "role", "type"})
 	} else {
 		return err
 	}
@@ -225,6 +259,7 @@ func (o *AWSAssumeRole) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.AccountId = *all.AccountId
 	o.ExternalId = all.ExternalId
+	o.GenerateNewExternalId = all.GenerateNewExternalId
 	o.PrincipalId = all.PrincipalId
 	o.Role = *all.Role
 	if !all.Type.IsValid() {

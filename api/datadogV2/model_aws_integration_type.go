@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSIntegrationType The definition of `AWSIntegrationType` object.
+// AWSIntegrationType The definition of the `AWSIntegrationType` object.
 type AWSIntegrationType string
 
 // List of AWSIntegrationType.

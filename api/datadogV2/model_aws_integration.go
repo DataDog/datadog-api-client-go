@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSIntegration The definition of `AWSIntegration` object.
+// AWSIntegration The definition of the `AWSIntegration` object.
 type AWSIntegration struct {
-	// The definition of `AWSCredentials` object.
+	// The definition of the `AWSCredentials` object.
 	Credentials AWSCredentials `json:"credentials"`
-	// The definition of `AWSIntegrationType` object.
+	// The definition of the `AWSIntegrationType` object.
 	Type AWSIntegrationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
