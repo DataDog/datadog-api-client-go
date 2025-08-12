@@ -94,6 +94,7 @@
 //   - [CSMThreatsApi.UpdateCloudWorkloadSecurityAgentRule]
 //   - [CaseManagementApi.ArchiveCase]
 //   - [CaseManagementApi.AssignCase]
+//   - [CaseManagementApi.CommentCase]
 //   - [CaseManagementApi.CreateCase]
 //   - [CaseManagementApi.CreateProject]
 //   - [CaseManagementApi.DeleteProject]
