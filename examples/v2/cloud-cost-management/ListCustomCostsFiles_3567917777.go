@@ -1,4 +1,4 @@
-// List Custom Costs Files returns "OK" response
+// List Custom Costs files with pagination parameters returns "OK" response
 
 package main
 
@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudCostManagementApi(apiClient)
-	resp, r, err := api.ListCustomCostsFiles(ctx)
+	resp, r, err := api.ListCustomCostsFiles(ctx, *datadogV2.NewListCustomCostsFilesOptionalParameters().WithPageNumber(1).WithPageSize(10).WithSort("-created_at"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudCostManagementApi.ListCustomCostsFiles`: %v\n", err)

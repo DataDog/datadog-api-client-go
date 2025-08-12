@@ -16,7 +16,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudCostManagementApi(apiClient)
-	r, err := api.DeleteCostAzureUCConfig(ctx, "100")
+	r, err := api.DeleteCostAzureUCConfig(ctx, 100)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudCostManagementApi.DeleteCostAzureUCConfig`: %v\n", err)

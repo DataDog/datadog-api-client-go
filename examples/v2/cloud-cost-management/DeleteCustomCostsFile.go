@@ -16,7 +16,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudCostManagementApi(apiClient)
-	r, err := api.DeleteCustomCostsFile(ctx, "file_id")
+	r, err := api.DeleteCustomCostsFile(ctx, "9ed1a245-8291-44de-9f59-1dc87975ca4a")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudCostManagementApi.DeleteCustomCostsFile`: %v\n", err)

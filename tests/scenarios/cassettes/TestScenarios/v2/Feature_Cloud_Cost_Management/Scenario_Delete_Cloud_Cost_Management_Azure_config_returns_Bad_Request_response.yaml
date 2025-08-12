@@ -1,16 +1,13 @@
 interactions:
 - request:
-    body: |
-      {"data":{"attributes":{"is_enabled":true},"type":"gcp_uc_config_patch_request"}}
+    body: ''
     form: {}
     headers:
       Accept:
-      - application/json
-      Content-Type:
-      - application/json
+      - '*/*'
     id: 0
-    method: PATCH
-    url: https://api.datadoghq.com/api/v2/cost/gcp_uc_config/InvalidValue
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/cost/azure_uc_config/invalid
   response:
     body: '{"errors":[{"status":"400","title":"Invalid Parameter","detail":"invalid
       parameter \"cloudAccountId\" in \"path\"; expected type \"int64\""}]}'

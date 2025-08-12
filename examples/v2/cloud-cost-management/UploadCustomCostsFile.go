@@ -15,11 +15,15 @@ import (
 func main() {
 	body := []datadogV2.CustomCostsFileLineItem{
 		{
-			BilledCost:        datadog.PtrFloat64(100.5),
+			ProviderName:      datadog.PtrString("my_provider"),
+			ChargePeriodStart: datadog.PtrString("2023-05-06"),
+			ChargePeriodEnd:   datadog.PtrString("2023-06-06"),
+			ChargeDescription: datadog.PtrString("my_description"),
+			BilledCost:        datadog.PtrFloat64(250),
 			BillingCurrency:   datadog.PtrString("USD"),
-			ChargeDescription: datadog.PtrString("Monthly usage charge for my service"),
-			ChargePeriodEnd:   datadog.PtrString("2023-02-28"),
-			ChargePeriodStart: datadog.PtrString("2023-02-01"),
+			Tags: map[string]string{
+				"key": "value",
+			},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

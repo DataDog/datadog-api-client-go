@@ -27,7 +27,7 @@ type AzureUCConfig struct {
 	// The path where the Azure Export is saved.
 	ExportPath string `json:"export_path"`
 	// The ID of the Azure config.
-	Id *int64 `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	// The number of months the report has been backfilled.
 	// Deprecated
 	Months *int32 `json:"months,omitempty"`
@@ -246,9 +246,9 @@ func (o *AzureUCConfig) SetExportPath(v string) {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *AzureUCConfig) GetId() int64 {
+func (o *AzureUCConfig) GetId() string {
 	if o == nil || o.Id == nil {
-		var ret int64
+		var ret string
 		return ret
 	}
 	return *o.Id
@@ -256,7 +256,7 @@ func (o *AzureUCConfig) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AzureUCConfig) GetIdOk() (*int64, bool) {
+func (o *AzureUCConfig) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -268,8 +268,8 @@ func (o *AzureUCConfig) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
-// SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *AzureUCConfig) SetId(v int64) {
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *AzureUCConfig) SetId(v string) {
 	o.Id = &v
 }
 
@@ -502,7 +502,7 @@ func (o *AzureUCConfig) UnmarshalJSON(bytes []byte) (err error) {
 		ErrorMessages    []string `json:"error_messages,omitempty"`
 		ExportName       *string  `json:"export_name"`
 		ExportPath       *string  `json:"export_path"`
-		Id               *int64   `json:"id,omitempty"`
+		Id               *string  `json:"id,omitempty"`
 		Months           *int32   `json:"months,omitempty"`
 		Scope            *string  `json:"scope"`
 		Status           *string  `json:"status"`

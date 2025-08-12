@@ -1,0 +1,20 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/cost/custom_costs?filter%5Bstatus%5D=not_a_real_filter
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"unknown status,
+      got not_a_real_filter"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
