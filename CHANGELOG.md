@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## 2.44.0/2025-08-12
+
+### Added
+* Add Flex_Logs_Compute_XL to API Spec [#3266](https://github.com/DataDog/datadog-api-client-go/pull/3266)
+* Support Host and IaC finding types in security notifications  [#3265](https://github.com/DataDog/datadog-api-client-go/pull/3265)
+* New keys for summary public endpoint for Event Management Correlation product [#3261](https://github.com/DataDog/datadog-api-client-go/pull/3261)
+* Add log autosubscription tag filters config to aws v2 API [#3257](https://github.com/DataDog/datadog-api-client-go/pull/3257)
+* Extended List Findings API to expose resource related Private IP Addresses to details [#3250](https://github.com/DataDog/datadog-api-client-go/pull/3250)
+* update metrics.yaml for ListMetricAssets and include Dashboard info [#3245](https://github.com/DataDog/datadog-api-client-go/pull/3245)
+* Support Cloud SIEM scheduled rules in API client [#3242](https://github.com/DataDog/datadog-api-client-go/pull/3242)
+* Uncomment edit dataset block, add dataset limitations into endpoint descriptions  [#3240](https://github.com/DataDog/datadog-api-client-go/pull/3240)
+* Add `text` field in synthetics search endpoint [#3239](https://github.com/DataDog/datadog-api-client-go/pull/3239)
+* Adding all action connection types to public API [#3238](https://github.com/DataDog/datadog-api-client-go/pull/3238)
+* Document case management attributes endpoints [#3236](https://github.com/DataDog/datadog-api-client-go/pull/3236)
+* add AP2 endpoint for On-Call Paging [#3232](https://github.com/DataDog/datadog-api-client-go/pull/3232)
+* Flag IP case action [#3230](https://github.com/DataDog/datadog-api-client-go/pull/3230)
+* Add DNS specs for Cloud Network Monitoring API [#3228](https://github.com/DataDog/datadog-api-client-go/pull/3228)
+* Adding Datadog Connection to Connection API [#3222](https://github.com/DataDog/datadog-api-client-go/pull/3222)
+
+### Fixed
+* Split Dataset into separate request and response objects, mark unstable [#3249](https://github.com/DataDog/datadog-api-client-go/pull/3249)
+* Disables some tests to avoid fails as the service is disabled [#3244](https://github.com/DataDog/datadog-api-client-go/pull/3244)
+* OP make 'support_rules' field in parse_grok processor optional [#3233](https://github.com/DataDog/datadog-api-client-go/pull/3233)
+
+### Deprecated
+* Deprecate signals triage v1 endpoints [#3246](https://github.com/DataDog/datadog-api-client-go/pull/3246)
+
 ## 2.43.0/2025-07-14
 
 ### Added
