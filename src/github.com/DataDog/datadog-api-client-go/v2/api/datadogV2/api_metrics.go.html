@@ -597,7 +597,7 @@
 <span id="L540" class="ln">   540  </span>			ErrorMessage: localVarHTTPResponse.Status,
 <span id="L541" class="ln">   541  </span>		}
 <span id="L542" class="ln">   542  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L543" class="ln">   543  </span>			var v APIErrorResponse
+<span id="L543" class="ln">   543  </span>			var v JSONAPIErrorResponse
 <span id="L544" class="ln">   544  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
 <span id="L545" class="ln">   545  </span>			if err != nil {
 <span id="L546" class="ln">   546  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
