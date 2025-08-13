@@ -13,14 +13,14 @@ import (
 )
 
 func main() {
-	// there is a valid "security_rule" in the system
-	SecurityRuleID := os.Getenv("SECURITY_RULE_ID")
+	// there is a valid "security_rule_hash" in the system
+	SecurityRuleHashID := os.Getenv("SECURITY_RULE_HASH_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.ConvertExistingSecurityMonitoringRule(ctx, SecurityRuleID)
+	resp, r, err := api.ConvertExistingSecurityMonitoringRule(ctx, SecurityRuleHashID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ConvertExistingSecurityMonitoringRule`: %v\n", err)
