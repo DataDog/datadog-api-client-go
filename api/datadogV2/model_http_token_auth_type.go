@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HTTPTokenAuthType The definition of `HTTPTokenAuthType` object.
+// HTTPTokenAuthType The definition of the `HTTPTokenAuth` object.
 type HTTPTokenAuthType string
 
 // List of HTTPTokenAuthType.

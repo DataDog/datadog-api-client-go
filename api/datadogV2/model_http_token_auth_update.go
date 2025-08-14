@@ -18,7 +18,7 @@ type HTTPTokenAuthUpdate struct {
 	Headers []HTTPHeaderUpdate `json:"headers,omitempty"`
 	// The `HTTPTokenAuthUpdate` `tokens`.
 	Tokens []HTTPTokenUpdate `json:"tokens,omitempty"`
-	// The definition of `HTTPTokenAuthType` object.
+	// The definition of the `HTTPTokenAuth` object.
 	Type HTTPTokenAuthType `json:"type"`
 	// The `HTTPTokenAuthUpdate` `url_parameters`.
 	UrlParameters []UrlParamUpdate `json:"url_parameters,omitempty"`

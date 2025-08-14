@@ -10,89 +10,89 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HTTPIntegration The definition of the `HTTPIntegration` object.
-type HTTPIntegration struct {
-	// Base HTTP url for the integration.
-	BaseUrl string `json:"base_url"`
-	// The definition of the `HTTPCredentials` object.
-	Credentials HTTPCredentials `json:"credentials"`
-	// The definition of the `HTTPIntegrationType` object.
-	Type HTTPIntegrationType `json:"type"`
+// HTTPMtlsAuth The definition of the `HTTPMtlsAuth` object.
+type HTTPMtlsAuth struct {
+	// Certificate of authority used to sign the request.
+	Certificate string `json:"certificate"`
+	// Private key used for the MTLS handshake
+	PrivateKey string `json:"private_key"`
+	// The definition of the `HTTPMtlsAuth` object.
+	Type HTTPMtlsAuthType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewHTTPIntegration instantiates a new HTTPIntegration object.
+// NewHTTPMtlsAuth instantiates a new HTTPMtlsAuth object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewHTTPIntegration(baseUrl string, credentials HTTPCredentials, typeVar HTTPIntegrationType) *HTTPIntegration {
-	this := HTTPIntegration{}
-	this.BaseUrl = baseUrl
-	this.Credentials = credentials
+func NewHTTPMtlsAuth(certificate string, privateKey string, typeVar HTTPMtlsAuthType) *HTTPMtlsAuth {
+	this := HTTPMtlsAuth{}
+	this.Certificate = certificate
+	this.PrivateKey = privateKey
 	this.Type = typeVar
 	return &this
 }
 
-// NewHTTPIntegrationWithDefaults instantiates a new HTTPIntegration object.
+// NewHTTPMtlsAuthWithDefaults instantiates a new HTTPMtlsAuth object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewHTTPIntegrationWithDefaults() *HTTPIntegration {
-	this := HTTPIntegration{}
+func NewHTTPMtlsAuthWithDefaults() *HTTPMtlsAuth {
+	this := HTTPMtlsAuth{}
 	return &this
 }
 
-// GetBaseUrl returns the BaseUrl field value.
-func (o *HTTPIntegration) GetBaseUrl() string {
+// GetCertificate returns the Certificate field value.
+func (o *HTTPMtlsAuth) GetCertificate() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
-	return o.BaseUrl
+	return o.Certificate
 }
 
-// GetBaseUrlOk returns a tuple with the BaseUrl field value
+// GetCertificateOk returns a tuple with the Certificate field value
 // and a boolean to check if the value has been set.
-func (o *HTTPIntegration) GetBaseUrlOk() (*string, bool) {
+func (o *HTTPMtlsAuth) GetCertificateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.BaseUrl, true
+	return &o.Certificate, true
 }
 
-// SetBaseUrl sets field value.
-func (o *HTTPIntegration) SetBaseUrl(v string) {
-	o.BaseUrl = v
+// SetCertificate sets field value.
+func (o *HTTPMtlsAuth) SetCertificate(v string) {
+	o.Certificate = v
 }
 
-// GetCredentials returns the Credentials field value.
-func (o *HTTPIntegration) GetCredentials() HTTPCredentials {
+// GetPrivateKey returns the PrivateKey field value.
+func (o *HTTPMtlsAuth) GetPrivateKey() string {
 	if o == nil {
-		var ret HTTPCredentials
+		var ret string
 		return ret
 	}
-	return o.Credentials
+	return o.PrivateKey
 }
 
-// GetCredentialsOk returns a tuple with the Credentials field value
+// GetPrivateKeyOk returns a tuple with the PrivateKey field value
 // and a boolean to check if the value has been set.
-func (o *HTTPIntegration) GetCredentialsOk() (*HTTPCredentials, bool) {
+func (o *HTTPMtlsAuth) GetPrivateKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Credentials, true
+	return &o.PrivateKey, true
 }
 
-// SetCredentials sets field value.
-func (o *HTTPIntegration) SetCredentials(v HTTPCredentials) {
-	o.Credentials = v
+// SetPrivateKey sets field value.
+func (o *HTTPMtlsAuth) SetPrivateKey(v string) {
+	o.PrivateKey = v
 }
 
 // GetType returns the Type field value.
-func (o *HTTPIntegration) GetType() HTTPIntegrationType {
+func (o *HTTPMtlsAuth) GetType() HTTPMtlsAuthType {
 	if o == nil {
-		var ret HTTPIntegrationType
+		var ret HTTPMtlsAuthType
 		return ret
 	}
 	return o.Type
@@ -100,7 +100,7 @@ func (o *HTTPIntegration) GetType() HTTPIntegrationType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *HTTPIntegration) GetTypeOk() (*HTTPIntegrationType, bool) {
+func (o *HTTPMtlsAuth) GetTypeOk() (*HTTPMtlsAuthType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,18 +108,18 @@ func (o *HTTPIntegration) GetTypeOk() (*HTTPIntegrationType, bool) {
 }
 
 // SetType sets field value.
-func (o *HTTPIntegration) SetType(v HTTPIntegrationType) {
+func (o *HTTPMtlsAuth) SetType(v HTTPMtlsAuthType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o HTTPIntegration) MarshalJSON() ([]byte, error) {
+func (o HTTPMtlsAuth) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["base_url"] = o.BaseUrl
-	toSerialize["credentials"] = o.Credentials
+	toSerialize["certificate"] = o.Certificate
+	toSerialize["private_key"] = o.PrivateKey
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -129,34 +129,34 @@ func (o HTTPIntegration) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *HTTPIntegration) UnmarshalJSON(bytes []byte) (err error) {
+func (o *HTTPMtlsAuth) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BaseUrl     *string              `json:"base_url"`
-		Credentials *HTTPCredentials     `json:"credentials"`
-		Type        *HTTPIntegrationType `json:"type"`
+		Certificate *string           `json:"certificate"`
+		PrivateKey  *string           `json:"private_key"`
+		Type        *HTTPMtlsAuthType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.BaseUrl == nil {
-		return fmt.Errorf("required field base_url missing")
+	if all.Certificate == nil {
+		return fmt.Errorf("required field certificate missing")
 	}
-	if all.Credentials == nil {
-		return fmt.Errorf("required field credentials missing")
+	if all.PrivateKey == nil {
+		return fmt.Errorf("required field private_key missing")
 	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"base_url", "credentials", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"certificate", "private_key", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	o.BaseUrl = *all.BaseUrl
-	o.Credentials = *all.Credentials
+	o.Certificate = *all.Certificate
+	o.PrivateKey = *all.PrivateKey
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
