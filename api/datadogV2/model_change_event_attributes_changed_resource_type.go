@@ -15,13 +15,13 @@ type ChangeEventAttributesChangedResourceType string
 
 // List of ChangeEventAttributesChangedResourceType.
 const (
-	CHANGEEVENTATTRIBUTESCHANGEDRESOURCETYPE_FEATURE_FLAG  ChangeEventAttributesChangedResourceType = "feature_flag"
-	CHANGEEVENTATTRIBUTESCHANGEDRESOURCETYPE_CONFIGURATION ChangeEventAttributesChangedResourceType = "configuration"
+	CHANGEEVENTATTRIBUTESCHANGEDRESOURCETYPE_FEATURE_FLAG         ChangeEventAttributesChangedResourceType = "feature_flag"
+	CHANGEEVENTATTRIBUTESCHANGEDRESOURCETYPE_METRIC_CONFIGURATION ChangeEventAttributesChangedResourceType = "metric_configuration"
 )
 
 var allowedChangeEventAttributesChangedResourceTypeEnumValues = []ChangeEventAttributesChangedResourceType{
 	CHANGEEVENTATTRIBUTESCHANGEDRESOURCETYPE_FEATURE_FLAG,
-	CHANGEEVENTATTRIBUTESCHANGEDRESOURCETYPE_CONFIGURATION,
+	CHANGEEVENTATTRIBUTESCHANGEDRESOURCETYPE_METRIC_CONFIGURATION,
 }
 
 // GetAllowedValues reeturns the list of possible values.
