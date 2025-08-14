@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HTTPIntegrationType The definition of `HTTPIntegrationType` object.
+// HTTPIntegrationType The definition of the `HTTPIntegrationType` object.
 type HTTPIntegrationType string
 
 // List of HTTPIntegrationType.

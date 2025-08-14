@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSCredentialsUpdate - The definition of `AWSCredentialsUpdate` object.
+// AWSCredentialsUpdate - The definition of the `AWSCredentialsUpdate` object.
 type AWSCredentialsUpdate struct {
 	AWSAssumeRoleUpdate *AWSAssumeRoleUpdate
 

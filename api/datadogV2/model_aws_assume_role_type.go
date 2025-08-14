@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAssumeRoleType The definition of `AWSAssumeRoleType` object.
+// AWSAssumeRoleType The definition of the `AWSAssumeRole` object.
 type AWSAssumeRoleType string
 
 // List of AWSAssumeRoleType.

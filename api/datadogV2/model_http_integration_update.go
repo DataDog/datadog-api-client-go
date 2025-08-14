@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HTTPIntegrationUpdate The definition of `HTTPIntegrationUpdate` object.
+// HTTPIntegrationUpdate The definition of the `HTTPIntegrationUpdate` object.
 type HTTPIntegrationUpdate struct {
-	// Base HTTP url for the integration
+	// Base HTTP url for the integration.
 	BaseUrl *string `json:"base_url,omitempty"`
-	// The definition of `HTTPCredentialsUpdate` object.
+	// The definition of the `HTTPCredentialsUpdate` object.
 	Credentials *HTTPCredentialsUpdate `json:"credentials,omitempty"`
-	// The definition of `HTTPIntegrationType` object.
+	// The definition of the `HTTPIntegrationType` object.
 	Type HTTPIntegrationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
