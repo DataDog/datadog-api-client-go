@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"updated name"},"id":"c1eb5bb8-726a-4e59-9a61-ccbb26f95329","type":"datastores"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/actions-datastores/c1eb5bb8-726a-4e59-9a61-ccbb26f95329
+  response:
+    body: '{"errors":[{"title":"datastore not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

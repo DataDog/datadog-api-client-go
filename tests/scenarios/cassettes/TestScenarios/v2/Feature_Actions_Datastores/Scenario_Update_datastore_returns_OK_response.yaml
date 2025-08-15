@@ -1,0 +1,76 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"","name":"Test Datastore","org_access":"contributor","primary_column_name":"id","primary_key_generation_strategy":"none"},"type":"datastores"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/actions-datastores
+  response:
+    body: '{"data":{"id":"b7312b5f-ff05-4c96-972e-2d4d04ace106","type":"datastores"}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 1
+    method: GET
+    url: https://api.datadoghq.com/api/v2/actions-datastores/b7312b5f-ff05-4c96-972e-2d4d04ace106
+  response:
+    body: '{"data":{"id":"b7312b5f-ff05-4c96-972e-2d4d04ace106","type":"datastores","attributes":{"created_at":"2025-08-11T22:27:23.001019Z","creator_user_id":1445416,"creator_user_uuid":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"","modified_at":"2025-08-11T22:27:23.001019Z","name":"Test
+      Datastore","org_id":321813,"primary_column_name":"id","primary_key_generation_strategy":"none"}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"name":"updated name"},"id":"b7312b5f-ff05-4c96-972e-2d4d04ace106","type":"datastores"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 2
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/actions-datastores/b7312b5f-ff05-4c96-972e-2d4d04ace106
+  response:
+    body: '{"data":{"id":"b7312b5f-ff05-4c96-972e-2d4d04ace106","type":"datastores","attributes":{"created_at":"2025-08-11T22:27:23.001019Z","creator_user_id":1445416,"creator_user_uuid":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"","modified_at":"2025-08-11T22:27:23.321805Z","name":"updated
+      name","org_id":321813,"primary_column_name":"id","primary_key_generation_strategy":"none"}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 3
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/actions-datastores/b7312b5f-ff05-4c96-972e-2d4d04ace106
+  response:
+    body: ''
+    code: 200
+    duration: 0ms
+    headers: {}
+    status: 200 No Content
+version: 2
