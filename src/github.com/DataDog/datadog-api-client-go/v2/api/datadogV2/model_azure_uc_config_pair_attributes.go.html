@@ -72,7 +72,7 @@
 <span id="L15" class="ln">    15  </span>	<span class="comment">// An Azure config.</span>
 <span id="L16" class="ln">    16  </span>	Configs []AzureUCConfig `json:&#34;configs&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// The ID of the Azure config pair.</span>
-<span id="L18" class="ln">    18  </span>	Id *int64 `json:&#34;id,omitempty&#34;`
+<span id="L18" class="ln">    18  </span>	Id *string `json:&#34;id,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L20" class="ln">    20  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L21" class="ln">    21  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -120,9 +120,9 @@
 <span id="L63" class="ln">    63  </span>}
 <span id="L64" class="ln">    64  </span>
 <span id="L65" class="ln">    65  </span><span class="comment">// GetId returns the Id field value if set, zero value otherwise.</span>
-<span id="L66" class="ln">    66  </span>func (o *AzureUCConfigPairAttributes) GetId() int64 {
+<span id="L66" class="ln">    66  </span>func (o *AzureUCConfigPairAttributes) GetId() string {
 <span id="L67" class="ln">    67  </span>	if o == nil || o.Id == nil {
-<span id="L68" class="ln">    68  </span>		var ret int64
+<span id="L68" class="ln">    68  </span>		var ret string
 <span id="L69" class="ln">    69  </span>		return ret
 <span id="L70" class="ln">    70  </span>	}
 <span id="L71" class="ln">    71  </span>	return *o.Id
@@ -130,7 +130,7 @@
 <span id="L73" class="ln">    73  </span>
 <span id="L74" class="ln">    74  </span><span class="comment">// GetIdOk returns a tuple with the Id field value if set, nil otherwise</span>
 <span id="L75" class="ln">    75  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L76" class="ln">    76  </span>func (o *AzureUCConfigPairAttributes) GetIdOk() (*int64, bool) {
+<span id="L76" class="ln">    76  </span>func (o *AzureUCConfigPairAttributes) GetIdOk() (*string, bool) {
 <span id="L77" class="ln">    77  </span>	if o == nil || o.Id == nil {
 <span id="L78" class="ln">    78  </span>		return nil, false
 <span id="L79" class="ln">    79  </span>	}
@@ -142,8 +142,8 @@
 <span id="L85" class="ln">    85  </span>	return o != nil &amp;&amp; o.Id != nil
 <span id="L86" class="ln">    86  </span>}
 <span id="L87" class="ln">    87  </span>
-<span id="L88" class="ln">    88  </span><span class="comment">// SetId gets a reference to the given int64 and assigns it to the Id field.</span>
-<span id="L89" class="ln">    89  </span>func (o *AzureUCConfigPairAttributes) SetId(v int64) {
+<span id="L88" class="ln">    88  </span><span class="comment">// SetId gets a reference to the given string and assigns it to the Id field.</span>
+<span id="L89" class="ln">    89  </span>func (o *AzureUCConfigPairAttributes) SetId(v string) {
 <span id="L90" class="ln">    90  </span>	o.Id = &amp;v
 <span id="L91" class="ln">    91  </span>}
 <span id="L92" class="ln">    92  </span>
@@ -168,7 +168,7 @@
 <span id="L111" class="ln">   111  </span>func (o *AzureUCConfigPairAttributes) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L112" class="ln">   112  </span>	all := struct {
 <span id="L113" class="ln">   113  </span>		Configs *[]AzureUCConfig `json:&#34;configs&#34;`
-<span id="L114" class="ln">   114  </span>		Id      *int64           `json:&#34;id,omitempty&#34;`
+<span id="L114" class="ln">   114  </span>		Id      *string          `json:&#34;id,omitempty&#34;`
 <span id="L115" class="ln">   115  </span>	}{}
 <span id="L116" class="ln">   116  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L117" class="ln">   117  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)

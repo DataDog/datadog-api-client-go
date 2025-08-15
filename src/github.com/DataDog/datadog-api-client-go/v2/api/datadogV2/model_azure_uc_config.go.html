@@ -84,7 +84,7 @@
 <span id="L27" class="ln">    27  </span>	<span class="comment">// The path where the Azure Export is saved.</span>
 <span id="L28" class="ln">    28  </span>	ExportPath string `json:&#34;export_path&#34;`
 <span id="L29" class="ln">    29  </span>	<span class="comment">// The ID of the Azure config.</span>
-<span id="L30" class="ln">    30  </span>	Id *int64 `json:&#34;id,omitempty&#34;`
+<span id="L30" class="ln">    30  </span>	Id *string `json:&#34;id,omitempty&#34;`
 <span id="L31" class="ln">    31  </span>	<span class="comment">// The number of months the report has been backfilled.</span>
 <span id="L32" class="ln">    32  </span>	<span class="comment">// Deprecated</span>
 <span id="L33" class="ln">    33  </span>	Months *int32 `json:&#34;months,omitempty&#34;`
@@ -303,9 +303,9 @@
 <span id="L246" class="ln">   246  </span>}
 <span id="L247" class="ln">   247  </span>
 <span id="L248" class="ln">   248  </span><span class="comment">// GetId returns the Id field value if set, zero value otherwise.</span>
-<span id="L249" class="ln">   249  </span>func (o *AzureUCConfig) GetId() int64 {
+<span id="L249" class="ln">   249  </span>func (o *AzureUCConfig) GetId() string {
 <span id="L250" class="ln">   250  </span>	if o == nil || o.Id == nil {
-<span id="L251" class="ln">   251  </span>		var ret int64
+<span id="L251" class="ln">   251  </span>		var ret string
 <span id="L252" class="ln">   252  </span>		return ret
 <span id="L253" class="ln">   253  </span>	}
 <span id="L254" class="ln">   254  </span>	return *o.Id
@@ -313,7 +313,7 @@
 <span id="L256" class="ln">   256  </span>
 <span id="L257" class="ln">   257  </span><span class="comment">// GetIdOk returns a tuple with the Id field value if set, nil otherwise</span>
 <span id="L258" class="ln">   258  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L259" class="ln">   259  </span>func (o *AzureUCConfig) GetIdOk() (*int64, bool) {
+<span id="L259" class="ln">   259  </span>func (o *AzureUCConfig) GetIdOk() (*string, bool) {
 <span id="L260" class="ln">   260  </span>	if o == nil || o.Id == nil {
 <span id="L261" class="ln">   261  </span>		return nil, false
 <span id="L262" class="ln">   262  </span>	}
@@ -325,8 +325,8 @@
 <span id="L268" class="ln">   268  </span>	return o != nil &amp;&amp; o.Id != nil
 <span id="L269" class="ln">   269  </span>}
 <span id="L270" class="ln">   270  </span>
-<span id="L271" class="ln">   271  </span><span class="comment">// SetId gets a reference to the given int64 and assigns it to the Id field.</span>
-<span id="L272" class="ln">   272  </span>func (o *AzureUCConfig) SetId(v int64) {
+<span id="L271" class="ln">   271  </span><span class="comment">// SetId gets a reference to the given string and assigns it to the Id field.</span>
+<span id="L272" class="ln">   272  </span>func (o *AzureUCConfig) SetId(v string) {
 <span id="L273" class="ln">   273  </span>	o.Id = &amp;v
 <span id="L274" class="ln">   274  </span>}
 <span id="L275" class="ln">   275  </span>
@@ -559,7 +559,7 @@
 <span id="L502" class="ln">   502  </span>		ErrorMessages    []string `json:&#34;error_messages,omitempty&#34;`
 <span id="L503" class="ln">   503  </span>		ExportName       *string  `json:&#34;export_name&#34;`
 <span id="L504" class="ln">   504  </span>		ExportPath       *string  `json:&#34;export_path&#34;`
-<span id="L505" class="ln">   505  </span>		Id               *int64   `json:&#34;id,omitempty&#34;`
+<span id="L505" class="ln">   505  </span>		Id               *string  `json:&#34;id,omitempty&#34;`
 <span id="L506" class="ln">   506  </span>		Months           *int32   `json:&#34;months,omitempty&#34;`
 <span id="L507" class="ln">   507  </span>		Scope            *string  `json:&#34;scope&#34;`
 <span id="L508" class="ln">   508  </span>		Status           *string  `json:&#34;status&#34;`
