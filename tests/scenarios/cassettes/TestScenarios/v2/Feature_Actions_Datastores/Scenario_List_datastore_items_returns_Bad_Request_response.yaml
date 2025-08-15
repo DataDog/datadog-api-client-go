@@ -1,0 +1,55 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"","name":"Test Datastore","org_access":"contributor","primary_column_name":"id","primary_key_generation_strategy":"none"},"type":"datastores"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/actions-datastores
+  response:
+    body: '{"data":{"id":"ddb41c1d-51d8-4975-94b4-261e659dec74","type":"datastores"}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 1
+    method: GET
+    url: https://api.datadoghq.com/api/v2/actions-datastores/invalid-uuid/items
+  response:
+    body: '{"errors":[{"title":"invalid path parameter","detail":"invalid datastoreId
+      format in path","source":{"parameter":"datastoreId"}}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/actions-datastores/ddb41c1d-51d8-4975-94b4-261e659dec74
+  response:
+    body: ''
+    code: 200
+    duration: 0ms
+    headers: {}
+    status: 200 No Content
+version: 2

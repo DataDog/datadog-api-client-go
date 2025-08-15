@@ -1,0 +1,75 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"","name":"Test Datastore","org_access":"contributor","primary_column_name":"id","primary_key_generation_strategy":"none"},"type":"datastores"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/actions-datastores
+  response:
+    body: '{"data":{"id":"4bb0f4ff-bb80-45fe-ac06-73a66bb7b488","type":"datastores"}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 1
+    method: GET
+    url: https://api.datadoghq.com/api/v2/actions-datastores/4bb0f4ff-bb80-45fe-ac06-73a66bb7b488
+  response:
+    body: '{"data":{"id":"4bb0f4ff-bb80-45fe-ac06-73a66bb7b488","type":"datastores","attributes":{"created_at":"2025-08-11T22:19:06.69789Z","creator_user_id":1445416,"creator_user_uuid":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"","modified_at":"2025-08-11T22:19:06.69789Z","name":"Test
+      Datastore","org_id":321813,"primary_column_name":"id","primary_key_generation_strategy":"none"}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"value":{"data":"example data","id":"new-item-key","key":"value"}},"id":"e7e64418-b60c-4789-9612-895ac8423207","type":"items"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 2
+    method: POST
+    url: https://api.datadoghq.com/api/v2/actions-datastores/4bb0f4ff-bb80-45fe-ac06-73a66bb7b488/items
+  response:
+    body: '{"data":{"id":"94a0f1d7-0049-4a89-bd8b-38d596feb328","type":"items"}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 3
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/actions-datastores/4bb0f4ff-bb80-45fe-ac06-73a66bb7b488
+  response:
+    body: ''
+    code: 200
+    duration: 0ms
+    headers: {}
+    status: 200 No Content
+version: 2
