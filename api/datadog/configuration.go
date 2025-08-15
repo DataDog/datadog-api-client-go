@@ -688,6 +688,7 @@ func NewConfiguration() *Configuration {
 			"v2.AddMemberTeam":                       false,
 			"v2.ListMemberTeams":                     false,
 			"v2.RemoveMemberTeam":                    false,
+			"v2.SyncTeams":                           false,
 			"v2.CreateIncidentTeam":                  false,
 			"v2.DeleteIncidentTeam":                  false,
 			"v2.GetIncidentTeam":                     false,
