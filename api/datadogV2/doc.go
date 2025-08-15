@@ -508,6 +508,7 @@
 //   - [TeamsApi.ListMemberTeams]
 //   - [TeamsApi.ListTeams]
 //   - [TeamsApi.RemoveMemberTeam]
+//   - [TeamsApi.SyncTeams]
 //   - [TeamsApi.UpdateTeam]
 //   - [TeamsApi.UpdateTeamLink]
 //   - [TeamsApi.UpdateTeamMembership]
