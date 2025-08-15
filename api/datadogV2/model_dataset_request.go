@@ -24,8 +24,8 @@ import (
 type DatasetRequest struct {
 	// Dataset metadata and configurations.
 	Attributes DatasetAttributesRequest `json:"attributes"`
-	// Resource type, always "dataset".
-	Type string `json:"type"`
+	// Resource type, always set to `dataset`.
+	Type DatasetType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -35,7 +35,7 @@ type DatasetRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDatasetRequest(attributes DatasetAttributesRequest, typeVar string) *DatasetRequest {
+func NewDatasetRequest(attributes DatasetAttributesRequest, typeVar DatasetType) *DatasetRequest {
 	this := DatasetRequest{}
 	this.Attributes = attributes
 	this.Type = typeVar
@@ -47,6 +47,8 @@ func NewDatasetRequest(attributes DatasetAttributesRequest, typeVar string) *Dat
 // but it doesn't guarantee that properties required by API are set.
 func NewDatasetRequestWithDefaults() *DatasetRequest {
 	this := DatasetRequest{}
+	var typeVar DatasetType = DATASETTYPE_DATASET
+	this.Type = typeVar
 	return &this
 }
 
@@ -74,9 +76,9 @@ func (o *DatasetRequest) SetAttributes(v DatasetAttributesRequest) {
 }
 
 // GetType returns the Type field value.
-func (o *DatasetRequest) GetType() string {
+func (o *DatasetRequest) GetType() DatasetType {
 	if o == nil {
-		var ret string
+		var ret DatasetType
 		return ret
 	}
 	return o.Type
@@ -84,7 +86,7 @@ func (o *DatasetRequest) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *DatasetRequest) GetTypeOk() (*string, bool) {
+func (o *DatasetRequest) GetTypeOk() (*DatasetType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,7 +94,7 @@ func (o *DatasetRequest) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value.
-func (o *DatasetRequest) SetType(v string) {
+func (o *DatasetRequest) SetType(v DatasetType) {
 	o.Type = v
 }
 
@@ -115,7 +117,7 @@ func (o DatasetRequest) MarshalJSON() ([]byte, error) {
 func (o *DatasetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *DatasetAttributesRequest `json:"attributes"`
-		Type       *string                   `json:"type"`
+		Type       *DatasetType              `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -138,7 +140,11 @@ func (o *DatasetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	o.Type = *all.Type
+	if !all.Type.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

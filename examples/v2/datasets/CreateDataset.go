@@ -29,7 +29,7 @@ func main() {
 					},
 				},
 			},
-			Type: "dataset",
+			Type: datadogV2.DATASETTYPE_DATASET,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

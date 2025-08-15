@@ -24,8 +24,8 @@ type DatasetResponse struct {
 	Attributes *DatasetAttributesResponse `json:"attributes,omitempty"`
 	// Unique identifier for the dataset.
 	Id *string `json:"id,omitempty"`
-	// Resource type, always "dataset".
-	Type *string `json:"type,omitempty"`
+	// Resource type, always set to `dataset`.
+	Type *DatasetType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -37,6 +37,8 @@ type DatasetResponse struct {
 // will change when the set of required properties is changed.
 func NewDatasetResponse() *DatasetResponse {
 	this := DatasetResponse{}
+	var typeVar DatasetType = DATASETTYPE_DATASET
+	this.Type = &typeVar
 	return &this
 }
 
@@ -45,6 +47,8 @@ func NewDatasetResponse() *DatasetResponse {
 // but it doesn't guarantee that properties required by API are set.
 func NewDatasetResponseWithDefaults() *DatasetResponse {
 	this := DatasetResponse{}
+	var typeVar DatasetType = DATASETTYPE_DATASET
+	this.Type = &typeVar
 	return &this
 }
 
@@ -105,9 +109,9 @@ func (o *DatasetResponse) SetId(v string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *DatasetResponse) GetType() string {
+func (o *DatasetResponse) GetType() DatasetType {
 	if o == nil || o.Type == nil {
-		var ret string
+		var ret DatasetType
 		return ret
 	}
 	return *o.Type
@@ -115,7 +119,7 @@ func (o *DatasetResponse) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DatasetResponse) GetTypeOk() (*string, bool) {
+func (o *DatasetResponse) GetTypeOk() (*DatasetType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -127,8 +131,8 @@ func (o *DatasetResponse) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *DatasetResponse) SetType(v string) {
+// SetType gets a reference to the given DatasetType and assigns it to the Type field.
+func (o *DatasetResponse) SetType(v DatasetType) {
 	o.Type = &v
 }
 
@@ -159,7 +163,7 @@ func (o *DatasetResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *DatasetAttributesResponse `json:"attributes,omitempty"`
 		Id         *string                    `json:"id,omitempty"`
-		Type       *string                    `json:"type,omitempty"`
+		Type       *DatasetType               `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -177,7 +181,11 @@ func (o *DatasetResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	o.Type = all.Type
+	if all.Type != nil && !all.Type.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = all.Type
+	}
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
