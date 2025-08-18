@@ -44,23 +44,23 @@ jobs:
       - name: Get GitHub App token
         if: github.event_name == 'pull_request'
         id: get_token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1.12.0
         with:
           app-id: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
           private-key: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
           repositories: datadog-api-spec
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
       - name: Post pending status check
         if: github.event_name == 'pull_request' && contains(github.event.pull_request.head.ref, 'datadog-api-spec/generated/')
-        uses: DataDog/github-actions/post-status-check@v2
+        uses: DataDog/github-actions/post-status-check@65b4875f33ad773d7ba4b005a2cb5f35020295f3 # v2.3.0
         with:
           github-token: ${{ steps.get_token.outputs.token }}
           repo: datadog-api-spec
           status: pending
           context: integration
       - name: Install Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@19bb51245e9c80abacb2e91cc42b33fa478b8639 # v4.2.1
         with:
           go-version: 1.22.x
           cache: true
@@ -80,7 +80,7 @@ jobs:
           SLEEP_AFTER_REQUEST: "${{ vars.SLEEP_AFTER_REQUEST }}"
       - name: Post failure status check
         if: failure() && github.event_name == 'pull_request' && contains(github.event.pull_request.head.ref, 'datadog-api-spec/generated/')
-        uses: DataDog/github-actions/post-status-check@v2
+        uses: DataDog/github-actions/post-status-check@65b4875f33ad773d7ba4b005a2cb5f35020295f3 # v2.3.0
         with:
           github-token: ${{ steps.get_token.outputs.token }}
           repo: datadog-api-spec
@@ -88,7 +88,7 @@ jobs:
           context: integration
       - name: Post success status check
         if: "!failure() && github.event_name == 'pull_request' && contains(github.event.pull_request.head.ref, 'datadog-api-spec/generated/')"
-        uses: DataDog/github-actions/post-status-check@v2
+        uses: DataDog/github-actions/post-status-check@65b4875f33ad773d7ba4b005a2cb5f35020295f3 # v2.3.0
         with:
           github-token: ${{ steps.get_token.outputs.token }}
           repo: datadog-api-spec
