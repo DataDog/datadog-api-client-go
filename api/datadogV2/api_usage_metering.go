@@ -16,14 +16,39 @@ import (
 // UsageMeteringApi service type
 type UsageMeteringApi datadog.Service
 
+// GetActiveBillingDimensionsOptionalParameters holds optional parameters for GetActiveBillingDimensions.
+type GetActiveBillingDimensionsOptionalParameters struct {
+	Month *time.Time
+}
+
+// NewGetActiveBillingDimensionsOptionalParameters creates an empty struct for parameters.
+func NewGetActiveBillingDimensionsOptionalParameters() *GetActiveBillingDimensionsOptionalParameters {
+	this := GetActiveBillingDimensionsOptionalParameters{}
+	return &this
+}
+
+// WithMonth sets the corresponding parameter name and returns the struct.
+func (r *GetActiveBillingDimensionsOptionalParameters) WithMonth(month time.Time) *GetActiveBillingDimensionsOptionalParameters {
+	r.Month = &month
+	return r
+}
+
 // GetActiveBillingDimensions Get active billing dimensions for cost attribution.
-// Get active billing dimensions for cost attribution. Cost data for a given month becomes available no later than the 19th of the following month.
-func (a *UsageMeteringApi) GetActiveBillingDimensions(ctx _context.Context) (ActiveBillingDimensionsResponse, *_nethttp.Response, error) {
+// Get active billing dimensions for cost attribution in a given month. Note that billing dimensions active in a given month may not appear in the Monthly Cost Attribution API response until the 19th of the following month. For the most accurate results, request the same month for both endpoints.
+func (a *UsageMeteringApi) GetActiveBillingDimensions(ctx _context.Context, o ...GetActiveBillingDimensionsOptionalParameters) (ActiveBillingDimensionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue ActiveBillingDimensionsResponse
+		optionalParams      GetActiveBillingDimensionsOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetActiveBillingDimensionsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.UsageMeteringApi.GetActiveBillingDimensions")
 	if err != nil {
@@ -35,6 +60,9 @@ func (a *UsageMeteringApi) GetActiveBillingDimensions(ctx _context.Context) (Act
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.Month != nil {
+		localVarQueryParams.Add("month", datadog.ParameterToString(*optionalParams.Month, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {

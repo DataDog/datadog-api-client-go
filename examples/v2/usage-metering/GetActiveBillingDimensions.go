@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetActiveBillingDimensions(ctx)
+	resp, r, err := api.GetActiveBillingDimensions(ctx, *datadogV2.NewGetActiveBillingDimensionsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetActiveBillingDimensions`: %v\n", err)
