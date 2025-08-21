@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IPAllowlistEntryType IP allowlist Entry type.
+// IPAllowlistEntryType IP allowlist entry type.
 type IPAllowlistEntryType string
 
 // List of IPAllowlistEntryType.

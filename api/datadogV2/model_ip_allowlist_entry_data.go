@@ -16,7 +16,7 @@ type IPAllowlistEntryData struct {
 	Attributes *IPAllowlistEntryAttributes `json:"attributes,omitempty"`
 	// The unique identifier of the IP allowlist entry.
 	Id *string `json:"id,omitempty"`
-	// IP allowlist Entry type.
+	// IP allowlist entry type.
 	Type IPAllowlistEntryType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
