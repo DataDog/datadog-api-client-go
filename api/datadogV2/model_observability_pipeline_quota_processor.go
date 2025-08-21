@@ -12,8 +12,8 @@ import (
 
 // ObservabilityPipelineQuotaProcessor The Quota Processor measures logging traffic for logs that match a specified filter. When the configured daily quota is met, the processor can drop or alert.
 type ObservabilityPipelineQuotaProcessor struct {
-	// If set to `true`, logs that matched the quota filter and sent after the quota has been met are dropped; only logs that did not match the filter query continue through the pipeline.
-	DropEvents bool `json:"drop_events"`
+	// If set to `true`, logs that match the quota filter and are sent after the quota is exceeded are dropped. Logs that do not match the filter continue through the pipeline. **Note**: You can set either `drop_events` or `overflow_action`, but not both.
+	DropEvents *bool `json:"drop_events,omitempty"`
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// If `true`, the processor skips quota checks when partition fields are missing from the logs.
@@ -26,7 +26,7 @@ type ObservabilityPipelineQuotaProcessor struct {
 	Limit ObservabilityPipelineQuotaProcessorLimit `json:"limit"`
 	// Name of the quota.
 	Name string `json:"name"`
-	// The action to take when the quota is exceeded. Options:
+	// The action to take when the quota or bucket limit is exceeded. Options:
 	// - `drop`: Drop the event.
 	// - `no_action`: Let the event pass through.
 	// - `overflow_routing`: Route to an overflow destination.
@@ -36,6 +36,12 @@ type ObservabilityPipelineQuotaProcessor struct {
 	Overrides []ObservabilityPipelineQuotaProcessorOverride `json:"overrides,omitempty"`
 	// A list of fields used to segment log traffic for quota enforcement. Quotas are tracked independently by unique combinations of these field values.
 	PartitionFields []string `json:"partition_fields,omitempty"`
+	// The action to take when the quota or bucket limit is exceeded. Options:
+	// - `drop`: Drop the event.
+	// - `no_action`: Let the event pass through.
+	// - `overflow_routing`: Route to an overflow destination.
+	//
+	TooManyBucketsAction *ObservabilityPipelineQuotaProcessorOverflowAction `json:"too_many_buckets_action,omitempty"`
 	// The processor type. The value should always be `quota`.
 	Type ObservabilityPipelineQuotaProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -47,9 +53,8 @@ type ObservabilityPipelineQuotaProcessor struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineQuotaProcessor(dropEvents bool, id string, include string, inputs []string, limit ObservabilityPipelineQuotaProcessorLimit, name string, typeVar ObservabilityPipelineQuotaProcessorType) *ObservabilityPipelineQuotaProcessor {
+func NewObservabilityPipelineQuotaProcessor(id string, include string, inputs []string, limit ObservabilityPipelineQuotaProcessorLimit, name string, typeVar ObservabilityPipelineQuotaProcessorType) *ObservabilityPipelineQuotaProcessor {
 	this := ObservabilityPipelineQuotaProcessor{}
-	this.DropEvents = dropEvents
 	this.Id = id
 	this.Include = include
 	this.Inputs = inputs
@@ -69,27 +74,32 @@ func NewObservabilityPipelineQuotaProcessorWithDefaults() *ObservabilityPipeline
 	return &this
 }
 
-// GetDropEvents returns the DropEvents field value.
+// GetDropEvents returns the DropEvents field value if set, zero value otherwise.
 func (o *ObservabilityPipelineQuotaProcessor) GetDropEvents() bool {
-	if o == nil {
+	if o == nil || o.DropEvents == nil {
 		var ret bool
 		return ret
 	}
-	return o.DropEvents
+	return *o.DropEvents
 }
 
-// GetDropEventsOk returns a tuple with the DropEvents field value
+// GetDropEventsOk returns a tuple with the DropEvents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineQuotaProcessor) GetDropEventsOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.DropEvents == nil {
 		return nil, false
 	}
-	return &o.DropEvents, true
+	return o.DropEvents, true
 }
 
-// SetDropEvents sets field value.
+// HasDropEvents returns a boolean if a field has been set.
+func (o *ObservabilityPipelineQuotaProcessor) HasDropEvents() bool {
+	return o != nil && o.DropEvents != nil
+}
+
+// SetDropEvents gets a reference to the given bool and assigns it to the DropEvents field.
 func (o *ObservabilityPipelineQuotaProcessor) SetDropEvents(v bool) {
-	o.DropEvents = v
+	o.DropEvents = &v
 }
 
 // GetId returns the Id field value.
@@ -319,6 +329,34 @@ func (o *ObservabilityPipelineQuotaProcessor) SetPartitionFields(v []string) {
 	o.PartitionFields = v
 }
 
+// GetTooManyBucketsAction returns the TooManyBucketsAction field value if set, zero value otherwise.
+func (o *ObservabilityPipelineQuotaProcessor) GetTooManyBucketsAction() ObservabilityPipelineQuotaProcessorOverflowAction {
+	if o == nil || o.TooManyBucketsAction == nil {
+		var ret ObservabilityPipelineQuotaProcessorOverflowAction
+		return ret
+	}
+	return *o.TooManyBucketsAction
+}
+
+// GetTooManyBucketsActionOk returns a tuple with the TooManyBucketsAction field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineQuotaProcessor) GetTooManyBucketsActionOk() (*ObservabilityPipelineQuotaProcessorOverflowAction, bool) {
+	if o == nil || o.TooManyBucketsAction == nil {
+		return nil, false
+	}
+	return o.TooManyBucketsAction, true
+}
+
+// HasTooManyBucketsAction returns a boolean if a field has been set.
+func (o *ObservabilityPipelineQuotaProcessor) HasTooManyBucketsAction() bool {
+	return o != nil && o.TooManyBucketsAction != nil
+}
+
+// SetTooManyBucketsAction gets a reference to the given ObservabilityPipelineQuotaProcessorOverflowAction and assigns it to the TooManyBucketsAction field.
+func (o *ObservabilityPipelineQuotaProcessor) SetTooManyBucketsAction(v ObservabilityPipelineQuotaProcessorOverflowAction) {
+	o.TooManyBucketsAction = &v
+}
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineQuotaProcessor) GetType() ObservabilityPipelineQuotaProcessorType {
 	if o == nil {
@@ -348,7 +386,9 @@ func (o ObservabilityPipelineQuotaProcessor) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["drop_events"] = o.DropEvents
+	if o.DropEvents != nil {
+		toSerialize["drop_events"] = o.DropEvents
+	}
 	toSerialize["id"] = o.Id
 	if o.IgnoreWhenMissingPartitions != nil {
 		toSerialize["ignore_when_missing_partitions"] = o.IgnoreWhenMissingPartitions
@@ -366,6 +406,9 @@ func (o ObservabilityPipelineQuotaProcessor) MarshalJSON() ([]byte, error) {
 	if o.PartitionFields != nil {
 		toSerialize["partition_fields"] = o.PartitionFields
 	}
+	if o.TooManyBucketsAction != nil {
+		toSerialize["too_many_buckets_action"] = o.TooManyBucketsAction
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -377,7 +420,7 @@ func (o ObservabilityPipelineQuotaProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineQuotaProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DropEvents                  *bool                                              `json:"drop_events"`
+		DropEvents                  *bool                                              `json:"drop_events,omitempty"`
 		Id                          *string                                            `json:"id"`
 		IgnoreWhenMissingPartitions *bool                                              `json:"ignore_when_missing_partitions,omitempty"`
 		Include                     *string                                            `json:"include"`
@@ -387,13 +430,11 @@ func (o *ObservabilityPipelineQuotaProcessor) UnmarshalJSON(bytes []byte) (err e
 		OverflowAction              *ObservabilityPipelineQuotaProcessorOverflowAction `json:"overflow_action,omitempty"`
 		Overrides                   []ObservabilityPipelineQuotaProcessorOverride      `json:"overrides,omitempty"`
 		PartitionFields             []string                                           `json:"partition_fields,omitempty"`
+		TooManyBucketsAction        *ObservabilityPipelineQuotaProcessorOverflowAction `json:"too_many_buckets_action,omitempty"`
 		Type                        *ObservabilityPipelineQuotaProcessorType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.DropEvents == nil {
-		return fmt.Errorf("required field drop_events missing")
 	}
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
@@ -415,13 +456,13 @@ func (o *ObservabilityPipelineQuotaProcessor) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"drop_events", "id", "ignore_when_missing_partitions", "include", "inputs", "limit", "name", "overflow_action", "overrides", "partition_fields", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"drop_events", "id", "ignore_when_missing_partitions", "include", "inputs", "limit", "name", "overflow_action", "overrides", "partition_fields", "too_many_buckets_action", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	o.DropEvents = *all.DropEvents
+	o.DropEvents = all.DropEvents
 	o.Id = *all.Id
 	o.IgnoreWhenMissingPartitions = all.IgnoreWhenMissingPartitions
 	o.Include = *all.Include
@@ -438,6 +479,11 @@ func (o *ObservabilityPipelineQuotaProcessor) UnmarshalJSON(bytes []byte) (err e
 	}
 	o.Overrides = all.Overrides
 	o.PartitionFields = all.PartitionFields
+	if all.TooManyBucketsAction != nil && !all.TooManyBucketsAction.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.TooManyBucketsAction = all.TooManyBucketsAction
+	}
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
