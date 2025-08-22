@@ -14,7 +14,7 @@ type MicrosoftTeamsChannelInfoResponseData struct {
 	Attributes *MicrosoftTeamsChannelInfoResponseAttributes `json:"attributes,omitempty"`
 	// The ID of the channel.
 	Id *string `json:"id,omitempty"`
-	// Channel info resource type.
+	// Microsoft Teams channel info resource type.
 	Type *MicrosoftTeamsChannelInfoType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
