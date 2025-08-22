@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MicrosoftTeamsChannelInfoType Channel info resource type.
+// MicrosoftTeamsChannelInfoType Microsoft Teams channel info resource type.
 type MicrosoftTeamsChannelInfoType string
 
 // List of MicrosoftTeamsChannelInfoType.
