@@ -482,6 +482,7 @@
 //   - [SoftwareCatalogApi.ListCatalogRelation]
 //   - [SoftwareCatalogApi.UpsertCatalogEntity]
 //   - [SoftwareCatalogApi.UpsertCatalogKind]
+//   - [SpaApi.GetSPARecommendations]
 //   - [SpansApi.AggregateSpans]
 //   - [SpansApi.ListSpans]
 //   - [SpansApi.ListSpansGet]
