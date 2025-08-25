@@ -16,10 +16,12 @@ type CaseType string
 // List of CaseType.
 const (
 	CASETYPE_STANDARD CaseType = "STANDARD"
+	CASETYPE_TUNKNOWN CaseType = "TUNKNOWN"
 )
 
 var allowedCaseTypeEnumValues = []CaseType{
 	CASETYPE_STANDARD,
+	CASETYPE_TUNKNOWN,
 }
 
 // GetAllowedValues reeturns the list of possible values.
