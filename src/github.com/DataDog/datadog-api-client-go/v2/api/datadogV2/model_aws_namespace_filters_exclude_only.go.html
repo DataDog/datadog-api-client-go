@@ -67,11 +67,11 @@
 <span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
-<span id="L13" class="ln">    13  </span><span class="comment">// AWSNamespaceFiltersExcludeOnly Exclude only these namespaces from metrics collection. Defaults to `[&#34;AWS/SQS&#34;, &#34;AWS/ElasticMapReduce&#34;]`.</span>
-<span id="L14" class="ln">    14  </span><span class="comment">// `AWS/SQS` and `AWS/ElasticMapReduce` are excluded by default to reduce your AWS CloudWatch costs from `GetMetricData` API calls.</span>
+<span id="L13" class="ln">    13  </span><span class="comment">// AWSNamespaceFiltersExcludeOnly Exclude only these namespaces from metrics collection. Defaults to `[&#34;AWS/SQS&#34;, &#34;AWS/ElasticMapReduce&#34;, &#34;AWS/Usage&#34;]`.</span>
+<span id="L14" class="ln">    14  </span><span class="comment">// `AWS/SQS`, `AWS/ElasticMapReduce`, and `AWS/Usage` are excluded by default to reduce your AWS CloudWatch costs from `GetMetricData` API calls.</span>
 <span id="L15" class="ln">    15  </span>type AWSNamespaceFiltersExcludeOnly struct {
-<span id="L16" class="ln">    16  </span>	<span class="comment">// Exclude only these namespaces from metrics collection. Defaults to `[&#34;AWS/SQS&#34;, &#34;AWS/ElasticMapReduce&#34;]`.</span>
-<span id="L17" class="ln">    17  </span>	<span class="comment">// `AWS/SQS` and `AWS/ElasticMapReduce` are excluded by default to reduce your AWS CloudWatch costs from `GetMetricData` API calls.</span>
+<span id="L16" class="ln">    16  </span>	<span class="comment">// Exclude only these namespaces from metrics collection. Defaults to `[&#34;AWS/SQS&#34;, &#34;AWS/ElasticMapReduce&#34;, &#34;AWS/Usage&#34;]`.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// `AWS/SQS`, `AWS/ElasticMapReduce`, and `AWS/Usage` are excluded by default to reduce your AWS CloudWatch costs from `GetMetricData` API calls.</span>
 <span id="L18" class="ln">    18  </span>	ExcludeOnly []string `json:&#34;exclude_only&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L20" class="ln">    20  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
