@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAccountUpdateRequest AWS Account Update Request body.
+// AWSAccountUpdateRequest AWS Account update request body.
 type AWSAccountUpdateRequest struct {
 	// AWS Account Update Request data.
 	Data AWSAccountUpdateRequestData `json:"data"`
