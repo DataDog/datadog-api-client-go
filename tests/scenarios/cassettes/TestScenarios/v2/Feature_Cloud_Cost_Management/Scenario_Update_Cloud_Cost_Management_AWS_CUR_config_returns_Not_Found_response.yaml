@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"is_enabled":true},"type":"aws_cur_config_patch_request"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/cost/aws_cur_config/12345678
+  response:
+    body: '{"errors":[{"status":"404","title":"Cloud account not found","detail":"Cloud
+      account with ID 12345678 was not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2
