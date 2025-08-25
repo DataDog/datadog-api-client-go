@@ -1309,7 +1309,7 @@
 <span id="L1252" class="ln">  1252  </span>			ErrorBody:    localVarBody,
 <span id="L1253" class="ln">  1253  </span>			ErrorMessage: localVarHTTPResponse.Status,
 <span id="L1254" class="ln">  1254  </span>		}
-<span id="L1255" class="ln">  1255  </span>		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L1255" class="ln">  1255  </span>		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 <span id="L1256" class="ln">  1256  </span>			var v APIErrorResponse
 <span id="L1257" class="ln">  1257  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
 <span id="L1258" class="ln">  1258  </span>			if err != nil {
@@ -1390,7 +1390,7 @@
 <span id="L1333" class="ln">  1333  </span>			ErrorBody:    localVarBody,
 <span id="L1334" class="ln">  1334  </span>			ErrorMessage: localVarHTTPResponse.Status,
 <span id="L1335" class="ln">  1335  </span>		}
-<span id="L1336" class="ln">  1336  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L1336" class="ln">  1336  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 <span id="L1337" class="ln">  1337  </span>			var v APIErrorResponse
 <span id="L1338" class="ln">  1338  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
 <span id="L1339" class="ln">  1339  </span>			if err != nil {
