@@ -16,7 +16,7 @@ func main() {
 	body := datadogV2.AwsOnDemandCreateRequest{
 		Data: datadogV2.AwsOnDemandCreateData{
 			Attributes: datadogV2.AwsOnDemandCreateAttributes{
-				Arn: "arn:aws:lambda:eu-west-3:376334461865:function:This-Is-An-Api-Spec-Test",
+				Arn: "arn:aws:lambda:us-west-2:123456789012:function:my-function",
 			},
 			Type: datadogV2.AWSONDEMANDTYPE_AWS_RESOURCE,
 		},
