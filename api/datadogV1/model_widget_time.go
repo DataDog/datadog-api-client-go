@@ -10,9 +10,10 @@ import (
 
 // WidgetTime - Time setting for the widget.
 type WidgetTime struct {
-	WidgetLegacyLiveSpan *WidgetLegacyLiveSpan
-	WidgetNewLiveSpan    *WidgetNewLiveSpan
-	WidgetNewFixedSpan   *WidgetNewFixedSpan
+	WidgetLegacyLiveSpan         *WidgetLegacyLiveSpan
+	WidgetNewLiveSpan            *WidgetNewLiveSpan
+	WidgetNewFixedSpan           *WidgetNewFixedSpan
+	WidgetTimeHideIncompleteData *WidgetTimeHideIncompleteData
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -31,6 +32,11 @@ func WidgetNewLiveSpanAsWidgetTime(v *WidgetNewLiveSpan) WidgetTime {
 // WidgetNewFixedSpanAsWidgetTime is a convenience function that returns WidgetNewFixedSpan wrapped in WidgetTime.
 func WidgetNewFixedSpanAsWidgetTime(v *WidgetNewFixedSpan) WidgetTime {
 	return WidgetTime{WidgetNewFixedSpan: v}
+}
+
+// WidgetTimeHideIncompleteDataAsWidgetTime is a convenience function that returns WidgetTimeHideIncompleteData wrapped in WidgetTime.
+func WidgetTimeHideIncompleteDataAsWidgetTime(v *WidgetTimeHideIncompleteData) WidgetTime {
+	return WidgetTime{WidgetTimeHideIncompleteData: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -88,11 +94,29 @@ func (obj *WidgetTime) UnmarshalJSON(data []byte) error {
 		obj.WidgetNewFixedSpan = nil
 	}
 
+	// try to unmarshal data into WidgetTimeHideIncompleteData
+	err = datadog.Unmarshal(data, &obj.WidgetTimeHideIncompleteData)
+	if err == nil {
+		if obj.WidgetTimeHideIncompleteData != nil && obj.WidgetTimeHideIncompleteData.UnparsedObject == nil {
+			jsonWidgetTimeHideIncompleteData, _ := datadog.Marshal(obj.WidgetTimeHideIncompleteData)
+			if string(jsonWidgetTimeHideIncompleteData) == "{}" { // empty struct
+				obj.WidgetTimeHideIncompleteData = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.WidgetTimeHideIncompleteData = nil
+		}
+	} else {
+		obj.WidgetTimeHideIncompleteData = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.WidgetLegacyLiveSpan = nil
 		obj.WidgetNewLiveSpan = nil
 		obj.WidgetNewFixedSpan = nil
+		obj.WidgetTimeHideIncompleteData = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -110,6 +134,10 @@ func (obj WidgetTime) MarshalJSON() ([]byte, error) {
 
 	if obj.WidgetNewFixedSpan != nil {
 		return datadog.Marshal(&obj.WidgetNewFixedSpan)
+	}
+
+	if obj.WidgetTimeHideIncompleteData != nil {
+		return datadog.Marshal(&obj.WidgetTimeHideIncompleteData)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -130,6 +158,10 @@ func (obj *WidgetTime) GetActualInstance() interface{} {
 
 	if obj.WidgetNewFixedSpan != nil {
 		return obj.WidgetNewFixedSpan
+	}
+
+	if obj.WidgetTimeHideIncompleteData != nil {
+		return obj.WidgetTimeHideIncompleteData
 	}
 
 	// all schemas are nil
