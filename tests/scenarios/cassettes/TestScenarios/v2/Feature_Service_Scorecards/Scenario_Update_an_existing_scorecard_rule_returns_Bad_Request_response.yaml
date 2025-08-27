@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"enabled":true,"name":"Test-Update_an_existing_scorecard_rule_returns_Bad_Request_response-1756236808","owner":"Datadog","scorecard_name":"OpenAPI Spec Test Best Practices"},"type":"rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/scorecard/rules
+  response:
+    body: '{"data":{"id":"z661h8n2bpc5q0kx","type":"rule","attributes":{"category":"OpenAPI
+      Spec Test Best Practices","created_at":"2025-08-26T19:32:32.06573621Z","custom":true,"enabled":true,"level":3,"modified_at":"2025-08-26T19:32:32.06573621Z","name":"Test-Update_an_existing_scorecard_rule_returns_Bad_Request_response-1756236808","owner":"Datadog","scorecard_name":"OpenAPI
+      Spec Test Best Practices"},"relationships":{"scorecard":{"data":{"id":"qsxpoYRhU_yz","type":"scorecard"}}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"enabled":true,"level":2,"name":"Team Defined","scorecard_id":"NOT.FOUND"},"type":"rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PUT
+    url: https://api.datadoghq.com/api/v2/scorecard/rules/z661h8n2bpc5q0kx
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"attribute \"scorecard_id\"
+      failed scorecard lookup"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/scorecard/rules/z661h8n2bpc5q0kx
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
