@@ -34,6 +34,8 @@ type DataDeletionResponseItemAttributes struct {
 	Status string `json:"status"`
 	// End of requested time window, milliseconds since Unix epoch.
 	ToTime int64 `json:"to_time"`
+	// Total number of elements to be deleted according to the UI.
+	TotalDisplayed int64 `json:"total_displayed"`
 	// Total number of elements to be deleted. Only the data accessible to the current user that matches the query and timeframe provided will be deleted.
 	TotalUnrestricted int64 `json:"total_unrestricted"`
 	// Update time of the deletion request.
@@ -47,7 +49,7 @@ type DataDeletionResponseItemAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDataDeletionResponseItemAttributes(createdAt string, createdBy string, fromTime int64, isCreated bool, orgId int64, product string, query string, startingAt string, status string, toTime int64, totalUnrestricted int64, updatedAt string) *DataDeletionResponseItemAttributes {
+func NewDataDeletionResponseItemAttributes(createdAt string, createdBy string, fromTime int64, isCreated bool, orgId int64, product string, query string, startingAt string, status string, toTime int64, totalDisplayed int64, totalUnrestricted int64, updatedAt string) *DataDeletionResponseItemAttributes {
 	this := DataDeletionResponseItemAttributes{}
 	this.CreatedAt = createdAt
 	this.CreatedBy = createdBy
@@ -59,6 +61,7 @@ func NewDataDeletionResponseItemAttributes(createdAt string, createdBy string, f
 	this.StartingAt = startingAt
 	this.Status = status
 	this.ToTime = toTime
+	this.TotalDisplayed = totalDisplayed
 	this.TotalUnrestricted = totalUnrestricted
 	this.UpdatedAt = updatedAt
 	return &this
@@ -330,6 +333,29 @@ func (o *DataDeletionResponseItemAttributes) SetToTime(v int64) {
 	o.ToTime = v
 }
 
+// GetTotalDisplayed returns the TotalDisplayed field value.
+func (o *DataDeletionResponseItemAttributes) GetTotalDisplayed() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+	return o.TotalDisplayed
+}
+
+// GetTotalDisplayedOk returns a tuple with the TotalDisplayed field value
+// and a boolean to check if the value has been set.
+func (o *DataDeletionResponseItemAttributes) GetTotalDisplayedOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalDisplayed, true
+}
+
+// SetTotalDisplayed sets field value.
+func (o *DataDeletionResponseItemAttributes) SetTotalDisplayed(v int64) {
+	o.TotalDisplayed = v
+}
+
 // GetTotalUnrestricted returns the TotalUnrestricted field value.
 func (o *DataDeletionResponseItemAttributes) GetTotalUnrestricted() int64 {
 	if o == nil {
@@ -395,6 +421,7 @@ func (o DataDeletionResponseItemAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["starting_at"] = o.StartingAt
 	toSerialize["status"] = o.Status
 	toSerialize["to_time"] = o.ToTime
+	toSerialize["total_displayed"] = o.TotalDisplayed
 	toSerialize["total_unrestricted"] = o.TotalUnrestricted
 	toSerialize["updated_at"] = o.UpdatedAt
 
@@ -418,6 +445,7 @@ func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err er
 		StartingAt        *string  `json:"starting_at"`
 		Status            *string  `json:"status"`
 		ToTime            *int64   `json:"to_time"`
+		TotalDisplayed    *int64   `json:"total_displayed"`
 		TotalUnrestricted *int64   `json:"total_unrestricted"`
 		UpdatedAt         *string  `json:"updated_at"`
 	}{}
@@ -454,6 +482,9 @@ func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err er
 	if all.ToTime == nil {
 		return fmt.Errorf("required field to_time missing")
 	}
+	if all.TotalDisplayed == nil {
+		return fmt.Errorf("required field total_displayed missing")
+	}
 	if all.TotalUnrestricted == nil {
 		return fmt.Errorf("required field total_unrestricted missing")
 	}
@@ -462,7 +493,7 @@ func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "from_time", "indexes", "is_created", "org_id", "product", "query", "starting_at", "status", "to_time", "total_unrestricted", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "from_time", "indexes", "is_created", "org_id", "product", "query", "starting_at", "status", "to_time", "total_displayed", "total_unrestricted", "updated_at"})
 	} else {
 		return err
 	}
@@ -477,6 +508,7 @@ func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.StartingAt = *all.StartingAt
 	o.Status = *all.Status
 	o.ToTime = *all.ToTime
+	o.TotalDisplayed = *all.TotalDisplayed
 	o.TotalUnrestricted = *all.TotalUnrestricted
 	o.UpdatedAt = *all.UpdatedAt
 
