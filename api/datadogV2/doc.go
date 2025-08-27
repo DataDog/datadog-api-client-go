@@ -474,6 +474,7 @@
 //   - [ServiceScorecardsApi.DeleteScorecardRule]
 //   - [ServiceScorecardsApi.ListScorecardOutcomes]
 //   - [ServiceScorecardsApi.ListScorecardRules]
+//   - [ServiceScorecardsApi.UpdateScorecardOutcomesAsync]
 //   - [ServiceScorecardsApi.UpdateScorecardRule]
 //   - [SoftwareCatalogApi.DeleteCatalogEntity]
 //   - [SoftwareCatalogApi.DeleteCatalogKind]

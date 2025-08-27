@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"enabled":true,"name":"Test-Update_Scorecard_outcomes_asynchronously_returns_Bad_Request_response-1756219579","owner":"Datadog","scorecard_name":"OpenAPI Spec Test Best Practices"},"type":"rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/scorecard/rules
+  response:
+    body: '{"data":{"id":"cyysw9dtqcu8zemc","type":"rule","attributes":{"category":"OpenAPI
+      Spec Test Best Practices","created_at":"2025-08-26T14:46:19.594805953Z","custom":true,"enabled":true,"level":3,"modified_at":"2025-08-26T14:46:19.594805953Z","name":"Test-Update_Scorecard_outcomes_asynchronously_returns_Bad_Request_response-1756219579","owner":"Datadog","scorecard_name":"OpenAPI
+      Spec Test Best Practices"},"relationships":{"scorecard":{"data":{"id":"qsxpoYRhU_yz","type":"scorecard"}}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"results":[{"entity_reference":"service:my-service","rule_id":"cyysw9dtqcu8zemc","state":"INVALID"}]},"type":"batched-outcome"}}
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
+    url: https://api.datadoghq.com/api/v2/scorecard/outcomes
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"attribute \"state\"
+      must be one of \"pass fail skip\""}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/scorecard/rules/cyysw9dtqcu8zemc
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
