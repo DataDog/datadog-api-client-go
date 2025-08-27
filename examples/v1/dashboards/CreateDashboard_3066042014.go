@@ -31,9 +31,10 @@ func main() {
 						},
 						Time: &datadogV1.WidgetTime{
 							WidgetNewLiveSpan: &datadogV1.WidgetNewLiveSpan{
-								Type:  datadogV1.WIDGETNEWLIVESPANTYPE_LIVE,
-								Unit:  datadogV1.WIDGETLIVESPANUNIT_MINUTE,
-								Value: 8,
+								Type:                   datadogV1.WIDGETNEWLIVESPANTYPE_LIVE,
+								Unit:                   datadogV1.WIDGETLIVESPANUNIT_MINUTE,
+								Value:                  8,
+								HideIncompleteCostData: datadog.PtrBool(true),
 							}},
 						Type: datadogV1.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
 						Requests: []datadogV1.TimeseriesWidgetRequest{
