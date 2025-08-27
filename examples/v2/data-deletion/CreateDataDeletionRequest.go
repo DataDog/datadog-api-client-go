@@ -16,7 +16,8 @@ func main() {
 	body := datadogV2.CreateDataDeletionRequestBody{
 		Data: datadogV2.CreateDataDeletionRequestBodyData{
 			Attributes: datadogV2.CreateDataDeletionRequestBodyAttributes{
-				From: 1672527600000,
+				DisplayedTotal: 25000,
+				From:           1672527600000,
 				Indexes: []string{
 					"test-index",
 					"test-index-2",

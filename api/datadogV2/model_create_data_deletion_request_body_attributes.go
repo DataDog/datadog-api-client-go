@@ -12,6 +12,8 @@ import (
 
 // CreateDataDeletionRequestBodyAttributes Attributes for creating a data deletion request.
 type CreateDataDeletionRequestBodyAttributes struct {
+	// Total number of elements to be deleted according to the UI.
+	DisplayedTotal int64 `json:"displayed_total"`
 	// Start of requested time window, milliseconds since Unix epoch.
 	From int64 `json:"from"`
 	// List of indexes for the search. If not provided, the search is performed in all indexes.
@@ -29,8 +31,9 @@ type CreateDataDeletionRequestBodyAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCreateDataDeletionRequestBodyAttributes(from int64, query map[string]string, to int64) *CreateDataDeletionRequestBodyAttributes {
+func NewCreateDataDeletionRequestBodyAttributes(displayedTotal int64, from int64, query map[string]string, to int64) *CreateDataDeletionRequestBodyAttributes {
 	this := CreateDataDeletionRequestBodyAttributes{}
+	this.DisplayedTotal = displayedTotal
 	this.From = from
 	this.Query = query
 	this.To = to
@@ -43,6 +46,29 @@ func NewCreateDataDeletionRequestBodyAttributes(from int64, query map[string]str
 func NewCreateDataDeletionRequestBodyAttributesWithDefaults() *CreateDataDeletionRequestBodyAttributes {
 	this := CreateDataDeletionRequestBodyAttributes{}
 	return &this
+}
+
+// GetDisplayedTotal returns the DisplayedTotal field value.
+func (o *CreateDataDeletionRequestBodyAttributes) GetDisplayedTotal() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+	return o.DisplayedTotal
+}
+
+// GetDisplayedTotalOk returns a tuple with the DisplayedTotal field value
+// and a boolean to check if the value has been set.
+func (o *CreateDataDeletionRequestBodyAttributes) GetDisplayedTotalOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DisplayedTotal, true
+}
+
+// SetDisplayedTotal sets field value.
+func (o *CreateDataDeletionRequestBodyAttributes) SetDisplayedTotal(v int64) {
+	o.DisplayedTotal = v
 }
 
 // GetFrom returns the From field value.
@@ -148,6 +174,7 @@ func (o CreateDataDeletionRequestBodyAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	toSerialize["displayed_total"] = o.DisplayedTotal
 	toSerialize["from"] = o.From
 	if o.Indexes != nil {
 		toSerialize["indexes"] = o.Indexes
@@ -164,13 +191,17 @@ func (o CreateDataDeletionRequestBodyAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateDataDeletionRequestBodyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		From    *int64             `json:"from"`
-		Indexes []string           `json:"indexes,omitempty"`
-		Query   *map[string]string `json:"query"`
-		To      *int64             `json:"to"`
+		DisplayedTotal *int64             `json:"displayed_total"`
+		From           *int64             `json:"from"`
+		Indexes        []string           `json:"indexes,omitempty"`
+		Query          *map[string]string `json:"query"`
+		To             *int64             `json:"to"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.DisplayedTotal == nil {
+		return fmt.Errorf("required field displayed_total missing")
 	}
 	if all.From == nil {
 		return fmt.Errorf("required field from missing")
@@ -183,10 +214,11 @@ func (o *CreateDataDeletionRequestBodyAttributes) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"from", "indexes", "query", "to"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"displayed_total", "from", "indexes", "query", "to"})
 	} else {
 		return err
 	}
+	o.DisplayedTotal = *all.DisplayedTotal
 	o.From = *all.From
 	o.Indexes = all.Indexes
 	o.Query = *all.Query
