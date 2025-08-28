@@ -96,7 +96,7 @@ func (a *ActionConnectionApi) CreateActionConnection(ctx _context.Context, body 
 }
 
 // DeleteActionConnection Delete an existing Action Connection.
-// Delete an existing Action Connection. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key).
+// Delete an existing Action Connection. This API requires a [registered application key](https://docs.datadoghq.com/api/latest/action-connection/#register-a-new-app-key). Alternatively, you can configure these permissions [in the UI](https://docs.datadoghq.com/account_management/api-app-keys/#actions-api-access).
 func (a *ActionConnectionApi) DeleteActionConnection(ctx _context.Context, connectionId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
