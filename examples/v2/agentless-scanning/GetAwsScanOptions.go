@@ -1,4 +1,4 @@
-// List AWS Scan Options returns "OK" response
+// Get AWS scan options returns "OK" response
 
 package main
 
@@ -13,17 +13,20 @@ import (
 )
 
 func main() {
+	// there is a valid "aws_scan_options" in the system
+	AwsScanOptionsID := os.Getenv("AWS_SCAN_OPTIONS_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAgentlessScanningApi(apiClient)
-	resp, r, err := api.ListAwsScanOptions(ctx)
+	resp, r, err := api.GetAwsScanOptions(ctx, AwsScanOptionsID)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AgentlessScanningApi.ListAwsScanOptions`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentlessScanningApi.GetAwsScanOptions`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `AgentlessScanningApi.ListAwsScanOptions`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `AgentlessScanningApi.GetAwsScanOptions`:\n%s\n", responseContent)
 }
