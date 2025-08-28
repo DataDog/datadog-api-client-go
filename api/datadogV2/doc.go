@@ -35,6 +35,7 @@
 //   - [AgentlessScanningApi.CreateAwsScanOptions]
 //   - [AgentlessScanningApi.DeleteAwsScanOptions]
 //   - [AgentlessScanningApi.GetAwsOnDemandTask]
+//   - [AgentlessScanningApi.GetAwsScanOptions]
 //   - [AgentlessScanningApi.ListAwsOnDemandTasks]
 //   - [AgentlessScanningApi.ListAwsScanOptions]
 //   - [AgentlessScanningApi.UpdateAwsScanOptions]
