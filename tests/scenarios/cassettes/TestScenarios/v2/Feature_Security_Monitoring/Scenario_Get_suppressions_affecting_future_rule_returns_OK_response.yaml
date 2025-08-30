@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Get_suppressions_affecting_future_rule_returns_OK_response-1756567801","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metrics":[],"query":"@test:true"}],"tags":[],"type":"log_detection"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/rules
+  response:
+    body: '{"data":[]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2
