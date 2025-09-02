@@ -1,0 +1,238 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_issues_search_result_included.go - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.22.12";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_issues_search_result_included.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">github.com/DataDog/datadog-api-client-go/v2/api/datadogV2</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span><span class="comment">// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.</span>
+<span id="L2" class="ln">     2  </span><span class="comment">// This product includes software developed at Datadog (https://www.datadoghq.com/).</span>
+<span id="L3" class="ln">     3  </span><span class="comment">// Copyright 2019-Present Datadog, Inc.</span>
+<span id="L4" class="ln">     4  </span>
+<span id="L5" class="ln">     5  </span>package datadogV2
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>import (
+<span id="L8" class="ln">     8  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
+<span id="L9" class="ln">     9  </span>)
+<span id="L10" class="ln">    10  </span>
+<span id="L11" class="ln">    11  </span><span class="comment">// IssuesSearchResultIncluded - An array of related resources, returned when the `include` query parameter is used.</span>
+<span id="L12" class="ln">    12  </span>type IssuesSearchResultIncluded struct {
+<span id="L13" class="ln">    13  </span>	Issue     *Issue
+<span id="L14" class="ln">    14  </span>	Case      *Case
+<span id="L15" class="ln">    15  </span>	IssueUser *IssueUser
+<span id="L16" class="ln">    16  </span>	IssueTeam *IssueTeam
+<span id="L17" class="ln">    17  </span>
+<span id="L18" class="ln">    18  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L19" class="ln">    19  </span>	UnparsedObject interface{}
+<span id="L20" class="ln">    20  </span>}
+<span id="L21" class="ln">    21  </span>
+<span id="L22" class="ln">    22  </span><span class="comment">// IssueAsIssuesSearchResultIncluded is a convenience function that returns Issue wrapped in IssuesSearchResultIncluded.</span>
+<span id="L23" class="ln">    23  </span>func IssueAsIssuesSearchResultIncluded(v *Issue) IssuesSearchResultIncluded {
+<span id="L24" class="ln">    24  </span>	return IssuesSearchResultIncluded{Issue: v}
+<span id="L25" class="ln">    25  </span>}
+<span id="L26" class="ln">    26  </span>
+<span id="L27" class="ln">    27  </span><span class="comment">// CaseAsIssuesSearchResultIncluded is a convenience function that returns Case wrapped in IssuesSearchResultIncluded.</span>
+<span id="L28" class="ln">    28  </span>func CaseAsIssuesSearchResultIncluded(v *Case) IssuesSearchResultIncluded {
+<span id="L29" class="ln">    29  </span>	return IssuesSearchResultIncluded{Case: v}
+<span id="L30" class="ln">    30  </span>}
+<span id="L31" class="ln">    31  </span>
+<span id="L32" class="ln">    32  </span><span class="comment">// IssueUserAsIssuesSearchResultIncluded is a convenience function that returns IssueUser wrapped in IssuesSearchResultIncluded.</span>
+<span id="L33" class="ln">    33  </span>func IssueUserAsIssuesSearchResultIncluded(v *IssueUser) IssuesSearchResultIncluded {
+<span id="L34" class="ln">    34  </span>	return IssuesSearchResultIncluded{IssueUser: v}
+<span id="L35" class="ln">    35  </span>}
+<span id="L36" class="ln">    36  </span>
+<span id="L37" class="ln">    37  </span><span class="comment">// IssueTeamAsIssuesSearchResultIncluded is a convenience function that returns IssueTeam wrapped in IssuesSearchResultIncluded.</span>
+<span id="L38" class="ln">    38  </span>func IssueTeamAsIssuesSearchResultIncluded(v *IssueTeam) IssuesSearchResultIncluded {
+<span id="L39" class="ln">    39  </span>	return IssuesSearchResultIncluded{IssueTeam: v}
+<span id="L40" class="ln">    40  </span>}
+<span id="L41" class="ln">    41  </span>
+<span id="L42" class="ln">    42  </span><span class="comment">// UnmarshalJSON turns data into one of the pointers in the struct.</span>
+<span id="L43" class="ln">    43  </span>func (obj *IssuesSearchResultIncluded) UnmarshalJSON(data []byte) error {
+<span id="L44" class="ln">    44  </span>	var err error
+<span id="L45" class="ln">    45  </span>	match := 0
+<span id="L46" class="ln">    46  </span>	<span class="comment">// try to unmarshal data into Issue</span>
+<span id="L47" class="ln">    47  </span>	err = datadog.Unmarshal(data, &amp;obj.Issue)
+<span id="L48" class="ln">    48  </span>	if err == nil {
+<span id="L49" class="ln">    49  </span>		if obj.Issue != nil &amp;&amp; obj.Issue.UnparsedObject == nil {
+<span id="L50" class="ln">    50  </span>			jsonIssue, _ := datadog.Marshal(obj.Issue)
+<span id="L51" class="ln">    51  </span>			if string(jsonIssue) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L52" class="ln">    52  </span>				obj.Issue = nil
+<span id="L53" class="ln">    53  </span>			} else {
+<span id="L54" class="ln">    54  </span>				match++
+<span id="L55" class="ln">    55  </span>			}
+<span id="L56" class="ln">    56  </span>		} else {
+<span id="L57" class="ln">    57  </span>			obj.Issue = nil
+<span id="L58" class="ln">    58  </span>		}
+<span id="L59" class="ln">    59  </span>	} else {
+<span id="L60" class="ln">    60  </span>		obj.Issue = nil
+<span id="L61" class="ln">    61  </span>	}
+<span id="L62" class="ln">    62  </span>
+<span id="L63" class="ln">    63  </span>	<span class="comment">// try to unmarshal data into Case</span>
+<span id="L64" class="ln">    64  </span>	err = datadog.Unmarshal(data, &amp;obj.Case)
+<span id="L65" class="ln">    65  </span>	if err == nil {
+<span id="L66" class="ln">    66  </span>		if obj.Case != nil &amp;&amp; obj.Case.UnparsedObject == nil {
+<span id="L67" class="ln">    67  </span>			jsonCase, _ := datadog.Marshal(obj.Case)
+<span id="L68" class="ln">    68  </span>			if string(jsonCase) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L69" class="ln">    69  </span>				obj.Case = nil
+<span id="L70" class="ln">    70  </span>			} else {
+<span id="L71" class="ln">    71  </span>				match++
+<span id="L72" class="ln">    72  </span>			}
+<span id="L73" class="ln">    73  </span>		} else {
+<span id="L74" class="ln">    74  </span>			obj.Case = nil
+<span id="L75" class="ln">    75  </span>		}
+<span id="L76" class="ln">    76  </span>	} else {
+<span id="L77" class="ln">    77  </span>		obj.Case = nil
+<span id="L78" class="ln">    78  </span>	}
+<span id="L79" class="ln">    79  </span>
+<span id="L80" class="ln">    80  </span>	<span class="comment">// try to unmarshal data into IssueUser</span>
+<span id="L81" class="ln">    81  </span>	err = datadog.Unmarshal(data, &amp;obj.IssueUser)
+<span id="L82" class="ln">    82  </span>	if err == nil {
+<span id="L83" class="ln">    83  </span>		if obj.IssueUser != nil &amp;&amp; obj.IssueUser.UnparsedObject == nil {
+<span id="L84" class="ln">    84  </span>			jsonIssueUser, _ := datadog.Marshal(obj.IssueUser)
+<span id="L85" class="ln">    85  </span>			if string(jsonIssueUser) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L86" class="ln">    86  </span>				obj.IssueUser = nil
+<span id="L87" class="ln">    87  </span>			} else {
+<span id="L88" class="ln">    88  </span>				match++
+<span id="L89" class="ln">    89  </span>			}
+<span id="L90" class="ln">    90  </span>		} else {
+<span id="L91" class="ln">    91  </span>			obj.IssueUser = nil
+<span id="L92" class="ln">    92  </span>		}
+<span id="L93" class="ln">    93  </span>	} else {
+<span id="L94" class="ln">    94  </span>		obj.IssueUser = nil
+<span id="L95" class="ln">    95  </span>	}
+<span id="L96" class="ln">    96  </span>
+<span id="L97" class="ln">    97  </span>	<span class="comment">// try to unmarshal data into IssueTeam</span>
+<span id="L98" class="ln">    98  </span>	err = datadog.Unmarshal(data, &amp;obj.IssueTeam)
+<span id="L99" class="ln">    99  </span>	if err == nil {
+<span id="L100" class="ln">   100  </span>		if obj.IssueTeam != nil &amp;&amp; obj.IssueTeam.UnparsedObject == nil {
+<span id="L101" class="ln">   101  </span>			jsonIssueTeam, _ := datadog.Marshal(obj.IssueTeam)
+<span id="L102" class="ln">   102  </span>			if string(jsonIssueTeam) == &#34;{}&#34; { <span class="comment">// empty struct</span>
+<span id="L103" class="ln">   103  </span>				obj.IssueTeam = nil
+<span id="L104" class="ln">   104  </span>			} else {
+<span id="L105" class="ln">   105  </span>				match++
+<span id="L106" class="ln">   106  </span>			}
+<span id="L107" class="ln">   107  </span>		} else {
+<span id="L108" class="ln">   108  </span>			obj.IssueTeam = nil
+<span id="L109" class="ln">   109  </span>		}
+<span id="L110" class="ln">   110  </span>	} else {
+<span id="L111" class="ln">   111  </span>		obj.IssueTeam = nil
+<span id="L112" class="ln">   112  </span>	}
+<span id="L113" class="ln">   113  </span>
+<span id="L114" class="ln">   114  </span>	if match != 1 { <span class="comment">// more than 1 match</span>
+<span id="L115" class="ln">   115  </span>		<span class="comment">// reset to nil</span>
+<span id="L116" class="ln">   116  </span>		obj.Issue = nil
+<span id="L117" class="ln">   117  </span>		obj.Case = nil
+<span id="L118" class="ln">   118  </span>		obj.IssueUser = nil
+<span id="L119" class="ln">   119  </span>		obj.IssueTeam = nil
+<span id="L120" class="ln">   120  </span>		return datadog.Unmarshal(data, &amp;obj.UnparsedObject)
+<span id="L121" class="ln">   121  </span>	}
+<span id="L122" class="ln">   122  </span>	return nil <span class="comment">// exactly one match</span>
+<span id="L123" class="ln">   123  </span>}
+<span id="L124" class="ln">   124  </span>
+<span id="L125" class="ln">   125  </span><span class="comment">// MarshalJSON turns data from the first non-nil pointers in the struct to JSON.</span>
+<span id="L126" class="ln">   126  </span>func (obj IssuesSearchResultIncluded) MarshalJSON() ([]byte, error) {
+<span id="L127" class="ln">   127  </span>	if obj.Issue != nil {
+<span id="L128" class="ln">   128  </span>		return datadog.Marshal(&amp;obj.Issue)
+<span id="L129" class="ln">   129  </span>	}
+<span id="L130" class="ln">   130  </span>
+<span id="L131" class="ln">   131  </span>	if obj.Case != nil {
+<span id="L132" class="ln">   132  </span>		return datadog.Marshal(&amp;obj.Case)
+<span id="L133" class="ln">   133  </span>	}
+<span id="L134" class="ln">   134  </span>
+<span id="L135" class="ln">   135  </span>	if obj.IssueUser != nil {
+<span id="L136" class="ln">   136  </span>		return datadog.Marshal(&amp;obj.IssueUser)
+<span id="L137" class="ln">   137  </span>	}
+<span id="L138" class="ln">   138  </span>
+<span id="L139" class="ln">   139  </span>	if obj.IssueTeam != nil {
+<span id="L140" class="ln">   140  </span>		return datadog.Marshal(&amp;obj.IssueTeam)
+<span id="L141" class="ln">   141  </span>	}
+<span id="L142" class="ln">   142  </span>
+<span id="L143" class="ln">   143  </span>	if obj.UnparsedObject != nil {
+<span id="L144" class="ln">   144  </span>		return datadog.Marshal(obj.UnparsedObject)
+<span id="L145" class="ln">   145  </span>	}
+<span id="L146" class="ln">   146  </span>	return nil, nil <span class="comment">// no data in oneOf schemas</span>
+<span id="L147" class="ln">   147  </span>}
+<span id="L148" class="ln">   148  </span>
+<span id="L149" class="ln">   149  </span><span class="comment">// GetActualInstance returns the actual instance.</span>
+<span id="L150" class="ln">   150  </span>func (obj *IssuesSearchResultIncluded) GetActualInstance() interface{} {
+<span id="L151" class="ln">   151  </span>	if obj.Issue != nil {
+<span id="L152" class="ln">   152  </span>		return obj.Issue
+<span id="L153" class="ln">   153  </span>	}
+<span id="L154" class="ln">   154  </span>
+<span id="L155" class="ln">   155  </span>	if obj.Case != nil {
+<span id="L156" class="ln">   156  </span>		return obj.Case
+<span id="L157" class="ln">   157  </span>	}
+<span id="L158" class="ln">   158  </span>
+<span id="L159" class="ln">   159  </span>	if obj.IssueUser != nil {
+<span id="L160" class="ln">   160  </span>		return obj.IssueUser
+<span id="L161" class="ln">   161  </span>	}
+<span id="L162" class="ln">   162  </span>
+<span id="L163" class="ln">   163  </span>	if obj.IssueTeam != nil {
+<span id="L164" class="ln">   164  </span>		return obj.IssueTeam
+<span id="L165" class="ln">   165  </span>	}
+<span id="L166" class="ln">   166  </span>
+<span id="L167" class="ln">   167  </span>	<span class="comment">// all schemas are nil</span>
+<span id="L168" class="ln">   168  </span>	return nil
+<span id="L169" class="ln">   169  </span>}
+<span id="L170" class="ln">   170  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.22.12.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>
