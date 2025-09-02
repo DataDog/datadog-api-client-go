@@ -428,6 +428,8 @@
 //   - [SecurityMonitoringApi.GetSecurityMonitoringSuppression]
 //   - [SecurityMonitoringApi.GetSignalNotificationRule]
 //   - [SecurityMonitoringApi.GetSignalNotificationRules]
+//   - [SecurityMonitoringApi.GetSuppressionsAffectingFutureRule]
+//   - [SecurityMonitoringApi.GetSuppressionsAffectingRule]
 //   - [SecurityMonitoringApi.GetVulnerabilityNotificationRule]
 //   - [SecurityMonitoringApi.GetVulnerabilityNotificationRules]
 //   - [SecurityMonitoringApi.ListAssetsSBOMs]
