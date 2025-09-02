@@ -12,7 +12,7 @@ import (
 
 // MetricTagConfigurationAttributes Object containing the definition of a metric tag configuration attributes.
 type MetricTagConfigurationAttributes struct {
-	// Deprecated. You no longer need to configure specific time and space aggregations for Metrics Without Limits.
+	// Deprecated. You no longer need to configure specific time and space aggregations for Metrics without Limits™.
 	Aggregations []MetricCustomAggregation `json:"aggregations,omitempty"`
 	// Timestamp when the tag configuration was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`

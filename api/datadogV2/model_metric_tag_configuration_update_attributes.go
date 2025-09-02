@@ -10,7 +10,7 @@ import (
 
 // MetricTagConfigurationUpdateAttributes Object containing the definition of a metric tag configuration to be updated.
 type MetricTagConfigurationUpdateAttributes struct {
-	// Deprecated. You no longer need to configure specific time and space aggregations for Metrics Without Limits.
+	// Deprecated. You no longer need to configure specific time and space aggregations for Metrics without Limits™.
 	Aggregations []MetricCustomAggregation `json:"aggregations,omitempty"`
 	// When set to true, the configuration will exclude the configured tags and include any other submitted tags.
 	// When set to false, the configuration will include the configured tags and exclude any other submitted tags.
