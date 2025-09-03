@@ -454,6 +454,7 @@
 //   - [SecurityMonitoringApi.UpdateSecurityMonitoringRule]
 //   - [SecurityMonitoringApi.UpdateSecurityMonitoringSuppression]
 //   - [SecurityMonitoringApi.ValidateSecurityMonitoringRule]
+//   - [SecurityMonitoringApi.ValidateSecurityMonitoringSuppression]
 //   - [SensitiveDataScannerApi.CreateScanningGroup]
 //   - [SensitiveDataScannerApi.CreateScanningRule]
 //   - [SensitiveDataScannerApi.DeleteScanningGroup]
