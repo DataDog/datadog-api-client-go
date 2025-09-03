@@ -13,7 +13,7 @@
 
 
 
-<script>var goVersion = "go1.22.12";</script>
+<script>var goVersion = "go1.24.6";</script>
 <script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
 
 </head>
@@ -6330,17 +6330,87 @@
 <span id="L6273" class="ln">  6273  </span>	return localVarHTTPResponse, nil
 <span id="L6274" class="ln">  6274  </span>}
 <span id="L6275" class="ln">  6275  </span>
-<span id="L6276" class="ln">  6276  </span><span class="comment">// NewSecurityMonitoringApi Returns NewSecurityMonitoringApi.</span>
-<span id="L6277" class="ln">  6277  </span>func NewSecurityMonitoringApi(client *datadog.APIClient) *SecurityMonitoringApi {
-<span id="L6278" class="ln">  6278  </span>	return &amp;SecurityMonitoringApi{
-<span id="L6279" class="ln">  6279  </span>		Client: client,
-<span id="L6280" class="ln">  6280  </span>	}
-<span id="L6281" class="ln">  6281  </span>}
-<span id="L6282" class="ln">  6282  </span>
+<span id="L6276" class="ln">  6276  </span><span class="comment">// ValidateSecurityMonitoringSuppression Validate a suppression rule.</span>
+<span id="L6277" class="ln">  6277  </span><span class="comment">// Validate a suppression rule.</span>
+<span id="L6278" class="ln">  6278  </span>func (a *SecurityMonitoringApi) ValidateSecurityMonitoringSuppression(ctx _context.Context, body SecurityMonitoringSuppressionUpdateRequest) (*_nethttp.Response, error) {
+<span id="L6279" class="ln">  6279  </span>	var (
+<span id="L6280" class="ln">  6280  </span>		localVarHTTPMethod = _nethttp.MethodPost
+<span id="L6281" class="ln">  6281  </span>		localVarPostBody   interface{}
+<span id="L6282" class="ln">  6282  </span>	)
+<span id="L6283" class="ln">  6283  </span>
+<span id="L6284" class="ln">  6284  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.SecurityMonitoringApi.ValidateSecurityMonitoringSuppression&#34;)
+<span id="L6285" class="ln">  6285  </span>	if err != nil {
+<span id="L6286" class="ln">  6286  </span>		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L6287" class="ln">  6287  </span>	}
+<span id="L6288" class="ln">  6288  </span>
+<span id="L6289" class="ln">  6289  </span>	localVarPath := localBasePath + &#34;/api/v2/security_monitoring/configuration/suppressions/validation&#34;
+<span id="L6290" class="ln">  6290  </span>
+<span id="L6291" class="ln">  6291  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L6292" class="ln">  6292  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L6293" class="ln">  6293  </span>	localVarFormParams := _neturl.Values{}
+<span id="L6294" class="ln">  6294  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L6295" class="ln">  6295  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;*/*&#34;
+<span id="L6296" class="ln">  6296  </span>
+<span id="L6297" class="ln">  6297  </span>	<span class="comment">// body params</span>
+<span id="L6298" class="ln">  6298  </span>	localVarPostBody = &amp;body
+<span id="L6299" class="ln">  6299  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
+<span id="L6300" class="ln">  6300  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+<span id="L6301" class="ln">  6301  </span>		if err != nil {
+<span id="L6302" class="ln">  6302  </span>			return nil, err
+<span id="L6303" class="ln">  6303  </span>		}
+<span id="L6304" class="ln">  6304  </span>	} else {
+<span id="L6305" class="ln">  6305  </span>		datadog.SetAuthKeys(
+<span id="L6306" class="ln">  6306  </span>			ctx,
+<span id="L6307" class="ln">  6307  </span>			&amp;localVarHeaderParams,
+<span id="L6308" class="ln">  6308  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L6309" class="ln">  6309  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L6310" class="ln">  6310  </span>		)
+<span id="L6311" class="ln">  6311  </span>	}
+<span id="L6312" class="ln">  6312  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L6313" class="ln">  6313  </span>	if err != nil {
+<span id="L6314" class="ln">  6314  </span>		return nil, err
+<span id="L6315" class="ln">  6315  </span>	}
+<span id="L6316" class="ln">  6316  </span>
+<span id="L6317" class="ln">  6317  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L6318" class="ln">  6318  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L6319" class="ln">  6319  </span>		return localVarHTTPResponse, err
+<span id="L6320" class="ln">  6320  </span>	}
+<span id="L6321" class="ln">  6321  </span>
+<span id="L6322" class="ln">  6322  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L6323" class="ln">  6323  </span>	if err != nil {
+<span id="L6324" class="ln">  6324  </span>		return localVarHTTPResponse, err
+<span id="L6325" class="ln">  6325  </span>	}
+<span id="L6326" class="ln">  6326  </span>
+<span id="L6327" class="ln">  6327  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L6328" class="ln">  6328  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L6329" class="ln">  6329  </span>			ErrorBody:    localVarBody,
+<span id="L6330" class="ln">  6330  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L6331" class="ln">  6331  </span>		}
+<span id="L6332" class="ln">  6332  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L6333" class="ln">  6333  </span>			var v APIErrorResponse
+<span id="L6334" class="ln">  6334  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L6335" class="ln">  6335  </span>			if err != nil {
+<span id="L6336" class="ln">  6336  </span>				return localVarHTTPResponse, newErr
+<span id="L6337" class="ln">  6337  </span>			}
+<span id="L6338" class="ln">  6338  </span>			newErr.ErrorModel = v
+<span id="L6339" class="ln">  6339  </span>		}
+<span id="L6340" class="ln">  6340  </span>		return localVarHTTPResponse, newErr
+<span id="L6341" class="ln">  6341  </span>	}
+<span id="L6342" class="ln">  6342  </span>
+<span id="L6343" class="ln">  6343  </span>	return localVarHTTPResponse, nil
+<span id="L6344" class="ln">  6344  </span>}
+<span id="L6345" class="ln">  6345  </span>
+<span id="L6346" class="ln">  6346  </span><span class="comment">// NewSecurityMonitoringApi Returns NewSecurityMonitoringApi.</span>
+<span id="L6347" class="ln">  6347  </span>func NewSecurityMonitoringApi(client *datadog.APIClient) *SecurityMonitoringApi {
+<span id="L6348" class="ln">  6348  </span>	return &amp;SecurityMonitoringApi{
+<span id="L6349" class="ln">  6349  </span>		Client: client,
+<span id="L6350" class="ln">  6350  </span>	}
+<span id="L6351" class="ln">  6351  </span>}
+<span id="L6352" class="ln">  6352  </span>
 </pre><p></p>
 
 <div id="footer">
-Build version go1.22.12.<br/>
+Build version go1.24.6.<br/>
 </div>
 
 </div><!-- .container -->
