@@ -556,7 +556,12 @@ def format_data_with_schema_list(
         else:
             nested_schema_name = "interface{}"
     else:
-        nested_schema_name = f"{name_prefix}{nested_schema_name}" if nested_schema_name else "interface{}"
+        if nested_schema_name:
+            nested_schema_name = f"{name_prefix}{nested_schema_name}"
+        elif list_schema.get("type") == "object" and list_schema.get("additionalProperties") == {}:
+            nested_schema_name = "map[string]interface{}"
+        else:
+            nested_schema_name = "interface{}"
 
     nested_type = simple_type(list_schema)
     schema_parts.append(
