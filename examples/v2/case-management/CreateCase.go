@@ -21,7 +21,7 @@ func main() {
 			Attributes: datadogV2.CaseCreateAttributes{
 				Priority: datadogV2.CASEPRIORITY_NOT_DEFINED.Ptr(),
 				Title:    "Security breach investigation in 0cfbc5cbc676ee71",
-				Type:     datadogV2.CASETYPE_STANDARD,
+				TypeId:   "00000000-0000-0000-0000-000000000001",
 			},
 			Relationships: &datadogV2.CaseCreateRelationships{
 				Assignee: *datadogV2.NewNullableNullableUserRelationship(&datadogV2.NullableUserRelationship{
