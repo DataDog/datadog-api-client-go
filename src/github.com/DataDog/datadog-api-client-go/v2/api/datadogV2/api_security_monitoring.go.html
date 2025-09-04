@@ -13,7 +13,7 @@
 
 
 
-<script>var goVersion = "go1.24.6";</script>
+<script>var goVersion = "go1.24.7";</script>
 <script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
 
 </head>
@@ -6864,7 +6864,7 @@
 <span id="L6807" class="ln">  6807  </span>
 <span id="L6808" class="ln">  6808  </span><span class="comment">// ValidateSecurityMonitoringSuppression Validate a suppression rule.</span>
 <span id="L6809" class="ln">  6809  </span><span class="comment">// Validate a suppression rule.</span>
-<span id="L6810" class="ln">  6810  </span>func (a *SecurityMonitoringApi) ValidateSecurityMonitoringSuppression(ctx _context.Context, body SecurityMonitoringSuppressionUpdateRequest) (*_nethttp.Response, error) {
+<span id="L6810" class="ln">  6810  </span>func (a *SecurityMonitoringApi) ValidateSecurityMonitoringSuppression(ctx _context.Context, body SecurityMonitoringSuppressionCreateRequest) (*_nethttp.Response, error) {
 <span id="L6811" class="ln">  6811  </span>	var (
 <span id="L6812" class="ln">  6812  </span>		localVarHTTPMethod = _nethttp.MethodPost
 <span id="L6813" class="ln">  6813  </span>		localVarPostBody   interface{}
@@ -6942,7 +6942,7 @@
 </pre><p></p>
 
 <div id="footer">
-Build version go1.24.6.<br/>
+Build version go1.24.7.<br/>
 </div>
 
 </div><!-- .container -->
