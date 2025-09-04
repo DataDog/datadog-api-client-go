@@ -12,6 +12,13 @@
     "operationId": "CreateActionConnection"
   },
   {
+    "source": "data[0]",
+    "step": "there is a valid \"aws_scan_options\" in the system",
+    "key": "aws_scan_options",
+    "tag": "Agentless Scanning",
+    "operationId": "ListAwsScanOptions"
+  },
+  {
     "parameters": [
       {
         "name": "body",
@@ -216,6 +223,19 @@
     "key": "downtime_v2",
     "tag": "Downtimes",
     "operationId": "CreateDowntime"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"data\": {\n    \"attributes\": {\n      \"query\": \"service:synthetics-browser\",\n      \"from\": {{ timestamp(\"now - 15d\") }}000,\n      \"to\": {{ timestamp(\"now\") }}000,\n      \"track\": \"rum\"\n    },\n    \"type\": \"search_request\"\n  }\n}"
+      }
+    ],
+    "source": "data[0]",
+    "step": "there is a valid \"issue\" in the system",
+    "key": "issue",
+    "tag": "Error Tracking",
+    "operationId": "SearchIssues"
   },
   {
     "parameters": [
@@ -801,6 +821,18 @@
     ],
     "step": "there is a valid \"security_rule_bis\" in the system",
     "key": "security_rule_bis",
+    "tag": "Security Monitoring",
+    "operationId": "CreateSecurityMonitoringRule"
+  },
+  {
+    "parameters": [
+      {
+        "name": "body",
+        "value": "{\n  \"name\": \"_{{ unique_hash }}\",\n  \"queries\": [{\n    \"query\": \"@test:true\",\n    \"aggregation\": \"count\",\n    \"groupByFields\": [],\n    \"distinctFields\": [],\n    \"metrics\": []\n  }],\n  \"filters\": [],\n  \"cases\": [{\n    \"name\": \"\",\n    \"status\": \"info\",\n    \"condition\": \"a > 0\",\n    \"notifications\": []\n  }],\n  \"options\": {\n    \"evaluationWindow\": 900,\n    \"keepAlive\": 3600,\n    \"maxSignalDuration\": 86400\n  },\n  \"message\": \"Test rule\",\n  \"tags\": [],\n  \"isEnabled\": true,\n  \"type\": \"log_detection\"\n}"
+      }
+    ],
+    "step": "there is a valid \"security_rule_hash\" in the system",
+    "key": "security_rule_hash",
     "tag": "Security Monitoring",
     "operationId": "CreateSecurityMonitoringRule"
   },

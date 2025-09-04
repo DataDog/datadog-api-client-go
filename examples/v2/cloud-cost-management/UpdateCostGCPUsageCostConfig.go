@@ -25,7 +25,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudCostManagementApi(apiClient)
-	resp, r, err := api.UpdateCostGCPUsageCostConfig(ctx, "100", body)
+	resp, r, err := api.UpdateCostGCPUsageCostConfig(ctx, 100, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudCostManagementApi.UpdateCostGCPUsageCostConfig`: %v\n", err)

@@ -31,9 +31,10 @@ func main() {
 						},
 						Time: &datadogV1.WidgetTime{
 							WidgetNewFixedSpan: &datadogV1.WidgetNewFixedSpan{
-								Type: datadogV1.WIDGETNEWFIXEDSPANTYPE_FIXED,
-								From: 1712080128,
-								To:   1712083128,
+								Type:                   datadogV1.WIDGETNEWFIXEDSPANTYPE_FIXED,
+								From:                   1712080128,
+								To:                     1712083128,
+								HideIncompleteCostData: datadog.PtrBool(true),
 							}},
 						Type: datadogV1.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
 						Requests: []datadogV1.TimeseriesWidgetRequest{

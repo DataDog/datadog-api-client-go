@@ -31,7 +31,8 @@ func main() {
 						},
 						Time: &datadogV1.WidgetTime{
 							WidgetLegacyLiveSpan: &datadogV1.WidgetLegacyLiveSpan{
-								LiveSpan: datadogV1.WIDGETLIVESPAN_PAST_FIVE_MINUTES.Ptr(),
+								LiveSpan:               datadogV1.WIDGETLIVESPAN_PAST_FIVE_MINUTES.Ptr(),
+								HideIncompleteCostData: datadog.PtrBool(true),
 							}},
 						Type: datadogV1.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
 						Requests: []datadogV1.TimeseriesWidgetRequest{

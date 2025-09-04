@@ -1,4 +1,4 @@
-// Get AWS Scan Options returns "OK" response
+// List AWS Scan Options returns "OK" response
 
 package main
 

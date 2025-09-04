@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV2.SecurityMonitoringRuleConvertPayload{
 		SecurityMonitoringStandardRulePayload: &datadogV2.SecurityMonitoringStandardRulePayload{
-			Name: "Example-Security-Monitoring",
+			Name: "_49768568946de993",
 			Queries: []datadogV2.SecurityMonitoringStandardRuleQuery{
 				{
 					Query:          datadog.PtrString("@test:true"),

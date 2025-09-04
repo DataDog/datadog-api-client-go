@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      [{"BilledCost":100.5,"BillingCurrency":"USD","ChargeDescription":"Monthly usage charge for my service","ChargePeriodEnd":"2023-02-28","ChargePeriodStart":"2023-02-01"}]
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PUT
+    url: https://api.datadoghq.com/api/v2/cost/custom_costs
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"errors in object
+      0:\nTags is a required field\nProviderName is a required field","meta":{"end":167,"obj":0,"start":1}}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2

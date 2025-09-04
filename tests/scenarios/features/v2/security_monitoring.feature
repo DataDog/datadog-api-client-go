@@ -132,10 +132,10 @@ Feature: Security Monitoring
   @team:DataDog/k9-cloud-security-platform
   Scenario: Convert a rule from JSON to Terraform returns "OK" response
     Given new "ConvertSecurityMonitoringRuleFromJSONToTerraform" request
-    And body with value {"name":"{{ unique }}", "queries":[{"query":"@test:true","aggregation":"count","groupByFields":[],"distinctFields":[],"metric":""}],"filters":[],"cases":[{"name":"","status":"info","condition":"a > 0","notifications":[]}],"options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"message":"Test rule","tags":[],"isEnabled":true, "type":"log_detection"}
+    And body with value {"name":"_{{ unique_hash }}", "queries":[{"query":"@test:true","aggregation":"count","groupByFields":[],"distinctFields":[],"metric":""}],"filters":[],"cases":[{"name":"","status":"info","condition":"a > 0","notifications":[]}],"options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"message":"Test rule","tags":[],"isEnabled":true, "type":"log_detection"}
     When the request is sent
     Then the response status is 200 OK
-    And the response "terraformContent" is equal to "resource \"datadog_security_monitoring_rule\" \"{{ unique_lower }}\" {\n\tname = \"{{ unique }}\"\n\tenabled = true\n\tquery {\n\t\tquery = \"@test:true\"\n\t\tgroup_by_fields = []\n\t\tdistinct_fields = []\n\t\taggregation = \"count\"\n\t\tname = \"\"\n\t\tdata_source = \"logs\"\n\t}\n\toptions {\n\t\tkeep_alive = 3600\n\t\tmax_signal_duration = 86400\n\t\tdetection_method = \"threshold\"\n\t\tevaluation_window = 900\n\t}\n\tcase {\n\t\tname = \"\"\n\t\tstatus = \"info\"\n\t\tnotifications = []\n\t\tcondition = \"a > 0\"\n\t}\n\tmessage = \"Test rule\"\n\ttags = []\n\thas_extended_title = false\n\ttype = \"log_detection\"\n}\n"
+    And the response "terraformContent" is equal to "resource \"datadog_security_monitoring_rule\" \"_{{ unique_hash }}\" {\n\tname = \"_{{ unique_hash }}\"\n\tenabled = true\n\tquery {\n\t\tquery = \"@test:true\"\n\t\tgroup_by_fields = []\n\t\tdistinct_fields = []\n\t\taggregation = \"count\"\n\t\tname = \"\"\n\t\tdata_source = \"logs\"\n\t}\n\toptions {\n\t\tkeep_alive = 3600\n\t\tmax_signal_duration = 86400\n\t\tdetection_method = \"threshold\"\n\t\tevaluation_window = 900\n\t}\n\tcase {\n\t\tname = \"\"\n\t\tstatus = \"info\"\n\t\tnotifications = []\n\t\tcondition = \"a > 0\"\n\t}\n\tmessage = \"Test rule\"\n\ttags = []\n\thas_extended_title = false\n\ttype = \"log_detection\"\n}\n"
 
   @skip @team:DataDog/k9-cloud-security-platform
   Scenario: Convert an existing rule from JSON to Terraform returns "Bad Request" response
@@ -154,11 +154,11 @@ Feature: Security Monitoring
   @team:DataDog/k9-cloud-security-platform
   Scenario: Convert an existing rule from JSON to Terraform returns "OK" response
     Given new "ConvertExistingSecurityMonitoringRule" request
-    And there is a valid "security_rule" in the system
-    And request contains "rule_id" parameter from "security_rule.id"
+    And there is a valid "security_rule_hash" in the system
+    And request contains "rule_id" parameter from "security_rule_hash.id"
     When the request is sent
     Then the response status is 200 OK
-    And the response "terraformContent" is equal to "resource \"datadog_security_monitoring_rule\" \"{{ unique_lower }}\" {\n\tname = \"{{ unique }}\"\n\tenabled = true\n\tquery {\n\t\tquery = \"@test:true\"\n\t\tgroup_by_fields = []\n\t\tdistinct_fields = []\n\t\taggregation = \"count\"\n\t\tname = \"\"\n\t\tdata_source = \"logs\"\n\t}\n\toptions {\n\t\tkeep_alive = 3600\n\t\tmax_signal_duration = 86400\n\t\tdetection_method = \"threshold\"\n\t\tevaluation_window = 900\n\t}\n\tcase {\n\t\tname = \"\"\n\t\tstatus = \"info\"\n\t\tnotifications = []\n\t\tcondition = \"a > 0\"\n\t}\n\tmessage = \"Test rule\"\n\ttags = []\n\thas_extended_title = false\n\ttype = \"log_detection\"\n}\n"
+    And the response "terraformContent" is equal to "resource \"datadog_security_monitoring_rule\" \"_{{ unique_hash }}\" {\n\tname = \"_{{ unique_hash }}\"\n\tenabled = true\n\tquery {\n\t\tquery = \"@test:true\"\n\t\tgroup_by_fields = []\n\t\tdistinct_fields = []\n\t\taggregation = \"count\"\n\t\tname = \"\"\n\t\tdata_source = \"logs\"\n\t}\n\toptions {\n\t\tkeep_alive = 3600\n\t\tmax_signal_duration = 86400\n\t\tdetection_method = \"threshold\"\n\t\tevaluation_window = 900\n\t}\n\tcase {\n\t\tname = \"\"\n\t\tstatus = \"info\"\n\t\tnotifications = []\n\t\tcondition = \"a > 0\"\n\t}\n\tmessage = \"Test rule\"\n\ttags = []\n\thas_extended_title = false\n\ttype = \"log_detection\"\n}\n"
 
   @skip-validation @team:DataDog/k9-cloud-security-platform
   Scenario: Create a cloud_configuration rule returns "OK" response
@@ -591,6 +591,30 @@ Feature: Security Monitoring
     Then the response status is 200 OK
     And the response "data.attributes.evaluation" is equal to "pass"
 
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: Get a hist signal's details returns "Bad Request" response
+    Given operation "GetSecurityMonitoringHistsignal" enabled
+    And new "GetSecurityMonitoringHistsignal" request
+    And request contains "histsignal_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: Get a hist signal's details returns "Not Found" response
+    Given operation "GetSecurityMonitoringHistsignal" enabled
+    And new "GetSecurityMonitoringHistsignal" request
+    And request contains "histsignal_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: Get a hist signal's details returns "OK" response
+    Given operation "GetSecurityMonitoringHistsignal" enabled
+    And new "GetSecurityMonitoringHistsignal" request
+    And request contains "histsignal_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
   @team:DataDog/k9-cloud-security-platform
   Scenario: Get a job's details returns "Bad Request" response
     Given operation "GetHistoricalJob" enabled
@@ -614,6 +638,30 @@ Feature: Security Monitoring
     And new "GetHistoricalJob" request
     And there is a valid "historical_job" in the system
     And request contains "job_id" parameter from "historical_job.data.id"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: Get a job's hist signals returns "Bad Request" response
+    Given operation "GetSecurityMonitoringHistsignalsByJobId" enabled
+    And new "GetSecurityMonitoringHistsignalsByJobId" request
+    And request contains "job_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: Get a job's hist signals returns "Not Found" response
+    Given operation "GetSecurityMonitoringHistsignalsByJobId" enabled
+    And new "GetSecurityMonitoringHistsignalsByJobId" request
+    And request contains "job_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: Get a job's hist signals returns "OK" response
+    Given operation "GetSecurityMonitoringHistsignalsByJobId" enabled
+    And new "GetSecurityMonitoringHistsignalsByJobId" request
+    And request contains "job_id" parameter from "REPLACE.ME"
     When the request is sent
     Then the response status is 200 OK
 
@@ -822,6 +870,35 @@ Feature: Security Monitoring
     And the response "data.attributes.count" is equal to 1
     And the response "data.attributes.data[1].rule.name" has the same value as "security_rule.name"
 
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Get suppressions affecting a specific rule returns "Not Found" response
+    Given new "GetSuppressionsAffectingRule" request
+    And request contains "rule_id" parameter with value "aaa-bbb-ccc-ddd"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Get suppressions affecting a specific rule returns "OK" response
+    Given new "GetSuppressionsAffectingRule" request
+    And there is a valid "security_rule" in the system
+    And request contains "rule_id" parameter from "security_rule.id"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Get suppressions affecting future rule returns "Bad Request" response
+    Given new "GetSuppressionsAffectingFutureRule" request
+    And body with value {"invalid_key":"invalid_value"}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Get suppressions affecting future rule returns "OK" response
+    Given new "GetSuppressionsAffectingFutureRule" request
+    And body from file "security_monitoring_future_rule_suppression_payload.json"
+    When the request is sent
+    Then the response status is 200 OK
+
   @team:DataDog/cloud-security-posture-management
   Scenario: Get the list of signal-based notification rules returns "The list of notification rules." response
     Given there is a valid "valid_signal_notification_rule" in the system
@@ -910,6 +987,27 @@ Feature: Security Monitoring
     Given operation "ListFindings" enabled
     And new "ListFindings" request
     And request contains "filter[vulnerability_type]" parameter with value ["misconfiguration", "attack_path"]
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: List hist signals returns "Bad Request" response
+    Given operation "ListSecurityMonitoringHistsignals" enabled
+    And new "ListSecurityMonitoringHistsignals" request
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: List hist signals returns "Not Found" response
+    Given operation "ListSecurityMonitoringHistsignals" enabled
+    And new "ListSecurityMonitoringHistsignals" request
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: List hist signals returns "OK" response
+    Given operation "ListSecurityMonitoringHistsignals" enabled
+    And new "ListSecurityMonitoringHistsignals" request
     When the request is sent
     Then the response status is 200 OK
 
@@ -1157,6 +1255,30 @@ Feature: Security Monitoring
     When the request is sent
     Then the response status is 201 Status created
 
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: Search hist signals returns "Bad Request" response
+    Given operation "SearchSecurityMonitoringHistsignals" enabled
+    And new "SearchSecurityMonitoringHistsignals" request
+    And body with value {"filter": {"from": "2019-01-02T09:42:36.320Z", "query": "security:attack status:high", "to": "2019-01-03T09:42:36.320Z"}, "page": {"cursor": "eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==", "limit": 25}, "sort": "timestamp"}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: Search hist signals returns "Not Found" response
+    Given operation "SearchSecurityMonitoringHistsignals" enabled
+    And new "SearchSecurityMonitoringHistsignals" request
+    And body with value {"filter": {"from": "2019-01-02T09:42:36.320Z", "query": "security:attack status:high", "to": "2019-01-03T09:42:36.320Z"}, "page": {"cursor": "eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==", "limit": 25}, "sort": "timestamp"}
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @generated @skip @team:DataDog/k9-cloud-security-platform
+  Scenario: Search hist signals returns "OK" response
+    Given operation "SearchSecurityMonitoringHistsignals" enabled
+    And new "SearchSecurityMonitoringHistsignals" request
+    And body with value {"filter": {"from": "2019-01-02T09:42:36.320Z", "query": "security:attack status:high", "to": "2019-01-03T09:42:36.320Z"}, "page": {"cursor": "eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==", "limit": 25}, "sort": "timestamp"}
+    When the request is sent
+    Then the response status is 200 OK
+
   @skip @team:DataDog/k9-cloud-security-platform
   Scenario: Test a rule returns "Bad Request" response
     Given new "TestSecurityMonitoringRule" request
@@ -1358,5 +1480,19 @@ Feature: Security Monitoring
   Scenario: Validate a detection rule returns "OK" response
     Given new "ValidateSecurityMonitoringRule" request
     And body with value {"cases":[{"name":"","status":"info","notifications":[],"condition":"a > 0"}],"hasExtendedTitle":true,"isEnabled":true,"message":"My security monitoring rule","name":"My security monitoring rule","options":{"evaluationWindow":1800,"keepAlive":1800,"maxSignalDuration":1800,"detectionMethod":"threshold"},"queries":[{"query":"source:source_here","groupByFields":["@userIdentity.assumed_role"],"distinctFields":[],"aggregation":"count","name":""}],"tags":["env:prod","team:security"],"type":"log_detection"}
+    When the request is sent
+    Then the response status is 204 OK
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Validate a suppression rule returns "Bad Request" response
+    Given new "ValidateSecurityMonitoringSuppression" request
+    And body with value {"data": {"attributes": {"name" : "cold_harbour", "enabled": false, "rule_query":"rule:[A-Invalid", "data_exclusion_query": "not enough attributes"}, "type": "suppressions"}}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @team:DataDog/k9-cloud-security-platform
+  Scenario: Validate a suppression rule returns "OK" response
+    Given new "ValidateSecurityMonitoringSuppression" request
+    And body with value {"data": {"attributes": {"data_exclusion_query": "source:cloudtrail account_id:12345", "description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "name": "Custom suppression", "rule_query": "type:log_detection source:cloudtrail"}, "type": "suppressions"}}
     When the request is sent
     Then the response status is 204 OK

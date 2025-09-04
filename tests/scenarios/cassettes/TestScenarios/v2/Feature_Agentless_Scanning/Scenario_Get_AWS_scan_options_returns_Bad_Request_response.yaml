@@ -1,0 +1,20 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/aws/not-an-account-id
+  response:
+    body: '{"errors":[{"title":"Generic Error","detail":"missing or invalid url parameter
+      ''accountId'', expected 12 digit format ''123456789012''"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
