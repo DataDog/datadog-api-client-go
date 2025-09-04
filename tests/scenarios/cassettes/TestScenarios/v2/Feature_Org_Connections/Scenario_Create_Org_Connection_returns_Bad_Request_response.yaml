@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"connection_types":["logs","logs"]},"relationships":{"sink_org":{"data":{"id":"83999dcd-7f97-11f0-8de1-1ecf66f1aa85","type":"orgs"}}},"type":"org_connection"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/org_connections
+  response:
+    body: '{"errors":["connection between orgs 4dee724d-00cc-11ea-a77b-570c9d03c6c5
+      and 83999dcd-7f97-11f0-8de1-1ecf66f1aa85 is not allowed"]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 2

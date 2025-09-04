@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 0
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/org_connections/malformed_id
+  response:
+    body: '{"errors":["connection id must be a valid uuid"]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 2
