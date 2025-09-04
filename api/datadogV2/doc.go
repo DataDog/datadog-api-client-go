@@ -149,6 +149,8 @@
 //   - [DORAMetricsApi.CreateDORADeployment]
 //   - [DORAMetricsApi.CreateDORAFailure]
 //   - [DORAMetricsApi.CreateDORAIncident]
+//   - [DORAMetricsApi.DeleteDORADeployment]
+//   - [DORAMetricsApi.DeleteDORAFailure]
 //   - [DORAMetricsApi.GetDORADeployment]
 //   - [DORAMetricsApi.GetDORAFailure]
 //   - [DORAMetricsApi.ListDORADeployments]
