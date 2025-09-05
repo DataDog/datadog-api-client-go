@@ -39,6 +39,8 @@ func NewHistoricalJobQuery() *HistoricalJobQuery {
 	this := HistoricalJobQuery{}
 	var dataSource SecurityMonitoringStandardDataSource = SECURITYMONITORINGSTANDARDDATASOURCE_LOGS
 	this.DataSource = &dataSource
+	var hasOptionalGroupByFields bool = false
+	this.HasOptionalGroupByFields = &hasOptionalGroupByFields
 	return &this
 }
 
@@ -49,6 +51,8 @@ func NewHistoricalJobQueryWithDefaults() *HistoricalJobQuery {
 	this := HistoricalJobQuery{}
 	var dataSource SecurityMonitoringStandardDataSource = SECURITYMONITORINGSTANDARDDATASOURCE_LOGS
 	this.DataSource = &dataSource
+	var hasOptionalGroupByFields bool = false
+	this.HasOptionalGroupByFields = &hasOptionalGroupByFields
 	return &this
 }
 
