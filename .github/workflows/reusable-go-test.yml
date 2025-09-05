@@ -1,0 +1,84 @@
+name: Reusable Go Testing Workflow
+
+on:
+  workflow_call:
+    inputs:
+      go-versions:
+        description: 'JSON array of Go versions to test against'
+        required: false
+        type: string
+        default: '["1.22.x", "1.23.x"]'
+      go-build-tags:
+        description: 'JSON array of Go build tags to test with'
+        required: false
+        type: string
+        default: '["--tags=goccy_gojson", ""]'
+      platforms:
+        description: 'JSON array of platforms to run tests on'
+        required: false
+        type: string
+        default: '["ubuntu-latest"]'
+      cache-dependency-path:
+        description: 'Path to dependency file for caching'
+        required: false
+        type: string
+        default: 'tests/go.sum'
+      enable-status-reporting:
+        description: 'Whether to post status checks to datadog-api-spec repo'
+        required: false
+        type: boolean
+        default: false
+      status-context:
+        description: 'Context for status checks'
+        required: false
+        type: string
+        default: 'master/unit'
+    secrets:
+      PIPELINE_GITHUB_APP_ID:
+        required: false
+      PIPELINE_GITHUB_APP_PRIVATE_KEY:
+        required: false
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        go-version: ${{ fromJSON(inputs.go-versions) }}
+        go-build-tags: ${{ fromJSON(inputs.go-build-tags) }}
+        platform: ${{ fromJSON(inputs.platforms) }}
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go-version }}
+          cache: true
+          cache-dependency-path: ${{ inputs.cache-dependency-path }}
+      - name: Test
+        run: ./run-tests.sh
+        env:
+          TESTARGS: ${{ matrix.go-build-tags }}
+
+  report:
+    runs-on: ubuntu-latest
+    if: always() && github.event_name == 'pull_request' && contains(github.event.pull_request.head.ref, 'datadog-api-spec/generated/') && inputs.enable-status-reporting
+    needs:
+      - test
+    steps:
+      - name: Get GitHub App token
+        if: github.event_name == 'pull_request'
+        id: get_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
+          private-key: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
+          repositories: datadog-api-spec
+      - name: Post status check
+        uses: DataDog/github-actions/post-status-check@v2
+        with:
+          github-token: ${{ steps.get_token.outputs.token }}
+          repo: datadog-api-spec
+          status: ${{ needs.test.result == 'cancelled' && 'pending' || needs.test.result == 'success' && 'success' || 'failure' }}
+          context: ${{ inputs.status-context }}
