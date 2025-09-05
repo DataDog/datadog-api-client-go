@@ -1,0 +1,56 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"","name":"Test Datastore","org_access":"contributor","primary_column_name":"id","primary_key_generation_strategy":"none"},"type":"datastores"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/actions-datastores
+  response:
+    body: '{"data":{"id":"8185f4a4-6cf6-4fde-a705-e248effe50fc","type":"datastores"}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/actions-datastores/8185f4a4-6cf6-4fde-a705-e248effe50fc
+  response:
+    body: '{"data":{"id":"8185f4a4-6cf6-4fde-a705-e248effe50fc","type":"datastores"}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/actions-datastores/8185f4a4-6cf6-4fde-a705-e248effe50fc
+  response:
+    body: ''
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2
