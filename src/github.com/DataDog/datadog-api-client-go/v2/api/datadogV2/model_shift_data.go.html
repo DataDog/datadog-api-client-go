@@ -67,13 +67,13 @@
 <span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
-<span id="L13" class="ln">    13  </span><span class="comment">// ShiftData The definition of `ShiftData` object.</span>
+<span id="L13" class="ln">    13  </span><span class="comment">// ShiftData Data for an on-call shift.</span>
 <span id="L14" class="ln">    14  </span>type ShiftData struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The definition of `ShiftDataAttributes` object.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Attributes for an on-call shift.</span>
 <span id="L16" class="ln">    16  </span>	Attributes *ShiftDataAttributes `json:&#34;attributes,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// The `ShiftData` `id`.</span>
 <span id="L18" class="ln">    18  </span>	Id *string `json:&#34;id,omitempty&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// The definition of `ShiftDataRelationships` object.</span>
+<span id="L19" class="ln">    19  </span>	<span class="comment">// Relationships for an on-call shift.</span>
 <span id="L20" class="ln">    20  </span>	Relationships *ShiftDataRelationships `json:&#34;relationships,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// Indicates that the resource is of type &#39;shifts&#39;.</span>
 <span id="L22" class="ln">    22  </span>	Type ShiftDataType `json:&#34;type&#34;`
