@@ -6807,7 +6807,7 @@ func (a *SecurityMonitoringApi) ValidateSecurityMonitoringRule(ctx _context.Cont
 
 // ValidateSecurityMonitoringSuppression Validate a suppression rule.
 // Validate a suppression rule.
-func (a *SecurityMonitoringApi) ValidateSecurityMonitoringSuppression(ctx _context.Context, body SecurityMonitoringSuppressionUpdateRequest) (*_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ValidateSecurityMonitoringSuppression(ctx _context.Context, body SecurityMonitoringSuppressionCreateRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}

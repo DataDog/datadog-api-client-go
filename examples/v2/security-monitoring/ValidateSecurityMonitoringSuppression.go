@@ -12,14 +12,14 @@ import (
 )
 
 func main() {
-	body := datadogV2.SecurityMonitoringSuppressionUpdateRequest{
-		Data: datadogV2.SecurityMonitoringSuppressionUpdateData{
-			Attributes: datadogV2.SecurityMonitoringSuppressionUpdateAttributes{
+	body := datadogV2.SecurityMonitoringSuppressionCreateRequest{
+		Data: datadogV2.SecurityMonitoringSuppressionCreateData{
+			Attributes: datadogV2.SecurityMonitoringSuppressionCreateAttributes{
 				DataExclusionQuery: datadog.PtrString("source:cloudtrail account_id:12345"),
 				Description:        datadog.PtrString("This rule suppresses low-severity signals in staging environments."),
-				Enabled:            datadog.PtrBool(true),
-				Name:               datadog.PtrString("Custom suppression"),
-				RuleQuery:          datadog.PtrString("type:log_detection source:cloudtrail"),
+				Enabled:            true,
+				Name:               "Custom suppression",
+				RuleQuery:          "type:log_detection source:cloudtrail",
 			},
 			Type: datadogV2.SECURITYMONITORINGSUPPRESSIONTYPE_SUPPRESSIONS,
 		},

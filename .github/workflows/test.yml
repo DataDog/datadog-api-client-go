@@ -79,30 +79,26 @@ jobs:
           pre-commit run --all-files --show-diff-on-failure --color=always
 
   test:
-    strategy:
-      matrix:
-        go-version: [1.22.x, 1.23.x]
-        go-build-tags: ["--tags=goccy_gojson", ""]
-        platform: [ubuntu-latest]
-    runs-on: ${{ matrix.platform }}
-    if: (github.event.pull_request.draft == false && !contains(github.event.pull_request.labels.*.name, 'ci/skip') && !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/')) || github.event_name == 'schedule'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: ${{ matrix.go-version }}
-          cache: true
-          cache-dependency-path: tests/go.sum
-      - name: Test
-        run: ./run-tests.sh
-        env:
-          TESTARGS: ${{ matrix.go-build-tags }}
+    if: >
+      (github.event.pull_request.draft == false &&
+       !contains(github.event.pull_request.labels.*.name, 'ci/skip') &&
+       !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/')) ||
+      github.event_name == 'schedule'
+    uses: ./.github/workflows/reusable-go-test.yml
+    with:
+      enable-status-reporting: true
+      status-context: 'master/unit'
+    secrets:
+      PIPELINE_GITHUB_APP_ID: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
+      PIPELINE_GITHUB_APP_PRIVATE_KEY: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
 
   examples:
     runs-on: ubuntu-latest
-    if: (github.event.pull_request.draft == false && !contains(github.event.pull_request.labels.*.name, 'ci/skip') && !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/')) || github.event_name == 'schedule'
+    if: >
+      (github.event.pull_request.draft == false &&
+       !contains(github.event.pull_request.labels.*.name, 'ci/skip') &&
+       !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/')) ||
+      github.event_name == 'schedule'
     steps:
       - uses: actions/checkout@v3
       - name: Install Go
