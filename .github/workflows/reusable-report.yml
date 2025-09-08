@@ -1,0 +1,58 @@
+name: Reusable Report Workflow
+
+on:
+  workflow_call:
+    inputs:
+      test-result:
+        description: 'Result of the test job'
+        required: true
+        type: string
+      examples-result:
+        description: 'Result of the examples job'
+        required: true
+        type: string
+      context:
+        description: 'Context for status check'
+        required: false
+        type: string
+        default: 'master/unit'
+      target-repo:
+        description: 'Repository to post status to'
+        required: false
+        type: string
+        default: 'datadog-api-spec'
+      enable-status-reporting:
+        description: 'Whether to enable status reporting'
+        required: false
+        type: boolean
+        default: true
+    secrets:
+      PIPELINE_GITHUB_APP_ID:
+        required: true
+      PIPELINE_GITHUB_APP_PRIVATE_KEY:
+        required: true
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    if: >
+      always() && 
+      github.event_name == 'pull_request' && 
+      contains(github.event.pull_request.head.ref, 'datadog-api-spec/generated/') &&
+      inputs.enable-status-reporting
+    steps:
+      - name: Get GitHub App token
+        if: github.event_name == 'pull_request'
+        id: get_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
+          private-key: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
+          repositories: ${{ inputs.target-repo }}
+      - name: Post status check
+        uses: DataDog/github-actions/post-status-check@v2
+        with:
+          github-token: ${{ steps.get_token.outputs.token }}
+          repo: ${{ inputs.target-repo }}
+          status: ${{ (inputs.test-result == 'cancelled' || inputs.examples-result == 'cancelled') && 'pending' || (inputs.test-result == 'success' && inputs.examples-result == 'success') && 'success' || 'failure' }}
+          context: ${{ inputs.context }}

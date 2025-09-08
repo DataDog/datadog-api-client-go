@@ -1,0 +1,68 @@
+name: Reusable Complete CI Workflow
+
+on:
+  workflow_call:
+    inputs:
+      enable-commit-changes:
+        description: 'Whether to commit and push pre-commit fixes'
+        required: false
+        type: boolean
+        default: true
+      enable-status-reporting:
+        description: 'Whether to enable status reporting'
+        required: false
+        type: boolean
+        default: true
+      status-context:
+        description: 'Context for status checks'
+        required: false
+        type: string
+        default: 'master/unit'
+      target-repo:
+        description: 'Repository to post status to'
+        required: false
+        type: string
+        default: 'datadog-api-spec'
+      
+    secrets:
+      PIPELINE_GITHUB_APP_ID:
+        required: false
+      PIPELINE_GITHUB_APP_PRIVATE_KEY:
+        required: false
+
+jobs:
+  pre-commit:
+    uses: ./.github/workflows/reusable-pre-commit.yml
+    with:
+      enable-commit-changes: ${{ inputs.enable-commit-changes }}
+    secrets:
+      PIPELINE_GITHUB_APP_ID: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
+      PIPELINE_GITHUB_APP_PRIVATE_KEY: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
+
+  test:
+    uses: ./.github/workflows/reusable-go-test.yml
+    with:
+      enable-status-reporting: false  # We handle reporting in the main report job
+      status-context: ${{ inputs.status-context }}
+    secrets:
+      PIPELINE_GITHUB_APP_ID: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
+      PIPELINE_GITHUB_APP_PRIVATE_KEY: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
+
+  examples:
+    uses: ./.github/workflows/reusable-examples.yml
+
+  report:
+    uses: ./.github/workflows/reusable-report.yml
+    needs: 
+      - test
+      - examples
+    if: always()
+    with:
+      test-result: ${{ needs.test.result }}
+      examples-result: ${{ needs.examples.result }}
+      context: ${{ inputs.status-context }}
+      target-repo: ${{ inputs.target-repo }}
+      enable-status-reporting: ${{ inputs.enable-status-reporting }}
+    secrets:
+      PIPELINE_GITHUB_APP_ID: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
+      PIPELINE_GITHUB_APP_PRIVATE_KEY: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
