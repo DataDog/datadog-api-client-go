@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"category":"alert","content":"An incident has been declared. Please join the incident channel for updates.","name":"Test Template","subject":"Incident Alert"},"type":"invalid_type"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/incidents/config/notification-templates
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"got type \"invalid_type\"
+      expected one of \"notification_templates\""}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
