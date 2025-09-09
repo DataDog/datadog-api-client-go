@@ -3,6 +3,11 @@ name: Reusable Go Testing Workflow
 on:
   workflow_call:
     inputs:
+      target-branch:
+        description: 'Branch to checkout and test (defaults to the calling branch)'
+        required: false
+        type: string
+        default: ''
       enable-status-reporting:
         description: 'Whether to post status checks to datadog-api-spec repo'
         required: false
@@ -32,6 +37,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.target-branch || github.ref }}
       - name: Install Go
         uses: actions/setup-go@v4
         with:
