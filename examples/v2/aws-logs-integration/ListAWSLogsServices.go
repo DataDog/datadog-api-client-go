@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListAWSLogsServices", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAWSLogsIntegrationApi(apiClient)
 	resp, r, err := api.ListAWSLogsServices(ctx)
