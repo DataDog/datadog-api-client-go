@@ -17,7 +17,6 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.DeleteAWSAccount", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAWSIntegrationApi(apiClient)
 	r, err := api.DeleteAWSAccount(ctx, AwsAccountV2DataID)

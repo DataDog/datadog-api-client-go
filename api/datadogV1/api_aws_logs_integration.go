@@ -353,6 +353,8 @@ func (a *AWSLogsIntegrationApi) DeleteAWSLambdaARN(ctx _context.Context, body AW
 
 // EnableAWSLogServices Enable an AWS Logs integration.
 // Enable automatic log collection for a list of services. This should be run after running `CreateAWSLambdaARN` to save the configuration.
+//
+// Deprecated: This API is deprecated.
 func (a *AWSLogsIntegrationApi) EnableAWSLogServices(ctx _context.Context, body AWSLogsServicesRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -433,6 +435,8 @@ func (a *AWSLogsIntegrationApi) EnableAWSLogServices(ctx _context.Context, body 
 
 // ListAWSLogsIntegrations List all AWS Logs integrations.
 // List all Datadog-AWS Logs integrations configured in your Datadog account.
+//
+// Deprecated: This API is deprecated.
 func (a *AWSLogsIntegrationApi) ListAWSLogsIntegrations(ctx _context.Context) ([]AWSLogsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -510,6 +514,8 @@ func (a *AWSLogsIntegrationApi) ListAWSLogsIntegrations(ctx _context.Context) ([
 
 // ListAWSLogsServices Get list of AWS log ready services.
 // Get the list of current AWS services that Datadog offers automatic log collection. Use returned service IDs with the services parameter for the Enable an AWS service log collection API endpoint.
+//
+// Deprecated: This API is deprecated.
 func (a *AWSLogsIntegrationApi) ListAWSLogsServices(ctx _context.Context) ([]AWSLogsListServicesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

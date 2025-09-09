@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListAWSAccounts", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAWSIntegrationApi(apiClient)
 	resp, r, err := api.ListAWSAccounts(ctx, *datadogV2.NewListAWSAccountsOptionalParameters())
