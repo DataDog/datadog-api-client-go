@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## 2.45.0/2025-09-09
+
+### Added
+* Add Incident Notification Template Public Docs [#3332](https://github.com/DataDog/datadog-api-client-go/pull/3332)
+* Add Cross Org API to Open API specs [#3331](https://github.com/DataDog/datadog-api-client-go/pull/3331)
+* Add readonly ID of synthetics test steps [#3326](https://github.com/DataDog/datadog-api-client-go/pull/3326)
+* Create Cloud SIEM histsignals endpoints [#3325](https://github.com/DataDog/datadog-api-client-go/pull/3325)
+* Security Monitoring - Validation Endpoint for Suppressions [#3322](https://github.com/DataDog/datadog-api-client-go/pull/3322)
+* Update Get All Notification Rules API docs to include pagination, sorting, and filtering params [#3320](https://github.com/DataDog/datadog-api-client-go/pull/3320)
+* Security Monitoring - Related Suppressions for a Rule [#3318](https://github.com/DataDog/datadog-api-client-go/pull/3318)
+* Extend Widget time schema with support for hide_incomplete_cost_data [#3307](https://github.com/DataDog/datadog-api-client-go/pull/3307)
+* Add SDS rule `should_save_match` field [#3305](https://github.com/DataDog/datadog-api-client-go/pull/3305)
+* Add spec for Agentless GetAwsScanOptions [#3302](https://github.com/DataDog/datadog-api-client-go/pull/3302)
+* Add Cross Org API to Open API specs [#3300](https://github.com/DataDog/datadog-api-client-go/pull/3300)
+* Add DNAP Spark Pod Autosizing service to API client [#3296](https://github.com/DataDog/datadog-api-client-go/pull/3296)
+* Add version parameter to synthetic test trigger ci endpoint [#3295](https://github.com/DataDog/datadog-api-client-go/pull/3295)
+* Document Error Tracking public APIs [#3292](https://github.com/DataDog/datadog-api-client-go/pull/3292)
+* Add docs for 404 not found error in cost-onboarding-api [#3287](https://github.com/DataDog/datadog-api-client-go/pull/3287)
+
+### Fixed
+* Security Monitoring - Fix payload of Validation Endpoint for Suppressions [#3327](https://github.com/DataDog/datadog-api-client-go/pull/3327)
+* [CCA-938][CCC-883] Audit existing CCM endpoints in OpenAPI spec [#3283](https://github.com/DataDog/datadog-api-client-go/pull/3283)
+* Add enum Dataset type to Dataset API spec [#3281](https://github.com/DataDog/datadog-api-client-go/pull/3281)
+
+### Changed
+* Update public cost permissions [#3304](https://github.com/DataDog/datadog-api-client-go/pull/3304)
+* Add Product Scales support to RUM v2 Applications API [#3285](https://github.com/DataDog/datadog-api-client-go/pull/3285)
+
 ## 2.44.0/2025-08-12
 
 ### Added
