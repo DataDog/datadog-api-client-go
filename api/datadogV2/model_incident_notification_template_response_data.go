@@ -7,49 +7,49 @@ package datadogV2
 import (
 	"fmt"
 
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IncidentTypeObject Incident type response data.
-type IncidentTypeObject struct {
-	// Incident type's attributes.
-	Attributes *IncidentTypeAttributes `json:"attributes,omitempty"`
-	// The incident type's ID.
-	Id string `json:"id"`
-	// The incident type's resource relationships.
-	Relationships *IncidentTypeRelationships `json:"relationships,omitempty"`
-	// Incident type resource type.
-	Type IncidentTypeType `json:"type"`
+// IncidentNotificationTemplateResponseData Notification template data from a response.
+type IncidentNotificationTemplateResponseData struct {
+	// The notification template's attributes.
+	Attributes *IncidentNotificationTemplateAttributes `json:"attributes,omitempty"`
+	// The unique identifier of the notification template.
+	Id uuid.UUID `json:"id"`
+	// The notification template's resource relationships.
+	Relationships *IncidentNotificationTemplateRelationships `json:"relationships,omitempty"`
+	// Notification templates resource type.
+	Type IncidentNotificationTemplateType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewIncidentTypeObject instantiates a new IncidentTypeObject object.
+// NewIncidentNotificationTemplateResponseData instantiates a new IncidentNotificationTemplateResponseData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIncidentTypeObject(id string, typeVar IncidentTypeType) *IncidentTypeObject {
-	this := IncidentTypeObject{}
+func NewIncidentNotificationTemplateResponseData(id uuid.UUID, typeVar IncidentNotificationTemplateType) *IncidentNotificationTemplateResponseData {
+	this := IncidentNotificationTemplateResponseData{}
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewIncidentTypeObjectWithDefaults instantiates a new IncidentTypeObject object.
+// NewIncidentNotificationTemplateResponseDataWithDefaults instantiates a new IncidentNotificationTemplateResponseData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewIncidentTypeObjectWithDefaults() *IncidentTypeObject {
-	this := IncidentTypeObject{}
-	var typeVar IncidentTypeType = INCIDENTTYPETYPE_INCIDENT_TYPES
-	this.Type = typeVar
+func NewIncidentNotificationTemplateResponseDataWithDefaults() *IncidentNotificationTemplateResponseData {
+	this := IncidentNotificationTemplateResponseData{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *IncidentTypeObject) GetAttributes() IncidentTypeAttributes {
+func (o *IncidentNotificationTemplateResponseData) GetAttributes() IncidentNotificationTemplateAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret IncidentTypeAttributes
+		var ret IncidentNotificationTemplateAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -57,7 +57,7 @@ func (o *IncidentTypeObject) GetAttributes() IncidentTypeAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentTypeObject) GetAttributesOk() (*IncidentTypeAttributes, bool) {
+func (o *IncidentNotificationTemplateResponseData) GetAttributesOk() (*IncidentNotificationTemplateAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -65,19 +65,19 @@ func (o *IncidentTypeObject) GetAttributesOk() (*IncidentTypeAttributes, bool) {
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *IncidentTypeObject) HasAttributes() bool {
+func (o *IncidentNotificationTemplateResponseData) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
-// SetAttributes gets a reference to the given IncidentTypeAttributes and assigns it to the Attributes field.
-func (o *IncidentTypeObject) SetAttributes(v IncidentTypeAttributes) {
+// SetAttributes gets a reference to the given IncidentNotificationTemplateAttributes and assigns it to the Attributes field.
+func (o *IncidentNotificationTemplateResponseData) SetAttributes(v IncidentNotificationTemplateAttributes) {
 	o.Attributes = &v
 }
 
 // GetId returns the Id field value.
-func (o *IncidentTypeObject) GetId() string {
+func (o *IncidentNotificationTemplateResponseData) GetId() uuid.UUID {
 	if o == nil {
-		var ret string
+		var ret uuid.UUID
 		return ret
 	}
 	return o.Id
@@ -85,7 +85,7 @@ func (o *IncidentTypeObject) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *IncidentTypeObject) GetIdOk() (*string, bool) {
+func (o *IncidentNotificationTemplateResponseData) GetIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,14 +93,14 @@ func (o *IncidentTypeObject) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *IncidentTypeObject) SetId(v string) {
+func (o *IncidentNotificationTemplateResponseData) SetId(v uuid.UUID) {
 	o.Id = v
 }
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
-func (o *IncidentTypeObject) GetRelationships() IncidentTypeRelationships {
+func (o *IncidentNotificationTemplateResponseData) GetRelationships() IncidentNotificationTemplateRelationships {
 	if o == nil || o.Relationships == nil {
-		var ret IncidentTypeRelationships
+		var ret IncidentNotificationTemplateRelationships
 		return ret
 	}
 	return *o.Relationships
@@ -108,7 +108,7 @@ func (o *IncidentTypeObject) GetRelationships() IncidentTypeRelationships {
 
 // GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentTypeObject) GetRelationshipsOk() (*IncidentTypeRelationships, bool) {
+func (o *IncidentNotificationTemplateResponseData) GetRelationshipsOk() (*IncidentNotificationTemplateRelationships, bool) {
 	if o == nil || o.Relationships == nil {
 		return nil, false
 	}
@@ -116,19 +116,19 @@ func (o *IncidentTypeObject) GetRelationshipsOk() (*IncidentTypeRelationships, b
 }
 
 // HasRelationships returns a boolean if a field has been set.
-func (o *IncidentTypeObject) HasRelationships() bool {
+func (o *IncidentNotificationTemplateResponseData) HasRelationships() bool {
 	return o != nil && o.Relationships != nil
 }
 
-// SetRelationships gets a reference to the given IncidentTypeRelationships and assigns it to the Relationships field.
-func (o *IncidentTypeObject) SetRelationships(v IncidentTypeRelationships) {
+// SetRelationships gets a reference to the given IncidentNotificationTemplateRelationships and assigns it to the Relationships field.
+func (o *IncidentNotificationTemplateResponseData) SetRelationships(v IncidentNotificationTemplateRelationships) {
 	o.Relationships = &v
 }
 
 // GetType returns the Type field value.
-func (o *IncidentTypeObject) GetType() IncidentTypeType {
+func (o *IncidentNotificationTemplateResponseData) GetType() IncidentNotificationTemplateType {
 	if o == nil {
-		var ret IncidentTypeType
+		var ret IncidentNotificationTemplateType
 		return ret
 	}
 	return o.Type
@@ -136,7 +136,7 @@ func (o *IncidentTypeObject) GetType() IncidentTypeType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *IncidentTypeObject) GetTypeOk() (*IncidentTypeType, bool) {
+func (o *IncidentNotificationTemplateResponseData) GetTypeOk() (*IncidentNotificationTemplateType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -144,12 +144,12 @@ func (o *IncidentTypeObject) GetTypeOk() (*IncidentTypeType, bool) {
 }
 
 // SetType sets field value.
-func (o *IncidentTypeObject) SetType(v IncidentTypeType) {
+func (o *IncidentNotificationTemplateResponseData) SetType(v IncidentNotificationTemplateType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o IncidentTypeObject) MarshalJSON() ([]byte, error) {
+func (o IncidentNotificationTemplateResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -170,12 +170,12 @@ func (o IncidentTypeObject) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *IncidentTypeObject) UnmarshalJSON(bytes []byte) (err error) {
+func (o *IncidentNotificationTemplateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *IncidentTypeAttributes    `json:"attributes,omitempty"`
-		Id            *string                    `json:"id"`
-		Relationships *IncidentTypeRelationships `json:"relationships,omitempty"`
-		Type          *IncidentTypeType          `json:"type"`
+		Attributes    *IncidentNotificationTemplateAttributes    `json:"attributes,omitempty"`
+		Id            *uuid.UUID                                 `json:"id"`
+		Relationships *IncidentNotificationTemplateRelationships `json:"relationships,omitempty"`
+		Type          *IncidentNotificationTemplateType          `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
