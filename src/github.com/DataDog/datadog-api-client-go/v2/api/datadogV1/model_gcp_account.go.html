@@ -80,690 +80,735 @@
 <span id="L23" class="ln">    23  </span>	<span class="comment">// Should be `https://www.googleapis.com/robot/v1/metadata/x509/$CLIENT_EMAIL`</span>
 <span id="L24" class="ln">    24  </span>	<span class="comment">// where `$CLIENT_EMAIL` is the email found in your JSON service account key.</span>
 <span id="L25" class="ln">    25  </span>	ClientX509CertUrl *string `json:&#34;client_x509_cert_url,omitempty&#34;`
-<span id="L26" class="ln">    26  </span>	<span class="comment">// Limit the Cloud Run revisions that are pulled into Datadog by using tags.</span>
+<span id="L26" class="ln">    26  </span>	<span class="comment">// List of filters to limit the Cloud Run revisions that are pulled into Datadog by using tags.</span>
 <span id="L27" class="ln">    27  </span>	<span class="comment">// Only Cloud Run revision resources that apply to specified filters are imported into Datadog.</span>
-<span id="L28" class="ln">    28  </span>	CloudRunRevisionFilters []string `json:&#34;cloud_run_revision_filters,omitempty&#34;`
-<span id="L29" class="ln">    29  </span>	<span class="comment">// An array of errors.</span>
-<span id="L30" class="ln">    30  </span>	Errors []string `json:&#34;errors,omitempty&#34;`
-<span id="L31" class="ln">    31  </span>	<span class="comment">// Limit the GCE instances that are pulled into Datadog by using tags.</span>
-<span id="L32" class="ln">    32  </span>	<span class="comment">// Only hosts that match one of the defined tags are imported into Datadog.</span>
-<span id="L33" class="ln">    33  </span>	HostFilters *string `json:&#34;host_filters,omitempty&#34;`
-<span id="L34" class="ln">    34  </span>	<span class="comment">// When enabled, Datadog will activate the Cloud Security Monitoring product for this service account. Note: This requires resource_collection_enabled to be set to true.</span>
-<span id="L35" class="ln">    35  </span>	IsCspmEnabled *bool `json:&#34;is_cspm_enabled,omitempty&#34;`
-<span id="L36" class="ln">    36  </span>	<span class="comment">// When enabled, Datadog scans for all resource change data in your Google Cloud environment.</span>
-<span id="L37" class="ln">    37  </span>	IsResourceChangeCollectionEnabled *bool `json:&#34;is_resource_change_collection_enabled,omitempty&#34;`
-<span id="L38" class="ln">    38  </span>	<span class="comment">// When enabled, Datadog will attempt to collect Security Command Center Findings. Note: This requires additional permissions on the service account.</span>
-<span id="L39" class="ln">    39  </span>	IsSecurityCommandCenterEnabled *bool `json:&#34;is_security_command_center_enabled,omitempty&#34;`
-<span id="L40" class="ln">    40  </span>	<span class="comment">// Your private key name found in your JSON service account key.</span>
-<span id="L41" class="ln">    41  </span>	PrivateKey *string `json:&#34;private_key,omitempty&#34;`
-<span id="L42" class="ln">    42  </span>	<span class="comment">// Your private key ID found in your JSON service account key.</span>
-<span id="L43" class="ln">    43  </span>	PrivateKeyId *string `json:&#34;private_key_id,omitempty&#34;`
-<span id="L44" class="ln">    44  </span>	<span class="comment">// Your Google Cloud project ID found in your JSON service account key.</span>
-<span id="L45" class="ln">    45  </span>	ProjectId *string `json:&#34;project_id,omitempty&#34;`
-<span id="L46" class="ln">    46  </span>	<span class="comment">// When enabled, Datadog scans for all resources in your GCP environment.</span>
-<span id="L47" class="ln">    47  </span>	ResourceCollectionEnabled *bool `json:&#34;resource_collection_enabled,omitempty&#34;`
-<span id="L48" class="ln">    48  </span>	<span class="comment">// Should be `https://accounts.google.com/o/oauth2/token`.</span>
-<span id="L49" class="ln">    49  </span>	TokenUri *string `json:&#34;token_uri,omitempty&#34;`
-<span id="L50" class="ln">    50  </span>	<span class="comment">// The value for service_account found in your JSON service account key.</span>
-<span id="L51" class="ln">    51  </span>	Type *string `json:&#34;type,omitempty&#34;`
-<span id="L52" class="ln">    52  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
-<span id="L53" class="ln">    53  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L54" class="ln">    54  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
-<span id="L55" class="ln">    55  </span>}
-<span id="L56" class="ln">    56  </span>
-<span id="L57" class="ln">    57  </span><span class="comment">// NewGCPAccount instantiates a new GCPAccount object.</span>
-<span id="L58" class="ln">    58  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
-<span id="L59" class="ln">    59  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
-<span id="L60" class="ln">    60  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L61" class="ln">    61  </span>func NewGCPAccount() *GCPAccount {
-<span id="L62" class="ln">    62  </span>	this := GCPAccount{}
-<span id="L63" class="ln">    63  </span>	var isResourceChangeCollectionEnabled bool = false
-<span id="L64" class="ln">    64  </span>	this.IsResourceChangeCollectionEnabled = &amp;isResourceChangeCollectionEnabled
-<span id="L65" class="ln">    65  </span>	var isSecurityCommandCenterEnabled bool = false
-<span id="L66" class="ln">    66  </span>	this.IsSecurityCommandCenterEnabled = &amp;isSecurityCommandCenterEnabled
-<span id="L67" class="ln">    67  </span>	return &amp;this
-<span id="L68" class="ln">    68  </span>}
-<span id="L69" class="ln">    69  </span>
-<span id="L70" class="ln">    70  </span><span class="comment">// NewGCPAccountWithDefaults instantiates a new GCPAccount object.</span>
-<span id="L71" class="ln">    71  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
-<span id="L72" class="ln">    72  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L73" class="ln">    73  </span>func NewGCPAccountWithDefaults() *GCPAccount {
-<span id="L74" class="ln">    74  </span>	this := GCPAccount{}
-<span id="L75" class="ln">    75  </span>	var isResourceChangeCollectionEnabled bool = false
-<span id="L76" class="ln">    76  </span>	this.IsResourceChangeCollectionEnabled = &amp;isResourceChangeCollectionEnabled
-<span id="L77" class="ln">    77  </span>	var isSecurityCommandCenterEnabled bool = false
-<span id="L78" class="ln">    78  </span>	this.IsSecurityCommandCenterEnabled = &amp;isSecurityCommandCenterEnabled
-<span id="L79" class="ln">    79  </span>	return &amp;this
-<span id="L80" class="ln">    80  </span>}
-<span id="L81" class="ln">    81  </span>
-<span id="L82" class="ln">    82  </span><span class="comment">// GetAuthProviderX509CertUrl returns the AuthProviderX509CertUrl field value if set, zero value otherwise.</span>
-<span id="L83" class="ln">    83  </span>func (o *GCPAccount) GetAuthProviderX509CertUrl() string {
-<span id="L84" class="ln">    84  </span>	if o == nil || o.AuthProviderX509CertUrl == nil {
-<span id="L85" class="ln">    85  </span>		var ret string
-<span id="L86" class="ln">    86  </span>		return ret
-<span id="L87" class="ln">    87  </span>	}
-<span id="L88" class="ln">    88  </span>	return *o.AuthProviderX509CertUrl
-<span id="L89" class="ln">    89  </span>}
-<span id="L90" class="ln">    90  </span>
-<span id="L91" class="ln">    91  </span><span class="comment">// GetAuthProviderX509CertUrlOk returns a tuple with the AuthProviderX509CertUrl field value if set, nil otherwise</span>
-<span id="L92" class="ln">    92  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L93" class="ln">    93  </span>func (o *GCPAccount) GetAuthProviderX509CertUrlOk() (*string, bool) {
-<span id="L94" class="ln">    94  </span>	if o == nil || o.AuthProviderX509CertUrl == nil {
-<span id="L95" class="ln">    95  </span>		return nil, false
-<span id="L96" class="ln">    96  </span>	}
-<span id="L97" class="ln">    97  </span>	return o.AuthProviderX509CertUrl, true
-<span id="L98" class="ln">    98  </span>}
-<span id="L99" class="ln">    99  </span>
-<span id="L100" class="ln">   100  </span><span class="comment">// HasAuthProviderX509CertUrl returns a boolean if a field has been set.</span>
-<span id="L101" class="ln">   101  </span>func (o *GCPAccount) HasAuthProviderX509CertUrl() bool {
-<span id="L102" class="ln">   102  </span>	return o != nil &amp;&amp; o.AuthProviderX509CertUrl != nil
-<span id="L103" class="ln">   103  </span>}
-<span id="L104" class="ln">   104  </span>
-<span id="L105" class="ln">   105  </span><span class="comment">// SetAuthProviderX509CertUrl gets a reference to the given string and assigns it to the AuthProviderX509CertUrl field.</span>
-<span id="L106" class="ln">   106  </span>func (o *GCPAccount) SetAuthProviderX509CertUrl(v string) {
-<span id="L107" class="ln">   107  </span>	o.AuthProviderX509CertUrl = &amp;v
-<span id="L108" class="ln">   108  </span>}
-<span id="L109" class="ln">   109  </span>
-<span id="L110" class="ln">   110  </span><span class="comment">// GetAuthUri returns the AuthUri field value if set, zero value otherwise.</span>
-<span id="L111" class="ln">   111  </span>func (o *GCPAccount) GetAuthUri() string {
-<span id="L112" class="ln">   112  </span>	if o == nil || o.AuthUri == nil {
-<span id="L113" class="ln">   113  </span>		var ret string
-<span id="L114" class="ln">   114  </span>		return ret
-<span id="L115" class="ln">   115  </span>	}
-<span id="L116" class="ln">   116  </span>	return *o.AuthUri
-<span id="L117" class="ln">   117  </span>}
-<span id="L118" class="ln">   118  </span>
-<span id="L119" class="ln">   119  </span><span class="comment">// GetAuthUriOk returns a tuple with the AuthUri field value if set, nil otherwise</span>
-<span id="L120" class="ln">   120  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L121" class="ln">   121  </span>func (o *GCPAccount) GetAuthUriOk() (*string, bool) {
-<span id="L122" class="ln">   122  </span>	if o == nil || o.AuthUri == nil {
-<span id="L123" class="ln">   123  </span>		return nil, false
-<span id="L124" class="ln">   124  </span>	}
-<span id="L125" class="ln">   125  </span>	return o.AuthUri, true
-<span id="L126" class="ln">   126  </span>}
-<span id="L127" class="ln">   127  </span>
-<span id="L128" class="ln">   128  </span><span class="comment">// HasAuthUri returns a boolean if a field has been set.</span>
-<span id="L129" class="ln">   129  </span>func (o *GCPAccount) HasAuthUri() bool {
-<span id="L130" class="ln">   130  </span>	return o != nil &amp;&amp; o.AuthUri != nil
-<span id="L131" class="ln">   131  </span>}
-<span id="L132" class="ln">   132  </span>
-<span id="L133" class="ln">   133  </span><span class="comment">// SetAuthUri gets a reference to the given string and assigns it to the AuthUri field.</span>
-<span id="L134" class="ln">   134  </span>func (o *GCPAccount) SetAuthUri(v string) {
-<span id="L135" class="ln">   135  </span>	o.AuthUri = &amp;v
-<span id="L136" class="ln">   136  </span>}
-<span id="L137" class="ln">   137  </span>
-<span id="L138" class="ln">   138  </span><span class="comment">// GetAutomute returns the Automute field value if set, zero value otherwise.</span>
-<span id="L139" class="ln">   139  </span>func (o *GCPAccount) GetAutomute() bool {
-<span id="L140" class="ln">   140  </span>	if o == nil || o.Automute == nil {
-<span id="L141" class="ln">   141  </span>		var ret bool
-<span id="L142" class="ln">   142  </span>		return ret
-<span id="L143" class="ln">   143  </span>	}
-<span id="L144" class="ln">   144  </span>	return *o.Automute
-<span id="L145" class="ln">   145  </span>}
-<span id="L146" class="ln">   146  </span>
-<span id="L147" class="ln">   147  </span><span class="comment">// GetAutomuteOk returns a tuple with the Automute field value if set, nil otherwise</span>
-<span id="L148" class="ln">   148  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L149" class="ln">   149  </span>func (o *GCPAccount) GetAutomuteOk() (*bool, bool) {
-<span id="L150" class="ln">   150  </span>	if o == nil || o.Automute == nil {
-<span id="L151" class="ln">   151  </span>		return nil, false
-<span id="L152" class="ln">   152  </span>	}
-<span id="L153" class="ln">   153  </span>	return o.Automute, true
-<span id="L154" class="ln">   154  </span>}
-<span id="L155" class="ln">   155  </span>
-<span id="L156" class="ln">   156  </span><span class="comment">// HasAutomute returns a boolean if a field has been set.</span>
-<span id="L157" class="ln">   157  </span>func (o *GCPAccount) HasAutomute() bool {
-<span id="L158" class="ln">   158  </span>	return o != nil &amp;&amp; o.Automute != nil
-<span id="L159" class="ln">   159  </span>}
-<span id="L160" class="ln">   160  </span>
-<span id="L161" class="ln">   161  </span><span class="comment">// SetAutomute gets a reference to the given bool and assigns it to the Automute field.</span>
-<span id="L162" class="ln">   162  </span>func (o *GCPAccount) SetAutomute(v bool) {
-<span id="L163" class="ln">   163  </span>	o.Automute = &amp;v
-<span id="L164" class="ln">   164  </span>}
-<span id="L165" class="ln">   165  </span>
-<span id="L166" class="ln">   166  </span><span class="comment">// GetClientEmail returns the ClientEmail field value if set, zero value otherwise.</span>
-<span id="L167" class="ln">   167  </span>func (o *GCPAccount) GetClientEmail() string {
-<span id="L168" class="ln">   168  </span>	if o == nil || o.ClientEmail == nil {
-<span id="L169" class="ln">   169  </span>		var ret string
-<span id="L170" class="ln">   170  </span>		return ret
-<span id="L171" class="ln">   171  </span>	}
-<span id="L172" class="ln">   172  </span>	return *o.ClientEmail
-<span id="L173" class="ln">   173  </span>}
-<span id="L174" class="ln">   174  </span>
-<span id="L175" class="ln">   175  </span><span class="comment">// GetClientEmailOk returns a tuple with the ClientEmail field value if set, nil otherwise</span>
-<span id="L176" class="ln">   176  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L177" class="ln">   177  </span>func (o *GCPAccount) GetClientEmailOk() (*string, bool) {
-<span id="L178" class="ln">   178  </span>	if o == nil || o.ClientEmail == nil {
-<span id="L179" class="ln">   179  </span>		return nil, false
-<span id="L180" class="ln">   180  </span>	}
-<span id="L181" class="ln">   181  </span>	return o.ClientEmail, true
-<span id="L182" class="ln">   182  </span>}
-<span id="L183" class="ln">   183  </span>
-<span id="L184" class="ln">   184  </span><span class="comment">// HasClientEmail returns a boolean if a field has been set.</span>
-<span id="L185" class="ln">   185  </span>func (o *GCPAccount) HasClientEmail() bool {
-<span id="L186" class="ln">   186  </span>	return o != nil &amp;&amp; o.ClientEmail != nil
-<span id="L187" class="ln">   187  </span>}
-<span id="L188" class="ln">   188  </span>
-<span id="L189" class="ln">   189  </span><span class="comment">// SetClientEmail gets a reference to the given string and assigns it to the ClientEmail field.</span>
-<span id="L190" class="ln">   190  </span>func (o *GCPAccount) SetClientEmail(v string) {
-<span id="L191" class="ln">   191  </span>	o.ClientEmail = &amp;v
-<span id="L192" class="ln">   192  </span>}
-<span id="L193" class="ln">   193  </span>
-<span id="L194" class="ln">   194  </span><span class="comment">// GetClientId returns the ClientId field value if set, zero value otherwise.</span>
-<span id="L195" class="ln">   195  </span>func (o *GCPAccount) GetClientId() string {
-<span id="L196" class="ln">   196  </span>	if o == nil || o.ClientId == nil {
-<span id="L197" class="ln">   197  </span>		var ret string
-<span id="L198" class="ln">   198  </span>		return ret
-<span id="L199" class="ln">   199  </span>	}
-<span id="L200" class="ln">   200  </span>	return *o.ClientId
-<span id="L201" class="ln">   201  </span>}
-<span id="L202" class="ln">   202  </span>
-<span id="L203" class="ln">   203  </span><span class="comment">// GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise</span>
-<span id="L204" class="ln">   204  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L205" class="ln">   205  </span>func (o *GCPAccount) GetClientIdOk() (*string, bool) {
-<span id="L206" class="ln">   206  </span>	if o == nil || o.ClientId == nil {
-<span id="L207" class="ln">   207  </span>		return nil, false
-<span id="L208" class="ln">   208  </span>	}
-<span id="L209" class="ln">   209  </span>	return o.ClientId, true
-<span id="L210" class="ln">   210  </span>}
-<span id="L211" class="ln">   211  </span>
-<span id="L212" class="ln">   212  </span><span class="comment">// HasClientId returns a boolean if a field has been set.</span>
-<span id="L213" class="ln">   213  </span>func (o *GCPAccount) HasClientId() bool {
-<span id="L214" class="ln">   214  </span>	return o != nil &amp;&amp; o.ClientId != nil
-<span id="L215" class="ln">   215  </span>}
-<span id="L216" class="ln">   216  </span>
-<span id="L217" class="ln">   217  </span><span class="comment">// SetClientId gets a reference to the given string and assigns it to the ClientId field.</span>
-<span id="L218" class="ln">   218  </span>func (o *GCPAccount) SetClientId(v string) {
-<span id="L219" class="ln">   219  </span>	o.ClientId = &amp;v
-<span id="L220" class="ln">   220  </span>}
-<span id="L221" class="ln">   221  </span>
-<span id="L222" class="ln">   222  </span><span class="comment">// GetClientX509CertUrl returns the ClientX509CertUrl field value if set, zero value otherwise.</span>
-<span id="L223" class="ln">   223  </span>func (o *GCPAccount) GetClientX509CertUrl() string {
-<span id="L224" class="ln">   224  </span>	if o == nil || o.ClientX509CertUrl == nil {
-<span id="L225" class="ln">   225  </span>		var ret string
-<span id="L226" class="ln">   226  </span>		return ret
-<span id="L227" class="ln">   227  </span>	}
-<span id="L228" class="ln">   228  </span>	return *o.ClientX509CertUrl
-<span id="L229" class="ln">   229  </span>}
-<span id="L230" class="ln">   230  </span>
-<span id="L231" class="ln">   231  </span><span class="comment">// GetClientX509CertUrlOk returns a tuple with the ClientX509CertUrl field value if set, nil otherwise</span>
-<span id="L232" class="ln">   232  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L233" class="ln">   233  </span>func (o *GCPAccount) GetClientX509CertUrlOk() (*string, bool) {
-<span id="L234" class="ln">   234  </span>	if o == nil || o.ClientX509CertUrl == nil {
-<span id="L235" class="ln">   235  </span>		return nil, false
-<span id="L236" class="ln">   236  </span>	}
-<span id="L237" class="ln">   237  </span>	return o.ClientX509CertUrl, true
-<span id="L238" class="ln">   238  </span>}
-<span id="L239" class="ln">   239  </span>
-<span id="L240" class="ln">   240  </span><span class="comment">// HasClientX509CertUrl returns a boolean if a field has been set.</span>
-<span id="L241" class="ln">   241  </span>func (o *GCPAccount) HasClientX509CertUrl() bool {
-<span id="L242" class="ln">   242  </span>	return o != nil &amp;&amp; o.ClientX509CertUrl != nil
-<span id="L243" class="ln">   243  </span>}
-<span id="L244" class="ln">   244  </span>
-<span id="L245" class="ln">   245  </span><span class="comment">// SetClientX509CertUrl gets a reference to the given string and assigns it to the ClientX509CertUrl field.</span>
-<span id="L246" class="ln">   246  </span>func (o *GCPAccount) SetClientX509CertUrl(v string) {
-<span id="L247" class="ln">   247  </span>	o.ClientX509CertUrl = &amp;v
-<span id="L248" class="ln">   248  </span>}
-<span id="L249" class="ln">   249  </span>
-<span id="L250" class="ln">   250  </span><span class="comment">// GetCloudRunRevisionFilters returns the CloudRunRevisionFilters field value if set, zero value otherwise.</span>
-<span id="L251" class="ln">   251  </span>func (o *GCPAccount) GetCloudRunRevisionFilters() []string {
-<span id="L252" class="ln">   252  </span>	if o == nil || o.CloudRunRevisionFilters == nil {
-<span id="L253" class="ln">   253  </span>		var ret []string
-<span id="L254" class="ln">   254  </span>		return ret
-<span id="L255" class="ln">   255  </span>	}
-<span id="L256" class="ln">   256  </span>	return o.CloudRunRevisionFilters
-<span id="L257" class="ln">   257  </span>}
-<span id="L258" class="ln">   258  </span>
-<span id="L259" class="ln">   259  </span><span class="comment">// GetCloudRunRevisionFiltersOk returns a tuple with the CloudRunRevisionFilters field value if set, nil otherwise</span>
-<span id="L260" class="ln">   260  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L261" class="ln">   261  </span>func (o *GCPAccount) GetCloudRunRevisionFiltersOk() (*[]string, bool) {
-<span id="L262" class="ln">   262  </span>	if o == nil || o.CloudRunRevisionFilters == nil {
-<span id="L263" class="ln">   263  </span>		return nil, false
-<span id="L264" class="ln">   264  </span>	}
-<span id="L265" class="ln">   265  </span>	return &amp;o.CloudRunRevisionFilters, true
-<span id="L266" class="ln">   266  </span>}
-<span id="L267" class="ln">   267  </span>
-<span id="L268" class="ln">   268  </span><span class="comment">// HasCloudRunRevisionFilters returns a boolean if a field has been set.</span>
-<span id="L269" class="ln">   269  </span>func (o *GCPAccount) HasCloudRunRevisionFilters() bool {
-<span id="L270" class="ln">   270  </span>	return o != nil &amp;&amp; o.CloudRunRevisionFilters != nil
-<span id="L271" class="ln">   271  </span>}
-<span id="L272" class="ln">   272  </span>
-<span id="L273" class="ln">   273  </span><span class="comment">// SetCloudRunRevisionFilters gets a reference to the given []string and assigns it to the CloudRunRevisionFilters field.</span>
-<span id="L274" class="ln">   274  </span>func (o *GCPAccount) SetCloudRunRevisionFilters(v []string) {
-<span id="L275" class="ln">   275  </span>	o.CloudRunRevisionFilters = v
-<span id="L276" class="ln">   276  </span>}
-<span id="L277" class="ln">   277  </span>
-<span id="L278" class="ln">   278  </span><span class="comment">// GetErrors returns the Errors field value if set, zero value otherwise.</span>
-<span id="L279" class="ln">   279  </span>func (o *GCPAccount) GetErrors() []string {
-<span id="L280" class="ln">   280  </span>	if o == nil || o.Errors == nil {
-<span id="L281" class="ln">   281  </span>		var ret []string
-<span id="L282" class="ln">   282  </span>		return ret
-<span id="L283" class="ln">   283  </span>	}
-<span id="L284" class="ln">   284  </span>	return o.Errors
+<span id="L28" class="ln">    28  </span>	<span class="comment">// **Note:** This field is deprecated. Instead, use `monitored_resource_configs` with `type=cloud_run_revision`</span>
+<span id="L29" class="ln">    29  </span>	<span class="comment">// Deprecated</span>
+<span id="L30" class="ln">    30  </span>	CloudRunRevisionFilters []string `json:&#34;cloud_run_revision_filters,omitempty&#34;`
+<span id="L31" class="ln">    31  </span>	<span class="comment">// An array of errors.</span>
+<span id="L32" class="ln">    32  </span>	Errors []string `json:&#34;errors,omitempty&#34;`
+<span id="L33" class="ln">    33  </span>	<span class="comment">// A comma-separated list of filters to limit the VM instances that are pulled into Datadog by using tags.</span>
+<span id="L34" class="ln">    34  </span>	<span class="comment">// Only VM instance resources that apply to specified filters are imported into Datadog.</span>
+<span id="L35" class="ln">    35  </span>	<span class="comment">// **Note:** This field is deprecated. Instead, use `monitored_resource_configs` with `type=gce_instance`</span>
+<span id="L36" class="ln">    36  </span>	<span class="comment">// Deprecated</span>
+<span id="L37" class="ln">    37  </span>	HostFilters *string `json:&#34;host_filters,omitempty&#34;`
+<span id="L38" class="ln">    38  </span>	<span class="comment">// When enabled, Datadog will activate the Cloud Security Monitoring product for this service account. Note: This requires resource_collection_enabled to be set to true.</span>
+<span id="L39" class="ln">    39  </span>	IsCspmEnabled *bool `json:&#34;is_cspm_enabled,omitempty&#34;`
+<span id="L40" class="ln">    40  </span>	<span class="comment">// When enabled, Datadog scans for all resource change data in your Google Cloud environment.</span>
+<span id="L41" class="ln">    41  </span>	IsResourceChangeCollectionEnabled *bool `json:&#34;is_resource_change_collection_enabled,omitempty&#34;`
+<span id="L42" class="ln">    42  </span>	<span class="comment">// When enabled, Datadog will attempt to collect Security Command Center Findings. Note: This requires additional permissions on the service account.</span>
+<span id="L43" class="ln">    43  </span>	IsSecurityCommandCenterEnabled *bool `json:&#34;is_security_command_center_enabled,omitempty&#34;`
+<span id="L44" class="ln">    44  </span>	<span class="comment">// Configurations for GCP monitored resources.</span>
+<span id="L45" class="ln">    45  </span>	MonitoredResourceConfigs []GCPMonitoredResourceConfig `json:&#34;monitored_resource_configs,omitempty&#34;`
+<span id="L46" class="ln">    46  </span>	<span class="comment">// Your private key name found in your JSON service account key.</span>
+<span id="L47" class="ln">    47  </span>	PrivateKey *string `json:&#34;private_key,omitempty&#34;`
+<span id="L48" class="ln">    48  </span>	<span class="comment">// Your private key ID found in your JSON service account key.</span>
+<span id="L49" class="ln">    49  </span>	PrivateKeyId *string `json:&#34;private_key_id,omitempty&#34;`
+<span id="L50" class="ln">    50  </span>	<span class="comment">// Your Google Cloud project ID found in your JSON service account key.</span>
+<span id="L51" class="ln">    51  </span>	ProjectId *string `json:&#34;project_id,omitempty&#34;`
+<span id="L52" class="ln">    52  </span>	<span class="comment">// When enabled, Datadog scans for all resources in your GCP environment.</span>
+<span id="L53" class="ln">    53  </span>	ResourceCollectionEnabled *bool `json:&#34;resource_collection_enabled,omitempty&#34;`
+<span id="L54" class="ln">    54  </span>	<span class="comment">// Should be `https://accounts.google.com/o/oauth2/token`.</span>
+<span id="L55" class="ln">    55  </span>	TokenUri *string `json:&#34;token_uri,omitempty&#34;`
+<span id="L56" class="ln">    56  </span>	<span class="comment">// The value for service_account found in your JSON service account key.</span>
+<span id="L57" class="ln">    57  </span>	Type *string `json:&#34;type,omitempty&#34;`
+<span id="L58" class="ln">    58  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L59" class="ln">    59  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L60" class="ln">    60  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L61" class="ln">    61  </span>}
+<span id="L62" class="ln">    62  </span>
+<span id="L63" class="ln">    63  </span><span class="comment">// NewGCPAccount instantiates a new GCPAccount object.</span>
+<span id="L64" class="ln">    64  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L65" class="ln">    65  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L66" class="ln">    66  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L67" class="ln">    67  </span>func NewGCPAccount() *GCPAccount {
+<span id="L68" class="ln">    68  </span>	this := GCPAccount{}
+<span id="L69" class="ln">    69  </span>	var isResourceChangeCollectionEnabled bool = false
+<span id="L70" class="ln">    70  </span>	this.IsResourceChangeCollectionEnabled = &amp;isResourceChangeCollectionEnabled
+<span id="L71" class="ln">    71  </span>	var isSecurityCommandCenterEnabled bool = false
+<span id="L72" class="ln">    72  </span>	this.IsSecurityCommandCenterEnabled = &amp;isSecurityCommandCenterEnabled
+<span id="L73" class="ln">    73  </span>	return &amp;this
+<span id="L74" class="ln">    74  </span>}
+<span id="L75" class="ln">    75  </span>
+<span id="L76" class="ln">    76  </span><span class="comment">// NewGCPAccountWithDefaults instantiates a new GCPAccount object.</span>
+<span id="L77" class="ln">    77  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L78" class="ln">    78  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L79" class="ln">    79  </span>func NewGCPAccountWithDefaults() *GCPAccount {
+<span id="L80" class="ln">    80  </span>	this := GCPAccount{}
+<span id="L81" class="ln">    81  </span>	var isResourceChangeCollectionEnabled bool = false
+<span id="L82" class="ln">    82  </span>	this.IsResourceChangeCollectionEnabled = &amp;isResourceChangeCollectionEnabled
+<span id="L83" class="ln">    83  </span>	var isSecurityCommandCenterEnabled bool = false
+<span id="L84" class="ln">    84  </span>	this.IsSecurityCommandCenterEnabled = &amp;isSecurityCommandCenterEnabled
+<span id="L85" class="ln">    85  </span>	return &amp;this
+<span id="L86" class="ln">    86  </span>}
+<span id="L87" class="ln">    87  </span>
+<span id="L88" class="ln">    88  </span><span class="comment">// GetAuthProviderX509CertUrl returns the AuthProviderX509CertUrl field value if set, zero value otherwise.</span>
+<span id="L89" class="ln">    89  </span>func (o *GCPAccount) GetAuthProviderX509CertUrl() string {
+<span id="L90" class="ln">    90  </span>	if o == nil || o.AuthProviderX509CertUrl == nil {
+<span id="L91" class="ln">    91  </span>		var ret string
+<span id="L92" class="ln">    92  </span>		return ret
+<span id="L93" class="ln">    93  </span>	}
+<span id="L94" class="ln">    94  </span>	return *o.AuthProviderX509CertUrl
+<span id="L95" class="ln">    95  </span>}
+<span id="L96" class="ln">    96  </span>
+<span id="L97" class="ln">    97  </span><span class="comment">// GetAuthProviderX509CertUrlOk returns a tuple with the AuthProviderX509CertUrl field value if set, nil otherwise</span>
+<span id="L98" class="ln">    98  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L99" class="ln">    99  </span>func (o *GCPAccount) GetAuthProviderX509CertUrlOk() (*string, bool) {
+<span id="L100" class="ln">   100  </span>	if o == nil || o.AuthProviderX509CertUrl == nil {
+<span id="L101" class="ln">   101  </span>		return nil, false
+<span id="L102" class="ln">   102  </span>	}
+<span id="L103" class="ln">   103  </span>	return o.AuthProviderX509CertUrl, true
+<span id="L104" class="ln">   104  </span>}
+<span id="L105" class="ln">   105  </span>
+<span id="L106" class="ln">   106  </span><span class="comment">// HasAuthProviderX509CertUrl returns a boolean if a field has been set.</span>
+<span id="L107" class="ln">   107  </span>func (o *GCPAccount) HasAuthProviderX509CertUrl() bool {
+<span id="L108" class="ln">   108  </span>	return o != nil &amp;&amp; o.AuthProviderX509CertUrl != nil
+<span id="L109" class="ln">   109  </span>}
+<span id="L110" class="ln">   110  </span>
+<span id="L111" class="ln">   111  </span><span class="comment">// SetAuthProviderX509CertUrl gets a reference to the given string and assigns it to the AuthProviderX509CertUrl field.</span>
+<span id="L112" class="ln">   112  </span>func (o *GCPAccount) SetAuthProviderX509CertUrl(v string) {
+<span id="L113" class="ln">   113  </span>	o.AuthProviderX509CertUrl = &amp;v
+<span id="L114" class="ln">   114  </span>}
+<span id="L115" class="ln">   115  </span>
+<span id="L116" class="ln">   116  </span><span class="comment">// GetAuthUri returns the AuthUri field value if set, zero value otherwise.</span>
+<span id="L117" class="ln">   117  </span>func (o *GCPAccount) GetAuthUri() string {
+<span id="L118" class="ln">   118  </span>	if o == nil || o.AuthUri == nil {
+<span id="L119" class="ln">   119  </span>		var ret string
+<span id="L120" class="ln">   120  </span>		return ret
+<span id="L121" class="ln">   121  </span>	}
+<span id="L122" class="ln">   122  </span>	return *o.AuthUri
+<span id="L123" class="ln">   123  </span>}
+<span id="L124" class="ln">   124  </span>
+<span id="L125" class="ln">   125  </span><span class="comment">// GetAuthUriOk returns a tuple with the AuthUri field value if set, nil otherwise</span>
+<span id="L126" class="ln">   126  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L127" class="ln">   127  </span>func (o *GCPAccount) GetAuthUriOk() (*string, bool) {
+<span id="L128" class="ln">   128  </span>	if o == nil || o.AuthUri == nil {
+<span id="L129" class="ln">   129  </span>		return nil, false
+<span id="L130" class="ln">   130  </span>	}
+<span id="L131" class="ln">   131  </span>	return o.AuthUri, true
+<span id="L132" class="ln">   132  </span>}
+<span id="L133" class="ln">   133  </span>
+<span id="L134" class="ln">   134  </span><span class="comment">// HasAuthUri returns a boolean if a field has been set.</span>
+<span id="L135" class="ln">   135  </span>func (o *GCPAccount) HasAuthUri() bool {
+<span id="L136" class="ln">   136  </span>	return o != nil &amp;&amp; o.AuthUri != nil
+<span id="L137" class="ln">   137  </span>}
+<span id="L138" class="ln">   138  </span>
+<span id="L139" class="ln">   139  </span><span class="comment">// SetAuthUri gets a reference to the given string and assigns it to the AuthUri field.</span>
+<span id="L140" class="ln">   140  </span>func (o *GCPAccount) SetAuthUri(v string) {
+<span id="L141" class="ln">   141  </span>	o.AuthUri = &amp;v
+<span id="L142" class="ln">   142  </span>}
+<span id="L143" class="ln">   143  </span>
+<span id="L144" class="ln">   144  </span><span class="comment">// GetAutomute returns the Automute field value if set, zero value otherwise.</span>
+<span id="L145" class="ln">   145  </span>func (o *GCPAccount) GetAutomute() bool {
+<span id="L146" class="ln">   146  </span>	if o == nil || o.Automute == nil {
+<span id="L147" class="ln">   147  </span>		var ret bool
+<span id="L148" class="ln">   148  </span>		return ret
+<span id="L149" class="ln">   149  </span>	}
+<span id="L150" class="ln">   150  </span>	return *o.Automute
+<span id="L151" class="ln">   151  </span>}
+<span id="L152" class="ln">   152  </span>
+<span id="L153" class="ln">   153  </span><span class="comment">// GetAutomuteOk returns a tuple with the Automute field value if set, nil otherwise</span>
+<span id="L154" class="ln">   154  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L155" class="ln">   155  </span>func (o *GCPAccount) GetAutomuteOk() (*bool, bool) {
+<span id="L156" class="ln">   156  </span>	if o == nil || o.Automute == nil {
+<span id="L157" class="ln">   157  </span>		return nil, false
+<span id="L158" class="ln">   158  </span>	}
+<span id="L159" class="ln">   159  </span>	return o.Automute, true
+<span id="L160" class="ln">   160  </span>}
+<span id="L161" class="ln">   161  </span>
+<span id="L162" class="ln">   162  </span><span class="comment">// HasAutomute returns a boolean if a field has been set.</span>
+<span id="L163" class="ln">   163  </span>func (o *GCPAccount) HasAutomute() bool {
+<span id="L164" class="ln">   164  </span>	return o != nil &amp;&amp; o.Automute != nil
+<span id="L165" class="ln">   165  </span>}
+<span id="L166" class="ln">   166  </span>
+<span id="L167" class="ln">   167  </span><span class="comment">// SetAutomute gets a reference to the given bool and assigns it to the Automute field.</span>
+<span id="L168" class="ln">   168  </span>func (o *GCPAccount) SetAutomute(v bool) {
+<span id="L169" class="ln">   169  </span>	o.Automute = &amp;v
+<span id="L170" class="ln">   170  </span>}
+<span id="L171" class="ln">   171  </span>
+<span id="L172" class="ln">   172  </span><span class="comment">// GetClientEmail returns the ClientEmail field value if set, zero value otherwise.</span>
+<span id="L173" class="ln">   173  </span>func (o *GCPAccount) GetClientEmail() string {
+<span id="L174" class="ln">   174  </span>	if o == nil || o.ClientEmail == nil {
+<span id="L175" class="ln">   175  </span>		var ret string
+<span id="L176" class="ln">   176  </span>		return ret
+<span id="L177" class="ln">   177  </span>	}
+<span id="L178" class="ln">   178  </span>	return *o.ClientEmail
+<span id="L179" class="ln">   179  </span>}
+<span id="L180" class="ln">   180  </span>
+<span id="L181" class="ln">   181  </span><span class="comment">// GetClientEmailOk returns a tuple with the ClientEmail field value if set, nil otherwise</span>
+<span id="L182" class="ln">   182  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L183" class="ln">   183  </span>func (o *GCPAccount) GetClientEmailOk() (*string, bool) {
+<span id="L184" class="ln">   184  </span>	if o == nil || o.ClientEmail == nil {
+<span id="L185" class="ln">   185  </span>		return nil, false
+<span id="L186" class="ln">   186  </span>	}
+<span id="L187" class="ln">   187  </span>	return o.ClientEmail, true
+<span id="L188" class="ln">   188  </span>}
+<span id="L189" class="ln">   189  </span>
+<span id="L190" class="ln">   190  </span><span class="comment">// HasClientEmail returns a boolean if a field has been set.</span>
+<span id="L191" class="ln">   191  </span>func (o *GCPAccount) HasClientEmail() bool {
+<span id="L192" class="ln">   192  </span>	return o != nil &amp;&amp; o.ClientEmail != nil
+<span id="L193" class="ln">   193  </span>}
+<span id="L194" class="ln">   194  </span>
+<span id="L195" class="ln">   195  </span><span class="comment">// SetClientEmail gets a reference to the given string and assigns it to the ClientEmail field.</span>
+<span id="L196" class="ln">   196  </span>func (o *GCPAccount) SetClientEmail(v string) {
+<span id="L197" class="ln">   197  </span>	o.ClientEmail = &amp;v
+<span id="L198" class="ln">   198  </span>}
+<span id="L199" class="ln">   199  </span>
+<span id="L200" class="ln">   200  </span><span class="comment">// GetClientId returns the ClientId field value if set, zero value otherwise.</span>
+<span id="L201" class="ln">   201  </span>func (o *GCPAccount) GetClientId() string {
+<span id="L202" class="ln">   202  </span>	if o == nil || o.ClientId == nil {
+<span id="L203" class="ln">   203  </span>		var ret string
+<span id="L204" class="ln">   204  </span>		return ret
+<span id="L205" class="ln">   205  </span>	}
+<span id="L206" class="ln">   206  </span>	return *o.ClientId
+<span id="L207" class="ln">   207  </span>}
+<span id="L208" class="ln">   208  </span>
+<span id="L209" class="ln">   209  </span><span class="comment">// GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise</span>
+<span id="L210" class="ln">   210  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L211" class="ln">   211  </span>func (o *GCPAccount) GetClientIdOk() (*string, bool) {
+<span id="L212" class="ln">   212  </span>	if o == nil || o.ClientId == nil {
+<span id="L213" class="ln">   213  </span>		return nil, false
+<span id="L214" class="ln">   214  </span>	}
+<span id="L215" class="ln">   215  </span>	return o.ClientId, true
+<span id="L216" class="ln">   216  </span>}
+<span id="L217" class="ln">   217  </span>
+<span id="L218" class="ln">   218  </span><span class="comment">// HasClientId returns a boolean if a field has been set.</span>
+<span id="L219" class="ln">   219  </span>func (o *GCPAccount) HasClientId() bool {
+<span id="L220" class="ln">   220  </span>	return o != nil &amp;&amp; o.ClientId != nil
+<span id="L221" class="ln">   221  </span>}
+<span id="L222" class="ln">   222  </span>
+<span id="L223" class="ln">   223  </span><span class="comment">// SetClientId gets a reference to the given string and assigns it to the ClientId field.</span>
+<span id="L224" class="ln">   224  </span>func (o *GCPAccount) SetClientId(v string) {
+<span id="L225" class="ln">   225  </span>	o.ClientId = &amp;v
+<span id="L226" class="ln">   226  </span>}
+<span id="L227" class="ln">   227  </span>
+<span id="L228" class="ln">   228  </span><span class="comment">// GetClientX509CertUrl returns the ClientX509CertUrl field value if set, zero value otherwise.</span>
+<span id="L229" class="ln">   229  </span>func (o *GCPAccount) GetClientX509CertUrl() string {
+<span id="L230" class="ln">   230  </span>	if o == nil || o.ClientX509CertUrl == nil {
+<span id="L231" class="ln">   231  </span>		var ret string
+<span id="L232" class="ln">   232  </span>		return ret
+<span id="L233" class="ln">   233  </span>	}
+<span id="L234" class="ln">   234  </span>	return *o.ClientX509CertUrl
+<span id="L235" class="ln">   235  </span>}
+<span id="L236" class="ln">   236  </span>
+<span id="L237" class="ln">   237  </span><span class="comment">// GetClientX509CertUrlOk returns a tuple with the ClientX509CertUrl field value if set, nil otherwise</span>
+<span id="L238" class="ln">   238  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L239" class="ln">   239  </span>func (o *GCPAccount) GetClientX509CertUrlOk() (*string, bool) {
+<span id="L240" class="ln">   240  </span>	if o == nil || o.ClientX509CertUrl == nil {
+<span id="L241" class="ln">   241  </span>		return nil, false
+<span id="L242" class="ln">   242  </span>	}
+<span id="L243" class="ln">   243  </span>	return o.ClientX509CertUrl, true
+<span id="L244" class="ln">   244  </span>}
+<span id="L245" class="ln">   245  </span>
+<span id="L246" class="ln">   246  </span><span class="comment">// HasClientX509CertUrl returns a boolean if a field has been set.</span>
+<span id="L247" class="ln">   247  </span>func (o *GCPAccount) HasClientX509CertUrl() bool {
+<span id="L248" class="ln">   248  </span>	return o != nil &amp;&amp; o.ClientX509CertUrl != nil
+<span id="L249" class="ln">   249  </span>}
+<span id="L250" class="ln">   250  </span>
+<span id="L251" class="ln">   251  </span><span class="comment">// SetClientX509CertUrl gets a reference to the given string and assigns it to the ClientX509CertUrl field.</span>
+<span id="L252" class="ln">   252  </span>func (o *GCPAccount) SetClientX509CertUrl(v string) {
+<span id="L253" class="ln">   253  </span>	o.ClientX509CertUrl = &amp;v
+<span id="L254" class="ln">   254  </span>}
+<span id="L255" class="ln">   255  </span>
+<span id="L256" class="ln">   256  </span><span class="comment">// GetCloudRunRevisionFilters returns the CloudRunRevisionFilters field value if set, zero value otherwise.</span>
+<span id="L257" class="ln">   257  </span><span class="comment">// Deprecated</span>
+<span id="L258" class="ln">   258  </span>func (o *GCPAccount) GetCloudRunRevisionFilters() []string {
+<span id="L259" class="ln">   259  </span>	if o == nil || o.CloudRunRevisionFilters == nil {
+<span id="L260" class="ln">   260  </span>		var ret []string
+<span id="L261" class="ln">   261  </span>		return ret
+<span id="L262" class="ln">   262  </span>	}
+<span id="L263" class="ln">   263  </span>	return o.CloudRunRevisionFilters
+<span id="L264" class="ln">   264  </span>}
+<span id="L265" class="ln">   265  </span>
+<span id="L266" class="ln">   266  </span><span class="comment">// GetCloudRunRevisionFiltersOk returns a tuple with the CloudRunRevisionFilters field value if set, nil otherwise</span>
+<span id="L267" class="ln">   267  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L268" class="ln">   268  </span><span class="comment">// Deprecated</span>
+<span id="L269" class="ln">   269  </span>func (o *GCPAccount) GetCloudRunRevisionFiltersOk() (*[]string, bool) {
+<span id="L270" class="ln">   270  </span>	if o == nil || o.CloudRunRevisionFilters == nil {
+<span id="L271" class="ln">   271  </span>		return nil, false
+<span id="L272" class="ln">   272  </span>	}
+<span id="L273" class="ln">   273  </span>	return &amp;o.CloudRunRevisionFilters, true
+<span id="L274" class="ln">   274  </span>}
+<span id="L275" class="ln">   275  </span>
+<span id="L276" class="ln">   276  </span><span class="comment">// HasCloudRunRevisionFilters returns a boolean if a field has been set.</span>
+<span id="L277" class="ln">   277  </span>func (o *GCPAccount) HasCloudRunRevisionFilters() bool {
+<span id="L278" class="ln">   278  </span>	return o != nil &amp;&amp; o.CloudRunRevisionFilters != nil
+<span id="L279" class="ln">   279  </span>}
+<span id="L280" class="ln">   280  </span>
+<span id="L281" class="ln">   281  </span><span class="comment">// SetCloudRunRevisionFilters gets a reference to the given []string and assigns it to the CloudRunRevisionFilters field.</span>
+<span id="L282" class="ln">   282  </span><span class="comment">// Deprecated</span>
+<span id="L283" class="ln">   283  </span>func (o *GCPAccount) SetCloudRunRevisionFilters(v []string) {
+<span id="L284" class="ln">   284  </span>	o.CloudRunRevisionFilters = v
 <span id="L285" class="ln">   285  </span>}
 <span id="L286" class="ln">   286  </span>
-<span id="L287" class="ln">   287  </span><span class="comment">// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise</span>
-<span id="L288" class="ln">   288  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L289" class="ln">   289  </span>func (o *GCPAccount) GetErrorsOk() (*[]string, bool) {
-<span id="L290" class="ln">   290  </span>	if o == nil || o.Errors == nil {
-<span id="L291" class="ln">   291  </span>		return nil, false
+<span id="L287" class="ln">   287  </span><span class="comment">// GetErrors returns the Errors field value if set, zero value otherwise.</span>
+<span id="L288" class="ln">   288  </span>func (o *GCPAccount) GetErrors() []string {
+<span id="L289" class="ln">   289  </span>	if o == nil || o.Errors == nil {
+<span id="L290" class="ln">   290  </span>		var ret []string
+<span id="L291" class="ln">   291  </span>		return ret
 <span id="L292" class="ln">   292  </span>	}
-<span id="L293" class="ln">   293  </span>	return &amp;o.Errors, true
+<span id="L293" class="ln">   293  </span>	return o.Errors
 <span id="L294" class="ln">   294  </span>}
 <span id="L295" class="ln">   295  </span>
-<span id="L296" class="ln">   296  </span><span class="comment">// HasErrors returns a boolean if a field has been set.</span>
-<span id="L297" class="ln">   297  </span>func (o *GCPAccount) HasErrors() bool {
-<span id="L298" class="ln">   298  </span>	return o != nil &amp;&amp; o.Errors != nil
-<span id="L299" class="ln">   299  </span>}
-<span id="L300" class="ln">   300  </span>
-<span id="L301" class="ln">   301  </span><span class="comment">// SetErrors gets a reference to the given []string and assigns it to the Errors field.</span>
-<span id="L302" class="ln">   302  </span>func (o *GCPAccount) SetErrors(v []string) {
-<span id="L303" class="ln">   303  </span>	o.Errors = v
-<span id="L304" class="ln">   304  </span>}
-<span id="L305" class="ln">   305  </span>
-<span id="L306" class="ln">   306  </span><span class="comment">// GetHostFilters returns the HostFilters field value if set, zero value otherwise.</span>
-<span id="L307" class="ln">   307  </span>func (o *GCPAccount) GetHostFilters() string {
-<span id="L308" class="ln">   308  </span>	if o == nil || o.HostFilters == nil {
-<span id="L309" class="ln">   309  </span>		var ret string
-<span id="L310" class="ln">   310  </span>		return ret
-<span id="L311" class="ln">   311  </span>	}
-<span id="L312" class="ln">   312  </span>	return *o.HostFilters
+<span id="L296" class="ln">   296  </span><span class="comment">// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise</span>
+<span id="L297" class="ln">   297  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L298" class="ln">   298  </span>func (o *GCPAccount) GetErrorsOk() (*[]string, bool) {
+<span id="L299" class="ln">   299  </span>	if o == nil || o.Errors == nil {
+<span id="L300" class="ln">   300  </span>		return nil, false
+<span id="L301" class="ln">   301  </span>	}
+<span id="L302" class="ln">   302  </span>	return &amp;o.Errors, true
+<span id="L303" class="ln">   303  </span>}
+<span id="L304" class="ln">   304  </span>
+<span id="L305" class="ln">   305  </span><span class="comment">// HasErrors returns a boolean if a field has been set.</span>
+<span id="L306" class="ln">   306  </span>func (o *GCPAccount) HasErrors() bool {
+<span id="L307" class="ln">   307  </span>	return o != nil &amp;&amp; o.Errors != nil
+<span id="L308" class="ln">   308  </span>}
+<span id="L309" class="ln">   309  </span>
+<span id="L310" class="ln">   310  </span><span class="comment">// SetErrors gets a reference to the given []string and assigns it to the Errors field.</span>
+<span id="L311" class="ln">   311  </span>func (o *GCPAccount) SetErrors(v []string) {
+<span id="L312" class="ln">   312  </span>	o.Errors = v
 <span id="L313" class="ln">   313  </span>}
 <span id="L314" class="ln">   314  </span>
-<span id="L315" class="ln">   315  </span><span class="comment">// GetHostFiltersOk returns a tuple with the HostFilters field value if set, nil otherwise</span>
-<span id="L316" class="ln">   316  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L317" class="ln">   317  </span>func (o *GCPAccount) GetHostFiltersOk() (*string, bool) {
+<span id="L315" class="ln">   315  </span><span class="comment">// GetHostFilters returns the HostFilters field value if set, zero value otherwise.</span>
+<span id="L316" class="ln">   316  </span><span class="comment">// Deprecated</span>
+<span id="L317" class="ln">   317  </span>func (o *GCPAccount) GetHostFilters() string {
 <span id="L318" class="ln">   318  </span>	if o == nil || o.HostFilters == nil {
-<span id="L319" class="ln">   319  </span>		return nil, false
-<span id="L320" class="ln">   320  </span>	}
-<span id="L321" class="ln">   321  </span>	return o.HostFilters, true
-<span id="L322" class="ln">   322  </span>}
-<span id="L323" class="ln">   323  </span>
-<span id="L324" class="ln">   324  </span><span class="comment">// HasHostFilters returns a boolean if a field has been set.</span>
-<span id="L325" class="ln">   325  </span>func (o *GCPAccount) HasHostFilters() bool {
-<span id="L326" class="ln">   326  </span>	return o != nil &amp;&amp; o.HostFilters != nil
-<span id="L327" class="ln">   327  </span>}
-<span id="L328" class="ln">   328  </span>
-<span id="L329" class="ln">   329  </span><span class="comment">// SetHostFilters gets a reference to the given string and assigns it to the HostFilters field.</span>
-<span id="L330" class="ln">   330  </span>func (o *GCPAccount) SetHostFilters(v string) {
-<span id="L331" class="ln">   331  </span>	o.HostFilters = &amp;v
-<span id="L332" class="ln">   332  </span>}
-<span id="L333" class="ln">   333  </span>
-<span id="L334" class="ln">   334  </span><span class="comment">// GetIsCspmEnabled returns the IsCspmEnabled field value if set, zero value otherwise.</span>
-<span id="L335" class="ln">   335  </span>func (o *GCPAccount) GetIsCspmEnabled() bool {
-<span id="L336" class="ln">   336  </span>	if o == nil || o.IsCspmEnabled == nil {
-<span id="L337" class="ln">   337  </span>		var ret bool
-<span id="L338" class="ln">   338  </span>		return ret
-<span id="L339" class="ln">   339  </span>	}
-<span id="L340" class="ln">   340  </span>	return *o.IsCspmEnabled
-<span id="L341" class="ln">   341  </span>}
-<span id="L342" class="ln">   342  </span>
-<span id="L343" class="ln">   343  </span><span class="comment">// GetIsCspmEnabledOk returns a tuple with the IsCspmEnabled field value if set, nil otherwise</span>
-<span id="L344" class="ln">   344  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L345" class="ln">   345  </span>func (o *GCPAccount) GetIsCspmEnabledOk() (*bool, bool) {
-<span id="L346" class="ln">   346  </span>	if o == nil || o.IsCspmEnabled == nil {
-<span id="L347" class="ln">   347  </span>		return nil, false
-<span id="L348" class="ln">   348  </span>	}
-<span id="L349" class="ln">   349  </span>	return o.IsCspmEnabled, true
-<span id="L350" class="ln">   350  </span>}
-<span id="L351" class="ln">   351  </span>
-<span id="L352" class="ln">   352  </span><span class="comment">// HasIsCspmEnabled returns a boolean if a field has been set.</span>
-<span id="L353" class="ln">   353  </span>func (o *GCPAccount) HasIsCspmEnabled() bool {
-<span id="L354" class="ln">   354  </span>	return o != nil &amp;&amp; o.IsCspmEnabled != nil
-<span id="L355" class="ln">   355  </span>}
-<span id="L356" class="ln">   356  </span>
-<span id="L357" class="ln">   357  </span><span class="comment">// SetIsCspmEnabled gets a reference to the given bool and assigns it to the IsCspmEnabled field.</span>
-<span id="L358" class="ln">   358  </span>func (o *GCPAccount) SetIsCspmEnabled(v bool) {
-<span id="L359" class="ln">   359  </span>	o.IsCspmEnabled = &amp;v
-<span id="L360" class="ln">   360  </span>}
-<span id="L361" class="ln">   361  </span>
-<span id="L362" class="ln">   362  </span><span class="comment">// GetIsResourceChangeCollectionEnabled returns the IsResourceChangeCollectionEnabled field value if set, zero value otherwise.</span>
-<span id="L363" class="ln">   363  </span>func (o *GCPAccount) GetIsResourceChangeCollectionEnabled() bool {
-<span id="L364" class="ln">   364  </span>	if o == nil || o.IsResourceChangeCollectionEnabled == nil {
-<span id="L365" class="ln">   365  </span>		var ret bool
-<span id="L366" class="ln">   366  </span>		return ret
-<span id="L367" class="ln">   367  </span>	}
-<span id="L368" class="ln">   368  </span>	return *o.IsResourceChangeCollectionEnabled
-<span id="L369" class="ln">   369  </span>}
-<span id="L370" class="ln">   370  </span>
-<span id="L371" class="ln">   371  </span><span class="comment">// GetIsResourceChangeCollectionEnabledOk returns a tuple with the IsResourceChangeCollectionEnabled field value if set, nil otherwise</span>
-<span id="L372" class="ln">   372  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L373" class="ln">   373  </span>func (o *GCPAccount) GetIsResourceChangeCollectionEnabledOk() (*bool, bool) {
-<span id="L374" class="ln">   374  </span>	if o == nil || o.IsResourceChangeCollectionEnabled == nil {
-<span id="L375" class="ln">   375  </span>		return nil, false
-<span id="L376" class="ln">   376  </span>	}
-<span id="L377" class="ln">   377  </span>	return o.IsResourceChangeCollectionEnabled, true
-<span id="L378" class="ln">   378  </span>}
-<span id="L379" class="ln">   379  </span>
-<span id="L380" class="ln">   380  </span><span class="comment">// HasIsResourceChangeCollectionEnabled returns a boolean if a field has been set.</span>
-<span id="L381" class="ln">   381  </span>func (o *GCPAccount) HasIsResourceChangeCollectionEnabled() bool {
-<span id="L382" class="ln">   382  </span>	return o != nil &amp;&amp; o.IsResourceChangeCollectionEnabled != nil
-<span id="L383" class="ln">   383  </span>}
-<span id="L384" class="ln">   384  </span>
-<span id="L385" class="ln">   385  </span><span class="comment">// SetIsResourceChangeCollectionEnabled gets a reference to the given bool and assigns it to the IsResourceChangeCollectionEnabled field.</span>
-<span id="L386" class="ln">   386  </span>func (o *GCPAccount) SetIsResourceChangeCollectionEnabled(v bool) {
-<span id="L387" class="ln">   387  </span>	o.IsResourceChangeCollectionEnabled = &amp;v
-<span id="L388" class="ln">   388  </span>}
-<span id="L389" class="ln">   389  </span>
-<span id="L390" class="ln">   390  </span><span class="comment">// GetIsSecurityCommandCenterEnabled returns the IsSecurityCommandCenterEnabled field value if set, zero value otherwise.</span>
-<span id="L391" class="ln">   391  </span>func (o *GCPAccount) GetIsSecurityCommandCenterEnabled() bool {
-<span id="L392" class="ln">   392  </span>	if o == nil || o.IsSecurityCommandCenterEnabled == nil {
-<span id="L393" class="ln">   393  </span>		var ret bool
-<span id="L394" class="ln">   394  </span>		return ret
-<span id="L395" class="ln">   395  </span>	}
-<span id="L396" class="ln">   396  </span>	return *o.IsSecurityCommandCenterEnabled
-<span id="L397" class="ln">   397  </span>}
-<span id="L398" class="ln">   398  </span>
-<span id="L399" class="ln">   399  </span><span class="comment">// GetIsSecurityCommandCenterEnabledOk returns a tuple with the IsSecurityCommandCenterEnabled field value if set, nil otherwise</span>
-<span id="L400" class="ln">   400  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L401" class="ln">   401  </span>func (o *GCPAccount) GetIsSecurityCommandCenterEnabledOk() (*bool, bool) {
-<span id="L402" class="ln">   402  </span>	if o == nil || o.IsSecurityCommandCenterEnabled == nil {
-<span id="L403" class="ln">   403  </span>		return nil, false
-<span id="L404" class="ln">   404  </span>	}
-<span id="L405" class="ln">   405  </span>	return o.IsSecurityCommandCenterEnabled, true
-<span id="L406" class="ln">   406  </span>}
-<span id="L407" class="ln">   407  </span>
-<span id="L408" class="ln">   408  </span><span class="comment">// HasIsSecurityCommandCenterEnabled returns a boolean if a field has been set.</span>
-<span id="L409" class="ln">   409  </span>func (o *GCPAccount) HasIsSecurityCommandCenterEnabled() bool {
-<span id="L410" class="ln">   410  </span>	return o != nil &amp;&amp; o.IsSecurityCommandCenterEnabled != nil
-<span id="L411" class="ln">   411  </span>}
-<span id="L412" class="ln">   412  </span>
-<span id="L413" class="ln">   413  </span><span class="comment">// SetIsSecurityCommandCenterEnabled gets a reference to the given bool and assigns it to the IsSecurityCommandCenterEnabled field.</span>
-<span id="L414" class="ln">   414  </span>func (o *GCPAccount) SetIsSecurityCommandCenterEnabled(v bool) {
-<span id="L415" class="ln">   415  </span>	o.IsSecurityCommandCenterEnabled = &amp;v
-<span id="L416" class="ln">   416  </span>}
-<span id="L417" class="ln">   417  </span>
-<span id="L418" class="ln">   418  </span><span class="comment">// GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.</span>
-<span id="L419" class="ln">   419  </span>func (o *GCPAccount) GetPrivateKey() string {
-<span id="L420" class="ln">   420  </span>	if o == nil || o.PrivateKey == nil {
-<span id="L421" class="ln">   421  </span>		var ret string
-<span id="L422" class="ln">   422  </span>		return ret
-<span id="L423" class="ln">   423  </span>	}
-<span id="L424" class="ln">   424  </span>	return *o.PrivateKey
-<span id="L425" class="ln">   425  </span>}
-<span id="L426" class="ln">   426  </span>
-<span id="L427" class="ln">   427  </span><span class="comment">// GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, nil otherwise</span>
-<span id="L428" class="ln">   428  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L429" class="ln">   429  </span>func (o *GCPAccount) GetPrivateKeyOk() (*string, bool) {
-<span id="L430" class="ln">   430  </span>	if o == nil || o.PrivateKey == nil {
-<span id="L431" class="ln">   431  </span>		return nil, false
-<span id="L432" class="ln">   432  </span>	}
-<span id="L433" class="ln">   433  </span>	return o.PrivateKey, true
-<span id="L434" class="ln">   434  </span>}
-<span id="L435" class="ln">   435  </span>
-<span id="L436" class="ln">   436  </span><span class="comment">// HasPrivateKey returns a boolean if a field has been set.</span>
-<span id="L437" class="ln">   437  </span>func (o *GCPAccount) HasPrivateKey() bool {
-<span id="L438" class="ln">   438  </span>	return o != nil &amp;&amp; o.PrivateKey != nil
-<span id="L439" class="ln">   439  </span>}
-<span id="L440" class="ln">   440  </span>
-<span id="L441" class="ln">   441  </span><span class="comment">// SetPrivateKey gets a reference to the given string and assigns it to the PrivateKey field.</span>
-<span id="L442" class="ln">   442  </span>func (o *GCPAccount) SetPrivateKey(v string) {
-<span id="L443" class="ln">   443  </span>	o.PrivateKey = &amp;v
-<span id="L444" class="ln">   444  </span>}
-<span id="L445" class="ln">   445  </span>
-<span id="L446" class="ln">   446  </span><span class="comment">// GetPrivateKeyId returns the PrivateKeyId field value if set, zero value otherwise.</span>
-<span id="L447" class="ln">   447  </span>func (o *GCPAccount) GetPrivateKeyId() string {
-<span id="L448" class="ln">   448  </span>	if o == nil || o.PrivateKeyId == nil {
-<span id="L449" class="ln">   449  </span>		var ret string
-<span id="L450" class="ln">   450  </span>		return ret
-<span id="L451" class="ln">   451  </span>	}
-<span id="L452" class="ln">   452  </span>	return *o.PrivateKeyId
-<span id="L453" class="ln">   453  </span>}
-<span id="L454" class="ln">   454  </span>
-<span id="L455" class="ln">   455  </span><span class="comment">// GetPrivateKeyIdOk returns a tuple with the PrivateKeyId field value if set, nil otherwise</span>
-<span id="L456" class="ln">   456  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L457" class="ln">   457  </span>func (o *GCPAccount) GetPrivateKeyIdOk() (*string, bool) {
-<span id="L458" class="ln">   458  </span>	if o == nil || o.PrivateKeyId == nil {
-<span id="L459" class="ln">   459  </span>		return nil, false
-<span id="L460" class="ln">   460  </span>	}
-<span id="L461" class="ln">   461  </span>	return o.PrivateKeyId, true
-<span id="L462" class="ln">   462  </span>}
-<span id="L463" class="ln">   463  </span>
-<span id="L464" class="ln">   464  </span><span class="comment">// HasPrivateKeyId returns a boolean if a field has been set.</span>
-<span id="L465" class="ln">   465  </span>func (o *GCPAccount) HasPrivateKeyId() bool {
-<span id="L466" class="ln">   466  </span>	return o != nil &amp;&amp; o.PrivateKeyId != nil
-<span id="L467" class="ln">   467  </span>}
-<span id="L468" class="ln">   468  </span>
-<span id="L469" class="ln">   469  </span><span class="comment">// SetPrivateKeyId gets a reference to the given string and assigns it to the PrivateKeyId field.</span>
-<span id="L470" class="ln">   470  </span>func (o *GCPAccount) SetPrivateKeyId(v string) {
-<span id="L471" class="ln">   471  </span>	o.PrivateKeyId = &amp;v
-<span id="L472" class="ln">   472  </span>}
-<span id="L473" class="ln">   473  </span>
-<span id="L474" class="ln">   474  </span><span class="comment">// GetProjectId returns the ProjectId field value if set, zero value otherwise.</span>
-<span id="L475" class="ln">   475  </span>func (o *GCPAccount) GetProjectId() string {
-<span id="L476" class="ln">   476  </span>	if o == nil || o.ProjectId == nil {
-<span id="L477" class="ln">   477  </span>		var ret string
-<span id="L478" class="ln">   478  </span>		return ret
-<span id="L479" class="ln">   479  </span>	}
-<span id="L480" class="ln">   480  </span>	return *o.ProjectId
-<span id="L481" class="ln">   481  </span>}
-<span id="L482" class="ln">   482  </span>
-<span id="L483" class="ln">   483  </span><span class="comment">// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise</span>
-<span id="L484" class="ln">   484  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L485" class="ln">   485  </span>func (o *GCPAccount) GetProjectIdOk() (*string, bool) {
-<span id="L486" class="ln">   486  </span>	if o == nil || o.ProjectId == nil {
-<span id="L487" class="ln">   487  </span>		return nil, false
-<span id="L488" class="ln">   488  </span>	}
-<span id="L489" class="ln">   489  </span>	return o.ProjectId, true
-<span id="L490" class="ln">   490  </span>}
-<span id="L491" class="ln">   491  </span>
-<span id="L492" class="ln">   492  </span><span class="comment">// HasProjectId returns a boolean if a field has been set.</span>
-<span id="L493" class="ln">   493  </span>func (o *GCPAccount) HasProjectId() bool {
-<span id="L494" class="ln">   494  </span>	return o != nil &amp;&amp; o.ProjectId != nil
-<span id="L495" class="ln">   495  </span>}
-<span id="L496" class="ln">   496  </span>
-<span id="L497" class="ln">   497  </span><span class="comment">// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.</span>
-<span id="L498" class="ln">   498  </span>func (o *GCPAccount) SetProjectId(v string) {
-<span id="L499" class="ln">   499  </span>	o.ProjectId = &amp;v
-<span id="L500" class="ln">   500  </span>}
-<span id="L501" class="ln">   501  </span>
-<span id="L502" class="ln">   502  </span><span class="comment">// GetResourceCollectionEnabled returns the ResourceCollectionEnabled field value if set, zero value otherwise.</span>
-<span id="L503" class="ln">   503  </span>func (o *GCPAccount) GetResourceCollectionEnabled() bool {
-<span id="L504" class="ln">   504  </span>	if o == nil || o.ResourceCollectionEnabled == nil {
-<span id="L505" class="ln">   505  </span>		var ret bool
-<span id="L506" class="ln">   506  </span>		return ret
-<span id="L507" class="ln">   507  </span>	}
-<span id="L508" class="ln">   508  </span>	return *o.ResourceCollectionEnabled
-<span id="L509" class="ln">   509  </span>}
-<span id="L510" class="ln">   510  </span>
-<span id="L511" class="ln">   511  </span><span class="comment">// GetResourceCollectionEnabledOk returns a tuple with the ResourceCollectionEnabled field value if set, nil otherwise</span>
-<span id="L512" class="ln">   512  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L513" class="ln">   513  </span>func (o *GCPAccount) GetResourceCollectionEnabledOk() (*bool, bool) {
-<span id="L514" class="ln">   514  </span>	if o == nil || o.ResourceCollectionEnabled == nil {
-<span id="L515" class="ln">   515  </span>		return nil, false
-<span id="L516" class="ln">   516  </span>	}
-<span id="L517" class="ln">   517  </span>	return o.ResourceCollectionEnabled, true
-<span id="L518" class="ln">   518  </span>}
-<span id="L519" class="ln">   519  </span>
-<span id="L520" class="ln">   520  </span><span class="comment">// HasResourceCollectionEnabled returns a boolean if a field has been set.</span>
-<span id="L521" class="ln">   521  </span>func (o *GCPAccount) HasResourceCollectionEnabled() bool {
-<span id="L522" class="ln">   522  </span>	return o != nil &amp;&amp; o.ResourceCollectionEnabled != nil
-<span id="L523" class="ln">   523  </span>}
-<span id="L524" class="ln">   524  </span>
-<span id="L525" class="ln">   525  </span><span class="comment">// SetResourceCollectionEnabled gets a reference to the given bool and assigns it to the ResourceCollectionEnabled field.</span>
-<span id="L526" class="ln">   526  </span>func (o *GCPAccount) SetResourceCollectionEnabled(v bool) {
-<span id="L527" class="ln">   527  </span>	o.ResourceCollectionEnabled = &amp;v
-<span id="L528" class="ln">   528  </span>}
-<span id="L529" class="ln">   529  </span>
-<span id="L530" class="ln">   530  </span><span class="comment">// GetTokenUri returns the TokenUri field value if set, zero value otherwise.</span>
-<span id="L531" class="ln">   531  </span>func (o *GCPAccount) GetTokenUri() string {
-<span id="L532" class="ln">   532  </span>	if o == nil || o.TokenUri == nil {
-<span id="L533" class="ln">   533  </span>		var ret string
-<span id="L534" class="ln">   534  </span>		return ret
-<span id="L535" class="ln">   535  </span>	}
-<span id="L536" class="ln">   536  </span>	return *o.TokenUri
-<span id="L537" class="ln">   537  </span>}
-<span id="L538" class="ln">   538  </span>
-<span id="L539" class="ln">   539  </span><span class="comment">// GetTokenUriOk returns a tuple with the TokenUri field value if set, nil otherwise</span>
-<span id="L540" class="ln">   540  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L541" class="ln">   541  </span>func (o *GCPAccount) GetTokenUriOk() (*string, bool) {
-<span id="L542" class="ln">   542  </span>	if o == nil || o.TokenUri == nil {
-<span id="L543" class="ln">   543  </span>		return nil, false
-<span id="L544" class="ln">   544  </span>	}
-<span id="L545" class="ln">   545  </span>	return o.TokenUri, true
-<span id="L546" class="ln">   546  </span>}
-<span id="L547" class="ln">   547  </span>
-<span id="L548" class="ln">   548  </span><span class="comment">// HasTokenUri returns a boolean if a field has been set.</span>
-<span id="L549" class="ln">   549  </span>func (o *GCPAccount) HasTokenUri() bool {
-<span id="L550" class="ln">   550  </span>	return o != nil &amp;&amp; o.TokenUri != nil
-<span id="L551" class="ln">   551  </span>}
-<span id="L552" class="ln">   552  </span>
-<span id="L553" class="ln">   553  </span><span class="comment">// SetTokenUri gets a reference to the given string and assigns it to the TokenUri field.</span>
-<span id="L554" class="ln">   554  </span>func (o *GCPAccount) SetTokenUri(v string) {
-<span id="L555" class="ln">   555  </span>	o.TokenUri = &amp;v
-<span id="L556" class="ln">   556  </span>}
-<span id="L557" class="ln">   557  </span>
-<span id="L558" class="ln">   558  </span><span class="comment">// GetType returns the Type field value if set, zero value otherwise.</span>
-<span id="L559" class="ln">   559  </span>func (o *GCPAccount) GetType() string {
-<span id="L560" class="ln">   560  </span>	if o == nil || o.Type == nil {
-<span id="L561" class="ln">   561  </span>		var ret string
-<span id="L562" class="ln">   562  </span>		return ret
-<span id="L563" class="ln">   563  </span>	}
-<span id="L564" class="ln">   564  </span>	return *o.Type
-<span id="L565" class="ln">   565  </span>}
-<span id="L566" class="ln">   566  </span>
-<span id="L567" class="ln">   567  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value if set, nil otherwise</span>
-<span id="L568" class="ln">   568  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L569" class="ln">   569  </span>func (o *GCPAccount) GetTypeOk() (*string, bool) {
-<span id="L570" class="ln">   570  </span>	if o == nil || o.Type == nil {
-<span id="L571" class="ln">   571  </span>		return nil, false
-<span id="L572" class="ln">   572  </span>	}
-<span id="L573" class="ln">   573  </span>	return o.Type, true
-<span id="L574" class="ln">   574  </span>}
-<span id="L575" class="ln">   575  </span>
-<span id="L576" class="ln">   576  </span><span class="comment">// HasType returns a boolean if a field has been set.</span>
-<span id="L577" class="ln">   577  </span>func (o *GCPAccount) HasType() bool {
-<span id="L578" class="ln">   578  </span>	return o != nil &amp;&amp; o.Type != nil
-<span id="L579" class="ln">   579  </span>}
-<span id="L580" class="ln">   580  </span>
-<span id="L581" class="ln">   581  </span><span class="comment">// SetType gets a reference to the given string and assigns it to the Type field.</span>
-<span id="L582" class="ln">   582  </span>func (o *GCPAccount) SetType(v string) {
-<span id="L583" class="ln">   583  </span>	o.Type = &amp;v
-<span id="L584" class="ln">   584  </span>}
-<span id="L585" class="ln">   585  </span>
-<span id="L586" class="ln">   586  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L587" class="ln">   587  </span>func (o GCPAccount) MarshalJSON() ([]byte, error) {
-<span id="L588" class="ln">   588  </span>	toSerialize := map[string]interface{}{}
-<span id="L589" class="ln">   589  </span>	if o.UnparsedObject != nil {
-<span id="L590" class="ln">   590  </span>		return datadog.Marshal(o.UnparsedObject)
-<span id="L591" class="ln">   591  </span>	}
-<span id="L592" class="ln">   592  </span>	if o.AuthProviderX509CertUrl != nil {
-<span id="L593" class="ln">   593  </span>		toSerialize[&#34;auth_provider_x509_cert_url&#34;] = o.AuthProviderX509CertUrl
-<span id="L594" class="ln">   594  </span>	}
-<span id="L595" class="ln">   595  </span>	if o.AuthUri != nil {
-<span id="L596" class="ln">   596  </span>		toSerialize[&#34;auth_uri&#34;] = o.AuthUri
-<span id="L597" class="ln">   597  </span>	}
-<span id="L598" class="ln">   598  </span>	if o.Automute != nil {
-<span id="L599" class="ln">   599  </span>		toSerialize[&#34;automute&#34;] = o.Automute
-<span id="L600" class="ln">   600  </span>	}
-<span id="L601" class="ln">   601  </span>	if o.ClientEmail != nil {
-<span id="L602" class="ln">   602  </span>		toSerialize[&#34;client_email&#34;] = o.ClientEmail
+<span id="L319" class="ln">   319  </span>		var ret string
+<span id="L320" class="ln">   320  </span>		return ret
+<span id="L321" class="ln">   321  </span>	}
+<span id="L322" class="ln">   322  </span>	return *o.HostFilters
+<span id="L323" class="ln">   323  </span>}
+<span id="L324" class="ln">   324  </span>
+<span id="L325" class="ln">   325  </span><span class="comment">// GetHostFiltersOk returns a tuple with the HostFilters field value if set, nil otherwise</span>
+<span id="L326" class="ln">   326  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L327" class="ln">   327  </span><span class="comment">// Deprecated</span>
+<span id="L328" class="ln">   328  </span>func (o *GCPAccount) GetHostFiltersOk() (*string, bool) {
+<span id="L329" class="ln">   329  </span>	if o == nil || o.HostFilters == nil {
+<span id="L330" class="ln">   330  </span>		return nil, false
+<span id="L331" class="ln">   331  </span>	}
+<span id="L332" class="ln">   332  </span>	return o.HostFilters, true
+<span id="L333" class="ln">   333  </span>}
+<span id="L334" class="ln">   334  </span>
+<span id="L335" class="ln">   335  </span><span class="comment">// HasHostFilters returns a boolean if a field has been set.</span>
+<span id="L336" class="ln">   336  </span>func (o *GCPAccount) HasHostFilters() bool {
+<span id="L337" class="ln">   337  </span>	return o != nil &amp;&amp; o.HostFilters != nil
+<span id="L338" class="ln">   338  </span>}
+<span id="L339" class="ln">   339  </span>
+<span id="L340" class="ln">   340  </span><span class="comment">// SetHostFilters gets a reference to the given string and assigns it to the HostFilters field.</span>
+<span id="L341" class="ln">   341  </span><span class="comment">// Deprecated</span>
+<span id="L342" class="ln">   342  </span>func (o *GCPAccount) SetHostFilters(v string) {
+<span id="L343" class="ln">   343  </span>	o.HostFilters = &amp;v
+<span id="L344" class="ln">   344  </span>}
+<span id="L345" class="ln">   345  </span>
+<span id="L346" class="ln">   346  </span><span class="comment">// GetIsCspmEnabled returns the IsCspmEnabled field value if set, zero value otherwise.</span>
+<span id="L347" class="ln">   347  </span>func (o *GCPAccount) GetIsCspmEnabled() bool {
+<span id="L348" class="ln">   348  </span>	if o == nil || o.IsCspmEnabled == nil {
+<span id="L349" class="ln">   349  </span>		var ret bool
+<span id="L350" class="ln">   350  </span>		return ret
+<span id="L351" class="ln">   351  </span>	}
+<span id="L352" class="ln">   352  </span>	return *o.IsCspmEnabled
+<span id="L353" class="ln">   353  </span>}
+<span id="L354" class="ln">   354  </span>
+<span id="L355" class="ln">   355  </span><span class="comment">// GetIsCspmEnabledOk returns a tuple with the IsCspmEnabled field value if set, nil otherwise</span>
+<span id="L356" class="ln">   356  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L357" class="ln">   357  </span>func (o *GCPAccount) GetIsCspmEnabledOk() (*bool, bool) {
+<span id="L358" class="ln">   358  </span>	if o == nil || o.IsCspmEnabled == nil {
+<span id="L359" class="ln">   359  </span>		return nil, false
+<span id="L360" class="ln">   360  </span>	}
+<span id="L361" class="ln">   361  </span>	return o.IsCspmEnabled, true
+<span id="L362" class="ln">   362  </span>}
+<span id="L363" class="ln">   363  </span>
+<span id="L364" class="ln">   364  </span><span class="comment">// HasIsCspmEnabled returns a boolean if a field has been set.</span>
+<span id="L365" class="ln">   365  </span>func (o *GCPAccount) HasIsCspmEnabled() bool {
+<span id="L366" class="ln">   366  </span>	return o != nil &amp;&amp; o.IsCspmEnabled != nil
+<span id="L367" class="ln">   367  </span>}
+<span id="L368" class="ln">   368  </span>
+<span id="L369" class="ln">   369  </span><span class="comment">// SetIsCspmEnabled gets a reference to the given bool and assigns it to the IsCspmEnabled field.</span>
+<span id="L370" class="ln">   370  </span>func (o *GCPAccount) SetIsCspmEnabled(v bool) {
+<span id="L371" class="ln">   371  </span>	o.IsCspmEnabled = &amp;v
+<span id="L372" class="ln">   372  </span>}
+<span id="L373" class="ln">   373  </span>
+<span id="L374" class="ln">   374  </span><span class="comment">// GetIsResourceChangeCollectionEnabled returns the IsResourceChangeCollectionEnabled field value if set, zero value otherwise.</span>
+<span id="L375" class="ln">   375  </span>func (o *GCPAccount) GetIsResourceChangeCollectionEnabled() bool {
+<span id="L376" class="ln">   376  </span>	if o == nil || o.IsResourceChangeCollectionEnabled == nil {
+<span id="L377" class="ln">   377  </span>		var ret bool
+<span id="L378" class="ln">   378  </span>		return ret
+<span id="L379" class="ln">   379  </span>	}
+<span id="L380" class="ln">   380  </span>	return *o.IsResourceChangeCollectionEnabled
+<span id="L381" class="ln">   381  </span>}
+<span id="L382" class="ln">   382  </span>
+<span id="L383" class="ln">   383  </span><span class="comment">// GetIsResourceChangeCollectionEnabledOk returns a tuple with the IsResourceChangeCollectionEnabled field value if set, nil otherwise</span>
+<span id="L384" class="ln">   384  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L385" class="ln">   385  </span>func (o *GCPAccount) GetIsResourceChangeCollectionEnabledOk() (*bool, bool) {
+<span id="L386" class="ln">   386  </span>	if o == nil || o.IsResourceChangeCollectionEnabled == nil {
+<span id="L387" class="ln">   387  </span>		return nil, false
+<span id="L388" class="ln">   388  </span>	}
+<span id="L389" class="ln">   389  </span>	return o.IsResourceChangeCollectionEnabled, true
+<span id="L390" class="ln">   390  </span>}
+<span id="L391" class="ln">   391  </span>
+<span id="L392" class="ln">   392  </span><span class="comment">// HasIsResourceChangeCollectionEnabled returns a boolean if a field has been set.</span>
+<span id="L393" class="ln">   393  </span>func (o *GCPAccount) HasIsResourceChangeCollectionEnabled() bool {
+<span id="L394" class="ln">   394  </span>	return o != nil &amp;&amp; o.IsResourceChangeCollectionEnabled != nil
+<span id="L395" class="ln">   395  </span>}
+<span id="L396" class="ln">   396  </span>
+<span id="L397" class="ln">   397  </span><span class="comment">// SetIsResourceChangeCollectionEnabled gets a reference to the given bool and assigns it to the IsResourceChangeCollectionEnabled field.</span>
+<span id="L398" class="ln">   398  </span>func (o *GCPAccount) SetIsResourceChangeCollectionEnabled(v bool) {
+<span id="L399" class="ln">   399  </span>	o.IsResourceChangeCollectionEnabled = &amp;v
+<span id="L400" class="ln">   400  </span>}
+<span id="L401" class="ln">   401  </span>
+<span id="L402" class="ln">   402  </span><span class="comment">// GetIsSecurityCommandCenterEnabled returns the IsSecurityCommandCenterEnabled field value if set, zero value otherwise.</span>
+<span id="L403" class="ln">   403  </span>func (o *GCPAccount) GetIsSecurityCommandCenterEnabled() bool {
+<span id="L404" class="ln">   404  </span>	if o == nil || o.IsSecurityCommandCenterEnabled == nil {
+<span id="L405" class="ln">   405  </span>		var ret bool
+<span id="L406" class="ln">   406  </span>		return ret
+<span id="L407" class="ln">   407  </span>	}
+<span id="L408" class="ln">   408  </span>	return *o.IsSecurityCommandCenterEnabled
+<span id="L409" class="ln">   409  </span>}
+<span id="L410" class="ln">   410  </span>
+<span id="L411" class="ln">   411  </span><span class="comment">// GetIsSecurityCommandCenterEnabledOk returns a tuple with the IsSecurityCommandCenterEnabled field value if set, nil otherwise</span>
+<span id="L412" class="ln">   412  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L413" class="ln">   413  </span>func (o *GCPAccount) GetIsSecurityCommandCenterEnabledOk() (*bool, bool) {
+<span id="L414" class="ln">   414  </span>	if o == nil || o.IsSecurityCommandCenterEnabled == nil {
+<span id="L415" class="ln">   415  </span>		return nil, false
+<span id="L416" class="ln">   416  </span>	}
+<span id="L417" class="ln">   417  </span>	return o.IsSecurityCommandCenterEnabled, true
+<span id="L418" class="ln">   418  </span>}
+<span id="L419" class="ln">   419  </span>
+<span id="L420" class="ln">   420  </span><span class="comment">// HasIsSecurityCommandCenterEnabled returns a boolean if a field has been set.</span>
+<span id="L421" class="ln">   421  </span>func (o *GCPAccount) HasIsSecurityCommandCenterEnabled() bool {
+<span id="L422" class="ln">   422  </span>	return o != nil &amp;&amp; o.IsSecurityCommandCenterEnabled != nil
+<span id="L423" class="ln">   423  </span>}
+<span id="L424" class="ln">   424  </span>
+<span id="L425" class="ln">   425  </span><span class="comment">// SetIsSecurityCommandCenterEnabled gets a reference to the given bool and assigns it to the IsSecurityCommandCenterEnabled field.</span>
+<span id="L426" class="ln">   426  </span>func (o *GCPAccount) SetIsSecurityCommandCenterEnabled(v bool) {
+<span id="L427" class="ln">   427  </span>	o.IsSecurityCommandCenterEnabled = &amp;v
+<span id="L428" class="ln">   428  </span>}
+<span id="L429" class="ln">   429  </span>
+<span id="L430" class="ln">   430  </span><span class="comment">// GetMonitoredResourceConfigs returns the MonitoredResourceConfigs field value if set, zero value otherwise.</span>
+<span id="L431" class="ln">   431  </span>func (o *GCPAccount) GetMonitoredResourceConfigs() []GCPMonitoredResourceConfig {
+<span id="L432" class="ln">   432  </span>	if o == nil || o.MonitoredResourceConfigs == nil {
+<span id="L433" class="ln">   433  </span>		var ret []GCPMonitoredResourceConfig
+<span id="L434" class="ln">   434  </span>		return ret
+<span id="L435" class="ln">   435  </span>	}
+<span id="L436" class="ln">   436  </span>	return o.MonitoredResourceConfigs
+<span id="L437" class="ln">   437  </span>}
+<span id="L438" class="ln">   438  </span>
+<span id="L439" class="ln">   439  </span><span class="comment">// GetMonitoredResourceConfigsOk returns a tuple with the MonitoredResourceConfigs field value if set, nil otherwise</span>
+<span id="L440" class="ln">   440  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L441" class="ln">   441  </span>func (o *GCPAccount) GetMonitoredResourceConfigsOk() (*[]GCPMonitoredResourceConfig, bool) {
+<span id="L442" class="ln">   442  </span>	if o == nil || o.MonitoredResourceConfigs == nil {
+<span id="L443" class="ln">   443  </span>		return nil, false
+<span id="L444" class="ln">   444  </span>	}
+<span id="L445" class="ln">   445  </span>	return &amp;o.MonitoredResourceConfigs, true
+<span id="L446" class="ln">   446  </span>}
+<span id="L447" class="ln">   447  </span>
+<span id="L448" class="ln">   448  </span><span class="comment">// HasMonitoredResourceConfigs returns a boolean if a field has been set.</span>
+<span id="L449" class="ln">   449  </span>func (o *GCPAccount) HasMonitoredResourceConfigs() bool {
+<span id="L450" class="ln">   450  </span>	return o != nil &amp;&amp; o.MonitoredResourceConfigs != nil
+<span id="L451" class="ln">   451  </span>}
+<span id="L452" class="ln">   452  </span>
+<span id="L453" class="ln">   453  </span><span class="comment">// SetMonitoredResourceConfigs gets a reference to the given []GCPMonitoredResourceConfig and assigns it to the MonitoredResourceConfigs field.</span>
+<span id="L454" class="ln">   454  </span>func (o *GCPAccount) SetMonitoredResourceConfigs(v []GCPMonitoredResourceConfig) {
+<span id="L455" class="ln">   455  </span>	o.MonitoredResourceConfigs = v
+<span id="L456" class="ln">   456  </span>}
+<span id="L457" class="ln">   457  </span>
+<span id="L458" class="ln">   458  </span><span class="comment">// GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.</span>
+<span id="L459" class="ln">   459  </span>func (o *GCPAccount) GetPrivateKey() string {
+<span id="L460" class="ln">   460  </span>	if o == nil || o.PrivateKey == nil {
+<span id="L461" class="ln">   461  </span>		var ret string
+<span id="L462" class="ln">   462  </span>		return ret
+<span id="L463" class="ln">   463  </span>	}
+<span id="L464" class="ln">   464  </span>	return *o.PrivateKey
+<span id="L465" class="ln">   465  </span>}
+<span id="L466" class="ln">   466  </span>
+<span id="L467" class="ln">   467  </span><span class="comment">// GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, nil otherwise</span>
+<span id="L468" class="ln">   468  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L469" class="ln">   469  </span>func (o *GCPAccount) GetPrivateKeyOk() (*string, bool) {
+<span id="L470" class="ln">   470  </span>	if o == nil || o.PrivateKey == nil {
+<span id="L471" class="ln">   471  </span>		return nil, false
+<span id="L472" class="ln">   472  </span>	}
+<span id="L473" class="ln">   473  </span>	return o.PrivateKey, true
+<span id="L474" class="ln">   474  </span>}
+<span id="L475" class="ln">   475  </span>
+<span id="L476" class="ln">   476  </span><span class="comment">// HasPrivateKey returns a boolean if a field has been set.</span>
+<span id="L477" class="ln">   477  </span>func (o *GCPAccount) HasPrivateKey() bool {
+<span id="L478" class="ln">   478  </span>	return o != nil &amp;&amp; o.PrivateKey != nil
+<span id="L479" class="ln">   479  </span>}
+<span id="L480" class="ln">   480  </span>
+<span id="L481" class="ln">   481  </span><span class="comment">// SetPrivateKey gets a reference to the given string and assigns it to the PrivateKey field.</span>
+<span id="L482" class="ln">   482  </span>func (o *GCPAccount) SetPrivateKey(v string) {
+<span id="L483" class="ln">   483  </span>	o.PrivateKey = &amp;v
+<span id="L484" class="ln">   484  </span>}
+<span id="L485" class="ln">   485  </span>
+<span id="L486" class="ln">   486  </span><span class="comment">// GetPrivateKeyId returns the PrivateKeyId field value if set, zero value otherwise.</span>
+<span id="L487" class="ln">   487  </span>func (o *GCPAccount) GetPrivateKeyId() string {
+<span id="L488" class="ln">   488  </span>	if o == nil || o.PrivateKeyId == nil {
+<span id="L489" class="ln">   489  </span>		var ret string
+<span id="L490" class="ln">   490  </span>		return ret
+<span id="L491" class="ln">   491  </span>	}
+<span id="L492" class="ln">   492  </span>	return *o.PrivateKeyId
+<span id="L493" class="ln">   493  </span>}
+<span id="L494" class="ln">   494  </span>
+<span id="L495" class="ln">   495  </span><span class="comment">// GetPrivateKeyIdOk returns a tuple with the PrivateKeyId field value if set, nil otherwise</span>
+<span id="L496" class="ln">   496  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L497" class="ln">   497  </span>func (o *GCPAccount) GetPrivateKeyIdOk() (*string, bool) {
+<span id="L498" class="ln">   498  </span>	if o == nil || o.PrivateKeyId == nil {
+<span id="L499" class="ln">   499  </span>		return nil, false
+<span id="L500" class="ln">   500  </span>	}
+<span id="L501" class="ln">   501  </span>	return o.PrivateKeyId, true
+<span id="L502" class="ln">   502  </span>}
+<span id="L503" class="ln">   503  </span>
+<span id="L504" class="ln">   504  </span><span class="comment">// HasPrivateKeyId returns a boolean if a field has been set.</span>
+<span id="L505" class="ln">   505  </span>func (o *GCPAccount) HasPrivateKeyId() bool {
+<span id="L506" class="ln">   506  </span>	return o != nil &amp;&amp; o.PrivateKeyId != nil
+<span id="L507" class="ln">   507  </span>}
+<span id="L508" class="ln">   508  </span>
+<span id="L509" class="ln">   509  </span><span class="comment">// SetPrivateKeyId gets a reference to the given string and assigns it to the PrivateKeyId field.</span>
+<span id="L510" class="ln">   510  </span>func (o *GCPAccount) SetPrivateKeyId(v string) {
+<span id="L511" class="ln">   511  </span>	o.PrivateKeyId = &amp;v
+<span id="L512" class="ln">   512  </span>}
+<span id="L513" class="ln">   513  </span>
+<span id="L514" class="ln">   514  </span><span class="comment">// GetProjectId returns the ProjectId field value if set, zero value otherwise.</span>
+<span id="L515" class="ln">   515  </span>func (o *GCPAccount) GetProjectId() string {
+<span id="L516" class="ln">   516  </span>	if o == nil || o.ProjectId == nil {
+<span id="L517" class="ln">   517  </span>		var ret string
+<span id="L518" class="ln">   518  </span>		return ret
+<span id="L519" class="ln">   519  </span>	}
+<span id="L520" class="ln">   520  </span>	return *o.ProjectId
+<span id="L521" class="ln">   521  </span>}
+<span id="L522" class="ln">   522  </span>
+<span id="L523" class="ln">   523  </span><span class="comment">// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise</span>
+<span id="L524" class="ln">   524  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L525" class="ln">   525  </span>func (o *GCPAccount) GetProjectIdOk() (*string, bool) {
+<span id="L526" class="ln">   526  </span>	if o == nil || o.ProjectId == nil {
+<span id="L527" class="ln">   527  </span>		return nil, false
+<span id="L528" class="ln">   528  </span>	}
+<span id="L529" class="ln">   529  </span>	return o.ProjectId, true
+<span id="L530" class="ln">   530  </span>}
+<span id="L531" class="ln">   531  </span>
+<span id="L532" class="ln">   532  </span><span class="comment">// HasProjectId returns a boolean if a field has been set.</span>
+<span id="L533" class="ln">   533  </span>func (o *GCPAccount) HasProjectId() bool {
+<span id="L534" class="ln">   534  </span>	return o != nil &amp;&amp; o.ProjectId != nil
+<span id="L535" class="ln">   535  </span>}
+<span id="L536" class="ln">   536  </span>
+<span id="L537" class="ln">   537  </span><span class="comment">// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.</span>
+<span id="L538" class="ln">   538  </span>func (o *GCPAccount) SetProjectId(v string) {
+<span id="L539" class="ln">   539  </span>	o.ProjectId = &amp;v
+<span id="L540" class="ln">   540  </span>}
+<span id="L541" class="ln">   541  </span>
+<span id="L542" class="ln">   542  </span><span class="comment">// GetResourceCollectionEnabled returns the ResourceCollectionEnabled field value if set, zero value otherwise.</span>
+<span id="L543" class="ln">   543  </span>func (o *GCPAccount) GetResourceCollectionEnabled() bool {
+<span id="L544" class="ln">   544  </span>	if o == nil || o.ResourceCollectionEnabled == nil {
+<span id="L545" class="ln">   545  </span>		var ret bool
+<span id="L546" class="ln">   546  </span>		return ret
+<span id="L547" class="ln">   547  </span>	}
+<span id="L548" class="ln">   548  </span>	return *o.ResourceCollectionEnabled
+<span id="L549" class="ln">   549  </span>}
+<span id="L550" class="ln">   550  </span>
+<span id="L551" class="ln">   551  </span><span class="comment">// GetResourceCollectionEnabledOk returns a tuple with the ResourceCollectionEnabled field value if set, nil otherwise</span>
+<span id="L552" class="ln">   552  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L553" class="ln">   553  </span>func (o *GCPAccount) GetResourceCollectionEnabledOk() (*bool, bool) {
+<span id="L554" class="ln">   554  </span>	if o == nil || o.ResourceCollectionEnabled == nil {
+<span id="L555" class="ln">   555  </span>		return nil, false
+<span id="L556" class="ln">   556  </span>	}
+<span id="L557" class="ln">   557  </span>	return o.ResourceCollectionEnabled, true
+<span id="L558" class="ln">   558  </span>}
+<span id="L559" class="ln">   559  </span>
+<span id="L560" class="ln">   560  </span><span class="comment">// HasResourceCollectionEnabled returns a boolean if a field has been set.</span>
+<span id="L561" class="ln">   561  </span>func (o *GCPAccount) HasResourceCollectionEnabled() bool {
+<span id="L562" class="ln">   562  </span>	return o != nil &amp;&amp; o.ResourceCollectionEnabled != nil
+<span id="L563" class="ln">   563  </span>}
+<span id="L564" class="ln">   564  </span>
+<span id="L565" class="ln">   565  </span><span class="comment">// SetResourceCollectionEnabled gets a reference to the given bool and assigns it to the ResourceCollectionEnabled field.</span>
+<span id="L566" class="ln">   566  </span>func (o *GCPAccount) SetResourceCollectionEnabled(v bool) {
+<span id="L567" class="ln">   567  </span>	o.ResourceCollectionEnabled = &amp;v
+<span id="L568" class="ln">   568  </span>}
+<span id="L569" class="ln">   569  </span>
+<span id="L570" class="ln">   570  </span><span class="comment">// GetTokenUri returns the TokenUri field value if set, zero value otherwise.</span>
+<span id="L571" class="ln">   571  </span>func (o *GCPAccount) GetTokenUri() string {
+<span id="L572" class="ln">   572  </span>	if o == nil || o.TokenUri == nil {
+<span id="L573" class="ln">   573  </span>		var ret string
+<span id="L574" class="ln">   574  </span>		return ret
+<span id="L575" class="ln">   575  </span>	}
+<span id="L576" class="ln">   576  </span>	return *o.TokenUri
+<span id="L577" class="ln">   577  </span>}
+<span id="L578" class="ln">   578  </span>
+<span id="L579" class="ln">   579  </span><span class="comment">// GetTokenUriOk returns a tuple with the TokenUri field value if set, nil otherwise</span>
+<span id="L580" class="ln">   580  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L581" class="ln">   581  </span>func (o *GCPAccount) GetTokenUriOk() (*string, bool) {
+<span id="L582" class="ln">   582  </span>	if o == nil || o.TokenUri == nil {
+<span id="L583" class="ln">   583  </span>		return nil, false
+<span id="L584" class="ln">   584  </span>	}
+<span id="L585" class="ln">   585  </span>	return o.TokenUri, true
+<span id="L586" class="ln">   586  </span>}
+<span id="L587" class="ln">   587  </span>
+<span id="L588" class="ln">   588  </span><span class="comment">// HasTokenUri returns a boolean if a field has been set.</span>
+<span id="L589" class="ln">   589  </span>func (o *GCPAccount) HasTokenUri() bool {
+<span id="L590" class="ln">   590  </span>	return o != nil &amp;&amp; o.TokenUri != nil
+<span id="L591" class="ln">   591  </span>}
+<span id="L592" class="ln">   592  </span>
+<span id="L593" class="ln">   593  </span><span class="comment">// SetTokenUri gets a reference to the given string and assigns it to the TokenUri field.</span>
+<span id="L594" class="ln">   594  </span>func (o *GCPAccount) SetTokenUri(v string) {
+<span id="L595" class="ln">   595  </span>	o.TokenUri = &amp;v
+<span id="L596" class="ln">   596  </span>}
+<span id="L597" class="ln">   597  </span>
+<span id="L598" class="ln">   598  </span><span class="comment">// GetType returns the Type field value if set, zero value otherwise.</span>
+<span id="L599" class="ln">   599  </span>func (o *GCPAccount) GetType() string {
+<span id="L600" class="ln">   600  </span>	if o == nil || o.Type == nil {
+<span id="L601" class="ln">   601  </span>		var ret string
+<span id="L602" class="ln">   602  </span>		return ret
 <span id="L603" class="ln">   603  </span>	}
-<span id="L604" class="ln">   604  </span>	if o.ClientId != nil {
-<span id="L605" class="ln">   605  </span>		toSerialize[&#34;client_id&#34;] = o.ClientId
-<span id="L606" class="ln">   606  </span>	}
-<span id="L607" class="ln">   607  </span>	if o.ClientX509CertUrl != nil {
-<span id="L608" class="ln">   608  </span>		toSerialize[&#34;client_x509_cert_url&#34;] = o.ClientX509CertUrl
-<span id="L609" class="ln">   609  </span>	}
-<span id="L610" class="ln">   610  </span>	if o.CloudRunRevisionFilters != nil {
-<span id="L611" class="ln">   611  </span>		toSerialize[&#34;cloud_run_revision_filters&#34;] = o.CloudRunRevisionFilters
+<span id="L604" class="ln">   604  </span>	return *o.Type
+<span id="L605" class="ln">   605  </span>}
+<span id="L606" class="ln">   606  </span>
+<span id="L607" class="ln">   607  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value if set, nil otherwise</span>
+<span id="L608" class="ln">   608  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L609" class="ln">   609  </span>func (o *GCPAccount) GetTypeOk() (*string, bool) {
+<span id="L610" class="ln">   610  </span>	if o == nil || o.Type == nil {
+<span id="L611" class="ln">   611  </span>		return nil, false
 <span id="L612" class="ln">   612  </span>	}
-<span id="L613" class="ln">   613  </span>	if o.Errors != nil {
-<span id="L614" class="ln">   614  </span>		toSerialize[&#34;errors&#34;] = o.Errors
-<span id="L615" class="ln">   615  </span>	}
-<span id="L616" class="ln">   616  </span>	if o.HostFilters != nil {
-<span id="L617" class="ln">   617  </span>		toSerialize[&#34;host_filters&#34;] = o.HostFilters
-<span id="L618" class="ln">   618  </span>	}
-<span id="L619" class="ln">   619  </span>	if o.IsCspmEnabled != nil {
-<span id="L620" class="ln">   620  </span>		toSerialize[&#34;is_cspm_enabled&#34;] = o.IsCspmEnabled
-<span id="L621" class="ln">   621  </span>	}
-<span id="L622" class="ln">   622  </span>	if o.IsResourceChangeCollectionEnabled != nil {
-<span id="L623" class="ln">   623  </span>		toSerialize[&#34;is_resource_change_collection_enabled&#34;] = o.IsResourceChangeCollectionEnabled
-<span id="L624" class="ln">   624  </span>	}
-<span id="L625" class="ln">   625  </span>	if o.IsSecurityCommandCenterEnabled != nil {
-<span id="L626" class="ln">   626  </span>		toSerialize[&#34;is_security_command_center_enabled&#34;] = o.IsSecurityCommandCenterEnabled
-<span id="L627" class="ln">   627  </span>	}
-<span id="L628" class="ln">   628  </span>	if o.PrivateKey != nil {
-<span id="L629" class="ln">   629  </span>		toSerialize[&#34;private_key&#34;] = o.PrivateKey
-<span id="L630" class="ln">   630  </span>	}
-<span id="L631" class="ln">   631  </span>	if o.PrivateKeyId != nil {
-<span id="L632" class="ln">   632  </span>		toSerialize[&#34;private_key_id&#34;] = o.PrivateKeyId
-<span id="L633" class="ln">   633  </span>	}
-<span id="L634" class="ln">   634  </span>	if o.ProjectId != nil {
-<span id="L635" class="ln">   635  </span>		toSerialize[&#34;project_id&#34;] = o.ProjectId
-<span id="L636" class="ln">   636  </span>	}
-<span id="L637" class="ln">   637  </span>	if o.ResourceCollectionEnabled != nil {
-<span id="L638" class="ln">   638  </span>		toSerialize[&#34;resource_collection_enabled&#34;] = o.ResourceCollectionEnabled
-<span id="L639" class="ln">   639  </span>	}
-<span id="L640" class="ln">   640  </span>	if o.TokenUri != nil {
-<span id="L641" class="ln">   641  </span>		toSerialize[&#34;token_uri&#34;] = o.TokenUri
-<span id="L642" class="ln">   642  </span>	}
-<span id="L643" class="ln">   643  </span>	if o.Type != nil {
-<span id="L644" class="ln">   644  </span>		toSerialize[&#34;type&#34;] = o.Type
-<span id="L645" class="ln">   645  </span>	}
-<span id="L646" class="ln">   646  </span>
-<span id="L647" class="ln">   647  </span>	for key, value := range o.AdditionalProperties {
-<span id="L648" class="ln">   648  </span>		toSerialize[key] = value
+<span id="L613" class="ln">   613  </span>	return o.Type, true
+<span id="L614" class="ln">   614  </span>}
+<span id="L615" class="ln">   615  </span>
+<span id="L616" class="ln">   616  </span><span class="comment">// HasType returns a boolean if a field has been set.</span>
+<span id="L617" class="ln">   617  </span>func (o *GCPAccount) HasType() bool {
+<span id="L618" class="ln">   618  </span>	return o != nil &amp;&amp; o.Type != nil
+<span id="L619" class="ln">   619  </span>}
+<span id="L620" class="ln">   620  </span>
+<span id="L621" class="ln">   621  </span><span class="comment">// SetType gets a reference to the given string and assigns it to the Type field.</span>
+<span id="L622" class="ln">   622  </span>func (o *GCPAccount) SetType(v string) {
+<span id="L623" class="ln">   623  </span>	o.Type = &amp;v
+<span id="L624" class="ln">   624  </span>}
+<span id="L625" class="ln">   625  </span>
+<span id="L626" class="ln">   626  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L627" class="ln">   627  </span>func (o GCPAccount) MarshalJSON() ([]byte, error) {
+<span id="L628" class="ln">   628  </span>	toSerialize := map[string]interface{}{}
+<span id="L629" class="ln">   629  </span>	if o.UnparsedObject != nil {
+<span id="L630" class="ln">   630  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L631" class="ln">   631  </span>	}
+<span id="L632" class="ln">   632  </span>	if o.AuthProviderX509CertUrl != nil {
+<span id="L633" class="ln">   633  </span>		toSerialize[&#34;auth_provider_x509_cert_url&#34;] = o.AuthProviderX509CertUrl
+<span id="L634" class="ln">   634  </span>	}
+<span id="L635" class="ln">   635  </span>	if o.AuthUri != nil {
+<span id="L636" class="ln">   636  </span>		toSerialize[&#34;auth_uri&#34;] = o.AuthUri
+<span id="L637" class="ln">   637  </span>	}
+<span id="L638" class="ln">   638  </span>	if o.Automute != nil {
+<span id="L639" class="ln">   639  </span>		toSerialize[&#34;automute&#34;] = o.Automute
+<span id="L640" class="ln">   640  </span>	}
+<span id="L641" class="ln">   641  </span>	if o.ClientEmail != nil {
+<span id="L642" class="ln">   642  </span>		toSerialize[&#34;client_email&#34;] = o.ClientEmail
+<span id="L643" class="ln">   643  </span>	}
+<span id="L644" class="ln">   644  </span>	if o.ClientId != nil {
+<span id="L645" class="ln">   645  </span>		toSerialize[&#34;client_id&#34;] = o.ClientId
+<span id="L646" class="ln">   646  </span>	}
+<span id="L647" class="ln">   647  </span>	if o.ClientX509CertUrl != nil {
+<span id="L648" class="ln">   648  </span>		toSerialize[&#34;client_x509_cert_url&#34;] = o.ClientX509CertUrl
 <span id="L649" class="ln">   649  </span>	}
-<span id="L650" class="ln">   650  </span>	return datadog.Marshal(toSerialize)
-<span id="L651" class="ln">   651  </span>}
-<span id="L652" class="ln">   652  </span>
-<span id="L653" class="ln">   653  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L654" class="ln">   654  </span>func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
-<span id="L655" class="ln">   655  </span>	all := struct {
-<span id="L656" class="ln">   656  </span>		AuthProviderX509CertUrl           *string  `json:&#34;auth_provider_x509_cert_url,omitempty&#34;`
-<span id="L657" class="ln">   657  </span>		AuthUri                           *string  `json:&#34;auth_uri,omitempty&#34;`
-<span id="L658" class="ln">   658  </span>		Automute                          *bool    `json:&#34;automute,omitempty&#34;`
-<span id="L659" class="ln">   659  </span>		ClientEmail                       *string  `json:&#34;client_email,omitempty&#34;`
-<span id="L660" class="ln">   660  </span>		ClientId                          *string  `json:&#34;client_id,omitempty&#34;`
-<span id="L661" class="ln">   661  </span>		ClientX509CertUrl                 *string  `json:&#34;client_x509_cert_url,omitempty&#34;`
-<span id="L662" class="ln">   662  </span>		CloudRunRevisionFilters           []string `json:&#34;cloud_run_revision_filters,omitempty&#34;`
-<span id="L663" class="ln">   663  </span>		Errors                            []string `json:&#34;errors,omitempty&#34;`
-<span id="L664" class="ln">   664  </span>		HostFilters                       *string  `json:&#34;host_filters,omitempty&#34;`
-<span id="L665" class="ln">   665  </span>		IsCspmEnabled                     *bool    `json:&#34;is_cspm_enabled,omitempty&#34;`
-<span id="L666" class="ln">   666  </span>		IsResourceChangeCollectionEnabled *bool    `json:&#34;is_resource_change_collection_enabled,omitempty&#34;`
-<span id="L667" class="ln">   667  </span>		IsSecurityCommandCenterEnabled    *bool    `json:&#34;is_security_command_center_enabled,omitempty&#34;`
-<span id="L668" class="ln">   668  </span>		PrivateKey                        *string  `json:&#34;private_key,omitempty&#34;`
-<span id="L669" class="ln">   669  </span>		PrivateKeyId                      *string  `json:&#34;private_key_id,omitempty&#34;`
-<span id="L670" class="ln">   670  </span>		ProjectId                         *string  `json:&#34;project_id,omitempty&#34;`
-<span id="L671" class="ln">   671  </span>		ResourceCollectionEnabled         *bool    `json:&#34;resource_collection_enabled,omitempty&#34;`
-<span id="L672" class="ln">   672  </span>		TokenUri                          *string  `json:&#34;token_uri,omitempty&#34;`
-<span id="L673" class="ln">   673  </span>		Type                              *string  `json:&#34;type,omitempty&#34;`
-<span id="L674" class="ln">   674  </span>	}{}
-<span id="L675" class="ln">   675  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
-<span id="L676" class="ln">   676  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L677" class="ln">   677  </span>	}
-<span id="L678" class="ln">   678  </span>	additionalProperties := make(map[string]interface{})
-<span id="L679" class="ln">   679  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L680" class="ln">   680  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;auth_provider_x509_cert_url&#34;, &#34;auth_uri&#34;, &#34;automute&#34;, &#34;client_email&#34;, &#34;client_id&#34;, &#34;client_x509_cert_url&#34;, &#34;cloud_run_revision_filters&#34;, &#34;errors&#34;, &#34;host_filters&#34;, &#34;is_cspm_enabled&#34;, &#34;is_resource_change_collection_enabled&#34;, &#34;is_security_command_center_enabled&#34;, &#34;private_key&#34;, &#34;private_key_id&#34;, &#34;project_id&#34;, &#34;resource_collection_enabled&#34;, &#34;token_uri&#34;, &#34;type&#34;})
-<span id="L681" class="ln">   681  </span>	} else {
-<span id="L682" class="ln">   682  </span>		return err
-<span id="L683" class="ln">   683  </span>	}
-<span id="L684" class="ln">   684  </span>	o.AuthProviderX509CertUrl = all.AuthProviderX509CertUrl
-<span id="L685" class="ln">   685  </span>	o.AuthUri = all.AuthUri
-<span id="L686" class="ln">   686  </span>	o.Automute = all.Automute
-<span id="L687" class="ln">   687  </span>	o.ClientEmail = all.ClientEmail
-<span id="L688" class="ln">   688  </span>	o.ClientId = all.ClientId
-<span id="L689" class="ln">   689  </span>	o.ClientX509CertUrl = all.ClientX509CertUrl
-<span id="L690" class="ln">   690  </span>	o.CloudRunRevisionFilters = all.CloudRunRevisionFilters
-<span id="L691" class="ln">   691  </span>	o.Errors = all.Errors
-<span id="L692" class="ln">   692  </span>	o.HostFilters = all.HostFilters
-<span id="L693" class="ln">   693  </span>	o.IsCspmEnabled = all.IsCspmEnabled
-<span id="L694" class="ln">   694  </span>	o.IsResourceChangeCollectionEnabled = all.IsResourceChangeCollectionEnabled
-<span id="L695" class="ln">   695  </span>	o.IsSecurityCommandCenterEnabled = all.IsSecurityCommandCenterEnabled
-<span id="L696" class="ln">   696  </span>	o.PrivateKey = all.PrivateKey
-<span id="L697" class="ln">   697  </span>	o.PrivateKeyId = all.PrivateKeyId
-<span id="L698" class="ln">   698  </span>	o.ProjectId = all.ProjectId
-<span id="L699" class="ln">   699  </span>	o.ResourceCollectionEnabled = all.ResourceCollectionEnabled
-<span id="L700" class="ln">   700  </span>	o.TokenUri = all.TokenUri
-<span id="L701" class="ln">   701  </span>	o.Type = all.Type
-<span id="L702" class="ln">   702  </span>
-<span id="L703" class="ln">   703  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L704" class="ln">   704  </span>		o.AdditionalProperties = additionalProperties
-<span id="L705" class="ln">   705  </span>	}
-<span id="L706" class="ln">   706  </span>
-<span id="L707" class="ln">   707  </span>	return nil
-<span id="L708" class="ln">   708  </span>}
-<span id="L709" class="ln">   709  </span>
+<span id="L650" class="ln">   650  </span>	if o.CloudRunRevisionFilters != nil {
+<span id="L651" class="ln">   651  </span>		toSerialize[&#34;cloud_run_revision_filters&#34;] = o.CloudRunRevisionFilters
+<span id="L652" class="ln">   652  </span>	}
+<span id="L653" class="ln">   653  </span>	if o.Errors != nil {
+<span id="L654" class="ln">   654  </span>		toSerialize[&#34;errors&#34;] = o.Errors
+<span id="L655" class="ln">   655  </span>	}
+<span id="L656" class="ln">   656  </span>	if o.HostFilters != nil {
+<span id="L657" class="ln">   657  </span>		toSerialize[&#34;host_filters&#34;] = o.HostFilters
+<span id="L658" class="ln">   658  </span>	}
+<span id="L659" class="ln">   659  </span>	if o.IsCspmEnabled != nil {
+<span id="L660" class="ln">   660  </span>		toSerialize[&#34;is_cspm_enabled&#34;] = o.IsCspmEnabled
+<span id="L661" class="ln">   661  </span>	}
+<span id="L662" class="ln">   662  </span>	if o.IsResourceChangeCollectionEnabled != nil {
+<span id="L663" class="ln">   663  </span>		toSerialize[&#34;is_resource_change_collection_enabled&#34;] = o.IsResourceChangeCollectionEnabled
+<span id="L664" class="ln">   664  </span>	}
+<span id="L665" class="ln">   665  </span>	if o.IsSecurityCommandCenterEnabled != nil {
+<span id="L666" class="ln">   666  </span>		toSerialize[&#34;is_security_command_center_enabled&#34;] = o.IsSecurityCommandCenterEnabled
+<span id="L667" class="ln">   667  </span>	}
+<span id="L668" class="ln">   668  </span>	if o.MonitoredResourceConfigs != nil {
+<span id="L669" class="ln">   669  </span>		toSerialize[&#34;monitored_resource_configs&#34;] = o.MonitoredResourceConfigs
+<span id="L670" class="ln">   670  </span>	}
+<span id="L671" class="ln">   671  </span>	if o.PrivateKey != nil {
+<span id="L672" class="ln">   672  </span>		toSerialize[&#34;private_key&#34;] = o.PrivateKey
+<span id="L673" class="ln">   673  </span>	}
+<span id="L674" class="ln">   674  </span>	if o.PrivateKeyId != nil {
+<span id="L675" class="ln">   675  </span>		toSerialize[&#34;private_key_id&#34;] = o.PrivateKeyId
+<span id="L676" class="ln">   676  </span>	}
+<span id="L677" class="ln">   677  </span>	if o.ProjectId != nil {
+<span id="L678" class="ln">   678  </span>		toSerialize[&#34;project_id&#34;] = o.ProjectId
+<span id="L679" class="ln">   679  </span>	}
+<span id="L680" class="ln">   680  </span>	if o.ResourceCollectionEnabled != nil {
+<span id="L681" class="ln">   681  </span>		toSerialize[&#34;resource_collection_enabled&#34;] = o.ResourceCollectionEnabled
+<span id="L682" class="ln">   682  </span>	}
+<span id="L683" class="ln">   683  </span>	if o.TokenUri != nil {
+<span id="L684" class="ln">   684  </span>		toSerialize[&#34;token_uri&#34;] = o.TokenUri
+<span id="L685" class="ln">   685  </span>	}
+<span id="L686" class="ln">   686  </span>	if o.Type != nil {
+<span id="L687" class="ln">   687  </span>		toSerialize[&#34;type&#34;] = o.Type
+<span id="L688" class="ln">   688  </span>	}
+<span id="L689" class="ln">   689  </span>
+<span id="L690" class="ln">   690  </span>	for key, value := range o.AdditionalProperties {
+<span id="L691" class="ln">   691  </span>		toSerialize[key] = value
+<span id="L692" class="ln">   692  </span>	}
+<span id="L693" class="ln">   693  </span>	return datadog.Marshal(toSerialize)
+<span id="L694" class="ln">   694  </span>}
+<span id="L695" class="ln">   695  </span>
+<span id="L696" class="ln">   696  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L697" class="ln">   697  </span>func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L698" class="ln">   698  </span>	all := struct {
+<span id="L699" class="ln">   699  </span>		AuthProviderX509CertUrl           *string                      `json:&#34;auth_provider_x509_cert_url,omitempty&#34;`
+<span id="L700" class="ln">   700  </span>		AuthUri                           *string                      `json:&#34;auth_uri,omitempty&#34;`
+<span id="L701" class="ln">   701  </span>		Automute                          *bool                        `json:&#34;automute,omitempty&#34;`
+<span id="L702" class="ln">   702  </span>		ClientEmail                       *string                      `json:&#34;client_email,omitempty&#34;`
+<span id="L703" class="ln">   703  </span>		ClientId                          *string                      `json:&#34;client_id,omitempty&#34;`
+<span id="L704" class="ln">   704  </span>		ClientX509CertUrl                 *string                      `json:&#34;client_x509_cert_url,omitempty&#34;`
+<span id="L705" class="ln">   705  </span>		CloudRunRevisionFilters           []string                     `json:&#34;cloud_run_revision_filters,omitempty&#34;`
+<span id="L706" class="ln">   706  </span>		Errors                            []string                     `json:&#34;errors,omitempty&#34;`
+<span id="L707" class="ln">   707  </span>		HostFilters                       *string                      `json:&#34;host_filters,omitempty&#34;`
+<span id="L708" class="ln">   708  </span>		IsCspmEnabled                     *bool                        `json:&#34;is_cspm_enabled,omitempty&#34;`
+<span id="L709" class="ln">   709  </span>		IsResourceChangeCollectionEnabled *bool                        `json:&#34;is_resource_change_collection_enabled,omitempty&#34;`
+<span id="L710" class="ln">   710  </span>		IsSecurityCommandCenterEnabled    *bool                        `json:&#34;is_security_command_center_enabled,omitempty&#34;`
+<span id="L711" class="ln">   711  </span>		MonitoredResourceConfigs          []GCPMonitoredResourceConfig `json:&#34;monitored_resource_configs,omitempty&#34;`
+<span id="L712" class="ln">   712  </span>		PrivateKey                        *string                      `json:&#34;private_key,omitempty&#34;`
+<span id="L713" class="ln">   713  </span>		PrivateKeyId                      *string                      `json:&#34;private_key_id,omitempty&#34;`
+<span id="L714" class="ln">   714  </span>		ProjectId                         *string                      `json:&#34;project_id,omitempty&#34;`
+<span id="L715" class="ln">   715  </span>		ResourceCollectionEnabled         *bool                        `json:&#34;resource_collection_enabled,omitempty&#34;`
+<span id="L716" class="ln">   716  </span>		TokenUri                          *string                      `json:&#34;token_uri,omitempty&#34;`
+<span id="L717" class="ln">   717  </span>		Type                              *string                      `json:&#34;type,omitempty&#34;`
+<span id="L718" class="ln">   718  </span>	}{}
+<span id="L719" class="ln">   719  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L720" class="ln">   720  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L721" class="ln">   721  </span>	}
+<span id="L722" class="ln">   722  </span>	additionalProperties := make(map[string]interface{})
+<span id="L723" class="ln">   723  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L724" class="ln">   724  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;auth_provider_x509_cert_url&#34;, &#34;auth_uri&#34;, &#34;automute&#34;, &#34;client_email&#34;, &#34;client_id&#34;, &#34;client_x509_cert_url&#34;, &#34;cloud_run_revision_filters&#34;, &#34;errors&#34;, &#34;host_filters&#34;, &#34;is_cspm_enabled&#34;, &#34;is_resource_change_collection_enabled&#34;, &#34;is_security_command_center_enabled&#34;, &#34;monitored_resource_configs&#34;, &#34;private_key&#34;, &#34;private_key_id&#34;, &#34;project_id&#34;, &#34;resource_collection_enabled&#34;, &#34;token_uri&#34;, &#34;type&#34;})
+<span id="L725" class="ln">   725  </span>	} else {
+<span id="L726" class="ln">   726  </span>		return err
+<span id="L727" class="ln">   727  </span>	}
+<span id="L728" class="ln">   728  </span>	o.AuthProviderX509CertUrl = all.AuthProviderX509CertUrl
+<span id="L729" class="ln">   729  </span>	o.AuthUri = all.AuthUri
+<span id="L730" class="ln">   730  </span>	o.Automute = all.Automute
+<span id="L731" class="ln">   731  </span>	o.ClientEmail = all.ClientEmail
+<span id="L732" class="ln">   732  </span>	o.ClientId = all.ClientId
+<span id="L733" class="ln">   733  </span>	o.ClientX509CertUrl = all.ClientX509CertUrl
+<span id="L734" class="ln">   734  </span>	o.CloudRunRevisionFilters = all.CloudRunRevisionFilters
+<span id="L735" class="ln">   735  </span>	o.Errors = all.Errors
+<span id="L736" class="ln">   736  </span>	o.HostFilters = all.HostFilters
+<span id="L737" class="ln">   737  </span>	o.IsCspmEnabled = all.IsCspmEnabled
+<span id="L738" class="ln">   738  </span>	o.IsResourceChangeCollectionEnabled = all.IsResourceChangeCollectionEnabled
+<span id="L739" class="ln">   739  </span>	o.IsSecurityCommandCenterEnabled = all.IsSecurityCommandCenterEnabled
+<span id="L740" class="ln">   740  </span>	o.MonitoredResourceConfigs = all.MonitoredResourceConfigs
+<span id="L741" class="ln">   741  </span>	o.PrivateKey = all.PrivateKey
+<span id="L742" class="ln">   742  </span>	o.PrivateKeyId = all.PrivateKeyId
+<span id="L743" class="ln">   743  </span>	o.ProjectId = all.ProjectId
+<span id="L744" class="ln">   744  </span>	o.ResourceCollectionEnabled = all.ResourceCollectionEnabled
+<span id="L745" class="ln">   745  </span>	o.TokenUri = all.TokenUri
+<span id="L746" class="ln">   746  </span>	o.Type = all.Type
+<span id="L747" class="ln">   747  </span>
+<span id="L748" class="ln">   748  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L749" class="ln">   749  </span>		o.AdditionalProperties = additionalProperties
+<span id="L750" class="ln">   750  </span>	}
+<span id="L751" class="ln">   751  </span>
+<span id="L752" class="ln">   752  </span>	return nil
+<span id="L753" class="ln">   753  </span>}
+<span id="L754" class="ln">   754  </span>
 </pre><p></p>
 
 <div id="footer">
