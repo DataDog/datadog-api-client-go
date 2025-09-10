@@ -48,6 +48,8 @@ func NewSecurityMonitoringStandardRuleQuery() *SecurityMonitoringStandardRuleQue
 	this := SecurityMonitoringStandardRuleQuery{}
 	var dataSource SecurityMonitoringStandardDataSource = SECURITYMONITORINGSTANDARDDATASOURCE_LOGS
 	this.DataSource = &dataSource
+	var hasOptionalGroupByFields bool = false
+	this.HasOptionalGroupByFields = &hasOptionalGroupByFields
 	return &this
 }
 
@@ -58,6 +60,8 @@ func NewSecurityMonitoringStandardRuleQueryWithDefaults() *SecurityMonitoringSta
 	this := SecurityMonitoringStandardRuleQuery{}
 	var dataSource SecurityMonitoringStandardDataSource = SECURITYMONITORINGSTANDARDDATASOURCE_LOGS
 	this.DataSource = &dataSource
+	var hasOptionalGroupByFields bool = false
+	this.HasOptionalGroupByFields = &hasOptionalGroupByFields
 	return &this
 }
 
