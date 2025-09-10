@@ -12,6 +12,8 @@ import (
 
 // ObservabilityPipelineSensitiveDataScannerProcessor The `sensitive_data_scanner` processor detects and optionally redacts sensitive data in log events.
 type ObservabilityPipelineSensitiveDataScannerProcessor struct {
+	// The processor passes through all events if it is set to `false`. Defaults to `true`.
+	Enabled *bool `json:"enabled,omitempty"`
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (e.g., as input to downstream components).
 	Id string `json:"id"`
 	// A Datadog search query used to determine which logs this processor targets.
@@ -49,6 +51,34 @@ func NewObservabilityPipelineSensitiveDataScannerProcessorWithDefaults() *Observ
 	var typeVar ObservabilityPipelineSensitiveDataScannerProcessorType = OBSERVABILITYPIPELINESENSITIVEDATASCANNERPROCESSORTYPE_SENSITIVE_DATA_SCANNER
 	this.Type = typeVar
 	return &this
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *ObservabilityPipelineSensitiveDataScannerProcessor) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineSensitiveDataScannerProcessor) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *ObservabilityPipelineSensitiveDataScannerProcessor) HasEnabled() bool {
+	return o != nil && o.Enabled != nil
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *ObservabilityPipelineSensitiveDataScannerProcessor) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetId returns the Id field value.
@@ -172,6 +202,9 @@ func (o ObservabilityPipelineSensitiveDataScannerProcessor) MarshalJSON() ([]byt
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["include"] = o.Include
 	toSerialize["inputs"] = o.Inputs
@@ -187,6 +220,7 @@ func (o ObservabilityPipelineSensitiveDataScannerProcessor) MarshalJSON() ([]byt
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Enabled *bool                                                     `json:"enabled,omitempty"`
 		Id      *string                                                   `json:"id"`
 		Include *string                                                   `json:"include"`
 		Inputs  *[]string                                                 `json:"inputs"`
@@ -213,12 +247,13 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessor) UnmarshalJSON(bytes
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "include", "inputs", "rules", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "id", "include", "inputs", "rules", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Enabled = all.Enabled
 	o.Id = *all.Id
 	o.Include = *all.Include
 	o.Inputs = *all.Inputs

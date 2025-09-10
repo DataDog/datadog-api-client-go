@@ -12,6 +12,8 @@ import (
 
 // ObservabilityPipelineEnrichmentTableProcessor The `enrichment_table` processor enriches logs using a static CSV file or GeoIP database.
 type ObservabilityPipelineEnrichmentTableProcessor struct {
+	// The processor passes through all events if it is set to `false`. Defaults to `true`.
+	Enabled *bool `json:"enabled,omitempty"`
 	// Defines a static enrichment table loaded from a CSV file.
 	File *ObservabilityPipelineEnrichmentTableFile `json:"file,omitempty"`
 	// Uses a GeoIP database to enrich logs based on an IP field.
@@ -53,6 +55,34 @@ func NewObservabilityPipelineEnrichmentTableProcessorWithDefaults() *Observabili
 	var typeVar ObservabilityPipelineEnrichmentTableProcessorType = OBSERVABILITYPIPELINEENRICHMENTTABLEPROCESSORTYPE_ENRICHMENT_TABLE
 	this.Type = typeVar
 	return &this
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *ObservabilityPipelineEnrichmentTableProcessor) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineEnrichmentTableProcessor) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *ObservabilityPipelineEnrichmentTableProcessor) HasEnabled() bool {
+	return o != nil && o.Enabled != nil
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *ObservabilityPipelineEnrichmentTableProcessor) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetFile returns the File field value if set, zero value otherwise.
@@ -232,6 +262,9 @@ func (o ObservabilityPipelineEnrichmentTableProcessor) MarshalJSON() ([]byte, er
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
 	if o.File != nil {
 		toSerialize["file"] = o.File
 	}
@@ -253,6 +286,7 @@ func (o ObservabilityPipelineEnrichmentTableProcessor) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineEnrichmentTableProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Enabled *bool                                              `json:"enabled,omitempty"`
 		File    *ObservabilityPipelineEnrichmentTableFile          `json:"file,omitempty"`
 		Geoip   *ObservabilityPipelineEnrichmentTableGeoIp         `json:"geoip,omitempty"`
 		Id      *string                                            `json:"id"`
@@ -281,12 +315,13 @@ func (o *ObservabilityPipelineEnrichmentTableProcessor) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"file", "geoip", "id", "include", "inputs", "target", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "file", "geoip", "id", "include", "inputs", "target", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Enabled = all.Enabled
 	if all.File != nil && all.File.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

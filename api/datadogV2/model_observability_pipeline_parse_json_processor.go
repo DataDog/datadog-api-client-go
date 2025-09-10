@@ -12,6 +12,8 @@ import (
 
 // ObservabilityPipelineParseJSONProcessor The `parse_json` processor extracts JSON from a specified field and flattens it into the event. This is useful when logs contain embedded JSON as a string.
 type ObservabilityPipelineParseJSONProcessor struct {
+	// The processor passes through all events if it is set to `false`. Defaults to `true`.
+	Enabled *bool `json:"enabled,omitempty"`
 	// The name of the log field that contains a JSON string.
 	Field string `json:"field"`
 	// A unique identifier for this component. Used to reference this component in other parts of the pipeline (e.g., as input to downstream components).
@@ -49,6 +51,34 @@ func NewObservabilityPipelineParseJSONProcessorWithDefaults() *ObservabilityPipe
 	var typeVar ObservabilityPipelineParseJSONProcessorType = OBSERVABILITYPIPELINEPARSEJSONPROCESSORTYPE_PARSE_JSON
 	this.Type = typeVar
 	return &this
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *ObservabilityPipelineParseJSONProcessor) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineParseJSONProcessor) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *ObservabilityPipelineParseJSONProcessor) HasEnabled() bool {
+	return o != nil && o.Enabled != nil
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *ObservabilityPipelineParseJSONProcessor) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetField returns the Field field value.
@@ -172,6 +202,9 @@ func (o ObservabilityPipelineParseJSONProcessor) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
 	toSerialize["field"] = o.Field
 	toSerialize["id"] = o.Id
 	toSerialize["include"] = o.Include
@@ -187,6 +220,7 @@ func (o ObservabilityPipelineParseJSONProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineParseJSONProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Enabled *bool                                        `json:"enabled,omitempty"`
 		Field   *string                                      `json:"field"`
 		Id      *string                                      `json:"id"`
 		Include *string                                      `json:"include"`
@@ -213,12 +247,13 @@ func (o *ObservabilityPipelineParseJSONProcessor) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"field", "id", "include", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "field", "id", "include", "inputs", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Enabled = all.Enabled
 	o.Field = *all.Field
 	o.Id = *all.Id
 	o.Include = *all.Include

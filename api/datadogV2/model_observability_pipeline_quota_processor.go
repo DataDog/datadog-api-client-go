@@ -14,6 +14,8 @@ import (
 type ObservabilityPipelineQuotaProcessor struct {
 	// If set to `true`, logs that matched the quota filter and sent after the quota has been met are dropped; only logs that did not match the filter query continue through the pipeline.
 	DropEvents bool `json:"drop_events"`
+	// The processor passes through all events if it is set to `false`. Defaults to `true`.
+	Enabled *bool `json:"enabled,omitempty"`
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// If `true`, the processor skips quota checks when partition fields are missing from the logs.
@@ -90,6 +92,34 @@ func (o *ObservabilityPipelineQuotaProcessor) GetDropEventsOk() (*bool, bool) {
 // SetDropEvents sets field value.
 func (o *ObservabilityPipelineQuotaProcessor) SetDropEvents(v bool) {
 	o.DropEvents = v
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *ObservabilityPipelineQuotaProcessor) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineQuotaProcessor) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *ObservabilityPipelineQuotaProcessor) HasEnabled() bool {
+	return o != nil && o.Enabled != nil
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *ObservabilityPipelineQuotaProcessor) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetId returns the Id field value.
@@ -349,6 +379,9 @@ func (o ObservabilityPipelineQuotaProcessor) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["drop_events"] = o.DropEvents
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
 	toSerialize["id"] = o.Id
 	if o.IgnoreWhenMissingPartitions != nil {
 		toSerialize["ignore_when_missing_partitions"] = o.IgnoreWhenMissingPartitions
@@ -378,6 +411,7 @@ func (o ObservabilityPipelineQuotaProcessor) MarshalJSON() ([]byte, error) {
 func (o *ObservabilityPipelineQuotaProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DropEvents                  *bool                                              `json:"drop_events"`
+		Enabled                     *bool                                              `json:"enabled,omitempty"`
 		Id                          *string                                            `json:"id"`
 		IgnoreWhenMissingPartitions *bool                                              `json:"ignore_when_missing_partitions,omitempty"`
 		Include                     *string                                            `json:"include"`
@@ -415,13 +449,14 @@ func (o *ObservabilityPipelineQuotaProcessor) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"drop_events", "id", "ignore_when_missing_partitions", "include", "inputs", "limit", "name", "overflow_action", "overrides", "partition_fields", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"drop_events", "enabled", "id", "ignore_when_missing_partitions", "include", "inputs", "limit", "name", "overflow_action", "overrides", "partition_fields", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.DropEvents = *all.DropEvents
+	o.Enabled = all.Enabled
 	o.Id = *all.Id
 	o.IgnoreWhenMissingPartitions = all.IgnoreWhenMissingPartitions
 	o.Include = *all.Include

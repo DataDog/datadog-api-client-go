@@ -12,6 +12,8 @@ import (
 
 // ObservabilityPipelineDedupeProcessor The `dedupe` processor removes duplicate fields in log events.
 type ObservabilityPipelineDedupeProcessor struct {
+	// The processor passes through all events if it is set to `false`. Defaults to `true`.
+	Enabled *bool `json:"enabled,omitempty"`
 	// A list of log field paths to check for duplicates.
 	Fields []string `json:"fields"`
 	// The unique identifier for this processor.
@@ -52,6 +54,34 @@ func NewObservabilityPipelineDedupeProcessorWithDefaults() *ObservabilityPipelin
 	var typeVar ObservabilityPipelineDedupeProcessorType = OBSERVABILITYPIPELINEDEDUPEPROCESSORTYPE_DEDUPE
 	this.Type = typeVar
 	return &this
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *ObservabilityPipelineDedupeProcessor) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineDedupeProcessor) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *ObservabilityPipelineDedupeProcessor) HasEnabled() bool {
+	return o != nil && o.Enabled != nil
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *ObservabilityPipelineDedupeProcessor) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetFields returns the Fields field value.
@@ -198,6 +228,9 @@ func (o ObservabilityPipelineDedupeProcessor) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
 	toSerialize["fields"] = o.Fields
 	toSerialize["id"] = o.Id
 	toSerialize["include"] = o.Include
@@ -214,6 +247,7 @@ func (o ObservabilityPipelineDedupeProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineDedupeProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Enabled *bool                                     `json:"enabled,omitempty"`
 		Fields  *[]string                                 `json:"fields"`
 		Id      *string                                   `json:"id"`
 		Include *string                                   `json:"include"`
@@ -244,12 +278,13 @@ func (o *ObservabilityPipelineDedupeProcessor) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"fields", "id", "include", "inputs", "mode", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "fields", "id", "include", "inputs", "mode", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Enabled = all.Enabled
 	o.Fields = *all.Fields
 	o.Id = *all.Id
 	o.Include = *all.Include

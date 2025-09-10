@@ -12,6 +12,8 @@ import (
 
 // ObservabilityPipelineReduceProcessor The `reduce` processor aggregates and merges logs based on matching keys and merge strategies.
 type ObservabilityPipelineReduceProcessor struct {
+	// The processor passes through all events if it is set to `false`. Defaults to `true`.
+	Enabled *bool `json:"enabled,omitempty"`
 	// A list of fields used to group log events for merging.
 	GroupBy []string `json:"group_by"`
 	// The unique identifier for this processor.
@@ -52,6 +54,34 @@ func NewObservabilityPipelineReduceProcessorWithDefaults() *ObservabilityPipelin
 	var typeVar ObservabilityPipelineReduceProcessorType = OBSERVABILITYPIPELINEREDUCEPROCESSORTYPE_REDUCE
 	this.Type = typeVar
 	return &this
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *ObservabilityPipelineReduceProcessor) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineReduceProcessor) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *ObservabilityPipelineReduceProcessor) HasEnabled() bool {
+	return o != nil && o.Enabled != nil
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *ObservabilityPipelineReduceProcessor) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetGroupBy returns the GroupBy field value.
@@ -198,6 +228,9 @@ func (o ObservabilityPipelineReduceProcessor) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
 	toSerialize["group_by"] = o.GroupBy
 	toSerialize["id"] = o.Id
 	toSerialize["include"] = o.Include
@@ -214,6 +247,7 @@ func (o ObservabilityPipelineReduceProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineReduceProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Enabled         *bool                                                `json:"enabled,omitempty"`
 		GroupBy         *[]string                                            `json:"group_by"`
 		Id              *string                                              `json:"id"`
 		Include         *string                                              `json:"include"`
@@ -244,12 +278,13 @@ func (o *ObservabilityPipelineReduceProcessor) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"group_by", "id", "include", "inputs", "merge_strategies", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "group_by", "id", "include", "inputs", "merge_strategies", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Enabled = all.Enabled
 	o.GroupBy = *all.GroupBy
 	o.Id = *all.Id
 	o.Include = *all.Include

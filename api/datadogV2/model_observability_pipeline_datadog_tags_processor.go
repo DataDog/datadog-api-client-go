@@ -14,6 +14,8 @@ import (
 type ObservabilityPipelineDatadogTagsProcessor struct {
 	// The action to take on tags with matching keys.
 	Action ObservabilityPipelineDatadogTagsProcessorAction `json:"action"`
+	// The processor passes through all events if it is set to `false`. Defaults to `true`.
+	Enabled *bool `json:"enabled,omitempty"`
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// A Datadog search query used to determine which logs this processor targets.
@@ -78,6 +80,34 @@ func (o *ObservabilityPipelineDatadogTagsProcessor) GetActionOk() (*Observabilit
 // SetAction sets field value.
 func (o *ObservabilityPipelineDatadogTagsProcessor) SetAction(v ObservabilityPipelineDatadogTagsProcessorAction) {
 	o.Action = v
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *ObservabilityPipelineDatadogTagsProcessor) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineDatadogTagsProcessor) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *ObservabilityPipelineDatadogTagsProcessor) HasEnabled() bool {
+	return o != nil && o.Enabled != nil
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *ObservabilityPipelineDatadogTagsProcessor) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetId returns the Id field value.
@@ -225,6 +255,9 @@ func (o ObservabilityPipelineDatadogTagsProcessor) MarshalJSON() ([]byte, error)
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["action"] = o.Action
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["include"] = o.Include
 	toSerialize["inputs"] = o.Inputs
@@ -242,6 +275,7 @@ func (o ObservabilityPipelineDatadogTagsProcessor) MarshalJSON() ([]byte, error)
 func (o *ObservabilityPipelineDatadogTagsProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Action  *ObservabilityPipelineDatadogTagsProcessorAction `json:"action"`
+		Enabled *bool                                            `json:"enabled,omitempty"`
 		Id      *string                                          `json:"id"`
 		Include *string                                          `json:"include"`
 		Inputs  *[]string                                        `json:"inputs"`
@@ -275,7 +309,7 @@ func (o *ObservabilityPipelineDatadogTagsProcessor) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"action", "id", "include", "inputs", "keys", "mode", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"action", "enabled", "id", "include", "inputs", "keys", "mode", "type"})
 	} else {
 		return err
 	}
@@ -286,6 +320,7 @@ func (o *ObservabilityPipelineDatadogTagsProcessor) UnmarshalJSON(bytes []byte) 
 	} else {
 		o.Action = *all.Action
 	}
+	o.Enabled = all.Enabled
 	o.Id = *all.Id
 	o.Include = *all.Include
 	o.Inputs = *all.Inputs
