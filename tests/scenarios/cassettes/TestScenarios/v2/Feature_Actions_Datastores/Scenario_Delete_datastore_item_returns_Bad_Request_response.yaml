@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"item_key":"primaryKey"},"type":"items"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/actions-datastores/invalid-uuid/items
+  response:
+    body: '{"errors":[{"status":"400","id":"5adc82ee-f920-4fe9-aafc-10cabac28b68","title":"invalid
+      path parameter","detail":"invalid datastoreId format in path","source":{"parameter":"datastoreId"}}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
