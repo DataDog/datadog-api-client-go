@@ -164,14 +164,60 @@ func (a *OrgConnectionsApi) DeleteOrgConnections(ctx _context.Context, connectio
 	return localVarHTTPResponse, nil
 }
 
+// ListOrgConnectionsOptionalParameters holds optional parameters for ListOrgConnections.
+type ListOrgConnectionsOptionalParameters struct {
+	SinkOrgId   *string
+	SourceOrgId *string
+	Limit       *int64
+	Offset      *int64
+}
+
+// NewListOrgConnectionsOptionalParameters creates an empty struct for parameters.
+func NewListOrgConnectionsOptionalParameters() *ListOrgConnectionsOptionalParameters {
+	this := ListOrgConnectionsOptionalParameters{}
+	return &this
+}
+
+// WithSinkOrgId sets the corresponding parameter name and returns the struct.
+func (r *ListOrgConnectionsOptionalParameters) WithSinkOrgId(sinkOrgId string) *ListOrgConnectionsOptionalParameters {
+	r.SinkOrgId = &sinkOrgId
+	return r
+}
+
+// WithSourceOrgId sets the corresponding parameter name and returns the struct.
+func (r *ListOrgConnectionsOptionalParameters) WithSourceOrgId(sourceOrgId string) *ListOrgConnectionsOptionalParameters {
+	r.SourceOrgId = &sourceOrgId
+	return r
+}
+
+// WithLimit sets the corresponding parameter name and returns the struct.
+func (r *ListOrgConnectionsOptionalParameters) WithLimit(limit int64) *ListOrgConnectionsOptionalParameters {
+	r.Limit = &limit
+	return r
+}
+
+// WithOffset sets the corresponding parameter name and returns the struct.
+func (r *ListOrgConnectionsOptionalParameters) WithOffset(offset int64) *ListOrgConnectionsOptionalParameters {
+	r.Offset = &offset
+	return r
+}
+
 // ListOrgConnections List Org Connections.
 // Returns a list of org connections.
-func (a *OrgConnectionsApi) ListOrgConnections(ctx _context.Context) (OrgConnectionListResponse, *_nethttp.Response, error) {
+func (a *OrgConnectionsApi) ListOrgConnections(ctx _context.Context, o ...ListOrgConnectionsOptionalParameters) (OrgConnectionListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue OrgConnectionListResponse
+		optionalParams      ListOrgConnectionsOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListOrgConnectionsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OrgConnectionsApi.ListOrgConnections")
 	if err != nil {
@@ -183,6 +229,18 @@ func (a *OrgConnectionsApi) ListOrgConnections(ctx _context.Context) (OrgConnect
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.SinkOrgId != nil {
+		localVarQueryParams.Add("sink_org_id", datadog.ParameterToString(*optionalParams.SinkOrgId, ""))
+	}
+	if optionalParams.SourceOrgId != nil {
+		localVarQueryParams.Add("source_org_id", datadog.ParameterToString(*optionalParams.SourceOrgId, ""))
+	}
+	if optionalParams.Limit != nil {
+		localVarQueryParams.Add("limit", datadog.ParameterToString(*optionalParams.Limit, ""))
+	}
+	if optionalParams.Offset != nil {
+		localVarQueryParams.Add("offset", datadog.ParameterToString(*optionalParams.Offset, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
