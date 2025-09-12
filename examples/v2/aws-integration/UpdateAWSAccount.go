@@ -73,7 +73,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.UpdateAWSAccount", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAWSIntegrationApi(apiClient)
 	resp, r, err := api.UpdateAWSAccount(ctx, AwsAccountV2DataID, body)

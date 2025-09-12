@@ -15,23 +15,24 @@ import (
 
 func main() {
 	body := datadogV2.CIAppCreatePipelineEventRequest{
-		Data: &datadogV2.CIAppCreatePipelineEventRequestData{
-			Attributes: &datadogV2.CIAppCreatePipelineEventRequestAttributes{
-				Resource: datadogV2.CIAppCreatePipelineEventRequestAttributesResource{
-					CIAppPipelineEventJob: &datadogV2.CIAppPipelineEventJob{
-						Level:            datadogV2.CIAPPPIPELINEEVENTJOBLEVEL_JOB,
-						Id:               "cf9456de-8b9e-4c27-aa79-27b1e78c1a33",
-						Name:             "Build image",
-						PipelineUniqueId: "3eacb6f3-ff04-4e10-8a9c-46e6d054024a",
-						PipelineName:     "Deploy to AWS",
-						Start:            time.Now().Add(time.Second * -120),
-						End:              time.Now().Add(time.Second * -30),
-						Status:           datadogV2.CIAPPPIPELINEEVENTJOBSTATUS_ERROR,
-						Url:              "https://my-ci-provider.example/jobs/my-jobs/run/1",
-					}},
-			},
-			Type: datadogV2.CIAPPCREATEPIPELINEEVENTREQUESTDATATYPE_CIPIPELINE_RESOURCE_REQUEST.Ptr(),
-		},
+		Data: &datadogV2.CIAppCreatePipelineEventRequestDataSingleOrArray{
+			CIAppCreatePipelineEventRequestData: &datadogV2.CIAppCreatePipelineEventRequestData{
+				Attributes: &datadogV2.CIAppCreatePipelineEventRequestAttributes{
+					Resource: datadogV2.CIAppCreatePipelineEventRequestAttributesResource{
+						CIAppPipelineEventJob: &datadogV2.CIAppPipelineEventJob{
+							Level:            datadogV2.CIAPPPIPELINEEVENTJOBLEVEL_JOB,
+							Id:               "cf9456de-8b9e-4c27-aa79-27b1e78c1a33",
+							Name:             "Build image",
+							PipelineUniqueId: "3eacb6f3-ff04-4e10-8a9c-46e6d054024a",
+							PipelineName:     "Deploy to AWS",
+							Start:            time.Now().Add(time.Second * -120),
+							End:              time.Now().Add(time.Second * -30),
+							Status:           datadogV2.CIAPPPIPELINEEVENTJOBSTATUS_ERROR,
+							Url:              "https://my-ci-provider.example/jobs/my-jobs/run/1",
+						}},
+				},
+				Type: datadogV2.CIAPPCREATEPIPELINEEVENTREQUESTDATATYPE_CIPIPELINE_RESOURCE_REQUEST.Ptr(),
+			}},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

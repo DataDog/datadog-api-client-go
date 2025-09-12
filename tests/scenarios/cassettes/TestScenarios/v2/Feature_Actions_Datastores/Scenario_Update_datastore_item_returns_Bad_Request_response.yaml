@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"item_changes":{},"item_key":""},"type":"items"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/actions-datastores/invalid-uuid/items
+  response:
+    body: '{"errors":[{"status":"400","id":"f88d0b88-0d55-482b-9a90-3556ef7d6b4a","title":"invalid
+      path parameter","detail":"invalid datastoreId format in path","source":{"parameter":"datastoreId"}}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
