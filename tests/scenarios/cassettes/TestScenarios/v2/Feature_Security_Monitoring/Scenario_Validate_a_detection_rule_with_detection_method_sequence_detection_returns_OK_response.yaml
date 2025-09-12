@@ -1,0 +1,20 @@
+interactions:
+- request:
+    body: |
+      {"cases":[{"condition":"step_b \u003e 0","name":"","notifications":[],"status":"info"}],"hasExtendedTitle":true,"isEnabled":true,"message":"My security monitoring rule","name":"My security monitoring rule","options":{"detectionMethod":"sequence_detection","evaluationWindow":0,"keepAlive":300,"maxSignalDuration":600,"sequenceDetectionOptions":{"stepTransitions":[{"child":"step_b","evaluationWindow":900,"parent":"step_a"}],"steps":[{"condition":"a \u003e 0","evaluationWindow":60,"name":"step_a"},{"condition":"b \u003e 0","evaluationWindow":60,"name":"step_b"}]}},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":["@userIdentity.assumed_role"],"name":"","query":"source:source_here"},{"aggregation":"count","distinctFields":[],"groupByFields":[],"name":"","query":"source:source_here2"}],"tags":["env:prod","team:security"],"type":"log_detection"}
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/validation
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
