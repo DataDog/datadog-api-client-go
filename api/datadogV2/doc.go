@@ -550,6 +550,7 @@
 //   - [TeamsApi.UpdateTeamLink]
 //   - [TeamsApi.UpdateTeamMembership]
 //   - [TeamsApi.UpdateTeamPermissionSetting]
+//   - [TestOptimizationApi.SearchFlakyTests]
 //   - [UsageMeteringApi.GetActiveBillingDimensions]
 //   - [UsageMeteringApi.GetBillingDimensionMapping]
 //   - [UsageMeteringApi.GetCostByOrg]
