@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewOrgConnectionsApi(apiClient)
-	resp, r, err := api.ListOrgConnections(ctx)
+	resp, r, err := api.ListOrgConnections(ctx, *datadogV2.NewListOrgConnectionsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrgConnectionsApi.ListOrgConnections`: %v\n", err)
