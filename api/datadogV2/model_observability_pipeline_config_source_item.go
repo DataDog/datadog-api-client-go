@@ -25,6 +25,7 @@ type ObservabilityPipelineConfigSourceItem struct {
 	ObservabilityPipelineGooglePubSubSource       *ObservabilityPipelineGooglePubSubSource
 	ObservabilityPipelineHttpClientSource         *ObservabilityPipelineHttpClientSource
 	ObservabilityPipelineLogstashSource           *ObservabilityPipelineLogstashSource
+	ObservabilityPipelineOpentelemetrySource      *ObservabilityPipelineOpentelemetrySource
 	ObservabilityPipelineSocketSource             *ObservabilityPipelineSocketSource
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -104,6 +105,11 @@ func ObservabilityPipelineHttpClientSourceAsObservabilityPipelineConfigSourceIte
 // ObservabilityPipelineLogstashSourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelineLogstashSource wrapped in ObservabilityPipelineConfigSourceItem.
 func ObservabilityPipelineLogstashSourceAsObservabilityPipelineConfigSourceItem(v *ObservabilityPipelineLogstashSource) ObservabilityPipelineConfigSourceItem {
 	return ObservabilityPipelineConfigSourceItem{ObservabilityPipelineLogstashSource: v}
+}
+
+// ObservabilityPipelineOpentelemetrySourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelineOpentelemetrySource wrapped in ObservabilityPipelineConfigSourceItem.
+func ObservabilityPipelineOpentelemetrySourceAsObservabilityPipelineConfigSourceItem(v *ObservabilityPipelineOpentelemetrySource) ObservabilityPipelineConfigSourceItem {
+	return ObservabilityPipelineConfigSourceItem{ObservabilityPipelineOpentelemetrySource: v}
 }
 
 // ObservabilityPipelineSocketSourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelineSocketSource wrapped in ObservabilityPipelineConfigSourceItem.
@@ -370,6 +376,23 @@ func (obj *ObservabilityPipelineConfigSourceItem) UnmarshalJSON(data []byte) err
 		obj.ObservabilityPipelineLogstashSource = nil
 	}
 
+	// try to unmarshal data into ObservabilityPipelineOpentelemetrySource
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineOpentelemetrySource)
+	if err == nil {
+		if obj.ObservabilityPipelineOpentelemetrySource != nil && obj.ObservabilityPipelineOpentelemetrySource.UnparsedObject == nil {
+			jsonObservabilityPipelineOpentelemetrySource, _ := datadog.Marshal(obj.ObservabilityPipelineOpentelemetrySource)
+			if string(jsonObservabilityPipelineOpentelemetrySource) == "{}" { // empty struct
+				obj.ObservabilityPipelineOpentelemetrySource = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineOpentelemetrySource = nil
+		}
+	} else {
+		obj.ObservabilityPipelineOpentelemetrySource = nil
+	}
+
 	// try to unmarshal data into ObservabilityPipelineSocketSource
 	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineSocketSource)
 	if err == nil {
@@ -404,6 +427,7 @@ func (obj *ObservabilityPipelineConfigSourceItem) UnmarshalJSON(data []byte) err
 		obj.ObservabilityPipelineGooglePubSubSource = nil
 		obj.ObservabilityPipelineHttpClientSource = nil
 		obj.ObservabilityPipelineLogstashSource = nil
+		obj.ObservabilityPipelineOpentelemetrySource = nil
 		obj.ObservabilityPipelineSocketSource = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
@@ -470,6 +494,10 @@ func (obj ObservabilityPipelineConfigSourceItem) MarshalJSON() ([]byte, error) {
 
 	if obj.ObservabilityPipelineLogstashSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineLogstashSource)
+	}
+
+	if obj.ObservabilityPipelineOpentelemetrySource != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineOpentelemetrySource)
 	}
 
 	if obj.ObservabilityPipelineSocketSource != nil {
@@ -542,6 +570,10 @@ func (obj *ObservabilityPipelineConfigSourceItem) GetActualInstance() interface{
 
 	if obj.ObservabilityPipelineLogstashSource != nil {
 		return obj.ObservabilityPipelineLogstashSource
+	}
+
+	if obj.ObservabilityPipelineOpentelemetrySource != nil {
+		return obj.ObservabilityPipelineOpentelemetrySource
 	}
 
 	if obj.ObservabilityPipelineSocketSource != nil {
