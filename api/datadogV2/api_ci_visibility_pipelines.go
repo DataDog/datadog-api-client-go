@@ -102,6 +102,7 @@ func (a *CIVisibilityPipelinesApi) AggregateCIAppPipelineEvents(ctx _context.Con
 // Multiple events can be sent in an array (up to 1000).
 //
 // Pipeline events can be submitted with a timestamp that is up to 18 hours in the past.
+// The duration between the event start and end times cannot exceed 1 year.
 func (a *CIVisibilityPipelinesApi) CreateCIAppPipelineEvent(ctx _context.Context, body CIAppCreatePipelineEventRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
