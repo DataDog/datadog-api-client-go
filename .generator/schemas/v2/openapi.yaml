@@ -2121,7 +2121,7 @@ components:
           $ref: '#/components/schemas/XRayServicesList'
       type: object
     AccountFilteringConfig:
-      description: The account filtering configuration.
+      description: The account filtering configuration object.
       properties:
         excluded_accounts:
           description: The AWS account IDs to be excluded from your billing dataset.
@@ -51735,9 +51735,7 @@ paths:
 
 
         Pipeline events can be submitted with a timestamp that is up to 18 hours in
-        the past.
-
-        The duration between the event start and end times cannot exceed 1 year.'
+        the past.'
       operationId: CreateCIAppPipelineEvent
       requestBody:
         content:

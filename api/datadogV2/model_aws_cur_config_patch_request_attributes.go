@@ -10,7 +10,7 @@ import (
 
 // AwsCURConfigPatchRequestAttributes Attributes for AWS CUR config Patch Request.
 type AwsCURConfigPatchRequestAttributes struct {
-	// The account filtering configuration.
+	// The account filtering configuration object.
 	AccountFilters *AccountFilteringConfig `json:"account_filters,omitempty"`
 	// Whether or not the Cloud Cost Management account is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`

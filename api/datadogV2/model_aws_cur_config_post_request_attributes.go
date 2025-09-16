@@ -12,7 +12,7 @@ import (
 
 // AwsCURConfigPostRequestAttributes Attributes for AWS CUR config Post Request.
 type AwsCURConfigPostRequestAttributes struct {
-	// The account filtering configuration.
+	// The account filtering configuration object.
 	AccountFilters *AccountFilteringConfig `json:"account_filters,omitempty"`
 	// The AWS account ID.
 	AccountId string `json:"account_id"`

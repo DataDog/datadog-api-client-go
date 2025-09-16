@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AccountFilteringConfig The account filtering configuration.
+// AccountFilteringConfig The account filtering configuration object.
 type AccountFilteringConfig struct {
 	// The AWS account IDs to be excluded from your billing dataset. This field is used when `include_new_accounts` is `true`.
 	ExcludedAccounts []string `json:"excluded_accounts,omitempty"`
