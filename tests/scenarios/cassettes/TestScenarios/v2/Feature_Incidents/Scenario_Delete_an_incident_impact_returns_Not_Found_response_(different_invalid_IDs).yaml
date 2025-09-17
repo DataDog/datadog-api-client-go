@@ -1,0 +1,20 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 0
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/incidents/00000000-0000-0000-0000-000000000002/impacts/00000000-0000-0000-0000-000000000002
+  response:
+    body: '{"errors":[{"title":"Generic Error","detail":"rpc error: code = NotFound
+      desc = impact not found: impact not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2
