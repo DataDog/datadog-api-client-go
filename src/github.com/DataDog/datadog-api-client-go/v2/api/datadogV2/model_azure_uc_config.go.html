@@ -69,7 +69,7 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// AzureUCConfig Azure config.</span>
 <span id="L14" class="ln">    14  </span>type AzureUCConfig struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The tenant ID of the azure account.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// The tenant ID of the Azure account.</span>
 <span id="L16" class="ln">    16  </span>	AccountId string `json:&#34;account_id&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// The client ID of the Azure account.</span>
 <span id="L18" class="ln">    18  </span>	ClientId string `json:&#34;client_id&#34;`
@@ -78,7 +78,7 @@
 <span id="L21" class="ln">    21  </span>	<span class="comment">// The dataset type of the Azure config.</span>
 <span id="L22" class="ln">    22  </span>	DatasetType string `json:&#34;dataset_type&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// The error messages for the Azure config.</span>
-<span id="L24" class="ln">    24  </span>	ErrorMessages []string `json:&#34;error_messages,omitempty&#34;`
+<span id="L24" class="ln">    24  </span>	ErrorMessages datadog.NullableList[string] `json:&#34;error_messages,omitempty&#34;`
 <span id="L25" class="ln">    25  </span>	<span class="comment">// The name of the configured Azure Export.</span>
 <span id="L26" class="ln">    26  </span>	ExportName string `json:&#34;export_name&#34;`
 <span id="L27" class="ln">    27  </span>	<span class="comment">// The path where the Azure Export is saved.</span>
@@ -228,405 +228,416 @@
 <span id="L171" class="ln">   171  </span>	o.DatasetType = v
 <span id="L172" class="ln">   172  </span>}
 <span id="L173" class="ln">   173  </span>
-<span id="L174" class="ln">   174  </span><span class="comment">// GetErrorMessages returns the ErrorMessages field value if set, zero value otherwise.</span>
+<span id="L174" class="ln">   174  </span><span class="comment">// GetErrorMessages returns the ErrorMessages field value if set, zero value otherwise (both if not set or set to explicit null).</span>
 <span id="L175" class="ln">   175  </span>func (o *AzureUCConfig) GetErrorMessages() []string {
-<span id="L176" class="ln">   176  </span>	if o == nil || o.ErrorMessages == nil {
+<span id="L176" class="ln">   176  </span>	if o == nil || o.ErrorMessages.Get() == nil {
 <span id="L177" class="ln">   177  </span>		var ret []string
 <span id="L178" class="ln">   178  </span>		return ret
 <span id="L179" class="ln">   179  </span>	}
-<span id="L180" class="ln">   180  </span>	return o.ErrorMessages
+<span id="L180" class="ln">   180  </span>	return *o.ErrorMessages.Get()
 <span id="L181" class="ln">   181  </span>}
 <span id="L182" class="ln">   182  </span>
 <span id="L183" class="ln">   183  </span><span class="comment">// GetErrorMessagesOk returns a tuple with the ErrorMessages field value if set, nil otherwise</span>
 <span id="L184" class="ln">   184  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L185" class="ln">   185  </span>func (o *AzureUCConfig) GetErrorMessagesOk() (*[]string, bool) {
-<span id="L186" class="ln">   186  </span>	if o == nil || o.ErrorMessages == nil {
-<span id="L187" class="ln">   187  </span>		return nil, false
-<span id="L188" class="ln">   188  </span>	}
-<span id="L189" class="ln">   189  </span>	return &amp;o.ErrorMessages, true
-<span id="L190" class="ln">   190  </span>}
-<span id="L191" class="ln">   191  </span>
-<span id="L192" class="ln">   192  </span><span class="comment">// HasErrorMessages returns a boolean if a field has been set.</span>
-<span id="L193" class="ln">   193  </span>func (o *AzureUCConfig) HasErrorMessages() bool {
-<span id="L194" class="ln">   194  </span>	return o != nil &amp;&amp; o.ErrorMessages != nil
-<span id="L195" class="ln">   195  </span>}
-<span id="L196" class="ln">   196  </span>
-<span id="L197" class="ln">   197  </span><span class="comment">// SetErrorMessages gets a reference to the given []string and assigns it to the ErrorMessages field.</span>
-<span id="L198" class="ln">   198  </span>func (o *AzureUCConfig) SetErrorMessages(v []string) {
-<span id="L199" class="ln">   199  </span>	o.ErrorMessages = v
-<span id="L200" class="ln">   200  </span>}
-<span id="L201" class="ln">   201  </span>
-<span id="L202" class="ln">   202  </span><span class="comment">// GetExportName returns the ExportName field value.</span>
-<span id="L203" class="ln">   203  </span>func (o *AzureUCConfig) GetExportName() string {
-<span id="L204" class="ln">   204  </span>	if o == nil {
-<span id="L205" class="ln">   205  </span>		var ret string
-<span id="L206" class="ln">   206  </span>		return ret
-<span id="L207" class="ln">   207  </span>	}
-<span id="L208" class="ln">   208  </span>	return o.ExportName
-<span id="L209" class="ln">   209  </span>}
-<span id="L210" class="ln">   210  </span>
-<span id="L211" class="ln">   211  </span><span class="comment">// GetExportNameOk returns a tuple with the ExportName field value</span>
-<span id="L212" class="ln">   212  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L213" class="ln">   213  </span>func (o *AzureUCConfig) GetExportNameOk() (*string, bool) {
-<span id="L214" class="ln">   214  </span>	if o == nil {
-<span id="L215" class="ln">   215  </span>		return nil, false
-<span id="L216" class="ln">   216  </span>	}
-<span id="L217" class="ln">   217  </span>	return &amp;o.ExportName, true
-<span id="L218" class="ln">   218  </span>}
-<span id="L219" class="ln">   219  </span>
-<span id="L220" class="ln">   220  </span><span class="comment">// SetExportName sets field value.</span>
-<span id="L221" class="ln">   221  </span>func (o *AzureUCConfig) SetExportName(v string) {
-<span id="L222" class="ln">   222  </span>	o.ExportName = v
-<span id="L223" class="ln">   223  </span>}
-<span id="L224" class="ln">   224  </span>
-<span id="L225" class="ln">   225  </span><span class="comment">// GetExportPath returns the ExportPath field value.</span>
-<span id="L226" class="ln">   226  </span>func (o *AzureUCConfig) GetExportPath() string {
-<span id="L227" class="ln">   227  </span>	if o == nil {
-<span id="L228" class="ln">   228  </span>		var ret string
-<span id="L229" class="ln">   229  </span>		return ret
-<span id="L230" class="ln">   230  </span>	}
-<span id="L231" class="ln">   231  </span>	return o.ExportPath
-<span id="L232" class="ln">   232  </span>}
-<span id="L233" class="ln">   233  </span>
-<span id="L234" class="ln">   234  </span><span class="comment">// GetExportPathOk returns a tuple with the ExportPath field value</span>
-<span id="L235" class="ln">   235  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L236" class="ln">   236  </span>func (o *AzureUCConfig) GetExportPathOk() (*string, bool) {
-<span id="L237" class="ln">   237  </span>	if o == nil {
-<span id="L238" class="ln">   238  </span>		return nil, false
-<span id="L239" class="ln">   239  </span>	}
-<span id="L240" class="ln">   240  </span>	return &amp;o.ExportPath, true
-<span id="L241" class="ln">   241  </span>}
-<span id="L242" class="ln">   242  </span>
-<span id="L243" class="ln">   243  </span><span class="comment">// SetExportPath sets field value.</span>
-<span id="L244" class="ln">   244  </span>func (o *AzureUCConfig) SetExportPath(v string) {
-<span id="L245" class="ln">   245  </span>	o.ExportPath = v
-<span id="L246" class="ln">   246  </span>}
-<span id="L247" class="ln">   247  </span>
-<span id="L248" class="ln">   248  </span><span class="comment">// GetId returns the Id field value if set, zero value otherwise.</span>
-<span id="L249" class="ln">   249  </span>func (o *AzureUCConfig) GetId() string {
-<span id="L250" class="ln">   250  </span>	if o == nil || o.Id == nil {
-<span id="L251" class="ln">   251  </span>		var ret string
-<span id="L252" class="ln">   252  </span>		return ret
-<span id="L253" class="ln">   253  </span>	}
-<span id="L254" class="ln">   254  </span>	return *o.Id
-<span id="L255" class="ln">   255  </span>}
-<span id="L256" class="ln">   256  </span>
-<span id="L257" class="ln">   257  </span><span class="comment">// GetIdOk returns a tuple with the Id field value if set, nil otherwise</span>
-<span id="L258" class="ln">   258  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L259" class="ln">   259  </span>func (o *AzureUCConfig) GetIdOk() (*string, bool) {
-<span id="L260" class="ln">   260  </span>	if o == nil || o.Id == nil {
-<span id="L261" class="ln">   261  </span>		return nil, false
-<span id="L262" class="ln">   262  </span>	}
-<span id="L263" class="ln">   263  </span>	return o.Id, true
-<span id="L264" class="ln">   264  </span>}
-<span id="L265" class="ln">   265  </span>
-<span id="L266" class="ln">   266  </span><span class="comment">// HasId returns a boolean if a field has been set.</span>
-<span id="L267" class="ln">   267  </span>func (o *AzureUCConfig) HasId() bool {
-<span id="L268" class="ln">   268  </span>	return o != nil &amp;&amp; o.Id != nil
-<span id="L269" class="ln">   269  </span>}
-<span id="L270" class="ln">   270  </span>
-<span id="L271" class="ln">   271  </span><span class="comment">// SetId gets a reference to the given string and assigns it to the Id field.</span>
-<span id="L272" class="ln">   272  </span>func (o *AzureUCConfig) SetId(v string) {
-<span id="L273" class="ln">   273  </span>	o.Id = &amp;v
-<span id="L274" class="ln">   274  </span>}
-<span id="L275" class="ln">   275  </span>
-<span id="L276" class="ln">   276  </span><span class="comment">// GetMonths returns the Months field value if set, zero value otherwise.</span>
-<span id="L277" class="ln">   277  </span><span class="comment">// Deprecated</span>
-<span id="L278" class="ln">   278  </span>func (o *AzureUCConfig) GetMonths() int32 {
-<span id="L279" class="ln">   279  </span>	if o == nil || o.Months == nil {
-<span id="L280" class="ln">   280  </span>		var ret int32
-<span id="L281" class="ln">   281  </span>		return ret
-<span id="L282" class="ln">   282  </span>	}
-<span id="L283" class="ln">   283  </span>	return *o.Months
-<span id="L284" class="ln">   284  </span>}
-<span id="L285" class="ln">   285  </span>
-<span id="L286" class="ln">   286  </span><span class="comment">// GetMonthsOk returns a tuple with the Months field value if set, nil otherwise</span>
-<span id="L287" class="ln">   287  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L185" class="ln">   185  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L186" class="ln">   186  </span>func (o *AzureUCConfig) GetErrorMessagesOk() (*[]string, bool) {
+<span id="L187" class="ln">   187  </span>	if o == nil {
+<span id="L188" class="ln">   188  </span>		return nil, false
+<span id="L189" class="ln">   189  </span>	}
+<span id="L190" class="ln">   190  </span>	return o.ErrorMessages.Get(), o.ErrorMessages.IsSet()
+<span id="L191" class="ln">   191  </span>}
+<span id="L192" class="ln">   192  </span>
+<span id="L193" class="ln">   193  </span><span class="comment">// HasErrorMessages returns a boolean if a field has been set.</span>
+<span id="L194" class="ln">   194  </span>func (o *AzureUCConfig) HasErrorMessages() bool {
+<span id="L195" class="ln">   195  </span>	return o != nil &amp;&amp; o.ErrorMessages.IsSet()
+<span id="L196" class="ln">   196  </span>}
+<span id="L197" class="ln">   197  </span>
+<span id="L198" class="ln">   198  </span><span class="comment">// SetErrorMessages gets a reference to the given datadog.NullableList[string] and assigns it to the ErrorMessages field.</span>
+<span id="L199" class="ln">   199  </span>func (o *AzureUCConfig) SetErrorMessages(v []string) {
+<span id="L200" class="ln">   200  </span>	o.ErrorMessages.Set(&amp;v)
+<span id="L201" class="ln">   201  </span>}
+<span id="L202" class="ln">   202  </span>
+<span id="L203" class="ln">   203  </span><span class="comment">// SetErrorMessagesNil sets the value for ErrorMessages to be an explicit nil.</span>
+<span id="L204" class="ln">   204  </span>func (o *AzureUCConfig) SetErrorMessagesNil() {
+<span id="L205" class="ln">   205  </span>	o.ErrorMessages.Set(nil)
+<span id="L206" class="ln">   206  </span>}
+<span id="L207" class="ln">   207  </span>
+<span id="L208" class="ln">   208  </span><span class="comment">// UnsetErrorMessages ensures that no value is present for ErrorMessages, not even an explicit nil.</span>
+<span id="L209" class="ln">   209  </span>func (o *AzureUCConfig) UnsetErrorMessages() {
+<span id="L210" class="ln">   210  </span>	o.ErrorMessages.Unset()
+<span id="L211" class="ln">   211  </span>}
+<span id="L212" class="ln">   212  </span>
+<span id="L213" class="ln">   213  </span><span class="comment">// GetExportName returns the ExportName field value.</span>
+<span id="L214" class="ln">   214  </span>func (o *AzureUCConfig) GetExportName() string {
+<span id="L215" class="ln">   215  </span>	if o == nil {
+<span id="L216" class="ln">   216  </span>		var ret string
+<span id="L217" class="ln">   217  </span>		return ret
+<span id="L218" class="ln">   218  </span>	}
+<span id="L219" class="ln">   219  </span>	return o.ExportName
+<span id="L220" class="ln">   220  </span>}
+<span id="L221" class="ln">   221  </span>
+<span id="L222" class="ln">   222  </span><span class="comment">// GetExportNameOk returns a tuple with the ExportName field value</span>
+<span id="L223" class="ln">   223  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L224" class="ln">   224  </span>func (o *AzureUCConfig) GetExportNameOk() (*string, bool) {
+<span id="L225" class="ln">   225  </span>	if o == nil {
+<span id="L226" class="ln">   226  </span>		return nil, false
+<span id="L227" class="ln">   227  </span>	}
+<span id="L228" class="ln">   228  </span>	return &amp;o.ExportName, true
+<span id="L229" class="ln">   229  </span>}
+<span id="L230" class="ln">   230  </span>
+<span id="L231" class="ln">   231  </span><span class="comment">// SetExportName sets field value.</span>
+<span id="L232" class="ln">   232  </span>func (o *AzureUCConfig) SetExportName(v string) {
+<span id="L233" class="ln">   233  </span>	o.ExportName = v
+<span id="L234" class="ln">   234  </span>}
+<span id="L235" class="ln">   235  </span>
+<span id="L236" class="ln">   236  </span><span class="comment">// GetExportPath returns the ExportPath field value.</span>
+<span id="L237" class="ln">   237  </span>func (o *AzureUCConfig) GetExportPath() string {
+<span id="L238" class="ln">   238  </span>	if o == nil {
+<span id="L239" class="ln">   239  </span>		var ret string
+<span id="L240" class="ln">   240  </span>		return ret
+<span id="L241" class="ln">   241  </span>	}
+<span id="L242" class="ln">   242  </span>	return o.ExportPath
+<span id="L243" class="ln">   243  </span>}
+<span id="L244" class="ln">   244  </span>
+<span id="L245" class="ln">   245  </span><span class="comment">// GetExportPathOk returns a tuple with the ExportPath field value</span>
+<span id="L246" class="ln">   246  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L247" class="ln">   247  </span>func (o *AzureUCConfig) GetExportPathOk() (*string, bool) {
+<span id="L248" class="ln">   248  </span>	if o == nil {
+<span id="L249" class="ln">   249  </span>		return nil, false
+<span id="L250" class="ln">   250  </span>	}
+<span id="L251" class="ln">   251  </span>	return &amp;o.ExportPath, true
+<span id="L252" class="ln">   252  </span>}
+<span id="L253" class="ln">   253  </span>
+<span id="L254" class="ln">   254  </span><span class="comment">// SetExportPath sets field value.</span>
+<span id="L255" class="ln">   255  </span>func (o *AzureUCConfig) SetExportPath(v string) {
+<span id="L256" class="ln">   256  </span>	o.ExportPath = v
+<span id="L257" class="ln">   257  </span>}
+<span id="L258" class="ln">   258  </span>
+<span id="L259" class="ln">   259  </span><span class="comment">// GetId returns the Id field value if set, zero value otherwise.</span>
+<span id="L260" class="ln">   260  </span>func (o *AzureUCConfig) GetId() string {
+<span id="L261" class="ln">   261  </span>	if o == nil || o.Id == nil {
+<span id="L262" class="ln">   262  </span>		var ret string
+<span id="L263" class="ln">   263  </span>		return ret
+<span id="L264" class="ln">   264  </span>	}
+<span id="L265" class="ln">   265  </span>	return *o.Id
+<span id="L266" class="ln">   266  </span>}
+<span id="L267" class="ln">   267  </span>
+<span id="L268" class="ln">   268  </span><span class="comment">// GetIdOk returns a tuple with the Id field value if set, nil otherwise</span>
+<span id="L269" class="ln">   269  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L270" class="ln">   270  </span>func (o *AzureUCConfig) GetIdOk() (*string, bool) {
+<span id="L271" class="ln">   271  </span>	if o == nil || o.Id == nil {
+<span id="L272" class="ln">   272  </span>		return nil, false
+<span id="L273" class="ln">   273  </span>	}
+<span id="L274" class="ln">   274  </span>	return o.Id, true
+<span id="L275" class="ln">   275  </span>}
+<span id="L276" class="ln">   276  </span>
+<span id="L277" class="ln">   277  </span><span class="comment">// HasId returns a boolean if a field has been set.</span>
+<span id="L278" class="ln">   278  </span>func (o *AzureUCConfig) HasId() bool {
+<span id="L279" class="ln">   279  </span>	return o != nil &amp;&amp; o.Id != nil
+<span id="L280" class="ln">   280  </span>}
+<span id="L281" class="ln">   281  </span>
+<span id="L282" class="ln">   282  </span><span class="comment">// SetId gets a reference to the given string and assigns it to the Id field.</span>
+<span id="L283" class="ln">   283  </span>func (o *AzureUCConfig) SetId(v string) {
+<span id="L284" class="ln">   284  </span>	o.Id = &amp;v
+<span id="L285" class="ln">   285  </span>}
+<span id="L286" class="ln">   286  </span>
+<span id="L287" class="ln">   287  </span><span class="comment">// GetMonths returns the Months field value if set, zero value otherwise.</span>
 <span id="L288" class="ln">   288  </span><span class="comment">// Deprecated</span>
-<span id="L289" class="ln">   289  </span>func (o *AzureUCConfig) GetMonthsOk() (*int32, bool) {
+<span id="L289" class="ln">   289  </span>func (o *AzureUCConfig) GetMonths() int32 {
 <span id="L290" class="ln">   290  </span>	if o == nil || o.Months == nil {
-<span id="L291" class="ln">   291  </span>		return nil, false
-<span id="L292" class="ln">   292  </span>	}
-<span id="L293" class="ln">   293  </span>	return o.Months, true
-<span id="L294" class="ln">   294  </span>}
-<span id="L295" class="ln">   295  </span>
-<span id="L296" class="ln">   296  </span><span class="comment">// HasMonths returns a boolean if a field has been set.</span>
-<span id="L297" class="ln">   297  </span>func (o *AzureUCConfig) HasMonths() bool {
-<span id="L298" class="ln">   298  </span>	return o != nil &amp;&amp; o.Months != nil
-<span id="L299" class="ln">   299  </span>}
-<span id="L300" class="ln">   300  </span>
-<span id="L301" class="ln">   301  </span><span class="comment">// SetMonths gets a reference to the given int32 and assigns it to the Months field.</span>
-<span id="L302" class="ln">   302  </span><span class="comment">// Deprecated</span>
-<span id="L303" class="ln">   303  </span>func (o *AzureUCConfig) SetMonths(v int32) {
-<span id="L304" class="ln">   304  </span>	o.Months = &amp;v
+<span id="L291" class="ln">   291  </span>		var ret int32
+<span id="L292" class="ln">   292  </span>		return ret
+<span id="L293" class="ln">   293  </span>	}
+<span id="L294" class="ln">   294  </span>	return *o.Months
+<span id="L295" class="ln">   295  </span>}
+<span id="L296" class="ln">   296  </span>
+<span id="L297" class="ln">   297  </span><span class="comment">// GetMonthsOk returns a tuple with the Months field value if set, nil otherwise</span>
+<span id="L298" class="ln">   298  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L299" class="ln">   299  </span><span class="comment">// Deprecated</span>
+<span id="L300" class="ln">   300  </span>func (o *AzureUCConfig) GetMonthsOk() (*int32, bool) {
+<span id="L301" class="ln">   301  </span>	if o == nil || o.Months == nil {
+<span id="L302" class="ln">   302  </span>		return nil, false
+<span id="L303" class="ln">   303  </span>	}
+<span id="L304" class="ln">   304  </span>	return o.Months, true
 <span id="L305" class="ln">   305  </span>}
 <span id="L306" class="ln">   306  </span>
-<span id="L307" class="ln">   307  </span><span class="comment">// GetScope returns the Scope field value.</span>
-<span id="L308" class="ln">   308  </span>func (o *AzureUCConfig) GetScope() string {
-<span id="L309" class="ln">   309  </span>	if o == nil {
-<span id="L310" class="ln">   310  </span>		var ret string
-<span id="L311" class="ln">   311  </span>		return ret
-<span id="L312" class="ln">   312  </span>	}
-<span id="L313" class="ln">   313  </span>	return o.Scope
-<span id="L314" class="ln">   314  </span>}
-<span id="L315" class="ln">   315  </span>
-<span id="L316" class="ln">   316  </span><span class="comment">// GetScopeOk returns a tuple with the Scope field value</span>
-<span id="L317" class="ln">   317  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L318" class="ln">   318  </span>func (o *AzureUCConfig) GetScopeOk() (*string, bool) {
-<span id="L319" class="ln">   319  </span>	if o == nil {
-<span id="L320" class="ln">   320  </span>		return nil, false
-<span id="L321" class="ln">   321  </span>	}
-<span id="L322" class="ln">   322  </span>	return &amp;o.Scope, true
-<span id="L323" class="ln">   323  </span>}
-<span id="L324" class="ln">   324  </span>
-<span id="L325" class="ln">   325  </span><span class="comment">// SetScope sets field value.</span>
-<span id="L326" class="ln">   326  </span>func (o *AzureUCConfig) SetScope(v string) {
-<span id="L327" class="ln">   327  </span>	o.Scope = v
-<span id="L328" class="ln">   328  </span>}
-<span id="L329" class="ln">   329  </span>
-<span id="L330" class="ln">   330  </span><span class="comment">// GetStatus returns the Status field value.</span>
-<span id="L331" class="ln">   331  </span>func (o *AzureUCConfig) GetStatus() string {
-<span id="L332" class="ln">   332  </span>	if o == nil {
-<span id="L333" class="ln">   333  </span>		var ret string
-<span id="L334" class="ln">   334  </span>		return ret
-<span id="L335" class="ln">   335  </span>	}
-<span id="L336" class="ln">   336  </span>	return o.Status
-<span id="L337" class="ln">   337  </span>}
-<span id="L338" class="ln">   338  </span>
-<span id="L339" class="ln">   339  </span><span class="comment">// GetStatusOk returns a tuple with the Status field value</span>
-<span id="L340" class="ln">   340  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L341" class="ln">   341  </span>func (o *AzureUCConfig) GetStatusOk() (*string, bool) {
-<span id="L342" class="ln">   342  </span>	if o == nil {
-<span id="L343" class="ln">   343  </span>		return nil, false
-<span id="L344" class="ln">   344  </span>	}
-<span id="L345" class="ln">   345  </span>	return &amp;o.Status, true
-<span id="L346" class="ln">   346  </span>}
-<span id="L347" class="ln">   347  </span>
-<span id="L348" class="ln">   348  </span><span class="comment">// SetStatus sets field value.</span>
-<span id="L349" class="ln">   349  </span>func (o *AzureUCConfig) SetStatus(v string) {
-<span id="L350" class="ln">   350  </span>	o.Status = v
-<span id="L351" class="ln">   351  </span>}
-<span id="L352" class="ln">   352  </span>
-<span id="L353" class="ln">   353  </span><span class="comment">// GetStatusUpdatedAt returns the StatusUpdatedAt field value if set, zero value otherwise.</span>
-<span id="L354" class="ln">   354  </span>func (o *AzureUCConfig) GetStatusUpdatedAt() string {
-<span id="L355" class="ln">   355  </span>	if o == nil || o.StatusUpdatedAt == nil {
-<span id="L356" class="ln">   356  </span>		var ret string
-<span id="L357" class="ln">   357  </span>		return ret
-<span id="L358" class="ln">   358  </span>	}
-<span id="L359" class="ln">   359  </span>	return *o.StatusUpdatedAt
-<span id="L360" class="ln">   360  </span>}
-<span id="L361" class="ln">   361  </span>
-<span id="L362" class="ln">   362  </span><span class="comment">// GetStatusUpdatedAtOk returns a tuple with the StatusUpdatedAt field value if set, nil otherwise</span>
-<span id="L363" class="ln">   363  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L364" class="ln">   364  </span>func (o *AzureUCConfig) GetStatusUpdatedAtOk() (*string, bool) {
-<span id="L365" class="ln">   365  </span>	if o == nil || o.StatusUpdatedAt == nil {
-<span id="L366" class="ln">   366  </span>		return nil, false
-<span id="L367" class="ln">   367  </span>	}
-<span id="L368" class="ln">   368  </span>	return o.StatusUpdatedAt, true
-<span id="L369" class="ln">   369  </span>}
-<span id="L370" class="ln">   370  </span>
-<span id="L371" class="ln">   371  </span><span class="comment">// HasStatusUpdatedAt returns a boolean if a field has been set.</span>
-<span id="L372" class="ln">   372  </span>func (o *AzureUCConfig) HasStatusUpdatedAt() bool {
-<span id="L373" class="ln">   373  </span>	return o != nil &amp;&amp; o.StatusUpdatedAt != nil
-<span id="L374" class="ln">   374  </span>}
-<span id="L375" class="ln">   375  </span>
-<span id="L376" class="ln">   376  </span><span class="comment">// SetStatusUpdatedAt gets a reference to the given string and assigns it to the StatusUpdatedAt field.</span>
-<span id="L377" class="ln">   377  </span>func (o *AzureUCConfig) SetStatusUpdatedAt(v string) {
-<span id="L378" class="ln">   378  </span>	o.StatusUpdatedAt = &amp;v
-<span id="L379" class="ln">   379  </span>}
-<span id="L380" class="ln">   380  </span>
-<span id="L381" class="ln">   381  </span><span class="comment">// GetStorageAccount returns the StorageAccount field value.</span>
-<span id="L382" class="ln">   382  </span>func (o *AzureUCConfig) GetStorageAccount() string {
-<span id="L383" class="ln">   383  </span>	if o == nil {
-<span id="L384" class="ln">   384  </span>		var ret string
-<span id="L385" class="ln">   385  </span>		return ret
-<span id="L386" class="ln">   386  </span>	}
-<span id="L387" class="ln">   387  </span>	return o.StorageAccount
-<span id="L388" class="ln">   388  </span>}
-<span id="L389" class="ln">   389  </span>
-<span id="L390" class="ln">   390  </span><span class="comment">// GetStorageAccountOk returns a tuple with the StorageAccount field value</span>
-<span id="L391" class="ln">   391  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L392" class="ln">   392  </span>func (o *AzureUCConfig) GetStorageAccountOk() (*string, bool) {
-<span id="L393" class="ln">   393  </span>	if o == nil {
-<span id="L394" class="ln">   394  </span>		return nil, false
-<span id="L395" class="ln">   395  </span>	}
-<span id="L396" class="ln">   396  </span>	return &amp;o.StorageAccount, true
-<span id="L397" class="ln">   397  </span>}
-<span id="L398" class="ln">   398  </span>
-<span id="L399" class="ln">   399  </span><span class="comment">// SetStorageAccount sets field value.</span>
-<span id="L400" class="ln">   400  </span>func (o *AzureUCConfig) SetStorageAccount(v string) {
-<span id="L401" class="ln">   401  </span>	o.StorageAccount = v
-<span id="L402" class="ln">   402  </span>}
-<span id="L403" class="ln">   403  </span>
-<span id="L404" class="ln">   404  </span><span class="comment">// GetStorageContainer returns the StorageContainer field value.</span>
-<span id="L405" class="ln">   405  </span>func (o *AzureUCConfig) GetStorageContainer() string {
-<span id="L406" class="ln">   406  </span>	if o == nil {
-<span id="L407" class="ln">   407  </span>		var ret string
-<span id="L408" class="ln">   408  </span>		return ret
-<span id="L409" class="ln">   409  </span>	}
-<span id="L410" class="ln">   410  </span>	return o.StorageContainer
-<span id="L411" class="ln">   411  </span>}
-<span id="L412" class="ln">   412  </span>
-<span id="L413" class="ln">   413  </span><span class="comment">// GetStorageContainerOk returns a tuple with the StorageContainer field value</span>
-<span id="L414" class="ln">   414  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L415" class="ln">   415  </span>func (o *AzureUCConfig) GetStorageContainerOk() (*string, bool) {
-<span id="L416" class="ln">   416  </span>	if o == nil {
-<span id="L417" class="ln">   417  </span>		return nil, false
-<span id="L418" class="ln">   418  </span>	}
-<span id="L419" class="ln">   419  </span>	return &amp;o.StorageContainer, true
-<span id="L420" class="ln">   420  </span>}
-<span id="L421" class="ln">   421  </span>
-<span id="L422" class="ln">   422  </span><span class="comment">// SetStorageContainer sets field value.</span>
-<span id="L423" class="ln">   423  </span>func (o *AzureUCConfig) SetStorageContainer(v string) {
-<span id="L424" class="ln">   424  </span>	o.StorageContainer = v
-<span id="L425" class="ln">   425  </span>}
-<span id="L426" class="ln">   426  </span>
-<span id="L427" class="ln">   427  </span><span class="comment">// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.</span>
-<span id="L428" class="ln">   428  </span>func (o *AzureUCConfig) GetUpdatedAt() string {
-<span id="L429" class="ln">   429  </span>	if o == nil || o.UpdatedAt == nil {
-<span id="L430" class="ln">   430  </span>		var ret string
-<span id="L431" class="ln">   431  </span>		return ret
-<span id="L432" class="ln">   432  </span>	}
-<span id="L433" class="ln">   433  </span>	return *o.UpdatedAt
-<span id="L434" class="ln">   434  </span>}
-<span id="L435" class="ln">   435  </span>
-<span id="L436" class="ln">   436  </span><span class="comment">// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise</span>
-<span id="L437" class="ln">   437  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L438" class="ln">   438  </span>func (o *AzureUCConfig) GetUpdatedAtOk() (*string, bool) {
-<span id="L439" class="ln">   439  </span>	if o == nil || o.UpdatedAt == nil {
-<span id="L440" class="ln">   440  </span>		return nil, false
-<span id="L441" class="ln">   441  </span>	}
-<span id="L442" class="ln">   442  </span>	return o.UpdatedAt, true
-<span id="L443" class="ln">   443  </span>}
-<span id="L444" class="ln">   444  </span>
-<span id="L445" class="ln">   445  </span><span class="comment">// HasUpdatedAt returns a boolean if a field has been set.</span>
-<span id="L446" class="ln">   446  </span>func (o *AzureUCConfig) HasUpdatedAt() bool {
-<span id="L447" class="ln">   447  </span>	return o != nil &amp;&amp; o.UpdatedAt != nil
-<span id="L448" class="ln">   448  </span>}
-<span id="L449" class="ln">   449  </span>
-<span id="L450" class="ln">   450  </span><span class="comment">// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.</span>
-<span id="L451" class="ln">   451  </span>func (o *AzureUCConfig) SetUpdatedAt(v string) {
-<span id="L452" class="ln">   452  </span>	o.UpdatedAt = &amp;v
-<span id="L453" class="ln">   453  </span>}
-<span id="L454" class="ln">   454  </span>
-<span id="L455" class="ln">   455  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L456" class="ln">   456  </span>func (o AzureUCConfig) MarshalJSON() ([]byte, error) {
-<span id="L457" class="ln">   457  </span>	toSerialize := map[string]interface{}{}
-<span id="L458" class="ln">   458  </span>	if o.UnparsedObject != nil {
-<span id="L459" class="ln">   459  </span>		return datadog.Marshal(o.UnparsedObject)
-<span id="L460" class="ln">   460  </span>	}
-<span id="L461" class="ln">   461  </span>	toSerialize[&#34;account_id&#34;] = o.AccountId
-<span id="L462" class="ln">   462  </span>	toSerialize[&#34;client_id&#34;] = o.ClientId
-<span id="L463" class="ln">   463  </span>	if o.CreatedAt != nil {
-<span id="L464" class="ln">   464  </span>		toSerialize[&#34;created_at&#34;] = o.CreatedAt
-<span id="L465" class="ln">   465  </span>	}
-<span id="L466" class="ln">   466  </span>	toSerialize[&#34;dataset_type&#34;] = o.DatasetType
-<span id="L467" class="ln">   467  </span>	if o.ErrorMessages != nil {
-<span id="L468" class="ln">   468  </span>		toSerialize[&#34;error_messages&#34;] = o.ErrorMessages
-<span id="L469" class="ln">   469  </span>	}
-<span id="L470" class="ln">   470  </span>	toSerialize[&#34;export_name&#34;] = o.ExportName
-<span id="L471" class="ln">   471  </span>	toSerialize[&#34;export_path&#34;] = o.ExportPath
-<span id="L472" class="ln">   472  </span>	if o.Id != nil {
-<span id="L473" class="ln">   473  </span>		toSerialize[&#34;id&#34;] = o.Id
-<span id="L474" class="ln">   474  </span>	}
-<span id="L475" class="ln">   475  </span>	if o.Months != nil {
-<span id="L476" class="ln">   476  </span>		toSerialize[&#34;months&#34;] = o.Months
-<span id="L477" class="ln">   477  </span>	}
-<span id="L478" class="ln">   478  </span>	toSerialize[&#34;scope&#34;] = o.Scope
-<span id="L479" class="ln">   479  </span>	toSerialize[&#34;status&#34;] = o.Status
-<span id="L480" class="ln">   480  </span>	if o.StatusUpdatedAt != nil {
-<span id="L481" class="ln">   481  </span>		toSerialize[&#34;status_updated_at&#34;] = o.StatusUpdatedAt
-<span id="L482" class="ln">   482  </span>	}
-<span id="L483" class="ln">   483  </span>	toSerialize[&#34;storage_account&#34;] = o.StorageAccount
-<span id="L484" class="ln">   484  </span>	toSerialize[&#34;storage_container&#34;] = o.StorageContainer
-<span id="L485" class="ln">   485  </span>	if o.UpdatedAt != nil {
-<span id="L486" class="ln">   486  </span>		toSerialize[&#34;updated_at&#34;] = o.UpdatedAt
-<span id="L487" class="ln">   487  </span>	}
-<span id="L488" class="ln">   488  </span>
-<span id="L489" class="ln">   489  </span>	for key, value := range o.AdditionalProperties {
-<span id="L490" class="ln">   490  </span>		toSerialize[key] = value
-<span id="L491" class="ln">   491  </span>	}
-<span id="L492" class="ln">   492  </span>	return datadog.Marshal(toSerialize)
-<span id="L493" class="ln">   493  </span>}
-<span id="L494" class="ln">   494  </span>
-<span id="L495" class="ln">   495  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L496" class="ln">   496  </span>func (o *AzureUCConfig) UnmarshalJSON(bytes []byte) (err error) {
-<span id="L497" class="ln">   497  </span>	all := struct {
-<span id="L498" class="ln">   498  </span>		AccountId        *string  `json:&#34;account_id&#34;`
-<span id="L499" class="ln">   499  </span>		ClientId         *string  `json:&#34;client_id&#34;`
-<span id="L500" class="ln">   500  </span>		CreatedAt        *string  `json:&#34;created_at,omitempty&#34;`
-<span id="L501" class="ln">   501  </span>		DatasetType      *string  `json:&#34;dataset_type&#34;`
-<span id="L502" class="ln">   502  </span>		ErrorMessages    []string `json:&#34;error_messages,omitempty&#34;`
-<span id="L503" class="ln">   503  </span>		ExportName       *string  `json:&#34;export_name&#34;`
-<span id="L504" class="ln">   504  </span>		ExportPath       *string  `json:&#34;export_path&#34;`
-<span id="L505" class="ln">   505  </span>		Id               *string  `json:&#34;id,omitempty&#34;`
-<span id="L506" class="ln">   506  </span>		Months           *int32   `json:&#34;months,omitempty&#34;`
-<span id="L507" class="ln">   507  </span>		Scope            *string  `json:&#34;scope&#34;`
-<span id="L508" class="ln">   508  </span>		Status           *string  `json:&#34;status&#34;`
-<span id="L509" class="ln">   509  </span>		StatusUpdatedAt  *string  `json:&#34;status_updated_at,omitempty&#34;`
-<span id="L510" class="ln">   510  </span>		StorageAccount   *string  `json:&#34;storage_account&#34;`
-<span id="L511" class="ln">   511  </span>		StorageContainer *string  `json:&#34;storage_container&#34;`
-<span id="L512" class="ln">   512  </span>		UpdatedAt        *string  `json:&#34;updated_at,omitempty&#34;`
-<span id="L513" class="ln">   513  </span>	}{}
-<span id="L514" class="ln">   514  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
-<span id="L515" class="ln">   515  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L516" class="ln">   516  </span>	}
-<span id="L517" class="ln">   517  </span>	if all.AccountId == nil {
-<span id="L518" class="ln">   518  </span>		return fmt.Errorf(&#34;required field account_id missing&#34;)
-<span id="L519" class="ln">   519  </span>	}
-<span id="L520" class="ln">   520  </span>	if all.ClientId == nil {
-<span id="L521" class="ln">   521  </span>		return fmt.Errorf(&#34;required field client_id missing&#34;)
-<span id="L522" class="ln">   522  </span>	}
-<span id="L523" class="ln">   523  </span>	if all.DatasetType == nil {
-<span id="L524" class="ln">   524  </span>		return fmt.Errorf(&#34;required field dataset_type missing&#34;)
-<span id="L525" class="ln">   525  </span>	}
-<span id="L526" class="ln">   526  </span>	if all.ExportName == nil {
-<span id="L527" class="ln">   527  </span>		return fmt.Errorf(&#34;required field export_name missing&#34;)
-<span id="L528" class="ln">   528  </span>	}
-<span id="L529" class="ln">   529  </span>	if all.ExportPath == nil {
-<span id="L530" class="ln">   530  </span>		return fmt.Errorf(&#34;required field export_path missing&#34;)
-<span id="L531" class="ln">   531  </span>	}
-<span id="L532" class="ln">   532  </span>	if all.Scope == nil {
-<span id="L533" class="ln">   533  </span>		return fmt.Errorf(&#34;required field scope missing&#34;)
-<span id="L534" class="ln">   534  </span>	}
-<span id="L535" class="ln">   535  </span>	if all.Status == nil {
-<span id="L536" class="ln">   536  </span>		return fmt.Errorf(&#34;required field status missing&#34;)
-<span id="L537" class="ln">   537  </span>	}
-<span id="L538" class="ln">   538  </span>	if all.StorageAccount == nil {
-<span id="L539" class="ln">   539  </span>		return fmt.Errorf(&#34;required field storage_account missing&#34;)
-<span id="L540" class="ln">   540  </span>	}
-<span id="L541" class="ln">   541  </span>	if all.StorageContainer == nil {
-<span id="L542" class="ln">   542  </span>		return fmt.Errorf(&#34;required field storage_container missing&#34;)
-<span id="L543" class="ln">   543  </span>	}
-<span id="L544" class="ln">   544  </span>	additionalProperties := make(map[string]interface{})
-<span id="L545" class="ln">   545  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L546" class="ln">   546  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;account_id&#34;, &#34;client_id&#34;, &#34;created_at&#34;, &#34;dataset_type&#34;, &#34;error_messages&#34;, &#34;export_name&#34;, &#34;export_path&#34;, &#34;id&#34;, &#34;months&#34;, &#34;scope&#34;, &#34;status&#34;, &#34;status_updated_at&#34;, &#34;storage_account&#34;, &#34;storage_container&#34;, &#34;updated_at&#34;})
-<span id="L547" class="ln">   547  </span>	} else {
-<span id="L548" class="ln">   548  </span>		return err
-<span id="L549" class="ln">   549  </span>	}
-<span id="L550" class="ln">   550  </span>	o.AccountId = *all.AccountId
-<span id="L551" class="ln">   551  </span>	o.ClientId = *all.ClientId
-<span id="L552" class="ln">   552  </span>	o.CreatedAt = all.CreatedAt
-<span id="L553" class="ln">   553  </span>	o.DatasetType = *all.DatasetType
-<span id="L554" class="ln">   554  </span>	o.ErrorMessages = all.ErrorMessages
-<span id="L555" class="ln">   555  </span>	o.ExportName = *all.ExportName
-<span id="L556" class="ln">   556  </span>	o.ExportPath = *all.ExportPath
-<span id="L557" class="ln">   557  </span>	o.Id = all.Id
-<span id="L558" class="ln">   558  </span>	o.Months = all.Months
-<span id="L559" class="ln">   559  </span>	o.Scope = *all.Scope
-<span id="L560" class="ln">   560  </span>	o.Status = *all.Status
-<span id="L561" class="ln">   561  </span>	o.StatusUpdatedAt = all.StatusUpdatedAt
-<span id="L562" class="ln">   562  </span>	o.StorageAccount = *all.StorageAccount
-<span id="L563" class="ln">   563  </span>	o.StorageContainer = *all.StorageContainer
-<span id="L564" class="ln">   564  </span>	o.UpdatedAt = all.UpdatedAt
-<span id="L565" class="ln">   565  </span>
-<span id="L566" class="ln">   566  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L567" class="ln">   567  </span>		o.AdditionalProperties = additionalProperties
-<span id="L568" class="ln">   568  </span>	}
-<span id="L569" class="ln">   569  </span>
-<span id="L570" class="ln">   570  </span>	return nil
-<span id="L571" class="ln">   571  </span>}
-<span id="L572" class="ln">   572  </span>
+<span id="L307" class="ln">   307  </span><span class="comment">// HasMonths returns a boolean if a field has been set.</span>
+<span id="L308" class="ln">   308  </span>func (o *AzureUCConfig) HasMonths() bool {
+<span id="L309" class="ln">   309  </span>	return o != nil &amp;&amp; o.Months != nil
+<span id="L310" class="ln">   310  </span>}
+<span id="L311" class="ln">   311  </span>
+<span id="L312" class="ln">   312  </span><span class="comment">// SetMonths gets a reference to the given int32 and assigns it to the Months field.</span>
+<span id="L313" class="ln">   313  </span><span class="comment">// Deprecated</span>
+<span id="L314" class="ln">   314  </span>func (o *AzureUCConfig) SetMonths(v int32) {
+<span id="L315" class="ln">   315  </span>	o.Months = &amp;v
+<span id="L316" class="ln">   316  </span>}
+<span id="L317" class="ln">   317  </span>
+<span id="L318" class="ln">   318  </span><span class="comment">// GetScope returns the Scope field value.</span>
+<span id="L319" class="ln">   319  </span>func (o *AzureUCConfig) GetScope() string {
+<span id="L320" class="ln">   320  </span>	if o == nil {
+<span id="L321" class="ln">   321  </span>		var ret string
+<span id="L322" class="ln">   322  </span>		return ret
+<span id="L323" class="ln">   323  </span>	}
+<span id="L324" class="ln">   324  </span>	return o.Scope
+<span id="L325" class="ln">   325  </span>}
+<span id="L326" class="ln">   326  </span>
+<span id="L327" class="ln">   327  </span><span class="comment">// GetScopeOk returns a tuple with the Scope field value</span>
+<span id="L328" class="ln">   328  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L329" class="ln">   329  </span>func (o *AzureUCConfig) GetScopeOk() (*string, bool) {
+<span id="L330" class="ln">   330  </span>	if o == nil {
+<span id="L331" class="ln">   331  </span>		return nil, false
+<span id="L332" class="ln">   332  </span>	}
+<span id="L333" class="ln">   333  </span>	return &amp;o.Scope, true
+<span id="L334" class="ln">   334  </span>}
+<span id="L335" class="ln">   335  </span>
+<span id="L336" class="ln">   336  </span><span class="comment">// SetScope sets field value.</span>
+<span id="L337" class="ln">   337  </span>func (o *AzureUCConfig) SetScope(v string) {
+<span id="L338" class="ln">   338  </span>	o.Scope = v
+<span id="L339" class="ln">   339  </span>}
+<span id="L340" class="ln">   340  </span>
+<span id="L341" class="ln">   341  </span><span class="comment">// GetStatus returns the Status field value.</span>
+<span id="L342" class="ln">   342  </span>func (o *AzureUCConfig) GetStatus() string {
+<span id="L343" class="ln">   343  </span>	if o == nil {
+<span id="L344" class="ln">   344  </span>		var ret string
+<span id="L345" class="ln">   345  </span>		return ret
+<span id="L346" class="ln">   346  </span>	}
+<span id="L347" class="ln">   347  </span>	return o.Status
+<span id="L348" class="ln">   348  </span>}
+<span id="L349" class="ln">   349  </span>
+<span id="L350" class="ln">   350  </span><span class="comment">// GetStatusOk returns a tuple with the Status field value</span>
+<span id="L351" class="ln">   351  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L352" class="ln">   352  </span>func (o *AzureUCConfig) GetStatusOk() (*string, bool) {
+<span id="L353" class="ln">   353  </span>	if o == nil {
+<span id="L354" class="ln">   354  </span>		return nil, false
+<span id="L355" class="ln">   355  </span>	}
+<span id="L356" class="ln">   356  </span>	return &amp;o.Status, true
+<span id="L357" class="ln">   357  </span>}
+<span id="L358" class="ln">   358  </span>
+<span id="L359" class="ln">   359  </span><span class="comment">// SetStatus sets field value.</span>
+<span id="L360" class="ln">   360  </span>func (o *AzureUCConfig) SetStatus(v string) {
+<span id="L361" class="ln">   361  </span>	o.Status = v
+<span id="L362" class="ln">   362  </span>}
+<span id="L363" class="ln">   363  </span>
+<span id="L364" class="ln">   364  </span><span class="comment">// GetStatusUpdatedAt returns the StatusUpdatedAt field value if set, zero value otherwise.</span>
+<span id="L365" class="ln">   365  </span>func (o *AzureUCConfig) GetStatusUpdatedAt() string {
+<span id="L366" class="ln">   366  </span>	if o == nil || o.StatusUpdatedAt == nil {
+<span id="L367" class="ln">   367  </span>		var ret string
+<span id="L368" class="ln">   368  </span>		return ret
+<span id="L369" class="ln">   369  </span>	}
+<span id="L370" class="ln">   370  </span>	return *o.StatusUpdatedAt
+<span id="L371" class="ln">   371  </span>}
+<span id="L372" class="ln">   372  </span>
+<span id="L373" class="ln">   373  </span><span class="comment">// GetStatusUpdatedAtOk returns a tuple with the StatusUpdatedAt field value if set, nil otherwise</span>
+<span id="L374" class="ln">   374  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L375" class="ln">   375  </span>func (o *AzureUCConfig) GetStatusUpdatedAtOk() (*string, bool) {
+<span id="L376" class="ln">   376  </span>	if o == nil || o.StatusUpdatedAt == nil {
+<span id="L377" class="ln">   377  </span>		return nil, false
+<span id="L378" class="ln">   378  </span>	}
+<span id="L379" class="ln">   379  </span>	return o.StatusUpdatedAt, true
+<span id="L380" class="ln">   380  </span>}
+<span id="L381" class="ln">   381  </span>
+<span id="L382" class="ln">   382  </span><span class="comment">// HasStatusUpdatedAt returns a boolean if a field has been set.</span>
+<span id="L383" class="ln">   383  </span>func (o *AzureUCConfig) HasStatusUpdatedAt() bool {
+<span id="L384" class="ln">   384  </span>	return o != nil &amp;&amp; o.StatusUpdatedAt != nil
+<span id="L385" class="ln">   385  </span>}
+<span id="L386" class="ln">   386  </span>
+<span id="L387" class="ln">   387  </span><span class="comment">// SetStatusUpdatedAt gets a reference to the given string and assigns it to the StatusUpdatedAt field.</span>
+<span id="L388" class="ln">   388  </span>func (o *AzureUCConfig) SetStatusUpdatedAt(v string) {
+<span id="L389" class="ln">   389  </span>	o.StatusUpdatedAt = &amp;v
+<span id="L390" class="ln">   390  </span>}
+<span id="L391" class="ln">   391  </span>
+<span id="L392" class="ln">   392  </span><span class="comment">// GetStorageAccount returns the StorageAccount field value.</span>
+<span id="L393" class="ln">   393  </span>func (o *AzureUCConfig) GetStorageAccount() string {
+<span id="L394" class="ln">   394  </span>	if o == nil {
+<span id="L395" class="ln">   395  </span>		var ret string
+<span id="L396" class="ln">   396  </span>		return ret
+<span id="L397" class="ln">   397  </span>	}
+<span id="L398" class="ln">   398  </span>	return o.StorageAccount
+<span id="L399" class="ln">   399  </span>}
+<span id="L400" class="ln">   400  </span>
+<span id="L401" class="ln">   401  </span><span class="comment">// GetStorageAccountOk returns a tuple with the StorageAccount field value</span>
+<span id="L402" class="ln">   402  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L403" class="ln">   403  </span>func (o *AzureUCConfig) GetStorageAccountOk() (*string, bool) {
+<span id="L404" class="ln">   404  </span>	if o == nil {
+<span id="L405" class="ln">   405  </span>		return nil, false
+<span id="L406" class="ln">   406  </span>	}
+<span id="L407" class="ln">   407  </span>	return &amp;o.StorageAccount, true
+<span id="L408" class="ln">   408  </span>}
+<span id="L409" class="ln">   409  </span>
+<span id="L410" class="ln">   410  </span><span class="comment">// SetStorageAccount sets field value.</span>
+<span id="L411" class="ln">   411  </span>func (o *AzureUCConfig) SetStorageAccount(v string) {
+<span id="L412" class="ln">   412  </span>	o.StorageAccount = v
+<span id="L413" class="ln">   413  </span>}
+<span id="L414" class="ln">   414  </span>
+<span id="L415" class="ln">   415  </span><span class="comment">// GetStorageContainer returns the StorageContainer field value.</span>
+<span id="L416" class="ln">   416  </span>func (o *AzureUCConfig) GetStorageContainer() string {
+<span id="L417" class="ln">   417  </span>	if o == nil {
+<span id="L418" class="ln">   418  </span>		var ret string
+<span id="L419" class="ln">   419  </span>		return ret
+<span id="L420" class="ln">   420  </span>	}
+<span id="L421" class="ln">   421  </span>	return o.StorageContainer
+<span id="L422" class="ln">   422  </span>}
+<span id="L423" class="ln">   423  </span>
+<span id="L424" class="ln">   424  </span><span class="comment">// GetStorageContainerOk returns a tuple with the StorageContainer field value</span>
+<span id="L425" class="ln">   425  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L426" class="ln">   426  </span>func (o *AzureUCConfig) GetStorageContainerOk() (*string, bool) {
+<span id="L427" class="ln">   427  </span>	if o == nil {
+<span id="L428" class="ln">   428  </span>		return nil, false
+<span id="L429" class="ln">   429  </span>	}
+<span id="L430" class="ln">   430  </span>	return &amp;o.StorageContainer, true
+<span id="L431" class="ln">   431  </span>}
+<span id="L432" class="ln">   432  </span>
+<span id="L433" class="ln">   433  </span><span class="comment">// SetStorageContainer sets field value.</span>
+<span id="L434" class="ln">   434  </span>func (o *AzureUCConfig) SetStorageContainer(v string) {
+<span id="L435" class="ln">   435  </span>	o.StorageContainer = v
+<span id="L436" class="ln">   436  </span>}
+<span id="L437" class="ln">   437  </span>
+<span id="L438" class="ln">   438  </span><span class="comment">// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.</span>
+<span id="L439" class="ln">   439  </span>func (o *AzureUCConfig) GetUpdatedAt() string {
+<span id="L440" class="ln">   440  </span>	if o == nil || o.UpdatedAt == nil {
+<span id="L441" class="ln">   441  </span>		var ret string
+<span id="L442" class="ln">   442  </span>		return ret
+<span id="L443" class="ln">   443  </span>	}
+<span id="L444" class="ln">   444  </span>	return *o.UpdatedAt
+<span id="L445" class="ln">   445  </span>}
+<span id="L446" class="ln">   446  </span>
+<span id="L447" class="ln">   447  </span><span class="comment">// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise</span>
+<span id="L448" class="ln">   448  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L449" class="ln">   449  </span>func (o *AzureUCConfig) GetUpdatedAtOk() (*string, bool) {
+<span id="L450" class="ln">   450  </span>	if o == nil || o.UpdatedAt == nil {
+<span id="L451" class="ln">   451  </span>		return nil, false
+<span id="L452" class="ln">   452  </span>	}
+<span id="L453" class="ln">   453  </span>	return o.UpdatedAt, true
+<span id="L454" class="ln">   454  </span>}
+<span id="L455" class="ln">   455  </span>
+<span id="L456" class="ln">   456  </span><span class="comment">// HasUpdatedAt returns a boolean if a field has been set.</span>
+<span id="L457" class="ln">   457  </span>func (o *AzureUCConfig) HasUpdatedAt() bool {
+<span id="L458" class="ln">   458  </span>	return o != nil &amp;&amp; o.UpdatedAt != nil
+<span id="L459" class="ln">   459  </span>}
+<span id="L460" class="ln">   460  </span>
+<span id="L461" class="ln">   461  </span><span class="comment">// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.</span>
+<span id="L462" class="ln">   462  </span>func (o *AzureUCConfig) SetUpdatedAt(v string) {
+<span id="L463" class="ln">   463  </span>	o.UpdatedAt = &amp;v
+<span id="L464" class="ln">   464  </span>}
+<span id="L465" class="ln">   465  </span>
+<span id="L466" class="ln">   466  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L467" class="ln">   467  </span>func (o AzureUCConfig) MarshalJSON() ([]byte, error) {
+<span id="L468" class="ln">   468  </span>	toSerialize := map[string]interface{}{}
+<span id="L469" class="ln">   469  </span>	if o.UnparsedObject != nil {
+<span id="L470" class="ln">   470  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L471" class="ln">   471  </span>	}
+<span id="L472" class="ln">   472  </span>	toSerialize[&#34;account_id&#34;] = o.AccountId
+<span id="L473" class="ln">   473  </span>	toSerialize[&#34;client_id&#34;] = o.ClientId
+<span id="L474" class="ln">   474  </span>	if o.CreatedAt != nil {
+<span id="L475" class="ln">   475  </span>		toSerialize[&#34;created_at&#34;] = o.CreatedAt
+<span id="L476" class="ln">   476  </span>	}
+<span id="L477" class="ln">   477  </span>	toSerialize[&#34;dataset_type&#34;] = o.DatasetType
+<span id="L478" class="ln">   478  </span>	if o.ErrorMessages.IsSet() {
+<span id="L479" class="ln">   479  </span>		toSerialize[&#34;error_messages&#34;] = o.ErrorMessages.Get()
+<span id="L480" class="ln">   480  </span>	}
+<span id="L481" class="ln">   481  </span>	toSerialize[&#34;export_name&#34;] = o.ExportName
+<span id="L482" class="ln">   482  </span>	toSerialize[&#34;export_path&#34;] = o.ExportPath
+<span id="L483" class="ln">   483  </span>	if o.Id != nil {
+<span id="L484" class="ln">   484  </span>		toSerialize[&#34;id&#34;] = o.Id
+<span id="L485" class="ln">   485  </span>	}
+<span id="L486" class="ln">   486  </span>	if o.Months != nil {
+<span id="L487" class="ln">   487  </span>		toSerialize[&#34;months&#34;] = o.Months
+<span id="L488" class="ln">   488  </span>	}
+<span id="L489" class="ln">   489  </span>	toSerialize[&#34;scope&#34;] = o.Scope
+<span id="L490" class="ln">   490  </span>	toSerialize[&#34;status&#34;] = o.Status
+<span id="L491" class="ln">   491  </span>	if o.StatusUpdatedAt != nil {
+<span id="L492" class="ln">   492  </span>		toSerialize[&#34;status_updated_at&#34;] = o.StatusUpdatedAt
+<span id="L493" class="ln">   493  </span>	}
+<span id="L494" class="ln">   494  </span>	toSerialize[&#34;storage_account&#34;] = o.StorageAccount
+<span id="L495" class="ln">   495  </span>	toSerialize[&#34;storage_container&#34;] = o.StorageContainer
+<span id="L496" class="ln">   496  </span>	if o.UpdatedAt != nil {
+<span id="L497" class="ln">   497  </span>		toSerialize[&#34;updated_at&#34;] = o.UpdatedAt
+<span id="L498" class="ln">   498  </span>	}
+<span id="L499" class="ln">   499  </span>
+<span id="L500" class="ln">   500  </span>	for key, value := range o.AdditionalProperties {
+<span id="L501" class="ln">   501  </span>		toSerialize[key] = value
+<span id="L502" class="ln">   502  </span>	}
+<span id="L503" class="ln">   503  </span>	return datadog.Marshal(toSerialize)
+<span id="L504" class="ln">   504  </span>}
+<span id="L505" class="ln">   505  </span>
+<span id="L506" class="ln">   506  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L507" class="ln">   507  </span>func (o *AzureUCConfig) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L508" class="ln">   508  </span>	all := struct {
+<span id="L509" class="ln">   509  </span>		AccountId        *string                      `json:&#34;account_id&#34;`
+<span id="L510" class="ln">   510  </span>		ClientId         *string                      `json:&#34;client_id&#34;`
+<span id="L511" class="ln">   511  </span>		CreatedAt        *string                      `json:&#34;created_at,omitempty&#34;`
+<span id="L512" class="ln">   512  </span>		DatasetType      *string                      `json:&#34;dataset_type&#34;`
+<span id="L513" class="ln">   513  </span>		ErrorMessages    datadog.NullableList[string] `json:&#34;error_messages,omitempty&#34;`
+<span id="L514" class="ln">   514  </span>		ExportName       *string                      `json:&#34;export_name&#34;`
+<span id="L515" class="ln">   515  </span>		ExportPath       *string                      `json:&#34;export_path&#34;`
+<span id="L516" class="ln">   516  </span>		Id               *string                      `json:&#34;id,omitempty&#34;`
+<span id="L517" class="ln">   517  </span>		Months           *int32                       `json:&#34;months,omitempty&#34;`
+<span id="L518" class="ln">   518  </span>		Scope            *string                      `json:&#34;scope&#34;`
+<span id="L519" class="ln">   519  </span>		Status           *string                      `json:&#34;status&#34;`
+<span id="L520" class="ln">   520  </span>		StatusUpdatedAt  *string                      `json:&#34;status_updated_at,omitempty&#34;`
+<span id="L521" class="ln">   521  </span>		StorageAccount   *string                      `json:&#34;storage_account&#34;`
+<span id="L522" class="ln">   522  </span>		StorageContainer *string                      `json:&#34;storage_container&#34;`
+<span id="L523" class="ln">   523  </span>		UpdatedAt        *string                      `json:&#34;updated_at,omitempty&#34;`
+<span id="L524" class="ln">   524  </span>	}{}
+<span id="L525" class="ln">   525  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L526" class="ln">   526  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L527" class="ln">   527  </span>	}
+<span id="L528" class="ln">   528  </span>	if all.AccountId == nil {
+<span id="L529" class="ln">   529  </span>		return fmt.Errorf(&#34;required field account_id missing&#34;)
+<span id="L530" class="ln">   530  </span>	}
+<span id="L531" class="ln">   531  </span>	if all.ClientId == nil {
+<span id="L532" class="ln">   532  </span>		return fmt.Errorf(&#34;required field client_id missing&#34;)
+<span id="L533" class="ln">   533  </span>	}
+<span id="L534" class="ln">   534  </span>	if all.DatasetType == nil {
+<span id="L535" class="ln">   535  </span>		return fmt.Errorf(&#34;required field dataset_type missing&#34;)
+<span id="L536" class="ln">   536  </span>	}
+<span id="L537" class="ln">   537  </span>	if all.ExportName == nil {
+<span id="L538" class="ln">   538  </span>		return fmt.Errorf(&#34;required field export_name missing&#34;)
+<span id="L539" class="ln">   539  </span>	}
+<span id="L540" class="ln">   540  </span>	if all.ExportPath == nil {
+<span id="L541" class="ln">   541  </span>		return fmt.Errorf(&#34;required field export_path missing&#34;)
+<span id="L542" class="ln">   542  </span>	}
+<span id="L543" class="ln">   543  </span>	if all.Scope == nil {
+<span id="L544" class="ln">   544  </span>		return fmt.Errorf(&#34;required field scope missing&#34;)
+<span id="L545" class="ln">   545  </span>	}
+<span id="L546" class="ln">   546  </span>	if all.Status == nil {
+<span id="L547" class="ln">   547  </span>		return fmt.Errorf(&#34;required field status missing&#34;)
+<span id="L548" class="ln">   548  </span>	}
+<span id="L549" class="ln">   549  </span>	if all.StorageAccount == nil {
+<span id="L550" class="ln">   550  </span>		return fmt.Errorf(&#34;required field storage_account missing&#34;)
+<span id="L551" class="ln">   551  </span>	}
+<span id="L552" class="ln">   552  </span>	if all.StorageContainer == nil {
+<span id="L553" class="ln">   553  </span>		return fmt.Errorf(&#34;required field storage_container missing&#34;)
+<span id="L554" class="ln">   554  </span>	}
+<span id="L555" class="ln">   555  </span>	additionalProperties := make(map[string]interface{})
+<span id="L556" class="ln">   556  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L557" class="ln">   557  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;account_id&#34;, &#34;client_id&#34;, &#34;created_at&#34;, &#34;dataset_type&#34;, &#34;error_messages&#34;, &#34;export_name&#34;, &#34;export_path&#34;, &#34;id&#34;, &#34;months&#34;, &#34;scope&#34;, &#34;status&#34;, &#34;status_updated_at&#34;, &#34;storage_account&#34;, &#34;storage_container&#34;, &#34;updated_at&#34;})
+<span id="L558" class="ln">   558  </span>	} else {
+<span id="L559" class="ln">   559  </span>		return err
+<span id="L560" class="ln">   560  </span>	}
+<span id="L561" class="ln">   561  </span>	o.AccountId = *all.AccountId
+<span id="L562" class="ln">   562  </span>	o.ClientId = *all.ClientId
+<span id="L563" class="ln">   563  </span>	o.CreatedAt = all.CreatedAt
+<span id="L564" class="ln">   564  </span>	o.DatasetType = *all.DatasetType
+<span id="L565" class="ln">   565  </span>	o.ErrorMessages = all.ErrorMessages
+<span id="L566" class="ln">   566  </span>	o.ExportName = *all.ExportName
+<span id="L567" class="ln">   567  </span>	o.ExportPath = *all.ExportPath
+<span id="L568" class="ln">   568  </span>	o.Id = all.Id
+<span id="L569" class="ln">   569  </span>	o.Months = all.Months
+<span id="L570" class="ln">   570  </span>	o.Scope = *all.Scope
+<span id="L571" class="ln">   571  </span>	o.Status = *all.Status
+<span id="L572" class="ln">   572  </span>	o.StatusUpdatedAt = all.StatusUpdatedAt
+<span id="L573" class="ln">   573  </span>	o.StorageAccount = *all.StorageAccount
+<span id="L574" class="ln">   574  </span>	o.StorageContainer = *all.StorageContainer
+<span id="L575" class="ln">   575  </span>	o.UpdatedAt = all.UpdatedAt
+<span id="L576" class="ln">   576  </span>
+<span id="L577" class="ln">   577  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L578" class="ln">   578  </span>		o.AdditionalProperties = additionalProperties
+<span id="L579" class="ln">   579  </span>	}
+<span id="L580" class="ln">   580  </span>
+<span id="L581" class="ln">   581  </span>	return nil
+<span id="L582" class="ln">   582  </span>}
+<span id="L583" class="ln">   583  </span>
 </pre><p></p>
 
 <div id="footer">

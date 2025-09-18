@@ -67,34 +67,34 @@
 <span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
-<span id="L13" class="ln">    13  </span><span class="comment">// GCPUsageCostConfigAttributes Attributes for a GCP Usage Cost config.</span>
+<span id="L13" class="ln">    13  </span><span class="comment">// GCPUsageCostConfigAttributes Attributes for a Google Cloud Usage Cost config.</span>
 <span id="L14" class="ln">    14  </span>type GCPUsageCostConfigAttributes struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The GCP account ID.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// The Google Cloud account ID.</span>
 <span id="L16" class="ln">    16  </span>	AccountId string `json:&#34;account_id&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// The GCP bucket name used to store the Usage Cost export.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// The Google Cloud bucket name used to store the Usage Cost export.</span>
 <span id="L18" class="ln">    18  </span>	BucketName string `json:&#34;bucket_name&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// The timestamp when the GCP Usage Cost config was created.</span>
+<span id="L19" class="ln">    19  </span>	<span class="comment">// The timestamp when the Google Cloud Usage Cost config was created.</span>
 <span id="L20" class="ln">    20  </span>	CreatedAt *string `json:&#34;created_at,omitempty&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// The export dataset name used for the GCP Usage Cost Report.</span>
+<span id="L21" class="ln">    21  </span>	<span class="comment">// The export dataset name used for the Google Cloud Usage Cost Report.</span>
 <span id="L22" class="ln">    22  </span>	Dataset string `json:&#34;dataset&#34;`
-<span id="L23" class="ln">    23  </span>	<span class="comment">// The error messages for the GCP Usage Cost config.</span>
+<span id="L23" class="ln">    23  </span>	<span class="comment">// The error messages for the Google Cloud Usage Cost config.</span>
 <span id="L24" class="ln">    24  </span>	ErrorMessages datadog.NullableList[string] `json:&#34;error_messages,omitempty&#34;`
-<span id="L25" class="ln">    25  </span>	<span class="comment">// The export prefix used for the GCP Usage Cost Report.</span>
+<span id="L25" class="ln">    25  </span>	<span class="comment">// The export prefix used for the Google Cloud Usage Cost Report.</span>
 <span id="L26" class="ln">    26  </span>	ExportPrefix string `json:&#34;export_prefix&#34;`
-<span id="L27" class="ln">    27  </span>	<span class="comment">// The name of the GCP Usage Cost Report.</span>
+<span id="L27" class="ln">    27  </span>	<span class="comment">// The name of the Google Cloud Usage Cost Report.</span>
 <span id="L28" class="ln">    28  </span>	ExportProjectName string `json:&#34;export_project_name&#34;`
 <span id="L29" class="ln">    29  </span>	<span class="comment">// The number of months the report has been backfilled.</span>
 <span id="L30" class="ln">    30  </span>	<span class="comment">// Deprecated</span>
 <span id="L31" class="ln">    31  </span>	Months *int32 `json:&#34;months,omitempty&#34;`
-<span id="L32" class="ln">    32  </span>	<span class="comment">// The `project_id` of the GCP Usage Cost report.</span>
+<span id="L32" class="ln">    32  </span>	<span class="comment">// The `project_id` of the Google Cloud Usage Cost report.</span>
 <span id="L33" class="ln">    33  </span>	ProjectId *string `json:&#34;project_id,omitempty&#34;`
-<span id="L34" class="ln">    34  </span>	<span class="comment">// The unique GCP service account email.</span>
+<span id="L34" class="ln">    34  </span>	<span class="comment">// The unique Google Cloud service account email.</span>
 <span id="L35" class="ln">    35  </span>	ServiceAccount string `json:&#34;service_account&#34;`
-<span id="L36" class="ln">    36  </span>	<span class="comment">// The status of the GCP Usage Cost config.</span>
+<span id="L36" class="ln">    36  </span>	<span class="comment">// The status of the Google Cloud Usage Cost config.</span>
 <span id="L37" class="ln">    37  </span>	Status string `json:&#34;status&#34;`
-<span id="L38" class="ln">    38  </span>	<span class="comment">// The timestamp when the GCP Usage Cost config status was updated.</span>
+<span id="L38" class="ln">    38  </span>	<span class="comment">// The timestamp when the Google Cloud Usage Cost config status was updated.</span>
 <span id="L39" class="ln">    39  </span>	StatusUpdatedAt *string `json:&#34;status_updated_at,omitempty&#34;`
-<span id="L40" class="ln">    40  </span>	<span class="comment">// The timestamp when the GCP Usage Cost config status was updated.</span>
+<span id="L40" class="ln">    40  </span>	<span class="comment">// The timestamp when the Google Cloud Usage Cost config status was updated.</span>
 <span id="L41" class="ln">    41  </span>	UpdatedAt *string `json:&#34;updated_at,omitempty&#34;`
 <span id="L42" class="ln">    42  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L43" class="ln">    43  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
