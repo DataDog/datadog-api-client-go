@@ -1,4 +1,4 @@
-// Update Cloud Cost Management GCP Usage Cost config returns "OK" response
+// Update Google Cloud Usage Cost config returns "OK" response
 
 package main
 

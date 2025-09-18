@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV2.AzureUCConfigPatchRequest{
 		Data: datadogV2.AzureUCConfigPatchData{
-			Attributes: datadogV2.AzureUCConfigPatchRequestAttributes{
+			Attributes: &datadogV2.AzureUCConfigPatchRequestAttributes{
 				IsEnabled: true,
 			},
 			Type: datadogV2.AZUREUCCONFIGPATCHREQUESTTYPE_AZURE_UC_CONFIG_PATCH_REQUEST,

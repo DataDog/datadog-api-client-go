@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"Query":"example:query AND test:true"},"type":"validate_query"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/tags/enrichment/validate-query
+  response:
+    body: '{"data":{"id":"6a2cddcf-8498-469f-8da1-7b8fb597868d","type":"validate_response","attributes":{"Canonical":"example:query
+      AND test:true"}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2
