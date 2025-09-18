@@ -28,6 +28,7 @@ type ObservabilityPipelineConfigDestinationItem struct {
 	ObservabilityPipelineSocketDestination                 *ObservabilityPipelineSocketDestination
 	ObservabilityPipelineAmazonSecurityLakeDestination     *ObservabilityPipelineAmazonSecurityLakeDestination
 	ObservabilityPipelineCrowdStrikeNextGenSiemDestination *ObservabilityPipelineCrowdStrikeNextGenSiemDestination
+	ObservabilityPipelineGooglePubSubDestination           *ObservabilityPipelineGooglePubSubDestination
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -121,6 +122,11 @@ func ObservabilityPipelineAmazonSecurityLakeDestinationAsObservabilityPipelineCo
 // ObservabilityPipelineCrowdStrikeNextGenSiemDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineCrowdStrikeNextGenSiemDestination wrapped in ObservabilityPipelineConfigDestinationItem.
 func ObservabilityPipelineCrowdStrikeNextGenSiemDestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) ObservabilityPipelineConfigDestinationItem {
 	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineCrowdStrikeNextGenSiemDestination: v}
+}
+
+// ObservabilityPipelineGooglePubSubDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineGooglePubSubDestination wrapped in ObservabilityPipelineConfigDestinationItem.
+func ObservabilityPipelineGooglePubSubDestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelineGooglePubSubDestination) ObservabilityPipelineConfigDestinationItem {
+	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineGooglePubSubDestination: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -433,6 +439,23 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 		obj.ObservabilityPipelineCrowdStrikeNextGenSiemDestination = nil
 	}
 
+	// try to unmarshal data into ObservabilityPipelineGooglePubSubDestination
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineGooglePubSubDestination)
+	if err == nil {
+		if obj.ObservabilityPipelineGooglePubSubDestination != nil && obj.ObservabilityPipelineGooglePubSubDestination.UnparsedObject == nil {
+			jsonObservabilityPipelineGooglePubSubDestination, _ := datadog.Marshal(obj.ObservabilityPipelineGooglePubSubDestination)
+			if string(jsonObservabilityPipelineGooglePubSubDestination) == "{}" { // empty struct
+				obj.ObservabilityPipelineGooglePubSubDestination = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineGooglePubSubDestination = nil
+		}
+	} else {
+		obj.ObservabilityPipelineGooglePubSubDestination = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.ObservabilityPipelineDatadogLogsDestination = nil
@@ -453,6 +476,7 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 		obj.ObservabilityPipelineSocketDestination = nil
 		obj.ObservabilityPipelineAmazonSecurityLakeDestination = nil
 		obj.ObservabilityPipelineCrowdStrikeNextGenSiemDestination = nil
+		obj.ObservabilityPipelineGooglePubSubDestination = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -530,6 +554,10 @@ func (obj ObservabilityPipelineConfigDestinationItem) MarshalJSON() ([]byte, err
 
 	if obj.ObservabilityPipelineCrowdStrikeNextGenSiemDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineCrowdStrikeNextGenSiemDestination)
+	}
+
+	if obj.ObservabilityPipelineGooglePubSubDestination != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineGooglePubSubDestination)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -610,6 +638,10 @@ func (obj *ObservabilityPipelineConfigDestinationItem) GetActualInstance() inter
 
 	if obj.ObservabilityPipelineCrowdStrikeNextGenSiemDestination != nil {
 		return obj.ObservabilityPipelineCrowdStrikeNextGenSiemDestination
+	}
+
+	if obj.ObservabilityPipelineGooglePubSubDestination != nil {
+		return obj.ObservabilityPipelineGooglePubSubDestination
 	}
 
 	// all schemas are nil
