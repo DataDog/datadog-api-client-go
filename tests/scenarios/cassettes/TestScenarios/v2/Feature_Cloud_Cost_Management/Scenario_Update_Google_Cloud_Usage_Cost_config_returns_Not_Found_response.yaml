@@ -10,7 +10,7 @@ interactions:
       - application/json
     id: 0
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/cost/gcp_uc_config/12345678
+    url: https://api.datadoghq.com/api/v2/cost/gcp_uc_config/123456
   response:
     body: "{\"errors\":[{\"title\":\"Generic Error\",\"detail\":\"rpc error: code\
       \ = NotFound desc = cloud account '\uFFFD' not found\"}]}"
