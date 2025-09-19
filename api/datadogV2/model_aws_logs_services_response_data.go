@@ -16,7 +16,7 @@ type AWSLogsServicesResponseData struct {
 	Attributes *AWSLogsServicesResponseAttributes `json:"attributes,omitempty"`
 	// The `AWSLogsServicesResponseData` `id`.
 	Id string `json:"id"`
-	// The `AWSLogsServicesResponseData` `type`.
+	// The `AWSLogsServicesResponseData` `type`. Test to trigger client generation.
 	Type AWSLogsServicesResponseDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
