@@ -1,4 +1,4 @@
-name: Reusable Go Testing Workflow
+name: Reusable Examples Workflow
 
 on:
   workflow_call:
@@ -10,27 +10,24 @@ on:
         default: ''
 
 jobs:
-  test:
-    strategy:
-      matrix:
-        go-version: ["1.22.x", "1.23.x"]
-        go-build-tags: ["--tags=goccy_gojson", ""]
-        platform: ["ubuntu-latest"]
-    runs-on: ${{ matrix.platform }}
+  examples:
+    runs-on: ubuntu-latest
+    if: >
+      (github.event.pull_request.draft == false &&
+       !contains(github.event.pull_request.labels.*.name, 'ci/skip') &&
+       !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/')) ||
+      github.event_name == 'schedule'
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           repository: DataDog/datadog-api-client-go
           ref: ${{ inputs.target-branch || github.ref }}
       - name: Install Go
         uses: actions/setup-go@v4
         with:
-          go-version: ${{ matrix.go-version }}
+          go-version: 1.22.x
           cache: true
           cache-dependency-path: tests/go.sum
-      - name: Test
-        run: ./run-tests.sh
-        env:
-          TESTARGS: ${{ matrix.go-build-tags }}
-
+      - name: Check examples
+        run: ./check-examples.sh
+        shell: bash
