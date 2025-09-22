@@ -10,8 +10,8 @@ import (
 
 // AzureAccount Datadog-Azure integrations configured for your organization.
 type AzureAccount struct {
-	// Limit the Azure app service plans that are pulled into Datadog using tags.
-	// Only app service plans that match one of the defined tags are imported into Datadog.
+	// Limit the Azure app service plans (and Consumption Function Apps) that are pulled into Datadog using tags.
+	// Filtering an App Service Plan applies to all Apps running on that plan.
 	AppServicePlanFilters *string `json:"app_service_plan_filters,omitempty"`
 	// Silence monitors for expected Azure VM shutdowns.
 	Automute *bool `json:"automute,omitempty"`
