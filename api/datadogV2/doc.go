@@ -19,6 +19,8 @@
 //   - [AWSIntegrationApi.DeleteAWSAccount]
 //   - [AWSIntegrationApi.GetAWSAccount]
 //   - [AWSIntegrationApi.GetAWSIntegrationIAMPermissions]
+//   - [AWSIntegrationApi.GetAWSIntegrationIAMPermissionsResourceCollection]
+//   - [AWSIntegrationApi.GetAWSIntegrationIAMPermissionsStandard]
 //   - [AWSIntegrationApi.ListAWSAccounts]
 //   - [AWSIntegrationApi.ListAWSNamespaces]
 //   - [AWSIntegrationApi.UpdateAWSAccount]
