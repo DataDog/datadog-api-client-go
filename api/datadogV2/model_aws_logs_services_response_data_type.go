@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSLogsServicesResponseDataType The `AWSLogsServicesResponseData` `type`.
+// AWSLogsServicesResponseDataType The `AWSLogsServicesResponseData` `type`. Test to trigger client generation.
 type AWSLogsServicesResponseDataType string
 
 // List of AWSLogsServicesResponseDataType.
