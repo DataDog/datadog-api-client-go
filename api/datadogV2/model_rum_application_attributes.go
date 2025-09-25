@@ -12,6 +12,8 @@ import (
 
 // RUMApplicationAttributes RUM application attributes.
 type RUMApplicationAttributes struct {
+	// ID of the API key associated with the application.
+	ApiKeyId *int32 `json:"api_key_id,omitempty"`
 	// ID of the RUM application.
 	ApplicationId string `json:"application_id"`
 	// Client token of the RUM application.
@@ -65,6 +67,34 @@ func NewRUMApplicationAttributes(applicationId string, clientToken string, creat
 func NewRUMApplicationAttributesWithDefaults() *RUMApplicationAttributes {
 	this := RUMApplicationAttributes{}
 	return &this
+}
+
+// GetApiKeyId returns the ApiKeyId field value if set, zero value otherwise.
+func (o *RUMApplicationAttributes) GetApiKeyId() int32 {
+	if o == nil || o.ApiKeyId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.ApiKeyId
+}
+
+// GetApiKeyIdOk returns a tuple with the ApiKeyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RUMApplicationAttributes) GetApiKeyIdOk() (*int32, bool) {
+	if o == nil || o.ApiKeyId == nil {
+		return nil, false
+	}
+	return o.ApiKeyId, true
+}
+
+// HasApiKeyId returns a boolean if a field has been set.
+func (o *RUMApplicationAttributes) HasApiKeyId() bool {
+	return o != nil && o.ApiKeyId != nil
+}
+
+// SetApiKeyId gets a reference to the given int32 and assigns it to the ApiKeyId field.
+func (o *RUMApplicationAttributes) SetApiKeyId(v int32) {
+	o.ApiKeyId = &v
 }
 
 // GetApplicationId returns the ApplicationId field value.
@@ -364,6 +394,9 @@ func (o RUMApplicationAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.ApiKeyId != nil {
+		toSerialize["api_key_id"] = o.ApiKeyId
+	}
 	toSerialize["application_id"] = o.ApplicationId
 	toSerialize["client_token"] = o.ClientToken
 	toSerialize["created_at"] = o.CreatedAt
@@ -392,6 +425,7 @@ func (o RUMApplicationAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMApplicationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		ApiKeyId        *int32            `json:"api_key_id,omitempty"`
 		ApplicationId   *string           `json:"application_id"`
 		ClientToken     *string           `json:"client_token"`
 		CreatedAt       *int64            `json:"created_at"`
@@ -437,12 +471,13 @@ func (o *RUMApplicationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"application_id", "client_token", "created_at", "created_by_handle", "hash", "is_active", "name", "org_id", "product_scales", "type", "updated_at", "updated_by_handle"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_key_id", "application_id", "client_token", "created_at", "created_by_handle", "hash", "is_active", "name", "org_id", "product_scales", "type", "updated_at", "updated_by_handle"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.ApiKeyId = all.ApiKeyId
 	o.ApplicationId = *all.ApplicationId
 	o.ClientToken = *all.ClientToken
 	o.CreatedAt = *all.CreatedAt
