@@ -2248,7 +2248,6 @@ func (a *SyntheticsApi) PatchTest(ctx _context.Context, publicId string, body Sy
 type SearchTestsOptionalParameters struct {
 	Text              *string
 	IncludeFullConfig *bool
-	SearchSuites      *bool
 	FacetsOnly        *bool
 	Start             *int64
 	Count             *int64
@@ -2270,12 +2269,6 @@ func (r *SearchTestsOptionalParameters) WithText(text string) *SearchTestsOption
 // WithIncludeFullConfig sets the corresponding parameter name and returns the struct.
 func (r *SearchTestsOptionalParameters) WithIncludeFullConfig(includeFullConfig bool) *SearchTestsOptionalParameters {
 	r.IncludeFullConfig = &includeFullConfig
-	return r
-}
-
-// WithSearchSuites sets the corresponding parameter name and returns the struct.
-func (r *SearchTestsOptionalParameters) WithSearchSuites(searchSuites bool) *SearchTestsOptionalParameters {
-	r.SearchSuites = &searchSuites
 	return r
 }
 
@@ -2304,7 +2297,7 @@ func (r *SearchTestsOptionalParameters) WithSort(sort string) *SearchTestsOption
 }
 
 // SearchTests Search Synthetic tests.
-// Search for Synthetic tests and Test Suites.
+// Search for Synthetic tests.
 func (a *SyntheticsApi) SearchTests(ctx _context.Context, o ...SearchTestsOptionalParameters) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2335,9 +2328,6 @@ func (a *SyntheticsApi) SearchTests(ctx _context.Context, o ...SearchTestsOption
 	}
 	if optionalParams.IncludeFullConfig != nil {
 		localVarQueryParams.Add("include_full_config", datadog.ParameterToString(*optionalParams.IncludeFullConfig, ""))
-	}
-	if optionalParams.SearchSuites != nil {
-		localVarQueryParams.Add("search_suites", datadog.ParameterToString(*optionalParams.SearchSuites, ""))
 	}
 	if optionalParams.FacetsOnly != nil {
 		localVarQueryParams.Add("facets_only", datadog.ParameterToString(*optionalParams.FacetsOnly, ""))
