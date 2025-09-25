@@ -69,464 +69,499 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// RUMApplicationAttributes RUM application attributes.</span>
 <span id="L14" class="ln">    14  </span>type RUMApplicationAttributes struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// ID of the RUM application.</span>
-<span id="L16" class="ln">    16  </span>	ApplicationId string `json:&#34;application_id&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// Client token of the RUM application.</span>
-<span id="L18" class="ln">    18  </span>	ClientToken string `json:&#34;client_token&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// Timestamp in ms of the creation date.</span>
-<span id="L20" class="ln">    20  </span>	CreatedAt int64 `json:&#34;created_at&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// Handle of the creator user.</span>
-<span id="L22" class="ln">    22  </span>	CreatedByHandle string `json:&#34;created_by_handle&#34;`
-<span id="L23" class="ln">    23  </span>	<span class="comment">// Hash of the RUM application. Optional.</span>
-<span id="L24" class="ln">    24  </span>	Hash *string `json:&#34;hash,omitempty&#34;`
-<span id="L25" class="ln">    25  </span>	<span class="comment">// Indicates if the RUM application is active.</span>
-<span id="L26" class="ln">    26  </span>	IsActive *bool `json:&#34;is_active,omitempty&#34;`
-<span id="L27" class="ln">    27  </span>	<span class="comment">// Name of the RUM application.</span>
-<span id="L28" class="ln">    28  </span>	Name string `json:&#34;name&#34;`
-<span id="L29" class="ln">    29  </span>	<span class="comment">// Org ID of the RUM application.</span>
-<span id="L30" class="ln">    30  </span>	OrgId int32 `json:&#34;org_id&#34;`
-<span id="L31" class="ln">    31  </span>	<span class="comment">// Product Scales configuration for the RUM application.</span>
-<span id="L32" class="ln">    32  </span>	ProductScales *RUMProductScales `json:&#34;product_scales,omitempty&#34;`
-<span id="L33" class="ln">    33  </span>	<span class="comment">// Type of the RUM application. Supported values are `browser`, `ios`, `android`, `react-native`, `flutter`, `roku`, `electron`, `unity`, `kotlin-multiplatform`.</span>
-<span id="L34" class="ln">    34  </span>	Type string `json:&#34;type&#34;`
-<span id="L35" class="ln">    35  </span>	<span class="comment">// Timestamp in ms of the last update date.</span>
-<span id="L36" class="ln">    36  </span>	UpdatedAt int64 `json:&#34;updated_at&#34;`
-<span id="L37" class="ln">    37  </span>	<span class="comment">// Handle of the updater user.</span>
-<span id="L38" class="ln">    38  </span>	UpdatedByHandle string `json:&#34;updated_by_handle&#34;`
-<span id="L39" class="ln">    39  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
-<span id="L40" class="ln">    40  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L41" class="ln">    41  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
-<span id="L42" class="ln">    42  </span>}
-<span id="L43" class="ln">    43  </span>
-<span id="L44" class="ln">    44  </span><span class="comment">// NewRUMApplicationAttributes instantiates a new RUMApplicationAttributes object.</span>
-<span id="L45" class="ln">    45  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
-<span id="L46" class="ln">    46  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
-<span id="L47" class="ln">    47  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L48" class="ln">    48  </span>func NewRUMApplicationAttributes(applicationId string, clientToken string, createdAt int64, createdByHandle string, name string, orgId int32, typeVar string, updatedAt int64, updatedByHandle string) *RUMApplicationAttributes {
-<span id="L49" class="ln">    49  </span>	this := RUMApplicationAttributes{}
-<span id="L50" class="ln">    50  </span>	this.ApplicationId = applicationId
-<span id="L51" class="ln">    51  </span>	this.ClientToken = clientToken
-<span id="L52" class="ln">    52  </span>	this.CreatedAt = createdAt
-<span id="L53" class="ln">    53  </span>	this.CreatedByHandle = createdByHandle
-<span id="L54" class="ln">    54  </span>	this.Name = name
-<span id="L55" class="ln">    55  </span>	this.OrgId = orgId
-<span id="L56" class="ln">    56  </span>	this.Type = typeVar
-<span id="L57" class="ln">    57  </span>	this.UpdatedAt = updatedAt
-<span id="L58" class="ln">    58  </span>	this.UpdatedByHandle = updatedByHandle
-<span id="L59" class="ln">    59  </span>	return &amp;this
-<span id="L60" class="ln">    60  </span>}
-<span id="L61" class="ln">    61  </span>
-<span id="L62" class="ln">    62  </span><span class="comment">// NewRUMApplicationAttributesWithDefaults instantiates a new RUMApplicationAttributes object.</span>
-<span id="L63" class="ln">    63  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
-<span id="L64" class="ln">    64  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L65" class="ln">    65  </span>func NewRUMApplicationAttributesWithDefaults() *RUMApplicationAttributes {
-<span id="L66" class="ln">    66  </span>	this := RUMApplicationAttributes{}
-<span id="L67" class="ln">    67  </span>	return &amp;this
-<span id="L68" class="ln">    68  </span>}
-<span id="L69" class="ln">    69  </span>
-<span id="L70" class="ln">    70  </span><span class="comment">// GetApplicationId returns the ApplicationId field value.</span>
-<span id="L71" class="ln">    71  </span>func (o *RUMApplicationAttributes) GetApplicationId() string {
-<span id="L72" class="ln">    72  </span>	if o == nil {
-<span id="L73" class="ln">    73  </span>		var ret string
-<span id="L74" class="ln">    74  </span>		return ret
-<span id="L75" class="ln">    75  </span>	}
-<span id="L76" class="ln">    76  </span>	return o.ApplicationId
-<span id="L77" class="ln">    77  </span>}
-<span id="L78" class="ln">    78  </span>
-<span id="L79" class="ln">    79  </span><span class="comment">// GetApplicationIdOk returns a tuple with the ApplicationId field value</span>
-<span id="L80" class="ln">    80  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L81" class="ln">    81  </span>func (o *RUMApplicationAttributes) GetApplicationIdOk() (*string, bool) {
-<span id="L82" class="ln">    82  </span>	if o == nil {
-<span id="L83" class="ln">    83  </span>		return nil, false
-<span id="L84" class="ln">    84  </span>	}
-<span id="L85" class="ln">    85  </span>	return &amp;o.ApplicationId, true
-<span id="L86" class="ln">    86  </span>}
-<span id="L87" class="ln">    87  </span>
-<span id="L88" class="ln">    88  </span><span class="comment">// SetApplicationId sets field value.</span>
-<span id="L89" class="ln">    89  </span>func (o *RUMApplicationAttributes) SetApplicationId(v string) {
-<span id="L90" class="ln">    90  </span>	o.ApplicationId = v
-<span id="L91" class="ln">    91  </span>}
-<span id="L92" class="ln">    92  </span>
-<span id="L93" class="ln">    93  </span><span class="comment">// GetClientToken returns the ClientToken field value.</span>
-<span id="L94" class="ln">    94  </span>func (o *RUMApplicationAttributes) GetClientToken() string {
-<span id="L95" class="ln">    95  </span>	if o == nil {
-<span id="L96" class="ln">    96  </span>		var ret string
-<span id="L97" class="ln">    97  </span>		return ret
-<span id="L98" class="ln">    98  </span>	}
-<span id="L99" class="ln">    99  </span>	return o.ClientToken
-<span id="L100" class="ln">   100  </span>}
-<span id="L101" class="ln">   101  </span>
-<span id="L102" class="ln">   102  </span><span class="comment">// GetClientTokenOk returns a tuple with the ClientToken field value</span>
-<span id="L103" class="ln">   103  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L104" class="ln">   104  </span>func (o *RUMApplicationAttributes) GetClientTokenOk() (*string, bool) {
-<span id="L105" class="ln">   105  </span>	if o == nil {
-<span id="L106" class="ln">   106  </span>		return nil, false
-<span id="L107" class="ln">   107  </span>	}
-<span id="L108" class="ln">   108  </span>	return &amp;o.ClientToken, true
-<span id="L109" class="ln">   109  </span>}
-<span id="L110" class="ln">   110  </span>
-<span id="L111" class="ln">   111  </span><span class="comment">// SetClientToken sets field value.</span>
-<span id="L112" class="ln">   112  </span>func (o *RUMApplicationAttributes) SetClientToken(v string) {
-<span id="L113" class="ln">   113  </span>	o.ClientToken = v
-<span id="L114" class="ln">   114  </span>}
-<span id="L115" class="ln">   115  </span>
-<span id="L116" class="ln">   116  </span><span class="comment">// GetCreatedAt returns the CreatedAt field value.</span>
-<span id="L117" class="ln">   117  </span>func (o *RUMApplicationAttributes) GetCreatedAt() int64 {
-<span id="L118" class="ln">   118  </span>	if o == nil {
-<span id="L119" class="ln">   119  </span>		var ret int64
-<span id="L120" class="ln">   120  </span>		return ret
-<span id="L121" class="ln">   121  </span>	}
-<span id="L122" class="ln">   122  </span>	return o.CreatedAt
-<span id="L123" class="ln">   123  </span>}
-<span id="L124" class="ln">   124  </span>
-<span id="L125" class="ln">   125  </span><span class="comment">// GetCreatedAtOk returns a tuple with the CreatedAt field value</span>
-<span id="L126" class="ln">   126  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L127" class="ln">   127  </span>func (o *RUMApplicationAttributes) GetCreatedAtOk() (*int64, bool) {
-<span id="L128" class="ln">   128  </span>	if o == nil {
-<span id="L129" class="ln">   129  </span>		return nil, false
-<span id="L130" class="ln">   130  </span>	}
-<span id="L131" class="ln">   131  </span>	return &amp;o.CreatedAt, true
-<span id="L132" class="ln">   132  </span>}
-<span id="L133" class="ln">   133  </span>
-<span id="L134" class="ln">   134  </span><span class="comment">// SetCreatedAt sets field value.</span>
-<span id="L135" class="ln">   135  </span>func (o *RUMApplicationAttributes) SetCreatedAt(v int64) {
-<span id="L136" class="ln">   136  </span>	o.CreatedAt = v
-<span id="L137" class="ln">   137  </span>}
-<span id="L138" class="ln">   138  </span>
-<span id="L139" class="ln">   139  </span><span class="comment">// GetCreatedByHandle returns the CreatedByHandle field value.</span>
-<span id="L140" class="ln">   140  </span>func (o *RUMApplicationAttributes) GetCreatedByHandle() string {
-<span id="L141" class="ln">   141  </span>	if o == nil {
-<span id="L142" class="ln">   142  </span>		var ret string
-<span id="L143" class="ln">   143  </span>		return ret
-<span id="L144" class="ln">   144  </span>	}
-<span id="L145" class="ln">   145  </span>	return o.CreatedByHandle
-<span id="L146" class="ln">   146  </span>}
-<span id="L147" class="ln">   147  </span>
-<span id="L148" class="ln">   148  </span><span class="comment">// GetCreatedByHandleOk returns a tuple with the CreatedByHandle field value</span>
-<span id="L149" class="ln">   149  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L150" class="ln">   150  </span>func (o *RUMApplicationAttributes) GetCreatedByHandleOk() (*string, bool) {
-<span id="L151" class="ln">   151  </span>	if o == nil {
-<span id="L152" class="ln">   152  </span>		return nil, false
-<span id="L153" class="ln">   153  </span>	}
-<span id="L154" class="ln">   154  </span>	return &amp;o.CreatedByHandle, true
-<span id="L155" class="ln">   155  </span>}
-<span id="L156" class="ln">   156  </span>
-<span id="L157" class="ln">   157  </span><span class="comment">// SetCreatedByHandle sets field value.</span>
-<span id="L158" class="ln">   158  </span>func (o *RUMApplicationAttributes) SetCreatedByHandle(v string) {
-<span id="L159" class="ln">   159  </span>	o.CreatedByHandle = v
-<span id="L160" class="ln">   160  </span>}
-<span id="L161" class="ln">   161  </span>
-<span id="L162" class="ln">   162  </span><span class="comment">// GetHash returns the Hash field value if set, zero value otherwise.</span>
-<span id="L163" class="ln">   163  </span>func (o *RUMApplicationAttributes) GetHash() string {
-<span id="L164" class="ln">   164  </span>	if o == nil || o.Hash == nil {
-<span id="L165" class="ln">   165  </span>		var ret string
-<span id="L166" class="ln">   166  </span>		return ret
-<span id="L167" class="ln">   167  </span>	}
-<span id="L168" class="ln">   168  </span>	return *o.Hash
-<span id="L169" class="ln">   169  </span>}
-<span id="L170" class="ln">   170  </span>
-<span id="L171" class="ln">   171  </span><span class="comment">// GetHashOk returns a tuple with the Hash field value if set, nil otherwise</span>
-<span id="L172" class="ln">   172  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L173" class="ln">   173  </span>func (o *RUMApplicationAttributes) GetHashOk() (*string, bool) {
-<span id="L174" class="ln">   174  </span>	if o == nil || o.Hash == nil {
-<span id="L175" class="ln">   175  </span>		return nil, false
-<span id="L176" class="ln">   176  </span>	}
-<span id="L177" class="ln">   177  </span>	return o.Hash, true
-<span id="L178" class="ln">   178  </span>}
-<span id="L179" class="ln">   179  </span>
-<span id="L180" class="ln">   180  </span><span class="comment">// HasHash returns a boolean if a field has been set.</span>
-<span id="L181" class="ln">   181  </span>func (o *RUMApplicationAttributes) HasHash() bool {
-<span id="L182" class="ln">   182  </span>	return o != nil &amp;&amp; o.Hash != nil
-<span id="L183" class="ln">   183  </span>}
-<span id="L184" class="ln">   184  </span>
-<span id="L185" class="ln">   185  </span><span class="comment">// SetHash gets a reference to the given string and assigns it to the Hash field.</span>
-<span id="L186" class="ln">   186  </span>func (o *RUMApplicationAttributes) SetHash(v string) {
-<span id="L187" class="ln">   187  </span>	o.Hash = &amp;v
-<span id="L188" class="ln">   188  </span>}
-<span id="L189" class="ln">   189  </span>
-<span id="L190" class="ln">   190  </span><span class="comment">// GetIsActive returns the IsActive field value if set, zero value otherwise.</span>
-<span id="L191" class="ln">   191  </span>func (o *RUMApplicationAttributes) GetIsActive() bool {
-<span id="L192" class="ln">   192  </span>	if o == nil || o.IsActive == nil {
-<span id="L193" class="ln">   193  </span>		var ret bool
-<span id="L194" class="ln">   194  </span>		return ret
-<span id="L195" class="ln">   195  </span>	}
-<span id="L196" class="ln">   196  </span>	return *o.IsActive
-<span id="L197" class="ln">   197  </span>}
-<span id="L198" class="ln">   198  </span>
-<span id="L199" class="ln">   199  </span><span class="comment">// GetIsActiveOk returns a tuple with the IsActive field value if set, nil otherwise</span>
-<span id="L200" class="ln">   200  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L201" class="ln">   201  </span>func (o *RUMApplicationAttributes) GetIsActiveOk() (*bool, bool) {
-<span id="L202" class="ln">   202  </span>	if o == nil || o.IsActive == nil {
-<span id="L203" class="ln">   203  </span>		return nil, false
-<span id="L204" class="ln">   204  </span>	}
-<span id="L205" class="ln">   205  </span>	return o.IsActive, true
-<span id="L206" class="ln">   206  </span>}
-<span id="L207" class="ln">   207  </span>
-<span id="L208" class="ln">   208  </span><span class="comment">// HasIsActive returns a boolean if a field has been set.</span>
-<span id="L209" class="ln">   209  </span>func (o *RUMApplicationAttributes) HasIsActive() bool {
-<span id="L210" class="ln">   210  </span>	return o != nil &amp;&amp; o.IsActive != nil
-<span id="L211" class="ln">   211  </span>}
-<span id="L212" class="ln">   212  </span>
-<span id="L213" class="ln">   213  </span><span class="comment">// SetIsActive gets a reference to the given bool and assigns it to the IsActive field.</span>
-<span id="L214" class="ln">   214  </span>func (o *RUMApplicationAttributes) SetIsActive(v bool) {
-<span id="L215" class="ln">   215  </span>	o.IsActive = &amp;v
-<span id="L216" class="ln">   216  </span>}
-<span id="L217" class="ln">   217  </span>
-<span id="L218" class="ln">   218  </span><span class="comment">// GetName returns the Name field value.</span>
-<span id="L219" class="ln">   219  </span>func (o *RUMApplicationAttributes) GetName() string {
-<span id="L220" class="ln">   220  </span>	if o == nil {
-<span id="L221" class="ln">   221  </span>		var ret string
-<span id="L222" class="ln">   222  </span>		return ret
-<span id="L223" class="ln">   223  </span>	}
-<span id="L224" class="ln">   224  </span>	return o.Name
-<span id="L225" class="ln">   225  </span>}
-<span id="L226" class="ln">   226  </span>
-<span id="L227" class="ln">   227  </span><span class="comment">// GetNameOk returns a tuple with the Name field value</span>
-<span id="L228" class="ln">   228  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L229" class="ln">   229  </span>func (o *RUMApplicationAttributes) GetNameOk() (*string, bool) {
-<span id="L230" class="ln">   230  </span>	if o == nil {
-<span id="L231" class="ln">   231  </span>		return nil, false
-<span id="L232" class="ln">   232  </span>	}
-<span id="L233" class="ln">   233  </span>	return &amp;o.Name, true
-<span id="L234" class="ln">   234  </span>}
-<span id="L235" class="ln">   235  </span>
-<span id="L236" class="ln">   236  </span><span class="comment">// SetName sets field value.</span>
-<span id="L237" class="ln">   237  </span>func (o *RUMApplicationAttributes) SetName(v string) {
-<span id="L238" class="ln">   238  </span>	o.Name = v
-<span id="L239" class="ln">   239  </span>}
-<span id="L240" class="ln">   240  </span>
-<span id="L241" class="ln">   241  </span><span class="comment">// GetOrgId returns the OrgId field value.</span>
-<span id="L242" class="ln">   242  </span>func (o *RUMApplicationAttributes) GetOrgId() int32 {
-<span id="L243" class="ln">   243  </span>	if o == nil {
-<span id="L244" class="ln">   244  </span>		var ret int32
-<span id="L245" class="ln">   245  </span>		return ret
-<span id="L246" class="ln">   246  </span>	}
-<span id="L247" class="ln">   247  </span>	return o.OrgId
-<span id="L248" class="ln">   248  </span>}
-<span id="L249" class="ln">   249  </span>
-<span id="L250" class="ln">   250  </span><span class="comment">// GetOrgIdOk returns a tuple with the OrgId field value</span>
-<span id="L251" class="ln">   251  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L252" class="ln">   252  </span>func (o *RUMApplicationAttributes) GetOrgIdOk() (*int32, bool) {
-<span id="L253" class="ln">   253  </span>	if o == nil {
-<span id="L254" class="ln">   254  </span>		return nil, false
-<span id="L255" class="ln">   255  </span>	}
-<span id="L256" class="ln">   256  </span>	return &amp;o.OrgId, true
-<span id="L257" class="ln">   257  </span>}
-<span id="L258" class="ln">   258  </span>
-<span id="L259" class="ln">   259  </span><span class="comment">// SetOrgId sets field value.</span>
-<span id="L260" class="ln">   260  </span>func (o *RUMApplicationAttributes) SetOrgId(v int32) {
-<span id="L261" class="ln">   261  </span>	o.OrgId = v
-<span id="L262" class="ln">   262  </span>}
-<span id="L263" class="ln">   263  </span>
-<span id="L264" class="ln">   264  </span><span class="comment">// GetProductScales returns the ProductScales field value if set, zero value otherwise.</span>
-<span id="L265" class="ln">   265  </span>func (o *RUMApplicationAttributes) GetProductScales() RUMProductScales {
-<span id="L266" class="ln">   266  </span>	if o == nil || o.ProductScales == nil {
-<span id="L267" class="ln">   267  </span>		var ret RUMProductScales
-<span id="L268" class="ln">   268  </span>		return ret
-<span id="L269" class="ln">   269  </span>	}
-<span id="L270" class="ln">   270  </span>	return *o.ProductScales
-<span id="L271" class="ln">   271  </span>}
-<span id="L272" class="ln">   272  </span>
-<span id="L273" class="ln">   273  </span><span class="comment">// GetProductScalesOk returns a tuple with the ProductScales field value if set, nil otherwise</span>
-<span id="L274" class="ln">   274  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L275" class="ln">   275  </span>func (o *RUMApplicationAttributes) GetProductScalesOk() (*RUMProductScales, bool) {
-<span id="L276" class="ln">   276  </span>	if o == nil || o.ProductScales == nil {
-<span id="L277" class="ln">   277  </span>		return nil, false
-<span id="L278" class="ln">   278  </span>	}
-<span id="L279" class="ln">   279  </span>	return o.ProductScales, true
-<span id="L280" class="ln">   280  </span>}
-<span id="L281" class="ln">   281  </span>
-<span id="L282" class="ln">   282  </span><span class="comment">// HasProductScales returns a boolean if a field has been set.</span>
-<span id="L283" class="ln">   283  </span>func (o *RUMApplicationAttributes) HasProductScales() bool {
-<span id="L284" class="ln">   284  </span>	return o != nil &amp;&amp; o.ProductScales != nil
-<span id="L285" class="ln">   285  </span>}
-<span id="L286" class="ln">   286  </span>
-<span id="L287" class="ln">   287  </span><span class="comment">// SetProductScales gets a reference to the given RUMProductScales and assigns it to the ProductScales field.</span>
-<span id="L288" class="ln">   288  </span>func (o *RUMApplicationAttributes) SetProductScales(v RUMProductScales) {
-<span id="L289" class="ln">   289  </span>	o.ProductScales = &amp;v
-<span id="L290" class="ln">   290  </span>}
-<span id="L291" class="ln">   291  </span>
-<span id="L292" class="ln">   292  </span><span class="comment">// GetType returns the Type field value.</span>
-<span id="L293" class="ln">   293  </span>func (o *RUMApplicationAttributes) GetType() string {
-<span id="L294" class="ln">   294  </span>	if o == nil {
-<span id="L295" class="ln">   295  </span>		var ret string
-<span id="L296" class="ln">   296  </span>		return ret
-<span id="L297" class="ln">   297  </span>	}
-<span id="L298" class="ln">   298  </span>	return o.Type
-<span id="L299" class="ln">   299  </span>}
-<span id="L300" class="ln">   300  </span>
-<span id="L301" class="ln">   301  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value</span>
-<span id="L302" class="ln">   302  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L303" class="ln">   303  </span>func (o *RUMApplicationAttributes) GetTypeOk() (*string, bool) {
-<span id="L304" class="ln">   304  </span>	if o == nil {
-<span id="L305" class="ln">   305  </span>		return nil, false
-<span id="L306" class="ln">   306  </span>	}
-<span id="L307" class="ln">   307  </span>	return &amp;o.Type, true
-<span id="L308" class="ln">   308  </span>}
-<span id="L309" class="ln">   309  </span>
-<span id="L310" class="ln">   310  </span><span class="comment">// SetType sets field value.</span>
-<span id="L311" class="ln">   311  </span>func (o *RUMApplicationAttributes) SetType(v string) {
-<span id="L312" class="ln">   312  </span>	o.Type = v
-<span id="L313" class="ln">   313  </span>}
-<span id="L314" class="ln">   314  </span>
-<span id="L315" class="ln">   315  </span><span class="comment">// GetUpdatedAt returns the UpdatedAt field value.</span>
-<span id="L316" class="ln">   316  </span>func (o *RUMApplicationAttributes) GetUpdatedAt() int64 {
-<span id="L317" class="ln">   317  </span>	if o == nil {
-<span id="L318" class="ln">   318  </span>		var ret int64
-<span id="L319" class="ln">   319  </span>		return ret
-<span id="L320" class="ln">   320  </span>	}
-<span id="L321" class="ln">   321  </span>	return o.UpdatedAt
-<span id="L322" class="ln">   322  </span>}
-<span id="L323" class="ln">   323  </span>
-<span id="L324" class="ln">   324  </span><span class="comment">// GetUpdatedAtOk returns a tuple with the UpdatedAt field value</span>
-<span id="L325" class="ln">   325  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L326" class="ln">   326  </span>func (o *RUMApplicationAttributes) GetUpdatedAtOk() (*int64, bool) {
-<span id="L327" class="ln">   327  </span>	if o == nil {
-<span id="L328" class="ln">   328  </span>		return nil, false
-<span id="L329" class="ln">   329  </span>	}
-<span id="L330" class="ln">   330  </span>	return &amp;o.UpdatedAt, true
-<span id="L331" class="ln">   331  </span>}
-<span id="L332" class="ln">   332  </span>
-<span id="L333" class="ln">   333  </span><span class="comment">// SetUpdatedAt sets field value.</span>
-<span id="L334" class="ln">   334  </span>func (o *RUMApplicationAttributes) SetUpdatedAt(v int64) {
-<span id="L335" class="ln">   335  </span>	o.UpdatedAt = v
-<span id="L336" class="ln">   336  </span>}
-<span id="L337" class="ln">   337  </span>
-<span id="L338" class="ln">   338  </span><span class="comment">// GetUpdatedByHandle returns the UpdatedByHandle field value.</span>
-<span id="L339" class="ln">   339  </span>func (o *RUMApplicationAttributes) GetUpdatedByHandle() string {
-<span id="L340" class="ln">   340  </span>	if o == nil {
-<span id="L341" class="ln">   341  </span>		var ret string
-<span id="L342" class="ln">   342  </span>		return ret
-<span id="L343" class="ln">   343  </span>	}
-<span id="L344" class="ln">   344  </span>	return o.UpdatedByHandle
-<span id="L345" class="ln">   345  </span>}
-<span id="L346" class="ln">   346  </span>
-<span id="L347" class="ln">   347  </span><span class="comment">// GetUpdatedByHandleOk returns a tuple with the UpdatedByHandle field value</span>
-<span id="L348" class="ln">   348  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L349" class="ln">   349  </span>func (o *RUMApplicationAttributes) GetUpdatedByHandleOk() (*string, bool) {
-<span id="L350" class="ln">   350  </span>	if o == nil {
-<span id="L351" class="ln">   351  </span>		return nil, false
-<span id="L352" class="ln">   352  </span>	}
-<span id="L353" class="ln">   353  </span>	return &amp;o.UpdatedByHandle, true
-<span id="L354" class="ln">   354  </span>}
-<span id="L355" class="ln">   355  </span>
-<span id="L356" class="ln">   356  </span><span class="comment">// SetUpdatedByHandle sets field value.</span>
-<span id="L357" class="ln">   357  </span>func (o *RUMApplicationAttributes) SetUpdatedByHandle(v string) {
-<span id="L358" class="ln">   358  </span>	o.UpdatedByHandle = v
-<span id="L359" class="ln">   359  </span>}
-<span id="L360" class="ln">   360  </span>
-<span id="L361" class="ln">   361  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L362" class="ln">   362  </span>func (o RUMApplicationAttributes) MarshalJSON() ([]byte, error) {
-<span id="L363" class="ln">   363  </span>	toSerialize := map[string]interface{}{}
-<span id="L364" class="ln">   364  </span>	if o.UnparsedObject != nil {
-<span id="L365" class="ln">   365  </span>		return datadog.Marshal(o.UnparsedObject)
-<span id="L366" class="ln">   366  </span>	}
-<span id="L367" class="ln">   367  </span>	toSerialize[&#34;application_id&#34;] = o.ApplicationId
-<span id="L368" class="ln">   368  </span>	toSerialize[&#34;client_token&#34;] = o.ClientToken
-<span id="L369" class="ln">   369  </span>	toSerialize[&#34;created_at&#34;] = o.CreatedAt
-<span id="L370" class="ln">   370  </span>	toSerialize[&#34;created_by_handle&#34;] = o.CreatedByHandle
-<span id="L371" class="ln">   371  </span>	if o.Hash != nil {
-<span id="L372" class="ln">   372  </span>		toSerialize[&#34;hash&#34;] = o.Hash
+<span id="L15" class="ln">    15  </span>	<span class="comment">// ID of the API key associated with the application.</span>
+<span id="L16" class="ln">    16  </span>	ApiKeyId *int32 `json:&#34;api_key_id,omitempty&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// ID of the RUM application.</span>
+<span id="L18" class="ln">    18  </span>	ApplicationId string `json:&#34;application_id&#34;`
+<span id="L19" class="ln">    19  </span>	<span class="comment">// Client token of the RUM application.</span>
+<span id="L20" class="ln">    20  </span>	ClientToken string `json:&#34;client_token&#34;`
+<span id="L21" class="ln">    21  </span>	<span class="comment">// Timestamp in ms of the creation date.</span>
+<span id="L22" class="ln">    22  </span>	CreatedAt int64 `json:&#34;created_at&#34;`
+<span id="L23" class="ln">    23  </span>	<span class="comment">// Handle of the creator user.</span>
+<span id="L24" class="ln">    24  </span>	CreatedByHandle string `json:&#34;created_by_handle&#34;`
+<span id="L25" class="ln">    25  </span>	<span class="comment">// Hash of the RUM application. Optional.</span>
+<span id="L26" class="ln">    26  </span>	Hash *string `json:&#34;hash,omitempty&#34;`
+<span id="L27" class="ln">    27  </span>	<span class="comment">// Indicates if the RUM application is active.</span>
+<span id="L28" class="ln">    28  </span>	IsActive *bool `json:&#34;is_active,omitempty&#34;`
+<span id="L29" class="ln">    29  </span>	<span class="comment">// Name of the RUM application.</span>
+<span id="L30" class="ln">    30  </span>	Name string `json:&#34;name&#34;`
+<span id="L31" class="ln">    31  </span>	<span class="comment">// Org ID of the RUM application.</span>
+<span id="L32" class="ln">    32  </span>	OrgId int32 `json:&#34;org_id&#34;`
+<span id="L33" class="ln">    33  </span>	<span class="comment">// Product Scales configuration for the RUM application.</span>
+<span id="L34" class="ln">    34  </span>	ProductScales *RUMProductScales `json:&#34;product_scales,omitempty&#34;`
+<span id="L35" class="ln">    35  </span>	<span class="comment">// Type of the RUM application. Supported values are `browser`, `ios`, `android`, `react-native`, `flutter`, `roku`, `electron`, `unity`, `kotlin-multiplatform`.</span>
+<span id="L36" class="ln">    36  </span>	Type string `json:&#34;type&#34;`
+<span id="L37" class="ln">    37  </span>	<span class="comment">// Timestamp in ms of the last update date.</span>
+<span id="L38" class="ln">    38  </span>	UpdatedAt int64 `json:&#34;updated_at&#34;`
+<span id="L39" class="ln">    39  </span>	<span class="comment">// Handle of the updater user.</span>
+<span id="L40" class="ln">    40  </span>	UpdatedByHandle string `json:&#34;updated_by_handle&#34;`
+<span id="L41" class="ln">    41  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L42" class="ln">    42  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L43" class="ln">    43  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L44" class="ln">    44  </span>}
+<span id="L45" class="ln">    45  </span>
+<span id="L46" class="ln">    46  </span><span class="comment">// NewRUMApplicationAttributes instantiates a new RUMApplicationAttributes object.</span>
+<span id="L47" class="ln">    47  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L48" class="ln">    48  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L49" class="ln">    49  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L50" class="ln">    50  </span>func NewRUMApplicationAttributes(applicationId string, clientToken string, createdAt int64, createdByHandle string, name string, orgId int32, typeVar string, updatedAt int64, updatedByHandle string) *RUMApplicationAttributes {
+<span id="L51" class="ln">    51  </span>	this := RUMApplicationAttributes{}
+<span id="L52" class="ln">    52  </span>	this.ApplicationId = applicationId
+<span id="L53" class="ln">    53  </span>	this.ClientToken = clientToken
+<span id="L54" class="ln">    54  </span>	this.CreatedAt = createdAt
+<span id="L55" class="ln">    55  </span>	this.CreatedByHandle = createdByHandle
+<span id="L56" class="ln">    56  </span>	this.Name = name
+<span id="L57" class="ln">    57  </span>	this.OrgId = orgId
+<span id="L58" class="ln">    58  </span>	this.Type = typeVar
+<span id="L59" class="ln">    59  </span>	this.UpdatedAt = updatedAt
+<span id="L60" class="ln">    60  </span>	this.UpdatedByHandle = updatedByHandle
+<span id="L61" class="ln">    61  </span>	return &amp;this
+<span id="L62" class="ln">    62  </span>}
+<span id="L63" class="ln">    63  </span>
+<span id="L64" class="ln">    64  </span><span class="comment">// NewRUMApplicationAttributesWithDefaults instantiates a new RUMApplicationAttributes object.</span>
+<span id="L65" class="ln">    65  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L66" class="ln">    66  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L67" class="ln">    67  </span>func NewRUMApplicationAttributesWithDefaults() *RUMApplicationAttributes {
+<span id="L68" class="ln">    68  </span>	this := RUMApplicationAttributes{}
+<span id="L69" class="ln">    69  </span>	return &amp;this
+<span id="L70" class="ln">    70  </span>}
+<span id="L71" class="ln">    71  </span>
+<span id="L72" class="ln">    72  </span><span class="comment">// GetApiKeyId returns the ApiKeyId field value if set, zero value otherwise.</span>
+<span id="L73" class="ln">    73  </span>func (o *RUMApplicationAttributes) GetApiKeyId() int32 {
+<span id="L74" class="ln">    74  </span>	if o == nil || o.ApiKeyId == nil {
+<span id="L75" class="ln">    75  </span>		var ret int32
+<span id="L76" class="ln">    76  </span>		return ret
+<span id="L77" class="ln">    77  </span>	}
+<span id="L78" class="ln">    78  </span>	return *o.ApiKeyId
+<span id="L79" class="ln">    79  </span>}
+<span id="L80" class="ln">    80  </span>
+<span id="L81" class="ln">    81  </span><span class="comment">// GetApiKeyIdOk returns a tuple with the ApiKeyId field value if set, nil otherwise</span>
+<span id="L82" class="ln">    82  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L83" class="ln">    83  </span>func (o *RUMApplicationAttributes) GetApiKeyIdOk() (*int32, bool) {
+<span id="L84" class="ln">    84  </span>	if o == nil || o.ApiKeyId == nil {
+<span id="L85" class="ln">    85  </span>		return nil, false
+<span id="L86" class="ln">    86  </span>	}
+<span id="L87" class="ln">    87  </span>	return o.ApiKeyId, true
+<span id="L88" class="ln">    88  </span>}
+<span id="L89" class="ln">    89  </span>
+<span id="L90" class="ln">    90  </span><span class="comment">// HasApiKeyId returns a boolean if a field has been set.</span>
+<span id="L91" class="ln">    91  </span>func (o *RUMApplicationAttributes) HasApiKeyId() bool {
+<span id="L92" class="ln">    92  </span>	return o != nil &amp;&amp; o.ApiKeyId != nil
+<span id="L93" class="ln">    93  </span>}
+<span id="L94" class="ln">    94  </span>
+<span id="L95" class="ln">    95  </span><span class="comment">// SetApiKeyId gets a reference to the given int32 and assigns it to the ApiKeyId field.</span>
+<span id="L96" class="ln">    96  </span>func (o *RUMApplicationAttributes) SetApiKeyId(v int32) {
+<span id="L97" class="ln">    97  </span>	o.ApiKeyId = &amp;v
+<span id="L98" class="ln">    98  </span>}
+<span id="L99" class="ln">    99  </span>
+<span id="L100" class="ln">   100  </span><span class="comment">// GetApplicationId returns the ApplicationId field value.</span>
+<span id="L101" class="ln">   101  </span>func (o *RUMApplicationAttributes) GetApplicationId() string {
+<span id="L102" class="ln">   102  </span>	if o == nil {
+<span id="L103" class="ln">   103  </span>		var ret string
+<span id="L104" class="ln">   104  </span>		return ret
+<span id="L105" class="ln">   105  </span>	}
+<span id="L106" class="ln">   106  </span>	return o.ApplicationId
+<span id="L107" class="ln">   107  </span>}
+<span id="L108" class="ln">   108  </span>
+<span id="L109" class="ln">   109  </span><span class="comment">// GetApplicationIdOk returns a tuple with the ApplicationId field value</span>
+<span id="L110" class="ln">   110  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L111" class="ln">   111  </span>func (o *RUMApplicationAttributes) GetApplicationIdOk() (*string, bool) {
+<span id="L112" class="ln">   112  </span>	if o == nil {
+<span id="L113" class="ln">   113  </span>		return nil, false
+<span id="L114" class="ln">   114  </span>	}
+<span id="L115" class="ln">   115  </span>	return &amp;o.ApplicationId, true
+<span id="L116" class="ln">   116  </span>}
+<span id="L117" class="ln">   117  </span>
+<span id="L118" class="ln">   118  </span><span class="comment">// SetApplicationId sets field value.</span>
+<span id="L119" class="ln">   119  </span>func (o *RUMApplicationAttributes) SetApplicationId(v string) {
+<span id="L120" class="ln">   120  </span>	o.ApplicationId = v
+<span id="L121" class="ln">   121  </span>}
+<span id="L122" class="ln">   122  </span>
+<span id="L123" class="ln">   123  </span><span class="comment">// GetClientToken returns the ClientToken field value.</span>
+<span id="L124" class="ln">   124  </span>func (o *RUMApplicationAttributes) GetClientToken() string {
+<span id="L125" class="ln">   125  </span>	if o == nil {
+<span id="L126" class="ln">   126  </span>		var ret string
+<span id="L127" class="ln">   127  </span>		return ret
+<span id="L128" class="ln">   128  </span>	}
+<span id="L129" class="ln">   129  </span>	return o.ClientToken
+<span id="L130" class="ln">   130  </span>}
+<span id="L131" class="ln">   131  </span>
+<span id="L132" class="ln">   132  </span><span class="comment">// GetClientTokenOk returns a tuple with the ClientToken field value</span>
+<span id="L133" class="ln">   133  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L134" class="ln">   134  </span>func (o *RUMApplicationAttributes) GetClientTokenOk() (*string, bool) {
+<span id="L135" class="ln">   135  </span>	if o == nil {
+<span id="L136" class="ln">   136  </span>		return nil, false
+<span id="L137" class="ln">   137  </span>	}
+<span id="L138" class="ln">   138  </span>	return &amp;o.ClientToken, true
+<span id="L139" class="ln">   139  </span>}
+<span id="L140" class="ln">   140  </span>
+<span id="L141" class="ln">   141  </span><span class="comment">// SetClientToken sets field value.</span>
+<span id="L142" class="ln">   142  </span>func (o *RUMApplicationAttributes) SetClientToken(v string) {
+<span id="L143" class="ln">   143  </span>	o.ClientToken = v
+<span id="L144" class="ln">   144  </span>}
+<span id="L145" class="ln">   145  </span>
+<span id="L146" class="ln">   146  </span><span class="comment">// GetCreatedAt returns the CreatedAt field value.</span>
+<span id="L147" class="ln">   147  </span>func (o *RUMApplicationAttributes) GetCreatedAt() int64 {
+<span id="L148" class="ln">   148  </span>	if o == nil {
+<span id="L149" class="ln">   149  </span>		var ret int64
+<span id="L150" class="ln">   150  </span>		return ret
+<span id="L151" class="ln">   151  </span>	}
+<span id="L152" class="ln">   152  </span>	return o.CreatedAt
+<span id="L153" class="ln">   153  </span>}
+<span id="L154" class="ln">   154  </span>
+<span id="L155" class="ln">   155  </span><span class="comment">// GetCreatedAtOk returns a tuple with the CreatedAt field value</span>
+<span id="L156" class="ln">   156  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L157" class="ln">   157  </span>func (o *RUMApplicationAttributes) GetCreatedAtOk() (*int64, bool) {
+<span id="L158" class="ln">   158  </span>	if o == nil {
+<span id="L159" class="ln">   159  </span>		return nil, false
+<span id="L160" class="ln">   160  </span>	}
+<span id="L161" class="ln">   161  </span>	return &amp;o.CreatedAt, true
+<span id="L162" class="ln">   162  </span>}
+<span id="L163" class="ln">   163  </span>
+<span id="L164" class="ln">   164  </span><span class="comment">// SetCreatedAt sets field value.</span>
+<span id="L165" class="ln">   165  </span>func (o *RUMApplicationAttributes) SetCreatedAt(v int64) {
+<span id="L166" class="ln">   166  </span>	o.CreatedAt = v
+<span id="L167" class="ln">   167  </span>}
+<span id="L168" class="ln">   168  </span>
+<span id="L169" class="ln">   169  </span><span class="comment">// GetCreatedByHandle returns the CreatedByHandle field value.</span>
+<span id="L170" class="ln">   170  </span>func (o *RUMApplicationAttributes) GetCreatedByHandle() string {
+<span id="L171" class="ln">   171  </span>	if o == nil {
+<span id="L172" class="ln">   172  </span>		var ret string
+<span id="L173" class="ln">   173  </span>		return ret
+<span id="L174" class="ln">   174  </span>	}
+<span id="L175" class="ln">   175  </span>	return o.CreatedByHandle
+<span id="L176" class="ln">   176  </span>}
+<span id="L177" class="ln">   177  </span>
+<span id="L178" class="ln">   178  </span><span class="comment">// GetCreatedByHandleOk returns a tuple with the CreatedByHandle field value</span>
+<span id="L179" class="ln">   179  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L180" class="ln">   180  </span>func (o *RUMApplicationAttributes) GetCreatedByHandleOk() (*string, bool) {
+<span id="L181" class="ln">   181  </span>	if o == nil {
+<span id="L182" class="ln">   182  </span>		return nil, false
+<span id="L183" class="ln">   183  </span>	}
+<span id="L184" class="ln">   184  </span>	return &amp;o.CreatedByHandle, true
+<span id="L185" class="ln">   185  </span>}
+<span id="L186" class="ln">   186  </span>
+<span id="L187" class="ln">   187  </span><span class="comment">// SetCreatedByHandle sets field value.</span>
+<span id="L188" class="ln">   188  </span>func (o *RUMApplicationAttributes) SetCreatedByHandle(v string) {
+<span id="L189" class="ln">   189  </span>	o.CreatedByHandle = v
+<span id="L190" class="ln">   190  </span>}
+<span id="L191" class="ln">   191  </span>
+<span id="L192" class="ln">   192  </span><span class="comment">// GetHash returns the Hash field value if set, zero value otherwise.</span>
+<span id="L193" class="ln">   193  </span>func (o *RUMApplicationAttributes) GetHash() string {
+<span id="L194" class="ln">   194  </span>	if o == nil || o.Hash == nil {
+<span id="L195" class="ln">   195  </span>		var ret string
+<span id="L196" class="ln">   196  </span>		return ret
+<span id="L197" class="ln">   197  </span>	}
+<span id="L198" class="ln">   198  </span>	return *o.Hash
+<span id="L199" class="ln">   199  </span>}
+<span id="L200" class="ln">   200  </span>
+<span id="L201" class="ln">   201  </span><span class="comment">// GetHashOk returns a tuple with the Hash field value if set, nil otherwise</span>
+<span id="L202" class="ln">   202  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L203" class="ln">   203  </span>func (o *RUMApplicationAttributes) GetHashOk() (*string, bool) {
+<span id="L204" class="ln">   204  </span>	if o == nil || o.Hash == nil {
+<span id="L205" class="ln">   205  </span>		return nil, false
+<span id="L206" class="ln">   206  </span>	}
+<span id="L207" class="ln">   207  </span>	return o.Hash, true
+<span id="L208" class="ln">   208  </span>}
+<span id="L209" class="ln">   209  </span>
+<span id="L210" class="ln">   210  </span><span class="comment">// HasHash returns a boolean if a field has been set.</span>
+<span id="L211" class="ln">   211  </span>func (o *RUMApplicationAttributes) HasHash() bool {
+<span id="L212" class="ln">   212  </span>	return o != nil &amp;&amp; o.Hash != nil
+<span id="L213" class="ln">   213  </span>}
+<span id="L214" class="ln">   214  </span>
+<span id="L215" class="ln">   215  </span><span class="comment">// SetHash gets a reference to the given string and assigns it to the Hash field.</span>
+<span id="L216" class="ln">   216  </span>func (o *RUMApplicationAttributes) SetHash(v string) {
+<span id="L217" class="ln">   217  </span>	o.Hash = &amp;v
+<span id="L218" class="ln">   218  </span>}
+<span id="L219" class="ln">   219  </span>
+<span id="L220" class="ln">   220  </span><span class="comment">// GetIsActive returns the IsActive field value if set, zero value otherwise.</span>
+<span id="L221" class="ln">   221  </span>func (o *RUMApplicationAttributes) GetIsActive() bool {
+<span id="L222" class="ln">   222  </span>	if o == nil || o.IsActive == nil {
+<span id="L223" class="ln">   223  </span>		var ret bool
+<span id="L224" class="ln">   224  </span>		return ret
+<span id="L225" class="ln">   225  </span>	}
+<span id="L226" class="ln">   226  </span>	return *o.IsActive
+<span id="L227" class="ln">   227  </span>}
+<span id="L228" class="ln">   228  </span>
+<span id="L229" class="ln">   229  </span><span class="comment">// GetIsActiveOk returns a tuple with the IsActive field value if set, nil otherwise</span>
+<span id="L230" class="ln">   230  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L231" class="ln">   231  </span>func (o *RUMApplicationAttributes) GetIsActiveOk() (*bool, bool) {
+<span id="L232" class="ln">   232  </span>	if o == nil || o.IsActive == nil {
+<span id="L233" class="ln">   233  </span>		return nil, false
+<span id="L234" class="ln">   234  </span>	}
+<span id="L235" class="ln">   235  </span>	return o.IsActive, true
+<span id="L236" class="ln">   236  </span>}
+<span id="L237" class="ln">   237  </span>
+<span id="L238" class="ln">   238  </span><span class="comment">// HasIsActive returns a boolean if a field has been set.</span>
+<span id="L239" class="ln">   239  </span>func (o *RUMApplicationAttributes) HasIsActive() bool {
+<span id="L240" class="ln">   240  </span>	return o != nil &amp;&amp; o.IsActive != nil
+<span id="L241" class="ln">   241  </span>}
+<span id="L242" class="ln">   242  </span>
+<span id="L243" class="ln">   243  </span><span class="comment">// SetIsActive gets a reference to the given bool and assigns it to the IsActive field.</span>
+<span id="L244" class="ln">   244  </span>func (o *RUMApplicationAttributes) SetIsActive(v bool) {
+<span id="L245" class="ln">   245  </span>	o.IsActive = &amp;v
+<span id="L246" class="ln">   246  </span>}
+<span id="L247" class="ln">   247  </span>
+<span id="L248" class="ln">   248  </span><span class="comment">// GetName returns the Name field value.</span>
+<span id="L249" class="ln">   249  </span>func (o *RUMApplicationAttributes) GetName() string {
+<span id="L250" class="ln">   250  </span>	if o == nil {
+<span id="L251" class="ln">   251  </span>		var ret string
+<span id="L252" class="ln">   252  </span>		return ret
+<span id="L253" class="ln">   253  </span>	}
+<span id="L254" class="ln">   254  </span>	return o.Name
+<span id="L255" class="ln">   255  </span>}
+<span id="L256" class="ln">   256  </span>
+<span id="L257" class="ln">   257  </span><span class="comment">// GetNameOk returns a tuple with the Name field value</span>
+<span id="L258" class="ln">   258  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L259" class="ln">   259  </span>func (o *RUMApplicationAttributes) GetNameOk() (*string, bool) {
+<span id="L260" class="ln">   260  </span>	if o == nil {
+<span id="L261" class="ln">   261  </span>		return nil, false
+<span id="L262" class="ln">   262  </span>	}
+<span id="L263" class="ln">   263  </span>	return &amp;o.Name, true
+<span id="L264" class="ln">   264  </span>}
+<span id="L265" class="ln">   265  </span>
+<span id="L266" class="ln">   266  </span><span class="comment">// SetName sets field value.</span>
+<span id="L267" class="ln">   267  </span>func (o *RUMApplicationAttributes) SetName(v string) {
+<span id="L268" class="ln">   268  </span>	o.Name = v
+<span id="L269" class="ln">   269  </span>}
+<span id="L270" class="ln">   270  </span>
+<span id="L271" class="ln">   271  </span><span class="comment">// GetOrgId returns the OrgId field value.</span>
+<span id="L272" class="ln">   272  </span>func (o *RUMApplicationAttributes) GetOrgId() int32 {
+<span id="L273" class="ln">   273  </span>	if o == nil {
+<span id="L274" class="ln">   274  </span>		var ret int32
+<span id="L275" class="ln">   275  </span>		return ret
+<span id="L276" class="ln">   276  </span>	}
+<span id="L277" class="ln">   277  </span>	return o.OrgId
+<span id="L278" class="ln">   278  </span>}
+<span id="L279" class="ln">   279  </span>
+<span id="L280" class="ln">   280  </span><span class="comment">// GetOrgIdOk returns a tuple with the OrgId field value</span>
+<span id="L281" class="ln">   281  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L282" class="ln">   282  </span>func (o *RUMApplicationAttributes) GetOrgIdOk() (*int32, bool) {
+<span id="L283" class="ln">   283  </span>	if o == nil {
+<span id="L284" class="ln">   284  </span>		return nil, false
+<span id="L285" class="ln">   285  </span>	}
+<span id="L286" class="ln">   286  </span>	return &amp;o.OrgId, true
+<span id="L287" class="ln">   287  </span>}
+<span id="L288" class="ln">   288  </span>
+<span id="L289" class="ln">   289  </span><span class="comment">// SetOrgId sets field value.</span>
+<span id="L290" class="ln">   290  </span>func (o *RUMApplicationAttributes) SetOrgId(v int32) {
+<span id="L291" class="ln">   291  </span>	o.OrgId = v
+<span id="L292" class="ln">   292  </span>}
+<span id="L293" class="ln">   293  </span>
+<span id="L294" class="ln">   294  </span><span class="comment">// GetProductScales returns the ProductScales field value if set, zero value otherwise.</span>
+<span id="L295" class="ln">   295  </span>func (o *RUMApplicationAttributes) GetProductScales() RUMProductScales {
+<span id="L296" class="ln">   296  </span>	if o == nil || o.ProductScales == nil {
+<span id="L297" class="ln">   297  </span>		var ret RUMProductScales
+<span id="L298" class="ln">   298  </span>		return ret
+<span id="L299" class="ln">   299  </span>	}
+<span id="L300" class="ln">   300  </span>	return *o.ProductScales
+<span id="L301" class="ln">   301  </span>}
+<span id="L302" class="ln">   302  </span>
+<span id="L303" class="ln">   303  </span><span class="comment">// GetProductScalesOk returns a tuple with the ProductScales field value if set, nil otherwise</span>
+<span id="L304" class="ln">   304  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L305" class="ln">   305  </span>func (o *RUMApplicationAttributes) GetProductScalesOk() (*RUMProductScales, bool) {
+<span id="L306" class="ln">   306  </span>	if o == nil || o.ProductScales == nil {
+<span id="L307" class="ln">   307  </span>		return nil, false
+<span id="L308" class="ln">   308  </span>	}
+<span id="L309" class="ln">   309  </span>	return o.ProductScales, true
+<span id="L310" class="ln">   310  </span>}
+<span id="L311" class="ln">   311  </span>
+<span id="L312" class="ln">   312  </span><span class="comment">// HasProductScales returns a boolean if a field has been set.</span>
+<span id="L313" class="ln">   313  </span>func (o *RUMApplicationAttributes) HasProductScales() bool {
+<span id="L314" class="ln">   314  </span>	return o != nil &amp;&amp; o.ProductScales != nil
+<span id="L315" class="ln">   315  </span>}
+<span id="L316" class="ln">   316  </span>
+<span id="L317" class="ln">   317  </span><span class="comment">// SetProductScales gets a reference to the given RUMProductScales and assigns it to the ProductScales field.</span>
+<span id="L318" class="ln">   318  </span>func (o *RUMApplicationAttributes) SetProductScales(v RUMProductScales) {
+<span id="L319" class="ln">   319  </span>	o.ProductScales = &amp;v
+<span id="L320" class="ln">   320  </span>}
+<span id="L321" class="ln">   321  </span>
+<span id="L322" class="ln">   322  </span><span class="comment">// GetType returns the Type field value.</span>
+<span id="L323" class="ln">   323  </span>func (o *RUMApplicationAttributes) GetType() string {
+<span id="L324" class="ln">   324  </span>	if o == nil {
+<span id="L325" class="ln">   325  </span>		var ret string
+<span id="L326" class="ln">   326  </span>		return ret
+<span id="L327" class="ln">   327  </span>	}
+<span id="L328" class="ln">   328  </span>	return o.Type
+<span id="L329" class="ln">   329  </span>}
+<span id="L330" class="ln">   330  </span>
+<span id="L331" class="ln">   331  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value</span>
+<span id="L332" class="ln">   332  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L333" class="ln">   333  </span>func (o *RUMApplicationAttributes) GetTypeOk() (*string, bool) {
+<span id="L334" class="ln">   334  </span>	if o == nil {
+<span id="L335" class="ln">   335  </span>		return nil, false
+<span id="L336" class="ln">   336  </span>	}
+<span id="L337" class="ln">   337  </span>	return &amp;o.Type, true
+<span id="L338" class="ln">   338  </span>}
+<span id="L339" class="ln">   339  </span>
+<span id="L340" class="ln">   340  </span><span class="comment">// SetType sets field value.</span>
+<span id="L341" class="ln">   341  </span>func (o *RUMApplicationAttributes) SetType(v string) {
+<span id="L342" class="ln">   342  </span>	o.Type = v
+<span id="L343" class="ln">   343  </span>}
+<span id="L344" class="ln">   344  </span>
+<span id="L345" class="ln">   345  </span><span class="comment">// GetUpdatedAt returns the UpdatedAt field value.</span>
+<span id="L346" class="ln">   346  </span>func (o *RUMApplicationAttributes) GetUpdatedAt() int64 {
+<span id="L347" class="ln">   347  </span>	if o == nil {
+<span id="L348" class="ln">   348  </span>		var ret int64
+<span id="L349" class="ln">   349  </span>		return ret
+<span id="L350" class="ln">   350  </span>	}
+<span id="L351" class="ln">   351  </span>	return o.UpdatedAt
+<span id="L352" class="ln">   352  </span>}
+<span id="L353" class="ln">   353  </span>
+<span id="L354" class="ln">   354  </span><span class="comment">// GetUpdatedAtOk returns a tuple with the UpdatedAt field value</span>
+<span id="L355" class="ln">   355  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L356" class="ln">   356  </span>func (o *RUMApplicationAttributes) GetUpdatedAtOk() (*int64, bool) {
+<span id="L357" class="ln">   357  </span>	if o == nil {
+<span id="L358" class="ln">   358  </span>		return nil, false
+<span id="L359" class="ln">   359  </span>	}
+<span id="L360" class="ln">   360  </span>	return &amp;o.UpdatedAt, true
+<span id="L361" class="ln">   361  </span>}
+<span id="L362" class="ln">   362  </span>
+<span id="L363" class="ln">   363  </span><span class="comment">// SetUpdatedAt sets field value.</span>
+<span id="L364" class="ln">   364  </span>func (o *RUMApplicationAttributes) SetUpdatedAt(v int64) {
+<span id="L365" class="ln">   365  </span>	o.UpdatedAt = v
+<span id="L366" class="ln">   366  </span>}
+<span id="L367" class="ln">   367  </span>
+<span id="L368" class="ln">   368  </span><span class="comment">// GetUpdatedByHandle returns the UpdatedByHandle field value.</span>
+<span id="L369" class="ln">   369  </span>func (o *RUMApplicationAttributes) GetUpdatedByHandle() string {
+<span id="L370" class="ln">   370  </span>	if o == nil {
+<span id="L371" class="ln">   371  </span>		var ret string
+<span id="L372" class="ln">   372  </span>		return ret
 <span id="L373" class="ln">   373  </span>	}
-<span id="L374" class="ln">   374  </span>	if o.IsActive != nil {
-<span id="L375" class="ln">   375  </span>		toSerialize[&#34;is_active&#34;] = o.IsActive
-<span id="L376" class="ln">   376  </span>	}
-<span id="L377" class="ln">   377  </span>	toSerialize[&#34;name&#34;] = o.Name
-<span id="L378" class="ln">   378  </span>	toSerialize[&#34;org_id&#34;] = o.OrgId
-<span id="L379" class="ln">   379  </span>	if o.ProductScales != nil {
-<span id="L380" class="ln">   380  </span>		toSerialize[&#34;product_scales&#34;] = o.ProductScales
-<span id="L381" class="ln">   381  </span>	}
-<span id="L382" class="ln">   382  </span>	toSerialize[&#34;type&#34;] = o.Type
-<span id="L383" class="ln">   383  </span>	toSerialize[&#34;updated_at&#34;] = o.UpdatedAt
-<span id="L384" class="ln">   384  </span>	toSerialize[&#34;updated_by_handle&#34;] = o.UpdatedByHandle
+<span id="L374" class="ln">   374  </span>	return o.UpdatedByHandle
+<span id="L375" class="ln">   375  </span>}
+<span id="L376" class="ln">   376  </span>
+<span id="L377" class="ln">   377  </span><span class="comment">// GetUpdatedByHandleOk returns a tuple with the UpdatedByHandle field value</span>
+<span id="L378" class="ln">   378  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L379" class="ln">   379  </span>func (o *RUMApplicationAttributes) GetUpdatedByHandleOk() (*string, bool) {
+<span id="L380" class="ln">   380  </span>	if o == nil {
+<span id="L381" class="ln">   381  </span>		return nil, false
+<span id="L382" class="ln">   382  </span>	}
+<span id="L383" class="ln">   383  </span>	return &amp;o.UpdatedByHandle, true
+<span id="L384" class="ln">   384  </span>}
 <span id="L385" class="ln">   385  </span>
-<span id="L386" class="ln">   386  </span>	for key, value := range o.AdditionalProperties {
-<span id="L387" class="ln">   387  </span>		toSerialize[key] = value
-<span id="L388" class="ln">   388  </span>	}
-<span id="L389" class="ln">   389  </span>	return datadog.Marshal(toSerialize)
-<span id="L390" class="ln">   390  </span>}
-<span id="L391" class="ln">   391  </span>
-<span id="L392" class="ln">   392  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L393" class="ln">   393  </span>func (o *RUMApplicationAttributes) UnmarshalJSON(bytes []byte) (err error) {
-<span id="L394" class="ln">   394  </span>	all := struct {
-<span id="L395" class="ln">   395  </span>		ApplicationId   *string           `json:&#34;application_id&#34;`
-<span id="L396" class="ln">   396  </span>		ClientToken     *string           `json:&#34;client_token&#34;`
-<span id="L397" class="ln">   397  </span>		CreatedAt       *int64            `json:&#34;created_at&#34;`
-<span id="L398" class="ln">   398  </span>		CreatedByHandle *string           `json:&#34;created_by_handle&#34;`
-<span id="L399" class="ln">   399  </span>		Hash            *string           `json:&#34;hash,omitempty&#34;`
-<span id="L400" class="ln">   400  </span>		IsActive        *bool             `json:&#34;is_active,omitempty&#34;`
-<span id="L401" class="ln">   401  </span>		Name            *string           `json:&#34;name&#34;`
-<span id="L402" class="ln">   402  </span>		OrgId           *int32            `json:&#34;org_id&#34;`
-<span id="L403" class="ln">   403  </span>		ProductScales   *RUMProductScales `json:&#34;product_scales,omitempty&#34;`
-<span id="L404" class="ln">   404  </span>		Type            *string           `json:&#34;type&#34;`
-<span id="L405" class="ln">   405  </span>		UpdatedAt       *int64            `json:&#34;updated_at&#34;`
-<span id="L406" class="ln">   406  </span>		UpdatedByHandle *string           `json:&#34;updated_by_handle&#34;`
-<span id="L407" class="ln">   407  </span>	}{}
-<span id="L408" class="ln">   408  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
-<span id="L409" class="ln">   409  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L410" class="ln">   410  </span>	}
-<span id="L411" class="ln">   411  </span>	if all.ApplicationId == nil {
-<span id="L412" class="ln">   412  </span>		return fmt.Errorf(&#34;required field application_id missing&#34;)
-<span id="L413" class="ln">   413  </span>	}
-<span id="L414" class="ln">   414  </span>	if all.ClientToken == nil {
-<span id="L415" class="ln">   415  </span>		return fmt.Errorf(&#34;required field client_token missing&#34;)
-<span id="L416" class="ln">   416  </span>	}
-<span id="L417" class="ln">   417  </span>	if all.CreatedAt == nil {
-<span id="L418" class="ln">   418  </span>		return fmt.Errorf(&#34;required field created_at missing&#34;)
-<span id="L419" class="ln">   419  </span>	}
-<span id="L420" class="ln">   420  </span>	if all.CreatedByHandle == nil {
-<span id="L421" class="ln">   421  </span>		return fmt.Errorf(&#34;required field created_by_handle missing&#34;)
-<span id="L422" class="ln">   422  </span>	}
-<span id="L423" class="ln">   423  </span>	if all.Name == nil {
-<span id="L424" class="ln">   424  </span>		return fmt.Errorf(&#34;required field name missing&#34;)
-<span id="L425" class="ln">   425  </span>	}
-<span id="L426" class="ln">   426  </span>	if all.OrgId == nil {
-<span id="L427" class="ln">   427  </span>		return fmt.Errorf(&#34;required field org_id missing&#34;)
-<span id="L428" class="ln">   428  </span>	}
-<span id="L429" class="ln">   429  </span>	if all.Type == nil {
-<span id="L430" class="ln">   430  </span>		return fmt.Errorf(&#34;required field type missing&#34;)
-<span id="L431" class="ln">   431  </span>	}
-<span id="L432" class="ln">   432  </span>	if all.UpdatedAt == nil {
-<span id="L433" class="ln">   433  </span>		return fmt.Errorf(&#34;required field updated_at missing&#34;)
-<span id="L434" class="ln">   434  </span>	}
-<span id="L435" class="ln">   435  </span>	if all.UpdatedByHandle == nil {
-<span id="L436" class="ln">   436  </span>		return fmt.Errorf(&#34;required field updated_by_handle missing&#34;)
-<span id="L437" class="ln">   437  </span>	}
-<span id="L438" class="ln">   438  </span>	additionalProperties := make(map[string]interface{})
-<span id="L439" class="ln">   439  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L440" class="ln">   440  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;application_id&#34;, &#34;client_token&#34;, &#34;created_at&#34;, &#34;created_by_handle&#34;, &#34;hash&#34;, &#34;is_active&#34;, &#34;name&#34;, &#34;org_id&#34;, &#34;product_scales&#34;, &#34;type&#34;, &#34;updated_at&#34;, &#34;updated_by_handle&#34;})
-<span id="L441" class="ln">   441  </span>	} else {
-<span id="L442" class="ln">   442  </span>		return err
-<span id="L443" class="ln">   443  </span>	}
-<span id="L444" class="ln">   444  </span>
-<span id="L445" class="ln">   445  </span>	hasInvalidField := false
-<span id="L446" class="ln">   446  </span>	o.ApplicationId = *all.ApplicationId
-<span id="L447" class="ln">   447  </span>	o.ClientToken = *all.ClientToken
-<span id="L448" class="ln">   448  </span>	o.CreatedAt = *all.CreatedAt
-<span id="L449" class="ln">   449  </span>	o.CreatedByHandle = *all.CreatedByHandle
-<span id="L450" class="ln">   450  </span>	o.Hash = all.Hash
-<span id="L451" class="ln">   451  </span>	o.IsActive = all.IsActive
-<span id="L452" class="ln">   452  </span>	o.Name = *all.Name
-<span id="L453" class="ln">   453  </span>	o.OrgId = *all.OrgId
-<span id="L454" class="ln">   454  </span>	if all.ProductScales != nil &amp;&amp; all.ProductScales.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L455" class="ln">   455  </span>		hasInvalidField = true
+<span id="L386" class="ln">   386  </span><span class="comment">// SetUpdatedByHandle sets field value.</span>
+<span id="L387" class="ln">   387  </span>func (o *RUMApplicationAttributes) SetUpdatedByHandle(v string) {
+<span id="L388" class="ln">   388  </span>	o.UpdatedByHandle = v
+<span id="L389" class="ln">   389  </span>}
+<span id="L390" class="ln">   390  </span>
+<span id="L391" class="ln">   391  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L392" class="ln">   392  </span>func (o RUMApplicationAttributes) MarshalJSON() ([]byte, error) {
+<span id="L393" class="ln">   393  </span>	toSerialize := map[string]interface{}{}
+<span id="L394" class="ln">   394  </span>	if o.UnparsedObject != nil {
+<span id="L395" class="ln">   395  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L396" class="ln">   396  </span>	}
+<span id="L397" class="ln">   397  </span>	if o.ApiKeyId != nil {
+<span id="L398" class="ln">   398  </span>		toSerialize[&#34;api_key_id&#34;] = o.ApiKeyId
+<span id="L399" class="ln">   399  </span>	}
+<span id="L400" class="ln">   400  </span>	toSerialize[&#34;application_id&#34;] = o.ApplicationId
+<span id="L401" class="ln">   401  </span>	toSerialize[&#34;client_token&#34;] = o.ClientToken
+<span id="L402" class="ln">   402  </span>	toSerialize[&#34;created_at&#34;] = o.CreatedAt
+<span id="L403" class="ln">   403  </span>	toSerialize[&#34;created_by_handle&#34;] = o.CreatedByHandle
+<span id="L404" class="ln">   404  </span>	if o.Hash != nil {
+<span id="L405" class="ln">   405  </span>		toSerialize[&#34;hash&#34;] = o.Hash
+<span id="L406" class="ln">   406  </span>	}
+<span id="L407" class="ln">   407  </span>	if o.IsActive != nil {
+<span id="L408" class="ln">   408  </span>		toSerialize[&#34;is_active&#34;] = o.IsActive
+<span id="L409" class="ln">   409  </span>	}
+<span id="L410" class="ln">   410  </span>	toSerialize[&#34;name&#34;] = o.Name
+<span id="L411" class="ln">   411  </span>	toSerialize[&#34;org_id&#34;] = o.OrgId
+<span id="L412" class="ln">   412  </span>	if o.ProductScales != nil {
+<span id="L413" class="ln">   413  </span>		toSerialize[&#34;product_scales&#34;] = o.ProductScales
+<span id="L414" class="ln">   414  </span>	}
+<span id="L415" class="ln">   415  </span>	toSerialize[&#34;type&#34;] = o.Type
+<span id="L416" class="ln">   416  </span>	toSerialize[&#34;updated_at&#34;] = o.UpdatedAt
+<span id="L417" class="ln">   417  </span>	toSerialize[&#34;updated_by_handle&#34;] = o.UpdatedByHandle
+<span id="L418" class="ln">   418  </span>
+<span id="L419" class="ln">   419  </span>	for key, value := range o.AdditionalProperties {
+<span id="L420" class="ln">   420  </span>		toSerialize[key] = value
+<span id="L421" class="ln">   421  </span>	}
+<span id="L422" class="ln">   422  </span>	return datadog.Marshal(toSerialize)
+<span id="L423" class="ln">   423  </span>}
+<span id="L424" class="ln">   424  </span>
+<span id="L425" class="ln">   425  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L426" class="ln">   426  </span>func (o *RUMApplicationAttributes) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L427" class="ln">   427  </span>	all := struct {
+<span id="L428" class="ln">   428  </span>		ApiKeyId        *int32            `json:&#34;api_key_id,omitempty&#34;`
+<span id="L429" class="ln">   429  </span>		ApplicationId   *string           `json:&#34;application_id&#34;`
+<span id="L430" class="ln">   430  </span>		ClientToken     *string           `json:&#34;client_token&#34;`
+<span id="L431" class="ln">   431  </span>		CreatedAt       *int64            `json:&#34;created_at&#34;`
+<span id="L432" class="ln">   432  </span>		CreatedByHandle *string           `json:&#34;created_by_handle&#34;`
+<span id="L433" class="ln">   433  </span>		Hash            *string           `json:&#34;hash,omitempty&#34;`
+<span id="L434" class="ln">   434  </span>		IsActive        *bool             `json:&#34;is_active,omitempty&#34;`
+<span id="L435" class="ln">   435  </span>		Name            *string           `json:&#34;name&#34;`
+<span id="L436" class="ln">   436  </span>		OrgId           *int32            `json:&#34;org_id&#34;`
+<span id="L437" class="ln">   437  </span>		ProductScales   *RUMProductScales `json:&#34;product_scales,omitempty&#34;`
+<span id="L438" class="ln">   438  </span>		Type            *string           `json:&#34;type&#34;`
+<span id="L439" class="ln">   439  </span>		UpdatedAt       *int64            `json:&#34;updated_at&#34;`
+<span id="L440" class="ln">   440  </span>		UpdatedByHandle *string           `json:&#34;updated_by_handle&#34;`
+<span id="L441" class="ln">   441  </span>	}{}
+<span id="L442" class="ln">   442  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L443" class="ln">   443  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L444" class="ln">   444  </span>	}
+<span id="L445" class="ln">   445  </span>	if all.ApplicationId == nil {
+<span id="L446" class="ln">   446  </span>		return fmt.Errorf(&#34;required field application_id missing&#34;)
+<span id="L447" class="ln">   447  </span>	}
+<span id="L448" class="ln">   448  </span>	if all.ClientToken == nil {
+<span id="L449" class="ln">   449  </span>		return fmt.Errorf(&#34;required field client_token missing&#34;)
+<span id="L450" class="ln">   450  </span>	}
+<span id="L451" class="ln">   451  </span>	if all.CreatedAt == nil {
+<span id="L452" class="ln">   452  </span>		return fmt.Errorf(&#34;required field created_at missing&#34;)
+<span id="L453" class="ln">   453  </span>	}
+<span id="L454" class="ln">   454  </span>	if all.CreatedByHandle == nil {
+<span id="L455" class="ln">   455  </span>		return fmt.Errorf(&#34;required field created_by_handle missing&#34;)
 <span id="L456" class="ln">   456  </span>	}
-<span id="L457" class="ln">   457  </span>	o.ProductScales = all.ProductScales
-<span id="L458" class="ln">   458  </span>	o.Type = *all.Type
-<span id="L459" class="ln">   459  </span>	o.UpdatedAt = *all.UpdatedAt
-<span id="L460" class="ln">   460  </span>	o.UpdatedByHandle = *all.UpdatedByHandle
-<span id="L461" class="ln">   461  </span>
-<span id="L462" class="ln">   462  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L463" class="ln">   463  </span>		o.AdditionalProperties = additionalProperties
-<span id="L464" class="ln">   464  </span>	}
-<span id="L465" class="ln">   465  </span>
-<span id="L466" class="ln">   466  </span>	if hasInvalidField {
-<span id="L467" class="ln">   467  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L457" class="ln">   457  </span>	if all.Name == nil {
+<span id="L458" class="ln">   458  </span>		return fmt.Errorf(&#34;required field name missing&#34;)
+<span id="L459" class="ln">   459  </span>	}
+<span id="L460" class="ln">   460  </span>	if all.OrgId == nil {
+<span id="L461" class="ln">   461  </span>		return fmt.Errorf(&#34;required field org_id missing&#34;)
+<span id="L462" class="ln">   462  </span>	}
+<span id="L463" class="ln">   463  </span>	if all.Type == nil {
+<span id="L464" class="ln">   464  </span>		return fmt.Errorf(&#34;required field type missing&#34;)
+<span id="L465" class="ln">   465  </span>	}
+<span id="L466" class="ln">   466  </span>	if all.UpdatedAt == nil {
+<span id="L467" class="ln">   467  </span>		return fmt.Errorf(&#34;required field updated_at missing&#34;)
 <span id="L468" class="ln">   468  </span>	}
-<span id="L469" class="ln">   469  </span>
-<span id="L470" class="ln">   470  </span>	return nil
-<span id="L471" class="ln">   471  </span>}
-<span id="L472" class="ln">   472  </span>
+<span id="L469" class="ln">   469  </span>	if all.UpdatedByHandle == nil {
+<span id="L470" class="ln">   470  </span>		return fmt.Errorf(&#34;required field updated_by_handle missing&#34;)
+<span id="L471" class="ln">   471  </span>	}
+<span id="L472" class="ln">   472  </span>	additionalProperties := make(map[string]interface{})
+<span id="L473" class="ln">   473  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L474" class="ln">   474  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;api_key_id&#34;, &#34;application_id&#34;, &#34;client_token&#34;, &#34;created_at&#34;, &#34;created_by_handle&#34;, &#34;hash&#34;, &#34;is_active&#34;, &#34;name&#34;, &#34;org_id&#34;, &#34;product_scales&#34;, &#34;type&#34;, &#34;updated_at&#34;, &#34;updated_by_handle&#34;})
+<span id="L475" class="ln">   475  </span>	} else {
+<span id="L476" class="ln">   476  </span>		return err
+<span id="L477" class="ln">   477  </span>	}
+<span id="L478" class="ln">   478  </span>
+<span id="L479" class="ln">   479  </span>	hasInvalidField := false
+<span id="L480" class="ln">   480  </span>	o.ApiKeyId = all.ApiKeyId
+<span id="L481" class="ln">   481  </span>	o.ApplicationId = *all.ApplicationId
+<span id="L482" class="ln">   482  </span>	o.ClientToken = *all.ClientToken
+<span id="L483" class="ln">   483  </span>	o.CreatedAt = *all.CreatedAt
+<span id="L484" class="ln">   484  </span>	o.CreatedByHandle = *all.CreatedByHandle
+<span id="L485" class="ln">   485  </span>	o.Hash = all.Hash
+<span id="L486" class="ln">   486  </span>	o.IsActive = all.IsActive
+<span id="L487" class="ln">   487  </span>	o.Name = *all.Name
+<span id="L488" class="ln">   488  </span>	o.OrgId = *all.OrgId
+<span id="L489" class="ln">   489  </span>	if all.ProductScales != nil &amp;&amp; all.ProductScales.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L490" class="ln">   490  </span>		hasInvalidField = true
+<span id="L491" class="ln">   491  </span>	}
+<span id="L492" class="ln">   492  </span>	o.ProductScales = all.ProductScales
+<span id="L493" class="ln">   493  </span>	o.Type = *all.Type
+<span id="L494" class="ln">   494  </span>	o.UpdatedAt = *all.UpdatedAt
+<span id="L495" class="ln">   495  </span>	o.UpdatedByHandle = *all.UpdatedByHandle
+<span id="L496" class="ln">   496  </span>
+<span id="L497" class="ln">   497  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L498" class="ln">   498  </span>		o.AdditionalProperties = additionalProperties
+<span id="L499" class="ln">   499  </span>	}
+<span id="L500" class="ln">   500  </span>
+<span id="L501" class="ln">   501  </span>	if hasInvalidField {
+<span id="L502" class="ln">   502  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L503" class="ln">   503  </span>	}
+<span id="L504" class="ln">   504  </span>
+<span id="L505" class="ln">   505  </span>	return nil
+<span id="L506" class="ln">   506  </span>}
+<span id="L507" class="ln">   507  </span>
 </pre><p></p>
 
 <div id="footer">
