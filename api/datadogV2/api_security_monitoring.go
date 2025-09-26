@@ -4531,14 +4531,39 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx 
 	return items, cancel
 }
 
+// ListSecurityMonitoringSuppressionsOptionalParameters holds optional parameters for ListSecurityMonitoringSuppressions.
+type ListSecurityMonitoringSuppressionsOptionalParameters struct {
+	Query *string
+}
+
+// NewListSecurityMonitoringSuppressionsOptionalParameters creates an empty struct for parameters.
+func NewListSecurityMonitoringSuppressionsOptionalParameters() *ListSecurityMonitoringSuppressionsOptionalParameters {
+	this := ListSecurityMonitoringSuppressionsOptionalParameters{}
+	return &this
+}
+
+// WithQuery sets the corresponding parameter name and returns the struct.
+func (r *ListSecurityMonitoringSuppressionsOptionalParameters) WithQuery(query string) *ListSecurityMonitoringSuppressionsOptionalParameters {
+	r.Query = &query
+	return r
+}
+
 // ListSecurityMonitoringSuppressions Get all suppression rules.
 // Get the list of all suppression rules.
-func (a *SecurityMonitoringApi) ListSecurityMonitoringSuppressions(ctx _context.Context) (SecurityMonitoringSuppressionsResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ListSecurityMonitoringSuppressions(ctx _context.Context, o ...ListSecurityMonitoringSuppressionsOptionalParameters) (SecurityMonitoringSuppressionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSuppressionsResponse
+		optionalParams      ListSecurityMonitoringSuppressionsOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListSecurityMonitoringSuppressionsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ListSecurityMonitoringSuppressions")
 	if err != nil {
@@ -4550,6 +4575,9 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSuppressions(ctx _context.
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.Query != nil {
+		localVarQueryParams.Add("query", datadog.ParameterToString(*optionalParams.Query, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {

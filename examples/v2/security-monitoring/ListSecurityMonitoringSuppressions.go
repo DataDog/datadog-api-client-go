@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.ListSecurityMonitoringSuppressions(ctx)
+	resp, r, err := api.ListSecurityMonitoringSuppressions(ctx, *datadogV2.NewListSecurityMonitoringSuppressionsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityMonitoringSuppressions`: %v\n", err)
