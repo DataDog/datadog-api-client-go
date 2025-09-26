@@ -1,4 +1,4 @@
-// List Cloud Cost Management GCP Usage Cost configs returns "OK" response
+// List Google Cloud Usage Cost configs returns "OK" response
 
 package main
 

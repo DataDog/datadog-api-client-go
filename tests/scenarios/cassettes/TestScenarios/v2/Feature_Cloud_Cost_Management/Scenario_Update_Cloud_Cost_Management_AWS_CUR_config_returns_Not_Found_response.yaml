@@ -10,10 +10,10 @@ interactions:
       - application/json
     id: 0
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/cost/aws_cur_config/12345678
+    url: https://api.datadoghq.com/api/v2/cost/aws_cur_config/123456
   response:
     body: '{"errors":[{"status":"404","title":"Cloud account not found","detail":"Cloud
-      account with ID 12345678 was not found"}]}'
+      account with ID 123456 was not found"}]}'
     code: 404
     duration: 0ms
     headers:

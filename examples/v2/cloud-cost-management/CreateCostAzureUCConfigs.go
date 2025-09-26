@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV2.AzureUCConfigPostRequest{
 		Data: datadogV2.AzureUCConfigPostData{
-			Attributes: datadogV2.AzureUCConfigPostRequestAttributes{
+			Attributes: &datadogV2.AzureUCConfigPostRequestAttributes{
 				AccountId: "1234abcd-1234-abcd-1234-1234abcd1234",
 				ActualBillConfig: datadogV2.BillConfig{
 					ExportName:       "dd-actual-export",
@@ -29,9 +29,8 @@ func main() {
 					StorageAccount:   "dd-storage-account",
 					StorageContainer: "dd-storage-container",
 				},
-				ClientId:  "1234abcd-1234-abcd-1234-1234abcd1234",
-				IsEnabled: datadog.PtrBool(true),
-				Scope:     "subscriptions/1234abcd-1234-abcd-1234-1234abcd1234",
+				ClientId: "1234abcd-1234-abcd-1234-1234abcd1234",
+				Scope:    "subscriptions/1234abcd-1234-abcd-1234-1234abcd1234",
 			},
 			Type: datadogV2.AZUREUCCONFIGPOSTREQUESTTYPE_AZURE_UC_CONFIG_POST_REQUEST,
 		},

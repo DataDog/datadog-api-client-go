@@ -1,4 +1,4 @@
-// Create Cloud Cost Management GCP Usage Cost config returns "OK" response
+// Create Google Cloud Usage Cost config returns "OK" response
 
 package main
 
@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV2.GCPUsageCostConfigPostRequest{
 		Data: datadogV2.GCPUsageCostConfigPostData{
-			Attributes: datadogV2.GCPUsageCostConfigPostRequestAttributes{
+			Attributes: &datadogV2.GCPUsageCostConfigPostRequestAttributes{
 				BillingAccountId:  "123456_A123BC_12AB34",
 				BucketName:        "dd-cost-bucket",
 				ExportDatasetName: "billing",

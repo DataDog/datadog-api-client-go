@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV2.AwsCURConfigPostRequest{
 		Data: datadogV2.AwsCURConfigPostData{
-			Attributes: datadogV2.AwsCURConfigPostRequestAttributes{
+			Attributes: &datadogV2.AwsCURConfigPostRequestAttributes{
 				AccountId:    "123456789123",
 				BucketName:   "dd-cost-bucket",
 				BucketRegion: datadog.PtrString("us-east-1"),

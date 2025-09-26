@@ -8,23 +8,6 @@ on:
         required: false
         type: string
         default: ''
-      enable-status-reporting:
-        description: 'Whether to post status checks to datadog-api-spec repo'
-        required: false
-        type: boolean
-        default: false
-      status-context:
-        description: 'Context for status checks'
-        required: false
-        type: string
-        default: 'master/unit'
-    secrets:
-      # Optional: Only needed for cross-repository status reporting when called
-      # from external repos (e.g., datadog-api-spec) for generated code changes
-      PIPELINE_GITHUB_APP_ID:
-        required: false
-      PIPELINE_GITHUB_APP_PRIVATE_KEY:
-        required: false
 
 jobs:
   test:
@@ -38,6 +21,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
+          repository: DataDog/datadog-api-client-go
           ref: ${{ inputs.target-branch || github.ref }}
       - name: Install Go
         uses: actions/setup-go@v4
@@ -50,24 +34,3 @@ jobs:
         env:
           TESTARGS: ${{ matrix.go-build-tags }}
 
-  report:
-    runs-on: ubuntu-latest
-    if: always() && github.event_name == 'pull_request' && contains(github.event.pull_request.head.ref, 'datadog-api-spec/generated/') && inputs.enable-status-reporting
-    needs:
-      - test
-    steps:
-      - name: Get GitHub App token
-        if: github.event_name == 'pull_request'
-        id: get_token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
-          private-key: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
-          repositories: datadog-api-spec
-      - name: Post status check
-        uses: DataDog/github-actions/post-status-check@v2
-        with:
-          github-token: ${{ steps.get_token.outputs.token }}
-          repo: datadog-api-spec
-          status: ${{ needs.test.result == 'cancelled' && 'pending' || needs.test.result == 'success' && 'success' || 'failure' }}
-          context: ${{ inputs.status-context }}
