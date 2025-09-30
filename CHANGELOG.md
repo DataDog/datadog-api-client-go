@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 2.47.0/2025-09-30
+
+### Added
+* Add API Key ID to rum application response [#3377](https://github.com/DataDog/datadog-api-client-go/pull/3377)
+* Add suppression list query string parameter [#3376](https://github.com/DataDog/datadog-api-client-go/pull/3376)
+* Add datastore trigger to workflows public API  [#3373](https://github.com/DataDog/datadog-api-client-go/pull/3373)
+* Add Google PubSub destination to the Observability Pipelines API [#3364](https://github.com/DataDog/datadog-api-client-go/pull/3364)
+* Add API spec for AWS Integrations standard and resource collection IAM permissions [#3362](https://github.com/DataDog/datadog-api-client-go/pull/3362)
+* Publish new incident impact APIs [#3355](https://github.com/DataDog/datadog-api-client-go/pull/3355)
+* Add product analytics to FormulaAndFunctionEventsDataSource [#3354](https://github.com/DataDog/datadog-api-client-go/pull/3354)
+* Add sequence detection to security monitoring rules [#3348](https://github.com/DataDog/datadog-api-client-go/pull/3348)
+* Update ci_app description with max 1 year event run duration restriction [#3333](https://github.com/DataDog/datadog-api-client-go/pull/3333)
+* Add Public Delete Dora Events Endpoints [#3330](https://github.com/DataDog/datadog-api-client-go/pull/3330)
+
+### Fixed
+* Remove any references to synthetics test suites [#3368](https://github.com/DataDog/datadog-api-client-go/pull/3368)
+
+### Changed
+* Add tag pipeline, custom allocation rule and get cloud account by id for AWS/Azure/GCP configs APIs [#3353](https://github.com/DataDog/datadog-api-client-go/pull/3353)
+
 ## 2.46.0/2025-09-15
 
 ### Added
