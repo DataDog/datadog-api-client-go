@@ -638,6 +638,7 @@ func NewConfiguration() *Configuration {
 			"v2.CreateIncidentNotificationTemplate":      false,
 			"v2.CreateIncidentTodo":                      false,
 			"v2.CreateIncidentType":                      false,
+			"v2.CreatePageFromIncident":                  false,
 			"v2.DeleteIncident":                          false,
 			"v2.DeleteIncidentImpact":                    false,
 			"v2.DeleteIncidentIntegration":               false,
