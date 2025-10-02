@@ -12,7 +12,6 @@ import (
 type MetricTagCardinalitiesMeta struct {
 	// The name of metric for which the tag cardinalities are returned.
 	// This matches the metric name provided in the request.
-	//
 	MetricName *string `json:"metric_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -15,12 +15,10 @@ import (
 type ObservabilityPipelineParseGrokProcessorRule struct {
 	// A list of Grok parsing rules that define how to extract fields from the source field.
 	// Each rule must contain a name and a valid Grok pattern.
-	//
 	MatchRules []ObservabilityPipelineParseGrokProcessorRuleMatchRule `json:"match_rules"`
 	// The name of the field in the log event to apply the Grok rules to.
 	Source string `json:"source"`
 	// A list of Grok helper rules that can be referenced by the parsing rules.
-	//
 	SupportRules []ObservabilityPipelineParseGrokProcessorRuleSupportRule `json:"support_rules,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
