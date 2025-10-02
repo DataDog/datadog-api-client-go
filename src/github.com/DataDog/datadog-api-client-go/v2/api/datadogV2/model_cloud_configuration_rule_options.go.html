@@ -71,103 +71,102 @@
 <span id="L14" class="ln">    14  </span>type CloudConfigurationRuleOptions struct {
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Options for cloud_configuration rules.</span>
 <span id="L16" class="ln">    16  </span>	<span class="comment">// Fields `resourceType` and `regoRule` are mandatory when managing custom `cloud_configuration` rules.</span>
-<span id="L17" class="ln">    17  </span>	<span class="comment">//</span>
-<span id="L18" class="ln">    18  </span>	ComplianceRuleOptions CloudConfigurationComplianceRuleOptions `json:&#34;complianceRuleOptions&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
-<span id="L20" class="ln">    20  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L21" class="ln">    21  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
-<span id="L22" class="ln">    22  </span>}
-<span id="L23" class="ln">    23  </span>
-<span id="L24" class="ln">    24  </span><span class="comment">// NewCloudConfigurationRuleOptions instantiates a new CloudConfigurationRuleOptions object.</span>
-<span id="L25" class="ln">    25  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
-<span id="L26" class="ln">    26  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
-<span id="L27" class="ln">    27  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L28" class="ln">    28  </span>func NewCloudConfigurationRuleOptions(complianceRuleOptions CloudConfigurationComplianceRuleOptions) *CloudConfigurationRuleOptions {
-<span id="L29" class="ln">    29  </span>	this := CloudConfigurationRuleOptions{}
-<span id="L30" class="ln">    30  </span>	this.ComplianceRuleOptions = complianceRuleOptions
-<span id="L31" class="ln">    31  </span>	return &amp;this
-<span id="L32" class="ln">    32  </span>}
-<span id="L33" class="ln">    33  </span>
-<span id="L34" class="ln">    34  </span><span class="comment">// NewCloudConfigurationRuleOptionsWithDefaults instantiates a new CloudConfigurationRuleOptions object.</span>
-<span id="L35" class="ln">    35  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
-<span id="L36" class="ln">    36  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L37" class="ln">    37  </span>func NewCloudConfigurationRuleOptionsWithDefaults() *CloudConfigurationRuleOptions {
-<span id="L38" class="ln">    38  </span>	this := CloudConfigurationRuleOptions{}
-<span id="L39" class="ln">    39  </span>	return &amp;this
-<span id="L40" class="ln">    40  </span>}
-<span id="L41" class="ln">    41  </span>
-<span id="L42" class="ln">    42  </span><span class="comment">// GetComplianceRuleOptions returns the ComplianceRuleOptions field value.</span>
-<span id="L43" class="ln">    43  </span>func (o *CloudConfigurationRuleOptions) GetComplianceRuleOptions() CloudConfigurationComplianceRuleOptions {
-<span id="L44" class="ln">    44  </span>	if o == nil {
-<span id="L45" class="ln">    45  </span>		var ret CloudConfigurationComplianceRuleOptions
-<span id="L46" class="ln">    46  </span>		return ret
-<span id="L47" class="ln">    47  </span>	}
-<span id="L48" class="ln">    48  </span>	return o.ComplianceRuleOptions
-<span id="L49" class="ln">    49  </span>}
-<span id="L50" class="ln">    50  </span>
-<span id="L51" class="ln">    51  </span><span class="comment">// GetComplianceRuleOptionsOk returns a tuple with the ComplianceRuleOptions field value</span>
-<span id="L52" class="ln">    52  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L53" class="ln">    53  </span>func (o *CloudConfigurationRuleOptions) GetComplianceRuleOptionsOk() (*CloudConfigurationComplianceRuleOptions, bool) {
-<span id="L54" class="ln">    54  </span>	if o == nil {
-<span id="L55" class="ln">    55  </span>		return nil, false
-<span id="L56" class="ln">    56  </span>	}
-<span id="L57" class="ln">    57  </span>	return &amp;o.ComplianceRuleOptions, true
-<span id="L58" class="ln">    58  </span>}
-<span id="L59" class="ln">    59  </span>
-<span id="L60" class="ln">    60  </span><span class="comment">// SetComplianceRuleOptions sets field value.</span>
-<span id="L61" class="ln">    61  </span>func (o *CloudConfigurationRuleOptions) SetComplianceRuleOptions(v CloudConfigurationComplianceRuleOptions) {
-<span id="L62" class="ln">    62  </span>	o.ComplianceRuleOptions = v
-<span id="L63" class="ln">    63  </span>}
-<span id="L64" class="ln">    64  </span>
-<span id="L65" class="ln">    65  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L66" class="ln">    66  </span>func (o CloudConfigurationRuleOptions) MarshalJSON() ([]byte, error) {
-<span id="L67" class="ln">    67  </span>	toSerialize := map[string]interface{}{}
-<span id="L68" class="ln">    68  </span>	if o.UnparsedObject != nil {
-<span id="L69" class="ln">    69  </span>		return datadog.Marshal(o.UnparsedObject)
-<span id="L70" class="ln">    70  </span>	}
-<span id="L71" class="ln">    71  </span>	toSerialize[&#34;complianceRuleOptions&#34;] = o.ComplianceRuleOptions
-<span id="L72" class="ln">    72  </span>
-<span id="L73" class="ln">    73  </span>	for key, value := range o.AdditionalProperties {
-<span id="L74" class="ln">    74  </span>		toSerialize[key] = value
-<span id="L75" class="ln">    75  </span>	}
-<span id="L76" class="ln">    76  </span>	return datadog.Marshal(toSerialize)
-<span id="L77" class="ln">    77  </span>}
-<span id="L78" class="ln">    78  </span>
-<span id="L79" class="ln">    79  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L80" class="ln">    80  </span>func (o *CloudConfigurationRuleOptions) UnmarshalJSON(bytes []byte) (err error) {
-<span id="L81" class="ln">    81  </span>	all := struct {
-<span id="L82" class="ln">    82  </span>		ComplianceRuleOptions *CloudConfigurationComplianceRuleOptions `json:&#34;complianceRuleOptions&#34;`
-<span id="L83" class="ln">    83  </span>	}{}
-<span id="L84" class="ln">    84  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
-<span id="L85" class="ln">    85  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L86" class="ln">    86  </span>	}
-<span id="L87" class="ln">    87  </span>	if all.ComplianceRuleOptions == nil {
-<span id="L88" class="ln">    88  </span>		return fmt.Errorf(&#34;required field complianceRuleOptions missing&#34;)
-<span id="L89" class="ln">    89  </span>	}
-<span id="L90" class="ln">    90  </span>	additionalProperties := make(map[string]interface{})
-<span id="L91" class="ln">    91  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L92" class="ln">    92  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;complianceRuleOptions&#34;})
-<span id="L93" class="ln">    93  </span>	} else {
-<span id="L94" class="ln">    94  </span>		return err
-<span id="L95" class="ln">    95  </span>	}
-<span id="L96" class="ln">    96  </span>
-<span id="L97" class="ln">    97  </span>	hasInvalidField := false
-<span id="L98" class="ln">    98  </span>	if all.ComplianceRuleOptions.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L99" class="ln">    99  </span>		hasInvalidField = true
-<span id="L100" class="ln">   100  </span>	}
-<span id="L101" class="ln">   101  </span>	o.ComplianceRuleOptions = *all.ComplianceRuleOptions
-<span id="L102" class="ln">   102  </span>
-<span id="L103" class="ln">   103  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L104" class="ln">   104  </span>		o.AdditionalProperties = additionalProperties
-<span id="L105" class="ln">   105  </span>	}
-<span id="L106" class="ln">   106  </span>
-<span id="L107" class="ln">   107  </span>	if hasInvalidField {
-<span id="L108" class="ln">   108  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L109" class="ln">   109  </span>	}
-<span id="L110" class="ln">   110  </span>
-<span id="L111" class="ln">   111  </span>	return nil
-<span id="L112" class="ln">   112  </span>}
-<span id="L113" class="ln">   113  </span>
+<span id="L17" class="ln">    17  </span>	ComplianceRuleOptions CloudConfigurationComplianceRuleOptions `json:&#34;complianceRuleOptions&#34;`
+<span id="L18" class="ln">    18  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L19" class="ln">    19  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L20" class="ln">    20  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L21" class="ln">    21  </span>}
+<span id="L22" class="ln">    22  </span>
+<span id="L23" class="ln">    23  </span><span class="comment">// NewCloudConfigurationRuleOptions instantiates a new CloudConfigurationRuleOptions object.</span>
+<span id="L24" class="ln">    24  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L25" class="ln">    25  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L26" class="ln">    26  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L27" class="ln">    27  </span>func NewCloudConfigurationRuleOptions(complianceRuleOptions CloudConfigurationComplianceRuleOptions) *CloudConfigurationRuleOptions {
+<span id="L28" class="ln">    28  </span>	this := CloudConfigurationRuleOptions{}
+<span id="L29" class="ln">    29  </span>	this.ComplianceRuleOptions = complianceRuleOptions
+<span id="L30" class="ln">    30  </span>	return &amp;this
+<span id="L31" class="ln">    31  </span>}
+<span id="L32" class="ln">    32  </span>
+<span id="L33" class="ln">    33  </span><span class="comment">// NewCloudConfigurationRuleOptionsWithDefaults instantiates a new CloudConfigurationRuleOptions object.</span>
+<span id="L34" class="ln">    34  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L35" class="ln">    35  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L36" class="ln">    36  </span>func NewCloudConfigurationRuleOptionsWithDefaults() *CloudConfigurationRuleOptions {
+<span id="L37" class="ln">    37  </span>	this := CloudConfigurationRuleOptions{}
+<span id="L38" class="ln">    38  </span>	return &amp;this
+<span id="L39" class="ln">    39  </span>}
+<span id="L40" class="ln">    40  </span>
+<span id="L41" class="ln">    41  </span><span class="comment">// GetComplianceRuleOptions returns the ComplianceRuleOptions field value.</span>
+<span id="L42" class="ln">    42  </span>func (o *CloudConfigurationRuleOptions) GetComplianceRuleOptions() CloudConfigurationComplianceRuleOptions {
+<span id="L43" class="ln">    43  </span>	if o == nil {
+<span id="L44" class="ln">    44  </span>		var ret CloudConfigurationComplianceRuleOptions
+<span id="L45" class="ln">    45  </span>		return ret
+<span id="L46" class="ln">    46  </span>	}
+<span id="L47" class="ln">    47  </span>	return o.ComplianceRuleOptions
+<span id="L48" class="ln">    48  </span>}
+<span id="L49" class="ln">    49  </span>
+<span id="L50" class="ln">    50  </span><span class="comment">// GetComplianceRuleOptionsOk returns a tuple with the ComplianceRuleOptions field value</span>
+<span id="L51" class="ln">    51  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L52" class="ln">    52  </span>func (o *CloudConfigurationRuleOptions) GetComplianceRuleOptionsOk() (*CloudConfigurationComplianceRuleOptions, bool) {
+<span id="L53" class="ln">    53  </span>	if o == nil {
+<span id="L54" class="ln">    54  </span>		return nil, false
+<span id="L55" class="ln">    55  </span>	}
+<span id="L56" class="ln">    56  </span>	return &amp;o.ComplianceRuleOptions, true
+<span id="L57" class="ln">    57  </span>}
+<span id="L58" class="ln">    58  </span>
+<span id="L59" class="ln">    59  </span><span class="comment">// SetComplianceRuleOptions sets field value.</span>
+<span id="L60" class="ln">    60  </span>func (o *CloudConfigurationRuleOptions) SetComplianceRuleOptions(v CloudConfigurationComplianceRuleOptions) {
+<span id="L61" class="ln">    61  </span>	o.ComplianceRuleOptions = v
+<span id="L62" class="ln">    62  </span>}
+<span id="L63" class="ln">    63  </span>
+<span id="L64" class="ln">    64  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L65" class="ln">    65  </span>func (o CloudConfigurationRuleOptions) MarshalJSON() ([]byte, error) {
+<span id="L66" class="ln">    66  </span>	toSerialize := map[string]interface{}{}
+<span id="L67" class="ln">    67  </span>	if o.UnparsedObject != nil {
+<span id="L68" class="ln">    68  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L69" class="ln">    69  </span>	}
+<span id="L70" class="ln">    70  </span>	toSerialize[&#34;complianceRuleOptions&#34;] = o.ComplianceRuleOptions
+<span id="L71" class="ln">    71  </span>
+<span id="L72" class="ln">    72  </span>	for key, value := range o.AdditionalProperties {
+<span id="L73" class="ln">    73  </span>		toSerialize[key] = value
+<span id="L74" class="ln">    74  </span>	}
+<span id="L75" class="ln">    75  </span>	return datadog.Marshal(toSerialize)
+<span id="L76" class="ln">    76  </span>}
+<span id="L77" class="ln">    77  </span>
+<span id="L78" class="ln">    78  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L79" class="ln">    79  </span>func (o *CloudConfigurationRuleOptions) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L80" class="ln">    80  </span>	all := struct {
+<span id="L81" class="ln">    81  </span>		ComplianceRuleOptions *CloudConfigurationComplianceRuleOptions `json:&#34;complianceRuleOptions&#34;`
+<span id="L82" class="ln">    82  </span>	}{}
+<span id="L83" class="ln">    83  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L84" class="ln">    84  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L85" class="ln">    85  </span>	}
+<span id="L86" class="ln">    86  </span>	if all.ComplianceRuleOptions == nil {
+<span id="L87" class="ln">    87  </span>		return fmt.Errorf(&#34;required field complianceRuleOptions missing&#34;)
+<span id="L88" class="ln">    88  </span>	}
+<span id="L89" class="ln">    89  </span>	additionalProperties := make(map[string]interface{})
+<span id="L90" class="ln">    90  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L91" class="ln">    91  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;complianceRuleOptions&#34;})
+<span id="L92" class="ln">    92  </span>	} else {
+<span id="L93" class="ln">    93  </span>		return err
+<span id="L94" class="ln">    94  </span>	}
+<span id="L95" class="ln">    95  </span>
+<span id="L96" class="ln">    96  </span>	hasInvalidField := false
+<span id="L97" class="ln">    97  </span>	if all.ComplianceRuleOptions.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L98" class="ln">    98  </span>		hasInvalidField = true
+<span id="L99" class="ln">    99  </span>	}
+<span id="L100" class="ln">   100  </span>	o.ComplianceRuleOptions = *all.ComplianceRuleOptions
+<span id="L101" class="ln">   101  </span>
+<span id="L102" class="ln">   102  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L103" class="ln">   103  </span>		o.AdditionalProperties = additionalProperties
+<span id="L104" class="ln">   104  </span>	}
+<span id="L105" class="ln">   105  </span>
+<span id="L106" class="ln">   106  </span>	if hasInvalidField {
+<span id="L107" class="ln">   107  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L108" class="ln">   108  </span>	}
+<span id="L109" class="ln">   109  </span>
+<span id="L110" class="ln">   110  </span>	return nil
+<span id="L111" class="ln">   111  </span>}
+<span id="L112" class="ln">   112  </span>
 </pre><p></p>
 
 <div id="footer">

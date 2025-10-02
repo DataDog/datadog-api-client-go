@@ -73,377 +73,376 @@
 <span id="L16" class="ln">    16  </span>	<span class="comment">// Access control list setting for objects written to the bucket.</span>
 <span id="L17" class="ln">    17  </span>	Acl ObservabilityPipelineGoogleCloudStorageDestinationAcl `json:&#34;acl&#34;`
 <span id="L18" class="ln">    18  </span>	<span class="comment">// GCP credentials used to authenticate with Google Cloud Storage.</span>
-<span id="L19" class="ln">    19  </span>	<span class="comment">//</span>
-<span id="L20" class="ln">    20  </span>	Auth ObservabilityPipelineGcpAuth `json:&#34;auth&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// Name of the GCS bucket.</span>
-<span id="L22" class="ln">    22  </span>	Bucket string `json:&#34;bucket&#34;`
-<span id="L23" class="ln">    23  </span>	<span class="comment">// Unique identifier for the destination component.</span>
-<span id="L24" class="ln">    24  </span>	Id string `json:&#34;id&#34;`
-<span id="L25" class="ln">    25  </span>	<span class="comment">// A list of component IDs whose output is used as the `input` for this component.</span>
-<span id="L26" class="ln">    26  </span>	Inputs []string `json:&#34;inputs&#34;`
-<span id="L27" class="ln">    27  </span>	<span class="comment">// Optional prefix for object keys within the GCS bucket.</span>
-<span id="L28" class="ln">    28  </span>	KeyPrefix *string `json:&#34;key_prefix,omitempty&#34;`
-<span id="L29" class="ln">    29  </span>	<span class="comment">// Custom metadata to attach to each object uploaded to the GCS bucket.</span>
-<span id="L30" class="ln">    30  </span>	Metadata []ObservabilityPipelineMetadataEntry `json:&#34;metadata,omitempty&#34;`
-<span id="L31" class="ln">    31  </span>	<span class="comment">// Storage class used for objects stored in GCS.</span>
-<span id="L32" class="ln">    32  </span>	StorageClass ObservabilityPipelineGoogleCloudStorageDestinationStorageClass `json:&#34;storage_class&#34;`
-<span id="L33" class="ln">    33  </span>	<span class="comment">// The destination type. Always `google_cloud_storage`.</span>
-<span id="L34" class="ln">    34  </span>	Type ObservabilityPipelineGoogleCloudStorageDestinationType `json:&#34;type&#34;`
-<span id="L35" class="ln">    35  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
-<span id="L36" class="ln">    36  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L37" class="ln">    37  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
-<span id="L38" class="ln">    38  </span>}
-<span id="L39" class="ln">    39  </span>
-<span id="L40" class="ln">    40  </span><span class="comment">// NewObservabilityPipelineGoogleCloudStorageDestination instantiates a new ObservabilityPipelineGoogleCloudStorageDestination object.</span>
-<span id="L41" class="ln">    41  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
-<span id="L42" class="ln">    42  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
-<span id="L43" class="ln">    43  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L44" class="ln">    44  </span>func NewObservabilityPipelineGoogleCloudStorageDestination(acl ObservabilityPipelineGoogleCloudStorageDestinationAcl, auth ObservabilityPipelineGcpAuth, bucket string, id string, inputs []string, storageClass ObservabilityPipelineGoogleCloudStorageDestinationStorageClass, typeVar ObservabilityPipelineGoogleCloudStorageDestinationType) *ObservabilityPipelineGoogleCloudStorageDestination {
-<span id="L45" class="ln">    45  </span>	this := ObservabilityPipelineGoogleCloudStorageDestination{}
-<span id="L46" class="ln">    46  </span>	this.Acl = acl
-<span id="L47" class="ln">    47  </span>	this.Auth = auth
-<span id="L48" class="ln">    48  </span>	this.Bucket = bucket
-<span id="L49" class="ln">    49  </span>	this.Id = id
-<span id="L50" class="ln">    50  </span>	this.Inputs = inputs
-<span id="L51" class="ln">    51  </span>	this.StorageClass = storageClass
-<span id="L52" class="ln">    52  </span>	this.Type = typeVar
-<span id="L53" class="ln">    53  </span>	return &amp;this
-<span id="L54" class="ln">    54  </span>}
-<span id="L55" class="ln">    55  </span>
-<span id="L56" class="ln">    56  </span><span class="comment">// NewObservabilityPipelineGoogleCloudStorageDestinationWithDefaults instantiates a new ObservabilityPipelineGoogleCloudStorageDestination object.</span>
-<span id="L57" class="ln">    57  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
-<span id="L58" class="ln">    58  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L59" class="ln">    59  </span>func NewObservabilityPipelineGoogleCloudStorageDestinationWithDefaults() *ObservabilityPipelineGoogleCloudStorageDestination {
-<span id="L60" class="ln">    60  </span>	this := ObservabilityPipelineGoogleCloudStorageDestination{}
-<span id="L61" class="ln">    61  </span>	var typeVar ObservabilityPipelineGoogleCloudStorageDestinationType = OBSERVABILITYPIPELINEGOOGLECLOUDSTORAGEDESTINATIONTYPE_GOOGLE_CLOUD_STORAGE
-<span id="L62" class="ln">    62  </span>	this.Type = typeVar
-<span id="L63" class="ln">    63  </span>	return &amp;this
-<span id="L64" class="ln">    64  </span>}
-<span id="L65" class="ln">    65  </span>
-<span id="L66" class="ln">    66  </span><span class="comment">// GetAcl returns the Acl field value.</span>
-<span id="L67" class="ln">    67  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetAcl() ObservabilityPipelineGoogleCloudStorageDestinationAcl {
-<span id="L68" class="ln">    68  </span>	if o == nil {
-<span id="L69" class="ln">    69  </span>		var ret ObservabilityPipelineGoogleCloudStorageDestinationAcl
-<span id="L70" class="ln">    70  </span>		return ret
-<span id="L71" class="ln">    71  </span>	}
-<span id="L72" class="ln">    72  </span>	return o.Acl
-<span id="L73" class="ln">    73  </span>}
-<span id="L74" class="ln">    74  </span>
-<span id="L75" class="ln">    75  </span><span class="comment">// GetAclOk returns a tuple with the Acl field value</span>
-<span id="L76" class="ln">    76  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L77" class="ln">    77  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetAclOk() (*ObservabilityPipelineGoogleCloudStorageDestinationAcl, bool) {
-<span id="L78" class="ln">    78  </span>	if o == nil {
-<span id="L79" class="ln">    79  </span>		return nil, false
-<span id="L80" class="ln">    80  </span>	}
-<span id="L81" class="ln">    81  </span>	return &amp;o.Acl, true
-<span id="L82" class="ln">    82  </span>}
-<span id="L83" class="ln">    83  </span>
-<span id="L84" class="ln">    84  </span><span class="comment">// SetAcl sets field value.</span>
-<span id="L85" class="ln">    85  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetAcl(v ObservabilityPipelineGoogleCloudStorageDestinationAcl) {
-<span id="L86" class="ln">    86  </span>	o.Acl = v
-<span id="L87" class="ln">    87  </span>}
-<span id="L88" class="ln">    88  </span>
-<span id="L89" class="ln">    89  </span><span class="comment">// GetAuth returns the Auth field value.</span>
-<span id="L90" class="ln">    90  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetAuth() ObservabilityPipelineGcpAuth {
-<span id="L91" class="ln">    91  </span>	if o == nil {
-<span id="L92" class="ln">    92  </span>		var ret ObservabilityPipelineGcpAuth
-<span id="L93" class="ln">    93  </span>		return ret
-<span id="L94" class="ln">    94  </span>	}
-<span id="L95" class="ln">    95  </span>	return o.Auth
-<span id="L96" class="ln">    96  </span>}
-<span id="L97" class="ln">    97  </span>
-<span id="L98" class="ln">    98  </span><span class="comment">// GetAuthOk returns a tuple with the Auth field value</span>
-<span id="L99" class="ln">    99  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L100" class="ln">   100  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetAuthOk() (*ObservabilityPipelineGcpAuth, bool) {
-<span id="L101" class="ln">   101  </span>	if o == nil {
-<span id="L102" class="ln">   102  </span>		return nil, false
-<span id="L103" class="ln">   103  </span>	}
-<span id="L104" class="ln">   104  </span>	return &amp;o.Auth, true
-<span id="L105" class="ln">   105  </span>}
-<span id="L106" class="ln">   106  </span>
-<span id="L107" class="ln">   107  </span><span class="comment">// SetAuth sets field value.</span>
-<span id="L108" class="ln">   108  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetAuth(v ObservabilityPipelineGcpAuth) {
-<span id="L109" class="ln">   109  </span>	o.Auth = v
-<span id="L110" class="ln">   110  </span>}
-<span id="L111" class="ln">   111  </span>
-<span id="L112" class="ln">   112  </span><span class="comment">// GetBucket returns the Bucket field value.</span>
-<span id="L113" class="ln">   113  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetBucket() string {
-<span id="L114" class="ln">   114  </span>	if o == nil {
-<span id="L115" class="ln">   115  </span>		var ret string
-<span id="L116" class="ln">   116  </span>		return ret
-<span id="L117" class="ln">   117  </span>	}
-<span id="L118" class="ln">   118  </span>	return o.Bucket
-<span id="L119" class="ln">   119  </span>}
-<span id="L120" class="ln">   120  </span>
-<span id="L121" class="ln">   121  </span><span class="comment">// GetBucketOk returns a tuple with the Bucket field value</span>
-<span id="L122" class="ln">   122  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L123" class="ln">   123  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetBucketOk() (*string, bool) {
-<span id="L124" class="ln">   124  </span>	if o == nil {
-<span id="L125" class="ln">   125  </span>		return nil, false
-<span id="L126" class="ln">   126  </span>	}
-<span id="L127" class="ln">   127  </span>	return &amp;o.Bucket, true
-<span id="L128" class="ln">   128  </span>}
-<span id="L129" class="ln">   129  </span>
-<span id="L130" class="ln">   130  </span><span class="comment">// SetBucket sets field value.</span>
-<span id="L131" class="ln">   131  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetBucket(v string) {
-<span id="L132" class="ln">   132  </span>	o.Bucket = v
-<span id="L133" class="ln">   133  </span>}
-<span id="L134" class="ln">   134  </span>
-<span id="L135" class="ln">   135  </span><span class="comment">// GetId returns the Id field value.</span>
-<span id="L136" class="ln">   136  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetId() string {
-<span id="L137" class="ln">   137  </span>	if o == nil {
-<span id="L138" class="ln">   138  </span>		var ret string
-<span id="L139" class="ln">   139  </span>		return ret
-<span id="L140" class="ln">   140  </span>	}
-<span id="L141" class="ln">   141  </span>	return o.Id
-<span id="L142" class="ln">   142  </span>}
-<span id="L143" class="ln">   143  </span>
-<span id="L144" class="ln">   144  </span><span class="comment">// GetIdOk returns a tuple with the Id field value</span>
-<span id="L145" class="ln">   145  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L146" class="ln">   146  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetIdOk() (*string, bool) {
-<span id="L147" class="ln">   147  </span>	if o == nil {
-<span id="L148" class="ln">   148  </span>		return nil, false
-<span id="L149" class="ln">   149  </span>	}
-<span id="L150" class="ln">   150  </span>	return &amp;o.Id, true
-<span id="L151" class="ln">   151  </span>}
-<span id="L152" class="ln">   152  </span>
-<span id="L153" class="ln">   153  </span><span class="comment">// SetId sets field value.</span>
-<span id="L154" class="ln">   154  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetId(v string) {
-<span id="L155" class="ln">   155  </span>	o.Id = v
-<span id="L156" class="ln">   156  </span>}
-<span id="L157" class="ln">   157  </span>
-<span id="L158" class="ln">   158  </span><span class="comment">// GetInputs returns the Inputs field value.</span>
-<span id="L159" class="ln">   159  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetInputs() []string {
-<span id="L160" class="ln">   160  </span>	if o == nil {
-<span id="L161" class="ln">   161  </span>		var ret []string
-<span id="L162" class="ln">   162  </span>		return ret
-<span id="L163" class="ln">   163  </span>	}
-<span id="L164" class="ln">   164  </span>	return o.Inputs
-<span id="L165" class="ln">   165  </span>}
-<span id="L166" class="ln">   166  </span>
-<span id="L167" class="ln">   167  </span><span class="comment">// GetInputsOk returns a tuple with the Inputs field value</span>
-<span id="L168" class="ln">   168  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L169" class="ln">   169  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetInputsOk() (*[]string, bool) {
-<span id="L170" class="ln">   170  </span>	if o == nil {
-<span id="L171" class="ln">   171  </span>		return nil, false
-<span id="L172" class="ln">   172  </span>	}
-<span id="L173" class="ln">   173  </span>	return &amp;o.Inputs, true
-<span id="L174" class="ln">   174  </span>}
-<span id="L175" class="ln">   175  </span>
-<span id="L176" class="ln">   176  </span><span class="comment">// SetInputs sets field value.</span>
-<span id="L177" class="ln">   177  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetInputs(v []string) {
-<span id="L178" class="ln">   178  </span>	o.Inputs = v
-<span id="L179" class="ln">   179  </span>}
-<span id="L180" class="ln">   180  </span>
-<span id="L181" class="ln">   181  </span><span class="comment">// GetKeyPrefix returns the KeyPrefix field value if set, zero value otherwise.</span>
-<span id="L182" class="ln">   182  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetKeyPrefix() string {
-<span id="L183" class="ln">   183  </span>	if o == nil || o.KeyPrefix == nil {
-<span id="L184" class="ln">   184  </span>		var ret string
-<span id="L185" class="ln">   185  </span>		return ret
-<span id="L186" class="ln">   186  </span>	}
-<span id="L187" class="ln">   187  </span>	return *o.KeyPrefix
-<span id="L188" class="ln">   188  </span>}
-<span id="L189" class="ln">   189  </span>
-<span id="L190" class="ln">   190  </span><span class="comment">// GetKeyPrefixOk returns a tuple with the KeyPrefix field value if set, nil otherwise</span>
-<span id="L191" class="ln">   191  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L192" class="ln">   192  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetKeyPrefixOk() (*string, bool) {
-<span id="L193" class="ln">   193  </span>	if o == nil || o.KeyPrefix == nil {
-<span id="L194" class="ln">   194  </span>		return nil, false
-<span id="L195" class="ln">   195  </span>	}
-<span id="L196" class="ln">   196  </span>	return o.KeyPrefix, true
-<span id="L197" class="ln">   197  </span>}
-<span id="L198" class="ln">   198  </span>
-<span id="L199" class="ln">   199  </span><span class="comment">// HasKeyPrefix returns a boolean if a field has been set.</span>
-<span id="L200" class="ln">   200  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) HasKeyPrefix() bool {
-<span id="L201" class="ln">   201  </span>	return o != nil &amp;&amp; o.KeyPrefix != nil
-<span id="L202" class="ln">   202  </span>}
-<span id="L203" class="ln">   203  </span>
-<span id="L204" class="ln">   204  </span><span class="comment">// SetKeyPrefix gets a reference to the given string and assigns it to the KeyPrefix field.</span>
-<span id="L205" class="ln">   205  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetKeyPrefix(v string) {
-<span id="L206" class="ln">   206  </span>	o.KeyPrefix = &amp;v
-<span id="L207" class="ln">   207  </span>}
-<span id="L208" class="ln">   208  </span>
-<span id="L209" class="ln">   209  </span><span class="comment">// GetMetadata returns the Metadata field value if set, zero value otherwise.</span>
-<span id="L210" class="ln">   210  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetMetadata() []ObservabilityPipelineMetadataEntry {
-<span id="L211" class="ln">   211  </span>	if o == nil || o.Metadata == nil {
-<span id="L212" class="ln">   212  </span>		var ret []ObservabilityPipelineMetadataEntry
-<span id="L213" class="ln">   213  </span>		return ret
-<span id="L214" class="ln">   214  </span>	}
-<span id="L215" class="ln">   215  </span>	return o.Metadata
-<span id="L216" class="ln">   216  </span>}
-<span id="L217" class="ln">   217  </span>
-<span id="L218" class="ln">   218  </span><span class="comment">// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise</span>
-<span id="L219" class="ln">   219  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L220" class="ln">   220  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetMetadataOk() (*[]ObservabilityPipelineMetadataEntry, bool) {
-<span id="L221" class="ln">   221  </span>	if o == nil || o.Metadata == nil {
-<span id="L222" class="ln">   222  </span>		return nil, false
-<span id="L223" class="ln">   223  </span>	}
-<span id="L224" class="ln">   224  </span>	return &amp;o.Metadata, true
-<span id="L225" class="ln">   225  </span>}
-<span id="L226" class="ln">   226  </span>
-<span id="L227" class="ln">   227  </span><span class="comment">// HasMetadata returns a boolean if a field has been set.</span>
-<span id="L228" class="ln">   228  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) HasMetadata() bool {
-<span id="L229" class="ln">   229  </span>	return o != nil &amp;&amp; o.Metadata != nil
-<span id="L230" class="ln">   230  </span>}
-<span id="L231" class="ln">   231  </span>
-<span id="L232" class="ln">   232  </span><span class="comment">// SetMetadata gets a reference to the given []ObservabilityPipelineMetadataEntry and assigns it to the Metadata field.</span>
-<span id="L233" class="ln">   233  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetMetadata(v []ObservabilityPipelineMetadataEntry) {
-<span id="L234" class="ln">   234  </span>	o.Metadata = v
-<span id="L235" class="ln">   235  </span>}
-<span id="L236" class="ln">   236  </span>
-<span id="L237" class="ln">   237  </span><span class="comment">// GetStorageClass returns the StorageClass field value.</span>
-<span id="L238" class="ln">   238  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetStorageClass() ObservabilityPipelineGoogleCloudStorageDestinationStorageClass {
-<span id="L239" class="ln">   239  </span>	if o == nil {
-<span id="L240" class="ln">   240  </span>		var ret ObservabilityPipelineGoogleCloudStorageDestinationStorageClass
-<span id="L241" class="ln">   241  </span>		return ret
-<span id="L242" class="ln">   242  </span>	}
-<span id="L243" class="ln">   243  </span>	return o.StorageClass
-<span id="L244" class="ln">   244  </span>}
-<span id="L245" class="ln">   245  </span>
-<span id="L246" class="ln">   246  </span><span class="comment">// GetStorageClassOk returns a tuple with the StorageClass field value</span>
-<span id="L247" class="ln">   247  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L248" class="ln">   248  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetStorageClassOk() (*ObservabilityPipelineGoogleCloudStorageDestinationStorageClass, bool) {
-<span id="L249" class="ln">   249  </span>	if o == nil {
-<span id="L250" class="ln">   250  </span>		return nil, false
-<span id="L251" class="ln">   251  </span>	}
-<span id="L252" class="ln">   252  </span>	return &amp;o.StorageClass, true
-<span id="L253" class="ln">   253  </span>}
-<span id="L254" class="ln">   254  </span>
-<span id="L255" class="ln">   255  </span><span class="comment">// SetStorageClass sets field value.</span>
-<span id="L256" class="ln">   256  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetStorageClass(v ObservabilityPipelineGoogleCloudStorageDestinationStorageClass) {
-<span id="L257" class="ln">   257  </span>	o.StorageClass = v
-<span id="L258" class="ln">   258  </span>}
-<span id="L259" class="ln">   259  </span>
-<span id="L260" class="ln">   260  </span><span class="comment">// GetType returns the Type field value.</span>
-<span id="L261" class="ln">   261  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetType() ObservabilityPipelineGoogleCloudStorageDestinationType {
-<span id="L262" class="ln">   262  </span>	if o == nil {
-<span id="L263" class="ln">   263  </span>		var ret ObservabilityPipelineGoogleCloudStorageDestinationType
-<span id="L264" class="ln">   264  </span>		return ret
-<span id="L265" class="ln">   265  </span>	}
-<span id="L266" class="ln">   266  </span>	return o.Type
-<span id="L267" class="ln">   267  </span>}
-<span id="L268" class="ln">   268  </span>
-<span id="L269" class="ln">   269  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value</span>
-<span id="L270" class="ln">   270  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L271" class="ln">   271  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetTypeOk() (*ObservabilityPipelineGoogleCloudStorageDestinationType, bool) {
-<span id="L272" class="ln">   272  </span>	if o == nil {
-<span id="L273" class="ln">   273  </span>		return nil, false
-<span id="L274" class="ln">   274  </span>	}
-<span id="L275" class="ln">   275  </span>	return &amp;o.Type, true
-<span id="L276" class="ln">   276  </span>}
-<span id="L277" class="ln">   277  </span>
-<span id="L278" class="ln">   278  </span><span class="comment">// SetType sets field value.</span>
-<span id="L279" class="ln">   279  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetType(v ObservabilityPipelineGoogleCloudStorageDestinationType) {
-<span id="L280" class="ln">   280  </span>	o.Type = v
-<span id="L281" class="ln">   281  </span>}
-<span id="L282" class="ln">   282  </span>
-<span id="L283" class="ln">   283  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L284" class="ln">   284  </span>func (o ObservabilityPipelineGoogleCloudStorageDestination) MarshalJSON() ([]byte, error) {
-<span id="L285" class="ln">   285  </span>	toSerialize := map[string]interface{}{}
-<span id="L286" class="ln">   286  </span>	if o.UnparsedObject != nil {
-<span id="L287" class="ln">   287  </span>		return datadog.Marshal(o.UnparsedObject)
-<span id="L288" class="ln">   288  </span>	}
-<span id="L289" class="ln">   289  </span>	toSerialize[&#34;acl&#34;] = o.Acl
-<span id="L290" class="ln">   290  </span>	toSerialize[&#34;auth&#34;] = o.Auth
-<span id="L291" class="ln">   291  </span>	toSerialize[&#34;bucket&#34;] = o.Bucket
-<span id="L292" class="ln">   292  </span>	toSerialize[&#34;id&#34;] = o.Id
-<span id="L293" class="ln">   293  </span>	toSerialize[&#34;inputs&#34;] = o.Inputs
-<span id="L294" class="ln">   294  </span>	if o.KeyPrefix != nil {
-<span id="L295" class="ln">   295  </span>		toSerialize[&#34;key_prefix&#34;] = o.KeyPrefix
-<span id="L296" class="ln">   296  </span>	}
-<span id="L297" class="ln">   297  </span>	if o.Metadata != nil {
-<span id="L298" class="ln">   298  </span>		toSerialize[&#34;metadata&#34;] = o.Metadata
-<span id="L299" class="ln">   299  </span>	}
-<span id="L300" class="ln">   300  </span>	toSerialize[&#34;storage_class&#34;] = o.StorageClass
-<span id="L301" class="ln">   301  </span>	toSerialize[&#34;type&#34;] = o.Type
-<span id="L302" class="ln">   302  </span>
-<span id="L303" class="ln">   303  </span>	for key, value := range o.AdditionalProperties {
-<span id="L304" class="ln">   304  </span>		toSerialize[key] = value
-<span id="L305" class="ln">   305  </span>	}
-<span id="L306" class="ln">   306  </span>	return datadog.Marshal(toSerialize)
-<span id="L307" class="ln">   307  </span>}
-<span id="L308" class="ln">   308  </span>
-<span id="L309" class="ln">   309  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L310" class="ln">   310  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) UnmarshalJSON(bytes []byte) (err error) {
-<span id="L311" class="ln">   311  </span>	all := struct {
-<span id="L312" class="ln">   312  </span>		Acl          *ObservabilityPipelineGoogleCloudStorageDestinationAcl          `json:&#34;acl&#34;`
-<span id="L313" class="ln">   313  </span>		Auth         *ObservabilityPipelineGcpAuth                                   `json:&#34;auth&#34;`
-<span id="L314" class="ln">   314  </span>		Bucket       *string                                                         `json:&#34;bucket&#34;`
-<span id="L315" class="ln">   315  </span>		Id           *string                                                         `json:&#34;id&#34;`
-<span id="L316" class="ln">   316  </span>		Inputs       *[]string                                                       `json:&#34;inputs&#34;`
-<span id="L317" class="ln">   317  </span>		KeyPrefix    *string                                                         `json:&#34;key_prefix,omitempty&#34;`
-<span id="L318" class="ln">   318  </span>		Metadata     []ObservabilityPipelineMetadataEntry                            `json:&#34;metadata,omitempty&#34;`
-<span id="L319" class="ln">   319  </span>		StorageClass *ObservabilityPipelineGoogleCloudStorageDestinationStorageClass `json:&#34;storage_class&#34;`
-<span id="L320" class="ln">   320  </span>		Type         *ObservabilityPipelineGoogleCloudStorageDestinationType         `json:&#34;type&#34;`
-<span id="L321" class="ln">   321  </span>	}{}
-<span id="L322" class="ln">   322  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
-<span id="L323" class="ln">   323  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L324" class="ln">   324  </span>	}
-<span id="L325" class="ln">   325  </span>	if all.Acl == nil {
-<span id="L326" class="ln">   326  </span>		return fmt.Errorf(&#34;required field acl missing&#34;)
-<span id="L327" class="ln">   327  </span>	}
-<span id="L328" class="ln">   328  </span>	if all.Auth == nil {
-<span id="L329" class="ln">   329  </span>		return fmt.Errorf(&#34;required field auth missing&#34;)
-<span id="L330" class="ln">   330  </span>	}
-<span id="L331" class="ln">   331  </span>	if all.Bucket == nil {
-<span id="L332" class="ln">   332  </span>		return fmt.Errorf(&#34;required field bucket missing&#34;)
-<span id="L333" class="ln">   333  </span>	}
-<span id="L334" class="ln">   334  </span>	if all.Id == nil {
-<span id="L335" class="ln">   335  </span>		return fmt.Errorf(&#34;required field id missing&#34;)
-<span id="L336" class="ln">   336  </span>	}
-<span id="L337" class="ln">   337  </span>	if all.Inputs == nil {
-<span id="L338" class="ln">   338  </span>		return fmt.Errorf(&#34;required field inputs missing&#34;)
-<span id="L339" class="ln">   339  </span>	}
-<span id="L340" class="ln">   340  </span>	if all.StorageClass == nil {
-<span id="L341" class="ln">   341  </span>		return fmt.Errorf(&#34;required field storage_class missing&#34;)
-<span id="L342" class="ln">   342  </span>	}
-<span id="L343" class="ln">   343  </span>	if all.Type == nil {
-<span id="L344" class="ln">   344  </span>		return fmt.Errorf(&#34;required field type missing&#34;)
-<span id="L345" class="ln">   345  </span>	}
-<span id="L346" class="ln">   346  </span>	additionalProperties := make(map[string]interface{})
-<span id="L347" class="ln">   347  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L348" class="ln">   348  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;acl&#34;, &#34;auth&#34;, &#34;bucket&#34;, &#34;id&#34;, &#34;inputs&#34;, &#34;key_prefix&#34;, &#34;metadata&#34;, &#34;storage_class&#34;, &#34;type&#34;})
-<span id="L349" class="ln">   349  </span>	} else {
-<span id="L350" class="ln">   350  </span>		return err
-<span id="L351" class="ln">   351  </span>	}
-<span id="L352" class="ln">   352  </span>
-<span id="L353" class="ln">   353  </span>	hasInvalidField := false
-<span id="L354" class="ln">   354  </span>	if !all.Acl.IsValid() {
-<span id="L355" class="ln">   355  </span>		hasInvalidField = true
-<span id="L356" class="ln">   356  </span>	} else {
-<span id="L357" class="ln">   357  </span>		o.Acl = *all.Acl
-<span id="L358" class="ln">   358  </span>	}
-<span id="L359" class="ln">   359  </span>	if all.Auth.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L360" class="ln">   360  </span>		hasInvalidField = true
-<span id="L361" class="ln">   361  </span>	}
-<span id="L362" class="ln">   362  </span>	o.Auth = *all.Auth
-<span id="L363" class="ln">   363  </span>	o.Bucket = *all.Bucket
-<span id="L364" class="ln">   364  </span>	o.Id = *all.Id
-<span id="L365" class="ln">   365  </span>	o.Inputs = *all.Inputs
-<span id="L366" class="ln">   366  </span>	o.KeyPrefix = all.KeyPrefix
-<span id="L367" class="ln">   367  </span>	o.Metadata = all.Metadata
-<span id="L368" class="ln">   368  </span>	if !all.StorageClass.IsValid() {
-<span id="L369" class="ln">   369  </span>		hasInvalidField = true
-<span id="L370" class="ln">   370  </span>	} else {
-<span id="L371" class="ln">   371  </span>		o.StorageClass = *all.StorageClass
-<span id="L372" class="ln">   372  </span>	}
-<span id="L373" class="ln">   373  </span>	if !all.Type.IsValid() {
-<span id="L374" class="ln">   374  </span>		hasInvalidField = true
-<span id="L375" class="ln">   375  </span>	} else {
-<span id="L376" class="ln">   376  </span>		o.Type = *all.Type
-<span id="L377" class="ln">   377  </span>	}
-<span id="L378" class="ln">   378  </span>
-<span id="L379" class="ln">   379  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L380" class="ln">   380  </span>		o.AdditionalProperties = additionalProperties
-<span id="L381" class="ln">   381  </span>	}
-<span id="L382" class="ln">   382  </span>
-<span id="L383" class="ln">   383  </span>	if hasInvalidField {
-<span id="L384" class="ln">   384  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L385" class="ln">   385  </span>	}
-<span id="L386" class="ln">   386  </span>
-<span id="L387" class="ln">   387  </span>	return nil
-<span id="L388" class="ln">   388  </span>}
-<span id="L389" class="ln">   389  </span>
+<span id="L19" class="ln">    19  </span>	Auth ObservabilityPipelineGcpAuth `json:&#34;auth&#34;`
+<span id="L20" class="ln">    20  </span>	<span class="comment">// Name of the GCS bucket.</span>
+<span id="L21" class="ln">    21  </span>	Bucket string `json:&#34;bucket&#34;`
+<span id="L22" class="ln">    22  </span>	<span class="comment">// Unique identifier for the destination component.</span>
+<span id="L23" class="ln">    23  </span>	Id string `json:&#34;id&#34;`
+<span id="L24" class="ln">    24  </span>	<span class="comment">// A list of component IDs whose output is used as the `input` for this component.</span>
+<span id="L25" class="ln">    25  </span>	Inputs []string `json:&#34;inputs&#34;`
+<span id="L26" class="ln">    26  </span>	<span class="comment">// Optional prefix for object keys within the GCS bucket.</span>
+<span id="L27" class="ln">    27  </span>	KeyPrefix *string `json:&#34;key_prefix,omitempty&#34;`
+<span id="L28" class="ln">    28  </span>	<span class="comment">// Custom metadata to attach to each object uploaded to the GCS bucket.</span>
+<span id="L29" class="ln">    29  </span>	Metadata []ObservabilityPipelineMetadataEntry `json:&#34;metadata,omitempty&#34;`
+<span id="L30" class="ln">    30  </span>	<span class="comment">// Storage class used for objects stored in GCS.</span>
+<span id="L31" class="ln">    31  </span>	StorageClass ObservabilityPipelineGoogleCloudStorageDestinationStorageClass `json:&#34;storage_class&#34;`
+<span id="L32" class="ln">    32  </span>	<span class="comment">// The destination type. Always `google_cloud_storage`.</span>
+<span id="L33" class="ln">    33  </span>	Type ObservabilityPipelineGoogleCloudStorageDestinationType `json:&#34;type&#34;`
+<span id="L34" class="ln">    34  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L35" class="ln">    35  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L36" class="ln">    36  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L37" class="ln">    37  </span>}
+<span id="L38" class="ln">    38  </span>
+<span id="L39" class="ln">    39  </span><span class="comment">// NewObservabilityPipelineGoogleCloudStorageDestination instantiates a new ObservabilityPipelineGoogleCloudStorageDestination object.</span>
+<span id="L40" class="ln">    40  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L41" class="ln">    41  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L42" class="ln">    42  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L43" class="ln">    43  </span>func NewObservabilityPipelineGoogleCloudStorageDestination(acl ObservabilityPipelineGoogleCloudStorageDestinationAcl, auth ObservabilityPipelineGcpAuth, bucket string, id string, inputs []string, storageClass ObservabilityPipelineGoogleCloudStorageDestinationStorageClass, typeVar ObservabilityPipelineGoogleCloudStorageDestinationType) *ObservabilityPipelineGoogleCloudStorageDestination {
+<span id="L44" class="ln">    44  </span>	this := ObservabilityPipelineGoogleCloudStorageDestination{}
+<span id="L45" class="ln">    45  </span>	this.Acl = acl
+<span id="L46" class="ln">    46  </span>	this.Auth = auth
+<span id="L47" class="ln">    47  </span>	this.Bucket = bucket
+<span id="L48" class="ln">    48  </span>	this.Id = id
+<span id="L49" class="ln">    49  </span>	this.Inputs = inputs
+<span id="L50" class="ln">    50  </span>	this.StorageClass = storageClass
+<span id="L51" class="ln">    51  </span>	this.Type = typeVar
+<span id="L52" class="ln">    52  </span>	return &amp;this
+<span id="L53" class="ln">    53  </span>}
+<span id="L54" class="ln">    54  </span>
+<span id="L55" class="ln">    55  </span><span class="comment">// NewObservabilityPipelineGoogleCloudStorageDestinationWithDefaults instantiates a new ObservabilityPipelineGoogleCloudStorageDestination object.</span>
+<span id="L56" class="ln">    56  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L57" class="ln">    57  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L58" class="ln">    58  </span>func NewObservabilityPipelineGoogleCloudStorageDestinationWithDefaults() *ObservabilityPipelineGoogleCloudStorageDestination {
+<span id="L59" class="ln">    59  </span>	this := ObservabilityPipelineGoogleCloudStorageDestination{}
+<span id="L60" class="ln">    60  </span>	var typeVar ObservabilityPipelineGoogleCloudStorageDestinationType = OBSERVABILITYPIPELINEGOOGLECLOUDSTORAGEDESTINATIONTYPE_GOOGLE_CLOUD_STORAGE
+<span id="L61" class="ln">    61  </span>	this.Type = typeVar
+<span id="L62" class="ln">    62  </span>	return &amp;this
+<span id="L63" class="ln">    63  </span>}
+<span id="L64" class="ln">    64  </span>
+<span id="L65" class="ln">    65  </span><span class="comment">// GetAcl returns the Acl field value.</span>
+<span id="L66" class="ln">    66  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetAcl() ObservabilityPipelineGoogleCloudStorageDestinationAcl {
+<span id="L67" class="ln">    67  </span>	if o == nil {
+<span id="L68" class="ln">    68  </span>		var ret ObservabilityPipelineGoogleCloudStorageDestinationAcl
+<span id="L69" class="ln">    69  </span>		return ret
+<span id="L70" class="ln">    70  </span>	}
+<span id="L71" class="ln">    71  </span>	return o.Acl
+<span id="L72" class="ln">    72  </span>}
+<span id="L73" class="ln">    73  </span>
+<span id="L74" class="ln">    74  </span><span class="comment">// GetAclOk returns a tuple with the Acl field value</span>
+<span id="L75" class="ln">    75  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L76" class="ln">    76  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetAclOk() (*ObservabilityPipelineGoogleCloudStorageDestinationAcl, bool) {
+<span id="L77" class="ln">    77  </span>	if o == nil {
+<span id="L78" class="ln">    78  </span>		return nil, false
+<span id="L79" class="ln">    79  </span>	}
+<span id="L80" class="ln">    80  </span>	return &amp;o.Acl, true
+<span id="L81" class="ln">    81  </span>}
+<span id="L82" class="ln">    82  </span>
+<span id="L83" class="ln">    83  </span><span class="comment">// SetAcl sets field value.</span>
+<span id="L84" class="ln">    84  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetAcl(v ObservabilityPipelineGoogleCloudStorageDestinationAcl) {
+<span id="L85" class="ln">    85  </span>	o.Acl = v
+<span id="L86" class="ln">    86  </span>}
+<span id="L87" class="ln">    87  </span>
+<span id="L88" class="ln">    88  </span><span class="comment">// GetAuth returns the Auth field value.</span>
+<span id="L89" class="ln">    89  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetAuth() ObservabilityPipelineGcpAuth {
+<span id="L90" class="ln">    90  </span>	if o == nil {
+<span id="L91" class="ln">    91  </span>		var ret ObservabilityPipelineGcpAuth
+<span id="L92" class="ln">    92  </span>		return ret
+<span id="L93" class="ln">    93  </span>	}
+<span id="L94" class="ln">    94  </span>	return o.Auth
+<span id="L95" class="ln">    95  </span>}
+<span id="L96" class="ln">    96  </span>
+<span id="L97" class="ln">    97  </span><span class="comment">// GetAuthOk returns a tuple with the Auth field value</span>
+<span id="L98" class="ln">    98  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L99" class="ln">    99  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetAuthOk() (*ObservabilityPipelineGcpAuth, bool) {
+<span id="L100" class="ln">   100  </span>	if o == nil {
+<span id="L101" class="ln">   101  </span>		return nil, false
+<span id="L102" class="ln">   102  </span>	}
+<span id="L103" class="ln">   103  </span>	return &amp;o.Auth, true
+<span id="L104" class="ln">   104  </span>}
+<span id="L105" class="ln">   105  </span>
+<span id="L106" class="ln">   106  </span><span class="comment">// SetAuth sets field value.</span>
+<span id="L107" class="ln">   107  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetAuth(v ObservabilityPipelineGcpAuth) {
+<span id="L108" class="ln">   108  </span>	o.Auth = v
+<span id="L109" class="ln">   109  </span>}
+<span id="L110" class="ln">   110  </span>
+<span id="L111" class="ln">   111  </span><span class="comment">// GetBucket returns the Bucket field value.</span>
+<span id="L112" class="ln">   112  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetBucket() string {
+<span id="L113" class="ln">   113  </span>	if o == nil {
+<span id="L114" class="ln">   114  </span>		var ret string
+<span id="L115" class="ln">   115  </span>		return ret
+<span id="L116" class="ln">   116  </span>	}
+<span id="L117" class="ln">   117  </span>	return o.Bucket
+<span id="L118" class="ln">   118  </span>}
+<span id="L119" class="ln">   119  </span>
+<span id="L120" class="ln">   120  </span><span class="comment">// GetBucketOk returns a tuple with the Bucket field value</span>
+<span id="L121" class="ln">   121  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L122" class="ln">   122  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetBucketOk() (*string, bool) {
+<span id="L123" class="ln">   123  </span>	if o == nil {
+<span id="L124" class="ln">   124  </span>		return nil, false
+<span id="L125" class="ln">   125  </span>	}
+<span id="L126" class="ln">   126  </span>	return &amp;o.Bucket, true
+<span id="L127" class="ln">   127  </span>}
+<span id="L128" class="ln">   128  </span>
+<span id="L129" class="ln">   129  </span><span class="comment">// SetBucket sets field value.</span>
+<span id="L130" class="ln">   130  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetBucket(v string) {
+<span id="L131" class="ln">   131  </span>	o.Bucket = v
+<span id="L132" class="ln">   132  </span>}
+<span id="L133" class="ln">   133  </span>
+<span id="L134" class="ln">   134  </span><span class="comment">// GetId returns the Id field value.</span>
+<span id="L135" class="ln">   135  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetId() string {
+<span id="L136" class="ln">   136  </span>	if o == nil {
+<span id="L137" class="ln">   137  </span>		var ret string
+<span id="L138" class="ln">   138  </span>		return ret
+<span id="L139" class="ln">   139  </span>	}
+<span id="L140" class="ln">   140  </span>	return o.Id
+<span id="L141" class="ln">   141  </span>}
+<span id="L142" class="ln">   142  </span>
+<span id="L143" class="ln">   143  </span><span class="comment">// GetIdOk returns a tuple with the Id field value</span>
+<span id="L144" class="ln">   144  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L145" class="ln">   145  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetIdOk() (*string, bool) {
+<span id="L146" class="ln">   146  </span>	if o == nil {
+<span id="L147" class="ln">   147  </span>		return nil, false
+<span id="L148" class="ln">   148  </span>	}
+<span id="L149" class="ln">   149  </span>	return &amp;o.Id, true
+<span id="L150" class="ln">   150  </span>}
+<span id="L151" class="ln">   151  </span>
+<span id="L152" class="ln">   152  </span><span class="comment">// SetId sets field value.</span>
+<span id="L153" class="ln">   153  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetId(v string) {
+<span id="L154" class="ln">   154  </span>	o.Id = v
+<span id="L155" class="ln">   155  </span>}
+<span id="L156" class="ln">   156  </span>
+<span id="L157" class="ln">   157  </span><span class="comment">// GetInputs returns the Inputs field value.</span>
+<span id="L158" class="ln">   158  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetInputs() []string {
+<span id="L159" class="ln">   159  </span>	if o == nil {
+<span id="L160" class="ln">   160  </span>		var ret []string
+<span id="L161" class="ln">   161  </span>		return ret
+<span id="L162" class="ln">   162  </span>	}
+<span id="L163" class="ln">   163  </span>	return o.Inputs
+<span id="L164" class="ln">   164  </span>}
+<span id="L165" class="ln">   165  </span>
+<span id="L166" class="ln">   166  </span><span class="comment">// GetInputsOk returns a tuple with the Inputs field value</span>
+<span id="L167" class="ln">   167  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L168" class="ln">   168  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetInputsOk() (*[]string, bool) {
+<span id="L169" class="ln">   169  </span>	if o == nil {
+<span id="L170" class="ln">   170  </span>		return nil, false
+<span id="L171" class="ln">   171  </span>	}
+<span id="L172" class="ln">   172  </span>	return &amp;o.Inputs, true
+<span id="L173" class="ln">   173  </span>}
+<span id="L174" class="ln">   174  </span>
+<span id="L175" class="ln">   175  </span><span class="comment">// SetInputs sets field value.</span>
+<span id="L176" class="ln">   176  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetInputs(v []string) {
+<span id="L177" class="ln">   177  </span>	o.Inputs = v
+<span id="L178" class="ln">   178  </span>}
+<span id="L179" class="ln">   179  </span>
+<span id="L180" class="ln">   180  </span><span class="comment">// GetKeyPrefix returns the KeyPrefix field value if set, zero value otherwise.</span>
+<span id="L181" class="ln">   181  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetKeyPrefix() string {
+<span id="L182" class="ln">   182  </span>	if o == nil || o.KeyPrefix == nil {
+<span id="L183" class="ln">   183  </span>		var ret string
+<span id="L184" class="ln">   184  </span>		return ret
+<span id="L185" class="ln">   185  </span>	}
+<span id="L186" class="ln">   186  </span>	return *o.KeyPrefix
+<span id="L187" class="ln">   187  </span>}
+<span id="L188" class="ln">   188  </span>
+<span id="L189" class="ln">   189  </span><span class="comment">// GetKeyPrefixOk returns a tuple with the KeyPrefix field value if set, nil otherwise</span>
+<span id="L190" class="ln">   190  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L191" class="ln">   191  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetKeyPrefixOk() (*string, bool) {
+<span id="L192" class="ln">   192  </span>	if o == nil || o.KeyPrefix == nil {
+<span id="L193" class="ln">   193  </span>		return nil, false
+<span id="L194" class="ln">   194  </span>	}
+<span id="L195" class="ln">   195  </span>	return o.KeyPrefix, true
+<span id="L196" class="ln">   196  </span>}
+<span id="L197" class="ln">   197  </span>
+<span id="L198" class="ln">   198  </span><span class="comment">// HasKeyPrefix returns a boolean if a field has been set.</span>
+<span id="L199" class="ln">   199  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) HasKeyPrefix() bool {
+<span id="L200" class="ln">   200  </span>	return o != nil &amp;&amp; o.KeyPrefix != nil
+<span id="L201" class="ln">   201  </span>}
+<span id="L202" class="ln">   202  </span>
+<span id="L203" class="ln">   203  </span><span class="comment">// SetKeyPrefix gets a reference to the given string and assigns it to the KeyPrefix field.</span>
+<span id="L204" class="ln">   204  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetKeyPrefix(v string) {
+<span id="L205" class="ln">   205  </span>	o.KeyPrefix = &amp;v
+<span id="L206" class="ln">   206  </span>}
+<span id="L207" class="ln">   207  </span>
+<span id="L208" class="ln">   208  </span><span class="comment">// GetMetadata returns the Metadata field value if set, zero value otherwise.</span>
+<span id="L209" class="ln">   209  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetMetadata() []ObservabilityPipelineMetadataEntry {
+<span id="L210" class="ln">   210  </span>	if o == nil || o.Metadata == nil {
+<span id="L211" class="ln">   211  </span>		var ret []ObservabilityPipelineMetadataEntry
+<span id="L212" class="ln">   212  </span>		return ret
+<span id="L213" class="ln">   213  </span>	}
+<span id="L214" class="ln">   214  </span>	return o.Metadata
+<span id="L215" class="ln">   215  </span>}
+<span id="L216" class="ln">   216  </span>
+<span id="L217" class="ln">   217  </span><span class="comment">// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise</span>
+<span id="L218" class="ln">   218  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L219" class="ln">   219  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetMetadataOk() (*[]ObservabilityPipelineMetadataEntry, bool) {
+<span id="L220" class="ln">   220  </span>	if o == nil || o.Metadata == nil {
+<span id="L221" class="ln">   221  </span>		return nil, false
+<span id="L222" class="ln">   222  </span>	}
+<span id="L223" class="ln">   223  </span>	return &amp;o.Metadata, true
+<span id="L224" class="ln">   224  </span>}
+<span id="L225" class="ln">   225  </span>
+<span id="L226" class="ln">   226  </span><span class="comment">// HasMetadata returns a boolean if a field has been set.</span>
+<span id="L227" class="ln">   227  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) HasMetadata() bool {
+<span id="L228" class="ln">   228  </span>	return o != nil &amp;&amp; o.Metadata != nil
+<span id="L229" class="ln">   229  </span>}
+<span id="L230" class="ln">   230  </span>
+<span id="L231" class="ln">   231  </span><span class="comment">// SetMetadata gets a reference to the given []ObservabilityPipelineMetadataEntry and assigns it to the Metadata field.</span>
+<span id="L232" class="ln">   232  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetMetadata(v []ObservabilityPipelineMetadataEntry) {
+<span id="L233" class="ln">   233  </span>	o.Metadata = v
+<span id="L234" class="ln">   234  </span>}
+<span id="L235" class="ln">   235  </span>
+<span id="L236" class="ln">   236  </span><span class="comment">// GetStorageClass returns the StorageClass field value.</span>
+<span id="L237" class="ln">   237  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetStorageClass() ObservabilityPipelineGoogleCloudStorageDestinationStorageClass {
+<span id="L238" class="ln">   238  </span>	if o == nil {
+<span id="L239" class="ln">   239  </span>		var ret ObservabilityPipelineGoogleCloudStorageDestinationStorageClass
+<span id="L240" class="ln">   240  </span>		return ret
+<span id="L241" class="ln">   241  </span>	}
+<span id="L242" class="ln">   242  </span>	return o.StorageClass
+<span id="L243" class="ln">   243  </span>}
+<span id="L244" class="ln">   244  </span>
+<span id="L245" class="ln">   245  </span><span class="comment">// GetStorageClassOk returns a tuple with the StorageClass field value</span>
+<span id="L246" class="ln">   246  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L247" class="ln">   247  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetStorageClassOk() (*ObservabilityPipelineGoogleCloudStorageDestinationStorageClass, bool) {
+<span id="L248" class="ln">   248  </span>	if o == nil {
+<span id="L249" class="ln">   249  </span>		return nil, false
+<span id="L250" class="ln">   250  </span>	}
+<span id="L251" class="ln">   251  </span>	return &amp;o.StorageClass, true
+<span id="L252" class="ln">   252  </span>}
+<span id="L253" class="ln">   253  </span>
+<span id="L254" class="ln">   254  </span><span class="comment">// SetStorageClass sets field value.</span>
+<span id="L255" class="ln">   255  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetStorageClass(v ObservabilityPipelineGoogleCloudStorageDestinationStorageClass) {
+<span id="L256" class="ln">   256  </span>	o.StorageClass = v
+<span id="L257" class="ln">   257  </span>}
+<span id="L258" class="ln">   258  </span>
+<span id="L259" class="ln">   259  </span><span class="comment">// GetType returns the Type field value.</span>
+<span id="L260" class="ln">   260  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetType() ObservabilityPipelineGoogleCloudStorageDestinationType {
+<span id="L261" class="ln">   261  </span>	if o == nil {
+<span id="L262" class="ln">   262  </span>		var ret ObservabilityPipelineGoogleCloudStorageDestinationType
+<span id="L263" class="ln">   263  </span>		return ret
+<span id="L264" class="ln">   264  </span>	}
+<span id="L265" class="ln">   265  </span>	return o.Type
+<span id="L266" class="ln">   266  </span>}
+<span id="L267" class="ln">   267  </span>
+<span id="L268" class="ln">   268  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value</span>
+<span id="L269" class="ln">   269  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L270" class="ln">   270  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetTypeOk() (*ObservabilityPipelineGoogleCloudStorageDestinationType, bool) {
+<span id="L271" class="ln">   271  </span>	if o == nil {
+<span id="L272" class="ln">   272  </span>		return nil, false
+<span id="L273" class="ln">   273  </span>	}
+<span id="L274" class="ln">   274  </span>	return &amp;o.Type, true
+<span id="L275" class="ln">   275  </span>}
+<span id="L276" class="ln">   276  </span>
+<span id="L277" class="ln">   277  </span><span class="comment">// SetType sets field value.</span>
+<span id="L278" class="ln">   278  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetType(v ObservabilityPipelineGoogleCloudStorageDestinationType) {
+<span id="L279" class="ln">   279  </span>	o.Type = v
+<span id="L280" class="ln">   280  </span>}
+<span id="L281" class="ln">   281  </span>
+<span id="L282" class="ln">   282  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L283" class="ln">   283  </span>func (o ObservabilityPipelineGoogleCloudStorageDestination) MarshalJSON() ([]byte, error) {
+<span id="L284" class="ln">   284  </span>	toSerialize := map[string]interface{}{}
+<span id="L285" class="ln">   285  </span>	if o.UnparsedObject != nil {
+<span id="L286" class="ln">   286  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L287" class="ln">   287  </span>	}
+<span id="L288" class="ln">   288  </span>	toSerialize[&#34;acl&#34;] = o.Acl
+<span id="L289" class="ln">   289  </span>	toSerialize[&#34;auth&#34;] = o.Auth
+<span id="L290" class="ln">   290  </span>	toSerialize[&#34;bucket&#34;] = o.Bucket
+<span id="L291" class="ln">   291  </span>	toSerialize[&#34;id&#34;] = o.Id
+<span id="L292" class="ln">   292  </span>	toSerialize[&#34;inputs&#34;] = o.Inputs
+<span id="L293" class="ln">   293  </span>	if o.KeyPrefix != nil {
+<span id="L294" class="ln">   294  </span>		toSerialize[&#34;key_prefix&#34;] = o.KeyPrefix
+<span id="L295" class="ln">   295  </span>	}
+<span id="L296" class="ln">   296  </span>	if o.Metadata != nil {
+<span id="L297" class="ln">   297  </span>		toSerialize[&#34;metadata&#34;] = o.Metadata
+<span id="L298" class="ln">   298  </span>	}
+<span id="L299" class="ln">   299  </span>	toSerialize[&#34;storage_class&#34;] = o.StorageClass
+<span id="L300" class="ln">   300  </span>	toSerialize[&#34;type&#34;] = o.Type
+<span id="L301" class="ln">   301  </span>
+<span id="L302" class="ln">   302  </span>	for key, value := range o.AdditionalProperties {
+<span id="L303" class="ln">   303  </span>		toSerialize[key] = value
+<span id="L304" class="ln">   304  </span>	}
+<span id="L305" class="ln">   305  </span>	return datadog.Marshal(toSerialize)
+<span id="L306" class="ln">   306  </span>}
+<span id="L307" class="ln">   307  </span>
+<span id="L308" class="ln">   308  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L309" class="ln">   309  </span>func (o *ObservabilityPipelineGoogleCloudStorageDestination) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L310" class="ln">   310  </span>	all := struct {
+<span id="L311" class="ln">   311  </span>		Acl          *ObservabilityPipelineGoogleCloudStorageDestinationAcl          `json:&#34;acl&#34;`
+<span id="L312" class="ln">   312  </span>		Auth         *ObservabilityPipelineGcpAuth                                   `json:&#34;auth&#34;`
+<span id="L313" class="ln">   313  </span>		Bucket       *string                                                         `json:&#34;bucket&#34;`
+<span id="L314" class="ln">   314  </span>		Id           *string                                                         `json:&#34;id&#34;`
+<span id="L315" class="ln">   315  </span>		Inputs       *[]string                                                       `json:&#34;inputs&#34;`
+<span id="L316" class="ln">   316  </span>		KeyPrefix    *string                                                         `json:&#34;key_prefix,omitempty&#34;`
+<span id="L317" class="ln">   317  </span>		Metadata     []ObservabilityPipelineMetadataEntry                            `json:&#34;metadata,omitempty&#34;`
+<span id="L318" class="ln">   318  </span>		StorageClass *ObservabilityPipelineGoogleCloudStorageDestinationStorageClass `json:&#34;storage_class&#34;`
+<span id="L319" class="ln">   319  </span>		Type         *ObservabilityPipelineGoogleCloudStorageDestinationType         `json:&#34;type&#34;`
+<span id="L320" class="ln">   320  </span>	}{}
+<span id="L321" class="ln">   321  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L322" class="ln">   322  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L323" class="ln">   323  </span>	}
+<span id="L324" class="ln">   324  </span>	if all.Acl == nil {
+<span id="L325" class="ln">   325  </span>		return fmt.Errorf(&#34;required field acl missing&#34;)
+<span id="L326" class="ln">   326  </span>	}
+<span id="L327" class="ln">   327  </span>	if all.Auth == nil {
+<span id="L328" class="ln">   328  </span>		return fmt.Errorf(&#34;required field auth missing&#34;)
+<span id="L329" class="ln">   329  </span>	}
+<span id="L330" class="ln">   330  </span>	if all.Bucket == nil {
+<span id="L331" class="ln">   331  </span>		return fmt.Errorf(&#34;required field bucket missing&#34;)
+<span id="L332" class="ln">   332  </span>	}
+<span id="L333" class="ln">   333  </span>	if all.Id == nil {
+<span id="L334" class="ln">   334  </span>		return fmt.Errorf(&#34;required field id missing&#34;)
+<span id="L335" class="ln">   335  </span>	}
+<span id="L336" class="ln">   336  </span>	if all.Inputs == nil {
+<span id="L337" class="ln">   337  </span>		return fmt.Errorf(&#34;required field inputs missing&#34;)
+<span id="L338" class="ln">   338  </span>	}
+<span id="L339" class="ln">   339  </span>	if all.StorageClass == nil {
+<span id="L340" class="ln">   340  </span>		return fmt.Errorf(&#34;required field storage_class missing&#34;)
+<span id="L341" class="ln">   341  </span>	}
+<span id="L342" class="ln">   342  </span>	if all.Type == nil {
+<span id="L343" class="ln">   343  </span>		return fmt.Errorf(&#34;required field type missing&#34;)
+<span id="L344" class="ln">   344  </span>	}
+<span id="L345" class="ln">   345  </span>	additionalProperties := make(map[string]interface{})
+<span id="L346" class="ln">   346  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L347" class="ln">   347  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;acl&#34;, &#34;auth&#34;, &#34;bucket&#34;, &#34;id&#34;, &#34;inputs&#34;, &#34;key_prefix&#34;, &#34;metadata&#34;, &#34;storage_class&#34;, &#34;type&#34;})
+<span id="L348" class="ln">   348  </span>	} else {
+<span id="L349" class="ln">   349  </span>		return err
+<span id="L350" class="ln">   350  </span>	}
+<span id="L351" class="ln">   351  </span>
+<span id="L352" class="ln">   352  </span>	hasInvalidField := false
+<span id="L353" class="ln">   353  </span>	if !all.Acl.IsValid() {
+<span id="L354" class="ln">   354  </span>		hasInvalidField = true
+<span id="L355" class="ln">   355  </span>	} else {
+<span id="L356" class="ln">   356  </span>		o.Acl = *all.Acl
+<span id="L357" class="ln">   357  </span>	}
+<span id="L358" class="ln">   358  </span>	if all.Auth.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L359" class="ln">   359  </span>		hasInvalidField = true
+<span id="L360" class="ln">   360  </span>	}
+<span id="L361" class="ln">   361  </span>	o.Auth = *all.Auth
+<span id="L362" class="ln">   362  </span>	o.Bucket = *all.Bucket
+<span id="L363" class="ln">   363  </span>	o.Id = *all.Id
+<span id="L364" class="ln">   364  </span>	o.Inputs = *all.Inputs
+<span id="L365" class="ln">   365  </span>	o.KeyPrefix = all.KeyPrefix
+<span id="L366" class="ln">   366  </span>	o.Metadata = all.Metadata
+<span id="L367" class="ln">   367  </span>	if !all.StorageClass.IsValid() {
+<span id="L368" class="ln">   368  </span>		hasInvalidField = true
+<span id="L369" class="ln">   369  </span>	} else {
+<span id="L370" class="ln">   370  </span>		o.StorageClass = *all.StorageClass
+<span id="L371" class="ln">   371  </span>	}
+<span id="L372" class="ln">   372  </span>	if !all.Type.IsValid() {
+<span id="L373" class="ln">   373  </span>		hasInvalidField = true
+<span id="L374" class="ln">   374  </span>	} else {
+<span id="L375" class="ln">   375  </span>		o.Type = *all.Type
+<span id="L376" class="ln">   376  </span>	}
+<span id="L377" class="ln">   377  </span>
+<span id="L378" class="ln">   378  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L379" class="ln">   379  </span>		o.AdditionalProperties = additionalProperties
+<span id="L380" class="ln">   380  </span>	}
+<span id="L381" class="ln">   381  </span>
+<span id="L382" class="ln">   382  </span>	if hasInvalidField {
+<span id="L383" class="ln">   383  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L384" class="ln">   384  </span>	}
+<span id="L385" class="ln">   385  </span>
+<span id="L386" class="ln">   386  </span>	return nil
+<span id="L387" class="ln">   387  </span>}
+<span id="L388" class="ln">   388  </span>
 </pre><p></p>
 
 <div id="footer">
