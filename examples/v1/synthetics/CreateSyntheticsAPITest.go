@@ -35,6 +35,7 @@ func main() {
 		Message: "Notification message",
 		Name:    "Example test name",
 		Options: datadogV1.SyntheticsTestOptions{
+			BlockedRequestPatterns: []string{},
 			Ci: &datadogV1.SyntheticsTestCiOptions{
 				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_BLOCKING,
 			},
