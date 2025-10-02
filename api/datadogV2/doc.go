@@ -430,6 +430,7 @@
 //   - [RolesApi.GetRole]
 //   - [RolesApi.ListPermissions]
 //   - [RolesApi.ListRolePermissions]
+//   - [RolesApi.ListRoleTemplates]
 //   - [RolesApi.ListRoleUsers]
 //   - [RolesApi.ListRoles]
 //   - [RolesApi.RemovePermissionFromRole]
