@@ -33,6 +33,7 @@
 //   - [ActionConnectionApi.RegisterAppKey]
 //   - [ActionConnectionApi.UnregisterAppKey]
 //   - [ActionConnectionApi.UpdateActionConnection]
+//   - [ActionsDatastoresApi.BulkDeleteDatastoreItems]
 //   - [ActionsDatastoresApi.BulkWriteDatastoreItems]
 //   - [ActionsDatastoresApi.CreateDatastore]
 //   - [ActionsDatastoresApi.DeleteDatastore]
