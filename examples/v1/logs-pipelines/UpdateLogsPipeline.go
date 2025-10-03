@@ -23,11 +23,9 @@ func main() {
 				LogsGrokParser: &datadogV1.LogsGrokParser{
 					Grok: datadogV1.LogsGrokParserRules{
 						MatchRules: `rule_name_1 foo
-rule_name_2 bar
-`,
+rule_name_2 bar`,
 						SupportRules: datadog.PtrString(`rule_name_1 foo
-rule_name_2 bar
-`),
+rule_name_2 bar`),
 					},
 					IsEnabled: datadog.PtrBool(false),
 					Samples:   []string{},
