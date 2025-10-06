@@ -28,7 +28,7 @@ func main() {
 									Definition: datadogV1.NotebookMarkdownCellDefinition{
 										Text: `## Some test markdown
 
-` + "```" + `js
+` + "```" + `
 var x, y;
 x = 5;
 y = 6;
