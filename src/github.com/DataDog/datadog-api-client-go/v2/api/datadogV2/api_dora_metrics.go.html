@@ -72,8 +72,8 @@
 <span id="L15" class="ln">    15  </span><span class="comment">// DORAMetricsApi service type</span>
 <span id="L16" class="ln">    16  </span>type DORAMetricsApi datadog.Service
 <span id="L17" class="ln">    17  </span>
-<span id="L18" class="ln">    18  </span><span class="comment">// CreateDORADeployment Send a deployment event for DORA Metrics.</span>
-<span id="L19" class="ln">    19  </span><span class="comment">// Use this API endpoint to provide data about deployments for DORA metrics.</span>
+<span id="L18" class="ln">    18  </span><span class="comment">// CreateDORADeployment Send a deployment event.</span>
+<span id="L19" class="ln">    19  </span><span class="comment">// Use this API endpoint to provide deployment data.</span>
 <span id="L20" class="ln">    20  </span><span class="comment">//</span>
 <span id="L21" class="ln">    21  </span><span class="comment">// This is necessary for:</span>
 <span id="L22" class="ln">    22  </span><span class="comment">// - Deployment Frequency</span>
@@ -159,8 +159,8 @@
 <span id="L102" class="ln">   102  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L103" class="ln">   103  </span>}
 <span id="L104" class="ln">   104  </span>
-<span id="L105" class="ln">   105  </span><span class="comment">// CreateDORAFailure Send a failure event for DORA Metrics.</span>
-<span id="L106" class="ln">   106  </span><span class="comment">// Use this API endpoint to provide failure data for DORA metrics.</span>
+<span id="L105" class="ln">   105  </span><span class="comment">// CreateDORAFailure Send a failure event.</span>
+<span id="L106" class="ln">   106  </span><span class="comment">// Use this API endpoint to provide failure data.</span>
 <span id="L107" class="ln">   107  </span><span class="comment">//</span>
 <span id="L108" class="ln">   108  </span><span class="comment">// This is necessary for:</span>
 <span id="L109" class="ln">   109  </span><span class="comment">// - Change Failure Rate</span>
@@ -245,10 +245,10 @@
 <span id="L188" class="ln">   188  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L189" class="ln">   189  </span>}
 <span id="L190" class="ln">   190  </span>
-<span id="L191" class="ln">   191  </span><span class="comment">// CreateDORAIncident Send an incident event for DORA Metrics.</span>
+<span id="L191" class="ln">   191  </span><span class="comment">// CreateDORAIncident Send an incident event.</span>
 <span id="L192" class="ln">   192  </span><span class="comment">// **Note**: This endpoint is deprecated. Please use `/api/v2/dora/failure` instead.</span>
 <span id="L193" class="ln">   193  </span><span class="comment">//</span>
-<span id="L194" class="ln">   194  </span><span class="comment">// Use this API endpoint to provide failure data for DORA metrics.</span>
+<span id="L194" class="ln">   194  </span><span class="comment">// Use this API endpoint to provide failure data.</span>
 <span id="L195" class="ln">   195  </span><span class="comment">//</span>
 <span id="L196" class="ln">   196  </span><span class="comment">// This is necessary for:</span>
 <span id="L197" class="ln">   197  </span><span class="comment">// - Change Failure Rate</span>
