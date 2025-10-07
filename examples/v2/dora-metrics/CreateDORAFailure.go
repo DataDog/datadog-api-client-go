@@ -1,4 +1,4 @@
-// Send a failure event for DORA Metrics returns "OK - but delayed due to incident" response
+// Send a failure event returns "OK - but delayed due to incident" response
 
 package main
 
