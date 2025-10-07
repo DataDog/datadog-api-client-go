@@ -15,8 +15,8 @@ import (
 // DORAMetricsApi service type
 type DORAMetricsApi datadog.Service
 
-// CreateDORADeployment Send a deployment event for DORA Metrics.
-// Use this API endpoint to provide data about deployments for DORA metrics.
+// CreateDORADeployment Send a deployment event.
+// Use this API endpoint to provide deployment data.
 //
 // This is necessary for:
 // - Deployment Frequency
@@ -102,8 +102,8 @@ func (a *DORAMetricsApi) CreateDORADeployment(ctx _context.Context, body DORADep
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateDORAFailure Send a failure event for DORA Metrics.
-// Use this API endpoint to provide failure data for DORA metrics.
+// CreateDORAFailure Send a failure event.
+// Use this API endpoint to provide failure data.
 //
 // This is necessary for:
 // - Change Failure Rate
@@ -188,10 +188,10 @@ func (a *DORAMetricsApi) CreateDORAFailure(ctx _context.Context, body DORAFailur
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateDORAIncident Send an incident event for DORA Metrics.
+// CreateDORAIncident Send an incident event.
 // **Note**: This endpoint is deprecated. Please use `/api/v2/dora/failure` instead.
 //
-// Use this API endpoint to provide failure data for DORA metrics.
+// Use this API endpoint to provide failure data.
 //
 // This is necessary for:
 // - Change Failure Rate

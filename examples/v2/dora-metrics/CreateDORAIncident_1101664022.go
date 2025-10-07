@@ -1,4 +1,4 @@
-// Send a failure event for DORA Metrics returns "OK" response
+// Send a failure event returns "OK" response
 
 package main
 
