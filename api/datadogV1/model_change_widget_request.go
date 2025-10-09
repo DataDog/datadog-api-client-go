@@ -22,6 +22,8 @@ type ChangeWidgetRequest struct {
 	Formulas []WidgetFormula `json:"formulas,omitempty"`
 	// Whether to show increase as good.
 	IncreaseGood *bool `json:"increase_good,omitempty"`
+	// The number of items to show.
+	Limit *int64 `json:"limit,omitempty"`
 	// The log query.
 	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
 	// The log query.
@@ -234,6 +236,34 @@ func (o *ChangeWidgetRequest) HasIncreaseGood() bool {
 // SetIncreaseGood gets a reference to the given bool and assigns it to the IncreaseGood field.
 func (o *ChangeWidgetRequest) SetIncreaseGood(v bool) {
 	o.IncreaseGood = &v
+}
+
+// GetLimit returns the Limit field value if set, zero value otherwise.
+func (o *ChangeWidgetRequest) GetLimit() int64 {
+	if o == nil || o.Limit == nil {
+		var ret int64
+		return ret
+	}
+	return *o.Limit
+}
+
+// GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChangeWidgetRequest) GetLimitOk() (*int64, bool) {
+	if o == nil || o.Limit == nil {
+		return nil, false
+	}
+	return o.Limit, true
+}
+
+// HasLimit returns a boolean if a field has been set.
+func (o *ChangeWidgetRequest) HasLimit() bool {
+	return o != nil && o.Limit != nil
+}
+
+// SetLimit gets a reference to the given int64 and assigns it to the Limit field.
+func (o *ChangeWidgetRequest) SetLimit(v int64) {
+	o.Limit = &v
 }
 
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
@@ -596,6 +626,9 @@ func (o ChangeWidgetRequest) MarshalJSON() ([]byte, error) {
 	if o.IncreaseGood != nil {
 		toSerialize["increase_good"] = o.IncreaseGood
 	}
+	if o.Limit != nil {
+		toSerialize["limit"] = o.Limit
+	}
 	if o.LogQuery != nil {
 		toSerialize["log_query"] = o.LogQuery
 	}
@@ -648,6 +681,7 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		EventQuery          *LogQueryDefinition                 `json:"event_query,omitempty"`
 		Formulas            []WidgetFormula                     `json:"formulas,omitempty"`
 		IncreaseGood        *bool                               `json:"increase_good,omitempty"`
+		Limit               *int64                              `json:"limit,omitempty"`
 		LogQuery            *LogQueryDefinition                 `json:"log_query,omitempty"`
 		NetworkQuery        *LogQueryDefinition                 `json:"network_query,omitempty"`
 		OrderBy             *WidgetOrderBy                      `json:"order_by,omitempty"`
@@ -666,7 +700,7 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"apm_query", "change_type", "compare_to", "event_query", "formulas", "increase_good", "log_query", "network_query", "order_by", "order_dir", "process_query", "profile_metrics_query", "q", "queries", "response_format", "rum_query", "security_query", "show_present"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"apm_query", "change_type", "compare_to", "event_query", "formulas", "increase_good", "limit", "log_query", "network_query", "order_by", "order_dir", "process_query", "profile_metrics_query", "q", "queries", "response_format", "rum_query", "security_query", "show_present"})
 	} else {
 		return err
 	}
@@ -692,6 +726,7 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.EventQuery = all.EventQuery
 	o.Formulas = all.Formulas
 	o.IncreaseGood = all.IncreaseGood
+	o.Limit = all.Limit
 	if all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
