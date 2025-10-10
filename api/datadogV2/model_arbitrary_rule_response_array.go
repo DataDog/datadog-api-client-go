@@ -14,6 +14,8 @@ import (
 type ArbitraryRuleResponseArray struct {
 	// The `ArbitraryRuleResponseArray` `data`.
 	Data []ArbitraryRuleResponseData `json:"data"`
+	// The `ArbitraryRuleResponseArray` `meta`.
+	Meta *ArbitraryRuleResponseArrayMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -60,6 +62,34 @@ func (o *ArbitraryRuleResponseArray) SetData(v []ArbitraryRuleResponseData) {
 	o.Data = v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ArbitraryRuleResponseArray) GetMeta() ArbitraryRuleResponseArrayMeta {
+	if o == nil || o.Meta == nil {
+		var ret ArbitraryRuleResponseArrayMeta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArbitraryRuleResponseArray) GetMetaOk() (*ArbitraryRuleResponseArrayMeta, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ArbitraryRuleResponseArray) HasMeta() bool {
+	return o != nil && o.Meta != nil
+}
+
+// SetMeta gets a reference to the given ArbitraryRuleResponseArrayMeta and assigns it to the Meta field.
+func (o *ArbitraryRuleResponseArray) SetMeta(v ArbitraryRuleResponseArrayMeta) {
+	o.Meta = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ArbitraryRuleResponseArray) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -67,6 +97,9 @@ func (o ArbitraryRuleResponseArray) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["data"] = o.Data
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -77,7 +110,8 @@ func (o ArbitraryRuleResponseArray) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ArbitraryRuleResponseArray) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]ArbitraryRuleResponseData `json:"data"`
+		Data *[]ArbitraryRuleResponseData    `json:"data"`
+		Meta *ArbitraryRuleResponseArrayMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -87,14 +121,24 @@ func (o *ArbitraryRuleResponseArray) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Data = *all.Data
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

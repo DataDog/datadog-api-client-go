@@ -23,6 +23,8 @@ type ArbitraryRuleResponseDataAttributes struct {
 	LastModifiedUserUuid string `json:"last_modified_user_uuid"`
 	// The `attributes` `order_id`.
 	OrderId int64 `json:"order_id"`
+	// The `attributes` `processing_status`.
+	ProcessingStatus *string `json:"processing_status,omitempty"`
 	// The `attributes` `provider`.
 	Provider []string `json:"provider"`
 	// The `attributes` `rejected`.
@@ -183,6 +185,34 @@ func (o *ArbitraryRuleResponseDataAttributes) GetOrderIdOk() (*int64, bool) {
 // SetOrderId sets field value.
 func (o *ArbitraryRuleResponseDataAttributes) SetOrderId(v int64) {
 	o.OrderId = v
+}
+
+// GetProcessingStatus returns the ProcessingStatus field value if set, zero value otherwise.
+func (o *ArbitraryRuleResponseDataAttributes) GetProcessingStatus() string {
+	if o == nil || o.ProcessingStatus == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProcessingStatus
+}
+
+// GetProcessingStatusOk returns a tuple with the ProcessingStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ArbitraryRuleResponseDataAttributes) GetProcessingStatusOk() (*string, bool) {
+	if o == nil || o.ProcessingStatus == nil {
+		return nil, false
+	}
+	return o.ProcessingStatus, true
+}
+
+// HasProcessingStatus returns a boolean if a field has been set.
+func (o *ArbitraryRuleResponseDataAttributes) HasProcessingStatus() bool {
+	return o != nil && o.ProcessingStatus != nil
+}
+
+// SetProcessingStatus gets a reference to the given string and assigns it to the ProcessingStatus field.
+func (o *ArbitraryRuleResponseDataAttributes) SetProcessingStatus(v string) {
+	o.ProcessingStatus = &v
 }
 
 // GetProvider returns the Provider field value.
@@ -366,6 +396,9 @@ func (o ArbitraryRuleResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["enabled"] = o.Enabled
 	toSerialize["last_modified_user_uuid"] = o.LastModifiedUserUuid
 	toSerialize["order_id"] = o.OrderId
+	if o.ProcessingStatus != nil {
+		toSerialize["processing_status"] = o.ProcessingStatus
+	}
 	toSerialize["provider"] = o.Provider
 	if o.Rejected != nil {
 		toSerialize["rejected"] = o.Rejected
@@ -394,6 +427,7 @@ func (o *ArbitraryRuleResponseDataAttributes) UnmarshalJSON(bytes []byte) (err e
 		Enabled              *bool                                                      `json:"enabled"`
 		LastModifiedUserUuid *string                                                    `json:"last_modified_user_uuid"`
 		OrderId              *int64                                                     `json:"order_id"`
+		ProcessingStatus     *string                                                    `json:"processing_status,omitempty"`
 		Provider             *[]string                                                  `json:"provider"`
 		Rejected             *bool                                                      `json:"rejected,omitempty"`
 		RuleName             *string                                                    `json:"rule_name"`
@@ -440,7 +474,7 @@ func (o *ArbitraryRuleResponseDataAttributes) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"costs_to_allocate", "created", "enabled", "last_modified_user_uuid", "order_id", "provider", "rejected", "rule_name", "strategy", "type", "updated", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"costs_to_allocate", "created", "enabled", "last_modified_user_uuid", "order_id", "processing_status", "provider", "rejected", "rule_name", "strategy", "type", "updated", "version"})
 	} else {
 		return err
 	}
@@ -451,6 +485,7 @@ func (o *ArbitraryRuleResponseDataAttributes) UnmarshalJSON(bytes []byte) (err e
 	o.Enabled = *all.Enabled
 	o.LastModifiedUserUuid = *all.LastModifiedUserUuid
 	o.OrderId = *all.OrderId
+	o.ProcessingStatus = all.ProcessingStatus
 	o.Provider = *all.Provider
 	o.Rejected = all.Rejected
 	o.RuleName = *all.RuleName

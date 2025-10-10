@@ -24,6 +24,8 @@ type RulesetRespDataAttributes struct {
 	Name string `json:"name"`
 	// The `attributes` `position`.
 	Position int32 `json:"position"`
+	// The `attributes` `processing_status`.
+	ProcessingStatus *string `json:"processing_status,omitempty"`
 	// The `attributes` `rules`.
 	Rules []RulesetRespDataAttributesRulesItems `json:"rules"`
 	// The `attributes` `version`.
@@ -196,6 +198,34 @@ func (o *RulesetRespDataAttributes) SetPosition(v int32) {
 	o.Position = v
 }
 
+// GetProcessingStatus returns the ProcessingStatus field value if set, zero value otherwise.
+func (o *RulesetRespDataAttributes) GetProcessingStatus() string {
+	if o == nil || o.ProcessingStatus == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProcessingStatus
+}
+
+// GetProcessingStatusOk returns a tuple with the ProcessingStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RulesetRespDataAttributes) GetProcessingStatusOk() (*string, bool) {
+	if o == nil || o.ProcessingStatus == nil {
+		return nil, false
+	}
+	return o.ProcessingStatus, true
+}
+
+// HasProcessingStatus returns a boolean if a field has been set.
+func (o *RulesetRespDataAttributes) HasProcessingStatus() bool {
+	return o != nil && o.ProcessingStatus != nil
+}
+
+// SetProcessingStatus gets a reference to the given string and assigns it to the ProcessingStatus field.
+func (o *RulesetRespDataAttributes) SetProcessingStatus(v string) {
+	o.ProcessingStatus = &v
+}
+
 // GetRules returns the Rules field value.
 func (o *RulesetRespDataAttributes) GetRules() []RulesetRespDataAttributesRulesItems {
 	if o == nil {
@@ -254,6 +284,9 @@ func (o RulesetRespDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["modified"] = o.Modified
 	toSerialize["name"] = o.Name
 	toSerialize["position"] = o.Position
+	if o.ProcessingStatus != nil {
+		toSerialize["processing_status"] = o.ProcessingStatus
+	}
 	toSerialize["rules"] = o.Rules
 	toSerialize["version"] = o.Version
 
@@ -272,6 +305,7 @@ func (o *RulesetRespDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Modified             *RulesetRespDataAttributesModified     `json:"modified"`
 		Name                 *string                                `json:"name"`
 		Position             *int32                                 `json:"position"`
+		ProcessingStatus     *string                                `json:"processing_status,omitempty"`
 		Rules                *[]RulesetRespDataAttributesRulesItems `json:"rules"`
 		Version              *int64                                 `json:"version"`
 	}{}
@@ -304,7 +338,7 @@ func (o *RulesetRespDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created", "enabled", "last_modified_user_uuid", "modified", "name", "position", "rules", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created", "enabled", "last_modified_user_uuid", "modified", "name", "position", "processing_status", "rules", "version"})
 	} else {
 		return err
 	}
@@ -322,6 +356,7 @@ func (o *RulesetRespDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Modified = *all.Modified
 	o.Name = *all.Name
 	o.Position = *all.Position
+	o.ProcessingStatus = all.ProcessingStatus
 	o.Rules = *all.Rules
 	o.Version = *all.Version
 
