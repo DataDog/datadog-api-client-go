@@ -72,273 +72,273 @@
 <span id="L15" class="ln">    15  </span><span class="comment">// CloudCostManagementApi service type</span>
 <span id="L16" class="ln">    16  </span>type CloudCostManagementApi datadog.Service
 <span id="L17" class="ln">    17  </span>
-<span id="L18" class="ln">    18  </span><span class="comment">// CreateArbitraryCostRule Create arbitrary cost rule.</span>
-<span id="L19" class="ln">    19  </span><span class="comment">// Create a new arbitrary cost rule with the specified filters and allocation strategy.</span>
-<span id="L20" class="ln">    20  </span><span class="comment">//</span>
-<span id="L21" class="ln">    21  </span><span class="comment">// **Strategy Methods:**</span>
-<span id="L22" class="ln">    22  </span><span class="comment">// - **PROPORTIONAL/EVEN**: Allocates costs proportionally/evenly based on existing costs. Requires: granularity, allocated_by_tag_keys. Optional: based_on_costs, allocated_by_filters, evaluate_grouped_by_tag_keys, evaluate_grouped_by_filters.</span>
-<span id="L23" class="ln">    23  </span><span class="comment">// - **PROPORTIONAL_TIMESERIES/EVEN_TIMESERIES**: Allocates based on timeseries data. Requires: granularity, based_on_timeseries. Optional: evaluate_grouped_by_tag_keys.</span>
-<span id="L24" class="ln">    24  </span><span class="comment">// - **PERCENT**: Allocates fixed percentages to specific tags. Requires: allocated_by (array of percentage allocations).</span>
-<span id="L25" class="ln">    25  </span><span class="comment">//</span>
-<span id="L26" class="ln">    26  </span><span class="comment">// **Filter Conditions:**</span>
-<span id="L27" class="ln">    27  </span><span class="comment">// - Use **value** for single-value conditions: &#34;is&#34;, &#34;is not&#34;, &#34;contains&#34;, &#34;does not contain&#34;, &#34;=&#34;, &#34;!=&#34;, &#34;like&#34;, &#34;not like&#34;, &#34;is all values&#34;, &#34;is untagged&#34;</span>
-<span id="L28" class="ln">    28  </span><span class="comment">// - Use **values** for multi-value conditions: &#34;in&#34;, &#34;not in&#34;</span>
-<span id="L29" class="ln">    29  </span><span class="comment">// - Cannot use both value and values simultaneously.</span>
-<span id="L30" class="ln">    30  </span><span class="comment">//</span>
-<span id="L31" class="ln">    31  </span><span class="comment">// **Supported operators**: is, is not, is all values, is untagged, contains, does not contain, in, not in, =, !=, like, not like</span>
-<span id="L32" class="ln">    32  </span>func (a *CloudCostManagementApi) CreateArbitraryCostRule(ctx _context.Context, body ArbitraryCostUpsertRequest) (ArbitraryRuleResponse, *_nethttp.Response, error) {
-<span id="L33" class="ln">    33  </span>	var (
-<span id="L34" class="ln">    34  </span>		localVarHTTPMethod  = _nethttp.MethodPost
-<span id="L35" class="ln">    35  </span>		localVarPostBody    interface{}
-<span id="L36" class="ln">    36  </span>		localVarReturnValue ArbitraryRuleResponse
-<span id="L37" class="ln">    37  </span>	)
-<span id="L38" class="ln">    38  </span>
-<span id="L39" class="ln">    39  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.CreateArbitraryCostRule&#34;)
-<span id="L40" class="ln">    40  </span>	if err != nil {
-<span id="L41" class="ln">    41  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L42" class="ln">    42  </span>	}
-<span id="L43" class="ln">    43  </span>
-<span id="L44" class="ln">    44  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/arbitrary_rule&#34;
-<span id="L45" class="ln">    45  </span>
-<span id="L46" class="ln">    46  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L47" class="ln">    47  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L48" class="ln">    48  </span>	localVarFormParams := _neturl.Values{}
-<span id="L49" class="ln">    49  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
-<span id="L50" class="ln">    50  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L51" class="ln">    51  </span>
-<span id="L52" class="ln">    52  </span>	<span class="comment">// body params</span>
-<span id="L53" class="ln">    53  </span>	localVarPostBody = &amp;body
-<span id="L54" class="ln">    54  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
-<span id="L55" class="ln">    55  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-<span id="L56" class="ln">    56  </span>		if err != nil {
-<span id="L57" class="ln">    57  </span>			return localVarReturnValue, nil, err
-<span id="L58" class="ln">    58  </span>		}
-<span id="L59" class="ln">    59  </span>	} else {
-<span id="L60" class="ln">    60  </span>		datadog.SetAuthKeys(
-<span id="L61" class="ln">    61  </span>			ctx,
-<span id="L62" class="ln">    62  </span>			&amp;localVarHeaderParams,
-<span id="L63" class="ln">    63  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L64" class="ln">    64  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L65" class="ln">    65  </span>		)
-<span id="L66" class="ln">    66  </span>	}
-<span id="L67" class="ln">    67  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L68" class="ln">    68  </span>	if err != nil {
-<span id="L69" class="ln">    69  </span>		return localVarReturnValue, nil, err
-<span id="L70" class="ln">    70  </span>	}
-<span id="L71" class="ln">    71  </span>
-<span id="L72" class="ln">    72  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L73" class="ln">    73  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L74" class="ln">    74  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L75" class="ln">    75  </span>	}
-<span id="L76" class="ln">    76  </span>
-<span id="L77" class="ln">    77  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L78" class="ln">    78  </span>	if err != nil {
-<span id="L79" class="ln">    79  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L80" class="ln">    80  </span>	}
-<span id="L81" class="ln">    81  </span>
-<span id="L82" class="ln">    82  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L83" class="ln">    83  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L84" class="ln">    84  </span>			ErrorBody:    localVarBody,
-<span id="L85" class="ln">    85  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L86" class="ln">    86  </span>		}
-<span id="L87" class="ln">    87  </span>		if localVarHTTPResponse.StatusCode == 429 {
-<span id="L88" class="ln">    88  </span>			var v APIErrorResponse
-<span id="L89" class="ln">    89  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L90" class="ln">    90  </span>			if err != nil {
-<span id="L91" class="ln">    91  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L92" class="ln">    92  </span>			}
-<span id="L93" class="ln">    93  </span>			newErr.ErrorModel = v
-<span id="L94" class="ln">    94  </span>		}
-<span id="L95" class="ln">    95  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L96" class="ln">    96  </span>	}
+<span id="L18" class="ln">    18  </span><span class="comment">// CreateCostAWSCURConfig Create Cloud Cost Management AWS CUR config.</span>
+<span id="L19" class="ln">    19  </span><span class="comment">// Create a Cloud Cost Management account for an AWS CUR config.</span>
+<span id="L20" class="ln">    20  </span>func (a *CloudCostManagementApi) CreateCostAWSCURConfig(ctx _context.Context, body AwsCURConfigPostRequest) (AwsCurConfigResponse, *_nethttp.Response, error) {
+<span id="L21" class="ln">    21  </span>	var (
+<span id="L22" class="ln">    22  </span>		localVarHTTPMethod  = _nethttp.MethodPost
+<span id="L23" class="ln">    23  </span>		localVarPostBody    interface{}
+<span id="L24" class="ln">    24  </span>		localVarReturnValue AwsCurConfigResponse
+<span id="L25" class="ln">    25  </span>	)
+<span id="L26" class="ln">    26  </span>
+<span id="L27" class="ln">    27  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.CreateCostAWSCURConfig&#34;)
+<span id="L28" class="ln">    28  </span>	if err != nil {
+<span id="L29" class="ln">    29  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L30" class="ln">    30  </span>	}
+<span id="L31" class="ln">    31  </span>
+<span id="L32" class="ln">    32  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/aws_cur_config&#34;
+<span id="L33" class="ln">    33  </span>
+<span id="L34" class="ln">    34  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L35" class="ln">    35  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L36" class="ln">    36  </span>	localVarFormParams := _neturl.Values{}
+<span id="L37" class="ln">    37  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L38" class="ln">    38  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L39" class="ln">    39  </span>
+<span id="L40" class="ln">    40  </span>	<span class="comment">// body params</span>
+<span id="L41" class="ln">    41  </span>	localVarPostBody = &amp;body
+<span id="L42" class="ln">    42  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
+<span id="L43" class="ln">    43  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+<span id="L44" class="ln">    44  </span>		if err != nil {
+<span id="L45" class="ln">    45  </span>			return localVarReturnValue, nil, err
+<span id="L46" class="ln">    46  </span>		}
+<span id="L47" class="ln">    47  </span>	} else {
+<span id="L48" class="ln">    48  </span>		datadog.SetAuthKeys(
+<span id="L49" class="ln">    49  </span>			ctx,
+<span id="L50" class="ln">    50  </span>			&amp;localVarHeaderParams,
+<span id="L51" class="ln">    51  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L52" class="ln">    52  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L53" class="ln">    53  </span>		)
+<span id="L54" class="ln">    54  </span>	}
+<span id="L55" class="ln">    55  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L56" class="ln">    56  </span>	if err != nil {
+<span id="L57" class="ln">    57  </span>		return localVarReturnValue, nil, err
+<span id="L58" class="ln">    58  </span>	}
+<span id="L59" class="ln">    59  </span>
+<span id="L60" class="ln">    60  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L61" class="ln">    61  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L62" class="ln">    62  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L63" class="ln">    63  </span>	}
+<span id="L64" class="ln">    64  </span>
+<span id="L65" class="ln">    65  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L66" class="ln">    66  </span>	if err != nil {
+<span id="L67" class="ln">    67  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L68" class="ln">    68  </span>	}
+<span id="L69" class="ln">    69  </span>
+<span id="L70" class="ln">    70  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L71" class="ln">    71  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L72" class="ln">    72  </span>			ErrorBody:    localVarBody,
+<span id="L73" class="ln">    73  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L74" class="ln">    74  </span>		}
+<span id="L75" class="ln">    75  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L76" class="ln">    76  </span>			var v APIErrorResponse
+<span id="L77" class="ln">    77  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L78" class="ln">    78  </span>			if err != nil {
+<span id="L79" class="ln">    79  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L80" class="ln">    80  </span>			}
+<span id="L81" class="ln">    81  </span>			newErr.ErrorModel = v
+<span id="L82" class="ln">    82  </span>		}
+<span id="L83" class="ln">    83  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L84" class="ln">    84  </span>	}
+<span id="L85" class="ln">    85  </span>
+<span id="L86" class="ln">    86  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L87" class="ln">    87  </span>	if err != nil {
+<span id="L88" class="ln">    88  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L89" class="ln">    89  </span>			ErrorBody:    localVarBody,
+<span id="L90" class="ln">    90  </span>			ErrorMessage: err.Error(),
+<span id="L91" class="ln">    91  </span>		}
+<span id="L92" class="ln">    92  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L93" class="ln">    93  </span>	}
+<span id="L94" class="ln">    94  </span>
+<span id="L95" class="ln">    95  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L96" class="ln">    96  </span>}
 <span id="L97" class="ln">    97  </span>
-<span id="L98" class="ln">    98  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L99" class="ln">    99  </span>	if err != nil {
-<span id="L100" class="ln">   100  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L101" class="ln">   101  </span>			ErrorBody:    localVarBody,
-<span id="L102" class="ln">   102  </span>			ErrorMessage: err.Error(),
-<span id="L103" class="ln">   103  </span>		}
-<span id="L104" class="ln">   104  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L105" class="ln">   105  </span>	}
+<span id="L98" class="ln">    98  </span><span class="comment">// CreateCostAzureUCConfigs Create Cloud Cost Management Azure configs.</span>
+<span id="L99" class="ln">    99  </span><span class="comment">// Create a Cloud Cost Management account for an Azure config.</span>
+<span id="L100" class="ln">   100  </span>func (a *CloudCostManagementApi) CreateCostAzureUCConfigs(ctx _context.Context, body AzureUCConfigPostRequest) (AzureUCConfigPairsResponse, *_nethttp.Response, error) {
+<span id="L101" class="ln">   101  </span>	var (
+<span id="L102" class="ln">   102  </span>		localVarHTTPMethod  = _nethttp.MethodPost
+<span id="L103" class="ln">   103  </span>		localVarPostBody    interface{}
+<span id="L104" class="ln">   104  </span>		localVarReturnValue AzureUCConfigPairsResponse
+<span id="L105" class="ln">   105  </span>	)
 <span id="L106" class="ln">   106  </span>
-<span id="L107" class="ln">   107  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L108" class="ln">   108  </span>}
-<span id="L109" class="ln">   109  </span>
-<span id="L110" class="ln">   110  </span><span class="comment">// CreateCostAWSCURConfig Create Cloud Cost Management AWS CUR config.</span>
-<span id="L111" class="ln">   111  </span><span class="comment">// Create a Cloud Cost Management account for an AWS CUR config.</span>
-<span id="L112" class="ln">   112  </span>func (a *CloudCostManagementApi) CreateCostAWSCURConfig(ctx _context.Context, body AwsCURConfigPostRequest) (AwsCurConfigResponse, *_nethttp.Response, error) {
-<span id="L113" class="ln">   113  </span>	var (
-<span id="L114" class="ln">   114  </span>		localVarHTTPMethod  = _nethttp.MethodPost
-<span id="L115" class="ln">   115  </span>		localVarPostBody    interface{}
-<span id="L116" class="ln">   116  </span>		localVarReturnValue AwsCurConfigResponse
-<span id="L117" class="ln">   117  </span>	)
-<span id="L118" class="ln">   118  </span>
-<span id="L119" class="ln">   119  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.CreateCostAWSCURConfig&#34;)
-<span id="L120" class="ln">   120  </span>	if err != nil {
-<span id="L121" class="ln">   121  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L122" class="ln">   122  </span>	}
-<span id="L123" class="ln">   123  </span>
-<span id="L124" class="ln">   124  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/aws_cur_config&#34;
-<span id="L125" class="ln">   125  </span>
-<span id="L126" class="ln">   126  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L127" class="ln">   127  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L128" class="ln">   128  </span>	localVarFormParams := _neturl.Values{}
-<span id="L129" class="ln">   129  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
-<span id="L130" class="ln">   130  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L131" class="ln">   131  </span>
-<span id="L132" class="ln">   132  </span>	<span class="comment">// body params</span>
-<span id="L133" class="ln">   133  </span>	localVarPostBody = &amp;body
-<span id="L134" class="ln">   134  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
-<span id="L135" class="ln">   135  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-<span id="L136" class="ln">   136  </span>		if err != nil {
-<span id="L137" class="ln">   137  </span>			return localVarReturnValue, nil, err
-<span id="L138" class="ln">   138  </span>		}
-<span id="L139" class="ln">   139  </span>	} else {
-<span id="L140" class="ln">   140  </span>		datadog.SetAuthKeys(
-<span id="L141" class="ln">   141  </span>			ctx,
-<span id="L142" class="ln">   142  </span>			&amp;localVarHeaderParams,
-<span id="L143" class="ln">   143  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L144" class="ln">   144  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L145" class="ln">   145  </span>		)
-<span id="L146" class="ln">   146  </span>	}
-<span id="L147" class="ln">   147  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L148" class="ln">   148  </span>	if err != nil {
-<span id="L149" class="ln">   149  </span>		return localVarReturnValue, nil, err
-<span id="L150" class="ln">   150  </span>	}
-<span id="L151" class="ln">   151  </span>
-<span id="L152" class="ln">   152  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L153" class="ln">   153  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L154" class="ln">   154  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L155" class="ln">   155  </span>	}
-<span id="L156" class="ln">   156  </span>
-<span id="L157" class="ln">   157  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L158" class="ln">   158  </span>	if err != nil {
-<span id="L159" class="ln">   159  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L160" class="ln">   160  </span>	}
-<span id="L161" class="ln">   161  </span>
-<span id="L162" class="ln">   162  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L163" class="ln">   163  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L164" class="ln">   164  </span>			ErrorBody:    localVarBody,
-<span id="L165" class="ln">   165  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L166" class="ln">   166  </span>		}
-<span id="L167" class="ln">   167  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L168" class="ln">   168  </span>			var v APIErrorResponse
-<span id="L169" class="ln">   169  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L170" class="ln">   170  </span>			if err != nil {
-<span id="L171" class="ln">   171  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L172" class="ln">   172  </span>			}
-<span id="L173" class="ln">   173  </span>			newErr.ErrorModel = v
-<span id="L174" class="ln">   174  </span>		}
-<span id="L175" class="ln">   175  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L176" class="ln">   176  </span>	}
+<span id="L107" class="ln">   107  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.CreateCostAzureUCConfigs&#34;)
+<span id="L108" class="ln">   108  </span>	if err != nil {
+<span id="L109" class="ln">   109  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L110" class="ln">   110  </span>	}
+<span id="L111" class="ln">   111  </span>
+<span id="L112" class="ln">   112  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/azure_uc_config&#34;
+<span id="L113" class="ln">   113  </span>
+<span id="L114" class="ln">   114  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L115" class="ln">   115  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L116" class="ln">   116  </span>	localVarFormParams := _neturl.Values{}
+<span id="L117" class="ln">   117  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L118" class="ln">   118  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L119" class="ln">   119  </span>
+<span id="L120" class="ln">   120  </span>	<span class="comment">// body params</span>
+<span id="L121" class="ln">   121  </span>	localVarPostBody = &amp;body
+<span id="L122" class="ln">   122  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
+<span id="L123" class="ln">   123  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+<span id="L124" class="ln">   124  </span>		if err != nil {
+<span id="L125" class="ln">   125  </span>			return localVarReturnValue, nil, err
+<span id="L126" class="ln">   126  </span>		}
+<span id="L127" class="ln">   127  </span>	} else {
+<span id="L128" class="ln">   128  </span>		datadog.SetAuthKeys(
+<span id="L129" class="ln">   129  </span>			ctx,
+<span id="L130" class="ln">   130  </span>			&amp;localVarHeaderParams,
+<span id="L131" class="ln">   131  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L132" class="ln">   132  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L133" class="ln">   133  </span>		)
+<span id="L134" class="ln">   134  </span>	}
+<span id="L135" class="ln">   135  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L136" class="ln">   136  </span>	if err != nil {
+<span id="L137" class="ln">   137  </span>		return localVarReturnValue, nil, err
+<span id="L138" class="ln">   138  </span>	}
+<span id="L139" class="ln">   139  </span>
+<span id="L140" class="ln">   140  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L141" class="ln">   141  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L142" class="ln">   142  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L143" class="ln">   143  </span>	}
+<span id="L144" class="ln">   144  </span>
+<span id="L145" class="ln">   145  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L146" class="ln">   146  </span>	if err != nil {
+<span id="L147" class="ln">   147  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L148" class="ln">   148  </span>	}
+<span id="L149" class="ln">   149  </span>
+<span id="L150" class="ln">   150  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L151" class="ln">   151  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L152" class="ln">   152  </span>			ErrorBody:    localVarBody,
+<span id="L153" class="ln">   153  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L154" class="ln">   154  </span>		}
+<span id="L155" class="ln">   155  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L156" class="ln">   156  </span>			var v APIErrorResponse
+<span id="L157" class="ln">   157  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L158" class="ln">   158  </span>			if err != nil {
+<span id="L159" class="ln">   159  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L160" class="ln">   160  </span>			}
+<span id="L161" class="ln">   161  </span>			newErr.ErrorModel = v
+<span id="L162" class="ln">   162  </span>		}
+<span id="L163" class="ln">   163  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L164" class="ln">   164  </span>	}
+<span id="L165" class="ln">   165  </span>
+<span id="L166" class="ln">   166  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L167" class="ln">   167  </span>	if err != nil {
+<span id="L168" class="ln">   168  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L169" class="ln">   169  </span>			ErrorBody:    localVarBody,
+<span id="L170" class="ln">   170  </span>			ErrorMessage: err.Error(),
+<span id="L171" class="ln">   171  </span>		}
+<span id="L172" class="ln">   172  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L173" class="ln">   173  </span>	}
+<span id="L174" class="ln">   174  </span>
+<span id="L175" class="ln">   175  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L176" class="ln">   176  </span>}
 <span id="L177" class="ln">   177  </span>
-<span id="L178" class="ln">   178  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L179" class="ln">   179  </span>	if err != nil {
-<span id="L180" class="ln">   180  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L181" class="ln">   181  </span>			ErrorBody:    localVarBody,
-<span id="L182" class="ln">   182  </span>			ErrorMessage: err.Error(),
-<span id="L183" class="ln">   183  </span>		}
-<span id="L184" class="ln">   184  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L185" class="ln">   185  </span>	}
+<span id="L178" class="ln">   178  </span><span class="comment">// CreateCostGCPUsageCostConfig Create Google Cloud Usage Cost config.</span>
+<span id="L179" class="ln">   179  </span><span class="comment">// Create a Cloud Cost Management account for an Google Cloud Usage Cost config.</span>
+<span id="L180" class="ln">   180  </span>func (a *CloudCostManagementApi) CreateCostGCPUsageCostConfig(ctx _context.Context, body GCPUsageCostConfigPostRequest) (GCPUsageCostConfigResponse, *_nethttp.Response, error) {
+<span id="L181" class="ln">   181  </span>	var (
+<span id="L182" class="ln">   182  </span>		localVarHTTPMethod  = _nethttp.MethodPost
+<span id="L183" class="ln">   183  </span>		localVarPostBody    interface{}
+<span id="L184" class="ln">   184  </span>		localVarReturnValue GCPUsageCostConfigResponse
+<span id="L185" class="ln">   185  </span>	)
 <span id="L186" class="ln">   186  </span>
-<span id="L187" class="ln">   187  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L188" class="ln">   188  </span>}
-<span id="L189" class="ln">   189  </span>
-<span id="L190" class="ln">   190  </span><span class="comment">// CreateCostAzureUCConfigs Create Cloud Cost Management Azure configs.</span>
-<span id="L191" class="ln">   191  </span><span class="comment">// Create a Cloud Cost Management account for an Azure config.</span>
-<span id="L192" class="ln">   192  </span>func (a *CloudCostManagementApi) CreateCostAzureUCConfigs(ctx _context.Context, body AzureUCConfigPostRequest) (AzureUCConfigPairsResponse, *_nethttp.Response, error) {
-<span id="L193" class="ln">   193  </span>	var (
-<span id="L194" class="ln">   194  </span>		localVarHTTPMethod  = _nethttp.MethodPost
-<span id="L195" class="ln">   195  </span>		localVarPostBody    interface{}
-<span id="L196" class="ln">   196  </span>		localVarReturnValue AzureUCConfigPairsResponse
-<span id="L197" class="ln">   197  </span>	)
-<span id="L198" class="ln">   198  </span>
-<span id="L199" class="ln">   199  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.CreateCostAzureUCConfigs&#34;)
-<span id="L200" class="ln">   200  </span>	if err != nil {
-<span id="L201" class="ln">   201  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L202" class="ln">   202  </span>	}
-<span id="L203" class="ln">   203  </span>
-<span id="L204" class="ln">   204  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/azure_uc_config&#34;
-<span id="L205" class="ln">   205  </span>
-<span id="L206" class="ln">   206  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L207" class="ln">   207  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L208" class="ln">   208  </span>	localVarFormParams := _neturl.Values{}
-<span id="L209" class="ln">   209  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
-<span id="L210" class="ln">   210  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L211" class="ln">   211  </span>
-<span id="L212" class="ln">   212  </span>	<span class="comment">// body params</span>
-<span id="L213" class="ln">   213  </span>	localVarPostBody = &amp;body
-<span id="L214" class="ln">   214  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
-<span id="L215" class="ln">   215  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-<span id="L216" class="ln">   216  </span>		if err != nil {
-<span id="L217" class="ln">   217  </span>			return localVarReturnValue, nil, err
-<span id="L218" class="ln">   218  </span>		}
-<span id="L219" class="ln">   219  </span>	} else {
-<span id="L220" class="ln">   220  </span>		datadog.SetAuthKeys(
-<span id="L221" class="ln">   221  </span>			ctx,
-<span id="L222" class="ln">   222  </span>			&amp;localVarHeaderParams,
-<span id="L223" class="ln">   223  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L224" class="ln">   224  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L225" class="ln">   225  </span>		)
-<span id="L226" class="ln">   226  </span>	}
-<span id="L227" class="ln">   227  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L228" class="ln">   228  </span>	if err != nil {
-<span id="L229" class="ln">   229  </span>		return localVarReturnValue, nil, err
-<span id="L230" class="ln">   230  </span>	}
-<span id="L231" class="ln">   231  </span>
-<span id="L232" class="ln">   232  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L233" class="ln">   233  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L234" class="ln">   234  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L235" class="ln">   235  </span>	}
-<span id="L236" class="ln">   236  </span>
-<span id="L237" class="ln">   237  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L238" class="ln">   238  </span>	if err != nil {
-<span id="L239" class="ln">   239  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L240" class="ln">   240  </span>	}
-<span id="L241" class="ln">   241  </span>
-<span id="L242" class="ln">   242  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L243" class="ln">   243  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L244" class="ln">   244  </span>			ErrorBody:    localVarBody,
-<span id="L245" class="ln">   245  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L246" class="ln">   246  </span>		}
-<span id="L247" class="ln">   247  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L248" class="ln">   248  </span>			var v APIErrorResponse
-<span id="L249" class="ln">   249  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L250" class="ln">   250  </span>			if err != nil {
-<span id="L251" class="ln">   251  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L252" class="ln">   252  </span>			}
-<span id="L253" class="ln">   253  </span>			newErr.ErrorModel = v
-<span id="L254" class="ln">   254  </span>		}
-<span id="L255" class="ln">   255  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L256" class="ln">   256  </span>	}
+<span id="L187" class="ln">   187  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.CreateCostGCPUsageCostConfig&#34;)
+<span id="L188" class="ln">   188  </span>	if err != nil {
+<span id="L189" class="ln">   189  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L190" class="ln">   190  </span>	}
+<span id="L191" class="ln">   191  </span>
+<span id="L192" class="ln">   192  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/gcp_uc_config&#34;
+<span id="L193" class="ln">   193  </span>
+<span id="L194" class="ln">   194  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L195" class="ln">   195  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L196" class="ln">   196  </span>	localVarFormParams := _neturl.Values{}
+<span id="L197" class="ln">   197  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L198" class="ln">   198  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L199" class="ln">   199  </span>
+<span id="L200" class="ln">   200  </span>	<span class="comment">// body params</span>
+<span id="L201" class="ln">   201  </span>	localVarPostBody = &amp;body
+<span id="L202" class="ln">   202  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
+<span id="L203" class="ln">   203  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+<span id="L204" class="ln">   204  </span>		if err != nil {
+<span id="L205" class="ln">   205  </span>			return localVarReturnValue, nil, err
+<span id="L206" class="ln">   206  </span>		}
+<span id="L207" class="ln">   207  </span>	} else {
+<span id="L208" class="ln">   208  </span>		datadog.SetAuthKeys(
+<span id="L209" class="ln">   209  </span>			ctx,
+<span id="L210" class="ln">   210  </span>			&amp;localVarHeaderParams,
+<span id="L211" class="ln">   211  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L212" class="ln">   212  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L213" class="ln">   213  </span>		)
+<span id="L214" class="ln">   214  </span>	}
+<span id="L215" class="ln">   215  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L216" class="ln">   216  </span>	if err != nil {
+<span id="L217" class="ln">   217  </span>		return localVarReturnValue, nil, err
+<span id="L218" class="ln">   218  </span>	}
+<span id="L219" class="ln">   219  </span>
+<span id="L220" class="ln">   220  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L221" class="ln">   221  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L222" class="ln">   222  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L223" class="ln">   223  </span>	}
+<span id="L224" class="ln">   224  </span>
+<span id="L225" class="ln">   225  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L226" class="ln">   226  </span>	if err != nil {
+<span id="L227" class="ln">   227  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L228" class="ln">   228  </span>	}
+<span id="L229" class="ln">   229  </span>
+<span id="L230" class="ln">   230  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L231" class="ln">   231  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L232" class="ln">   232  </span>			ErrorBody:    localVarBody,
+<span id="L233" class="ln">   233  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L234" class="ln">   234  </span>		}
+<span id="L235" class="ln">   235  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L236" class="ln">   236  </span>			var v APIErrorResponse
+<span id="L237" class="ln">   237  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L238" class="ln">   238  </span>			if err != nil {
+<span id="L239" class="ln">   239  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L240" class="ln">   240  </span>			}
+<span id="L241" class="ln">   241  </span>			newErr.ErrorModel = v
+<span id="L242" class="ln">   242  </span>		}
+<span id="L243" class="ln">   243  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L244" class="ln">   244  </span>	}
+<span id="L245" class="ln">   245  </span>
+<span id="L246" class="ln">   246  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L247" class="ln">   247  </span>	if err != nil {
+<span id="L248" class="ln">   248  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L249" class="ln">   249  </span>			ErrorBody:    localVarBody,
+<span id="L250" class="ln">   250  </span>			ErrorMessage: err.Error(),
+<span id="L251" class="ln">   251  </span>		}
+<span id="L252" class="ln">   252  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L253" class="ln">   253  </span>	}
+<span id="L254" class="ln">   254  </span>
+<span id="L255" class="ln">   255  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L256" class="ln">   256  </span>}
 <span id="L257" class="ln">   257  </span>
-<span id="L258" class="ln">   258  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L259" class="ln">   259  </span>	if err != nil {
-<span id="L260" class="ln">   260  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L261" class="ln">   261  </span>			ErrorBody:    localVarBody,
-<span id="L262" class="ln">   262  </span>			ErrorMessage: err.Error(),
-<span id="L263" class="ln">   263  </span>		}
-<span id="L264" class="ln">   264  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L265" class="ln">   265  </span>	}
-<span id="L266" class="ln">   266  </span>
-<span id="L267" class="ln">   267  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L268" class="ln">   268  </span>}
-<span id="L269" class="ln">   269  </span>
-<span id="L270" class="ln">   270  </span><span class="comment">// CreateCostGCPUsageCostConfig Create Google Cloud Usage Cost config.</span>
-<span id="L271" class="ln">   271  </span><span class="comment">// Create a Cloud Cost Management account for an Google Cloud Usage Cost config.</span>
-<span id="L272" class="ln">   272  </span>func (a *CloudCostManagementApi) CreateCostGCPUsageCostConfig(ctx _context.Context, body GCPUsageCostConfigPostRequest) (GCPUsageCostConfigResponse, *_nethttp.Response, error) {
+<span id="L258" class="ln">   258  </span><span class="comment">// CreateCustomAllocationRule Create custom allocation rule.</span>
+<span id="L259" class="ln">   259  </span><span class="comment">// Create a new custom allocation rule with the specified filters and allocation strategy.</span>
+<span id="L260" class="ln">   260  </span><span class="comment">//</span>
+<span id="L261" class="ln">   261  </span><span class="comment">// **Strategy Methods:**</span>
+<span id="L262" class="ln">   262  </span><span class="comment">// - **PROPORTIONAL/EVEN**: Allocates costs proportionally/evenly based on existing costs. Requires: granularity, allocated_by_tag_keys. Optional: based_on_costs, allocated_by_filters, evaluate_grouped_by_tag_keys, evaluate_grouped_by_filters.</span>
+<span id="L263" class="ln">   263  </span><span class="comment">// - **PROPORTIONAL_TIMESERIES/EVEN_TIMESERIES**: Allocates based on timeseries data. Requires: granularity, based_on_timeseries. Optional: evaluate_grouped_by_tag_keys.</span>
+<span id="L264" class="ln">   264  </span><span class="comment">// - **PERCENT**: Allocates fixed percentages to specific tags. Requires: allocated_by (array of percentage allocations).</span>
+<span id="L265" class="ln">   265  </span><span class="comment">//</span>
+<span id="L266" class="ln">   266  </span><span class="comment">// **Filter Conditions:**</span>
+<span id="L267" class="ln">   267  </span><span class="comment">// - Use **value** for single-value conditions: &#34;is&#34;, &#34;is not&#34;, &#34;contains&#34;, &#34;does not contain&#34;, &#34;=&#34;, &#34;!=&#34;, &#34;like&#34;, &#34;not like&#34;, &#34;is all values&#34;, &#34;is untagged&#34;</span>
+<span id="L268" class="ln">   268  </span><span class="comment">// - Use **values** for multi-value conditions: &#34;in&#34;, &#34;not in&#34;</span>
+<span id="L269" class="ln">   269  </span><span class="comment">// - Cannot use both value and values simultaneously.</span>
+<span id="L270" class="ln">   270  </span><span class="comment">//</span>
+<span id="L271" class="ln">   271  </span><span class="comment">// **Supported operators**: is, is not, is all values, is untagged, contains, does not contain, in, not in, =, !=, like, not like</span>
+<span id="L272" class="ln">   272  </span>func (a *CloudCostManagementApi) CreateCustomAllocationRule(ctx _context.Context, body ArbitraryCostUpsertRequest) (ArbitraryRuleResponse, *_nethttp.Response, error) {
 <span id="L273" class="ln">   273  </span>	var (
 <span id="L274" class="ln">   274  </span>		localVarHTTPMethod  = _nethttp.MethodPost
 <span id="L275" class="ln">   275  </span>		localVarPostBody    interface{}
-<span id="L276" class="ln">   276  </span>		localVarReturnValue GCPUsageCostConfigResponse
+<span id="L276" class="ln">   276  </span>		localVarReturnValue ArbitraryRuleResponse
 <span id="L277" class="ln">   277  </span>	)
 <span id="L278" class="ln">   278  </span>
-<span id="L279" class="ln">   279  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.CreateCostGCPUsageCostConfig&#34;)
+<span id="L279" class="ln">   279  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.CreateCustomAllocationRule&#34;)
 <span id="L280" class="ln">   280  </span>	if err != nil {
 <span id="L281" class="ln">   281  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L282" class="ln">   282  </span>	}
 <span id="L283" class="ln">   283  </span>
-<span id="L284" class="ln">   284  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/gcp_uc_config&#34;
+<span id="L284" class="ln">   284  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/arbitrary_rule&#34;
 <span id="L285" class="ln">   285  </span>
 <span id="L286" class="ln">   286  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L287" class="ln">   287  </span>	localVarQueryParams := _neturl.Values{}
@@ -381,7 +381,7 @@
 <span id="L324" class="ln">   324  </span>			ErrorBody:    localVarBody,
 <span id="L325" class="ln">   325  </span>			ErrorMessage: localVarHTTPResponse.Status,
 <span id="L326" class="ln">   326  </span>		}
-<span id="L327" class="ln">   327  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L327" class="ln">   327  </span>		if localVarHTTPResponse.StatusCode == 429 {
 <span id="L328" class="ln">   328  </span>			var v APIErrorResponse
 <span id="L329" class="ln">   329  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
 <span id="L330" class="ln">   330  </span>			if err != nil {
@@ -404,16 +404,16 @@
 <span id="L347" class="ln">   347  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L348" class="ln">   348  </span>}
 <span id="L349" class="ln">   349  </span>
-<span id="L350" class="ln">   350  </span><span class="comment">// CreateRuleset Create ruleset.</span>
+<span id="L350" class="ln">   350  </span><span class="comment">// CreateTagPipelinesRuleset Create tag pipeline ruleset.</span>
 <span id="L351" class="ln">   351  </span><span class="comment">// Create a new tag pipeline ruleset with the specified rules and configuration</span>
-<span id="L352" class="ln">   352  </span>func (a *CloudCostManagementApi) CreateRuleset(ctx _context.Context, body CreateRulesetRequest) (RulesetResp, *_nethttp.Response, error) {
+<span id="L352" class="ln">   352  </span>func (a *CloudCostManagementApi) CreateTagPipelinesRuleset(ctx _context.Context, body CreateRulesetRequest) (RulesetResp, *_nethttp.Response, error) {
 <span id="L353" class="ln">   353  </span>	var (
 <span id="L354" class="ln">   354  </span>		localVarHTTPMethod  = _nethttp.MethodPost
 <span id="L355" class="ln">   355  </span>		localVarPostBody    interface{}
 <span id="L356" class="ln">   356  </span>		localVarReturnValue RulesetResp
 <span id="L357" class="ln">   357  </span>	)
 <span id="L358" class="ln">   358  </span>
-<span id="L359" class="ln">   359  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.CreateRuleset&#34;)
+<span id="L359" class="ln">   359  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.CreateTagPipelinesRuleset&#34;)
 <span id="L360" class="ln">   360  </span>	if err != nil {
 <span id="L361" class="ln">   361  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L362" class="ln">   362  </span>	}
@@ -484,21 +484,21 @@
 <span id="L427" class="ln">   427  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L428" class="ln">   428  </span>}
 <span id="L429" class="ln">   429  </span>
-<span id="L430" class="ln">   430  </span><span class="comment">// DeleteArbitraryCostRule Delete arbitrary cost rule.</span>
-<span id="L431" class="ln">   431  </span><span class="comment">// Delete an arbitrary cost rule - Delete an existing arbitrary cost rule by its ID</span>
-<span id="L432" class="ln">   432  </span>func (a *CloudCostManagementApi) DeleteArbitraryCostRule(ctx _context.Context, ruleId int64) (*_nethttp.Response, error) {
+<span id="L430" class="ln">   430  </span><span class="comment">// DeleteBudget Delete a budget.</span>
+<span id="L431" class="ln">   431  </span><span class="comment">// Delete a budget.</span>
+<span id="L432" class="ln">   432  </span>func (a *CloudCostManagementApi) DeleteBudget(ctx _context.Context, budgetId string) (*_nethttp.Response, error) {
 <span id="L433" class="ln">   433  </span>	var (
 <span id="L434" class="ln">   434  </span>		localVarHTTPMethod = _nethttp.MethodDelete
 <span id="L435" class="ln">   435  </span>		localVarPostBody   interface{}
 <span id="L436" class="ln">   436  </span>	)
 <span id="L437" class="ln">   437  </span>
-<span id="L438" class="ln">   438  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.DeleteArbitraryCostRule&#34;)
+<span id="L438" class="ln">   438  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.DeleteBudget&#34;)
 <span id="L439" class="ln">   439  </span>	if err != nil {
 <span id="L440" class="ln">   440  </span>		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L441" class="ln">   441  </span>	}
 <span id="L442" class="ln">   442  </span>
-<span id="L443" class="ln">   443  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/arbitrary_rule/{rule_id}&#34;
-<span id="L444" class="ln">   444  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{rule_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(ruleId, &#34;&#34;)))
+<span id="L443" class="ln">   443  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/budget/{budget_id}&#34;
+<span id="L444" class="ln">   444  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{budget_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(budgetId, &#34;&#34;)))
 <span id="L445" class="ln">   445  </span>
 <span id="L446" class="ln">   446  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L447" class="ln">   447  </span>	localVarQueryParams := _neturl.Values{}
@@ -538,7 +538,7 @@
 <span id="L481" class="ln">   481  </span>			ErrorBody:    localVarBody,
 <span id="L482" class="ln">   482  </span>			ErrorMessage: localVarHTTPResponse.Status,
 <span id="L483" class="ln">   483  </span>		}
-<span id="L484" class="ln">   484  </span>		if localVarHTTPResponse.StatusCode == 429 {
+<span id="L484" class="ln">   484  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 429 {
 <span id="L485" class="ln">   485  </span>			var v APIErrorResponse
 <span id="L486" class="ln">   486  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
 <span id="L487" class="ln">   487  </span>			if err != nil {
@@ -552,21 +552,21 @@
 <span id="L495" class="ln">   495  </span>	return localVarHTTPResponse, nil
 <span id="L496" class="ln">   496  </span>}
 <span id="L497" class="ln">   497  </span>
-<span id="L498" class="ln">   498  </span><span class="comment">// DeleteBudget Delete a budget.</span>
-<span id="L499" class="ln">   499  </span><span class="comment">// Delete a budget.</span>
-<span id="L500" class="ln">   500  </span>func (a *CloudCostManagementApi) DeleteBudget(ctx _context.Context, budgetId string) (*_nethttp.Response, error) {
+<span id="L498" class="ln">   498  </span><span class="comment">// DeleteCostAWSCURConfig Delete Cloud Cost Management AWS CUR config.</span>
+<span id="L499" class="ln">   499  </span><span class="comment">// Archive a Cloud Cost Management Account.</span>
+<span id="L500" class="ln">   500  </span>func (a *CloudCostManagementApi) DeleteCostAWSCURConfig(ctx _context.Context, cloudAccountId int64) (*_nethttp.Response, error) {
 <span id="L501" class="ln">   501  </span>	var (
 <span id="L502" class="ln">   502  </span>		localVarHTTPMethod = _nethttp.MethodDelete
 <span id="L503" class="ln">   503  </span>		localVarPostBody   interface{}
 <span id="L504" class="ln">   504  </span>	)
 <span id="L505" class="ln">   505  </span>
-<span id="L506" class="ln">   506  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.DeleteBudget&#34;)
+<span id="L506" class="ln">   506  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.DeleteCostAWSCURConfig&#34;)
 <span id="L507" class="ln">   507  </span>	if err != nil {
 <span id="L508" class="ln">   508  </span>		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L509" class="ln">   509  </span>	}
 <span id="L510" class="ln">   510  </span>
-<span id="L511" class="ln">   511  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/budget/{budget_id}&#34;
-<span id="L512" class="ln">   512  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{budget_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(budgetId, &#34;&#34;)))
+<span id="L511" class="ln">   511  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/aws_cur_config/{cloud_account_id}&#34;
+<span id="L512" class="ln">   512  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{cloud_account_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, &#34;&#34;)))
 <span id="L513" class="ln">   513  </span>
 <span id="L514" class="ln">   514  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L515" class="ln">   515  </span>	localVarQueryParams := _neturl.Values{}
@@ -606,7 +606,7 @@
 <span id="L549" class="ln">   549  </span>			ErrorBody:    localVarBody,
 <span id="L550" class="ln">   550  </span>			ErrorMessage: localVarHTTPResponse.Status,
 <span id="L551" class="ln">   551  </span>		}
-<span id="L552" class="ln">   552  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L552" class="ln">   552  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 <span id="L553" class="ln">   553  </span>			var v APIErrorResponse
 <span id="L554" class="ln">   554  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
 <span id="L555" class="ln">   555  </span>			if err != nil {
@@ -620,20 +620,20 @@
 <span id="L563" class="ln">   563  </span>	return localVarHTTPResponse, nil
 <span id="L564" class="ln">   564  </span>}
 <span id="L565" class="ln">   565  </span>
-<span id="L566" class="ln">   566  </span><span class="comment">// DeleteCostAWSCURConfig Delete Cloud Cost Management AWS CUR config.</span>
+<span id="L566" class="ln">   566  </span><span class="comment">// DeleteCostAzureUCConfig Delete Cloud Cost Management Azure config.</span>
 <span id="L567" class="ln">   567  </span><span class="comment">// Archive a Cloud Cost Management Account.</span>
-<span id="L568" class="ln">   568  </span>func (a *CloudCostManagementApi) DeleteCostAWSCURConfig(ctx _context.Context, cloudAccountId int64) (*_nethttp.Response, error) {
+<span id="L568" class="ln">   568  </span>func (a *CloudCostManagementApi) DeleteCostAzureUCConfig(ctx _context.Context, cloudAccountId int64) (*_nethttp.Response, error) {
 <span id="L569" class="ln">   569  </span>	var (
 <span id="L570" class="ln">   570  </span>		localVarHTTPMethod = _nethttp.MethodDelete
 <span id="L571" class="ln">   571  </span>		localVarPostBody   interface{}
 <span id="L572" class="ln">   572  </span>	)
 <span id="L573" class="ln">   573  </span>
-<span id="L574" class="ln">   574  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.DeleteCostAWSCURConfig&#34;)
+<span id="L574" class="ln">   574  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.DeleteCostAzureUCConfig&#34;)
 <span id="L575" class="ln">   575  </span>	if err != nil {
 <span id="L576" class="ln">   576  </span>		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L577" class="ln">   577  </span>	}
 <span id="L578" class="ln">   578  </span>
-<span id="L579" class="ln">   579  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/aws_cur_config/{cloud_account_id}&#34;
+<span id="L579" class="ln">   579  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/azure_uc_config/{cloud_account_id}&#34;
 <span id="L580" class="ln">   580  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{cloud_account_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, &#34;&#34;)))
 <span id="L581" class="ln">   581  </span>
 <span id="L582" class="ln">   582  </span>	localVarHeaderParams := make(map[string]string)
@@ -688,20 +688,20 @@
 <span id="L631" class="ln">   631  </span>	return localVarHTTPResponse, nil
 <span id="L632" class="ln">   632  </span>}
 <span id="L633" class="ln">   633  </span>
-<span id="L634" class="ln">   634  </span><span class="comment">// DeleteCostAzureUCConfig Delete Cloud Cost Management Azure config.</span>
-<span id="L635" class="ln">   635  </span><span class="comment">// Archive a Cloud Cost Management Account.</span>
-<span id="L636" class="ln">   636  </span>func (a *CloudCostManagementApi) DeleteCostAzureUCConfig(ctx _context.Context, cloudAccountId int64) (*_nethttp.Response, error) {
+<span id="L634" class="ln">   634  </span><span class="comment">// DeleteCostGCPUsageCostConfig Delete Google Cloud Usage Cost config.</span>
+<span id="L635" class="ln">   635  </span><span class="comment">// Archive a Cloud Cost Management account.</span>
+<span id="L636" class="ln">   636  </span>func (a *CloudCostManagementApi) DeleteCostGCPUsageCostConfig(ctx _context.Context, cloudAccountId int64) (*_nethttp.Response, error) {
 <span id="L637" class="ln">   637  </span>	var (
 <span id="L638" class="ln">   638  </span>		localVarHTTPMethod = _nethttp.MethodDelete
 <span id="L639" class="ln">   639  </span>		localVarPostBody   interface{}
 <span id="L640" class="ln">   640  </span>	)
 <span id="L641" class="ln">   641  </span>
-<span id="L642" class="ln">   642  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.DeleteCostAzureUCConfig&#34;)
+<span id="L642" class="ln">   642  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.DeleteCostGCPUsageCostConfig&#34;)
 <span id="L643" class="ln">   643  </span>	if err != nil {
 <span id="L644" class="ln">   644  </span>		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L645" class="ln">   645  </span>	}
 <span id="L646" class="ln">   646  </span>
-<span id="L647" class="ln">   647  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/azure_uc_config/{cloud_account_id}&#34;
+<span id="L647" class="ln">   647  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/gcp_uc_config/{cloud_account_id}&#34;
 <span id="L648" class="ln">   648  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{cloud_account_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, &#34;&#34;)))
 <span id="L649" class="ln">   649  </span>
 <span id="L650" class="ln">   650  </span>	localVarHeaderParams := make(map[string]string)
@@ -756,21 +756,21 @@
 <span id="L699" class="ln">   699  </span>	return localVarHTTPResponse, nil
 <span id="L700" class="ln">   700  </span>}
 <span id="L701" class="ln">   701  </span>
-<span id="L702" class="ln">   702  </span><span class="comment">// DeleteCostGCPUsageCostConfig Delete Google Cloud Usage Cost config.</span>
-<span id="L703" class="ln">   703  </span><span class="comment">// Archive a Cloud Cost Management account.</span>
-<span id="L704" class="ln">   704  </span>func (a *CloudCostManagementApi) DeleteCostGCPUsageCostConfig(ctx _context.Context, cloudAccountId int64) (*_nethttp.Response, error) {
+<span id="L702" class="ln">   702  </span><span class="comment">// DeleteCustomAllocationRule Delete custom allocation rule.</span>
+<span id="L703" class="ln">   703  </span><span class="comment">// Delete a custom allocation rule - Delete an existing custom allocation rule by its ID</span>
+<span id="L704" class="ln">   704  </span>func (a *CloudCostManagementApi) DeleteCustomAllocationRule(ctx _context.Context, ruleId int64) (*_nethttp.Response, error) {
 <span id="L705" class="ln">   705  </span>	var (
 <span id="L706" class="ln">   706  </span>		localVarHTTPMethod = _nethttp.MethodDelete
 <span id="L707" class="ln">   707  </span>		localVarPostBody   interface{}
 <span id="L708" class="ln">   708  </span>	)
 <span id="L709" class="ln">   709  </span>
-<span id="L710" class="ln">   710  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.DeleteCostGCPUsageCostConfig&#34;)
+<span id="L710" class="ln">   710  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.DeleteCustomAllocationRule&#34;)
 <span id="L711" class="ln">   711  </span>	if err != nil {
 <span id="L712" class="ln">   712  </span>		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L713" class="ln">   713  </span>	}
 <span id="L714" class="ln">   714  </span>
-<span id="L715" class="ln">   715  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/gcp_uc_config/{cloud_account_id}&#34;
-<span id="L716" class="ln">   716  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{cloud_account_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, &#34;&#34;)))
+<span id="L715" class="ln">   715  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/arbitrary_rule/{rule_id}&#34;
+<span id="L716" class="ln">   716  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{rule_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(ruleId, &#34;&#34;)))
 <span id="L717" class="ln">   717  </span>
 <span id="L718" class="ln">   718  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L719" class="ln">   719  </span>	localVarQueryParams := _neturl.Values{}
@@ -810,7 +810,7 @@
 <span id="L753" class="ln">   753  </span>			ErrorBody:    localVarBody,
 <span id="L754" class="ln">   754  </span>			ErrorMessage: localVarHTTPResponse.Status,
 <span id="L755" class="ln">   755  </span>		}
-<span id="L756" class="ln">   756  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L756" class="ln">   756  </span>		if localVarHTTPResponse.StatusCode == 429 {
 <span id="L757" class="ln">   757  </span>			var v APIErrorResponse
 <span id="L758" class="ln">   758  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
 <span id="L759" class="ln">   759  </span>			if err != nil {
@@ -892,15 +892,15 @@
 <span id="L835" class="ln">   835  </span>	return localVarHTTPResponse, nil
 <span id="L836" class="ln">   836  </span>}
 <span id="L837" class="ln">   837  </span>
-<span id="L838" class="ln">   838  </span><span class="comment">// DeleteRuleset Delete ruleset.</span>
+<span id="L838" class="ln">   838  </span><span class="comment">// DeleteTagPipelinesRuleset Delete tag pipeline ruleset.</span>
 <span id="L839" class="ln">   839  </span><span class="comment">// Delete a tag pipeline ruleset - Delete an existing tag pipeline ruleset by its ID</span>
-<span id="L840" class="ln">   840  </span>func (a *CloudCostManagementApi) DeleteRuleset(ctx _context.Context, rulesetId string) (*_nethttp.Response, error) {
+<span id="L840" class="ln">   840  </span>func (a *CloudCostManagementApi) DeleteTagPipelinesRuleset(ctx _context.Context, rulesetId string) (*_nethttp.Response, error) {
 <span id="L841" class="ln">   841  </span>	var (
 <span id="L842" class="ln">   842  </span>		localVarHTTPMethod = _nethttp.MethodDelete
 <span id="L843" class="ln">   843  </span>		localVarPostBody   interface{}
 <span id="L844" class="ln">   844  </span>	)
 <span id="L845" class="ln">   845  </span>
-<span id="L846" class="ln">   846  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.DeleteRuleset&#34;)
+<span id="L846" class="ln">   846  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.DeleteTagPipelinesRuleset&#34;)
 <span id="L847" class="ln">   847  </span>	if err != nil {
 <span id="L848" class="ln">   848  </span>		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L849" class="ln">   849  </span>	}
@@ -960,22 +960,22 @@
 <span id="L903" class="ln">   903  </span>	return localVarHTTPResponse, nil
 <span id="L904" class="ln">   904  </span>}
 <span id="L905" class="ln">   905  </span>
-<span id="L906" class="ln">   906  </span><span class="comment">// GetArbitraryCostRule Get arbitrary cost rule.</span>
-<span id="L907" class="ln">   907  </span><span class="comment">// Get a specific arbitrary cost rule - Retrieve a specific arbitrary cost rule by its ID</span>
-<span id="L908" class="ln">   908  </span>func (a *CloudCostManagementApi) GetArbitraryCostRule(ctx _context.Context, ruleId int64) (ArbitraryRuleResponse, *_nethttp.Response, error) {
+<span id="L906" class="ln">   906  </span><span class="comment">// GetBudget Get a budget.</span>
+<span id="L907" class="ln">   907  </span><span class="comment">// Get a budget.</span>
+<span id="L908" class="ln">   908  </span>func (a *CloudCostManagementApi) GetBudget(ctx _context.Context, budgetId string) (BudgetWithEntries, *_nethttp.Response, error) {
 <span id="L909" class="ln">   909  </span>	var (
 <span id="L910" class="ln">   910  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L911" class="ln">   911  </span>		localVarPostBody    interface{}
-<span id="L912" class="ln">   912  </span>		localVarReturnValue ArbitraryRuleResponse
+<span id="L912" class="ln">   912  </span>		localVarReturnValue BudgetWithEntries
 <span id="L913" class="ln">   913  </span>	)
 <span id="L914" class="ln">   914  </span>
-<span id="L915" class="ln">   915  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.GetArbitraryCostRule&#34;)
+<span id="L915" class="ln">   915  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.GetBudget&#34;)
 <span id="L916" class="ln">   916  </span>	if err != nil {
 <span id="L917" class="ln">   917  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L918" class="ln">   918  </span>	}
 <span id="L919" class="ln">   919  </span>
-<span id="L920" class="ln">   920  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/arbitrary_rule/{rule_id}&#34;
-<span id="L921" class="ln">   921  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{rule_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(ruleId, &#34;&#34;)))
+<span id="L920" class="ln">   920  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/budget/{budget_id}&#34;
+<span id="L921" class="ln">   921  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{budget_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(budgetId, &#34;&#34;)))
 <span id="L922" class="ln">   922  </span>
 <span id="L923" class="ln">   923  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L924" class="ln">   924  </span>	localVarQueryParams := _neturl.Values{}
@@ -1015,7 +1015,7 @@
 <span id="L958" class="ln">   958  </span>			ErrorBody:    localVarBody,
 <span id="L959" class="ln">   959  </span>			ErrorMessage: localVarHTTPResponse.Status,
 <span id="L960" class="ln">   960  </span>		}
-<span id="L961" class="ln">   961  </span>		if localVarHTTPResponse.StatusCode == 429 {
+<span id="L961" class="ln">   961  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 <span id="L962" class="ln">   962  </span>			var v APIErrorResponse
 <span id="L963" class="ln">   963  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
 <span id="L964" class="ln">   964  </span>			if err != nil {
@@ -1038,22 +1038,22 @@
 <span id="L981" class="ln">   981  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L982" class="ln">   982  </span>}
 <span id="L983" class="ln">   983  </span>
-<span id="L984" class="ln">   984  </span><span class="comment">// GetBudget Get a budget.</span>
-<span id="L985" class="ln">   985  </span><span class="comment">// Get a budget.</span>
-<span id="L986" class="ln">   986  </span>func (a *CloudCostManagementApi) GetBudget(ctx _context.Context, budgetId string) (BudgetWithEntries, *_nethttp.Response, error) {
+<span id="L984" class="ln">   984  </span><span class="comment">// GetCostAWSCURConfig Get cost AWS CUR config.</span>
+<span id="L985" class="ln">   985  </span><span class="comment">// Get a specific AWS CUR config.</span>
+<span id="L986" class="ln">   986  </span>func (a *CloudCostManagementApi) GetCostAWSCURConfig(ctx _context.Context, cloudAccountId int64) (AwsCurConfigResponse, *_nethttp.Response, error) {
 <span id="L987" class="ln">   987  </span>	var (
 <span id="L988" class="ln">   988  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L989" class="ln">   989  </span>		localVarPostBody    interface{}
-<span id="L990" class="ln">   990  </span>		localVarReturnValue BudgetWithEntries
+<span id="L990" class="ln">   990  </span>		localVarReturnValue AwsCurConfigResponse
 <span id="L991" class="ln">   991  </span>	)
 <span id="L992" class="ln">   992  </span>
-<span id="L993" class="ln">   993  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.GetBudget&#34;)
+<span id="L993" class="ln">   993  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.GetCostAWSCURConfig&#34;)
 <span id="L994" class="ln">   994  </span>	if err != nil {
 <span id="L995" class="ln">   995  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L996" class="ln">   996  </span>	}
 <span id="L997" class="ln">   997  </span>
-<span id="L998" class="ln">   998  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/budget/{budget_id}&#34;
-<span id="L999" class="ln">   999  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{budget_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(budgetId, &#34;&#34;)))
+<span id="L998" class="ln">   998  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/aws_cur_config/{cloud_account_id}&#34;
+<span id="L999" class="ln">   999  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{cloud_account_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, &#34;&#34;)))
 <span id="L1000" class="ln">  1000  </span>
 <span id="L1001" class="ln">  1001  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L1002" class="ln">  1002  </span>	localVarQueryParams := _neturl.Values{}
@@ -1093,7 +1093,7 @@
 <span id="L1036" class="ln">  1036  </span>			ErrorBody:    localVarBody,
 <span id="L1037" class="ln">  1037  </span>			ErrorMessage: localVarHTTPResponse.Status,
 <span id="L1038" class="ln">  1038  </span>		}
-<span id="L1039" class="ln">  1039  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L1039" class="ln">  1039  </span>		if localVarHTTPResponse.StatusCode == 429 {
 <span id="L1040" class="ln">  1040  </span>			var v APIErrorResponse
 <span id="L1041" class="ln">  1041  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
 <span id="L1042" class="ln">  1042  </span>			if err != nil {
@@ -1116,21 +1116,21 @@
 <span id="L1059" class="ln">  1059  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1060" class="ln">  1060  </span>}
 <span id="L1061" class="ln">  1061  </span>
-<span id="L1062" class="ln">  1062  </span><span class="comment">// GetCostAWSCURConfig Get cost AWS CUR config.</span>
-<span id="L1063" class="ln">  1063  </span><span class="comment">// Get a specific AWS CUR config.</span>
-<span id="L1064" class="ln">  1064  </span>func (a *CloudCostManagementApi) GetCostAWSCURConfig(ctx _context.Context, cloudAccountId int64) (AwsCurConfigResponse, *_nethttp.Response, error) {
+<span id="L1062" class="ln">  1062  </span><span class="comment">// GetCostAzureUCConfig Get cost Azure UC config.</span>
+<span id="L1063" class="ln">  1063  </span><span class="comment">// Get a specific Azure config.</span>
+<span id="L1064" class="ln">  1064  </span>func (a *CloudCostManagementApi) GetCostAzureUCConfig(ctx _context.Context, cloudAccountId int64) (UCConfigPair, *_nethttp.Response, error) {
 <span id="L1065" class="ln">  1065  </span>	var (
 <span id="L1066" class="ln">  1066  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L1067" class="ln">  1067  </span>		localVarPostBody    interface{}
-<span id="L1068" class="ln">  1068  </span>		localVarReturnValue AwsCurConfigResponse
+<span id="L1068" class="ln">  1068  </span>		localVarReturnValue UCConfigPair
 <span id="L1069" class="ln">  1069  </span>	)
 <span id="L1070" class="ln">  1070  </span>
-<span id="L1071" class="ln">  1071  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.GetCostAWSCURConfig&#34;)
+<span id="L1071" class="ln">  1071  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.GetCostAzureUCConfig&#34;)
 <span id="L1072" class="ln">  1072  </span>	if err != nil {
 <span id="L1073" class="ln">  1073  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L1074" class="ln">  1074  </span>	}
 <span id="L1075" class="ln">  1075  </span>
-<span id="L1076" class="ln">  1076  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/aws_cur_config/{cloud_account_id}&#34;
+<span id="L1076" class="ln">  1076  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/azure_uc_config/{cloud_account_id}&#34;
 <span id="L1077" class="ln">  1077  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{cloud_account_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, &#34;&#34;)))
 <span id="L1078" class="ln">  1078  </span>
 <span id="L1079" class="ln">  1079  </span>	localVarHeaderParams := make(map[string]string)
@@ -1194,21 +1194,21 @@
 <span id="L1137" class="ln">  1137  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1138" class="ln">  1138  </span>}
 <span id="L1139" class="ln">  1139  </span>
-<span id="L1140" class="ln">  1140  </span><span class="comment">// GetCostAzureUCConfig Get cost Azure UC config.</span>
-<span id="L1141" class="ln">  1141  </span><span class="comment">// Get a specific Azure config.</span>
-<span id="L1142" class="ln">  1142  </span>func (a *CloudCostManagementApi) GetCostAzureUCConfig(ctx _context.Context, cloudAccountId int64) (UCConfigPair, *_nethttp.Response, error) {
+<span id="L1140" class="ln">  1140  </span><span class="comment">// GetCostGCPUsageCostConfig Get Google Cloud Usage Cost config.</span>
+<span id="L1141" class="ln">  1141  </span><span class="comment">// Get a specific Google Cloud Usage Cost config.</span>
+<span id="L1142" class="ln">  1142  </span>func (a *CloudCostManagementApi) GetCostGCPUsageCostConfig(ctx _context.Context, cloudAccountId int64) (GcpUcConfigResponse, *_nethttp.Response, error) {
 <span id="L1143" class="ln">  1143  </span>	var (
 <span id="L1144" class="ln">  1144  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L1145" class="ln">  1145  </span>		localVarPostBody    interface{}
-<span id="L1146" class="ln">  1146  </span>		localVarReturnValue UCConfigPair
+<span id="L1146" class="ln">  1146  </span>		localVarReturnValue GcpUcConfigResponse
 <span id="L1147" class="ln">  1147  </span>	)
 <span id="L1148" class="ln">  1148  </span>
-<span id="L1149" class="ln">  1149  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.GetCostAzureUCConfig&#34;)
+<span id="L1149" class="ln">  1149  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.GetCostGCPUsageCostConfig&#34;)
 <span id="L1150" class="ln">  1150  </span>	if err != nil {
 <span id="L1151" class="ln">  1151  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L1152" class="ln">  1152  </span>	}
 <span id="L1153" class="ln">  1153  </span>
-<span id="L1154" class="ln">  1154  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/azure_uc_config/{cloud_account_id}&#34;
+<span id="L1154" class="ln">  1154  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/gcp_uc_config/{cloud_account_id}&#34;
 <span id="L1155" class="ln">  1155  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{cloud_account_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, &#34;&#34;)))
 <span id="L1156" class="ln">  1156  </span>
 <span id="L1157" class="ln">  1157  </span>	localVarHeaderParams := make(map[string]string)
@@ -1272,22 +1272,22 @@
 <span id="L1215" class="ln">  1215  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1216" class="ln">  1216  </span>}
 <span id="L1217" class="ln">  1217  </span>
-<span id="L1218" class="ln">  1218  </span><span class="comment">// GetCostGCPUsageCostConfig Get Google Cloud Usage Cost config.</span>
-<span id="L1219" class="ln">  1219  </span><span class="comment">// Get a specific Google Cloud Usage Cost config.</span>
-<span id="L1220" class="ln">  1220  </span>func (a *CloudCostManagementApi) GetCostGCPUsageCostConfig(ctx _context.Context, cloudAccountId int64) (GcpUcConfigResponse, *_nethttp.Response, error) {
+<span id="L1218" class="ln">  1218  </span><span class="comment">// GetCustomAllocationRule Get custom allocation rule.</span>
+<span id="L1219" class="ln">  1219  </span><span class="comment">// Get a specific custom allocation rule - Retrieve a specific custom allocation rule by its ID</span>
+<span id="L1220" class="ln">  1220  </span>func (a *CloudCostManagementApi) GetCustomAllocationRule(ctx _context.Context, ruleId int64) (ArbitraryRuleResponse, *_nethttp.Response, error) {
 <span id="L1221" class="ln">  1221  </span>	var (
 <span id="L1222" class="ln">  1222  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L1223" class="ln">  1223  </span>		localVarPostBody    interface{}
-<span id="L1224" class="ln">  1224  </span>		localVarReturnValue GcpUcConfigResponse
+<span id="L1224" class="ln">  1224  </span>		localVarReturnValue ArbitraryRuleResponse
 <span id="L1225" class="ln">  1225  </span>	)
 <span id="L1226" class="ln">  1226  </span>
-<span id="L1227" class="ln">  1227  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.GetCostGCPUsageCostConfig&#34;)
+<span id="L1227" class="ln">  1227  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.GetCustomAllocationRule&#34;)
 <span id="L1228" class="ln">  1228  </span>	if err != nil {
 <span id="L1229" class="ln">  1229  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L1230" class="ln">  1230  </span>	}
 <span id="L1231" class="ln">  1231  </span>
-<span id="L1232" class="ln">  1232  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/gcp_uc_config/{cloud_account_id}&#34;
-<span id="L1233" class="ln">  1233  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{cloud_account_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, &#34;&#34;)))
+<span id="L1232" class="ln">  1232  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/arbitrary_rule/{rule_id}&#34;
+<span id="L1233" class="ln">  1233  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{rule_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(ruleId, &#34;&#34;)))
 <span id="L1234" class="ln">  1234  </span>
 <span id="L1235" class="ln">  1235  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L1236" class="ln">  1236  </span>	localVarQueryParams := _neturl.Values{}
@@ -1428,16 +1428,16 @@
 <span id="L1371" class="ln">  1371  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1372" class="ln">  1372  </span>}
 <span id="L1373" class="ln">  1373  </span>
-<span id="L1374" class="ln">  1374  </span><span class="comment">// GetRuleset Get ruleset.</span>
+<span id="L1374" class="ln">  1374  </span><span class="comment">// GetTagPipelinesRuleset Get ruleset.</span>
 <span id="L1375" class="ln">  1375  </span><span class="comment">// Get a specific tag pipeline ruleset - Retrieve a specific tag pipeline ruleset by its ID</span>
-<span id="L1376" class="ln">  1376  </span>func (a *CloudCostManagementApi) GetRuleset(ctx _context.Context, rulesetId string) (RulesetResp, *_nethttp.Response, error) {
+<span id="L1376" class="ln">  1376  </span>func (a *CloudCostManagementApi) GetTagPipelinesRuleset(ctx _context.Context, rulesetId string) (RulesetResp, *_nethttp.Response, error) {
 <span id="L1377" class="ln">  1377  </span>	var (
 <span id="L1378" class="ln">  1378  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L1379" class="ln">  1379  </span>		localVarPostBody    interface{}
 <span id="L1380" class="ln">  1380  </span>		localVarReturnValue RulesetResp
 <span id="L1381" class="ln">  1381  </span>	)
 <span id="L1382" class="ln">  1382  </span>
-<span id="L1383" class="ln">  1383  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.GetRuleset&#34;)
+<span id="L1383" class="ln">  1383  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.GetTagPipelinesRuleset&#34;)
 <span id="L1384" class="ln">  1384  </span>	if err != nil {
 <span id="L1385" class="ln">  1385  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L1386" class="ln">  1386  </span>	}
@@ -1506,21 +1506,21 @@
 <span id="L1449" class="ln">  1449  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1450" class="ln">  1450  </span>}
 <span id="L1451" class="ln">  1451  </span>
-<span id="L1452" class="ln">  1452  </span><span class="comment">// ListArbitraryCostRules List arbitrary cost rules.</span>
-<span id="L1453" class="ln">  1453  </span><span class="comment">// List all arbitrary cost rules - Retrieve a list of all arbitrary cost rules for the organization</span>
-<span id="L1454" class="ln">  1454  </span>func (a *CloudCostManagementApi) ListArbitraryCostRules(ctx _context.Context) (ArbitraryRuleResponseArray, *_nethttp.Response, error) {
+<span id="L1452" class="ln">  1452  </span><span class="comment">// ListBudgets List budgets.</span>
+<span id="L1453" class="ln">  1453  </span><span class="comment">// List budgets.</span>
+<span id="L1454" class="ln">  1454  </span>func (a *CloudCostManagementApi) ListBudgets(ctx _context.Context) (BudgetArray, *_nethttp.Response, error) {
 <span id="L1455" class="ln">  1455  </span>	var (
 <span id="L1456" class="ln">  1456  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L1457" class="ln">  1457  </span>		localVarPostBody    interface{}
-<span id="L1458" class="ln">  1458  </span>		localVarReturnValue ArbitraryRuleResponseArray
+<span id="L1458" class="ln">  1458  </span>		localVarReturnValue BudgetArray
 <span id="L1459" class="ln">  1459  </span>	)
 <span id="L1460" class="ln">  1460  </span>
-<span id="L1461" class="ln">  1461  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ListArbitraryCostRules&#34;)
+<span id="L1461" class="ln">  1461  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ListBudgets&#34;)
 <span id="L1462" class="ln">  1462  </span>	if err != nil {
 <span id="L1463" class="ln">  1463  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L1464" class="ln">  1464  </span>	}
 <span id="L1465" class="ln">  1465  </span>
-<span id="L1466" class="ln">  1466  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/arbitrary_rule&#34;
+<span id="L1466" class="ln">  1466  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/budgets&#34;
 <span id="L1467" class="ln">  1467  </span>
 <span id="L1468" class="ln">  1468  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L1469" class="ln">  1469  </span>	localVarQueryParams := _neturl.Values{}
@@ -1583,21 +1583,21 @@
 <span id="L1526" class="ln">  1526  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1527" class="ln">  1527  </span>}
 <span id="L1528" class="ln">  1528  </span>
-<span id="L1529" class="ln">  1529  </span><span class="comment">// ListBudgets List budgets.</span>
-<span id="L1530" class="ln">  1530  </span><span class="comment">// List budgets.</span>
-<span id="L1531" class="ln">  1531  </span>func (a *CloudCostManagementApi) ListBudgets(ctx _context.Context) (BudgetArray, *_nethttp.Response, error) {
+<span id="L1529" class="ln">  1529  </span><span class="comment">// ListCostAWSCURConfigs List Cloud Cost Management AWS CUR configs.</span>
+<span id="L1530" class="ln">  1530  </span><span class="comment">// List the AWS CUR configs.</span>
+<span id="L1531" class="ln">  1531  </span>func (a *CloudCostManagementApi) ListCostAWSCURConfigs(ctx _context.Context) (AwsCURConfigsResponse, *_nethttp.Response, error) {
 <span id="L1532" class="ln">  1532  </span>	var (
 <span id="L1533" class="ln">  1533  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L1534" class="ln">  1534  </span>		localVarPostBody    interface{}
-<span id="L1535" class="ln">  1535  </span>		localVarReturnValue BudgetArray
+<span id="L1535" class="ln">  1535  </span>		localVarReturnValue AwsCURConfigsResponse
 <span id="L1536" class="ln">  1536  </span>	)
 <span id="L1537" class="ln">  1537  </span>
-<span id="L1538" class="ln">  1538  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ListBudgets&#34;)
+<span id="L1538" class="ln">  1538  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ListCostAWSCURConfigs&#34;)
 <span id="L1539" class="ln">  1539  </span>	if err != nil {
 <span id="L1540" class="ln">  1540  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L1541" class="ln">  1541  </span>	}
 <span id="L1542" class="ln">  1542  </span>
-<span id="L1543" class="ln">  1543  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/budgets&#34;
+<span id="L1543" class="ln">  1543  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/aws_cur_config&#34;
 <span id="L1544" class="ln">  1544  </span>
 <span id="L1545" class="ln">  1545  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L1546" class="ln">  1546  </span>	localVarQueryParams := _neturl.Values{}
@@ -1637,7 +1637,7 @@
 <span id="L1580" class="ln">  1580  </span>			ErrorBody:    localVarBody,
 <span id="L1581" class="ln">  1581  </span>			ErrorMessage: localVarHTTPResponse.Status,
 <span id="L1582" class="ln">  1582  </span>		}
-<span id="L1583" class="ln">  1583  </span>		if localVarHTTPResponse.StatusCode == 429 {
+<span id="L1583" class="ln">  1583  </span>		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 <span id="L1584" class="ln">  1584  </span>			var v APIErrorResponse
 <span id="L1585" class="ln">  1585  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
 <span id="L1586" class="ln">  1586  </span>			if err != nil {
@@ -1660,21 +1660,21 @@
 <span id="L1603" class="ln">  1603  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1604" class="ln">  1604  </span>}
 <span id="L1605" class="ln">  1605  </span>
-<span id="L1606" class="ln">  1606  </span><span class="comment">// ListCostAWSCURConfigs List Cloud Cost Management AWS CUR configs.</span>
-<span id="L1607" class="ln">  1607  </span><span class="comment">// List the AWS CUR configs.</span>
-<span id="L1608" class="ln">  1608  </span>func (a *CloudCostManagementApi) ListCostAWSCURConfigs(ctx _context.Context) (AwsCURConfigsResponse, *_nethttp.Response, error) {
+<span id="L1606" class="ln">  1606  </span><span class="comment">// ListCostAzureUCConfigs List Cloud Cost Management Azure configs.</span>
+<span id="L1607" class="ln">  1607  </span><span class="comment">// List the Azure configs.</span>
+<span id="L1608" class="ln">  1608  </span>func (a *CloudCostManagementApi) ListCostAzureUCConfigs(ctx _context.Context) (AzureUCConfigsResponse, *_nethttp.Response, error) {
 <span id="L1609" class="ln">  1609  </span>	var (
 <span id="L1610" class="ln">  1610  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L1611" class="ln">  1611  </span>		localVarPostBody    interface{}
-<span id="L1612" class="ln">  1612  </span>		localVarReturnValue AwsCURConfigsResponse
+<span id="L1612" class="ln">  1612  </span>		localVarReturnValue AzureUCConfigsResponse
 <span id="L1613" class="ln">  1613  </span>	)
 <span id="L1614" class="ln">  1614  </span>
-<span id="L1615" class="ln">  1615  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ListCostAWSCURConfigs&#34;)
+<span id="L1615" class="ln">  1615  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ListCostAzureUCConfigs&#34;)
 <span id="L1616" class="ln">  1616  </span>	if err != nil {
 <span id="L1617" class="ln">  1617  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L1618" class="ln">  1618  </span>	}
 <span id="L1619" class="ln">  1619  </span>
-<span id="L1620" class="ln">  1620  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/aws_cur_config&#34;
+<span id="L1620" class="ln">  1620  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/azure_uc_config&#34;
 <span id="L1621" class="ln">  1621  </span>
 <span id="L1622" class="ln">  1622  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L1623" class="ln">  1623  </span>	localVarQueryParams := _neturl.Values{}
@@ -1737,21 +1737,21 @@
 <span id="L1680" class="ln">  1680  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1681" class="ln">  1681  </span>}
 <span id="L1682" class="ln">  1682  </span>
-<span id="L1683" class="ln">  1683  </span><span class="comment">// ListCostAzureUCConfigs List Cloud Cost Management Azure configs.</span>
-<span id="L1684" class="ln">  1684  </span><span class="comment">// List the Azure configs.</span>
-<span id="L1685" class="ln">  1685  </span>func (a *CloudCostManagementApi) ListCostAzureUCConfigs(ctx _context.Context) (AzureUCConfigsResponse, *_nethttp.Response, error) {
+<span id="L1683" class="ln">  1683  </span><span class="comment">// ListCostGCPUsageCostConfigs List Google Cloud Usage Cost configs.</span>
+<span id="L1684" class="ln">  1684  </span><span class="comment">// List the Google Cloud Usage Cost configs.</span>
+<span id="L1685" class="ln">  1685  </span>func (a *CloudCostManagementApi) ListCostGCPUsageCostConfigs(ctx _context.Context) (GCPUsageCostConfigsResponse, *_nethttp.Response, error) {
 <span id="L1686" class="ln">  1686  </span>	var (
 <span id="L1687" class="ln">  1687  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L1688" class="ln">  1688  </span>		localVarPostBody    interface{}
-<span id="L1689" class="ln">  1689  </span>		localVarReturnValue AzureUCConfigsResponse
+<span id="L1689" class="ln">  1689  </span>		localVarReturnValue GCPUsageCostConfigsResponse
 <span id="L1690" class="ln">  1690  </span>	)
 <span id="L1691" class="ln">  1691  </span>
-<span id="L1692" class="ln">  1692  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ListCostAzureUCConfigs&#34;)
+<span id="L1692" class="ln">  1692  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ListCostGCPUsageCostConfigs&#34;)
 <span id="L1693" class="ln">  1693  </span>	if err != nil {
 <span id="L1694" class="ln">  1694  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L1695" class="ln">  1695  </span>	}
 <span id="L1696" class="ln">  1696  </span>
-<span id="L1697" class="ln">  1697  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/azure_uc_config&#34;
+<span id="L1697" class="ln">  1697  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/gcp_uc_config&#34;
 <span id="L1698" class="ln">  1698  </span>
 <span id="L1699" class="ln">  1699  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L1700" class="ln">  1700  </span>	localVarQueryParams := _neturl.Values{}
@@ -1814,21 +1814,21 @@
 <span id="L1757" class="ln">  1757  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1758" class="ln">  1758  </span>}
 <span id="L1759" class="ln">  1759  </span>
-<span id="L1760" class="ln">  1760  </span><span class="comment">// ListCostGCPUsageCostConfigs List Google Cloud Usage Cost configs.</span>
-<span id="L1761" class="ln">  1761  </span><span class="comment">// List the Google Cloud Usage Cost configs.</span>
-<span id="L1762" class="ln">  1762  </span>func (a *CloudCostManagementApi) ListCostGCPUsageCostConfigs(ctx _context.Context) (GCPUsageCostConfigsResponse, *_nethttp.Response, error) {
+<span id="L1760" class="ln">  1760  </span><span class="comment">// ListCustomAllocationRules List custom allocation rules.</span>
+<span id="L1761" class="ln">  1761  </span><span class="comment">// List all custom allocation rules - Retrieve a list of all custom allocation rules for the organization</span>
+<span id="L1762" class="ln">  1762  </span>func (a *CloudCostManagementApi) ListCustomAllocationRules(ctx _context.Context) (ArbitraryRuleResponseArray, *_nethttp.Response, error) {
 <span id="L1763" class="ln">  1763  </span>	var (
 <span id="L1764" class="ln">  1764  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L1765" class="ln">  1765  </span>		localVarPostBody    interface{}
-<span id="L1766" class="ln">  1766  </span>		localVarReturnValue GCPUsageCostConfigsResponse
+<span id="L1766" class="ln">  1766  </span>		localVarReturnValue ArbitraryRuleResponseArray
 <span id="L1767" class="ln">  1767  </span>	)
 <span id="L1768" class="ln">  1768  </span>
-<span id="L1769" class="ln">  1769  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ListCostGCPUsageCostConfigs&#34;)
+<span id="L1769" class="ln">  1769  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ListCustomAllocationRules&#34;)
 <span id="L1770" class="ln">  1770  </span>	if err != nil {
 <span id="L1771" class="ln">  1771  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L1772" class="ln">  1772  </span>	}
 <span id="L1773" class="ln">  1773  </span>
-<span id="L1774" class="ln">  1774  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/gcp_uc_config&#34;
+<span id="L1774" class="ln">  1774  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/arbitrary_rule&#34;
 <span id="L1775" class="ln">  1775  </span>
 <span id="L1776" class="ln">  1776  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L1777" class="ln">  1777  </span>	localVarQueryParams := _neturl.Values{}
@@ -1868,7 +1868,7 @@
 <span id="L1811" class="ln">  1811  </span>			ErrorBody:    localVarBody,
 <span id="L1812" class="ln">  1812  </span>			ErrorMessage: localVarHTTPResponse.Status,
 <span id="L1813" class="ln">  1813  </span>		}
-<span id="L1814" class="ln">  1814  </span>		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L1814" class="ln">  1814  </span>		if localVarHTTPResponse.StatusCode == 429 {
 <span id="L1815" class="ln">  1815  </span>			var v APIErrorResponse
 <span id="L1816" class="ln">  1816  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
 <span id="L1817" class="ln">  1817  </span>			if err != nil {
@@ -2026,16 +2026,16 @@
 <span id="L1969" class="ln">  1969  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1970" class="ln">  1970  </span>}
 <span id="L1971" class="ln">  1971  </span>
-<span id="L1972" class="ln">  1972  </span><span class="comment">// ListRulesets List rulesets.</span>
+<span id="L1972" class="ln">  1972  </span><span class="comment">// ListTagPipelinesRulesets List tag pipeline rulesets.</span>
 <span id="L1973" class="ln">  1973  </span><span class="comment">// List all tag pipeline rulesets - Retrieve a list of all tag pipeline rulesets for the organization</span>
-<span id="L1974" class="ln">  1974  </span>func (a *CloudCostManagementApi) ListRulesets(ctx _context.Context) (RulesetRespArray, *_nethttp.Response, error) {
+<span id="L1974" class="ln">  1974  </span>func (a *CloudCostManagementApi) ListTagPipelinesRulesets(ctx _context.Context) (RulesetRespArray, *_nethttp.Response, error) {
 <span id="L1975" class="ln">  1975  </span>	var (
 <span id="L1976" class="ln">  1976  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L1977" class="ln">  1977  </span>		localVarPostBody    interface{}
 <span id="L1978" class="ln">  1978  </span>		localVarReturnValue RulesetRespArray
 <span id="L1979" class="ln">  1979  </span>	)
 <span id="L1980" class="ln">  1980  </span>
-<span id="L1981" class="ln">  1981  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ListRulesets&#34;)
+<span id="L1981" class="ln">  1981  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ListTagPipelinesRulesets&#34;)
 <span id="L1982" class="ln">  1982  </span>	if err != nil {
 <span id="L1983" class="ln">  1983  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L1984" class="ln">  1984  </span>	}
@@ -2103,21 +2103,21 @@
 <span id="L2046" class="ln">  2046  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L2047" class="ln">  2047  </span>}
 <span id="L2048" class="ln">  2048  </span>
-<span id="L2049" class="ln">  2049  </span><span class="comment">// ReorderArbitraryCostRules Reorder arbitrary cost rules.</span>
-<span id="L2050" class="ln">  2050  </span><span class="comment">// Reorder arbitrary cost rules - Change the execution order of arbitrary cost rules.</span>
+<span id="L2049" class="ln">  2049  </span><span class="comment">// ReorderCustomAllocationRules Reorder custom allocation rules.</span>
+<span id="L2050" class="ln">  2050  </span><span class="comment">// Reorder custom allocation rules - Change the execution order of custom allocation rules.</span>
 <span id="L2051" class="ln">  2051  </span><span class="comment">//</span>
 <span id="L2052" class="ln">  2052  </span><span class="comment">// **Important**: You must provide the **complete list** of all rule IDs in the desired execution order. The API will reorder ALL rules according to the provided sequence.</span>
 <span id="L2053" class="ln">  2053  </span><span class="comment">//</span>
 <span id="L2054" class="ln">  2054  </span><span class="comment">// Rules are executed in the order specified, with lower indices (earlier in the array) having higher priority.</span>
 <span id="L2055" class="ln">  2055  </span><span class="comment">//</span>
 <span id="L2056" class="ln">  2056  </span><span class="comment">// **Example**: If you have rules with IDs [123, 456, 789] and want to change order from 123→456→789 to 456→123→789, send: [{&#34;id&#34;: &#34;456&#34;}, {&#34;id&#34;: &#34;123&#34;}, {&#34;id&#34;: &#34;789&#34;}]</span>
-<span id="L2057" class="ln">  2057  </span>func (a *CloudCostManagementApi) ReorderArbitraryCostRules(ctx _context.Context, body ReorderRuleResourceArray) (*_nethttp.Response, error) {
+<span id="L2057" class="ln">  2057  </span>func (a *CloudCostManagementApi) ReorderCustomAllocationRules(ctx _context.Context, body ReorderRuleResourceArray) (*_nethttp.Response, error) {
 <span id="L2058" class="ln">  2058  </span>	var (
 <span id="L2059" class="ln">  2059  </span>		localVarHTTPMethod = _nethttp.MethodPost
 <span id="L2060" class="ln">  2060  </span>		localVarPostBody   interface{}
 <span id="L2061" class="ln">  2061  </span>	)
 <span id="L2062" class="ln">  2062  </span>
-<span id="L2063" class="ln">  2063  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ReorderArbitraryCostRules&#34;)
+<span id="L2063" class="ln">  2063  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ReorderCustomAllocationRules&#34;)
 <span id="L2064" class="ln">  2064  </span>	if err != nil {
 <span id="L2065" class="ln">  2065  </span>		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L2066" class="ln">  2066  </span>	}
@@ -2179,15 +2179,15 @@
 <span id="L2122" class="ln">  2122  </span>	return localVarHTTPResponse, nil
 <span id="L2123" class="ln">  2123  </span>}
 <span id="L2124" class="ln">  2124  </span>
-<span id="L2125" class="ln">  2125  </span><span class="comment">// ReorderRulesets Reorder rulesets.</span>
+<span id="L2125" class="ln">  2125  </span><span class="comment">// ReorderTagPipelinesRulesets Reorder tag pipeline rulesets.</span>
 <span id="L2126" class="ln">  2126  </span><span class="comment">// Reorder tag pipeline rulesets - Change the execution order of tag pipeline rulesets</span>
-<span id="L2127" class="ln">  2127  </span>func (a *CloudCostManagementApi) ReorderRulesets(ctx _context.Context, body ReorderRulesetResourceArray) (*_nethttp.Response, error) {
+<span id="L2127" class="ln">  2127  </span>func (a *CloudCostManagementApi) ReorderTagPipelinesRulesets(ctx _context.Context, body ReorderRulesetResourceArray) (*_nethttp.Response, error) {
 <span id="L2128" class="ln">  2128  </span>	var (
 <span id="L2129" class="ln">  2129  </span>		localVarHTTPMethod = _nethttp.MethodPost
 <span id="L2130" class="ln">  2130  </span>		localVarPostBody   interface{}
 <span id="L2131" class="ln">  2131  </span>	)
 <span id="L2132" class="ln">  2132  </span>
-<span id="L2133" class="ln">  2133  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ReorderRulesets&#34;)
+<span id="L2133" class="ln">  2133  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.ReorderTagPipelinesRulesets&#34;)
 <span id="L2134" class="ln">  2134  </span>	if err != nil {
 <span id="L2135" class="ln">  2135  </span>		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L2136" class="ln">  2136  </span>	}
@@ -2249,278 +2249,278 @@
 <span id="L2192" class="ln">  2192  </span>	return localVarHTTPResponse, nil
 <span id="L2193" class="ln">  2193  </span>}
 <span id="L2194" class="ln">  2194  </span>
-<span id="L2195" class="ln">  2195  </span><span class="comment">// UpdateArbitraryCostRule Update arbitrary cost rule.</span>
-<span id="L2196" class="ln">  2196  </span><span class="comment">// Update an existing arbitrary cost rule with new filters and allocation strategy.</span>
-<span id="L2197" class="ln">  2197  </span><span class="comment">//</span>
-<span id="L2198" class="ln">  2198  </span><span class="comment">// **Strategy Methods:**</span>
-<span id="L2199" class="ln">  2199  </span><span class="comment">// - **PROPORTIONAL/EVEN**: Allocates costs proportionally/evenly based on existing costs. Requires: granularity, allocated_by_tag_keys. Optional: based_on_costs, allocated_by_filters, evaluate_grouped_by_tag_keys, evaluate_grouped_by_filters.</span>
-<span id="L2200" class="ln">  2200  </span><span class="comment">// - **PROPORTIONAL_TIMESERIES/EVEN_TIMESERIES**: Allocates based on timeseries data. Requires: granularity, based_on_timeseries. Optional: evaluate_grouped_by_tag_keys.</span>
-<span id="L2201" class="ln">  2201  </span><span class="comment">// - **PERCENT**: Allocates fixed percentages to specific tags. Requires: allocated_by (array of percentage allocations).</span>
-<span id="L2202" class="ln">  2202  </span><span class="comment">// - **USAGE_METRIC**: Allocates based on usage metrics (implementation varies).</span>
-<span id="L2203" class="ln">  2203  </span><span class="comment">//</span>
-<span id="L2204" class="ln">  2204  </span><span class="comment">// **Filter Conditions:**</span>
-<span id="L2205" class="ln">  2205  </span><span class="comment">// - Use **value** for single-value conditions: &#34;is&#34;, &#34;is not&#34;, &#34;contains&#34;, &#34;does not contain&#34;, &#34;=&#34;, &#34;!=&#34;, &#34;like&#34;, &#34;not like&#34;, &#34;is all values&#34;, &#34;is untagged&#34;</span>
-<span id="L2206" class="ln">  2206  </span><span class="comment">// - Use **values** for multi-value conditions: &#34;in&#34;, &#34;not in&#34;</span>
-<span id="L2207" class="ln">  2207  </span><span class="comment">// - Cannot use both value and values simultaneously.</span>
-<span id="L2208" class="ln">  2208  </span><span class="comment">//</span>
-<span id="L2209" class="ln">  2209  </span><span class="comment">// **Supported operators**: is, is not, is all values, is untagged, contains, does not contain, in, not in, =, !=, like, not like</span>
-<span id="L2210" class="ln">  2210  </span>func (a *CloudCostManagementApi) UpdateArbitraryCostRule(ctx _context.Context, ruleId int64, body ArbitraryCostUpsertRequest) (ArbitraryRuleResponse, *_nethttp.Response, error) {
-<span id="L2211" class="ln">  2211  </span>	var (
-<span id="L2212" class="ln">  2212  </span>		localVarHTTPMethod  = _nethttp.MethodPatch
-<span id="L2213" class="ln">  2213  </span>		localVarPostBody    interface{}
-<span id="L2214" class="ln">  2214  </span>		localVarReturnValue ArbitraryRuleResponse
-<span id="L2215" class="ln">  2215  </span>	)
-<span id="L2216" class="ln">  2216  </span>
-<span id="L2217" class="ln">  2217  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.UpdateArbitraryCostRule&#34;)
-<span id="L2218" class="ln">  2218  </span>	if err != nil {
-<span id="L2219" class="ln">  2219  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L2220" class="ln">  2220  </span>	}
-<span id="L2221" class="ln">  2221  </span>
-<span id="L2222" class="ln">  2222  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/arbitrary_rule/{rule_id}&#34;
-<span id="L2223" class="ln">  2223  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{rule_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(ruleId, &#34;&#34;)))
-<span id="L2224" class="ln">  2224  </span>
-<span id="L2225" class="ln">  2225  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L2226" class="ln">  2226  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L2227" class="ln">  2227  </span>	localVarFormParams := _neturl.Values{}
-<span id="L2228" class="ln">  2228  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
-<span id="L2229" class="ln">  2229  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L2230" class="ln">  2230  </span>
-<span id="L2231" class="ln">  2231  </span>	<span class="comment">// body params</span>
-<span id="L2232" class="ln">  2232  </span>	localVarPostBody = &amp;body
-<span id="L2233" class="ln">  2233  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
-<span id="L2234" class="ln">  2234  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-<span id="L2235" class="ln">  2235  </span>		if err != nil {
-<span id="L2236" class="ln">  2236  </span>			return localVarReturnValue, nil, err
-<span id="L2237" class="ln">  2237  </span>		}
-<span id="L2238" class="ln">  2238  </span>	} else {
-<span id="L2239" class="ln">  2239  </span>		datadog.SetAuthKeys(
-<span id="L2240" class="ln">  2240  </span>			ctx,
-<span id="L2241" class="ln">  2241  </span>			&amp;localVarHeaderParams,
-<span id="L2242" class="ln">  2242  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L2243" class="ln">  2243  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L2244" class="ln">  2244  </span>		)
-<span id="L2245" class="ln">  2245  </span>	}
-<span id="L2246" class="ln">  2246  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L2247" class="ln">  2247  </span>	if err != nil {
-<span id="L2248" class="ln">  2248  </span>		return localVarReturnValue, nil, err
-<span id="L2249" class="ln">  2249  </span>	}
-<span id="L2250" class="ln">  2250  </span>
-<span id="L2251" class="ln">  2251  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L2252" class="ln">  2252  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L2253" class="ln">  2253  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L2254" class="ln">  2254  </span>	}
-<span id="L2255" class="ln">  2255  </span>
-<span id="L2256" class="ln">  2256  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L2257" class="ln">  2257  </span>	if err != nil {
-<span id="L2258" class="ln">  2258  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L2259" class="ln">  2259  </span>	}
-<span id="L2260" class="ln">  2260  </span>
-<span id="L2261" class="ln">  2261  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L2262" class="ln">  2262  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L2263" class="ln">  2263  </span>			ErrorBody:    localVarBody,
-<span id="L2264" class="ln">  2264  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L2265" class="ln">  2265  </span>		}
-<span id="L2266" class="ln">  2266  </span>		if localVarHTTPResponse.StatusCode == 429 {
-<span id="L2267" class="ln">  2267  </span>			var v APIErrorResponse
-<span id="L2268" class="ln">  2268  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L2269" class="ln">  2269  </span>			if err != nil {
-<span id="L2270" class="ln">  2270  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L2271" class="ln">  2271  </span>			}
-<span id="L2272" class="ln">  2272  </span>			newErr.ErrorModel = v
-<span id="L2273" class="ln">  2273  </span>		}
-<span id="L2274" class="ln">  2274  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L2275" class="ln">  2275  </span>	}
-<span id="L2276" class="ln">  2276  </span>
-<span id="L2277" class="ln">  2277  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L2278" class="ln">  2278  </span>	if err != nil {
-<span id="L2279" class="ln">  2279  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L2280" class="ln">  2280  </span>			ErrorBody:    localVarBody,
-<span id="L2281" class="ln">  2281  </span>			ErrorMessage: err.Error(),
-<span id="L2282" class="ln">  2282  </span>		}
-<span id="L2283" class="ln">  2283  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L2284" class="ln">  2284  </span>	}
-<span id="L2285" class="ln">  2285  </span>
-<span id="L2286" class="ln">  2286  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L2287" class="ln">  2287  </span>}
-<span id="L2288" class="ln">  2288  </span>
-<span id="L2289" class="ln">  2289  </span><span class="comment">// UpdateCostAWSCURConfig Update Cloud Cost Management AWS CUR config.</span>
-<span id="L2290" class="ln">  2290  </span><span class="comment">// Update the status (active/archived) and/or account filtering configuration of an AWS CUR config.</span>
-<span id="L2291" class="ln">  2291  </span>func (a *CloudCostManagementApi) UpdateCostAWSCURConfig(ctx _context.Context, cloudAccountId int64, body AwsCURConfigPatchRequest) (AwsCURConfigsResponse, *_nethttp.Response, error) {
-<span id="L2292" class="ln">  2292  </span>	var (
-<span id="L2293" class="ln">  2293  </span>		localVarHTTPMethod  = _nethttp.MethodPatch
-<span id="L2294" class="ln">  2294  </span>		localVarPostBody    interface{}
-<span id="L2295" class="ln">  2295  </span>		localVarReturnValue AwsCURConfigsResponse
-<span id="L2296" class="ln">  2296  </span>	)
-<span id="L2297" class="ln">  2297  </span>
-<span id="L2298" class="ln">  2298  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.UpdateCostAWSCURConfig&#34;)
-<span id="L2299" class="ln">  2299  </span>	if err != nil {
-<span id="L2300" class="ln">  2300  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L2301" class="ln">  2301  </span>	}
-<span id="L2302" class="ln">  2302  </span>
-<span id="L2303" class="ln">  2303  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/aws_cur_config/{cloud_account_id}&#34;
-<span id="L2304" class="ln">  2304  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{cloud_account_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, &#34;&#34;)))
-<span id="L2305" class="ln">  2305  </span>
-<span id="L2306" class="ln">  2306  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L2307" class="ln">  2307  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L2308" class="ln">  2308  </span>	localVarFormParams := _neturl.Values{}
-<span id="L2309" class="ln">  2309  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
-<span id="L2310" class="ln">  2310  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L2311" class="ln">  2311  </span>
-<span id="L2312" class="ln">  2312  </span>	<span class="comment">// body params</span>
-<span id="L2313" class="ln">  2313  </span>	localVarPostBody = &amp;body
-<span id="L2314" class="ln">  2314  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
-<span id="L2315" class="ln">  2315  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-<span id="L2316" class="ln">  2316  </span>		if err != nil {
-<span id="L2317" class="ln">  2317  </span>			return localVarReturnValue, nil, err
-<span id="L2318" class="ln">  2318  </span>		}
-<span id="L2319" class="ln">  2319  </span>	} else {
-<span id="L2320" class="ln">  2320  </span>		datadog.SetAuthKeys(
-<span id="L2321" class="ln">  2321  </span>			ctx,
-<span id="L2322" class="ln">  2322  </span>			&amp;localVarHeaderParams,
-<span id="L2323" class="ln">  2323  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L2324" class="ln">  2324  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L2325" class="ln">  2325  </span>		)
-<span id="L2326" class="ln">  2326  </span>	}
-<span id="L2327" class="ln">  2327  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L2328" class="ln">  2328  </span>	if err != nil {
-<span id="L2329" class="ln">  2329  </span>		return localVarReturnValue, nil, err
-<span id="L2330" class="ln">  2330  </span>	}
-<span id="L2331" class="ln">  2331  </span>
-<span id="L2332" class="ln">  2332  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L2333" class="ln">  2333  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L2334" class="ln">  2334  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L2335" class="ln">  2335  </span>	}
-<span id="L2336" class="ln">  2336  </span>
-<span id="L2337" class="ln">  2337  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L2338" class="ln">  2338  </span>	if err != nil {
-<span id="L2339" class="ln">  2339  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L2340" class="ln">  2340  </span>	}
-<span id="L2341" class="ln">  2341  </span>
-<span id="L2342" class="ln">  2342  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L2343" class="ln">  2343  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L2344" class="ln">  2344  </span>			ErrorBody:    localVarBody,
-<span id="L2345" class="ln">  2345  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L2346" class="ln">  2346  </span>		}
-<span id="L2347" class="ln">  2347  </span>		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L2348" class="ln">  2348  </span>			var v APIErrorResponse
-<span id="L2349" class="ln">  2349  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L2350" class="ln">  2350  </span>			if err != nil {
-<span id="L2351" class="ln">  2351  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L2352" class="ln">  2352  </span>			}
-<span id="L2353" class="ln">  2353  </span>			newErr.ErrorModel = v
-<span id="L2354" class="ln">  2354  </span>		}
-<span id="L2355" class="ln">  2355  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L2356" class="ln">  2356  </span>	}
-<span id="L2357" class="ln">  2357  </span>
-<span id="L2358" class="ln">  2358  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L2359" class="ln">  2359  </span>	if err != nil {
-<span id="L2360" class="ln">  2360  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L2361" class="ln">  2361  </span>			ErrorBody:    localVarBody,
-<span id="L2362" class="ln">  2362  </span>			ErrorMessage: err.Error(),
-<span id="L2363" class="ln">  2363  </span>		}
-<span id="L2364" class="ln">  2364  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L2365" class="ln">  2365  </span>	}
-<span id="L2366" class="ln">  2366  </span>
-<span id="L2367" class="ln">  2367  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L2368" class="ln">  2368  </span>}
-<span id="L2369" class="ln">  2369  </span>
-<span id="L2370" class="ln">  2370  </span><span class="comment">// UpdateCostAzureUCConfigs Update Cloud Cost Management Azure config.</span>
-<span id="L2371" class="ln">  2371  </span><span class="comment">// Update the status of an  Azure config (active/archived).</span>
-<span id="L2372" class="ln">  2372  </span>func (a *CloudCostManagementApi) UpdateCostAzureUCConfigs(ctx _context.Context, cloudAccountId int64, body AzureUCConfigPatchRequest) (AzureUCConfigPairsResponse, *_nethttp.Response, error) {
-<span id="L2373" class="ln">  2373  </span>	var (
-<span id="L2374" class="ln">  2374  </span>		localVarHTTPMethod  = _nethttp.MethodPatch
-<span id="L2375" class="ln">  2375  </span>		localVarPostBody    interface{}
-<span id="L2376" class="ln">  2376  </span>		localVarReturnValue AzureUCConfigPairsResponse
-<span id="L2377" class="ln">  2377  </span>	)
-<span id="L2378" class="ln">  2378  </span>
-<span id="L2379" class="ln">  2379  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.UpdateCostAzureUCConfigs&#34;)
-<span id="L2380" class="ln">  2380  </span>	if err != nil {
-<span id="L2381" class="ln">  2381  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
-<span id="L2382" class="ln">  2382  </span>	}
-<span id="L2383" class="ln">  2383  </span>
-<span id="L2384" class="ln">  2384  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/azure_uc_config/{cloud_account_id}&#34;
-<span id="L2385" class="ln">  2385  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{cloud_account_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, &#34;&#34;)))
-<span id="L2386" class="ln">  2386  </span>
-<span id="L2387" class="ln">  2387  </span>	localVarHeaderParams := make(map[string]string)
-<span id="L2388" class="ln">  2388  </span>	localVarQueryParams := _neturl.Values{}
-<span id="L2389" class="ln">  2389  </span>	localVarFormParams := _neturl.Values{}
-<span id="L2390" class="ln">  2390  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
-<span id="L2391" class="ln">  2391  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
-<span id="L2392" class="ln">  2392  </span>
-<span id="L2393" class="ln">  2393  </span>	<span class="comment">// body params</span>
-<span id="L2394" class="ln">  2394  </span>	localVarPostBody = &amp;body
-<span id="L2395" class="ln">  2395  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
-<span id="L2396" class="ln">  2396  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-<span id="L2397" class="ln">  2397  </span>		if err != nil {
-<span id="L2398" class="ln">  2398  </span>			return localVarReturnValue, nil, err
-<span id="L2399" class="ln">  2399  </span>		}
-<span id="L2400" class="ln">  2400  </span>	} else {
-<span id="L2401" class="ln">  2401  </span>		datadog.SetAuthKeys(
-<span id="L2402" class="ln">  2402  </span>			ctx,
-<span id="L2403" class="ln">  2403  </span>			&amp;localVarHeaderParams,
-<span id="L2404" class="ln">  2404  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
-<span id="L2405" class="ln">  2405  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
-<span id="L2406" class="ln">  2406  </span>		)
-<span id="L2407" class="ln">  2407  </span>	}
-<span id="L2408" class="ln">  2408  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
-<span id="L2409" class="ln">  2409  </span>	if err != nil {
-<span id="L2410" class="ln">  2410  </span>		return localVarReturnValue, nil, err
-<span id="L2411" class="ln">  2411  </span>	}
-<span id="L2412" class="ln">  2412  </span>
-<span id="L2413" class="ln">  2413  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
-<span id="L2414" class="ln">  2414  </span>	if err != nil || localVarHTTPResponse == nil {
-<span id="L2415" class="ln">  2415  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L2416" class="ln">  2416  </span>	}
-<span id="L2417" class="ln">  2417  </span>
-<span id="L2418" class="ln">  2418  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
-<span id="L2419" class="ln">  2419  </span>	if err != nil {
-<span id="L2420" class="ln">  2420  </span>		return localVarReturnValue, localVarHTTPResponse, err
-<span id="L2421" class="ln">  2421  </span>	}
-<span id="L2422" class="ln">  2422  </span>
-<span id="L2423" class="ln">  2423  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
-<span id="L2424" class="ln">  2424  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L2425" class="ln">  2425  </span>			ErrorBody:    localVarBody,
-<span id="L2426" class="ln">  2426  </span>			ErrorMessage: localVarHTTPResponse.Status,
-<span id="L2427" class="ln">  2427  </span>		}
-<span id="L2428" class="ln">  2428  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
-<span id="L2429" class="ln">  2429  </span>			var v APIErrorResponse
-<span id="L2430" class="ln">  2430  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L2431" class="ln">  2431  </span>			if err != nil {
-<span id="L2432" class="ln">  2432  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L2433" class="ln">  2433  </span>			}
-<span id="L2434" class="ln">  2434  </span>			newErr.ErrorModel = v
-<span id="L2435" class="ln">  2435  </span>		}
-<span id="L2436" class="ln">  2436  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L2437" class="ln">  2437  </span>	}
-<span id="L2438" class="ln">  2438  </span>
-<span id="L2439" class="ln">  2439  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
-<span id="L2440" class="ln">  2440  </span>	if err != nil {
-<span id="L2441" class="ln">  2441  </span>		newErr := datadog.GenericOpenAPIError{
-<span id="L2442" class="ln">  2442  </span>			ErrorBody:    localVarBody,
-<span id="L2443" class="ln">  2443  </span>			ErrorMessage: err.Error(),
-<span id="L2444" class="ln">  2444  </span>		}
-<span id="L2445" class="ln">  2445  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
-<span id="L2446" class="ln">  2446  </span>	}
-<span id="L2447" class="ln">  2447  </span>
-<span id="L2448" class="ln">  2448  </span>	return localVarReturnValue, localVarHTTPResponse, nil
-<span id="L2449" class="ln">  2449  </span>}
-<span id="L2450" class="ln">  2450  </span>
-<span id="L2451" class="ln">  2451  </span><span class="comment">// UpdateCostGCPUsageCostConfig Update Google Cloud Usage Cost config.</span>
-<span id="L2452" class="ln">  2452  </span><span class="comment">// Update the status of an Google Cloud Usage Cost config (active/archived).</span>
-<span id="L2453" class="ln">  2453  </span>func (a *CloudCostManagementApi) UpdateCostGCPUsageCostConfig(ctx _context.Context, cloudAccountId int64, body GCPUsageCostConfigPatchRequest) (GCPUsageCostConfigResponse, *_nethttp.Response, error) {
+<span id="L2195" class="ln">  2195  </span><span class="comment">// UpdateCostAWSCURConfig Update Cloud Cost Management AWS CUR config.</span>
+<span id="L2196" class="ln">  2196  </span><span class="comment">// Update the status (active/archived) and/or account filtering configuration of an AWS CUR config.</span>
+<span id="L2197" class="ln">  2197  </span>func (a *CloudCostManagementApi) UpdateCostAWSCURConfig(ctx _context.Context, cloudAccountId int64, body AwsCURConfigPatchRequest) (AwsCURConfigsResponse, *_nethttp.Response, error) {
+<span id="L2198" class="ln">  2198  </span>	var (
+<span id="L2199" class="ln">  2199  </span>		localVarHTTPMethod  = _nethttp.MethodPatch
+<span id="L2200" class="ln">  2200  </span>		localVarPostBody    interface{}
+<span id="L2201" class="ln">  2201  </span>		localVarReturnValue AwsCURConfigsResponse
+<span id="L2202" class="ln">  2202  </span>	)
+<span id="L2203" class="ln">  2203  </span>
+<span id="L2204" class="ln">  2204  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.UpdateCostAWSCURConfig&#34;)
+<span id="L2205" class="ln">  2205  </span>	if err != nil {
+<span id="L2206" class="ln">  2206  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L2207" class="ln">  2207  </span>	}
+<span id="L2208" class="ln">  2208  </span>
+<span id="L2209" class="ln">  2209  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/aws_cur_config/{cloud_account_id}&#34;
+<span id="L2210" class="ln">  2210  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{cloud_account_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, &#34;&#34;)))
+<span id="L2211" class="ln">  2211  </span>
+<span id="L2212" class="ln">  2212  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L2213" class="ln">  2213  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L2214" class="ln">  2214  </span>	localVarFormParams := _neturl.Values{}
+<span id="L2215" class="ln">  2215  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L2216" class="ln">  2216  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L2217" class="ln">  2217  </span>
+<span id="L2218" class="ln">  2218  </span>	<span class="comment">// body params</span>
+<span id="L2219" class="ln">  2219  </span>	localVarPostBody = &amp;body
+<span id="L2220" class="ln">  2220  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
+<span id="L2221" class="ln">  2221  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+<span id="L2222" class="ln">  2222  </span>		if err != nil {
+<span id="L2223" class="ln">  2223  </span>			return localVarReturnValue, nil, err
+<span id="L2224" class="ln">  2224  </span>		}
+<span id="L2225" class="ln">  2225  </span>	} else {
+<span id="L2226" class="ln">  2226  </span>		datadog.SetAuthKeys(
+<span id="L2227" class="ln">  2227  </span>			ctx,
+<span id="L2228" class="ln">  2228  </span>			&amp;localVarHeaderParams,
+<span id="L2229" class="ln">  2229  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L2230" class="ln">  2230  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L2231" class="ln">  2231  </span>		)
+<span id="L2232" class="ln">  2232  </span>	}
+<span id="L2233" class="ln">  2233  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L2234" class="ln">  2234  </span>	if err != nil {
+<span id="L2235" class="ln">  2235  </span>		return localVarReturnValue, nil, err
+<span id="L2236" class="ln">  2236  </span>	}
+<span id="L2237" class="ln">  2237  </span>
+<span id="L2238" class="ln">  2238  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L2239" class="ln">  2239  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L2240" class="ln">  2240  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L2241" class="ln">  2241  </span>	}
+<span id="L2242" class="ln">  2242  </span>
+<span id="L2243" class="ln">  2243  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L2244" class="ln">  2244  </span>	if err != nil {
+<span id="L2245" class="ln">  2245  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L2246" class="ln">  2246  </span>	}
+<span id="L2247" class="ln">  2247  </span>
+<span id="L2248" class="ln">  2248  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L2249" class="ln">  2249  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L2250" class="ln">  2250  </span>			ErrorBody:    localVarBody,
+<span id="L2251" class="ln">  2251  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L2252" class="ln">  2252  </span>		}
+<span id="L2253" class="ln">  2253  </span>		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L2254" class="ln">  2254  </span>			var v APIErrorResponse
+<span id="L2255" class="ln">  2255  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L2256" class="ln">  2256  </span>			if err != nil {
+<span id="L2257" class="ln">  2257  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L2258" class="ln">  2258  </span>			}
+<span id="L2259" class="ln">  2259  </span>			newErr.ErrorModel = v
+<span id="L2260" class="ln">  2260  </span>		}
+<span id="L2261" class="ln">  2261  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L2262" class="ln">  2262  </span>	}
+<span id="L2263" class="ln">  2263  </span>
+<span id="L2264" class="ln">  2264  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L2265" class="ln">  2265  </span>	if err != nil {
+<span id="L2266" class="ln">  2266  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L2267" class="ln">  2267  </span>			ErrorBody:    localVarBody,
+<span id="L2268" class="ln">  2268  </span>			ErrorMessage: err.Error(),
+<span id="L2269" class="ln">  2269  </span>		}
+<span id="L2270" class="ln">  2270  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L2271" class="ln">  2271  </span>	}
+<span id="L2272" class="ln">  2272  </span>
+<span id="L2273" class="ln">  2273  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L2274" class="ln">  2274  </span>}
+<span id="L2275" class="ln">  2275  </span>
+<span id="L2276" class="ln">  2276  </span><span class="comment">// UpdateCostAzureUCConfigs Update Cloud Cost Management Azure config.</span>
+<span id="L2277" class="ln">  2277  </span><span class="comment">// Update the status of an  Azure config (active/archived).</span>
+<span id="L2278" class="ln">  2278  </span>func (a *CloudCostManagementApi) UpdateCostAzureUCConfigs(ctx _context.Context, cloudAccountId int64, body AzureUCConfigPatchRequest) (AzureUCConfigPairsResponse, *_nethttp.Response, error) {
+<span id="L2279" class="ln">  2279  </span>	var (
+<span id="L2280" class="ln">  2280  </span>		localVarHTTPMethod  = _nethttp.MethodPatch
+<span id="L2281" class="ln">  2281  </span>		localVarPostBody    interface{}
+<span id="L2282" class="ln">  2282  </span>		localVarReturnValue AzureUCConfigPairsResponse
+<span id="L2283" class="ln">  2283  </span>	)
+<span id="L2284" class="ln">  2284  </span>
+<span id="L2285" class="ln">  2285  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.UpdateCostAzureUCConfigs&#34;)
+<span id="L2286" class="ln">  2286  </span>	if err != nil {
+<span id="L2287" class="ln">  2287  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L2288" class="ln">  2288  </span>	}
+<span id="L2289" class="ln">  2289  </span>
+<span id="L2290" class="ln">  2290  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/azure_uc_config/{cloud_account_id}&#34;
+<span id="L2291" class="ln">  2291  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{cloud_account_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, &#34;&#34;)))
+<span id="L2292" class="ln">  2292  </span>
+<span id="L2293" class="ln">  2293  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L2294" class="ln">  2294  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L2295" class="ln">  2295  </span>	localVarFormParams := _neturl.Values{}
+<span id="L2296" class="ln">  2296  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L2297" class="ln">  2297  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L2298" class="ln">  2298  </span>
+<span id="L2299" class="ln">  2299  </span>	<span class="comment">// body params</span>
+<span id="L2300" class="ln">  2300  </span>	localVarPostBody = &amp;body
+<span id="L2301" class="ln">  2301  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
+<span id="L2302" class="ln">  2302  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+<span id="L2303" class="ln">  2303  </span>		if err != nil {
+<span id="L2304" class="ln">  2304  </span>			return localVarReturnValue, nil, err
+<span id="L2305" class="ln">  2305  </span>		}
+<span id="L2306" class="ln">  2306  </span>	} else {
+<span id="L2307" class="ln">  2307  </span>		datadog.SetAuthKeys(
+<span id="L2308" class="ln">  2308  </span>			ctx,
+<span id="L2309" class="ln">  2309  </span>			&amp;localVarHeaderParams,
+<span id="L2310" class="ln">  2310  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L2311" class="ln">  2311  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L2312" class="ln">  2312  </span>		)
+<span id="L2313" class="ln">  2313  </span>	}
+<span id="L2314" class="ln">  2314  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L2315" class="ln">  2315  </span>	if err != nil {
+<span id="L2316" class="ln">  2316  </span>		return localVarReturnValue, nil, err
+<span id="L2317" class="ln">  2317  </span>	}
+<span id="L2318" class="ln">  2318  </span>
+<span id="L2319" class="ln">  2319  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L2320" class="ln">  2320  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L2321" class="ln">  2321  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L2322" class="ln">  2322  </span>	}
+<span id="L2323" class="ln">  2323  </span>
+<span id="L2324" class="ln">  2324  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L2325" class="ln">  2325  </span>	if err != nil {
+<span id="L2326" class="ln">  2326  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L2327" class="ln">  2327  </span>	}
+<span id="L2328" class="ln">  2328  </span>
+<span id="L2329" class="ln">  2329  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L2330" class="ln">  2330  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L2331" class="ln">  2331  </span>			ErrorBody:    localVarBody,
+<span id="L2332" class="ln">  2332  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L2333" class="ln">  2333  </span>		}
+<span id="L2334" class="ln">  2334  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L2335" class="ln">  2335  </span>			var v APIErrorResponse
+<span id="L2336" class="ln">  2336  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L2337" class="ln">  2337  </span>			if err != nil {
+<span id="L2338" class="ln">  2338  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L2339" class="ln">  2339  </span>			}
+<span id="L2340" class="ln">  2340  </span>			newErr.ErrorModel = v
+<span id="L2341" class="ln">  2341  </span>		}
+<span id="L2342" class="ln">  2342  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L2343" class="ln">  2343  </span>	}
+<span id="L2344" class="ln">  2344  </span>
+<span id="L2345" class="ln">  2345  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L2346" class="ln">  2346  </span>	if err != nil {
+<span id="L2347" class="ln">  2347  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L2348" class="ln">  2348  </span>			ErrorBody:    localVarBody,
+<span id="L2349" class="ln">  2349  </span>			ErrorMessage: err.Error(),
+<span id="L2350" class="ln">  2350  </span>		}
+<span id="L2351" class="ln">  2351  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L2352" class="ln">  2352  </span>	}
+<span id="L2353" class="ln">  2353  </span>
+<span id="L2354" class="ln">  2354  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L2355" class="ln">  2355  </span>}
+<span id="L2356" class="ln">  2356  </span>
+<span id="L2357" class="ln">  2357  </span><span class="comment">// UpdateCostGCPUsageCostConfig Update Google Cloud Usage Cost config.</span>
+<span id="L2358" class="ln">  2358  </span><span class="comment">// Update the status of an Google Cloud Usage Cost config (active/archived).</span>
+<span id="L2359" class="ln">  2359  </span>func (a *CloudCostManagementApi) UpdateCostGCPUsageCostConfig(ctx _context.Context, cloudAccountId int64, body GCPUsageCostConfigPatchRequest) (GCPUsageCostConfigResponse, *_nethttp.Response, error) {
+<span id="L2360" class="ln">  2360  </span>	var (
+<span id="L2361" class="ln">  2361  </span>		localVarHTTPMethod  = _nethttp.MethodPatch
+<span id="L2362" class="ln">  2362  </span>		localVarPostBody    interface{}
+<span id="L2363" class="ln">  2363  </span>		localVarReturnValue GCPUsageCostConfigResponse
+<span id="L2364" class="ln">  2364  </span>	)
+<span id="L2365" class="ln">  2365  </span>
+<span id="L2366" class="ln">  2366  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.UpdateCostGCPUsageCostConfig&#34;)
+<span id="L2367" class="ln">  2367  </span>	if err != nil {
+<span id="L2368" class="ln">  2368  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L2369" class="ln">  2369  </span>	}
+<span id="L2370" class="ln">  2370  </span>
+<span id="L2371" class="ln">  2371  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/gcp_uc_config/{cloud_account_id}&#34;
+<span id="L2372" class="ln">  2372  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{cloud_account_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, &#34;&#34;)))
+<span id="L2373" class="ln">  2373  </span>
+<span id="L2374" class="ln">  2374  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L2375" class="ln">  2375  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L2376" class="ln">  2376  </span>	localVarFormParams := _neturl.Values{}
+<span id="L2377" class="ln">  2377  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L2378" class="ln">  2378  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L2379" class="ln">  2379  </span>
+<span id="L2380" class="ln">  2380  </span>	<span class="comment">// body params</span>
+<span id="L2381" class="ln">  2381  </span>	localVarPostBody = &amp;body
+<span id="L2382" class="ln">  2382  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
+<span id="L2383" class="ln">  2383  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+<span id="L2384" class="ln">  2384  </span>		if err != nil {
+<span id="L2385" class="ln">  2385  </span>			return localVarReturnValue, nil, err
+<span id="L2386" class="ln">  2386  </span>		}
+<span id="L2387" class="ln">  2387  </span>	} else {
+<span id="L2388" class="ln">  2388  </span>		datadog.SetAuthKeys(
+<span id="L2389" class="ln">  2389  </span>			ctx,
+<span id="L2390" class="ln">  2390  </span>			&amp;localVarHeaderParams,
+<span id="L2391" class="ln">  2391  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L2392" class="ln">  2392  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L2393" class="ln">  2393  </span>		)
+<span id="L2394" class="ln">  2394  </span>	}
+<span id="L2395" class="ln">  2395  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L2396" class="ln">  2396  </span>	if err != nil {
+<span id="L2397" class="ln">  2397  </span>		return localVarReturnValue, nil, err
+<span id="L2398" class="ln">  2398  </span>	}
+<span id="L2399" class="ln">  2399  </span>
+<span id="L2400" class="ln">  2400  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L2401" class="ln">  2401  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L2402" class="ln">  2402  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L2403" class="ln">  2403  </span>	}
+<span id="L2404" class="ln">  2404  </span>
+<span id="L2405" class="ln">  2405  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L2406" class="ln">  2406  </span>	if err != nil {
+<span id="L2407" class="ln">  2407  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L2408" class="ln">  2408  </span>	}
+<span id="L2409" class="ln">  2409  </span>
+<span id="L2410" class="ln">  2410  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L2411" class="ln">  2411  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L2412" class="ln">  2412  </span>			ErrorBody:    localVarBody,
+<span id="L2413" class="ln">  2413  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L2414" class="ln">  2414  </span>		}
+<span id="L2415" class="ln">  2415  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L2416" class="ln">  2416  </span>			var v APIErrorResponse
+<span id="L2417" class="ln">  2417  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L2418" class="ln">  2418  </span>			if err != nil {
+<span id="L2419" class="ln">  2419  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L2420" class="ln">  2420  </span>			}
+<span id="L2421" class="ln">  2421  </span>			newErr.ErrorModel = v
+<span id="L2422" class="ln">  2422  </span>		}
+<span id="L2423" class="ln">  2423  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L2424" class="ln">  2424  </span>	}
+<span id="L2425" class="ln">  2425  </span>
+<span id="L2426" class="ln">  2426  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L2427" class="ln">  2427  </span>	if err != nil {
+<span id="L2428" class="ln">  2428  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L2429" class="ln">  2429  </span>			ErrorBody:    localVarBody,
+<span id="L2430" class="ln">  2430  </span>			ErrorMessage: err.Error(),
+<span id="L2431" class="ln">  2431  </span>		}
+<span id="L2432" class="ln">  2432  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L2433" class="ln">  2433  </span>	}
+<span id="L2434" class="ln">  2434  </span>
+<span id="L2435" class="ln">  2435  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L2436" class="ln">  2436  </span>}
+<span id="L2437" class="ln">  2437  </span>
+<span id="L2438" class="ln">  2438  </span><span class="comment">// UpdateCustomAllocationRule Update custom allocation rule.</span>
+<span id="L2439" class="ln">  2439  </span><span class="comment">// Update an existing custom allocation rule with new filters and allocation strategy.</span>
+<span id="L2440" class="ln">  2440  </span><span class="comment">//</span>
+<span id="L2441" class="ln">  2441  </span><span class="comment">// **Strategy Methods:**</span>
+<span id="L2442" class="ln">  2442  </span><span class="comment">// - **PROPORTIONAL/EVEN**: Allocates costs proportionally/evenly based on existing costs. Requires: granularity, allocated_by_tag_keys. Optional: based_on_costs, allocated_by_filters, evaluate_grouped_by_tag_keys, evaluate_grouped_by_filters.</span>
+<span id="L2443" class="ln">  2443  </span><span class="comment">// - **PROPORTIONAL_TIMESERIES/EVEN_TIMESERIES**: Allocates based on timeseries data. Requires: granularity, based_on_timeseries. Optional: evaluate_grouped_by_tag_keys.</span>
+<span id="L2444" class="ln">  2444  </span><span class="comment">// - **PERCENT**: Allocates fixed percentages to specific tags. Requires: allocated_by (array of percentage allocations).</span>
+<span id="L2445" class="ln">  2445  </span><span class="comment">// - **USAGE_METRIC**: Allocates based on usage metrics (implementation varies).</span>
+<span id="L2446" class="ln">  2446  </span><span class="comment">//</span>
+<span id="L2447" class="ln">  2447  </span><span class="comment">// **Filter Conditions:**</span>
+<span id="L2448" class="ln">  2448  </span><span class="comment">// - Use **value** for single-value conditions: &#34;is&#34;, &#34;is not&#34;, &#34;contains&#34;, &#34;does not contain&#34;, &#34;=&#34;, &#34;!=&#34;, &#34;like&#34;, &#34;not like&#34;, &#34;is all values&#34;, &#34;is untagged&#34;</span>
+<span id="L2449" class="ln">  2449  </span><span class="comment">// - Use **values** for multi-value conditions: &#34;in&#34;, &#34;not in&#34;</span>
+<span id="L2450" class="ln">  2450  </span><span class="comment">// - Cannot use both value and values simultaneously.</span>
+<span id="L2451" class="ln">  2451  </span><span class="comment">//</span>
+<span id="L2452" class="ln">  2452  </span><span class="comment">// **Supported operators**: is, is not, is all values, is untagged, contains, does not contain, in, not in, =, !=, like, not like</span>
+<span id="L2453" class="ln">  2453  </span>func (a *CloudCostManagementApi) UpdateCustomAllocationRule(ctx _context.Context, ruleId int64, body ArbitraryCostUpsertRequest) (ArbitraryRuleResponse, *_nethttp.Response, error) {
 <span id="L2454" class="ln">  2454  </span>	var (
 <span id="L2455" class="ln">  2455  </span>		localVarHTTPMethod  = _nethttp.MethodPatch
 <span id="L2456" class="ln">  2456  </span>		localVarPostBody    interface{}
-<span id="L2457" class="ln">  2457  </span>		localVarReturnValue GCPUsageCostConfigResponse
+<span id="L2457" class="ln">  2457  </span>		localVarReturnValue ArbitraryRuleResponse
 <span id="L2458" class="ln">  2458  </span>	)
 <span id="L2459" class="ln">  2459  </span>
-<span id="L2460" class="ln">  2460  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.UpdateCostGCPUsageCostConfig&#34;)
+<span id="L2460" class="ln">  2460  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.UpdateCustomAllocationRule&#34;)
 <span id="L2461" class="ln">  2461  </span>	if err != nil {
 <span id="L2462" class="ln">  2462  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L2463" class="ln">  2463  </span>	}
 <span id="L2464" class="ln">  2464  </span>
-<span id="L2465" class="ln">  2465  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/gcp_uc_config/{cloud_account_id}&#34;
-<span id="L2466" class="ln">  2466  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{cloud_account_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(cloudAccountId, &#34;&#34;)))
+<span id="L2465" class="ln">  2465  </span>	localVarPath := localBasePath + &#34;/api/v2/cost/arbitrary_rule/{rule_id}&#34;
+<span id="L2466" class="ln">  2466  </span>	localVarPath = datadog.ReplacePathParameter(localVarPath, &#34;{rule_id}&#34;, _neturl.PathEscape(datadog.ParameterToString(ruleId, &#34;&#34;)))
 <span id="L2467" class="ln">  2467  </span>
 <span id="L2468" class="ln">  2468  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L2469" class="ln">  2469  </span>	localVarQueryParams := _neturl.Values{}
@@ -2563,7 +2563,7 @@
 <span id="L2506" class="ln">  2506  </span>			ErrorBody:    localVarBody,
 <span id="L2507" class="ln">  2507  </span>			ErrorMessage: localVarHTTPResponse.Status,
 <span id="L2508" class="ln">  2508  </span>		}
-<span id="L2509" class="ln">  2509  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L2509" class="ln">  2509  </span>		if localVarHTTPResponse.StatusCode == 429 {
 <span id="L2510" class="ln">  2510  </span>			var v APIErrorResponse
 <span id="L2511" class="ln">  2511  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
 <span id="L2512" class="ln">  2512  </span>			if err != nil {
@@ -2586,16 +2586,16 @@
 <span id="L2529" class="ln">  2529  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L2530" class="ln">  2530  </span>}
 <span id="L2531" class="ln">  2531  </span>
-<span id="L2532" class="ln">  2532  </span><span class="comment">// UpdateRuleset Update ruleset.</span>
+<span id="L2532" class="ln">  2532  </span><span class="comment">// UpdateTagPipelinesRuleset Update tag pipeline ruleset.</span>
 <span id="L2533" class="ln">  2533  </span><span class="comment">// Update a tag pipeline ruleset - Update an existing tag pipeline ruleset with new rules and configuration</span>
-<span id="L2534" class="ln">  2534  </span>func (a *CloudCostManagementApi) UpdateRuleset(ctx _context.Context, rulesetId string, body UpdateRulesetRequest) (RulesetResp, *_nethttp.Response, error) {
+<span id="L2534" class="ln">  2534  </span>func (a *CloudCostManagementApi) UpdateTagPipelinesRuleset(ctx _context.Context, rulesetId string, body UpdateRulesetRequest) (RulesetResp, *_nethttp.Response, error) {
 <span id="L2535" class="ln">  2535  </span>	var (
 <span id="L2536" class="ln">  2536  </span>		localVarHTTPMethod  = _nethttp.MethodPatch
 <span id="L2537" class="ln">  2537  </span>		localVarPostBody    interface{}
 <span id="L2538" class="ln">  2538  </span>		localVarReturnValue RulesetResp
 <span id="L2539" class="ln">  2539  </span>	)
 <span id="L2540" class="ln">  2540  </span>
-<span id="L2541" class="ln">  2541  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.UpdateRuleset&#34;)
+<span id="L2541" class="ln">  2541  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.UpdateTagPipelinesRuleset&#34;)
 <span id="L2542" class="ln">  2542  </span>	if err != nil {
 <span id="L2543" class="ln">  2543  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 <span id="L2544" class="ln">  2544  </span>	}
