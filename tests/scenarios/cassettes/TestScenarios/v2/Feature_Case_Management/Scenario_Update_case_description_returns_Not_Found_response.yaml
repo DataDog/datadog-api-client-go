@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"description":"Seeing some weird memory increase... We shouldn't ignore this"},"type":"case"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/cases/0198c6b0-2a0a-7bea-87ff-3876f119aebb/description
+  response:
+    body: '{"errors":[{"code":"resource_not_found","title":"case not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

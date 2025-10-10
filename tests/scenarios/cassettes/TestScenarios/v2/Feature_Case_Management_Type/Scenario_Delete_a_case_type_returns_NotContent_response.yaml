@@ -1,0 +1,43 @@
+interactions:
+- request:
+    body: "{\"data\":{\"attributes\":{\"description\":\"Worldwide case type\",\"emoji\"\
+      :\"\U0001F30D\",\"name\":\"World\"},\"type\":\"case_type\"}}\n"
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/cases/types
+  response:
+    body: "{\"data\":{\"id\":\"f580bda9-aed7-49b6-ad70-5707d1c183fa\",\"type\":\"\
+      case_type\",\"attributes\":{\"description\":\"Worldwide case type\",\"emoji\"\
+      :\"\U0001F30D\",\"internal\":false,\"name\":\"World\",\"statuses_config\":{\"\
+      open\":{\"status_options\":[{\"name\":\"Open\"}],\"default\":\"Open\"},\"in_progress\"\
+      :{\"status_options\":[{\"name\":\"In Progress\"}],\"default\":\"In Progress\"\
+      },\"closed\":{\"status_options\":[{\"name\":\"Closed\"}],\"default\":\"Closed\"\
+      }}}}}"
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/cases/types/f580bda9-aed7-49b6-ad70-5707d1c183fa
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
