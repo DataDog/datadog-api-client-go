@@ -1,4 +1,4 @@
-// Create a Workload Protection agent rule returns "OK" response
+// Create a Workload Protection agent rule with set action with expression returns "OK" response
 
 package main
 
@@ -19,14 +19,23 @@ func main() {
 	body := datadogV2.CloudWorkloadSecurityAgentRuleCreateRequest{
 		Data: datadogV2.CloudWorkloadSecurityAgentRuleCreateData{
 			Attributes: datadogV2.CloudWorkloadSecurityAgentRuleCreateAttributes{
-				Description:  datadog.PtrString("My Agent rule"),
-				Enabled:      datadog.PtrBool(true),
-				Expression:   `exec.file.name == "sh"`,
-				AgentVersion: datadog.PtrString("> 7.60"),
-				Filters:      []string{},
-				Name:         "examplecsmthreat",
-				PolicyId:     datadog.PtrString(PolicyDataID),
-				ProductTags:  []string{},
+				Description: datadog.PtrString("My Agent rule with set action with expression"),
+				Enabled:     datadog.PtrBool(true),
+				Expression:  `exec.file.name == "sh"`,
+				Filters:     []string{},
+				Name:        "examplecsmthreat",
+				PolicyId:    datadog.PtrString(PolicyDataID),
+				ProductTags: []string{},
+				Actions: []datadogV2.CloudWorkloadSecurityAgentRuleAction{
+					{
+						Set: &datadogV2.CloudWorkloadSecurityAgentRuleActionSet{
+							Name:         datadog.PtrString("test_set"),
+							Expression:   datadog.PtrString("open.file.path"),
+							DefaultValue: datadog.PtrString("/dev/null"),
+							Scope:        datadog.PtrString("process"),
+						},
+					},
+				},
 			},
 			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
 		},
