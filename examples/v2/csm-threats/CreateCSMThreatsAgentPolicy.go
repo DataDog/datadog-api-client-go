@@ -23,7 +23,7 @@ func main() {
 						"env:test",
 					},
 				},
-				Name: "my_agent_policy",
+				Name: "my_agent_policy_2",
 			},
 			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTPOLICYTYPE_POLICY,
 		},
