@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/agentless_scanning/ondemand/aws
   response:
-    body: '{"errors":[{"title":"Generic Error","detail":"invalid aws resource arn"}]}'
+    body: '{"errors":[{"title":"Generic Error","detail":"invalid aws arn"}]}'
     code: 400
     duration: 0ms
     headers:

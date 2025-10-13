@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"vuln_containers_os":false},"id":"api-spec-test","type":"gcp_scan_options"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/gcp/api-spec-test
+  response:
+    body: '{"data":{"id":"api-spec-test","type":"gcp_scan_options","attributes":{"vuln_containers_os":false,"vuln_host_os":true}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2

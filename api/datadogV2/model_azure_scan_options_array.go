@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AzureScanOptionsArray The definition of `AzureScanOptionsArray` object.
+// AzureScanOptionsArray Response object containing a list of Azure scan options.
 type AzureScanOptionsArray struct {
-	// The `AzureScanOptionsArray` `data`.
+	// A list of Azure scan options.
 	Data []AzureScanOptionsData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
