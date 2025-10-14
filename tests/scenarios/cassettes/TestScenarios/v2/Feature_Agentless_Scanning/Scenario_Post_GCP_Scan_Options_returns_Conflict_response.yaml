@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"vuln_containers_os":true,"vuln_host_os":true},"id":"api-spec-test","type":"gcp_scan_options"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/gcp
+  response:
+    body: '{"errors":[{"status":"409","detail":"gcp scan options already exist for
+      project api-spec-test"}]}'
+    code: 409
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 409 Conflict
+version: 2

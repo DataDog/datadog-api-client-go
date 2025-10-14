@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AzureScanOptionsData The definition of `AzureScanOptionsData` object.
+// AzureScanOptionsData Single Azure scan options entry.
 type AzureScanOptionsData struct {
-	// The definition of `AzureScanOptionsDataAttributes` object.
+	// Attributes for Azure scan options configuration.
 	Attributes *AzureScanOptionsDataAttributes `json:"attributes,omitempty"`
-	// The `AzureScanOptionsData` `id`.
+	// The Azure subscription ID.
 	Id string `json:"id"`
 	// The type of the resource. The value should always be `azure_scan_options`.
 	Type AzureScanOptionsDataType `json:"type"`

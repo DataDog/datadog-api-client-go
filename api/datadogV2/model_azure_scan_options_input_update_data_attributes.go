@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AzureScanOptionsInputUpdateDataAttributes The definition of `AzureScanOptionsInputUpdateDataAttributes` object.
+// AzureScanOptionsInputUpdateDataAttributes Attributes for updating Azure scan options configuration.
 type AzureScanOptionsInputUpdateDataAttributes struct {
-	// The `attributes` `vuln_containers_os`.
+	// Indicates if scanning for vulnerabilities in containers is enabled.
 	VulnContainersOs *bool `json:"vuln_containers_os,omitempty"`
-	// The `attributes` `vuln_host_os`.
+	// Indicates if scanning for vulnerabilities in hosts is enabled.
 	VulnHostOs *bool `json:"vuln_host_os,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

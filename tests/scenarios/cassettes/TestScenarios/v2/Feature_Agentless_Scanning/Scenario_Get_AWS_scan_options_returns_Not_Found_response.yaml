@@ -9,7 +9,7 @@ interactions:
     method: GET
     url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/aws/404404404404
   response:
-    body: '{"errors":[{"status":"404","detail":"no aws scan options found for subscription
+    body: '{"errors":[{"status":"404","detail":"no aws scan options found for account
       404404404404"}]}'
     code: 404
     duration: 0ms

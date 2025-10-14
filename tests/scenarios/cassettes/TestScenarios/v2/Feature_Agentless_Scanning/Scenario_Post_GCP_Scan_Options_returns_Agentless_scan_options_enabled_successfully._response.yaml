@@ -1,0 +1,37 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"vuln_containers_os":true,"vuln_host_os":true},"id":"new-project","type":"gcp_scan_options"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/gcp
+  response:
+    body: '{"data":{"id":"new-project","type":"gcp_scan_options","attributes":{"vuln_containers_os":true,"vuln_host_os":true}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/gcp/new-project
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
