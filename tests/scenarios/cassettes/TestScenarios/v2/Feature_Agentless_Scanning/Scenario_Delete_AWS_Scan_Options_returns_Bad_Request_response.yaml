@@ -9,8 +9,7 @@ interactions:
     method: DELETE
     url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/aws/incorrectId
   response:
-    body: '{"errors":[{"title":"Generic Error","detail":"missing or invalid url parameter
-      ''accountId'', expected uuid format ''123456789012''"}]}'
+    body: '{"errors":[{"title":"Generic Error","detail":"invalid AWS account ID"}]}'
     code: 400
     duration: 0ms
     headers:

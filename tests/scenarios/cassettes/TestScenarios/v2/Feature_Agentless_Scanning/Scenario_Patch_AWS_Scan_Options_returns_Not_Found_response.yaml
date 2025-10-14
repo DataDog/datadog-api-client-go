@@ -12,7 +12,7 @@ interactions:
     method: PATCH
     url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/aws/000000000005
   response:
-    body: '{"errors":[{"status":"404","detail":"no aws scan options found for subscription
+    body: '{"errors":[{"status":"404","detail":"no aws scan options found for account
       000000000005"}]}'
     code: 404
     duration: 0ms

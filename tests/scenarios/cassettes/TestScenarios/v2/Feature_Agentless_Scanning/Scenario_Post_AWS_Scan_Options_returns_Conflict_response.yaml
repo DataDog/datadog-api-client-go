@@ -13,7 +13,7 @@ interactions:
     url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/aws
   response:
     body: '{"errors":[{"status":"409","detail":"aws scan options already exist for
-      subscription 000000000002"}]}'
+      account 000000000002"}]}'
     code: 409
     duration: 0ms
     headers:
