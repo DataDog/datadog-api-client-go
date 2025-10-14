@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testupdateaworkloadprotectionpolicyreturnsokresponse1748341524"},"type":"policy"}}
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testupdateaworkloadprotectionpolicyreturnsokresponse1760109695"},"type":"policy"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy
   response:
-    body: '{"data":{"id":"qn1-4by-5zr","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
-      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testupdateaworkloadprotectionpolicyreturnsokresponse1748341524","policyVersion":"1","priority":1000000011,"ruleCount":226,"updateDate":1748341524459,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+    body: '{"data":{"id":"cqp-anw-jba","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTagsLists":[["env:staging"]],"monitoringRulesCount":7,"name":"testupdateaworkloadprotectionpolicyreturnsokresponse1760109695","pinned":false,"policyVersion":"1","ruleCount":8,"updateDate":1760109695685,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
     code: 200
     duration: 0ms
     headers:
@@ -22,7 +22,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"description":"Updated agent policy","enabled":true,"hostTagsLists":[["env:test"]],"name":"updated_agent_policy"},"id":"qn1-4by-5zr","type":"policy"}}
+      {"data":{"attributes":{"description":"Updated agent policy","enabled":true,"hostTagsLists":[["env:test"]],"name":"updated_agent_policy"},"id":"cqp-anw-jba","type":"policy"}}
     form: {}
     headers:
       Accept:
@@ -31,10 +31,10 @@ interactions:
       - application/json
     id: 1
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/qn1-4by-5zr
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/cqp-anw-jba
   response:
-    body: '{"data":{"id":"qn1-4by-5zr","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"Updated
-      agent policy","disabledRulesCount":1,"enabled":true,"hostTagsLists":[["env:test"]],"monitoringRulesCount":225,"name":"updated_agent_policy","policyVersion":"2","priority":1000000011,"ruleCount":226,"updateDate":1748341525121,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+    body: '{"data":{"id":"cqp-anw-jba","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"Updated
+      agent policy","disabledRulesCount":0,"enabled":true,"hostTagsLists":[["env:test"]],"monitoringRulesCount":0,"name":"updated_agent_policy","pinned":false,"policyVersion":"2","ruleCount":0,"updateDate":1760109696865,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
     code: 200
     duration: 0ms
     headers:
@@ -49,7 +49,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/qn1-4by-5zr
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/cqp-anw-jba
   response:
     body: ''
     code: 204

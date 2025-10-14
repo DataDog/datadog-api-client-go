@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testdeleteaworkloadprotectionagentrulereturnsokresponse1749827803"},"type":"policy"}}
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testdeleteaworkloadprotectionagentrulereturnsokresponse1760109657"},"type":"policy"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy
   response:
-    body: '{"data":{"id":"tn0-tjy-vwh","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
-      agent policy","disabledRulesCount":1,"enabled":true,"hostTags":["env:staging"],"monitoringRulesCount":225,"name":"testdeleteaworkloadprotectionagentrulereturnsokresponse1749827803","policyVersion":"1","priority":1000000013,"ruleCount":226,"updateDate":1749827803539,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+    body: '{"data":{"id":"xm5-r6n-xej","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTagsLists":[["env:staging"]],"monitoringRulesCount":7,"name":"testdeleteaworkloadprotectionagentrulereturnsokresponse1760109657","pinned":false,"policyVersion":"1","ruleCount":8,"updateDate":1760109657799,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
     code: 200
     duration: 0ms
     headers:
@@ -22,7 +22,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"actions":[{"set":{"name":"test_set","scope":"process","value":"test_value"}},{"hash":{}}],"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testdeleteaworkloadprotectionagentrulereturnsokresponse1749827803","policy_id":"tn0-tjy-vwh","product_tags":["security:attack","technique:T1059"]},"type":"agent_rule"}}
+      {"data":{"attributes":{"actions":[{"set":{"name":"test_set","scope":"process","value":"test_value"}},{"hash":{}}],"description":"My Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","name":"testdeleteaworkloadprotectionagentrulereturnsokresponse1760109657","policy_id":"xm5-r6n-xej","product_tags":["security:attack","technique:T1059"]},"type":"agent_rule"}}
     form: {}
     headers:
       Accept:
@@ -33,10 +33,10 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules
   response:
-    body: '{"data":{"id":"hm0-n7p-hq7","type":"agent_rule","attributes":{"actions":[{"set":{"name":"test_set","value":"test_value","scope":"process"},"disabled":false},{"hash":{},"disabled":false}],"category":"Process
-      Activity","creationDate":1749827804150,"creator":{"name":"frog","handle":"frog@datadoghq.com"},"defaultRule":false,"description":"My
+    body: '{"data":{"id":"tpa-28k-utt","type":"agent_rule","attributes":{"actions":[{"set":{"name":"test_set","value":"test_value","scope":"process","inherited":false},"disabled":false},{"hash":{},"disabled":false}],"category":"Process
+      Activity","creationDate":1760109658753,"creator":{"name":"frog","handle":"frog@datadoghq.com"},"defaultRule":false,"description":"My
       Agent rule","enabled":true,"expression":"exec.file.name == \"sh\"","filters":["os
-      == \"linux\""],"monitoring":["tn0-tjy-vwh"],"name":"testdeleteaworkloadprotectionagentrulereturnsokresponse1749827803","product_tags":["security:attack","technique:T1059"],"updateDate":1749827804150,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+      == \"linux\""],"monitoring":["xm5-r6n-xej"],"name":"testdeleteaworkloadprotectionagentrulereturnsokresponse1760109657","product_tags":["security:attack","technique:T1059"],"updateDate":1760109658753,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
     code: 200
     duration: 0ms
     headers:
@@ -51,7 +51,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/hm0-n7p-hq7?policy_id=tn0-tjy-vwh
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/tpa-28k-utt?policy_id=xm5-r6n-xej
   response:
     body: ''
     code: 204
@@ -68,7 +68,7 @@ interactions:
       - '*/*'
     id: 3
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/hm0-n7p-hq7
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/tpa-28k-utt
   response:
     body: '{"errors":[{"title":"failed to delete rule"}]}
 
@@ -87,7 +87,7 @@ interactions:
       - '*/*'
     id: 4
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/tn0-tjy-vwh
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/xm5-r6n-xej
   response:
     body: ''
     code: 204
