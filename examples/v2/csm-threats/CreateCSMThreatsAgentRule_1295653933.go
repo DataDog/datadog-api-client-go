@@ -29,9 +29,10 @@ func main() {
 				Actions: []datadogV2.CloudWorkloadSecurityAgentRuleAction{
 					{
 						Set: &datadogV2.CloudWorkloadSecurityAgentRuleActionSet{
-							Name:  datadog.PtrString("test_set"),
-							Value: datadog.PtrString("test_value"),
-							Scope: datadog.PtrString("process"),
+							Name:      datadog.PtrString("test_set"),
+							Value:     datadog.PtrString("test_value"),
+							Scope:     datadog.PtrString("process"),
+							Inherited: datadog.PtrBool(true),
 						},
 					},
 					{

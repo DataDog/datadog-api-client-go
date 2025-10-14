@@ -7,11 +7,9 @@ interactions:
       - application/json
     id: 0
     method: GET
-    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/non-existent-rule-id
+    url: https://api.datadoghq.com/api/v2/security_monitoring/cloud_workload_security/agent_rules/abc-def-ghi
   response:
-    body: '{"errors":["Not found"]}
-
-      '
+    body: '{"errors":["not_found(Agent rule not found: agentRuleId=abc-def-ghi)"]}'
     code: 404
     duration: 0ms
     headers:
