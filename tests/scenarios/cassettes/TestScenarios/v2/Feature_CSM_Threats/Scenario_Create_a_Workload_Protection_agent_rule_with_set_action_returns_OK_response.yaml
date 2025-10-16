@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testcreateaworkloadprotectionagentrulewithsetactionreturnsokresponse1760109646"},"type":"policy"}}
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testcreateaworkloadprotectionagentrulewithsetactionreturnsokresponse1760630569"},"type":"policy"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy
   response:
-    body: '{"data":{"id":"c85-dqa-6no","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
-      agent policy","disabledRulesCount":1,"enabled":true,"hostTagsLists":[["env:staging"]],"monitoringRulesCount":7,"name":"testcreateaworkloadprotectionagentrulewithsetactionreturnsokresponse1760109646","pinned":false,"policyVersion":"1","ruleCount":8,"updateDate":1760109646385,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+    body: '{"data":{"id":"32y-irg-daq","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTagsLists":[["env:staging"]],"monitoringRulesCount":7,"name":"testcreateaworkloadprotectionagentrulewithsetactionreturnsokresponse1760630569","pinned":false,"policyVersion":"1","ruleCount":8,"updateDate":1760630570147,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
     code: 200
     duration: 0ms
     headers:
@@ -22,7 +22,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"actions":[{"set":{"inherited":true,"name":"test_set","scope":"process","value":"test_value"}},{"hash":{}}],"description":"My Agent rule with set action","enabled":true,"expression":"exec.file.name == \"sh\"","filters":[],"name":"testcreateaworkloadprotectionagentrulewithsetactionreturnsokresponse1760109646","policy_id":"c85-dqa-6no","product_tags":[]},"type":"agent_rule"}}
+      {"data":{"attributes":{"actions":[{"set":{"inherited":true,"name":"test_set","scope":"process","value":"test_value"}},{"hash":{}}],"description":"My Agent rule with set action","enabled":true,"expression":"exec.file.name == \"sh\"","filters":[],"name":"testcreateaworkloadprotectionagentrulewithsetactionreturnsokresponse1760630569","policy_id":"32y-irg-daq","product_tags":[]},"type":"agent_rule"}}
     form: {}
     headers:
       Accept:
@@ -33,10 +33,10 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules
   response:
-    body: '{"data":{"id":"ak5-bk0-dxq","type":"agent_rule","attributes":{"actions":[{"set":{"name":"test_set","value":"test_value","scope":"process","inherited":true},"disabled":false},{"hash":{},"disabled":false}],"category":"Process
-      Activity","creationDate":1760109647450,"creator":{"name":"frog","handle":"frog@datadoghq.com"},"defaultRule":false,"description":"My
+    body: '{"data":{"id":"vpy-mmr-mqt","type":"agent_rule","attributes":{"actions":[{"set":{"name":"test_set","value":"test_value","scope":"process","inherited":true},"disabled":false},{"hash":{},"disabled":false}],"category":"Process
+      Activity","creationDate":1760630570914,"creator":{"name":"frog","handle":"frog@datadoghq.com"},"defaultRule":false,"description":"My
       Agent rule with set action","enabled":true,"expression":"exec.file.name == \"sh\"","filters":["os
-      == \"linux\""],"monitoring":["c85-dqa-6no"],"name":"testcreateaworkloadprotectionagentrulewithsetactionreturnsokresponse1760109646","product_tags":[],"updateDate":1760109647450,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+      == \"linux\""],"monitoring":["32y-irg-daq"],"name":"testcreateaworkloadprotectionagentrulewithsetactionreturnsokresponse1760630569","product_tags":[],"updateDate":1760630570914,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
     code: 200
     duration: 0ms
     headers:
@@ -51,24 +51,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/agent_rules/ak5-bk0-dxq
-  response:
-    body: ''
-    code: 204
-    duration: 0ms
-    headers:
-      Content-Type:
-      - application/json
-    status: 204 No Content
-- request:
-    body: ''
-    form: {}
-    headers:
-      Accept:
-      - '*/*'
-    id: 3
-    method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/c85-dqa-6no
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/32y-irg-daq
   response:
     body: ''
     code: 204
