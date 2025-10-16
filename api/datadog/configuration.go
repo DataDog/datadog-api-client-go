@@ -617,6 +617,7 @@ func NewConfiguration() *Configuration {
 			"v2.ListAssetsSBOMs":                         false,
 			"v2.ListFindings":                            false,
 			"v2.ListHistoricalJobs":                      false,
+			"v2.ListScannedAssetsMetadata":               false,
 			"v2.ListSecurityMonitoringHistsignals":       false,
 			"v2.ListVulnerabilities":                     false,
 			"v2.ListVulnerableAssets":                    false,

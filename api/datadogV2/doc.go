@@ -502,6 +502,7 @@
 //   - [SecurityMonitoringApi.ListAssetsSBOMs]
 //   - [SecurityMonitoringApi.ListFindings]
 //   - [SecurityMonitoringApi.ListHistoricalJobs]
+//   - [SecurityMonitoringApi.ListScannedAssetsMetadata]
 //   - [SecurityMonitoringApi.ListSecurityFilters]
 //   - [SecurityMonitoringApi.ListSecurityMonitoringHistsignals]
 //   - [SecurityMonitoringApi.ListSecurityMonitoringRules]
