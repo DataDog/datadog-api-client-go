@@ -22,7 +22,9 @@ func main() {
 					Aggregation:    datadogV2.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
 					GroupByFields:  []string{},
 					DistinctFields: []string{},
-					Index:          datadog.PtrString("main"),
+					Indexes: []string{
+						"main",
+					},
 				},
 			},
 			Filters: []datadogV2.SecurityMonitoringFilter{},
