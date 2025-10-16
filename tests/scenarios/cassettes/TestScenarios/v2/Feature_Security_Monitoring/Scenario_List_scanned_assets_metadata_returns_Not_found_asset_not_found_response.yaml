@@ -7,7 +7,7 @@ interactions:
       - application/json
     id: 0
     method: GET
-    url: https://api.datadoghq.com/api/v2/security/vulnerable-assets?page%5Btoken%5D=unknown&page%5Bnumber%5D=1
+    url: https://api.datadoghq.com/api/v2/security/scanned-assets-metadata?page%5Btoken%5D=unknown&page%5Bnumber%5D=1
   response:
     body: '{"errors":[{"status":"404","title":"Unexpected internal error"}]}'
     code: 404

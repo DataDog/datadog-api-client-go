@@ -2091,6 +2091,7 @@ func (a *SecurityMonitoringApi) GetRuleVersionHistory(ctx _context.Context, rule
 // GetSBOMOptionalParameters holds optional parameters for GetSBOM.
 type GetSBOMOptionalParameters struct {
 	FilterRepoDigest *string
+	ExtFormat        *SBOMFormat
 }
 
 // NewGetSBOMOptionalParameters creates an empty struct for parameters.
@@ -2102,6 +2103,12 @@ func NewGetSBOMOptionalParameters() *GetSBOMOptionalParameters {
 // WithFilterRepoDigest sets the corresponding parameter name and returns the struct.
 func (r *GetSBOMOptionalParameters) WithFilterRepoDigest(filterRepoDigest string) *GetSBOMOptionalParameters {
 	r.FilterRepoDigest = &filterRepoDigest
+	return r
+}
+
+// WithExtFormat sets the corresponding parameter name and returns the struct.
+func (r *GetSBOMOptionalParameters) WithExtFormat(extFormat SBOMFormat) *GetSBOMOptionalParameters {
+	r.ExtFormat = &extFormat
 	return r
 }
 
@@ -2145,6 +2152,9 @@ func (a *SecurityMonitoringApi) GetSBOM(ctx _context.Context, assetType AssetTyp
 	localVarQueryParams.Add("filter[asset_name]", datadog.ParameterToString(filterAssetName, ""))
 	if optionalParams.FilterRepoDigest != nil {
 		localVarQueryParams.Add("filter[repo_digest]", datadog.ParameterToString(*optionalParams.FilterRepoDigest, ""))
+	}
+	if optionalParams.ExtFormat != nil {
+		localVarQueryParams.Add("ext:format", datadog.ParameterToString(*optionalParams.ExtFormat, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
@@ -3960,6 +3970,222 @@ func (a *SecurityMonitoringApi) ListHistoricalJobs(ctx _context.Context, o ...Li
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListScannedAssetsMetadataOptionalParameters holds optional parameters for ListScannedAssetsMetadata.
+type ListScannedAssetsMetadataOptionalParameters struct {
+	PageToken               *string
+	PageNumber              *int64
+	FilterAssetType         *CloudAssetType
+	FilterAssetName         *string
+	FilterLastSuccessOrigin *string
+	FilterLastSuccessEnv    *string
+}
+
+// NewListScannedAssetsMetadataOptionalParameters creates an empty struct for parameters.
+func NewListScannedAssetsMetadataOptionalParameters() *ListScannedAssetsMetadataOptionalParameters {
+	this := ListScannedAssetsMetadataOptionalParameters{}
+	return &this
+}
+
+// WithPageToken sets the corresponding parameter name and returns the struct.
+func (r *ListScannedAssetsMetadataOptionalParameters) WithPageToken(pageToken string) *ListScannedAssetsMetadataOptionalParameters {
+	r.PageToken = &pageToken
+	return r
+}
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
+func (r *ListScannedAssetsMetadataOptionalParameters) WithPageNumber(pageNumber int64) *ListScannedAssetsMetadataOptionalParameters {
+	r.PageNumber = &pageNumber
+	return r
+}
+
+// WithFilterAssetType sets the corresponding parameter name and returns the struct.
+func (r *ListScannedAssetsMetadataOptionalParameters) WithFilterAssetType(filterAssetType CloudAssetType) *ListScannedAssetsMetadataOptionalParameters {
+	r.FilterAssetType = &filterAssetType
+	return r
+}
+
+// WithFilterAssetName sets the corresponding parameter name and returns the struct.
+func (r *ListScannedAssetsMetadataOptionalParameters) WithFilterAssetName(filterAssetName string) *ListScannedAssetsMetadataOptionalParameters {
+	r.FilterAssetName = &filterAssetName
+	return r
+}
+
+// WithFilterLastSuccessOrigin sets the corresponding parameter name and returns the struct.
+func (r *ListScannedAssetsMetadataOptionalParameters) WithFilterLastSuccessOrigin(filterLastSuccessOrigin string) *ListScannedAssetsMetadataOptionalParameters {
+	r.FilterLastSuccessOrigin = &filterLastSuccessOrigin
+	return r
+}
+
+// WithFilterLastSuccessEnv sets the corresponding parameter name and returns the struct.
+func (r *ListScannedAssetsMetadataOptionalParameters) WithFilterLastSuccessEnv(filterLastSuccessEnv string) *ListScannedAssetsMetadataOptionalParameters {
+	r.FilterLastSuccessEnv = &filterLastSuccessEnv
+	return r
+}
+
+// ListScannedAssetsMetadata List scanned assets metadata.
+// Get a list of security scanned assets metadata for an organization.
+//
+// ### Pagination
+//
+// For the "List Vulnerabilities" endpoint, see the [Pagination section](#pagination).
+//
+// ### Filtering
+//
+// For the "List Vulnerabilities" endpoint, see the [Filtering section](#filtering).
+//
+// ### Metadata
+//
+//	For the "List Vulnerabilities" endpoint, see the [Metadata section](#metadata).
+//
+// ### Related endpoints
+//
+// This endpoint returns additional metadata for cloud resources that is not available from the standard resource endpoints. To access a richer dataset, call this endpoint together with the relevant resource endpoint(s) and merge (join) their results using the resource identifier.
+//
+// **Hosts**
+//
+// To enrich host data, join the response from the [Hosts](https://docs.datadoghq.com/api/latest/hosts/) endpoint with the response from the scanned-assets-metadata endpoint on the following key fields:
+//
+// | ENDPOINT | JOIN KEY | TYPE |
+// | --- | --- | --- |
+// | [/api/v1/hosts](https://docs.datadoghq.com/api/latest/hosts/) | host_list.host_name | string |
+// | /api/v2/security/scanned-assets-metadata | data.attributes.asset.name | string |
+//
+// **Host Images**
+//
+// To enrich host image data, join the response from the [Hosts](https://docs.datadoghq.com/api/latest/hosts/) endpoint with the response from the scanned-assets-metadata endpoint on the following key fields:
+//
+// | ENDPOINT | JOIN KEY | TYPE |
+// | --- | --- | --- |
+// | [/api/v1/hosts](https://docs.datadoghq.com/api/latest/hosts/) | host_list.tags_by_source["Amazon Web Services"]["image"] | string |
+// | /api/v2/security/scanned-assets-metadata | data.attributes.asset.name | string |
+//
+// **Container Images**
+//
+// To enrich container image data, join the response from the [Container Images](https://docs.datadoghq.com/api/latest/container-images/) endpoint with the response from the scanned-assets-metadata endpoint on the following key fields:
+//
+// | ENDPOINT | JOIN KEY | TYPE |
+// | --- | --- | --- |
+// | [/api/v2/container_images](https://docs.datadoghq.com/api/latest/container-images/) | `data.attributes.name`@`data.attributes.repo_digest` | string |
+// | /api/v2/security/scanned-assets-metadata | data.attributes.asset.name | string |
+func (a *SecurityMonitoringApi) ListScannedAssetsMetadata(ctx _context.Context, o ...ListScannedAssetsMetadataOptionalParameters) (ScannedAssetsMetadata, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue ScannedAssetsMetadata
+		optionalParams      ListScannedAssetsMetadataOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListScannedAssetsMetadataOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.ListScannedAssetsMetadata"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ListScannedAssetsMetadata")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/security/scanned-assets-metadata"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.PageToken != nil {
+		localVarQueryParams.Add("page[token]", datadog.ParameterToString(*optionalParams.PageToken, ""))
+	}
+	if optionalParams.PageNumber != nil {
+		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*optionalParams.PageNumber, ""))
+	}
+	if optionalParams.FilterAssetType != nil {
+		localVarQueryParams.Add("filter[asset.type]", datadog.ParameterToString(*optionalParams.FilterAssetType, ""))
+	}
+	if optionalParams.FilterAssetName != nil {
+		localVarQueryParams.Add("filter[asset.name]", datadog.ParameterToString(*optionalParams.FilterAssetName, ""))
+	}
+	if optionalParams.FilterLastSuccessOrigin != nil {
+		localVarQueryParams.Add("filter[last_success.origin]", datadog.ParameterToString(*optionalParams.FilterLastSuccessOrigin, ""))
+	}
+	if optionalParams.FilterLastSuccessEnv != nil {
+		localVarQueryParams.Add("filter[last_success.env]", datadog.ParameterToString(*optionalParams.FilterLastSuccessEnv, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // ListSecurityFilters Get all security filters.
 // Get the list of configured security filters with their definitions.
 func (a *SecurityMonitoringApi) ListSecurityFilters(ctx _context.Context) (SecurityFiltersResponse, *_nethttp.Response, error) {
@@ -4983,6 +5209,8 @@ func (r *ListVulnerabilitiesOptionalParameters) WithFilterAssetOperatingSystemVe
 //
 // This token can then be used in the subsequent paginated requests.
 //
+// *Note: The first request may take longer to complete than subsequent requests.*
+//
 // #### Subsequent requests
 //
 // Any request containing valid `page[token]` and `page[number]` parameters will be considered a subsequent request.
@@ -4990,6 +5218,8 @@ func (r *ListVulnerabilitiesOptionalParameters) WithFilterAssetOperatingSystemVe
 // If the `token` is invalid, a `404` response will be returned.
 //
 // If the page `number` is invalid, a `400` response will be returned.
+//
+// The returned `token` is valid for all requests in the pagination sequence. To send paginated requests in parallel, reuse the same `token` and change only the `page[number]` parameter.
 //
 // ### Filtering
 //
@@ -5024,6 +5254,11 @@ func (r *ListVulnerabilitiesOptionalParameters) WithFilterAssetOperatingSystemVe
 //	}
 //
 // ```
+// ### Extensions
+//
+// Requests may include extensions to modify the behavior of the requested endpoint. The filter parameters follow the [JSON:API format](https://jsonapi.org/extensions/#extensions) format: `ext:$extension_name`, where `extension_name` is the name of the modifier that is being applied.
+//
+// Extensions can only include one value: `ext:modifier=value`.
 func (a *SecurityMonitoringApi) ListVulnerabilities(ctx _context.Context, o ...ListVulnerabilitiesOptionalParameters) (ListVulnerabilitiesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -5098,7 +5333,7 @@ func (a *SecurityMonitoringApi) ListVulnerabilities(ctx _context.Context, o ...L
 		localVarQueryParams.Add("filter[library.version]", datadog.ParameterToString(*optionalParams.FilterLibraryVersion, ""))
 	}
 	if optionalParams.FilterAdvisoryId != nil {
-		localVarQueryParams.Add("filter[advisory_id]", datadog.ParameterToString(*optionalParams.FilterAdvisoryId, ""))
+		localVarQueryParams.Add("filter[advisory.id]", datadog.ParameterToString(*optionalParams.FilterAdvisoryId, ""))
 	}
 	if optionalParams.FilterRisksExploitationProbability != nil {
 		localVarQueryParams.Add("filter[risks.exploitation_probability]", datadog.ParameterToString(*optionalParams.FilterRisksExploitationProbability, ""))
@@ -5423,7 +5658,7 @@ func (a *SecurityMonitoringApi) ListVulnerableAssets(ctx _context.Context, o ...
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/security/assets"
+	localVarPath := localBasePath + "/api/v2/security/vulnerable-assets"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
