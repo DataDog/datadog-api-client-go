@@ -1371,7 +1371,7 @@ func (a *CloudCostManagementApi) GetCustomCostsFile(ctx _context.Context, fileId
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetTagPipelinesRuleset Get ruleset.
+// GetTagPipelinesRuleset Get a tag pipeline ruleset.
 // Get a specific tag pipeline ruleset - Retrieve a specific tag pipeline ruleset by its ID
 func (a *CloudCostManagementApi) GetTagPipelinesRuleset(ctx _context.Context, rulesetId string) (RulesetResp, *_nethttp.Response, error) {
 	var (

@@ -1,4 +1,4 @@
-// Get ruleset returns "OK" response
+// Get a tag pipeline ruleset returns "OK" response
 
 package main
 
@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudCostManagementApi(apiClient)
-	resp, r, err := api.GetTagPipelinesRuleset(ctx, "ruleset_id")
+	resp, r, err := api.GetTagPipelinesRuleset(ctx, "a1e9de9b-b88e-41c6-a0cd-cc0ebd7092de")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudCostManagementApi.GetTagPipelinesRuleset`: %v\n", err)
